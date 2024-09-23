@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **TotpCode** | **string** | The TOTP code. | 
 **WebauthnLogin** | **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 **LookupSecret** | **string** | The lookup secret. | 
+**Address** | **string** | Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows. | [optional] 
 **Code** | **string** | Code is the 6 digits code sent to the user | [optional] 
 **Resend** | **string** | Resend is set when the user wants to resend the code | [optional] 
 **PasskeyLogin** | **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 

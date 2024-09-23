@@ -82,6 +82,7 @@ export * from './HealthStatus';
 export * from './Identity';
 export * from './IdentityCredentials';
 export * from './IdentityCredentialsCode';
+export * from './IdentityCredentialsCodeAddress';
 export * from './IdentityCredentialsOidc';
 export * from './IdentityCredentialsOidcProvider';
 export * from './IdentityCredentialsPassword';

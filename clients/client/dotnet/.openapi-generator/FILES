@@ -86,6 +86,7 @@ docs/ClientHealthStatus.md
 docs/ClientIdentity.md
 docs/ClientIdentityCredentials.md
 docs/ClientIdentityCredentialsCode.md
+docs/ClientIdentityCredentialsCodeAddress.md
 docs/ClientIdentityCredentialsOidc.md
 docs/ClientIdentityCredentialsOidcProvider.md
 docs/ClientIdentityCredentialsPassword.md
@@ -378,6 +379,7 @@ src/Ory.Client.Test/Model/ClientGetSessionActivityResponseTests.cs
 src/Ory.Client.Test/Model/ClientGetVersion200ResponseTests.cs
 src/Ory.Client.Test/Model/ClientHealthNotReadyStatusTests.cs
 src/Ory.Client.Test/Model/ClientHealthStatusTests.cs
+src/Ory.Client.Test/Model/ClientIdentityCredentialsCodeAddressTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsCodeTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsOidcProviderTests.cs
 src/Ory.Client.Test/Model/ClientIdentityCredentialsOidcTests.cs
@@ -683,6 +685,7 @@ src/Ory.Client/Model/ClientHealthStatus.cs
 src/Ory.Client/Model/ClientIdentity.cs
 src/Ory.Client/Model/ClientIdentityCredentials.cs
 src/Ory.Client/Model/ClientIdentityCredentialsCode.cs
+src/Ory.Client/Model/ClientIdentityCredentialsCodeAddress.cs
 src/Ory.Client/Model/ClientIdentityCredentialsOidc.cs
 src/Ory.Client/Model/ClientIdentityCredentialsOidcProvider.cs
 src/Ory.Client/Model/ClientIdentityCredentialsPassword.cs

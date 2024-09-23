@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **TotpCode** | **string** | The TOTP code. | 
 **WebauthnLogin** | Pointer to **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 **LookupSecret** | **string** | The lookup secret. | 
+**Address** | Pointer to **string** | Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows. | [optional] 
 **Code** | Pointer to **string** | Code is the 6 digits code sent to the user | [optional] 
 **Resend** | Pointer to **string** | Resend is set when the user wants to resend the code | [optional] 
 **PasskeyLogin** | Pointer to **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
@@ -355,6 +356,31 @@ and a boolean to check if the value has been set.
 
 SetLookupSecret sets LookupSecret field to given value.
 
+
+### GetAddress
+
+`func (o *UpdateLoginFlowBody) GetAddress() string`
+
+GetAddress returns the Address field if non-nil, zero value otherwise.
+
+### GetAddressOk
+
+`func (o *UpdateLoginFlowBody) GetAddressOk() (*string, bool)`
+
+GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddress
+
+`func (o *UpdateLoginFlowBody) SetAddress(v string)`
+
+SetAddress sets Address field to given value.
+
+### HasAddress
+
+`func (o *UpdateLoginFlowBody) HasAddress() bool`
+
+HasAddress returns a boolean if a field has been set.
 
 ### GetCode
 

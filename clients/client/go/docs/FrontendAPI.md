@@ -64,7 +64,7 @@ func main() {
 	cookie := "cookie_example" // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 	loginChallenge := "loginChallenge_example" // string | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional)
 	organization := "organization_example" // string | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
-	via := "via_example" // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
+	via := "via_example" // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
  **cookie** | **string** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | 
  **loginChallenge** | **string** | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | 
  **organization** | **string** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | 
- **via** | **string** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | 
+ **via** | **string** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | 
 
 ### Return type
 
@@ -481,7 +481,7 @@ func main() {
 	xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
 	returnSessionTokenExchangeCode := true // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
 	returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
-	via := "via_example" // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
+	via := "via_example" // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -511,7 +511,7 @@ Name | Type | Description  | Notes
  **xSessionToken** | **string** | The Session Token of the Identity performing the settings flow. | 
  **returnSessionTokenExchangeCode** | **bool** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | 
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
- **via** | **string** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | 
+ **via** | **string** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | 
 
 ### Return type
 

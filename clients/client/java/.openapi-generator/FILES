@@ -92,6 +92,7 @@ docs/Identity.md
 docs/IdentityApi.md
 docs/IdentityCredentials.md
 docs/IdentityCredentialsCode.md
+docs/IdentityCredentialsCodeAddress.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
@@ -413,6 +414,7 @@ src/main/java/sh/ory/model/HealthStatus.java
 src/main/java/sh/ory/model/Identity.java
 src/main/java/sh/ory/model/IdentityCredentials.java
 src/main/java/sh/ory/model/IdentityCredentialsCode.java
+src/main/java/sh/ory/model/IdentityCredentialsCodeAddress.java
 src/main/java/sh/ory/model/IdentityCredentialsOidc.java
 src/main/java/sh/ory/model/IdentityCredentialsOidcProvider.java
 src/main/java/sh/ory/model/IdentityCredentialsPassword.java
@@ -691,6 +693,7 @@ src/test/java/sh/ory/model/GetSessionActivityResponseTest.java
 src/test/java/sh/ory/model/GetVersion200ResponseTest.java
 src/test/java/sh/ory/model/HealthNotReadyStatusTest.java
 src/test/java/sh/ory/model/HealthStatusTest.java
+src/test/java/sh/ory/model/IdentityCredentialsCodeAddressTest.java
 src/test/java/sh/ory/model/IdentityCredentialsCodeTest.java
 src/test/java/sh/ory/model/IdentityCredentialsOidcProviderTest.java
 src/test/java/sh/ory/model/IdentityCredentialsOidcTest.java

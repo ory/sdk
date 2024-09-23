@@ -96,6 +96,7 @@ import 'package:ory_client/src/model/health_status.dart';
 import 'package:ory_client/src/model/identity.dart';
 import 'package:ory_client/src/model/identity_credentials.dart';
 import 'package:ory_client/src/model/identity_credentials_code.dart';
+import 'package:ory_client/src/model/identity_credentials_code_address.dart';
 import 'package:ory_client/src/model/identity_credentials_oidc.dart';
 import 'package:ory_client/src/model/identity_credentials_oidc_provider.dart';
 import 'package:ory_client/src/model/identity_credentials_password.dart';
@@ -368,6 +369,7 @@ part 'serializers.g.dart';
   Identity,
   IdentityCredentials,
   IdentityCredentialsCode,
+  IdentityCredentialsCodeAddress,
   IdentityCredentialsOidc,
   IdentityCredentialsOidcProvider,
   IdentityCredentialsPassword,

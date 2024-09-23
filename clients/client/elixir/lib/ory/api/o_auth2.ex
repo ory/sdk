@@ -572,7 +572,7 @@ defmodule Ory.Api.OAuth2 do
 
   @doc """
   OAuth 2.0 Authorize Endpoint
-  Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+  Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
   ### Parameters
 
@@ -602,7 +602,7 @@ defmodule Ory.Api.OAuth2 do
 
   @doc """
   The OAuth 2.0 Token Endpoint
-  Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+  Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
   ### Parameters
 
@@ -838,7 +838,7 @@ defmodule Ory.Api.OAuth2 do
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
     - `:subject` (String.t): OAuth 2.0 Subject  The subject to revoke authentication sessions for.
-    - `:sid` (String.t): OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+    - `:sid` (String.t): Login Session ID  The login session to revoke.
 
   ### Returns
 

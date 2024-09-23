@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.15.0
+API version: v1.15.3
 Contact: support@ory.sh
 */
 
@@ -317,7 +317,8 @@ empty JSON array with status code 200 OK.
 	Use open source libraries to perform OAuth 2.0 and OpenID Connect
 available for any programming language. You can find a list of libraries at https://oauth.net/code/
 
-The Ory SDK is not yet able to this endpoint properly.
+This endpoint should not be used via the Ory SDK and is only included for technical reasons.
+Instead, use one of the libraries linked above.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return OAuth2APIOAuth2AuthorizeRequest
@@ -334,7 +335,8 @@ The Ory SDK is not yet able to this endpoint properly.
 	Use open source libraries to perform OAuth 2.0 and OpenID Connect
 available for any programming language. You can find a list of libraries here https://oauth.net/code/
 
-The Ory SDK is not yet able to this endpoint properly.
+This endpoint should not be used via the Ory SDK and is only included for technical reasons.
+Instead, use one of the libraries linked above.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return OAuth2APIOauth2TokenExchangeRequest
@@ -2601,7 +2603,8 @@ OAuth2Authorize OAuth 2.0 Authorize Endpoint
 Use open source libraries to perform OAuth 2.0 and OpenID Connect
 available for any programming language. You can find a list of libraries at https://oauth.net/code/
 
-The Ory SDK is not yet able to this endpoint properly.
+This endpoint should not be used via the Ory SDK and is only included for technical reasons.
+Instead, use one of the libraries linked above.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return OAuth2APIOAuth2AuthorizeRequest
@@ -2741,7 +2744,8 @@ Oauth2TokenExchange The OAuth 2.0 Token Endpoint
 Use open source libraries to perform OAuth 2.0 and OpenID Connect
 available for any programming language. You can find a list of libraries here https://oauth.net/code/
 
-The Ory SDK is not yet able to this endpoint properly.
+This endpoint should not be used via the Ory SDK and is only included for technical reasons.
+Instead, use one of the libraries linked above.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return OAuth2APIOauth2TokenExchangeRequest
@@ -3516,7 +3520,7 @@ func (r OAuth2APIRevokeOAuth2LoginSessionsRequest) Subject(subject string) OAuth
 	return r
 }
 
-// OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+// Login Session ID  The login session to revoke.
 func (r OAuth2APIRevokeOAuth2LoginSessionsRequest) Sid(sid string) OAuth2APIRevokeOAuth2LoginSessionsRequest {
 	r.sid = &sid
 	return r

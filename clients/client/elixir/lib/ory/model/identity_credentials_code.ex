@@ -8,20 +8,18 @@ defmodule Ory.Model.IdentityCredentialsCode do
 
   @derive Jason.Encoder
   defstruct [
-    :address_type,
-    :used_at
+    :addresses
   ]
 
   @type t :: %__MODULE__{
-    :address_type => String.t | nil,
-    :used_at => DateTime.t | nil
+    :addresses => [Ory.Model.IdentityCredentialsCodeAddress.t] | nil
   }
 
   alias Ory.Deserializer
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:used_at, :datetime, nil)
+     |> Deserializer.deserialize(:addresses, :list, Ory.Model.IdentityCredentialsCodeAddress)
   end
 end
 

@@ -1322,7 +1322,7 @@ Name | Type | Description  | Notes
 
 OAuth 2.0 Authorize Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Example
 
@@ -1387,7 +1387,7 @@ No authorization required
 
 The OAuth 2.0 Token Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Example
 
@@ -1913,7 +1913,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.OAuth2Api(api_client)
     subject = 'subject_example' # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
-    sid = 'sid_example' # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
+    sid = 'sid_example' # str | Login Session ID  The login session to revoke. (optional)
 
     try:
         # Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
@@ -1930,7 +1930,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
- **sid** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
+ **sid** | **str**| Login Session ID  The login session to revoke. | [optional] 
 
 ### Return type
 

@@ -93,6 +93,7 @@ docs/Identity.md
 docs/IdentityApi.md
 docs/IdentityCredentials.md
 docs/IdentityCredentialsCode.md
+docs/IdentityCredentialsCodeAddress.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
@@ -388,6 +389,7 @@ lib/ory-client/models/health_status.rb
 lib/ory-client/models/identity.rb
 lib/ory-client/models/identity_credentials.rb
 lib/ory-client/models/identity_credentials_code.rb
+lib/ory-client/models/identity_credentials_code_address.rb
 lib/ory-client/models/identity_credentials_oidc.rb
 lib/ory-client/models/identity_credentials_oidc_provider.rb
 lib/ory-client/models/identity_credentials_password.rb
@@ -668,6 +670,7 @@ spec/models/get_session_activity_response_spec.rb
 spec/models/get_version200_response_spec.rb
 spec/models/health_not_ready_status_spec.rb
 spec/models/health_status_spec.rb
+spec/models/identity_credentials_code_address_spec.rb
 spec/models/identity_credentials_code_spec.rb
 spec/models/identity_credentials_oidc_provider_spec.rb
 spec/models/identity_credentials_oidc_spec.rb

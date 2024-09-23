@@ -1175,7 +1175,7 @@ end
 
 OAuth 2.0 Authorize Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Examples
 
@@ -1236,7 +1236,7 @@ No authorization required
 
 The OAuth 2.0 Token Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Examples
 
@@ -1694,7 +1694,7 @@ end
 api_instance = OryClient::OAuth2Api.new
 opts = {
   subject: 'subject_example', # String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
-  sid: 'sid_example' # String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+  sid: 'sid_example' # String | Login Session ID  The login session to revoke.
 }
 
 begin
@@ -1728,7 +1728,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **subject** | **String** | OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
-| **sid** | **String** | OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
+| **sid** | **String** | Login Session ID  The login session to revoke. | [optional] |
 
 ### Return type
 

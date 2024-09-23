@@ -8,6 +8,7 @@ defmodule Ory.Model.UpdateLoginFlowWithCodeMethod do
 
   @derive Jason.Encoder
   defstruct [
+    :address,
     :code,
     :csrf_token,
     :identifier,
@@ -17,6 +18,7 @@ defmodule Ory.Model.UpdateLoginFlowWithCodeMethod do
   ]
 
   @type t :: %__MODULE__{
+    :address => String.t | nil,
     :code => String.t | nil,
     :csrf_token => String.t,
     :identifier => String.t | nil,

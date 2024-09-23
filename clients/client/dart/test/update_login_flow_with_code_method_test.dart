@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UpdateLoginFlowWithCodeMethod, () {
+    // Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows.
+    // String address
+    test('to test the property `address`', () async {
+      // TODO
+    });
+
     // Code is the 6 digits code sent to the user
     // String code
     test('to test the property `code`', () async {

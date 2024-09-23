@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.15.0
+API version: v1.15.3
 Contact: support@ory.sh
 */
 
@@ -976,7 +976,7 @@ func (r FrontendAPICreateBrowserLoginFlowRequest) Organization(organization stri
 	return r
 }
 
-// Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.
+// Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
 func (r FrontendAPICreateBrowserLoginFlowRequest) Via(via string) FrontendAPICreateBrowserLoginFlowRequest {
 	r.via = &via
 	return r
@@ -1949,7 +1949,7 @@ func (r FrontendAPICreateNativeLoginFlowRequest) ReturnTo(returnTo string) Front
 	return r
 }
 
-// Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.
+// Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
 func (r FrontendAPICreateNativeLoginFlowRequest) Via(via string) FrontendAPICreateNativeLoginFlowRequest {
 	r.via = &via
 	return r

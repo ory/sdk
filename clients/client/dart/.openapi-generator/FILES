@@ -88,6 +88,7 @@ doc/Identity.md
 doc/IdentityApi.md
 doc/IdentityCredentials.md
 doc/IdentityCredentialsCode.md
+doc/IdentityCredentialsCodeAddress.md
 doc/IdentityCredentialsOidc.md
 doc/IdentityCredentialsOidcProvider.md
 doc/IdentityCredentialsPassword.md
@@ -388,6 +389,7 @@ lib/src/model/health_status.dart
 lib/src/model/identity.dart
 lib/src/model/identity_credentials.dart
 lib/src/model/identity_credentials_code.dart
+lib/src/model/identity_credentials_code_address.dart
 lib/src/model/identity_credentials_oidc.dart
 lib/src/model/identity_credentials_oidc_provider.dart
 lib/src/model/identity_credentials_password.dart
@@ -659,6 +661,7 @@ test/get_version200_response_test.dart
 test/health_not_ready_status_test.dart
 test/health_status_test.dart
 test/identity_api_test.dart
+test/identity_credentials_code_address_test.dart
 test/identity_credentials_code_test.dart
 test/identity_credentials_oidc_provider_test.dart
 test/identity_credentials_oidc_test.dart

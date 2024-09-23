@@ -35,6 +35,7 @@ part 'update_login_flow_body.g.dart';
 /// * [totpCode] - The TOTP code.
 /// * [webauthnLogin] - Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
 /// * [lookupSecret] - The lookup secret.
+/// * [address] - Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows.
 /// * [code] - Code is the 6 digits code sent to the user
 /// * [resend] - Resend is set when the user wants to resend the code
 /// * [passkeyLogin] - Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.

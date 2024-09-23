@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.15.0
+  version: v1.15.3
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -2094,9 +2094,9 @@ paths:
           type: string
         style: form
       - description: |-
-          OAuth 2.0 Subject
+          Login Session ID
 
-          The subject to revoke authentication sessions for.
+          The login session to revoke.
         explode: true
         in: query
         name: sid
@@ -2878,7 +2878,8 @@ paths:
         Use open source libraries to perform OAuth 2.0 and OpenID Connect
         available for any programming language. You can find a list of libraries at https://oauth.net/code/
 
-        The Ory SDK is not yet able to this endpoint properly.
+        This endpoint should not be used via the Ory SDK and is only included for technical reasons.
+        Instead, use one of the libraries linked above.
       operationId: oAuth2Authorize
       responses:
         "302":
@@ -3130,7 +3131,8 @@ paths:
         Use open source libraries to perform OAuth 2.0 and OpenID Connect
         available for any programming language. You can find a list of libraries here https://oauth.net/code/
 
-        The Ory SDK is not yet able to this endpoint properly.
+        This endpoint should not be used via the Ory SDK and is only included for technical reasons.
+        Instead, use one of the libraries linked above.
       operationId: oauth2TokenExchange
       requestBody:
         content:
@@ -5347,8 +5349,11 @@ paths:
         schema:
           type: string
         style: form
-      - description: Via should contain the identity's credential the code should
-          be sent to. Only relevant in aal2 flows.
+      - description: |-
+          Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
+
+          DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice
+          of MFA credentials to choose from to perform the second factor instead.
         explode: true
         in: query
         name: via
@@ -5476,8 +5481,11 @@ paths:
         schema:
           type: string
         style: form
-      - description: Via should contain the identity's credential the code should
-          be sent to. Only relevant in aal2 flows.
+      - description: |-
+          Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
+
+          DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice
+          of MFA credentials to choose from to perform the second factor instead.
         explode: true
         in: query
         name: via
@@ -8072,6 +8080,8 @@ components:
         usage_invoice:
           $ref: '#/components/schemas/invoice'
       type: object
+    CodeChannel:
+      type: string
     CreateInviteResponse:
       properties:
         all_invites:
@@ -11946,12 +11956,17 @@ components:
     identityCredentialsCode:
       description: CredentialsCode represents a one time login/registration code
       properties:
-        address_type:
-          description: The type of the address for this code
+        addresses:
+          items:
+            $ref: '#/components/schemas/identityCredentialsCodeAddress'
+          type: array
+      type: object
+    identityCredentialsCodeAddress:
+      properties:
+        address:
+          description: The address for this code
           type: string
-        used_at:
-          format: date-time
-          nullable: true
+        channel:
           type: string
       type: object
     identityCredentialsOidc:
@@ -20591,6 +20606,11 @@ components:
     updateLoginFlowWithCodeMethod:
       description: Update Login flow using the code method
       properties:
+        address:
+          description: |-
+            Address is the address to send the code to, in case that there are multiple addresses. This field
+            is only used in two-factor flows and is ineffective for passwordless flows.
+          type: string
         code:
           description: Code is the 6 digits code sent to the user
           type: string

@@ -531,7 +531,7 @@ Name | Type | Description  | Required | Notes
 > models::ErrorOAuth2 o_auth2_authorize()
 OAuth 2.0 Authorize Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Parameters
 
@@ -558,7 +558,7 @@ No authorization required
 > models::OAuth2TokenExchange oauth2_token_exchange(grant_type, client_id, code, redirect_uri, refresh_token)
 The OAuth 2.0 Token Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Parameters
 
@@ -755,7 +755,7 @@ This endpoint invalidates authentication sessions. After revoking the authentica
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **subject** | Option<**String**> | OAuth 2.0 Subject  The subject to revoke authentication sessions for. |  |
-**sid** | Option<**String**> | OAuth 2.0 Subject  The subject to revoke authentication sessions for. |  |
+**sid** | Option<**String**> | Login Session ID  The login session to revoke. |  |
 
 ### Return type
 

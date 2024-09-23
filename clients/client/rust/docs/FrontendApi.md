@@ -55,7 +55,7 @@ Name | Type | Description  | Required | Notes
 **cookie** | Option<**String**> | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. |  |
 **login_challenge** | Option<**String**> | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). |  |
 **organization** | Option<**String**> | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. |  |
-**via** | Option<**String**> | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. |  |
+**via** | Option<**String**> | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. |  |
 
 ### Return type
 
@@ -245,7 +245,7 @@ Name | Type | Description  | Required | Notes
 **x_session_token** | Option<**String**> | The Session Token of the Identity performing the settings flow. |  |
 **return_session_token_exchange_code** | Option<**bool**> | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. |  |
 **return_to** | Option<**String**> | The URL to return the browser to after the flow was completed. |  |
-**via** | Option<**String**> | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. |  |
+**via** | Option<**String**> | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. |  |
 
 ### Return type
 

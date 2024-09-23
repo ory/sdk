@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.15.0
-  - Build date: 2024-09-11T14:16:56.042339805Z[Etc/UTC]
+- API version: v1.15.3
+  - Build date: 2024-09-23T09:52:09.030246654Z[Etc/UTC]
   - Generator version: 7.7.0
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
@@ -43,7 +43,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.15.0</version>
+  <version>v1.15.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -59,7 +59,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.15.0"
+     implementation "sh.ory:client:v1.15.3"
   }
 ```
 
@@ -73,7 +73,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.15.0.jar`
+* `target/client-v1.15.3.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -344,6 +344,7 @@ Class | Method | HTTP request | Description
  - [Identity](docs/Identity.md)
  - [IdentityCredentials](docs/IdentityCredentials.md)
  - [IdentityCredentialsCode](docs/IdentityCredentialsCode.md)
+ - [IdentityCredentialsCodeAddress](docs/IdentityCredentialsCodeAddress.md)
  - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
  - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)

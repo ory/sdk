@@ -101,6 +101,7 @@ lib/ory/model/health_status.ex
 lib/ory/model/identity.ex
 lib/ory/model/identity_credentials.ex
 lib/ory/model/identity_credentials_code.ex
+lib/ory/model/identity_credentials_code_address.ex
 lib/ory/model/identity_credentials_oidc.ex
 lib/ory/model/identity_credentials_oidc_provider.ex
 lib/ory/model/identity_credentials_password.ex

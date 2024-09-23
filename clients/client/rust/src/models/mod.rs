@@ -162,6 +162,8 @@ pub mod identity_credentials;
 pub use self::identity_credentials::IdentityCredentials;
 pub mod identity_credentials_code;
 pub use self::identity_credentials_code::IdentityCredentialsCode;
+pub mod identity_credentials_code_address;
+pub use self::identity_credentials_code_address::IdentityCredentialsCodeAddress;
 pub mod identity_credentials_oidc;
 pub use self::identity_credentials_oidc::IdentityCredentialsOidc;
 pub mod identity_credentials_oidc_provider;

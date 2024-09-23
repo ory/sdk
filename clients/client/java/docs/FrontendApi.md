@@ -65,7 +65,7 @@ public class Example {
     String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
     String loginChallenge = "loginChallenge_example"; // String | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
     String organization = "organization_example"; // String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
-    String via = "via_example"; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
+    String via = "via_example"; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
     try {
       LoginFlow result = apiInstance.createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via);
       System.out.println(result);
@@ -90,7 +90,7 @@ public class Example {
 | **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
 | **loginChallenge** | **String**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] |
 | **organization** | **String**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
-| **via** | **String**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] |
+| **via** | **String**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] |
 
 ### Return type
 
@@ -476,7 +476,7 @@ public class Example {
     String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
     Boolean returnSessionTokenExchangeCode = true; // Boolean | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
     String returnTo = "returnTo_example"; // String | The URL to return the browser to after the flow was completed.
-    String via = "via_example"; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
+    String via = "via_example"; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
     try {
       LoginFlow result = apiInstance.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via);
       System.out.println(result);
@@ -500,7 +500,7 @@ public class Example {
 | **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] |
 | **returnSessionTokenExchangeCode** | **Boolean**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] |
 | **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
-| **via** | **String**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] |
+| **via** | **String**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] |
 
 ### Return type
 

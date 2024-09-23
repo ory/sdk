@@ -99,6 +99,7 @@ docs/Model/HealthStatus.md
 docs/Model/Identity.md
 docs/Model/IdentityCredentials.md
 docs/Model/IdentityCredentialsCode.md
+docs/Model/IdentityCredentialsCodeAddress.md
 docs/Model/IdentityCredentialsOidc.md
 docs/Model/IdentityCredentialsOidcProvider.md
 docs/Model/IdentityCredentialsPassword.md
@@ -384,6 +385,7 @@ lib/Model/HealthStatus.php
 lib/Model/Identity.php
 lib/Model/IdentityCredentials.php
 lib/Model/IdentityCredentialsCode.php
+lib/Model/IdentityCredentialsCodeAddress.php
 lib/Model/IdentityCredentialsOidc.php
 lib/Model/IdentityCredentialsOidcProvider.php
 lib/Model/IdentityCredentialsPassword.php
@@ -665,6 +667,7 @@ test/Model/GetSessionActivityResponseTest.php
 test/Model/GetVersion200ResponseTest.php
 test/Model/HealthNotReadyStatusTest.php
 test/Model/HealthStatusTest.php
+test/Model/IdentityCredentialsCodeAddressTest.php
 test/Model/IdentityCredentialsCodeTest.php
 test/Model/IdentityCredentialsOidcProviderTest.php
 test/Model/IdentityCredentialsOidcTest.php

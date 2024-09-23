@@ -1412,7 +1412,7 @@ class OAuth2Api {
   }
 
   /// OAuth 2.0 Authorize Endpoint
-  /// Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+  /// Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -1485,7 +1485,7 @@ class OAuth2Api {
   }
 
   /// The OAuth 2.0 Token Endpoint
-  /// Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+  /// Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
   ///
   /// Parameters:
   /// * [grantType] 
@@ -2049,7 +2049,7 @@ class OAuth2Api {
   ///
   /// Parameters:
   /// * [subject] - OAuth 2.0 Subject  The subject to revoke authentication sessions for.
-  /// * [sid] - OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+  /// * [sid] - Login Session ID  The login session to revoke.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request

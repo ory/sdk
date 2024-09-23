@@ -105,6 +105,7 @@ export 'package:ory_client/src/model/health_status.dart';
 export 'package:ory_client/src/model/identity.dart';
 export 'package:ory_client/src/model/identity_credentials.dart';
 export 'package:ory_client/src/model/identity_credentials_code.dart';
+export 'package:ory_client/src/model/identity_credentials_code_address.dart';
 export 'package:ory_client/src/model/identity_credentials_oidc.dart';
 export 'package:ory_client/src/model/identity_credentials_oidc_provider.dart';
 export 'package:ory_client/src/model/identity_credentials_password.dart';

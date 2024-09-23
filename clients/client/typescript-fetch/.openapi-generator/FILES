@@ -107,6 +107,7 @@ src/models/HealthStatus.ts
 src/models/Identity.ts
 src/models/IdentityCredentials.ts
 src/models/IdentityCredentialsCode.ts
+src/models/IdentityCredentialsCodeAddress.ts
 src/models/IdentityCredentialsOidc.ts
 src/models/IdentityCredentialsOidcProvider.ts
 src/models/IdentityCredentialsPassword.ts

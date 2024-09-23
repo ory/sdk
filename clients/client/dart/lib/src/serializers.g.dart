@@ -123,6 +123,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Identity.serializer)
       ..add(IdentityCredentials.serializer)
       ..add(IdentityCredentialsCode.serializer)
+      ..add(IdentityCredentialsCodeAddress.serializer)
       ..add(IdentityCredentialsOidc.serializer)
       ..add(IdentityCredentialsOidcProvider.serializer)
       ..add(IdentityCredentialsPassword.serializer)
@@ -406,6 +407,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(ExpandedPermissionTree)]),
           () => new ListBuilder<ExpandedPermissionTree>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(IdentityCredentialsCodeAddress)]),
+          () => new ListBuilder<IdentityCredentialsCodeAddress>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(IdentityCredentialsOidcProvider)]),

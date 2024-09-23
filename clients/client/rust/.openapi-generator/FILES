@@ -89,6 +89,7 @@ docs/Identity.md
 docs/IdentityApi.md
 docs/IdentityCredentials.md
 docs/IdentityCredentialsCode.md
+docs/IdentityCredentialsCodeAddress.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
@@ -383,6 +384,7 @@ src/models/health_status.rs
 src/models/identity.rs
 src/models/identity_credentials.rs
 src/models/identity_credentials_code.rs
+src/models/identity_credentials_code_address.rs
 src/models/identity_credentials_oidc.rs
 src/models/identity_credentials_oidc_provider.rs
 src/models/identity_credentials_password.rs

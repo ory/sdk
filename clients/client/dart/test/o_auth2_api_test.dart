@@ -153,7 +153,7 @@ void main() {
 
     // OAuth 2.0 Authorize Endpoint
     //
-    // Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+    // Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
     //
     //Future<ErrorOAuth2> oAuth2Authorize() async
     test('test oAuth2Authorize', () async {
@@ -162,7 +162,7 @@ void main() {
 
     // The OAuth 2.0 Token Endpoint
     //
-    // Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+    // Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
     //
     //Future<OAuth2TokenExchange> oauth2TokenExchange(String grantType, { String clientId, String code, String redirectUri, String refreshToken }) async
     test('test oauth2TokenExchange', () async {
