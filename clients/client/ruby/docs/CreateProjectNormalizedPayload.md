@@ -8,7 +8,7 @@
 | **disable_account_experience_welcome_screen** | **Boolean** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional] |
 | **enable_ax_v2** | **Boolean** | Whether the new account experience is enabled and reachable. | [optional] |
 | **environment** | **String** |  prod Production stage Staging dev Development |  |
-| **home_region** | **String** |  eu-central EUCentral us-east USEast us-west USWest us US global Global | [optional] |
+| **home_region** | **String** |  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | [optional] |
 | **hydra_oauth2_allowed_top_level_claims** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_oauth2_client_credentials_default_grant_allowed_scope** | **Boolean** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] |
 | **hydra_oauth2_exclude_not_before_claim** | **Boolean** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] |

@@ -195,6 +195,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum
           .serializer)
       ..add(NormalizedProjectRevisionThirdPartyProvider.serializer)
+      ..add(NormalizedProjectRevisionThirdPartyProviderPkceEnum.serializer)
       ..add(NormalizedProjectRevisionThirdPartyProviderStateEnum.serializer)
       ..add(NormalizedProjectRevisionTokenizerTemplate.serializer)
       ..add(NormalizedProjectStateEnum.serializer)

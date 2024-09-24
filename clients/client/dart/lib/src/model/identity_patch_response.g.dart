@@ -8,12 +8,16 @@ part of 'identity_patch_response.dart';
 
 const IdentityPatchResponseActionEnum _$identityPatchResponseActionEnum_create =
     const IdentityPatchResponseActionEnum._('create');
+const IdentityPatchResponseActionEnum _$identityPatchResponseActionEnum_error =
+    const IdentityPatchResponseActionEnum._('error');
 
 IdentityPatchResponseActionEnum _$identityPatchResponseActionEnumValueOf(
     String name) {
   switch (name) {
     case 'create':
       return _$identityPatchResponseActionEnum_create;
+    case 'error':
+      return _$identityPatchResponseActionEnum_error;
     default:
       throw new ArgumentError(name);
   }
@@ -23,6 +27,7 @@ final BuiltSet<IdentityPatchResponseActionEnum>
     _$identityPatchResponseActionEnumValues = new BuiltSet<
         IdentityPatchResponseActionEnum>(const <IdentityPatchResponseActionEnum>[
   _$identityPatchResponseActionEnum_create,
+  _$identityPatchResponseActionEnum_error,
 ]);
 
 Serializer<IdentityPatchResponseActionEnum>
@@ -33,9 +38,11 @@ class _$IdentityPatchResponseActionEnumSerializer
     implements PrimitiveSerializer<IdentityPatchResponseActionEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
     'create': 'create',
+    'error': 'error',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'create': 'create',
+    'error': 'error',
   };
 
   @override
@@ -61,6 +68,8 @@ class _$IdentityPatchResponse extends IdentityPatchResponse {
   @override
   final IdentityPatchResponseActionEnum? action;
   @override
+  final JsonObject? error;
+  @override
   final String? identity;
   @override
   final String? patchId;
@@ -69,7 +78,8 @@ class _$IdentityPatchResponse extends IdentityPatchResponse {
           [void Function(IdentityPatchResponseBuilder)? updates]) =>
       (new IdentityPatchResponseBuilder()..update(updates))._build();
 
-  _$IdentityPatchResponse._({this.action, this.identity, this.patchId})
+  _$IdentityPatchResponse._(
+      {this.action, this.error, this.identity, this.patchId})
       : super._();
 
   @override
@@ -86,6 +96,7 @@ class _$IdentityPatchResponse extends IdentityPatchResponse {
     if (identical(other, this)) return true;
     return other is IdentityPatchResponse &&
         action == other.action &&
+        error == other.error &&
         identity == other.identity &&
         patchId == other.patchId;
   }
@@ -94,6 +105,7 @@ class _$IdentityPatchResponse extends IdentityPatchResponse {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, action.hashCode);
+    _$hash = $jc(_$hash, error.hashCode);
     _$hash = $jc(_$hash, identity.hashCode);
     _$hash = $jc(_$hash, patchId.hashCode);
     _$hash = $jf(_$hash);
@@ -104,6 +116,7 @@ class _$IdentityPatchResponse extends IdentityPatchResponse {
   String toString() {
     return (newBuiltValueToStringHelper(r'IdentityPatchResponse')
           ..add('action', action)
+          ..add('error', error)
           ..add('identity', identity)
           ..add('patchId', patchId))
         .toString();
@@ -118,6 +131,10 @@ class IdentityPatchResponseBuilder
   IdentityPatchResponseActionEnum? get action => _$this._action;
   set action(IdentityPatchResponseActionEnum? action) =>
       _$this._action = action;
+
+  JsonObject? _error;
+  JsonObject? get error => _$this._error;
+  set error(JsonObject? error) => _$this._error = error;
 
   String? _identity;
   String? get identity => _$this._identity;
@@ -135,6 +152,7 @@ class IdentityPatchResponseBuilder
     final $v = _$v;
     if ($v != null) {
       _action = $v.action;
+      _error = $v.error;
       _identity = $v.identity;
       _patchId = $v.patchId;
       _$v = null;
@@ -159,7 +177,7 @@ class IdentityPatchResponseBuilder
   _$IdentityPatchResponse _build() {
     final _$result = _$v ??
         new _$IdentityPatchResponse._(
-            action: action, identity: identity, patchId: patchId);
+            action: action, error: error, identity: identity, patchId: patchId);
     replace(_$result);
     return _$result;
   }

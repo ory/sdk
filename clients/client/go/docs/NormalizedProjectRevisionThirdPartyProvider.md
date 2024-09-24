@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | Label represents an optional label which can be used in the UI generation. | [optional] 
 **MapperUrl** | Pointer to **string** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider&#39;s data (e.g. GitHub or Google profile information) to hydrate the identity&#39;s data. | [optional] 
 **OrganizationId** | Pointer to **NullableString** |  | [optional] 
+**Pkce** | Pointer to **NullableString** | PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange). Possible values are: &#x60;auto&#x60; (default), &#x60;never&#x60;, &#x60;force&#x60;. &#x60;auto&#x60;: PKCE is used if the provider supports it. Requires setting &#x60;issuer_url&#x60;. &#x60;never&#x60;: Disable PKCE entirely for this provider, even if the provider advertises support for it. &#x60;force&#x60;: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE. IMPORTANT: If you set this to &#x60;force&#x60;, you must whitelist a different return URL for your OAuth2 client in the provider&#39;s configuration. Instead of &lt;base-url&gt;/self-service/methods/oidc/callback/&lt;provider&gt;, you must use &lt;base-url&gt;/self-service/methods/oidc/callback (Note the missing &lt;provider&gt; path segment and no trailing slash). | [optional] 
 **ProjectRevisionId** | Pointer to **string** | The Revision&#39;s ID this schema belongs to | [optional] 
 **Provider** | Pointer to **string** | Provider is either \&quot;generic\&quot; for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] 
 **ProviderId** | Pointer to **string** | ID is the provider&#39;s ID | [optional] 
@@ -463,6 +464,41 @@ HasOrganizationId returns a boolean if a field has been set.
 `func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetOrganizationId()`
 
 UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
+### GetPkce
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetPkce() string`
+
+GetPkce returns the Pkce field if non-nil, zero value otherwise.
+
+### GetPkceOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetPkceOk() (*string, bool)`
+
+GetPkceOk returns a tuple with the Pkce field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkce
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetPkce(v string)`
+
+SetPkce sets Pkce field to given value.
+
+### HasPkce
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasPkce() bool`
+
+HasPkce returns a boolean if a field has been set.
+
+### SetPkceNil
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetPkceNil(b bool)`
+
+ SetPkceNil sets the value for Pkce to be an explicit nil
+
+### UnsetPkce
+`func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetPkce()`
+
+UnsetPkce ensures that no value is present for Pkce, not even an explicit nil
 ### GetProjectRevisionId
 
 `func (o *NormalizedProjectRevisionThirdPartyProvider) GetProjectRevisionId() string`

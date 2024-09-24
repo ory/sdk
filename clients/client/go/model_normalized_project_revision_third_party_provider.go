@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.15.3
+API version: v1.15.4
 Contact: support@ory.sh
 */
 
@@ -45,6 +45,8 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
 	MapperUrl *string `json:"mapper_url,omitempty"`
 	OrganizationId NullableString `json:"organization_id,omitempty"`
+	// PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange). Possible values are: `auto` (default), `never`, `force`. `auto`: PKCE is used if the provider supports it. Requires setting `issuer_url`. `never`: Disable PKCE entirely for this provider, even if the provider advertises support for it. `force`: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE. IMPORTANT: If you set this to `force`, you must whitelist a different return URL for your OAuth2 client in the provider's configuration. Instead of <base-url>/self-service/methods/oidc/callback/<provider>, you must use <base-url>/self-service/methods/oidc/callback (Note the missing <provider> path segment and no trailing slash).
+	Pkce NullableString `json:"pkce,omitempty"`
 	// The Revision's ID this schema belongs to
 	ProjectRevisionId *string `json:"project_revision_id,omitempty"`
 	// Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple
@@ -602,6 +604,48 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetOrganizationId() {
 	o.OrganizationId.Unset()
 }
 
+// GetPkce returns the Pkce field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetPkce() string {
+	if o == nil || IsNil(o.Pkce.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Pkce.Get()
+}
+
+// GetPkceOk returns a tuple with the Pkce field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetPkceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Pkce.Get(), o.Pkce.IsSet()
+}
+
+// HasPkce returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasPkce() bool {
+	if o != nil && o.Pkce.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPkce gets a reference to the given NullableString and assigns it to the Pkce field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetPkce(v string) {
+	o.Pkce.Set(&v)
+}
+// SetPkceNil sets the value for Pkce to be an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetPkceNil() {
+	o.Pkce.Set(nil)
+}
+
+// UnsetPkce ensures that no value is present for Pkce, not even an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetPkce() {
+	o.Pkce.Unset()
+}
+
 // GetProjectRevisionId returns the ProjectRevisionId field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionThirdPartyProvider) GetProjectRevisionId() string {
 	if o == nil || IsNil(o.ProjectRevisionId) {
@@ -955,6 +999,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) ToMap() (map[string]interfa
 	if o.OrganizationId.IsSet() {
 		toSerialize["organization_id"] = o.OrganizationId.Get()
 	}
+	if o.Pkce.IsSet() {
+		toSerialize["pkce"] = o.Pkce.Get()
+	}
 	if !IsNil(o.ProjectRevisionId) {
 		toSerialize["project_revision_id"] = o.ProjectRevisionId
 	}
@@ -1019,6 +1066,7 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(data []byte)
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "mapper_url")
 		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "pkce")
 		delete(additionalProperties, "project_revision_id")
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "provider_id")

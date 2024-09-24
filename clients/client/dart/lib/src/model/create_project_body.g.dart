@@ -39,6 +39,9 @@ final BuiltSet<CreateProjectBodyEnvironmentEnum>
 const CreateProjectBodyHomeRegionEnum
     _$createProjectBodyHomeRegionEnum_euCentral =
     const CreateProjectBodyHomeRegionEnum._('euCentral');
+const CreateProjectBodyHomeRegionEnum
+    _$createProjectBodyHomeRegionEnum_asiaNortheast =
+    const CreateProjectBodyHomeRegionEnum._('asiaNortheast');
 const CreateProjectBodyHomeRegionEnum _$createProjectBodyHomeRegionEnum_usEast =
     const CreateProjectBodyHomeRegionEnum._('usEast');
 const CreateProjectBodyHomeRegionEnum _$createProjectBodyHomeRegionEnum_usWest =
@@ -53,6 +56,8 @@ CreateProjectBodyHomeRegionEnum _$createProjectBodyHomeRegionEnumValueOf(
   switch (name) {
     case 'euCentral':
       return _$createProjectBodyHomeRegionEnum_euCentral;
+    case 'asiaNortheast':
+      return _$createProjectBodyHomeRegionEnum_asiaNortheast;
     case 'usEast':
       return _$createProjectBodyHomeRegionEnum_usEast;
     case 'usWest':
@@ -70,6 +75,7 @@ final BuiltSet<CreateProjectBodyHomeRegionEnum>
     _$createProjectBodyHomeRegionEnumValues = new BuiltSet<
         CreateProjectBodyHomeRegionEnum>(const <CreateProjectBodyHomeRegionEnum>[
   _$createProjectBodyHomeRegionEnum_euCentral,
+  _$createProjectBodyHomeRegionEnum_asiaNortheast,
   _$createProjectBodyHomeRegionEnum_usEast,
   _$createProjectBodyHomeRegionEnum_usWest,
   _$createProjectBodyHomeRegionEnum_us,
@@ -119,6 +125,7 @@ class _$CreateProjectBodyHomeRegionEnumSerializer
     implements PrimitiveSerializer<CreateProjectBodyHomeRegionEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
     'euCentral': 'eu-central',
+    'asiaNortheast': 'asia-northeast',
     'usEast': 'us-east',
     'usWest': 'us-west',
     'us': 'us',
@@ -126,6 +133,7 @@ class _$CreateProjectBodyHomeRegionEnumSerializer
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'eu-central': 'euCentral',
+    'asia-northeast': 'asiaNortheast',
     'us-east': 'usEast',
     'us-west': 'usWest',
     'us': 'us',

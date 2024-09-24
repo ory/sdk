@@ -23,7 +23,7 @@ void main() {
       // TODO
     });
 
-    // The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest us US global Global
+    // The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
     // String homeRegion
     test('to test the property `homeRegion`', () async {
       // TODO

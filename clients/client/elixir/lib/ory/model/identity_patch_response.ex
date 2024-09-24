@@ -9,12 +9,14 @@ defmodule Ory.Model.IdentityPatchResponse do
   @derive Jason.Encoder
   defstruct [
     :action,
+    :error,
     :identity,
     :patch_id
   ]
 
   @type t :: %__MODULE__{
     :action => String.t | nil,
+    :error => any() | nil,
     :identity => String.t | nil,
     :patch_id => String.t | nil
   }

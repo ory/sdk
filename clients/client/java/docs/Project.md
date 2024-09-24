@@ -10,7 +10,7 @@
 |**corsAdmin** | [**ProjectCors**](ProjectCors.md) |  |  [optional] |
 |**corsPublic** | [**ProjectCors**](ProjectCors.md) |  |  [optional] |
 |**environment** | [**EnvironmentEnum**](#EnvironmentEnum) | The environment of the project. prod Production stage Staging dev Development |  |
-|**homeRegion** | [**HomeRegionEnum**](#HomeRegionEnum) | The project home region.  This is used to set where the project data is stored and where the project&#39;s endpoints are located. eu-central EUCentral us-east USEast us-west USWest us US global Global |  |
+|**homeRegion** | [**HomeRegionEnum**](#HomeRegionEnum) | The project home region.  This is used to set where the project data is stored and where the project&#39;s endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global |  |
 |**id** | **String** | The project&#39;s ID. |  [readonly] |
 |**name** | **String** | The name of the project. |  |
 |**revisionId** | **String** | The configuration revision ID. |  [readonly] |
@@ -36,6 +36,7 @@
 | Name | Value |
 |---- | -----|
 | EU_CENTRAL | &quot;eu-central&quot; |
+| ASIA_NORTHEAST | &quot;asia-northeast&quot; |
 | US_EAST | &quot;us-east&quot; |
 | US_WEST | &quot;us-west&quot; |
 | US | &quot;us&quot; |

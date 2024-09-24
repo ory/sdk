@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.15.3
+API version: v1.15.4
 Contact: support@ory.sh
 */
 
@@ -25,7 +25,7 @@ type Project struct {
 	CorsPublic *ProjectCors `json:"cors_public,omitempty"`
 	// The environment of the project. prod Production stage Staging dev Development
 	Environment string `json:"environment"`
-	// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest us US global Global
+	// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
 	HomeRegion string `json:"home_region"`
 	// The project's ID.
 	Id string `json:"id"`

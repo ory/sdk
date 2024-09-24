@@ -8,7 +8,8 @@ Response for a single identity patch
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**action** | [**ActionEnum**](#ActionEnum) | The action for this specific patch create ActionCreate  Create this identity. |  [optional] |
+|**action** | [**ActionEnum**](#ActionEnum) | The action for this specific patch create ActionCreate  Create this identity. error ActionError  Error indicates that the patch failed. |  [optional] |
+|**error** | **Object** |  |  [optional] |
 |**identity** | **String** | The identity ID payload of this patch |  [optional] |
 |**patchId** | **String** | The ID of this patch response, if an ID was specified in the patch. |  [optional] |
 
@@ -19,6 +20,7 @@ Response for a single identity patch
 | Name | Value |
 |---- | -----|
 | CREATE | &quot;create&quot; |
+| ERROR | &quot;error&quot; |
 
 
 

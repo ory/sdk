@@ -23,7 +23,7 @@ part 'create_project_normalized_payload.g.dart';
 /// * [disableAccountExperienceWelcomeScreen] - Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
 /// * [enableAxV2] - Whether the new account experience is enabled and reachable.
 /// * [environment] -  prod Production stage Staging dev Development
-/// * [homeRegion] -  eu-central EUCentral us-east USEast us-west USWest us US global Global
+/// * [homeRegion] -  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
 /// * [hydraOauth2AllowedTopLevelClaims] 
 /// * [hydraOauth2ClientCredentialsDefaultGrantAllowedScope] - Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 /// * [hydraOauth2ExcludeNotBeforeClaim] - Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
@@ -246,10 +246,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   CreateProjectNormalizedPayloadEnvironmentEnum get environment;
   // enum environmentEnum {  prod,  stage,  dev,  };
 
-  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
+  ///  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueField(wireName: r'home_region')
   CreateProjectNormalizedPayloadHomeRegionEnum? get homeRegion;
-  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  us,  global,  };
+  // enum homeRegionEnum {  eu-central,  asia-northeast,  us-east,  us-west,  us,  global,  };
 
   @BuiltValueField(wireName: r'hydra_oauth2_allowed_top_level_claims')
   BuiltList<String>? get hydraOauth2AllowedTopLevelClaims;
@@ -4065,19 +4065,22 @@ class CreateProjectNormalizedPayloadEnvironmentEnum extends EnumClass {
 
 class CreateProjectNormalizedPayloadHomeRegionEnum extends EnumClass {
 
-  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
+  ///  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'eu-central')
   static const CreateProjectNormalizedPayloadHomeRegionEnum euCentral = _$createProjectNormalizedPayloadHomeRegionEnum_euCentral;
-  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
+  ///  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
+  @BuiltValueEnumConst(wireName: r'asia-northeast')
+  static const CreateProjectNormalizedPayloadHomeRegionEnum asiaNortheast = _$createProjectNormalizedPayloadHomeRegionEnum_asiaNortheast;
+  ///  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-east')
   static const CreateProjectNormalizedPayloadHomeRegionEnum usEast = _$createProjectNormalizedPayloadHomeRegionEnum_usEast;
-  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
+  ///  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-west')
   static const CreateProjectNormalizedPayloadHomeRegionEnum usWest = _$createProjectNormalizedPayloadHomeRegionEnum_usWest;
-  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
+  ///  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us')
   static const CreateProjectNormalizedPayloadHomeRegionEnum us = _$createProjectNormalizedPayloadHomeRegionEnum_us;
-  ///  eu-central EUCentral us-east USEast us-west USWest us US global Global
+  ///  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'global')
   static const CreateProjectNormalizedPayloadHomeRegionEnum global = _$createProjectNormalizedPayloadHomeRegionEnum_global;
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **cors_admin** | Option<[**models::ProjectCors**](projectCors.md)> |  | [optional]
 **cors_public** | Option<[**models::ProjectCors**](projectCors.md)> |  | [optional]
 **environment** | **String** | The environment of the project. prod Production stage Staging dev Development | 
-**home_region** | **String** | The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest us US global Global | 
+**home_region** | **String** | The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | 
 **id** | **String** | The project's ID. | [readonly]
 **name** | **String** | The name of the project. | 
 **revision_id** | **String** | The configuration revision ID. | [readonly]

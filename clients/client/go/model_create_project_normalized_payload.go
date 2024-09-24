@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.15.3
+API version: v1.15.4
 Contact: support@ory.sh
 */
 
@@ -30,7 +30,7 @@ type CreateProjectNormalizedPayload struct {
 	EnableAxV2 *bool `json:"enable_ax_v2,omitempty"`
 	//  prod Production stage Staging dev Development
 	Environment string `json:"environment"`
-	//  eu-central EUCentral us-east USEast us-west USWest us US global Global
+	//  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
 	HomeRegion *string `json:"home_region,omitempty"`
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
 	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.

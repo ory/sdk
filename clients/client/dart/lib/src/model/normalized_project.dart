@@ -17,7 +17,7 @@ part 'normalized_project.g.dart';
 /// * [createdAt] - The Project's Creation Date
 /// * [currentRevision] 
 /// * [environment] - The environment of the project. prod Production stage Staging dev Development
-/// * [homeRegion] - The project's data home region. eu-central EUCentral us-east USEast us-west USWest us US global Global
+/// * [homeRegion] - The project's data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
 /// * [hosts] 
 /// * [id] - The project's ID.
 /// * [slug] - The project's slug
@@ -41,10 +41,10 @@ abstract class NormalizedProject implements Built<NormalizedProject, NormalizedP
   NormalizedProjectEnvironmentEnum get environment;
   // enum environmentEnum {  prod,  stage,  dev,  };
 
-  /// The project's data home region. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project's data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueField(wireName: r'home_region')
   NormalizedProjectHomeRegionEnum get homeRegion;
-  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  us,  global,  };
+  // enum homeRegionEnum {  eu-central,  asia-northeast,  us-east,  us-west,  us,  global,  };
 
   @BuiltValueField(wireName: r'hosts')
   BuiltList<String> get hosts;
@@ -340,19 +340,22 @@ class NormalizedProjectEnvironmentEnum extends EnumClass {
 
 class NormalizedProjectHomeRegionEnum extends EnumClass {
 
-  /// The project's data home region. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project's data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'eu-central')
   static const NormalizedProjectHomeRegionEnum euCentral = _$normalizedProjectHomeRegionEnum_euCentral;
-  /// The project's data home region. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project's data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
+  @BuiltValueEnumConst(wireName: r'asia-northeast')
+  static const NormalizedProjectHomeRegionEnum asiaNortheast = _$normalizedProjectHomeRegionEnum_asiaNortheast;
+  /// The project's data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-east')
   static const NormalizedProjectHomeRegionEnum usEast = _$normalizedProjectHomeRegionEnum_usEast;
-  /// The project's data home region. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project's data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-west')
   static const NormalizedProjectHomeRegionEnum usWest = _$normalizedProjectHomeRegionEnum_usWest;
-  /// The project's data home region. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project's data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us')
   static const NormalizedProjectHomeRegionEnum us = _$normalizedProjectHomeRegionEnum_us;
-  /// The project's data home region. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project's data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'global')
   static const NormalizedProjectHomeRegionEnum global = _$normalizedProjectHomeRegionEnum_global;
 

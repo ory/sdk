@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.15.3
+  version: v1.15.4
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -8136,12 +8136,14 @@ components:
           description: |2-
 
             eu-central EUCentral
+            asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
             us US
             global Global
           enum:
           - eu-central
+          - asia-northeast
           - us-east
           - us-west
           - us
@@ -8149,6 +8151,7 @@ components:
           type: string
           x-go-enum-desc: |-
             eu-central EUCentral
+            asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
             us US
@@ -10464,9 +10467,11 @@ components:
         - patch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           identity: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           action: create
+          error: ""
         - patch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           identity: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           action: create
+          error: ""
       properties:
         identities:
           description: The patch responses for the individual identities.
@@ -10917,12 +10922,14 @@ components:
 
             The home region of the project. This is the region where the project will be created.
             eu-central EUCentral
+            asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
             us US
             global Global
           enum:
           - eu-central
+          - asia-northeast
           - us-east
           - us-west
           - us
@@ -10930,6 +10937,7 @@ components:
           type: string
           x-go-enum-desc: |-
             eu-central EUCentral
+            asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
             us US
@@ -12015,15 +12023,21 @@ components:
         patch_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         identity: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         action: create
+        error: ""
       properties:
         action:
           description: |-
             The action for this specific patch
             create ActionCreate  Create this identity.
+            error ActionError  Error indicates that the patch failed.
           enum:
           - create
+          - error
           type: string
-          x-go-enum-desc: create ActionCreate  Create this identity.
+          x-go-enum-desc: |-
+            create ActionCreate  Create this identity.
+            error ActionError  Error indicates that the patch failed.
+        error: {}
         identity:
           description: The identity ID payload of this patch
           format: uuid
@@ -13449,12 +13463,14 @@ components:
           description: |-
             The project's data home region.
             eu-central EUCentral
+            asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
             us US
             global Global
           enum:
           - eu-central
+          - asia-northeast
           - us-east
           - us-west
           - us
@@ -13463,6 +13479,7 @@ components:
           type: string
           x-go-enum-desc: |-
             eu-central EUCentral
+            asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
             us US
@@ -15069,6 +15086,22 @@ components:
           type: string
         organization_id:
           format: uuid4
+          nullable: true
+          type: string
+        pkce:
+          description: |-
+            PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange).
+            Possible values are: `auto` (default), `never`, `force`.
+            `auto`: PKCE is used if the provider supports it. Requires setting `issuer_url`.
+            `never`: Disable PKCE entirely for this provider, even if the provider advertises support for it.
+            `force`: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE.
+            IMPORTANT: If you set this to `force`, you must whitelist a different return URL for your OAuth2 client in the provider's configuration.
+            Instead of <base-url>/self-service/methods/oidc/callback/<provider>, you must use <base-url>/self-service/methods/oidc/callback
+            (Note the missing <provider> path segment and no trailing slash).
+          enum:
+          - auto
+          - never
+          - force
           nullable: true
           type: string
         project_revision_id:
@@ -16999,12 +17032,14 @@ components:
 
             This is used to set where the project data is stored and where the project's endpoints are located.
             eu-central EUCentral
+            asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
             us US
             global Global
           enum:
           - eu-central
+          - asia-northeast
           - us-east
           - us-west
           - us
@@ -17012,6 +17047,7 @@ components:
           type: string
           x-go-enum-desc: |-
             eu-central EUCentral
+            asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
             us US
@@ -17573,12 +17609,14 @@ components:
           description: |-
             The project's data home region
             eu-central EUCentral
+            asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
             us US
             global Global
           enum:
           - eu-central
+          - asia-northeast
           - us-east
           - us-west
           - us
@@ -17586,6 +17624,7 @@ components:
           type: string
           x-go-enum-desc: |-
             eu-central EUCentral
+            asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
             us US

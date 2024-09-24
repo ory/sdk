@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | [readonly] 
 **CurrentRevision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  | 
 **Environment** | **string** | The environment of the project. prod Production stage Staging dev Development | 
-**HomeRegion** | **string** | The project&#39;s data home region. eu-central EUCentral us-east USEast us-west USWest us US global Global | [readonly] 
+**HomeRegion** | **string** | The project&#39;s data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | [readonly] 
 **Hosts** | **[]string** |  | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Slug** | **string** | The project&#39;s slug | [readonly] 

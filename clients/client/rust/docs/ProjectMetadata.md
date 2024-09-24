@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **String** | The Project's Creation Date | 
 **environment** | **String** | The environment of the project. prod Production stage Staging dev Development | 
-**home_region** | **String** | The project's data home region eu-central EUCentral us-east USEast us-west USWest us US global Global | 
+**home_region** | **String** | The project's data home region eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | 
 **hosts** | **Vec<String>** |  | 
 **id** | **String** | The project's ID. | [readonly]
 **name** | **String** | The project's name if set | 

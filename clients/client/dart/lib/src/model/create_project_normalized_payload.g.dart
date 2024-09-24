@@ -42,6 +42,9 @@ const CreateProjectNormalizedPayloadHomeRegionEnum
     _$createProjectNormalizedPayloadHomeRegionEnum_euCentral =
     const CreateProjectNormalizedPayloadHomeRegionEnum._('euCentral');
 const CreateProjectNormalizedPayloadHomeRegionEnum
+    _$createProjectNormalizedPayloadHomeRegionEnum_asiaNortheast =
+    const CreateProjectNormalizedPayloadHomeRegionEnum._('asiaNortheast');
+const CreateProjectNormalizedPayloadHomeRegionEnum
     _$createProjectNormalizedPayloadHomeRegionEnum_usEast =
     const CreateProjectNormalizedPayloadHomeRegionEnum._('usEast');
 const CreateProjectNormalizedPayloadHomeRegionEnum
@@ -59,6 +62,8 @@ CreateProjectNormalizedPayloadHomeRegionEnum
   switch (name) {
     case 'euCentral':
       return _$createProjectNormalizedPayloadHomeRegionEnum_euCentral;
+    case 'asiaNortheast':
+      return _$createProjectNormalizedPayloadHomeRegionEnum_asiaNortheast;
     case 'usEast':
       return _$createProjectNormalizedPayloadHomeRegionEnum_usEast;
     case 'usWest':
@@ -76,6 +81,7 @@ final BuiltSet<CreateProjectNormalizedPayloadHomeRegionEnum>
     _$createProjectNormalizedPayloadHomeRegionEnumValues = new BuiltSet<
         CreateProjectNormalizedPayloadHomeRegionEnum>(const <CreateProjectNormalizedPayloadHomeRegionEnum>[
   _$createProjectNormalizedPayloadHomeRegionEnum_euCentral,
+  _$createProjectNormalizedPayloadHomeRegionEnum_asiaNortheast,
   _$createProjectNormalizedPayloadHomeRegionEnum_usEast,
   _$createProjectNormalizedPayloadHomeRegionEnum_usWest,
   _$createProjectNormalizedPayloadHomeRegionEnum_us,
@@ -301,6 +307,7 @@ class _$CreateProjectNormalizedPayloadHomeRegionEnumSerializer
         PrimitiveSerializer<CreateProjectNormalizedPayloadHomeRegionEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
     'euCentral': 'eu-central',
+    'asiaNortheast': 'asia-northeast',
     'usEast': 'us-east',
     'usWest': 'us-west',
     'us': 'us',
@@ -308,6 +315,7 @@ class _$CreateProjectNormalizedPayloadHomeRegionEnumSerializer
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'eu-central': 'euCentral',
+    'asia-northeast': 'asiaNortheast',
     'us-east': 'usEast',
     'us-west': 'usWest',
     'us': 'us',

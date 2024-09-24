@@ -6,6 +6,38 @@ part of 'normalized_project_revision_third_party_provider.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const NormalizedProjectRevisionThirdPartyProviderPkceEnum
+    _$normalizedProjectRevisionThirdPartyProviderPkceEnum_auto =
+    const NormalizedProjectRevisionThirdPartyProviderPkceEnum._('auto');
+const NormalizedProjectRevisionThirdPartyProviderPkceEnum
+    _$normalizedProjectRevisionThirdPartyProviderPkceEnum_never =
+    const NormalizedProjectRevisionThirdPartyProviderPkceEnum._('never');
+const NormalizedProjectRevisionThirdPartyProviderPkceEnum
+    _$normalizedProjectRevisionThirdPartyProviderPkceEnum_force =
+    const NormalizedProjectRevisionThirdPartyProviderPkceEnum._('force');
+
+NormalizedProjectRevisionThirdPartyProviderPkceEnum
+    _$normalizedProjectRevisionThirdPartyProviderPkceEnumValueOf(String name) {
+  switch (name) {
+    case 'auto':
+      return _$normalizedProjectRevisionThirdPartyProviderPkceEnum_auto;
+    case 'never':
+      return _$normalizedProjectRevisionThirdPartyProviderPkceEnum_never;
+    case 'force':
+      return _$normalizedProjectRevisionThirdPartyProviderPkceEnum_force;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<NormalizedProjectRevisionThirdPartyProviderPkceEnum>
+    _$normalizedProjectRevisionThirdPartyProviderPkceEnumValues = new BuiltSet<
+        NormalizedProjectRevisionThirdPartyProviderPkceEnum>(const <NormalizedProjectRevisionThirdPartyProviderPkceEnum>[
+  _$normalizedProjectRevisionThirdPartyProviderPkceEnum_auto,
+  _$normalizedProjectRevisionThirdPartyProviderPkceEnum_never,
+  _$normalizedProjectRevisionThirdPartyProviderPkceEnum_force,
+]);
+
 const NormalizedProjectRevisionThirdPartyProviderStateEnum
     _$normalizedProjectRevisionThirdPartyProviderStateEnum_enabled =
     const NormalizedProjectRevisionThirdPartyProviderStateEnum._('enabled');
@@ -32,9 +64,48 @@ final BuiltSet<NormalizedProjectRevisionThirdPartyProviderStateEnum>
   _$normalizedProjectRevisionThirdPartyProviderStateEnum_disabled,
 ]);
 
+Serializer<NormalizedProjectRevisionThirdPartyProviderPkceEnum>
+    _$normalizedProjectRevisionThirdPartyProviderPkceEnumSerializer =
+    new _$NormalizedProjectRevisionThirdPartyProviderPkceEnumSerializer();
 Serializer<NormalizedProjectRevisionThirdPartyProviderStateEnum>
     _$normalizedProjectRevisionThirdPartyProviderStateEnumSerializer =
     new _$NormalizedProjectRevisionThirdPartyProviderStateEnumSerializer();
+
+class _$NormalizedProjectRevisionThirdPartyProviderPkceEnumSerializer
+    implements
+        PrimitiveSerializer<
+            NormalizedProjectRevisionThirdPartyProviderPkceEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'auto': 'auto',
+    'never': 'never',
+    'force': 'force',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'auto': 'auto',
+    'never': 'never',
+    'force': 'force',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    NormalizedProjectRevisionThirdPartyProviderPkceEnum
+  ];
+  @override
+  final String wireName = 'NormalizedProjectRevisionThirdPartyProviderPkceEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          NormalizedProjectRevisionThirdPartyProviderPkceEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  NormalizedProjectRevisionThirdPartyProviderPkceEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      NormalizedProjectRevisionThirdPartyProviderPkceEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
 
 class _$NormalizedProjectRevisionThirdPartyProviderStateEnumSerializer
     implements
@@ -104,6 +175,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   @override
   final String? organizationId;
   @override
+  final NormalizedProjectRevisionThirdPartyProviderPkceEnum? pkce;
+  @override
   final String? projectRevisionId;
   @override
   final String? provider;
@@ -145,6 +218,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
       this.label,
       this.mapperUrl,
       this.organizationId,
+      this.pkce,
       this.projectRevisionId,
       this.provider,
       this.providerId,
@@ -185,6 +259,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
         label == other.label &&
         mapperUrl == other.mapperUrl &&
         organizationId == other.organizationId &&
+        pkce == other.pkce &&
         projectRevisionId == other.projectRevisionId &&
         provider == other.provider &&
         providerId == other.providerId &&
@@ -214,6 +289,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
     _$hash = $jc(_$hash, label.hashCode);
     _$hash = $jc(_$hash, mapperUrl.hashCode);
     _$hash = $jc(_$hash, organizationId.hashCode);
+    _$hash = $jc(_$hash, pkce.hashCode);
     _$hash = $jc(_$hash, projectRevisionId.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, providerId.hashCode);
@@ -246,6 +322,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
           ..add('label', label)
           ..add('mapperUrl', mapperUrl)
           ..add('organizationId', organizationId)
+          ..add('pkce', pkce)
           ..add('projectRevisionId', projectRevisionId)
           ..add('provider', provider)
           ..add('providerId', providerId)
@@ -331,6 +408,11 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   set organizationId(String? organizationId) =>
       _$this._organizationId = organizationId;
 
+  NormalizedProjectRevisionThirdPartyProviderPkceEnum? _pkce;
+  NormalizedProjectRevisionThirdPartyProviderPkceEnum? get pkce => _$this._pkce;
+  set pkce(NormalizedProjectRevisionThirdPartyProviderPkceEnum? pkce) =>
+      _$this._pkce = pkce;
+
   String? _projectRevisionId;
   String? get projectRevisionId => _$this._projectRevisionId;
   set projectRevisionId(String? projectRevisionId) =>
@@ -394,6 +476,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
       _label = $v.label;
       _mapperUrl = $v.mapperUrl;
       _organizationId = $v.organizationId;
+      _pkce = $v.pkce;
       _projectRevisionId = $v.projectRevisionId;
       _provider = $v.provider;
       _providerId = $v.providerId;
@@ -444,6 +527,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
               label: label,
               mapperUrl: mapperUrl,
               organizationId: organizationId,
+              pkce: pkce,
               projectRevisionId: projectRevisionId,
               provider: provider,
               providerId: providerId,

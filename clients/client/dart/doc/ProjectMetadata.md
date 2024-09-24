@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) | The Project's Creation Date | 
 **environment** | **String** | The environment of the project. prod Production stage Staging dev Development | 
-**homeRegion** | **String** | The project's data home region eu-central EUCentral us-east USEast us-west USWest us US global Global | 
+**homeRegion** | **String** | The project's data home region eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | 
 **hosts** | **BuiltList&lt;String&gt;** |  | 
 **id** | **String** | The project's ID. | 
 **name** | **String** | The project's name if set | 

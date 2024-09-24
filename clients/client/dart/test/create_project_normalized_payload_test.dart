@@ -31,7 +31,7 @@ void main() {
       // TODO
     });
 
-    //  eu-central EUCentral us-east USEast us-west USWest us US global Global
+    //  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
     // String homeRegion
     test('to test the property `homeRegion`', () async {
       // TODO

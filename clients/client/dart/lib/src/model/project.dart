@@ -17,7 +17,7 @@ part 'project.g.dart';
 /// * [corsAdmin] 
 /// * [corsPublic] 
 /// * [environment] - The environment of the project. prod Production stage Staging dev Development
-/// * [homeRegion] - The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest us US global Global
+/// * [homeRegion] - The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
 /// * [id] - The project's ID.
 /// * [name] - The name of the project.
 /// * [revisionId] - The configuration revision ID.
@@ -38,10 +38,10 @@ abstract class Project implements Built<Project, ProjectBuilder> {
   ProjectEnvironmentEnum get environment;
   // enum environmentEnum {  prod,  stage,  dev,  };
 
-  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueField(wireName: r'home_region')
   ProjectHomeRegionEnum get homeRegion;
-  // enum homeRegionEnum {  eu-central,  us-east,  us-west,  us,  global,  };
+  // enum homeRegionEnum {  eu-central,  asia-northeast,  us-east,  us-west,  us,  global,  };
 
   /// The project's ID.
   @BuiltValueField(wireName: r'id')
@@ -306,19 +306,22 @@ class ProjectEnvironmentEnum extends EnumClass {
 
 class ProjectHomeRegionEnum extends EnumClass {
 
-  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'eu-central')
   static const ProjectHomeRegionEnum euCentral = _$projectHomeRegionEnum_euCentral;
-  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
+  @BuiltValueEnumConst(wireName: r'asia-northeast')
+  static const ProjectHomeRegionEnum asiaNortheast = _$projectHomeRegionEnum_asiaNortheast;
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-east')
   static const ProjectHomeRegionEnum usEast = _$projectHomeRegionEnum_usEast;
-  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us-west')
   static const ProjectHomeRegionEnum usWest = _$projectHomeRegionEnum_usWest;
-  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'us')
   static const ProjectHomeRegionEnum us = _$projectHomeRegionEnum_us;
-  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral us-east USEast us-west USWest us US global Global
+  /// The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
   @BuiltValueEnumConst(wireName: r'global')
   static const ProjectHomeRegionEnum global = _$projectHomeRegionEnum_global;
 

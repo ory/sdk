@@ -35,6 +35,8 @@ final BuiltSet<ProjectEnvironmentEnum> _$projectEnvironmentEnumValues =
 
 const ProjectHomeRegionEnum _$projectHomeRegionEnum_euCentral =
     const ProjectHomeRegionEnum._('euCentral');
+const ProjectHomeRegionEnum _$projectHomeRegionEnum_asiaNortheast =
+    const ProjectHomeRegionEnum._('asiaNortheast');
 const ProjectHomeRegionEnum _$projectHomeRegionEnum_usEast =
     const ProjectHomeRegionEnum._('usEast');
 const ProjectHomeRegionEnum _$projectHomeRegionEnum_usWest =
@@ -48,6 +50,8 @@ ProjectHomeRegionEnum _$projectHomeRegionEnumValueOf(String name) {
   switch (name) {
     case 'euCentral':
       return _$projectHomeRegionEnum_euCentral;
+    case 'asiaNortheast':
+      return _$projectHomeRegionEnum_asiaNortheast;
     case 'usEast':
       return _$projectHomeRegionEnum_usEast;
     case 'usWest':
@@ -64,6 +68,7 @@ ProjectHomeRegionEnum _$projectHomeRegionEnumValueOf(String name) {
 final BuiltSet<ProjectHomeRegionEnum> _$projectHomeRegionEnumValues =
     new BuiltSet<ProjectHomeRegionEnum>(const <ProjectHomeRegionEnum>[
   _$projectHomeRegionEnum_euCentral,
+  _$projectHomeRegionEnum_asiaNortheast,
   _$projectHomeRegionEnum_usEast,
   _$projectHomeRegionEnum_usWest,
   _$projectHomeRegionEnum_us,
@@ -138,6 +143,7 @@ class _$ProjectHomeRegionEnumSerializer
     implements PrimitiveSerializer<ProjectHomeRegionEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
     'euCentral': 'eu-central',
+    'asiaNortheast': 'asia-northeast',
     'usEast': 'us-east',
     'usWest': 'us-west',
     'us': 'us',
@@ -145,6 +151,7 @@ class _$ProjectHomeRegionEnumSerializer
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'eu-central': 'euCentral',
+    'asia-northeast': 'asiaNortheast',
     'us-east': 'usEast',
     'us-west': 'usWest',
     'us': 'us',
