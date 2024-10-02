@@ -7,6 +7,7 @@ import 'package:ory_client/src/model/update_registration_flow_with_code_method.d
 import 'package:ory_client/src/model/update_registration_flow_with_oidc_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_web_authn_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_password_method.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_passkey_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_profile_method.dart';
 import 'package:built_value/json_object.dart';
@@ -33,7 +34,7 @@ part 'update_registration_flow_body.g.dart';
 /// * [code] - The OTP Code sent to the user
 /// * [resend] - Resend restarts the flow with a new code
 /// * [passkeyRegister] - Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
-/// * [screen] - Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen.
+/// * [screen] - Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
 @BuiltValue()
 abstract class UpdateRegistrationFlowBody implements Built<UpdateRegistrationFlowBody, UpdateRegistrationFlowBodyBuilder> {
   /// One Of [UpdateRegistrationFlowWithCodeMethod], [UpdateRegistrationFlowWithOidcMethod], [UpdateRegistrationFlowWithPasskeyMethod], [UpdateRegistrationFlowWithPasswordMethod], [UpdateRegistrationFlowWithProfileMethod], [UpdateRegistrationFlowWithWebAuthnMethod]
@@ -196,5 +197,22 @@ class _$UpdateRegistrationFlowBodySerializer implements PrimitiveSerializer<Upda
     result.oneOf = OneOfDynamic(typeIndex: oneOfTypes.indexOf(oneOfType), types: oneOfTypes, value: oneOfResult);
     return result.build();
   }
+}
+
+class UpdateRegistrationFlowBodyScreenEnum extends EnumClass {
+
+  /// Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
+  @BuiltValueEnumConst(wireName: r'credential-selection')
+  static const UpdateRegistrationFlowBodyScreenEnum credentialSelection = _$updateRegistrationFlowBodyScreenEnum_credentialSelection;
+  /// Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
+  @BuiltValueEnumConst(wireName: r'previous')
+  static const UpdateRegistrationFlowBodyScreenEnum previous = _$updateRegistrationFlowBodyScreenEnum_previous;
+
+  static Serializer<UpdateRegistrationFlowBodyScreenEnum> get serializer => _$updateRegistrationFlowBodyScreenEnumSerializer;
+
+  const UpdateRegistrationFlowBodyScreenEnum._(String name): super(name);
+
+  static BuiltSet<UpdateRegistrationFlowBodyScreenEnum> get values => _$updateRegistrationFlowBodyScreenEnumValues;
+  static UpdateRegistrationFlowBodyScreenEnum valueOf(String name) => _$updateRegistrationFlowBodyScreenEnumValueOf(name);
 }
 

@@ -22,7 +22,16 @@ Update Registration Request Body
 |**code** | **String** | The OTP Code sent to the user |  [optional] |
 |**resend** | **String** | Resend restarts the flow with a new code |  [optional] |
 |**passkeyRegister** | **String** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. |  [optional] |
-|**screen** | **String** | Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. |  [optional] |
+|**screen** | [**ScreenEnum**](#ScreenEnum) | Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious |  [optional] |
+
+
+
+## Enum: ScreenEnum
+
+| Name | Value |
+|---- | -----|
+| CREDENTIAL_SELECTION | &quot;credential-selection&quot; |
+| PREVIOUS | &quot;previous&quot; |
 
 
 

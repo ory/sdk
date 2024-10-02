@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **code** | **str** | The OTP Code sent to the user | [optional] 
 **resend** | **str** | Resend restarts the flow with a new code | [optional] 
 **passkey_register** | **str** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. | [optional] 
-**screen** | **str** | Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. | [optional] 
+**screen** | **str** | Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious | [optional] 
 
 ## Example
 

@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.15.4
+  version: v1.15.5
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -21138,7 +21138,15 @@ components:
 
             This must be set to credential-selection to go back to the credential
             selection screen.
+            credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential
+            previous RegistrationScreenPrevious
+          enum:
+          - credential-selection
+          - previous
           type: string
+          x-go-enum-desc: |-
+            credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential
+            previous RegistrationScreenPrevious
         traits:
           description: |-
             Traits

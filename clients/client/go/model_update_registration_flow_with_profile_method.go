@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.15.4
+API version: v1.15.5
 Contact: support@ory.sh
 */
 
@@ -25,7 +25,7 @@ type UpdateRegistrationFlowWithProfileMethod struct {
 	CsrfToken *string `json:"csrf_token,omitempty"`
 	// Method  Should be set to profile when trying to update a profile.
 	Method string `json:"method"`
-	// Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen.
+	// Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
 	Screen *string `json:"screen,omitempty"`
 	// Traits  The identity's traits.
 	Traits map[string]interface{} `json:"traits"`
