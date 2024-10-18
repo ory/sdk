@@ -91,6 +91,7 @@
 | **kratos_courier_templates_registration_code_valid_email_body_html** | **String** | Configures the Ory Kratos Valid Registration via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.body.html\&quot; setting. | [optional] |
 | **kratos_courier_templates_registration_code_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_registration_code_valid_email_subject** | **String** | Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.subject\&quot; setting. | [optional] |
+| **kratos_courier_templates_registration_code_valid_sms_body_plaintext** | **String** | Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.sms.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_code_invalid_email_body_html** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.body.html\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_code_invalid_email_body_plaintext** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_code_invalid_email_subject** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.subject\&quot; setting. | [optional] |
@@ -306,6 +307,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_courier_templates_registration_code_valid_email_body_html: null,
   kratos_courier_templates_registration_code_valid_email_body_plaintext: null,
   kratos_courier_templates_registration_code_valid_email_subject: null,
+  kratos_courier_templates_registration_code_valid_sms_body_plaintext: null,
   kratos_courier_templates_verification_code_invalid_email_body_html: null,
   kratos_courier_templates_verification_code_invalid_email_body_plaintext: null,
   kratos_courier_templates_verification_code_invalid_email_subject: null,

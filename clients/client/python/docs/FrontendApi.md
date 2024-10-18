@@ -773,7 +773,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_verification_flow**
-> VerificationFlow create_native_verification_flow()
+> VerificationFlow create_native_verification_flow(return_to=return_to)
 
 Create Verification Flow for Native Apps
 
@@ -799,10 +799,11 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.FrontendApi(api_client)
+    return_to = 'return_to_example' # str | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. (optional)
 
     try:
         # Create Verification Flow for Native Apps
-        api_response = api_instance.create_native_verification_flow()
+        api_response = api_instance.create_native_verification_flow(return_to=return_to)
         print("The response of FrontendApi->create_native_verification_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -813,7 +814,10 @@ with ory_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **return_to** | **str**| A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. | [optional] 
 
 ### Return type
 

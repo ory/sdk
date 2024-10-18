@@ -706,6 +706,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final String? kratosCourierTemplatesRegistrationCodeValidEmailSubject;
   @override
+  final String? kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext;
+  @override
   final String? kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml;
   @override
   final String? kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext;
@@ -1058,6 +1060,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml,
       this.kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext,
       this.kratosCourierTemplatesRegistrationCodeValidEmailSubject,
+      this.kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext,
       this.kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
       this.kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
       this.kratosCourierTemplatesVerificationCodeInvalidEmailSubject,
@@ -1338,6 +1341,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
                 .kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext &&
         kratosCourierTemplatesRegistrationCodeValidEmailSubject ==
             other.kratosCourierTemplatesRegistrationCodeValidEmailSubject &&
+        kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext ==
+            other.kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext &&
         kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml ==
             other.kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml &&
         kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext ==
@@ -1702,6 +1707,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(_$hash,
         kratosCourierTemplatesRegistrationCodeValidEmailSubject.hashCode);
     _$hash = $jc(_$hash,
+        kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext.hashCode);
+    _$hash = $jc(_$hash,
         kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml.hashCode);
     _$hash = $jc(
         _$hash,
@@ -2065,6 +2072,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext)
           ..add('kratosCourierTemplatesRegistrationCodeValidEmailSubject',
               kratosCourierTemplatesRegistrationCodeValidEmailSubject)
+          ..add('kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext',
+              kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext)
           ..add('kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml',
               kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml)
           ..add(
@@ -2927,6 +2936,15 @@ class CreateProjectNormalizedPayloadBuilder
           String? kratosCourierTemplatesRegistrationCodeValidEmailSubject) =>
       _$this._kratosCourierTemplatesRegistrationCodeValidEmailSubject =
           kratosCourierTemplatesRegistrationCodeValidEmailSubject;
+
+  String? _kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext;
+  String? get kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext =>
+      _$this._kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext;
+  set kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext(
+          String?
+              kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext) =>
+      _$this._kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext =
+          kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext;
 
   String? _kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml;
   String? get kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml =>
@@ -4049,6 +4067,8 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext;
       _kratosCourierTemplatesRegistrationCodeValidEmailSubject =
           $v.kratosCourierTemplatesRegistrationCodeValidEmailSubject;
+      _kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext =
+          $v.kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext;
       _kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml =
           $v.kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml;
       _kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext =
@@ -4407,6 +4427,7 @@ class CreateProjectNormalizedPayloadBuilder
               kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml: kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml,
               kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext: kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext,
               kratosCourierTemplatesRegistrationCodeValidEmailSubject: kratosCourierTemplatesRegistrationCodeValidEmailSubject,
+              kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext: kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext,
               kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml: kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
               kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext: kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
               kratosCourierTemplatesVerificationCodeInvalidEmailSubject: kratosCourierTemplatesVerificationCodeInvalidEmailSubject,

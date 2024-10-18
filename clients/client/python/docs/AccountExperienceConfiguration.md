@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **account_experience_theme_stylesheet** | **str** |  | [optional] 
 **favicon_type** | **str** |  | [optional] 
 **favicon_url** | **str** |  | [optional] 
+**kratos_selfservice_default_browser_return_url** | **str** |  | [optional] 
 **kratos_selfservice_flows_recovery_enabled** | **bool** |  | [optional] 
 **kratos_selfservice_flows_registration_enabled** | **bool** |  | [optional] 
 **kratos_selfservice_flows_verification_enabled** | **bool** |  | [optional] 

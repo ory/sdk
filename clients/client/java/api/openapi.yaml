@@ -11,7 +11,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.15.6
+  version: v1.15.7
 servers:
 - url: "https://{project-slug}.projects.oryapis.com/"
   variables:
@@ -7177,6 +7177,17 @@ paths:
 
         More information can be found at [Ory Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: createNativeVerificationFlow
+      parameters:
+      - description: |-
+          A URL contained in the return_to key of the verification flow.
+          This piece of data has no effect on the actual logic of the flow and is purely informational.
+        explode: true
+        in: query
+        name: return_to
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -9047,6 +9058,12 @@ components:
 
             This governs the "courier.smtp.templates.registration_code.valid.email.subject" setting.
           type: string
+        kratos_courier_templates_registration_code_valid_sms_body_plaintext:
+          description: |-
+            Configures the Ory Kratos Valid Registration via Code Email Subject Template
+
+            This governs the "courier.smtp.templates.registration_code.valid.sms.body.plaintext" setting.
+          type: string
         kratos_courier_templates_verification_code_invalid_email_body_html:
           description: |-
             Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template
@@ -10503,6 +10520,8 @@ components:
         favicon_type:
           type: string
         favicon_url:
+          type: string
+        kratos_selfservice_default_browser_return_url:
           type: string
         kratos_selfservice_flows_recovery_enabled:
           type: boolean
@@ -14467,6 +14486,12 @@ components:
             Configures the Ory Kratos Valid Registration via Code Email Subject Template
 
             This governs the "courier.smtp.templates.registration_code.valid.email.subject" setting.
+          type: string
+        kratos_courier_templates_registration_code_valid_sms_body_plaintext:
+          description: |-
+            Configures the Ory Kratos Valid Registration via Code Email Subject Template
+
+            This governs the "courier.smtp.templates.registration_code.valid.sms.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_code_invalid_email_body_html:
           description: |-

@@ -507,6 +507,12 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.smtp.templates.registration_code.valid.sms.body.plaintext\" setting.
+    // String kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext
+    test('to test the property `kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.html\" setting.
     // String kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml
     test('to test the property `kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml`', () async {

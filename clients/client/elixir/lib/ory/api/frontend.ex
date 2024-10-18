@@ -421,6 +421,7 @@ defmodule Ory.Api.Frontend do
 
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
+    - `:return_to` (String.t): A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational.
 
   ### Returns
 
@@ -428,11 +429,16 @@ defmodule Ory.Api.Frontend do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_native_verification_flow(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.VerificationFlow.t} | {:error, Tesla.Env.t}
-  def create_native_verification_flow(connection, _opts \\ []) do
+  def create_native_verification_flow(connection, opts \\ []) do
+    optional_params = %{
+      :return_to => :query
+    }
+
     request =
       %{}
       |> method(:get)
       |> url("/self-service/verification/api")
+      |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
     connection

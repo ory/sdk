@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **AccountExperienceThemeStylesheet** | Pointer to **string** |  | [optional] 
 **FaviconType** | Pointer to **string** |  | [optional] 
 **FaviconUrl** | Pointer to **string** |  | [optional] 
+**KratosSelfserviceDefaultBrowserReturnUrl** | Pointer to **string** |  | [optional] 
 **KratosSelfserviceFlowsRecoveryEnabled** | Pointer to **bool** |  | [optional] 
 **KratosSelfserviceFlowsRegistrationEnabled** | Pointer to **bool** |  | [optional] 
 **KratosSelfserviceFlowsVerificationEnabled** | Pointer to **bool** |  | [optional] 
@@ -107,6 +108,31 @@ SetFaviconUrl sets FaviconUrl field to given value.
 `func (o *AccountExperienceConfiguration) HasFaviconUrl() bool`
 
 HasFaviconUrl returns a boolean if a field has been set.
+
+### GetKratosSelfserviceDefaultBrowserReturnUrl
+
+`func (o *AccountExperienceConfiguration) GetKratosSelfserviceDefaultBrowserReturnUrl() string`
+
+GetKratosSelfserviceDefaultBrowserReturnUrl returns the KratosSelfserviceDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceDefaultBrowserReturnUrlOk
+
+`func (o *AccountExperienceConfiguration) GetKratosSelfserviceDefaultBrowserReturnUrlOk() (*string, bool)`
+
+GetKratosSelfserviceDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceDefaultBrowserReturnUrl
+
+`func (o *AccountExperienceConfiguration) SetKratosSelfserviceDefaultBrowserReturnUrl(v string)`
+
+SetKratosSelfserviceDefaultBrowserReturnUrl sets KratosSelfserviceDefaultBrowserReturnUrl field to given value.
+
+### HasKratosSelfserviceDefaultBrowserReturnUrl
+
+`func (o *AccountExperienceConfiguration) HasKratosSelfserviceDefaultBrowserReturnUrl() bool`
+
+HasKratosSelfserviceDefaultBrowserReturnUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsRecoveryEnabled
 

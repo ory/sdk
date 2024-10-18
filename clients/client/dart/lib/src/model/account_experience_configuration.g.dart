@@ -14,6 +14,8 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
   @override
   final String? faviconUrl;
   @override
+  final String? kratosSelfserviceDefaultBrowserReturnUrl;
+  @override
   final bool? kratosSelfserviceFlowsRecoveryEnabled;
   @override
   final bool? kratosSelfserviceFlowsRegistrationEnabled;
@@ -34,6 +36,7 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
       {this.accountExperienceThemeStylesheet,
       this.faviconType,
       this.faviconUrl,
+      this.kratosSelfserviceDefaultBrowserReturnUrl,
       this.kratosSelfserviceFlowsRecoveryEnabled,
       this.kratosSelfserviceFlowsRegistrationEnabled,
       this.kratosSelfserviceFlowsVerificationEnabled,
@@ -59,6 +62,8 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
             other.accountExperienceThemeStylesheet &&
         faviconType == other.faviconType &&
         faviconUrl == other.faviconUrl &&
+        kratosSelfserviceDefaultBrowserReturnUrl ==
+            other.kratosSelfserviceDefaultBrowserReturnUrl &&
         kratosSelfserviceFlowsRecoveryEnabled ==
             other.kratosSelfserviceFlowsRecoveryEnabled &&
         kratosSelfserviceFlowsRegistrationEnabled ==
@@ -76,6 +81,7 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
     _$hash = $jc(_$hash, accountExperienceThemeStylesheet.hashCode);
     _$hash = $jc(_$hash, faviconType.hashCode);
     _$hash = $jc(_$hash, faviconUrl.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceDefaultBrowserReturnUrl.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsRecoveryEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsRegistrationEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsVerificationEnabled.hashCode);
@@ -93,6 +99,8 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
               accountExperienceThemeStylesheet)
           ..add('faviconType', faviconType)
           ..add('faviconUrl', faviconUrl)
+          ..add('kratosSelfserviceDefaultBrowserReturnUrl',
+              kratosSelfserviceDefaultBrowserReturnUrl)
           ..add('kratosSelfserviceFlowsRecoveryEnabled',
               kratosSelfserviceFlowsRecoveryEnabled)
           ..add('kratosSelfserviceFlowsRegistrationEnabled',
@@ -127,6 +135,14 @@ class AccountExperienceConfigurationBuilder
   String? _faviconUrl;
   String? get faviconUrl => _$this._faviconUrl;
   set faviconUrl(String? faviconUrl) => _$this._faviconUrl = faviconUrl;
+
+  String? _kratosSelfserviceDefaultBrowserReturnUrl;
+  String? get kratosSelfserviceDefaultBrowserReturnUrl =>
+      _$this._kratosSelfserviceDefaultBrowserReturnUrl;
+  set kratosSelfserviceDefaultBrowserReturnUrl(
+          String? kratosSelfserviceDefaultBrowserReturnUrl) =>
+      _$this._kratosSelfserviceDefaultBrowserReturnUrl =
+          kratosSelfserviceDefaultBrowserReturnUrl;
 
   bool? _kratosSelfserviceFlowsRecoveryEnabled;
   bool? get kratosSelfserviceFlowsRecoveryEnabled =>
@@ -176,6 +192,8 @@ class AccountExperienceConfigurationBuilder
       _accountExperienceThemeStylesheet = $v.accountExperienceThemeStylesheet;
       _faviconType = $v.faviconType;
       _faviconUrl = $v.faviconUrl;
+      _kratosSelfserviceDefaultBrowserReturnUrl =
+          $v.kratosSelfserviceDefaultBrowserReturnUrl;
       _kratosSelfserviceFlowsRecoveryEnabled =
           $v.kratosSelfserviceFlowsRecoveryEnabled;
       _kratosSelfserviceFlowsRegistrationEnabled =
@@ -213,6 +231,8 @@ class AccountExperienceConfigurationBuilder
                   accountExperienceThemeStylesheet,
               faviconType: faviconType,
               faviconUrl: faviconUrl,
+              kratosSelfserviceDefaultBrowserReturnUrl:
+                  kratosSelfserviceDefaultBrowserReturnUrl,
               kratosSelfserviceFlowsRecoveryEnabled:
                   kratosSelfserviceFlowsRecoveryEnabled,
               kratosSelfserviceFlowsRegistrationEnabled:

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.15.6
+API version: v1.15.7
 Contact: support@ory.sh
 */
 
@@ -182,6 +182,8 @@ type NormalizedProjectRevision struct {
 	KratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext *string `json:"kratos_courier_templates_registration_code_valid_email_body_plaintext,omitempty"`
 	// Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.smtp.templates.registration_code.valid.email.subject\" setting.
 	KratosCourierTemplatesRegistrationCodeValidEmailSubject *string `json:"kratos_courier_templates_registration_code_valid_email_subject,omitempty"`
+	// Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.smtp.templates.registration_code.valid.sms.body.plaintext\" setting.
+	KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext *string `json:"kratos_courier_templates_registration_code_valid_sms_body_plaintext,omitempty"`
 	// Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.html\" setting.
 	KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml *string `json:"kratos_courier_templates_verification_code_invalid_email_body_html,omitempty"`
 	// Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.plaintext\" setting.
@@ -3201,6 +3203,38 @@ func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRegistrationCodeVal
 // SetKratosCourierTemplatesRegistrationCodeValidEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesRegistrationCodeValidEmailSubject field.
 func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRegistrationCodeValidEmailSubject(v string) {
 	o.KratosCourierTemplatesRegistrationCodeValidEmailSubject = &v
+}
+
+// GetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext returns the KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext() string {
+	if o == nil || IsNil(o.KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext) {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext
+}
+
+// GetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintextOk returns a tuple with the KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintextOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext) {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext() bool {
+	if o != nil && !IsNil(o.KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext field.
+func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext(v string) {
+	o.KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext = &v
 }
 
 // GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml returns the KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml field value if set, zero value otherwise.
@@ -7301,6 +7335,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KratosCourierTemplatesRegistrationCodeValidEmailSubject) {
 		toSerialize["kratos_courier_templates_registration_code_valid_email_subject"] = o.KratosCourierTemplatesRegistrationCodeValidEmailSubject
 	}
+	if !IsNil(o.KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext) {
+		toSerialize["kratos_courier_templates_registration_code_valid_sms_body_plaintext"] = o.KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext
+	}
 	if !IsNil(o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml) {
 		toSerialize["kratos_courier_templates_verification_code_invalid_email_body_html"] = o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml
 	}
@@ -7787,6 +7824,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kratos_courier_templates_registration_code_valid_email_body_html")
 		delete(additionalProperties, "kratos_courier_templates_registration_code_valid_email_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_registration_code_valid_email_subject")
+		delete(additionalProperties, "kratos_courier_templates_registration_code_valid_sms_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_verification_code_invalid_email_body_html")
 		delete(additionalProperties, "kratos_courier_templates_verification_code_invalid_email_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_verification_code_invalid_email_subject")

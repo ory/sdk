@@ -727,7 +727,7 @@ No authorization required
 
 ## create_native_verification_flow
 
-> <VerificationFlow> create_native_verification_flow
+> <VerificationFlow> create_native_verification_flow(opts)
 
 Create Verification Flow for Native Apps
 
@@ -740,10 +740,13 @@ require 'time'
 require 'ory-client'
 
 api_instance = OryClient::FrontendApi.new
+opts = {
+  return_to: 'return_to_example' # String | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational.
+}
 
 begin
   # Create Verification Flow for Native Apps
-  result = api_instance.create_native_verification_flow
+  result = api_instance.create_native_verification_flow(opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling FrontendApi->create_native_verification_flow: #{e}"
@@ -754,12 +757,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<VerificationFlow>, Integer, Hash)> create_native_verification_flow_with_http_info
+> <Array(<VerificationFlow>, Integer, Hash)> create_native_verification_flow_with_http_info(opts)
 
 ```ruby
 begin
   # Create Verification Flow for Native Apps
-  data, status_code, headers = api_instance.create_native_verification_flow_with_http_info
+  data, status_code, headers = api_instance.create_native_verification_flow_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <VerificationFlow>
@@ -770,7 +773,9 @@ end
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **return_to** | **String** | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. | [optional] |
 
 ### Return type
 

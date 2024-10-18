@@ -728,7 +728,7 @@ No authorization required
 
 ## CreateNativeVerificationFlow
 
-> VerificationFlow CreateNativeVerificationFlow(ctx).Execute()
+> VerificationFlow CreateNativeVerificationFlow(ctx).ReturnTo(returnTo).Execute()
 
 Create Verification Flow for Native Apps
 
@@ -747,10 +747,11 @@ import (
 )
 
 func main() {
+	returnTo := "returnTo_example" // string | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FrontendAPI.CreateNativeVerificationFlow(context.Background()).Execute()
+	resp, r, err := apiClient.FrontendAPI.CreateNativeVerificationFlow(context.Background()).ReturnTo(returnTo).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeVerificationFlow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -762,12 +763,16 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiCreateNativeVerificationFlowRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **returnTo** | **string** | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. | 
 
 ### Return type
 

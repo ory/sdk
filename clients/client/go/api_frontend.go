@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.15.6
+API version: v1.15.7
 Contact: support@ory.sh
 */
 
@@ -2543,6 +2543,13 @@ func (a *FrontendAPIService) CreateNativeSettingsFlowExecute(r FrontendAPICreate
 type FrontendAPICreateNativeVerificationFlowRequest struct {
 	ctx context.Context
 	ApiService FrontendAPI
+	returnTo *string
+}
+
+// A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational.
+func (r FrontendAPICreateNativeVerificationFlowRequest) ReturnTo(returnTo string) FrontendAPICreateNativeVerificationFlowRequest {
+	r.returnTo = &returnTo
+	return r
 }
 
 func (r FrontendAPICreateNativeVerificationFlowRequest) Execute() (*VerificationFlow, *http.Response, error) {
@@ -2595,6 +2602,9 @@ func (a *FrontendAPIService) CreateNativeVerificationFlowExecute(r FrontendAPICr
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.returnTo != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "return_to", r.returnTo, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

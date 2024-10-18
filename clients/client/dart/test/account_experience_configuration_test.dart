@@ -22,6 +22,11 @@ void main() {
       // TODO
     });
 
+    // String kratosSelfserviceDefaultBrowserReturnUrl
+    test('to test the property `kratosSelfserviceDefaultBrowserReturnUrl`', () async {
+      // TODO
+    });
+
     // bool kratosSelfserviceFlowsRecoveryEnabled
     test('to test the property `kratosSelfserviceFlowsRecoveryEnabled`', () async {
       // TODO

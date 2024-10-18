@@ -104,6 +104,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml] - Configures the Ory Kratos Valid Registration via Code Email Body HTML Template  This governs the \"courier.smtp.templates.registration_code.valid.email.body.html\" setting.
 /// * [kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext] - Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.registration_code.valid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesRegistrationCodeValidEmailSubject] - Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.smtp.templates.registration_code.valid.email.subject\" setting.
+/// * [kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext] - Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.smtp.templates.registration_code.valid.sms.body.plaintext\" setting.
 /// * [kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml] - Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.html\" setting.
 /// * [kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext] - Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.plaintext\" setting.
 /// * [kratosCourierTemplatesVerificationCodeInvalidEmailSubject] - Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.subject\" setting.
@@ -558,6 +559,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.smtp.templates.registration_code.valid.email.subject\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_registration_code_valid_email_subject')
   String? get kratosCourierTemplatesRegistrationCodeValidEmailSubject;
+
+  /// Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.smtp.templates.registration_code.valid.sms.body.plaintext\" setting.
+  @BuiltValueField(wireName: r'kratos_courier_templates_registration_code_valid_sms_body_plaintext')
+  String? get kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext;
 
   /// Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.html\" setting.
   @BuiltValueField(wireName: r'kratos_courier_templates_verification_code_invalid_email_body_html')
@@ -1656,6 +1661,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_courier_templates_registration_code_valid_email_subject';
       yield serializers.serialize(
         object.kratosCourierTemplatesRegistrationCodeValidEmailSubject,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext != null) {
+      yield r'kratos_courier_templates_registration_code_valid_sms_body_plaintext';
+      yield serializers.serialize(
+        object.kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext,
         specifiedType: const FullType(String),
       );
     }
@@ -3116,6 +3128,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosCourierTemplatesRegistrationCodeValidEmailSubject = valueDes;
+          break;
+        case r'kratos_courier_templates_registration_code_valid_sms_body_plaintext':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext = valueDes;
           break;
         case r'kratos_courier_templates_verification_code_invalid_email_body_html':
           final valueDes = serializers.deserialize(

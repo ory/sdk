@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **accountExperienceThemeStylesheet** | **string** |  | [optional]
 **faviconType** | **string** |  | [optional]
 **faviconUrl** | **string** |  | [optional]
+**kratosSelfserviceDefaultBrowserReturnUrl** | **string** |  | [optional]
 **kratosSelfserviceFlowsRecoveryEnabled** | **bool** |  | [optional]
 **kratosSelfserviceFlowsRegistrationEnabled** | **bool** |  | [optional]
 **kratosSelfserviceFlowsVerificationEnabled** | **bool** |  | [optional]

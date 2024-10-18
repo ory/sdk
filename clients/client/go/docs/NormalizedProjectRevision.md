@@ -89,6 +89,7 @@ Name | Type | Description | Notes
 **KratosCourierTemplatesRegistrationCodeValidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Valid Registration via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesRegistrationCodeValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.email.subject\&quot; setting. | [optional] 
+**KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.registration_code.valid.sms.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationCodeInvalidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \&quot;courier.smtp.templates.verification_code.invalid.email.subject\&quot; setting. | [optional] 
@@ -2373,6 +2374,31 @@ SetKratosCourierTemplatesRegistrationCodeValidEmailSubject sets KratosCourierTem
 `func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRegistrationCodeValidEmailSubject() bool`
 
 HasKratosCourierTemplatesRegistrationCodeValidEmailSubject returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext() string`
+
+GetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext returns the KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintextOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintextOk() (*string, bool)`
+
+GetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintextOk returns a tuple with the KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext(v string)`
+
+SetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext sets KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext field to given value.
+
+### HasKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext() bool`
+
+HasKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext returns a boolean if a field has been set.
 
 ### GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml
 

@@ -630,7 +630,7 @@ No authorization required
 ## `createNativeVerificationFlow()`
 
 ```php
-createNativeVerificationFlow(): \Ory\Client\Model\VerificationFlow
+createNativeVerificationFlow($returnTo): \Ory\Client\Model\VerificationFlow
 ```
 
 Create Verification Flow for Native Apps
@@ -650,9 +650,10 @@ $apiInstance = new Ory\Client\Api\FrontendApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$returnTo = 'returnTo_example'; // string | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational.
 
 try {
-    $result = $apiInstance->createNativeVerificationFlow();
+    $result = $apiInstance->createNativeVerificationFlow($returnTo);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createNativeVerificationFlow: ', $e->getMessage(), PHP_EOL;
@@ -661,7 +662,9 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **returnTo** | **string**| A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. | [optional] |
 
 ### Return type
 

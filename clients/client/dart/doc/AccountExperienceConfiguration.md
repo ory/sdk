@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **accountExperienceThemeStylesheet** | **String** |  | [optional] 
 **faviconType** | **String** |  | [optional] 
 **faviconUrl** | **String** |  | [optional] 
+**kratosSelfserviceDefaultBrowserReturnUrl** | **String** |  | [optional] 
 **kratosSelfserviceFlowsRecoveryEnabled** | **bool** |  | [optional] 
 **kratosSelfserviceFlowsRegistrationEnabled** | **bool** |  | [optional] 
 **kratosSelfserviceFlowsVerificationEnabled** | **bool** |  | [optional] 

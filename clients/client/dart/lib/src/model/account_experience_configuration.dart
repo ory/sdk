@@ -15,6 +15,7 @@ part 'account_experience_configuration.g.dart';
 /// * [accountExperienceThemeStylesheet] 
 /// * [faviconType] 
 /// * [faviconUrl] 
+/// * [kratosSelfserviceDefaultBrowserReturnUrl] 
 /// * [kratosSelfserviceFlowsRecoveryEnabled] 
 /// * [kratosSelfserviceFlowsRegistrationEnabled] 
 /// * [kratosSelfserviceFlowsVerificationEnabled] 
@@ -31,6 +32,9 @@ abstract class AccountExperienceConfiguration implements Built<AccountExperience
 
   @BuiltValueField(wireName: r'favicon_url')
   String? get faviconUrl;
+
+  @BuiltValueField(wireName: r'kratos_selfservice_default_browser_return_url')
+  String? get kratosSelfserviceDefaultBrowserReturnUrl;
 
   @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_enabled')
   bool? get kratosSelfserviceFlowsRecoveryEnabled;
@@ -91,6 +95,13 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
       yield r'favicon_url';
       yield serializers.serialize(
         object.faviconUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceDefaultBrowserReturnUrl != null) {
+      yield r'kratos_selfservice_default_browser_return_url';
+      yield serializers.serialize(
+        object.kratosSelfserviceDefaultBrowserReturnUrl,
         specifiedType: const FullType(String),
       );
     }
@@ -179,6 +190,13 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(String),
           ) as String;
           result.faviconUrl = valueDes;
+          break;
+        case r'kratos_selfservice_default_browser_return_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceDefaultBrowserReturnUrl = valueDes;
           break;
         case r'kratos_selfservice_flows_recovery_enabled':
           final valueDes = serializers.deserialize(

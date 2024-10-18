@@ -502,7 +502,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createNativeVerificationFlow**
-> VerificationFlow createNativeVerificationFlow()
+> VerificationFlow createNativeVerificationFlow(returnTo)
 
 Create Verification Flow for Native Apps
 
@@ -513,9 +513,10 @@ This endpoint initiates a verification flow for API clients such as mobile devic
 import 'package:ory_client/api.dart';
 
 final api = OryClient().getFrontendApi();
+final String returnTo = returnTo_example; // String | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational.
 
 try {
-    final response = api.createNativeVerificationFlow();
+    final response = api.createNativeVerificationFlow(returnTo);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling FrontendApi->createNativeVerificationFlow: $e\n');
@@ -523,7 +524,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **returnTo** | **String**| A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. | [optional] 
 
 ### Return type
 

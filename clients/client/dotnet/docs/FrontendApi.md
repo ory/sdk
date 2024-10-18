@@ -1002,7 +1002,7 @@ No authorization required
 
 <a id="createnativeverificationflow"></a>
 # **CreateNativeVerificationFlow**
-> ClientVerificationFlow CreateNativeVerificationFlow ()
+> ClientVerificationFlow CreateNativeVerificationFlow (string? returnTo = null)
 
 Create Verification Flow for Native Apps
 
@@ -1025,11 +1025,12 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "https://.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
+            var returnTo = "returnTo_example";  // string? | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. (optional) 
 
             try
             {
                 // Create Verification Flow for Native Apps
-                ClientVerificationFlow result = apiInstance.CreateNativeVerificationFlow();
+                ClientVerificationFlow result = apiInstance.CreateNativeVerificationFlow(returnTo);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1050,7 +1051,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create Verification Flow for Native Apps
-    ApiResponse<ClientVerificationFlow> response = apiInstance.CreateNativeVerificationFlowWithHttpInfo();
+    ApiResponse<ClientVerificationFlow> response = apiInstance.CreateNativeVerificationFlowWithHttpInfo(returnTo);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1064,7 +1065,11 @@ catch (ApiException e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **returnTo** | **string?** | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. | [optional]  |
+
 ### Return type
 
 [**ClientVerificationFlow**](ClientVerificationFlow.md)

@@ -3,7 +3,7 @@ Ory APIs
 
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
 
-API version: v1.15.6
+API version: v1.15.7
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,7 @@ type AccountExperienceConfiguration struct {
 	AccountExperienceThemeStylesheet *string `json:"account_experience_theme_stylesheet,omitempty"`
 	FaviconType *string `json:"favicon_type,omitempty"`
 	FaviconUrl *string `json:"favicon_url,omitempty"`
+	KratosSelfserviceDefaultBrowserReturnUrl *string `json:"kratos_selfservice_default_browser_return_url,omitempty"`
 	KratosSelfserviceFlowsRecoveryEnabled *bool `json:"kratos_selfservice_flows_recovery_enabled,omitempty"`
 	KratosSelfserviceFlowsRegistrationEnabled *bool `json:"kratos_selfservice_flows_registration_enabled,omitempty"`
 	KratosSelfserviceFlowsVerificationEnabled *bool `json:"kratos_selfservice_flows_verification_enabled,omitempty"`
@@ -145,6 +146,38 @@ func (o *AccountExperienceConfiguration) HasFaviconUrl() bool {
 // SetFaviconUrl gets a reference to the given string and assigns it to the FaviconUrl field.
 func (o *AccountExperienceConfiguration) SetFaviconUrl(v string) {
 	o.FaviconUrl = &v
+}
+
+// GetKratosSelfserviceDefaultBrowserReturnUrl returns the KratosSelfserviceDefaultBrowserReturnUrl field value if set, zero value otherwise.
+func (o *AccountExperienceConfiguration) GetKratosSelfserviceDefaultBrowserReturnUrl() string {
+	if o == nil || IsNil(o.KratosSelfserviceDefaultBrowserReturnUrl) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceDefaultBrowserReturnUrl
+}
+
+// GetKratosSelfserviceDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceDefaultBrowserReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetKratosSelfserviceDefaultBrowserReturnUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceDefaultBrowserReturnUrl) {
+		return nil, false
+	}
+	return o.KratosSelfserviceDefaultBrowserReturnUrl, true
+}
+
+// HasKratosSelfserviceDefaultBrowserReturnUrl returns a boolean if a field has been set.
+func (o *AccountExperienceConfiguration) HasKratosSelfserviceDefaultBrowserReturnUrl() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceDefaultBrowserReturnUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceDefaultBrowserReturnUrl field.
+func (o *AccountExperienceConfiguration) SetKratosSelfserviceDefaultBrowserReturnUrl(v string) {
+	o.KratosSelfserviceDefaultBrowserReturnUrl = &v
 }
 
 // GetKratosSelfserviceFlowsRecoveryEnabled returns the KratosSelfserviceFlowsRecoveryEnabled field value if set, zero value otherwise.
@@ -358,6 +391,9 @@ func (o AccountExperienceConfiguration) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.FaviconUrl) {
 		toSerialize["favicon_url"] = o.FaviconUrl
 	}
+	if !IsNil(o.KratosSelfserviceDefaultBrowserReturnUrl) {
+		toSerialize["kratos_selfservice_default_browser_return_url"] = o.KratosSelfserviceDefaultBrowserReturnUrl
+	}
 	if !IsNil(o.KratosSelfserviceFlowsRecoveryEnabled) {
 		toSerialize["kratos_selfservice_flows_recovery_enabled"] = o.KratosSelfserviceFlowsRecoveryEnabled
 	}
@@ -401,6 +437,7 @@ func (o *AccountExperienceConfiguration) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "account_experience_theme_stylesheet")
 		delete(additionalProperties, "favicon_type")
 		delete(additionalProperties, "favicon_url")
+		delete(additionalProperties, "kratos_selfservice_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_recovery_enabled")
 		delete(additionalProperties, "kratos_selfservice_flows_registration_enabled")
 		delete(additionalProperties, "kratos_selfservice_flows_verification_enabled")

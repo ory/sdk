@@ -714,7 +714,7 @@ No authorization required
 
 <a id="createNativeVerificationFlow"></a>
 # **createNativeVerificationFlow**
-> VerificationFlow createNativeVerificationFlow()
+> VerificationFlow createNativeVerificationFlow(returnTo)
 
 Create Verification Flow for Native Apps
 
@@ -735,8 +735,9 @@ public class Example {
     defaultClient.setBasePath("https://.projects.oryapis.com");
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
+    String returnTo = "returnTo_example"; // String | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational.
     try {
-      VerificationFlow result = apiInstance.createNativeVerificationFlow();
+      VerificationFlow result = apiInstance.createNativeVerificationFlow(returnTo);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createNativeVerificationFlow");
@@ -750,7 +751,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **returnTo** | **String**| A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. | [optional] |
 
 ### Return type
 
