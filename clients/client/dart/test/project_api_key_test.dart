@@ -13,6 +13,11 @@ void main() {
       // TODO
     });
 
+    // DateTime expiresAt
+    test('to test the property `expiresAt`', () async {
+      // TODO
+    });
+
     // The token's ID.
     // String id
     test('to test the property `id`', () async {

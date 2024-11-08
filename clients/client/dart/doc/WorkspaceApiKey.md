@@ -9,12 +9,13 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) | The API key's creation date | [optional] 
+**expiresAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **id** | **String** | The key's ID. | 
 **name** | **String** | The API key's Name  Set this to help you remember, for example, where you use the API key. | 
 **ownerId** | **String** | The key's owner | 
 **updatedAt** | [**DateTime**](DateTime.md) | The API key's last update date | [optional] 
 **value** | **String** | The key's value | [optional] 
-**workspaceId** | **String** | The API token's workspace ID | [optional] 
+**workspaceId** | **String** | The API key's workspace ID | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

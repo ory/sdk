@@ -1,19 +1,19 @@
 # ory_client.ProjectApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_organization**](ProjectApi.md#create_organization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
 [**create_project**](ProjectApi.md#create_project) | **POST** /projects | Create a Project
-[**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API token
+[**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API key
 [**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
-[**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
+[**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key
 [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
 [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project
 [**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
-[**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
+[**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API keys
 [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects
 [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**patch_project_with_revision**](ProjectApi.md#patch_project_with_revision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID
@@ -41,10 +41,10 @@ from ory_client.models.organization_body import OrganizationBody
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -126,10 +126,10 @@ from ory_client.models.project import Project
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -194,9 +194,9 @@ Name | Type | Description  | Notes
 # **create_project_api_key**
 > ProjectApiKey create_project_api_key(project, create_project_api_key_request=create_project_api_key_request)
 
-Create project API token
+Create project API key
 
-Create an API token for a project.
+Create an API key for a project.
 
 ### Example
 
@@ -209,10 +209,10 @@ from ory_client.models.project_api_key import ProjectApiKey
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -233,7 +233,7 @@ with ory_client.ApiClient(configuration) as api_client:
     create_project_api_key_request = ory_client.CreateProjectApiKeyRequest() # CreateProjectApiKeyRequest |  (optional)
 
     try:
-        # Create project API token
+        # Create project API key
         api_response = api_instance.create_project_api_key(project, create_project_api_key_request=create_project_api_key_request)
         print("The response of ProjectApi->create_project_api_key:\n")
         pprint(api_response)
@@ -289,10 +289,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -358,9 +358,9 @@ void (empty response body)
 # **delete_project_api_key**
 > delete_project_api_key(project, token_id)
 
-Delete project API token
+Delete project API key
 
-Deletes an API token and immediately removes it.
+Deletes an API key and immediately removes it.
 
 ### Example
 
@@ -371,10 +371,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -395,7 +395,7 @@ with ory_client.ApiClient(configuration) as api_client:
     token_id = 'token_id_example' # str | The Token ID
 
     try:
-        # Delete project API token
+        # Delete project API key
         api_instance.delete_project_api_key(project, token_id)
     except Exception as e:
         print("Exception when calling ProjectApi->delete_project_api_key: %s\n" % e)
@@ -450,10 +450,10 @@ from ory_client.models.get_organization_response import GetOrganizationResponse
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -533,10 +533,10 @@ from ory_client.models.project import Project
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -615,10 +615,10 @@ from ory_client.models.project_member import ProjectMember
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -696,10 +696,10 @@ from ory_client.models.list_organizations_response import ListOrganizationsRespo
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -769,9 +769,9 @@ Name | Type | Description  | Notes
 # **list_project_api_keys**
 > List[ProjectApiKey] list_project_api_keys(project)
 
-List a project's API Tokens
+List a project's API keys
 
-A list of all the project's API tokens.
+A list of all the project's API keys.
 
 ### Example
 
@@ -783,10 +783,10 @@ from ory_client.models.project_api_key import ProjectApiKey
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -806,7 +806,7 @@ with ory_client.ApiClient(configuration) as api_client:
     project = 'project_example' # str | The Project ID or Project slug
 
     try:
-        # List a project's API Tokens
+        # List a project's API keys
         api_response = api_instance.list_project_api_keys(project)
         print("The response of ProjectApi->list_project_api_keys:\n")
         pprint(api_response)
@@ -862,10 +862,10 @@ from ory_client.models.project_metadata import ProjectMetadata
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -941,10 +941,10 @@ from ory_client.models.successful_project_update import SuccessfulProjectUpdate
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1027,10 +1027,10 @@ from ory_client.models.successful_project_update import SuccessfulProjectUpdate
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1113,10 +1113,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1192,10 +1192,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1274,10 +1274,10 @@ from ory_client.models.successful_project_update import SuccessfulProjectUpdate
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1360,10 +1360,10 @@ from ory_client.models.organization_body import OrganizationBody
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters

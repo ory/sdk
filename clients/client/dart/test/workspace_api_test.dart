@@ -23,9 +23,9 @@ void main() {
       // TODO
     });
 
-    // Delete workspace API token
+    // Delete workspace API key
     //
-    // Deletes an API token and immediately removes it.
+    // Deletes an API key and immediately removes it.
     //
     //Future deleteWorkspaceApiKey(String workspace, String tokenId) async
     test('test deleteWorkspaceApiKey', () async {
@@ -41,9 +41,9 @@ void main() {
       // TODO
     });
 
-    // List a workspace's API Tokens
+    // List a workspace's API keys
     //
-    // A list of all the workspace's API tokens.
+    // A list of all the workspace's API keys.
     //
     //Future<BuiltList<WorkspaceApiKey>> listWorkspaceApiKeys(String workspace) async
     test('test listWorkspaceApiKeys', () async {

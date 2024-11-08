@@ -1,19 +1,19 @@
 # \ProjectAPI
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateOrganization**](ProjectAPI.md#CreateOrganization) | **Post** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
 [**CreateProject**](ProjectAPI.md#CreateProject) | **Post** /projects | Create a Project
-[**CreateProjectApiKey**](ProjectAPI.md#CreateProjectApiKey) | **Post** /projects/{project}/tokens | Create project API token
+[**CreateProjectApiKey**](ProjectAPI.md#CreateProjectApiKey) | **Post** /projects/{project}/tokens | Create project API key
 [**DeleteOrganization**](ProjectAPI.md#DeleteOrganization) | **Delete** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
-[**DeleteProjectApiKey**](ProjectAPI.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API token
+[**DeleteProjectApiKey**](ProjectAPI.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API key
 [**GetOrganization**](ProjectAPI.md#GetOrganization) | **Get** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 [**GetProject**](ProjectAPI.md#GetProject) | **Get** /projects/{project_id} | Get a Project
 [**GetProjectMembers**](ProjectAPI.md#GetProjectMembers) | **Get** /projects/{project}/members | Get all members associated with this project
 [**ListOrganizations**](ProjectAPI.md#ListOrganizations) | **Get** /projects/{project_id}/organizations | List all Enterprise SSO organizations
-[**ListProjectApiKeys**](ProjectAPI.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | List a project&#39;s API Tokens
+[**ListProjectApiKeys**](ProjectAPI.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | List a project&#39;s API keys
 [**ListProjects**](ProjectAPI.md#ListProjects) | **Get** /projects | List All Projects
 [**PatchProject**](ProjectAPI.md#PatchProject) | **Patch** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**PatchProjectWithRevision**](ProjectAPI.md#PatchProjectWithRevision) | **Patch** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 > ProjectApiKey CreateProjectApiKey(ctx, project).CreateProjectApiKeyRequest(createProjectApiKeyRequest).Execute()
 
-Create project API token
+Create project API key
 
 
 
@@ -309,7 +309,7 @@ Name | Type | Description  | Notes
 
 > DeleteProjectApiKey(ctx, project, tokenId).Execute()
 
-Delete project API token
+Delete project API key
 
 
 
@@ -669,7 +669,7 @@ Name | Type | Description  | Notes
 
 > []ProjectApiKey ListProjectApiKeys(ctx, project).Execute()
 
-List a project's API Tokens
+List a project's API keys
 
 
 

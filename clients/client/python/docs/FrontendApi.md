@@ -1,6 +1,6 @@
 # ory_client.FrontendApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -52,10 +52,10 @@ from ory_client.models.login_flow import LoginFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -135,10 +135,10 @@ from ory_client.models.logout_flow import LogoutFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -208,10 +208,10 @@ from ory_client.models.recovery_flow import RecoveryFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -279,10 +279,10 @@ from ory_client.models.registration_flow import RegistrationFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -293,7 +293,7 @@ with ory_client.ApiClient(configuration) as api_client:
     return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
     login_challenge = 'login_challenge_example' # str | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional)
     after_verification_return_to = 'after_verification_return_to_example' # str | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional)
-    organization = 'organization_example' # str |  (optional)
+    organization = 'organization_example' # str | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
 
     try:
         # Create Registration Flow for Browsers
@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
  **login_challenge** | **str**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional] 
  **after_verification_return_to** | **str**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional] 
- **organization** | **str**|  | [optional] 
+ **organization** | **str**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] 
 
 ### Return type
 
@@ -355,10 +355,10 @@ from ory_client.models.settings_flow import SettingsFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -430,10 +430,10 @@ from ory_client.models.verification_flow import VerificationFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -485,7 +485,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_login_flow**
-> LoginFlow create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, via=via)
+> LoginFlow create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization, via=via)
 
 Create Login Flow for Native Apps
 
@@ -500,10 +500,10 @@ from ory_client.models.login_flow import LoginFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -516,11 +516,12 @@ with ory_client.ApiClient(configuration) as api_client:
     x_session_token = 'x_session_token_example' # str | The Session Token of the Identity performing the settings flow. (optional)
     return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
     return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
+    organization = 'organization_example' # str | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
     via = 'via_example' # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
 
     try:
         # Create Login Flow for Native Apps
-        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, via=via)
+        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization, via=via)
         print("The response of FrontendApi->create_native_login_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -539,6 +540,7 @@ Name | Type | Description  | Notes
  **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional] 
  **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
+ **organization** | **str**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
  **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] 
 
 ### Return type
@@ -580,10 +582,10 @@ from ory_client.models.recovery_flow import RecoveryFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -631,7 +633,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_registration_flow**
-> RegistrationFlow create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
+> RegistrationFlow create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization)
 
 Create Registration Flow for Native Apps
 
@@ -646,10 +648,10 @@ from ory_client.models.registration_flow import RegistrationFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -659,10 +661,11 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = ory_client.FrontendApi(api_client)
     return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
     return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
+    organization = 'organization_example' # str | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
 
     try:
         # Create Registration Flow for Native Apps
-        api_response = api_instance.create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
+        api_response = api_instance.create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization)
         print("The response of FrontendApi->create_native_registration_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -678,6 +681,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
+ **organization** | **str**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] 
 
 ### Return type
 
@@ -718,10 +722,10 @@ from ory_client.models.settings_flow import SettingsFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -788,10 +792,10 @@ from ory_client.models.verification_flow import VerificationFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -858,10 +862,10 @@ from ory_client.models.delete_my_sessions_count import DeleteMySessionsCount
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -930,10 +934,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1001,10 +1005,10 @@ from ory_client.models.successful_native_login import SuccessfulNativeLogin
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1075,10 +1079,10 @@ from ory_client.models.flow_error import FlowError
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1146,10 +1150,10 @@ from ory_client.models.login_flow import LoginFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1220,10 +1224,10 @@ from ory_client.models.recovery_flow import RecoveryFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1293,10 +1297,10 @@ from ory_client.models.registration_flow import RegistrationFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1367,10 +1371,10 @@ from ory_client.models.settings_flow import SettingsFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1444,10 +1448,10 @@ from ory_client.models.verification_flow import VerificationFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1516,10 +1520,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1580,10 +1584,10 @@ from ory_client.models.session import Session
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1661,10 +1665,10 @@ from ory_client.models.perform_native_logout_body import PerformNativeLogoutBody
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1729,10 +1733,10 @@ from ory_client.models.session import Session
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1805,10 +1809,10 @@ from ory_client.models.update_login_flow_body import UpdateLoginFlowBody
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1883,10 +1887,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1956,10 +1960,10 @@ from ory_client.models.update_recovery_flow_body import UpdateRecoveryFlowBody
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -2036,10 +2040,10 @@ from ory_client.models.update_registration_flow_body import UpdateRegistrationFl
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -2114,10 +2118,10 @@ from ory_client.models.update_settings_flow_body import UpdateSettingsFlowBody
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -2196,10 +2200,10 @@ from ory_client.models.verification_flow import VerificationFlow
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 

@@ -1,9 +1,9 @@
 /*
 Ory APIs
 
-Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
+# Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.15.7
+API version: v1.15.10
 Contact: support@ory.sh
 */
 
@@ -24,10 +24,11 @@ type QuotaUsage struct {
 	// The additional price per unit in cents.
 	AdditionalPrice string `json:"additional_price"`
 	CanUseMore bool `json:"can_use_more"`
-	//  production_projects ProductionProjects staging_projects StagingProjects development_projects DevelopmentProjects daily_active_users DailyActiveUsers custom_domains CustomDomains event_streams EventStreams event_stream_events EventStreamEvents sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport project_metrics ProjectMetrics project_metrics_time_window ProjectMetricsTimeWindow project_metrics_events_history ProjectMetricsEventsHistory organizations Organizations rop_grant ResourceOwnerPasswordGrant concierge_onboarding ConciergeOnboarding credit Credit data_location_global DataLocationGlobal data_location_us DataLocationUS m2m_token_issuance M2MTokenIssuance permission_checks PermissionChecks captcha Captcha data_location_regional DataLocationRegional  Required Features rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions identities_list_rate_limit_tier RateLimitTierIdentitiesList permission_checks_rate_limit_tier RateLimitTierPermissionChecks oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect
+	//  production_projects ProductionProjects staging_projects StagingProjects development_projects DevelopmentProjects daily_active_users DailyActiveUsers custom_domains CustomDomains event_streams EventStreams event_stream_events EventStreamEvents sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport project_metrics ProjectMetrics project_metrics_time_window ProjectMetricsTimeWindow project_metrics_events_history ProjectMetricsEventsHistory organizations Organizations rop_grant ResourceOwnerPasswordGrant concierge_onboarding ConciergeOnboarding credit Credit data_location_global DataLocationGlobal data_location_us DataLocationUS data_location_asiane DataLocationAsiaNorthEast m2m_token_issuance M2MTokenIssuance permission_checks PermissionChecks captcha Captcha data_location_regional DataLocationRegional  Required Features rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions identities_list_rate_limit_tier RateLimitTierIdentitiesList permission_checks_rate_limit_tier RateLimitTierPermissionChecks oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect
 	Feature string `json:"feature"`
 	FeatureAvailable bool `json:"feature_available"`
 	Included int64 `json:"included"`
+	IsUnlimited bool `json:"is_unlimited"`
 	Used int64 `json:"used"`
 	AdditionalProperties map[string]interface{}
 }
@@ -38,13 +39,14 @@ type _QuotaUsage QuotaUsage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQuotaUsage(additionalPrice string, canUseMore bool, feature string, featureAvailable bool, included int64, used int64) *QuotaUsage {
+func NewQuotaUsage(additionalPrice string, canUseMore bool, feature string, featureAvailable bool, included int64, isUnlimited bool, used int64) *QuotaUsage {
 	this := QuotaUsage{}
 	this.AdditionalPrice = additionalPrice
 	this.CanUseMore = canUseMore
 	this.Feature = feature
 	this.FeatureAvailable = featureAvailable
 	this.Included = included
+	this.IsUnlimited = isUnlimited
 	this.Used = used
 	return &this
 }
@@ -177,6 +179,30 @@ func (o *QuotaUsage) SetIncluded(v int64) {
 	o.Included = v
 }
 
+// GetIsUnlimited returns the IsUnlimited field value
+func (o *QuotaUsage) GetIsUnlimited() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsUnlimited
+}
+
+// GetIsUnlimitedOk returns a tuple with the IsUnlimited field value
+// and a boolean to check if the value has been set.
+func (o *QuotaUsage) GetIsUnlimitedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsUnlimited, true
+}
+
+// SetIsUnlimited sets field value
+func (o *QuotaUsage) SetIsUnlimited(v bool) {
+	o.IsUnlimited = v
+}
+
 // GetUsed returns the Used field value
 func (o *QuotaUsage) GetUsed() int64 {
 	if o == nil {
@@ -216,6 +242,7 @@ func (o QuotaUsage) ToMap() (map[string]interface{}, error) {
 	toSerialize["feature"] = o.Feature
 	toSerialize["feature_available"] = o.FeatureAvailable
 	toSerialize["included"] = o.Included
+	toSerialize["is_unlimited"] = o.IsUnlimited
 	toSerialize["used"] = o.Used
 
 	for key, value := range o.AdditionalProperties {
@@ -235,6 +262,7 @@ func (o *QuotaUsage) UnmarshalJSON(data []byte) (err error) {
 		"feature",
 		"feature_available",
 		"included",
+		"is_unlimited",
 		"used",
 	}
 
@@ -270,6 +298,7 @@ func (o *QuotaUsage) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "feature")
 		delete(additionalProperties, "feature_available")
 		delete(additionalProperties, "included")
+		delete(additionalProperties, "is_unlimited")
 		delete(additionalProperties, "used")
 		o.AdditionalProperties = additionalProperties
 	}

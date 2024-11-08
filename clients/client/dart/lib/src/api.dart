@@ -24,7 +24,7 @@ import 'package:ory_client/src/api/wellknown_api.dart';
 import 'package:ory_client/src/api/workspace_api.dart';
 
 class OryClient {
-  static const String basePath = r'https://.projects.oryapis.com';
+  static const String basePath = r'https://playground.projects.oryapis.com';
 
   final Dio dio;
   final Serializers serializers;

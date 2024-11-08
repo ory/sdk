@@ -25,9 +25,9 @@ void main() {
       // TODO
     });
 
-    // Create project API token
+    // Create project API key
     //
-    // Create an API token for a project.
+    // Create an API key for a project.
     //
     //Future<ProjectApiKey> createProjectApiKey(String project, { CreateProjectApiKeyRequest createProjectApiKeyRequest }) async
     test('test createProjectApiKey', () async {
@@ -43,9 +43,9 @@ void main() {
       // TODO
     });
 
-    // Delete project API token
+    // Delete project API key
     //
-    // Deletes an API token and immediately removes it.
+    // Deletes an API key and immediately removes it.
     //
     //Future deleteProjectApiKey(String project, String tokenId) async
     test('test deleteProjectApiKey', () async {
@@ -88,9 +88,9 @@ void main() {
       // TODO
     });
 
-    // List a project's API Tokens
+    // List a project's API keys
     //
-    // A list of all the project's API tokens.
+    // A list of all the project's API keys.
     //
     //Future<BuiltList<ProjectApiKey>> listProjectApiKeys(String project) async
     test('test listProjectApiKeys', () async {

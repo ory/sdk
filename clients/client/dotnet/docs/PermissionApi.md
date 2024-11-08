@@ -1,6 +1,6 @@
 # Ory.Client.Api.PermissionApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
@@ -34,7 +34,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -132,7 +132,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -242,7 +242,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -353,7 +353,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -456,7 +456,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -554,7 +554,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 

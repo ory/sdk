@@ -1,6 +1,6 @@
 # ory_client.JwkApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -31,10 +31,10 @@ from ory_client.models.json_web_key_set import JsonWebKeySet
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -111,10 +111,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -189,10 +189,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -266,10 +266,10 @@ from ory_client.models.json_web_key_set import JsonWebKeySet
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -347,10 +347,10 @@ from ory_client.models.json_web_key_set import JsonWebKeySet
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -426,10 +426,10 @@ from ory_client.models.json_web_key import JsonWebKey
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -509,10 +509,10 @@ from ory_client.models.json_web_key_set import JsonWebKeySet
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters

@@ -1,6 +1,6 @@
 # ory_client.OAuth2Api
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -52,10 +52,10 @@ from ory_client.models.o_auth2_redirect_to import OAuth2RedirectTo
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -134,10 +134,10 @@ from ory_client.models.o_auth2_redirect_to import OAuth2RedirectTo
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -215,10 +215,10 @@ from ory_client.models.o_auth2_redirect_to import OAuth2RedirectTo
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -294,10 +294,10 @@ from ory_client.models.o_auth2_client import OAuth2Client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -373,10 +373,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -449,10 +449,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -525,10 +525,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -602,10 +602,10 @@ from ory_client.models.o_auth2_client import OAuth2Client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -681,10 +681,10 @@ from ory_client.models.o_auth2_consent_request import OAuth2ConsentRequest
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -761,10 +761,10 @@ from ory_client.models.o_auth2_login_request import OAuth2LoginRequest
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -841,10 +841,10 @@ from ory_client.models.o_auth2_logout_request import OAuth2LogoutRequest
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -921,10 +921,10 @@ from ory_client.models.trusted_o_auth2_jwt_grant_issuer import TrustedOAuth2JwtG
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1000,10 +1000,10 @@ from ory_client.models.introspected_o_auth2_token import IntrospectedOAuth2Token
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1081,10 +1081,10 @@ from ory_client.models.o_auth2_client import OAuth2Client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1166,10 +1166,10 @@ from ory_client.models.o_auth2_consent_session import OAuth2ConsentSession
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1251,10 +1251,10 @@ from ory_client.models.trusted_o_auth2_jwt_grant_issuer import TrustedOAuth2JwtG
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1333,10 +1333,10 @@ from ory_client.models.error_o_auth2 import ErrorOAuth2
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 
@@ -1400,10 +1400,10 @@ from ory_client.models.o_auth2_token_exchange import OAuth2TokenExchange
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1491,10 +1491,10 @@ from ory_client.models.o_auth2_client import OAuth2Client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1574,10 +1574,10 @@ from ory_client.models.reject_o_auth2_request import RejectOAuth2Request
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1656,10 +1656,10 @@ from ory_client.models.reject_o_auth2_request import RejectOAuth2Request
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1736,10 +1736,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1812,10 +1812,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1892,10 +1892,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1971,10 +1971,10 @@ import ory_client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -2055,10 +2055,10 @@ from ory_client.models.o_auth2_client import OAuth2Client
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -2139,10 +2139,10 @@ from ory_client.models.o_auth2_client_token_lifespans import OAuth2ClientTokenLi
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -2221,10 +2221,10 @@ from ory_client.models.trusted_o_auth2_jwt_grant_issuer import TrustedOAuth2JwtG
 from ory_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://.projects.oryapis.com
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ory_client.Configuration(
-    host = "https://.projects.oryapis.com"
+    host = "https://playground.projects.oryapis.com"
 )
 
 # The client must configure the authentication and authorization parameters

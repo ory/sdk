@@ -1,14 +1,14 @@
 # \WorkspaceAPI
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateWorkspace**](WorkspaceAPI.md#CreateWorkspace) | **Post** /workspaces | Create a new workspace
 [**CreateWorkspaceApiKey**](WorkspaceAPI.md#CreateWorkspaceApiKey) | **Post** /workspaces/{workspace}/tokens | Create workspace API key
-[**DeleteWorkspaceApiKey**](WorkspaceAPI.md#DeleteWorkspaceApiKey) | **Delete** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token
+[**DeleteWorkspaceApiKey**](WorkspaceAPI.md#DeleteWorkspaceApiKey) | **Delete** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API key
 [**GetWorkspace**](WorkspaceAPI.md#GetWorkspace) | **Get** /workspaces/{workspace} | Get a workspace
-[**ListWorkspaceApiKeys**](WorkspaceAPI.md#ListWorkspaceApiKeys) | **Get** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens
+[**ListWorkspaceApiKeys**](WorkspaceAPI.md#ListWorkspaceApiKeys) | **Get** /workspaces/{workspace}/tokens | List a workspace&#39;s API keys
 [**ListWorkspaceProjects**](WorkspaceAPI.md#ListWorkspaceProjects) | **Get** /workspaces/{workspace}/projects | List all projects of a workspace
 [**ListWorkspaces**](WorkspaceAPI.md#ListWorkspaces) | **Get** /workspaces | List workspaces the user is a member of
 [**UpdateWorkspace**](WorkspaceAPI.md#UpdateWorkspace) | **Put** /workspaces/{workspace} | Update an workspace
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 > DeleteWorkspaceApiKey(ctx, workspace, tokenId).Execute()
 
-Delete workspace API token
+Delete workspace API key
 
 
 
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 > []WorkspaceApiKey ListWorkspaceApiKeys(ctx, workspace).Execute()
 
-List a workspace's API Tokens
+List a workspace's API keys
 
 
 

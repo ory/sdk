@@ -12,17 +12,21 @@ part 'workspace_api_key.g.dart';
 ///
 /// Properties:
 /// * [createdAt] - The API key's creation date
+/// * [expiresAt] 
 /// * [id] - The key's ID.
 /// * [name] - The API key's Name  Set this to help you remember, for example, where you use the API key.
 /// * [ownerId] - The key's owner
 /// * [updatedAt] - The API key's last update date
 /// * [value] - The key's value
-/// * [workspaceId] - The API token's workspace ID
+/// * [workspaceId] - The API key's workspace ID
 @BuiltValue()
 abstract class WorkspaceApiKey implements Built<WorkspaceApiKey, WorkspaceApiKeyBuilder> {
   /// The API key's creation date
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
+
+  @BuiltValueField(wireName: r'expires_at')
+  DateTime? get expiresAt;
 
   /// The key's ID.
   @BuiltValueField(wireName: r'id')
@@ -44,7 +48,7 @@ abstract class WorkspaceApiKey implements Built<WorkspaceApiKey, WorkspaceApiKey
   @BuiltValueField(wireName: r'value')
   String? get value;
 
-  /// The API token's workspace ID
+  /// The API key's workspace ID
   @BuiltValueField(wireName: r'workspace_id')
   String? get workspaceId;
 
@@ -75,6 +79,13 @@ class _$WorkspaceApiKeySerializer implements PrimitiveSerializer<WorkspaceApiKey
       yield r'created_at';
       yield serializers.serialize(
         object.createdAt,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.expiresAt != null) {
+      yield r'expires_at';
+      yield serializers.serialize(
+        object.expiresAt,
         specifiedType: const FullType(DateTime),
       );
     }
@@ -143,6 +154,13 @@ class _$WorkspaceApiKeySerializer implements PrimitiveSerializer<WorkspaceApiKey
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.createdAt = valueDes;
+          break;
+        case r'expires_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.expiresAt = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(

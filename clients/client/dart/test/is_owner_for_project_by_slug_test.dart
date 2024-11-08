@@ -13,7 +13,7 @@ void main() {
       // TODO
     });
 
-    // Subject is the subject from the API Token.
+    // Subject is the subject from the API key.
     // String subject
     test('to test the property `subject`', () async {
       // TODO

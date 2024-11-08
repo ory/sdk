@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **project_slug** | **String** | ProjectSlug is the project&#39;s slug. |  |
-| **subject** | **String** | Subject is the subject from the API Token. |  |
+| **subject** | **String** | Subject is the subject from the API key. |  |
 
 ## Example
 

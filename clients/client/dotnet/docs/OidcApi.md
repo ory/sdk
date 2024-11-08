@@ -1,6 +1,6 @@
 # Ory.Client.Api.OidcApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
@@ -36,7 +36,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new OidcApi(config);
             var clientOAuth2Client = new ClientOAuth2Client(); // ClientOAuth2Client | Dynamic Client Registration Request Body
 
@@ -129,7 +129,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new OidcApi(config);
             var clientCreateVerifiableCredentialRequestBody = new ClientCreateVerifiableCredentialRequestBody?(); // ClientCreateVerifiableCredentialRequestBody? |  (optional) 
 
@@ -222,7 +222,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: bearer
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -313,7 +313,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new OidcApi(config);
 
             try
@@ -400,7 +400,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: bearer
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -495,7 +495,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure OAuth2 access token for authorization: oauth2
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -585,7 +585,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new OidcApi(config);
 
             try
@@ -667,7 +667,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: bearer
             config.AccessToken = "YOUR_BEARER_TOKEN";
 

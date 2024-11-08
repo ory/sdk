@@ -12,14 +12,14 @@ part 'is_owner_for_project_by_slug.g.dart';
 ///
 /// Properties:
 /// * [projectSlug] - ProjectSlug is the project's slug.
-/// * [subject] - Subject is the subject from the API Token.
+/// * [subject] - Subject is the subject from the API key.
 @BuiltValue()
 abstract class IsOwnerForProjectBySlug implements Built<IsOwnerForProjectBySlug, IsOwnerForProjectBySlugBuilder> {
   /// ProjectSlug is the project's slug.
   @BuiltValueField(wireName: r'ProjectSlug')
   String get projectSlug;
 
-  /// Subject is the subject from the API Token.
+  /// Subject is the subject from the API key.
   @BuiltValueField(wireName: r'Subject')
   String get subject;
 

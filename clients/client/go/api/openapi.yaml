@@ -3,19 +3,47 @@ info:
   contact:
     email: support@ory.sh
     name: API Support
-  description: |
-    Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
-    with a valid Personal Access Token. Public APIs are mostly used in browsers.
+  description: "# Introduction\nDocumentation for all public and administrative Ory\
+    \ APIs. Administrative APIs can only be accessed\nwith a valid Personal Access\
+    \ Token. Public APIs are mostly used in browsers.\n\n## SDKs\nThis document describes\
+    \ the APIs available in the Ory Network. The APIs are available as SDKs for the\
+    \ following languages:\n\n| Language       | Download SDK                    \
+    \                                 | Documentation                            \
+    \                                            |\n| -------------- | ----------------------------------------------------------------\
+    \ | ------------------------------------------------------------------------------------\
+    \ |\n| Dart           | [pub.dev](https://pub.dev/packages/ory_client)       \
+    \            | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)\
+    \       |\n| .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)\
+    \          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)\
+    \     |\n| Elixir         | [hex.pm](https://hex.pm/packages/ory_client)     \
+    \                | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)\
+    \     |\n| Go             | [github.com](https://github.com/ory/client-go)   \
+    \                | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)\
+    \         |\n| Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client)\
+    \ | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)\
+    \       |\n| JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)\
+    \           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md)\
+    \ |\n| JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)\
+    \           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md)\
+    \ | \n| PHP            | [packagist.org](https://packagist.org/packages/ory/client)\
+    \       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)\
+    \        |\n| Python         | [pypi.org](https://pypi.org/project/ory-client/)\
+    \                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)\
+    \     |\n| Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)\
+    \             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)\
+    \       |\n| Rust           | [crates.io](https://crates.io/crates/ory-client)\
+    \                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)\
+    \       |\n"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.15.7
+  version: v1.15.10
 servers:
-- url: "https://{project-slug}.projects.oryapis.com/"
+- url: "https://{project_slug}.projects.oryapis.com/"
   variables:
-    project:
+    project_slug:
       default: playground
       description: "Your Ory Network Project slug. You can find it in the [Ory Network\
         \ Console](https://console.ory.sh/projects/current/developers/guides)."
@@ -699,6 +727,17 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: |-
+          OrganizationID is the organization id to filter identities by.
+
+          If `ids` is set, this parameter is ignored.
+        explode: true
+        in: query
+        name: organization_id
+        required: false
+        schema:
+          type: string
         style: form
       responses:
         "200":
@@ -4377,7 +4416,7 @@ paths:
       - project
   /projects/{project}/tokens:
     get:
-      description: A list of all the project's API tokens.
+      description: A list of all the project's API keys.
       operationId: listProjectApiKeys
       parameters:
       - description: The Project ID or Project slug
@@ -4407,11 +4446,11 @@ paths:
       - description: The Ory Network control plane API which is used to manage your
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
-      summary: List a project's API Tokens
+      summary: List a project's API keys
       tags:
       - project
     post:
-      description: Create an API token for a project.
+      description: Create an API key for a project.
       operationId: createProjectApiKey
       parameters:
       - description: The Project ID or Project slug
@@ -4447,12 +4486,12 @@ paths:
       - description: The Ory Network control plane API which is used to manage your
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
-      summary: Create project API token
+      summary: Create project API key
       tags:
       - project
   /projects/{project}/tokens/{token_id}:
     delete:
-      description: Deletes an API token and immediately removes it.
+      description: Deletes an API key and immediately removes it.
       operationId: deleteProjectApiKey
       parameters:
       - description: The Project ID or Project slug
@@ -4488,7 +4527,7 @@ paths:
       - description: The Ory Network control plane API which is used to manage your
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
-      summary: Delete project API token
+      summary: Delete project API key
       tags:
       - project
   /relation-tuples:
@@ -5350,6 +5389,16 @@ paths:
           type: string
         style: form
       - description: |-
+          An optional organization ID that should be used for logging this user in.
+          This parameter is only effective in the Ory Network.
+        explode: true
+        in: query
+        name: organization
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
           Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
 
           DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice
@@ -6196,6 +6245,16 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          An optional organization ID that should be used to register this user.
+          This parameter is only effective in the Ory Network.
+        explode: true
+        in: query
+        name: organization
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -6279,7 +6338,10 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: |-
+          An optional organization ID that should be used to register this user.
+          This parameter is only effective in the Ory Network.
+        explode: true
         in: query
         name: organization
         required: false
@@ -7834,7 +7896,7 @@ paths:
       - workspace
   /workspaces/{workspace}/tokens:
     get:
-      description: A list of all the workspace's API tokens.
+      description: A list of all the workspace's API keys.
       operationId: listWorkspaceApiKeys
       parameters:
       - description: The Workspace ID or Workspace slug
@@ -7864,7 +7926,7 @@ paths:
       - description: The Ory Network control plane API which is used to manage your
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
-      summary: List a workspace's API Tokens
+      summary: List a workspace's API keys
       tags:
       - workspace
     post:
@@ -7909,7 +7971,7 @@ paths:
       - workspace
   /workspaces/{workspace}/tokens/{token_id}:
     delete:
-      description: Deletes an API token and immediately removes it.
+      description: Deletes an API key and immediately removes it.
       operationId: deleteWorkspaceApiKey
       parameters:
       - description: The Workspace ID or Workspace slug
@@ -7945,7 +8007,7 @@ paths:
       - description: The Ory Network control plane API which is used to manage your
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
-      summary: Delete workspace API token
+      summary: Delete workspace API key
       tags:
       - workspace
 components:
@@ -9554,8 +9616,12 @@ components:
       type: object
     CreateWorkspaceApiKeyBody:
       example:
+        expires_at: 2000-01-23T04:56:07.000+00:00
         name: name
       properties:
+        expires_at:
+          format: date-time
+          type: string
         name:
           description: |-
             The API Key Name
@@ -12221,7 +12287,7 @@ components:
         project_scope:
           description: |-
             ProjectScope is the project_id resolved from the
-            API Token.
+            API key.
           type: string
         project_slug:
           description: ProjectSlug is the project's slug.
@@ -12384,7 +12450,7 @@ components:
           description: ProjectSlug is the project's slug.
           type: string
         Subject:
-          description: Subject is the subject from the API Token.
+          description: Subject is the subject from the API key.
           type: string
       required:
       - ProjectSlug
@@ -17146,6 +17212,7 @@ components:
       type: object
     projectApiKey:
       example:
+        expires_at: 2000-01-23T04:56:07.000+00:00
         updated_at: 2000-01-23T04:56:07.000+00:00
         project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         owner_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -17158,6 +17225,9 @@ components:
           description: The token's creation date
           format: date-time
           readOnly: true
+          type: string
+        expires_at:
+          format: date-time
           type: string
         id:
           description: The token's ID.
@@ -17827,6 +17897,7 @@ components:
             credit Credit
             data_location_global DataLocationGlobal
             data_location_us DataLocationUS
+            data_location_asiane DataLocationAsiaNorthEast
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
             captcha Captcha
@@ -17858,6 +17929,7 @@ components:
           - credit
           - data_location_global
           - data_location_us
+          - data_location_asiane
           - m2m_token_issuance
           - permission_checks
           - captcha
@@ -17890,6 +17962,7 @@ components:
             credit Credit
             data_location_global DataLocationGlobal
             data_location_us DataLocationUS
+            data_location_asiane DataLocationAsiaNorthEast
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
             captcha Captcha
@@ -17904,6 +17977,8 @@ components:
         included:
           format: int64
           type: integer
+        is_unlimited:
+          type: boolean
         used:
           format: int64
           type: integer
@@ -17913,6 +17988,7 @@ components:
       - feature
       - feature_available
       - included
+      - is_unlimited
       - used
       type: object
     recoveryCodeForIdentity:
@@ -21905,6 +21981,7 @@ components:
     workspaceApiKey:
       example:
         workspace_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        expires_at: 2000-01-23T04:56:07.000+00:00
         updated_at: 2000-01-23T04:56:07.000+00:00
         owner_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
@@ -21916,6 +21993,9 @@ components:
           description: The API key's creation date
           format: date-time
           readOnly: true
+          type: string
+        expires_at:
+          format: date-time
           type: string
         id:
           description: The key's ID.
@@ -21943,7 +22023,7 @@ components:
           readOnly: true
           type: string
         workspace_id:
-          description: The API token's workspace ID
+          description: The API key's workspace ID
           format: uuid
           readOnly: true
           type: string
@@ -22021,6 +22101,9 @@ components:
       type: object
     createProjectApiKey_request:
       properties:
+        expires_at:
+          format: date-time
+          type: string
         name:
           description: |-
             The Token Name
@@ -22094,3 +22177,25 @@ components:
       type: http
 x-forwarded-proto: string
 x-request-id: string
+x-tagGroups:
+- name: Ory Identities
+  tags:
+  - frontend
+  - identity
+  - courier
+- name: Ory OAuth2
+  tags:
+  - wellknown
+  - oAuth2
+  - oidc
+  - jwk
+- name: Ory Permissions
+  tags:
+  - permission
+  - relationship
+- name: Ory Network
+  tags:
+  - project
+  - workspace
+  - events
+  - metadata

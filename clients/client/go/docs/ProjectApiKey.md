@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | The token&#39;s creation date | [optional] [readonly] 
+**ExpiresAt** | Pointer to **time.Time** |  | [optional] 
 **Id** | **string** | The token&#39;s ID. | [readonly] 
 **Name** | **string** | The Token&#39;s Name  Set this to help you remember, for example, where you use the token. | 
 **OwnerId** | **string** | The token&#39;s owner | [readonly] 
@@ -55,6 +56,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *ProjectApiKey) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetExpiresAt
+
+`func (o *ProjectApiKey) GetExpiresAt() time.Time`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *ProjectApiKey) GetExpiresAtOk() (*time.Time, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *ProjectApiKey) SetExpiresAt(v time.Time)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *ProjectApiKey) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
 
 ### GetId
 

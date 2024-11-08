@@ -119,7 +119,7 @@ void main() {
     //
     // Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
     //
-    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, int pageSize, String pageToken, String consistency, BuiltList<String> ids, String credentialsIdentifier, String previewCredentialsIdentifierSimilar, BuiltList<String> includeCredential }) async
+    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, int pageSize, String pageToken, String consistency, BuiltList<String> ids, String credentialsIdentifier, String previewCredentialsIdentifierSimilar, BuiltList<String> includeCredential, String organizationId }) async
     test('test listIdentities', () async {
       // TODO
     });

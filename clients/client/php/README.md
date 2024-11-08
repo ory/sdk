@@ -1,7 +1,25 @@
 # ory/client-php
 
+# Introduction
 Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed
 with a valid Personal Access Token. Public APIs are mostly used in browsers.
+
+## SDKs
+This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:
+
+| Language       | Download SDK                                                     | Documentation                                                                        |
+| -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       |
+| .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     |
+| Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     |
+| Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         |
+| Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       |
+| JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) |
+| JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) | 
+| PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        |
+| Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     |
+| Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       |
+| Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       |
 
 
 
@@ -74,7 +92,7 @@ try {
 
 ## API Endpoints
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -184,14 +202,14 @@ Class | Method | HTTP request | Description
 *PermissionApi* | [**postCheckPermissionOrError**](docs/Api/PermissionApi.md#postcheckpermissionorerror) | **POST** /relation-tuples/check | Check a permission
 *ProjectApi* | [**createOrganization**](docs/Api/ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
 *ProjectApi* | [**createProject**](docs/Api/ProjectApi.md#createproject) | **POST** /projects | Create a Project
-*ProjectApi* | [**createProjectApiKey**](docs/Api/ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API token
+*ProjectApi* | [**createProjectApiKey**](docs/Api/ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API key
 *ProjectApi* | [**deleteOrganization**](docs/Api/ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
-*ProjectApi* | [**deleteProjectApiKey**](docs/Api/ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
+*ProjectApi* | [**deleteProjectApiKey**](docs/Api/ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key
 *ProjectApi* | [**getOrganization**](docs/Api/ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 *ProjectApi* | [**getProject**](docs/Api/ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
 *ProjectApi* | [**getProjectMembers**](docs/Api/ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
 *ProjectApi* | [**listOrganizations**](docs/Api/ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
-*ProjectApi* | [**listProjectApiKeys**](docs/Api/ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
+*ProjectApi* | [**listProjectApiKeys**](docs/Api/ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API keys
 *ProjectApi* | [**listProjects**](docs/Api/ProjectApi.md#listprojects) | **GET** /projects | List All Projects
 *ProjectApi* | [**patchProject**](docs/Api/ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 *ProjectApi* | [**patchProjectWithRevision**](docs/Api/ProjectApi.md#patchprojectwithrevision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID
@@ -208,9 +226,9 @@ Class | Method | HTTP request | Description
 *WellknownApi* | [**discoverJsonWebKeys**](docs/Api/WellknownApi.md#discoverjsonwebkeys) | **GET** /.well-known/jwks.json | Discover Well-Known JSON Web Keys
 *WorkspaceApi* | [**createWorkspace**](docs/Api/WorkspaceApi.md#createworkspace) | **POST** /workspaces | Create a new workspace
 *WorkspaceApi* | [**createWorkspaceApiKey**](docs/Api/WorkspaceApi.md#createworkspaceapikey) | **POST** /workspaces/{workspace}/tokens | Create workspace API key
-*WorkspaceApi* | [**deleteWorkspaceApiKey**](docs/Api/WorkspaceApi.md#deleteworkspaceapikey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token
+*WorkspaceApi* | [**deleteWorkspaceApiKey**](docs/Api/WorkspaceApi.md#deleteworkspaceapikey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API key
 *WorkspaceApi* | [**getWorkspace**](docs/Api/WorkspaceApi.md#getworkspace) | **GET** /workspaces/{workspace} | Get a workspace
-*WorkspaceApi* | [**listWorkspaceApiKeys**](docs/Api/WorkspaceApi.md#listworkspaceapikeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens
+*WorkspaceApi* | [**listWorkspaceApiKeys**](docs/Api/WorkspaceApi.md#listworkspaceapikeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API keys
 *WorkspaceApi* | [**listWorkspaceProjects**](docs/Api/WorkspaceApi.md#listworkspaceprojects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace
 *WorkspaceApi* | [**listWorkspaces**](docs/Api/WorkspaceApi.md#listworkspaces) | **GET** /workspaces | List workspaces the user is a member of
 *WorkspaceApi* | [**updateWorkspace**](docs/Api/WorkspaceApi.md#updateworkspace) | **PUT** /workspaces/{workspace} | Update an workspace
@@ -533,6 +551,6 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.15.7`
+- API version: `v1.15.10`
     - Generator version: `7.7.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

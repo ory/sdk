@@ -1,19 +1,19 @@
 # OryClient::ProjectApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_organization**](ProjectApi.md#create_organization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization |
 | [**create_project**](ProjectApi.md#create_project) | **POST** /projects | Create a Project |
-| [**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API token |
+| [**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API key |
 | [**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization |
-| [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
+| [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key |
 | [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
 | [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project |
 | [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
-| [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
+| [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API keys |
 | [**list_projects**](ProjectApi.md#list_projects) | **GET** /projects | List All Projects |
 | [**patch_project**](ProjectApi.md#patch_project) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
 | [**patch_project_with_revision**](ProjectApi.md#patch_project_with_revision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID |
@@ -171,9 +171,9 @@ end
 
 > <ProjectApiKey> create_project_api_key(project, opts)
 
-Create project API token
+Create project API key
 
-Create an API token for a project.
+Create an API key for a project.
 
 ### Examples
 
@@ -193,7 +193,7 @@ opts = {
 }
 
 begin
-  # Create project API token
+  # Create project API key
   result = api_instance.create_project_api_key(project, opts)
   p result
 rescue OryClient::ApiError => e
@@ -209,7 +209,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Create project API token
+  # Create project API key
   data, status_code, headers = api_instance.create_project_api_key_with_http_info(project, opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -314,9 +314,9 @@ nil (empty response body)
 
 > delete_project_api_key(project, token_id)
 
-Delete project API token
+Delete project API key
 
-Deletes an API token and immediately removes it.
+Deletes an API key and immediately removes it.
 
 ### Examples
 
@@ -334,7 +334,7 @@ project = 'project_example' # String | The Project ID or Project slug
 token_id = 'token_id_example' # String | The Token ID
 
 begin
-  # Delete project API token
+  # Delete project API key
   api_instance.delete_project_api_key(project, token_id)
 rescue OryClient::ApiError => e
   puts "Error when calling ProjectApi->delete_project_api_key: #{e}"
@@ -349,7 +349,7 @@ This returns an Array which contains the response data (`nil` in this case), sta
 
 ```ruby
 begin
-  # Delete project API token
+  # Delete project API key
   data, status_code, headers = api_instance.delete_project_api_key_with_http_info(project, token_id)
   p status_code # => 2xx
   p headers # => { ... }
@@ -670,9 +670,9 @@ end
 
 > <Array<ProjectApiKey>> list_project_api_keys(project)
 
-List a project's API Tokens
+List a project's API keys
 
-A list of all the project's API tokens.
+A list of all the project's API keys.
 
 ### Examples
 
@@ -689,7 +689,7 @@ api_instance = OryClient::ProjectApi.new
 project = 'project_example' # String | The Project ID or Project slug
 
 begin
-  # List a project's API Tokens
+  # List a project's API keys
   result = api_instance.list_project_api_keys(project)
   p result
 rescue OryClient::ApiError => e
@@ -705,7 +705,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # List a project's API Tokens
+  # List a project's API keys
   data, status_code, headers = api_instance.list_project_api_keys_with_http_info(project)
   p status_code # => 2xx
   p headers # => { ... }

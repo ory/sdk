@@ -1,6 +1,6 @@
 # Ory\Client\IdentityApi
 
-All URIs are relative to https://.projects.oryapis.com, except if the operation defines another base path.
+All URIs are relative to https://playground.projects.oryapis.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
@@ -749,7 +749,7 @@ try {
 ## `listIdentities()`
 
 ```php
-listIdentities($perPage, $page, $pageSize, $pageToken, $consistency, $ids, $credentialsIdentifier, $previewCredentialsIdentifierSimilar, $includeCredential): \Ory\Client\Model\Identity[]
+listIdentities($perPage, $page, $pageSize, $pageToken, $consistency, $ids, $credentialsIdentifier, $previewCredentialsIdentifierSimilar, $includeCredential, $organizationId): \Ory\Client\Model\Identity[]
 ```
 
 List Identities
@@ -782,9 +782,10 @@ $ids = array('ids_example'); // string[] | List of ids used to filter identities
 $credentialsIdentifier = 'credentialsIdentifier_example'; // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
 $previewCredentialsIdentifierSimilar = 'previewCredentialsIdentifierSimilar_example'; // string | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
 $includeCredential = array('includeCredential_example'); // string[] | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+$organizationId = 'organizationId_example'; // string | OrganizationID is the organization id to filter identities by.  If `ids` is set, this parameter is ignored.
 
 try {
-    $result = $apiInstance->listIdentities($perPage, $page, $pageSize, $pageToken, $consistency, $ids, $credentialsIdentifier, $previewCredentialsIdentifierSimilar, $includeCredential);
+    $result = $apiInstance->listIdentities($perPage, $page, $pageSize, $pageToken, $consistency, $ids, $credentialsIdentifier, $previewCredentialsIdentifierSimilar, $includeCredential, $organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling IdentityApi->listIdentities: ', $e->getMessage(), PHP_EOL;
@@ -804,6 +805,7 @@ try {
 | **credentialsIdentifier** | **string**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **previewCredentialsIdentifierSimilar** | **string**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **includeCredential** | [**string[]**](../Model/string.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
+| **organizationId** | **string**| OrganizationID is the organization id to filter identities by.  If &#x60;ids&#x60; is set, this parameter is ignored. | [optional] |
 
 ### Return type
 

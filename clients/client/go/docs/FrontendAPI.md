@@ -1,6 +1,6 @@
 # \FrontendAPI
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -273,7 +273,7 @@ func main() {
 	returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
 	loginChallenge := "loginChallenge_example" // string | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional)
 	afterVerificationReturnTo := "afterVerificationReturnTo_example" // string | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional)
-	organization := "organization_example" // string |  (optional)
+	organization := "organization_example" // string | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
  **loginChallenge** | **string** | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | 
  **afterVerificationReturnTo** | **string** | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | 
- **organization** | **string** |  | 
+ **organization** | **string** | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | 
 
 ### Return type
 
@@ -457,7 +457,7 @@ No authorization required
 
 ## CreateNativeLoginFlow
 
-> LoginFlow CreateNativeLoginFlow(ctx).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Via(via).Execute()
+> LoginFlow CreateNativeLoginFlow(ctx).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Organization(organization).Via(via).Execute()
 
 Create Login Flow for Native Apps
 
@@ -481,11 +481,12 @@ func main() {
 	xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
 	returnSessionTokenExchangeCode := true // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
 	returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
+	organization := "organization_example" // string | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
 	via := "via_example" // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FrontendAPI.CreateNativeLoginFlow(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Via(via).Execute()
+	resp, r, err := apiClient.FrontendAPI.CreateNativeLoginFlow(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Organization(organization).Via(via).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeLoginFlow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -511,6 +512,7 @@ Name | Type | Description  | Notes
  **xSessionToken** | **string** | The Session Token of the Identity performing the settings flow. | 
  **returnSessionTokenExchangeCode** | **bool** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | 
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
+ **organization** | **string** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | 
  **via** | **string** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | 
 
 ### Return type
@@ -594,7 +596,7 @@ No authorization required
 
 ## CreateNativeRegistrationFlow
 
-> RegistrationFlow CreateNativeRegistrationFlow(ctx).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
+> RegistrationFlow CreateNativeRegistrationFlow(ctx).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Organization(organization).Execute()
 
 Create Registration Flow for Native Apps
 
@@ -615,10 +617,11 @@ import (
 func main() {
 	returnSessionTokenExchangeCode := true // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
 	returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
+	organization := "organization_example" // string | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FrontendAPI.CreateNativeRegistrationFlow(context.Background()).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
+	resp, r, err := apiClient.FrontendAPI.CreateNativeRegistrationFlow(context.Background()).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Organization(organization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeRegistrationFlow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -641,6 +644,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **returnSessionTokenExchangeCode** | **bool** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | 
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
+ **organization** | **string** | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | 
 
 ### Return type
 

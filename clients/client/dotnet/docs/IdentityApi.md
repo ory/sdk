@@ -1,6 +1,6 @@
 # Ory.Client.Api.IdentityApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
@@ -46,7 +46,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -143,7 +143,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -240,7 +240,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -337,7 +337,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -436,7 +436,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -528,7 +528,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -624,7 +624,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -718,7 +718,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -811,7 +811,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -909,7 +909,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1007,7 +1007,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new IdentityApi(config);
             var id = "id_example";  // string | ID must be set to the ID of schema you want to get
 
@@ -1100,7 +1100,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1177,7 +1177,7 @@ catch (ApiException e)
 
 <a id="listidentities"></a>
 # **ListIdentities**
-> List&lt;ClientIdentity&gt; ListIdentities (long? perPage = null, long? page = null, long? pageSize = null, string? pageToken = null, string? consistency = null, List<string>? ids = null, string? credentialsIdentifier = null, string? previewCredentialsIdentifierSimilar = null, List<string>? includeCredential = null)
+> List&lt;ClientIdentity&gt; ListIdentities (long? perPage = null, long? page = null, long? pageSize = null, string? pageToken = null, string? consistency = null, List<string>? ids = null, string? credentialsIdentifier = null, string? previewCredentialsIdentifierSimilar = null, List<string>? includeCredential = null, string? organizationId = null)
 
 List Identities
 
@@ -1198,7 +1198,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1212,11 +1212,12 @@ namespace Example
             var credentialsIdentifier = "credentialsIdentifier_example";  // string? | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional) 
             var previewCredentialsIdentifierSimilar = "previewCredentialsIdentifierSimilar_example";  // string? | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional) 
             var includeCredential = new List<string>?(); // List<string>? | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. (optional) 
+            var organizationId = "organizationId_example";  // string? | OrganizationID is the organization id to filter identities by.  If `ids` is set, this parameter is ignored. (optional) 
 
             try
             {
                 // List Identities
-                List<ClientIdentity> result = apiInstance.ListIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential);
+                List<ClientIdentity> result = apiInstance.ListIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential, organizationId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1237,7 +1238,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List Identities
-    ApiResponse<List<ClientIdentity>> response = apiInstance.ListIdentitiesWithHttpInfo(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential);
+    ApiResponse<List<ClientIdentity>> response = apiInstance.ListIdentitiesWithHttpInfo(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential, organizationId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1263,6 +1264,7 @@ catch (ApiException e)
 | **credentialsIdentifier** | **string?** | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional]  |
 | **previewCredentialsIdentifierSimilar** | **string?** | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional]  |
 | **includeCredential** | [**List&lt;string&gt;?**](string.md) | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional]  |
+| **organizationId** | **string?** | OrganizationID is the organization id to filter identities by.  If &#x60;ids&#x60; is set, this parameter is ignored. | [optional]  |
 
 ### Return type
 
@@ -1309,7 +1311,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new IdentityApi(config);
             var perPage = 250L;  // long? | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)  (default to 250)
             var page = 789L;  // long? | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional) 
@@ -1407,7 +1409,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1514,7 +1516,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1616,7 +1618,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1716,7 +1718,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryAccessToken
             config.AccessToken = "YOUR_BEARER_TOKEN";
 

@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**createdAt** | **OffsetDateTime** | The token&#39;s creation date |  [optional] [readonly] |
+|**expiresAt** | **OffsetDateTime** |  |  [optional] |
 |**id** | **String** | The token&#39;s ID. |  [readonly] |
 |**name** | **String** | The Token&#39;s Name  Set this to help you remember, for example, where you use the token. |  |
 |**ownerId** | **String** | The token&#39;s owner |  [readonly] |

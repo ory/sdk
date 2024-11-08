@@ -1010,6 +1010,7 @@ class IdentityApi {
   /// * [credentialsIdentifier] - CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
   /// * [previewCredentialsIdentifierSimilar] - This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
   /// * [includeCredential] - Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+  /// * [organizationId] - OrganizationID is the organization id to filter identities by.  If `ids` is set, this parameter is ignored.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1029,6 +1030,7 @@ class IdentityApi {
     String? credentialsIdentifier,
     String? previewCredentialsIdentifierSimilar,
     BuiltList<String>? includeCredential,
+    String? organizationId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1065,6 +1067,7 @@ class IdentityApi {
       if (credentialsIdentifier != null) r'credentials_identifier': encodeQueryParameter(_serializers, credentialsIdentifier, const FullType(String)),
       if (previewCredentialsIdentifierSimilar != null) r'preview_credentials_identifier_similar': encodeQueryParameter(_serializers, previewCredentialsIdentifierSimilar, const FullType(String)),
       if (includeCredential != null) r'include_credential': encodeCollectionQueryParameter<String>(_serializers, includeCredential, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      if (organizationId != null) r'organization_id': encodeQueryParameter(_serializers, organizationId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

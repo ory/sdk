@@ -6,12 +6,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** | The API key&#39;s creation date | [optional] [readonly] 
+**expires_at** | **datetime** |  | [optional] 
 **id** | **str** | The key&#39;s ID. | [readonly] 
 **name** | **str** | The API key&#39;s Name  Set this to help you remember, for example, where you use the API key. | 
 **owner_id** | **str** | The key&#39;s owner | [readonly] 
 **updated_at** | **datetime** | The API key&#39;s last update date | [optional] [readonly] 
 **value** | **str** | The key&#39;s value | [optional] [readonly] 
-**workspace_id** | **str** | The API token&#39;s workspace ID | [optional] [readonly] 
+**workspace_id** | **str** | The API key&#39;s workspace ID | [optional] [readonly] 
 
 ## Example
 

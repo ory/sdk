@@ -9,6 +9,7 @@ defmodule Ory.Model.ProjectApiKey do
   @derive Jason.Encoder
   defstruct [
     :created_at,
+    :expires_at,
     :id,
     :name,
     :owner_id,
@@ -19,6 +20,7 @@ defmodule Ory.Model.ProjectApiKey do
 
   @type t :: %__MODULE__{
     :created_at => DateTime.t | nil,
+    :expires_at => DateTime.t | nil,
     :id => String.t,
     :name => String.t,
     :owner_id => String.t,
@@ -32,6 +34,7 @@ defmodule Ory.Model.ProjectApiKey do
   def decode(value) do
     value
      |> Deserializer.deserialize(:created_at, :datetime, nil)
+     |> Deserializer.deserialize(:expires_at, :datetime, nil)
      |> Deserializer.deserialize(:updated_at, :datetime, nil)
   end
 end

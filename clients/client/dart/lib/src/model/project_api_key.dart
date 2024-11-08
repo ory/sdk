@@ -12,6 +12,7 @@ part 'project_api_key.g.dart';
 ///
 /// Properties:
 /// * [createdAt] - The token's creation date
+/// * [expiresAt] 
 /// * [id] - The token's ID.
 /// * [name] - The Token's Name  Set this to help you remember, for example, where you use the token.
 /// * [ownerId] - The token's owner
@@ -23,6 +24,9 @@ abstract class ProjectApiKey implements Built<ProjectApiKey, ProjectApiKeyBuilde
   /// The token's creation date
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
+
+  @BuiltValueField(wireName: r'expires_at')
+  DateTime? get expiresAt;
 
   /// The token's ID.
   @BuiltValueField(wireName: r'id')
@@ -75,6 +79,13 @@ class _$ProjectApiKeySerializer implements PrimitiveSerializer<ProjectApiKey> {
       yield r'created_at';
       yield serializers.serialize(
         object.createdAt,
+        specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.expiresAt != null) {
+      yield r'expires_at';
+      yield serializers.serialize(
+        object.expiresAt,
         specifiedType: const FullType(DateTime),
       );
     }
@@ -143,6 +154,13 @@ class _$ProjectApiKeySerializer implements PrimitiveSerializer<ProjectApiKey> {
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.createdAt = valueDes;
+          break;
+        case r'expires_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.expiresAt = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(

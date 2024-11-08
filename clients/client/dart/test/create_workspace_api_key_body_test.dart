@@ -7,6 +7,11 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(CreateWorkspaceApiKeyBody, () {
+    // DateTime expiresAt
+    test('to test the property `expiresAt`', () async {
+      // TODO
+    });
+
     // The API Key Name  A descriptive name for the API key.
     // String name
     test('to test the property `name`', () async {

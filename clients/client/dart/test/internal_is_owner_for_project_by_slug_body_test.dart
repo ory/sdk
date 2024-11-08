@@ -13,7 +13,7 @@ void main() {
       // TODO
     });
 
-    // ProjectScope is the project_id resolved from the API Token.
+    // ProjectScope is the project_id resolved from the API key.
     // String projectScope
     test('to test the property `projectScope`', () async {
       // TODO

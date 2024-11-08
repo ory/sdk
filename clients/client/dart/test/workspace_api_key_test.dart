@@ -13,6 +13,11 @@ void main() {
       // TODO
     });
 
+    // DateTime expiresAt
+    test('to test the property `expiresAt`', () async {
+      // TODO
+    });
+
     // The key's ID.
     // String id
     test('to test the property `id`', () async {
@@ -43,7 +48,7 @@ void main() {
       // TODO
     });
 
-    // The API token's workspace ID
+    // The API key's workspace ID
     // String workspaceId
     test('to test the property `workspaceId`', () async {
       // TODO

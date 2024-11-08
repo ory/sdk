@@ -11,9 +11,13 @@ part 'create_workspace_api_key_body.g.dart';
 /// CreateWorkspaceApiKeyBody
 ///
 /// Properties:
+/// * [expiresAt] 
 /// * [name] - The API Key Name  A descriptive name for the API key.
 @BuiltValue()
 abstract class CreateWorkspaceApiKeyBody implements Built<CreateWorkspaceApiKeyBody, CreateWorkspaceApiKeyBodyBuilder> {
+  @BuiltValueField(wireName: r'expires_at')
+  DateTime? get expiresAt;
+
   /// The API Key Name  A descriptive name for the API key.
   @BuiltValueField(wireName: r'name')
   String get name;
@@ -41,6 +45,13 @@ class _$CreateWorkspaceApiKeyBodySerializer implements PrimitiveSerializer<Creat
     CreateWorkspaceApiKeyBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.expiresAt != null) {
+      yield r'expires_at';
+      yield serializers.serialize(
+        object.expiresAt,
+        specifiedType: const FullType(DateTime),
+      );
+    }
     yield r'name';
     yield serializers.serialize(
       object.name,
@@ -69,6 +80,13 @@ class _$CreateWorkspaceApiKeyBodySerializer implements PrimitiveSerializer<Creat
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'expires_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.expiresAt = valueDes;
+          break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,

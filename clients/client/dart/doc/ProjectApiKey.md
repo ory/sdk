@@ -9,6 +9,7 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) | The token's creation date | [optional] 
+**expiresAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **id** | **String** | The token's ID. | 
 **name** | **String** | The Token's Name  Set this to help you remember, for example, where you use the token. | 
 **ownerId** | **String** | The token's owner | 

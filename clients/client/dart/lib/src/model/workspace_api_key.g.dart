@@ -10,6 +10,8 @@ class _$WorkspaceApiKey extends WorkspaceApiKey {
   @override
   final DateTime? createdAt;
   @override
+  final DateTime? expiresAt;
+  @override
   final String id;
   @override
   final String name;
@@ -27,6 +29,7 @@ class _$WorkspaceApiKey extends WorkspaceApiKey {
 
   _$WorkspaceApiKey._(
       {this.createdAt,
+      this.expiresAt,
       required this.id,
       required this.name,
       required this.ownerId,
@@ -53,6 +56,7 @@ class _$WorkspaceApiKey extends WorkspaceApiKey {
     if (identical(other, this)) return true;
     return other is WorkspaceApiKey &&
         createdAt == other.createdAt &&
+        expiresAt == other.expiresAt &&
         id == other.id &&
         name == other.name &&
         ownerId == other.ownerId &&
@@ -65,6 +69,7 @@ class _$WorkspaceApiKey extends WorkspaceApiKey {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, ownerId.hashCode);
@@ -79,6 +84,7 @@ class _$WorkspaceApiKey extends WorkspaceApiKey {
   String toString() {
     return (newBuiltValueToStringHelper(r'WorkspaceApiKey')
           ..add('createdAt', createdAt)
+          ..add('expiresAt', expiresAt)
           ..add('id', id)
           ..add('name', name)
           ..add('ownerId', ownerId)
@@ -96,6 +102,10 @@ class WorkspaceApiKeyBuilder
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  DateTime? _expiresAt;
+  DateTime? get expiresAt => _$this._expiresAt;
+  set expiresAt(DateTime? expiresAt) => _$this._expiresAt = expiresAt;
 
   String? _id;
   String? get id => _$this._id;
@@ -129,6 +139,7 @@ class WorkspaceApiKeyBuilder
     final $v = _$v;
     if ($v != null) {
       _createdAt = $v.createdAt;
+      _expiresAt = $v.expiresAt;
       _id = $v.id;
       _name = $v.name;
       _ownerId = $v.ownerId;
@@ -158,6 +169,7 @@ class WorkspaceApiKeyBuilder
     final _$result = _$v ??
         new _$WorkspaceApiKey._(
             createdAt: createdAt,
+            expiresAt: expiresAt,
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'WorkspaceApiKey', 'id'),
             name: BuiltValueNullFieldError.checkNotNull(

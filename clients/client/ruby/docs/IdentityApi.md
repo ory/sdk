@@ -1,6 +1,6 @@
 # OryClient::IdentityApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
@@ -896,7 +896,8 @@ opts = {
   ids: ['inner_example'], # Array<String> | List of ids used to filter identities. If this list is empty, then no filter will be applied.
   credentials_identifier: 'credentials_identifier_example', # String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
   preview_credentials_identifier_similar: 'preview_credentials_identifier_similar_example', # String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
-  include_credential: ['inner_example'] # Array<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+  include_credential: ['inner_example'], # Array<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+  organization_id: 'organization_id_example' # String | OrganizationID is the organization id to filter identities by.  If `ids` is set, this parameter is ignored.
 }
 
 begin
@@ -939,6 +940,7 @@ end
 | **credentials_identifier** | **String** | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **preview_credentials_identifier_similar** | **String** | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **include_credential** | [**Array&lt;String&gt;**](String.md) | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
+| **organization_id** | **String** | OrganizationID is the organization id to filter identities by.  If &#x60;ids&#x60; is set, this parameter is ignored. | [optional] |
 
 ### Return type
 

@@ -305,7 +305,7 @@ class FrontendApi {
   /// * [returnTo] - The URL to return the browser to after the flow was completed.
   /// * [loginChallenge] - Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
   /// * [afterVerificationReturnTo] - The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
-  /// * [organization] 
+  /// * [organization] - An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -559,6 +559,7 @@ class FrontendApi {
   /// * [xSessionToken] - The Session Token of the Identity performing the settings flow.
   /// * [returnSessionTokenExchangeCode] - EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
   /// * [returnTo] - The URL to return the browser to after the flow was completed.
+  /// * [organization] - An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
   /// * [via] - Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -575,6 +576,7 @@ class FrontendApi {
     String? xSessionToken,
     bool? returnSessionTokenExchangeCode,
     String? returnTo,
+    String? organization,
     String? via,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -602,6 +604,7 @@ class FrontendApi {
       if (aal != null) r'aal': encodeQueryParameter(_serializers, aal, const FullType(String)),
       if (returnSessionTokenExchangeCode != null) r'return_session_token_exchange_code': encodeQueryParameter(_serializers, returnSessionTokenExchangeCode, const FullType(bool)),
       if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
+      if (organization != null) r'organization': encodeQueryParameter(_serializers, organization, const FullType(String)),
       if (via != null) r'via': encodeQueryParameter(_serializers, via, const FullType(String)),
     };
 
@@ -724,6 +727,7 @@ class FrontendApi {
   /// Parameters:
   /// * [returnSessionTokenExchangeCode] - EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
   /// * [returnTo] - The URL to return the browser to after the flow was completed.
+  /// * [organization] - An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -736,6 +740,7 @@ class FrontendApi {
   Future<Response<RegistrationFlow>> createNativeRegistrationFlow({ 
     bool? returnSessionTokenExchangeCode,
     String? returnTo,
+    String? organization,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -759,6 +764,7 @@ class FrontendApi {
     final _queryParameters = <String, dynamic>{
       if (returnSessionTokenExchangeCode != null) r'return_session_token_exchange_code': encodeQueryParameter(_serializers, returnSessionTokenExchangeCode, const FullType(bool)),
       if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
+      if (organization != null) r'organization': encodeQueryParameter(_serializers, organization, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

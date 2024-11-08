@@ -13,7 +13,7 @@ part 'internal_is_owner_for_project_by_slug_body.g.dart';
 ///
 /// Properties:
 /// * [namespace] - Namespace is the namespace of the subject.
-/// * [projectScope] - ProjectScope is the project_id resolved from the API Token.
+/// * [projectScope] - ProjectScope is the project_id resolved from the API key.
 /// * [projectSlug] - ProjectSlug is the project's slug.
 /// * [subject] - Subject is the subject acting (user or API key).
 @BuiltValue()
@@ -23,7 +23,7 @@ abstract class InternalIsOwnerForProjectBySlugBody implements Built<InternalIsOw
   InternalIsOwnerForProjectBySlugBodyNamespaceEnum get namespace;
   // enum namespaceEnum {  User,   ApiKey,  };
 
-  /// ProjectScope is the project_id resolved from the API Token.
+  /// ProjectScope is the project_id resolved from the API key.
   @BuiltValueField(wireName: r'project_scope')
   String? get projectScope;
 

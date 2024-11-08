@@ -88,8 +88,8 @@ defmodule Ory.Api.Workspace do
   end
 
   @doc """
-  Delete workspace API token
-  Deletes an API token and immediately removes it.
+  Delete workspace API key
+  Deletes an API key and immediately removes it.
 
   ### Parameters
 
@@ -155,8 +155,8 @@ defmodule Ory.Api.Workspace do
   end
 
   @doc """
-  List a workspace's API Tokens
-  A list of all the workspace's API tokens.
+  List a workspace's API keys
+  A list of all the workspace's API keys.
 
   ### Parameters
 

@@ -230,8 +230,8 @@ class WorkspaceApi {
     );
   }
 
-  /// Delete workspace API token
-  /// Deletes an API token and immediately removes it.
+  /// Delete workspace API key
+  /// Deletes an API key and immediately removes it.
   ///
   /// Parameters:
   /// * [workspace] - The Workspace ID or Workspace slug
@@ -366,8 +366,8 @@ class WorkspaceApi {
     );
   }
 
-  /// List a workspace&#39;s API Tokens
-  /// A list of all the workspace&#39;s API tokens.
+  /// List a workspace&#39;s API keys
+  /// A list of all the workspace&#39;s API keys.
   ///
   /// Parameters:
   /// * [workspace] - The Workspace ID or Workspace slug

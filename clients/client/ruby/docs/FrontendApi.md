@@ -1,6 +1,6 @@
 # OryClient::FrontendApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
@@ -267,7 +267,7 @@ opts = {
   return_to: 'return_to_example', # String | The URL to return the browser to after the flow was completed.
   login_challenge: 'login_challenge_example', # String | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
   after_verification_return_to: 'after_verification_return_to_example', # String | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
-  organization: 'organization_example' # String | 
+  organization: 'organization_example' # String | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
 }
 
 begin
@@ -304,7 +304,7 @@ end
 | **return_to** | **String** | The URL to return the browser to after the flow was completed. | [optional] |
 | **login_challenge** | **String** | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional] |
 | **after_verification_return_to** | **String** | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional] |
-| **organization** | **String** |  | [optional] |
+| **organization** | **String** | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] |
 
 ### Return type
 
@@ -475,6 +475,7 @@ opts = {
   x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
   return_session_token_exchange_code: true, # Boolean | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
   return_to: 'return_to_example', # String | The URL to return the browser to after the flow was completed.
+  organization: 'organization_example', # String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
   via: 'via_example' # String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
 }
 
@@ -514,6 +515,7 @@ end
 | **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
 | **return_session_token_exchange_code** | **Boolean** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] |
 | **return_to** | **String** | The URL to return the browser to after the flow was completed. | [optional] |
+| **organization** | **String** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
 | **via** | **String** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] |
 
 ### Return type
@@ -608,7 +610,8 @@ require 'ory-client'
 api_instance = OryClient::FrontendApi.new
 opts = {
   return_session_token_exchange_code: true, # Boolean | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
-  return_to: 'return_to_example' # String | The URL to return the browser to after the flow was completed.
+  return_to: 'return_to_example', # String | The URL to return the browser to after the flow was completed.
+  organization: 'organization_example' # String | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
 }
 
 begin
@@ -644,6 +647,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **return_session_token_exchange_code** | **Boolean** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] |
 | **return_to** | **String** | The URL to return the browser to after the flow was completed. | [optional] |
+| **organization** | **String** | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] |
 
 ### Return type
 

@@ -1,19 +1,19 @@
 # Ory\Client\ProjectApi
 
-All URIs are relative to https://.projects.oryapis.com, except if the operation defines another base path.
+All URIs are relative to https://playground.projects.oryapis.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**createOrganization()**](ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization |
 | [**createProject()**](ProjectApi.md#createProject) | **POST** /projects | Create a Project |
-| [**createProjectApiKey()**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API token |
+| [**createProjectApiKey()**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API key |
 | [**deleteOrganization()**](ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization |
-| [**deleteProjectApiKey()**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
+| [**deleteProjectApiKey()**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key |
 | [**getOrganization()**](ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
 | [**getProject()**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
 | [**getProjectMembers()**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**listOrganizations()**](ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
-| [**listProjectApiKeys()**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
+| [**listProjectApiKeys()**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API keys |
 | [**listProjects()**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects |
 | [**patchProject()**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
 | [**patchProjectWithRevision()**](ProjectApi.md#patchProjectWithRevision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID |
@@ -166,9 +166,9 @@ createProjectApiKey($project, $createProjectApiKeyRequest): \Ory\Client\Model\Pr
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
-Create project API token
+Create project API key
 
-Create an API token for a project.
+Create an API key for a project.
 
 ### Example
 
@@ -303,9 +303,9 @@ deleteProjectApiKey($project, $tokenId)
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
-Delete project API token
+Delete project API key
 
-Deletes an API token and immediately removes it.
+Deletes an API key and immediately removes it.
 
 ### Example
 
@@ -647,9 +647,9 @@ listProjectApiKeys($project): \Ory\Client\Model\ProjectApiKey[]
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
-List a project's API Tokens
+List a project's API keys
 
-A list of all the project's API tokens.
+A list of all the project's API keys.
 
 ### Example
 

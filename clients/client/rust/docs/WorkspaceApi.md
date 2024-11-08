@@ -1,14 +1,14 @@
 # \WorkspaceApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_workspace**](WorkspaceApi.md#create_workspace) | **POST** /workspaces | Create a new workspace
 [**create_workspace_api_key**](WorkspaceApi.md#create_workspace_api_key) | **POST** /workspaces/{workspace}/tokens | Create workspace API key
-[**delete_workspace_api_key**](WorkspaceApi.md#delete_workspace_api_key) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token
+[**delete_workspace_api_key**](WorkspaceApi.md#delete_workspace_api_key) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API key
 [**get_workspace**](WorkspaceApi.md#get_workspace) | **GET** /workspaces/{workspace} | Get a workspace
-[**list_workspace_api_keys**](WorkspaceApi.md#list_workspace_api_keys) | **GET** /workspaces/{workspace}/tokens | List a workspace's API Tokens
+[**list_workspace_api_keys**](WorkspaceApi.md#list_workspace_api_keys) | **GET** /workspaces/{workspace}/tokens | List a workspace's API keys
 [**list_workspace_projects**](WorkspaceApi.md#list_workspace_projects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace
 [**list_workspaces**](WorkspaceApi.md#list_workspaces) | **GET** /workspaces | List workspaces the user is a member of
 [**update_workspace**](WorkspaceApi.md#update_workspace) | **PUT** /workspaces/{workspace} | Update an workspace
@@ -77,9 +77,9 @@ Name | Type | Description  | Required | Notes
 ## delete_workspace_api_key
 
 > delete_workspace_api_key(workspace, token_id)
-Delete workspace API token
+Delete workspace API key
 
-Deletes an API token and immediately removes it.
+Deletes an API key and immediately removes it.
 
 ### Parameters
 
@@ -138,9 +138,9 @@ Name | Type | Description  | Required | Notes
 ## list_workspace_api_keys
 
 > Vec<models::WorkspaceApiKey> list_workspace_api_keys(workspace)
-List a workspace's API Tokens
+List a workspace's API keys
 
-A list of all the workspace's API tokens.
+A list of all the workspace's API keys.
 
 ### Parameters
 

@@ -8,15 +8,20 @@ defmodule Ory.Model.CreateProjectApiKeyRequest do
 
   @derive Jason.Encoder
   defstruct [
+    :expires_at,
     :name
   ]
 
   @type t :: %__MODULE__{
+    :expires_at => DateTime.t | nil,
     :name => String.t
   }
 
+  alias Ory.Deserializer
+
   def decode(value) do
     value
+     |> Deserializer.deserialize(:expires_at, :datetime, nil)
   end
 end
 

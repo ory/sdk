@@ -5,7 +5,7 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -552,7 +552,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listIdentities**
-> BuiltList<Identity> listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential)
+> BuiltList<Identity> listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential, organizationId)
 
 List Identities
 
@@ -572,9 +572,10 @@ final BuiltList<String> ids = ; // BuiltList<String> | List of ids used to filte
 final String credentialsIdentifier = credentialsIdentifier_example; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
 final String previewCredentialsIdentifierSimilar = previewCredentialsIdentifierSimilar_example; // String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
 final BuiltList<String> includeCredential = ; // BuiltList<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+final String organizationId = organizationId_example; // String | OrganizationID is the organization id to filter identities by.  If `ids` is set, this parameter is ignored.
 
 try {
-    final response = api.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential);
+    final response = api.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential, organizationId);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling IdentityApi->listIdentities: $e\n');
@@ -594,6 +595,7 @@ Name | Type | Description  | Notes
  **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
  **previewCredentialsIdentifierSimilar** | **String**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
  **includeCredential** | [**BuiltList&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] 
+ **organizationId** | **String**| OrganizationID is the organization id to filter identities by.  If `ids` is set, this parameter is ignored. | [optional] 
 
 ### Return type
 

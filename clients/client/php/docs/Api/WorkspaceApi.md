@@ -1,14 +1,14 @@
 # Ory\Client\WorkspaceApi
 
-All URIs are relative to https://.projects.oryapis.com, except if the operation defines another base path.
+All URIs are relative to https://playground.projects.oryapis.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**createWorkspace()**](WorkspaceApi.md#createWorkspace) | **POST** /workspaces | Create a new workspace |
 | [**createWorkspaceApiKey()**](WorkspaceApi.md#createWorkspaceApiKey) | **POST** /workspaces/{workspace}/tokens | Create workspace API key |
-| [**deleteWorkspaceApiKey()**](WorkspaceApi.md#deleteWorkspaceApiKey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token |
+| [**deleteWorkspaceApiKey()**](WorkspaceApi.md#deleteWorkspaceApiKey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API key |
 | [**getWorkspace()**](WorkspaceApi.md#getWorkspace) | **GET** /workspaces/{workspace} | Get a workspace |
-| [**listWorkspaceApiKeys()**](WorkspaceApi.md#listWorkspaceApiKeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens |
+| [**listWorkspaceApiKeys()**](WorkspaceApi.md#listWorkspaceApiKeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API keys |
 | [**listWorkspaceProjects()**](WorkspaceApi.md#listWorkspaceProjects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace |
 | [**listWorkspaces()**](WorkspaceApi.md#listWorkspaces) | **GET** /workspaces | List workspaces the user is a member of |
 | [**updateWorkspace()**](WorkspaceApi.md#updateWorkspace) | **PUT** /workspaces/{workspace} | Update an workspace |
@@ -155,9 +155,9 @@ deleteWorkspaceApiKey($workspace, $tokenId)
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
-Delete workspace API token
+Delete workspace API key
 
-Deletes an API token and immediately removes it.
+Deletes an API key and immediately removes it.
 
 ### Example
 
@@ -290,9 +290,9 @@ listWorkspaceApiKeys($workspace): \Ory\Client\Model\WorkspaceApiKey[]
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
-List a workspace's API Tokens
+List a workspace's API keys
 
-A list of all the workspace's API tokens.
+A list of all the workspace's API keys.
 
 ### Example
 

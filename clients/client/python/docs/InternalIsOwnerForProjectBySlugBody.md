@@ -7,7 +7,7 @@ Is Owner For Project By Slug Request Body
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **namespace** | **str** | Namespace is the namespace of the subject. | 
-**project_scope** | **str** | ProjectScope is the project_id resolved from the API Token. | [optional] 
+**project_scope** | **str** | ProjectScope is the project_id resolved from the API key. | [optional] 
 **project_slug** | **str** | ProjectSlug is the project&#39;s slug. | 
 **subject** | **str** | Subject is the subject acting (user or API key). | 
 

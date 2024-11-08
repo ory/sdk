@@ -49,6 +49,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationGlobal =
     const QuotaUsageFeatureEnum._('dataLocationGlobal');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationUs =
     const QuotaUsageFeatureEnum._('dataLocationUs');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationAsiane =
+    const QuotaUsageFeatureEnum._('dataLocationAsiane');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_m2mTokenIssuance =
     const QuotaUsageFeatureEnum._('m2mTokenIssuance');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_permissionChecks =
@@ -115,6 +117,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_dataLocationGlobal;
     case 'dataLocationUs':
       return _$quotaUsageFeatureEnum_dataLocationUs;
+    case 'dataLocationAsiane':
+      return _$quotaUsageFeatureEnum_dataLocationAsiane;
     case 'm2mTokenIssuance':
       return _$quotaUsageFeatureEnum_m2mTokenIssuance;
     case 'permissionChecks':
@@ -161,6 +165,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_credit,
   _$quotaUsageFeatureEnum_dataLocationGlobal,
   _$quotaUsageFeatureEnum_dataLocationUs,
+  _$quotaUsageFeatureEnum_dataLocationAsiane,
   _$quotaUsageFeatureEnum_m2mTokenIssuance,
   _$quotaUsageFeatureEnum_permissionChecks,
   _$quotaUsageFeatureEnum_captcha,
@@ -199,6 +204,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'credit': 'credit',
     'dataLocationGlobal': 'data_location_global',
     'dataLocationUs': 'data_location_us',
+    'dataLocationAsiane': 'data_location_asiane',
     'm2mTokenIssuance': 'm2m_token_issuance',
     'permissionChecks': 'permission_checks',
     'captcha': 'captcha',
@@ -231,6 +237,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'credit': 'credit',
     'data_location_global': 'dataLocationGlobal',
     'data_location_us': 'dataLocationUs',
+    'data_location_asiane': 'dataLocationAsiane',
     'm2m_token_issuance': 'm2mTokenIssuance',
     'permission_checks': 'permissionChecks',
     'captcha': 'captcha',
@@ -271,6 +278,8 @@ class _$QuotaUsage extends QuotaUsage {
   @override
   final int included;
   @override
+  final bool isUnlimited;
+  @override
   final int used;
 
   factory _$QuotaUsage([void Function(QuotaUsageBuilder)? updates]) =>
@@ -282,6 +291,7 @@ class _$QuotaUsage extends QuotaUsage {
       required this.feature,
       required this.featureAvailable,
       required this.included,
+      required this.isUnlimited,
       required this.used})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -292,6 +302,8 @@ class _$QuotaUsage extends QuotaUsage {
     BuiltValueNullFieldError.checkNotNull(
         featureAvailable, r'QuotaUsage', 'featureAvailable');
     BuiltValueNullFieldError.checkNotNull(included, r'QuotaUsage', 'included');
+    BuiltValueNullFieldError.checkNotNull(
+        isUnlimited, r'QuotaUsage', 'isUnlimited');
     BuiltValueNullFieldError.checkNotNull(used, r'QuotaUsage', 'used');
   }
 
@@ -311,6 +323,7 @@ class _$QuotaUsage extends QuotaUsage {
         feature == other.feature &&
         featureAvailable == other.featureAvailable &&
         included == other.included &&
+        isUnlimited == other.isUnlimited &&
         used == other.used;
   }
 
@@ -322,6 +335,7 @@ class _$QuotaUsage extends QuotaUsage {
     _$hash = $jc(_$hash, feature.hashCode);
     _$hash = $jc(_$hash, featureAvailable.hashCode);
     _$hash = $jc(_$hash, included.hashCode);
+    _$hash = $jc(_$hash, isUnlimited.hashCode);
     _$hash = $jc(_$hash, used.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -335,6 +349,7 @@ class _$QuotaUsage extends QuotaUsage {
           ..add('feature', feature)
           ..add('featureAvailable', featureAvailable)
           ..add('included', included)
+          ..add('isUnlimited', isUnlimited)
           ..add('used', used))
         .toString();
   }
@@ -365,6 +380,10 @@ class QuotaUsageBuilder implements Builder<QuotaUsage, QuotaUsageBuilder> {
   int? get included => _$this._included;
   set included(int? included) => _$this._included = included;
 
+  bool? _isUnlimited;
+  bool? get isUnlimited => _$this._isUnlimited;
+  set isUnlimited(bool? isUnlimited) => _$this._isUnlimited = isUnlimited;
+
   int? _used;
   int? get used => _$this._used;
   set used(int? used) => _$this._used = used;
@@ -381,6 +400,7 @@ class QuotaUsageBuilder implements Builder<QuotaUsage, QuotaUsageBuilder> {
       _feature = $v.feature;
       _featureAvailable = $v.featureAvailable;
       _included = $v.included;
+      _isUnlimited = $v.isUnlimited;
       _used = $v.used;
       _$v = null;
     }
@@ -414,6 +434,8 @@ class QuotaUsageBuilder implements Builder<QuotaUsage, QuotaUsageBuilder> {
                 featureAvailable, r'QuotaUsage', 'featureAvailable'),
             included: BuiltValueNullFieldError.checkNotNull(
                 included, r'QuotaUsage', 'included'),
+            isUnlimited: BuiltValueNullFieldError.checkNotNull(
+                isUnlimited, r'QuotaUsage', 'isUnlimited'),
             used: BuiltValueNullFieldError.checkNotNull(
                 used, r'QuotaUsage', 'used'));
     replace(_$result);

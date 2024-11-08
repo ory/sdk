@@ -1,19 +1,19 @@
 # Ory.Client.Api.ProjectApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**CreateOrganization**](ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization |
 | [**CreateProject**](ProjectApi.md#createproject) | **POST** /projects | Create a Project |
-| [**CreateProjectApiKey**](ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API token |
+| [**CreateProjectApiKey**](ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API key |
 | [**DeleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization |
-| [**DeleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
+| [**DeleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key |
 | [**GetOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
 | [**GetProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project |
 | [**GetProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**ListOrganizations**](ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
-| [**ListProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
+| [**ListProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API keys |
 | [**ListProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects |
 | [**PatchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
 | [**PatchProjectWithRevision**](ProjectApi.md#patchprojectwithrevision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID |
@@ -45,7 +45,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -145,7 +145,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -224,9 +224,9 @@ catch (ApiException e)
 # **CreateProjectApiKey**
 > ClientProjectApiKey CreateProjectApiKey (string project, ClientCreateProjectApiKeyRequest? clientCreateProjectApiKeyRequest = null)
 
-Create project API token
+Create project API key
 
-Create an API token for a project.
+Create an API key for a project.
 
 ### Example
 ```csharp
@@ -243,7 +243,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -253,7 +253,7 @@ namespace Example
 
             try
             {
-                // Create project API token
+                // Create project API key
                 ClientProjectApiKey result = apiInstance.CreateProjectApiKey(project, clientCreateProjectApiKeyRequest);
                 Debug.WriteLine(result);
             }
@@ -274,7 +274,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Create project API token
+    // Create project API key
     ApiResponse<ClientProjectApiKey> response = apiInstance.CreateProjectApiKeyWithHttpInfo(project, clientCreateProjectApiKeyRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -340,7 +340,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -418,9 +418,9 @@ void (empty response body)
 # **DeleteProjectApiKey**
 > void DeleteProjectApiKey (string project, string tokenId)
 
-Delete project API token
+Delete project API key
 
-Deletes an API token and immediately removes it.
+Deletes an API key and immediately removes it.
 
 ### Example
 ```csharp
@@ -437,7 +437,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -447,7 +447,7 @@ namespace Example
 
             try
             {
-                // Delete project API token
+                // Delete project API key
                 apiInstance.DeleteProjectApiKey(project, tokenId);
             }
             catch (ApiException  e)
@@ -467,7 +467,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Delete project API token
+    // Delete project API key
     apiInstance.DeleteProjectApiKeyWithHttpInfo(project, tokenId);
 }
 catch (ApiException e)
@@ -530,7 +530,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -629,7 +629,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -727,7 +727,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -824,7 +824,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -908,9 +908,9 @@ catch (ApiException e)
 # **ListProjectApiKeys**
 > List&lt;ClientProjectApiKey&gt; ListProjectApiKeys (string project)
 
-List a project's API Tokens
+List a project's API keys
 
-A list of all the project's API tokens.
+A list of all the project's API keys.
 
 ### Example
 ```csharp
@@ -927,7 +927,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -936,7 +936,7 @@ namespace Example
 
             try
             {
-                // List a project's API Tokens
+                // List a project's API keys
                 List<ClientProjectApiKey> result = apiInstance.ListProjectApiKeys(project);
                 Debug.WriteLine(result);
             }
@@ -957,7 +957,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // List a project's API Tokens
+    // List a project's API keys
     ApiResponse<List<ClientProjectApiKey>> response = apiInstance.ListProjectApiKeysWithHttpInfo(project);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -1022,7 +1022,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1115,7 +1115,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1216,7 +1216,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1319,7 +1319,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1413,7 +1413,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1508,7 +1508,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
@@ -1609,7 +1609,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             // Configure Bearer token for authorization: oryWorkspaceApiKey
             config.AccessToken = "YOUR_BEARER_TOKEN";
 

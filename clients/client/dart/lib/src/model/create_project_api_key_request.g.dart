@@ -8,13 +8,16 @@ part of 'create_project_api_key_request.dart';
 
 class _$CreateProjectApiKeyRequest extends CreateProjectApiKeyRequest {
   @override
+  final DateTime? expiresAt;
+  @override
   final String name;
 
   factory _$CreateProjectApiKeyRequest(
           [void Function(CreateProjectApiKeyRequestBuilder)? updates]) =>
       (new CreateProjectApiKeyRequestBuilder()..update(updates))._build();
 
-  _$CreateProjectApiKeyRequest._({required this.name}) : super._() {
+  _$CreateProjectApiKeyRequest._({this.expiresAt, required this.name})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(
         name, r'CreateProjectApiKeyRequest', 'name');
   }
@@ -31,12 +34,15 @@ class _$CreateProjectApiKeyRequest extends CreateProjectApiKeyRequest {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is CreateProjectApiKeyRequest && name == other.name;
+    return other is CreateProjectApiKeyRequest &&
+        expiresAt == other.expiresAt &&
+        name == other.name;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -45,6 +51,7 @@ class _$CreateProjectApiKeyRequest extends CreateProjectApiKeyRequest {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CreateProjectApiKeyRequest')
+          ..add('expiresAt', expiresAt)
           ..add('name', name))
         .toString();
   }
@@ -54,6 +61,10 @@ class CreateProjectApiKeyRequestBuilder
     implements
         Builder<CreateProjectApiKeyRequest, CreateProjectApiKeyRequestBuilder> {
   _$CreateProjectApiKeyRequest? _$v;
+
+  DateTime? _expiresAt;
+  DateTime? get expiresAt => _$this._expiresAt;
+  set expiresAt(DateTime? expiresAt) => _$this._expiresAt = expiresAt;
 
   String? _name;
   String? get name => _$this._name;
@@ -66,6 +77,7 @@ class CreateProjectApiKeyRequestBuilder
   CreateProjectApiKeyRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _expiresAt = $v.expiresAt;
       _name = $v.name;
       _$v = null;
     }
@@ -89,6 +101,7 @@ class CreateProjectApiKeyRequestBuilder
   _$CreateProjectApiKeyRequest _build() {
     final _$result = _$v ??
         new _$CreateProjectApiKeyRequest._(
+            expiresAt: expiresAt,
             name: BuiltValueNullFieldError.checkNotNull(
                 name, r'CreateProjectApiKeyRequest', 'name'));
     replace(_$result);

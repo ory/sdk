@@ -1,14 +1,14 @@
 # WorkspaceApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createWorkspace**](WorkspaceApi.md#createWorkspace) | **POST** /workspaces | Create a new workspace |
 | [**createWorkspaceApiKey**](WorkspaceApi.md#createWorkspaceApiKey) | **POST** /workspaces/{workspace}/tokens | Create workspace API key |
-| [**deleteWorkspaceApiKey**](WorkspaceApi.md#deleteWorkspaceApiKey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token |
+| [**deleteWorkspaceApiKey**](WorkspaceApi.md#deleteWorkspaceApiKey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API key |
 | [**getWorkspace**](WorkspaceApi.md#getWorkspace) | **GET** /workspaces/{workspace} | Get a workspace |
-| [**listWorkspaceApiKeys**](WorkspaceApi.md#listWorkspaceApiKeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens |
+| [**listWorkspaceApiKeys**](WorkspaceApi.md#listWorkspaceApiKeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API keys |
 | [**listWorkspaceProjects**](WorkspaceApi.md#listWorkspaceProjects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace |
 | [**listWorkspaces**](WorkspaceApi.md#listWorkspaces) | **GET** /workspaces | List workspaces the user is a member of |
 | [**updateWorkspace**](WorkspaceApi.md#updateWorkspace) | **PUT** /workspaces/{workspace} | Update an workspace |
@@ -33,7 +33,7 @@ import sh.ory.api.WorkspaceApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -105,7 +105,7 @@ import sh.ory.api.WorkspaceApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -158,9 +158,9 @@ public class Example {
 # **deleteWorkspaceApiKey**
 > deleteWorkspaceApiKey(workspace, tokenId)
 
-Delete workspace API token
+Delete workspace API key
 
-Deletes an API token and immediately removes it.
+Deletes an API key and immediately removes it.
 
 ### Example
 ```java
@@ -175,7 +175,7 @@ import sh.ory.api.WorkspaceApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -244,7 +244,7 @@ import sh.ory.api.WorkspaceApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -299,9 +299,9 @@ public class Example {
 # **listWorkspaceApiKeys**
 > List&lt;WorkspaceApiKey&gt; listWorkspaceApiKeys(workspace)
 
-List a workspace&#39;s API Tokens
+List a workspace&#39;s API keys
 
-A list of all the workspace&#39;s API tokens.
+A list of all the workspace&#39;s API keys.
 
 ### Example
 ```java
@@ -316,7 +316,7 @@ import sh.ory.api.WorkspaceApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -384,7 +384,7 @@ import sh.ory.api.WorkspaceApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -454,7 +454,7 @@ import sh.ory.api.WorkspaceApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -528,7 +528,7 @@ import sh.ory.api.WorkspaceApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");

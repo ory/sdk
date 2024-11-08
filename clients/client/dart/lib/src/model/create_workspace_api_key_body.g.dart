@@ -8,13 +8,16 @@ part of 'create_workspace_api_key_body.dart';
 
 class _$CreateWorkspaceApiKeyBody extends CreateWorkspaceApiKeyBody {
   @override
+  final DateTime? expiresAt;
+  @override
   final String name;
 
   factory _$CreateWorkspaceApiKeyBody(
           [void Function(CreateWorkspaceApiKeyBodyBuilder)? updates]) =>
       (new CreateWorkspaceApiKeyBodyBuilder()..update(updates))._build();
 
-  _$CreateWorkspaceApiKeyBody._({required this.name}) : super._() {
+  _$CreateWorkspaceApiKeyBody._({this.expiresAt, required this.name})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(
         name, r'CreateWorkspaceApiKeyBody', 'name');
   }
@@ -31,12 +34,15 @@ class _$CreateWorkspaceApiKeyBody extends CreateWorkspaceApiKeyBody {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is CreateWorkspaceApiKeyBody && name == other.name;
+    return other is CreateWorkspaceApiKeyBody &&
+        expiresAt == other.expiresAt &&
+        name == other.name;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -45,6 +51,7 @@ class _$CreateWorkspaceApiKeyBody extends CreateWorkspaceApiKeyBody {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CreateWorkspaceApiKeyBody')
+          ..add('expiresAt', expiresAt)
           ..add('name', name))
         .toString();
   }
@@ -54,6 +61,10 @@ class CreateWorkspaceApiKeyBodyBuilder
     implements
         Builder<CreateWorkspaceApiKeyBody, CreateWorkspaceApiKeyBodyBuilder> {
   _$CreateWorkspaceApiKeyBody? _$v;
+
+  DateTime? _expiresAt;
+  DateTime? get expiresAt => _$this._expiresAt;
+  set expiresAt(DateTime? expiresAt) => _$this._expiresAt = expiresAt;
 
   String? _name;
   String? get name => _$this._name;
@@ -66,6 +77,7 @@ class CreateWorkspaceApiKeyBodyBuilder
   CreateWorkspaceApiKeyBodyBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _expiresAt = $v.expiresAt;
       _name = $v.name;
       _$v = null;
     }
@@ -89,6 +101,7 @@ class CreateWorkspaceApiKeyBodyBuilder
   _$CreateWorkspaceApiKeyBody _build() {
     final _$result = _$v ??
         new _$CreateWorkspaceApiKeyBody._(
+            expiresAt: expiresAt,
             name: BuiltValueNullFieldError.checkNotNull(
                 name, r'CreateWorkspaceApiKeyBody', 'name'));
     replace(_$result);

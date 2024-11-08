@@ -11,9 +11,13 @@ part 'create_project_api_key_request.g.dart';
 /// CreateProjectApiKeyRequest
 ///
 /// Properties:
+/// * [expiresAt] 
 /// * [name] - The Token Name  A descriptive name for the token.  in: body
 @BuiltValue()
 abstract class CreateProjectApiKeyRequest implements Built<CreateProjectApiKeyRequest, CreateProjectApiKeyRequestBuilder> {
+  @BuiltValueField(wireName: r'expires_at')
+  DateTime? get expiresAt;
+
   /// The Token Name  A descriptive name for the token.  in: body
   @BuiltValueField(wireName: r'name')
   String get name;
@@ -41,6 +45,13 @@ class _$CreateProjectApiKeyRequestSerializer implements PrimitiveSerializer<Crea
     CreateProjectApiKeyRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.expiresAt != null) {
+      yield r'expires_at';
+      yield serializers.serialize(
+        object.expiresAt,
+        specifiedType: const FullType(DateTime),
+      );
+    }
     yield r'name';
     yield serializers.serialize(
       object.name,
@@ -69,6 +80,13 @@ class _$CreateProjectApiKeyRequestSerializer implements PrimitiveSerializer<Crea
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'expires_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.expiresAt = valueDes;
+          break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,

@@ -237,8 +237,8 @@ class ProjectApi {
     );
   }
 
-  /// Create project API token
-  /// Create an API token for a project.
+  /// Create project API key
+  /// Create an API key for a project.
   ///
   /// Parameters:
   /// * [project] - The Project ID or Project slug
@@ -395,8 +395,8 @@ class ProjectApi {
     return _response;
   }
 
-  /// Delete project API token
-  /// Deletes an API token and immediately removes it.
+  /// Delete project API key
+  /// Deletes an API key and immediately removes it.
   ///
   /// Parameters:
   /// * [project] - The Project ID or Project slug
@@ -789,8 +789,8 @@ class ProjectApi {
     );
   }
 
-  /// List a project&#39;s API Tokens
-  /// A list of all the project&#39;s API tokens.
+  /// List a project&#39;s API keys
+  /// A list of all the project&#39;s API keys.
   ///
   /// Parameters:
   /// * [project] - The Project ID or Project slug

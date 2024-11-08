@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**expires_at** | **datetime** |  | [optional] 
 **name** | **str** | The API Key Name  A descriptive name for the API key. | 
 
 ## Example

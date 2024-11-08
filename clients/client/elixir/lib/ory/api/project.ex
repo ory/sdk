@@ -91,8 +91,8 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
-  Create project API token
-  Create an API token for a project.
+  Create project API key
+  Create an API key for a project.
 
   ### Parameters
 
@@ -165,8 +165,8 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
-  Delete project API token
-  Deletes an API token and immediately removes it.
+  Delete project API key
+  Deletes an API key and immediately removes it.
 
   ### Parameters
 
@@ -341,8 +341,8 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
-  List a project's API Tokens
-  A list of all the project's API tokens.
+  List a project's API keys
+  A list of all the project's API keys.
 
   ### Parameters
 

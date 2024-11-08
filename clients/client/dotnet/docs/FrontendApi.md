@@ -1,6 +1,6 @@
 # Ory.Client.Api.FrontendApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
@@ -58,7 +58,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var refresh = true;  // bool? | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional) 
             var aal = "aal_example";  // string? | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional) 
@@ -164,7 +164,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var cookie = "cookie_example";  // string? | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. (optional) 
             var returnTo = "returnTo_example";  // string? | Return to URL  The URL to which the browser should be redirected to after the logout has been performed. (optional) 
@@ -260,7 +260,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var returnTo = "returnTo_example";  // string? | The URL to return the browser to after the flow was completed. (optional) 
 
@@ -354,12 +354,12 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var returnTo = "returnTo_example";  // string? | The URL to return the browser to after the flow was completed. (optional) 
             var loginChallenge = "loginChallenge_example";  // string? | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional) 
             var afterVerificationReturnTo = "afterVerificationReturnTo_example";  // string? | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional) 
-            var organization = "organization_example";  // string? |  (optional) 
+            var organization = "organization_example";  // string? | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional) 
 
             try
             {
@@ -405,7 +405,7 @@ catch (ApiException e)
 | **returnTo** | **string?** | The URL to return the browser to after the flow was completed. | [optional]  |
 | **loginChallenge** | **string?** | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional]  |
 | **afterVerificationReturnTo** | **string?** | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional]  |
-| **organization** | **string?** |  | [optional]  |
+| **organization** | **string?** | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional]  |
 
 ### Return type
 
@@ -453,7 +453,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var returnTo = "returnTo_example";  // string? | The URL to return the browser to after the flow was completed. (optional) 
             var cookie = "cookie_example";  // string? | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
@@ -551,7 +551,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var returnTo = "returnTo_example";  // string? | The URL to return the browser to after the flow was completed. (optional) 
 
@@ -623,7 +623,7 @@ No authorization required
 
 <a id="createnativeloginflow"></a>
 # **CreateNativeLoginFlow**
-> ClientLoginFlow CreateNativeLoginFlow (bool? refresh = null, string? aal = null, string? xSessionToken = null, bool? returnSessionTokenExchangeCode = null, string? returnTo = null, string? via = null)
+> ClientLoginFlow CreateNativeLoginFlow (bool? refresh = null, string? aal = null, string? xSessionToken = null, bool? returnSessionTokenExchangeCode = null, string? returnTo = null, string? organization = null, string? via = null)
 
 Create Login Flow for Native Apps
 
@@ -644,19 +644,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var refresh = true;  // bool? | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional) 
             var aal = "aal_example";  // string? | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional) 
             var xSessionToken = "xSessionToken_example";  // string? | The Session Token of the Identity performing the settings flow. (optional) 
             var returnSessionTokenExchangeCode = true;  // bool? | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional) 
             var returnTo = "returnTo_example";  // string? | The URL to return the browser to after the flow was completed. (optional) 
+            var organization = "organization_example";  // string? | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional) 
             var via = "via_example";  // string? | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional) 
 
             try
             {
                 // Create Login Flow for Native Apps
-                ClientLoginFlow result = apiInstance.CreateNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via);
+                ClientLoginFlow result = apiInstance.CreateNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -677,7 +678,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create Login Flow for Native Apps
-    ApiResponse<ClientLoginFlow> response = apiInstance.CreateNativeLoginFlowWithHttpInfo(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via);
+    ApiResponse<ClientLoginFlow> response = apiInstance.CreateNativeLoginFlowWithHttpInfo(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -699,6 +700,7 @@ catch (ApiException e)
 | **xSessionToken** | **string?** | The Session Token of the Identity performing the settings flow. | [optional]  |
 | **returnSessionTokenExchangeCode** | **bool?** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]  |
 | **returnTo** | **string?** | The URL to return the browser to after the flow was completed. | [optional]  |
+| **organization** | **string?** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional]  |
 | **via** | **string?** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional]  |
 
 ### Return type
@@ -747,7 +749,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
 
             try
@@ -814,7 +816,7 @@ No authorization required
 
 <a id="createnativeregistrationflow"></a>
 # **CreateNativeRegistrationFlow**
-> ClientRegistrationFlow CreateNativeRegistrationFlow (bool? returnSessionTokenExchangeCode = null, string? returnTo = null)
+> ClientRegistrationFlow CreateNativeRegistrationFlow (bool? returnSessionTokenExchangeCode = null, string? returnTo = null, string? organization = null)
 
 Create Registration Flow for Native Apps
 
@@ -835,15 +837,16 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var returnSessionTokenExchangeCode = true;  // bool? | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional) 
             var returnTo = "returnTo_example";  // string? | The URL to return the browser to after the flow was completed. (optional) 
+            var organization = "organization_example";  // string? | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional) 
 
             try
             {
                 // Create Registration Flow for Native Apps
-                ClientRegistrationFlow result = apiInstance.CreateNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo);
+                ClientRegistrationFlow result = apiInstance.CreateNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -864,7 +867,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create Registration Flow for Native Apps
-    ApiResponse<ClientRegistrationFlow> response = apiInstance.CreateNativeRegistrationFlowWithHttpInfo(returnSessionTokenExchangeCode, returnTo);
+    ApiResponse<ClientRegistrationFlow> response = apiInstance.CreateNativeRegistrationFlowWithHttpInfo(returnSessionTokenExchangeCode, returnTo, organization);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -883,6 +886,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **returnSessionTokenExchangeCode** | **bool?** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]  |
 | **returnTo** | **string?** | The URL to return the browser to after the flow was completed. | [optional]  |
+| **organization** | **string?** | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional]  |
 
 ### Return type
 
@@ -930,7 +934,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var xSessionToken = "xSessionToken_example";  // string? | The Session Token of the Identity performing the settings flow. (optional) 
 
@@ -1023,7 +1027,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var returnTo = "returnTo_example";  // string? | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. (optional) 
 
@@ -1116,7 +1120,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var xSessionToken = "xSessionToken_example";  // string? | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional) 
             var cookie = "cookie_example";  // string? | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional) 
@@ -1212,7 +1216,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var id = "id_example";  // string | ID is the session's ID.
             var xSessionToken = "xSessionToken_example";  // string? | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional) 
@@ -1304,7 +1308,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var initCode = "initCode_example";  // string | The part of the code return when initializing the flow.
             var returnToCode = "returnToCode_example";  // string | The part of the code returned by the return_to URL.
@@ -1401,7 +1405,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var id = "id_example";  // string | Error is the error's ID
 
@@ -1495,7 +1499,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var id = "id_example";  // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
             var cookie = "cookie_example";  // string? | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
@@ -1592,7 +1596,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var id = "id_example";  // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
             var cookie = "cookie_example";  // string? | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
@@ -1688,7 +1692,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var id = "id_example";  // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
             var cookie = "cookie_example";  // string? | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
@@ -1785,7 +1789,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var id = "id_example";  // string | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
             var xSessionToken = "xSessionToken_example";  // string? | The Session Token  When using the SDK in an app without a browser, please include the session token here. (optional) 
@@ -1885,7 +1889,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var id = "id_example";  // string | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
             var cookie = "cookie_example";  // string? | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional) 
@@ -1981,7 +1985,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
 
             try
@@ -2067,7 +2071,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var perPage = 250L;  // long? | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)  (default to 250)
             var page = 789L;  // long? | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional) 
@@ -2171,7 +2175,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var clientPerformNativeLogoutBody = new ClientPerformNativeLogoutBody(); // ClientPerformNativeLogoutBody | 
 
@@ -2260,7 +2264,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var xSessionToken = MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj;  // string? | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional) 
             var cookie = ory_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==;  // string? | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional) 
@@ -2358,7 +2362,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var flow = "flow_example";  // string | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
             var clientUpdateLoginFlowBody = new ClientUpdateLoginFlowBody(); // ClientUpdateLoginFlowBody | 
@@ -2460,7 +2464,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var token = "token_example";  // string? | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint. (optional) 
             var returnTo = "returnTo_example";  // string? | The URL to return to after the logout was completed. (optional) 
@@ -2553,7 +2557,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var flow = "flow_example";  // string | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
             var clientUpdateRecoveryFlowBody = new ClientUpdateRecoveryFlowBody(); // ClientUpdateRecoveryFlowBody | 
@@ -2655,7 +2659,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var flow = "flow_example";  // string | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
             var clientUpdateRegistrationFlowBody = new ClientUpdateRegistrationFlowBody(); // ClientUpdateRegistrationFlowBody | 
@@ -2755,7 +2759,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var flow = "flow_example";  // string | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
             var clientUpdateSettingsFlowBody = new ClientUpdateSettingsFlowBody(); // ClientUpdateSettingsFlowBody | 
@@ -2859,7 +2863,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://.projects.oryapis.com";
+            config.BasePath = "https://playground.projects.oryapis.com";
             var apiInstance = new FrontendApi(config);
             var flow = "flow_example";  // string | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
             var clientUpdateVerificationFlowBody = new ClientUpdateVerificationFlowBody(); // ClientUpdateVerificationFlowBody | 

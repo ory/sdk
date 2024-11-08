@@ -1,9 +1,9 @@
 /*
 Ory APIs
 
-Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers. 
+# Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.15.7
+API version: v1.15.10
 Contact: support@ory.sh
 */
 
@@ -1462,6 +1462,7 @@ func (r FrontendAPICreateBrowserRegistrationFlowRequest) AfterVerificationReturn
 	return r
 }
 
+// An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
 func (r FrontendAPICreateBrowserRegistrationFlowRequest) Organization(organization string) FrontendAPICreateBrowserRegistrationFlowRequest {
 	r.organization = &organization
 	return r
@@ -1916,6 +1917,7 @@ type FrontendAPICreateNativeLoginFlowRequest struct {
 	xSessionToken *string
 	returnSessionTokenExchangeCode *bool
 	returnTo *string
+	organization *string
 	via *string
 }
 
@@ -1946,6 +1948,12 @@ func (r FrontendAPICreateNativeLoginFlowRequest) ReturnSessionTokenExchangeCode(
 // The URL to return the browser to after the flow was completed.
 func (r FrontendAPICreateNativeLoginFlowRequest) ReturnTo(returnTo string) FrontendAPICreateNativeLoginFlowRequest {
 	r.returnTo = &returnTo
+	return r
+}
+
+// An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
+func (r FrontendAPICreateNativeLoginFlowRequest) Organization(organization string) FrontendAPICreateNativeLoginFlowRequest {
+	r.organization = &organization
 	return r
 }
 
@@ -2025,6 +2033,9 @@ func (a *FrontendAPIService) CreateNativeLoginFlowExecute(r FrontendAPICreateNat
 	}
 	if r.returnTo != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "return_to", r.returnTo, "")
+	}
+	if r.organization != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organization", r.organization, "")
 	}
 	if r.via != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "via", r.via, "")
@@ -2240,6 +2251,7 @@ type FrontendAPICreateNativeRegistrationFlowRequest struct {
 	ApiService FrontendAPI
 	returnSessionTokenExchangeCode *bool
 	returnTo *string
+	organization *string
 }
 
 // EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
@@ -2251,6 +2263,12 @@ func (r FrontendAPICreateNativeRegistrationFlowRequest) ReturnSessionTokenExchan
 // The URL to return the browser to after the flow was completed.
 func (r FrontendAPICreateNativeRegistrationFlowRequest) ReturnTo(returnTo string) FrontendAPICreateNativeRegistrationFlowRequest {
 	r.returnTo = &returnTo
+	return r
+}
+
+// An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
+func (r FrontendAPICreateNativeRegistrationFlowRequest) Organization(organization string) FrontendAPICreateNativeRegistrationFlowRequest {
+	r.organization = &organization
 	return r
 }
 
@@ -2317,6 +2335,9 @@ func (a *FrontendAPIService) CreateNativeRegistrationFlowExecute(r FrontendAPICr
 	}
 	if r.returnTo != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "return_to", r.returnTo, "")
+	}
+	if r.organization != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organization", r.organization, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

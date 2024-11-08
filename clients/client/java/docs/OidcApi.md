@@ -1,6 +1,6 @@
 # OidcApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -34,7 +34,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
 
     OidcApi apiInstance = new OidcApi(defaultClient);
     OAuth2Client oauth2Client = new OAuth2Client(); // OAuth2Client | Dynamic Client Registration Request Body
@@ -98,7 +98,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
 
     OidcApi apiInstance = new OidcApi(defaultClient);
     CreateVerifiableCredentialRequestBody createVerifiableCredentialRequestBody = new CreateVerifiableCredentialRequestBody(); // CreateVerifiableCredentialRequestBody | 
@@ -163,7 +163,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: bearer
     HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
@@ -229,7 +229,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
 
     OidcApi apiInstance = new OidcApi(defaultClient);
     try {
@@ -289,7 +289,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: bearer
     HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
@@ -357,7 +357,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -420,7 +420,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
 
     OidcApi apiInstance = new OidcApi(defaultClient);
     try {
@@ -478,7 +478,7 @@ import sh.ory.api.OidcApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: bearer
     HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");

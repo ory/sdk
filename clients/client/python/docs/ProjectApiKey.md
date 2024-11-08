@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** | The token&#39;s creation date | [optional] [readonly] 
+**expires_at** | **datetime** |  | [optional] 
 **id** | **str** | The token&#39;s ID. | [readonly] 
 **name** | **str** | The Token&#39;s Name  Set this to help you remember, for example, where you use the token. | 
 **owner_id** | **str** | The token&#39;s owner | [readonly] 

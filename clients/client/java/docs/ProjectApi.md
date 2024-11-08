@@ -1,19 +1,19 @@
 # ProjectApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createOrganization**](ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization |
 | [**createProject**](ProjectApi.md#createProject) | **POST** /projects | Create a Project |
-| [**createProjectApiKey**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API token |
+| [**createProjectApiKey**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API key |
 | [**deleteOrganization**](ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization |
-| [**deleteProjectApiKey**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token |
+| [**deleteProjectApiKey**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key |
 | [**getOrganization**](ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
 | [**getProject**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
 | [**getProjectMembers**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**listOrganizations**](ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
-| [**listProjectApiKeys**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens |
+| [**listProjectApiKeys**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API keys |
 | [**listProjects**](ProjectApi.md#listProjects) | **GET** /projects | List All Projects |
 | [**patchProject**](ProjectApi.md#patchProject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration |
 | [**patchProjectWithRevision**](ProjectApi.md#patchProjectWithRevision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID |
@@ -44,7 +44,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -117,7 +117,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -171,9 +171,9 @@ public class Example {
 # **createProjectApiKey**
 > ProjectApiKey createProjectApiKey(project, createProjectApiKeyRequest)
 
-Create project API token
+Create project API key
 
-Create an API token for a project.
+Create an API key for a project.
 
 ### Example
 ```java
@@ -188,7 +188,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -258,7 +258,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -314,9 +314,9 @@ null (empty response body)
 # **deleteProjectApiKey**
 > deleteProjectApiKey(project, tokenId)
 
-Delete project API token
+Delete project API key
 
-Deletes an API token and immediately removes it.
+Deletes an API key and immediately removes it.
 
 ### Example
 ```java
@@ -331,7 +331,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -400,7 +400,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -472,7 +472,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -543,7 +543,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -613,7 +613,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -672,9 +672,9 @@ public class Example {
 # **listProjectApiKeys**
 > List&lt;ProjectApiKey&gt; listProjectApiKeys(project)
 
-List a project&#39;s API Tokens
+List a project&#39;s API keys
 
-A list of all the project&#39;s API tokens.
+A list of all the project&#39;s API keys.
 
 ### Example
 ```java
@@ -689,7 +689,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -757,7 +757,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -824,7 +824,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -898,7 +898,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -974,7 +974,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -1044,7 +1044,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -1115,7 +1115,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
@@ -1189,7 +1189,7 @@ import sh.ory.api.ProjectApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryWorkspaceApiKey
     HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");

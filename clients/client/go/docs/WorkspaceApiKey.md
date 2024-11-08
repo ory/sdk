@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | The API key&#39;s creation date | [optional] [readonly] 
+**ExpiresAt** | Pointer to **time.Time** |  | [optional] 
 **Id** | **string** | The key&#39;s ID. | [readonly] 
 **Name** | **string** | The API key&#39;s Name  Set this to help you remember, for example, where you use the API key. | 
 **OwnerId** | **string** | The key&#39;s owner | [readonly] 
 **UpdatedAt** | Pointer to **time.Time** | The API key&#39;s last update date | [optional] [readonly] 
 **Value** | Pointer to **string** | The key&#39;s value | [optional] [readonly] 
-**WorkspaceId** | Pointer to **string** | The API token&#39;s workspace ID | [optional] [readonly] 
+**WorkspaceId** | Pointer to **string** | The API key&#39;s workspace ID | [optional] [readonly] 
 
 ## Methods
 
@@ -55,6 +56,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *WorkspaceApiKey) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetExpiresAt
+
+`func (o *WorkspaceApiKey) GetExpiresAt() time.Time`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *WorkspaceApiKey) GetExpiresAtOk() (*time.Time, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *WorkspaceApiKey) SetExpiresAt(v time.Time)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *WorkspaceApiKey) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
 
 ### GetId
 

@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**expires_at** | **datetime** |  | [optional] 
 **name** | **str** | The Token Name  A descriptive name for the token.  in: body | 
 
 ## Example

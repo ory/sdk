@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **namespace** | **string** | Namespace is the namespace of the subject. |
-**projectScope** | **string** | ProjectScope is the project_id resolved from the API Token. | [optional]
+**projectScope** | **string** | ProjectScope is the project_id resolved from the API key. | [optional]
 **projectSlug** | **string** | ProjectSlug is the project&#39;s slug. |
 **subject** | **string** | Subject is the subject acting (user or API key). |
 

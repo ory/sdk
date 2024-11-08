@@ -1,6 +1,6 @@
 # Ory\Client\WellknownApi
 
-All URIs are relative to https://.projects.oryapis.com, except if the operation defines another base path.
+All URIs are relative to https://playground.projects.oryapis.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |

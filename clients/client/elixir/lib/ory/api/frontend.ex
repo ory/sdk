@@ -148,7 +148,7 @@ defmodule Ory.Api.Frontend do
     - `:return_to` (String.t): The URL to return the browser to after the flow was completed.
     - `:login_challenge` (String.t): Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
     - `:after_verification_return_to` (String.t): The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
-    - `:organization` (String.t): 
+    - `:organization` (String.t): An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
 
   ### Returns
 
@@ -272,6 +272,7 @@ defmodule Ory.Api.Frontend do
     - `:"X-Session-Token"` (String.t): The Session Token of the Identity performing the settings flow.
     - `:return_session_token_exchange_code` (boolean()): EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
     - `:return_to` (String.t): The URL to return the browser to after the flow was completed.
+    - `:organization` (String.t): An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
     - `:via` (String.t): Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
 
   ### Returns
@@ -287,6 +288,7 @@ defmodule Ory.Api.Frontend do
       :"X-Session-Token" => :headers,
       :return_session_token_exchange_code => :query,
       :return_to => :query,
+      :organization => :query,
       :via => :query
     }
 
@@ -347,6 +349,7 @@ defmodule Ory.Api.Frontend do
   - `opts` (keyword): Optional parameters
     - `:return_session_token_exchange_code` (boolean()): EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
     - `:return_to` (String.t): The URL to return the browser to after the flow was completed.
+    - `:organization` (String.t): An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
 
   ### Returns
 
@@ -357,7 +360,8 @@ defmodule Ory.Api.Frontend do
   def create_native_registration_flow(connection, opts \\ []) do
     optional_params = %{
       :return_session_token_exchange_code => :query,
-      :return_to => :query
+      :return_to => :query,
+      :organization => :query
     }
 
     request =

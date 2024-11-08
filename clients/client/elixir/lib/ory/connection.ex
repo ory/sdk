@@ -8,19 +8,19 @@ defmodule Ory.Connection do
   Additional middleware can be set in the compile-time or runtime configuration:
 
       config :tesla, Ory.Connection,
-        base_url: "https://.projects.oryapis.com",
+        base_url: "https://playground.projects.oryapis.com",
         adapter: Tesla.Adapter.Hackney
 
   The default base URL can also be set as:
 
       config :ory_client,
-        :base_url, "https://.projects.oryapis.com"
+        :base_url, "https://playground.projects.oryapis.com"
   """
 
   @default_base_url Application.compile_env(
                       :ory_client,
                       :base_url,
-                      "https://.projects.oryapis.com"
+                      "https://playground.projects.oryapis.com"
                     )
 
   @default_scopes [
@@ -164,7 +164,7 @@ defmodule Ory.Connection do
         Keyword.get(
           tesla_options,
           :user_agent,
-          "openapi-generator - Ory v1.15.7 - elixir"
+          "openapi-generator - Ory v1.15.10 - elixir"
         )
       )
 

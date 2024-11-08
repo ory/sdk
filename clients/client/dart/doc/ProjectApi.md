@@ -5,20 +5,20 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createOrganization**](ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
 [**createProject**](ProjectApi.md#createproject) | **POST** /projects | Create a Project
-[**createProjectApiKey**](ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API token
+[**createProjectApiKey**](ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API key
 [**deleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
-[**deleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API token
+[**deleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key
 [**getOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 [**getProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
 [**getProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
 [**listOrganizations**](ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
-[**listProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API Tokens
+[**listProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API keys
 [**listProjects**](ProjectApi.md#listprojects) | **GET** /projects | List All Projects
 [**patchProject**](ProjectApi.md#patchproject) | **PATCH** /projects/{project_id} | Patch an Ory Network Project Configuration
 [**patchProjectWithRevision**](ProjectApi.md#patchprojectwithrevision) | **PATCH** /projects/{project_id}/revision/{revision_id} | Patch an Ory Network Project Configuration based on a revision ID
@@ -119,9 +119,9 @@ Name | Type | Description  | Notes
 # **createProjectApiKey**
 > ProjectApiKey createProjectApiKey(project, createProjectApiKeyRequest)
 
-Create project API token
+Create project API key
 
-Create an API token for a project.
+Create an API key for a project.
 
 ### Example
 ```dart
@@ -208,9 +208,9 @@ void (empty response body)
 # **deleteProjectApiKey**
 > deleteProjectApiKey(project, tokenId)
 
-Delete project API token
+Delete project API key
 
-Deletes an API token and immediately removes it.
+Deletes an API key and immediately removes it.
 
 ### Example
 ```dart
@@ -432,9 +432,9 @@ Name | Type | Description  | Notes
 # **listProjectApiKeys**
 > BuiltList<ProjectApiKey> listProjectApiKeys(project)
 
-List a project's API Tokens
+List a project's API keys
 
-A list of all the project's API tokens.
+A list of all the project's API keys.
 
 ### Example
 ```dart

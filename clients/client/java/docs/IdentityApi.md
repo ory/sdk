@@ -1,6 +1,6 @@
 # IdentityApi
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -45,7 +45,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -115,7 +115,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -185,7 +185,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -255,7 +255,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -327,7 +327,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -395,7 +395,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -467,7 +467,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -537,7 +537,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -606,7 +606,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -677,7 +677,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -747,7 +747,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID must be set to the ID of schema you want to get
@@ -812,7 +812,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -864,7 +864,7 @@ public class Example {
 
 <a id="listIdentities"></a>
 # **listIdentities**
-> List&lt;Identity&gt; listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential)
+> List&lt;Identity&gt; listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential, organizationId)
 
 List Identities
 
@@ -883,7 +883,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -899,8 +899,9 @@ public class Example {
     String credentialsIdentifier = "credentialsIdentifier_example"; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     String previewCredentialsIdentifierSimilar = "previewCredentialsIdentifierSimilar_example"; // String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     List<String> includeCredential = Arrays.asList(); // List<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+    String organizationId = "organizationId_example"; // String | OrganizationID is the organization id to filter identities by.  If `ids` is set, this parameter is ignored.
     try {
-      List<Identity> result = apiInstance.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential);
+      List<Identity> result = apiInstance.listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential, organizationId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling IdentityApi#listIdentities");
@@ -926,6 +927,7 @@ public class Example {
 | **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **previewCredentialsIdentifierSimilar** | **String**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
+| **organizationId** | **String**| OrganizationID is the organization id to filter identities by.  If &#x60;ids&#x60; is set, this parameter is ignored. | [optional] |
 
 ### Return type
 
@@ -966,7 +968,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     Long perPage = 250L; // Long | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.
@@ -1036,7 +1038,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -1116,7 +1118,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -1191,7 +1193,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
@@ -1264,7 +1266,7 @@ import sh.ory.api.IdentityApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://.projects.oryapis.com");
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
     
     // Configure HTTP bearer authorization: oryAccessToken
     HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");

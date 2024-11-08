@@ -13,6 +13,7 @@ defmodule Ory.Model.QuotaUsage do
     :feature,
     :feature_available,
     :included,
+    :is_unlimited,
     :used
   ]
 
@@ -22,6 +23,7 @@ defmodule Ory.Model.QuotaUsage do
     :feature => String.t,
     :feature_available => boolean(),
     :included => integer(),
+    :is_unlimited => boolean(),
     :used => integer()
   }
 

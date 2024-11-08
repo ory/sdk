@@ -5,15 +5,15 @@
 import 'package:ory_client/api.dart';
 ```
 
-All URIs are relative to *https://.projects.oryapis.com*
+All URIs are relative to *https://playground.projects.oryapis.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createWorkspace**](WorkspaceApi.md#createworkspace) | **POST** /workspaces | Create a new workspace
 [**createWorkspaceApiKey**](WorkspaceApi.md#createworkspaceapikey) | **POST** /workspaces/{workspace}/tokens | Create workspace API key
-[**deleteWorkspaceApiKey**](WorkspaceApi.md#deleteworkspaceapikey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API token
+[**deleteWorkspaceApiKey**](WorkspaceApi.md#deleteworkspaceapikey) | **DELETE** /workspaces/{workspace}/tokens/{token_id} | Delete workspace API key
 [**getWorkspace**](WorkspaceApi.md#getworkspace) | **GET** /workspaces/{workspace} | Get a workspace
-[**listWorkspaceApiKeys**](WorkspaceApi.md#listworkspaceapikeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API Tokens
+[**listWorkspaceApiKeys**](WorkspaceApi.md#listworkspaceapikeys) | **GET** /workspaces/{workspace}/tokens | List a workspace&#39;s API keys
 [**listWorkspaceProjects**](WorkspaceApi.md#listworkspaceprojects) | **GET** /workspaces/{workspace}/projects | List all projects of a workspace
 [**listWorkspaces**](WorkspaceApi.md#listworkspaces) | **GET** /workspaces | List workspaces the user is a member of
 [**updateWorkspace**](WorkspaceApi.md#updateworkspace) | **PUT** /workspaces/{workspace} | Update an workspace
@@ -108,9 +108,9 @@ Name | Type | Description  | Notes
 # **deleteWorkspaceApiKey**
 > deleteWorkspaceApiKey(workspace, tokenId)
 
-Delete workspace API token
+Delete workspace API key
 
-Deletes an API token and immediately removes it.
+Deletes an API key and immediately removes it.
 
 ### Example
 ```dart
@@ -195,9 +195,9 @@ Name | Type | Description  | Notes
 # **listWorkspaceApiKeys**
 > BuiltList<WorkspaceApiKey> listWorkspaceApiKeys(workspace)
 
-List a workspace's API Tokens
+List a workspace's API keys
 
-A list of all the workspace's API tokens.
+A list of all the workspace's API keys.
 
 ### Example
 ```dart

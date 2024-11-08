@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ory_client"
-version = "v1.15.7"
+version = "v1.15.10"
 description = "Ory APIs"
 authors = ["API Support <support@ory.sh>"]
 license = "Apache 2.0"
