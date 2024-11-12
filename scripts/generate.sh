@@ -217,7 +217,7 @@ dotnet () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
+  openapi-generator-cli version-manager set 7.8.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g csharp \
     -o "$dir" \
