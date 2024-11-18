@@ -76,6 +76,7 @@ export DART_PUB_REPOSITORY="https://github.com/ory/sdk/tree/master/clients/${PRO
 export JAVA_GROUP_ID=sh.ory.$PROJECT
 export JAVA_ARTIFACT_ID=$PROJECT-client
 
+export COMPOSER_ALLOW_SUPERUSER=1
 export PHP_PACKAGE_NAME="ory/${PROJECT}-client"
 export PHP_INVOKER_PACKAGE="Ory\\${PROJECT_UCF}\\Client"
 
