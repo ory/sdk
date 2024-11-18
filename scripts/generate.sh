@@ -251,6 +251,25 @@ dart () {
   (cd $dir; command dart run build_runner build)
 }
 
+kotlin () {
+  echo "Generating Dart..."
+
+  dir="clients/${PROJECT}/kotlin"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
+
+  openapi-generator-cli version-manager set 7.7.0
+  openapi-generator-cli generate -i "${SPEC_FILE}" \
+    -g kotlin\
+    -o "$dir" \
+    --git-user-id ory \
+    --git-repo-id sdk \
+    --git-host github.com \
+    -c ./config/client/kotlin.yml.proc.yml
+
+  cp "LICENSE" "clients/${PROJECT}/kotlin"
+}
+
 rust () {
   echo "Generating Rust..."
 
@@ -305,6 +324,8 @@ elixir () {
 
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
+
+kotlin
 
 elixir
 typescript
