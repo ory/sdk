@@ -550,6 +550,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final String? hydraOauth2GrantJwtMaxTtl;
   @override
+  final String? hydraOauth2GrantRefreshTokenRotationGracePeriod;
+  @override
   final bool? hydraOauth2MirrorTopLevelClaims;
   @override
   final bool? hydraOauth2PkceEnforced;
@@ -984,6 +986,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.hydraOauth2GrantJwtIatOptional,
       this.hydraOauth2GrantJwtJtiOptional,
       this.hydraOauth2GrantJwtMaxTtl,
+      this.hydraOauth2GrantRefreshTokenRotationGracePeriod,
       this.hydraOauth2MirrorTopLevelClaims,
       this.hydraOauth2PkceEnforced,
       this.hydraOauth2PkceEnforcedForPublicClients,
@@ -1219,6 +1222,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         hydraOauth2GrantJwtJtiOptional ==
             other.hydraOauth2GrantJwtJtiOptional &&
         hydraOauth2GrantJwtMaxTtl == other.hydraOauth2GrantJwtMaxTtl &&
+        hydraOauth2GrantRefreshTokenRotationGracePeriod ==
+            other.hydraOauth2GrantRefreshTokenRotationGracePeriod &&
         hydraOauth2MirrorTopLevelClaims ==
             other.hydraOauth2MirrorTopLevelClaims &&
         hydraOauth2PkceEnforced == other.hydraOauth2PkceEnforced &&
@@ -1606,6 +1611,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(_$hash, hydraOauth2GrantJwtIatOptional.hashCode);
     _$hash = $jc(_$hash, hydraOauth2GrantJwtJtiOptional.hashCode);
     _$hash = $jc(_$hash, hydraOauth2GrantJwtMaxTtl.hashCode);
+    _$hash =
+        $jc(_$hash, hydraOauth2GrantRefreshTokenRotationGracePeriod.hashCode);
     _$hash = $jc(_$hash, hydraOauth2MirrorTopLevelClaims.hashCode);
     _$hash = $jc(_$hash, hydraOauth2PkceEnforced.hashCode);
     _$hash = $jc(_$hash, hydraOauth2PkceEnforcedForPublicClients.hashCode);
@@ -1951,6 +1958,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
           ..add(
               'hydraOauth2GrantJwtJtiOptional', hydraOauth2GrantJwtJtiOptional)
           ..add('hydraOauth2GrantJwtMaxTtl', hydraOauth2GrantJwtMaxTtl)
+          ..add('hydraOauth2GrantRefreshTokenRotationGracePeriod',
+              hydraOauth2GrantRefreshTokenRotationGracePeriod)
           ..add('hydraOauth2MirrorTopLevelClaims',
               hydraOauth2MirrorTopLevelClaims)
           ..add('hydraOauth2PkceEnforced', hydraOauth2PkceEnforced)
@@ -2396,6 +2405,14 @@ class CreateProjectNormalizedPayloadBuilder
   String? get hydraOauth2GrantJwtMaxTtl => _$this._hydraOauth2GrantJwtMaxTtl;
   set hydraOauth2GrantJwtMaxTtl(String? hydraOauth2GrantJwtMaxTtl) =>
       _$this._hydraOauth2GrantJwtMaxTtl = hydraOauth2GrantJwtMaxTtl;
+
+  String? _hydraOauth2GrantRefreshTokenRotationGracePeriod;
+  String? get hydraOauth2GrantRefreshTokenRotationGracePeriod =>
+      _$this._hydraOauth2GrantRefreshTokenRotationGracePeriod;
+  set hydraOauth2GrantRefreshTokenRotationGracePeriod(
+          String? hydraOauth2GrantRefreshTokenRotationGracePeriod) =>
+      _$this._hydraOauth2GrantRefreshTokenRotationGracePeriod =
+          hydraOauth2GrantRefreshTokenRotationGracePeriod;
 
   bool? _hydraOauth2MirrorTopLevelClaims;
   bool? get hydraOauth2MirrorTopLevelClaims =>
@@ -3949,6 +3966,8 @@ class CreateProjectNormalizedPayloadBuilder
       _hydraOauth2GrantJwtIatOptional = $v.hydraOauth2GrantJwtIatOptional;
       _hydraOauth2GrantJwtJtiOptional = $v.hydraOauth2GrantJwtJtiOptional;
       _hydraOauth2GrantJwtMaxTtl = $v.hydraOauth2GrantJwtMaxTtl;
+      _hydraOauth2GrantRefreshTokenRotationGracePeriod =
+          $v.hydraOauth2GrantRefreshTokenRotationGracePeriod;
       _hydraOauth2MirrorTopLevelClaims = $v.hydraOauth2MirrorTopLevelClaims;
       _hydraOauth2PkceEnforced = $v.hydraOauth2PkceEnforced;
       _hydraOauth2PkceEnforcedForPublicClients =
@@ -4330,6 +4349,8 @@ class CreateProjectNormalizedPayloadBuilder
               hydraOauth2GrantJwtIatOptional: hydraOauth2GrantJwtIatOptional,
               hydraOauth2GrantJwtJtiOptional: hydraOauth2GrantJwtJtiOptional,
               hydraOauth2GrantJwtMaxTtl: hydraOauth2GrantJwtMaxTtl,
+              hydraOauth2GrantRefreshTokenRotationGracePeriod:
+                  hydraOauth2GrantRefreshTokenRotationGracePeriod,
               hydraOauth2MirrorTopLevelClaims: hydraOauth2MirrorTopLevelClaims,
               hydraOauth2PkceEnforced: hydraOauth2PkceEnforced,
               hydraOauth2PkceEnforcedForPublicClients:

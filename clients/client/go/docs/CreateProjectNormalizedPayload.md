@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **HydraOauth2GrantJwtIatOptional** | Pointer to **bool** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtJtiOptional** | Pointer to **bool** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtMaxTtl** | Pointer to **string** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional] [default to "720h"]
+**HydraOauth2GrantRefreshTokenRotationGracePeriod** | Pointer to **string** | Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to &#x60;null&#x60; or &#x60;\&quot;0s\&quot;&#x60;, the graceful refresh token rotation is disabled.  This governs the \&quot;oauth2.grant.refresh_token_rotation_grace_period\&quot; setting. | [optional] 
 **HydraOauth2MirrorTopLevelClaims** | Pointer to **bool** | Set to false if you don&#39;t want to mirror custom claims under &#39;ext&#39;.  This governs the \&quot;oauth2.mirror_top_level_claims\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforced** | Pointer to **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforcedForPublicClients** | Pointer to **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
@@ -502,6 +503,31 @@ SetHydraOauth2GrantJwtMaxTtl sets HydraOauth2GrantJwtMaxTtl field to given value
 `func (o *CreateProjectNormalizedPayload) HasHydraOauth2GrantJwtMaxTtl() bool`
 
 HasHydraOauth2GrantJwtMaxTtl returns a boolean if a field has been set.
+
+### GetHydraOauth2GrantRefreshTokenRotationGracePeriod
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2GrantRefreshTokenRotationGracePeriod() string`
+
+GetHydraOauth2GrantRefreshTokenRotationGracePeriod returns the HydraOauth2GrantRefreshTokenRotationGracePeriod field if non-nil, zero value otherwise.
+
+### GetHydraOauth2GrantRefreshTokenRotationGracePeriodOk
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2GrantRefreshTokenRotationGracePeriodOk() (*string, bool)`
+
+GetHydraOauth2GrantRefreshTokenRotationGracePeriodOk returns a tuple with the HydraOauth2GrantRefreshTokenRotationGracePeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2GrantRefreshTokenRotationGracePeriod
+
+`func (o *CreateProjectNormalizedPayload) SetHydraOauth2GrantRefreshTokenRotationGracePeriod(v string)`
+
+SetHydraOauth2GrantRefreshTokenRotationGracePeriod sets HydraOauth2GrantRefreshTokenRotationGracePeriod field to given value.
+
+### HasHydraOauth2GrantRefreshTokenRotationGracePeriod
+
+`func (o *CreateProjectNormalizedPayload) HasHydraOauth2GrantRefreshTokenRotationGracePeriod() bool`
+
+HasHydraOauth2GrantRefreshTokenRotationGracePeriod returns a boolean if a field has been set.
 
 ### GetHydraOauth2MirrorTopLevelClaims
 

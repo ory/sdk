@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.15.10
+  version: v1.15.12
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -8603,6 +8603,14 @@ components:
           example: 30m
           pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
           type: string
+        hydra_oauth2_grant_refresh_token_rotation_grace_period:
+          description: |-
+            Configures the OAuth2 Grant Refresh Token Rotation Grace Period
+
+            If set to `null` or `"0s"`, the graceful refresh token rotation is disabled.
+
+            This governs the "oauth2.grant.refresh_token_rotation_grace_period" setting.
+          type: string
         hydra_oauth2_mirror_top_level_claims:
           description: |-
             Set to false if you don't want to mirror custom claims under 'ext'.
@@ -14035,6 +14043,14 @@ components:
             This governs the "oauth2.grant.jwt.max_ttl" setting.
           example: 30m
           pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          type: string
+        hydra_oauth2_grant_refresh_token_rotation_grace_period:
+          description: |-
+            Configures the OAuth2 Grant Refresh Token Rotation Grace Period
+
+            If set to `null` or `"0s"`, the graceful refresh token rotation is disabled.
+
+            This governs the "oauth2.grant.refresh_token_rotation_grace_period" setting.
           type: string
         hydra_oauth2_mirror_top_level_claims:
           description: |-

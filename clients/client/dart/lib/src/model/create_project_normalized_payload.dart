@@ -30,6 +30,7 @@ part 'create_project_normalized_payload.g.dart';
 /// * [hydraOauth2GrantJwtIatOptional] - Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
 /// * [hydraOauth2GrantJwtJtiOptional] - Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
 /// * [hydraOauth2GrantJwtMaxTtl] - Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
+/// * [hydraOauth2GrantRefreshTokenRotationGracePeriod] - Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to `null` or `\"0s\"`, the graceful refresh token rotation is disabled.  This governs the \"oauth2.grant.refresh_token_rotation_grace_period\" setting.
 /// * [hydraOauth2MirrorTopLevelClaims] - Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
 /// * [hydraOauth2PkceEnforced] - Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
 /// * [hydraOauth2PkceEnforcedForPublicClients] - Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
@@ -274,6 +275,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   /// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_grant_jwt_max_ttl')
   String? get hydraOauth2GrantJwtMaxTtl;
+
+  /// Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to `null` or `\"0s\"`, the graceful refresh token rotation is disabled.  This governs the \"oauth2.grant.refresh_token_rotation_grace_period\" setting.
+  @BuiltValueField(wireName: r'hydra_oauth2_grant_refresh_token_rotation_grace_period')
+  String? get hydraOauth2GrantRefreshTokenRotationGracePeriod;
 
   /// Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
   @BuiltValueField(wireName: r'hydra_oauth2_mirror_top_level_claims')
@@ -1157,6 +1162,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield r'hydra_oauth2_grant_jwt_max_ttl';
       yield serializers.serialize(
         object.hydraOauth2GrantJwtMaxTtl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.hydraOauth2GrantRefreshTokenRotationGracePeriod != null) {
+      yield r'hydra_oauth2_grant_refresh_token_rotation_grace_period';
+      yield serializers.serialize(
+        object.hydraOauth2GrantRefreshTokenRotationGracePeriod,
         specifiedType: const FullType(String),
       );
     }
@@ -2643,6 +2655,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(String),
           ) as String;
           result.hydraOauth2GrantJwtMaxTtl = valueDes;
+          break;
+        case r'hydra_oauth2_grant_refresh_token_rotation_grace_period':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.hydraOauth2GrantRefreshTokenRotationGracePeriod = valueDes;
           break;
         case r'hydra_oauth2_mirror_top_level_claims':
           final valueDes = serializers.deserialize(

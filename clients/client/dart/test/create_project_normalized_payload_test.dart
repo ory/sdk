@@ -72,6 +72,12 @@ void main() {
       // TODO
     });
 
+    // Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to `null` or `\"0s\"`, the graceful refresh token rotation is disabled.  This governs the \"oauth2.grant.refresh_token_rotation_grace_period\" setting.
+    // String hydraOauth2GrantRefreshTokenRotationGracePeriod
+    test('to test the property `hydraOauth2GrantRefreshTokenRotationGracePeriod`', () async {
+      // TODO
+    });
+
     // Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
     // bool hydraOauth2MirrorTopLevelClaims
     test('to test the property `hydraOauth2MirrorTopLevelClaims`', () async {
