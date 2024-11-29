@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.15.12
+  version: v1.15.13
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -13169,17 +13169,13 @@ components:
       title: Login Flow
       type: object
     loginFlowState:
-      description: |-
-        The state represents the state of the login flow.
-
-        choose_method: ask the user to choose a method (e.g. login account via email)
-        sent_email: the email has been sent to the user
-        passed_challenge: the request was successful and the login challenge was passed.
+      description: The experimental state represents the state of a login flow. This
+        field is EXPERIMENTAL and subject to change!
       enum:
       - choose_method
       - sent_email
       - passed_challenge
-      title: Login Flow State
+      title: Login flow state (experimental)
       type: string
     logoutFlow:
       description: Logout Flow
@@ -17923,6 +17919,7 @@ components:
             identities_list_rate_limit_tier RateLimitTierIdentitiesList
             permission_checks_rate_limit_tier RateLimitTierPermissionChecks
             oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect
+            create_recovery_admin_rate_limit_tier RateLimitTierCreateAdminRecovery
           enum:
           - production_projects
           - staging_projects
@@ -17955,6 +17952,7 @@ components:
           - identities_list_rate_limit_tier
           - permission_checks_rate_limit_tier
           - oauth2_introspect_rate_limit_tier
+          - create_recovery_admin_rate_limit_tier
           type: string
           x-go-enum-desc: |-
             production_projects ProductionProjects
@@ -17988,6 +17986,7 @@ components:
             identities_list_rate_limit_tier RateLimitTierIdentitiesList
             permission_checks_rate_limit_tier RateLimitTierPermissionChecks
             oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect
+            create_recovery_admin_rate_limit_tier RateLimitTierCreateAdminRecovery
         feature_available:
           type: boolean
         included:
@@ -18209,17 +18208,13 @@ components:
       title: A Recovery Flow
       type: object
     recoveryFlowState:
-      description: |-
-        The state represents the state of the recovery flow.
-
-        choose_method: ask the user to choose a method (e.g. recover account via email)
-        sent_email: the email has been sent to the user
-        passed_challenge: the request was successful and the recovery challenge was passed.
+      description: The experimental state represents the state of a recovery flow.
+        This field is EXPERIMENTAL and subject to change!
       enum:
       - choose_method
       - sent_email
       - passed_challenge
-      title: Recovery Flow State
+      title: Recovery flow state (experimental)
       type: string
     recoveryIdentityAddress:
       example:
@@ -18569,15 +18564,13 @@ components:
       - ui
       type: object
     registrationFlowState:
-      description: |-
-        choose_method: ask the user to choose a method (e.g. registration with email)
-        sent_email: the email has been sent to the user
-        passed_challenge: the request was successful and the registration challenge was passed.
+      description: The experimental state represents the state of a registration flow.
+        This field is EXPERIMENTAL and subject to change!
       enum:
       - choose_method
       - sent_email
       - passed_challenge
-      title: 'State represents the state of this request:'
+      title: Registration flow state (experimental)
       type: string
     rejectOAuth2Request:
       properties:
@@ -19292,15 +19285,12 @@ components:
       title: Flow represents a Settings Flow
       type: object
     settingsFlowState:
-      description: |-
-        show_form: No user data has been collected, or it is invalid, and thus the form should be shown.
-        success: Indicates that the settings flow has been updated successfully with the provided data.
-        Done will stay true when repeatedly checking. If set to true, done will revert back to false only
-        when a flow with invalid (e.g. "please use a valid phone number") data was sent.
+      description: The experimental state represents the state of a settings flow.
+        This field is EXPERIMENTAL and subject to change!
       enum:
       - show_form
       - success
-      title: 'State represents the state of this flow. It knows two states:'
+      title: Settings flow state (experimental)
       type: string
     subjectSet:
       example:
@@ -21941,17 +21931,13 @@ components:
       title: A Verification Flow
       type: object
     verificationFlowState:
-      description: |-
-        The state represents the state of the verification flow.
-
-        choose_method: ask the user to choose a method (e.g. recover account via email)
-        sent_email: the email has been sent to the user
-        passed_challenge: the request was successful and the recovery challenge was passed.
+      description: The experimental state represents the state of a verification flow.
+        This field is EXPERIMENTAL and subject to change!
       enum:
       - choose_method
       - sent_email
       - passed_challenge
-      title: Verification Flow State
+      title: Verification flow state (experimental)
       type: string
     version:
       properties:
