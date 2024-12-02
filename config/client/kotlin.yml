@@ -1,0 +1,9 @@
+failOnUnknownProperties: false
+packageName: client
+enumClassPrefix: true
+useOneOfDiscriminatorLookup: true
+
+
+artifactId: ${JAVA_ARTIFACT_ID}
+artifactVersion: $VERSION
+library: multiplatform
