@@ -254,20 +254,20 @@ dart () {
 kotlin () {
   echo "Generating Dart..."
 
-  dir="clients/${PROJECT}/kotlin"
+  dir="clients/${PROJECT}/kotlin-multiplatform"
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
+  openapi-generator-cli version-manager set 7.10.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
-    -g kotlin\
+    -g kotlin \
     -o "$dir" \
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
-    -c ./config/client/kotlin.yml.proc.yml
+    -c ./config/client/kotlin-multiplatform.yml.proc.yml
 
-  cp "LICENSE" "clients/${PROJECT}/kotlin"
+  cp "LICENSE" "clients/${PROJECT}/kotlin-multiplatform"
 }
 
 rust () {

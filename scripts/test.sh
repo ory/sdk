@@ -102,6 +102,13 @@ elixir () {
   (cd "${dir}"; mix test)
 }
 
+kotlin () {
+  echo "Testing Java..."
+
+  dir="clients/${PROJECT}/kotlin-multiplatform"
+  (cd "$dir" && chmod +x gradlew && ./gradlew clean test)
+}
+
 elixir
 typescript
 typescript_fetch
@@ -113,3 +120,4 @@ python
 ruby
 dartpub
 csharp
+kotlin

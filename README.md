@@ -34,7 +34,7 @@ If you wish to debug some generators or build steps, you can run the image local
 
 ```shell script
 docker build -t oryd/sdk:latest .
-docker run --mount type=bind,source="$(pwd)",target=/project --name sdk --user "$(id -u):$(id -g)" -it oryd/sdk:latest /bin/sh
+docker run --mount type=bind,source="$(pwd)",target=/project --name sdk -it oryd/sdk:latest /bin/bash
 ```
 
 ### Debugging Failing Tests on CI

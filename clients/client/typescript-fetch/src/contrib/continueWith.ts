@@ -56,7 +56,7 @@ export function handleContinueWith(
     return redirectFlow(action.flow.id, "recovery", action.flow.url);
   } else if (isShowSettingsUi(action)) {
     // TODO: re-add url
-    return redirectFlow(action.flow.id, "settings");
+    return redirectFlow(action.flow.id, "settings", action.flow.url);
   } else {
     throw new Error("Unknown action: " + JSON.stringify(action));
   }

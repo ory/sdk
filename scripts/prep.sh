@@ -75,6 +75,7 @@ export DART_PUB_REPOSITORY="https://github.com/ory/sdk/tree/master/clients/${PRO
 
 export JAVA_GROUP_ID=sh.ory.$PROJECT
 export JAVA_ARTIFACT_ID=$PROJECT-client
+export KOTLIN_MULTIPLATFORM_ARTIFACT_ID=$PROJECT-client-kotlin-multiplatform
 
 export PHP_PACKAGE_NAME="ory/${PROJECT}-client"
 export PHP_INVOKER_PACKAGE="Ory\\${PROJECT_UCF}\\Client"
@@ -106,6 +107,8 @@ if [ $project == "client" ]; then
 
   export JAVA_GROUP_ID=sh.ory
   export JAVA_ARTIFACT_ID=client
+  export KOTLIN_MULTIPLATFORM_ARTIFACT_ID="client-kotlin-multiplatform"
+  export KOTLIN_MULTIPLATFORM_PACKAGE_NAME="sh.ory.client-kotlin-multiplatform"
 
   export PHP_PACKAGE_NAME="ory/client"
   export PHP_INVOKER_PACKAGE="Ory\\Client"
