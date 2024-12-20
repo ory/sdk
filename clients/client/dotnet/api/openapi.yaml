@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.15.15
+  version: v1.15.16
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -575,7 +575,7 @@ paths:
   /admin/identities:
     get:
       description: "Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
-        \ in the system."
+        \ in the system. Note: filters cannot be combined."
       operationId: listIdentities
       parameters:
       - description: |-

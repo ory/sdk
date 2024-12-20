@@ -998,7 +998,7 @@ class IdentityApi {
   }
 
   /// List Identities
-  /// Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
+  /// Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
   ///
   /// Parameters:
   /// * [perPage] - Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page.

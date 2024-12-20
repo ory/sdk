@@ -395,7 +395,7 @@ Name | Type | Description  | Required | Notes
 > Vec<models::Identity> list_identities(per_page, page, page_size, page_token, consistency, ids, credentials_identifier, preview_credentials_identifier_similar, include_credential, organization_id)
 List Identities
 
-Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
+Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
 
 ### Parameters
 

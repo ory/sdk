@@ -117,7 +117,7 @@ void main() {
 
     // List Identities
     //
-    // Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
+    // Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
     //
     //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, int pageSize, String pageToken, String consistency, BuiltList<String> ids, String credentialsIdentifier, String previewCredentialsIdentifierSimilar, BuiltList<String> includeCredential, String organizationId }) async
     test('test listIdentities', () async {
