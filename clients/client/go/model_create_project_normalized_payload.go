@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.15.16
+API version: v1.15.17
 Contact: support@ory.sh
 */
 
@@ -379,6 +379,11 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceMethodsPasswordEnabled *bool `json:"kratos_selfservice_methods_password_enabled,omitempty"`
 	// Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
 	KratosSelfserviceMethodsProfileEnabled *bool `json:"kratos_selfservice_methods_profile_enabled,omitempty"`
+	// Configures the Ory Kratos SAML base redirect URI  This governs the \"selfservice.methods.saml.config.base_redirect_uri\" setting.
+	KratosSelfserviceMethodsSamlConfigBaseRedirectUri *string `json:"kratos_selfservice_methods_saml_config_base_redirect_uri,omitempty"`
+	KratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider `json:"kratos_selfservice_methods_saml_config_providers,omitempty"`
+	// Configures whether Ory Kratos SAML Login is enabled  This governs the \"selfservice.methods.saml.enabled\" setting.
+	KratosSelfserviceMethodsSamlEnabled *bool `json:"kratos_selfservice_methods_saml_enabled,omitempty"`
 	// Configures Ory Kratos TOTP Issuer  This governs the \"selfservice.methods.totp.config.issuer\" setting.
 	KratosSelfserviceMethodsTotpConfigIssuer *string `json:"kratos_selfservice_methods_totp_config_issuer,omitempty"`
 	// Configures whether Ory Kratos TOTP Method is enabled  This governs the \"selfservice.methods.totp.enabled\" setting.
@@ -6470,6 +6475,102 @@ func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsProfileEnabl
 	o.KratosSelfserviceMethodsProfileEnabled = &v
 }
 
+// GetKratosSelfserviceMethodsSamlConfigBaseRedirectUri returns the KratosSelfserviceMethodsSamlConfigBaseRedirectUri field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsSamlConfigBaseRedirectUri() string {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsSamlConfigBaseRedirectUri) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsSamlConfigBaseRedirectUri
+}
+
+// GetKratosSelfserviceMethodsSamlConfigBaseRedirectUriOk returns a tuple with the KratosSelfserviceMethodsSamlConfigBaseRedirectUri field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsSamlConfigBaseRedirectUriOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsSamlConfigBaseRedirectUri) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsSamlConfigBaseRedirectUri, true
+}
+
+// HasKratosSelfserviceMethodsSamlConfigBaseRedirectUri returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsSamlConfigBaseRedirectUri() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsSamlConfigBaseRedirectUri) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsSamlConfigBaseRedirectUri gets a reference to the given string and assigns it to the KratosSelfserviceMethodsSamlConfigBaseRedirectUri field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsSamlConfigBaseRedirectUri(v string) {
+	o.KratosSelfserviceMethodsSamlConfigBaseRedirectUri = &v
+}
+
+// GetKratosSelfserviceMethodsSamlConfigProviders returns the KratosSelfserviceMethodsSamlConfigProviders field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsSamlConfigProviders() []NormalizedProjectRevisionSAMLProvider {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsSamlConfigProviders) {
+		var ret []NormalizedProjectRevisionSAMLProvider
+		return ret
+	}
+	return o.KratosSelfserviceMethodsSamlConfigProviders
+}
+
+// GetKratosSelfserviceMethodsSamlConfigProvidersOk returns a tuple with the KratosSelfserviceMethodsSamlConfigProviders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsSamlConfigProvidersOk() ([]NormalizedProjectRevisionSAMLProvider, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsSamlConfigProviders) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsSamlConfigProviders, true
+}
+
+// HasKratosSelfserviceMethodsSamlConfigProviders returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsSamlConfigProviders() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsSamlConfigProviders) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsSamlConfigProviders gets a reference to the given []NormalizedProjectRevisionSAMLProvider and assigns it to the KratosSelfserviceMethodsSamlConfigProviders field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsSamlConfigProviders(v []NormalizedProjectRevisionSAMLProvider) {
+	o.KratosSelfserviceMethodsSamlConfigProviders = v
+}
+
+// GetKratosSelfserviceMethodsSamlEnabled returns the KratosSelfserviceMethodsSamlEnabled field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsSamlEnabled() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsSamlEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsSamlEnabled
+}
+
+// GetKratosSelfserviceMethodsSamlEnabledOk returns a tuple with the KratosSelfserviceMethodsSamlEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsSamlEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsSamlEnabled) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsSamlEnabled, true
+}
+
+// HasKratosSelfserviceMethodsSamlEnabled returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsSamlEnabled() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsSamlEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsSamlEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsSamlEnabled field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsSamlEnabled(v bool) {
+	o.KratosSelfserviceMethodsSamlEnabled = &v
+}
+
 // GetKratosSelfserviceMethodsTotpConfigIssuer returns the KratosSelfserviceMethodsTotpConfigIssuer field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsTotpConfigIssuer() string {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsTotpConfigIssuer) {
@@ -7767,6 +7868,15 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSelfserviceMethodsProfileEnabled) {
 		toSerialize["kratos_selfservice_methods_profile_enabled"] = o.KratosSelfserviceMethodsProfileEnabled
 	}
+	if !IsNil(o.KratosSelfserviceMethodsSamlConfigBaseRedirectUri) {
+		toSerialize["kratos_selfservice_methods_saml_config_base_redirect_uri"] = o.KratosSelfserviceMethodsSamlConfigBaseRedirectUri
+	}
+	if !IsNil(o.KratosSelfserviceMethodsSamlConfigProviders) {
+		toSerialize["kratos_selfservice_methods_saml_config_providers"] = o.KratosSelfserviceMethodsSamlConfigProviders
+	}
+	if !IsNil(o.KratosSelfserviceMethodsSamlEnabled) {
+		toSerialize["kratos_selfservice_methods_saml_enabled"] = o.KratosSelfserviceMethodsSamlEnabled
+	}
 	if !IsNil(o.KratosSelfserviceMethodsTotpConfigIssuer) {
 		toSerialize["kratos_selfservice_methods_totp_config_issuer"] = o.KratosSelfserviceMethodsTotpConfigIssuer
 	}
@@ -8065,6 +8175,9 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_selfservice_methods_password_config_min_password_length")
 		delete(additionalProperties, "kratos_selfservice_methods_password_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_profile_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_saml_config_base_redirect_uri")
+		delete(additionalProperties, "kratos_selfservice_methods_saml_config_providers")
+		delete(additionalProperties, "kratos_selfservice_methods_saml_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_totp_config_issuer")
 		delete(additionalProperties, "kratos_selfservice_methods_totp_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_webauthn_config_passwordless")

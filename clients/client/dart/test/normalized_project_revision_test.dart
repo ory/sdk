@@ -1100,6 +1100,23 @@ void main() {
       // TODO
     });
 
+    // Configures the Ory Kratos SAML base redirect URI  This governs the \"selfservice.methods.saml.config.base_redirect_uri\" setting.
+    // String kratosSelfserviceMethodsSamlConfigBaseRedirectUri
+    test('to test the property `kratosSelfserviceMethodsSamlConfigBaseRedirectUri`', () async {
+      // TODO
+    });
+
+    // BuiltList<NormalizedProjectRevisionSAMLProvider> kratosSelfserviceMethodsSamlConfigProviders
+    test('to test the property `kratosSelfserviceMethodsSamlConfigProviders`', () async {
+      // TODO
+    });
+
+    // Configures whether Ory Kratos SAML Login is enabled  This governs the \"selfservice.methods.saml.enabled\" setting.
+    // bool kratosSelfserviceMethodsSamlEnabled
+    test('to test the property `kratosSelfserviceMethodsSamlEnabled`', () async {
+      // TODO
+    });
+
     // Configures Ory Kratos TOTP Issuer  This governs the \"selfservice.methods.totp.config.issuer\" setting.
     // String kratosSelfserviceMethodsTotpConfigIssuer
     test('to test the property `kratosSelfserviceMethodsTotpConfigIssuer`', () async {

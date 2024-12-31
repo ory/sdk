@@ -57,6 +57,10 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_permissionChecks =
     const QuotaUsageFeatureEnum._('permissionChecks');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_captcha =
     const QuotaUsageFeatureEnum._('captcha');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_samlSp =
+    const QuotaUsageFeatureEnum._('samlSp');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_samlIdp =
+    const QuotaUsageFeatureEnum._('samlIdp');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationRegional =
     const QuotaUsageFeatureEnum._('dataLocationRegional');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
@@ -128,6 +132,10 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_permissionChecks;
     case 'captcha':
       return _$quotaUsageFeatureEnum_captcha;
+    case 'samlSp':
+      return _$quotaUsageFeatureEnum_samlSp;
+    case 'samlIdp':
+      return _$quotaUsageFeatureEnum_samlIdp;
     case 'dataLocationRegional':
       return _$quotaUsageFeatureEnum_dataLocationRegional;
     case 'rateLimitTier':
@@ -174,6 +182,8 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_m2mTokenIssuance,
   _$quotaUsageFeatureEnum_permissionChecks,
   _$quotaUsageFeatureEnum_captcha,
+  _$quotaUsageFeatureEnum_samlSp,
+  _$quotaUsageFeatureEnum_samlIdp,
   _$quotaUsageFeatureEnum_dataLocationRegional,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
@@ -214,6 +224,8 @@ class _$QuotaUsageFeatureEnumSerializer
     'm2mTokenIssuance': 'm2m_token_issuance',
     'permissionChecks': 'permission_checks',
     'captcha': 'captcha',
+    'samlSp': 'saml_sp',
+    'samlIdp': 'saml_idp',
     'dataLocationRegional': 'data_location_regional',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
@@ -248,6 +260,8 @@ class _$QuotaUsageFeatureEnumSerializer
     'm2m_token_issuance': 'm2mTokenIssuance',
     'permission_checks': 'permissionChecks',
     'captcha': 'captcha',
+    'saml_sp': 'samlSp',
+    'saml_idp': 'samlIdp',
     'data_location_regional': 'dataLocationRegional',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',

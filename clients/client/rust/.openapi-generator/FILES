@@ -140,6 +140,7 @@ docs/NormalizedProjectRevision.md
 docs/NormalizedProjectRevisionCourierChannel.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
+docs/NormalizedProjectRevisionSamlProvider.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
 docs/NormalizedProjectRevisionTokenizerTemplate.md
 docs/OAuth2Api.md
@@ -434,6 +435,7 @@ src/models/normalized_project_revision.rs
 src/models/normalized_project_revision_courier_channel.rs
 src/models/normalized_project_revision_hook.rs
 src/models/normalized_project_revision_identity_schema.rs
+src/models/normalized_project_revision_saml_provider.rs
 src/models/normalized_project_revision_third_party_provider.rs
 src/models/normalized_project_revision_tokenizer_template.rs
 src/models/o_auth2_client.rs

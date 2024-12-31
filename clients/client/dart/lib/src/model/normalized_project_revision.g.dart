@@ -741,6 +741,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final bool? kratosSelfserviceMethodsProfileEnabled;
   @override
+  final String? kratosSelfserviceMethodsSamlConfigBaseRedirectUri;
+  @override
+  final BuiltList<NormalizedProjectRevisionSAMLProvider>?
+      kratosSelfserviceMethodsSamlConfigProviders;
+  @override
+  final bool? kratosSelfserviceMethodsSamlEnabled;
+  @override
   final String? kratosSelfserviceMethodsTotpConfigIssuer;
   @override
   final bool? kratosSelfserviceMethodsTotpEnabled;
@@ -976,6 +983,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceMethodsPasswordConfigMinPasswordLength,
       this.kratosSelfserviceMethodsPasswordEnabled,
       this.kratosSelfserviceMethodsProfileEnabled,
+      this.kratosSelfserviceMethodsSamlConfigBaseRedirectUri,
+      this.kratosSelfserviceMethodsSamlConfigProviders,
+      this.kratosSelfserviceMethodsSamlEnabled,
       this.kratosSelfserviceMethodsTotpConfigIssuer,
       this.kratosSelfserviceMethodsTotpEnabled,
       this.kratosSelfserviceMethodsWebauthnConfigPasswordless,
@@ -1370,6 +1380,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceMethodsPasswordEnabled &&
         kratosSelfserviceMethodsProfileEnabled ==
             other.kratosSelfserviceMethodsProfileEnabled &&
+        kratosSelfserviceMethodsSamlConfigBaseRedirectUri ==
+            other.kratosSelfserviceMethodsSamlConfigBaseRedirectUri &&
+        kratosSelfserviceMethodsSamlConfigProviders ==
+            other.kratosSelfserviceMethodsSamlConfigProviders &&
+        kratosSelfserviceMethodsSamlEnabled ==
+            other.kratosSelfserviceMethodsSamlEnabled &&
         kratosSelfserviceMethodsTotpConfigIssuer ==
             other.kratosSelfserviceMethodsTotpConfigIssuer &&
         kratosSelfserviceMethodsTotpEnabled ==
@@ -1714,6 +1730,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosSelfserviceMethodsPasswordConfigMinPasswordLength.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsPasswordEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsProfileEnabled.hashCode);
+    _$hash =
+        $jc(_$hash, kratosSelfserviceMethodsSamlConfigBaseRedirectUri.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceMethodsSamlConfigProviders.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceMethodsSamlEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsTotpConfigIssuer.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsTotpEnabled.hashCode);
     _$hash = $jc(
@@ -2097,6 +2117,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceMethodsPasswordEnabled)
           ..add('kratosSelfserviceMethodsProfileEnabled',
               kratosSelfserviceMethodsProfileEnabled)
+          ..add('kratosSelfserviceMethodsSamlConfigBaseRedirectUri',
+              kratosSelfserviceMethodsSamlConfigBaseRedirectUri)
+          ..add('kratosSelfserviceMethodsSamlConfigProviders',
+              kratosSelfserviceMethodsSamlConfigProviders)
+          ..add('kratosSelfserviceMethodsSamlEnabled',
+              kratosSelfserviceMethodsSamlEnabled)
           ..add('kratosSelfserviceMethodsTotpConfigIssuer',
               kratosSelfserviceMethodsTotpConfigIssuer)
           ..add('kratosSelfserviceMethodsTotpEnabled',
@@ -3580,6 +3606,34 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceMethodsProfileEnabled =
           kratosSelfserviceMethodsProfileEnabled;
 
+  String? _kratosSelfserviceMethodsSamlConfigBaseRedirectUri;
+  String? get kratosSelfserviceMethodsSamlConfigBaseRedirectUri =>
+      _$this._kratosSelfserviceMethodsSamlConfigBaseRedirectUri;
+  set kratosSelfserviceMethodsSamlConfigBaseRedirectUri(
+          String? kratosSelfserviceMethodsSamlConfigBaseRedirectUri) =>
+      _$this._kratosSelfserviceMethodsSamlConfigBaseRedirectUri =
+          kratosSelfserviceMethodsSamlConfigBaseRedirectUri;
+
+  ListBuilder<NormalizedProjectRevisionSAMLProvider>?
+      _kratosSelfserviceMethodsSamlConfigProviders;
+  ListBuilder<NormalizedProjectRevisionSAMLProvider>
+      get kratosSelfserviceMethodsSamlConfigProviders =>
+          _$this._kratosSelfserviceMethodsSamlConfigProviders ??=
+              new ListBuilder<NormalizedProjectRevisionSAMLProvider>();
+  set kratosSelfserviceMethodsSamlConfigProviders(
+          ListBuilder<NormalizedProjectRevisionSAMLProvider>?
+              kratosSelfserviceMethodsSamlConfigProviders) =>
+      _$this._kratosSelfserviceMethodsSamlConfigProviders =
+          kratosSelfserviceMethodsSamlConfigProviders;
+
+  bool? _kratosSelfserviceMethodsSamlEnabled;
+  bool? get kratosSelfserviceMethodsSamlEnabled =>
+      _$this._kratosSelfserviceMethodsSamlEnabled;
+  set kratosSelfserviceMethodsSamlEnabled(
+          bool? kratosSelfserviceMethodsSamlEnabled) =>
+      _$this._kratosSelfserviceMethodsSamlEnabled =
+          kratosSelfserviceMethodsSamlEnabled;
+
   String? _kratosSelfserviceMethodsTotpConfigIssuer;
   String? get kratosSelfserviceMethodsTotpConfigIssuer =>
       _$this._kratosSelfserviceMethodsTotpConfigIssuer;
@@ -4058,6 +4112,12 @@ class NormalizedProjectRevisionBuilder
           $v.kratosSelfserviceMethodsPasswordEnabled;
       _kratosSelfserviceMethodsProfileEnabled =
           $v.kratosSelfserviceMethodsProfileEnabled;
+      _kratosSelfserviceMethodsSamlConfigBaseRedirectUri =
+          $v.kratosSelfserviceMethodsSamlConfigBaseRedirectUri;
+      _kratosSelfserviceMethodsSamlConfigProviders =
+          $v.kratosSelfserviceMethodsSamlConfigProviders?.toBuilder();
+      _kratosSelfserviceMethodsSamlEnabled =
+          $v.kratosSelfserviceMethodsSamlEnabled;
       _kratosSelfserviceMethodsTotpConfigIssuer =
           $v.kratosSelfserviceMethodsTotpConfigIssuer;
       _kratosSelfserviceMethodsTotpEnabled =
@@ -4361,6 +4421,9 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceMethodsPasswordConfigMinPasswordLength: kratosSelfserviceMethodsPasswordConfigMinPasswordLength,
               kratosSelfserviceMethodsPasswordEnabled: kratosSelfserviceMethodsPasswordEnabled,
               kratosSelfserviceMethodsProfileEnabled: kratosSelfserviceMethodsProfileEnabled,
+              kratosSelfserviceMethodsSamlConfigBaseRedirectUri: kratosSelfserviceMethodsSamlConfigBaseRedirectUri,
+              kratosSelfserviceMethodsSamlConfigProviders: _kratosSelfserviceMethodsSamlConfigProviders?.build(),
+              kratosSelfserviceMethodsSamlEnabled: kratosSelfserviceMethodsSamlEnabled,
               kratosSelfserviceMethodsTotpConfigIssuer: kratosSelfserviceMethodsTotpConfigIssuer,
               kratosSelfserviceMethodsTotpEnabled: kratosSelfserviceMethodsTotpEnabled,
               kratosSelfserviceMethodsWebauthnConfigPasswordless: kratosSelfserviceMethodsWebauthnConfigPasswordless,
@@ -4430,6 +4493,9 @@ class NormalizedProjectRevisionBuilder
 
         _$failedField = 'kratosSelfserviceMethodsPasskeyConfigRpOrigins';
         _kratosSelfserviceMethodsPasskeyConfigRpOrigins?.build();
+
+        _$failedField = 'kratosSelfserviceMethodsSamlConfigProviders';
+        _kratosSelfserviceMethodsSamlConfigProviders?.build();
 
         _$failedField = 'kratosSelfserviceMethodsWebauthnConfigRpOrigins';
         _kratosSelfserviceMethodsWebauthnConfigRpOrigins?.build();

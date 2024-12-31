@@ -131,6 +131,7 @@ export * from './NormalizedProjectRevision';
 export * from './NormalizedProjectRevisionCourierChannel';
 export * from './NormalizedProjectRevisionHook';
 export * from './NormalizedProjectRevisionIdentitySchema';
+export * from './NormalizedProjectRevisionSAMLProvider';
 export * from './NormalizedProjectRevisionThirdPartyProvider';
 export * from './NormalizedProjectRevisionTokenizerTemplate';
 export * from './OAuth2Client';

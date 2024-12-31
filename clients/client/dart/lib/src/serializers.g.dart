@@ -194,6 +194,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
           .serializer)
       ..add(NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum
           .serializer)
+      ..add(NormalizedProjectRevisionSAMLProvider.serializer)
+      ..add(NormalizedProjectRevisionSAMLProviderStateEnum.serializer)
       ..add(NormalizedProjectRevisionThirdPartyProvider.serializer)
       ..add(NormalizedProjectRevisionThirdPartyProviderPkceEnum.serializer)
       ..add(NormalizedProjectRevisionThirdPartyProviderStateEnum.serializer)
@@ -711,6 +713,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
+          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
@@ -783,6 +789,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
+          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

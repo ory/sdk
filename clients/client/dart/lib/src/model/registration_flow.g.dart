@@ -22,6 +22,8 @@ const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_passkey =
     const RegistrationFlowActiveEnum._('passkey');
 const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_profile =
     const RegistrationFlowActiveEnum._('profile');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_saml =
+    const RegistrationFlowActiveEnum._('saml');
 const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_linkRecovery =
     const RegistrationFlowActiveEnum._('linkRecovery');
 const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_codeRecovery =
@@ -45,6 +47,8 @@ RegistrationFlowActiveEnum _$registrationFlowActiveEnumValueOf(String name) {
       return _$registrationFlowActiveEnum_passkey;
     case 'profile':
       return _$registrationFlowActiveEnum_profile;
+    case 'saml':
+      return _$registrationFlowActiveEnum_saml;
     case 'linkRecovery':
       return _$registrationFlowActiveEnum_linkRecovery;
     case 'codeRecovery':
@@ -64,6 +68,7 @@ final BuiltSet<RegistrationFlowActiveEnum> _$registrationFlowActiveEnumValues =
   _$registrationFlowActiveEnum_code,
   _$registrationFlowActiveEnum_passkey,
   _$registrationFlowActiveEnum_profile,
+  _$registrationFlowActiveEnum_saml,
   _$registrationFlowActiveEnum_linkRecovery,
   _$registrationFlowActiveEnum_codeRecovery,
 ]);
@@ -82,6 +87,7 @@ class _$RegistrationFlowActiveEnumSerializer
     'code': 'code',
     'passkey': 'passkey',
     'profile': 'profile',
+    'saml': 'saml',
     'linkRecovery': 'link_recovery',
     'codeRecovery': 'code_recovery',
   };
@@ -94,6 +100,7 @@ class _$RegistrationFlowActiveEnumSerializer
     'code': 'code',
     'passkey': 'passkey',
     'profile': 'profile',
+    'saml': 'saml',
     'link_recovery': 'linkRecovery',
     'code_recovery': 'codeRecovery',
   };

@@ -7,6 +7,7 @@ import 'package:ory_client/src/model/keto_namespace.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/normalized_project_revision_identity_schema.dart';
 import 'package:ory_client/src/model/normalized_project_revision_tokenizer_template.dart';
+import 'package:ory_client/src/model/normalized_project_revision_saml_provider.dart';
 import 'package:ory_client/src/model/normalized_project_revision_courier_channel.dart';
 import 'package:ory_client/src/model/normalized_project_revision_hook.dart';
 import 'package:built_value/json_object.dart';
@@ -206,6 +207,9 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosSelfserviceMethodsPasswordConfigMinPasswordLength] - Configures the minimum length of passwords.  This governs the \"selfservice.methods.password.config.min_password_length\" setting.
 /// * [kratosSelfserviceMethodsPasswordEnabled] - Configures whether Ory Kratos Password Method is enabled  This governs the \"selfservice.methods.password.enabled\" setting.
 /// * [kratosSelfserviceMethodsProfileEnabled] - Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
+/// * [kratosSelfserviceMethodsSamlConfigBaseRedirectUri] - Configures the Ory Kratos SAML base redirect URI  This governs the \"selfservice.methods.saml.config.base_redirect_uri\" setting.
+/// * [kratosSelfserviceMethodsSamlConfigProviders] 
+/// * [kratosSelfserviceMethodsSamlEnabled] - Configures whether Ory Kratos SAML Login is enabled  This governs the \"selfservice.methods.saml.enabled\" setting.
 /// * [kratosSelfserviceMethodsTotpConfigIssuer] - Configures Ory Kratos TOTP Issuer  This governs the \"selfservice.methods.totp.config.issuer\" setting.
 /// * [kratosSelfserviceMethodsTotpEnabled] - Configures whether Ory Kratos TOTP Method is enabled  This governs the \"selfservice.methods.totp.enabled\" setting.
 /// * [kratosSelfserviceMethodsWebauthnConfigPasswordless] - Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \"selfservice.methods.webauthn.config.passwordless\" setting.
@@ -968,6 +972,17 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   /// Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_profile_enabled')
   bool? get kratosSelfserviceMethodsProfileEnabled;
+
+  /// Configures the Ory Kratos SAML base redirect URI  This governs the \"selfservice.methods.saml.config.base_redirect_uri\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_saml_config_base_redirect_uri')
+  String? get kratosSelfserviceMethodsSamlConfigBaseRedirectUri;
+
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_saml_config_providers')
+  BuiltList<NormalizedProjectRevisionSAMLProvider>? get kratosSelfserviceMethodsSamlConfigProviders;
+
+  /// Configures whether Ory Kratos SAML Login is enabled  This governs the \"selfservice.methods.saml.enabled\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_saml_enabled')
+  bool? get kratosSelfserviceMethodsSamlEnabled;
 
   /// Configures Ory Kratos TOTP Issuer  This governs the \"selfservice.methods.totp.config.issuer\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_totp_config_issuer')
@@ -2394,6 +2409,27 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield r'kratos_selfservice_methods_profile_enabled';
       yield serializers.serialize(
         object.kratosSelfserviceMethodsProfileEnabled,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.kratosSelfserviceMethodsSamlConfigBaseRedirectUri != null) {
+      yield r'kratos_selfservice_methods_saml_config_base_redirect_uri';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsSamlConfigBaseRedirectUri,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceMethodsSamlConfigProviders != null) {
+      yield r'kratos_selfservice_methods_saml_config_providers';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsSamlConfigProviders,
+        specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionSAMLProvider)]),
+      );
+    }
+    if (object.kratosSelfserviceMethodsSamlEnabled != null) {
+      yield r'kratos_selfservice_methods_saml_enabled';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsSamlEnabled,
         specifiedType: const FullType(bool),
       );
     }
@@ -3890,6 +3926,27 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(bool),
           ) as bool;
           result.kratosSelfserviceMethodsProfileEnabled = valueDes;
+          break;
+        case r'kratos_selfservice_methods_saml_config_base_redirect_uri':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceMethodsSamlConfigBaseRedirectUri = valueDes;
+          break;
+        case r'kratos_selfservice_methods_saml_config_providers':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionSAMLProvider)]),
+          ) as BuiltList<NormalizedProjectRevisionSAMLProvider>;
+          result.kratosSelfserviceMethodsSamlConfigProviders.replace(valueDes);
+          break;
+        case r'kratos_selfservice_methods_saml_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceMethodsSamlEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_totp_config_issuer':
           final valueDes = serializers.deserialize(

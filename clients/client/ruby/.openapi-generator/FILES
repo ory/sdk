@@ -144,6 +144,7 @@ docs/NormalizedProjectRevision.md
 docs/NormalizedProjectRevisionCourierChannel.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
+docs/NormalizedProjectRevisionSAMLProvider.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
 docs/NormalizedProjectRevisionTokenizerTemplate.md
 docs/OAuth2Api.md
@@ -438,6 +439,7 @@ lib/ory-client/models/normalized_project_revision.rb
 lib/ory-client/models/normalized_project_revision_courier_channel.rb
 lib/ory-client/models/normalized_project_revision_hook.rb
 lib/ory-client/models/normalized_project_revision_identity_schema.rb
+lib/ory-client/models/normalized_project_revision_saml_provider.rb
 lib/ory-client/models/normalized_project_revision_third_party_provider.rb
 lib/ory-client/models/normalized_project_revision_tokenizer_template.rb
 lib/ory-client/models/o_auth2_client.rb
@@ -720,6 +722,7 @@ spec/models/needs_privileged_session_error_spec.rb
 spec/models/normalized_project_revision_courier_channel_spec.rb
 spec/models/normalized_project_revision_hook_spec.rb
 spec/models/normalized_project_revision_identity_schema_spec.rb
+spec/models/normalized_project_revision_saml_provider_spec.rb
 spec/models/normalized_project_revision_spec.rb
 spec/models/normalized_project_revision_third_party_provider_spec.rb
 spec/models/normalized_project_revision_tokenizer_template_spec.rb

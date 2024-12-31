@@ -189,6 +189,9 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsPasswordConfigMinPasswordLength** | Pointer to **int64** | Configures the minimum length of passwords.  This governs the \&quot;selfservice.methods.password.config.min_password_length\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasswordEnabled** | Pointer to **bool** | Configures whether Ory Kratos Password Method is enabled  This governs the \&quot;selfservice.methods.password.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsProfileEnabled** | Pointer to **bool** | Configures whether Ory Kratos Profile Method is enabled  This governs the \&quot;selfservice.methods.profile.enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsSamlConfigBaseRedirectUri** | Pointer to **string** | Configures the Ory Kratos SAML base redirect URI  This governs the \&quot;selfservice.methods.saml.config.base_redirect_uri\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsSamlConfigProviders** | Pointer to [**[]NormalizedProjectRevisionSAMLProvider**](NormalizedProjectRevisionSAMLProvider.md) |  | [optional] 
+**KratosSelfserviceMethodsSamlEnabled** | Pointer to **bool** | Configures whether Ory Kratos SAML Login is enabled  This governs the \&quot;selfservice.methods.saml.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsTotpConfigIssuer** | Pointer to **string** | Configures Ory Kratos TOTP Issuer  This governs the \&quot;selfservice.methods.totp.config.issuer\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsTotpEnabled** | Pointer to **bool** | Configures whether Ory Kratos TOTP Method is enabled  This governs the \&quot;selfservice.methods.totp.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsWebauthnConfigPasswordless** | Pointer to **bool** | Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \&quot;selfservice.methods.webauthn.config.passwordless\&quot; setting. | [optional] 
@@ -4885,6 +4888,81 @@ SetKratosSelfserviceMethodsProfileEnabled sets KratosSelfserviceMethodsProfileEn
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsProfileEnabled() bool`
 
 HasKratosSelfserviceMethodsProfileEnabled returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsSamlConfigBaseRedirectUri
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsSamlConfigBaseRedirectUri() string`
+
+GetKratosSelfserviceMethodsSamlConfigBaseRedirectUri returns the KratosSelfserviceMethodsSamlConfigBaseRedirectUri field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsSamlConfigBaseRedirectUriOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsSamlConfigBaseRedirectUriOk() (*string, bool)`
+
+GetKratosSelfserviceMethodsSamlConfigBaseRedirectUriOk returns a tuple with the KratosSelfserviceMethodsSamlConfigBaseRedirectUri field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsSamlConfigBaseRedirectUri
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsSamlConfigBaseRedirectUri(v string)`
+
+SetKratosSelfserviceMethodsSamlConfigBaseRedirectUri sets KratosSelfserviceMethodsSamlConfigBaseRedirectUri field to given value.
+
+### HasKratosSelfserviceMethodsSamlConfigBaseRedirectUri
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsSamlConfigBaseRedirectUri() bool`
+
+HasKratosSelfserviceMethodsSamlConfigBaseRedirectUri returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsSamlConfigProviders
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsSamlConfigProviders() []NormalizedProjectRevisionSAMLProvider`
+
+GetKratosSelfserviceMethodsSamlConfigProviders returns the KratosSelfserviceMethodsSamlConfigProviders field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsSamlConfigProvidersOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsSamlConfigProvidersOk() (*[]NormalizedProjectRevisionSAMLProvider, bool)`
+
+GetKratosSelfserviceMethodsSamlConfigProvidersOk returns a tuple with the KratosSelfserviceMethodsSamlConfigProviders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsSamlConfigProviders
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsSamlConfigProviders(v []NormalizedProjectRevisionSAMLProvider)`
+
+SetKratosSelfserviceMethodsSamlConfigProviders sets KratosSelfserviceMethodsSamlConfigProviders field to given value.
+
+### HasKratosSelfserviceMethodsSamlConfigProviders
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsSamlConfigProviders() bool`
+
+HasKratosSelfserviceMethodsSamlConfigProviders returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsSamlEnabled
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsSamlEnabled() bool`
+
+GetKratosSelfserviceMethodsSamlEnabled returns the KratosSelfserviceMethodsSamlEnabled field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsSamlEnabledOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsSamlEnabledOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsSamlEnabledOk returns a tuple with the KratosSelfserviceMethodsSamlEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsSamlEnabled
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsSamlEnabled(v bool)`
+
+SetKratosSelfserviceMethodsSamlEnabled sets KratosSelfserviceMethodsSamlEnabled field to given value.
+
+### HasKratosSelfserviceMethodsSamlEnabled
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsSamlEnabled() bool`
+
+HasKratosSelfserviceMethodsSamlEnabled returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsTotpConfigIssuer
 

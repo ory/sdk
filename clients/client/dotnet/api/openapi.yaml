@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.15.16
+  version: v1.15.17
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -680,8 +680,13 @@ paths:
           strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level.
           eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
       - description: |-
-          List of ids used to filter identities.
-          If this list is empty, then no filter will be applied.
+          Retrieve multiple identities by their IDs.
+
+          This parameter has the following limitations:
+
+          Duplicate or non-existent IDs are ignored.
+          The order of returned IDs may be different from the request.
+          This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
         explode: true
         in: query
         name: ids
@@ -728,10 +733,7 @@ paths:
             type: string
           type: array
         style: form
-      - description: |-
-          OrganizationID is the organization id to filter identities by.
-
-          If `ids` is set, this parameter is ignored.
+      - description: List identities that belong to a specific organization.
         explode: true
         in: query
         name: organization_id
@@ -917,6 +919,7 @@ paths:
             - code
             - passkey
             - profile
+            - saml
             - link_recovery
             - code_recovery
             type: string
@@ -1083,6 +1086,7 @@ paths:
           code CredentialsTypeCodeAuth
           passkey CredentialsTypePasskey
           profile CredentialsTypeProfile
+          saml CredentialsTypeSAML
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
         explode: false
@@ -1099,6 +1103,7 @@ paths:
           - code
           - passkey
           - profile
+          - saml
           - link_recovery
           - code_recovery
           type: string
@@ -1112,6 +1117,7 @@ paths:
           code CredentialsTypeCodeAuth
           passkey CredentialsTypePasskey
           profile CredentialsTypeProfile
+          saml CredentialsTypeSAML
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
       - description: |-
@@ -9439,6 +9445,22 @@ components:
 
             This governs the "selfservice.methods.profile.enabled" setting.
           type: boolean
+        kratos_selfservice_methods_saml_config_base_redirect_uri:
+          description: |-
+            Configures the Ory Kratos SAML base redirect URI
+
+            This governs the "selfservice.methods.saml.config.base_redirect_uri" setting.
+          type: string
+        kratos_selfservice_methods_saml_config_providers:
+          items:
+            $ref: '#/components/schemas/normalizedProjectRevisionSAMLProvider'
+          type: array
+        kratos_selfservice_methods_saml_enabled:
+          description: |-
+            Configures whether Ory Kratos SAML Login is enabled
+
+            This governs the "selfservice.methods.saml.enabled" setting.
+          type: boolean
         kratos_selfservice_methods_totp_config_issuer:
           description: |-
             Configures Ory Kratos TOTP Issuer
@@ -12000,6 +12022,7 @@ components:
             code CredentialsTypeCodeAuth
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
+            saml CredentialsTypeSAML
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -12011,6 +12034,7 @@ components:
           - code
           - passkey
           - profile
+          - saml
           - link_recovery
           - code_recovery
           type: string
@@ -12023,6 +12047,7 @@ components:
             code CredentialsTypeCodeAuth
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
+            saml CredentialsTypeSAML
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         updated_at:
@@ -13041,6 +13066,7 @@ components:
             code CredentialsTypeCodeAuth
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
+            saml CredentialsTypeSAML
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -13052,6 +13078,7 @@ components:
           - code
           - passkey
           - profile
+          - saml
           - link_recovery
           - code_recovery
           type: string
@@ -13064,6 +13091,7 @@ components:
             code CredentialsTypeCodeAuth
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
+            saml CredentialsTypeSAML
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         created_at:
@@ -14857,6 +14885,22 @@ components:
 
             This governs the "selfservice.methods.profile.enabled" setting.
           type: boolean
+        kratos_selfservice_methods_saml_config_base_redirect_uri:
+          description: |-
+            Configures the Ory Kratos SAML base redirect URI
+
+            This governs the "selfservice.methods.saml.config.base_redirect_uri" setting.
+          type: string
+        kratos_selfservice_methods_saml_config_providers:
+          items:
+            $ref: '#/components/schemas/normalizedProjectRevisionSAMLProvider'
+          type: array
+        kratos_selfservice_methods_saml_enabled:
+          description: |-
+            Configures whether Ory Kratos SAML Login is enabled
+
+            This governs the "selfservice.methods.saml.enabled" setting.
+          type: boolean
         kratos_selfservice_methods_totp_config_issuer:
           description: |-
             Configures Ory Kratos TOTP Issuer
@@ -15114,6 +15158,65 @@ components:
       items:
         $ref: '#/components/schemas/normalizedProjectRevisionIdentitySchema'
       type: array
+    normalizedProjectRevisionSAMLProvider:
+      properties:
+        client_id:
+          description: ClientID is the application's Client ID.
+          type: string
+        client_secret:
+          nullable: true
+          type: string
+        created_at:
+          description: The Project's Revision Creation Date
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          format: uuid
+          type: string
+        label:
+          description: Label represents an optional label which can be used in the
+            UI generation.
+          type: string
+        mapper_url:
+          description: |-
+            Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google
+            profile information) to hydrate the identity's data.
+          type: string
+        organization_id:
+          format: uuid4
+          nullable: true
+          type: string
+        project_revision_id:
+          description: The Revision's ID this schema belongs to
+          format: uuid
+          type: string
+        provider_id:
+          description: ID is the provider's ID
+          type: string
+        raw_idp_metadata_xml:
+          description: RawIDPMetadataXML is the raw XML metadata of the IDP.
+          type: string
+        state:
+          description: |-
+            State indicates the state of the provider
+
+            Only providers with state `enabled` will be used for authentication
+            enabled ThirdPartyProviderStateEnabled
+            disabled ThirdPartyProviderStateDisabled
+          enum:
+          - enabled
+          - disabled
+          type: string
+          x-go-enum-desc: |-
+            enabled ThirdPartyProviderStateEnabled
+            disabled ThirdPartyProviderStateDisabled
+        updated_at:
+          description: Last Time Project's Revision was Updated
+          format: date-time
+          readOnly: true
+          type: string
+      type: object
     normalizedProjectRevisionThirdPartyProvider:
       properties:
         additional_id_token_audiences:
@@ -17808,6 +17911,10 @@ components:
       items:
         $ref: '#/components/schemas/normalizedProjectRevisionIdentitySchema'
       type: array
+    projectRevisionSamlProviders:
+      items:
+        $ref: '#/components/schemas/normalizedProjectRevisionSAMLProvider'
+      type: array
     projectRevisionThirdPartyLoginProviders:
       items:
         $ref: '#/components/schemas/normalizedProjectRevisionThirdPartyProvider'
@@ -17894,6 +18001,8 @@ components:
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
             captcha Captcha
+            saml_sp SAMLSP
+            saml_idp SAMLIDP
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -17927,6 +18036,8 @@ components:
           - m2m_token_issuance
           - permission_checks
           - captcha
+          - saml_sp
+          - saml_idp
           - data_location_regional
           - rate_limit_tier
           - session_rate_limit_tier
@@ -17961,6 +18072,8 @@ components:
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
             captcha Captcha
+            saml_sp SAMLSP
+            saml_idp SAMLIDP
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -18450,6 +18563,7 @@ components:
             code CredentialsTypeCodeAuth
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
+            saml CredentialsTypeSAML
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -18461,6 +18575,7 @@ components:
           - code
           - passkey
           - profile
+          - saml
           - link_recovery
           - code_recovery
           type: string
@@ -18473,6 +18588,7 @@ components:
             code CredentialsTypeCodeAuth
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
+            saml CredentialsTypeSAML
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         expires_at:

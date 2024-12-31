@@ -193,6 +193,9 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_selfservice_methods_password_config_min_password_length,
     :kratos_selfservice_methods_password_enabled,
     :kratos_selfservice_methods_profile_enabled,
+    :kratos_selfservice_methods_saml_config_base_redirect_uri,
+    :kratos_selfservice_methods_saml_config_providers,
+    :kratos_selfservice_methods_saml_enabled,
     :kratos_selfservice_methods_totp_config_issuer,
     :kratos_selfservice_methods_totp_enabled,
     :kratos_selfservice_methods_webauthn_config_passwordless,
@@ -403,6 +406,9 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_selfservice_methods_password_config_min_password_length => integer() | nil,
     :kratos_selfservice_methods_password_enabled => boolean() | nil,
     :kratos_selfservice_methods_profile_enabled => boolean() | nil,
+    :kratos_selfservice_methods_saml_config_base_redirect_uri => String.t | nil,
+    :kratos_selfservice_methods_saml_config_providers => [Ory.Model.NormalizedProjectRevisionSamlProvider.t] | nil,
+    :kratos_selfservice_methods_saml_enabled => boolean() | nil,
     :kratos_selfservice_methods_totp_config_issuer => String.t | nil,
     :kratos_selfservice_methods_totp_enabled => boolean() | nil,
     :kratos_selfservice_methods_webauthn_config_passwordless => boolean() | nil,
@@ -436,6 +442,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
      |> Deserializer.deserialize(:kratos_courier_channels, :list, Ory.Model.NormalizedProjectRevisionCourierChannel)
      |> Deserializer.deserialize(:kratos_identity_schemas, :list, Ory.Model.NormalizedProjectRevisionIdentitySchema)
      |> Deserializer.deserialize(:kratos_selfservice_methods_oidc_config_providers, :list, Ory.Model.NormalizedProjectRevisionThirdPartyProvider)
+     |> Deserializer.deserialize(:kratos_selfservice_methods_saml_config_providers, :list, Ory.Model.NormalizedProjectRevisionSamlProvider)
      |> Deserializer.deserialize(:kratos_session_whoami_tokenizer_templates, :list, Ory.Model.NormalizedProjectRevisionTokenizerTemplate)
      |> Deserializer.deserialize(:project_revision_hooks, :list, Ory.Model.NormalizedProjectRevisionHook)
      |> Deserializer.deserialize(:updated_at, :datetime, nil)

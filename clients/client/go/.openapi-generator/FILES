@@ -155,6 +155,7 @@ docs/NormalizedProjectRevision.md
 docs/NormalizedProjectRevisionCourierChannel.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
+docs/NormalizedProjectRevisionSAMLProvider.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
 docs/NormalizedProjectRevisionTokenizerTemplate.md
 docs/OAuth2API.md
@@ -434,6 +435,7 @@ model_normalized_project_revision.go
 model_normalized_project_revision_courier_channel.go
 model_normalized_project_revision_hook.go
 model_normalized_project_revision_identity_schema.go
+model_normalized_project_revision_saml_provider.go
 model_normalized_project_revision_third_party_provider.go
 model_normalized_project_revision_tokenizer_template.go
 model_o_auth2_client.go
