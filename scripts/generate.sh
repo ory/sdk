@@ -232,7 +232,6 @@ dotnet () {
     --git-host github.com \
     -c ./config/client/dotnet.yml.proc.yml
   cp "LICENSE" "clients/${PROJECT}/dotnet"
-  cp "contrib/dotnet/ApiClientHooks.cs" "clients/${PROJECT}/dotnet/src/Ory.Client/Client"
 }
 
 dart () {
