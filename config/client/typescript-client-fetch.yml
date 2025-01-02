@@ -1,0 +1,31 @@
+npmName: "${NPM_NAME}-fetch"
+npmVersion: $VERSION
+# typescriptThreePlus: true
+supportsES6: true
+ensureUniqueParams: true
+modelPropertyNaming: original
+disallowAdditionalPropertiesIfNotPresent: false
+withInterfaces: false
+useSingleRequestParameter: true
+files:
+  contrib/fetch/src/continueWith.ts:
+    folder: src/contrib
+    destinationFilename: continueWith.ts
+  contrib/fetch/src/error.ts:
+    folder: src/contrib
+    destinationFilename: error.ts
+  contrib/fetch/src/flowTypes.ts:
+    folder: src/contrib
+    destinationFilename: flowTypes.ts
+  contrib/fetch/src/index.ts:
+    folder: src/contrib
+    destinationFilename: index.ts
+  contrib/fetch/src/ui.ts:
+    folder: src/contrib
+    destinationFilename: ui.ts
+  contrib/fetch/src/urlHelpers.ts:
+    folder: src/contrib
+    destinationFilename: urlHelpers.ts
+  contrib/fetch/src/utils.ts:
+    folder: src/contrib
+    destinationFilename: utils.ts
