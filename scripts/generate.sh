@@ -69,8 +69,6 @@ typescript_fetch () {
 
   config_file=./config/client/typescript-fetch.yml.proc.yml
   if [ $project == "client" ]; then
-    echo "Adding contrib files"
-    echo "export * from './contrib';" >> "${dir}/src/index.ts"
     config_file=./config/client/typescript-client-fetch.yml.proc.yml
   fi
 
@@ -81,6 +79,11 @@ typescript_fetch () {
     --git-repo-id sdk \
     --git-host github.com \
     -c ./config/client/typescript-client-fetch.yml.proc.yml
+
+  if [ $project == "client" ]; then
+    echo "Adding contrib files"
+    echo "export * from './contrib';" >> "${dir}/src/index.ts"
+  fi
 
   file="${dir}/package.json"
   jq -r ".author = "'"'"Ory Corp"'"'" | .license = "'"'"Apache-2.0"'"' "${file}" \
