@@ -9,7 +9,7 @@ import {
   UiNodeScriptAttributes,
   UiNodeTextAttributes,
   UiText,
-} from "../";
+} from "../"
 
 /**
  * Returns the node's label.
@@ -18,27 +18,27 @@ import {
  * @returns label of the node
  */
 export const getNodeLabel = (node: UiNode): UiText | undefined => {
-  const attributes = node.attributes;
+  const attributes = node.attributes
   if (isUiNodeAnchorAttributes(attributes)) {
-    return attributes.title;
+    return attributes.title
   }
 
   if (isUiNodeImageAttributes(attributes)) {
-    return node.meta.label;
+    return node.meta.label
   }
 
   if (isUiNodeInputAttributes(attributes)) {
     if (attributes.label) {
-      return attributes.label;
+      return attributes.label
     }
   }
 
-  return node.meta.label;
-};
+  return node.meta.label
+}
 
 type ObjWithNodeType = {
-  node_type: string;
-};
+  node_type: string
+}
 
 /**
  * A TypeScript type guard for nodes of the type <a>
@@ -46,9 +46,9 @@ type ObjWithNodeType = {
  * @param attrs - the attributes of the node
  */
 export function isUiNodeAnchorAttributes(
-  attrs: ObjWithNodeType
+  attrs: ObjWithNodeType,
 ): attrs is UiNodeAnchorAttributes {
-  return attrs.node_type === "a";
+  return attrs.node_type === "a"
 }
 
 /**
@@ -57,9 +57,9 @@ export function isUiNodeAnchorAttributes(
  * @param attrs - the attributes of the node
  */
 export function isUiNodeImageAttributes(
-  attrs: ObjWithNodeType
+  attrs: ObjWithNodeType,
 ): attrs is UiNodeImageAttributes {
-  return attrs.node_type === "img";
+  return attrs.node_type === "img"
 }
 
 /**
@@ -68,9 +68,9 @@ export function isUiNodeImageAttributes(
  * @param attrs - the attributes of the node
  */
 export function isUiNodeInputAttributes(
-  attrs: ObjWithNodeType
+  attrs: ObjWithNodeType,
 ): attrs is UiNodeInputAttributes {
-  return attrs.node_type === "input";
+  return attrs.node_type === "input"
 }
 
 /**
@@ -79,9 +79,9 @@ export function isUiNodeInputAttributes(
  * @param attrs - the attributes of the node
  */
 export function isUiNodeTextAttributes(
-  attrs: ObjWithNodeType
+  attrs: ObjWithNodeType,
 ): attrs is UiNodeTextAttributes {
-  return attrs.node_type === "text";
+  return attrs.node_type === "text"
 }
 
 /**
@@ -90,9 +90,9 @@ export function isUiNodeTextAttributes(
  * @param attrs - the attributes of the node
  */
 export function isUiNodeScriptAttributes(
-  attrs: ObjWithNodeType
+  attrs: ObjWithNodeType,
 ): attrs is UiNodeScriptAttributes {
-  return attrs.node_type === "script";
+  return attrs.node_type === "script"
 }
 
 /**
@@ -102,9 +102,9 @@ export function isUiNodeScriptAttributes(
  */
 export function getNodeId({ attributes }: UiNode) {
   if (isUiNodeInputAttributes(attributes)) {
-    return attributes.name;
+    return attributes.name
   } else {
-    return attributes.id;
+    return attributes.id
   }
 }
 
@@ -117,4 +117,4 @@ export function getNodeId({ attributes }: UiNode) {
  * @returns type of node
  */
 export const getNodeInputType = (attr: object): string =>
-  "type" in attr && typeof attr?.type == "string" ? attr.type : "";
+  "type" in attr && typeof attr?.type == "string" ? attr.type : ""
