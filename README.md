@@ -6,8 +6,8 @@ All SDKs provided in this repository are generated using openapi-generator.
 
 When developing against [Ory Network](https://www.ory.sh/docs/sdk), use the
 latest `client` or `ory-client` SDK for your preferred language. It bundles the
-individual SDKs (Identities, OAuth2, Permissions) and works with [Ory API
-keys](https://www.ory.sh/docs/concepts/personal-access-token).
+individual SDKs (Identities, OAuth2, Permissions) and works with
+[Ory API keys](https://www.ory.sh/docs/concepts/personal-access-token).
 
 ## Ory self-hosted SDKs
 
@@ -30,7 +30,8 @@ docker push oryd/sdk:v0.0.53
 
 ## Running the Image Locally
 
-If you wish to debug some generators or build steps, you can run the image locally:
+If you wish to debug some generators or build steps, you can run the image
+locally:
 
 ```shell script
 docker build -t oryd/sdk:latest .
@@ -39,7 +40,8 @@ docker run --mount type=bind,source="$(pwd)",target=/project --name sdk --user "
 
 ### Debugging Failing Tests on CI
 
-If a test fails in CI, you may run the following code snippet to reproduce the failure locally:
+If a test fails in CI, you may run the following code snippet to reproduce the
+failure locally:
 
 ```shell script
 docker build -t oryd/sdk:latest .
