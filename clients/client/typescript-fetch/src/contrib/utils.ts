@@ -53,7 +53,6 @@ export const handleFlowError =
           return;
         case 410: // Expired
           const body = await toBody(err.response);
-          console.log({body})
           if (isSelfServiceFlowExpiredError(body)) {
             opts.onRestartFlow(body.use_flow_id);
             return;
