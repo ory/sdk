@@ -16,8 +16,10 @@ export type ValidationErrorHandler<T> = (body: T) => void;
 type FlowErrorHandlerProps<T> = {
   /**
    * When the SDK returns an error indicating that the flow needs to be restarted, this function is called.
+   *
+   * @param useFlowId - If provided, the SDK should use this flow ID to not lose context of the flow.
    */
-  onRestartFlow: () => void;
+  onRestartFlow: (useFlowId?: string) => void;
 
   /**
    * When the SDK returns a validation error, this function is called. The result should be used to update the
@@ -43,13 +45,19 @@ type FlowErrorHandlerProps<T> = {
  */
 export const handleFlowError =
   <T>(opts: FlowErrorHandlerProps<T>) =>
-  async (err: unknown) => {
+  async (err: unknown): Promise<void |T> => {
     if (isResponseError(err)) {
       switch (err.response.status) {
         case 404: // Does not exist
           opts.onRestartFlow();
           return;
         case 410: // Expired
+          const body = await toBody(err.response);
+          console.log({body})
+          if (isSelfServiceFlowExpiredError(body)) {
+            opts.onRestartFlow(body.use_flow_id);
+            return;
+          }
           // Re-initialize the flow
           opts.onRestartFlow();
           return;
@@ -68,7 +76,7 @@ export const handleFlowError =
             opts.onRedirect(body.redirect_browser_to, true);
             return;
           } else if (isSelfServiceFlowExpiredError(body)) {
-            opts.onRestartFlow();
+            opts.onRestartFlow(body.use_flow_id);
             return;
           } else if (isNeedsPrivilegedSessionError(body)) {
             opts.onRedirect(body.redirect_browser_to, true);
