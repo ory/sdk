@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.15.17
+  version: v1.16.0
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -20273,6 +20273,7 @@ components:
             webauthn WebAuthnGroup
             passkey PasskeyGroup
             identifier_first IdentifierFirstGroup
+            captcha CaptchaGroup
           enum:
           - default
           - password
@@ -20285,6 +20286,7 @@ components:
           - webauthn
           - passkey
           - identifier_first
+          - captcha
           type: string
           x-go-enum-desc: |-
             default DefaultGroup
@@ -20298,6 +20300,7 @@ components:
             webauthn WebAuthnGroup
             passkey PasskeyGroup
             identifier_first IdentifierFirstGroup
+            captcha CaptchaGroup
         messages:
           items:
             $ref: '#/components/schemas/uiText'
