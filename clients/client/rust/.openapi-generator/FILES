@@ -6,6 +6,7 @@ README.md
 docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
+docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
 docs/AccountExperienceThemeVariables.md
 docs/ActiveProjectInConsole.md
@@ -108,6 +109,7 @@ docs/InternalIsAxWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
 docs/IntrospectedOAuth2Token.md
+docs/InviteTokenBody.md
 docs/Invoice.md
 docs/InvoiceDataV1.md
 docs/IsOwnerForProjectBySlug.md
@@ -306,6 +308,7 @@ src/lib.rs
 src/models/accept_o_auth2_consent_request.rs
 src/models/accept_o_auth2_consent_request_session.rs
 src/models/accept_o_auth2_login_request.rs
+src/models/account_experience_colors.rs
 src/models/account_experience_configuration.rs
 src/models/account_experience_theme_variables.rs
 src/models/active_project_in_console.rs
@@ -404,6 +407,7 @@ src/models/internal_is_ax_welcome_screen_enabled_for_project_body.rs
 src/models/internal_is_owner_for_project_by_slug_body.rs
 src/models/internal_is_owner_for_project_by_slug_response.rs
 src/models/introspected_o_auth2_token.rs
+src/models/invite_token_body.rs
 src/models/invoice.rs
 src/models/invoice_data_v1.rs
 src/models/is_owner_for_project_by_slug.rs

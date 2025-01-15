@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.16.0
-  - Build date: 2025-01-15T10:10:26.500846329Z[Etc/UTC]
+- API version: v1.16.1
+  - Build date: 2025-01-15T16:05:48.020332781Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.16.0</version>
+  <version>v1.16.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.16.0"
+     implementation "sh.ory:client:v1.16.1"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.16.0.jar`
+* `target/client-v1.16.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -283,6 +283,7 @@ Class | Method | HTTP request | Description
  - [AcceptOAuth2ConsentRequest](docs/AcceptOAuth2ConsentRequest.md)
  - [AcceptOAuth2ConsentRequestSession](docs/AcceptOAuth2ConsentRequestSession.md)
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
+ - [AccountExperienceColors](docs/AccountExperienceColors.md)
  - [AccountExperienceConfiguration](docs/AccountExperienceConfiguration.md)
  - [AccountExperienceThemeVariables](docs/AccountExperienceThemeVariables.md)
  - [ActiveProjectInConsole](docs/ActiveProjectInConsole.md)
@@ -381,6 +382,7 @@ Class | Method | HTTP request | Description
  - [InternalIsOwnerForProjectBySlugBody](docs/InternalIsOwnerForProjectBySlugBody.md)
  - [InternalIsOwnerForProjectBySlugResponse](docs/InternalIsOwnerForProjectBySlugResponse.md)
  - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
+ - [InviteTokenBody](docs/InviteTokenBody.md)
  - [Invoice](docs/Invoice.md)
  - [InvoiceDataV1](docs/InvoiceDataV1.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)

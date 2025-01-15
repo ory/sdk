@@ -22,6 +22,7 @@ lib/ory/deserializer.ex
 lib/ory/model/accept_o_auth2_consent_request.ex
 lib/ory/model/accept_o_auth2_consent_request_session.ex
 lib/ory/model/accept_o_auth2_login_request.ex
+lib/ory/model/account_experience_colors.ex
 lib/ory/model/account_experience_configuration.ex
 lib/ory/model/account_experience_theme_variables.ex
 lib/ory/model/active_project_in_console.ex
@@ -120,6 +121,7 @@ lib/ory/model/internal_is_ax_welcome_screen_enabled_for_project_body.ex
 lib/ory/model/internal_is_owner_for_project_by_slug_body.ex
 lib/ory/model/internal_is_owner_for_project_by_slug_response.ex
 lib/ory/model/introspected_o_auth2_token.ex
+lib/ory/model/invite_token_body.ex
 lib/ory/model/invoice.ex
 lib/ory/model/invoice_data_v1.ex
 lib/ory/model/is_owner_for_project_by_slug.ex

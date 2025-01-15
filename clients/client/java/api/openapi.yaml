@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.16.0
+  version: v1.16.1
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -8418,6 +8418,239 @@ components:
 
         The response given when listing sessions in an administrative context.
   schemas:
+    AccountExperienceColors:
+      properties:
+        button-identifier-background-default:
+          type: string
+        button-identifier-background-hover:
+          type: string
+        button-identifier-border-border-default:
+          type: string
+        button-identifier-border-border-hover:
+          type: string
+        button-identifier-foreground-default:
+          type: string
+        button-identifier-foreground-hover:
+          type: string
+        button-link-brand-brand:
+          type: string
+        button-link-brand-brand-hover:
+          type: string
+        button-link-default-primary:
+          type: string
+        button-link-default-primary-hover:
+          type: string
+        button-link-default-secondary:
+          type: string
+        button-link-default-secondary-hover:
+          type: string
+        button-link-disabled-disabled:
+          type: string
+        button-primary-background-default:
+          type: string
+        button-primary-background-disabled:
+          type: string
+        button-primary-background-hover:
+          type: string
+        button-primary-border-default:
+          type: string
+        button-primary-border-disabled:
+          type: string
+        button-primary-border-hover:
+          type: string
+        button-primary-foreground-default:
+          type: string
+        button-primary-foreground-disabled:
+          type: string
+        button-primary-foreground-hover:
+          type: string
+        button-secondary-background-default:
+          type: string
+        button-secondary-background-disabled:
+          type: string
+        button-secondary-background-hover:
+          type: string
+        button-secondary-border-default:
+          type: string
+        button-secondary-border-disabled:
+          type: string
+        button-secondary-border-hover:
+          type: string
+        button-secondary-foreground-default:
+          type: string
+        button-secondary-foreground-disabled:
+          type: string
+        button-secondary-foreground-hover:
+          type: string
+        button-social-background-default:
+          type: string
+        button-social-background-disabled:
+          type: string
+        button-social-background-generic-provider:
+          type: string
+        button-social-background-hover:
+          type: string
+        button-social-border-default:
+          type: string
+        button-social-border-disabled:
+          type: string
+        button-social-border-generic-provider:
+          type: string
+        button-social-border-hover:
+          type: string
+        button-social-foreground-default:
+          type: string
+        button-social-foreground-disabled:
+          type: string
+        button-social-foreground-generic-provider:
+          type: string
+        button-social-foreground-hover:
+          type: string
+        checkbox-background-checked:
+          type: string
+        checkbox-background-default:
+          type: string
+        checkbox-border-checkbox-border-checked:
+          type: string
+        checkbox-border-checkbox-border-default:
+          type: string
+        checkbox-foreground-checked:
+          type: string
+        checkbox-foreground-default:
+          type: string
+        form-background-default:
+          type: string
+        form-border-default:
+          type: string
+        input-background-default:
+          type: string
+        input-background-disabled:
+          type: string
+        input-background-hover:
+          type: string
+        input-border-default:
+          type: string
+        input-border-disabled:
+          type: string
+        input-border-focus:
+          type: string
+        input-border-hover:
+          type: string
+        input-foreground-disabled:
+          type: string
+        input-foreground-primary:
+          type: string
+        input-foreground-secondary:
+          type: string
+        input-foreground-tertiary:
+          type: string
+        interface-background-brand-primary:
+          type: string
+        interface-background-brand-primary-hover:
+          type: string
+        interface-background-brand-secondary:
+          type: string
+        interface-background-brand-secondary-hover:
+          type: string
+        interface-background-default-inverted:
+          type: string
+        interface-background-default-inverted-hover:
+          type: string
+        interface-background-default-none:
+          type: string
+        interface-background-default-primary:
+          type: string
+        interface-background-default-primary-hover:
+          type: string
+        interface-background-default-secondary:
+          type: string
+        interface-background-default-secondary-hover:
+          type: string
+        interface-background-default-tertiary:
+          type: string
+        interface-background-default-tertiary-hover:
+          type: string
+        interface-background-disabled-disabled:
+          type: string
+        interface-background-validation-danger:
+          type: string
+        interface-background-validation-success:
+          type: string
+        interface-background-validation-warning:
+          type: string
+        interface-border-brand-brand:
+          type: string
+        interface-border-default-inverted:
+          type: string
+        interface-border-default-none:
+          type: string
+        interface-border-default-primary:
+          type: string
+        interface-border-disabled-disabled:
+          type: string
+        interface-border-validation-danger:
+          type: string
+        interface-border-validation-success:
+          type: string
+        interface-border-validation-warning:
+          type: string
+        interface-foreground-brand-on-primary:
+          type: string
+        interface-foreground-brand-on-secondary:
+          type: string
+        interface-foreground-brand-primary:
+          type: string
+        interface-foreground-brand-secondary:
+          type: string
+        interface-foreground-default-inverted:
+          type: string
+        interface-foreground-default-primary:
+          type: string
+        interface-foreground-default-secondary:
+          type: string
+        interface-foreground-default-tertiary:
+          type: string
+        interface-foreground-disabled-disabled:
+          type: string
+        interface-foreground-disabled-on-disabled:
+          type: string
+        interface-foreground-validation-danger:
+          type: string
+        interface-foreground-validation-success:
+          type: string
+        interface-foreground-validation-warning:
+          type: string
+        ory-background-default:
+          type: string
+        ory-border-default:
+          type: string
+        ory-foreground-default:
+          type: string
+        radio-background-checked:
+          type: string
+        radio-background-default:
+          type: string
+        radio-border-checked:
+          type: string
+        radio-border-default:
+          type: string
+        radio-foreground-checked:
+          type: string
+        radio-foreground-default:
+          type: string
+        toggle-background-checked:
+          type: string
+        toggle-background-default:
+          type: string
+        toggle-border-checked:
+          type: string
+        toggle-border-default:
+          type: string
+        toggle-foreground-checked:
+          type: string
+        toggle-foreground-default:
+          type: string
+      type: object
     AmountInCent:
       format: int64
       type: integer
@@ -8504,6 +8737,26 @@ components:
     CreateProjectNormalizedPayload:
       description: Create project (normalized) request payload
       properties:
+        account_experience_favicon_dark:
+          description: Holds the URL to the account experience's dark theme favicon
+            (currently unused).
+          type: string
+        account_experience_favicon_light:
+          description: Holds the URL to the account experience's favicon.
+          type: string
+        account_experience_logo_dark:
+          description: Holds the URL to the account experience's dark theme logo (currently
+            unused).
+          type: string
+        account_experience_logo_light:
+          description: Holds the URL to the account experience's logo.
+          type: string
+        account_experience_theme_variables_dark:
+          description: Holds the URL to the account experience's dark theme variables.
+          type: string
+        account_experience_theme_variables_light:
+          description: Holds the URL to the account experience's light theme variables.
+          type: string
         created_at:
           description: The Project's Revision Creation Date
           format: date-time
@@ -12764,6 +13017,21 @@ components:
       required:
       - active
       type: object
+    inviteTokenBody:
+      description: Invite Token Body
+      properties:
+        invite_token:
+          description: |-
+            Invite Token
+
+            The Invite Token.
+
+            format: uuid
+          format: uuid
+          type: string
+      required:
+      - invite_token
+      type: object
     invoice:
       properties:
         id:
@@ -14002,6 +14270,26 @@ components:
       type: object
     normalizedProjectRevision:
       properties:
+        account_experience_favicon_dark:
+          description: Holds the URL to the account experience's dark theme favicon
+            (currently unused).
+          type: string
+        account_experience_favicon_light:
+          description: Holds the URL to the account experience's favicon.
+          type: string
+        account_experience_logo_dark:
+          description: Holds the URL to the account experience's dark theme logo (currently
+            unused).
+          type: string
+        account_experience_logo_light:
+          description: Holds the URL to the account experience's logo.
+          type: string
+        account_experience_theme_variables_dark:
+          description: Holds the URL to the account experience's dark theme variables.
+          type: string
+        account_experience_theme_variables_light:
+          description: Holds the URL to the account experience's light theme variables.
+          type: string
         created_at:
           description: The Project's Revision Creation Date
           format: date-time
@@ -20594,6 +20882,7 @@ components:
             passkey PasskeyGroup
             identifier_first IdentifierFirstGroup
             captcha CaptchaGroup
+            saml SAMLGroup
           enum:
           - default
           - password
@@ -20607,6 +20896,7 @@ components:
           - passkey
           - identifier_first
           - captcha
+          - saml
           type: string
           x-go-enum-desc: |-
             default DefaultGroup
@@ -20621,6 +20911,7 @@ components:
             passkey PasskeyGroup
             identifier_first IdentifierFirstGroup
             captcha CaptchaGroup
+            saml SAMLGroup
         messages:
           items:
             $ref: '#/components/schemas/uiText'

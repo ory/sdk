@@ -28,6 +28,7 @@ src/index.ts
 src/models/AcceptOAuth2ConsentRequest.ts
 src/models/AcceptOAuth2ConsentRequestSession.ts
 src/models/AcceptOAuth2LoginRequest.ts
+src/models/AccountExperienceColors.ts
 src/models/AccountExperienceConfiguration.ts
 src/models/AccountExperienceThemeVariables.ts
 src/models/ActiveProjectInConsole.ts
@@ -126,6 +127,7 @@ src/models/InternalIsAXWelcomeScreenEnabledForProjectBody.ts
 src/models/InternalIsOwnerForProjectBySlugBody.ts
 src/models/InternalIsOwnerForProjectBySlugResponse.ts
 src/models/IntrospectedOAuth2Token.ts
+src/models/InviteTokenBody.ts
 src/models/Invoice.ts
 src/models/InvoiceDataV1.ts
 src/models/IsOwnerForProjectBySlug.ts

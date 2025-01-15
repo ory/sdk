@@ -20,6 +20,7 @@ docs/Api/WorkspaceApi.md
 docs/Model/AcceptOAuth2ConsentRequest.md
 docs/Model/AcceptOAuth2ConsentRequestSession.md
 docs/Model/AcceptOAuth2LoginRequest.md
+docs/Model/AccountExperienceColors.md
 docs/Model/AccountExperienceConfiguration.md
 docs/Model/AccountExperienceThemeVariables.md
 docs/Model/ActiveProjectInConsole.md
@@ -118,6 +119,7 @@ docs/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/Model/InternalIsOwnerForProjectBySlugBody.md
 docs/Model/InternalIsOwnerForProjectBySlugResponse.md
 docs/Model/IntrospectedOAuth2Token.md
+docs/Model/InviteTokenBody.md
 docs/Model/Invoice.md
 docs/Model/InvoiceDataV1.md
 docs/Model/IsOwnerForProjectBySlug.md
@@ -307,6 +309,7 @@ lib/HeaderSelector.php
 lib/Model/AcceptOAuth2ConsentRequest.php
 lib/Model/AcceptOAuth2ConsentRequestSession.php
 lib/Model/AcceptOAuth2LoginRequest.php
+lib/Model/AccountExperienceColors.php
 lib/Model/AccountExperienceConfiguration.php
 lib/Model/AccountExperienceThemeVariables.php
 lib/Model/ActiveProjectInConsole.php
@@ -405,6 +408,7 @@ lib/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.php
 lib/Model/InternalIsOwnerForProjectBySlugBody.php
 lib/Model/InternalIsOwnerForProjectBySlugResponse.php
 lib/Model/IntrospectedOAuth2Token.php
+lib/Model/InviteTokenBody.php
 lib/Model/Invoice.php
 lib/Model/InvoiceDataV1.php
 lib/Model/IsOwnerForProjectBySlug.php
@@ -593,6 +597,7 @@ test/Api/WorkspaceApiTest.php
 test/Model/AcceptOAuth2ConsentRequestSessionTest.php
 test/Model/AcceptOAuth2ConsentRequestTest.php
 test/Model/AcceptOAuth2LoginRequestTest.php
+test/Model/AccountExperienceColorsTest.php
 test/Model/AccountExperienceConfigurationTest.php
 test/Model/AccountExperienceThemeVariablesTest.php
 test/Model/ActiveProjectInConsoleTest.php
@@ -691,6 +696,7 @@ test/Model/InternalIsAXWelcomeScreenEnabledForProjectBodyTest.php
 test/Model/InternalIsOwnerForProjectBySlugBodyTest.php
 test/Model/InternalIsOwnerForProjectBySlugResponseTest.php
 test/Model/IntrospectedOAuth2TokenTest.php
+test/Model/InviteTokenBodyTest.php
 test/Model/InvoiceDataV1Test.php
 test/Model/InvoiceTest.php
 test/Model/IsOwnerForProjectBySlugTest.php

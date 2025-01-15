@@ -20,6 +20,12 @@ part 'create_project_normalized_payload.g.dart';
 /// Create project (normalized) request payload
 ///
 /// Properties:
+/// * [accountExperienceFaviconDark] - Holds the URL to the account experience's dark theme favicon (currently unused).
+/// * [accountExperienceFaviconLight] - Holds the URL to the account experience's favicon.
+/// * [accountExperienceLogoDark] - Holds the URL to the account experience's dark theme logo (currently unused).
+/// * [accountExperienceLogoLight] - Holds the URL to the account experience's logo.
+/// * [accountExperienceThemeVariablesDark] - Holds the URL to the account experience's dark theme variables.
+/// * [accountExperienceThemeVariablesLight] - Holds the URL to the account experience's light theme variables.
 /// * [createdAt] - The Project's Revision Creation Date
 /// * [disableAccountExperienceWelcomeScreen] - Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
 /// * [enableAxV2] - Whether the new account experience is enabled and reachable.
@@ -235,6 +241,30 @@ part 'create_project_normalized_payload.g.dart';
 /// * [workspaceId] 
 @BuiltValue()
 abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNormalizedPayload, CreateProjectNormalizedPayloadBuilder> {
+  /// Holds the URL to the account experience's dark theme favicon (currently unused).
+  @BuiltValueField(wireName: r'account_experience_favicon_dark')
+  String? get accountExperienceFaviconDark;
+
+  /// Holds the URL to the account experience's favicon.
+  @BuiltValueField(wireName: r'account_experience_favicon_light')
+  String? get accountExperienceFaviconLight;
+
+  /// Holds the URL to the account experience's dark theme logo (currently unused).
+  @BuiltValueField(wireName: r'account_experience_logo_dark')
+  String? get accountExperienceLogoDark;
+
+  /// Holds the URL to the account experience's logo.
+  @BuiltValueField(wireName: r'account_experience_logo_light')
+  String? get accountExperienceLogoLight;
+
+  /// Holds the URL to the account experience's dark theme variables.
+  @BuiltValueField(wireName: r'account_experience_theme_variables_dark')
+  String? get accountExperienceThemeVariablesDark;
+
+  /// Holds the URL to the account experience's light theme variables.
+  @BuiltValueField(wireName: r'account_experience_theme_variables_light')
+  String? get accountExperienceThemeVariablesLight;
+
   /// The Project's Revision Creation Date
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
@@ -1105,6 +1135,48 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
     CreateProjectNormalizedPayload object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.accountExperienceFaviconDark != null) {
+      yield r'account_experience_favicon_dark';
+      yield serializers.serialize(
+        object.accountExperienceFaviconDark,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.accountExperienceFaviconLight != null) {
+      yield r'account_experience_favicon_light';
+      yield serializers.serialize(
+        object.accountExperienceFaviconLight,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.accountExperienceLogoDark != null) {
+      yield r'account_experience_logo_dark';
+      yield serializers.serialize(
+        object.accountExperienceLogoDark,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.accountExperienceLogoLight != null) {
+      yield r'account_experience_logo_light';
+      yield serializers.serialize(
+        object.accountExperienceLogoLight,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.accountExperienceThemeVariablesDark != null) {
+      yield r'account_experience_theme_variables_dark';
+      yield serializers.serialize(
+        object.accountExperienceThemeVariablesDark,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.accountExperienceThemeVariablesLight != null) {
+      yield r'account_experience_theme_variables_light';
+      yield serializers.serialize(
+        object.accountExperienceThemeVariablesLight,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.createdAt != null) {
       yield r'created_at';
       yield serializers.serialize(
@@ -2615,6 +2687,48 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'account_experience_favicon_dark':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.accountExperienceFaviconDark = valueDes;
+          break;
+        case r'account_experience_favicon_light':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.accountExperienceFaviconLight = valueDes;
+          break;
+        case r'account_experience_logo_dark':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.accountExperienceLogoDark = valueDes;
+          break;
+        case r'account_experience_logo_light':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.accountExperienceLogoLight = valueDes;
+          break;
+        case r'account_experience_theme_variables_dark':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.accountExperienceThemeVariablesDark = valueDes;
+          break;
+        case r'account_experience_theme_variables_light':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.accountExperienceThemeVariablesLight = valueDes;
+          break;
         case r'created_at':
           final valueDes = serializers.deserialize(
             value,

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.16.0
+API version: v1.16.1
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,18 @@ var _ MappedNullable = &NormalizedProjectRevision{}
 
 // NormalizedProjectRevision struct for NormalizedProjectRevision
 type NormalizedProjectRevision struct {
+	// Holds the URL to the account experience's dark theme favicon (currently unused).
+	AccountExperienceFaviconDark *string `json:"account_experience_favicon_dark,omitempty"`
+	// Holds the URL to the account experience's favicon.
+	AccountExperienceFaviconLight *string `json:"account_experience_favicon_light,omitempty"`
+	// Holds the URL to the account experience's dark theme logo (currently unused).
+	AccountExperienceLogoDark *string `json:"account_experience_logo_dark,omitempty"`
+	// Holds the URL to the account experience's logo.
+	AccountExperienceLogoLight *string `json:"account_experience_logo_light,omitempty"`
+	// Holds the URL to the account experience's dark theme variables.
+	AccountExperienceThemeVariablesDark *string `json:"account_experience_theme_variables_dark,omitempty"`
+	// Holds the URL to the account experience's light theme variables.
+	AccountExperienceThemeVariablesLight *string `json:"account_experience_theme_variables_light,omitempty"`
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
@@ -488,6 +500,198 @@ func NewNormalizedProjectRevisionWithDefaults() *NormalizedProjectRevision {
 	var kratosCourierHttpRequestConfigMethod string = "POST"
 	this.KratosCourierHttpRequestConfigMethod = &kratosCourierHttpRequestConfigMethod
 	return &this
+}
+
+// GetAccountExperienceFaviconDark returns the AccountExperienceFaviconDark field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetAccountExperienceFaviconDark() string {
+	if o == nil || IsNil(o.AccountExperienceFaviconDark) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceFaviconDark
+}
+
+// GetAccountExperienceFaviconDarkOk returns a tuple with the AccountExperienceFaviconDark field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetAccountExperienceFaviconDarkOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceFaviconDark) {
+		return nil, false
+	}
+	return o.AccountExperienceFaviconDark, true
+}
+
+// HasAccountExperienceFaviconDark returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasAccountExperienceFaviconDark() bool {
+	if o != nil && !IsNil(o.AccountExperienceFaviconDark) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceFaviconDark gets a reference to the given string and assigns it to the AccountExperienceFaviconDark field.
+func (o *NormalizedProjectRevision) SetAccountExperienceFaviconDark(v string) {
+	o.AccountExperienceFaviconDark = &v
+}
+
+// GetAccountExperienceFaviconLight returns the AccountExperienceFaviconLight field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetAccountExperienceFaviconLight() string {
+	if o == nil || IsNil(o.AccountExperienceFaviconLight) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceFaviconLight
+}
+
+// GetAccountExperienceFaviconLightOk returns a tuple with the AccountExperienceFaviconLight field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetAccountExperienceFaviconLightOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceFaviconLight) {
+		return nil, false
+	}
+	return o.AccountExperienceFaviconLight, true
+}
+
+// HasAccountExperienceFaviconLight returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasAccountExperienceFaviconLight() bool {
+	if o != nil && !IsNil(o.AccountExperienceFaviconLight) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceFaviconLight gets a reference to the given string and assigns it to the AccountExperienceFaviconLight field.
+func (o *NormalizedProjectRevision) SetAccountExperienceFaviconLight(v string) {
+	o.AccountExperienceFaviconLight = &v
+}
+
+// GetAccountExperienceLogoDark returns the AccountExperienceLogoDark field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetAccountExperienceLogoDark() string {
+	if o == nil || IsNil(o.AccountExperienceLogoDark) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceLogoDark
+}
+
+// GetAccountExperienceLogoDarkOk returns a tuple with the AccountExperienceLogoDark field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetAccountExperienceLogoDarkOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceLogoDark) {
+		return nil, false
+	}
+	return o.AccountExperienceLogoDark, true
+}
+
+// HasAccountExperienceLogoDark returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasAccountExperienceLogoDark() bool {
+	if o != nil && !IsNil(o.AccountExperienceLogoDark) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceLogoDark gets a reference to the given string and assigns it to the AccountExperienceLogoDark field.
+func (o *NormalizedProjectRevision) SetAccountExperienceLogoDark(v string) {
+	o.AccountExperienceLogoDark = &v
+}
+
+// GetAccountExperienceLogoLight returns the AccountExperienceLogoLight field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetAccountExperienceLogoLight() string {
+	if o == nil || IsNil(o.AccountExperienceLogoLight) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceLogoLight
+}
+
+// GetAccountExperienceLogoLightOk returns a tuple with the AccountExperienceLogoLight field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetAccountExperienceLogoLightOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceLogoLight) {
+		return nil, false
+	}
+	return o.AccountExperienceLogoLight, true
+}
+
+// HasAccountExperienceLogoLight returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasAccountExperienceLogoLight() bool {
+	if o != nil && !IsNil(o.AccountExperienceLogoLight) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceLogoLight gets a reference to the given string and assigns it to the AccountExperienceLogoLight field.
+func (o *NormalizedProjectRevision) SetAccountExperienceLogoLight(v string) {
+	o.AccountExperienceLogoLight = &v
+}
+
+// GetAccountExperienceThemeVariablesDark returns the AccountExperienceThemeVariablesDark field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetAccountExperienceThemeVariablesDark() string {
+	if o == nil || IsNil(o.AccountExperienceThemeVariablesDark) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceThemeVariablesDark
+}
+
+// GetAccountExperienceThemeVariablesDarkOk returns a tuple with the AccountExperienceThemeVariablesDark field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetAccountExperienceThemeVariablesDarkOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceThemeVariablesDark) {
+		return nil, false
+	}
+	return o.AccountExperienceThemeVariablesDark, true
+}
+
+// HasAccountExperienceThemeVariablesDark returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasAccountExperienceThemeVariablesDark() bool {
+	if o != nil && !IsNil(o.AccountExperienceThemeVariablesDark) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceThemeVariablesDark gets a reference to the given string and assigns it to the AccountExperienceThemeVariablesDark field.
+func (o *NormalizedProjectRevision) SetAccountExperienceThemeVariablesDark(v string) {
+	o.AccountExperienceThemeVariablesDark = &v
+}
+
+// GetAccountExperienceThemeVariablesLight returns the AccountExperienceThemeVariablesLight field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetAccountExperienceThemeVariablesLight() string {
+	if o == nil || IsNil(o.AccountExperienceThemeVariablesLight) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceThemeVariablesLight
+}
+
+// GetAccountExperienceThemeVariablesLightOk returns a tuple with the AccountExperienceThemeVariablesLight field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetAccountExperienceThemeVariablesLightOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceThemeVariablesLight) {
+		return nil, false
+	}
+	return o.AccountExperienceThemeVariablesLight, true
+}
+
+// HasAccountExperienceThemeVariablesLight returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasAccountExperienceThemeVariablesLight() bool {
+	if o != nil && !IsNil(o.AccountExperienceThemeVariablesLight) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceThemeVariablesLight gets a reference to the given string and assigns it to the AccountExperienceThemeVariablesLight field.
+func (o *NormalizedProjectRevision) SetAccountExperienceThemeVariablesLight(v string) {
+	o.AccountExperienceThemeVariablesLight = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -7215,6 +7419,24 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 
 func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AccountExperienceFaviconDark) {
+		toSerialize["account_experience_favicon_dark"] = o.AccountExperienceFaviconDark
+	}
+	if !IsNil(o.AccountExperienceFaviconLight) {
+		toSerialize["account_experience_favicon_light"] = o.AccountExperienceFaviconLight
+	}
+	if !IsNil(o.AccountExperienceLogoDark) {
+		toSerialize["account_experience_logo_dark"] = o.AccountExperienceLogoDark
+	}
+	if !IsNil(o.AccountExperienceLogoLight) {
+		toSerialize["account_experience_logo_light"] = o.AccountExperienceLogoLight
+	}
+	if !IsNil(o.AccountExperienceThemeVariablesDark) {
+		toSerialize["account_experience_theme_variables_dark"] = o.AccountExperienceThemeVariablesDark
+	}
+	if !IsNil(o.AccountExperienceThemeVariablesLight) {
+		toSerialize["account_experience_theme_variables_light"] = o.AccountExperienceThemeVariablesLight
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -7886,6 +8108,12 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "account_experience_favicon_dark")
+		delete(additionalProperties, "account_experience_favicon_light")
+		delete(additionalProperties, "account_experience_logo_dark")
+		delete(additionalProperties, "account_experience_logo_light")
+		delete(additionalProperties, "account_experience_theme_variables_dark")
+		delete(additionalProperties, "account_experience_theme_variables_light")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "disable_account_experience_welcome_screen")
 		delete(additionalProperties, "enable_ax_v2")

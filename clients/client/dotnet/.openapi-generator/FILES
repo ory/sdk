@@ -7,6 +7,7 @@ appveyor.yml
 docs/ClientAcceptOAuth2ConsentRequest.md
 docs/ClientAcceptOAuth2ConsentRequestSession.md
 docs/ClientAcceptOAuth2LoginRequest.md
+docs/ClientAccountExperienceColors.md
 docs/ClientAccountExperienceConfiguration.md
 docs/ClientAccountExperienceThemeVariables.md
 docs/ClientActiveProjectInConsole.md
@@ -105,6 +106,7 @@ docs/ClientInternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/ClientInternalIsOwnerForProjectBySlugBody.md
 docs/ClientInternalIsOwnerForProjectBySlugResponse.md
 docs/ClientIntrospectedOAuth2Token.md
+docs/ClientInviteTokenBody.md
 docs/ClientInvoice.md
 docs/ClientInvoiceDataV1.md
 docs/ClientIsOwnerForProjectBySlug.md
@@ -304,6 +306,7 @@ src/Ory.Client.Test/Api/WorkspaceApiTests.cs
 src/Ory.Client.Test/Model/ClientAcceptOAuth2ConsentRequestSessionTests.cs
 src/Ory.Client.Test/Model/ClientAcceptOAuth2ConsentRequestTests.cs
 src/Ory.Client.Test/Model/ClientAcceptOAuth2LoginRequestTests.cs
+src/Ory.Client.Test/Model/ClientAccountExperienceColorsTests.cs
 src/Ory.Client.Test/Model/ClientAccountExperienceConfigurationTests.cs
 src/Ory.Client.Test/Model/ClientAccountExperienceThemeVariablesTests.cs
 src/Ory.Client.Test/Model/ClientActiveProjectInConsoleTests.cs
@@ -402,6 +405,7 @@ src/Ory.Client.Test/Model/ClientInternalIsAXWelcomeScreenEnabledForProjectBodyTe
 src/Ory.Client.Test/Model/ClientInternalIsOwnerForProjectBySlugBodyTests.cs
 src/Ory.Client.Test/Model/ClientInternalIsOwnerForProjectBySlugResponseTests.cs
 src/Ory.Client.Test/Model/ClientIntrospectedOAuth2TokenTests.cs
+src/Ory.Client.Test/Model/ClientInviteTokenBodyTests.cs
 src/Ory.Client.Test/Model/ClientInvoiceDataV1Tests.cs
 src/Ory.Client.Test/Model/ClientInvoiceTests.cs
 src/Ory.Client.Test/Model/ClientIsOwnerForProjectBySlugTests.cs
@@ -608,6 +612,7 @@ src/Ory.Client/Model/AbstractOpenAPISchema.cs
 src/Ory.Client/Model/ClientAcceptOAuth2ConsentRequest.cs
 src/Ory.Client/Model/ClientAcceptOAuth2ConsentRequestSession.cs
 src/Ory.Client/Model/ClientAcceptOAuth2LoginRequest.cs
+src/Ory.Client/Model/ClientAccountExperienceColors.cs
 src/Ory.Client/Model/ClientAccountExperienceConfiguration.cs
 src/Ory.Client/Model/ClientAccountExperienceThemeVariables.cs
 src/Ory.Client/Model/ClientActiveProjectInConsole.cs
@@ -706,6 +711,7 @@ src/Ory.Client/Model/ClientInternalIsAXWelcomeScreenEnabledForProjectBody.cs
 src/Ory.Client/Model/ClientInternalIsOwnerForProjectBySlugBody.cs
 src/Ory.Client/Model/ClientInternalIsOwnerForProjectBySlugResponse.cs
 src/Ory.Client/Model/ClientIntrospectedOAuth2Token.cs
+src/Ory.Client/Model/ClientInviteTokenBody.cs
 src/Ory.Client/Model/ClientInvoice.cs
 src/Ory.Client/Model/ClientInvoiceDataV1.cs
 src/Ory.Client/Model/ClientIsOwnerForProjectBySlug.cs

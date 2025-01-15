@@ -528,6 +528,18 @@ class _$CreateProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnumS
 
 class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
+  final String? accountExperienceFaviconDark;
+  @override
+  final String? accountExperienceFaviconLight;
+  @override
+  final String? accountExperienceLogoDark;
+  @override
+  final String? accountExperienceLogoLight;
+  @override
+  final String? accountExperienceThemeVariablesDark;
+  @override
+  final String? accountExperienceThemeVariablesLight;
+  @override
   final DateTime? createdAt;
   @override
   final bool? disableAccountExperienceWelcomeScreen;
@@ -982,7 +994,13 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       (new CreateProjectNormalizedPayloadBuilder()..update(updates))._build();
 
   _$CreateProjectNormalizedPayload._(
-      {this.createdAt,
+      {this.accountExperienceFaviconDark,
+      this.accountExperienceFaviconLight,
+      this.accountExperienceLogoDark,
+      this.accountExperienceLogoLight,
+      this.accountExperienceThemeVariablesDark,
+      this.accountExperienceThemeVariablesLight,
+      this.createdAt,
       this.disableAccountExperienceWelcomeScreen,
       this.enableAxV2,
       required this.environment,
@@ -1215,6 +1233,14 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is CreateProjectNormalizedPayload &&
+        accountExperienceFaviconDark == other.accountExperienceFaviconDark &&
+        accountExperienceFaviconLight == other.accountExperienceFaviconLight &&
+        accountExperienceLogoDark == other.accountExperienceLogoDark &&
+        accountExperienceLogoLight == other.accountExperienceLogoLight &&
+        accountExperienceThemeVariablesDark ==
+            other.accountExperienceThemeVariablesDark &&
+        accountExperienceThemeVariablesLight ==
+            other.accountExperienceThemeVariablesLight &&
         createdAt == other.createdAt &&
         disableAccountExperienceWelcomeScreen ==
             other.disableAccountExperienceWelcomeScreen &&
@@ -1615,6 +1641,12 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, accountExperienceFaviconDark.hashCode);
+    _$hash = $jc(_$hash, accountExperienceFaviconLight.hashCode);
+    _$hash = $jc(_$hash, accountExperienceLogoDark.hashCode);
+    _$hash = $jc(_$hash, accountExperienceLogoLight.hashCode);
+    _$hash = $jc(_$hash, accountExperienceThemeVariablesDark.hashCode);
+    _$hash = $jc(_$hash, accountExperienceThemeVariablesLight.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, disableAccountExperienceWelcomeScreen.hashCode);
     _$hash = $jc(_$hash, enableAxV2.hashCode);
@@ -1961,6 +1993,14 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CreateProjectNormalizedPayload')
+          ..add('accountExperienceFaviconDark', accountExperienceFaviconDark)
+          ..add('accountExperienceFaviconLight', accountExperienceFaviconLight)
+          ..add('accountExperienceLogoDark', accountExperienceLogoDark)
+          ..add('accountExperienceLogoLight', accountExperienceLogoLight)
+          ..add('accountExperienceThemeVariablesDark',
+              accountExperienceThemeVariablesDark)
+          ..add('accountExperienceThemeVariablesLight',
+              accountExperienceThemeVariablesLight)
           ..add('createdAt', createdAt)
           ..add('disableAccountExperienceWelcomeScreen',
               disableAccountExperienceWelcomeScreen)
@@ -2362,6 +2402,44 @@ class CreateProjectNormalizedPayloadBuilder
         Builder<CreateProjectNormalizedPayload,
             CreateProjectNormalizedPayloadBuilder> {
   _$CreateProjectNormalizedPayload? _$v;
+
+  String? _accountExperienceFaviconDark;
+  String? get accountExperienceFaviconDark =>
+      _$this._accountExperienceFaviconDark;
+  set accountExperienceFaviconDark(String? accountExperienceFaviconDark) =>
+      _$this._accountExperienceFaviconDark = accountExperienceFaviconDark;
+
+  String? _accountExperienceFaviconLight;
+  String? get accountExperienceFaviconLight =>
+      _$this._accountExperienceFaviconLight;
+  set accountExperienceFaviconLight(String? accountExperienceFaviconLight) =>
+      _$this._accountExperienceFaviconLight = accountExperienceFaviconLight;
+
+  String? _accountExperienceLogoDark;
+  String? get accountExperienceLogoDark => _$this._accountExperienceLogoDark;
+  set accountExperienceLogoDark(String? accountExperienceLogoDark) =>
+      _$this._accountExperienceLogoDark = accountExperienceLogoDark;
+
+  String? _accountExperienceLogoLight;
+  String? get accountExperienceLogoLight => _$this._accountExperienceLogoLight;
+  set accountExperienceLogoLight(String? accountExperienceLogoLight) =>
+      _$this._accountExperienceLogoLight = accountExperienceLogoLight;
+
+  String? _accountExperienceThemeVariablesDark;
+  String? get accountExperienceThemeVariablesDark =>
+      _$this._accountExperienceThemeVariablesDark;
+  set accountExperienceThemeVariablesDark(
+          String? accountExperienceThemeVariablesDark) =>
+      _$this._accountExperienceThemeVariablesDark =
+          accountExperienceThemeVariablesDark;
+
+  String? _accountExperienceThemeVariablesLight;
+  String? get accountExperienceThemeVariablesLight =>
+      _$this._accountExperienceThemeVariablesLight;
+  set accountExperienceThemeVariablesLight(
+          String? accountExperienceThemeVariablesLight) =>
+      _$this._accountExperienceThemeVariablesLight =
+          accountExperienceThemeVariablesLight;
 
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
@@ -4006,6 +4084,14 @@ class CreateProjectNormalizedPayloadBuilder
   CreateProjectNormalizedPayloadBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _accountExperienceFaviconDark = $v.accountExperienceFaviconDark;
+      _accountExperienceFaviconLight = $v.accountExperienceFaviconLight;
+      _accountExperienceLogoDark = $v.accountExperienceLogoDark;
+      _accountExperienceLogoLight = $v.accountExperienceLogoLight;
+      _accountExperienceThemeVariablesDark =
+          $v.accountExperienceThemeVariablesDark;
+      _accountExperienceThemeVariablesLight =
+          $v.accountExperienceThemeVariablesLight;
       _createdAt = $v.createdAt;
       _disableAccountExperienceWelcomeScreen =
           $v.disableAccountExperienceWelcomeScreen;
@@ -4393,6 +4479,14 @@ class CreateProjectNormalizedPayloadBuilder
     try {
       _$result = _$v ??
           new _$CreateProjectNormalizedPayload._(
+              accountExperienceFaviconDark: accountExperienceFaviconDark,
+              accountExperienceFaviconLight: accountExperienceFaviconLight,
+              accountExperienceLogoDark: accountExperienceLogoDark,
+              accountExperienceLogoLight: accountExperienceLogoLight,
+              accountExperienceThemeVariablesDark:
+                  accountExperienceThemeVariablesDark,
+              accountExperienceThemeVariablesLight:
+                  accountExperienceThemeVariablesLight,
               createdAt: createdAt,
               disableAccountExperienceWelcomeScreen:
                   disableAccountExperienceWelcomeScreen,

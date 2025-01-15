@@ -4,6 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**accountExperienceFaviconDark** | **string** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). | [optional]
+**accountExperienceFaviconLight** | **string** | Holds the URL to the account experience&#39;s favicon. | [optional]
+**accountExperienceLogoDark** | **string** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). | [optional]
+**accountExperienceLogoLight** | **string** | Holds the URL to the account experience&#39;s logo. | [optional]
+**accountExperienceThemeVariablesDark** | **string** | Holds the URL to the account experience&#39;s dark theme variables. | [optional]
+**accountExperienceThemeVariablesLight** | **string** | Holds the URL to the account experience&#39;s light theme variables. | [optional]
 **createdAt** | **\DateTime** | The Project&#39;s Revision Creation Date | [optional] [readonly]
 **disableAccountExperienceWelcomeScreen** | **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional]
 **enableAxV2** | **bool** | Whether the new account experience is enabled and reachable. | [optional]

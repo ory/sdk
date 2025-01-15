@@ -26,6 +26,7 @@ export 'package:ory_client/src/api/workspace_api.dart';
 export 'package:ory_client/src/model/accept_o_auth2_consent_request.dart';
 export 'package:ory_client/src/model/accept_o_auth2_consent_request_session.dart';
 export 'package:ory_client/src/model/accept_o_auth2_login_request.dart';
+export 'package:ory_client/src/model/account_experience_colors.dart';
 export 'package:ory_client/src/model/account_experience_configuration.dart';
 export 'package:ory_client/src/model/account_experience_theme_variables.dart';
 export 'package:ory_client/src/model/active_project_in_console.dart';
@@ -124,6 +125,7 @@ export 'package:ory_client/src/model/internal_is_ax_welcome_screen_enabled_for_p
 export 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_body.dart';
 export 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_response.dart';
 export 'package:ory_client/src/model/introspected_o_auth2_token.dart';
+export 'package:ory_client/src/model/invite_token_body.dart';
 export 'package:ory_client/src/model/invoice.dart';
 export 'package:ory_client/src/model/invoice_data_v1.dart';
 export 'package:ory_client/src/model/is_owner_for_project_by_slug.dart';

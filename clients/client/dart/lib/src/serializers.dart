@@ -17,6 +17,7 @@ import 'package:ory_client/src/model/date.dart';
 import 'package:ory_client/src/model/accept_o_auth2_consent_request.dart';
 import 'package:ory_client/src/model/accept_o_auth2_consent_request_session.dart';
 import 'package:ory_client/src/model/accept_o_auth2_login_request.dart';
+import 'package:ory_client/src/model/account_experience_colors.dart';
 import 'package:ory_client/src/model/account_experience_configuration.dart';
 import 'package:ory_client/src/model/account_experience_theme_variables.dart';
 import 'package:ory_client/src/model/active_project_in_console.dart';
@@ -115,6 +116,7 @@ import 'package:ory_client/src/model/internal_is_ax_welcome_screen_enabled_for_p
 import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_body.dart';
 import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_response.dart';
 import 'package:ory_client/src/model/introspected_o_auth2_token.dart';
+import 'package:ory_client/src/model/invite_token_body.dart';
 import 'package:ory_client/src/model/invoice.dart';
 import 'package:ory_client/src/model/invoice_data_v1.dart';
 import 'package:ory_client/src/model/is_owner_for_project_by_slug.dart';
@@ -291,6 +293,7 @@ part 'serializers.g.dart';
   AcceptOAuth2ConsentRequest,
   AcceptOAuth2ConsentRequestSession,
   AcceptOAuth2LoginRequest,
+  AccountExperienceColors,
   AccountExperienceConfiguration,
   AccountExperienceThemeVariables,
   ActiveProjectInConsole,
@@ -389,6 +392,7 @@ part 'serializers.g.dart';
   InternalIsOwnerForProjectBySlugBody,
   InternalIsOwnerForProjectBySlugResponse,
   IntrospectedOAuth2Token,
+  InviteTokenBody,
   Invoice,
   InvoiceDataV1,
   IsOwnerForProjectBySlug,

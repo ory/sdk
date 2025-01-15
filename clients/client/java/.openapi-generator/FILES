@@ -9,6 +9,7 @@ build.sbt
 docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
+docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
 docs/AccountExperienceThemeVariables.md
 docs/ActiveProjectInConsole.md
@@ -111,6 +112,7 @@ docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
 docs/IntrospectedOAuth2Token.md
+docs/InviteTokenBody.md
 docs/Invoice.md
 docs/InvoiceDataV1.md
 docs/IsOwnerForProjectBySlug.md
@@ -336,6 +338,7 @@ src/main/java/sh/ory/model/AbstractOpenApiSchema.java
 src/main/java/sh/ory/model/AcceptOAuth2ConsentRequest.java
 src/main/java/sh/ory/model/AcceptOAuth2ConsentRequestSession.java
 src/main/java/sh/ory/model/AcceptOAuth2LoginRequest.java
+src/main/java/sh/ory/model/AccountExperienceColors.java
 src/main/java/sh/ory/model/AccountExperienceConfiguration.java
 src/main/java/sh/ory/model/AccountExperienceThemeVariables.java
 src/main/java/sh/ory/model/ActiveProjectInConsole.java
@@ -434,6 +437,7 @@ src/main/java/sh/ory/model/InternalIsAXWelcomeScreenEnabledForProjectBody.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugBody.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugResponse.java
 src/main/java/sh/ory/model/IntrospectedOAuth2Token.java
+src/main/java/sh/ory/model/InviteTokenBody.java
 src/main/java/sh/ory/model/Invoice.java
 src/main/java/sh/ory/model/InvoiceDataV1.java
 src/main/java/sh/ory/model/IsOwnerForProjectBySlug.java
@@ -619,6 +623,7 @@ src/test/java/sh/ory/api/WorkspaceApiTest.java
 src/test/java/sh/ory/model/AcceptOAuth2ConsentRequestSessionTest.java
 src/test/java/sh/ory/model/AcceptOAuth2ConsentRequestTest.java
 src/test/java/sh/ory/model/AcceptOAuth2LoginRequestTest.java
+src/test/java/sh/ory/model/AccountExperienceColorsTest.java
 src/test/java/sh/ory/model/AccountExperienceConfigurationTest.java
 src/test/java/sh/ory/model/AccountExperienceThemeVariablesTest.java
 src/test/java/sh/ory/model/ActiveProjectInConsoleTest.java
@@ -717,6 +722,7 @@ src/test/java/sh/ory/model/InternalIsAXWelcomeScreenEnabledForProjectBodyTest.ja
 src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugBodyTest.java
 src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugResponseTest.java
 src/test/java/sh/ory/model/IntrospectedOAuth2TokenTest.java
+src/test/java/sh/ory/model/InviteTokenBodyTest.java
 src/test/java/sh/ory/model/InvoiceDataV1Test.java
 src/test/java/sh/ory/model/InvoiceTest.java
 src/test/java/sh/ory/model/IsOwnerForProjectBySlugTest.java

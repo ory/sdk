@@ -4,6 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AccountExperienceFaviconDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). | [optional] 
+**AccountExperienceFaviconLight** | Pointer to **string** | Holds the URL to the account experience&#39;s favicon. | [optional] 
+**AccountExperienceLogoDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). | [optional] 
+**AccountExperienceLogoLight** | Pointer to **string** | Holds the URL to the account experience&#39;s logo. | [optional] 
+**AccountExperienceThemeVariablesDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme variables. | [optional] 
+**AccountExperienceThemeVariablesLight** | Pointer to **string** | Holds the URL to the account experience&#39;s light theme variables. | [optional] 
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **DisableAccountExperienceWelcomeScreen** | Pointer to **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional] 
 **EnableAxV2** | Pointer to **bool** | Whether the new account experience is enabled and reachable. | [optional] 
@@ -236,6 +242,156 @@ will change when the set of required properties is changed
 NewCreateProjectNormalizedPayloadWithDefaults instantiates a new CreateProjectNormalizedPayload object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAccountExperienceFaviconDark
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceFaviconDark() string`
+
+GetAccountExperienceFaviconDark returns the AccountExperienceFaviconDark field if non-nil, zero value otherwise.
+
+### GetAccountExperienceFaviconDarkOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceFaviconDarkOk() (*string, bool)`
+
+GetAccountExperienceFaviconDarkOk returns a tuple with the AccountExperienceFaviconDark field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceFaviconDark
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceFaviconDark(v string)`
+
+SetAccountExperienceFaviconDark sets AccountExperienceFaviconDark field to given value.
+
+### HasAccountExperienceFaviconDark
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceFaviconDark() bool`
+
+HasAccountExperienceFaviconDark returns a boolean if a field has been set.
+
+### GetAccountExperienceFaviconLight
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceFaviconLight() string`
+
+GetAccountExperienceFaviconLight returns the AccountExperienceFaviconLight field if non-nil, zero value otherwise.
+
+### GetAccountExperienceFaviconLightOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceFaviconLightOk() (*string, bool)`
+
+GetAccountExperienceFaviconLightOk returns a tuple with the AccountExperienceFaviconLight field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceFaviconLight
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceFaviconLight(v string)`
+
+SetAccountExperienceFaviconLight sets AccountExperienceFaviconLight field to given value.
+
+### HasAccountExperienceFaviconLight
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceFaviconLight() bool`
+
+HasAccountExperienceFaviconLight returns a boolean if a field has been set.
+
+### GetAccountExperienceLogoDark
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceLogoDark() string`
+
+GetAccountExperienceLogoDark returns the AccountExperienceLogoDark field if non-nil, zero value otherwise.
+
+### GetAccountExperienceLogoDarkOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceLogoDarkOk() (*string, bool)`
+
+GetAccountExperienceLogoDarkOk returns a tuple with the AccountExperienceLogoDark field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceLogoDark
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceLogoDark(v string)`
+
+SetAccountExperienceLogoDark sets AccountExperienceLogoDark field to given value.
+
+### HasAccountExperienceLogoDark
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceLogoDark() bool`
+
+HasAccountExperienceLogoDark returns a boolean if a field has been set.
+
+### GetAccountExperienceLogoLight
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceLogoLight() string`
+
+GetAccountExperienceLogoLight returns the AccountExperienceLogoLight field if non-nil, zero value otherwise.
+
+### GetAccountExperienceLogoLightOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceLogoLightOk() (*string, bool)`
+
+GetAccountExperienceLogoLightOk returns a tuple with the AccountExperienceLogoLight field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceLogoLight
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceLogoLight(v string)`
+
+SetAccountExperienceLogoLight sets AccountExperienceLogoLight field to given value.
+
+### HasAccountExperienceLogoLight
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceLogoLight() bool`
+
+HasAccountExperienceLogoLight returns a boolean if a field has been set.
+
+### GetAccountExperienceThemeVariablesDark
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceThemeVariablesDark() string`
+
+GetAccountExperienceThemeVariablesDark returns the AccountExperienceThemeVariablesDark field if non-nil, zero value otherwise.
+
+### GetAccountExperienceThemeVariablesDarkOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceThemeVariablesDarkOk() (*string, bool)`
+
+GetAccountExperienceThemeVariablesDarkOk returns a tuple with the AccountExperienceThemeVariablesDark field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceThemeVariablesDark
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceThemeVariablesDark(v string)`
+
+SetAccountExperienceThemeVariablesDark sets AccountExperienceThemeVariablesDark field to given value.
+
+### HasAccountExperienceThemeVariablesDark
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceThemeVariablesDark() bool`
+
+HasAccountExperienceThemeVariablesDark returns a boolean if a field has been set.
+
+### GetAccountExperienceThemeVariablesLight
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceThemeVariablesLight() string`
+
+GetAccountExperienceThemeVariablesLight returns the AccountExperienceThemeVariablesLight field if non-nil, zero value otherwise.
+
+### GetAccountExperienceThemeVariablesLightOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceThemeVariablesLightOk() (*string, bool)`
+
+GetAccountExperienceThemeVariablesLightOk returns a tuple with the AccountExperienceThemeVariablesLight field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceThemeVariablesLight
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceThemeVariablesLight(v string)`
+
+SetAccountExperienceThemeVariablesLight sets AccountExperienceThemeVariablesLight field to given value.
+
+### HasAccountExperienceThemeVariablesLight
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceThemeVariablesLight() bool`
+
+HasAccountExperienceThemeVariablesLight returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

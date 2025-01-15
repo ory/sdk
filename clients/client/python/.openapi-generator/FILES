@@ -7,6 +7,7 @@ README.md
 docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
+docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
 docs/AccountExperienceThemeVariables.md
 docs/ActiveProjectInConsole.md
@@ -109,6 +110,7 @@ docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
 docs/IntrospectedOAuth2Token.md
+docs/InviteTokenBody.md
 docs/Invoice.md
 docs/InvoiceDataV1.md
 docs/IsOwnerForProjectBySlug.md
@@ -311,6 +313,7 @@ ory_client/models/__init__.py
 ory_client/models/accept_o_auth2_consent_request.py
 ory_client/models/accept_o_auth2_consent_request_session.py
 ory_client/models/accept_o_auth2_login_request.py
+ory_client/models/account_experience_colors.py
 ory_client/models/account_experience_configuration.py
 ory_client/models/account_experience_theme_variables.py
 ory_client/models/active_project_in_console.py
@@ -409,6 +412,7 @@ ory_client/models/internal_is_ax_welcome_screen_enabled_for_project_body.py
 ory_client/models/internal_is_owner_for_project_by_slug_body.py
 ory_client/models/internal_is_owner_for_project_by_slug_response.py
 ory_client/models/introspected_o_auth2_token.py
+ory_client/models/invite_token_body.py
 ory_client/models/invoice.py
 ory_client/models/invoice_data_v1.py
 ory_client/models/is_owner_for_project_by_slug.py
@@ -589,6 +593,7 @@ test/__init__.py
 test/test_accept_o_auth2_consent_request.py
 test/test_accept_o_auth2_consent_request_session.py
 test/test_accept_o_auth2_login_request.py
+test/test_account_experience_colors.py
 test/test_account_experience_configuration.py
 test/test_account_experience_theme_variables.py
 test/test_active_project_in_console.py
@@ -691,6 +696,7 @@ test/test_internal_is_ax_welcome_screen_enabled_for_project_body.py
 test/test_internal_is_owner_for_project_by_slug_body.py
 test/test_internal_is_owner_for_project_by_slug_response.py
 test/test_introspected_o_auth2_token.py
+test/test_invite_token_body.py
 test/test_invoice.py
 test/test_invoice_data_v1.py
 test/test_is_owner_for_project_by_slug.py

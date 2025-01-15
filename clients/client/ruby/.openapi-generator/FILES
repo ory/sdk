@@ -10,6 +10,7 @@ Rakefile
 docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
+docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
 docs/AccountExperienceThemeVariables.md
 docs/ActiveProjectInConsole.md
@@ -112,6 +113,7 @@ docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/InternalIsOwnerForProjectBySlugResponse.md
 docs/IntrospectedOAuth2Token.md
+docs/InviteTokenBody.md
 docs/Invoice.md
 docs/InvoiceDataV1.md
 docs/IsOwnerForProjectBySlug.md
@@ -311,6 +313,7 @@ lib/ory-client/configuration.rb
 lib/ory-client/models/accept_o_auth2_consent_request.rb
 lib/ory-client/models/accept_o_auth2_consent_request_session.rb
 lib/ory-client/models/accept_o_auth2_login_request.rb
+lib/ory-client/models/account_experience_colors.rb
 lib/ory-client/models/account_experience_configuration.rb
 lib/ory-client/models/account_experience_theme_variables.rb
 lib/ory-client/models/active_project_in_console.rb
@@ -409,6 +412,7 @@ lib/ory-client/models/internal_is_ax_welcome_screen_enabled_for_project_body.rb
 lib/ory-client/models/internal_is_owner_for_project_by_slug_body.rb
 lib/ory-client/models/internal_is_owner_for_project_by_slug_response.rb
 lib/ory-client/models/introspected_o_auth2_token.rb
+lib/ory-client/models/invite_token_body.rb
 lib/ory-client/models/invoice.rb
 lib/ory-client/models/invoice_data_v1.rb
 lib/ory-client/models/is_owner_for_project_by_slug.rb
@@ -596,6 +600,7 @@ spec/api/workspace_api_spec.rb
 spec/models/accept_o_auth2_consent_request_session_spec.rb
 spec/models/accept_o_auth2_consent_request_spec.rb
 spec/models/accept_o_auth2_login_request_spec.rb
+spec/models/account_experience_colors_spec.rb
 spec/models/account_experience_configuration_spec.rb
 spec/models/account_experience_theme_variables_spec.rb
 spec/models/active_project_in_console_spec.rb
@@ -694,6 +699,7 @@ spec/models/internal_is_ax_welcome_screen_enabled_for_project_body_spec.rb
 spec/models/internal_is_owner_for_project_by_slug_body_spec.rb
 spec/models/internal_is_owner_for_project_by_slug_response_spec.rb
 spec/models/introspected_o_auth2_token_spec.rb
+spec/models/invite_token_body_spec.rb
 spec/models/invoice_data_v1_spec.rb
 spec/models/invoice_spec.rb
 spec/models/is_owner_for_project_by_slug_spec.rb

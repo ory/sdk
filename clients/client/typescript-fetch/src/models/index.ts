@@ -3,6 +3,7 @@
 export * from './AcceptOAuth2ConsentRequest';
 export * from './AcceptOAuth2ConsentRequestSession';
 export * from './AcceptOAuth2LoginRequest';
+export * from './AccountExperienceColors';
 export * from './AccountExperienceConfiguration';
 export * from './AccountExperienceThemeVariables';
 export * from './ActiveProjectInConsole';
@@ -101,6 +102,7 @@ export * from './InternalIsAXWelcomeScreenEnabledForProjectBody';
 export * from './InternalIsOwnerForProjectBySlugBody';
 export * from './InternalIsOwnerForProjectBySlugResponse';
 export * from './IntrospectedOAuth2Token';
+export * from './InviteTokenBody';
 export * from './Invoice';
 export * from './InvoiceDataV1';
 export * from './IsOwnerForProjectBySlug';

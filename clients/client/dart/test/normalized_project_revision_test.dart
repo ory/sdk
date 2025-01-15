@@ -7,6 +7,42 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(NormalizedProjectRevision, () {
+    // Holds the URL to the account experience's dark theme favicon (currently unused).
+    // String accountExperienceFaviconDark
+    test('to test the property `accountExperienceFaviconDark`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's favicon.
+    // String accountExperienceFaviconLight
+    test('to test the property `accountExperienceFaviconLight`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's dark theme logo (currently unused).
+    // String accountExperienceLogoDark
+    test('to test the property `accountExperienceLogoDark`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's logo.
+    // String accountExperienceLogoLight
+    test('to test the property `accountExperienceLogoLight`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's dark theme variables.
+    // String accountExperienceThemeVariablesDark
+    test('to test the property `accountExperienceThemeVariablesDark`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's light theme variables.
+    // String accountExperienceThemeVariablesLight
+    test('to test the property `accountExperienceThemeVariablesLight`', () async {
+      // TODO
+    });
+
     // The Project's Revision Creation Date
     // DateTime createdAt
     test('to test the property `createdAt`', () async {

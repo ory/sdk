@@ -1,0 +1,143 @@
+# AccountExperienceColors
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**button_identifier_background_default** | **str** |  | [optional] 
+**button_identifier_background_hover** | **str** |  | [optional] 
+**button_identifier_border_border_default** | **str** |  | [optional] 
+**button_identifier_border_border_hover** | **str** |  | [optional] 
+**button_identifier_foreground_default** | **str** |  | [optional] 
+**button_identifier_foreground_hover** | **str** |  | [optional] 
+**button_link_brand_brand** | **str** |  | [optional] 
+**button_link_brand_brand_hover** | **str** |  | [optional] 
+**button_link_default_primary** | **str** |  | [optional] 
+**button_link_default_primary_hover** | **str** |  | [optional] 
+**button_link_default_secondary** | **str** |  | [optional] 
+**button_link_default_secondary_hover** | **str** |  | [optional] 
+**button_link_disabled_disabled** | **str** |  | [optional] 
+**button_primary_background_default** | **str** |  | [optional] 
+**button_primary_background_disabled** | **str** |  | [optional] 
+**button_primary_background_hover** | **str** |  | [optional] 
+**button_primary_border_default** | **str** |  | [optional] 
+**button_primary_border_disabled** | **str** |  | [optional] 
+**button_primary_border_hover** | **str** |  | [optional] 
+**button_primary_foreground_default** | **str** |  | [optional] 
+**button_primary_foreground_disabled** | **str** |  | [optional] 
+**button_primary_foreground_hover** | **str** |  | [optional] 
+**button_secondary_background_default** | **str** |  | [optional] 
+**button_secondary_background_disabled** | **str** |  | [optional] 
+**button_secondary_background_hover** | **str** |  | [optional] 
+**button_secondary_border_default** | **str** |  | [optional] 
+**button_secondary_border_disabled** | **str** |  | [optional] 
+**button_secondary_border_hover** | **str** |  | [optional] 
+**button_secondary_foreground_default** | **str** |  | [optional] 
+**button_secondary_foreground_disabled** | **str** |  | [optional] 
+**button_secondary_foreground_hover** | **str** |  | [optional] 
+**button_social_background_default** | **str** |  | [optional] 
+**button_social_background_disabled** | **str** |  | [optional] 
+**button_social_background_generic_provider** | **str** |  | [optional] 
+**button_social_background_hover** | **str** |  | [optional] 
+**button_social_border_default** | **str** |  | [optional] 
+**button_social_border_disabled** | **str** |  | [optional] 
+**button_social_border_generic_provider** | **str** |  | [optional] 
+**button_social_border_hover** | **str** |  | [optional] 
+**button_social_foreground_default** | **str** |  | [optional] 
+**button_social_foreground_disabled** | **str** |  | [optional] 
+**button_social_foreground_generic_provider** | **str** |  | [optional] 
+**button_social_foreground_hover** | **str** |  | [optional] 
+**checkbox_background_checked** | **str** |  | [optional] 
+**checkbox_background_default** | **str** |  | [optional] 
+**checkbox_border_checkbox_border_checked** | **str** |  | [optional] 
+**checkbox_border_checkbox_border_default** | **str** |  | [optional] 
+**checkbox_foreground_checked** | **str** |  | [optional] 
+**checkbox_foreground_default** | **str** |  | [optional] 
+**form_background_default** | **str** |  | [optional] 
+**form_border_default** | **str** |  | [optional] 
+**input_background_default** | **str** |  | [optional] 
+**input_background_disabled** | **str** |  | [optional] 
+**input_background_hover** | **str** |  | [optional] 
+**input_border_default** | **str** |  | [optional] 
+**input_border_disabled** | **str** |  | [optional] 
+**input_border_focus** | **str** |  | [optional] 
+**input_border_hover** | **str** |  | [optional] 
+**input_foreground_disabled** | **str** |  | [optional] 
+**input_foreground_primary** | **str** |  | [optional] 
+**input_foreground_secondary** | **str** |  | [optional] 
+**input_foreground_tertiary** | **str** |  | [optional] 
+**interface_background_brand_primary** | **str** |  | [optional] 
+**interface_background_brand_primary_hover** | **str** |  | [optional] 
+**interface_background_brand_secondary** | **str** |  | [optional] 
+**interface_background_brand_secondary_hover** | **str** |  | [optional] 
+**interface_background_default_inverted** | **str** |  | [optional] 
+**interface_background_default_inverted_hover** | **str** |  | [optional] 
+**interface_background_default_none** | **str** |  | [optional] 
+**interface_background_default_primary** | **str** |  | [optional] 
+**interface_background_default_primary_hover** | **str** |  | [optional] 
+**interface_background_default_secondary** | **str** |  | [optional] 
+**interface_background_default_secondary_hover** | **str** |  | [optional] 
+**interface_background_default_tertiary** | **str** |  | [optional] 
+**interface_background_default_tertiary_hover** | **str** |  | [optional] 
+**interface_background_disabled_disabled** | **str** |  | [optional] 
+**interface_background_validation_danger** | **str** |  | [optional] 
+**interface_background_validation_success** | **str** |  | [optional] 
+**interface_background_validation_warning** | **str** |  | [optional] 
+**interface_border_brand_brand** | **str** |  | [optional] 
+**interface_border_default_inverted** | **str** |  | [optional] 
+**interface_border_default_none** | **str** |  | [optional] 
+**interface_border_default_primary** | **str** |  | [optional] 
+**interface_border_disabled_disabled** | **str** |  | [optional] 
+**interface_border_validation_danger** | **str** |  | [optional] 
+**interface_border_validation_success** | **str** |  | [optional] 
+**interface_border_validation_warning** | **str** |  | [optional] 
+**interface_foreground_brand_on_primary** | **str** |  | [optional] 
+**interface_foreground_brand_on_secondary** | **str** |  | [optional] 
+**interface_foreground_brand_primary** | **str** |  | [optional] 
+**interface_foreground_brand_secondary** | **str** |  | [optional] 
+**interface_foreground_default_inverted** | **str** |  | [optional] 
+**interface_foreground_default_primary** | **str** |  | [optional] 
+**interface_foreground_default_secondary** | **str** |  | [optional] 
+**interface_foreground_default_tertiary** | **str** |  | [optional] 
+**interface_foreground_disabled_disabled** | **str** |  | [optional] 
+**interface_foreground_disabled_on_disabled** | **str** |  | [optional] 
+**interface_foreground_validation_danger** | **str** |  | [optional] 
+**interface_foreground_validation_success** | **str** |  | [optional] 
+**interface_foreground_validation_warning** | **str** |  | [optional] 
+**ory_background_default** | **str** |  | [optional] 
+**ory_border_default** | **str** |  | [optional] 
+**ory_foreground_default** | **str** |  | [optional] 
+**radio_background_checked** | **str** |  | [optional] 
+**radio_background_default** | **str** |  | [optional] 
+**radio_border_checked** | **str** |  | [optional] 
+**radio_border_default** | **str** |  | [optional] 
+**radio_foreground_checked** | **str** |  | [optional] 
+**radio_foreground_default** | **str** |  | [optional] 
+**toggle_background_checked** | **str** |  | [optional] 
+**toggle_background_default** | **str** |  | [optional] 
+**toggle_border_checked** | **str** |  | [optional] 
+**toggle_border_default** | **str** |  | [optional] 
+**toggle_foreground_checked** | **str** |  | [optional] 
+**toggle_foreground_default** | **str** |  | [optional] 
+
+## Example
+
+```python
+from ory_client.models.account_experience_colors import AccountExperienceColors
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of AccountExperienceColors from a JSON string
+account_experience_colors_instance = AccountExperienceColors.from_json(json)
+# print the JSON string representation of the object
+print(AccountExperienceColors.to_json())
+
+# convert the object into a dict
+account_experience_colors_dict = account_experience_colors_instance.to_dict()
+# create an instance of AccountExperienceColors from a dict
+account_experience_colors_from_dict = AccountExperienceColors.from_dict(account_experience_colors_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

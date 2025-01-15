@@ -8,6 +8,12 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**accountExperienceFaviconDark** | **String** | Holds the URL to the account experience's dark theme favicon (currently unused). | [optional] 
+**accountExperienceFaviconLight** | **String** | Holds the URL to the account experience's favicon. | [optional] 
+**accountExperienceLogoDark** | **String** | Holds the URL to the account experience's dark theme logo (currently unused). | [optional] 
+**accountExperienceLogoLight** | **String** | Holds the URL to the account experience's logo. | [optional] 
+**accountExperienceThemeVariablesDark** | **String** | Holds the URL to the account experience's dark theme variables. | [optional] 
+**accountExperienceThemeVariablesLight** | **String** | Holds the URL to the account experience's light theme variables. | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) | The Project's Revision Creation Date | [optional] 
 **disableAccountExperienceWelcomeScreen** | **bool** | Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`. | [optional] 
 **enableAxV2** | **bool** | Whether the new account experience is enabled and reachable. | [optional] 

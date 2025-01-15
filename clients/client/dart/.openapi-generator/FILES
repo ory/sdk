@@ -5,6 +5,7 @@ analysis_options.yaml
 doc/AcceptOAuth2ConsentRequest.md
 doc/AcceptOAuth2ConsentRequestSession.md
 doc/AcceptOAuth2LoginRequest.md
+doc/AccountExperienceColors.md
 doc/AccountExperienceConfiguration.md
 doc/AccountExperienceThemeVariables.md
 doc/ActiveProjectInConsole.md
@@ -107,6 +108,7 @@ doc/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 doc/InternalIsOwnerForProjectBySlugBody.md
 doc/InternalIsOwnerForProjectBySlugResponse.md
 doc/IntrospectedOAuth2Token.md
+doc/InviteTokenBody.md
 doc/Invoice.md
 doc/InvoiceDataV1.md
 doc/IsOwnerForProjectBySlug.md
@@ -310,6 +312,7 @@ lib/src/date_serializer.dart
 lib/src/model/accept_o_auth2_consent_request.dart
 lib/src/model/accept_o_auth2_consent_request_session.dart
 lib/src/model/accept_o_auth2_login_request.dart
+lib/src/model/account_experience_colors.dart
 lib/src/model/account_experience_configuration.dart
 lib/src/model/account_experience_theme_variables.dart
 lib/src/model/active_project_in_console.dart
@@ -409,6 +412,7 @@ lib/src/model/internal_is_ax_welcome_screen_enabled_for_project_body.dart
 lib/src/model/internal_is_owner_for_project_by_slug_body.dart
 lib/src/model/internal_is_owner_for_project_by_slug_response.dart
 lib/src/model/introspected_o_auth2_token.dart
+lib/src/model/invite_token_body.dart
 lib/src/model/invoice.dart
 lib/src/model/invoice_data_v1.dart
 lib/src/model/is_owner_for_project_by_slug.dart
@@ -583,6 +587,7 @@ pubspec.yaml
 test/accept_o_auth2_consent_request_session_test.dart
 test/accept_o_auth2_consent_request_test.dart
 test/accept_o_auth2_login_request_test.dart
+test/account_experience_colors_test.dart
 test/account_experience_configuration_test.dart
 test/account_experience_theme_variables_test.dart
 test/active_project_in_console_test.dart
@@ -685,6 +690,7 @@ test/internal_is_ax_welcome_screen_enabled_for_project_body_test.dart
 test/internal_is_owner_for_project_by_slug_body_test.dart
 test/internal_is_owner_for_project_by_slug_response_test.dart
 test/introspected_o_auth2_token_test.dart
+test/invite_token_body_test.dart
 test/invoice_data_v1_test.dart
 test/invoice_test.dart
 test/is_owner_for_project_by_slug_test.dart

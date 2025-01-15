@@ -8,6 +8,12 @@ defmodule Ory.Model.CreateProjectNormalizedPayload do
 
   @derive Jason.Encoder
   defstruct [
+    :account_experience_favicon_dark,
+    :account_experience_favicon_light,
+    :account_experience_logo_dark,
+    :account_experience_logo_light,
+    :account_experience_theme_variables_dark,
+    :account_experience_theme_variables_light,
     :created_at,
     :disable_account_experience_welcome_screen,
     :enable_ax_v2,
@@ -224,6 +230,12 @@ defmodule Ory.Model.CreateProjectNormalizedPayload do
   ]
 
   @type t :: %__MODULE__{
+    :account_experience_favicon_dark => String.t | nil,
+    :account_experience_favicon_light => String.t | nil,
+    :account_experience_logo_dark => String.t | nil,
+    :account_experience_logo_light => String.t | nil,
+    :account_experience_theme_variables_dark => String.t | nil,
+    :account_experience_theme_variables_light => String.t | nil,
     :created_at => DateTime.t | nil,
     :disable_account_experience_welcome_screen => boolean() | nil,
     :enable_ax_v2 => boolean() | nil,
