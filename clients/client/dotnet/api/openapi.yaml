@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.16.1
+  version: v1.16.2
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
