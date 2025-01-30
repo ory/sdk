@@ -197,7 +197,6 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsPasswordConfigMinPasswordLength** | Pointer to **int64** | Configures the minimum length of passwords.  This governs the \&quot;selfservice.methods.password.config.min_password_length\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasswordEnabled** | Pointer to **bool** | Configures whether Ory Kratos Password Method is enabled  This governs the \&quot;selfservice.methods.password.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsProfileEnabled** | Pointer to **bool** | Configures whether Ory Kratos Profile Method is enabled  This governs the \&quot;selfservice.methods.profile.enabled\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsSamlConfigBaseRedirectUri** | Pointer to **string** | Configures the Ory Kratos SAML base redirect URI  This governs the \&quot;selfservice.methods.saml.config.base_redirect_uri\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsSamlConfigProviders** | Pointer to [**[]NormalizedProjectRevisionSAMLProvider**](NormalizedProjectRevisionSAMLProvider.md) |  | [optional] 
 **KratosSelfserviceMethodsSamlEnabled** | Pointer to **bool** | Configures whether Ory Kratos SAML Login is enabled  This governs the \&quot;selfservice.methods.saml.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsTotpConfigIssuer** | Pointer to **string** | Configures Ory Kratos TOTP Issuer  This governs the \&quot;selfservice.methods.totp.config.issuer\&quot; setting. | [optional] 
@@ -5092,31 +5091,6 @@ SetKratosSelfserviceMethodsProfileEnabled sets KratosSelfserviceMethodsProfileEn
 `func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsProfileEnabled() bool`
 
 HasKratosSelfserviceMethodsProfileEnabled returns a boolean if a field has been set.
-
-### GetKratosSelfserviceMethodsSamlConfigBaseRedirectUri
-
-`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsSamlConfigBaseRedirectUri() string`
-
-GetKratosSelfserviceMethodsSamlConfigBaseRedirectUri returns the KratosSelfserviceMethodsSamlConfigBaseRedirectUri field if non-nil, zero value otherwise.
-
-### GetKratosSelfserviceMethodsSamlConfigBaseRedirectUriOk
-
-`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsSamlConfigBaseRedirectUriOk() (*string, bool)`
-
-GetKratosSelfserviceMethodsSamlConfigBaseRedirectUriOk returns a tuple with the KratosSelfserviceMethodsSamlConfigBaseRedirectUri field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKratosSelfserviceMethodsSamlConfigBaseRedirectUri
-
-`func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsSamlConfigBaseRedirectUri(v string)`
-
-SetKratosSelfserviceMethodsSamlConfigBaseRedirectUri sets KratosSelfserviceMethodsSamlConfigBaseRedirectUri field to given value.
-
-### HasKratosSelfserviceMethodsSamlConfigBaseRedirectUri
-
-`func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsSamlConfigBaseRedirectUri() bool`
-
-HasKratosSelfserviceMethodsSamlConfigBaseRedirectUri returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsSamlConfigProviders
 

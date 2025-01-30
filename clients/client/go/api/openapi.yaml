@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.16.3
+  version: v1.16.4
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -9698,12 +9698,6 @@ components:
 
             This governs the "selfservice.methods.profile.enabled" setting.
           type: boolean
-        kratos_selfservice_methods_saml_config_base_redirect_uri:
-          description: |-
-            Configures the Ory Kratos SAML base redirect URI
-
-            This governs the "selfservice.methods.saml.config.base_redirect_uri" setting.
-          type: string
         kratos_selfservice_methods_saml_config_providers:
           items:
             $ref: '#/components/schemas/normalizedProjectRevisionSAMLProvider'
@@ -15192,12 +15186,6 @@ components:
 
             This governs the "selfservice.methods.profile.enabled" setting.
           type: boolean
-        kratos_selfservice_methods_saml_config_base_redirect_uri:
-          description: |-
-            Configures the Ory Kratos SAML base redirect URI
-
-            This governs the "selfservice.methods.saml.config.base_redirect_uri" setting.
-          type: string
         kratos_selfservice_methods_saml_config_providers:
           items:
             $ref: '#/components/schemas/normalizedProjectRevisionSAMLProvider'

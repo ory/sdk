@@ -1148,12 +1148,6 @@ void main() {
       // TODO
     });
 
-    // Configures the Ory Kratos SAML base redirect URI  This governs the \"selfservice.methods.saml.config.base_redirect_uri\" setting.
-    // String kratosSelfserviceMethodsSamlConfigBaseRedirectUri
-    test('to test the property `kratosSelfserviceMethodsSamlConfigBaseRedirectUri`', () async {
-      // TODO
-    });
-
     // BuiltList<NormalizedProjectRevisionSAMLProvider> kratosSelfserviceMethodsSamlConfigProviders
     test('to test the property `kratosSelfserviceMethodsSamlConfigProviders`', () async {
       // TODO

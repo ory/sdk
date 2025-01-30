@@ -198,7 +198,6 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsPasswordConfigMinPasswordLength** | **long** | Configures the minimum length of passwords.  This governs the \&quot;selfservice.methods.password.config.min_password_length\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasswordEnabled** | **bool** | Configures whether Ory Kratos Password Method is enabled  This governs the \&quot;selfservice.methods.password.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsProfileEnabled** | **bool** | Configures whether Ory Kratos Profile Method is enabled  This governs the \&quot;selfservice.methods.profile.enabled\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsSamlConfigBaseRedirectUri** | **string** | Configures the Ory Kratos SAML base redirect URI  This governs the \&quot;selfservice.methods.saml.config.base_redirect_uri\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsSamlConfigProviders** | [**List&lt;ClientNormalizedProjectRevisionSAMLProvider&gt;**](ClientNormalizedProjectRevisionSAMLProvider.md) |  | [optional] 
 **KratosSelfserviceMethodsSamlEnabled** | **bool** | Configures whether Ory Kratos SAML Login is enabled  This governs the \&quot;selfservice.methods.saml.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsTotpConfigIssuer** | **string** | Configures Ory Kratos TOTP Issuer  This governs the \&quot;selfservice.methods.totp.config.issuer\&quot; setting. | [optional] 
