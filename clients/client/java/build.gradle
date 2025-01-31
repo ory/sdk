@@ -4,7 +4,7 @@ apply plugin: 'java'
 apply plugin: 'com.diffplug.spotless'
 
 group = 'sh.ory'
-version = 'v1.16.4'
+version = 'v1.16.5'
 
 buildscript {
     repositories {
