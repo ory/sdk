@@ -39,6 +39,7 @@ docs/CourierMessageStatus.md
 docs/CourierMessageType.md
 docs/CreateCustomDomainBody.md
 docs/CreateEventStreamBody.md
+docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
@@ -188,6 +189,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
+docs/Provider.md
 docs/QuotaUsage.md
 docs/RFC6749ErrorJson.md
 docs/RecoveryCodeForIdentity.md
@@ -243,6 +245,7 @@ docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
+docs/UpdateFedcmFlowBody.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
@@ -344,6 +347,7 @@ ory_client/models/courier_message_status.py
 ory_client/models/courier_message_type.py
 ory_client/models/create_custom_domain_body.py
 ory_client/models/create_event_stream_body.py
+ory_client/models/create_fedcm_flow_response.py
 ory_client/models/create_identity_body.py
 ory_client/models/create_invite_response.py
 ory_client/models/create_json_web_key_set.py
@@ -484,6 +488,7 @@ ory_client/models/project_service_identity.py
 ory_client/models/project_service_o_auth2.py
 ory_client/models/project_service_permission.py
 ory_client/models/project_services.py
+ory_client/models/provider.py
 ory_client/models/quota_usage.py
 ory_client/models/recovery_code_for_identity.py
 ory_client/models/recovery_flow.py
@@ -538,6 +543,7 @@ ory_client/models/ui_node_meta.py
 ory_client/models/ui_node_script_attributes.py
 ory_client/models/ui_node_text_attributes.py
 ory_client/models/ui_text.py
+ory_client/models/update_fedcm_flow_body.py
 ory_client/models/update_identity_body.py
 ory_client/models/update_login_flow_body.py
 ory_client/models/update_login_flow_with_code_method.py
@@ -625,6 +631,7 @@ test/test_courier_message_status.py
 test/test_courier_message_type.py
 test/test_create_custom_domain_body.py
 test/test_create_event_stream_body.py
+test/test_create_fedcm_flow_response.py
 test/test_create_identity_body.py
 test/test_create_invite_response.py
 test/test_create_json_web_key_set.py
@@ -774,6 +781,7 @@ test/test_project_service_identity.py
 test/test_project_service_o_auth2.py
 test/test_project_service_permission.py
 test/test_project_services.py
+test/test_provider.py
 test/test_quota_usage.py
 test/test_recovery_code_for_identity.py
 test/test_recovery_flow.py
@@ -829,6 +837,7 @@ test/test_ui_node_meta.py
 test/test_ui_node_script_attributes.py
 test/test_ui_node_text_attributes.py
 test/test_ui_text.py
+test/test_update_fedcm_flow_body.py
 test/test_update_identity_body.py
 test/test_update_login_flow_body.py
 test/test_update_login_flow_with_code_method.py

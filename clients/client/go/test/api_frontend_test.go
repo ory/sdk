@@ -94,6 +94,18 @@ func Test_client_FrontendAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test FrontendAPIService CreateFedcmFlow", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.FrontendAPI.CreateFedcmFlow(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test FrontendAPIService CreateNativeLoginFlow", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -303,6 +315,18 @@ func Test_client_FrontendAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.FrontendAPI.ToSession(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test FrontendAPIService UpdateFedcmFlow", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.FrontendAPI.UpdateFedcmFlow(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

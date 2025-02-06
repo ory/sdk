@@ -10,6 +10,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**createBrowserRegistrationFlow**](FrontendApi.md#createBrowserRegistrationFlow) | **GET** /self-service/registration/browser | Create Registration Flow for Browsers |
 | [**createBrowserSettingsFlow**](FrontendApi.md#createBrowserSettingsFlow) | **GET** /self-service/settings/browser | Create Settings Flow for Browsers |
 | [**createBrowserVerificationFlow**](FrontendApi.md#createBrowserVerificationFlow) | **GET** /self-service/verification/browser | Create Verification Flow for Browser Clients |
+| [**createFedcmFlow**](FrontendApi.md#createFedcmFlow) | **GET** /self-service/fed-cm/parameters | Get FedCM Parameters |
 | [**createNativeLoginFlow**](FrontendApi.md#createNativeLoginFlow) | **GET** /self-service/login/api | Create Login Flow for Native Apps |
 | [**createNativeRecoveryFlow**](FrontendApi.md#createNativeRecoveryFlow) | **GET** /self-service/recovery/api | Create Recovery Flow for Native Apps |
 | [**createNativeRegistrationFlow**](FrontendApi.md#createNativeRegistrationFlow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps |
@@ -28,6 +29,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**listMySessions**](FrontendApi.md#listMySessions) | **GET** /sessions | Get My Active Sessions |
 | [**performNativeLogout**](FrontendApi.md#performNativeLogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps |
 | [**toSession**](FrontendApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To |
+| [**updateFedcmFlow**](FrontendApi.md#updateFedcmFlow) | **POST** /self-service/fed-cm/token | Submit a FedCM token |
 | [**updateLoginFlow**](FrontendApi.md#updateLoginFlow) | **POST** /self-service/login | Submit a Login Flow |
 | [**updateLogoutFlow**](FrontendApi.md#updateLogoutFlow) | **GET** /self-service/logout | Update Logout Flow |
 | [**updateRecoveryFlow**](FrontendApi.md#updateRecoveryFlow) | **POST** /self-service/recovery | Update Recovery Flow |
@@ -446,6 +448,66 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | verificationFlow |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **0** | errorGeneric |  -  |
+
+<a id="createFedcmFlow"></a>
+# **createFedcmFlow**
+> CreateFedcmFlowResponse createFedcmFlow()
+
+Get FedCM Parameters
+
+This endpoint returns a list of all available FedCM providers. It is only supported on the Ory Network.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    try {
+      CreateFedcmFlowResponse result = apiInstance.createFedcmFlow();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#createFedcmFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CreateFedcmFlowResponse**](CreateFedcmFlowResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | createFedcmFlowResponse |  -  |
+| **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
 <a id="createNativeLoginFlow"></a>
@@ -1650,6 +1712,73 @@ No authorization required
 | **200** | session |  -  |
 | **401** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+<a id="updateFedcmFlow"></a>
+# **updateFedcmFlow**
+> SuccessfulNativeLogin updateFedcmFlow(updateFedcmFlowBody)
+
+Submit a FedCM token
+
+Use this endpoint to submit a token from a FedCM provider through &#x60;navigator.credentials.get&#x60; and log the user in. The parameters from &#x60;navigator.credentials.get&#x60; must have come from &#x60;GET self-service/fed-cm/parameters&#x60;.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    UpdateFedcmFlowBody updateFedcmFlowBody = new UpdateFedcmFlowBody(); // UpdateFedcmFlowBody | 
+    try {
+      SuccessfulNativeLogin result = apiInstance.updateFedcmFlow(updateFedcmFlowBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#updateFedcmFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateFedcmFlowBody** | [**UpdateFedcmFlowBody**](UpdateFedcmFlowBody.md)|  | |
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successfulNativeLogin |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | loginFlow |  -  |
+| **410** | errorGeneric |  -  |
+| **422** | errorBrowserLocationChangeRequired |  -  |
 | **0** | errorGeneric |  -  |
 
 <a id="updateLoginFlow"></a>

@@ -260,6 +260,37 @@ defmodule Ory.Api.Frontend do
   end
 
   @doc """
+  Get FedCM Parameters
+  This endpoint returns a list of all available FedCM providers. It is only supported on the Ory Network.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.CreateFedcmFlowResponse.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec create_fedcm_flow(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.CreateFedcmFlowResponse.t} | {:error, Tesla.Env.t}
+  def create_fedcm_flow(connection, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/self-service/fed-cm/parameters")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.CreateFedcmFlowResponse},
+      {400, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
   Create Login Flow for Native Apps
   This endpoint initiates a login flow for native apps that do not use a browser, such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
 
@@ -959,6 +990,42 @@ defmodule Ory.Api.Frontend do
       {200, Ory.Model.Session},
       {401, Ory.Model.ErrorGeneric},
       {403, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
+  Submit a FedCM token
+  Use this endpoint to submit a token from a FedCM provider through `navigator.credentials.get` and log the user in. The parameters from `navigator.credentials.get` must have come from `GET self-service/fed-cm/parameters`.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `update_fedcm_flow_body` (UpdateFedcmFlowBody): 
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.SuccessfulNativeLogin.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec update_fedcm_flow(Tesla.Env.client, Ory.Model.UpdateFedcmFlowBody.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.LoginFlow.t} | {:ok, Ory.Model.ErrorBrowserLocationChangeRequired.t} | {:ok, Ory.Model.SuccessfulNativeLogin.t} | {:error, Tesla.Env.t}
+  def update_fedcm_flow(connection, update_fedcm_flow_body, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/self-service/fed-cm/token")
+      |> add_param(:body, :body, update_fedcm_flow_body)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.SuccessfulNativeLogin},
+      {303, false},
+      {400, Ory.Model.LoginFlow},
+      {410, Ory.Model.ErrorGeneric},
+      {422, Ory.Model.ErrorBrowserLocationChangeRequired},
       {:default, Ory.Model.ErrorGeneric}
     ])
   end

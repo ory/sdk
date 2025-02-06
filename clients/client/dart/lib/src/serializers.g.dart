@@ -51,6 +51,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CreateCustomDomainBody.serializer)
       ..add(CreateEventStreamBody.serializer)
       ..add(CreateEventStreamBodyTypeEnum.serializer)
+      ..add(CreateFedcmFlowResponse.serializer)
       ..add(CreateIdentityBody.serializer)
       ..add(CreateIdentityBodyStateEnum.serializer)
       ..add(CreateInviteResponse.serializer)
@@ -247,6 +248,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ProjectServicePermission.serializer)
       ..add(ProjectServices.serializer)
       ..add(ProjectStateEnum.serializer)
+      ..add(Provider.serializer)
       ..add(QuotaUsage.serializer)
       ..add(QuotaUsageFeatureEnum.serializer)
       ..add(RFC6749ErrorJson.serializer)
@@ -320,6 +322,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UiNodeTypeEnum.serializer)
       ..add(UiText.serializer)
       ..add(UiTextTypeEnum.serializer)
+      ..add(UpdateFedcmFlowBody.serializer)
       ..add(UpdateIdentityBody.serializer)
       ..add(UpdateIdentityBodyStateEnum.serializer)
       ..add(UpdateLoginFlowBody.serializer)
@@ -474,6 +477,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ProjectMetadata)]),
           () => new ListBuilder<ProjectMetadata>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Provider)]),
+          () => new ListBuilder<Provider>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(RecoveryIdentityAddress)]),
@@ -813,6 +819,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(String)]),
+          () => new MapBuilder<String, String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

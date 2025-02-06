@@ -51,6 +51,7 @@ docs/Model/CourierMessageStatus.md
 docs/Model/CourierMessageType.md
 docs/Model/CreateCustomDomainBody.md
 docs/Model/CreateEventStreamBody.md
+docs/Model/CreateFedcmFlowResponse.md
 docs/Model/CreateIdentityBody.md
 docs/Model/CreateInviteResponse.md
 docs/Model/CreateJsonWebKeySet.md
@@ -191,6 +192,7 @@ docs/Model/ProjectServiceIdentity.md
 docs/Model/ProjectServiceOAuth2.md
 docs/Model/ProjectServicePermission.md
 docs/Model/ProjectServices.md
+docs/Model/Provider.md
 docs/Model/QuotaUsage.md
 docs/Model/RFC6749ErrorJson.md
 docs/Model/RecoveryCodeForIdentity.md
@@ -245,6 +247,7 @@ docs/Model/UiNodeMeta.md
 docs/Model/UiNodeScriptAttributes.md
 docs/Model/UiNodeTextAttributes.md
 docs/Model/UiText.md
+docs/Model/UpdateFedcmFlowBody.md
 docs/Model/UpdateIdentityBody.md
 docs/Model/UpdateLoginFlowBody.md
 docs/Model/UpdateLoginFlowWithCodeMethod.md
@@ -340,6 +343,7 @@ lib/Model/CourierMessageStatus.php
 lib/Model/CourierMessageType.php
 lib/Model/CreateCustomDomainBody.php
 lib/Model/CreateEventStreamBody.php
+lib/Model/CreateFedcmFlowResponse.php
 lib/Model/CreateIdentityBody.php
 lib/Model/CreateInviteResponse.php
 lib/Model/CreateJsonWebKeySet.php
@@ -481,6 +485,7 @@ lib/Model/ProjectServiceIdentity.php
 lib/Model/ProjectServiceOAuth2.php
 lib/Model/ProjectServicePermission.php
 lib/Model/ProjectServices.php
+lib/Model/Provider.php
 lib/Model/QuotaUsage.php
 lib/Model/RFC6749ErrorJson.php
 lib/Model/RecoveryCodeForIdentity.php
@@ -535,6 +540,7 @@ lib/Model/UiNodeMeta.php
 lib/Model/UiNodeScriptAttributes.php
 lib/Model/UiNodeTextAttributes.php
 lib/Model/UiText.php
+lib/Model/UpdateFedcmFlowBody.php
 lib/Model/UpdateIdentityBody.php
 lib/Model/UpdateLoginFlowBody.php
 lib/Model/UpdateLoginFlowWithCodeMethod.php
@@ -628,6 +634,7 @@ test/Model/CourierMessageStatusTest.php
 test/Model/CourierMessageTypeTest.php
 test/Model/CreateCustomDomainBodyTest.php
 test/Model/CreateEventStreamBodyTest.php
+test/Model/CreateFedcmFlowResponseTest.php
 test/Model/CreateIdentityBodyTest.php
 test/Model/CreateInviteResponseTest.php
 test/Model/CreateJsonWebKeySetTest.php
@@ -768,6 +775,7 @@ test/Model/ProjectServiceOAuth2Test.php
 test/Model/ProjectServicePermissionTest.php
 test/Model/ProjectServicesTest.php
 test/Model/ProjectTest.php
+test/Model/ProviderTest.php
 test/Model/QuotaUsageTest.php
 test/Model/RFC6749ErrorJsonTest.php
 test/Model/RecoveryCodeForIdentityTest.php
@@ -822,6 +830,7 @@ test/Model/UiNodeScriptAttributesTest.php
 test/Model/UiNodeTest.php
 test/Model/UiNodeTextAttributesTest.php
 test/Model/UiTextTest.php
+test/Model/UpdateFedcmFlowBodyTest.php
 test/Model/UpdateIdentityBodyTest.php
 test/Model/UpdateLoginFlowBodyTest.php
 test/Model/UpdateLoginFlowWithCodeMethodTest.php

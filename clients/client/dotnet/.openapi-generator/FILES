@@ -38,6 +38,7 @@ docs/ClientCourierMessageStatus.md
 docs/ClientCourierMessageType.md
 docs/ClientCreateCustomDomainBody.md
 docs/ClientCreateEventStreamBody.md
+docs/ClientCreateFedcmFlowResponse.md
 docs/ClientCreateIdentityBody.md
 docs/ClientCreateInviteResponse.md
 docs/ClientCreateJsonWebKeySet.md
@@ -178,6 +179,7 @@ docs/ClientProjectServiceIdentity.md
 docs/ClientProjectServiceOAuth2.md
 docs/ClientProjectServicePermission.md
 docs/ClientProjectServices.md
+docs/ClientProvider.md
 docs/ClientQuotaUsage.md
 docs/ClientRFC6749ErrorJson.md
 docs/ClientRecoveryCodeForIdentity.md
@@ -232,6 +234,7 @@ docs/ClientUiNodeMeta.md
 docs/ClientUiNodeScriptAttributes.md
 docs/ClientUiNodeTextAttributes.md
 docs/ClientUiText.md
+docs/ClientUpdateFedcmFlowBody.md
 docs/ClientUpdateIdentityBody.md
 docs/ClientUpdateLoginFlowBody.md
 docs/ClientUpdateLoginFlowWithCodeMethod.md
@@ -337,6 +340,7 @@ src/Ory.Client.Test/Model/ClientCourierMessageStatusTests.cs
 src/Ory.Client.Test/Model/ClientCourierMessageTypeTests.cs
 src/Ory.Client.Test/Model/ClientCreateCustomDomainBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateEventStreamBodyTests.cs
+src/Ory.Client.Test/Model/ClientCreateFedcmFlowResponseTests.cs
 src/Ory.Client.Test/Model/ClientCreateIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateInviteResponseTests.cs
 src/Ory.Client.Test/Model/ClientCreateJsonWebKeySetTests.cs
@@ -477,6 +481,7 @@ src/Ory.Client.Test/Model/ClientProjectServiceOAuth2Tests.cs
 src/Ory.Client.Test/Model/ClientProjectServicePermissionTests.cs
 src/Ory.Client.Test/Model/ClientProjectServicesTests.cs
 src/Ory.Client.Test/Model/ClientProjectTests.cs
+src/Ory.Client.Test/Model/ClientProviderTests.cs
 src/Ory.Client.Test/Model/ClientQuotaUsageTests.cs
 src/Ory.Client.Test/Model/ClientRFC6749ErrorJsonTests.cs
 src/Ory.Client.Test/Model/ClientRecoveryCodeForIdentityTests.cs
@@ -531,6 +536,7 @@ src/Ory.Client.Test/Model/ClientUiNodeScriptAttributesTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeTextAttributesTests.cs
 src/Ory.Client.Test/Model/ClientUiTextTests.cs
+src/Ory.Client.Test/Model/ClientUpdateFedcmFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithCodeMethodTests.cs
@@ -643,6 +649,7 @@ src/Ory.Client/Model/ClientCourierMessageStatus.cs
 src/Ory.Client/Model/ClientCourierMessageType.cs
 src/Ory.Client/Model/ClientCreateCustomDomainBody.cs
 src/Ory.Client/Model/ClientCreateEventStreamBody.cs
+src/Ory.Client/Model/ClientCreateFedcmFlowResponse.cs
 src/Ory.Client/Model/ClientCreateIdentityBody.cs
 src/Ory.Client/Model/ClientCreateInviteResponse.cs
 src/Ory.Client/Model/ClientCreateJsonWebKeySet.cs
@@ -783,6 +790,7 @@ src/Ory.Client/Model/ClientProjectServiceIdentity.cs
 src/Ory.Client/Model/ClientProjectServiceOAuth2.cs
 src/Ory.Client/Model/ClientProjectServicePermission.cs
 src/Ory.Client/Model/ClientProjectServices.cs
+src/Ory.Client/Model/ClientProvider.cs
 src/Ory.Client/Model/ClientQuotaUsage.cs
 src/Ory.Client/Model/ClientRFC6749ErrorJson.cs
 src/Ory.Client/Model/ClientRecoveryCodeForIdentity.cs
@@ -837,6 +845,7 @@ src/Ory.Client/Model/ClientUiNodeMeta.cs
 src/Ory.Client/Model/ClientUiNodeScriptAttributes.cs
 src/Ory.Client/Model/ClientUiNodeTextAttributes.cs
 src/Ory.Client/Model/ClientUiText.cs
+src/Ory.Client/Model/ClientUpdateFedcmFlowBody.cs
 src/Ory.Client/Model/ClientUpdateIdentityBody.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowBody.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithCodeMethod.cs

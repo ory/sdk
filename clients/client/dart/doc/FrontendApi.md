@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**createBrowserRegistrationFlow**](FrontendApi.md#createbrowserregistrationflow) | **GET** /self-service/registration/browser | Create Registration Flow for Browsers
 [**createBrowserSettingsFlow**](FrontendApi.md#createbrowsersettingsflow) | **GET** /self-service/settings/browser | Create Settings Flow for Browsers
 [**createBrowserVerificationFlow**](FrontendApi.md#createbrowserverificationflow) | **GET** /self-service/verification/browser | Create Verification Flow for Browser Clients
+[**createFedcmFlow**](FrontendApi.md#createfedcmflow) | **GET** /self-service/fed-cm/parameters | Get FedCM Parameters
 [**createNativeLoginFlow**](FrontendApi.md#createnativeloginflow) | **GET** /self-service/login/api | Create Login Flow for Native Apps
 [**createNativeRecoveryFlow**](FrontendApi.md#createnativerecoveryflow) | **GET** /self-service/recovery/api | Create Recovery Flow for Native Apps
 [**createNativeRegistrationFlow**](FrontendApi.md#createnativeregistrationflow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps
@@ -33,6 +34,7 @@ Method | HTTP request | Description
 [**listMySessions**](FrontendApi.md#listmysessions) | **GET** /sessions | Get My Active Sessions
 [**performNativeLogout**](FrontendApi.md#performnativelogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
 [**toSession**](FrontendApi.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**updateFedcmFlow**](FrontendApi.md#updatefedcmflow) | **POST** /self-service/fed-cm/token | Submit a FedCM token
 [**updateLoginFlow**](FrontendApi.md#updateloginflow) | **POST** /self-service/login | Submit a Login Flow
 [**updateLogoutFlow**](FrontendApi.md#updatelogoutflow) | **GET** /self-service/logout | Update Logout Flow
 [**updateRecoveryFlow**](FrontendApi.md#updaterecoveryflow) | **POST** /self-service/recovery | Update Recovery Flow
@@ -309,6 +311,45 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VerificationFlow**](VerificationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createFedcmFlow**
+> CreateFedcmFlowResponse createFedcmFlow()
+
+Get FedCM Parameters
+
+This endpoint returns a list of all available FedCM providers. It is only supported on the Ory Network.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getFrontendApi();
+
+try {
+    final response = api.createFedcmFlow();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling FrontendApi->createFedcmFlow: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CreateFedcmFlowResponse**](CreateFedcmFlowResponse.md)
 
 ### Authorization
 
@@ -1129,6 +1170,49 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateFedcmFlow**
+> SuccessfulNativeLogin updateFedcmFlow(updateFedcmFlowBody)
+
+Submit a FedCM token
+
+Use this endpoint to submit a token from a FedCM provider through `navigator.credentials.get` and log the user in. The parameters from `navigator.credentials.get` must have come from `GET self-service/fed-cm/parameters`.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getFrontendApi();
+final UpdateFedcmFlowBody updateFedcmFlowBody = ; // UpdateFedcmFlowBody | 
+
+try {
+    final response = api.updateFedcmFlow(updateFedcmFlowBody);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling FrontendApi->updateFedcmFlow: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **updateFedcmFlowBody** | [**UpdateFedcmFlowBody**](UpdateFedcmFlowBody.md)|  | 
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

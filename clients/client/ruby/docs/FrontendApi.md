@@ -10,6 +10,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**create_browser_registration_flow**](FrontendApi.md#create_browser_registration_flow) | **GET** /self-service/registration/browser | Create Registration Flow for Browsers |
 | [**create_browser_settings_flow**](FrontendApi.md#create_browser_settings_flow) | **GET** /self-service/settings/browser | Create Settings Flow for Browsers |
 | [**create_browser_verification_flow**](FrontendApi.md#create_browser_verification_flow) | **GET** /self-service/verification/browser | Create Verification Flow for Browser Clients |
+| [**create_fedcm_flow**](FrontendApi.md#create_fedcm_flow) | **GET** /self-service/fed-cm/parameters | Get FedCM Parameters |
 | [**create_native_login_flow**](FrontendApi.md#create_native_login_flow) | **GET** /self-service/login/api | Create Login Flow for Native Apps |
 | [**create_native_recovery_flow**](FrontendApi.md#create_native_recovery_flow) | **GET** /self-service/recovery/api | Create Recovery Flow for Native Apps |
 | [**create_native_registration_flow**](FrontendApi.md#create_native_registration_flow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps |
@@ -28,6 +29,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**list_my_sessions**](FrontendApi.md#list_my_sessions) | **GET** /sessions | Get My Active Sessions |
 | [**perform_native_logout**](FrontendApi.md#perform_native_logout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps |
 | [**to_session**](FrontendApi.md#to_session) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To |
+| [**update_fedcm_flow**](FrontendApi.md#update_fedcm_flow) | **POST** /self-service/fed-cm/token | Submit a FedCM token |
 | [**update_login_flow**](FrontendApi.md#update_login_flow) | **POST** /self-service/login | Submit a Login Flow |
 | [**update_logout_flow**](FrontendApi.md#update_logout_flow) | **GET** /self-service/logout | Update Logout Flow |
 | [**update_recovery_flow**](FrontendApi.md#update_recovery_flow) | **POST** /self-service/recovery | Update Recovery Flow |
@@ -443,6 +445,67 @@ end
 ### Return type
 
 [**VerificationFlow**](VerificationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## create_fedcm_flow
+
+> <CreateFedcmFlowResponse> create_fedcm_flow
+
+Get FedCM Parameters
+
+This endpoint returns a list of all available FedCM providers. It is only supported on the Ory Network.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+
+api_instance = OryClient::FrontendApi.new
+
+begin
+  # Get FedCM Parameters
+  result = api_instance.create_fedcm_flow
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling FrontendApi->create_fedcm_flow: #{e}"
+end
+```
+
+#### Using the create_fedcm_flow_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<CreateFedcmFlowResponse>, Integer, Hash)> create_fedcm_flow_with_http_info
+
+```ruby
+begin
+  # Get FedCM Parameters
+  data, status_code, headers = api_instance.create_fedcm_flow_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <CreateFedcmFlowResponse>
+rescue OryClient::ApiError => e
+  puts "Error when calling FrontendApi->create_fedcm_flow_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CreateFedcmFlowResponse**](CreateFedcmFlowResponse.md)
 
 ### Authorization
 
@@ -1669,6 +1732,70 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## update_fedcm_flow
+
+> <SuccessfulNativeLogin> update_fedcm_flow(update_fedcm_flow_body)
+
+Submit a FedCM token
+
+Use this endpoint to submit a token from a FedCM provider through `navigator.credentials.get` and log the user in. The parameters from `navigator.credentials.get` must have come from `GET self-service/fed-cm/parameters`.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+
+api_instance = OryClient::FrontendApi.new
+update_fedcm_flow_body = OryClient::UpdateFedcmFlowBody.new({csrf_token: 'csrf_token_example', token: 'token_example'}) # UpdateFedcmFlowBody | 
+
+begin
+  # Submit a FedCM token
+  result = api_instance.update_fedcm_flow(update_fedcm_flow_body)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling FrontendApi->update_fedcm_flow: #{e}"
+end
+```
+
+#### Using the update_fedcm_flow_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<SuccessfulNativeLogin>, Integer, Hash)> update_fedcm_flow_with_http_info(update_fedcm_flow_body)
+
+```ruby
+begin
+  # Submit a FedCM token
+  data, status_code, headers = api_instance.update_fedcm_flow_with_http_info(update_fedcm_flow_body)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <SuccessfulNativeLogin>
+rescue OryClient::ApiError => e
+  puts "Error when calling FrontendApi->update_fedcm_flow_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **update_fedcm_flow_body** | [**UpdateFedcmFlowBody**](UpdateFedcmFlowBody.md) |  |  |
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 

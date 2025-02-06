@@ -41,6 +41,7 @@ docs/CourierMessageStatus.md
 docs/CourierMessageType.md
 docs/CreateCustomDomainBody.md
 docs/CreateEventStreamBody.md
+docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
@@ -190,6 +191,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
+docs/Provider.md
 docs/QuotaUsage.md
 docs/RFC6749ErrorJson.md
 docs/RecoveryCodeForIdentity.md
@@ -245,6 +247,7 @@ docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
+docs/UpdateFedcmFlowBody.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
@@ -369,6 +372,7 @@ src/main/java/sh/ory/model/CourierMessageStatus.java
 src/main/java/sh/ory/model/CourierMessageType.java
 src/main/java/sh/ory/model/CreateCustomDomainBody.java
 src/main/java/sh/ory/model/CreateEventStreamBody.java
+src/main/java/sh/ory/model/CreateFedcmFlowResponse.java
 src/main/java/sh/ory/model/CreateIdentityBody.java
 src/main/java/sh/ory/model/CreateInviteResponse.java
 src/main/java/sh/ory/model/CreateJsonWebKeySet.java
@@ -509,6 +513,7 @@ src/main/java/sh/ory/model/ProjectServiceIdentity.java
 src/main/java/sh/ory/model/ProjectServiceOAuth2.java
 src/main/java/sh/ory/model/ProjectServicePermission.java
 src/main/java/sh/ory/model/ProjectServices.java
+src/main/java/sh/ory/model/Provider.java
 src/main/java/sh/ory/model/QuotaUsage.java
 src/main/java/sh/ory/model/RFC6749ErrorJson.java
 src/main/java/sh/ory/model/RecoveryCodeForIdentity.java
@@ -563,6 +568,7 @@ src/main/java/sh/ory/model/UiNodeMeta.java
 src/main/java/sh/ory/model/UiNodeScriptAttributes.java
 src/main/java/sh/ory/model/UiNodeTextAttributes.java
 src/main/java/sh/ory/model/UiText.java
+src/main/java/sh/ory/model/UpdateFedcmFlowBody.java
 src/main/java/sh/ory/model/UpdateIdentityBody.java
 src/main/java/sh/ory/model/UpdateLoginFlowBody.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithCodeMethod.java
@@ -654,6 +660,7 @@ src/test/java/sh/ory/model/CourierMessageStatusTest.java
 src/test/java/sh/ory/model/CourierMessageTypeTest.java
 src/test/java/sh/ory/model/CreateCustomDomainBodyTest.java
 src/test/java/sh/ory/model/CreateEventStreamBodyTest.java
+src/test/java/sh/ory/model/CreateFedcmFlowResponseTest.java
 src/test/java/sh/ory/model/CreateIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateInviteResponseTest.java
 src/test/java/sh/ory/model/CreateJsonWebKeySetTest.java
@@ -794,6 +801,7 @@ src/test/java/sh/ory/model/ProjectServiceOAuth2Test.java
 src/test/java/sh/ory/model/ProjectServicePermissionTest.java
 src/test/java/sh/ory/model/ProjectServicesTest.java
 src/test/java/sh/ory/model/ProjectTest.java
+src/test/java/sh/ory/model/ProviderTest.java
 src/test/java/sh/ory/model/QuotaUsageTest.java
 src/test/java/sh/ory/model/RFC6749ErrorJsonTest.java
 src/test/java/sh/ory/model/RecoveryCodeForIdentityTest.java
@@ -848,6 +856,7 @@ src/test/java/sh/ory/model/UiNodeScriptAttributesTest.java
 src/test/java/sh/ory/model/UiNodeTest.java
 src/test/java/sh/ory/model/UiNodeTextAttributesTest.java
 src/test/java/sh/ory/model/UiTextTest.java
+src/test/java/sh/ory/model/UpdateFedcmFlowBodyTest.java
 src/test/java/sh/ory/model/UpdateIdentityBodyTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowBodyTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithCodeMethodTest.java

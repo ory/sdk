@@ -59,6 +59,7 @@ src/models/CourierMessageStatus.ts
 src/models/CourierMessageType.ts
 src/models/CreateCustomDomainBody.ts
 src/models/CreateEventStreamBody.ts
+src/models/CreateFedcmFlowResponse.ts
 src/models/CreateIdentityBody.ts
 src/models/CreateInviteResponse.ts
 src/models/CreateJsonWebKeySet.ts
@@ -199,6 +200,7 @@ src/models/ProjectServiceIdentity.ts
 src/models/ProjectServiceOAuth2.ts
 src/models/ProjectServicePermission.ts
 src/models/ProjectServices.ts
+src/models/Provider.ts
 src/models/QuotaUsage.ts
 src/models/RFC6749ErrorJson.ts
 src/models/RecoveryCodeForIdentity.ts
@@ -253,6 +255,7 @@ src/models/UiNodeMeta.ts
 src/models/UiNodeScriptAttributes.ts
 src/models/UiNodeTextAttributes.ts
 src/models/UiText.ts
+src/models/UpdateFedcmFlowBody.ts
 src/models/UpdateIdentityBody.ts
 src/models/UpdateLoginFlowBody.ts
 src/models/UpdateLoginFlowWithCodeMethod.ts

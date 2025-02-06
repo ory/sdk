@@ -53,6 +53,7 @@ docs/CourierMessageStatus.md
 docs/CourierMessageType.md
 docs/CreateCustomDomainBody.md
 docs/CreateEventStreamBody.md
+docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
@@ -202,6 +203,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
+docs/Provider.md
 docs/QuotaUsage.md
 docs/RFC6749ErrorJson.md
 docs/RecoveryCodeForIdentity.md
@@ -257,6 +259,7 @@ docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
+docs/UpdateFedcmFlowBody.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
@@ -340,6 +343,7 @@ model_courier_message_status.go
 model_courier_message_type.go
 model_create_custom_domain_body.go
 model_create_event_stream_body.go
+model_create_fedcm_flow_response.go
 model_create_identity_body.go
 model_create_invite_response.go
 model_create_json_web_key_set.go
@@ -480,6 +484,7 @@ model_project_service_identity.go
 model_project_service_o_auth2.go
 model_project_service_permission.go
 model_project_services.go
+model_provider.go
 model_quota_usage.go
 model_recovery_code_for_identity.go
 model_recovery_flow.go
@@ -534,6 +539,7 @@ model_ui_node_meta.go
 model_ui_node_script_attributes.go
 model_ui_node_text_attributes.go
 model_ui_text.go
+model_update_fedcm_flow_body.go
 model_update_identity_body.go
 model_update_login_flow_body.go
 model_update_login_flow_with_code_method.go

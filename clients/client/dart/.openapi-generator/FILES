@@ -37,6 +37,7 @@ doc/CourierMessageStatus.md
 doc/CourierMessageType.md
 doc/CreateCustomDomainBody.md
 doc/CreateEventStreamBody.md
+doc/CreateFedcmFlowResponse.md
 doc/CreateIdentityBody.md
 doc/CreateInviteResponse.md
 doc/CreateJsonWebKeySet.md
@@ -186,6 +187,7 @@ doc/ProjectServiceIdentity.md
 doc/ProjectServiceOAuth2.md
 doc/ProjectServicePermission.md
 doc/ProjectServices.md
+doc/Provider.md
 doc/QuotaUsage.md
 doc/RFC6749ErrorJson.md
 doc/RecoveryCodeForIdentity.md
@@ -241,6 +243,7 @@ doc/UiNodeMeta.md
 doc/UiNodeScriptAttributes.md
 doc/UiNodeTextAttributes.md
 doc/UiText.md
+doc/UpdateFedcmFlowBody.md
 doc/UpdateIdentityBody.md
 doc/UpdateLoginFlowBody.md
 doc/UpdateLoginFlowWithCodeMethod.md
@@ -343,6 +346,7 @@ lib/src/model/courier_message_status.dart
 lib/src/model/courier_message_type.dart
 lib/src/model/create_custom_domain_body.dart
 lib/src/model/create_event_stream_body.dart
+lib/src/model/create_fedcm_flow_response.dart
 lib/src/model/create_identity_body.dart
 lib/src/model/create_invite_response.dart
 lib/src/model/create_json_web_key_set.dart
@@ -484,6 +488,7 @@ lib/src/model/project_service_identity.dart
 lib/src/model/project_service_o_auth2.dart
 lib/src/model/project_service_permission.dart
 lib/src/model/project_services.dart
+lib/src/model/provider.dart
 lib/src/model/quota_usage.dart
 lib/src/model/recovery_code_for_identity.dart
 lib/src/model/recovery_flow.dart
@@ -538,6 +543,7 @@ lib/src/model/ui_node_meta.dart
 lib/src/model/ui_node_script_attributes.dart
 lib/src/model/ui_node_text_attributes.dart
 lib/src/model/ui_text.dart
+lib/src/model/update_fedcm_flow_body.dart
 lib/src/model/update_identity_body.dart
 lib/src/model/update_login_flow_body.dart
 lib/src/model/update_login_flow_with_code_method.dart
@@ -619,6 +625,7 @@ test/courier_message_status_test.dart
 test/courier_message_type_test.dart
 test/create_custom_domain_body_test.dart
 test/create_event_stream_body_test.dart
+test/create_fedcm_flow_response_test.dart
 test/create_identity_body_test.dart
 test/create_invite_response_test.dart
 test/create_json_web_key_set_test.dart
@@ -768,6 +775,7 @@ test/project_service_o_auth2_test.dart
 test/project_service_permission_test.dart
 test/project_services_test.dart
 test/project_test.dart
+test/provider_test.dart
 test/quota_usage_test.dart
 test/recovery_code_for_identity_test.dart
 test/recovery_flow_state_test.dart
@@ -823,6 +831,7 @@ test/ui_node_script_attributes_test.dart
 test/ui_node_test.dart
 test/ui_node_text_attributes_test.dart
 test/ui_text_test.dart
+test/update_fedcm_flow_body_test.dart
 test/update_identity_body_test.dart
 test/update_login_flow_body_test.dart
 test/update_login_flow_with_code_method_test.dart

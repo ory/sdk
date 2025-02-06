@@ -38,6 +38,7 @@ docs/CourierMessageStatus.md
 docs/CourierMessageType.md
 docs/CreateCustomDomainBody.md
 docs/CreateEventStreamBody.md
+docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
@@ -187,6 +188,7 @@ docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
 docs/ProjectServices.md
+docs/Provider.md
 docs/QuotaUsage.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
@@ -242,6 +244,7 @@ docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
+docs/UpdateFedcmFlowBody.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
@@ -339,6 +342,7 @@ src/models/courier_message_status.rs
 src/models/courier_message_type.rs
 src/models/create_custom_domain_body.rs
 src/models/create_event_stream_body.rs
+src/models/create_fedcm_flow_response.rs
 src/models/create_identity_body.rs
 src/models/create_invite_response.rs
 src/models/create_json_web_key_set.rs
@@ -480,6 +484,7 @@ src/models/project_service_identity.rs
 src/models/project_service_o_auth2.rs
 src/models/project_service_permission.rs
 src/models/project_services.rs
+src/models/provider.rs
 src/models/quota_usage.rs
 src/models/recovery_code_for_identity.rs
 src/models/recovery_flow.rs
@@ -534,6 +539,7 @@ src/models/ui_node_meta.rs
 src/models/ui_node_script_attributes.rs
 src/models/ui_node_text_attributes.rs
 src/models/ui_text.rs
+src/models/update_fedcm_flow_body.rs
 src/models/update_identity_body.rs
 src/models/update_login_flow_body.rs
 src/models/update_login_flow_with_code_method.rs

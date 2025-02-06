@@ -10,6 +10,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**createBrowserRegistrationFlow()**](FrontendApi.md#createBrowserRegistrationFlow) | **GET** /self-service/registration/browser | Create Registration Flow for Browsers |
 | [**createBrowserSettingsFlow()**](FrontendApi.md#createBrowserSettingsFlow) | **GET** /self-service/settings/browser | Create Settings Flow for Browsers |
 | [**createBrowserVerificationFlow()**](FrontendApi.md#createBrowserVerificationFlow) | **GET** /self-service/verification/browser | Create Verification Flow for Browser Clients |
+| [**createFedcmFlow()**](FrontendApi.md#createFedcmFlow) | **GET** /self-service/fed-cm/parameters | Get FedCM Parameters |
 | [**createNativeLoginFlow()**](FrontendApi.md#createNativeLoginFlow) | **GET** /self-service/login/api | Create Login Flow for Native Apps |
 | [**createNativeRecoveryFlow()**](FrontendApi.md#createNativeRecoveryFlow) | **GET** /self-service/recovery/api | Create Recovery Flow for Native Apps |
 | [**createNativeRegistrationFlow()**](FrontendApi.md#createNativeRegistrationFlow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps |
@@ -28,6 +29,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**listMySessions()**](FrontendApi.md#listMySessions) | **GET** /sessions | Get My Active Sessions |
 | [**performNativeLogout()**](FrontendApi.md#performNativeLogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps |
 | [**toSession()**](FrontendApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To |
+| [**updateFedcmFlow()**](FrontendApi.md#updateFedcmFlow) | **POST** /self-service/fed-cm/token | Submit a FedCM token |
 | [**updateLoginFlow()**](FrontendApi.md#updateLoginFlow) | **POST** /self-service/login | Submit a Login Flow |
 | [**updateLogoutFlow()**](FrontendApi.md#updateLogoutFlow) | **GET** /self-service/logout | Update Logout Flow |
 | [**updateRecoveryFlow()**](FrontendApi.md#updateRecoveryFlow) | **POST** /self-service/recovery | Update Recovery Flow |
@@ -380,6 +382,59 @@ try {
 ### Return type
 
 [**\Ory\Client\Model\VerificationFlow**](../Model/VerificationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createFedcmFlow()`
+
+```php
+createFedcmFlow(): \Ory\Client\Model\CreateFedcmFlowResponse
+```
+
+Get FedCM Parameters
+
+This endpoint returns a list of all available FedCM providers. It is only supported on the Ory Network.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\FrontendApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->createFedcmFlow();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FrontendApi->createFedcmFlow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Client\Model\CreateFedcmFlowResponse**](../Model/CreateFedcmFlowResponse.md)
 
 ### Authorization
 
@@ -1436,6 +1491,62 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateFedcmFlow()`
+
+```php
+updateFedcmFlow($updateFedcmFlowBody): \Ory\Client\Model\SuccessfulNativeLogin
+```
+
+Submit a FedCM token
+
+Use this endpoint to submit a token from a FedCM provider through `navigator.credentials.get` and log the user in. The parameters from `navigator.credentials.get` must have come from `GET self-service/fed-cm/parameters`.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\FrontendApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$updateFedcmFlowBody = new \Ory\Client\Model\UpdateFedcmFlowBody(); // \Ory\Client\Model\UpdateFedcmFlowBody
+
+try {
+    $result = $apiInstance->updateFedcmFlow($updateFedcmFlowBody);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FrontendApi->updateFedcmFlow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **updateFedcmFlowBody** | [**\Ory\Client\Model\UpdateFedcmFlowBody**](../Model/UpdateFedcmFlowBody.md)|  | |
+
+### Return type
+
+[**\Ory\Client\Model\SuccessfulNativeLogin**](../Model/SuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`, `application/x-www-form-urlencoded`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

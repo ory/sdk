@@ -48,6 +48,7 @@ import 'package:ory_client/src/model/courier_message_status.dart';
 import 'package:ory_client/src/model/courier_message_type.dart';
 import 'package:ory_client/src/model/create_custom_domain_body.dart';
 import 'package:ory_client/src/model/create_event_stream_body.dart';
+import 'package:ory_client/src/model/create_fedcm_flow_response.dart';
 import 'package:ory_client/src/model/create_identity_body.dart';
 import 'package:ory_client/src/model/create_invite_response.dart';
 import 'package:ory_client/src/model/create_json_web_key_set.dart';
@@ -188,6 +189,7 @@ import 'package:ory_client/src/model/project_service_identity.dart';
 import 'package:ory_client/src/model/project_service_o_auth2.dart';
 import 'package:ory_client/src/model/project_service_permission.dart';
 import 'package:ory_client/src/model/project_services.dart';
+import 'package:ory_client/src/model/provider.dart';
 import 'package:ory_client/src/model/quota_usage.dart';
 import 'package:ory_client/src/model/rfc6749_error_json.dart';
 import 'package:ory_client/src/model/recovery_code_for_identity.dart';
@@ -242,6 +244,7 @@ import 'package:ory_client/src/model/ui_node_meta.dart';
 import 'package:ory_client/src/model/ui_node_script_attributes.dart';
 import 'package:ory_client/src/model/ui_node_text_attributes.dart';
 import 'package:ory_client/src/model/ui_text.dart';
+import 'package:ory_client/src/model/update_fedcm_flow_body.dart';
 import 'package:ory_client/src/model/update_identity_body.dart';
 import 'package:ory_client/src/model/update_login_flow_body.dart';
 import 'package:ory_client/src/model/update_login_flow_with_code_method.dart';
@@ -324,6 +327,7 @@ part 'serializers.g.dart';
   CourierMessageType,
   CreateCustomDomainBody,
   CreateEventStreamBody,
+  CreateFedcmFlowResponse,
   CreateIdentityBody,
   CreateInviteResponse,
   CreateJsonWebKeySet,
@@ -464,6 +468,7 @@ part 'serializers.g.dart';
   ProjectServiceOAuth2,
   ProjectServicePermission,
   ProjectServices,
+  Provider,
   QuotaUsage,
   RFC6749ErrorJson,
   RecoveryCodeForIdentity,
@@ -518,6 +523,7 @@ part 'serializers.g.dart';
   UiNodeScriptAttributes,
   UiNodeTextAttributes,
   UiText,
+  UpdateFedcmFlowBody,
   UpdateIdentityBody,
   UpdateLoginFlowBody,
   UpdateLoginFlowWithCodeMethod,

@@ -53,6 +53,7 @@ lib/ory/model/courier_message_status.ex
 lib/ory/model/courier_message_type.ex
 lib/ory/model/create_custom_domain_body.ex
 lib/ory/model/create_event_stream_body.ex
+lib/ory/model/create_fedcm_flow_response.ex
 lib/ory/model/create_identity_body.ex
 lib/ory/model/create_invite_response.ex
 lib/ory/model/create_json_web_key_set.ex
@@ -193,6 +194,7 @@ lib/ory/model/project_service_identity.ex
 lib/ory/model/project_service_o_auth2.ex
 lib/ory/model/project_service_permission.ex
 lib/ory/model/project_services.ex
+lib/ory/model/provider.ex
 lib/ory/model/quota_usage.ex
 lib/ory/model/recovery_code_for_identity.ex
 lib/ory/model/recovery_flow.ex
@@ -247,6 +249,7 @@ lib/ory/model/ui_node_meta.ex
 lib/ory/model/ui_node_script_attributes.ex
 lib/ory/model/ui_node_text_attributes.ex
 lib/ory/model/ui_text.ex
+lib/ory/model/update_fedcm_flow_body.ex
 lib/ory/model/update_identity_body.ex
 lib/ory/model/update_login_flow_body.ex
 lib/ory/model/update_login_flow_with_code_method.ex
