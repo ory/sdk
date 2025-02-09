@@ -15,12 +15,15 @@ export 'package:ory_hydra_client/src/api/o_auth2_api.dart';
 export 'package:ory_hydra_client/src/api/oidc_api.dart';
 export 'package:ory_hydra_client/src/api/wellknown_api.dart';
 
+export 'package:ory_hydra_client/src/model/accept_device_user_code_request.dart';
 export 'package:ory_hydra_client/src/model/accept_o_auth2_consent_request.dart';
 export 'package:ory_hydra_client/src/model/accept_o_auth2_consent_request_session.dart';
 export 'package:ory_hydra_client/src/model/accept_o_auth2_login_request.dart';
 export 'package:ory_hydra_client/src/model/create_json_web_key_set.dart';
 export 'package:ory_hydra_client/src/model/create_verifiable_credential_request_body.dart';
 export 'package:ory_hydra_client/src/model/credential_supported_draft00.dart';
+export 'package:ory_hydra_client/src/model/device_authorization.dart';
+export 'package:ory_hydra_client/src/model/device_user_auth_request.dart';
 export 'package:ory_hydra_client/src/model/error_o_auth2.dart';
 export 'package:ory_hydra_client/src/model/generic_error.dart';
 export 'package:ory_hydra_client/src/model/get_version200_response.dart';
@@ -58,4 +61,5 @@ export 'package:ory_hydra_client/src/model/trusted_o_auth2_jwt_grant_json_web_ke
 export 'package:ory_hydra_client/src/model/verifiable_credential_priming_response.dart';
 export 'package:ory_hydra_client/src/model/verifiable_credential_proof.dart';
 export 'package:ory_hydra_client/src/model/verifiable_credential_response.dart';
+export 'package:ory_hydra_client/src/model/verify_user_code_request.dart';
 export 'package:ory_hydra_client/src/model/version.dart';

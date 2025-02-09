@@ -18,9 +18,19 @@ void main() {
       // TODO
     });
 
+    // DateTime expiresAt
+    test('to test the property `expiresAt`', () async {
+      // TODO
+    });
+
     // RequestURL is the original Logout URL requested.
     // String requestUrl
     test('to test the property `requestUrl`', () async {
+      // TODO
+    });
+
+    // DateTime requestedAt
+    test('to test the property `requestedAt`', () async {
       // TODO
     });
 

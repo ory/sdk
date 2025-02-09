@@ -1,6 +1,6 @@
 {
   "name": "@ory/hydra-client-fetch",
-  "version": "v2.2.1",
+  "version": "v2.4.0-alpha.1",
   "description": "OpenAPI client for @ory/hydra-client-fetch",
   "author": "Ory Corp",
   "repository": {

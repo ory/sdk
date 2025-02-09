@@ -1,6 +1,6 @@
 [package]
 name = "ory-hydra-client"
-version = "2.2.1"
+version = "2.4.0-alpha.1"
 authors = ["hi@ory.sh"]
 description = "Documentation for all of Ory Hydra's APIs. "
 license = "Apache 2.0"

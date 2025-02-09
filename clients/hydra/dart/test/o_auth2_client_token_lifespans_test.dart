@@ -32,6 +32,24 @@ void main() {
     });
 
     // Specify a time duration in milliseconds, seconds, minutes, hours.
+    // String deviceAuthorizationGrantAccessTokenLifespan
+    test('to test the property `deviceAuthorizationGrantAccessTokenLifespan`', () async {
+      // TODO
+    });
+
+    // Specify a time duration in milliseconds, seconds, minutes, hours.
+    // String deviceAuthorizationGrantIdTokenLifespan
+    test('to test the property `deviceAuthorizationGrantIdTokenLifespan`', () async {
+      // TODO
+    });
+
+    // Specify a time duration in milliseconds, seconds, minutes, hours.
+    // String deviceAuthorizationGrantRefreshTokenLifespan
+    test('to test the property `deviceAuthorizationGrantRefreshTokenLifespan`', () async {
+      // TODO
+    });
+
+    // Specify a time duration in milliseconds, seconds, minutes, hours.
     // String implicitGrantAccessTokenLifespan
     test('to test the property `implicitGrantAccessTokenLifespan`', () async {
       // TODO

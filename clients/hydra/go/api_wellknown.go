@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.1
+API version: v2.4.0-alpha.1
 Contact: hi@ory.sh
 */
 
@@ -28,6 +28,9 @@ type WellknownAPI interface {
 	This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and,
 if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like
 [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
+
+Adding custom keys requires first creating a keyset via the createJsonWebKeySet operation,
+and then configuring the webfinger.jwks.broadcast_keys configuration value to include the keyset name.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return WellknownAPIDiscoverJsonWebKeysRequest
@@ -57,6 +60,9 @@ DiscoverJsonWebKeys Discover Well-Known JSON Web Keys
 This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and,
 if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like
 [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.
+
+Adding custom keys requires first creating a keyset via the createJsonWebKeySet operation,
+and then configuring the webfinger.jwks.broadcast_keys configuration value to include the keyset name.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return WellknownAPIDiscoverJsonWebKeysRequest

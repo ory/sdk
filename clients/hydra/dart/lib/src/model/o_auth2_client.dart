@@ -29,6 +29,9 @@ part 'o_auth2_client.g.dart';
 /// * [clientUri] - OAuth 2.0 Client URI  ClientURI is a URL string of a web page providing information about the client. If present, the server SHOULD display this URL to the end-user in a clickable fashion.
 /// * [contacts] 
 /// * [createdAt] - OAuth 2.0 Client Creation Date  CreatedAt returns the timestamp of the client's creation.
+/// * [deviceAuthorizationGrantAccessTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
+/// * [deviceAuthorizationGrantIdTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
+/// * [deviceAuthorizationGrantRefreshTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
 /// * [frontchannelLogoutSessionRequired] - OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the RP requires that iss (issuer) and sid (session ID) query parameters be included to identify the RP session with the OP when the frontchannel_logout_uri is used. If omitted, the default value is false.
 /// * [frontchannelLogoutUri] - OpenID Connect Front-Channel Logout URI  RP URL that will cause the RP to log itself out when rendered in an iframe by the OP. An iss (issuer) query parameter and a sid (session ID) query parameter MAY be included by the OP to enable the RP to validate the request and to determine which of the potentially multiple sessions is to be logged out; if either is included, both MUST be.
 /// * [grantTypes] 
@@ -123,6 +126,18 @@ abstract class OAuth2Client implements Built<OAuth2Client, OAuth2ClientBuilder> 
   /// OAuth 2.0 Client Creation Date  CreatedAt returns the timestamp of the client's creation.
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
+
+  /// Specify a time duration in milliseconds, seconds, minutes, hours.
+  @BuiltValueField(wireName: r'device_authorization_grant_access_token_lifespan')
+  String? get deviceAuthorizationGrantAccessTokenLifespan;
+
+  /// Specify a time duration in milliseconds, seconds, minutes, hours.
+  @BuiltValueField(wireName: r'device_authorization_grant_id_token_lifespan')
+  String? get deviceAuthorizationGrantIdTokenLifespan;
+
+  /// Specify a time duration in milliseconds, seconds, minutes, hours.
+  @BuiltValueField(wireName: r'device_authorization_grant_refresh_token_lifespan')
+  String? get deviceAuthorizationGrantRefreshTokenLifespan;
 
   /// OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the RP requires that iss (issuer) and sid (session ID) query parameters be included to identify the RP session with the OP when the frontchannel_logout_uri is used. If omitted, the default value is false.
   @BuiltValueField(wireName: r'frontchannel_logout_session_required')
@@ -380,6 +395,27 @@ class _$OAuth2ClientSerializer implements PrimitiveSerializer<OAuth2Client> {
       yield serializers.serialize(
         object.createdAt,
         specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.deviceAuthorizationGrantAccessTokenLifespan != null) {
+      yield r'device_authorization_grant_access_token_lifespan';
+      yield serializers.serialize(
+        object.deviceAuthorizationGrantAccessTokenLifespan,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.deviceAuthorizationGrantIdTokenLifespan != null) {
+      yield r'device_authorization_grant_id_token_lifespan';
+      yield serializers.serialize(
+        object.deviceAuthorizationGrantIdTokenLifespan,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.deviceAuthorizationGrantRefreshTokenLifespan != null) {
+      yield r'device_authorization_grant_refresh_token_lifespan';
+      yield serializers.serialize(
+        object.deviceAuthorizationGrantRefreshTokenLifespan,
+        specifiedType: const FullType(String),
       );
     }
     if (object.frontchannelLogoutSessionRequired != null) {
@@ -740,6 +776,27 @@ class _$OAuth2ClientSerializer implements PrimitiveSerializer<OAuth2Client> {
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.createdAt = valueDes;
+          break;
+        case r'device_authorization_grant_access_token_lifespan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.deviceAuthorizationGrantAccessTokenLifespan = valueDes;
+          break;
+        case r'device_authorization_grant_id_token_lifespan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.deviceAuthorizationGrantIdTokenLifespan = valueDes;
+          break;
+        case r'device_authorization_grant_refresh_token_lifespan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.deviceAuthorizationGrantRefreshTokenLifespan = valueDes;
           break;
         case r'frontchannel_logout_session_required':
           final valueDes = serializers.deserialize(

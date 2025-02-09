@@ -7,6 +7,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**acceptOAuth2ConsentRequest()**](OAuth2Api.md#acceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request |
 | [**acceptOAuth2LoginRequest()**](OAuth2Api.md#acceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request |
 | [**acceptOAuth2LogoutRequest()**](OAuth2Api.md#acceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request |
+| [**acceptUserCodeRequest()**](OAuth2Api.md#acceptUserCodeRequest) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request |
 | [**createOAuth2Client()**](OAuth2Api.md#createOAuth2Client) | **POST** /admin/clients | Create OAuth 2.0 Client |
 | [**deleteOAuth2Client()**](OAuth2Api.md#deleteOAuth2Client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client |
 | [**deleteOAuth2Token()**](OAuth2Api.md#deleteOAuth2Token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client |
@@ -21,8 +22,10 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**listOAuth2ConsentSessions()**](OAuth2Api.md#listOAuth2ConsentSessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject |
 | [**listTrustedOAuth2JwtGrantIssuers()**](OAuth2Api.md#listTrustedOAuth2JwtGrantIssuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers |
 | [**oAuth2Authorize()**](OAuth2Api.md#oAuth2Authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint |
+| [**oAuth2DeviceFlow()**](OAuth2Api.md#oAuth2DeviceFlow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint |
 | [**oauth2TokenExchange()**](OAuth2Api.md#oauth2TokenExchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint |
 | [**patchOAuth2Client()**](OAuth2Api.md#patchOAuth2Client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client |
+| [**performOAuth2DeviceVerificationFlow()**](OAuth2Api.md#performOAuth2DeviceVerificationFlow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint |
 | [**rejectOAuth2ConsentRequest()**](OAuth2Api.md#rejectOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request |
 | [**rejectOAuth2LoginRequest()**](OAuth2Api.md#rejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request |
 | [**rejectOAuth2LogoutRequest()**](OAuth2Api.md#rejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request |
@@ -200,6 +203,64 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `acceptUserCodeRequest()`
+
+```php
+acceptUserCodeRequest($deviceChallenge, $acceptDeviceUserCodeRequest): \Ory\Hydra\Client\Model\OAuth2RedirectTo
+```
+
+Accepts a device grant user_code request
+
+Accepts a device grant user_code request
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Hydra\Client\Api\OAuth2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$deviceChallenge = 'deviceChallenge_example'; // string
+$acceptDeviceUserCodeRequest = new \Ory\Hydra\Client\Model\AcceptDeviceUserCodeRequest(); // \Ory\Hydra\Client\Model\AcceptDeviceUserCodeRequest
+
+try {
+    $result = $apiInstance->acceptUserCodeRequest($deviceChallenge, $acceptDeviceUserCodeRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OAuth2Api->acceptUserCodeRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **deviceChallenge** | **string**|  | |
+| **acceptDeviceUserCodeRequest** | [**\Ory\Hydra\Client\Model\AcceptDeviceUserCodeRequest**](../Model/AcceptDeviceUserCodeRequest.md)|  | [optional] |
+
+### Return type
+
+[**\Ory\Hydra\Client\Model\OAuth2RedirectTo**](../Model/OAuth2RedirectTo.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -957,7 +1018,7 @@ oAuth2Authorize(): \Ory\Hydra\Client\Model\ErrorOAuth2
 
 OAuth 2.0 Authorize Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Example
 
@@ -1002,6 +1063,59 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `oAuth2DeviceFlow()`
+
+```php
+oAuth2DeviceFlow(): \Ory\Hydra\Client\Model\DeviceAuthorization
+```
+
+The OAuth 2.0 Device Authorize Endpoint
+
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Hydra\Client\Api\OAuth2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->oAuth2DeviceFlow();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OAuth2Api->oAuth2DeviceFlow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Hydra\Client\Model\DeviceAuthorization**](../Model/DeviceAuthorization.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `oauth2TokenExchange()`
 
 ```php
@@ -1010,7 +1124,7 @@ oauth2TokenExchange($grantType, $clientId, $code, $redirectUri, $refreshToken): 
 
 The OAuth 2.0 Token Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Example
 
@@ -1127,6 +1241,59 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `performOAuth2DeviceVerificationFlow()`
+
+```php
+performOAuth2DeviceVerificationFlow(): \Ory\Hydra\Client\Model\ErrorOAuth2
+```
+
+OAuth 2.0 Device Verification Endpoint
+
+This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Hydra\Client\Api\OAuth2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->performOAuth2DeviceVerificationFlow();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OAuth2Api->performOAuth2DeviceVerificationFlow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Hydra\Client\Model\ErrorOAuth2**](../Model/ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -1371,7 +1538,7 @@ revokeOAuth2LoginSessions($subject, $sid)
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
 ### Example
 
@@ -1387,7 +1554,7 @@ $apiInstance = new Ory\Hydra\Client\Api\OAuth2Api(
     new GuzzleHttp\Client()
 );
 $subject = 'subject_example'; // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
-$sid = 'sid_example'; // string | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+$sid = 'sid_example'; // string | Login Session ID  The login session to revoke.
 
 try {
     $apiInstance->revokeOAuth2LoginSessions($subject, $sid);
@@ -1401,7 +1568,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **subject** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
-| **sid** | **string**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
+| **sid** | **string**| Login Session ID  The login session to revoke. | [optional] |
 
 ### Return type
 

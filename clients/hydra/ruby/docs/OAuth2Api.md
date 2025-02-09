@@ -7,6 +7,7 @@ All URIs are relative to *http://localhost*
 | [**accept_o_auth2_consent_request**](OAuth2Api.md#accept_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request |
 | [**accept_o_auth2_login_request**](OAuth2Api.md#accept_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request |
 | [**accept_o_auth2_logout_request**](OAuth2Api.md#accept_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request |
+| [**accept_user_code_request**](OAuth2Api.md#accept_user_code_request) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request |
 | [**create_o_auth2_client**](OAuth2Api.md#create_o_auth2_client) | **POST** /admin/clients | Create OAuth 2.0 Client |
 | [**delete_o_auth2_client**](OAuth2Api.md#delete_o_auth2_client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client |
 | [**delete_o_auth2_token**](OAuth2Api.md#delete_o_auth2_token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client |
@@ -21,8 +22,10 @@ All URIs are relative to *http://localhost*
 | [**list_o_auth2_consent_sessions**](OAuth2Api.md#list_o_auth2_consent_sessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject |
 | [**list_trusted_o_auth2_jwt_grant_issuers**](OAuth2Api.md#list_trusted_o_auth2_jwt_grant_issuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers |
 | [**o_auth2_authorize**](OAuth2Api.md#o_auth2_authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint |
+| [**o_auth2_device_flow**](OAuth2Api.md#o_auth2_device_flow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint |
 | [**oauth2_token_exchange**](OAuth2Api.md#oauth2_token_exchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint |
 | [**patch_o_auth2_client**](OAuth2Api.md#patch_o_auth2_client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client |
+| [**perform_o_auth2_device_verification_flow**](OAuth2Api.md#perform_o_auth2_device_verification_flow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint |
 | [**reject_o_auth2_consent_request**](OAuth2Api.md#reject_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request |
 | [**reject_o_auth2_login_request**](OAuth2Api.md#reject_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request |
 | [**reject_o_auth2_logout_request**](OAuth2Api.md#reject_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request |
@@ -231,6 +234,74 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## accept_user_code_request
+
+> <OAuth2RedirectTo> accept_user_code_request(device_challenge, opts)
+
+Accepts a device grant user_code request
+
+Accepts a device grant user_code request
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::OAuth2Api.new
+device_challenge = 'device_challenge_example' # String | 
+opts = {
+  accept_device_user_code_request: OryHydraClient::AcceptDeviceUserCodeRequest.new # AcceptDeviceUserCodeRequest | 
+}
+
+begin
+  # Accepts a device grant user_code request
+  result = api_instance.accept_user_code_request(device_challenge, opts)
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling OAuth2Api->accept_user_code_request: #{e}"
+end
+```
+
+#### Using the accept_user_code_request_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OAuth2RedirectTo>, Integer, Hash)> accept_user_code_request_with_http_info(device_challenge, opts)
+
+```ruby
+begin
+  # Accepts a device grant user_code request
+  data, status_code, headers = api_instance.accept_user_code_request_with_http_info(device_challenge, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OAuth2RedirectTo>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling OAuth2Api->accept_user_code_request_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **device_challenge** | **String** |  |  |
+| **accept_device_user_code_request** | [**AcceptDeviceUserCodeRequest**](AcceptDeviceUserCodeRequest.md) |  | [optional] |
+
+### Return type
+
+[**OAuth2RedirectTo**](OAuth2RedirectTo.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 
@@ -1095,7 +1166,7 @@ No authorization required
 
 OAuth 2.0 Authorize Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Examples
 
@@ -1150,13 +1221,74 @@ No authorization required
 - **Accept**: application/json
 
 
+## o_auth2_device_flow
+
+> <DeviceAuthorization> o_auth2_device_flow
+
+The OAuth 2.0 Device Authorize Endpoint
+
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::OAuth2Api.new
+
+begin
+  # The OAuth 2.0 Device Authorize Endpoint
+  result = api_instance.o_auth2_device_flow
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling OAuth2Api->o_auth2_device_flow: #{e}"
+end
+```
+
+#### Using the o_auth2_device_flow_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<DeviceAuthorization>, Integer, Hash)> o_auth2_device_flow_with_http_info
+
+```ruby
+begin
+  # The OAuth 2.0 Device Authorize Endpoint
+  data, status_code, headers = api_instance.o_auth2_device_flow_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <DeviceAuthorization>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling OAuth2Api->o_auth2_device_flow_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DeviceAuthorization**](DeviceAuthorization.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## oauth2_token_exchange
 
 > <OAuth2TokenExchange> oauth2_token_exchange(grant_type, opts)
 
 The OAuth 2.0 Token Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Examples
 
@@ -1296,6 +1428,67 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## perform_o_auth2_device_verification_flow
+
+> <ErrorOAuth2> perform_o_auth2_device_verification_flow
+
+OAuth 2.0 Device Verification Endpoint
+
+This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-hydra-client'
+
+api_instance = OryHydraClient::OAuth2Api.new
+
+begin
+  # OAuth 2.0 Device Verification Endpoint
+  result = api_instance.perform_o_auth2_device_verification_flow
+  p result
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling OAuth2Api->perform_o_auth2_device_verification_flow: #{e}"
+end
+```
+
+#### Using the perform_o_auth2_device_verification_flow_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ErrorOAuth2>, Integer, Hash)> perform_o_auth2_device_verification_flow_with_http_info
+
+```ruby
+begin
+  # OAuth 2.0 Device Verification Endpoint
+  data, status_code, headers = api_instance.perform_o_auth2_device_verification_flow_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ErrorOAuth2>
+rescue OryHydraClient::ApiError => e
+  puts "Error when calling OAuth2Api->perform_o_auth2_device_verification_flow_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ErrorOAuth2**](ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 
@@ -1573,7 +1766,7 @@ No authorization required
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
 ### Examples
 
@@ -1584,7 +1777,7 @@ require 'ory-hydra-client'
 api_instance = OryHydraClient::OAuth2Api.new
 opts = {
   subject: 'subject_example', # String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
-  sid: 'sid_example' # String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+  sid: 'sid_example' # String | Login Session ID  The login session to revoke.
 }
 
 begin
@@ -1618,7 +1811,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **subject** | **String** | OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
-| **sid** | **String** | OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
+| **sid** | **String** | Login Session ID  The login session to revoke. | [optional] |
 
 ### Return type
 

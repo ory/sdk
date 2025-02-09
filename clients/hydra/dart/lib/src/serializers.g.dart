@@ -7,12 +7,15 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(AcceptDeviceUserCodeRequest.serializer)
       ..add(AcceptOAuth2ConsentRequest.serializer)
       ..add(AcceptOAuth2ConsentRequestSession.serializer)
       ..add(AcceptOAuth2LoginRequest.serializer)
       ..add(CreateJsonWebKeySet.serializer)
       ..add(CreateVerifiableCredentialRequestBody.serializer)
       ..add(CredentialSupportedDraft00.serializer)
+      ..add(DeviceAuthorization.serializer)
+      ..add(DeviceUserAuthRequest.serializer)
       ..add(ErrorOAuth2.serializer)
       ..add(GenericError.serializer)
       ..add(GetVersion200Response.serializer)
@@ -50,10 +53,23 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(VerifiableCredentialPrimingResponse.serializer)
       ..add(VerifiableCredentialProof.serializer)
       ..add(VerifiableCredentialResponse.serializer)
+      ..add(VerifyUserCodeRequest.serializer)
       ..add(Version.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(JsonWebKey)]),
           () => new ListBuilder<JsonWebKey>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

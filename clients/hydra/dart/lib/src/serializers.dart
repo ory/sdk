@@ -14,12 +14,15 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:ory_hydra_client/src/date_serializer.dart';
 import 'package:ory_hydra_client/src/model/date.dart';
 
+import 'package:ory_hydra_client/src/model/accept_device_user_code_request.dart';
 import 'package:ory_hydra_client/src/model/accept_o_auth2_consent_request.dart';
 import 'package:ory_hydra_client/src/model/accept_o_auth2_consent_request_session.dart';
 import 'package:ory_hydra_client/src/model/accept_o_auth2_login_request.dart';
 import 'package:ory_hydra_client/src/model/create_json_web_key_set.dart';
 import 'package:ory_hydra_client/src/model/create_verifiable_credential_request_body.dart';
 import 'package:ory_hydra_client/src/model/credential_supported_draft00.dart';
+import 'package:ory_hydra_client/src/model/device_authorization.dart';
+import 'package:ory_hydra_client/src/model/device_user_auth_request.dart';
 import 'package:ory_hydra_client/src/model/error_o_auth2.dart';
 import 'package:ory_hydra_client/src/model/generic_error.dart';
 import 'package:ory_hydra_client/src/model/get_version200_response.dart';
@@ -57,17 +60,21 @@ import 'package:ory_hydra_client/src/model/trusted_o_auth2_jwt_grant_json_web_ke
 import 'package:ory_hydra_client/src/model/verifiable_credential_priming_response.dart';
 import 'package:ory_hydra_client/src/model/verifiable_credential_proof.dart';
 import 'package:ory_hydra_client/src/model/verifiable_credential_response.dart';
+import 'package:ory_hydra_client/src/model/verify_user_code_request.dart';
 import 'package:ory_hydra_client/src/model/version.dart';
 
 part 'serializers.g.dart';
 
 @SerializersFor([
+  AcceptDeviceUserCodeRequest,
   AcceptOAuth2ConsentRequest,
   AcceptOAuth2ConsentRequestSession,
   AcceptOAuth2LoginRequest,
   CreateJsonWebKeySet,
   CreateVerifiableCredentialRequestBody,
   CredentialSupportedDraft00,
+  DeviceAuthorization,
+  DeviceUserAuthRequest,
   ErrorOAuth2,
   GenericError,
   GetVersion200Response,
@@ -105,6 +112,7 @@ part 'serializers.g.dart';
   VerifiableCredentialPrimingResponse,
   VerifiableCredentialProof,
   VerifiableCredentialResponse,
+  VerifyUserCodeRequest,
   Version,
 ])
 Serializers serializers = (_$serializers.toBuilder()

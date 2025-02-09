@@ -100,6 +100,24 @@ void main() {
       // TODO
     });
 
+    // Specify a time duration in milliseconds, seconds, minutes, hours.
+    // String deviceAuthorizationGrantAccessTokenLifespan
+    test('to test the property `deviceAuthorizationGrantAccessTokenLifespan`', () async {
+      // TODO
+    });
+
+    // Specify a time duration in milliseconds, seconds, minutes, hours.
+    // String deviceAuthorizationGrantIdTokenLifespan
+    test('to test the property `deviceAuthorizationGrantIdTokenLifespan`', () async {
+      // TODO
+    });
+
+    // Specify a time duration in milliseconds, seconds, minutes, hours.
+    // String deviceAuthorizationGrantRefreshTokenLifespan
+    test('to test the property `deviceAuthorizationGrantRefreshTokenLifespan`', () async {
+      // TODO
+    });
+
     // OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the RP requires that iss (issuer) and sid (session ID) query parameters be included to identify the RP session with the OP when the frontchannel_logout_uri is used. If omitted, the default value is false.
     // bool frontchannelLogoutSessionRequired
     test('to test the property `frontchannelLogoutSessionRequired`', () async {

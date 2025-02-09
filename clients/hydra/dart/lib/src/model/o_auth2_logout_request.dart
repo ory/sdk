@@ -14,7 +14,9 @@ part 'o_auth2_logout_request.g.dart';
 /// Properties:
 /// * [challenge] - Challenge is the identifier (\"logout challenge\") of the logout authentication request. It is used to identify the session.
 /// * [client] 
+/// * [expiresAt] 
 /// * [requestUrl] - RequestURL is the original Logout URL requested.
+/// * [requestedAt] 
 /// * [rpInitiated] - RPInitiated is set to true if the request was initiated by a Relying Party (RP), also known as an OAuth 2.0 Client.
 /// * [sid] - SessionID is the login session ID that was requested to log out.
 /// * [subject] - Subject is the user for whom the logout was request.
@@ -27,9 +29,15 @@ abstract class OAuth2LogoutRequest implements Built<OAuth2LogoutRequest, OAuth2L
   @BuiltValueField(wireName: r'client')
   OAuth2Client? get client;
 
+  @BuiltValueField(wireName: r'expires_at')
+  DateTime? get expiresAt;
+
   /// RequestURL is the original Logout URL requested.
   @BuiltValueField(wireName: r'request_url')
   String? get requestUrl;
+
+  @BuiltValueField(wireName: r'requested_at')
+  DateTime? get requestedAt;
 
   /// RPInitiated is set to true if the request was initiated by a Relying Party (RP), also known as an OAuth 2.0 Client.
   @BuiltValueField(wireName: r'rp_initiated')
@@ -80,11 +88,25 @@ class _$OAuth2LogoutRequestSerializer implements PrimitiveSerializer<OAuth2Logou
         specifiedType: const FullType(OAuth2Client),
       );
     }
+    if (object.expiresAt != null) {
+      yield r'expires_at';
+      yield serializers.serialize(
+        object.expiresAt,
+        specifiedType: const FullType(DateTime),
+      );
+    }
     if (object.requestUrl != null) {
       yield r'request_url';
       yield serializers.serialize(
         object.requestUrl,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.requestedAt != null) {
+      yield r'requested_at';
+      yield serializers.serialize(
+        object.requestedAt,
+        specifiedType: const FullType(DateTime),
       );
     }
     if (object.rpInitiated != null) {
@@ -145,12 +167,26 @@ class _$OAuth2LogoutRequestSerializer implements PrimitiveSerializer<OAuth2Logou
           ) as OAuth2Client;
           result.client.replace(valueDes);
           break;
+        case r'expires_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.expiresAt = valueDes;
+          break;
         case r'request_url':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.requestUrl = valueDes;
+          break;
+        case r'requested_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
+          result.requestedAt = valueDes;
           break;
         case r'rp_initiated':
           final valueDes = serializers.deserialize(

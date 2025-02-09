@@ -58,6 +58,18 @@ func Test_client_OAuth2APIService(t *testing.T) {
 
 	})
 
+	t.Run("Test OAuth2APIService AcceptUserCodeRequest", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.OAuth2API.AcceptUserCodeRequest(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test OAuth2APIService CreateOAuth2Client", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -231,6 +243,18 @@ func Test_client_OAuth2APIService(t *testing.T) {
 
 	})
 
+	t.Run("Test OAuth2APIService OAuth2DeviceFlow", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.OAuth2API.OAuth2DeviceFlow(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test OAuth2APIService Oauth2TokenExchange", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -250,6 +274,18 @@ func Test_client_OAuth2APIService(t *testing.T) {
 		var id string
 
 		resp, httpRes, err := apiClient.OAuth2API.PatchOAuth2Client(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test OAuth2APIService PerformOAuth2DeviceVerificationFlow", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.OAuth2API.PerformOAuth2DeviceVerificationFlow(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

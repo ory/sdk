@@ -1,11 +1,14 @@
 /* tslint:disable */
 /* eslint-disable */
+export * from './AcceptDeviceUserCodeRequest';
 export * from './AcceptOAuth2ConsentRequest';
 export * from './AcceptOAuth2ConsentRequestSession';
 export * from './AcceptOAuth2LoginRequest';
 export * from './CreateJsonWebKeySet';
 export * from './CreateVerifiableCredentialRequestBody';
 export * from './CredentialSupportedDraft00';
+export * from './DeviceAuthorization';
+export * from './DeviceUserAuthRequest';
 export * from './ErrorOAuth2';
 export * from './GenericError';
 export * from './GetVersion200Response';
@@ -43,4 +46,5 @@ export * from './TrustedOAuth2JwtGrantJsonWebKey';
 export * from './VerifiableCredentialPrimingResponse';
 export * from './VerifiableCredentialProof';
 export * from './VerifiableCredentialResponse';
+export * from './VerifyUserCodeRequest';
 export * from './Version';

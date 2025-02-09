@@ -16,6 +16,12 @@ class _$OAuth2ClientTokenLifespans extends OAuth2ClientTokenLifespans {
   @override
   final String? clientCredentialsGrantAccessTokenLifespan;
   @override
+  final String? deviceAuthorizationGrantAccessTokenLifespan;
+  @override
+  final String? deviceAuthorizationGrantIdTokenLifespan;
+  @override
+  final String? deviceAuthorizationGrantRefreshTokenLifespan;
+  @override
   final String? implicitGrantAccessTokenLifespan;
   @override
   final String? implicitGrantIdTokenLifespan;
@@ -37,6 +43,9 @@ class _$OAuth2ClientTokenLifespans extends OAuth2ClientTokenLifespans {
       this.authorizationCodeGrantIdTokenLifespan,
       this.authorizationCodeGrantRefreshTokenLifespan,
       this.clientCredentialsGrantAccessTokenLifespan,
+      this.deviceAuthorizationGrantAccessTokenLifespan,
+      this.deviceAuthorizationGrantIdTokenLifespan,
+      this.deviceAuthorizationGrantRefreshTokenLifespan,
       this.implicitGrantAccessTokenLifespan,
       this.implicitGrantIdTokenLifespan,
       this.jwtBearerGrantAccessTokenLifespan,
@@ -66,6 +75,12 @@ class _$OAuth2ClientTokenLifespans extends OAuth2ClientTokenLifespans {
             other.authorizationCodeGrantRefreshTokenLifespan &&
         clientCredentialsGrantAccessTokenLifespan ==
             other.clientCredentialsGrantAccessTokenLifespan &&
+        deviceAuthorizationGrantAccessTokenLifespan ==
+            other.deviceAuthorizationGrantAccessTokenLifespan &&
+        deviceAuthorizationGrantIdTokenLifespan ==
+            other.deviceAuthorizationGrantIdTokenLifespan &&
+        deviceAuthorizationGrantRefreshTokenLifespan ==
+            other.deviceAuthorizationGrantRefreshTokenLifespan &&
         implicitGrantAccessTokenLifespan ==
             other.implicitGrantAccessTokenLifespan &&
         implicitGrantIdTokenLifespan == other.implicitGrantIdTokenLifespan &&
@@ -86,6 +101,9 @@ class _$OAuth2ClientTokenLifespans extends OAuth2ClientTokenLifespans {
     _$hash = $jc(_$hash, authorizationCodeGrantIdTokenLifespan.hashCode);
     _$hash = $jc(_$hash, authorizationCodeGrantRefreshTokenLifespan.hashCode);
     _$hash = $jc(_$hash, clientCredentialsGrantAccessTokenLifespan.hashCode);
+    _$hash = $jc(_$hash, deviceAuthorizationGrantAccessTokenLifespan.hashCode);
+    _$hash = $jc(_$hash, deviceAuthorizationGrantIdTokenLifespan.hashCode);
+    _$hash = $jc(_$hash, deviceAuthorizationGrantRefreshTokenLifespan.hashCode);
     _$hash = $jc(_$hash, implicitGrantAccessTokenLifespan.hashCode);
     _$hash = $jc(_$hash, implicitGrantIdTokenLifespan.hashCode);
     _$hash = $jc(_$hash, jwtBearerGrantAccessTokenLifespan.hashCode);
@@ -107,6 +125,12 @@ class _$OAuth2ClientTokenLifespans extends OAuth2ClientTokenLifespans {
               authorizationCodeGrantRefreshTokenLifespan)
           ..add('clientCredentialsGrantAccessTokenLifespan',
               clientCredentialsGrantAccessTokenLifespan)
+          ..add('deviceAuthorizationGrantAccessTokenLifespan',
+              deviceAuthorizationGrantAccessTokenLifespan)
+          ..add('deviceAuthorizationGrantIdTokenLifespan',
+              deviceAuthorizationGrantIdTokenLifespan)
+          ..add('deviceAuthorizationGrantRefreshTokenLifespan',
+              deviceAuthorizationGrantRefreshTokenLifespan)
           ..add('implicitGrantAccessTokenLifespan',
               implicitGrantAccessTokenLifespan)
           ..add('implicitGrantIdTokenLifespan', implicitGrantIdTokenLifespan)
@@ -158,6 +182,30 @@ class OAuth2ClientTokenLifespansBuilder
           String? clientCredentialsGrantAccessTokenLifespan) =>
       _$this._clientCredentialsGrantAccessTokenLifespan =
           clientCredentialsGrantAccessTokenLifespan;
+
+  String? _deviceAuthorizationGrantAccessTokenLifespan;
+  String? get deviceAuthorizationGrantAccessTokenLifespan =>
+      _$this._deviceAuthorizationGrantAccessTokenLifespan;
+  set deviceAuthorizationGrantAccessTokenLifespan(
+          String? deviceAuthorizationGrantAccessTokenLifespan) =>
+      _$this._deviceAuthorizationGrantAccessTokenLifespan =
+          deviceAuthorizationGrantAccessTokenLifespan;
+
+  String? _deviceAuthorizationGrantIdTokenLifespan;
+  String? get deviceAuthorizationGrantIdTokenLifespan =>
+      _$this._deviceAuthorizationGrantIdTokenLifespan;
+  set deviceAuthorizationGrantIdTokenLifespan(
+          String? deviceAuthorizationGrantIdTokenLifespan) =>
+      _$this._deviceAuthorizationGrantIdTokenLifespan =
+          deviceAuthorizationGrantIdTokenLifespan;
+
+  String? _deviceAuthorizationGrantRefreshTokenLifespan;
+  String? get deviceAuthorizationGrantRefreshTokenLifespan =>
+      _$this._deviceAuthorizationGrantRefreshTokenLifespan;
+  set deviceAuthorizationGrantRefreshTokenLifespan(
+          String? deviceAuthorizationGrantRefreshTokenLifespan) =>
+      _$this._deviceAuthorizationGrantRefreshTokenLifespan =
+          deviceAuthorizationGrantRefreshTokenLifespan;
 
   String? _implicitGrantAccessTokenLifespan;
   String? get implicitGrantAccessTokenLifespan =>
@@ -220,6 +268,12 @@ class OAuth2ClientTokenLifespansBuilder
           $v.authorizationCodeGrantRefreshTokenLifespan;
       _clientCredentialsGrantAccessTokenLifespan =
           $v.clientCredentialsGrantAccessTokenLifespan;
+      _deviceAuthorizationGrantAccessTokenLifespan =
+          $v.deviceAuthorizationGrantAccessTokenLifespan;
+      _deviceAuthorizationGrantIdTokenLifespan =
+          $v.deviceAuthorizationGrantIdTokenLifespan;
+      _deviceAuthorizationGrantRefreshTokenLifespan =
+          $v.deviceAuthorizationGrantRefreshTokenLifespan;
       _implicitGrantAccessTokenLifespan = $v.implicitGrantAccessTokenLifespan;
       _implicitGrantIdTokenLifespan = $v.implicitGrantIdTokenLifespan;
       _jwtBearerGrantAccessTokenLifespan = $v.jwtBearerGrantAccessTokenLifespan;
@@ -258,6 +312,12 @@ class OAuth2ClientTokenLifespansBuilder
                 authorizationCodeGrantRefreshTokenLifespan,
             clientCredentialsGrantAccessTokenLifespan:
                 clientCredentialsGrantAccessTokenLifespan,
+            deviceAuthorizationGrantAccessTokenLifespan:
+                deviceAuthorizationGrantAccessTokenLifespan,
+            deviceAuthorizationGrantIdTokenLifespan:
+                deviceAuthorizationGrantIdTokenLifespan,
+            deviceAuthorizationGrantRefreshTokenLifespan:
+                deviceAuthorizationGrantRefreshTokenLifespan,
             implicitGrantAccessTokenLifespan: implicitGrantAccessTokenLifespan,
             implicitGrantIdTokenLifespan: implicitGrantIdTokenLifespan,
             jwtBearerGrantAccessTokenLifespan:

@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**accept_o_auth2_consent_request**](OAuth2Api.md#accept_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
 [**accept_o_auth2_login_request**](OAuth2Api.md#accept_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
 [**accept_o_auth2_logout_request**](OAuth2Api.md#accept_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
+[**accept_user_code_request**](OAuth2Api.md#accept_user_code_request) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request
 [**create_o_auth2_client**](OAuth2Api.md#create_o_auth2_client) | **POST** /admin/clients | Create OAuth 2.0 Client
 [**delete_o_auth2_client**](OAuth2Api.md#delete_o_auth2_client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
 [**delete_o_auth2_token**](OAuth2Api.md#delete_o_auth2_token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
@@ -21,8 +22,10 @@ Method | HTTP request | Description
 [**list_o_auth2_consent_sessions**](OAuth2Api.md#list_o_auth2_consent_sessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
 [**list_trusted_o_auth2_jwt_grant_issuers**](OAuth2Api.md#list_trusted_o_auth2_jwt_grant_issuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 [**o_auth2_authorize**](OAuth2Api.md#o_auth2_authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint
+[**o_auth2_device_flow**](OAuth2Api.md#o_auth2_device_flow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint
 [**oauth2_token_exchange**](OAuth2Api.md#oauth2_token_exchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**patch_o_auth2_client**](OAuth2Api.md#patch_o_auth2_client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client
+[**perform_o_auth2_device_verification_flow**](OAuth2Api.md#perform_o_auth2_device_verification_flow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint
 [**reject_o_auth2_consent_request**](OAuth2Api.md#reject_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
 [**reject_o_auth2_login_request**](OAuth2Api.md#reject_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 [**reject_o_auth2_logout_request**](OAuth2Api.md#reject_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
@@ -247,6 +250,78 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **accept_user_code_request**
+> OAuth2RedirectTo accept_user_code_request(device_challenge, accept_device_user_code_request=accept_device_user_code_request)
+
+Accepts a device grant user_code request
+
+Accepts a device grant user_code request
+
+### Example
+
+
+```python
+import ory_hydra_client
+from ory_hydra_client.models.accept_device_user_code_request import AcceptDeviceUserCodeRequest
+from ory_hydra_client.models.o_auth2_redirect_to import OAuth2RedirectTo
+from ory_hydra_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+    device_challenge = 'device_challenge_example' # str | 
+    accept_device_user_code_request = ory_hydra_client.AcceptDeviceUserCodeRequest() # AcceptDeviceUserCodeRequest |  (optional)
+
+    try:
+        # Accepts a device grant user_code request
+        api_response = api_instance.accept_user_code_request(device_challenge, accept_device_user_code_request=accept_device_user_code_request)
+        print("The response of OAuth2Api->accept_user_code_request:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling OAuth2Api->accept_user_code_request: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_challenge** | **str**|  | 
+ **accept_device_user_code_request** | [**AcceptDeviceUserCodeRequest**](AcceptDeviceUserCodeRequest.md)|  | [optional] 
+
+### Return type
+
+[**OAuth2RedirectTo**](OAuth2RedirectTo.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | oAuth2RedirectTo |  -  |
+**0** | errorOAuth2 |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_o_auth2_client**
 > OAuth2Client create_o_auth2_client(o_auth2_client)
 
@@ -378,7 +453,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **0** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -444,7 +519,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **0** | errorOAuth2 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -510,7 +585,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **0** | genericError |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1162,7 +1237,7 @@ No authorization required
 
 OAuth 2.0 Authorize Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Example
 
@@ -1217,7 +1292,72 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
+**0** | errorOAuth2 |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **o_auth2_device_flow**
+> DeviceAuthorization o_auth2_device_flow()
+
+The OAuth 2.0 Device Authorize Endpoint
+
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+
+### Example
+
+
+```python
+import ory_hydra_client
+from ory_hydra_client.models.device_authorization import DeviceAuthorization
+from ory_hydra_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+
+    try:
+        # The OAuth 2.0 Device Authorize Endpoint
+        api_response = api_instance.o_auth2_device_flow()
+        print("The response of OAuth2Api->o_auth2_device_flow:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling OAuth2Api->o_auth2_device_flow: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DeviceAuthorization**](DeviceAuthorization.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | deviceAuthorization |  -  |
 **0** | errorOAuth2 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1227,7 +1367,7 @@ No authorization required
 
 The OAuth 2.0 Token Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Example
 
@@ -1383,6 +1523,71 @@ No authorization required
 **200** | oAuth2Client |  -  |
 **404** | Not Found Error Response |  -  |
 **0** | Default Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **perform_o_auth2_device_verification_flow**
+> ErrorOAuth2 perform_o_auth2_device_verification_flow()
+
+OAuth 2.0 Device Verification Endpoint
+
+This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+
+### Example
+
+
+```python
+import ory_hydra_client
+from ory_hydra_client.models.error_o_auth2 import ErrorOAuth2
+from ory_hydra_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_hydra_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_hydra_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_hydra_client.OAuth2Api(api_client)
+
+    try:
+        # OAuth 2.0 Device Verification Endpoint
+        api_response = api_instance.perform_o_auth2_device_verification_flow()
+        print("The response of OAuth2Api->perform_o_auth2_device_verification_flow:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling OAuth2Api->perform_o_auth2_device_verification_flow: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ErrorOAuth2**](ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
+**0** | errorOAuth2 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1591,7 +1796,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **0** | errorOAuth2 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1661,7 +1866,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **0** | errorOAuth2 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1671,7 +1876,7 @@ No authorization required
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
 ### Example
 
@@ -1693,7 +1898,7 @@ with ory_hydra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_hydra_client.OAuth2Api(api_client)
     subject = 'subject_example' # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
-    sid = 'sid_example' # str | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
+    sid = 'sid_example' # str | Login Session ID  The login session to revoke. (optional)
 
     try:
         # Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
@@ -1710,7 +1915,7 @@ with ory_hydra_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
- **sid** | **str**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
+ **sid** | **str**| Login Session ID  The login session to revoke. | [optional] 
 
 ### Return type
 
@@ -1729,7 +1934,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **0** | errorOAuth2 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1813,7 +2018,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **0** | errorOAuth2 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

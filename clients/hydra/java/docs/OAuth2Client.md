@@ -24,6 +24,9 @@ OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usuall
 |**clientUri** | **String** | OAuth 2.0 Client URI  ClientURI is a URL string of a web page providing information about the client. If present, the server SHOULD display this URL to the end-user in a clickable fashion. |  [optional] |
 |**contacts** | **List&lt;String&gt;** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** | OAuth 2.0 Client Creation Date  CreatedAt returns the timestamp of the client&#39;s creation. |  [optional] |
+|**deviceAuthorizationGrantAccessTokenLifespan** | **String** | Specify a time duration in milliseconds, seconds, minutes, hours. |  [optional] |
+|**deviceAuthorizationGrantIdTokenLifespan** | **String** | Specify a time duration in milliseconds, seconds, minutes, hours. |  [optional] |
+|**deviceAuthorizationGrantRefreshTokenLifespan** | **String** | Specify a time duration in milliseconds, seconds, minutes, hours. |  [optional] |
 |**frontchannelLogoutSessionRequired** | **Boolean** | OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the RP requires that iss (issuer) and sid (session ID) query parameters be included to identify the RP session with the OP when the frontchannel_logout_uri is used. If omitted, the default value is false. |  [optional] |
 |**frontchannelLogoutUri** | **String** | OpenID Connect Front-Channel Logout URI  RP URL that will cause the RP to log itself out when rendered in an iframe by the OP. An iss (issuer) query parameter and a sid (session ID) query parameter MAY be included by the OP to enable the RP to validate the request and to determine which of the potentially multiple sessions is to be logged out; if either is included, both MUST be. |  [optional] |
 |**grantTypes** | **List&lt;String&gt;** |  |  [optional] |

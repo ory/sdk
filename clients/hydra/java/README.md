@@ -1,8 +1,8 @@
 # hydra-client
 
 Ory Hydra API
-- API version: v2.2.1
-  - Build date: 2024-07-08T13:20:22.059623837Z[Etc/UTC]
+- API version: v2.4.0-alpha.1
+  - Build date: 2025-02-09T15:15:46.432729038Z[Etc/UTC]
   - Generator version: 7.7.0
 
 Documentation for all of Ory Hydra's APIs.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.hydra</groupId>
   <artifactId>hydra-client</artifactId>
-  <version>v2.2.1</version>
+  <version>v2.4.0-alpha.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.hydra:hydra-client:v2.2.1"
+     implementation "sh.ory.hydra:hydra-client:v2.4.0-alpha.1"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/hydra-client-v2.2.1.jar`
+* `target/hydra-client-v2.4.0-alpha.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -130,6 +130,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**acceptOAuth2ConsentRequest**](docs/OAuth2Api.md#acceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
 *OAuth2Api* | [**acceptOAuth2LoginRequest**](docs/OAuth2Api.md#acceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
 *OAuth2Api* | [**acceptOAuth2LogoutRequest**](docs/OAuth2Api.md#acceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
+*OAuth2Api* | [**acceptUserCodeRequest**](docs/OAuth2Api.md#acceptUserCodeRequest) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request
 *OAuth2Api* | [**createOAuth2Client**](docs/OAuth2Api.md#createOAuth2Client) | **POST** /admin/clients | Create OAuth 2.0 Client
 *OAuth2Api* | [**deleteOAuth2Client**](docs/OAuth2Api.md#deleteOAuth2Client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
 *OAuth2Api* | [**deleteOAuth2Token**](docs/OAuth2Api.md#deleteOAuth2Token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
@@ -144,8 +145,10 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**listOAuth2ConsentSessions**](docs/OAuth2Api.md#listOAuth2ConsentSessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
 *OAuth2Api* | [**listTrustedOAuth2JwtGrantIssuers**](docs/OAuth2Api.md#listTrustedOAuth2JwtGrantIssuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 *OAuth2Api* | [**oAuth2Authorize**](docs/OAuth2Api.md#oAuth2Authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint
+*OAuth2Api* | [**oAuth2DeviceFlow**](docs/OAuth2Api.md#oAuth2DeviceFlow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint
 *OAuth2Api* | [**oauth2TokenExchange**](docs/OAuth2Api.md#oauth2TokenExchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 *OAuth2Api* | [**patchOAuth2Client**](docs/OAuth2Api.md#patchOAuth2Client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client
+*OAuth2Api* | [**performOAuth2DeviceVerificationFlow**](docs/OAuth2Api.md#performOAuth2DeviceVerificationFlow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint
 *OAuth2Api* | [**rejectOAuth2ConsentRequest**](docs/OAuth2Api.md#rejectOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
 *OAuth2Api* | [**rejectOAuth2LoginRequest**](docs/OAuth2Api.md#rejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 *OAuth2Api* | [**rejectOAuth2LogoutRequest**](docs/OAuth2Api.md#rejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
@@ -168,12 +171,15 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AcceptDeviceUserCodeRequest](docs/AcceptDeviceUserCodeRequest.md)
  - [AcceptOAuth2ConsentRequest](docs/AcceptOAuth2ConsentRequest.md)
  - [AcceptOAuth2ConsentRequestSession](docs/AcceptOAuth2ConsentRequestSession.md)
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
  - [CreateJsonWebKeySet](docs/CreateJsonWebKeySet.md)
  - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
  - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
+ - [DeviceAuthorization](docs/DeviceAuthorization.md)
+ - [DeviceUserAuthRequest](docs/DeviceUserAuthRequest.md)
  - [ErrorOAuth2](docs/ErrorOAuth2.md)
  - [GenericError](docs/GenericError.md)
  - [GetVersion200Response](docs/GetVersion200Response.md)
@@ -211,6 +217,7 @@ Class | Method | HTTP request | Description
  - [VerifiableCredentialPrimingResponse](docs/VerifiableCredentialPrimingResponse.md)
  - [VerifiableCredentialProof](docs/VerifiableCredentialProof.md)
  - [VerifiableCredentialResponse](docs/VerifiableCredentialResponse.md)
+ - [VerifyUserCodeRequest](docs/VerifyUserCodeRequest.md)
  - [Version](docs/Version.md)
 
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ory_hydra_client"
-version = "v2.2.1"
+version = "v2.4.0-alpha.1"
 description = "Ory Hydra API"
 authors = ["OpenAPI Generator Community <hi@ory.sh>"]
 license = "Apache 2.0"

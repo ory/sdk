@@ -3,7 +3,7 @@ Ory Hydra API
 
 Documentation for all of Ory Hydra's APIs. 
 
-API version: v2.2.1
+API version: v2.4.0-alpha.1
 Contact: hi@ory.sh
 */
 

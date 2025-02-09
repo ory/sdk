@@ -18,6 +18,8 @@ class _$OAuth2ConsentRequest extends OAuth2ConsentRequest {
   @override
   final JsonObject? context;
   @override
+  final String? deviceChallengeId;
+  @override
   final String? loginChallenge;
   @override
   final String? loginSessionId;
@@ -44,6 +46,7 @@ class _$OAuth2ConsentRequest extends OAuth2ConsentRequest {
       required this.challenge,
       this.client,
       this.context,
+      this.deviceChallengeId,
       this.loginChallenge,
       this.loginSessionId,
       this.oidcContext,
@@ -75,6 +78,7 @@ class _$OAuth2ConsentRequest extends OAuth2ConsentRequest {
         challenge == other.challenge &&
         client == other.client &&
         context == other.context &&
+        deviceChallengeId == other.deviceChallengeId &&
         loginChallenge == other.loginChallenge &&
         loginSessionId == other.loginSessionId &&
         oidcContext == other.oidcContext &&
@@ -93,6 +97,7 @@ class _$OAuth2ConsentRequest extends OAuth2ConsentRequest {
     _$hash = $jc(_$hash, challenge.hashCode);
     _$hash = $jc(_$hash, client.hashCode);
     _$hash = $jc(_$hash, context.hashCode);
+    _$hash = $jc(_$hash, deviceChallengeId.hashCode);
     _$hash = $jc(_$hash, loginChallenge.hashCode);
     _$hash = $jc(_$hash, loginSessionId.hashCode);
     _$hash = $jc(_$hash, oidcContext.hashCode);
@@ -113,6 +118,7 @@ class _$OAuth2ConsentRequest extends OAuth2ConsentRequest {
           ..add('challenge', challenge)
           ..add('client', client)
           ..add('context', context)
+          ..add('deviceChallengeId', deviceChallengeId)
           ..add('loginChallenge', loginChallenge)
           ..add('loginSessionId', loginSessionId)
           ..add('oidcContext', oidcContext)
@@ -149,6 +155,11 @@ class OAuth2ConsentRequestBuilder
   JsonObject? _context;
   JsonObject? get context => _$this._context;
   set context(JsonObject? context) => _$this._context = context;
+
+  String? _deviceChallengeId;
+  String? get deviceChallengeId => _$this._deviceChallengeId;
+  set deviceChallengeId(String? deviceChallengeId) =>
+      _$this._deviceChallengeId = deviceChallengeId;
 
   String? _loginChallenge;
   String? get loginChallenge => _$this._loginChallenge;
@@ -205,6 +216,7 @@ class OAuth2ConsentRequestBuilder
       _challenge = $v.challenge;
       _client = $v.client?.toBuilder();
       _context = $v.context;
+      _deviceChallengeId = $v.deviceChallengeId;
       _loginChallenge = $v.loginChallenge;
       _loginSessionId = $v.loginSessionId;
       _oidcContext = $v.oidcContext?.toBuilder();
@@ -244,6 +256,7 @@ class OAuth2ConsentRequestBuilder
                   challenge, r'OAuth2ConsentRequest', 'challenge'),
               client: _client?.build(),
               context: context,
+              deviceChallengeId: deviceChallengeId,
               loginChallenge: loginChallenge,
               loginSessionId: loginSessionId,
               oidcContext: _oidcContext?.build(),

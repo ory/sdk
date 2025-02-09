@@ -10,12 +10,15 @@ src/apis/OidcApi.ts
 src/apis/WellknownApi.ts
 src/apis/index.ts
 src/index.ts
+src/models/AcceptDeviceUserCodeRequest.ts
 src/models/AcceptOAuth2ConsentRequest.ts
 src/models/AcceptOAuth2ConsentRequestSession.ts
 src/models/AcceptOAuth2LoginRequest.ts
 src/models/CreateJsonWebKeySet.ts
 src/models/CreateVerifiableCredentialRequestBody.ts
 src/models/CredentialSupportedDraft00.ts
+src/models/DeviceAuthorization.ts
+src/models/DeviceUserAuthRequest.ts
 src/models/ErrorOAuth2.ts
 src/models/GenericError.ts
 src/models/GetVersion200Response.ts
@@ -53,6 +56,7 @@ src/models/TrustedOAuth2JwtGrantJsonWebKey.ts
 src/models/VerifiableCredentialPrimingResponse.ts
 src/models/VerifiableCredentialProof.ts
 src/models/VerifiableCredentialResponse.ts
+src/models/VerifyUserCodeRequest.ts
 src/models/Version.ts
 src/models/index.ts
 src/runtime.ts

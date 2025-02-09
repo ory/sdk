@@ -20,6 +20,9 @@
 | **client_uri** | **String** | OAuth 2.0 Client URI  ClientURI is a URL string of a web page providing information about the client. If present, the server SHOULD display this URL to the end-user in a clickable fashion. | [optional] |
 | **contacts** | **Array&lt;String&gt;** |  | [optional] |
 | **created_at** | **Time** | OAuth 2.0 Client Creation Date  CreatedAt returns the timestamp of the client&#39;s creation. | [optional] |
+| **device_authorization_grant_access_token_lifespan** | **String** | Specify a time duration in milliseconds, seconds, minutes, hours. | [optional] |
+| **device_authorization_grant_id_token_lifespan** | **String** | Specify a time duration in milliseconds, seconds, minutes, hours. | [optional] |
+| **device_authorization_grant_refresh_token_lifespan** | **String** | Specify a time duration in milliseconds, seconds, minutes, hours. | [optional] |
 | **frontchannel_logout_session_required** | **Boolean** | OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the RP requires that iss (issuer) and sid (session ID) query parameters be included to identify the RP session with the OP when the frontchannel_logout_uri is used. If omitted, the default value is false. | [optional] |
 | **frontchannel_logout_uri** | **String** | OpenID Connect Front-Channel Logout URI  RP URL that will cause the RP to log itself out when rendered in an iframe by the OP. An iss (issuer) query parameter and a sid (session ID) query parameter MAY be included by the OP to enable the RP to validate the request and to determine which of the potentially multiple sessions is to be logged out; if either is included, both MUST be. | [optional] |
 | **grant_types** | **Array&lt;String&gt;** |  | [optional] |
@@ -75,6 +78,9 @@ instance = OryHydraClient::OAuth2Client.new(
   client_uri: null,
   contacts: null,
   created_at: null,
+  device_authorization_grant_access_token_lifespan: null,
+  device_authorization_grant_id_token_lifespan: null,
+  device_authorization_grant_refresh_token_lifespan: null,
   frontchannel_logout_session_required: null,
   frontchannel_logout_uri: null,
   grant_types: null,

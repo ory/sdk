@@ -15,6 +15,9 @@ part 'o_auth2_client_token_lifespans.g.dart';
 /// * [authorizationCodeGrantIdTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
 /// * [authorizationCodeGrantRefreshTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
 /// * [clientCredentialsGrantAccessTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
+/// * [deviceAuthorizationGrantAccessTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
+/// * [deviceAuthorizationGrantIdTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
+/// * [deviceAuthorizationGrantRefreshTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
 /// * [implicitGrantAccessTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
 /// * [implicitGrantIdTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
 /// * [jwtBearerGrantAccessTokenLifespan] - Specify a time duration in milliseconds, seconds, minutes, hours.
@@ -38,6 +41,18 @@ abstract class OAuth2ClientTokenLifespans implements Built<OAuth2ClientTokenLife
   /// Specify a time duration in milliseconds, seconds, minutes, hours.
   @BuiltValueField(wireName: r'client_credentials_grant_access_token_lifespan')
   String? get clientCredentialsGrantAccessTokenLifespan;
+
+  /// Specify a time duration in milliseconds, seconds, minutes, hours.
+  @BuiltValueField(wireName: r'device_authorization_grant_access_token_lifespan')
+  String? get deviceAuthorizationGrantAccessTokenLifespan;
+
+  /// Specify a time duration in milliseconds, seconds, minutes, hours.
+  @BuiltValueField(wireName: r'device_authorization_grant_id_token_lifespan')
+  String? get deviceAuthorizationGrantIdTokenLifespan;
+
+  /// Specify a time duration in milliseconds, seconds, minutes, hours.
+  @BuiltValueField(wireName: r'device_authorization_grant_refresh_token_lifespan')
+  String? get deviceAuthorizationGrantRefreshTokenLifespan;
 
   /// Specify a time duration in milliseconds, seconds, minutes, hours.
   @BuiltValueField(wireName: r'implicit_grant_access_token_lifespan')
@@ -111,6 +126,27 @@ class _$OAuth2ClientTokenLifespansSerializer implements PrimitiveSerializer<OAut
       yield r'client_credentials_grant_access_token_lifespan';
       yield serializers.serialize(
         object.clientCredentialsGrantAccessTokenLifespan,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.deviceAuthorizationGrantAccessTokenLifespan != null) {
+      yield r'device_authorization_grant_access_token_lifespan';
+      yield serializers.serialize(
+        object.deviceAuthorizationGrantAccessTokenLifespan,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.deviceAuthorizationGrantIdTokenLifespan != null) {
+      yield r'device_authorization_grant_id_token_lifespan';
+      yield serializers.serialize(
+        object.deviceAuthorizationGrantIdTokenLifespan,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.deviceAuthorizationGrantRefreshTokenLifespan != null) {
+      yield r'device_authorization_grant_refresh_token_lifespan';
+      yield serializers.serialize(
+        object.deviceAuthorizationGrantRefreshTokenLifespan,
         specifiedType: const FullType(String),
       );
     }
@@ -206,6 +242,27 @@ class _$OAuth2ClientTokenLifespansSerializer implements PrimitiveSerializer<OAut
             specifiedType: const FullType(String),
           ) as String;
           result.clientCredentialsGrantAccessTokenLifespan = valueDes;
+          break;
+        case r'device_authorization_grant_access_token_lifespan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.deviceAuthorizationGrantAccessTokenLifespan = valueDes;
+          break;
+        case r'device_authorization_grant_id_token_lifespan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.deviceAuthorizationGrantIdTokenLifespan = valueDes;
+          break;
+        case r'device_authorization_grant_refresh_token_lifespan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.deviceAuthorizationGrantRefreshTokenLifespan = valueDes;
           break;
         case r'implicit_grant_access_token_lifespan':
           final valueDes = serializers.deserialize(

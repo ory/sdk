@@ -34,6 +34,12 @@ void main() {
       // TODO
     });
 
+    // DeviceChallenge is the device challenge this consent challenge belongs to, if this flow was initiated by a device.
+    // String deviceChallengeId
+    test('to test the property `deviceChallengeId`', () async {
+      // TODO
+    });
+
     // LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate a login and consent request in the login & consent app.
     // String loginChallenge
     test('to test the property `loginChallenge`', () async {

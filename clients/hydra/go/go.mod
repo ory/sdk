@@ -4,8 +4,8 @@ go 1.17
 
 require (
 	github.com/ory/hydra-client-go v1.11.8
-	github.com/stretchr/testify v1.9.0
-	golang.org/x/oauth2 v0.21.0
+	github.com/stretchr/testify v1.10.0
+	golang.org/x/oauth2 v0.26.0
 )
 
 require (

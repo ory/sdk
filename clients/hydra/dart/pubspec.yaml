@@ -1,5 +1,5 @@
 name: ory_hydra_client
-version: 2.2.1
+version: 2.4.0-alpha.1
 description: OpenAPI API client for Ory Hydra, Ory&#39;s open source OpenID Connect and OAuth provider.
 homepage: https://www.ory.sh
 repository: https://github.com/ory/sdk/tree/master/clients/hydra/dart

@@ -121,6 +121,45 @@ defmodule Ory.Api.OAuth2 do
   end
 
   @doc """
+  Accepts a device grant user_code request
+  Accepts a device grant user_code request
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `device_challenge` (String.t): 
+  - `opts` (keyword): Optional parameters
+    - `:body` (AcceptDeviceUserCodeRequest): 
+
+  ### Returns
+
+  - `{:ok, Ory.Model.OAuth2RedirectTo.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec accept_user_code_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2RedirectTo.t} | {:error, Tesla.Env.t}
+  def accept_user_code_request(connection, device_challenge, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:put)
+      |> url("/admin/oauth2/auth/requests/device/accept")
+      |> add_param(:query, :device_challenge, device_challenge)
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.OAuth2RedirectTo},
+      {:default, Ory.Model.ErrorOAuth2}
+    ])
+  end
+
+  @doc """
   Create OAuth 2.0 Client
   Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
 
@@ -572,7 +611,7 @@ defmodule Ory.Api.OAuth2 do
 
   @doc """
   OAuth 2.0 Authorize Endpoint
-  Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+  Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
   ### Parameters
 
@@ -601,8 +640,39 @@ defmodule Ory.Api.OAuth2 do
   end
 
   @doc """
+  The OAuth 2.0 Device Authorize Endpoint
+  This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.DeviceAuthorization.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec o_auth2_device_flow(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.DeviceAuthorization.t} | {:error, Tesla.Env.t}
+  def o_auth2_device_flow(connection, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/oauth2/device/auth")
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.DeviceAuthorization},
+      {:default, Ory.Model.ErrorOAuth2}
+    ])
+  end
+
+  @doc """
   The OAuth 2.0 Token Endpoint
-  Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+  Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
   ### Parameters
 
@@ -674,6 +744,36 @@ defmodule Ory.Api.OAuth2 do
     |> evaluate_response([
       {200, Ory.Model.OAuth2Client},
       {404, Ory.Model.ErrorOAuth2},
+      {:default, Ory.Model.ErrorOAuth2}
+    ])
+  end
+
+  @doc """
+  OAuth 2.0 Device Verification Endpoint
+  This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.ErrorOAuth2.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec perform_o_auth2_device_verification_flow(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorOAuth2.t} | {:error, Tesla.Env.t}
+  def perform_o_auth2_device_verification_flow(connection, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/oauth2/device/verify")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {302, false},
       {:default, Ory.Model.ErrorOAuth2}
     ])
   end
@@ -831,14 +931,14 @@ defmodule Ory.Api.OAuth2 do
 
   @doc """
   Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
-  This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+  This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
   ### Parameters
 
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
     - `:subject` (String.t): OAuth 2.0 Subject  The subject to revoke authentication sessions for.
-    - `:sid` (String.t): OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+    - `:sid` (String.t): Login Session ID  The login session to revoke.
 
   ### Returns
 

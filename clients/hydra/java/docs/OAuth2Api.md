@@ -7,6 +7,7 @@ All URIs are relative to *http://localhost*
 | [**acceptOAuth2ConsentRequest**](OAuth2Api.md#acceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request |
 | [**acceptOAuth2LoginRequest**](OAuth2Api.md#acceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request |
 | [**acceptOAuth2LogoutRequest**](OAuth2Api.md#acceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request |
+| [**acceptUserCodeRequest**](OAuth2Api.md#acceptUserCodeRequest) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request |
 | [**createOAuth2Client**](OAuth2Api.md#createOAuth2Client) | **POST** /admin/clients | Create OAuth 2.0 Client |
 | [**deleteOAuth2Client**](OAuth2Api.md#deleteOAuth2Client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client |
 | [**deleteOAuth2Token**](OAuth2Api.md#deleteOAuth2Token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client |
@@ -21,8 +22,10 @@ All URIs are relative to *http://localhost*
 | [**listOAuth2ConsentSessions**](OAuth2Api.md#listOAuth2ConsentSessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject |
 | [**listTrustedOAuth2JwtGrantIssuers**](OAuth2Api.md#listTrustedOAuth2JwtGrantIssuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers |
 | [**oAuth2Authorize**](OAuth2Api.md#oAuth2Authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint |
+| [**oAuth2DeviceFlow**](OAuth2Api.md#oAuth2DeviceFlow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint |
 | [**oauth2TokenExchange**](OAuth2Api.md#oauth2TokenExchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint |
 | [**patchOAuth2Client**](OAuth2Api.md#patchOAuth2Client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client |
+| [**performOAuth2DeviceVerificationFlow**](OAuth2Api.md#performOAuth2DeviceVerificationFlow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint |
 | [**rejectOAuth2ConsentRequest**](OAuth2Api.md#rejectOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request |
 | [**rejectOAuth2LoginRequest**](OAuth2Api.md#rejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request |
 | [**rejectOAuth2LogoutRequest**](OAuth2Api.md#rejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request |
@@ -227,6 +230,71 @@ No authorization required
 | **200** | oAuth2RedirectTo |  -  |
 | **0** | errorOAuth2 |  -  |
 
+<a id="acceptUserCodeRequest"></a>
+# **acceptUserCodeRequest**
+> OAuth2RedirectTo acceptUserCodeRequest(deviceChallenge, acceptDeviceUserCodeRequest)
+
+Accepts a device grant user_code request
+
+Accepts a device grant user_code request
+
+### Example
+```java
+// Import classes:
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.OAuth2Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    OAuth2Api apiInstance = new OAuth2Api(defaultClient);
+    String deviceChallenge = "deviceChallenge_example"; // String | 
+    AcceptDeviceUserCodeRequest acceptDeviceUserCodeRequest = new AcceptDeviceUserCodeRequest(); // AcceptDeviceUserCodeRequest | 
+    try {
+      OAuth2RedirectTo result = apiInstance.acceptUserCodeRequest(deviceChallenge, acceptDeviceUserCodeRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OAuth2Api#acceptUserCodeRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **deviceChallenge** | **String**|  | |
+| **acceptDeviceUserCodeRequest** | [**AcceptDeviceUserCodeRequest**](AcceptDeviceUserCodeRequest.md)|  | [optional] |
+
+### Return type
+
+[**OAuth2RedirectTo**](OAuth2RedirectTo.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | oAuth2RedirectTo |  -  |
+| **0** | errorOAuth2 |  -  |
+
 <a id="createOAuth2Client"></a>
 # **createOAuth2Client**
 > OAuth2Client createOAuth2Client(oauth2Client)
@@ -350,7 +418,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **0** | genericError |  -  |
 
 <a id="deleteOAuth2Token"></a>
@@ -412,7 +480,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **0** | errorOAuth2 |  -  |
 
 <a id="deleteTrustedOAuth2JwtGrantIssuer"></a>
@@ -474,7 +542,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **0** | genericError |  -  |
 
 <a id="getOAuth2Client"></a>
@@ -1071,7 +1139,7 @@ No authorization required
 
 OAuth 2.0 Authorize Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Example
 ```java
@@ -1121,7 +1189,66 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
+| **0** | errorOAuth2 |  -  |
+
+<a id="oAuth2DeviceFlow"></a>
+# **oAuth2DeviceFlow**
+> DeviceAuthorization oAuth2DeviceFlow()
+
+The OAuth 2.0 Device Authorize Endpoint
+
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+
+### Example
+```java
+// Import classes:
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.OAuth2Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    OAuth2Api apiInstance = new OAuth2Api(defaultClient);
+    try {
+      DeviceAuthorization result = apiInstance.oAuth2DeviceFlow();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OAuth2Api#oAuth2DeviceFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DeviceAuthorization**](DeviceAuthorization.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | deviceAuthorization |  -  |
 | **0** | errorOAuth2 |  -  |
 
 <a id="oauth2TokenExchange"></a>
@@ -1130,7 +1257,7 @@ No authorization required
 
 The OAuth 2.0 Token Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Example
 ```java
@@ -1270,6 +1397,65 @@ No authorization required
 | **200** | oAuth2Client |  -  |
 | **404** | Not Found Error Response |  -  |
 | **0** | Default Error Response |  -  |
+
+<a id="performOAuth2DeviceVerificationFlow"></a>
+# **performOAuth2DeviceVerificationFlow**
+> ErrorOAuth2 performOAuth2DeviceVerificationFlow()
+
+OAuth 2.0 Device Verification Endpoint
+
+This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+
+### Example
+```java
+// Import classes:
+import sh.ory.hydra.ApiClient;
+import sh.ory.hydra.ApiException;
+import sh.ory.hydra.Configuration;
+import sh.ory.hydra.models.*;
+import sh.ory.hydra.api.OAuth2Api;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    OAuth2Api apiInstance = new OAuth2Api(defaultClient);
+    try {
+      ErrorOAuth2 result = apiInstance.performOAuth2DeviceVerificationFlow();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OAuth2Api#performOAuth2DeviceVerificationFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ErrorOAuth2**](ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
+| **0** | errorOAuth2 |  -  |
 
 <a id="rejectOAuth2ConsentRequest"></a>
 # **rejectOAuth2ConsentRequest**
@@ -1460,7 +1646,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **0** | errorOAuth2 |  -  |
 
 <a id="revokeOAuth2ConsentSessions"></a>
@@ -1526,7 +1712,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **0** | errorOAuth2 |  -  |
 
 <a id="revokeOAuth2LoginSessions"></a>
@@ -1535,7 +1721,7 @@ No authorization required
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via &#x60;sid&#x60; query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via &#x60;sid&#x60; query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
 ### Example
 ```java
@@ -1553,7 +1739,7 @@ public class Example {
 
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String subject = "subject_example"; // String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
-    String sid = "sid_example"; // String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+    String sid = "sid_example"; // String | Login Session ID  The login session to revoke.
     try {
       apiInstance.revokeOAuth2LoginSessions(subject, sid);
     } catch (ApiException e) {
@@ -1572,7 +1758,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **subject** | **String**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
-| **sid** | **String**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] |
+| **sid** | **String**| Login Session ID  The login session to revoke. | [optional] |
 
 ### Return type
 
@@ -1590,7 +1776,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **0** | errorOAuth2 |  -  |
 
 <a id="revokeOAuth2Token"></a>
@@ -1666,7 +1852,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **0** | errorOAuth2 |  -  |
 
 <a id="setOAuth2Client"></a>

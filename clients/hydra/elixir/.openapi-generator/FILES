@@ -11,12 +11,15 @@ lib/ory/api/oidc.ex
 lib/ory/api/wellknown.ex
 lib/ory/connection.ex
 lib/ory/deserializer.ex
+lib/ory/model/accept_device_user_code_request.ex
 lib/ory/model/accept_o_auth2_consent_request.ex
 lib/ory/model/accept_o_auth2_consent_request_session.ex
 lib/ory/model/accept_o_auth2_login_request.ex
 lib/ory/model/create_json_web_key_set.ex
 lib/ory/model/create_verifiable_credential_request_body.ex
 lib/ory/model/credential_supported_draft00.ex
+lib/ory/model/device_authorization.ex
+lib/ory/model/device_user_auth_request.ex
 lib/ory/model/error_o_auth2.ex
 lib/ory/model/generic_error.ex
 lib/ory/model/get_version_200_response.ex
@@ -54,6 +57,7 @@ lib/ory/model/trusted_o_auth2_jwt_grant_json_web_key.ex
 lib/ory/model/verifiable_credential_priming_response.ex
 lib/ory/model/verifiable_credential_proof.ex
 lib/ory/model/verifiable_credential_response.ex
+lib/ory/model/verify_user_code_request.ex
 lib/ory/model/version.ex
 lib/ory/request_builder.ex
 mix.exs

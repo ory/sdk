@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**acceptOAuth2ConsentRequest**](OAuth2Api.md#acceptoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
 [**acceptOAuth2LoginRequest**](OAuth2Api.md#acceptoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
 [**acceptOAuth2LogoutRequest**](OAuth2Api.md#acceptoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
+[**acceptUserCodeRequest**](OAuth2Api.md#acceptusercoderequest) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request
 [**createOAuth2Client**](OAuth2Api.md#createoauth2client) | **POST** /admin/clients | Create OAuth 2.0 Client
 [**deleteOAuth2Client**](OAuth2Api.md#deleteoauth2client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
 [**deleteOAuth2Token**](OAuth2Api.md#deleteoauth2token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
@@ -26,8 +27,10 @@ Method | HTTP request | Description
 [**listOAuth2ConsentSessions**](OAuth2Api.md#listoauth2consentsessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
 [**listTrustedOAuth2JwtGrantIssuers**](OAuth2Api.md#listtrustedoauth2jwtgrantissuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 [**oAuth2Authorize**](OAuth2Api.md#oauth2authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint
+[**oAuth2DeviceFlow**](OAuth2Api.md#oauth2deviceflow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint
 [**oauth2TokenExchange**](OAuth2Api.md#oauth2tokenexchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**patchOAuth2Client**](OAuth2Api.md#patchoauth2client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client
+[**performOAuth2DeviceVerificationFlow**](OAuth2Api.md#performoauth2deviceverificationflow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint
 [**rejectOAuth2ConsentRequest**](OAuth2Api.md#rejectoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
 [**rejectOAuth2LoginRequest**](OAuth2Api.md#rejectoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 [**rejectOAuth2LogoutRequest**](OAuth2Api.md#rejectoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
@@ -168,6 +171,51 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **acceptUserCodeRequest**
+> OAuth2RedirectTo acceptUserCodeRequest(deviceChallenge, acceptDeviceUserCodeRequest)
+
+Accepts a device grant user_code request
+
+Accepts a device grant user_code request
+
+### Example
+```dart
+import 'package:ory_hydra_client/api.dart';
+
+final api = OryHydraClient().getOAuth2Api();
+final String deviceChallenge = deviceChallenge_example; // String | 
+final AcceptDeviceUserCodeRequest acceptDeviceUserCodeRequest = ; // AcceptDeviceUserCodeRequest | 
+
+try {
+    final response = api.acceptUserCodeRequest(deviceChallenge, acceptDeviceUserCodeRequest);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling OAuth2Api->acceptUserCodeRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceChallenge** | **String**|  | 
+ **acceptDeviceUserCodeRequest** | [**AcceptDeviceUserCodeRequest**](AcceptDeviceUserCodeRequest.md)|  | [optional] 
+
+### Return type
+
+[**OAuth2RedirectTo**](OAuth2RedirectTo.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -751,7 +799,7 @@ No authorization required
 
 OAuth 2.0 Authorize Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Example
 ```dart
@@ -785,12 +833,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **oAuth2DeviceFlow**
+> DeviceAuthorization oAuth2DeviceFlow()
+
+The OAuth 2.0 Device Authorize Endpoint
+
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+
+### Example
+```dart
+import 'package:ory_hydra_client/api.dart';
+
+final api = OryHydraClient().getOAuth2Api();
+
+try {
+    final response = api.oAuth2DeviceFlow();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling OAuth2Api->oAuth2DeviceFlow: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DeviceAuthorization**](DeviceAuthorization.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **oauth2TokenExchange**
 > OAuth2TokenExchange oauth2TokenExchange(grantType, clientId, code, redirectUri, refreshToken)
 
 The OAuth 2.0 Token Endpoint
 
-Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  The Ory SDK is not yet able to this endpoint properly.
+Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
 ### Example
 ```dart
@@ -882,6 +969,45 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **performOAuth2DeviceVerificationFlow**
+> ErrorOAuth2 performOAuth2DeviceVerificationFlow()
+
+OAuth 2.0 Device Verification Endpoint
+
+This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+
+### Example
+```dart
+import 'package:ory_hydra_client/api.dart';
+
+final api = OryHydraClient().getOAuth2Api();
+
+try {
+    final response = api.performOAuth2DeviceVerificationFlow();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling OAuth2Api->performOAuth2DeviceVerificationFlow: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ErrorOAuth2**](ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1069,7 +1195,7 @@ No authorization required
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
 ### Example
 ```dart
@@ -1077,7 +1203,7 @@ import 'package:ory_hydra_client/api.dart';
 
 final api = OryHydraClient().getOAuth2Api();
 final String subject = subject_example; // String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
-final String sid = sid_example; // String | OAuth 2.0 Subject  The subject to revoke authentication sessions for.
+final String sid = sid_example; // String | Login Session ID  The login session to revoke.
 
 try {
     api.revokeOAuth2LoginSessions(subject, sid);
@@ -1091,7 +1217,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
- **sid** | **String**| OAuth 2.0 Subject  The subject to revoke authentication sessions for. | [optional] 
+ **sid** | **String**| Login Session ID  The login session to revoke. | [optional] 
 
 ### Return type
 

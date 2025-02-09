@@ -4,7 +4,7 @@ defmodule Ory.Mixfile do
   def project do
     [
       app: :ory_hydra,
-      version: "2.2.1",
+      version: "2.4.0-alpha.1",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
