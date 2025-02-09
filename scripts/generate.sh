@@ -78,7 +78,7 @@ typescript_fetch () {
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
-    -c ./config/client/typescript-client-fetch.yml.proc.yml
+    -c $config_file
 
   if [ $project == "client" ]; then
     echo "Adding contrib files"
