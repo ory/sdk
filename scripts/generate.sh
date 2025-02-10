@@ -257,6 +257,8 @@ dart () {
 
   # Generate the `*.g.dart` files
   (cd $dir; command dart run build_runner build)
+
+  cp -r contrib/dart/. ${dir}/
 }
 
 rust () {
@@ -314,17 +316,17 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
-elixir
-typescript
-typescript_fetch
-rust
-golang
-java
-php
-python
+# elixir
+# typescript
+# typescript_fetch
+# rust
+# golang
+# java
+# php
+# python
 
-ruby
-dotnet
+# ruby
+# dotnet
 dart
 
 cleanup
