@@ -316,17 +316,17 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
-# elixir
-# typescript
-# typescript_fetch
-# rust
-# golang
-# java
-# php
-# python
+elixir
+typescript
+typescript_fetch
+rust
+golang
+java
+php
+python
 
-# ruby
-# dotnet
+ruby
+dotnet
 dart
 
 cleanup
