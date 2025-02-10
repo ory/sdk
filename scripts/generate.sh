@@ -257,6 +257,8 @@ dart () {
 
   # Generate the `*.g.dart` files
   (cd $dir; command dart run build_runner build)
+
+  cp -r contrib/dart/. ${dir}/
 }
 
 rust () {
