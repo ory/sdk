@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.16.6
+  version: v1.16.7
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -11025,28 +11025,50 @@ components:
       type: object
     accountExperienceConfiguration:
       properties:
-        account_experience_theme_stylesheet:
+        default_redirect_url:
           type: string
-        favicon_type:
+        error_ui_url:
           type: string
-        favicon_url:
+        favicon_dark_url:
           type: string
-        kratos_selfservice_default_browser_return_url:
+        favicon_light_url:
           type: string
-        kratos_selfservice_flows_recovery_enabled:
-          type: boolean
-        kratos_selfservice_flows_registration_enabled:
-          type: boolean
-        kratos_selfservice_flows_verification_enabled:
-          type: boolean
-        logo_url:
+        login_ui_url:
+          type: string
+        logo_dark_url:
+          type: string
+        logo_light_url:
           type: string
         name:
           type: string
-        organization_map:
-          additionalProperties:
-            type: string
-          type: object
+        recovery_enabled:
+          type: boolean
+        recovery_ui_url:
+          type: string
+        registration_enabled:
+          type: boolean
+        registration_ui_url:
+          type: string
+        settings_ui_url:
+          type: string
+        stylesheet:
+          type: string
+        verification_enabled:
+          type: boolean
+        verification_ui_url:
+          type: string
+      required:
+      - default_redirect_url
+      - error_ui_url
+      - login_ui_url
+      - name
+      - recovery_enabled
+      - recovery_ui_url
+      - registration_enabled
+      - registration_ui_url
+      - settings_ui_url
+      - verification_enabled
+      - verification_ui_url
       type: object
     accountExperienceThemeVariables:
       properties:
@@ -11723,6 +11745,10 @@ components:
           description: |-
             Store metadata about the identity which the identity itself can see when calling for example the
             session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
+        organization_id:
+          format: uuid4
+          nullable: true
+          type: string
         recovery_addresses:
           description: |-
             RecoveryAddresses contains all the addresses that can be used to recover an identity.
@@ -16088,6 +16114,9 @@ components:
           format: date-time
           readOnly: true
           type: string
+        fedcm_config_url:
+          nullable: true
+          type: string
         id:
           format: uuid
           type: string
@@ -16105,6 +16134,9 @@ components:
           description: |-
             Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google
             profile information) to hydrate the identity's data.
+          type: string
+        net_id_token_origin_header:
+          nullable: true
           type: string
         organization_id:
           format: uuid4

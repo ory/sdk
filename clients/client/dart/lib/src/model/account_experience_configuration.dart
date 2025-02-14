@@ -3,7 +3,6 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,47 +11,71 @@ part 'account_experience_configuration.g.dart';
 /// AccountExperienceConfiguration
 ///
 /// Properties:
-/// * [accountExperienceThemeStylesheet] 
-/// * [faviconType] 
-/// * [faviconUrl] 
-/// * [kratosSelfserviceDefaultBrowserReturnUrl] 
-/// * [kratosSelfserviceFlowsRecoveryEnabled] 
-/// * [kratosSelfserviceFlowsRegistrationEnabled] 
-/// * [kratosSelfserviceFlowsVerificationEnabled] 
-/// * [logoUrl] 
+/// * [defaultRedirectUrl] 
+/// * [errorUiUrl] 
+/// * [faviconDarkUrl] 
+/// * [faviconLightUrl] 
+/// * [loginUiUrl] 
+/// * [logoDarkUrl] 
+/// * [logoLightUrl] 
 /// * [name] 
-/// * [organizationMap] 
+/// * [recoveryEnabled] 
+/// * [recoveryUiUrl] 
+/// * [registrationEnabled] 
+/// * [registrationUiUrl] 
+/// * [settingsUiUrl] 
+/// * [stylesheet] 
+/// * [verificationEnabled] 
+/// * [verificationUiUrl] 
 @BuiltValue()
 abstract class AccountExperienceConfiguration implements Built<AccountExperienceConfiguration, AccountExperienceConfigurationBuilder> {
-  @BuiltValueField(wireName: r'account_experience_theme_stylesheet')
-  String? get accountExperienceThemeStylesheet;
+  @BuiltValueField(wireName: r'default_redirect_url')
+  String get defaultRedirectUrl;
 
-  @BuiltValueField(wireName: r'favicon_type')
-  String? get faviconType;
+  @BuiltValueField(wireName: r'error_ui_url')
+  String get errorUiUrl;
 
-  @BuiltValueField(wireName: r'favicon_url')
-  String? get faviconUrl;
+  @BuiltValueField(wireName: r'favicon_dark_url')
+  String? get faviconDarkUrl;
 
-  @BuiltValueField(wireName: r'kratos_selfservice_default_browser_return_url')
-  String? get kratosSelfserviceDefaultBrowserReturnUrl;
+  @BuiltValueField(wireName: r'favicon_light_url')
+  String? get faviconLightUrl;
 
-  @BuiltValueField(wireName: r'kratos_selfservice_flows_recovery_enabled')
-  bool? get kratosSelfserviceFlowsRecoveryEnabled;
+  @BuiltValueField(wireName: r'login_ui_url')
+  String get loginUiUrl;
 
-  @BuiltValueField(wireName: r'kratos_selfservice_flows_registration_enabled')
-  bool? get kratosSelfserviceFlowsRegistrationEnabled;
+  @BuiltValueField(wireName: r'logo_dark_url')
+  String? get logoDarkUrl;
 
-  @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_enabled')
-  bool? get kratosSelfserviceFlowsVerificationEnabled;
-
-  @BuiltValueField(wireName: r'logo_url')
-  String? get logoUrl;
+  @BuiltValueField(wireName: r'logo_light_url')
+  String? get logoLightUrl;
 
   @BuiltValueField(wireName: r'name')
-  String? get name;
+  String get name;
 
-  @BuiltValueField(wireName: r'organization_map')
-  BuiltMap<String, String>? get organizationMap;
+  @BuiltValueField(wireName: r'recovery_enabled')
+  bool get recoveryEnabled;
+
+  @BuiltValueField(wireName: r'recovery_ui_url')
+  String get recoveryUiUrl;
+
+  @BuiltValueField(wireName: r'registration_enabled')
+  bool get registrationEnabled;
+
+  @BuiltValueField(wireName: r'registration_ui_url')
+  String get registrationUiUrl;
+
+  @BuiltValueField(wireName: r'settings_ui_url')
+  String get settingsUiUrl;
+
+  @BuiltValueField(wireName: r'stylesheet')
+  String? get stylesheet;
+
+  @BuiltValueField(wireName: r'verification_enabled')
+  bool get verificationEnabled;
+
+  @BuiltValueField(wireName: r'verification_ui_url')
+  String get verificationUiUrl;
 
   AccountExperienceConfiguration._();
 
@@ -77,76 +100,96 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
     AccountExperienceConfiguration object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.accountExperienceThemeStylesheet != null) {
-      yield r'account_experience_theme_stylesheet';
+    yield r'default_redirect_url';
+    yield serializers.serialize(
+      object.defaultRedirectUrl,
+      specifiedType: const FullType(String),
+    );
+    yield r'error_ui_url';
+    yield serializers.serialize(
+      object.errorUiUrl,
+      specifiedType: const FullType(String),
+    );
+    if (object.faviconDarkUrl != null) {
+      yield r'favicon_dark_url';
       yield serializers.serialize(
-        object.accountExperienceThemeStylesheet,
+        object.faviconDarkUrl,
         specifiedType: const FullType(String),
       );
     }
-    if (object.faviconType != null) {
-      yield r'favicon_type';
+    if (object.faviconLightUrl != null) {
+      yield r'favicon_light_url';
       yield serializers.serialize(
-        object.faviconType,
+        object.faviconLightUrl,
         specifiedType: const FullType(String),
       );
     }
-    if (object.faviconUrl != null) {
-      yield r'favicon_url';
+    yield r'login_ui_url';
+    yield serializers.serialize(
+      object.loginUiUrl,
+      specifiedType: const FullType(String),
+    );
+    if (object.logoDarkUrl != null) {
+      yield r'logo_dark_url';
       yield serializers.serialize(
-        object.faviconUrl,
+        object.logoDarkUrl,
         specifiedType: const FullType(String),
       );
     }
-    if (object.kratosSelfserviceDefaultBrowserReturnUrl != null) {
-      yield r'kratos_selfservice_default_browser_return_url';
+    if (object.logoLightUrl != null) {
+      yield r'logo_light_url';
       yield serializers.serialize(
-        object.kratosSelfserviceDefaultBrowserReturnUrl,
+        object.logoLightUrl,
         specifiedType: const FullType(String),
       );
     }
-    if (object.kratosSelfserviceFlowsRecoveryEnabled != null) {
-      yield r'kratos_selfservice_flows_recovery_enabled';
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
+    yield r'recovery_enabled';
+    yield serializers.serialize(
+      object.recoveryEnabled,
+      specifiedType: const FullType(bool),
+    );
+    yield r'recovery_ui_url';
+    yield serializers.serialize(
+      object.recoveryUiUrl,
+      specifiedType: const FullType(String),
+    );
+    yield r'registration_enabled';
+    yield serializers.serialize(
+      object.registrationEnabled,
+      specifiedType: const FullType(bool),
+    );
+    yield r'registration_ui_url';
+    yield serializers.serialize(
+      object.registrationUiUrl,
+      specifiedType: const FullType(String),
+    );
+    yield r'settings_ui_url';
+    yield serializers.serialize(
+      object.settingsUiUrl,
+      specifiedType: const FullType(String),
+    );
+    if (object.stylesheet != null) {
+      yield r'stylesheet';
       yield serializers.serialize(
-        object.kratosSelfserviceFlowsRecoveryEnabled,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.kratosSelfserviceFlowsRegistrationEnabled != null) {
-      yield r'kratos_selfservice_flows_registration_enabled';
-      yield serializers.serialize(
-        object.kratosSelfserviceFlowsRegistrationEnabled,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.kratosSelfserviceFlowsVerificationEnabled != null) {
-      yield r'kratos_selfservice_flows_verification_enabled';
-      yield serializers.serialize(
-        object.kratosSelfserviceFlowsVerificationEnabled,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.logoUrl != null) {
-      yield r'logo_url';
-      yield serializers.serialize(
-        object.logoUrl,
+        object.stylesheet,
         specifiedType: const FullType(String),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.organizationMap != null) {
-      yield r'organization_map';
-      yield serializers.serialize(
-        object.organizationMap,
-        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(String)]),
-      );
-    }
+    yield r'verification_enabled';
+    yield serializers.serialize(
+      object.verificationEnabled,
+      specifiedType: const FullType(bool),
+    );
+    yield r'verification_ui_url';
+    yield serializers.serialize(
+      object.verificationUiUrl,
+      specifiedType: const FullType(String),
+    );
   }
 
   @override
@@ -170,61 +213,54 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'account_experience_theme_stylesheet':
+        case r'default_redirect_url':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.accountExperienceThemeStylesheet = valueDes;
+          result.defaultRedirectUrl = valueDes;
           break;
-        case r'favicon_type':
+        case r'error_ui_url':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.faviconType = valueDes;
+          result.errorUiUrl = valueDes;
           break;
-        case r'favicon_url':
+        case r'favicon_dark_url':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.faviconUrl = valueDes;
+          result.faviconDarkUrl = valueDes;
           break;
-        case r'kratos_selfservice_default_browser_return_url':
+        case r'favicon_light_url':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.kratosSelfserviceDefaultBrowserReturnUrl = valueDes;
+          result.faviconLightUrl = valueDes;
           break;
-        case r'kratos_selfservice_flows_recovery_enabled':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.kratosSelfserviceFlowsRecoveryEnabled = valueDes;
-          break;
-        case r'kratos_selfservice_flows_registration_enabled':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.kratosSelfserviceFlowsRegistrationEnabled = valueDes;
-          break;
-        case r'kratos_selfservice_flows_verification_enabled':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.kratosSelfserviceFlowsVerificationEnabled = valueDes;
-          break;
-        case r'logo_url':
+        case r'login_ui_url':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.logoUrl = valueDes;
+          result.loginUiUrl = valueDes;
+          break;
+        case r'logo_dark_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.logoDarkUrl = valueDes;
+          break;
+        case r'logo_light_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.logoLightUrl = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
@@ -233,12 +269,61 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
           ) as String;
           result.name = valueDes;
           break;
-        case r'organization_map':
+        case r'recovery_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(String)]),
-          ) as BuiltMap<String, String>;
-          result.organizationMap.replace(valueDes);
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.recoveryEnabled = valueDes;
+          break;
+        case r'recovery_ui_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.recoveryUiUrl = valueDes;
+          break;
+        case r'registration_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.registrationEnabled = valueDes;
+          break;
+        case r'registration_ui_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.registrationUiUrl = valueDes;
+          break;
+        case r'settings_ui_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.settingsUiUrl = valueDes;
+          break;
+        case r'stylesheet':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.stylesheet = valueDes;
+          break;
+        case r'verification_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.verificationEnabled = valueDes;
+          break;
+        case r'verification_ui_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.verificationUiUrl = valueDes;
           break;
         default:
           unhandled.add(key);

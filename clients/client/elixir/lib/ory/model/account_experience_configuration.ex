@@ -8,29 +8,41 @@ defmodule Ory.Model.AccountExperienceConfiguration do
 
   @derive Jason.Encoder
   defstruct [
-    :account_experience_theme_stylesheet,
-    :favicon_type,
-    :favicon_url,
-    :kratos_selfservice_default_browser_return_url,
-    :kratos_selfservice_flows_recovery_enabled,
-    :kratos_selfservice_flows_registration_enabled,
-    :kratos_selfservice_flows_verification_enabled,
-    :logo_url,
+    :default_redirect_url,
+    :error_ui_url,
+    :favicon_dark_url,
+    :favicon_light_url,
+    :login_ui_url,
+    :logo_dark_url,
+    :logo_light_url,
     :name,
-    :organization_map
+    :recovery_enabled,
+    :recovery_ui_url,
+    :registration_enabled,
+    :registration_ui_url,
+    :settings_ui_url,
+    :stylesheet,
+    :verification_enabled,
+    :verification_ui_url
   ]
 
   @type t :: %__MODULE__{
-    :account_experience_theme_stylesheet => String.t | nil,
-    :favicon_type => String.t | nil,
-    :favicon_url => String.t | nil,
-    :kratos_selfservice_default_browser_return_url => String.t | nil,
-    :kratos_selfservice_flows_recovery_enabled => boolean() | nil,
-    :kratos_selfservice_flows_registration_enabled => boolean() | nil,
-    :kratos_selfservice_flows_verification_enabled => boolean() | nil,
-    :logo_url => String.t | nil,
-    :name => String.t | nil,
-    :organization_map => %{optional(String.t) => String.t} | nil
+    :default_redirect_url => String.t,
+    :error_ui_url => String.t,
+    :favicon_dark_url => String.t | nil,
+    :favicon_light_url => String.t | nil,
+    :login_ui_url => String.t,
+    :logo_dark_url => String.t | nil,
+    :logo_light_url => String.t | nil,
+    :name => String.t,
+    :recovery_enabled => boolean(),
+    :recovery_ui_url => String.t,
+    :registration_enabled => boolean(),
+    :registration_ui_url => String.t,
+    :settings_ui_url => String.t,
+    :stylesheet => String.t | nil,
+    :verification_enabled => boolean(),
+    :verification_ui_url => String.t
   }
 
   def decode(value) do

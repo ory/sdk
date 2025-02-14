@@ -5,16 +5,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account_experience_theme_stylesheet** | **str** |  | [optional] 
-**favicon_type** | **str** |  | [optional] 
-**favicon_url** | **str** |  | [optional] 
-**kratos_selfservice_default_browser_return_url** | **str** |  | [optional] 
-**kratos_selfservice_flows_recovery_enabled** | **bool** |  | [optional] 
-**kratos_selfservice_flows_registration_enabled** | **bool** |  | [optional] 
-**kratos_selfservice_flows_verification_enabled** | **bool** |  | [optional] 
-**logo_url** | **str** |  | [optional] 
-**name** | **str** |  | [optional] 
-**organization_map** | **Dict[str, str]** |  | [optional] 
+**default_redirect_url** | **str** |  | 
+**error_ui_url** | **str** |  | 
+**favicon_dark_url** | **str** |  | [optional] 
+**favicon_light_url** | **str** |  | [optional] 
+**login_ui_url** | **str** |  | 
+**logo_dark_url** | **str** |  | [optional] 
+**logo_light_url** | **str** |  | [optional] 
+**name** | **str** |  | 
+**recovery_enabled** | **bool** |  | 
+**recovery_ui_url** | **str** |  | 
+**registration_enabled** | **bool** |  | 
+**registration_ui_url** | **str** |  | 
+**settings_ui_url** | **str** |  | 
+**stylesheet** | **str** |  | [optional] 
+**verification_enabled** | **bool** |  | 
+**verification_ui_url** | **str** |  | 
 
 ## Example
 

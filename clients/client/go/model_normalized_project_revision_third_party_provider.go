@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.16.6
+API version: v1.16.7
 Contact: support@ory.sh
 */
 
@@ -37,6 +37,7 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	ClientSecret NullableString `json:"client_secret,omitempty"`
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	FedcmConfigUrl NullableString `json:"fedcm_config_url,omitempty"`
 	Id *string `json:"id,omitempty"`
 	// IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required.
 	IssuerUrl *string `json:"issuer_url,omitempty"`
@@ -44,6 +45,7 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	Label *string `json:"label,omitempty"`
 	// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
 	MapperUrl *string `json:"mapper_url,omitempty"`
+	NetIdTokenOriginHeader NullableString `json:"net_id_token_origin_header,omitempty"`
 	OrganizationId NullableString `json:"organization_id,omitempty"`
 	// PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange). Possible values are: `auto` (default), `never`, `force`. `auto`: PKCE is used if the provider supports it. Requires setting `issuer_url`. `never`: Disable PKCE entirely for this provider, even if the provider advertises support for it. `force`: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE. IMPORTANT: If you set this to `force`, you must whitelist a different return URL for your OAuth2 client in the provider's configuration. Instead of <base-url>/self-service/methods/oidc/callback/<provider>, you must use <base-url>/self-service/methods/oidc/callback (Note the missing <provider> path segment and no trailing slash).
 	Pkce NullableString `json:"pkce,omitempty"`
@@ -434,6 +436,48 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) SetCreatedAt(v time.Time) 
 	o.CreatedAt = &v
 }
 
+// GetFedcmConfigUrl returns the FedcmConfigUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetFedcmConfigUrl() string {
+	if o == nil || IsNil(o.FedcmConfigUrl.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.FedcmConfigUrl.Get()
+}
+
+// GetFedcmConfigUrlOk returns a tuple with the FedcmConfigUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetFedcmConfigUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FedcmConfigUrl.Get(), o.FedcmConfigUrl.IsSet()
+}
+
+// HasFedcmConfigUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasFedcmConfigUrl() bool {
+	if o != nil && o.FedcmConfigUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFedcmConfigUrl gets a reference to the given NullableString and assigns it to the FedcmConfigUrl field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetFedcmConfigUrl(v string) {
+	o.FedcmConfigUrl.Set(&v)
+}
+// SetFedcmConfigUrlNil sets the value for FedcmConfigUrl to be an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetFedcmConfigUrlNil() {
+	o.FedcmConfigUrl.Set(nil)
+}
+
+// UnsetFedcmConfigUrl ensures that no value is present for FedcmConfigUrl, not even an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetFedcmConfigUrl() {
+	o.FedcmConfigUrl.Unset()
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionThirdPartyProvider) GetId() string {
 	if o == nil || IsNil(o.Id) {
@@ -560,6 +604,48 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) HasMapperUrl() bool {
 // SetMapperUrl gets a reference to the given string and assigns it to the MapperUrl field.
 func (o *NormalizedProjectRevisionThirdPartyProvider) SetMapperUrl(v string) {
 	o.MapperUrl = &v
+}
+
+// GetNetIdTokenOriginHeader returns the NetIdTokenOriginHeader field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetNetIdTokenOriginHeader() string {
+	if o == nil || IsNil(o.NetIdTokenOriginHeader.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.NetIdTokenOriginHeader.Get()
+}
+
+// GetNetIdTokenOriginHeaderOk returns a tuple with the NetIdTokenOriginHeader field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetNetIdTokenOriginHeaderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NetIdTokenOriginHeader.Get(), o.NetIdTokenOriginHeader.IsSet()
+}
+
+// HasNetIdTokenOriginHeader returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasNetIdTokenOriginHeader() bool {
+	if o != nil && o.NetIdTokenOriginHeader.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNetIdTokenOriginHeader gets a reference to the given NullableString and assigns it to the NetIdTokenOriginHeader field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetNetIdTokenOriginHeader(v string) {
+	o.NetIdTokenOriginHeader.Set(&v)
+}
+// SetNetIdTokenOriginHeaderNil sets the value for NetIdTokenOriginHeader to be an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetNetIdTokenOriginHeaderNil() {
+	o.NetIdTokenOriginHeader.Set(nil)
+}
+
+// UnsetNetIdTokenOriginHeader ensures that no value is present for NetIdTokenOriginHeader, not even an explicit nil
+func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetNetIdTokenOriginHeader() {
+	o.NetIdTokenOriginHeader.Unset()
 }
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -984,6 +1070,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) ToMap() (map[string]interfa
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if o.FedcmConfigUrl.IsSet() {
+		toSerialize["fedcm_config_url"] = o.FedcmConfigUrl.Get()
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
@@ -995,6 +1084,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) ToMap() (map[string]interfa
 	}
 	if !IsNil(o.MapperUrl) {
 		toSerialize["mapper_url"] = o.MapperUrl
+	}
+	if o.NetIdTokenOriginHeader.IsSet() {
+		toSerialize["net_id_token_origin_header"] = o.NetIdTokenOriginHeader.Get()
 	}
 	if o.OrganizationId.IsSet() {
 		toSerialize["organization_id"] = o.OrganizationId.Get()
@@ -1061,10 +1153,12 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(data []byte)
 		delete(additionalProperties, "client_id")
 		delete(additionalProperties, "client_secret")
 		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "fedcm_config_url")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "issuer_url")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "mapper_url")
+		delete(additionalProperties, "net_id_token_origin_header")
 		delete(additionalProperties, "organization_id")
 		delete(additionalProperties, "pkce")
 		delete(additionalProperties, "project_revision_id")

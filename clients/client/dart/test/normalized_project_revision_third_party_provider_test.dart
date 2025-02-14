@@ -63,6 +63,11 @@ void main() {
       // TODO
     });
 
+    // String fedcmConfigUrl
+    test('to test the property `fedcmConfigUrl`', () async {
+      // TODO
+    });
+
     // String id
     test('to test the property `id`', () async {
       // TODO
@@ -83,6 +88,11 @@ void main() {
     // Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
     // String mapperUrl
     test('to test the property `mapperUrl`', () async {
+      // TODO
+    });
+
+    // String netIdTokenOriginHeader
+    test('to test the property `netIdTokenOriginHeader`', () async {
       // TODO
     });
 

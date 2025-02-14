@@ -7,16 +7,22 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountExperienceThemeStylesheet** | **String** |  |  [optional] |
-|**faviconType** | **String** |  |  [optional] |
-|**faviconUrl** | **String** |  |  [optional] |
-|**kratosSelfserviceDefaultBrowserReturnUrl** | **String** |  |  [optional] |
-|**kratosSelfserviceFlowsRecoveryEnabled** | **Boolean** |  |  [optional] |
-|**kratosSelfserviceFlowsRegistrationEnabled** | **Boolean** |  |  [optional] |
-|**kratosSelfserviceFlowsVerificationEnabled** | **Boolean** |  |  [optional] |
-|**logoUrl** | **String** |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**organizationMap** | **Map&lt;String, String&gt;** |  |  [optional] |
+|**defaultRedirectUrl** | **String** |  |  |
+|**errorUiUrl** | **String** |  |  |
+|**faviconDarkUrl** | **String** |  |  [optional] |
+|**faviconLightUrl** | **String** |  |  [optional] |
+|**loginUiUrl** | **String** |  |  |
+|**logoDarkUrl** | **String** |  |  [optional] |
+|**logoLightUrl** | **String** |  |  [optional] |
+|**name** | **String** |  |  |
+|**recoveryEnabled** | **Boolean** |  |  |
+|**recoveryUiUrl** | **String** |  |  |
+|**registrationEnabled** | **Boolean** |  |  |
+|**registrationUiUrl** | **String** |  |  |
+|**settingsUiUrl** | **String** |  |  |
+|**stylesheet** | **String** |  |  [optional] |
+|**verificationEnabled** | **Boolean** |  |  |
+|**verificationUiUrl** | **String** |  |  |
 
 
 

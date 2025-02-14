@@ -4,16 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account_experience_theme_stylesheet** | Option<**String**> |  | [optional]
-**favicon_type** | Option<**String**> |  | [optional]
-**favicon_url** | Option<**String**> |  | [optional]
-**kratos_selfservice_default_browser_return_url** | Option<**String**> |  | [optional]
-**kratos_selfservice_flows_recovery_enabled** | Option<**bool**> |  | [optional]
-**kratos_selfservice_flows_registration_enabled** | Option<**bool**> |  | [optional]
-**kratos_selfservice_flows_verification_enabled** | Option<**bool**> |  | [optional]
-**logo_url** | Option<**String**> |  | [optional]
-**name** | Option<**String**> |  | [optional]
-**organization_map** | Option<**std::collections::HashMap<String, String>**> |  | [optional]
+**default_redirect_url** | **String** |  | 
+**error_ui_url** | **String** |  | 
+**favicon_dark_url** | Option<**String**> |  | [optional]
+**favicon_light_url** | Option<**String**> |  | [optional]
+**login_ui_url** | **String** |  | 
+**logo_dark_url** | Option<**String**> |  | [optional]
+**logo_light_url** | Option<**String**> |  | [optional]
+**name** | **String** |  | 
+**recovery_enabled** | **bool** |  | 
+**recovery_ui_url** | **String** |  | 
+**registration_enabled** | **bool** |  | 
+**registration_ui_url** | **String** |  | 
+**settings_ui_url** | **String** |  | 
+**stylesheet** | Option<**String**> |  | [optional]
+**verification_enabled** | **bool** |  | 
+**verification_ui_url** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

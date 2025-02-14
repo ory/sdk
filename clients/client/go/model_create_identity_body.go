@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.16.6
+API version: v1.16.7
 Contact: support@ory.sh
 */
 
@@ -26,6 +26,7 @@ type CreateIdentityBody struct {
 	MetadataAdmin interface{} `json:"metadata_admin,omitempty"`
 	// Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
 	MetadataPublic interface{} `json:"metadata_public,omitempty"`
+	OrganizationId NullableString `json:"organization_id,omitempty"`
 	// RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
 	RecoveryAddresses []RecoveryIdentityAddress `json:"recovery_addresses,omitempty"`
 	// SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
@@ -156,6 +157,48 @@ func (o *CreateIdentityBody) HasMetadataPublic() bool {
 // SetMetadataPublic gets a reference to the given interface{} and assigns it to the MetadataPublic field.
 func (o *CreateIdentityBody) SetMetadataPublic(v interface{}) {
 	o.MetadataPublic = v
+}
+
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateIdentityBody) GetOrganizationId() string {
+	if o == nil || IsNil(o.OrganizationId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.OrganizationId.Get()
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateIdentityBody) GetOrganizationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OrganizationId.Get(), o.OrganizationId.IsSet()
+}
+
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *CreateIdentityBody) HasOrganizationId() bool {
+	if o != nil && o.OrganizationId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizationId gets a reference to the given NullableString and assigns it to the OrganizationId field.
+func (o *CreateIdentityBody) SetOrganizationId(v string) {
+	o.OrganizationId.Set(&v)
+}
+// SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+func (o *CreateIdentityBody) SetOrganizationIdNil() {
+	o.OrganizationId.Set(nil)
+}
+
+// UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
+func (o *CreateIdentityBody) UnsetOrganizationId() {
+	o.OrganizationId.Unset()
 }
 
 // GetRecoveryAddresses returns the RecoveryAddresses field value if set, zero value otherwise.
@@ -321,6 +364,9 @@ func (o CreateIdentityBody) ToMap() (map[string]interface{}, error) {
 	if o.MetadataPublic != nil {
 		toSerialize["metadata_public"] = o.MetadataPublic
 	}
+	if o.OrganizationId.IsSet() {
+		toSerialize["organization_id"] = o.OrganizationId.Get()
+	}
 	if !IsNil(o.RecoveryAddresses) {
 		toSerialize["recovery_addresses"] = o.RecoveryAddresses
 	}
@@ -379,6 +425,7 @@ func (o *CreateIdentityBody) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "credentials")
 		delete(additionalProperties, "metadata_admin")
 		delete(additionalProperties, "metadata_public")
+		delete(additionalProperties, "organization_id")
 		delete(additionalProperties, "recovery_addresses")
 		delete(additionalProperties, "schema_id")
 		delete(additionalProperties, "state")

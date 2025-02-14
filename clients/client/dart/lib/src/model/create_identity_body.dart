@@ -19,6 +19,7 @@ part 'create_identity_body.g.dart';
 /// * [credentials] 
 /// * [metadataAdmin] - Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
 /// * [metadataPublic] - Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
+/// * [organizationId] 
 /// * [recoveryAddresses] - RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
 /// * [schemaId] - SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
 /// * [state] - State is the identity's state. active StateActive inactive StateInactive
@@ -36,6 +37,9 @@ abstract class CreateIdentityBody implements Built<CreateIdentityBody, CreateIde
   /// Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
   @BuiltValueField(wireName: r'metadata_public')
   JsonObject? get metadataPublic;
+
+  @BuiltValueField(wireName: r'organization_id')
+  String? get organizationId;
 
   /// RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
   @BuiltValueField(wireName: r'recovery_addresses')
@@ -100,6 +104,13 @@ class _$CreateIdentityBodySerializer implements PrimitiveSerializer<CreateIdenti
       yield serializers.serialize(
         object.metadataPublic,
         specifiedType: const FullType.nullable(JsonObject),
+      );
+    }
+    if (object.organizationId != null) {
+      yield r'organization_id';
+      yield serializers.serialize(
+        object.organizationId,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.recoveryAddresses != null) {
@@ -178,6 +189,14 @@ class _$CreateIdentityBodySerializer implements PrimitiveSerializer<CreateIdenti
           ) as JsonObject?;
           if (valueDes == null) continue;
           result.metadataPublic = valueDes;
+          break;
+        case r'organization_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.organizationId = valueDes;
           break;
         case r'recovery_addresses':
           final valueDes = serializers.deserialize(

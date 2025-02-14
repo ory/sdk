@@ -7,43 +7,38 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(AccountExperienceConfiguration, () {
-    // String accountExperienceThemeStylesheet
-    test('to test the property `accountExperienceThemeStylesheet`', () async {
+    // String defaultRedirectUrl
+    test('to test the property `defaultRedirectUrl`', () async {
       // TODO
     });
 
-    // String faviconType
-    test('to test the property `faviconType`', () async {
+    // String errorUiUrl
+    test('to test the property `errorUiUrl`', () async {
       // TODO
     });
 
-    // String faviconUrl
-    test('to test the property `faviconUrl`', () async {
+    // String faviconDarkUrl
+    test('to test the property `faviconDarkUrl`', () async {
       // TODO
     });
 
-    // String kratosSelfserviceDefaultBrowserReturnUrl
-    test('to test the property `kratosSelfserviceDefaultBrowserReturnUrl`', () async {
+    // String faviconLightUrl
+    test('to test the property `faviconLightUrl`', () async {
       // TODO
     });
 
-    // bool kratosSelfserviceFlowsRecoveryEnabled
-    test('to test the property `kratosSelfserviceFlowsRecoveryEnabled`', () async {
+    // String loginUiUrl
+    test('to test the property `loginUiUrl`', () async {
       // TODO
     });
 
-    // bool kratosSelfserviceFlowsRegistrationEnabled
-    test('to test the property `kratosSelfserviceFlowsRegistrationEnabled`', () async {
+    // String logoDarkUrl
+    test('to test the property `logoDarkUrl`', () async {
       // TODO
     });
 
-    // bool kratosSelfserviceFlowsVerificationEnabled
-    test('to test the property `kratosSelfserviceFlowsVerificationEnabled`', () async {
-      // TODO
-    });
-
-    // String logoUrl
-    test('to test the property `logoUrl`', () async {
+    // String logoLightUrl
+    test('to test the property `logoLightUrl`', () async {
       // TODO
     });
 
@@ -52,8 +47,43 @@ void main() {
       // TODO
     });
 
-    // BuiltMap<String, String> organizationMap
-    test('to test the property `organizationMap`', () async {
+    // bool recoveryEnabled
+    test('to test the property `recoveryEnabled`', () async {
+      // TODO
+    });
+
+    // String recoveryUiUrl
+    test('to test the property `recoveryUiUrl`', () async {
+      // TODO
+    });
+
+    // bool registrationEnabled
+    test('to test the property `registrationEnabled`', () async {
+      // TODO
+    });
+
+    // String registrationUiUrl
+    test('to test the property `registrationUiUrl`', () async {
+      // TODO
+    });
+
+    // String settingsUiUrl
+    test('to test the property `settingsUiUrl`', () async {
+      // TODO
+    });
+
+    // String stylesheet
+    test('to test the property `stylesheet`', () async {
+      // TODO
+    });
+
+    // bool verificationEnabled
+    test('to test the property `verificationEnabled`', () async {
+      // TODO
+    });
+
+    // String verificationUiUrl
+    test('to test the property `verificationUiUrl`', () async {
       // TODO
     });
 

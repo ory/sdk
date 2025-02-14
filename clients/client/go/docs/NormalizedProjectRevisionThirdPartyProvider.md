@@ -14,10 +14,12 @@ Name | Type | Description | Notes
 **ClientId** | Pointer to **string** | ClientID is the application&#39;s Client ID. | [optional] 
 **ClientSecret** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
+**FedcmConfigUrl** | Pointer to **NullableString** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IssuerUrl** | Pointer to **string** | IssuerURL is the OpenID Connect Server URL. You can leave this empty if &#x60;provider&#x60; is not set to &#x60;generic&#x60;. If set, neither &#x60;auth_url&#x60; nor &#x60;token_url&#x60; are required. | [optional] 
 **Label** | Pointer to **string** | Label represents an optional label which can be used in the UI generation. | [optional] 
 **MapperUrl** | Pointer to **string** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider&#39;s data (e.g. GitHub or Google profile information) to hydrate the identity&#39;s data. | [optional] 
+**NetIdTokenOriginHeader** | Pointer to **NullableString** |  | [optional] 
 **OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **Pkce** | Pointer to **NullableString** | PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange). Possible values are: &#x60;auto&#x60; (default), &#x60;never&#x60;, &#x60;force&#x60;. &#x60;auto&#x60;: PKCE is used if the provider supports it. Requires setting &#x60;issuer_url&#x60;. &#x60;never&#x60;: Disable PKCE entirely for this provider, even if the provider advertises support for it. &#x60;force&#x60;: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE. IMPORTANT: If you set this to &#x60;force&#x60;, you must whitelist a different return URL for your OAuth2 client in the provider&#39;s configuration. Instead of &lt;base-url&gt;/self-service/methods/oidc/callback/&lt;provider&gt;, you must use &lt;base-url&gt;/self-service/methods/oidc/callback (Note the missing &lt;provider&gt; path segment and no trailing slash). | [optional] 
 **ProjectRevisionId** | Pointer to **string** | The Revision&#39;s ID this schema belongs to | [optional] 
@@ -329,6 +331,41 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
+### GetFedcmConfigUrl
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetFedcmConfigUrl() string`
+
+GetFedcmConfigUrl returns the FedcmConfigUrl field if non-nil, zero value otherwise.
+
+### GetFedcmConfigUrlOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetFedcmConfigUrlOk() (*string, bool)`
+
+GetFedcmConfigUrlOk returns a tuple with the FedcmConfigUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFedcmConfigUrl
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetFedcmConfigUrl(v string)`
+
+SetFedcmConfigUrl sets FedcmConfigUrl field to given value.
+
+### HasFedcmConfigUrl
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasFedcmConfigUrl() bool`
+
+HasFedcmConfigUrl returns a boolean if a field has been set.
+
+### SetFedcmConfigUrlNil
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetFedcmConfigUrlNil(b bool)`
+
+ SetFedcmConfigUrlNil sets the value for FedcmConfigUrl to be an explicit nil
+
+### UnsetFedcmConfigUrl
+`func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetFedcmConfigUrl()`
+
+UnsetFedcmConfigUrl ensures that no value is present for FedcmConfigUrl, not even an explicit nil
 ### GetId
 
 `func (o *NormalizedProjectRevisionThirdPartyProvider) GetId() string`
@@ -429,6 +466,41 @@ SetMapperUrl sets MapperUrl field to given value.
 
 HasMapperUrl returns a boolean if a field has been set.
 
+### GetNetIdTokenOriginHeader
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetNetIdTokenOriginHeader() string`
+
+GetNetIdTokenOriginHeader returns the NetIdTokenOriginHeader field if non-nil, zero value otherwise.
+
+### GetNetIdTokenOriginHeaderOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetNetIdTokenOriginHeaderOk() (*string, bool)`
+
+GetNetIdTokenOriginHeaderOk returns a tuple with the NetIdTokenOriginHeader field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetIdTokenOriginHeader
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetNetIdTokenOriginHeader(v string)`
+
+SetNetIdTokenOriginHeader sets NetIdTokenOriginHeader field to given value.
+
+### HasNetIdTokenOriginHeader
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasNetIdTokenOriginHeader() bool`
+
+HasNetIdTokenOriginHeader returns a boolean if a field has been set.
+
+### SetNetIdTokenOriginHeaderNil
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetNetIdTokenOriginHeaderNil(b bool)`
+
+ SetNetIdTokenOriginHeaderNil sets the value for NetIdTokenOriginHeader to be an explicit nil
+
+### UnsetNetIdTokenOriginHeader
+`func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetNetIdTokenOriginHeader()`
+
+UnsetNetIdTokenOriginHeader ensures that no value is present for NetIdTokenOriginHeader, not even an explicit nil
 ### GetOrganizationId
 
 `func (o *NormalizedProjectRevisionThirdPartyProvider) GetOrganizationId() string`

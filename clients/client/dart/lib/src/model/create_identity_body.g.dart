@@ -70,6 +70,8 @@ class _$CreateIdentityBody extends CreateIdentityBody {
   @override
   final JsonObject? metadataPublic;
   @override
+  final String? organizationId;
+  @override
   final BuiltList<RecoveryIdentityAddress>? recoveryAddresses;
   @override
   final String schemaId;
@@ -88,6 +90,7 @@ class _$CreateIdentityBody extends CreateIdentityBody {
       {this.credentials,
       this.metadataAdmin,
       this.metadataPublic,
+      this.organizationId,
       this.recoveryAddresses,
       required this.schemaId,
       this.state,
@@ -116,6 +119,7 @@ class _$CreateIdentityBody extends CreateIdentityBody {
         credentials == other.credentials &&
         metadataAdmin == other.metadataAdmin &&
         metadataPublic == other.metadataPublic &&
+        organizationId == other.organizationId &&
         recoveryAddresses == other.recoveryAddresses &&
         schemaId == other.schemaId &&
         state == other.state &&
@@ -129,6 +133,7 @@ class _$CreateIdentityBody extends CreateIdentityBody {
     _$hash = $jc(_$hash, credentials.hashCode);
     _$hash = $jc(_$hash, metadataAdmin.hashCode);
     _$hash = $jc(_$hash, metadataPublic.hashCode);
+    _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, recoveryAddresses.hashCode);
     _$hash = $jc(_$hash, schemaId.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
@@ -144,6 +149,7 @@ class _$CreateIdentityBody extends CreateIdentityBody {
           ..add('credentials', credentials)
           ..add('metadataAdmin', metadataAdmin)
           ..add('metadataPublic', metadataPublic)
+          ..add('organizationId', organizationId)
           ..add('recoveryAddresses', recoveryAddresses)
           ..add('schemaId', schemaId)
           ..add('state', state)
@@ -172,6 +178,11 @@ class CreateIdentityBodyBuilder
   JsonObject? get metadataPublic => _$this._metadataPublic;
   set metadataPublic(JsonObject? metadataPublic) =>
       _$this._metadataPublic = metadataPublic;
+
+  String? _organizationId;
+  String? get organizationId => _$this._organizationId;
+  set organizationId(String? organizationId) =>
+      _$this._organizationId = organizationId;
 
   ListBuilder<RecoveryIdentityAddress>? _recoveryAddresses;
   ListBuilder<RecoveryIdentityAddress> get recoveryAddresses =>
@@ -210,6 +221,7 @@ class CreateIdentityBodyBuilder
       _credentials = $v.credentials?.toBuilder();
       _metadataAdmin = $v.metadataAdmin;
       _metadataPublic = $v.metadataPublic;
+      _organizationId = $v.organizationId;
       _recoveryAddresses = $v.recoveryAddresses?.toBuilder();
       _schemaId = $v.schemaId;
       _state = $v.state;
@@ -242,6 +254,7 @@ class CreateIdentityBodyBuilder
               credentials: _credentials?.build(),
               metadataAdmin: metadataAdmin,
               metadataPublic: metadataPublic,
+              organizationId: organizationId,
               recoveryAddresses: _recoveryAddresses?.build(),
               schemaId: BuiltValueNullFieldError.checkNotNull(
                   schemaId, r'CreateIdentityBody', 'schemaId'),

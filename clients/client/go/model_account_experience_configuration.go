@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.16.6
+API version: v1.16.7
 Contact: support@ory.sh
 */
 
@@ -13,6 +13,7 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the AccountExperienceConfiguration type satisfies the MappedNullable interface at compile time
@@ -20,16 +21,22 @@ var _ MappedNullable = &AccountExperienceConfiguration{}
 
 // AccountExperienceConfiguration struct for AccountExperienceConfiguration
 type AccountExperienceConfiguration struct {
-	AccountExperienceThemeStylesheet *string `json:"account_experience_theme_stylesheet,omitempty"`
-	FaviconType *string `json:"favicon_type,omitempty"`
-	FaviconUrl *string `json:"favicon_url,omitempty"`
-	KratosSelfserviceDefaultBrowserReturnUrl *string `json:"kratos_selfservice_default_browser_return_url,omitempty"`
-	KratosSelfserviceFlowsRecoveryEnabled *bool `json:"kratos_selfservice_flows_recovery_enabled,omitempty"`
-	KratosSelfserviceFlowsRegistrationEnabled *bool `json:"kratos_selfservice_flows_registration_enabled,omitempty"`
-	KratosSelfserviceFlowsVerificationEnabled *bool `json:"kratos_selfservice_flows_verification_enabled,omitempty"`
-	LogoUrl *string `json:"logo_url,omitempty"`
-	Name *string `json:"name,omitempty"`
-	OrganizationMap *map[string]string `json:"organization_map,omitempty"`
+	DefaultRedirectUrl string `json:"default_redirect_url"`
+	ErrorUiUrl string `json:"error_ui_url"`
+	FaviconDarkUrl *string `json:"favicon_dark_url,omitempty"`
+	FaviconLightUrl *string `json:"favicon_light_url,omitempty"`
+	LoginUiUrl string `json:"login_ui_url"`
+	LogoDarkUrl *string `json:"logo_dark_url,omitempty"`
+	LogoLightUrl *string `json:"logo_light_url,omitempty"`
+	Name string `json:"name"`
+	RecoveryEnabled bool `json:"recovery_enabled"`
+	RecoveryUiUrl string `json:"recovery_ui_url"`
+	RegistrationEnabled bool `json:"registration_enabled"`
+	RegistrationUiUrl string `json:"registration_ui_url"`
+	SettingsUiUrl string `json:"settings_ui_url"`
+	Stylesheet *string `json:"stylesheet,omitempty"`
+	VerificationEnabled bool `json:"verification_enabled"`
+	VerificationUiUrl string `json:"verification_ui_url"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,8 +46,19 @@ type _AccountExperienceConfiguration AccountExperienceConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccountExperienceConfiguration() *AccountExperienceConfiguration {
+func NewAccountExperienceConfiguration(defaultRedirectUrl string, errorUiUrl string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, verificationEnabled bool, verificationUiUrl string) *AccountExperienceConfiguration {
 	this := AccountExperienceConfiguration{}
+	this.DefaultRedirectUrl = defaultRedirectUrl
+	this.ErrorUiUrl = errorUiUrl
+	this.LoginUiUrl = loginUiUrl
+	this.Name = name
+	this.RecoveryEnabled = recoveryEnabled
+	this.RecoveryUiUrl = recoveryUiUrl
+	this.RegistrationEnabled = registrationEnabled
+	this.RegistrationUiUrl = registrationUiUrl
+	this.SettingsUiUrl = settingsUiUrl
+	this.VerificationEnabled = verificationEnabled
+	this.VerificationUiUrl = verificationUiUrl
 	return &this
 }
 
@@ -52,324 +70,428 @@ func NewAccountExperienceConfigurationWithDefaults() *AccountExperienceConfigura
 	return &this
 }
 
-// GetAccountExperienceThemeStylesheet returns the AccountExperienceThemeStylesheet field value if set, zero value otherwise.
-func (o *AccountExperienceConfiguration) GetAccountExperienceThemeStylesheet() string {
-	if o == nil || IsNil(o.AccountExperienceThemeStylesheet) {
+// GetDefaultRedirectUrl returns the DefaultRedirectUrl field value
+func (o *AccountExperienceConfiguration) GetDefaultRedirectUrl() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.AccountExperienceThemeStylesheet
+
+	return o.DefaultRedirectUrl
 }
 
-// GetAccountExperienceThemeStylesheetOk returns a tuple with the AccountExperienceThemeStylesheet field value if set, nil otherwise
+// GetDefaultRedirectUrlOk returns a tuple with the DefaultRedirectUrl field value
 // and a boolean to check if the value has been set.
-func (o *AccountExperienceConfiguration) GetAccountExperienceThemeStylesheetOk() (*string, bool) {
-	if o == nil || IsNil(o.AccountExperienceThemeStylesheet) {
+func (o *AccountExperienceConfiguration) GetDefaultRedirectUrlOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.AccountExperienceThemeStylesheet, true
+	return &o.DefaultRedirectUrl, true
 }
 
-// HasAccountExperienceThemeStylesheet returns a boolean if a field has been set.
-func (o *AccountExperienceConfiguration) HasAccountExperienceThemeStylesheet() bool {
-	if o != nil && !IsNil(o.AccountExperienceThemeStylesheet) {
-		return true
-	}
-
-	return false
+// SetDefaultRedirectUrl sets field value
+func (o *AccountExperienceConfiguration) SetDefaultRedirectUrl(v string) {
+	o.DefaultRedirectUrl = v
 }
 
-// SetAccountExperienceThemeStylesheet gets a reference to the given string and assigns it to the AccountExperienceThemeStylesheet field.
-func (o *AccountExperienceConfiguration) SetAccountExperienceThemeStylesheet(v string) {
-	o.AccountExperienceThemeStylesheet = &v
-}
-
-// GetFaviconType returns the FaviconType field value if set, zero value otherwise.
-func (o *AccountExperienceConfiguration) GetFaviconType() string {
-	if o == nil || IsNil(o.FaviconType) {
+// GetErrorUiUrl returns the ErrorUiUrl field value
+func (o *AccountExperienceConfiguration) GetErrorUiUrl() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.FaviconType
+
+	return o.ErrorUiUrl
 }
 
-// GetFaviconTypeOk returns a tuple with the FaviconType field value if set, nil otherwise
+// GetErrorUiUrlOk returns a tuple with the ErrorUiUrl field value
 // and a boolean to check if the value has been set.
-func (o *AccountExperienceConfiguration) GetFaviconTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.FaviconType) {
+func (o *AccountExperienceConfiguration) GetErrorUiUrlOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.FaviconType, true
+	return &o.ErrorUiUrl, true
 }
 
-// HasFaviconType returns a boolean if a field has been set.
-func (o *AccountExperienceConfiguration) HasFaviconType() bool {
-	if o != nil && !IsNil(o.FaviconType) {
-		return true
-	}
-
-	return false
+// SetErrorUiUrl sets field value
+func (o *AccountExperienceConfiguration) SetErrorUiUrl(v string) {
+	o.ErrorUiUrl = v
 }
 
-// SetFaviconType gets a reference to the given string and assigns it to the FaviconType field.
-func (o *AccountExperienceConfiguration) SetFaviconType(v string) {
-	o.FaviconType = &v
-}
-
-// GetFaviconUrl returns the FaviconUrl field value if set, zero value otherwise.
-func (o *AccountExperienceConfiguration) GetFaviconUrl() string {
-	if o == nil || IsNil(o.FaviconUrl) {
+// GetFaviconDarkUrl returns the FaviconDarkUrl field value if set, zero value otherwise.
+func (o *AccountExperienceConfiguration) GetFaviconDarkUrl() string {
+	if o == nil || IsNil(o.FaviconDarkUrl) {
 		var ret string
 		return ret
 	}
-	return *o.FaviconUrl
+	return *o.FaviconDarkUrl
 }
 
-// GetFaviconUrlOk returns a tuple with the FaviconUrl field value if set, nil otherwise
+// GetFaviconDarkUrlOk returns a tuple with the FaviconDarkUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountExperienceConfiguration) GetFaviconUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.FaviconUrl) {
+func (o *AccountExperienceConfiguration) GetFaviconDarkUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.FaviconDarkUrl) {
 		return nil, false
 	}
-	return o.FaviconUrl, true
+	return o.FaviconDarkUrl, true
 }
 
-// HasFaviconUrl returns a boolean if a field has been set.
-func (o *AccountExperienceConfiguration) HasFaviconUrl() bool {
-	if o != nil && !IsNil(o.FaviconUrl) {
+// HasFaviconDarkUrl returns a boolean if a field has been set.
+func (o *AccountExperienceConfiguration) HasFaviconDarkUrl() bool {
+	if o != nil && !IsNil(o.FaviconDarkUrl) {
 		return true
 	}
 
 	return false
 }
 
-// SetFaviconUrl gets a reference to the given string and assigns it to the FaviconUrl field.
-func (o *AccountExperienceConfiguration) SetFaviconUrl(v string) {
-	o.FaviconUrl = &v
+// SetFaviconDarkUrl gets a reference to the given string and assigns it to the FaviconDarkUrl field.
+func (o *AccountExperienceConfiguration) SetFaviconDarkUrl(v string) {
+	o.FaviconDarkUrl = &v
 }
 
-// GetKratosSelfserviceDefaultBrowserReturnUrl returns the KratosSelfserviceDefaultBrowserReturnUrl field value if set, zero value otherwise.
-func (o *AccountExperienceConfiguration) GetKratosSelfserviceDefaultBrowserReturnUrl() string {
-	if o == nil || IsNil(o.KratosSelfserviceDefaultBrowserReturnUrl) {
+// GetFaviconLightUrl returns the FaviconLightUrl field value if set, zero value otherwise.
+func (o *AccountExperienceConfiguration) GetFaviconLightUrl() string {
+	if o == nil || IsNil(o.FaviconLightUrl) {
 		var ret string
 		return ret
 	}
-	return *o.KratosSelfserviceDefaultBrowserReturnUrl
+	return *o.FaviconLightUrl
 }
 
-// GetKratosSelfserviceDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceDefaultBrowserReturnUrl field value if set, nil otherwise
+// GetFaviconLightUrlOk returns a tuple with the FaviconLightUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountExperienceConfiguration) GetKratosSelfserviceDefaultBrowserReturnUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.KratosSelfserviceDefaultBrowserReturnUrl) {
+func (o *AccountExperienceConfiguration) GetFaviconLightUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.FaviconLightUrl) {
 		return nil, false
 	}
-	return o.KratosSelfserviceDefaultBrowserReturnUrl, true
+	return o.FaviconLightUrl, true
 }
 
-// HasKratosSelfserviceDefaultBrowserReturnUrl returns a boolean if a field has been set.
-func (o *AccountExperienceConfiguration) HasKratosSelfserviceDefaultBrowserReturnUrl() bool {
-	if o != nil && !IsNil(o.KratosSelfserviceDefaultBrowserReturnUrl) {
+// HasFaviconLightUrl returns a boolean if a field has been set.
+func (o *AccountExperienceConfiguration) HasFaviconLightUrl() bool {
+	if o != nil && !IsNil(o.FaviconLightUrl) {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceDefaultBrowserReturnUrl gets a reference to the given string and assigns it to the KratosSelfserviceDefaultBrowserReturnUrl field.
-func (o *AccountExperienceConfiguration) SetKratosSelfserviceDefaultBrowserReturnUrl(v string) {
-	o.KratosSelfserviceDefaultBrowserReturnUrl = &v
+// SetFaviconLightUrl gets a reference to the given string and assigns it to the FaviconLightUrl field.
+func (o *AccountExperienceConfiguration) SetFaviconLightUrl(v string) {
+	o.FaviconLightUrl = &v
 }
 
-// GetKratosSelfserviceFlowsRecoveryEnabled returns the KratosSelfserviceFlowsRecoveryEnabled field value if set, zero value otherwise.
-func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsRecoveryEnabled() bool {
-	if o == nil || IsNil(o.KratosSelfserviceFlowsRecoveryEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.KratosSelfserviceFlowsRecoveryEnabled
-}
-
-// GetKratosSelfserviceFlowsRecoveryEnabledOk returns a tuple with the KratosSelfserviceFlowsRecoveryEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsRecoveryEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.KratosSelfserviceFlowsRecoveryEnabled) {
-		return nil, false
-	}
-	return o.KratosSelfserviceFlowsRecoveryEnabled, true
-}
-
-// HasKratosSelfserviceFlowsRecoveryEnabled returns a boolean if a field has been set.
-func (o *AccountExperienceConfiguration) HasKratosSelfserviceFlowsRecoveryEnabled() bool {
-	if o != nil && !IsNil(o.KratosSelfserviceFlowsRecoveryEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetKratosSelfserviceFlowsRecoveryEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceFlowsRecoveryEnabled field.
-func (o *AccountExperienceConfiguration) SetKratosSelfserviceFlowsRecoveryEnabled(v bool) {
-	o.KratosSelfserviceFlowsRecoveryEnabled = &v
-}
-
-// GetKratosSelfserviceFlowsRegistrationEnabled returns the KratosSelfserviceFlowsRegistrationEnabled field value if set, zero value otherwise.
-func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsRegistrationEnabled() bool {
-	if o == nil || IsNil(o.KratosSelfserviceFlowsRegistrationEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.KratosSelfserviceFlowsRegistrationEnabled
-}
-
-// GetKratosSelfserviceFlowsRegistrationEnabledOk returns a tuple with the KratosSelfserviceFlowsRegistrationEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsRegistrationEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.KratosSelfserviceFlowsRegistrationEnabled) {
-		return nil, false
-	}
-	return o.KratosSelfserviceFlowsRegistrationEnabled, true
-}
-
-// HasKratosSelfserviceFlowsRegistrationEnabled returns a boolean if a field has been set.
-func (o *AccountExperienceConfiguration) HasKratosSelfserviceFlowsRegistrationEnabled() bool {
-	if o != nil && !IsNil(o.KratosSelfserviceFlowsRegistrationEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetKratosSelfserviceFlowsRegistrationEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceFlowsRegistrationEnabled field.
-func (o *AccountExperienceConfiguration) SetKratosSelfserviceFlowsRegistrationEnabled(v bool) {
-	o.KratosSelfserviceFlowsRegistrationEnabled = &v
-}
-
-// GetKratosSelfserviceFlowsVerificationEnabled returns the KratosSelfserviceFlowsVerificationEnabled field value if set, zero value otherwise.
-func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsVerificationEnabled() bool {
-	if o == nil || IsNil(o.KratosSelfserviceFlowsVerificationEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.KratosSelfserviceFlowsVerificationEnabled
-}
-
-// GetKratosSelfserviceFlowsVerificationEnabledOk returns a tuple with the KratosSelfserviceFlowsVerificationEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsVerificationEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.KratosSelfserviceFlowsVerificationEnabled) {
-		return nil, false
-	}
-	return o.KratosSelfserviceFlowsVerificationEnabled, true
-}
-
-// HasKratosSelfserviceFlowsVerificationEnabled returns a boolean if a field has been set.
-func (o *AccountExperienceConfiguration) HasKratosSelfserviceFlowsVerificationEnabled() bool {
-	if o != nil && !IsNil(o.KratosSelfserviceFlowsVerificationEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetKratosSelfserviceFlowsVerificationEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceFlowsVerificationEnabled field.
-func (o *AccountExperienceConfiguration) SetKratosSelfserviceFlowsVerificationEnabled(v bool) {
-	o.KratosSelfserviceFlowsVerificationEnabled = &v
-}
-
-// GetLogoUrl returns the LogoUrl field value if set, zero value otherwise.
-func (o *AccountExperienceConfiguration) GetLogoUrl() string {
-	if o == nil || IsNil(o.LogoUrl) {
+// GetLoginUiUrl returns the LoginUiUrl field value
+func (o *AccountExperienceConfiguration) GetLoginUiUrl() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LogoUrl
+
+	return o.LoginUiUrl
 }
 
-// GetLogoUrlOk returns a tuple with the LogoUrl field value if set, nil otherwise
+// GetLoginUiUrlOk returns a tuple with the LoginUiUrl field value
 // and a boolean to check if the value has been set.
-func (o *AccountExperienceConfiguration) GetLogoUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.LogoUrl) {
+func (o *AccountExperienceConfiguration) GetLoginUiUrlOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LogoUrl, true
+	return &o.LoginUiUrl, true
 }
 
-// HasLogoUrl returns a boolean if a field has been set.
-func (o *AccountExperienceConfiguration) HasLogoUrl() bool {
-	if o != nil && !IsNil(o.LogoUrl) {
+// SetLoginUiUrl sets field value
+func (o *AccountExperienceConfiguration) SetLoginUiUrl(v string) {
+	o.LoginUiUrl = v
+}
+
+// GetLogoDarkUrl returns the LogoDarkUrl field value if set, zero value otherwise.
+func (o *AccountExperienceConfiguration) GetLogoDarkUrl() string {
+	if o == nil || IsNil(o.LogoDarkUrl) {
+		var ret string
+		return ret
+	}
+	return *o.LogoDarkUrl
+}
+
+// GetLogoDarkUrlOk returns a tuple with the LogoDarkUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetLogoDarkUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.LogoDarkUrl) {
+		return nil, false
+	}
+	return o.LogoDarkUrl, true
+}
+
+// HasLogoDarkUrl returns a boolean if a field has been set.
+func (o *AccountExperienceConfiguration) HasLogoDarkUrl() bool {
+	if o != nil && !IsNil(o.LogoDarkUrl) {
 		return true
 	}
 
 	return false
 }
 
-// SetLogoUrl gets a reference to the given string and assigns it to the LogoUrl field.
-func (o *AccountExperienceConfiguration) SetLogoUrl(v string) {
-	o.LogoUrl = &v
+// SetLogoDarkUrl gets a reference to the given string and assigns it to the LogoDarkUrl field.
+func (o *AccountExperienceConfiguration) SetLogoDarkUrl(v string) {
+	o.LogoDarkUrl = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetLogoLightUrl returns the LogoLightUrl field value if set, zero value otherwise.
+func (o *AccountExperienceConfiguration) GetLogoLightUrl() string {
+	if o == nil || IsNil(o.LogoLightUrl) {
+		var ret string
+		return ret
+	}
+	return *o.LogoLightUrl
+}
+
+// GetLogoLightUrlOk returns a tuple with the LogoLightUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetLogoLightUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.LogoLightUrl) {
+		return nil, false
+	}
+	return o.LogoLightUrl, true
+}
+
+// HasLogoLightUrl returns a boolean if a field has been set.
+func (o *AccountExperienceConfiguration) HasLogoLightUrl() bool {
+	if o != nil && !IsNil(o.LogoLightUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogoLightUrl gets a reference to the given string and assigns it to the LogoLightUrl field.
+func (o *AccountExperienceConfiguration) SetLogoLightUrl(v string) {
+	o.LogoLightUrl = &v
+}
+
+// GetName returns the Name field value
 func (o *AccountExperienceConfiguration) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *AccountExperienceConfiguration) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *AccountExperienceConfiguration) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *AccountExperienceConfiguration) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetOrganizationMap returns the OrganizationMap field value if set, zero value otherwise.
-func (o *AccountExperienceConfiguration) GetOrganizationMap() map[string]string {
-	if o == nil || IsNil(o.OrganizationMap) {
-		var ret map[string]string
+// GetRecoveryEnabled returns the RecoveryEnabled field value
+func (o *AccountExperienceConfiguration) GetRecoveryEnabled() bool {
+	if o == nil {
+		var ret bool
 		return ret
 	}
-	return *o.OrganizationMap
+
+	return o.RecoveryEnabled
 }
 
-// GetOrganizationMapOk returns a tuple with the OrganizationMap field value if set, nil otherwise
+// GetRecoveryEnabledOk returns a tuple with the RecoveryEnabled field value
 // and a boolean to check if the value has been set.
-func (o *AccountExperienceConfiguration) GetOrganizationMapOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.OrganizationMap) {
+func (o *AccountExperienceConfiguration) GetRecoveryEnabledOk() (*bool, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.OrganizationMap, true
+	return &o.RecoveryEnabled, true
 }
 
-// HasOrganizationMap returns a boolean if a field has been set.
-func (o *AccountExperienceConfiguration) HasOrganizationMap() bool {
-	if o != nil && !IsNil(o.OrganizationMap) {
+// SetRecoveryEnabled sets field value
+func (o *AccountExperienceConfiguration) SetRecoveryEnabled(v bool) {
+	o.RecoveryEnabled = v
+}
+
+// GetRecoveryUiUrl returns the RecoveryUiUrl field value
+func (o *AccountExperienceConfiguration) GetRecoveryUiUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RecoveryUiUrl
+}
+
+// GetRecoveryUiUrlOk returns a tuple with the RecoveryUiUrl field value
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetRecoveryUiUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RecoveryUiUrl, true
+}
+
+// SetRecoveryUiUrl sets field value
+func (o *AccountExperienceConfiguration) SetRecoveryUiUrl(v string) {
+	o.RecoveryUiUrl = v
+}
+
+// GetRegistrationEnabled returns the RegistrationEnabled field value
+func (o *AccountExperienceConfiguration) GetRegistrationEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.RegistrationEnabled
+}
+
+// GetRegistrationEnabledOk returns a tuple with the RegistrationEnabled field value
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetRegistrationEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RegistrationEnabled, true
+}
+
+// SetRegistrationEnabled sets field value
+func (o *AccountExperienceConfiguration) SetRegistrationEnabled(v bool) {
+	o.RegistrationEnabled = v
+}
+
+// GetRegistrationUiUrl returns the RegistrationUiUrl field value
+func (o *AccountExperienceConfiguration) GetRegistrationUiUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RegistrationUiUrl
+}
+
+// GetRegistrationUiUrlOk returns a tuple with the RegistrationUiUrl field value
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetRegistrationUiUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RegistrationUiUrl, true
+}
+
+// SetRegistrationUiUrl sets field value
+func (o *AccountExperienceConfiguration) SetRegistrationUiUrl(v string) {
+	o.RegistrationUiUrl = v
+}
+
+// GetSettingsUiUrl returns the SettingsUiUrl field value
+func (o *AccountExperienceConfiguration) GetSettingsUiUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SettingsUiUrl
+}
+
+// GetSettingsUiUrlOk returns a tuple with the SettingsUiUrl field value
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetSettingsUiUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SettingsUiUrl, true
+}
+
+// SetSettingsUiUrl sets field value
+func (o *AccountExperienceConfiguration) SetSettingsUiUrl(v string) {
+	o.SettingsUiUrl = v
+}
+
+// GetStylesheet returns the Stylesheet field value if set, zero value otherwise.
+func (o *AccountExperienceConfiguration) GetStylesheet() string {
+	if o == nil || IsNil(o.Stylesheet) {
+		var ret string
+		return ret
+	}
+	return *o.Stylesheet
+}
+
+// GetStylesheetOk returns a tuple with the Stylesheet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetStylesheetOk() (*string, bool) {
+	if o == nil || IsNil(o.Stylesheet) {
+		return nil, false
+	}
+	return o.Stylesheet, true
+}
+
+// HasStylesheet returns a boolean if a field has been set.
+func (o *AccountExperienceConfiguration) HasStylesheet() bool {
+	if o != nil && !IsNil(o.Stylesheet) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganizationMap gets a reference to the given map[string]string and assigns it to the OrganizationMap field.
-func (o *AccountExperienceConfiguration) SetOrganizationMap(v map[string]string) {
-	o.OrganizationMap = &v
+// SetStylesheet gets a reference to the given string and assigns it to the Stylesheet field.
+func (o *AccountExperienceConfiguration) SetStylesheet(v string) {
+	o.Stylesheet = &v
+}
+
+// GetVerificationEnabled returns the VerificationEnabled field value
+func (o *AccountExperienceConfiguration) GetVerificationEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.VerificationEnabled
+}
+
+// GetVerificationEnabledOk returns a tuple with the VerificationEnabled field value
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetVerificationEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VerificationEnabled, true
+}
+
+// SetVerificationEnabled sets field value
+func (o *AccountExperienceConfiguration) SetVerificationEnabled(v bool) {
+	o.VerificationEnabled = v
+}
+
+// GetVerificationUiUrl returns the VerificationUiUrl field value
+func (o *AccountExperienceConfiguration) GetVerificationUiUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.VerificationUiUrl
+}
+
+// GetVerificationUiUrlOk returns a tuple with the VerificationUiUrl field value
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetVerificationUiUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VerificationUiUrl, true
+}
+
+// SetVerificationUiUrl sets field value
+func (o *AccountExperienceConfiguration) SetVerificationUiUrl(v string) {
+	o.VerificationUiUrl = v
 }
 
 func (o AccountExperienceConfiguration) MarshalJSON() ([]byte, error) {
@@ -382,36 +504,32 @@ func (o AccountExperienceConfiguration) MarshalJSON() ([]byte, error) {
 
 func (o AccountExperienceConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AccountExperienceThemeStylesheet) {
-		toSerialize["account_experience_theme_stylesheet"] = o.AccountExperienceThemeStylesheet
+	toSerialize["default_redirect_url"] = o.DefaultRedirectUrl
+	toSerialize["error_ui_url"] = o.ErrorUiUrl
+	if !IsNil(o.FaviconDarkUrl) {
+		toSerialize["favicon_dark_url"] = o.FaviconDarkUrl
 	}
-	if !IsNil(o.FaviconType) {
-		toSerialize["favicon_type"] = o.FaviconType
+	if !IsNil(o.FaviconLightUrl) {
+		toSerialize["favicon_light_url"] = o.FaviconLightUrl
 	}
-	if !IsNil(o.FaviconUrl) {
-		toSerialize["favicon_url"] = o.FaviconUrl
+	toSerialize["login_ui_url"] = o.LoginUiUrl
+	if !IsNil(o.LogoDarkUrl) {
+		toSerialize["logo_dark_url"] = o.LogoDarkUrl
 	}
-	if !IsNil(o.KratosSelfserviceDefaultBrowserReturnUrl) {
-		toSerialize["kratos_selfservice_default_browser_return_url"] = o.KratosSelfserviceDefaultBrowserReturnUrl
+	if !IsNil(o.LogoLightUrl) {
+		toSerialize["logo_light_url"] = o.LogoLightUrl
 	}
-	if !IsNil(o.KratosSelfserviceFlowsRecoveryEnabled) {
-		toSerialize["kratos_selfservice_flows_recovery_enabled"] = o.KratosSelfserviceFlowsRecoveryEnabled
+	toSerialize["name"] = o.Name
+	toSerialize["recovery_enabled"] = o.RecoveryEnabled
+	toSerialize["recovery_ui_url"] = o.RecoveryUiUrl
+	toSerialize["registration_enabled"] = o.RegistrationEnabled
+	toSerialize["registration_ui_url"] = o.RegistrationUiUrl
+	toSerialize["settings_ui_url"] = o.SettingsUiUrl
+	if !IsNil(o.Stylesheet) {
+		toSerialize["stylesheet"] = o.Stylesheet
 	}
-	if !IsNil(o.KratosSelfserviceFlowsRegistrationEnabled) {
-		toSerialize["kratos_selfservice_flows_registration_enabled"] = o.KratosSelfserviceFlowsRegistrationEnabled
-	}
-	if !IsNil(o.KratosSelfserviceFlowsVerificationEnabled) {
-		toSerialize["kratos_selfservice_flows_verification_enabled"] = o.KratosSelfserviceFlowsVerificationEnabled
-	}
-	if !IsNil(o.LogoUrl) {
-		toSerialize["logo_url"] = o.LogoUrl
-	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.OrganizationMap) {
-		toSerialize["organization_map"] = o.OrganizationMap
-	}
+	toSerialize["verification_enabled"] = o.VerificationEnabled
+	toSerialize["verification_ui_url"] = o.VerificationUiUrl
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -421,6 +539,37 @@ func (o AccountExperienceConfiguration) ToMap() (map[string]interface{}, error) 
 }
 
 func (o *AccountExperienceConfiguration) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"default_redirect_url",
+		"error_ui_url",
+		"login_ui_url",
+		"name",
+		"recovery_enabled",
+		"recovery_ui_url",
+		"registration_enabled",
+		"registration_ui_url",
+		"settings_ui_url",
+		"verification_enabled",
+		"verification_ui_url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varAccountExperienceConfiguration := _AccountExperienceConfiguration{}
 
 	err = json.Unmarshal(data, &varAccountExperienceConfiguration)
@@ -434,16 +583,22 @@ func (o *AccountExperienceConfiguration) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "account_experience_theme_stylesheet")
-		delete(additionalProperties, "favicon_type")
-		delete(additionalProperties, "favicon_url")
-		delete(additionalProperties, "kratos_selfservice_default_browser_return_url")
-		delete(additionalProperties, "kratos_selfservice_flows_recovery_enabled")
-		delete(additionalProperties, "kratos_selfservice_flows_registration_enabled")
-		delete(additionalProperties, "kratos_selfservice_flows_verification_enabled")
-		delete(additionalProperties, "logo_url")
+		delete(additionalProperties, "default_redirect_url")
+		delete(additionalProperties, "error_ui_url")
+		delete(additionalProperties, "favicon_dark_url")
+		delete(additionalProperties, "favicon_light_url")
+		delete(additionalProperties, "login_ui_url")
+		delete(additionalProperties, "logo_dark_url")
+		delete(additionalProperties, "logo_light_url")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "organization_map")
+		delete(additionalProperties, "recovery_enabled")
+		delete(additionalProperties, "recovery_ui_url")
+		delete(additionalProperties, "registration_enabled")
+		delete(additionalProperties, "registration_ui_url")
+		delete(additionalProperties, "settings_ui_url")
+		delete(additionalProperties, "stylesheet")
+		delete(additionalProperties, "verification_enabled")
+		delete(additionalProperties, "verification_ui_url")
 		o.AdditionalProperties = additionalProperties
 	}
 
