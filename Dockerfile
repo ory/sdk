@@ -122,9 +122,13 @@ RUN gem install bundler -v 2.3.26 && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends ruby-dev
 
-ADD go.mod go.mod
-ADD go.sum go.sum
-RUN go build -o /usr/local/bin/ory github.com/ory/cli
+ARG ORY_CLI_VERSION=1.1.0
+
+RUN wget https://github.com/ory/cli/releases/download/v${ORY_CLI_VERSION}/ory_${ORY_CLI_VERSION}-linux_64bit.tar.gz \
+    && tar xf ory_${ORY_CLI_VERSION}-linux_64bit.tar.gz \
+    && mv ory /usr/local/bin/ory \
+    && chmod +x /usr/local/bin/ory \
+    && rm ory_${ORY_CLI_VERSION}-linux_64bit.tar.gz
 
 RUN swagger version
 RUN ory version
