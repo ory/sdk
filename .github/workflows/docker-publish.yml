@@ -9,10 +9,16 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+      - name: Extract version
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
       - name: Push to Docker Hub
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_SECRET_AREKKAS }}
           repository: oryd/sdk
-          tag_with_ref: true
+          push: true
+          tags: |
+            oryd/sdk:${{ env.VERSION }}
+            oryd/sdk:latest
