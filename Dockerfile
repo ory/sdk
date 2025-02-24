@@ -1,11 +1,10 @@
-# can't use bookworm (latest LTS as of June23) yet, as elixir/erlang does not provide packages for it yet. Check if https://binaries.erlang-solutions.com/debian/dists/bookworm/ is available to change this
 FROM openjdk:21-bookworm
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates ssh bash
 
 COPY scripts/build ./scripts
 
-ENV GOLANG_VERSION 1.17
+ENV GOLANG_VERSION 1.23.6
 
 RUN set -eux; \
 	apt-get install -y --no-install-recommends bash build-essential openssl golang-go curl wget; \
@@ -56,7 +55,7 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs
 # the following is a workaround for openjdk-11-jre-headless erroring due to not having a man path in slim-debian
 RUN apt-get update -y
-RUN apt-get install -y --no-install-recommends python3 python3-dev python3-full python3-pip python3-venv ruby jq gnupg git gettext libffi-dev libssl-dev php composer php-curl php-dom php-xml php-simplexml php-xmlwriter maven pkg-config twine sudo apt-transport-https
+RUN apt-get install -y --no-install-recommends erlang-base erlang-dev python3 python3-dev python3-full python3-pip python3-venv ruby jq gnupg git gettext libffi-dev libssl-dev php composer php-curl php-dom php-xml php-simplexml php-xmlwriter maven pkg-config twine sudo apt-transport-https
 # RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby jq build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev php composer php-curl php7-tokenizer wget php-dom php-xml php-simplexml php-xmlwriter maven
 
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
