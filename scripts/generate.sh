@@ -282,11 +282,8 @@ rust () {
 
   file="${dir}/Cargo.toml"
 
-  if [ $project != "client" ]; then
-    (sed "s/${VERSION}/${RAW_VERSION}"'"\ndescription = "SDK Client for Ory '"${PROJECT_UCF}"'"\ndocumentation = "https:\/\/www.ory.sh\/'"${PROJECT}"'\/docs\/sdk"\nhomepage = "https:\/\/www.ory.sh"\nlicense = "Apache-2.0/g' < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
-  else
-    (sed "s/${VERSION}/${RAW_VERSION}"'"\ndescription = "SDK Client for Ory"\ndocumentation = "https:\/\/www.ory.sh\/docs\/sdk"\nhomepage = "https:\/\/www.ory.sh"\nlicense = "Apache-2.0/g' < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
-  fi
+  sed -i "s/description = \"[^\"]*\"/description = \"${PACKAGE_DESCRIPTION}\"/g" "${file}"
+
   cp "LICENSE" "clients/${PROJECT}/rust"
 }
 
@@ -311,7 +308,12 @@ elixir () {
 	    -c ./config/client/elixir.yml.proc.yml
 
   (sed "s/licenses:.*$/licenses: [\"Apache-2.0\"],\n      links: %{\n        \"GitHub\" => \"https:\/\/github.com\/ory\/sdk\",\n        \"Website\" => \"https:\/\/www.ory.sh\",\n        \"Documentation\" => \"https:\/\/www.ory.sh\/docs\",\n        \"Product\" => \"https:\/\/console.ory.sh\"\n      }/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
-  (sed "s/${VERSION}/${RAW_VERSION}/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
+#  (sed "s/${VERSION}/${RAW_VERSION}/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
+  sed -i '/^\s*description: """$/,/^\s*""",$/c\
+      description: """\
+      '"${PACKAGE_DESCRIPTION}"'\
+      """,
+  ' "${file}"
 
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }

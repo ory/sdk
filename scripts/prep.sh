@@ -67,10 +67,10 @@ export SPEC_FILE=${spec_file}
 # shellcheck disable=SC2155
 export PROJECT_UCF="$(tr '[:lower:]' '[:upper:]' <<< "${project:0:1}")${project:1}"
 export GPG_OPTS='--pinentry-mode loopback'
+export PACKAGE_DESCRIPTION=$(cat "config/descriptions/${PROJECT}.txt")
 
 export DOTNET_PACKAGE_NAME="Ory.$PROJECT_UCF.Client"
 export DART_PUB_NAME="ory_${PROJECT}_client"
-export DART_PUB_DESCRIPTION=$(cat "config/descriptions/${PROJECT}.txt")
 export DART_PUB_REPOSITORY="https://github.com/ory/sdk/tree/master/clients/${PROJECT}/dart"
 
 export JAVA_GROUP_ID=sh.ory.$PROJECT
