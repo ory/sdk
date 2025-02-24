@@ -151,7 +151,7 @@ python () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
+  openapi-generator-cli version-manager set 7.11.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g python \
     -o "$dir" \
