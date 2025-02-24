@@ -5,6 +5,7 @@
 export 'package:ory_client/src/api.dart';
 export 'package:ory_client/src/auth/api_key_auth.dart';
 export 'package:ory_client/src/auth/basic_auth.dart';
+export 'package:ory_client/src/auth/bearer_auth.dart';
 export 'package:ory_client/src/auth/oauth.dart';
 export 'package:ory_client/src/serializers.dart';
 export 'package:ory_client/src/model/date.dart';
@@ -298,3 +299,4 @@ export 'package:ory_client/src/model/version.dart';
 export 'package:ory_client/src/model/warning.dart';
 export 'package:ory_client/src/model/workspace.dart';
 export 'package:ory_client/src/model/workspace_api_key.dart';
+
