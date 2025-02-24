@@ -4,51 +4,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 
 COPY scripts/build ./scripts
 
-ENV GOLANG_VERSION 1.23.6
+ENV GOLANG_VERSION 1.24.0
 
-RUN set -eux; \
-	apt-get install -y --no-install-recommends bash build-essential openssl golang-go curl wget; \
-	rm -rf /var/lib/apt/lists/*; \
-	export \
-	# set GOROOT_BOOTSTRAP such that we can actually build Go
-	GOROOT_BOOTSTRAP="$(go env GOROOT)" \
-	# ... and set "cross-building" related vars to the installed system's values so that we create a build targeting the proper arch
-	# (for example, if our build host is GOARCH=amd64, but our build env/image is GOARCH=386, our build needs GOARCH=386)
-	GOOS="$(go env GOOS)" \
-	GOARCH="$(go env GOARCH)" \
-	GOHOSTOS="$(go env GOHOSTOS)" \
-	GOHOSTARCH="$(go env GOHOSTARCH)" \
-	; \
-	# also explicitly set GO386 and GOARM if appropriate
-	# https://github.com/docker-library/golang/issues/184
-	dpkgArch="$(dpkg --print-architecture)"; \
-	case "$dpkgArch" in \
-	armhf) export GOARM='6' ;; \
-	armv7) export GOARM='7' ;; \
-	x86) export GO386='387' ;; \
-	esac; \
-	\
-	wget -O go.tgz "https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz"; \
-	tar -C /usr/local -xzf go.tgz; \
-	rm go.tgz; \
-	\
-	cd /usr/local/go/src; \
-	./make.bash; \
-	\
-	rm -rf \
-	# https://github.com/golang/go/blob/0b30cf534a03618162d3015c8705dd2231e34703/src/cmd/dist/buildtool.go#L121-L125
-	/usr/local/go/pkg/bootstrap \
-	# https://golang.org/cl/82095
-	# https://github.com/golang/build/blob/e3fe1605c30f6a3fd136b561569933312ede8782/cmd/release/releaselet.go#L56
-	/usr/local/go/pkg/obj \
-	; \
-	\
-	export PATH="/usr/local/go/bin:$PATH"; \
-	go version
+RUN set -eux; apt-get install -y --no-install-recommends bash build-essential openssl wget;
+
+
+RUN wget https://go.dev/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz \
+    && rm -rf /usr/local/go && tar -C /usr/local -xzf go1.24.0.linux-amd64.tar.gz \
+    && rm go1.24.0.linux-amd64.tar.gz
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
-ENV GO111MODULE=on
+
+RUN go version
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
