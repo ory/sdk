@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.16.9
-  - Build date: 2025-02-24T16:23:54.249484488Z[Etc/UTC]
+- API version: v1.16.10
+  - Build date: 2025-02-24T22:19:06.262890642Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.16.9</version>
+  <version>v1.16.10</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.16.9"
+     implementation "sh.ory:client:v1.16.10"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.16.9.jar`
+* `target/client-v1.16.10.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
