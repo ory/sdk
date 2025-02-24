@@ -7,6 +7,7 @@ A completed OAuth 2.0 Consent Session.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **consent_request** | [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  | [optional] 
+**consent_request_id** | **str** | ConsentRequestID is the identifier of the consent request that initiated this consent session. | [optional] 
 **context** | **object** |  | [optional] 
 **expires_at** | [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  | [optional] 
 **grant_access_token_audience** | **List[str]** |  | [optional] 

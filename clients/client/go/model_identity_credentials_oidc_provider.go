@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.16.7
+API version: v1.16.9
 Contact: support@ory.sh
 */
 
@@ -26,6 +26,7 @@ type IdentityCredentialsOidcProvider struct {
 	Organization *string `json:"organization,omitempty"`
 	Provider *string `json:"provider,omitempty"`
 	Subject *string `json:"subject,omitempty"`
+	UseAutoLink *bool `json:"use_auto_link,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -240,6 +241,38 @@ func (o *IdentityCredentialsOidcProvider) SetSubject(v string) {
 	o.Subject = &v
 }
 
+// GetUseAutoLink returns the UseAutoLink field value if set, zero value otherwise.
+func (o *IdentityCredentialsOidcProvider) GetUseAutoLink() bool {
+	if o == nil || IsNil(o.UseAutoLink) {
+		var ret bool
+		return ret
+	}
+	return *o.UseAutoLink
+}
+
+// GetUseAutoLinkOk returns a tuple with the UseAutoLink field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IdentityCredentialsOidcProvider) GetUseAutoLinkOk() (*bool, bool) {
+	if o == nil || IsNil(o.UseAutoLink) {
+		return nil, false
+	}
+	return o.UseAutoLink, true
+}
+
+// HasUseAutoLink returns a boolean if a field has been set.
+func (o *IdentityCredentialsOidcProvider) HasUseAutoLink() bool {
+	if o != nil && !IsNil(o.UseAutoLink) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseAutoLink gets a reference to the given bool and assigns it to the UseAutoLink field.
+func (o *IdentityCredentialsOidcProvider) SetUseAutoLink(v bool) {
+	o.UseAutoLink = &v
+}
+
 func (o IdentityCredentialsOidcProvider) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -267,6 +300,9 @@ func (o IdentityCredentialsOidcProvider) ToMap() (map[string]interface{}, error)
 	}
 	if !IsNil(o.Subject) {
 		toSerialize["subject"] = o.Subject
+	}
+	if !IsNil(o.UseAutoLink) {
+		toSerialize["use_auto_link"] = o.UseAutoLink
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -296,6 +332,7 @@ func (o *IdentityCredentialsOidcProvider) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "organization")
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "subject")
+		delete(additionalProperties, "use_auto_link")
 		o.AdditionalProperties = additionalProperties
 	}
 

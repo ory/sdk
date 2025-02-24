@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **consent_request** | Option<[**models::OAuth2ConsentRequest**](oAuth2ConsentRequest.md)> |  | [optional]
+**consent_request_id** | Option<**String**> | ConsentRequestID is the identifier of the consent request that initiated this consent session. | [optional]
 **context** | Option<[**serde_json::Value**](.md)> |  | [optional]
 **expires_at** | Option<[**models::OAuth2ConsentSessionExpiresAt**](oAuth2ConsentSession_expires_at.md)> |  | [optional]
 **grant_access_token_audience** | Option<**Vec<String>**> |  | [optional]

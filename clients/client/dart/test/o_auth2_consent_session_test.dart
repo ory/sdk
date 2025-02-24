@@ -12,6 +12,12 @@ void main() {
       // TODO
     });
 
+    // ConsentRequestID is the identifier of the consent request that initiated this consent session.
+    // String consentRequestId
+    test('to test the property `consentRequestId`', () async {
+      // TODO
+    });
+
     // JsonObject context
     test('to test the property `context`', () async {
       // TODO

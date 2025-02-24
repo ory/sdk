@@ -61,6 +61,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_samlSp =
     const QuotaUsageFeatureEnum._('samlSp');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_samlIdp =
     const QuotaUsageFeatureEnum._('samlIdp');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_autoLinkPolicy =
+    const QuotaUsageFeatureEnum._('autoLinkPolicy');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationRegional =
     const QuotaUsageFeatureEnum._('dataLocationRegional');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
@@ -136,6 +138,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_samlSp;
     case 'samlIdp':
       return _$quotaUsageFeatureEnum_samlIdp;
+    case 'autoLinkPolicy':
+      return _$quotaUsageFeatureEnum_autoLinkPolicy;
     case 'dataLocationRegional':
       return _$quotaUsageFeatureEnum_dataLocationRegional;
     case 'rateLimitTier':
@@ -184,6 +188,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_captcha,
   _$quotaUsageFeatureEnum_samlSp,
   _$quotaUsageFeatureEnum_samlIdp,
+  _$quotaUsageFeatureEnum_autoLinkPolicy,
   _$quotaUsageFeatureEnum_dataLocationRegional,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
@@ -226,6 +231,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'captcha': 'captcha',
     'samlSp': 'saml_sp',
     'samlIdp': 'saml_idp',
+    'autoLinkPolicy': 'auto_link_policy',
     'dataLocationRegional': 'data_location_regional',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
@@ -262,6 +268,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'captcha': 'captcha',
     'saml_sp': 'samlSp',
     'saml_idp': 'samlIdp',
+    'auto_link_policy': 'autoLinkPolicy',
     'data_location_regional': 'dataLocationRegional',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',

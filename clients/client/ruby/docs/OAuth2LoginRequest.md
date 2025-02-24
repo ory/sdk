@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **challenge** | **String** | ID is the identifier (\&quot;login challenge\&quot;) of the login request. It is used to identify the session. |  |
+| **challenge** | **String** | ID is the identifier of the login request. |  |
 | **client** | [**OAuth2Client**](OAuth2Client.md) |  |  |
 | **oidc_context** | [**OAuth2ConsentRequestOpenIDConnectContext**](OAuth2ConsentRequestOpenIDConnectContext.md) |  | [optional] |
 | **request_url** | **String** | RequestURL is the original OAuth 2.0 Authorization URL requested by the OAuth 2.0 client. It is the URL which initiates the OAuth 2.0 Authorization Code or OAuth 2.0 Implicit flow. This URL is typically not needed, but might come in handy if you want to deal with additional request parameters. |  |

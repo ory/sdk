@@ -9,6 +9,7 @@ defmodule Ory.Model.OAuth2ConsentSession do
   @derive Jason.Encoder
   defstruct [
     :consent_request,
+    :consent_request_id,
     :context,
     :expires_at,
     :grant_access_token_audience,
@@ -21,6 +22,7 @@ defmodule Ory.Model.OAuth2ConsentSession do
 
   @type t :: %__MODULE__{
     :consent_request => Ory.Model.OAuth2ConsentRequest.t | nil,
+    :consent_request_id => String.t | nil,
     :context => map() | nil,
     :expires_at => Ory.Model.OAuth2ConsentSessionExpiresAt.t | nil,
     :grant_access_token_audience => [String.t] | nil,

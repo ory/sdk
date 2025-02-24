@@ -994,6 +994,18 @@ void main() {
       // TODO
     });
 
+    // Configures the Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
+    // String kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey
+    test('to test the property `kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
+    // bool kratosSelfserviceMethodsCaptchaEnabled
+    test('to test the property `kratosSelfserviceMethodsCaptchaEnabled`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
     // String kratosSelfserviceMethodsCodeConfigLifespan
     test('to test the property `kratosSelfserviceMethodsCodeConfigLifespan`', () async {

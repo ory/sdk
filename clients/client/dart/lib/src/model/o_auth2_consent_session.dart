@@ -17,6 +17,7 @@ part 'o_auth2_consent_session.g.dart';
 ///
 /// Properties:
 /// * [consentRequest] 
+/// * [consentRequestId] - ConsentRequestID is the identifier of the consent request that initiated this consent session.
 /// * [context] 
 /// * [expiresAt] 
 /// * [grantAccessTokenAudience] 
@@ -29,6 +30,10 @@ part 'o_auth2_consent_session.g.dart';
 abstract class OAuth2ConsentSession implements Built<OAuth2ConsentSession, OAuth2ConsentSessionBuilder> {
   @BuiltValueField(wireName: r'consent_request')
   OAuth2ConsentRequest? get consentRequest;
+
+  /// ConsentRequestID is the identifier of the consent request that initiated this consent session.
+  @BuiltValueField(wireName: r'consent_request_id')
+  String? get consentRequestId;
 
   @BuiltValueField(wireName: r'context')
   JsonObject? get context;
@@ -84,6 +89,13 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
       yield serializers.serialize(
         object.consentRequest,
         specifiedType: const FullType(OAuth2ConsentRequest),
+      );
+    }
+    if (object.consentRequestId != null) {
+      yield r'consent_request_id';
+      yield serializers.serialize(
+        object.consentRequestId,
+        specifiedType: const FullType(String),
       );
     }
     if (object.context != null) {
@@ -171,6 +183,13 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
             specifiedType: const FullType(OAuth2ConsentRequest),
           ) as OAuth2ConsentRequest;
           result.consentRequest.replace(valueDes);
+          break;
+        case r'consent_request_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.consentRequestId = valueDes;
           break;
         case r'context':
           final valueDes = serializers.deserialize(

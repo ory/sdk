@@ -1019,7 +1019,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revokeOAuth2ConsentSessions**
-> revokeOAuth2ConsentSessions(subject, client, all)
+> revokeOAuth2ConsentSessions(subject, client, consentRequestId, all)
 
 Revoke OAuth 2.0 Consent Sessions of a Subject
 
@@ -1032,10 +1032,11 @@ import 'package:ory_client/api.dart';
 final api = OryClient().getOAuth2Api();
 final String subject = subject_example; // String | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
 final String client = client_example; // String | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID.
+final String consentRequestId = consentRequestId_example; // String | Consent Request ID  If set, revoke all token chains derived from this particular consent request ID.
 final bool all = true; // bool | Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted.
 
 try {
-    api.revokeOAuth2ConsentSessions(subject, client, all);
+    api.revokeOAuth2ConsentSessions(subject, client, consentRequestId, all);
 } catch on DioException (e) {
     print('Exception when calling OAuth2Api->revokeOAuth2ConsentSessions: $e\n');
 }
@@ -1045,8 +1046,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**| OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | 
+ **subject** | **String**| OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | [optional] 
  **client** | **String**| OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. | [optional] 
+ **consentRequestId** | **String**| Consent Request ID  If set, revoke all token chains derived from this particular consent request ID. | [optional] 
  **all** | **bool**| Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted. | [optional] 
 
 ### Return type
@@ -1069,7 +1071,7 @@ void (empty response body)
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
 ### Example
 ```dart

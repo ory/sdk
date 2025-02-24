@@ -2145,7 +2145,7 @@ void (empty response body)
 
 <a id="revokeoauth2consentsessions"></a>
 # **RevokeOAuth2ConsentSessions**
-> void RevokeOAuth2ConsentSessions (string subject, string? varClient = null, bool? all = null)
+> void RevokeOAuth2ConsentSessions (string? subject = null, string? varClient = null, string? consentRequestId = null, bool? all = null)
 
 Revoke OAuth 2.0 Consent Sessions of a Subject
 
@@ -2171,14 +2171,15 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new OAuth2Api(config);
-            var subject = "subject_example";  // string | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
+            var subject = "subject_example";  // string? | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. (optional) 
             var varClient = "varClient_example";  // string? | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. (optional) 
+            var consentRequestId = "consentRequestId_example";  // string? | Consent Request ID  If set, revoke all token chains derived from this particular consent request ID. (optional) 
             var all = true;  // bool? | Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted. (optional) 
 
             try
             {
                 // Revoke OAuth 2.0 Consent Sessions of a Subject
-                apiInstance.RevokeOAuth2ConsentSessions(subject, varClient, all);
+                apiInstance.RevokeOAuth2ConsentSessions(subject, varClient, consentRequestId, all);
             }
             catch (ApiException  e)
             {
@@ -2198,7 +2199,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Revoke OAuth 2.0 Consent Sessions of a Subject
-    apiInstance.RevokeOAuth2ConsentSessionsWithHttpInfo(subject, varClient, all);
+    apiInstance.RevokeOAuth2ConsentSessionsWithHttpInfo(subject, varClient, consentRequestId, all);
 }
 catch (ApiException e)
 {
@@ -2212,8 +2213,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **subject** | **string** | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. |  |
+| **subject** | **string?** | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | [optional]  |
 | **varClient** | **string?** | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. | [optional]  |
+| **consentRequestId** | **string?** | Consent Request ID  If set, revoke all token chains derived from this particular consent request ID. | [optional]  |
 | **all** | **bool?** | Revoke All Consent Sessions  If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional]  |
 
 ### Return type
@@ -2244,7 +2246,7 @@ void (empty response body)
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
 ### Example
 ```csharp

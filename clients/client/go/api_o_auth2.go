@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.16.7
+API version: v1.16.9
 Contact: support@ory.sh
 */
 
@@ -459,6 +459,8 @@ No OpenID Connect Front- or Back-channel logout is performed in this case.
 
 Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
 to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+
+When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return OAuth2APIRevokeOAuth2LoginSessionsRequest
@@ -3384,6 +3386,7 @@ type OAuth2APIRevokeOAuth2ConsentSessionsRequest struct {
 	ApiService OAuth2API
 	subject *string
 	client *string
+	consentRequestId *string
 	all *bool
 }
 
@@ -3396,6 +3399,12 @@ func (r OAuth2APIRevokeOAuth2ConsentSessionsRequest) Subject(subject string) OAu
 // OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID.
 func (r OAuth2APIRevokeOAuth2ConsentSessionsRequest) Client(client string) OAuth2APIRevokeOAuth2ConsentSessionsRequest {
 	r.client = &client
+	return r
+}
+
+// Consent Request ID  If set, revoke all token chains derived from this particular consent request ID.
+func (r OAuth2APIRevokeOAuth2ConsentSessionsRequest) ConsentRequestId(consentRequestId string) OAuth2APIRevokeOAuth2ConsentSessionsRequest {
+	r.consentRequestId = &consentRequestId
 	return r
 }
 
@@ -3443,13 +3452,15 @@ func (a *OAuth2APIService) RevokeOAuth2ConsentSessionsExecute(r OAuth2APIRevokeO
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.subject == nil {
-		return nil, reportError("subject is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "subject", r.subject, "")
+	if r.subject != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject", r.subject, "")
+	}
 	if r.client != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "client", r.client, "")
+	}
+	if r.consentRequestId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "consent_request_id", r.consentRequestId, "")
 	}
 	if r.all != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "all", r.all, "")
@@ -3541,6 +3552,8 @@ No OpenID Connect Front- or Back-channel logout is performed in this case.
 
 Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
 to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+
+When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return OAuth2APIRevokeOAuth2LoginSessionsRequest

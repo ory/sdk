@@ -10,7 +10,9 @@ defmodule Ory.Model.OAuth2LogoutRequest do
   defstruct [
     :challenge,
     :client,
+    :expires_at,
     :request_url,
+    :requested_at,
     :rp_initiated,
     :sid,
     :subject
@@ -19,7 +21,9 @@ defmodule Ory.Model.OAuth2LogoutRequest do
   @type t :: %__MODULE__{
     :challenge => String.t | nil,
     :client => Ory.Model.OAuth2Client.t | nil,
+    :expires_at => DateTime.t | nil,
     :request_url => String.t | nil,
+    :requested_at => DateTime.t | nil,
     :rp_initiated => boolean() | nil,
     :sid => String.t | nil,
     :subject => String.t | nil
@@ -30,6 +34,8 @@ defmodule Ory.Model.OAuth2LogoutRequest do
   def decode(value) do
     value
      |> Deserializer.deserialize(:client, :struct, Ory.Model.OAuth2Client)
+     |> Deserializer.deserialize(:expires_at, :datetime, nil)
+     |> Deserializer.deserialize(:requested_at, :datetime, nil)
   end
 end
 

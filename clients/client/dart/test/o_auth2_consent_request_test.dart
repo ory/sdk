@@ -18,7 +18,7 @@ void main() {
       // TODO
     });
 
-    // ID is the identifier (\"authorization challenge\") of the consent authorization request. It is used to identify the session.
+    // Challenge is used to retrieve/accept/deny the consent request.
     // String challenge
     test('to test the property `challenge`', () async {
       // TODO
@@ -26,6 +26,12 @@ void main() {
 
     // OAuth2Client client
     test('to test the property `client`', () async {
+      // TODO
+    });
+
+    // ConsentRequestID is the ID of the consent request.
+    // String consentRequestId
+    test('to test the property `consentRequestId`', () async {
       // TODO
     });
 

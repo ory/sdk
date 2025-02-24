@@ -10,6 +10,8 @@ class _$OAuth2ConsentSession extends OAuth2ConsentSession {
   @override
   final OAuth2ConsentRequest? consentRequest;
   @override
+  final String? consentRequestId;
+  @override
   final JsonObject? context;
   @override
   final OAuth2ConsentSessionExpiresAt? expiresAt;
@@ -32,6 +34,7 @@ class _$OAuth2ConsentSession extends OAuth2ConsentSession {
 
   _$OAuth2ConsentSession._(
       {this.consentRequest,
+      this.consentRequestId,
       this.context,
       this.expiresAt,
       this.grantAccessTokenAudience,
@@ -56,6 +59,7 @@ class _$OAuth2ConsentSession extends OAuth2ConsentSession {
     if (identical(other, this)) return true;
     return other is OAuth2ConsentSession &&
         consentRequest == other.consentRequest &&
+        consentRequestId == other.consentRequestId &&
         context == other.context &&
         expiresAt == other.expiresAt &&
         grantAccessTokenAudience == other.grantAccessTokenAudience &&
@@ -70,6 +74,7 @@ class _$OAuth2ConsentSession extends OAuth2ConsentSession {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, consentRequest.hashCode);
+    _$hash = $jc(_$hash, consentRequestId.hashCode);
     _$hash = $jc(_$hash, context.hashCode);
     _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, grantAccessTokenAudience.hashCode);
@@ -86,6 +91,7 @@ class _$OAuth2ConsentSession extends OAuth2ConsentSession {
   String toString() {
     return (newBuiltValueToStringHelper(r'OAuth2ConsentSession')
           ..add('consentRequest', consentRequest)
+          ..add('consentRequestId', consentRequestId)
           ..add('context', context)
           ..add('expiresAt', expiresAt)
           ..add('grantAccessTokenAudience', grantAccessTokenAudience)
@@ -107,6 +113,11 @@ class OAuth2ConsentSessionBuilder
       _$this._consentRequest ??= new OAuth2ConsentRequestBuilder();
   set consentRequest(OAuth2ConsentRequestBuilder? consentRequest) =>
       _$this._consentRequest = consentRequest;
+
+  String? _consentRequestId;
+  String? get consentRequestId => _$this._consentRequestId;
+  set consentRequestId(String? consentRequestId) =>
+      _$this._consentRequestId = consentRequestId;
 
   JsonObject? _context;
   JsonObject? get context => _$this._context;
@@ -156,6 +167,7 @@ class OAuth2ConsentSessionBuilder
     final $v = _$v;
     if ($v != null) {
       _consentRequest = $v.consentRequest?.toBuilder();
+      _consentRequestId = $v.consentRequestId;
       _context = $v.context;
       _expiresAt = $v.expiresAt?.toBuilder();
       _grantAccessTokenAudience = $v.grantAccessTokenAudience?.toBuilder();
@@ -189,6 +201,7 @@ class OAuth2ConsentSessionBuilder
       _$result = _$v ??
           new _$OAuth2ConsentSession._(
               consentRequest: _consentRequest?.build(),
+              consentRequestId: consentRequestId,
               context: context,
               expiresAt: _expiresAt?.build(),
               grantAccessTokenAudience: _grantAccessTokenAudience?.build(),

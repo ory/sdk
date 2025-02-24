@@ -171,6 +171,8 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsVerificationNotifyUnknownRecipients** | Pointer to **bool** | Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \&quot;selfservice.flows.verification.notify_unknown_recipients\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationUiUrl** | Pointer to **string** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationUse** | Pointer to **string** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
+**KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey** | Pointer to **string** | Configures the Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] 
+**KratosSelfserviceMethodsCaptchaEnabled** | Pointer to **bool** | Configures the Ory Kratos Self-Service Methods&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] 
 **KratosSelfserviceMethodsCodeConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled** | Pointer to **bool** | Enables a fallback method required in certain legacy use cases.  This governs the \&quot;selfservice.methods.code.config.missing_credential_fallback_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodeEnabled** | Pointer to **bool** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. | [optional] 
@@ -4443,6 +4445,56 @@ SetKratosSelfserviceFlowsVerificationUse sets KratosSelfserviceFlowsVerification
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationUse() bool`
 
 HasKratosSelfserviceFlowsVerificationUse returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey() string`
+
+GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey returns the KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekeyOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekeyOk() (*string, bool)`
+
+GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekeyOk returns a tuple with the KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey(v string)`
+
+SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey sets KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey field to given value.
+
+### HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey() bool`
+
+HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCaptchaEnabled
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaEnabled() bool`
+
+GetKratosSelfserviceMethodsCaptchaEnabled returns the KratosSelfserviceMethodsCaptchaEnabled field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCaptchaEnabledOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaEnabledOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsCaptchaEnabledOk returns a tuple with the KratosSelfserviceMethodsCaptchaEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCaptchaEnabled
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCaptchaEnabled(v bool)`
+
+SetKratosSelfserviceMethodsCaptchaEnabled sets KratosSelfserviceMethodsCaptchaEnabled field to given value.
+
+### HasKratosSelfserviceMethodsCaptchaEnabled
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCaptchaEnabled() bool`
+
+HasKratosSelfserviceMethodsCaptchaEnabled returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsCodeConfigLifespan
 

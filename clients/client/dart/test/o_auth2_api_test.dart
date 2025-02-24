@@ -209,14 +209,14 @@ void main() {
     //
     // This endpoint revokes a subject's granted consent sessions and invalidates all associated OAuth 2.0 Access Tokens. You may also only revoke sessions for a specific OAuth 2.0 Client ID.
     //
-    //Future revokeOAuth2ConsentSessions(String subject, { String client, bool all }) async
+    //Future revokeOAuth2ConsentSessions({ String subject, String client, String consentRequestId, bool all }) async
     test('test revokeOAuth2ConsentSessions', () async {
       // TODO
     });
 
     // Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
     //
-    // This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+    // This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
     //
     //Future revokeOAuth2LoginSessions({ String subject, String sid }) async
     test('test revokeOAuth2LoginSessions', () async {

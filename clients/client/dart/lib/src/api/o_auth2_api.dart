@@ -1986,6 +1986,7 @@ class OAuth2Api {
   /// Parameters:
   /// * [subject] - OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
   /// * [client] - OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID.
+  /// * [consentRequestId] - Consent Request ID  If set, revoke all token chains derived from this particular consent request ID.
   /// * [all] - Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -1997,8 +1998,9 @@ class OAuth2Api {
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> revokeOAuth2ConsentSessions({ 
-    required String subject,
+    String? subject,
     String? client,
+    String? consentRequestId,
     bool? all,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -2027,8 +2029,9 @@ class OAuth2Api {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
+      if (subject != null) r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
       if (client != null) r'client': encodeQueryParameter(_serializers, client, const FullType(String)),
+      if (consentRequestId != null) r'consent_request_id': encodeQueryParameter(_serializers, consentRequestId, const FullType(String)),
       if (all != null) r'all': encodeQueryParameter(_serializers, all, const FullType(bool)),
     };
 
@@ -2045,7 +2048,7 @@ class OAuth2Api {
   }
 
   /// Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
-  /// This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via &#x60;sid&#x60; query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+  /// This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via &#x60;sid&#x60; query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
   ///
   /// Parameters:
   /// * [subject] - OAuth 2.0 Subject  The subject to revoke authentication sessions for.

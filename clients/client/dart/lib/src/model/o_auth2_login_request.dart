@@ -14,7 +14,7 @@ part 'o_auth2_login_request.g.dart';
 /// OAuth2LoginRequest
 ///
 /// Properties:
-/// * [challenge] - ID is the identifier (\"login challenge\") of the login request. It is used to identify the session.
+/// * [challenge] - ID is the identifier of the login request.
 /// * [client] 
 /// * [oidcContext] 
 /// * [requestUrl] - RequestURL is the original OAuth 2.0 Authorization URL requested by the OAuth 2.0 client. It is the URL which initiates the OAuth 2.0 Authorization Code or OAuth 2.0 Implicit flow. This URL is typically not needed, but might come in handy if you want to deal with additional request parameters.
@@ -25,7 +25,7 @@ part 'o_auth2_login_request.g.dart';
 /// * [subject] - Subject is the user ID of the end-user that authenticated. Now, that end user needs to grant or deny the scope requested by the OAuth 2.0 client. If this value is set and `skip` is true, you MUST include this subject type when accepting the login request, or the request will fail.
 @BuiltValue()
 abstract class OAuth2LoginRequest implements Built<OAuth2LoginRequest, OAuth2LoginRequestBuilder> {
-  /// ID is the identifier (\"login challenge\") of the login request. It is used to identify the session.
+  /// ID is the identifier of the login request.
   @BuiltValueField(wireName: r'challenge')
   String get challenge;
 

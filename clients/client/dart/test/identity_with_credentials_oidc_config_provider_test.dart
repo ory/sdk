@@ -19,5 +19,11 @@ void main() {
       // TODO
     });
 
+    // If set, this credential allows the user to sign in using the OpenID Connect provider without setting the subject first.
+    // bool useAutoLink
+    test('to test the property `useAutoLink`', () async {
+      // TODO
+    });
+
   });
 }

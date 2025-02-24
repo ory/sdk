@@ -6,7 +6,7 @@ OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usuall
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access_token_strategy** | **str** | OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are &#x60;jwt&#x60; and &#x60;opaque&#x60;. &#x60;jwt&#x60; is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens Setting the stragegy here overrides the global setting in &#x60;strategies.access_token&#x60;. | [optional] 
+**access_token_strategy** | **str** | OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are &#x60;jwt&#x60; and &#x60;opaque&#x60;. &#x60;jwt&#x60; is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token Setting the stragegy here overrides the global setting in &#x60;strategies.access_token&#x60;. | [optional] 
 **allowed_cors_origins** | **List[str]** |  | [optional] 
 **audience** | **List[str]** |  | [optional] 
 **authorization_code_grant_access_token_lifespan** | **str** |  | [optional] 

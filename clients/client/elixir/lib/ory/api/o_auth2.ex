@@ -796,9 +796,10 @@ defmodule Ory.Api.OAuth2 do
   ### Parameters
 
   - `connection` (Ory.Connection): Connection to server
-  - `subject` (String.t): OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
   - `opts` (keyword): Optional parameters
+    - `:subject` (String.t): OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
     - `:client` (String.t): OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID.
+    - `:consent_request_id` (String.t): Consent Request ID  If set, revoke all token chains derived from this particular consent request ID.
     - `:all` (boolean()): Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted.
 
   ### Returns
@@ -806,10 +807,12 @@ defmodule Ory.Api.OAuth2 do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec revoke_o_auth2_consent_sessions(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorOAuth2.t} | {:error, Tesla.Env.t}
-  def revoke_o_auth2_consent_sessions(connection, subject, opts \\ []) do
+  @spec revoke_o_auth2_consent_sessions(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorOAuth2.t} | {:error, Tesla.Env.t}
+  def revoke_o_auth2_consent_sessions(connection, opts \\ []) do
     optional_params = %{
+      :subject => :query,
       :client => :query,
+      :consent_request_id => :query,
       :all => :query
     }
 
@@ -817,7 +820,6 @@ defmodule Ory.Api.OAuth2 do
       %{}
       |> method(:delete)
       |> url("/admin/oauth2/auth/sessions/consent")
-      |> add_param(:query, :subject, subject)
       |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
@@ -831,7 +833,7 @@ defmodule Ory.Api.OAuth2 do
 
   @doc """
   Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
-  This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+  This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
   ### Parameters
 

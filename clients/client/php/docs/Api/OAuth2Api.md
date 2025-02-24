@@ -1387,7 +1387,7 @@ void (empty response body)
 ## `revokeOAuth2ConsentSessions()`
 
 ```php
-revokeOAuth2ConsentSessions($subject, $client, $all)
+revokeOAuth2ConsentSessions($subject, $client, $consentRequestId, $all)
 ```
 
 Revoke OAuth 2.0 Consent Sessions of a Subject
@@ -1413,10 +1413,11 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
 );
 $subject = 'subject_example'; // string | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
 $client = 'client_example'; // string | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID.
+$consentRequestId = 'consentRequestId_example'; // string | Consent Request ID  If set, revoke all token chains derived from this particular consent request ID.
 $all = True; // bool | Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted.
 
 try {
-    $apiInstance->revokeOAuth2ConsentSessions($subject, $client, $all);
+    $apiInstance->revokeOAuth2ConsentSessions($subject, $client, $consentRequestId, $all);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->revokeOAuth2ConsentSessions: ', $e->getMessage(), PHP_EOL;
 }
@@ -1426,8 +1427,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **subject** | **string**| OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | |
+| **subject** | **string**| OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | [optional] |
 | **client** | **string**| OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. | [optional] |
+| **consentRequestId** | **string**| Consent Request ID  If set, revoke all token chains derived from this particular consent request ID. | [optional] |
 | **all** | **bool**| Revoke All Consent Sessions  If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional] |
 
 ### Return type
@@ -1455,7 +1457,7 @@ revokeOAuth2LoginSessions($subject, $sid)
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
 ### Example
 

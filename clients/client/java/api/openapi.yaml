@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /ptos
   title: Ory APIs
-  version: v1.16.7
+  version: v1.16.9
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -2092,7 +2092,7 @@ paths:
         explode: true
         in: query
         name: subject
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -2103,6 +2103,17 @@ paths:
         explode: true
         in: query
         name: client
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          Consent Request ID
+
+          If set, revoke all token chains derived from this particular consent request ID.
+        explode: true
+        in: query
+        name: consent_request_id
         required: false
         schema:
           type: string
@@ -2220,6 +2231,8 @@ paths:
 
         Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected
         to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+
+        When using Ory for the identity provider, the login provider will also invalidate the session cookie.
       operationId: revokeOAuth2LoginSessions
       parameters:
       - description: |-
@@ -9959,6 +9972,20 @@ components:
           x-go-enum-desc: |-
             link SelfServiceMessageVerificationStrategyLink
             code SelfServiceMessageVerificationStrategyCode
+        kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey:
+          description: |-
+            Configures the Turnstile site key for CAPTCHA protection
+
+            The site key is public and will be shared with the client.
+
+            Reach out to your account manager to enable this feature.
+          type: string
+        kratos_selfservice_methods_captcha_enabled:
+          description: |-
+            Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting
+
+            Reach out to your account manager to enable this feature.
+          type: boolean
         kratos_selfservice_methods_code_config_lifespan:
           description: |-
             Configures the Ory Kratos Code Method's lifespan
@@ -12913,6 +12940,8 @@ components:
           type: string
         subject:
           type: string
+        use_auto_link:
+          type: boolean
       title: CredentialsOIDCProvider is contains a specific OpenID COnnect credential
         for a particular connection (e.g. Google).
       type: object
@@ -13060,6 +13089,10 @@ components:
           description: The subject (`sub`) of the OpenID Connect connection. Usually
             the `sub` field of the ID Token.
           type: string
+        use_auto_link:
+          description: "If set, this credential allows the user to sign in using the\
+            \ OpenID Connect provider without setting the subject first."
+          type: boolean
       required:
       - provider
       - subject
@@ -15587,6 +15620,20 @@ components:
           x-go-enum-desc: |-
             link SelfServiceMessageVerificationStrategyLink
             code SelfServiceMessageVerificationStrategyCode
+        kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey:
+          description: |-
+            Configures the Turnstile site key for CAPTCHA protection
+
+            The site key is public and will be shared with the client.
+
+            Reach out to your account manager to enable this feature.
+          type: string
+        kratos_selfservice_methods_captcha_enabled:
+          description: |-
+            Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting
+
+            Reach out to your account manager to enable this feature.
+          type: boolean
         kratos_selfservice_methods_code_config_lifespan:
           description: |-
             Configures the Ory Kratos Code Method's lifespan
@@ -16363,7 +16410,7 @@ components:
             OAuth 2.0 Access Token Strategy
 
             AccessTokenStrategy is the strategy used to generate access tokens.
-            Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens
+            Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token
             Setting the stragegy here overrides the global setting in `strategies.access_token`.
           type: string
         allowed_cors_origins:
@@ -16719,6 +16766,7 @@ components:
       type: object
     oAuth2ConsentRequest:
       example:
+        consent_request_id: consent_request_id
         requested_access_token_audience:
         - requested_access_token_audience
         - requested_access_token_audience
@@ -16825,12 +16873,13 @@ components:
             \ JSON for SQL storage."
           type: array
         challenge:
-          description: |-
-            ID is the identifier ("authorization challenge") of the consent authorization request. It is used to
-            identify the session.
+          description: Challenge is used to retrieve/accept/deny the consent request.
           type: string
         client:
           $ref: '#/components/schemas/oAuth2Client'
+        consent_request_id:
+          description: ConsentRequestID is the ID of the consent request.
+          type: string
         context:
           title: "JSONRawMessage represents a json.RawMessage that works well with\
             \ JSON, SQL, and Swagger."
@@ -16948,8 +16997,10 @@ components:
     oAuth2ConsentSession:
       description: A completed OAuth 2.0 Consent Session.
       example:
+        consent_request_id: consent_request_id
         remember: true
         consent_request:
+          consent_request_id: consent_request_id
           requested_access_token_audience:
           - requested_access_token_audience
           - requested_access_token_audience
@@ -17064,6 +17115,10 @@ components:
       properties:
         consent_request:
           $ref: '#/components/schemas/oAuth2ConsentRequest'
+        consent_request_id:
+          description: ConsentRequestID is the identifier of the consent request that
+            initiated this consent session.
+          type: string
         context:
           title: "JSONRawMessage represents a json.RawMessage that works well with\
             \ JSON, SQL, and Swagger."
@@ -17201,9 +17256,7 @@ components:
         - requested_scope
       properties:
         challenge:
-          description: |-
-            ID is the identifier ("login challenge") of the login request. It is used to
-            identify the session.
+          description: ID is the identifier of the login request.
           type: string
         client:
           $ref: '#/components/schemas/oAuth2Client'
@@ -17257,6 +17310,7 @@ components:
       type: object
     oAuth2LogoutRequest:
       example:
+        expires_at: 2000-01-23T04:56:07.000+00:00
         subject: subject
         challenge: challenge
         client:
@@ -17326,17 +17380,24 @@ components:
           - response_types
         rp_initiated: true
         request_url: request_url
+        requested_at: 2000-01-23T04:56:07.000+00:00
         sid: sid
       properties:
         challenge:
-          description: |-
-            Challenge is the identifier ("logout challenge") of the logout authentication request. It is used to
-            identify the session.
+          description: Challenge is the identifier of the logout authentication request.
           type: string
         client:
           $ref: '#/components/schemas/oAuth2Client'
+        expires_at:
+          format: date-time
+          title: NullTime implements sql.NullTime functionality.
+          type: string
         request_url:
           description: RequestURL is the original Logout URL requested.
+          type: string
+        requested_at:
+          format: date-time
+          title: NullTime implements sql.NullTime functionality.
           type: string
         rp_initiated:
           description: "RPInitiated is set to true if the request was initiated by\
@@ -18852,6 +18913,7 @@ components:
             captcha Captcha
             saml_sp SAMLSP
             saml_idp SAMLIDP
+            auto_link_policy AutoLinkPolicy
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -18887,6 +18949,7 @@ components:
           - captcha
           - saml_sp
           - saml_idp
+          - auto_link_policy
           - data_location_regional
           - rate_limit_tier
           - session_rate_limit_tier
@@ -18923,6 +18986,7 @@ components:
             captcha Captcha
             saml_sp SAMLSP
             saml_idp SAMLIDP
+            auto_link_policy AutoLinkPolicy
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions

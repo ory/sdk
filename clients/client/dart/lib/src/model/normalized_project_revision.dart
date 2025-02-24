@@ -187,6 +187,8 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsVerificationNotifyUnknownRecipients] - Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \"selfservice.flows.verification.notify_unknown_recipients\" setting.
 /// * [kratosSelfserviceFlowsVerificationUiUrl] - Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
 /// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
+/// * [kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey] - Configures the Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
+/// * [kratosSelfserviceMethodsCaptchaEnabled] - Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
 /// * [kratosSelfserviceMethodsCodeConfigLifespan] - Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
 /// * [kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled] - Enables a fallback method required in certain legacy use cases.  This governs the \"selfservice.methods.code.config.missing_credential_fallback_enabled\" setting.
 /// * [kratosSelfserviceMethodsCodeEnabled] - Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
@@ -894,6 +896,14 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_use')
   NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum? get kratosSelfserviceFlowsVerificationUse;
   // enum kratosSelfserviceFlowsVerificationUseEnum {  link,  code,  };
+
+  /// Configures the Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey')
+  String? get kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
+
+  /// Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_captcha_enabled')
+  bool? get kratosSelfserviceMethodsCaptchaEnabled;
 
   /// Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_config_lifespan')
@@ -2281,6 +2291,20 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosSelfserviceFlowsVerificationUse,
         specifiedType: const FullType(NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum),
+      );
+    }
+    if (object.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey != null) {
+      yield r'kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceMethodsCaptchaEnabled != null) {
+      yield r'kratos_selfservice_methods_captcha_enabled';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsCaptchaEnabled,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsCodeConfigLifespan != null) {
@@ -3811,6 +3835,20 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum),
           ) as NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum;
           result.kratosSelfserviceFlowsVerificationUse = valueDes;
+          break;
+        case r'kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey = valueDes;
+          break;
+        case r'kratos_selfservice_methods_captcha_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceMethodsCaptchaEnabled = valueDes;
           break;
         case r'kratos_selfservice_methods_code_config_lifespan':
           final valueDes = serializers.deserialize(

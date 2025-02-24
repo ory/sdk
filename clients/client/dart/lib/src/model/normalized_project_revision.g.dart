@@ -702,6 +702,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum?
       kratosSelfserviceFlowsVerificationUse;
   @override
+  final String? kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
+  @override
+  final bool? kratosSelfserviceMethodsCaptchaEnabled;
+  @override
   final String? kratosSelfserviceMethodsCodeConfigLifespan;
   @override
   final bool?
@@ -975,6 +979,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceFlowsVerificationNotifyUnknownRecipients,
       this.kratosSelfserviceFlowsVerificationUiUrl,
       this.kratosSelfserviceFlowsVerificationUse,
+      this.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey,
+      this.kratosSelfserviceMethodsCaptchaEnabled,
       this.kratosSelfserviceMethodsCodeConfigLifespan,
       this.kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled,
       this.kratosSelfserviceMethodsCodeEnabled,
@@ -1352,6 +1358,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceFlowsVerificationUiUrl &&
         kratosSelfserviceFlowsVerificationUse ==
             other.kratosSelfserviceFlowsVerificationUse &&
+        kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey ==
+            other.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey &&
+        kratosSelfserviceMethodsCaptchaEnabled ==
+            other.kratosSelfserviceMethodsCaptchaEnabled &&
         kratosSelfserviceMethodsCodeConfigLifespan ==
             other.kratosSelfserviceMethodsCodeConfigLifespan &&
         kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled ==
@@ -1718,6 +1728,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosSelfserviceFlowsVerificationNotifyUnknownRecipients.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsVerificationUiUrl.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsVerificationUse.hashCode);
+    _$hash = $jc(_$hash,
+        kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey.hashCode);
+    _$hash = $jc(_$hash, kratosSelfserviceMethodsCaptchaEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeConfigLifespan.hashCode);
     _$hash = $jc(
         _$hash,
@@ -2100,6 +2113,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceFlowsVerificationUiUrl)
           ..add('kratosSelfserviceFlowsVerificationUse',
               kratosSelfserviceFlowsVerificationUse)
+          ..add('kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey',
+              kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey)
+          ..add('kratosSelfserviceMethodsCaptchaEnabled',
+              kratosSelfserviceMethodsCaptchaEnabled)
           ..add('kratosSelfserviceMethodsCodeConfigLifespan',
               kratosSelfserviceMethodsCodeConfigLifespan)
           ..add(
@@ -3473,6 +3490,22 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceFlowsVerificationUse =
           kratosSelfserviceFlowsVerificationUse;
 
+  String? _kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
+  String? get kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey =>
+      _$this._kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
+  set kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey(
+          String? kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey) =>
+      _$this._kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey =
+          kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
+
+  bool? _kratosSelfserviceMethodsCaptchaEnabled;
+  bool? get kratosSelfserviceMethodsCaptchaEnabled =>
+      _$this._kratosSelfserviceMethodsCaptchaEnabled;
+  set kratosSelfserviceMethodsCaptchaEnabled(
+          bool? kratosSelfserviceMethodsCaptchaEnabled) =>
+      _$this._kratosSelfserviceMethodsCaptchaEnabled =
+          kratosSelfserviceMethodsCaptchaEnabled;
+
   String? _kratosSelfserviceMethodsCodeConfigLifespan;
   String? get kratosSelfserviceMethodsCodeConfigLifespan =>
       _$this._kratosSelfserviceMethodsCodeConfigLifespan;
@@ -4133,6 +4166,10 @@ class NormalizedProjectRevisionBuilder
           $v.kratosSelfserviceFlowsVerificationUiUrl;
       _kratosSelfserviceFlowsVerificationUse =
           $v.kratosSelfserviceFlowsVerificationUse;
+      _kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey =
+          $v.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
+      _kratosSelfserviceMethodsCaptchaEnabled =
+          $v.kratosSelfserviceMethodsCaptchaEnabled;
       _kratosSelfserviceMethodsCodeConfigLifespan =
           $v.kratosSelfserviceMethodsCodeConfigLifespan;
       _kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled =
@@ -4472,6 +4509,8 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsVerificationNotifyUnknownRecipients: kratosSelfserviceFlowsVerificationNotifyUnknownRecipients,
               kratosSelfserviceFlowsVerificationUiUrl: kratosSelfserviceFlowsVerificationUiUrl,
               kratosSelfserviceFlowsVerificationUse: kratosSelfserviceFlowsVerificationUse,
+              kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey: kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey,
+              kratosSelfserviceMethodsCaptchaEnabled: kratosSelfserviceMethodsCaptchaEnabled,
               kratosSelfserviceMethodsCodeConfigLifespan: kratosSelfserviceMethodsCodeConfigLifespan,
               kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled: kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled,
               kratosSelfserviceMethodsCodeEnabled: kratosSelfserviceMethodsCodeEnabled,

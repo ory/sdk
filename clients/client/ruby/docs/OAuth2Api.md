@@ -1600,7 +1600,7 @@ nil (empty response body)
 
 ## revoke_o_auth2_consent_sessions
 
-> revoke_o_auth2_consent_sessions(subject, opts)
+> revoke_o_auth2_consent_sessions(opts)
 
 Revoke OAuth 2.0 Consent Sessions of a Subject
 
@@ -1618,15 +1618,16 @@ OryClient.configure do |config|
 end
 
 api_instance = OryClient::OAuth2Api.new
-subject = 'subject_example' # String | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
 opts = {
+  subject: 'subject_example', # String | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
   client: 'client_example', # String | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID.
+  consent_request_id: 'consent_request_id_example', # String | Consent Request ID  If set, revoke all token chains derived from this particular consent request ID.
   all: true # Boolean | Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted.
 }
 
 begin
   # Revoke OAuth 2.0 Consent Sessions of a Subject
-  api_instance.revoke_o_auth2_consent_sessions(subject, opts)
+  api_instance.revoke_o_auth2_consent_sessions(opts)
 rescue OryClient::ApiError => e
   puts "Error when calling OAuth2Api->revoke_o_auth2_consent_sessions: #{e}"
 end
@@ -1636,12 +1637,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> revoke_o_auth2_consent_sessions_with_http_info(subject, opts)
+> <Array(nil, Integer, Hash)> revoke_o_auth2_consent_sessions_with_http_info(opts)
 
 ```ruby
 begin
   # Revoke OAuth 2.0 Consent Sessions of a Subject
-  data, status_code, headers = api_instance.revoke_o_auth2_consent_sessions_with_http_info(subject, opts)
+  data, status_code, headers = api_instance.revoke_o_auth2_consent_sessions_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -1654,8 +1655,9 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **subject** | **String** | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. |  |
+| **subject** | **String** | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | [optional] |
 | **client** | **String** | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. | [optional] |
+| **consent_request_id** | **String** | Consent Request ID  If set, revoke all token chains derived from this particular consent request ID. | [optional] |
 | **all** | **Boolean** | Revoke All Consent Sessions  If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional] |
 
 ### Return type
@@ -1678,7 +1680,7 @@ nil (empty response body)
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
 ### Examples
 

@@ -10,6 +10,7 @@
 | **organization** | **String** |  | [optional] |
 | **provider** | **String** |  | [optional] |
 | **subject** | **String** |  | [optional] |
+| **use_auto_link** | **Boolean** |  | [optional] |
 
 ## Example
 
@@ -22,7 +23,8 @@ instance = OryClient::IdentityCredentialsOidcProvider.new(
   initial_refresh_token: null,
   organization: null,
   provider: null,
-  subject: null
+  subject: null,
+  use_auto_link: null
 )
 ```
 

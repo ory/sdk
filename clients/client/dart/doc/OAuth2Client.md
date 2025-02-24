@@ -8,7 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accessTokenStrategy** | **String** | OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens Setting the stragegy here overrides the global setting in `strategies.access_token`. | [optional] 
+**accessTokenStrategy** | **String** | OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token Setting the stragegy here overrides the global setting in `strategies.access_token`. | [optional] 
 **allowedCorsOrigins** | **BuiltList&lt;String&gt;** |  | [optional] 
 **audience** | **BuiltList&lt;String&gt;** |  | [optional] 
 **authorizationCodeGrantAccessTokenLifespan** | **String** |  | [optional] 

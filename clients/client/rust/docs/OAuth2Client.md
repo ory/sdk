@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access_token_strategy** | Option<**String**> | OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/hydra/advanced#json-web-tokens Setting the stragegy here overrides the global setting in `strategies.access_token`. | [optional]
+**access_token_strategy** | Option<**String**> | OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token Setting the stragegy here overrides the global setting in `strategies.access_token`. | [optional]
 **allowed_cors_origins** | Option<**Vec<String>**> |  | [optional]
 **audience** | Option<**Vec<String>**> |  | [optional]
 **authorization_code_grant_access_token_lifespan** | Option<**String**> |  | [optional]
