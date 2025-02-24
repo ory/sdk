@@ -282,7 +282,7 @@ rust () {
 
   file="${dir}/Cargo.toml"
 
-  sed "s/${VERSION}/${RAW_VERSION}/g" "${file}"
+  sed -i "s/${VERSION}/${RAW_VERSION}/g" "${file}"
   sed -i "s/description = \"[^\"]*\"/description = \"${PACKAGE_DESCRIPTION}\"/g" "${file}"
 
   cp "LICENSE" "clients/${PROJECT}/rust"
@@ -315,7 +315,7 @@ elixir () {
       '"${PACKAGE_DESCRIPTION}"'\
       """,
   ' "${file}"
-  sed "s/${VERSION}/${RAW_VERSION}/g" "${file}"
+  sed -i "s/${VERSION}/${RAW_VERSION}/g" "${file}"
 
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
