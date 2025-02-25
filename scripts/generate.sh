@@ -284,6 +284,7 @@ rust () {
   file="${dir}/Cargo.toml"
 
   sed -i "s/${VERSION}/${RAW_VERSION}/g" "${file}"
+  sed -i "s/Apache 2.0/Apache-2.0/g" "${file}"
   sed -i "s/description = \"[^\"]*\"/description = \"${PACKAGE_DESCRIPTION}\"/g" "${file}"
 
   cp "LICENSE" "clients/${PROJECT}/rust"
