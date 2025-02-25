@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ory_kratos_client"
-version = "v1.3.6-alpha.1"
+version = "v1.3.6-alpha.2"
 description = "Ory Identities API"
 authors = ["OpenAPI Generator Community <office@ory.sh>"]
 license = "Apache 2.0"
