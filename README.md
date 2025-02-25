@@ -45,7 +45,7 @@ failure locally:
 
 ```shell script
 docker build -t oryd/sdk:latest .
-docker run --mount type=bind,source="$(pwd)",target=/project --name sdk -it oryd/sdk:latest /bin/bash
+docker run --rm --mount type=bind,source="$(pwd)",target=/project --name sdk -it oryd/sdk:latest /bin/bash
 
 export FORCE_PROJECT=client # or hydra or something else
 export FORCE_VERSION=$(cat /project/spec/$FORCE_PROJECT/latest) # or a specific version, e.g. v1.2.17
