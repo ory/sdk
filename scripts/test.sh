@@ -78,7 +78,7 @@ dartpub () {
   dir="clients/${PROJECT}/dart"
   (cd "$dir" && command dart pub get)
   (cd "$dir" && command dart test .)
-  (cd "$dir" && VERSION=${RAW_VERSION} command dart pub publish --dry-run --skip-validation)
+  (cd "$dir" && VERSION=${RAW_VERSION} command dart pub publish --dry-run)
 }
 
 rust () {

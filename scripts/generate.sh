@@ -259,6 +259,7 @@ dart () {
   (cd $dir; command dart run build_runner build)
 
   cp -r contrib/dart/. ${dir}/
+  envsubst < "${dir}/CHANGELOG.md" | tee "${dir}/CHANGELOG.md"
 }
 
 rust () {
