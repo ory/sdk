@@ -12,7 +12,7 @@ part 'continue_with_verification_ui_flow.g.dart';
 ///
 /// Properties:
 /// * [id] - The ID of the verification flow
-/// * [url] - The URL of the verification flow
+/// * [url] - The URL of the verification flow  If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
 /// * [verifiableAddress] - The address that should be verified in this flow
 @BuiltValue()
 abstract class ContinueWithVerificationUiFlow implements Built<ContinueWithVerificationUiFlow, ContinueWithVerificationUiFlowBuilder> {
@@ -20,7 +20,7 @@ abstract class ContinueWithVerificationUiFlow implements Built<ContinueWithVerif
   @BuiltValueField(wireName: r'id')
   String get id;
 
-  /// The URL of the verification flow
+  /// The URL of the verification flow  If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
   @BuiltValueField(wireName: r'url')
   String? get url;
 

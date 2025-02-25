@@ -22,6 +22,7 @@ defmodule Ory.Model.UpdateLoginFlowBody do
     :totp_code,
     :webauthn_login,
     :lookup_secret,
+    :address,
     :code,
     :resend,
     :passkey_login
@@ -42,6 +43,7 @@ defmodule Ory.Model.UpdateLoginFlowBody do
     :totp_code => String.t,
     :webauthn_login => String.t | nil,
     :lookup_secret => String.t,
+    :address => String.t | nil,
     :code => String.t | nil,
     :resend => String.t | nil,
     :passkey_login => String.t | nil

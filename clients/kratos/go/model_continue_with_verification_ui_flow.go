@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v1.3.4
 Contact: office@ory.sh
 */
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &ContinueWithVerificationUiFlow{}
 type ContinueWithVerificationUiFlow struct {
 	// The ID of the verification flow
 	Id string `json:"id"`
-	// The URL of the verification flow
+	// The URL of the verification flow  If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
 	Url *string `json:"url,omitempty"`
 	// The address that should be verified in this flow
 	VerifiableAddress string `json:"verifiable_address"`

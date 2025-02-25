@@ -15,6 +15,7 @@ src/models/ConsistencyRequestParameters.ts
 src/models/ContinueWith.ts
 src/models/ContinueWithRecoveryUi.ts
 src/models/ContinueWithRecoveryUiFlow.ts
+src/models/ContinueWithRedirectBrowserTo.ts
 src/models/ContinueWithSetOrySessionToken.ts
 src/models/ContinueWithSettingsUi.ts
 src/models/ContinueWithSettingsUiFlow.ts
@@ -22,6 +23,7 @@ src/models/ContinueWithVerificationUi.ts
 src/models/ContinueWithVerificationUiFlow.ts
 src/models/CourierMessageStatus.ts
 src/models/CourierMessageType.ts
+src/models/CreateFedcmFlowResponse.ts
 src/models/CreateIdentityBody.ts
 src/models/CreateRecoveryCodeForIdentityBody.ts
 src/models/CreateRecoveryLinkForIdentityBody.ts
@@ -38,6 +40,7 @@ src/models/HealthStatus.ts
 src/models/Identity.ts
 src/models/IdentityCredentials.ts
 src/models/IdentityCredentialsCode.ts
+src/models/IdentityCredentialsCodeAddress.ts
 src/models/IdentityCredentialsOidc.ts
 src/models/IdentityCredentialsOidcProvider.ts
 src/models/IdentityCredentialsPassword.ts
@@ -64,6 +67,7 @@ src/models/OAuth2ConsentRequestOpenIDConnectContext.ts
 src/models/OAuth2LoginRequest.ts
 src/models/PatchIdentitiesBody.ts
 src/models/PerformNativeLogoutBody.ts
+src/models/Provider.ts
 src/models/RecoveryCodeForIdentity.ts
 src/models/RecoveryFlow.ts
 src/models/RecoveryFlowState.ts
@@ -92,9 +96,11 @@ src/models/UiNodeMeta.ts
 src/models/UiNodeScriptAttributes.ts
 src/models/UiNodeTextAttributes.ts
 src/models/UiText.ts
+src/models/UpdateFedcmFlowBody.ts
 src/models/UpdateIdentityBody.ts
 src/models/UpdateLoginFlowBody.ts
 src/models/UpdateLoginFlowWithCodeMethod.ts
+src/models/UpdateLoginFlowWithIdentifierFirstMethod.ts
 src/models/UpdateLoginFlowWithLookupSecretMethod.ts
 src/models/UpdateLoginFlowWithOidcMethod.ts
 src/models/UpdateLoginFlowWithPasskeyMethod.ts

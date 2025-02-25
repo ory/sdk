@@ -4,13 +4,13 @@ defmodule Ory.Mixfile do
   def project do
     [
       app: :ory_kratos,
-      version: "1.2.1",
+      version: "1.3.4",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       package: package(),
       description: """
-      This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
+      OpenAPI API client for Ory Kratos, Ory's central identity management solution with hardened authentication, MFA, FIDO2, TOTP, WebAuthn, SSO, profile management, and more.
       """,
       deps: deps()
     ]

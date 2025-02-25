@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v1.3.4
 Contact: office@ory.sh
 */
 
@@ -20,8 +20,9 @@ var _ MappedNullable = &IdentityPatchResponse{}
 
 // IdentityPatchResponse Response for a single identity patch
 type IdentityPatchResponse struct {
-	// The action for this specific patch create ActionCreate  Create this identity.
+	// The action for this specific patch create ActionCreate  Create this identity. error ActionError  Error indicates that the patch failed.
 	Action *string `json:"action,omitempty"`
+	Error interface{} `json:"error,omitempty"`
 	// The identity ID payload of this patch
 	Identity *string `json:"identity,omitempty"`
 	// The ID of this patch response, if an ID was specified in the patch.
@@ -78,6 +79,39 @@ func (o *IdentityPatchResponse) HasAction() bool {
 // SetAction gets a reference to the given string and assigns it to the Action field.
 func (o *IdentityPatchResponse) SetAction(v string) {
 	o.Action = &v
+}
+
+// GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IdentityPatchResponse) GetError() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Error
+}
+
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IdentityPatchResponse) GetErrorOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Error) {
+		return nil, false
+	}
+	return &o.Error, true
+}
+
+// HasError returns a boolean if a field has been set.
+func (o *IdentityPatchResponse) HasError() bool {
+	if o != nil && !IsNil(o.Error) {
+		return true
+	}
+
+	return false
+}
+
+// SetError gets a reference to the given interface{} and assigns it to the Error field.
+func (o *IdentityPatchResponse) SetError(v interface{}) {
+	o.Error = v
 }
 
 // GetIdentity returns the Identity field value if set, zero value otherwise.
@@ -157,6 +191,9 @@ func (o IdentityPatchResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Action) {
 		toSerialize["action"] = o.Action
 	}
+	if o.Error != nil {
+		toSerialize["error"] = o.Error
+	}
 	if !IsNil(o.Identity) {
 		toSerialize["identity"] = o.Identity
 	}
@@ -186,6 +223,7 @@ func (o *IdentityPatchResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "action")
+		delete(additionalProperties, "error")
 		delete(additionalProperties, "identity")
 		delete(additionalProperties, "patch_id")
 		o.AdditionalProperties = additionalProperties

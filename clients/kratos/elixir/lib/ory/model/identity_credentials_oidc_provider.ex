@@ -13,7 +13,8 @@ defmodule Ory.Model.IdentityCredentialsOidcProvider do
     :initial_refresh_token,
     :organization,
     :provider,
-    :subject
+    :subject,
+    :use_auto_link
   ]
 
   @type t :: %__MODULE__{
@@ -22,7 +23,8 @@ defmodule Ory.Model.IdentityCredentialsOidcProvider do
     :initial_refresh_token => String.t | nil,
     :organization => String.t | nil,
     :provider => String.t | nil,
-    :subject => String.t | nil
+    :subject => String.t | nil,
+    :use_auto_link => boolean() | nil
   }
 
   def decode(value) do

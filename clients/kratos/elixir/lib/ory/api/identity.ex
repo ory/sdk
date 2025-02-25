@@ -201,14 +201,15 @@ defmodule Ory.Api.Identity do
 
   @doc """
   Delete a credential for a specific identity
-  Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+  Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete password or code auth credentials through this API.
 
   ### Parameters
 
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): ID is the identity's ID.
-  - `type` (String.t): Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  - `type` (String.t): Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   - `opts` (keyword): Optional parameters
+    - `:identifier` (String.t): Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential=oidc` endpoint.
 
   ### Returns
 
@@ -216,11 +217,16 @@ defmodule Ory.Api.Identity do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec delete_identity_credentials(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:error, Tesla.Env.t}
-  def delete_identity_credentials(connection, id, type, _opts \\ []) do
+  def delete_identity_credentials(connection, id, type, opts \\ []) do
+    optional_params = %{
+      :identifier => :query
+    }
+
     request =
       %{}
       |> method(:delete)
       |> url("/admin/identities/#{id}/credentials/#{type}")
+      |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
     connection
@@ -301,7 +307,7 @@ defmodule Ory.Api.Identity do
 
   @doc """
   Extend a Session
-  Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+  Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
   ### Parameters
 
@@ -314,7 +320,7 @@ defmodule Ory.Api.Identity do
   - `{:ok, Ory.Model.Session.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec extend_session(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.Session.t} | {:error, Tesla.Env.t}
+  @spec extend_session(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.Session.t} | {:error, Tesla.Env.t}
   def extend_session(connection, id, _opts \\ []) do
     request =
       %{}
@@ -327,6 +333,7 @@ defmodule Ory.Api.Identity do
     |> Connection.request(request)
     |> evaluate_response([
       {200, Ory.Model.Session},
+      {204, false},
       {400, Ory.Model.ErrorGeneric},
       {404, Ory.Model.ErrorGeneric},
       {:default, Ory.Model.ErrorGeneric}
@@ -443,7 +450,7 @@ defmodule Ory.Api.Identity do
 
   @doc """
   List Identities
-  Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
+  Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
 
   ### Parameters
 
@@ -454,10 +461,11 @@ defmodule Ory.Api.Identity do
     - `:page_size` (integer()): Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     - `:page_token` (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     - `:consistency` (String.t): Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
-    - `:ids` ([String.t]): List of ids used to filter identities. If this list is empty, then no filter will be applied.
+    - `:ids` ([String.t]): Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
     - `:credentials_identifier` (String.t): CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     - `:preview_credentials_identifier_similar` (String.t): This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     - `:include_credential` ([String.t]): Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+    - `:organization_id` (String.t): List identities that belong to a specific organization.
 
   ### Returns
 
@@ -475,7 +483,8 @@ defmodule Ory.Api.Identity do
       :ids => :query,
       :credentials_identifier => :query,
       :preview_credentials_identifier_similar => :query,
-      :include_credential => :query
+      :include_credential => :query,
+      :organization_id => :query
     }
 
     request =

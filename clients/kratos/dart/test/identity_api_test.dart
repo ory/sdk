@@ -54,9 +54,9 @@ void main() {
 
     // Delete a credential for a specific identity
     //
-    // Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+    // Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete password or code auth credentials through this API.
     //
-    //Future deleteIdentityCredentials(String id, String type) async
+    //Future deleteIdentityCredentials(String id, String type, { String identifier }) async
     test('test deleteIdentityCredentials', () async {
       // TODO
     });
@@ -81,7 +81,7 @@ void main() {
 
     // Extend a Session
     //
-    // Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+    // Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
     //
     //Future<Session> extendSession(String id) async
     test('test extendSession', () async {
@@ -117,9 +117,9 @@ void main() {
 
     // List Identities
     //
-    // Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
+    // Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
     //
-    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, int pageSize, String pageToken, String consistency, BuiltList<String> ids, String credentialsIdentifier, String previewCredentialsIdentifierSimilar, BuiltList<String> includeCredential }) async
+    //Future<BuiltList<Identity>> listIdentities({ int perPage, int page, int pageSize, String pageToken, String consistency, BuiltList<String> ids, String credentialsIdentifier, String previewCredentialsIdentifierSimilar, BuiltList<String> includeCredential, String organizationId }) async
     test('test listIdentities', () async {
       // TODO
     });

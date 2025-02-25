@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v1.3.4
 Contact: office@ory.sh
 */
 
@@ -25,6 +25,8 @@ type IdentityWithCredentialsOidcConfigProvider struct {
 	Provider string `json:"provider"`
 	// The subject (`sub`) of the OpenID Connect connection. Usually the `sub` field of the ID Token.
 	Subject string `json:"subject"`
+	// If set, this credential allows the user to sign in using the OpenID Connect provider without setting the subject first.
+	UseAutoLink *bool `json:"use_auto_link,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -97,6 +99,38 @@ func (o *IdentityWithCredentialsOidcConfigProvider) SetSubject(v string) {
 	o.Subject = v
 }
 
+// GetUseAutoLink returns the UseAutoLink field value if set, zero value otherwise.
+func (o *IdentityWithCredentialsOidcConfigProvider) GetUseAutoLink() bool {
+	if o == nil || IsNil(o.UseAutoLink) {
+		var ret bool
+		return ret
+	}
+	return *o.UseAutoLink
+}
+
+// GetUseAutoLinkOk returns a tuple with the UseAutoLink field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IdentityWithCredentialsOidcConfigProvider) GetUseAutoLinkOk() (*bool, bool) {
+	if o == nil || IsNil(o.UseAutoLink) {
+		return nil, false
+	}
+	return o.UseAutoLink, true
+}
+
+// HasUseAutoLink returns a boolean if a field has been set.
+func (o *IdentityWithCredentialsOidcConfigProvider) HasUseAutoLink() bool {
+	if o != nil && !IsNil(o.UseAutoLink) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseAutoLink gets a reference to the given bool and assigns it to the UseAutoLink field.
+func (o *IdentityWithCredentialsOidcConfigProvider) SetUseAutoLink(v bool) {
+	o.UseAutoLink = &v
+}
+
 func (o IdentityWithCredentialsOidcConfigProvider) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -109,6 +143,9 @@ func (o IdentityWithCredentialsOidcConfigProvider) ToMap() (map[string]interface
 	toSerialize := map[string]interface{}{}
 	toSerialize["provider"] = o.Provider
 	toSerialize["subject"] = o.Subject
+	if !IsNil(o.UseAutoLink) {
+		toSerialize["use_auto_link"] = o.UseAutoLink
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -155,6 +192,7 @@ func (o *IdentityWithCredentialsOidcConfigProvider) UnmarshalJSON(data []byte) (
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "subject")
+		delete(additionalProperties, "use_auto_link")
 		o.AdditionalProperties = additionalProperties
 	}
 

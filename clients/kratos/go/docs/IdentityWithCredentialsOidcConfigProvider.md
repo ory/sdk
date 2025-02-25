@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Provider** | **string** | The OpenID Connect provider to link the subject to. Usually something like &#x60;google&#x60; or &#x60;github&#x60;. | 
 **Subject** | **string** | The subject (&#x60;sub&#x60;) of the OpenID Connect connection. Usually the &#x60;sub&#x60; field of the ID Token. | 
+**UseAutoLink** | Pointer to **bool** | If set, this credential allows the user to sign in using the OpenID Connect provider without setting the subject first. | [optional] 
 
 ## Methods
 
@@ -65,6 +66,31 @@ and a boolean to check if the value has been set.
 
 SetSubject sets Subject field to given value.
 
+
+### GetUseAutoLink
+
+`func (o *IdentityWithCredentialsOidcConfigProvider) GetUseAutoLink() bool`
+
+GetUseAutoLink returns the UseAutoLink field if non-nil, zero value otherwise.
+
+### GetUseAutoLinkOk
+
+`func (o *IdentityWithCredentialsOidcConfigProvider) GetUseAutoLinkOk() (*bool, bool)`
+
+GetUseAutoLinkOk returns a tuple with the UseAutoLink field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseAutoLink
+
+`func (o *IdentityWithCredentialsOidcConfigProvider) SetUseAutoLink(v bool)`
+
+SetUseAutoLink sets UseAutoLink field to given value.
+
+### HasUseAutoLink
+
+`func (o *IdentityWithCredentialsOidcConfigProvider) HasUseAutoLink() bool`
+
+HasUseAutoLink returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:ory_kratos_client/src/model/identity_credentials_code_address.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -11,16 +13,11 @@ part 'identity_credentials_code.g.dart';
 /// CredentialsCode represents a one time login/registration code
 ///
 /// Properties:
-/// * [addressType] - The type of the address for this code
-/// * [usedAt] 
+/// * [addresses] 
 @BuiltValue()
 abstract class IdentityCredentialsCode implements Built<IdentityCredentialsCode, IdentityCredentialsCodeBuilder> {
-  /// The type of the address for this code
-  @BuiltValueField(wireName: r'address_type')
-  String? get addressType;
-
-  @BuiltValueField(wireName: r'used_at')
-  DateTime? get usedAt;
+  @BuiltValueField(wireName: r'addresses')
+  BuiltList<IdentityCredentialsCodeAddress>? get addresses;
 
   IdentityCredentialsCode._();
 
@@ -45,18 +42,11 @@ class _$IdentityCredentialsCodeSerializer implements PrimitiveSerializer<Identit
     IdentityCredentialsCode object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.addressType != null) {
-      yield r'address_type';
+    if (object.addresses != null) {
+      yield r'addresses';
       yield serializers.serialize(
-        object.addressType,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.usedAt != null) {
-      yield r'used_at';
-      yield serializers.serialize(
-        object.usedAt,
-        specifiedType: const FullType.nullable(DateTime),
+        object.addresses,
+        specifiedType: const FullType(BuiltList, [FullType(IdentityCredentialsCodeAddress)]),
       );
     }
   }
@@ -82,20 +72,12 @@ class _$IdentityCredentialsCodeSerializer implements PrimitiveSerializer<Identit
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'address_type':
+        case r'addresses':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.addressType = valueDes;
-          break;
-        case r'used_at':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.usedAt = valueDes;
+            specifiedType: const FullType(BuiltList, [FullType(IdentityCredentialsCodeAddress)]),
+          ) as BuiltList<IdentityCredentialsCodeAddress>;
+          result.addresses.replace(valueDes);
           break;
         default:
           unhandled.add(key);

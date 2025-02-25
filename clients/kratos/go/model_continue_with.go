@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v1.3.4
 Contact: office@ory.sh
 */
 
@@ -19,6 +19,7 @@ import (
 // ContinueWith - struct for ContinueWith
 type ContinueWith struct {
 	ContinueWithRecoveryUi *ContinueWithRecoveryUi
+	ContinueWithRedirectBrowserTo *ContinueWithRedirectBrowserTo
 	ContinueWithSetOrySessionToken *ContinueWithSetOrySessionToken
 	ContinueWithSettingsUi *ContinueWithSettingsUi
 	ContinueWithVerificationUi *ContinueWithVerificationUi
@@ -28,6 +29,13 @@ type ContinueWith struct {
 func ContinueWithRecoveryUiAsContinueWith(v *ContinueWithRecoveryUi) ContinueWith {
 	return ContinueWith{
 		ContinueWithRecoveryUi: v,
+	}
+}
+
+// ContinueWithRedirectBrowserToAsContinueWith is a convenience function that returns ContinueWithRedirectBrowserTo wrapped in ContinueWith
+func ContinueWithRedirectBrowserToAsContinueWith(v *ContinueWithRedirectBrowserTo) ContinueWith {
+	return ContinueWith{
+		ContinueWithRedirectBrowserTo: v,
 	}
 }
 
@@ -61,6 +69,18 @@ func (dst *ContinueWith) UnmarshalJSON(data []byte) error {
 	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'redirect_browser_to'
+	if jsonDict["action"] == "redirect_browser_to" {
+		// try to unmarshal JSON data into ContinueWithRedirectBrowserTo
+		err = json.Unmarshal(data, &dst.ContinueWithRedirectBrowserTo)
+		if err == nil {
+			return nil // data stored in dst.ContinueWithRedirectBrowserTo, return on the first match
+		} else {
+			dst.ContinueWithRedirectBrowserTo = nil
+			return fmt.Errorf("failed to unmarshal ContinueWith as ContinueWithRedirectBrowserTo: %s", err.Error())
+		}
 	}
 
 	// check if the discriminator value is 'set_ory_session_token'
@@ -123,6 +143,18 @@ func (dst *ContinueWith) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'continueWithRedirectBrowserTo'
+	if jsonDict["action"] == "continueWithRedirectBrowserTo" {
+		// try to unmarshal JSON data into ContinueWithRedirectBrowserTo
+		err = json.Unmarshal(data, &dst.ContinueWithRedirectBrowserTo)
+		if err == nil {
+			return nil // data stored in dst.ContinueWithRedirectBrowserTo, return on the first match
+		} else {
+			dst.ContinueWithRedirectBrowserTo = nil
+			return fmt.Errorf("failed to unmarshal ContinueWith as ContinueWithRedirectBrowserTo: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'continueWithSetOrySessionToken'
 	if jsonDict["action"] == "continueWithSetOrySessionToken" {
 		// try to unmarshal JSON data into ContinueWithSetOrySessionToken
@@ -168,6 +200,10 @@ func (src ContinueWith) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ContinueWithRecoveryUi)
 	}
 
+	if src.ContinueWithRedirectBrowserTo != nil {
+		return json.Marshal(&src.ContinueWithRedirectBrowserTo)
+	}
+
 	if src.ContinueWithSetOrySessionToken != nil {
 		return json.Marshal(&src.ContinueWithSetOrySessionToken)
 	}
@@ -190,6 +226,10 @@ func (obj *ContinueWith) GetActualInstance() (interface{}) {
 	}
 	if obj.ContinueWithRecoveryUi != nil {
 		return obj.ContinueWithRecoveryUi
+	}
+
+	if obj.ContinueWithRedirectBrowserTo != nil {
+		return obj.ContinueWithRedirectBrowserTo
 	}
 
 	if obj.ContinueWithSetOrySessionToken != nil {

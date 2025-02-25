@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v1.3.4
 Contact: office@ory.sh
 */
 
@@ -26,6 +26,7 @@ type IdentityCredentialsOidcProvider struct {
 	Organization *string `json:"organization,omitempty"`
 	Provider *string `json:"provider,omitempty"`
 	Subject *string `json:"subject,omitempty"`
+	UseAutoLink *bool `json:"use_auto_link,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -240,6 +241,38 @@ func (o *IdentityCredentialsOidcProvider) SetSubject(v string) {
 	o.Subject = &v
 }
 
+// GetUseAutoLink returns the UseAutoLink field value if set, zero value otherwise.
+func (o *IdentityCredentialsOidcProvider) GetUseAutoLink() bool {
+	if o == nil || IsNil(o.UseAutoLink) {
+		var ret bool
+		return ret
+	}
+	return *o.UseAutoLink
+}
+
+// GetUseAutoLinkOk returns a tuple with the UseAutoLink field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IdentityCredentialsOidcProvider) GetUseAutoLinkOk() (*bool, bool) {
+	if o == nil || IsNil(o.UseAutoLink) {
+		return nil, false
+	}
+	return o.UseAutoLink, true
+}
+
+// HasUseAutoLink returns a boolean if a field has been set.
+func (o *IdentityCredentialsOidcProvider) HasUseAutoLink() bool {
+	if o != nil && !IsNil(o.UseAutoLink) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseAutoLink gets a reference to the given bool and assigns it to the UseAutoLink field.
+func (o *IdentityCredentialsOidcProvider) SetUseAutoLink(v bool) {
+	o.UseAutoLink = &v
+}
+
 func (o IdentityCredentialsOidcProvider) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -267,6 +300,9 @@ func (o IdentityCredentialsOidcProvider) ToMap() (map[string]interface{}, error)
 	}
 	if !IsNil(o.Subject) {
 		toSerialize["subject"] = o.Subject
+	}
+	if !IsNil(o.UseAutoLink) {
+		toSerialize["use_auto_link"] = o.UseAutoLink
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -296,6 +332,7 @@ func (o *IdentityCredentialsOidcProvider) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "organization")
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "subject")
+		delete(additionalProperties, "use_auto_link")
 		o.AdditionalProperties = additionalProperties
 	}
 

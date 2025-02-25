@@ -22,6 +22,8 @@ const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_passkey =
     const IdentityCredentialsTypeEnum._('passkey');
 const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_profile =
     const IdentityCredentialsTypeEnum._('profile');
+const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_saml =
+    const IdentityCredentialsTypeEnum._('saml');
 const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_linkRecovery =
     const IdentityCredentialsTypeEnum._('linkRecovery');
 const IdentityCredentialsTypeEnum _$identityCredentialsTypeEnum_codeRecovery =
@@ -45,6 +47,8 @@ IdentityCredentialsTypeEnum _$identityCredentialsTypeEnumValueOf(String name) {
       return _$identityCredentialsTypeEnum_passkey;
     case 'profile':
       return _$identityCredentialsTypeEnum_profile;
+    case 'saml':
+      return _$identityCredentialsTypeEnum_saml;
     case 'linkRecovery':
       return _$identityCredentialsTypeEnum_linkRecovery;
     case 'codeRecovery':
@@ -65,6 +69,7 @@ final BuiltSet<IdentityCredentialsTypeEnum>
   _$identityCredentialsTypeEnum_code,
   _$identityCredentialsTypeEnum_passkey,
   _$identityCredentialsTypeEnum_profile,
+  _$identityCredentialsTypeEnum_saml,
   _$identityCredentialsTypeEnum_linkRecovery,
   _$identityCredentialsTypeEnum_codeRecovery,
 ]);
@@ -84,6 +89,7 @@ class _$IdentityCredentialsTypeEnumSerializer
     'code': 'code',
     'passkey': 'passkey',
     'profile': 'profile',
+    'saml': 'saml',
     'linkRecovery': 'link_recovery',
     'codeRecovery': 'code_recovery',
   };
@@ -96,6 +102,7 @@ class _$IdentityCredentialsTypeEnumSerializer
     'code': 'code',
     'passkey': 'passkey',
     'profile': 'profile',
+    'saml': 'saml',
     'link_recovery': 'linkRecovery',
     'code_recovery': 'codeRecovery',
   };

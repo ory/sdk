@@ -12,6 +12,8 @@ class _$IdentityWithCredentialsOidcConfigProvider
   final String provider;
   @override
   final String subject;
+  @override
+  final bool? useAutoLink;
 
   factory _$IdentityWithCredentialsOidcConfigProvider(
           [void Function(IdentityWithCredentialsOidcConfigProviderBuilder)?
@@ -20,7 +22,7 @@ class _$IdentityWithCredentialsOidcConfigProvider
           ._build();
 
   _$IdentityWithCredentialsOidcConfigProvider._(
-      {required this.provider, required this.subject})
+      {required this.provider, required this.subject, this.useAutoLink})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         provider, r'IdentityWithCredentialsOidcConfigProvider', 'provider');
@@ -43,7 +45,8 @@ class _$IdentityWithCredentialsOidcConfigProvider
     if (identical(other, this)) return true;
     return other is IdentityWithCredentialsOidcConfigProvider &&
         provider == other.provider &&
-        subject == other.subject;
+        subject == other.subject &&
+        useAutoLink == other.useAutoLink;
   }
 
   @override
@@ -51,6 +54,7 @@ class _$IdentityWithCredentialsOidcConfigProvider
     var _$hash = 0;
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, subject.hashCode);
+    _$hash = $jc(_$hash, useAutoLink.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -60,7 +64,8 @@ class _$IdentityWithCredentialsOidcConfigProvider
     return (newBuiltValueToStringHelper(
             r'IdentityWithCredentialsOidcConfigProvider')
           ..add('provider', provider)
-          ..add('subject', subject))
+          ..add('subject', subject)
+          ..add('useAutoLink', useAutoLink))
         .toString();
   }
 }
@@ -79,6 +84,10 @@ class IdentityWithCredentialsOidcConfigProviderBuilder
   String? get subject => _$this._subject;
   set subject(String? subject) => _$this._subject = subject;
 
+  bool? _useAutoLink;
+  bool? get useAutoLink => _$this._useAutoLink;
+  set useAutoLink(bool? useAutoLink) => _$this._useAutoLink = useAutoLink;
+
   IdentityWithCredentialsOidcConfigProviderBuilder() {
     IdentityWithCredentialsOidcConfigProvider._defaults(this);
   }
@@ -88,6 +97,7 @@ class IdentityWithCredentialsOidcConfigProviderBuilder
     if ($v != null) {
       _provider = $v.provider;
       _subject = $v.subject;
+      _useAutoLink = $v.useAutoLink;
       _$v = null;
     }
     return this;
@@ -115,7 +125,8 @@ class IdentityWithCredentialsOidcConfigProviderBuilder
             provider: BuiltValueNullFieldError.checkNotNull(provider,
                 r'IdentityWithCredentialsOidcConfigProvider', 'provider'),
             subject: BuiltValueNullFieldError.checkNotNull(subject,
-                r'IdentityWithCredentialsOidcConfigProvider', 'subject'));
+                r'IdentityWithCredentialsOidcConfigProvider', 'subject'),
+            useAutoLink: useAutoLink);
     replace(_$result);
     return _$result;
   }

@@ -19,5 +19,11 @@ void main() {
       // TODO
     });
 
+    // If set to true, the password will be migrated using the password migration hook.
+    // bool usePasswordMigrationHook
+    test('to test the property `usePasswordMigrationHook`', () async {
+      // TODO
+    });
+
   });
 }

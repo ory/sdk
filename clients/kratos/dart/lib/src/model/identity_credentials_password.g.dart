@@ -9,12 +9,16 @@ part of 'identity_credentials_password.dart';
 class _$IdentityCredentialsPassword extends IdentityCredentialsPassword {
   @override
   final String? hashedPassword;
+  @override
+  final bool? usePasswordMigrationHook;
 
   factory _$IdentityCredentialsPassword(
           [void Function(IdentityCredentialsPasswordBuilder)? updates]) =>
       (new IdentityCredentialsPasswordBuilder()..update(updates))._build();
 
-  _$IdentityCredentialsPassword._({this.hashedPassword}) : super._();
+  _$IdentityCredentialsPassword._(
+      {this.hashedPassword, this.usePasswordMigrationHook})
+      : super._();
 
   @override
   IdentityCredentialsPassword rebuild(
@@ -29,13 +33,15 @@ class _$IdentityCredentialsPassword extends IdentityCredentialsPassword {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is IdentityCredentialsPassword &&
-        hashedPassword == other.hashedPassword;
+        hashedPassword == other.hashedPassword &&
+        usePasswordMigrationHook == other.usePasswordMigrationHook;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, hashedPassword.hashCode);
+    _$hash = $jc(_$hash, usePasswordMigrationHook.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -43,7 +49,8 @@ class _$IdentityCredentialsPassword extends IdentityCredentialsPassword {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'IdentityCredentialsPassword')
-          ..add('hashedPassword', hashedPassword))
+          ..add('hashedPassword', hashedPassword)
+          ..add('usePasswordMigrationHook', usePasswordMigrationHook))
         .toString();
   }
 }
@@ -59,6 +66,11 @@ class IdentityCredentialsPasswordBuilder
   set hashedPassword(String? hashedPassword) =>
       _$this._hashedPassword = hashedPassword;
 
+  bool? _usePasswordMigrationHook;
+  bool? get usePasswordMigrationHook => _$this._usePasswordMigrationHook;
+  set usePasswordMigrationHook(bool? usePasswordMigrationHook) =>
+      _$this._usePasswordMigrationHook = usePasswordMigrationHook;
+
   IdentityCredentialsPasswordBuilder() {
     IdentityCredentialsPassword._defaults(this);
   }
@@ -67,6 +79,7 @@ class IdentityCredentialsPasswordBuilder
     final $v = _$v;
     if ($v != null) {
       _hashedPassword = $v.hashedPassword;
+      _usePasswordMigrationHook = $v.usePasswordMigrationHook;
       _$v = null;
     }
     return this;
@@ -88,7 +101,9 @@ class IdentityCredentialsPasswordBuilder
 
   _$IdentityCredentialsPassword _build() {
     final _$result = _$v ??
-        new _$IdentityCredentialsPassword._(hashedPassword: hashedPassword);
+        new _$IdentityCredentialsPassword._(
+            hashedPassword: hashedPassword,
+            usePasswordMigrationHook: usePasswordMigrationHook);
     replace(_$result);
     return _$result;
   }

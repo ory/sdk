@@ -8,6 +8,8 @@ part of 'update_login_flow_with_code_method.dart';
 
 class _$UpdateLoginFlowWithCodeMethod extends UpdateLoginFlowWithCodeMethod {
   @override
+  final String? address;
+  @override
   final String? code;
   @override
   final String csrfToken;
@@ -25,7 +27,8 @@ class _$UpdateLoginFlowWithCodeMethod extends UpdateLoginFlowWithCodeMethod {
       (new UpdateLoginFlowWithCodeMethodBuilder()..update(updates))._build();
 
   _$UpdateLoginFlowWithCodeMethod._(
-      {this.code,
+      {this.address,
+      this.code,
       required this.csrfToken,
       this.identifier,
       required this.method,
@@ -51,6 +54,7 @@ class _$UpdateLoginFlowWithCodeMethod extends UpdateLoginFlowWithCodeMethod {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is UpdateLoginFlowWithCodeMethod &&
+        address == other.address &&
         code == other.code &&
         csrfToken == other.csrfToken &&
         identifier == other.identifier &&
@@ -62,6 +66,7 @@ class _$UpdateLoginFlowWithCodeMethod extends UpdateLoginFlowWithCodeMethod {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, address.hashCode);
     _$hash = $jc(_$hash, code.hashCode);
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, identifier.hashCode);
@@ -75,6 +80,7 @@ class _$UpdateLoginFlowWithCodeMethod extends UpdateLoginFlowWithCodeMethod {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'UpdateLoginFlowWithCodeMethod')
+          ..add('address', address)
           ..add('code', code)
           ..add('csrfToken', csrfToken)
           ..add('identifier', identifier)
@@ -90,6 +96,10 @@ class UpdateLoginFlowWithCodeMethodBuilder
         Builder<UpdateLoginFlowWithCodeMethod,
             UpdateLoginFlowWithCodeMethodBuilder> {
   _$UpdateLoginFlowWithCodeMethod? _$v;
+
+  String? _address;
+  String? get address => _$this._address;
+  set address(String? address) => _$this._address = address;
 
   String? _code;
   String? get code => _$this._code;
@@ -123,6 +133,7 @@ class UpdateLoginFlowWithCodeMethodBuilder
   UpdateLoginFlowWithCodeMethodBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _address = $v.address;
       _code = $v.code;
       _csrfToken = $v.csrfToken;
       _identifier = $v.identifier;
@@ -151,6 +162,7 @@ class UpdateLoginFlowWithCodeMethodBuilder
   _$UpdateLoginFlowWithCodeMethod _build() {
     final _$result = _$v ??
         new _$UpdateLoginFlowWithCodeMethod._(
+            address: address,
             code: code,
             csrfToken: BuiltValueNullFieldError.checkNotNull(
                 csrfToken, r'UpdateLoginFlowWithCodeMethod', 'csrfToken'),

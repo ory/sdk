@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v1.3.4
 Contact: office@ory.sh
 */
 
@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// LoginFlowState The state represents the state of the login flow.  choose_method: ask the user to choose a method (e.g. login account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed.
+// LoginFlowState The experimental state represents the state of a login flow. This field is EXPERIMENTAL and subject to change!
 type LoginFlowState string
 
 // List of loginFlowState

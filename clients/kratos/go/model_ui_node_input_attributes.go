@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v1.3.4
 Contact: office@ory.sh
 */
 
@@ -26,14 +26,20 @@ type UiNodeInputAttributes struct {
 	// Sets the input's disabled field to true or false.
 	Disabled bool `json:"disabled"`
 	Label *UiText `json:"label,omitempty"`
+	// MaxLength may contain the input's maximum length.
+	Maxlength *int64 `json:"maxlength,omitempty"`
 	// The input's element name.
 	Name string `json:"name"`
 	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
 	NodeType string `json:"node_type"`
-	// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.
+	// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.  Deprecated: Using OnClick requires the use of eval() which is a security risk. Use OnClickTrigger instead.
 	Onclick *string `json:"onclick,omitempty"`
-	// OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.
+	// OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+	OnclickTrigger *string `json:"onclickTrigger,omitempty"`
+	// OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.  Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead.
 	Onload *string `json:"onload,omitempty"`
+	// OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+	OnloadTrigger *string `json:"onloadTrigger,omitempty"`
 	// The input's pattern.
 	Pattern *string `json:"pattern,omitempty"`
 	// Mark this input field as required.
@@ -156,6 +162,38 @@ func (o *UiNodeInputAttributes) SetLabel(v UiText) {
 	o.Label = &v
 }
 
+// GetMaxlength returns the Maxlength field value if set, zero value otherwise.
+func (o *UiNodeInputAttributes) GetMaxlength() int64 {
+	if o == nil || IsNil(o.Maxlength) {
+		var ret int64
+		return ret
+	}
+	return *o.Maxlength
+}
+
+// GetMaxlengthOk returns a tuple with the Maxlength field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UiNodeInputAttributes) GetMaxlengthOk() (*int64, bool) {
+	if o == nil || IsNil(o.Maxlength) {
+		return nil, false
+	}
+	return o.Maxlength, true
+}
+
+// HasMaxlength returns a boolean if a field has been set.
+func (o *UiNodeInputAttributes) HasMaxlength() bool {
+	if o != nil && !IsNil(o.Maxlength) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxlength gets a reference to the given int64 and assigns it to the Maxlength field.
+func (o *UiNodeInputAttributes) SetMaxlength(v int64) {
+	o.Maxlength = &v
+}
+
 // GetName returns the Name field value
 func (o *UiNodeInputAttributes) GetName() string {
 	if o == nil {
@@ -236,6 +274,38 @@ func (o *UiNodeInputAttributes) SetOnclick(v string) {
 	o.Onclick = &v
 }
 
+// GetOnclickTrigger returns the OnclickTrigger field value if set, zero value otherwise.
+func (o *UiNodeInputAttributes) GetOnclickTrigger() string {
+	if o == nil || IsNil(o.OnclickTrigger) {
+		var ret string
+		return ret
+	}
+	return *o.OnclickTrigger
+}
+
+// GetOnclickTriggerOk returns a tuple with the OnclickTrigger field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UiNodeInputAttributes) GetOnclickTriggerOk() (*string, bool) {
+	if o == nil || IsNil(o.OnclickTrigger) {
+		return nil, false
+	}
+	return o.OnclickTrigger, true
+}
+
+// HasOnclickTrigger returns a boolean if a field has been set.
+func (o *UiNodeInputAttributes) HasOnclickTrigger() bool {
+	if o != nil && !IsNil(o.OnclickTrigger) {
+		return true
+	}
+
+	return false
+}
+
+// SetOnclickTrigger gets a reference to the given string and assigns it to the OnclickTrigger field.
+func (o *UiNodeInputAttributes) SetOnclickTrigger(v string) {
+	o.OnclickTrigger = &v
+}
+
 // GetOnload returns the Onload field value if set, zero value otherwise.
 func (o *UiNodeInputAttributes) GetOnload() string {
 	if o == nil || IsNil(o.Onload) {
@@ -266,6 +336,38 @@ func (o *UiNodeInputAttributes) HasOnload() bool {
 // SetOnload gets a reference to the given string and assigns it to the Onload field.
 func (o *UiNodeInputAttributes) SetOnload(v string) {
 	o.Onload = &v
+}
+
+// GetOnloadTrigger returns the OnloadTrigger field value if set, zero value otherwise.
+func (o *UiNodeInputAttributes) GetOnloadTrigger() string {
+	if o == nil || IsNil(o.OnloadTrigger) {
+		var ret string
+		return ret
+	}
+	return *o.OnloadTrigger
+}
+
+// GetOnloadTriggerOk returns a tuple with the OnloadTrigger field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UiNodeInputAttributes) GetOnloadTriggerOk() (*string, bool) {
+	if o == nil || IsNil(o.OnloadTrigger) {
+		return nil, false
+	}
+	return o.OnloadTrigger, true
+}
+
+// HasOnloadTrigger returns a boolean if a field has been set.
+func (o *UiNodeInputAttributes) HasOnloadTrigger() bool {
+	if o != nil && !IsNil(o.OnloadTrigger) {
+		return true
+	}
+
+	return false
+}
+
+// SetOnloadTrigger gets a reference to the given string and assigns it to the OnloadTrigger field.
+func (o *UiNodeInputAttributes) SetOnloadTrigger(v string) {
+	o.OnloadTrigger = &v
 }
 
 // GetPattern returns the Pattern field value if set, zero value otherwise.
@@ -406,13 +508,22 @@ func (o UiNodeInputAttributes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
+	if !IsNil(o.Maxlength) {
+		toSerialize["maxlength"] = o.Maxlength
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["node_type"] = o.NodeType
 	if !IsNil(o.Onclick) {
 		toSerialize["onclick"] = o.Onclick
 	}
+	if !IsNil(o.OnclickTrigger) {
+		toSerialize["onclickTrigger"] = o.OnclickTrigger
+	}
 	if !IsNil(o.Onload) {
 		toSerialize["onload"] = o.Onload
+	}
+	if !IsNil(o.OnloadTrigger) {
+		toSerialize["onloadTrigger"] = o.OnloadTrigger
 	}
 	if !IsNil(o.Pattern) {
 		toSerialize["pattern"] = o.Pattern
@@ -473,10 +584,13 @@ func (o *UiNodeInputAttributes) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "autocomplete")
 		delete(additionalProperties, "disabled")
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "maxlength")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "node_type")
 		delete(additionalProperties, "onclick")
+		delete(additionalProperties, "onclickTrigger")
 		delete(additionalProperties, "onload")
+		delete(additionalProperties, "onloadTrigger")
 		delete(additionalProperties, "pattern")
 		delete(additionalProperties, "required")
 		delete(additionalProperties, "type")

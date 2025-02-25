@@ -99,6 +99,110 @@ final BuiltSet<UiNodeInputAttributesNodeTypeEnum>
   _$uiNodeInputAttributesNodeTypeEnum_script,
 ]);
 
+const UiNodeInputAttributesOnclickTriggerEnum
+    _$uiNodeInputAttributesOnclickTriggerEnum_oryWebAuthnRegistration =
+    const UiNodeInputAttributesOnclickTriggerEnum._('oryWebAuthnRegistration');
+const UiNodeInputAttributesOnclickTriggerEnum
+    _$uiNodeInputAttributesOnclickTriggerEnum_oryWebAuthnLogin =
+    const UiNodeInputAttributesOnclickTriggerEnum._('oryWebAuthnLogin');
+const UiNodeInputAttributesOnclickTriggerEnum
+    _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyLogin =
+    const UiNodeInputAttributesOnclickTriggerEnum._('oryPasskeyLogin');
+const UiNodeInputAttributesOnclickTriggerEnum
+    _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyLoginAutocompleteInit =
+    const UiNodeInputAttributesOnclickTriggerEnum._(
+        'oryPasskeyLoginAutocompleteInit');
+const UiNodeInputAttributesOnclickTriggerEnum
+    _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyRegistration =
+    const UiNodeInputAttributesOnclickTriggerEnum._('oryPasskeyRegistration');
+const UiNodeInputAttributesOnclickTriggerEnum
+    _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeySettingsRegistration =
+    const UiNodeInputAttributesOnclickTriggerEnum._(
+        'oryPasskeySettingsRegistration');
+
+UiNodeInputAttributesOnclickTriggerEnum
+    _$uiNodeInputAttributesOnclickTriggerEnumValueOf(String name) {
+  switch (name) {
+    case 'oryWebAuthnRegistration':
+      return _$uiNodeInputAttributesOnclickTriggerEnum_oryWebAuthnRegistration;
+    case 'oryWebAuthnLogin':
+      return _$uiNodeInputAttributesOnclickTriggerEnum_oryWebAuthnLogin;
+    case 'oryPasskeyLogin':
+      return _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyLogin;
+    case 'oryPasskeyLoginAutocompleteInit':
+      return _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyLoginAutocompleteInit;
+    case 'oryPasskeyRegistration':
+      return _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyRegistration;
+    case 'oryPasskeySettingsRegistration':
+      return _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeySettingsRegistration;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UiNodeInputAttributesOnclickTriggerEnum>
+    _$uiNodeInputAttributesOnclickTriggerEnumValues = new BuiltSet<
+        UiNodeInputAttributesOnclickTriggerEnum>(const <UiNodeInputAttributesOnclickTriggerEnum>[
+  _$uiNodeInputAttributesOnclickTriggerEnum_oryWebAuthnRegistration,
+  _$uiNodeInputAttributesOnclickTriggerEnum_oryWebAuthnLogin,
+  _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyLogin,
+  _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyLoginAutocompleteInit,
+  _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeyRegistration,
+  _$uiNodeInputAttributesOnclickTriggerEnum_oryPasskeySettingsRegistration,
+]);
+
+const UiNodeInputAttributesOnloadTriggerEnum
+    _$uiNodeInputAttributesOnloadTriggerEnum_oryWebAuthnRegistration =
+    const UiNodeInputAttributesOnloadTriggerEnum._('oryWebAuthnRegistration');
+const UiNodeInputAttributesOnloadTriggerEnum
+    _$uiNodeInputAttributesOnloadTriggerEnum_oryWebAuthnLogin =
+    const UiNodeInputAttributesOnloadTriggerEnum._('oryWebAuthnLogin');
+const UiNodeInputAttributesOnloadTriggerEnum
+    _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyLogin =
+    const UiNodeInputAttributesOnloadTriggerEnum._('oryPasskeyLogin');
+const UiNodeInputAttributesOnloadTriggerEnum
+    _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyLoginAutocompleteInit =
+    const UiNodeInputAttributesOnloadTriggerEnum._(
+        'oryPasskeyLoginAutocompleteInit');
+const UiNodeInputAttributesOnloadTriggerEnum
+    _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyRegistration =
+    const UiNodeInputAttributesOnloadTriggerEnum._('oryPasskeyRegistration');
+const UiNodeInputAttributesOnloadTriggerEnum
+    _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeySettingsRegistration =
+    const UiNodeInputAttributesOnloadTriggerEnum._(
+        'oryPasskeySettingsRegistration');
+
+UiNodeInputAttributesOnloadTriggerEnum
+    _$uiNodeInputAttributesOnloadTriggerEnumValueOf(String name) {
+  switch (name) {
+    case 'oryWebAuthnRegistration':
+      return _$uiNodeInputAttributesOnloadTriggerEnum_oryWebAuthnRegistration;
+    case 'oryWebAuthnLogin':
+      return _$uiNodeInputAttributesOnloadTriggerEnum_oryWebAuthnLogin;
+    case 'oryPasskeyLogin':
+      return _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyLogin;
+    case 'oryPasskeyLoginAutocompleteInit':
+      return _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyLoginAutocompleteInit;
+    case 'oryPasskeyRegistration':
+      return _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyRegistration;
+    case 'oryPasskeySettingsRegistration':
+      return _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeySettingsRegistration;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UiNodeInputAttributesOnloadTriggerEnum>
+    _$uiNodeInputAttributesOnloadTriggerEnumValues = new BuiltSet<
+        UiNodeInputAttributesOnloadTriggerEnum>(const <UiNodeInputAttributesOnloadTriggerEnum>[
+  _$uiNodeInputAttributesOnloadTriggerEnum_oryWebAuthnRegistration,
+  _$uiNodeInputAttributesOnloadTriggerEnum_oryWebAuthnLogin,
+  _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyLogin,
+  _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyLoginAutocompleteInit,
+  _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeyRegistration,
+  _$uiNodeInputAttributesOnloadTriggerEnum_oryPasskeySettingsRegistration,
+]);
+
 const UiNodeInputAttributesTypeEnum _$uiNodeInputAttributesTypeEnum_text =
     const UiNodeInputAttributesTypeEnum._('text');
 const UiNodeInputAttributesTypeEnum _$uiNodeInputAttributesTypeEnum_password =
@@ -180,6 +284,12 @@ Serializer<UiNodeInputAttributesAutocompleteEnum>
 Serializer<UiNodeInputAttributesNodeTypeEnum>
     _$uiNodeInputAttributesNodeTypeEnumSerializer =
     new _$UiNodeInputAttributesNodeTypeEnumSerializer();
+Serializer<UiNodeInputAttributesOnclickTriggerEnum>
+    _$uiNodeInputAttributesOnclickTriggerEnumSerializer =
+    new _$UiNodeInputAttributesOnclickTriggerEnumSerializer();
+Serializer<UiNodeInputAttributesOnloadTriggerEnum>
+    _$uiNodeInputAttributesOnloadTriggerEnumSerializer =
+    new _$UiNodeInputAttributesOnloadTriggerEnumSerializer();
 Serializer<UiNodeInputAttributesTypeEnum>
     _$uiNodeInputAttributesTypeEnumSerializer =
     new _$UiNodeInputAttributesTypeEnumSerializer();
@@ -260,6 +370,86 @@ class _$UiNodeInputAttributesNodeTypeEnumSerializer
           _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
+class _$UiNodeInputAttributesOnclickTriggerEnumSerializer
+    implements PrimitiveSerializer<UiNodeInputAttributesOnclickTriggerEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'oryWebAuthnRegistration': 'oryWebAuthnRegistration',
+    'oryWebAuthnLogin': 'oryWebAuthnLogin',
+    'oryPasskeyLogin': 'oryPasskeyLogin',
+    'oryPasskeyLoginAutocompleteInit': 'oryPasskeyLoginAutocompleteInit',
+    'oryPasskeyRegistration': 'oryPasskeyRegistration',
+    'oryPasskeySettingsRegistration': 'oryPasskeySettingsRegistration',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'oryWebAuthnRegistration': 'oryWebAuthnRegistration',
+    'oryWebAuthnLogin': 'oryWebAuthnLogin',
+    'oryPasskeyLogin': 'oryPasskeyLogin',
+    'oryPasskeyLoginAutocompleteInit': 'oryPasskeyLoginAutocompleteInit',
+    'oryPasskeyRegistration': 'oryPasskeyRegistration',
+    'oryPasskeySettingsRegistration': 'oryPasskeySettingsRegistration',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    UiNodeInputAttributesOnclickTriggerEnum
+  ];
+  @override
+  final String wireName = 'UiNodeInputAttributesOnclickTriggerEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          UiNodeInputAttributesOnclickTriggerEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UiNodeInputAttributesOnclickTriggerEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UiNodeInputAttributesOnclickTriggerEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
+class _$UiNodeInputAttributesOnloadTriggerEnumSerializer
+    implements PrimitiveSerializer<UiNodeInputAttributesOnloadTriggerEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'oryWebAuthnRegistration': 'oryWebAuthnRegistration',
+    'oryWebAuthnLogin': 'oryWebAuthnLogin',
+    'oryPasskeyLogin': 'oryPasskeyLogin',
+    'oryPasskeyLoginAutocompleteInit': 'oryPasskeyLoginAutocompleteInit',
+    'oryPasskeyRegistration': 'oryPasskeyRegistration',
+    'oryPasskeySettingsRegistration': 'oryPasskeySettingsRegistration',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'oryWebAuthnRegistration': 'oryWebAuthnRegistration',
+    'oryWebAuthnLogin': 'oryWebAuthnLogin',
+    'oryPasskeyLogin': 'oryPasskeyLogin',
+    'oryPasskeyLoginAutocompleteInit': 'oryPasskeyLoginAutocompleteInit',
+    'oryPasskeyRegistration': 'oryPasskeyRegistration',
+    'oryPasskeySettingsRegistration': 'oryPasskeySettingsRegistration',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    UiNodeInputAttributesOnloadTriggerEnum
+  ];
+  @override
+  final String wireName = 'UiNodeInputAttributesOnloadTriggerEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          UiNodeInputAttributesOnloadTriggerEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UiNodeInputAttributesOnloadTriggerEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UiNodeInputAttributesOnloadTriggerEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UiNodeInputAttributesTypeEnumSerializer
     implements PrimitiveSerializer<UiNodeInputAttributesTypeEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
@@ -318,13 +508,19 @@ class _$UiNodeInputAttributes extends UiNodeInputAttributes {
   @override
   final UiText? label;
   @override
+  final int? maxlength;
+  @override
   final String name;
   @override
   final UiNodeInputAttributesNodeTypeEnum nodeType;
   @override
   final String? onclick;
   @override
+  final UiNodeInputAttributesOnclickTriggerEnum? onclickTrigger;
+  @override
   final String? onload;
+  @override
+  final UiNodeInputAttributesOnloadTriggerEnum? onloadTrigger;
   @override
   final String? pattern;
   @override
@@ -342,10 +538,13 @@ class _$UiNodeInputAttributes extends UiNodeInputAttributes {
       {this.autocomplete,
       required this.disabled,
       this.label,
+      this.maxlength,
       required this.name,
       required this.nodeType,
       this.onclick,
+      this.onclickTrigger,
       this.onload,
+      this.onloadTrigger,
       this.pattern,
       this.required_,
       required this.type,
@@ -377,10 +576,13 @@ class _$UiNodeInputAttributes extends UiNodeInputAttributes {
         autocomplete == other.autocomplete &&
         disabled == other.disabled &&
         label == other.label &&
+        maxlength == other.maxlength &&
         name == other.name &&
         nodeType == other.nodeType &&
         onclick == other.onclick &&
+        onclickTrigger == other.onclickTrigger &&
         onload == other.onload &&
+        onloadTrigger == other.onloadTrigger &&
         pattern == other.pattern &&
         required_ == other.required_ &&
         type == other.type &&
@@ -393,10 +595,13 @@ class _$UiNodeInputAttributes extends UiNodeInputAttributes {
     _$hash = $jc(_$hash, autocomplete.hashCode);
     _$hash = $jc(_$hash, disabled.hashCode);
     _$hash = $jc(_$hash, label.hashCode);
+    _$hash = $jc(_$hash, maxlength.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, nodeType.hashCode);
     _$hash = $jc(_$hash, onclick.hashCode);
+    _$hash = $jc(_$hash, onclickTrigger.hashCode);
     _$hash = $jc(_$hash, onload.hashCode);
+    _$hash = $jc(_$hash, onloadTrigger.hashCode);
     _$hash = $jc(_$hash, pattern.hashCode);
     _$hash = $jc(_$hash, required_.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
@@ -411,10 +616,13 @@ class _$UiNodeInputAttributes extends UiNodeInputAttributes {
           ..add('autocomplete', autocomplete)
           ..add('disabled', disabled)
           ..add('label', label)
+          ..add('maxlength', maxlength)
           ..add('name', name)
           ..add('nodeType', nodeType)
           ..add('onclick', onclick)
+          ..add('onclickTrigger', onclickTrigger)
           ..add('onload', onload)
+          ..add('onloadTrigger', onloadTrigger)
           ..add('pattern', pattern)
           ..add('required_', required_)
           ..add('type', type)
@@ -441,6 +649,10 @@ class UiNodeInputAttributesBuilder
   UiTextBuilder get label => _$this._label ??= new UiTextBuilder();
   set label(UiTextBuilder? label) => _$this._label = label;
 
+  int? _maxlength;
+  int? get maxlength => _$this._maxlength;
+  set maxlength(int? maxlength) => _$this._maxlength = maxlength;
+
   String? _name;
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
@@ -454,9 +666,21 @@ class UiNodeInputAttributesBuilder
   String? get onclick => _$this._onclick;
   set onclick(String? onclick) => _$this._onclick = onclick;
 
+  UiNodeInputAttributesOnclickTriggerEnum? _onclickTrigger;
+  UiNodeInputAttributesOnclickTriggerEnum? get onclickTrigger =>
+      _$this._onclickTrigger;
+  set onclickTrigger(UiNodeInputAttributesOnclickTriggerEnum? onclickTrigger) =>
+      _$this._onclickTrigger = onclickTrigger;
+
   String? _onload;
   String? get onload => _$this._onload;
   set onload(String? onload) => _$this._onload = onload;
+
+  UiNodeInputAttributesOnloadTriggerEnum? _onloadTrigger;
+  UiNodeInputAttributesOnloadTriggerEnum? get onloadTrigger =>
+      _$this._onloadTrigger;
+  set onloadTrigger(UiNodeInputAttributesOnloadTriggerEnum? onloadTrigger) =>
+      _$this._onloadTrigger = onloadTrigger;
 
   String? _pattern;
   String? get pattern => _$this._pattern;
@@ -484,10 +708,13 @@ class UiNodeInputAttributesBuilder
       _autocomplete = $v.autocomplete;
       _disabled = $v.disabled;
       _label = $v.label?.toBuilder();
+      _maxlength = $v.maxlength;
       _name = $v.name;
       _nodeType = $v.nodeType;
       _onclick = $v.onclick;
+      _onclickTrigger = $v.onclickTrigger;
       _onload = $v.onload;
+      _onloadTrigger = $v.onloadTrigger;
       _pattern = $v.pattern;
       _required_ = $v.required_;
       _type = $v.type;
@@ -520,12 +747,15 @@ class UiNodeInputAttributesBuilder
               disabled: BuiltValueNullFieldError.checkNotNull(
                   disabled, r'UiNodeInputAttributes', 'disabled'),
               label: _label?.build(),
+              maxlength: maxlength,
               name: BuiltValueNullFieldError.checkNotNull(
                   name, r'UiNodeInputAttributes', 'name'),
               nodeType: BuiltValueNullFieldError.checkNotNull(
                   nodeType, r'UiNodeInputAttributes', 'nodeType'),
               onclick: onclick,
+              onclickTrigger: onclickTrigger,
               onload: onload,
+              onloadTrigger: onloadTrigger,
               pattern: pattern,
               required_: required_,
               type: BuiltValueNullFieldError.checkNotNull(

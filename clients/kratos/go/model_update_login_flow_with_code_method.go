@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v1.3.4
 Contact: office@ory.sh
 */
 
@@ -21,6 +21,8 @@ var _ MappedNullable = &UpdateLoginFlowWithCodeMethod{}
 
 // UpdateLoginFlowWithCodeMethod Update Login flow using the code method
 type UpdateLoginFlowWithCodeMethod struct {
+	// Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows.
+	Address *string `json:"address,omitempty"`
 	// Code is the 6 digits code sent to the user
 	Code *string `json:"code,omitempty"`
 	// CSRFToken is the anti-CSRF token
@@ -55,6 +57,38 @@ func NewUpdateLoginFlowWithCodeMethod(csrfToken string, method string) *UpdateLo
 func NewUpdateLoginFlowWithCodeMethodWithDefaults() *UpdateLoginFlowWithCodeMethod {
 	this := UpdateLoginFlowWithCodeMethod{}
 	return &this
+}
+
+// GetAddress returns the Address field value if set, zero value otherwise.
+func (o *UpdateLoginFlowWithCodeMethod) GetAddress() string {
+	if o == nil || IsNil(o.Address) {
+		var ret string
+		return ret
+	}
+	return *o.Address
+}
+
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoginFlowWithCodeMethod) GetAddressOk() (*string, bool) {
+	if o == nil || IsNil(o.Address) {
+		return nil, false
+	}
+	return o.Address, true
+}
+
+// HasAddress returns a boolean if a field has been set.
+func (o *UpdateLoginFlowWithCodeMethod) HasAddress() bool {
+	if o != nil && !IsNil(o.Address) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given string and assigns it to the Address field.
+func (o *UpdateLoginFlowWithCodeMethod) SetAddress(v string) {
+	o.Address = &v
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
@@ -243,6 +277,9 @@ func (o UpdateLoginFlowWithCodeMethod) MarshalJSON() ([]byte, error) {
 
 func (o UpdateLoginFlowWithCodeMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
 	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
@@ -301,6 +338,7 @@ func (o *UpdateLoginFlowWithCodeMethod) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
 		delete(additionalProperties, "code")
 		delete(additionalProperties, "csrf_token")
 		delete(additionalProperties, "identifier")

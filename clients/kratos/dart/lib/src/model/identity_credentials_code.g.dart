@@ -8,15 +8,13 @@ part of 'identity_credentials_code.dart';
 
 class _$IdentityCredentialsCode extends IdentityCredentialsCode {
   @override
-  final String? addressType;
-  @override
-  final DateTime? usedAt;
+  final BuiltList<IdentityCredentialsCodeAddress>? addresses;
 
   factory _$IdentityCredentialsCode(
           [void Function(IdentityCredentialsCodeBuilder)? updates]) =>
       (new IdentityCredentialsCodeBuilder()..update(updates))._build();
 
-  _$IdentityCredentialsCode._({this.addressType, this.usedAt}) : super._();
+  _$IdentityCredentialsCode._({this.addresses}) : super._();
 
   @override
   IdentityCredentialsCode rebuild(
@@ -30,16 +28,13 @@ class _$IdentityCredentialsCode extends IdentityCredentialsCode {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is IdentityCredentialsCode &&
-        addressType == other.addressType &&
-        usedAt == other.usedAt;
+    return other is IdentityCredentialsCode && addresses == other.addresses;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, addressType.hashCode);
-    _$hash = $jc(_$hash, usedAt.hashCode);
+    _$hash = $jc(_$hash, addresses.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -47,8 +42,7 @@ class _$IdentityCredentialsCode extends IdentityCredentialsCode {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'IdentityCredentialsCode')
-          ..add('addressType', addressType)
-          ..add('usedAt', usedAt))
+          ..add('addresses', addresses))
         .toString();
   }
 }
@@ -58,13 +52,11 @@ class IdentityCredentialsCodeBuilder
         Builder<IdentityCredentialsCode, IdentityCredentialsCodeBuilder> {
   _$IdentityCredentialsCode? _$v;
 
-  String? _addressType;
-  String? get addressType => _$this._addressType;
-  set addressType(String? addressType) => _$this._addressType = addressType;
-
-  DateTime? _usedAt;
-  DateTime? get usedAt => _$this._usedAt;
-  set usedAt(DateTime? usedAt) => _$this._usedAt = usedAt;
+  ListBuilder<IdentityCredentialsCodeAddress>? _addresses;
+  ListBuilder<IdentityCredentialsCodeAddress> get addresses =>
+      _$this._addresses ??= new ListBuilder<IdentityCredentialsCodeAddress>();
+  set addresses(ListBuilder<IdentityCredentialsCodeAddress>? addresses) =>
+      _$this._addresses = addresses;
 
   IdentityCredentialsCodeBuilder() {
     IdentityCredentialsCode._defaults(this);
@@ -73,8 +65,7 @@ class IdentityCredentialsCodeBuilder
   IdentityCredentialsCodeBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _addressType = $v.addressType;
-      _usedAt = $v.usedAt;
+      _addresses = $v.addresses?.toBuilder();
       _$v = null;
     }
     return this;
@@ -95,9 +86,21 @@ class IdentityCredentialsCodeBuilder
   IdentityCredentialsCode build() => _build();
 
   _$IdentityCredentialsCode _build() {
-    final _$result = _$v ??
-        new _$IdentityCredentialsCode._(
-            addressType: addressType, usedAt: usedAt);
+    _$IdentityCredentialsCode _$result;
+    try {
+      _$result = _$v ??
+          new _$IdentityCredentialsCode._(addresses: _addresses?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'addresses';
+        _addresses?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'IdentityCredentialsCode', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

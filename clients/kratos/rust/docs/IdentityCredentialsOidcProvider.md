@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **organization** | Option<**String**> |  | [optional]
 **provider** | Option<**String**> |  | [optional]
 **subject** | Option<**String**> |  | [optional]
+**use_auto_link** | Option<**bool**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

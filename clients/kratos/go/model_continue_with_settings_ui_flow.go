@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v1.3.4
 Contact: office@ory.sh
 */
 
@@ -23,6 +23,8 @@ var _ MappedNullable = &ContinueWithSettingsUiFlow{}
 type ContinueWithSettingsUiFlow struct {
 	// The ID of the settings flow
 	Id string `json:"id"`
+	// The URL of the settings flow  If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
+	Url *string `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -70,6 +72,38 @@ func (o *ContinueWithSettingsUiFlow) SetId(v string) {
 	o.Id = v
 }
 
+// GetUrl returns the Url field value if set, zero value otherwise.
+func (o *ContinueWithSettingsUiFlow) GetUrl() string {
+	if o == nil || IsNil(o.Url) {
+		var ret string
+		return ret
+	}
+	return *o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContinueWithSettingsUiFlow) GetUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.Url) {
+		return nil, false
+	}
+	return o.Url, true
+}
+
+// HasUrl returns a boolean if a field has been set.
+func (o *ContinueWithSettingsUiFlow) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
+func (o *ContinueWithSettingsUiFlow) SetUrl(v string) {
+	o.Url = &v
+}
+
 func (o ContinueWithSettingsUiFlow) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -81,6 +115,9 @@ func (o ContinueWithSettingsUiFlow) MarshalJSON() ([]byte, error) {
 func (o ContinueWithSettingsUiFlow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -125,6 +162,7 @@ func (o *ContinueWithSettingsUiFlow) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "url")
 		o.AdditionalProperties = additionalProperties
 	}
 

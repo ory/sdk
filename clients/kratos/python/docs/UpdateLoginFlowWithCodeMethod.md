@@ -6,6 +6,7 @@ Update Login flow using the code method
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**address** | **str** | Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows. | [optional] 
 **code** | **str** | Code is the 6 digits code sent to the user | [optional] 
 **csrf_token** | **str** | CSRFToken is the anti-CSRF token | 
 **identifier** | **str** | Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow. | [optional] 

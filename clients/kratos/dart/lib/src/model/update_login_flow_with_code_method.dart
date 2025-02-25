@@ -12,6 +12,7 @@ part 'update_login_flow_with_code_method.g.dart';
 /// Update Login flow using the code method
 ///
 /// Properties:
+/// * [address] - Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows.
 /// * [code] - Code is the 6 digits code sent to the user
 /// * [csrfToken] - CSRFToken is the anti-CSRF token
 /// * [identifier] - Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow.
@@ -20,6 +21,10 @@ part 'update_login_flow_with_code_method.g.dart';
 /// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateLoginFlowWithCodeMethod implements Built<UpdateLoginFlowWithCodeMethod, UpdateLoginFlowWithCodeMethodBuilder> {
+  /// Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows.
+  @BuiltValueField(wireName: r'address')
+  String? get address;
+
   /// Code is the 6 digits code sent to the user
   @BuiltValueField(wireName: r'code')
   String? get code;
@@ -67,6 +72,13 @@ class _$UpdateLoginFlowWithCodeMethodSerializer implements PrimitiveSerializer<U
     UpdateLoginFlowWithCodeMethod object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.address != null) {
+      yield r'address';
+      yield serializers.serialize(
+        object.address,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.code != null) {
       yield r'code';
       yield serializers.serialize(
@@ -128,6 +140,13 @@ class _$UpdateLoginFlowWithCodeMethodSerializer implements PrimitiveSerializer<U
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'address':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.address = valueDes;
+          break;
         case r'code':
           final valueDes = serializers.deserialize(
             value,

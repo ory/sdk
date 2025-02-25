@@ -20,6 +20,8 @@ class _$IdentityCredentialsOidcProvider
   final String? provider;
   @override
   final String? subject;
+  @override
+  final bool? useAutoLink;
 
   factory _$IdentityCredentialsOidcProvider(
           [void Function(IdentityCredentialsOidcProviderBuilder)? updates]) =>
@@ -31,7 +33,8 @@ class _$IdentityCredentialsOidcProvider
       this.initialRefreshToken,
       this.organization,
       this.provider,
-      this.subject})
+      this.subject,
+      this.useAutoLink})
       : super._();
 
   @override
@@ -52,7 +55,8 @@ class _$IdentityCredentialsOidcProvider
         initialRefreshToken == other.initialRefreshToken &&
         organization == other.organization &&
         provider == other.provider &&
-        subject == other.subject;
+        subject == other.subject &&
+        useAutoLink == other.useAutoLink;
   }
 
   @override
@@ -64,6 +68,7 @@ class _$IdentityCredentialsOidcProvider
     _$hash = $jc(_$hash, organization.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, subject.hashCode);
+    _$hash = $jc(_$hash, useAutoLink.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -76,7 +81,8 @@ class _$IdentityCredentialsOidcProvider
           ..add('initialRefreshToken', initialRefreshToken)
           ..add('organization', organization)
           ..add('provider', provider)
-          ..add('subject', subject))
+          ..add('subject', subject)
+          ..add('useAutoLink', useAutoLink))
         .toString();
   }
 }
@@ -114,6 +120,10 @@ class IdentityCredentialsOidcProviderBuilder
   String? get subject => _$this._subject;
   set subject(String? subject) => _$this._subject = subject;
 
+  bool? _useAutoLink;
+  bool? get useAutoLink => _$this._useAutoLink;
+  set useAutoLink(bool? useAutoLink) => _$this._useAutoLink = useAutoLink;
+
   IdentityCredentialsOidcProviderBuilder() {
     IdentityCredentialsOidcProvider._defaults(this);
   }
@@ -127,6 +137,7 @@ class IdentityCredentialsOidcProviderBuilder
       _organization = $v.organization;
       _provider = $v.provider;
       _subject = $v.subject;
+      _useAutoLink = $v.useAutoLink;
       _$v = null;
     }
     return this;
@@ -154,7 +165,8 @@ class IdentityCredentialsOidcProviderBuilder
             initialRefreshToken: initialRefreshToken,
             organization: organization,
             provider: provider,
-            subject: subject);
+            subject: subject,
+            useAutoLink: useAutoLink);
     replace(_$result);
     return _$result;
   }

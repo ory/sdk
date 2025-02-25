@@ -11,13 +11,13 @@ part 'recovery_flow_state.g.dart';
 
 class RecoveryFlowState extends EnumClass {
 
-  /// The state represents the state of the recovery flow.  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
+  /// The experimental state represents the state of a recovery flow. This field is EXPERIMENTAL and subject to change!
   @BuiltValueEnumConst(wireName: r'choose_method')
   static const RecoveryFlowState chooseMethod = _$chooseMethod;
-  /// The state represents the state of the recovery flow.  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
+  /// The experimental state represents the state of a recovery flow. This field is EXPERIMENTAL and subject to change!
   @BuiltValueEnumConst(wireName: r'sent_email')
   static const RecoveryFlowState sentEmail = _$sentEmail;
-  /// The state represents the state of the recovery flow.  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed.
+  /// The experimental state represents the state of a recovery flow. This field is EXPERIMENTAL and subject to change!
   @BuiltValueEnumConst(wireName: r'passed_challenge')
   static const RecoveryFlowState passedChallenge = _$passedChallenge;
 

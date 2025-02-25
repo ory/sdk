@@ -11,13 +11,13 @@ part 'login_flow_state.g.dart';
 
 class LoginFlowState extends EnumClass {
 
-  /// The state represents the state of the login flow.  choose_method: ask the user to choose a method (e.g. login account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed.
+  /// The experimental state represents the state of a login flow. This field is EXPERIMENTAL and subject to change!
   @BuiltValueEnumConst(wireName: r'choose_method')
   static const LoginFlowState chooseMethod = _$chooseMethod;
-  /// The state represents the state of the login flow.  choose_method: ask the user to choose a method (e.g. login account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed.
+  /// The experimental state represents the state of a login flow. This field is EXPERIMENTAL and subject to change!
   @BuiltValueEnumConst(wireName: r'sent_email')
   static const LoginFlowState sentEmail = _$sentEmail;
-  /// The state represents the state of the login flow.  choose_method: ask the user to choose a method (e.g. login account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed.
+  /// The experimental state represents the state of a login flow. This field is EXPERIMENTAL and subject to change!
   @BuiltValueEnumConst(wireName: r'passed_challenge')
   static const LoginFlowState passedChallenge = _$passedChallenge;
 

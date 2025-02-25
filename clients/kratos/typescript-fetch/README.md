@@ -1,4 +1,4 @@
-## @ory/kratos-client-fetch@v1.2.1
+## @ory/kratos-client-fetch@v1.3.4
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/kratos-client-fetch@v1.2.1 --save
+npm install @ory/kratos-client-fetch@v1.3.4 --save
 ```
 
 _unPublished (not recommended):_

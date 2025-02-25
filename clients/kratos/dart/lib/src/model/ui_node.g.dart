@@ -22,6 +22,11 @@ const UiNodeGroupEnum _$uiNodeGroupEnum_webauthn =
     const UiNodeGroupEnum._('webauthn');
 const UiNodeGroupEnum _$uiNodeGroupEnum_passkey =
     const UiNodeGroupEnum._('passkey');
+const UiNodeGroupEnum _$uiNodeGroupEnum_identifierFirst =
+    const UiNodeGroupEnum._('identifierFirst');
+const UiNodeGroupEnum _$uiNodeGroupEnum_captcha =
+    const UiNodeGroupEnum._('captcha');
+const UiNodeGroupEnum _$uiNodeGroupEnum_saml = const UiNodeGroupEnum._('saml');
 
 UiNodeGroupEnum _$uiNodeGroupEnumValueOf(String name) {
   switch (name) {
@@ -45,6 +50,12 @@ UiNodeGroupEnum _$uiNodeGroupEnumValueOf(String name) {
       return _$uiNodeGroupEnum_webauthn;
     case 'passkey':
       return _$uiNodeGroupEnum_passkey;
+    case 'identifierFirst':
+      return _$uiNodeGroupEnum_identifierFirst;
+    case 'captcha':
+      return _$uiNodeGroupEnum_captcha;
+    case 'saml':
+      return _$uiNodeGroupEnum_saml;
     default:
       throw new ArgumentError(name);
   }
@@ -62,6 +73,9 @@ final BuiltSet<UiNodeGroupEnum> _$uiNodeGroupEnumValues =
   _$uiNodeGroupEnum_lookupSecret,
   _$uiNodeGroupEnum_webauthn,
   _$uiNodeGroupEnum_passkey,
+  _$uiNodeGroupEnum_identifierFirst,
+  _$uiNodeGroupEnum_captcha,
+  _$uiNodeGroupEnum_saml,
 ]);
 
 const UiNodeTypeEnum _$uiNodeTypeEnum_text = const UiNodeTypeEnum._('text');
@@ -114,6 +128,9 @@ class _$UiNodeGroupEnumSerializer
     'lookupSecret': 'lookup_secret',
     'webauthn': 'webauthn',
     'passkey': 'passkey',
+    'identifierFirst': 'identifier_first',
+    'captcha': 'captcha',
+    'saml': 'saml',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'default': 'default_',
@@ -126,6 +143,9 @@ class _$UiNodeGroupEnumSerializer
     'lookup_secret': 'lookupSecret',
     'webauthn': 'webauthn',
     'passkey': 'passkey',
+    'identifier_first': 'identifierFirst',
+    'captcha': 'captcha',
+    'saml': 'saml',
   };
 
   @override

@@ -8,6 +8,7 @@ import 'package:ory_kratos_client/src/model/continue_with_settings_ui.dart';
 import 'package:ory_kratos_client/src/model/continue_with_verification_ui.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_kratos_client/src/model/continue_with_set_ory_session_token.dart';
+import 'package:ory_kratos_client/src/model/continue_with_redirect_browser_to.dart';
 import 'package:ory_kratos_client/src/model/continue_with_recovery_ui.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -18,17 +19,19 @@ part 'continue_with.g.dart';
 /// ContinueWith
 ///
 /// Properties:
-/// * [action] - Action will always be `show_recovery_ui` show_recovery_ui ContinueWithActionShowRecoveryUIString
+/// * [action] - Action will always be `redirect_browser_to` redirect_browser_to ContinueWithActionRedirectBrowserToString
 /// * [flow] 
 /// * [orySessionToken] - Token is the token of the session
+/// * [redirectBrowserTo] - The URL to redirect the browser to
 @BuiltValue()
 abstract class ContinueWith implements Built<ContinueWith, ContinueWithBuilder> {
-  /// One Of [ContinueWithRecoveryUi], [ContinueWithSetOrySessionToken], [ContinueWithSettingsUi], [ContinueWithVerificationUi]
+  /// One Of [ContinueWithRecoveryUi], [ContinueWithRedirectBrowserTo], [ContinueWithSetOrySessionToken], [ContinueWithSettingsUi], [ContinueWithVerificationUi]
   OneOf get oneOf;
 
   static const String discriminatorFieldName = r'action';
 
   static const Map<String, Type> discriminatorMapping = {
+    r'redirect_browser_to': ContinueWithRedirectBrowserTo,
     r'set_ory_session_token': ContinueWithSetOrySessionToken,
     r'show_recovery_ui': ContinueWithRecoveryUi,
     r'show_settings_ui': ContinueWithSettingsUi,
@@ -48,6 +51,9 @@ abstract class ContinueWith implements Built<ContinueWith, ContinueWithBuilder> 
 
 extension ContinueWithDiscriminatorExt on ContinueWith {
     String? get discriminatorValue {
+        if (this is ContinueWithRedirectBrowserTo) {
+            return r'redirect_browser_to';
+        }
         if (this is ContinueWithSetOrySessionToken) {
             return r'set_ory_session_token';
         }
@@ -65,6 +71,9 @@ extension ContinueWithDiscriminatorExt on ContinueWith {
 }
 extension ContinueWithBuilderDiscriminatorExt on ContinueWithBuilder {
     String? get discriminatorValue {
+        if (this is ContinueWithRedirectBrowserToBuilder) {
+            return r'redirect_browser_to';
+        }
         if (this is ContinueWithSetOrySessionTokenBuilder) {
             return r'set_ory_session_token';
         }
@@ -117,10 +126,17 @@ class _$ContinueWithSerializer implements PrimitiveSerializer<ContinueWith> {
     final discIndex = serializedList.indexOf(ContinueWith.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [ContinueWithSetOrySessionToken, ContinueWithRecoveryUi, ContinueWithSettingsUi, ContinueWithVerificationUi, ];
+    final oneOfTypes = [ContinueWithRedirectBrowserTo, ContinueWithSetOrySessionToken, ContinueWithRecoveryUi, ContinueWithSettingsUi, ContinueWithVerificationUi, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
+      case r'redirect_browser_to':
+        oneOfResult = serializers.deserialize(
+          oneOfDataSrc,
+          specifiedType: FullType(ContinueWithRedirectBrowserTo),
+        ) as ContinueWithRedirectBrowserTo;
+        oneOfType = ContinueWithRedirectBrowserTo;
+        break;
       case r'set_ory_session_token':
         oneOfResult = serializers.deserialize(
           oneOfDataSrc,
@@ -159,9 +175,9 @@ class _$ContinueWithSerializer implements PrimitiveSerializer<ContinueWith> {
 
 class ContinueWithActionEnum extends EnumClass {
 
-  /// Action will always be `show_recovery_ui` show_recovery_ui ContinueWithActionShowRecoveryUIString
-  @BuiltValueEnumConst(wireName: r'show_recovery_ui')
-  static const ContinueWithActionEnum showRecoveryUi = _$continueWithActionEnum_showRecoveryUi;
+  /// Action will always be `redirect_browser_to` redirect_browser_to ContinueWithActionRedirectBrowserToString
+  @BuiltValueEnumConst(wireName: r'redirect_browser_to')
+  static const ContinueWithActionEnum redirectBrowserTo = _$continueWithActionEnum_redirectBrowserTo;
 
   static Serializer<ContinueWithActionEnum> get serializer => _$continueWithActionEnumSerializer;
 

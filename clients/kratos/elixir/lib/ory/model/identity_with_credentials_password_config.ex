@@ -9,12 +9,14 @@ defmodule Ory.Model.IdentityWithCredentialsPasswordConfig do
   @derive Jason.Encoder
   defstruct [
     :hashed_password,
-    :password
+    :password,
+    :use_password_migration_hook
   ]
 
   @type t :: %__MODULE__{
     :hashed_password => String.t | nil,
-    :password => String.t | nil
+    :password => String.t | nil,
+    :use_password_migration_hook => boolean() | nil
   }
 
   def decode(value) do

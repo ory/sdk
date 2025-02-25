@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**create_browser_registration_flow**](FrontendApi.md#create_browser_registration_flow) | **GET** /self-service/registration/browser | Create Registration Flow for Browsers
 [**create_browser_settings_flow**](FrontendApi.md#create_browser_settings_flow) | **GET** /self-service/settings/browser | Create Settings Flow for Browsers
 [**create_browser_verification_flow**](FrontendApi.md#create_browser_verification_flow) | **GET** /self-service/verification/browser | Create Verification Flow for Browser Clients
+[**create_fedcm_flow**](FrontendApi.md#create_fedcm_flow) | **GET** /self-service/fed-cm/parameters | Get FedCM Parameters
 [**create_native_login_flow**](FrontendApi.md#create_native_login_flow) | **GET** /self-service/login/api | Create Login Flow for Native Apps
 [**create_native_recovery_flow**](FrontendApi.md#create_native_recovery_flow) | **GET** /self-service/recovery/api | Create Recovery Flow for Native Apps
 [**create_native_registration_flow**](FrontendApi.md#create_native_registration_flow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps
@@ -28,6 +29,7 @@ Method | HTTP request | Description
 [**list_my_sessions**](FrontendApi.md#list_my_sessions) | **GET** /sessions | Get My Active Sessions
 [**perform_native_logout**](FrontendApi.md#perform_native_logout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
 [**to_session**](FrontendApi.md#to_session) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**update_fedcm_flow**](FrontendApi.md#update_fedcm_flow) | **POST** /self-service/fed-cm/token | Submit a FedCM token
 [**update_login_flow**](FrontendApi.md#update_login_flow) | **POST** /self-service/login | Submit a Login Flow
 [**update_logout_flow**](FrontendApi.md#update_logout_flow) | **GET** /self-service/logout | Update Logout Flow
 [**update_recovery_flow**](FrontendApi.md#update_recovery_flow) | **POST** /self-service/recovery | Update Recovery Flow
@@ -69,7 +71,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
     login_challenge = 'login_challenge_example' # str | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional)
     organization = 'organization_example' # str | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
-    via = 'via_example' # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
+    via = 'via_example' # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
 
     try:
         # Create Login Flow for Browsers
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
  **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
  **login_challenge** | **str**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] 
  **organization** | **str**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
- **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] 
+ **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] 
 
 ### Return type
 
@@ -113,7 +115,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | loginFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **400** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
@@ -257,7 +259,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | recoveryFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **400** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
@@ -293,7 +295,7 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
     login_challenge = 'login_challenge_example' # str | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional)
     after_verification_return_to = 'after_verification_return_to_example' # str | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional)
-    organization = 'organization_example' # str |  (optional)
+    organization = 'organization_example' # str | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
 
     try:
         # Create Registration Flow for Browsers
@@ -314,7 +316,7 @@ Name | Type | Description  | Notes
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
  **login_challenge** | **str**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional] 
  **after_verification_return_to** | **str**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional] 
- **organization** | **str**|  | [optional] 
+ **organization** | **str**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] 
 
 ### Return type
 
@@ -334,7 +336,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | registrationFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -406,7 +408,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | settingsFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **400** | errorGeneric |  -  |
 **401** | errorGeneric |  -  |
 **403** | errorGeneric |  -  |
@@ -479,13 +481,79 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | verificationFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_fedcm_flow**
+> CreateFedcmFlowResponse create_fedcm_flow()
+
+Get FedCM Parameters
+
+This endpoint returns a list of all available FedCM providers. It is only supported on the Ory Network.
+
+### Example
+
+
+```python
+import ory_kratos_client
+from ory_kratos_client.models.create_fedcm_flow_response import CreateFedcmFlowResponse
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.FrontendApi(api_client)
+
+    try:
+        # Get FedCM Parameters
+        api_response = api_instance.create_fedcm_flow()
+        print("The response of FrontendApi->create_fedcm_flow:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FrontendApi->create_fedcm_flow: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CreateFedcmFlowResponse**](CreateFedcmFlowResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | createFedcmFlowResponse |  -  |
+**400** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_login_flow**
-> LoginFlow create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, via=via)
+> LoginFlow create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization, via=via)
 
 Create Login Flow for Native Apps
 
@@ -516,11 +584,12 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     x_session_token = 'x_session_token_example' # str | The Session Token of the Identity performing the settings flow. (optional)
     return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
     return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
-    via = 'via_example' # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
+    organization = 'organization_example' # str | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
+    via = 'via_example' # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
 
     try:
         # Create Login Flow for Native Apps
-        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, via=via)
+        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization, via=via)
         print("The response of FrontendApi->create_native_login_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -539,7 +608,8 @@ Name | Type | Description  | Notes
  **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional] 
  **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
- **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional] 
+ **organization** | **str**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
+ **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] 
 
 ### Return type
 
@@ -631,7 +701,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_registration_flow**
-> RegistrationFlow create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
+> RegistrationFlow create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization)
 
 Create Registration Flow for Native Apps
 
@@ -659,10 +729,11 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
     api_instance = ory_kratos_client.FrontendApi(api_client)
     return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
     return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
+    organization = 'organization_example' # str | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
 
     try:
         # Create Registration Flow for Native Apps
-        api_response = api_instance.create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to)
+        api_response = api_instance.create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization)
         print("The response of FrontendApi->create_native_registration_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -678,6 +749,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
+ **organization** | **str**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] 
 
 ### Return type
 
@@ -773,7 +845,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_verification_flow**
-> VerificationFlow create_native_verification_flow()
+> VerificationFlow create_native_verification_flow(return_to=return_to)
 
 Create Verification Flow for Native Apps
 
@@ -799,10 +871,11 @@ configuration = ory_kratos_client.Configuration(
 with ory_kratos_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_kratos_client.FrontendApi(api_client)
+    return_to = 'return_to_example' # str | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. (optional)
 
     try:
         # Create Verification Flow for Native Apps
-        api_response = api_instance.create_native_verification_flow()
+        api_response = api_instance.create_native_verification_flow(return_to=return_to)
         print("The response of FrontendApi->create_native_verification_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -813,7 +886,10 @@ with ory_kratos_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **return_to** | **str**| A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. | [optional] 
 
 ### Return type
 
@@ -976,7 +1052,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **400** | errorGeneric |  -  |
 **401** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
@@ -1703,7 +1779,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **400** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
@@ -1784,6 +1860,80 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_fedcm_flow**
+> SuccessfulNativeLogin update_fedcm_flow(update_fedcm_flow_body)
+
+Submit a FedCM token
+
+Use this endpoint to submit a token from a FedCM provider through `navigator.credentials.get` and log the user in. The parameters from `navigator.credentials.get` must have come from `GET self-service/fed-cm/parameters`.
+
+### Example
+
+
+```python
+import ory_kratos_client
+from ory_kratos_client.models.successful_native_login import SuccessfulNativeLogin
+from ory_kratos_client.models.update_fedcm_flow_body import UpdateFedcmFlowBody
+from ory_kratos_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_kratos_client.Configuration(
+    host = "http://localhost"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_kratos_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_kratos_client.FrontendApi(api_client)
+    update_fedcm_flow_body = ory_kratos_client.UpdateFedcmFlowBody() # UpdateFedcmFlowBody | 
+
+    try:
+        # Submit a FedCM token
+        api_response = api_instance.update_fedcm_flow(update_fedcm_flow_body)
+        print("The response of FrontendApi->update_fedcm_flow:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FrontendApi->update_fedcm_flow: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **update_fedcm_flow_body** | [**UpdateFedcmFlowBody**](UpdateFedcmFlowBody.md)|  | 
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successfulNativeLogin |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
+**400** | loginFlow |  -  |
+**410** | errorGeneric |  -  |
+**422** | errorBrowserLocationChangeRequired |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_login_flow**
 > SuccessfulNativeLogin update_login_flow(flow, update_login_flow_body, x_session_token=x_session_token, cookie=cookie)
 
@@ -1856,7 +2006,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | successfulNativeLogin |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **400** | loginFlow |  -  |
 **410** | errorGeneric |  -  |
 **422** | errorBrowserLocationChangeRequired |  -  |
@@ -1929,8 +2079,8 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2007,7 +2157,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | recoveryFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **400** | recoveryFlow |  -  |
 **410** | errorGeneric |  -  |
 **422** | errorBrowserLocationChangeRequired |  -  |
@@ -2085,7 +2235,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | successfulNativeRegistration |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **400** | registrationFlow |  -  |
 **410** | errorGeneric |  -  |
 **422** | errorBrowserLocationChangeRequired |  -  |
@@ -2165,7 +2315,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | settingsFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **400** | settingsFlow |  -  |
 **401** | errorGeneric |  -  |
 **403** | errorGeneric |  -  |
@@ -2247,7 +2397,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | verificationFlow |  -  |
-**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 **400** | verificationFlow |  -  |
 **410** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |

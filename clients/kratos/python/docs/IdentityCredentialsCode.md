@@ -6,8 +6,7 @@ CredentialsCode represents a one time login/registration code
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address_type** | **str** | The type of the address for this code | [optional] 
-**used_at** | **datetime** |  | [optional] 
+**addresses** | [**List[IdentityCredentialsCodeAddress]**](IdentityCredentialsCodeAddress.md) |  | [optional] 
 
 ## Example
 

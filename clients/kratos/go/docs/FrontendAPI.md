@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**CreateBrowserRegistrationFlow**](FrontendAPI.md#CreateBrowserRegistrationFlow) | **Get** /self-service/registration/browser | Create Registration Flow for Browsers
 [**CreateBrowserSettingsFlow**](FrontendAPI.md#CreateBrowserSettingsFlow) | **Get** /self-service/settings/browser | Create Settings Flow for Browsers
 [**CreateBrowserVerificationFlow**](FrontendAPI.md#CreateBrowserVerificationFlow) | **Get** /self-service/verification/browser | Create Verification Flow for Browser Clients
+[**CreateFedcmFlow**](FrontendAPI.md#CreateFedcmFlow) | **Get** /self-service/fed-cm/parameters | Get FedCM Parameters
 [**CreateNativeLoginFlow**](FrontendAPI.md#CreateNativeLoginFlow) | **Get** /self-service/login/api | Create Login Flow for Native Apps
 [**CreateNativeRecoveryFlow**](FrontendAPI.md#CreateNativeRecoveryFlow) | **Get** /self-service/recovery/api | Create Recovery Flow for Native Apps
 [**CreateNativeRegistrationFlow**](FrontendAPI.md#CreateNativeRegistrationFlow) | **Get** /self-service/registration/api | Create Registration Flow for Native Apps
@@ -28,6 +29,7 @@ Method | HTTP request | Description
 [**ListMySessions**](FrontendAPI.md#ListMySessions) | **Get** /sessions | Get My Active Sessions
 [**PerformNativeLogout**](FrontendAPI.md#PerformNativeLogout) | **Delete** /self-service/logout/api | Perform Logout for Native Apps
 [**ToSession**](FrontendAPI.md#ToSession) | **Get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**UpdateFedcmFlow**](FrontendAPI.md#UpdateFedcmFlow) | **Post** /self-service/fed-cm/token | Submit a FedCM token
 [**UpdateLoginFlow**](FrontendAPI.md#UpdateLoginFlow) | **Post** /self-service/login | Submit a Login Flow
 [**UpdateLogoutFlow**](FrontendAPI.md#UpdateLogoutFlow) | **Get** /self-service/logout | Update Logout Flow
 [**UpdateRecoveryFlow**](FrontendAPI.md#UpdateRecoveryFlow) | **Post** /self-service/recovery | Update Recovery Flow
@@ -64,7 +66,7 @@ func main() {
 	cookie := "cookie_example" // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 	loginChallenge := "loginChallenge_example" // string | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional)
 	organization := "organization_example" // string | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
-	via := "via_example" // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
+	via := "via_example" // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -95,7 +97,7 @@ Name | Type | Description  | Notes
  **cookie** | **string** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | 
  **loginChallenge** | **string** | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | 
  **organization** | **string** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | 
- **via** | **string** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | 
+ **via** | **string** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | 
 
 ### Return type
 
@@ -273,7 +275,7 @@ func main() {
 	returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
 	loginChallenge := "loginChallenge_example" // string | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional)
 	afterVerificationReturnTo := "afterVerificationReturnTo_example" // string | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional)
-	organization := "organization_example" // string |  (optional)
+	organization := "organization_example" // string | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -301,7 +303,7 @@ Name | Type | Description  | Notes
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
  **loginChallenge** | **string** | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | 
  **afterVerificationReturnTo** | **string** | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | 
- **organization** | **string** |  | 
+ **organization** | **string** | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | 
 
 ### Return type
 
@@ -455,9 +457,70 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## CreateFedcmFlow
+
+> CreateFedcmFlowResponse CreateFedcmFlow(ctx).Execute()
+
+Get FedCM Parameters
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/kratos-client-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrontendAPI.CreateFedcmFlow(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateFedcmFlow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateFedcmFlow`: CreateFedcmFlowResponse
+	fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateFedcmFlow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateFedcmFlowRequest struct via the builder pattern
+
+
+### Return type
+
+[**CreateFedcmFlowResponse**](CreateFedcmFlowResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateNativeLoginFlow
 
-> LoginFlow CreateNativeLoginFlow(ctx).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Via(via).Execute()
+> LoginFlow CreateNativeLoginFlow(ctx).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Organization(organization).Via(via).Execute()
 
 Create Login Flow for Native Apps
 
@@ -481,11 +544,12 @@ func main() {
 	xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
 	returnSessionTokenExchangeCode := true // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
 	returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
-	via := "via_example" // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional)
+	organization := "organization_example" // string | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
+	via := "via_example" // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FrontendAPI.CreateNativeLoginFlow(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Via(via).Execute()
+	resp, r, err := apiClient.FrontendAPI.CreateNativeLoginFlow(context.Background()).Refresh(refresh).Aal(aal).XSessionToken(xSessionToken).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Organization(organization).Via(via).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeLoginFlow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -511,7 +575,8 @@ Name | Type | Description  | Notes
  **xSessionToken** | **string** | The Session Token of the Identity performing the settings flow. | 
  **returnSessionTokenExchangeCode** | **bool** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | 
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
- **via** | **string** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | 
+ **organization** | **string** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | 
+ **via** | **string** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | 
 
 ### Return type
 
@@ -594,7 +659,7 @@ No authorization required
 
 ## CreateNativeRegistrationFlow
 
-> RegistrationFlow CreateNativeRegistrationFlow(ctx).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
+> RegistrationFlow CreateNativeRegistrationFlow(ctx).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Organization(organization).Execute()
 
 Create Registration Flow for Native Apps
 
@@ -615,10 +680,11 @@ import (
 func main() {
 	returnSessionTokenExchangeCode := true // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
 	returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
+	organization := "organization_example" // string | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FrontendAPI.CreateNativeRegistrationFlow(context.Background()).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Execute()
+	resp, r, err := apiClient.FrontendAPI.CreateNativeRegistrationFlow(context.Background()).ReturnSessionTokenExchangeCode(returnSessionTokenExchangeCode).ReturnTo(returnTo).Organization(organization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeRegistrationFlow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -641,6 +707,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **returnSessionTokenExchangeCode** | **bool** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | 
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
+ **organization** | **string** | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | 
 
 ### Return type
 
@@ -728,7 +795,7 @@ No authorization required
 
 ## CreateNativeVerificationFlow
 
-> VerificationFlow CreateNativeVerificationFlow(ctx).Execute()
+> VerificationFlow CreateNativeVerificationFlow(ctx).ReturnTo(returnTo).Execute()
 
 Create Verification Flow for Native Apps
 
@@ -747,10 +814,11 @@ import (
 )
 
 func main() {
+	returnTo := "returnTo_example" // string | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FrontendAPI.CreateNativeVerificationFlow(context.Background()).Execute()
+	resp, r, err := apiClient.FrontendAPI.CreateNativeVerificationFlow(context.Background()).ReturnTo(returnTo).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeVerificationFlow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -762,12 +830,16 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiCreateNativeVerificationFlowRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **returnTo** | **string** | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. | 
 
 ### Return type
 
@@ -1665,6 +1737,72 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateFedcmFlow
+
+> SuccessfulNativeLogin UpdateFedcmFlow(ctx).UpdateFedcmFlowBody(updateFedcmFlowBody).Execute()
+
+Submit a FedCM token
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/kratos-client-go"
+)
+
+func main() {
+	updateFedcmFlowBody := *openapiclient.NewUpdateFedcmFlowBody("CsrfToken_example", "Token_example") // UpdateFedcmFlowBody | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrontendAPI.UpdateFedcmFlow(context.Background()).UpdateFedcmFlowBody(updateFedcmFlowBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.UpdateFedcmFlow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateFedcmFlow`: SuccessfulNativeLogin
+	fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.UpdateFedcmFlow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateFedcmFlowRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **updateFedcmFlowBody** | [**UpdateFedcmFlowBody**](UpdateFedcmFlowBody.md) |  | 
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

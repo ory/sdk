@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Credentials** | Pointer to [**IdentityWithCredentials**](IdentityWithCredentials.md) |  | [optional] 
 **MetadataAdmin** | Pointer to **interface{}** | Store metadata about the user which is only accessible through admin APIs such as &#x60;GET /admin/identities/&lt;id&gt;&#x60;. | [optional] 
 **MetadataPublic** | Pointer to **interface{}** | Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field. | [optional] 
+**OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **RecoveryAddresses** | Pointer to [**[]RecoveryIdentityAddress**](RecoveryIdentityAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update. | [optional] 
 **SchemaId** | **string** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. | 
 **State** | Pointer to **string** | State is the identity&#39;s state. active StateActive inactive StateInactive | [optional] 
@@ -127,6 +128,41 @@ HasMetadataPublic returns a boolean if a field has been set.
 `func (o *CreateIdentityBody) UnsetMetadataPublic()`
 
 UnsetMetadataPublic ensures that no value is present for MetadataPublic, not even an explicit nil
+### GetOrganizationId
+
+`func (o *CreateIdentityBody) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *CreateIdentityBody) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *CreateIdentityBody) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *CreateIdentityBody) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
+
+### SetOrganizationIdNil
+
+`func (o *CreateIdentityBody) SetOrganizationIdNil(b bool)`
+
+ SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+
+### UnsetOrganizationId
+`func (o *CreateIdentityBody) UnsetOrganizationId()`
+
+UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetRecoveryAddresses
 
 `func (o *CreateIdentityBody) GetRecoveryAddresses() []RecoveryIdentityAddress`

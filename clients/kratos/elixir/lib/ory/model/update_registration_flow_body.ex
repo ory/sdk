@@ -21,7 +21,8 @@ defmodule Ory.Model.UpdateRegistrationFlowBody do
     :webauthn_register_displayname,
     :code,
     :resend,
-    :passkey_register
+    :passkey_register,
+    :screen
   ]
 
   @type t :: %__MODULE__{
@@ -38,7 +39,8 @@ defmodule Ory.Model.UpdateRegistrationFlowBody do
     :webauthn_register_displayname => String.t | nil,
     :code => String.t | nil,
     :resend => String.t | nil,
-    :passkey_register => String.t | nil
+    :passkey_register => String.t | nil,
+    :screen => String.t | nil
   }
 
   def decode(value) do

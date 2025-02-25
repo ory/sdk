@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v1.3.4
 Contact: office@ory.sh
 */
 
@@ -107,12 +107,12 @@ assumed that is has been deleted already.
 	/*
 	DeleteIdentityCredentials Delete a credential for a specific identity
 
-	Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type
-You can only delete second factor (aal2) credentials.
+	Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
+You cannot delete password or code auth credentials through this API.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID is the identity's ID.
-	@param type_ Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+	@param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 	@return IdentityAPIDeleteIdentityCredentialsRequest
 	*/
 	DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest
@@ -153,6 +153,13 @@ You can only delete second factor (aal2) credentials.
 
 	Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it
 will only extend the session after the specified time has passed.
+
+This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may
+return a 200 OK response with the session in the body. Returning the session as part of the response
+will be deprecated in the future and should not be relied upon.
+
+This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those
+scenarios. This endpoint also returns 404 errors if the session does not exist.
 
 Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
@@ -217,7 +224,7 @@ Getting a session object with all specified expandables that exist in an adminis
 	/*
 	ListIdentities List Identities
 
-	Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
+	Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return IdentityAPIListIdentitiesRequest
@@ -1060,6 +1067,13 @@ type IdentityAPIDeleteIdentityCredentialsRequest struct {
 	ApiService IdentityAPI
 	id string
 	type_ string
+	identifier *string
+}
+
+// Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;oidc&#x60; endpoint.
+func (r IdentityAPIDeleteIdentityCredentialsRequest) Identifier(identifier string) IdentityAPIDeleteIdentityCredentialsRequest {
+	r.identifier = &identifier
+	return r
 }
 
 func (r IdentityAPIDeleteIdentityCredentialsRequest) Execute() (*http.Response, error) {
@@ -1069,12 +1083,12 @@ func (r IdentityAPIDeleteIdentityCredentialsRequest) Execute() (*http.Response, 
 /*
 DeleteIdentityCredentials Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type
-You can only delete second factor (aal2) credentials.
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
+You cannot delete password or code auth credentials through this API.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID is the identity's ID.
- @param type_ Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+ @param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
  @return IdentityAPIDeleteIdentityCredentialsRequest
 */
 func (a *IdentityAPIService) DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest {
@@ -1107,6 +1121,9 @@ func (a *IdentityAPIService) DeleteIdentityCredentialsExecute(r IdentityAPIDelet
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.identifier != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifier", r.identifier, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1483,6 +1500,13 @@ ExtendSession Extend a Session
 
 Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it
 will only extend the session after the specified time has passed.
+
+This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may
+return a 200 OK response with the session in the body. Returning the session as part of the response
+will be deprecated in the future and should not be relied upon.
+
+This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those
+scenarios. This endpoint also returns 404 errors if the session does not exist.
 
 Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
@@ -2063,6 +2087,7 @@ type IdentityAPIListIdentitiesRequest struct {
 	credentialsIdentifier *string
 	previewCredentialsIdentifierSimilar *string
 	includeCredential *[]string
+	organizationId *string
 }
 
 // Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page.
@@ -2095,7 +2120,7 @@ func (r IdentityAPIListIdentitiesRequest) Consistency(consistency string) Identi
 	return r
 }
 
-// List of ids used to filter identities. If this list is empty, then no filter will be applied.
+// Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
 func (r IdentityAPIListIdentitiesRequest) Ids(ids []string) IdentityAPIListIdentitiesRequest {
 	r.ids = &ids
 	return r
@@ -2119,6 +2144,12 @@ func (r IdentityAPIListIdentitiesRequest) IncludeCredential(includeCredential []
 	return r
 }
 
+// List identities that belong to a specific organization.
+func (r IdentityAPIListIdentitiesRequest) OrganizationId(organizationId string) IdentityAPIListIdentitiesRequest {
+	r.organizationId = &organizationId
+	return r
+}
+
 func (r IdentityAPIListIdentitiesRequest) Execute() ([]Identity, *http.Response, error) {
 	return r.ApiService.ListIdentitiesExecute(r)
 }
@@ -2126,7 +2157,7 @@ func (r IdentityAPIListIdentitiesRequest) Execute() ([]Identity, *http.Response,
 /*
 ListIdentities List Identities
 
-Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
+Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return IdentityAPIListIdentitiesRequest
@@ -2210,6 +2241,9 @@ func (a *IdentityAPIService) ListIdentitiesExecute(r IdentityAPIListIdentitiesRe
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", t, "multi")
 		}
+	}
+	if r.organizationId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organization_id", r.organizationId, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

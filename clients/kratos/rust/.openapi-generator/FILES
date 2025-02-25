@@ -9,6 +9,7 @@ docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
+docs/ContinueWithRedirectBrowserTo.md
 docs/ContinueWithSetOrySessionToken.md
 docs/ContinueWithSettingsUi.md
 docs/ContinueWithSettingsUiFlow.md
@@ -17,6 +18,7 @@ docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
+docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
@@ -35,6 +37,7 @@ docs/Identity.md
 docs/IdentityApi.md
 docs/IdentityCredentials.md
 docs/IdentityCredentialsCode.md
+docs/IdentityCredentialsCodeAddress.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
@@ -62,6 +65,7 @@ docs/OAuth2ConsentRequestOpenIdConnectContext.md
 docs/OAuth2LoginRequest.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
+docs/Provider.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
 docs/RecoveryFlowState.md
@@ -90,9 +94,11 @@ docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
+docs/UpdateFedcmFlowBody.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
+docs/UpdateLoginFlowWithIdentifierFirstMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
 docs/UpdateLoginFlowWithPasskeyMethod.md
@@ -138,6 +144,7 @@ src/models/consistency_request_parameters.rs
 src/models/continue_with.rs
 src/models/continue_with_recovery_ui.rs
 src/models/continue_with_recovery_ui_flow.rs
+src/models/continue_with_redirect_browser_to.rs
 src/models/continue_with_set_ory_session_token.rs
 src/models/continue_with_settings_ui.rs
 src/models/continue_with_settings_ui_flow.rs
@@ -145,6 +152,7 @@ src/models/continue_with_verification_ui.rs
 src/models/continue_with_verification_ui_flow.rs
 src/models/courier_message_status.rs
 src/models/courier_message_type.rs
+src/models/create_fedcm_flow_response.rs
 src/models/create_identity_body.rs
 src/models/create_recovery_code_for_identity_body.rs
 src/models/create_recovery_link_for_identity_body.rs
@@ -161,6 +169,7 @@ src/models/health_status.rs
 src/models/identity.rs
 src/models/identity_credentials.rs
 src/models/identity_credentials_code.rs
+src/models/identity_credentials_code_address.rs
 src/models/identity_credentials_oidc.rs
 src/models/identity_credentials_oidc_provider.rs
 src/models/identity_credentials_password.rs
@@ -188,6 +197,7 @@ src/models/o_auth2_consent_request_open_id_connect_context.rs
 src/models/o_auth2_login_request.rs
 src/models/patch_identities_body.rs
 src/models/perform_native_logout_body.rs
+src/models/provider.rs
 src/models/recovery_code_for_identity.rs
 src/models/recovery_flow.rs
 src/models/recovery_flow_state.rs
@@ -216,9 +226,11 @@ src/models/ui_node_meta.rs
 src/models/ui_node_script_attributes.rs
 src/models/ui_node_text_attributes.rs
 src/models/ui_text.rs
+src/models/update_fedcm_flow_body.rs
 src/models/update_identity_body.rs
 src/models/update_login_flow_body.rs
 src/models/update_login_flow_with_code_method.rs
+src/models/update_login_flow_with_identifier_first_method.rs
 src/models/update_login_flow_with_lookup_secret_method.rs
 src/models/update_login_flow_with_oidc_method.rs
 src/models/update_login_flow_with_passkey_method.rs

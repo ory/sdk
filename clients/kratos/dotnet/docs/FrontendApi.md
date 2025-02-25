@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost*
 | [**CreateBrowserRegistrationFlow**](FrontendApi.md#createbrowserregistrationflow) | **GET** /self-service/registration/browser | Create Registration Flow for Browsers |
 | [**CreateBrowserSettingsFlow**](FrontendApi.md#createbrowsersettingsflow) | **GET** /self-service/settings/browser | Create Settings Flow for Browsers |
 | [**CreateBrowserVerificationFlow**](FrontendApi.md#createbrowserverificationflow) | **GET** /self-service/verification/browser | Create Verification Flow for Browser Clients |
+| [**CreateFedcmFlow**](FrontendApi.md#createfedcmflow) | **GET** /self-service/fed-cm/parameters | Get FedCM Parameters |
 | [**CreateNativeLoginFlow**](FrontendApi.md#createnativeloginflow) | **GET** /self-service/login/api | Create Login Flow for Native Apps |
 | [**CreateNativeRecoveryFlow**](FrontendApi.md#createnativerecoveryflow) | **GET** /self-service/recovery/api | Create Recovery Flow for Native Apps |
 | [**CreateNativeRegistrationFlow**](FrontendApi.md#createnativeregistrationflow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps |
@@ -28,6 +29,7 @@ All URIs are relative to *http://localhost*
 | [**ListMySessions**](FrontendApi.md#listmysessions) | **GET** /sessions | Get My Active Sessions |
 | [**PerformNativeLogout**](FrontendApi.md#performnativelogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps |
 | [**ToSession**](FrontendApi.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To |
+| [**UpdateFedcmFlow**](FrontendApi.md#updatefedcmflow) | **POST** /self-service/fed-cm/token | Submit a FedCM token |
 | [**UpdateLoginFlow**](FrontendApi.md#updateloginflow) | **POST** /self-service/login | Submit a Login Flow |
 | [**UpdateLogoutFlow**](FrontendApi.md#updatelogoutflow) | **GET** /self-service/logout | Update Logout Flow |
 | [**UpdateRecoveryFlow**](FrontendApi.md#updaterecoveryflow) | **POST** /self-service/recovery | Update Recovery Flow |
@@ -66,7 +68,7 @@ namespace Example
             var cookie = "cookie_example";  // string? | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) 
             var loginChallenge = "loginChallenge_example";  // string? | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional) 
             var organization = "organization_example";  // string? | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional) 
-            var via = "via_example";  // string? | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional) 
+            var via = "via_example";  // string? | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional) 
 
             try
             {
@@ -115,7 +117,7 @@ catch (ApiException e)
 | **cookie** | **string?** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]  |
 | **loginChallenge** | **string?** | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional]  |
 | **organization** | **string?** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional]  |
-| **via** | **string?** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional]  |
+| **via** | **string?** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional]  |
 
 ### Return type
 
@@ -135,7 +137,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | loginFlow |  -  |
-| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
@@ -325,7 +327,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | recoveryFlow |  -  |
-| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
@@ -359,7 +361,7 @@ namespace Example
             var returnTo = "returnTo_example";  // string? | The URL to return the browser to after the flow was completed. (optional) 
             var loginChallenge = "loginChallenge_example";  // string? | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional) 
             var afterVerificationReturnTo = "afterVerificationReturnTo_example";  // string? | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional) 
-            var organization = "organization_example";  // string? |  (optional) 
+            var organization = "organization_example";  // string? | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional) 
 
             try
             {
@@ -405,7 +407,7 @@ catch (ApiException e)
 | **returnTo** | **string?** | The URL to return the browser to after the flow was completed. | [optional]  |
 | **loginChallenge** | **string?** | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional]  |
 | **afterVerificationReturnTo** | **string?** | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional]  |
-| **organization** | **string?** |  | [optional]  |
+| **organization** | **string?** | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional]  |
 
 ### Return type
 
@@ -425,7 +427,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | registrationFlow |  -  |
-| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -520,7 +522,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | settingsFlow |  -  |
-| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **400** | errorGeneric |  -  |
 | **401** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
@@ -616,14 +618,102 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | verificationFlow |  -  |
-| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
+| **0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createfedcmflow"></a>
+# **CreateFedcmFlow**
+> KratosCreateFedcmFlowResponse CreateFedcmFlow ()
+
+Get FedCM Parameters
+
+This endpoint returns a list of all available FedCM providers. It is only supported on the Ory Network.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class CreateFedcmFlowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new FrontendApi(config);
+
+            try
+            {
+                // Get FedCM Parameters
+                KratosCreateFedcmFlowResponse result = apiInstance.CreateFedcmFlow();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FrontendApi.CreateFedcmFlow: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateFedcmFlowWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get FedCM Parameters
+    ApiResponse<KratosCreateFedcmFlowResponse> response = apiInstance.CreateFedcmFlowWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FrontendApi.CreateFedcmFlowWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**KratosCreateFedcmFlowResponse**](KratosCreateFedcmFlowResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | createFedcmFlowResponse |  -  |
+| **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="createnativeloginflow"></a>
 # **CreateNativeLoginFlow**
-> KratosLoginFlow CreateNativeLoginFlow (bool? refresh = null, string? aal = null, string? xSessionToken = null, bool? returnSessionTokenExchangeCode = null, string? returnTo = null, string? via = null)
+> KratosLoginFlow CreateNativeLoginFlow (bool? refresh = null, string? aal = null, string? xSessionToken = null, bool? returnSessionTokenExchangeCode = null, string? returnTo = null, string? organization = null, string? via = null)
 
 Create Login Flow for Native Apps
 
@@ -651,12 +741,13 @@ namespace Example
             var xSessionToken = "xSessionToken_example";  // string? | The Session Token of the Identity performing the settings flow. (optional) 
             var returnSessionTokenExchangeCode = true;  // bool? | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional) 
             var returnTo = "returnTo_example";  // string? | The URL to return the browser to after the flow was completed. (optional) 
-            var via = "via_example";  // string? | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. (optional) 
+            var organization = "organization_example";  // string? | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional) 
+            var via = "via_example";  // string? | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional) 
 
             try
             {
                 // Create Login Flow for Native Apps
-                KratosLoginFlow result = apiInstance.CreateNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via);
+                KratosLoginFlow result = apiInstance.CreateNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -677,7 +768,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create Login Flow for Native Apps
-    ApiResponse<KratosLoginFlow> response = apiInstance.CreateNativeLoginFlowWithHttpInfo(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via);
+    ApiResponse<KratosLoginFlow> response = apiInstance.CreateNativeLoginFlowWithHttpInfo(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -699,7 +790,8 @@ catch (ApiException e)
 | **xSessionToken** | **string?** | The Session Token of the Identity performing the settings flow. | [optional]  |
 | **returnSessionTokenExchangeCode** | **bool?** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]  |
 | **returnTo** | **string?** | The URL to return the browser to after the flow was completed. | [optional]  |
-| **via** | **string?** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows. | [optional]  |
+| **organization** | **string?** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional]  |
+| **via** | **string?** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional]  |
 
 ### Return type
 
@@ -814,7 +906,7 @@ No authorization required
 
 <a id="createnativeregistrationflow"></a>
 # **CreateNativeRegistrationFlow**
-> KratosRegistrationFlow CreateNativeRegistrationFlow (bool? returnSessionTokenExchangeCode = null, string? returnTo = null)
+> KratosRegistrationFlow CreateNativeRegistrationFlow (bool? returnSessionTokenExchangeCode = null, string? returnTo = null, string? organization = null)
 
 Create Registration Flow for Native Apps
 
@@ -839,11 +931,12 @@ namespace Example
             var apiInstance = new FrontendApi(config);
             var returnSessionTokenExchangeCode = true;  // bool? | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional) 
             var returnTo = "returnTo_example";  // string? | The URL to return the browser to after the flow was completed. (optional) 
+            var organization = "organization_example";  // string? | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional) 
 
             try
             {
                 // Create Registration Flow for Native Apps
-                KratosRegistrationFlow result = apiInstance.CreateNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo);
+                KratosRegistrationFlow result = apiInstance.CreateNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -864,7 +957,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create Registration Flow for Native Apps
-    ApiResponse<KratosRegistrationFlow> response = apiInstance.CreateNativeRegistrationFlowWithHttpInfo(returnSessionTokenExchangeCode, returnTo);
+    ApiResponse<KratosRegistrationFlow> response = apiInstance.CreateNativeRegistrationFlowWithHttpInfo(returnSessionTokenExchangeCode, returnTo, organization);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -883,6 +976,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **returnSessionTokenExchangeCode** | **bool?** | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional]  |
 | **returnTo** | **string?** | The URL to return the browser to after the flow was completed. | [optional]  |
+| **organization** | **string?** | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional]  |
 
 ### Return type
 
@@ -1002,7 +1096,7 @@ No authorization required
 
 <a id="createnativeverificationflow"></a>
 # **CreateNativeVerificationFlow**
-> KratosVerificationFlow CreateNativeVerificationFlow ()
+> KratosVerificationFlow CreateNativeVerificationFlow (string? returnTo = null)
 
 Create Verification Flow for Native Apps
 
@@ -1025,11 +1119,12 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
             var apiInstance = new FrontendApi(config);
+            var returnTo = "returnTo_example";  // string? | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. (optional) 
 
             try
             {
                 // Create Verification Flow for Native Apps
-                KratosVerificationFlow result = apiInstance.CreateNativeVerificationFlow();
+                KratosVerificationFlow result = apiInstance.CreateNativeVerificationFlow(returnTo);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1050,7 +1145,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create Verification Flow for Native Apps
-    ApiResponse<KratosVerificationFlow> response = apiInstance.CreateNativeVerificationFlowWithHttpInfo();
+    ApiResponse<KratosVerificationFlow> response = apiInstance.CreateNativeVerificationFlowWithHttpInfo(returnTo);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1064,7 +1159,11 @@ catch (ApiException e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **returnTo** | **string?** | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. | [optional]  |
+
 ### Return type
 
 [**KratosVerificationFlow**](KratosVerificationFlow.md)
@@ -1271,7 +1370,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **400** | errorGeneric |  -  |
 | **401** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
@@ -2226,7 +2325,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
@@ -2330,6 +2429,102 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="updatefedcmflow"></a>
+# **UpdateFedcmFlow**
+> KratosSuccessfulNativeLogin UpdateFedcmFlow (KratosUpdateFedcmFlowBody kratosUpdateFedcmFlowBody)
+
+Submit a FedCM token
+
+Use this endpoint to submit a token from a FedCM provider through `navigator.credentials.get` and log the user in. The parameters from `navigator.credentials.get` must have come from `GET self-service/fed-cm/parameters`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Ory.Kratos.Client.Api;
+using Ory.Kratos.Client.Client;
+using Ory.Kratos.Client.Model;
+
+namespace Example
+{
+    public class UpdateFedcmFlowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            var apiInstance = new FrontendApi(config);
+            var kratosUpdateFedcmFlowBody = new KratosUpdateFedcmFlowBody(); // KratosUpdateFedcmFlowBody | 
+
+            try
+            {
+                // Submit a FedCM token
+                KratosSuccessfulNativeLogin result = apiInstance.UpdateFedcmFlow(kratosUpdateFedcmFlowBody);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FrontendApi.UpdateFedcmFlow: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateFedcmFlowWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Submit a FedCM token
+    ApiResponse<KratosSuccessfulNativeLogin> response = apiInstance.UpdateFedcmFlowWithHttpInfo(kratosUpdateFedcmFlowBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FrontendApi.UpdateFedcmFlowWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **kratosUpdateFedcmFlowBody** | [**KratosUpdateFedcmFlowBody**](KratosUpdateFedcmFlowBody.md) |  |  |
+
+### Return type
+
+[**KratosSuccessfulNativeLogin**](KratosSuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successfulNativeLogin |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
+| **400** | loginFlow |  -  |
+| **410** | errorGeneric |  -  |
+| **422** | errorBrowserLocationChangeRequired |  -  |
+| **0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="updateloginflow"></a>
 # **UpdateLoginFlow**
 > KratosSuccessfulNativeLogin UpdateLoginFlow (string flow, KratosUpdateLoginFlowBody kratosUpdateLoginFlowBody, string? xSessionToken = null, string? cookie = null)
@@ -2424,7 +2619,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successfulNativeLogin |  -  |
-| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **400** | loginFlow |  -  |
 | **410** | errorGeneric |  -  |
 | **422** | errorBrowserLocationChangeRequired |  -  |
@@ -2519,8 +2714,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2619,7 +2814,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | recoveryFlow |  -  |
-| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **400** | recoveryFlow |  -  |
 | **410** | errorGeneric |  -  |
 | **422** | errorBrowserLocationChangeRequired |  -  |
@@ -2719,7 +2914,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successfulNativeRegistration |  -  |
-| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **400** | registrationFlow |  -  |
 | **410** | errorGeneric |  -  |
 | **422** | errorBrowserLocationChangeRequired |  -  |
@@ -2821,7 +3016,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | settingsFlow |  -  |
-| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **400** | settingsFlow |  -  |
 | **401** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
@@ -2925,7 +3120,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | verificationFlow |  -  |
-| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 204. |  -  |
 | **400** | verificationFlow |  -  |
 | **410** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |

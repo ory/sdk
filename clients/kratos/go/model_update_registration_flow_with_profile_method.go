@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v1.3.4
 Contact: office@ory.sh
 */
 
@@ -25,7 +25,7 @@ type UpdateRegistrationFlowWithProfileMethod struct {
 	CsrfToken *string `json:"csrf_token,omitempty"`
 	// Method  Should be set to profile when trying to update a profile.
 	Method string `json:"method"`
-	// Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen.
+	// Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
 	Screen *string `json:"screen,omitempty"`
 	// Traits  The identity's traits.
 	Traits map[string]interface{} `json:"traits"`

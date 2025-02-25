@@ -12,11 +12,16 @@ part 'continue_with_settings_ui_flow.g.dart';
 ///
 /// Properties:
 /// * [id] - The ID of the settings flow
+/// * [url] - The URL of the settings flow  If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
 @BuiltValue()
 abstract class ContinueWithSettingsUiFlow implements Built<ContinueWithSettingsUiFlow, ContinueWithSettingsUiFlowBuilder> {
   /// The ID of the settings flow
   @BuiltValueField(wireName: r'id')
   String get id;
+
+  /// The URL of the settings flow  If this value is set, redirect the user's browser to this URL. This value is typically unset for native clients / API flows.
+  @BuiltValueField(wireName: r'url')
+  String? get url;
 
   ContinueWithSettingsUiFlow._();
 
@@ -46,6 +51,13 @@ class _$ContinueWithSettingsUiFlowSerializer implements PrimitiveSerializer<Cont
       object.id,
       specifiedType: const FullType(String),
     );
+    if (object.url != null) {
+      yield r'url';
+      yield serializers.serialize(
+        object.url,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
   @override
@@ -75,6 +87,13 @@ class _$ContinueWithSettingsUiFlowSerializer implements PrimitiveSerializer<Cont
             specifiedType: const FullType(String),
           ) as String;
           result.id = valueDes;
+          break;
+        case r'url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.url = valueDes;
           break;
         default:
           unhandled.add(key);

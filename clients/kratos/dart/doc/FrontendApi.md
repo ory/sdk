@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**createBrowserRegistrationFlow**](FrontendApi.md#createbrowserregistrationflow) | **GET** /self-service/registration/browser | Create Registration Flow for Browsers
 [**createBrowserSettingsFlow**](FrontendApi.md#createbrowsersettingsflow) | **GET** /self-service/settings/browser | Create Settings Flow for Browsers
 [**createBrowserVerificationFlow**](FrontendApi.md#createbrowserverificationflow) | **GET** /self-service/verification/browser | Create Verification Flow for Browser Clients
+[**createFedcmFlow**](FrontendApi.md#createfedcmflow) | **GET** /self-service/fed-cm/parameters | Get FedCM Parameters
 [**createNativeLoginFlow**](FrontendApi.md#createnativeloginflow) | **GET** /self-service/login/api | Create Login Flow for Native Apps
 [**createNativeRecoveryFlow**](FrontendApi.md#createnativerecoveryflow) | **GET** /self-service/recovery/api | Create Recovery Flow for Native Apps
 [**createNativeRegistrationFlow**](FrontendApi.md#createnativeregistrationflow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps
@@ -33,6 +34,7 @@ Method | HTTP request | Description
 [**listMySessions**](FrontendApi.md#listmysessions) | **GET** /sessions | Get My Active Sessions
 [**performNativeLogout**](FrontendApi.md#performnativelogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
 [**toSession**](FrontendApi.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
+[**updateFedcmFlow**](FrontendApi.md#updatefedcmflow) | **POST** /self-service/fed-cm/token | Submit a FedCM token
 [**updateLoginFlow**](FrontendApi.md#updateloginflow) | **POST** /self-service/login | Submit a Login Flow
 [**updateLogoutFlow**](FrontendApi.md#updatelogoutflow) | **GET** /self-service/logout | Update Logout Flow
 [**updateRecoveryFlow**](FrontendApi.md#updaterecoveryflow) | **POST** /self-service/recovery | Update Recovery Flow
@@ -59,7 +61,7 @@ final String returnTo = returnTo_example; // String | The URL to return the brow
 final String cookie = cookie_example; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
 final String loginChallenge = loginChallenge_example; // String | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
 final String organization = organization_example; // String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
-final String via = via_example; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
+final String via = via_example; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
 
 try {
     final response = api.createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via);
@@ -79,7 +81,7 @@ Name | Type | Description  | Notes
  **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
  **loginChallenge** | **String**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). | [optional] 
  **organization** | **String**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
- **via** | **String**| Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. | [optional] 
+ **via** | **String**| Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] 
 
 ### Return type
 
@@ -199,7 +201,7 @@ final api = OryKratosClient().getFrontendApi();
 final String returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
 final String loginChallenge = loginChallenge_example; // String | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
 final String afterVerificationReturnTo = afterVerificationReturnTo_example; // String | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
-final String organization = organization_example; // String | 
+final String organization = organization_example; // String | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
 
 try {
     final response = api.createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization);
@@ -216,7 +218,7 @@ Name | Type | Description  | Notes
  **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] 
  **loginChallenge** | **String**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional] 
  **afterVerificationReturnTo** | **String**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. | [optional] 
- **organization** | **String**|  | [optional] 
+ **organization** | **String**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] 
 
 ### Return type
 
@@ -321,8 +323,47 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **createFedcmFlow**
+> CreateFedcmFlowResponse createFedcmFlow()
+
+Get FedCM Parameters
+
+This endpoint returns a list of all available FedCM providers. It is only supported on the Ory Network.
+
+### Example
+```dart
+import 'package:ory_kratos_client/api.dart';
+
+final api = OryKratosClient().getFrontendApi();
+
+try {
+    final response = api.createFedcmFlow();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling FrontendApi->createFedcmFlow: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CreateFedcmFlowResponse**](CreateFedcmFlowResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **createNativeLoginFlow**
-> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via)
+> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via)
 
 Create Login Flow for Native Apps
 
@@ -338,10 +379,11 @@ final String aal = aal_example; // String | Request a Specific AuthenticationMet
 final String xSessionToken = xSessionToken_example; // String | The Session Token of the Identity performing the settings flow.
 final bool returnSessionTokenExchangeCode = true; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
 final String returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
-final String via = via_example; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.
+final String organization = organization_example; // String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
+final String via = via_example; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
 
 try {
-    final response = api.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, via);
+    final response = api.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling FrontendApi->createNativeLoginFlow: $e\n');
@@ -357,7 +399,8 @@ Name | Type | Description  | Notes
  **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] 
  **returnSessionTokenExchangeCode** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
  **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] 
- **via** | **String**| Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows. | [optional] 
+ **organization** | **String**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
+ **via** | **String**| Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] 
 
 ### Return type
 
@@ -414,7 +457,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createNativeRegistrationFlow**
-> RegistrationFlow createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo)
+> RegistrationFlow createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization)
 
 Create Registration Flow for Native Apps
 
@@ -427,9 +470,10 @@ import 'package:ory_kratos_client/api.dart';
 final api = OryKratosClient().getFrontendApi();
 final bool returnSessionTokenExchangeCode = true; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
 final String returnTo = returnTo_example; // String | The URL to return the browser to after the flow was completed.
+final String organization = organization_example; // String | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
 
 try {
-    final response = api.createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo);
+    final response = api.createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling FrontendApi->createNativeRegistrationFlow: $e\n');
@@ -442,6 +486,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **returnSessionTokenExchangeCode** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
  **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] 
+ **organization** | **String**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] 
 
 ### Return type
 
@@ -502,7 +547,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createNativeVerificationFlow**
-> VerificationFlow createNativeVerificationFlow()
+> VerificationFlow createNativeVerificationFlow(returnTo)
 
 Create Verification Flow for Native Apps
 
@@ -513,9 +558,10 @@ This endpoint initiates a verification flow for API clients such as mobile devic
 import 'package:ory_kratos_client/api.dart';
 
 final api = OryKratosClient().getFrontendApi();
+final String returnTo = returnTo_example; // String | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational.
 
 try {
-    final response = api.createNativeVerificationFlow();
+    final response = api.createNativeVerificationFlow(returnTo);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling FrontendApi->createNativeVerificationFlow: $e\n');
@@ -523,7 +569,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **returnTo** | **String**| A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. | [optional] 
 
 ### Return type
 
@@ -1121,6 +1170,49 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateFedcmFlow**
+> SuccessfulNativeLogin updateFedcmFlow(updateFedcmFlowBody)
+
+Submit a FedCM token
+
+Use this endpoint to submit a token from a FedCM provider through `navigator.credentials.get` and log the user in. The parameters from `navigator.credentials.get` must have come from `GET self-service/fed-cm/parameters`.
+
+### Example
+```dart
+import 'package:ory_kratos_client/api.dart';
+
+final api = OryKratosClient().getFrontendApi();
+final UpdateFedcmFlowBody updateFedcmFlowBody = ; // UpdateFedcmFlowBody | 
+
+try {
+    final response = api.updateFedcmFlow(updateFedcmFlowBody);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling FrontendApi->updateFedcmFlow: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **updateFedcmFlowBody** | [**UpdateFedcmFlowBody**](UpdateFedcmFlowBody.md)|  | 
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

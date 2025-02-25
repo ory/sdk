@@ -13,13 +13,13 @@ void main() {
       // TODO
     });
 
-    // Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow.
+    // Identifier is the email or username of the user trying to log in.
     // String identifier
     test('to test the property `identifier`', () async {
       // TODO
     });
 
-    // Method should be set to \"passkey\" when logging in using the Passkey strategy.
+    // Method should be set to \"password\" when logging in using the identifier and password strategy.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -43,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple
+    // IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple Google
     // String idToken
     test('to test the property `idToken`', () async {
       // TODO
@@ -88,6 +88,12 @@ void main() {
     // The lookup secret.
     // String lookupSecret
     test('to test the property `lookupSecret`', () async {
+      // TODO
+    });
+
+    // Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows.
+    // String address
+    test('to test the property `address`', () async {
       // TODO
     });
 

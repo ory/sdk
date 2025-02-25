@@ -13,6 +13,7 @@ part 'identity_with_credentials_password_config.g.dart';
 /// Properties:
 /// * [hashedPassword] - The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)
 /// * [password] - The password in plain text if no hash is available.
+/// * [usePasswordMigrationHook] - If set to true, the password will be migrated using the password migration hook.
 @BuiltValue()
 abstract class IdentityWithCredentialsPasswordConfig implements Built<IdentityWithCredentialsPasswordConfig, IdentityWithCredentialsPasswordConfigBuilder> {
   /// The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)
@@ -22,6 +23,10 @@ abstract class IdentityWithCredentialsPasswordConfig implements Built<IdentityWi
   /// The password in plain text if no hash is available.
   @BuiltValueField(wireName: r'password')
   String? get password;
+
+  /// If set to true, the password will be migrated using the password migration hook.
+  @BuiltValueField(wireName: r'use_password_migration_hook')
+  bool? get usePasswordMigrationHook;
 
   IdentityWithCredentialsPasswordConfig._();
 
@@ -60,6 +65,13 @@ class _$IdentityWithCredentialsPasswordConfigSerializer implements PrimitiveSeri
         specifiedType: const FullType(String),
       );
     }
+    if (object.usePasswordMigrationHook != null) {
+      yield r'use_password_migration_hook';
+      yield serializers.serialize(
+        object.usePasswordMigrationHook,
+        specifiedType: const FullType(bool),
+      );
+    }
   }
 
   @override
@@ -96,6 +108,13 @@ class _$IdentityWithCredentialsPasswordConfigSerializer implements PrimitiveSeri
             specifiedType: const FullType(String),
           ) as String;
           result.password = valueDes;
+          break;
+        case r'use_password_migration_hook':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.usePasswordMigrationHook = valueDes;
           break;
         default:
           unhandled.add(key);
