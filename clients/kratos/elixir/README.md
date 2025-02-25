@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:ory_kratos, "~> v1.3.6"}]
+  [{:ory_kratos, "~> v1.3.7"}]
 end
 ```
 
