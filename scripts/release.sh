@@ -125,6 +125,7 @@ typescript_fetch() {
 
 java() {
   gitdir=$(mktemp -d -t "${GIT_REPO}-java.XXXXXX")
+  to_git "java" "no" "$gitdir"
 
   (cd "${gitdir}"; mvn clean)
 
@@ -138,7 +139,6 @@ java() {
     -Darguments="-Dgpg.passphrase=${MVN_PGP_PASSPHRASE} -Dgpg.keyname=${MVN_PGP_KEYNAME}")
 
   (cd "${gitdir}"; mvn release:perform)
-  to_git "java" "no" "$gitdir"
 }
 
 php() {
