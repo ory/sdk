@@ -56,7 +56,7 @@ import sh.ory.kratos.JSON;
 /**
  * A Session
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-25T09:51:57.038534244Z[Etc/UTC]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-25T10:00:50.618317467Z[Etc/UTC]", comments = "Generator version: 7.7.0")
 public class Session {
   public static final String SERIALIZED_NAME_ACTIVE = "active";
   @SerializedName(SERIALIZED_NAME_ACTIVE)

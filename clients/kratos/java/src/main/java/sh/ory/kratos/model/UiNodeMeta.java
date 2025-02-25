@@ -50,7 +50,7 @@ import sh.ory.kratos.JSON;
 /**
  * This might include a label and other information that can optionally be used to render UIs.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-25T09:51:57.038534244Z[Etc/UTC]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-25T10:00:50.618317467Z[Etc/UTC]", comments = "Generator version: 7.7.0")
 public class UiNodeMeta {
   public static final String SERIALIZED_NAME_LABEL = "label";
   @SerializedName(SERIALIZED_NAME_LABEL)

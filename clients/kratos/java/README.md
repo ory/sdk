@@ -2,7 +2,7 @@
 
 Ory Identities API
 - API version: v1.3.4
-  - Build date: 2025-02-25T09:51:57.038534244Z[Etc/UTC]
+  - Build date: 2025-02-25T10:00:50.618317467Z[Etc/UTC]
   - Generator version: 7.7.0
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more.
