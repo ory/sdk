@@ -153,6 +153,27 @@ the `sh.ory` group and that is published on one of the public key servers. For
 more details, see:
 [https://dzone.com/articles/publish-your-artifacts-to-maven-central](https://web.archive.org/web/20230324135530/https://dzone.com/articles/publish-your-artifacts-to-maven-central)
 
+or execute these steps:
+
+```sh
+gpg --full-gen-key
+> Select RSA and RSA 
+> 4096
+> 0 (does not expire)
+
+# The key ID is the pub key ID
+> gpg –keyserver keys.pgp.net –send-key [KEY_ID]
+```
+
+On macOS, use GPG Keychain as gpg `--full-gen-key` may run into issues.
+
+1. Use this value for `MVN_GPG_ASC_BASE64`: `gpg --pinentry-mode loopback --export-secret-keys --armor $MVN_PGP_KEY_ID | base64 -w0 | pbcopy`
+2. Set `MVN_PGP_KEY_ID` to the value of the key ID (on MacOS you can find it in the info section of GPG Keychain).
+3. Set `MVN_PGP_KEYNAME` to the value of the public key fingerprint.
+4. Set `MVN_PGP_PASSPHRASE` to the passphrase of the private key.
+
+Then, run the following commands:
+
 ```shell script
 mvn clean
 
