@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Identities API
-  version: v1.3.7
+  version: v1.3.8
 servers:
 - url: /
 tags:
