@@ -41,7 +41,7 @@ typescript () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
+  openapi-generator-cli version-manager set 7.12.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g typescript-axios \
     -o "$dir" \
@@ -65,7 +65,7 @@ typescript_fetch () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
+  openapi-generator-cli version-manager set 7.12.0
 
   config_file=./config/client/typescript-fetch.yml.proc.yml
   if [ $project == "client" ]; then
@@ -126,7 +126,7 @@ php() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
+  openapi-generator-cli version-manager set 7.12.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g php \
     -o "$dir" \
@@ -151,7 +151,7 @@ python () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.11.0
+  openapi-generator-cli version-manager set 7.12.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g python \
     -o "$dir" \
@@ -171,7 +171,7 @@ ruby () {
 
   rm "${dir}/lib/${RUBY_PROJECT_NAME}/version.rb" || true
 
-  openapi-generator-cli version-manager set 7.7.0
+  openapi-generator-cli version-manager set 7.12.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g ruby \
     -o "$dir" \
@@ -199,7 +199,7 @@ golang () {
 
   mkdir -p "${dir}"
 
-  openapi-generator-cli version-manager set 7.6.0 # 7.7.0 has an issue with an unused import. We can upgrade once this is fixed.
+  openapi-generator-cli version-manager set 7.12.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g go \
     -o "$dir" \
@@ -225,7 +225,7 @@ dotnet () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.8.0
+  openapi-generator-cli version-manager set 7.12.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g csharp \
     -o "$dir" \
@@ -244,7 +244,7 @@ dart () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.11.0
+  openapi-generator-cli version-manager set 7.12.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g dart-dio \
     -o "$dir" \
@@ -269,10 +269,7 @@ rust () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
-  # We use a custom rust template to fix some of the compilation issues:
-  # - https://github.com/OpenAPITools/openapi-generator/issues/13257
-  # - https://github.com/OpenAPITools/openapi-generator/issues/10845
+  openapi-generator-cli version-manager set 7.12.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     -g rust \
     -o "$dir" \
@@ -301,7 +298,7 @@ elixir () {
   file="${dir}/mix.exs"
 
   # 7.7.0
-  openapi-generator-cli version-manager set 7.7.0
+  openapi-generator-cli version-manager set 7.12.0
   openapi-generator-cli generate -i "${SPEC_FILE}" \
     	-g elixir \
 	    -o "$dir" \
