@@ -7,6 +7,8 @@ modelPropertyNaming: original
 disallowAdditionalPropertiesIfNotPresent: false
 withInterfaces: false
 useSingleRequestParameter: true
+enumUnknownDefaultCase: true
+
 files:
   contrib/fetch/src/continueWith.ts:
     folder: src/contrib
