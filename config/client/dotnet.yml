@@ -5,5 +5,5 @@ packageAuthors: ORY
 packageCompany: ORY GmbH
 netCoreProjectFile: true
 infoUrl: https://www.ory.sh
-targetFramework: net6.0
+targetFramework: net8.0
 disallowAdditionalPropertiesIfNotPresent: false
