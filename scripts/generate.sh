@@ -329,7 +329,7 @@ php
 python
 
 ruby
-# dotnet
+dotnet
 dart
 
 cleanup
