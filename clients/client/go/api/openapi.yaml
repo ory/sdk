@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.18.4
+  version: v1.18.5
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -9703,9 +9703,17 @@ components:
           x-go-enum-desc: |-
             link SelfServiceMessageVerificationStrategyLink
             code SelfServiceMessageVerificationStrategyCode
+        kratos_selfservice_methods_captcha_config_cf_turnstile_secret:
+          description: |-
+            Configures the Cloudflare Turnstile site secret for CAPTCHA protection
+
+            The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
+
+            Reach out to your account manager to enable this feature.
+          type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey:
           description: |-
-            Configures the Turnstile site key for CAPTCHA protection
+            Configures the Cloudflare Turnstile site key for CAPTCHA protection
 
             The site key is public and will be shared with the client.
 
@@ -15373,9 +15381,17 @@ components:
           x-go-enum-desc: |-
             link SelfServiceMessageVerificationStrategyLink
             code SelfServiceMessageVerificationStrategyCode
+        kratos_selfservice_methods_captcha_config_cf_turnstile_secret:
+          description: |-
+            Configures the Cloudflare Turnstile site secret for CAPTCHA protection
+
+            The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
+
+            Reach out to your account manager to enable this feature.
+          type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey:
           description: |-
-            Configures the Turnstile site key for CAPTCHA protection
+            Configures the Cloudflare Turnstile site key for CAPTCHA protection
 
             The site key is public and will be shared with the client.
 

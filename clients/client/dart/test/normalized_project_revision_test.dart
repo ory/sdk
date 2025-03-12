@@ -994,7 +994,13 @@ void main() {
       // TODO
     });
 
-    // Configures the Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
+    // Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.
+    // String kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret
+    test('to test the property `kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret`', () async {
+      // TODO
+    });
+
+    // Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
     // String kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey
     test('to test the property `kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey`', () async {
       // TODO

@@ -173,7 +173,8 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsVerificationNotifyUnknownRecipients** | Pointer to **bool** | Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \&quot;selfservice.flows.verification.notify_unknown_recipients\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationUiUrl** | Pointer to **string** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationUse** | Pointer to **string** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
-**KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey** | Pointer to **string** | Configures the Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] 
+**KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret** | Pointer to **string** | Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature. | [optional] 
+**KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey** | Pointer to **string** | Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] 
 **KratosSelfserviceMethodsCaptchaEnabled** | Pointer to **bool** | Configures the Ory Kratos Self-Service Methods&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] 
 **KratosSelfserviceMethodsCodeConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled** | Pointer to **bool** | Enables a fallback method required in certain legacy use cases.  This governs the \&quot;selfservice.methods.code.config.missing_credential_fallback_enabled\&quot; setting. | [optional] 
@@ -4494,6 +4495,31 @@ SetKratosSelfserviceFlowsVerificationUse sets KratosSelfserviceFlowsVerification
 `func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceFlowsVerificationUse() bool`
 
 HasKratosSelfserviceFlowsVerificationUse returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret() string`
+
+GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret returns the KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecretOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecretOk() (*string, bool)`
+
+GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecretOk returns a tuple with the KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret
+
+`func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret(v string)`
+
+SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret sets KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret field to given value.
+
+### HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret
+
+`func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret() bool`
+
+HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey
 

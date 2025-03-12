@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.18.4
+API version: v1.18.5
 Contact: support@ory.sh
 */
 
@@ -341,7 +341,9 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsVerificationUiUrl *string `json:"kratos_selfservice_flows_verification_ui_url,omitempty"`
 	// Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 	KratosSelfserviceFlowsVerificationUse *string `json:"kratos_selfservice_flows_verification_use,omitempty"`
-	// Configures the Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
+	// Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.
+	KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret *string `json:"kratos_selfservice_methods_captcha_config_cf_turnstile_secret,omitempty"`
+	// Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
 	KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey *string `json:"kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey,omitempty"`
 	// Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
 	KratosSelfserviceMethodsCaptchaEnabled *bool `json:"kratos_selfservice_methods_captcha_enabled,omitempty"`
@@ -5853,6 +5855,38 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsVerificationUse(v s
 	o.KratosSelfserviceFlowsVerificationUse = &v
 }
 
+// GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret returns the KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret() string {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret
+}
+
+// GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecretOk returns a tuple with the KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecretOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret, true
+}
+
+// HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret gets a reference to the given string and assigns it to the KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret(v string) {
+	o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret = &v
+}
+
 // GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey returns the KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey() string {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey) {
@@ -7988,6 +8022,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KratosSelfserviceFlowsVerificationUse) {
 		toSerialize["kratos_selfservice_flows_verification_use"] = o.KratosSelfserviceFlowsVerificationUse
 	}
+	if !IsNil(o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret) {
+		toSerialize["kratos_selfservice_methods_captcha_config_cf_turnstile_secret"] = o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret
+	}
 	if !IsNil(o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey) {
 		toSerialize["kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey"] = o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey
 	}
@@ -8349,6 +8386,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kratos_selfservice_flows_verification_notify_unknown_recipients")
 		delete(additionalProperties, "kratos_selfservice_flows_verification_ui_url")
 		delete(additionalProperties, "kratos_selfservice_flows_verification_use")
+		delete(additionalProperties, "kratos_selfservice_methods_captcha_config_cf_turnstile_secret")
 		delete(additionalProperties, "kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey")
 		delete(additionalProperties, "kratos_selfservice_methods_captcha_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_config_lifespan")

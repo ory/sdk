@@ -189,7 +189,8 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosSelfserviceFlowsVerificationNotifyUnknownRecipients] - Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \"selfservice.flows.verification.notify_unknown_recipients\" setting.
 /// * [kratosSelfserviceFlowsVerificationUiUrl] - Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
 /// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
-/// * [kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey] - Configures the Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
+/// * [kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret] - Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.
+/// * [kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey] - Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
 /// * [kratosSelfserviceMethodsCaptchaEnabled] - Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
 /// * [kratosSelfserviceMethodsCodeConfigLifespan] - Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
 /// * [kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled] - Enables a fallback method required in certain legacy use cases.  This governs the \"selfservice.methods.code.config.missing_credential_fallback_enabled\" setting.
@@ -911,7 +912,11 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   CreateProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnum? get kratosSelfserviceFlowsVerificationUse;
   // enum kratosSelfserviceFlowsVerificationUseEnum {  link,  code,  };
 
-  /// Configures the Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
+  /// Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_captcha_config_cf_turnstile_secret')
+  String? get kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret;
+
+  /// Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey')
   String? get kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
 
@@ -2324,6 +2329,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.kratosSelfserviceFlowsVerificationUse,
         specifiedType: const FullType(CreateProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnum),
+      );
+    }
+    if (object.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret != null) {
+      yield r'kratos_selfservice_methods_captcha_config_cf_turnstile_secret';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret,
+        specifiedType: const FullType(String),
       );
     }
     if (object.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey != null) {
@@ -3896,6 +3908,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(CreateProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnum),
           ) as CreateProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnum;
           result.kratosSelfserviceFlowsVerificationUse = valueDes;
+          break;
+        case r'kratos_selfservice_methods_captcha_config_cf_turnstile_secret':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret = valueDes;
           break;
         case r'kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey':
           final valueDes = serializers.deserialize(
