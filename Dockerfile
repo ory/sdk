@@ -43,9 +43,9 @@ RUN sudo apt-get update -y && sudo apt-get install -y --no-install-recommends go
 
 # RUN wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar -O openapi-generator-cli.jar
 
-RUN npm install -g npm@10.8.1
-RUN npm i -g @openapitools/openapi-generator-cli
-RUN openapi-generator-cli version-manager set 7.4.0
+RUN npm install -g npm@10.9.2
+RUN npm i -g @openapitools/openapi-generator-cli@2.17.0
+RUN npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.4.0
 
 # dotnet
 ENV PATH "$PATH:/root/.dotnet"
@@ -56,7 +56,7 @@ RUN apt-get install -y --no-install-recommends \
 	zlib1g \
 	&& wget -O dotnet-install.sh https://dot.net/v1/dotnet-install.sh \
 	&& chmod +x dotnet-install.sh \
-	&& ./dotnet-install.sh --channel 6.0 \
+	&& ./dotnet-install.sh --channel 8.0 \
 	&& rm dotnet-install.sh
 
 # dart
@@ -99,3 +99,7 @@ RUN wget https://github.com/ory/cli/releases/download/v${ORY_CLI_VERSION}/ory_${
 
 RUN swagger version
 RUN ory version
+
+RUN echo kern.maxfiles=65536 | sudo tee -a /etc/sysctl.conf
+RUN echo kern.maxfilesperproc=65536 | sudo tee -a /etc/sysctl.conf
+RUN ulimit -n 65536
