@@ -187,6 +187,7 @@
 | **kratos_selfservice_methods_lookup_secret_enabled** | **Boolean** | Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \&quot;selfservice.methods.lookup_secret.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_oidc_config_base_redirect_uri** | **String** | Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \&quot;selfservice.methods.oidc.config.base_redirect_uri\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_oidc_config_providers** | [**Array&lt;NormalizedProjectRevisionThirdPartyProvider&gt;**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] |
+| **kratos_selfservice_methods_oidc_enable_auto_link_policy** | **Boolean** | Configures whether Ory Kratos allows auto-linking of OIDC credentials without a subject  This governs the \&quot;selfservice.methods.oidc.enable_auto_link_policy\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_oidc_enabled** | **Boolean** | Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \&quot;selfservice.methods.oidc.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_passkey_config_rp_display_name** | **String** | Configures the Ory Kratos Passkey RP Display Name  This governs the \&quot;selfservice.methods.passkey.config.rp.display_name\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_passkey_config_rp_id** | **String** | Configures the Ory Kratos Passkey RP ID  This governs the \&quot;selfservice.methods.passkey.config.rp.id\&quot; setting. | [optional] |
@@ -414,6 +415,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_selfservice_methods_lookup_secret_enabled: null,
   kratos_selfservice_methods_oidc_config_base_redirect_uri: null,
   kratos_selfservice_methods_oidc_config_providers: null,
+  kratos_selfservice_methods_oidc_enable_auto_link_policy: null,
   kratos_selfservice_methods_oidc_enabled: null,
   kratos_selfservice_methods_passkey_config_rp_display_name: null,
   kratos_selfservice_methods_passkey_config_rp_id: null,

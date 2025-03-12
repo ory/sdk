@@ -16,7 +16,7 @@ part 'ui_node_script_attributes.g.dart';
 /// * [crossorigin] - The script cross origin policy
 /// * [id] - A unique identifier
 /// * [integrity] - The script's integrity hash
-/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script
+/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
 /// * [nonce] - Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
 /// * [referrerpolicy] - The script referrer policy
 /// * [src] - The script source
@@ -39,10 +39,10 @@ abstract class UiNodeScriptAttributes implements Built<UiNodeScriptAttributes, U
   @BuiltValueField(wireName: r'integrity')
   String get integrity;
 
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueField(wireName: r'node_type')
   UiNodeScriptAttributesNodeTypeEnum get nodeType;
-  // enum nodeTypeEnum {  text,  input,  img,  a,  script,  };
+  // enum nodeTypeEnum {  text,  input,  img,  a,  script,  div,  };
 
   /// Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
   @BuiltValueField(wireName: r'nonce')
@@ -245,21 +245,24 @@ class _$UiNodeScriptAttributesSerializer implements PrimitiveSerializer<UiNodeSc
 
 class UiNodeScriptAttributesNodeTypeEnum extends EnumClass {
 
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'text')
   static const UiNodeScriptAttributesNodeTypeEnum text = _$uiNodeScriptAttributesNodeTypeEnum_text;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'input')
   static const UiNodeScriptAttributesNodeTypeEnum input = _$uiNodeScriptAttributesNodeTypeEnum_input;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'img')
   static const UiNodeScriptAttributesNodeTypeEnum img = _$uiNodeScriptAttributesNodeTypeEnum_img;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'a')
   static const UiNodeScriptAttributesNodeTypeEnum a = _$uiNodeScriptAttributesNodeTypeEnum_a;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'script')
   static const UiNodeScriptAttributesNodeTypeEnum script = _$uiNodeScriptAttributesNodeTypeEnum_script;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
+  @BuiltValueEnumConst(wireName: r'div')
+  static const UiNodeScriptAttributesNodeTypeEnum div = _$uiNodeScriptAttributesNodeTypeEnum_div;
 
   static Serializer<UiNodeScriptAttributesNodeTypeEnum> get serializer => _$uiNodeScriptAttributesNodeTypeEnumSerializer;
 

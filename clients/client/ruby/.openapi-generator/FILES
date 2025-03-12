@@ -242,6 +242,7 @@ docs/UiContainer.md
 docs/UiNode.md
 docs/UiNodeAnchorAttributes.md
 docs/UiNodeAttributes.md
+docs/UiNodeDivisionAttributes.md
 docs/UiNodeImageAttributes.md
 docs/UiNodeInputAttributes.md
 docs/UiNodeMeta.md
@@ -537,6 +538,7 @@ lib/ory-client/models/ui_container.rb
 lib/ory-client/models/ui_node.rb
 lib/ory-client/models/ui_node_anchor_attributes.rb
 lib/ory-client/models/ui_node_attributes.rb
+lib/ory-client/models/ui_node_division_attributes.rb
 lib/ory-client/models/ui_node_image_attributes.rb
 lib/ory-client/models/ui_node_input_attributes.rb
 lib/ory-client/models/ui_node_meta.rb
@@ -826,6 +828,7 @@ spec/models/trusted_o_auth2_jwt_grant_json_web_key_spec.rb
 spec/models/ui_container_spec.rb
 spec/models/ui_node_anchor_attributes_spec.rb
 spec/models/ui_node_attributes_spec.rb
+spec/models/ui_node_division_attributes_spec.rb
 spec/models/ui_node_image_attributes_spec.rb
 spec/models/ui_node_input_attributes_spec.rb
 spec/models/ui_node_meta_spec.rb

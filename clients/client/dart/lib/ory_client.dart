@@ -248,6 +248,7 @@ export 'package:ory_client/src/model/ui_container.dart';
 export 'package:ory_client/src/model/ui_node.dart';
 export 'package:ory_client/src/model/ui_node_anchor_attributes.dart';
 export 'package:ory_client/src/model/ui_node_attributes.dart';
+export 'package:ory_client/src/model/ui_node_division_attributes.dart';
 export 'package:ory_client/src/model/ui_node_image_attributes.dart';
 export 'package:ory_client/src/model/ui_node_input_attributes.dart';
 export 'package:ory_client/src/model/ui_node_meta.dart';

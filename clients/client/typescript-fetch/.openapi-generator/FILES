@@ -249,6 +249,7 @@ src/models/UiContainer.ts
 src/models/UiNode.ts
 src/models/UiNodeAnchorAttributes.ts
 src/models/UiNodeAttributes.ts
+src/models/UiNodeDivisionAttributes.ts
 src/models/UiNodeImageAttributes.ts
 src/models/UiNodeInputAttributes.ts
 src/models/UiNodeMeta.ts

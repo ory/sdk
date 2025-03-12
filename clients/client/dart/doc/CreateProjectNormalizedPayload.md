@@ -191,6 +191,7 @@ Name | Type | Description | Notes
 **kratosSelfserviceMethodsLookupSecretEnabled** | **bool** | Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \"selfservice.methods.lookup_secret.enabled\" setting. | [optional] 
 **kratosSelfserviceMethodsOidcConfigBaseRedirectUri** | **String** | Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \"selfservice.methods.oidc.config.base_redirect_uri\" setting. | [optional] 
 **kratosSelfserviceMethodsOidcConfigProviders** | [**BuiltList&lt;NormalizedProjectRevisionThirdPartyProvider&gt;**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] 
+**kratosSelfserviceMethodsOidcEnableAutoLinkPolicy** | **bool** | Configures whether Ory Kratos allows auto-linking of OIDC credentials without a subject  This governs the \"selfservice.methods.oidc.enable_auto_link_policy\" setting. | [optional] 
 **kratosSelfserviceMethodsOidcEnabled** | **bool** | Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting. | [optional] 
 **kratosSelfserviceMethodsPasskeyConfigRpDisplayName** | **String** | Configures the Ory Kratos Passkey RP Display Name  This governs the \"selfservice.methods.passkey.config.rp.display_name\" setting. | [optional] 
 **kratosSelfserviceMethodsPasskeyConfigRpId** | **String** | Configures the Ory Kratos Passkey RP ID  This governs the \"selfservice.methods.passkey.config.rp.id\" setting. | [optional] 

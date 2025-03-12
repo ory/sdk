@@ -28,7 +28,7 @@ void main() {
       // TODO
     });
 
-    // The node's type text Text input Input img Image a Anchor script Script
+    // The node's type text Text input Input img Image a Anchor script Script div Division
     // String type
     test('to test the property `type`', () async {
       // TODO

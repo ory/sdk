@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.17.2
-  - Build date: 2025-02-25T14:26:45.795801596Z[Etc/UTC]
+- API version: v1.18.4
+  - Build date: 2025-03-12T13:16:57.922851411Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.17.2</version>
+  <version>v1.18.4</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.17.2"
+     implementation "sh.ory:client:v1.18.4"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.17.2.jar`
+* `target/client-v1.18.4.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -506,6 +506,7 @@ Class | Method | HTTP request | Description
  - [UiNode](docs/UiNode.md)
  - [UiNodeAnchorAttributes](docs/UiNodeAnchorAttributes.md)
  - [UiNodeAttributes](docs/UiNodeAttributes.md)
+ - [UiNodeDivisionAttributes](docs/UiNodeDivisionAttributes.md)
  - [UiNodeImageAttributes](docs/UiNodeImageAttributes.md)
  - [UiNodeInputAttributes](docs/UiNodeInputAttributes.md)
  - [UiNodeMeta](docs/UiNodeMeta.md)

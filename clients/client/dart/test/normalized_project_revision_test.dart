@@ -1077,6 +1077,12 @@ void main() {
       // TODO
     });
 
+    // Configures whether Ory Kratos allows auto-linking of OIDC credentials without a subject  This governs the \"selfservice.methods.oidc.enable_auto_link_policy\" setting.
+    // bool kratosSelfserviceMethodsOidcEnableAutoLinkPolicy
+    test('to test the property `kratosSelfserviceMethodsOidcEnableAutoLinkPolicy`', () async {
+      // TODO
+    });
+
     // Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
     // bool kratosSelfserviceMethodsOidcEnabled
     test('to test the property `kratosSelfserviceMethodsOidcEnabled`', () async {

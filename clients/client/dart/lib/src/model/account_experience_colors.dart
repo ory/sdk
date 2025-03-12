@@ -11,6 +11,17 @@ part 'account_experience_colors.g.dart';
 /// AccountExperienceColors
 ///
 /// Properties:
+/// * [brand100] 
+/// * [brand200] 
+/// * [brand300] 
+/// * [brand400] 
+/// * [brand50] 
+/// * [brand500] 
+/// * [brand600] 
+/// * [brand700] 
+/// * [brand800] 
+/// * [brand900] 
+/// * [brand950] 
 /// * [buttonIdentifierBackgroundDefault] 
 /// * [buttonIdentifierBackgroundHover] 
 /// * [buttonIdentifierBorderBorderDefault] 
@@ -126,8 +137,58 @@ part 'account_experience_colors.g.dart';
 /// * [toggleBorderDefault] 
 /// * [toggleForegroundChecked] 
 /// * [toggleForegroundDefault] 
+/// * [ui100] 
+/// * [ui200] 
+/// * [ui300] 
+/// * [ui400] 
+/// * [ui50] 
+/// * [ui500] 
+/// * [ui600] 
+/// * [ui700] 
+/// * [ui800] 
+/// * [ui900] 
+/// * [ui950] 
+/// * [uiBlack] 
+/// * [uiDanger] 
+/// * [uiSuccess] 
+/// * [uiTransparent] 
+/// * [uiWarning] 
+/// * [uiWhite] 
 @BuiltValue()
 abstract class AccountExperienceColors implements Built<AccountExperienceColors, AccountExperienceColorsBuilder> {
+  @BuiltValueField(wireName: r'brand-100')
+  String? get brand100;
+
+  @BuiltValueField(wireName: r'brand-200')
+  String? get brand200;
+
+  @BuiltValueField(wireName: r'brand-300')
+  String? get brand300;
+
+  @BuiltValueField(wireName: r'brand-400')
+  String? get brand400;
+
+  @BuiltValueField(wireName: r'brand-50')
+  String? get brand50;
+
+  @BuiltValueField(wireName: r'brand-500')
+  String? get brand500;
+
+  @BuiltValueField(wireName: r'brand-600')
+  String? get brand600;
+
+  @BuiltValueField(wireName: r'brand-700')
+  String? get brand700;
+
+  @BuiltValueField(wireName: r'brand-800')
+  String? get brand800;
+
+  @BuiltValueField(wireName: r'brand-900')
+  String? get brand900;
+
+  @BuiltValueField(wireName: r'brand-950')
+  String? get brand950;
+
   @BuiltValueField(wireName: r'button-identifier-background-default')
   String? get buttonIdentifierBackgroundDefault;
 
@@ -473,6 +534,57 @@ abstract class AccountExperienceColors implements Built<AccountExperienceColors,
   @BuiltValueField(wireName: r'toggle-foreground-default')
   String? get toggleForegroundDefault;
 
+  @BuiltValueField(wireName: r'ui-100')
+  String? get ui100;
+
+  @BuiltValueField(wireName: r'ui-200')
+  String? get ui200;
+
+  @BuiltValueField(wireName: r'ui-300')
+  String? get ui300;
+
+  @BuiltValueField(wireName: r'ui-400')
+  String? get ui400;
+
+  @BuiltValueField(wireName: r'ui-50')
+  String? get ui50;
+
+  @BuiltValueField(wireName: r'ui-500')
+  String? get ui500;
+
+  @BuiltValueField(wireName: r'ui-600')
+  String? get ui600;
+
+  @BuiltValueField(wireName: r'ui-700')
+  String? get ui700;
+
+  @BuiltValueField(wireName: r'ui-800')
+  String? get ui800;
+
+  @BuiltValueField(wireName: r'ui-900')
+  String? get ui900;
+
+  @BuiltValueField(wireName: r'ui-950')
+  String? get ui950;
+
+  @BuiltValueField(wireName: r'ui-black')
+  String? get uiBlack;
+
+  @BuiltValueField(wireName: r'ui-danger')
+  String? get uiDanger;
+
+  @BuiltValueField(wireName: r'ui-success')
+  String? get uiSuccess;
+
+  @BuiltValueField(wireName: r'ui-transparent')
+  String? get uiTransparent;
+
+  @BuiltValueField(wireName: r'ui-warning')
+  String? get uiWarning;
+
+  @BuiltValueField(wireName: r'ui-white')
+  String? get uiWhite;
+
   AccountExperienceColors._();
 
   factory AccountExperienceColors([void updates(AccountExperienceColorsBuilder b)]) = _$AccountExperienceColors;
@@ -496,6 +608,83 @@ class _$AccountExperienceColorsSerializer implements PrimitiveSerializer<Account
     AccountExperienceColors object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.brand100 != null) {
+      yield r'brand-100';
+      yield serializers.serialize(
+        object.brand100,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.brand200 != null) {
+      yield r'brand-200';
+      yield serializers.serialize(
+        object.brand200,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.brand300 != null) {
+      yield r'brand-300';
+      yield serializers.serialize(
+        object.brand300,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.brand400 != null) {
+      yield r'brand-400';
+      yield serializers.serialize(
+        object.brand400,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.brand50 != null) {
+      yield r'brand-50';
+      yield serializers.serialize(
+        object.brand50,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.brand500 != null) {
+      yield r'brand-500';
+      yield serializers.serialize(
+        object.brand500,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.brand600 != null) {
+      yield r'brand-600';
+      yield serializers.serialize(
+        object.brand600,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.brand700 != null) {
+      yield r'brand-700';
+      yield serializers.serialize(
+        object.brand700,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.brand800 != null) {
+      yield r'brand-800';
+      yield serializers.serialize(
+        object.brand800,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.brand900 != null) {
+      yield r'brand-900';
+      yield serializers.serialize(
+        object.brand900,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.brand950 != null) {
+      yield r'brand-950';
+      yield serializers.serialize(
+        object.brand950,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.buttonIdentifierBackgroundDefault != null) {
       yield r'button-identifier-background-default';
       yield serializers.serialize(
@@ -1301,6 +1490,125 @@ class _$AccountExperienceColorsSerializer implements PrimitiveSerializer<Account
         specifiedType: const FullType(String),
       );
     }
+    if (object.ui100 != null) {
+      yield r'ui-100';
+      yield serializers.serialize(
+        object.ui100,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.ui200 != null) {
+      yield r'ui-200';
+      yield serializers.serialize(
+        object.ui200,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.ui300 != null) {
+      yield r'ui-300';
+      yield serializers.serialize(
+        object.ui300,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.ui400 != null) {
+      yield r'ui-400';
+      yield serializers.serialize(
+        object.ui400,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.ui50 != null) {
+      yield r'ui-50';
+      yield serializers.serialize(
+        object.ui50,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.ui500 != null) {
+      yield r'ui-500';
+      yield serializers.serialize(
+        object.ui500,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.ui600 != null) {
+      yield r'ui-600';
+      yield serializers.serialize(
+        object.ui600,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.ui700 != null) {
+      yield r'ui-700';
+      yield serializers.serialize(
+        object.ui700,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.ui800 != null) {
+      yield r'ui-800';
+      yield serializers.serialize(
+        object.ui800,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.ui900 != null) {
+      yield r'ui-900';
+      yield serializers.serialize(
+        object.ui900,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.ui950 != null) {
+      yield r'ui-950';
+      yield serializers.serialize(
+        object.ui950,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.uiBlack != null) {
+      yield r'ui-black';
+      yield serializers.serialize(
+        object.uiBlack,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.uiDanger != null) {
+      yield r'ui-danger';
+      yield serializers.serialize(
+        object.uiDanger,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.uiSuccess != null) {
+      yield r'ui-success';
+      yield serializers.serialize(
+        object.uiSuccess,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.uiTransparent != null) {
+      yield r'ui-transparent';
+      yield serializers.serialize(
+        object.uiTransparent,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.uiWarning != null) {
+      yield r'ui-warning';
+      yield serializers.serialize(
+        object.uiWarning,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.uiWhite != null) {
+      yield r'ui-white';
+      yield serializers.serialize(
+        object.uiWhite,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
   @override
@@ -1324,6 +1632,83 @@ class _$AccountExperienceColorsSerializer implements PrimitiveSerializer<Account
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'brand-100':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.brand100 = valueDes;
+          break;
+        case r'brand-200':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.brand200 = valueDes;
+          break;
+        case r'brand-300':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.brand300 = valueDes;
+          break;
+        case r'brand-400':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.brand400 = valueDes;
+          break;
+        case r'brand-50':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.brand50 = valueDes;
+          break;
+        case r'brand-500':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.brand500 = valueDes;
+          break;
+        case r'brand-600':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.brand600 = valueDes;
+          break;
+        case r'brand-700':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.brand700 = valueDes;
+          break;
+        case r'brand-800':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.brand800 = valueDes;
+          break;
+        case r'brand-900':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.brand900 = valueDes;
+          break;
+        case r'brand-950':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.brand950 = valueDes;
+          break;
         case r'button-identifier-background-default':
           final valueDes = serializers.deserialize(
             value,
@@ -2128,6 +2513,125 @@ class _$AccountExperienceColorsSerializer implements PrimitiveSerializer<Account
             specifiedType: const FullType(String),
           ) as String;
           result.toggleForegroundDefault = valueDes;
+          break;
+        case r'ui-100':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.ui100 = valueDes;
+          break;
+        case r'ui-200':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.ui200 = valueDes;
+          break;
+        case r'ui-300':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.ui300 = valueDes;
+          break;
+        case r'ui-400':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.ui400 = valueDes;
+          break;
+        case r'ui-50':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.ui50 = valueDes;
+          break;
+        case r'ui-500':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.ui500 = valueDes;
+          break;
+        case r'ui-600':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.ui600 = valueDes;
+          break;
+        case r'ui-700':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.ui700 = valueDes;
+          break;
+        case r'ui-800':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.ui800 = valueDes;
+          break;
+        case r'ui-900':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.ui900 = valueDes;
+          break;
+        case r'ui-950':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.ui950 = valueDes;
+          break;
+        case r'ui-black':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.uiBlack = valueDes;
+          break;
+        case r'ui-danger':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.uiDanger = valueDes;
+          break;
+        case r'ui-success':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.uiSuccess = valueDes;
+          break;
+        case r'ui-transparent':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.uiTransparent = valueDes;
+          break;
+        case r'ui-warning':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.uiWarning = valueDes;
+          break;
+        case r'ui-white':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.uiWhite = valueDes;
           break;
         default:
           unhandled.add(key);

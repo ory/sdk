@@ -241,6 +241,7 @@ docs/Model/UiContainer.md
 docs/Model/UiNode.md
 docs/Model/UiNodeAnchorAttributes.md
 docs/Model/UiNodeAttributes.md
+docs/Model/UiNodeDivisionAttributes.md
 docs/Model/UiNodeImageAttributes.md
 docs/Model/UiNodeInputAttributes.md
 docs/Model/UiNodeMeta.md
@@ -534,6 +535,7 @@ lib/Model/UiContainer.php
 lib/Model/UiNode.php
 lib/Model/UiNodeAnchorAttributes.php
 lib/Model/UiNodeAttributes.php
+lib/Model/UiNodeDivisionAttributes.php
 lib/Model/UiNodeImageAttributes.php
 lib/Model/UiNodeInputAttributes.php
 lib/Model/UiNodeMeta.php
@@ -823,6 +825,7 @@ test/Model/TrustedOAuth2JwtGrantJsonWebKeyTest.php
 test/Model/UiContainerTest.php
 test/Model/UiNodeAnchorAttributesTest.php
 test/Model/UiNodeAttributesTest.php
+test/Model/UiNodeDivisionAttributesTest.php
 test/Model/UiNodeImageAttributesTest.php
 test/Model/UiNodeInputAttributesTest.php
 test/Model/UiNodeMetaTest.php

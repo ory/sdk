@@ -25,6 +25,12 @@ void main() {
       // TODO
     });
 
+    // ID is a unique error ID. feature_not_available ErrFeatureNotAvailable quota_exceeded ErrQuotaExceeded
+    // String id
+    test('to test the property `id`', () async {
+      // TODO
+    });
+
     // Message contains the error message.
     // String message
     test('to test the property `message`', () async {

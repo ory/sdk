@@ -224,6 +224,7 @@ export * from './UiContainer';
 export * from './UiNode';
 export * from './UiNodeAnchorAttributes';
 export * from './UiNodeAttributes';
+export * from './UiNodeDivisionAttributes';
 export * from './UiNodeImageAttributes';
 export * from './UiNodeInputAttributes';
 export * from './UiNodeMeta';

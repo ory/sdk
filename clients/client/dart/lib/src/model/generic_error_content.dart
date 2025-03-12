@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,6 +15,7 @@ part 'generic_error_content.g.dart';
 /// * [debug] - Debug contains debug information. This is usually not available and has to be enabled.
 /// * [error] - Name is the error name.
 /// * [errorDescription] - Description contains further information on the nature of the error.
+/// * [id] - ID is a unique error ID. feature_not_available ErrFeatureNotAvailable quota_exceeded ErrQuotaExceeded
 /// * [message] - Message contains the error message.
 /// * [statusCode] - Code represents the error status code (404, 403, 401, ...).
 @BuiltValue()
@@ -29,6 +31,11 @@ abstract class GenericErrorContent implements Built<GenericErrorContent, Generic
   /// Description contains further information on the nature of the error.
   @BuiltValueField(wireName: r'error_description')
   String? get errorDescription;
+
+  /// ID is a unique error ID. feature_not_available ErrFeatureNotAvailable quota_exceeded ErrQuotaExceeded
+  @BuiltValueField(wireName: r'id')
+  GenericErrorContentIdEnum? get id;
+  // enum idEnum {  feature_not_available,  quota_exceeded,  };
 
   /// Message contains the error message.
   @BuiltValueField(wireName: r'message')
@@ -80,6 +87,13 @@ class _$GenericErrorContentSerializer implements PrimitiveSerializer<GenericErro
       yield serializers.serialize(
         object.errorDescription,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(GenericErrorContentIdEnum),
       );
     }
     if (object.message != null) {
@@ -140,6 +154,13 @@ class _$GenericErrorContentSerializer implements PrimitiveSerializer<GenericErro
           ) as String;
           result.errorDescription = valueDes;
           break;
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(GenericErrorContentIdEnum),
+          ) as GenericErrorContentIdEnum;
+          result.id = valueDes;
+          break;
         case r'message':
           final valueDes = serializers.deserialize(
             value,
@@ -181,5 +202,22 @@ class _$GenericErrorContentSerializer implements PrimitiveSerializer<GenericErro
     );
     return result.build();
   }
+}
+
+class GenericErrorContentIdEnum extends EnumClass {
+
+  /// ID is a unique error ID. feature_not_available ErrFeatureNotAvailable quota_exceeded ErrQuotaExceeded
+  @BuiltValueEnumConst(wireName: r'feature_not_available')
+  static const GenericErrorContentIdEnum featureNotAvailable = _$genericErrorContentIdEnum_featureNotAvailable;
+  /// ID is a unique error ID. feature_not_available ErrFeatureNotAvailable quota_exceeded ErrQuotaExceeded
+  @BuiltValueEnumConst(wireName: r'quota_exceeded')
+  static const GenericErrorContentIdEnum quotaExceeded = _$genericErrorContentIdEnum_quotaExceeded;
+
+  static Serializer<GenericErrorContentIdEnum> get serializer => _$genericErrorContentIdEnumSerializer;
+
+  const GenericErrorContentIdEnum._(String name): super(name);
+
+  static BuiltSet<GenericErrorContentIdEnum> get values => _$genericErrorContentIdEnumValues;
+  static GenericErrorContentIdEnum valueOf(String name) => _$genericErrorContentIdEnumValueOf(name);
 }
 

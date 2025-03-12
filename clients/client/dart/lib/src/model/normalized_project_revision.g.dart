@@ -732,6 +732,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final BuiltList<NormalizedProjectRevisionThirdPartyProvider>?
       kratosSelfserviceMethodsOidcConfigProviders;
   @override
+  final bool? kratosSelfserviceMethodsOidcEnableAutoLinkPolicy;
+  @override
   final bool? kratosSelfserviceMethodsOidcEnabled;
   @override
   final String? kratosSelfserviceMethodsPasskeyConfigRpDisplayName;
@@ -993,6 +995,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceMethodsLookupSecretEnabled,
       this.kratosSelfserviceMethodsOidcConfigBaseRedirectUri,
       this.kratosSelfserviceMethodsOidcConfigProviders,
+      this.kratosSelfserviceMethodsOidcEnableAutoLinkPolicy,
       this.kratosSelfserviceMethodsOidcEnabled,
       this.kratosSelfserviceMethodsPasskeyConfigRpDisplayName,
       this.kratosSelfserviceMethodsPasskeyConfigRpId,
@@ -1388,6 +1391,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceMethodsOidcConfigBaseRedirectUri &&
         kratosSelfserviceMethodsOidcConfigProviders ==
             other.kratosSelfserviceMethodsOidcConfigProviders &&
+        kratosSelfserviceMethodsOidcEnableAutoLinkPolicy ==
+            other.kratosSelfserviceMethodsOidcEnableAutoLinkPolicy &&
         kratosSelfserviceMethodsOidcEnabled ==
             other.kratosSelfserviceMethodsOidcEnabled &&
         kratosSelfserviceMethodsPasskeyConfigRpDisplayName ==
@@ -1749,6 +1754,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash =
         $jc(_$hash, kratosSelfserviceMethodsOidcConfigBaseRedirectUri.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsOidcConfigProviders.hashCode);
+    _$hash =
+        $jc(_$hash, kratosSelfserviceMethodsOidcEnableAutoLinkPolicy.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsOidcEnabled.hashCode);
     _$hash = $jc(
         _$hash, kratosSelfserviceMethodsPasskeyConfigRpDisplayName.hashCode);
@@ -2142,6 +2149,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceMethodsOidcConfigBaseRedirectUri)
           ..add('kratosSelfserviceMethodsOidcConfigProviders',
               kratosSelfserviceMethodsOidcConfigProviders)
+          ..add('kratosSelfserviceMethodsOidcEnableAutoLinkPolicy',
+              kratosSelfserviceMethodsOidcEnableAutoLinkPolicy)
           ..add('kratosSelfserviceMethodsOidcEnabled',
               kratosSelfserviceMethodsOidcEnabled)
           ..add('kratosSelfserviceMethodsPasskeyConfigRpDisplayName',
@@ -3608,6 +3617,14 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceMethodsOidcConfigProviders =
           kratosSelfserviceMethodsOidcConfigProviders;
 
+  bool? _kratosSelfserviceMethodsOidcEnableAutoLinkPolicy;
+  bool? get kratosSelfserviceMethodsOidcEnableAutoLinkPolicy =>
+      _$this._kratosSelfserviceMethodsOidcEnableAutoLinkPolicy;
+  set kratosSelfserviceMethodsOidcEnableAutoLinkPolicy(
+          bool? kratosSelfserviceMethodsOidcEnableAutoLinkPolicy) =>
+      _$this._kratosSelfserviceMethodsOidcEnableAutoLinkPolicy =
+          kratosSelfserviceMethodsOidcEnableAutoLinkPolicy;
+
   bool? _kratosSelfserviceMethodsOidcEnabled;
   bool? get kratosSelfserviceMethodsOidcEnabled =>
       _$this._kratosSelfserviceMethodsOidcEnabled;
@@ -4194,6 +4211,8 @@ class NormalizedProjectRevisionBuilder
           $v.kratosSelfserviceMethodsOidcConfigBaseRedirectUri;
       _kratosSelfserviceMethodsOidcConfigProviders =
           $v.kratosSelfserviceMethodsOidcConfigProviders?.toBuilder();
+      _kratosSelfserviceMethodsOidcEnableAutoLinkPolicy =
+          $v.kratosSelfserviceMethodsOidcEnableAutoLinkPolicy;
       _kratosSelfserviceMethodsOidcEnabled =
           $v.kratosSelfserviceMethodsOidcEnabled;
       _kratosSelfserviceMethodsPasskeyConfigRpDisplayName =
@@ -4523,6 +4542,7 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceMethodsLookupSecretEnabled: kratosSelfserviceMethodsLookupSecretEnabled,
               kratosSelfserviceMethodsOidcConfigBaseRedirectUri: kratosSelfserviceMethodsOidcConfigBaseRedirectUri,
               kratosSelfserviceMethodsOidcConfigProviders: _kratosSelfserviceMethodsOidcConfigProviders?.build(),
+              kratosSelfserviceMethodsOidcEnableAutoLinkPolicy: kratosSelfserviceMethodsOidcEnableAutoLinkPolicy,
               kratosSelfserviceMethodsOidcEnabled: kratosSelfserviceMethodsOidcEnabled,
               kratosSelfserviceMethodsPasskeyConfigRpDisplayName: kratosSelfserviceMethodsPasskeyConfigRpDisplayName,
               kratosSelfserviceMethodsPasskeyConfigRpId: kratosSelfserviceMethodsPasskeyConfigRpId,

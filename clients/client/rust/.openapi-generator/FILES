@@ -238,6 +238,7 @@ docs/UiContainer.md
 docs/UiNode.md
 docs/UiNodeAnchorAttributes.md
 docs/UiNodeAttributes.md
+docs/UiNodeDivisionAttributes.md
 docs/UiNodeImageAttributes.md
 docs/UiNodeInputAttributes.md
 docs/UiNodeMeta.md
@@ -533,6 +534,7 @@ src/models/ui_container.rs
 src/models/ui_node.rs
 src/models/ui_node_anchor_attributes.rs
 src/models/ui_node_attributes.rs
+src/models/ui_node_division_attributes.rs
 src/models/ui_node_image_attributes.rs
 src/models/ui_node_input_attributes.rs
 src/models/ui_node_meta.rs

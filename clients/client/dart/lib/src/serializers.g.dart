@@ -109,6 +109,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(FlowError.serializer)
       ..add(GenericError.serializer)
       ..add(GenericErrorContent.serializer)
+      ..add(GenericErrorContentIdEnum.serializer)
       ..add(GenericUsage.serializer)
       ..add(GetAttributesCountResponse.serializer)
       ..add(GetManagedIdentitySchemaLocation.serializer)
@@ -305,6 +306,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UiNodeAnchorAttributes.serializer)
       ..add(UiNodeAnchorAttributesNodeTypeEnum.serializer)
       ..add(UiNodeAttributes.serializer)
+      ..add(UiNodeDivisionAttributes.serializer)
+      ..add(UiNodeDivisionAttributesNodeTypeEnum.serializer)
       ..add(UiNodeGroupEnum.serializer)
       ..add(UiNodeImageAttributes.serializer)
       ..add(UiNodeImageAttributesNodeTypeEnum.serializer)
@@ -880,6 +883,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(VerifiableIdentityAddress)]),
           () => new ListBuilder<VerifiableIdentityAddress>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(String)]),
+          () => new MapBuilder<String, String>())
       ..addBuilderFactory(
           const FullType(
               BuiltMap, const [const FullType(String), const FullType(String)]),

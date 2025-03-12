@@ -4,6 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Brand100** | Pointer to **string** |  | [optional] 
+**Brand200** | Pointer to **string** |  | [optional] 
+**Brand300** | Pointer to **string** |  | [optional] 
+**Brand400** | Pointer to **string** |  | [optional] 
+**Brand50** | Pointer to **string** |  | [optional] 
+**Brand500** | Pointer to **string** |  | [optional] 
+**Brand600** | Pointer to **string** |  | [optional] 
+**Brand700** | Pointer to **string** |  | [optional] 
+**Brand800** | Pointer to **string** |  | [optional] 
+**Brand900** | Pointer to **string** |  | [optional] 
+**Brand950** | Pointer to **string** |  | [optional] 
 **ButtonIdentifierBackgroundDefault** | Pointer to **string** |  | [optional] 
 **ButtonIdentifierBackgroundHover** | Pointer to **string** |  | [optional] 
 **ButtonIdentifierBorderBorderDefault** | Pointer to **string** |  | [optional] 
@@ -119,6 +130,23 @@ Name | Type | Description | Notes
 **ToggleBorderDefault** | Pointer to **string** |  | [optional] 
 **ToggleForegroundChecked** | Pointer to **string** |  | [optional] 
 **ToggleForegroundDefault** | Pointer to **string** |  | [optional] 
+**Ui100** | Pointer to **string** |  | [optional] 
+**Ui200** | Pointer to **string** |  | [optional] 
+**Ui300** | Pointer to **string** |  | [optional] 
+**Ui400** | Pointer to **string** |  | [optional] 
+**Ui50** | Pointer to **string** |  | [optional] 
+**Ui500** | Pointer to **string** |  | [optional] 
+**Ui600** | Pointer to **string** |  | [optional] 
+**Ui700** | Pointer to **string** |  | [optional] 
+**Ui800** | Pointer to **string** |  | [optional] 
+**Ui900** | Pointer to **string** |  | [optional] 
+**Ui950** | Pointer to **string** |  | [optional] 
+**UiBlack** | Pointer to **string** |  | [optional] 
+**UiDanger** | Pointer to **string** |  | [optional] 
+**UiSuccess** | Pointer to **string** |  | [optional] 
+**UiTransparent** | Pointer to **string** |  | [optional] 
+**UiWarning** | Pointer to **string** |  | [optional] 
+**UiWhite** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -138,6 +166,281 @@ will change when the set of required properties is changed
 NewAccountExperienceColorsWithDefaults instantiates a new AccountExperienceColors object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBrand100
+
+`func (o *AccountExperienceColors) GetBrand100() string`
+
+GetBrand100 returns the Brand100 field if non-nil, zero value otherwise.
+
+### GetBrand100Ok
+
+`func (o *AccountExperienceColors) GetBrand100Ok() (*string, bool)`
+
+GetBrand100Ok returns a tuple with the Brand100 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrand100
+
+`func (o *AccountExperienceColors) SetBrand100(v string)`
+
+SetBrand100 sets Brand100 field to given value.
+
+### HasBrand100
+
+`func (o *AccountExperienceColors) HasBrand100() bool`
+
+HasBrand100 returns a boolean if a field has been set.
+
+### GetBrand200
+
+`func (o *AccountExperienceColors) GetBrand200() string`
+
+GetBrand200 returns the Brand200 field if non-nil, zero value otherwise.
+
+### GetBrand200Ok
+
+`func (o *AccountExperienceColors) GetBrand200Ok() (*string, bool)`
+
+GetBrand200Ok returns a tuple with the Brand200 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrand200
+
+`func (o *AccountExperienceColors) SetBrand200(v string)`
+
+SetBrand200 sets Brand200 field to given value.
+
+### HasBrand200
+
+`func (o *AccountExperienceColors) HasBrand200() bool`
+
+HasBrand200 returns a boolean if a field has been set.
+
+### GetBrand300
+
+`func (o *AccountExperienceColors) GetBrand300() string`
+
+GetBrand300 returns the Brand300 field if non-nil, zero value otherwise.
+
+### GetBrand300Ok
+
+`func (o *AccountExperienceColors) GetBrand300Ok() (*string, bool)`
+
+GetBrand300Ok returns a tuple with the Brand300 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrand300
+
+`func (o *AccountExperienceColors) SetBrand300(v string)`
+
+SetBrand300 sets Brand300 field to given value.
+
+### HasBrand300
+
+`func (o *AccountExperienceColors) HasBrand300() bool`
+
+HasBrand300 returns a boolean if a field has been set.
+
+### GetBrand400
+
+`func (o *AccountExperienceColors) GetBrand400() string`
+
+GetBrand400 returns the Brand400 field if non-nil, zero value otherwise.
+
+### GetBrand400Ok
+
+`func (o *AccountExperienceColors) GetBrand400Ok() (*string, bool)`
+
+GetBrand400Ok returns a tuple with the Brand400 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrand400
+
+`func (o *AccountExperienceColors) SetBrand400(v string)`
+
+SetBrand400 sets Brand400 field to given value.
+
+### HasBrand400
+
+`func (o *AccountExperienceColors) HasBrand400() bool`
+
+HasBrand400 returns a boolean if a field has been set.
+
+### GetBrand50
+
+`func (o *AccountExperienceColors) GetBrand50() string`
+
+GetBrand50 returns the Brand50 field if non-nil, zero value otherwise.
+
+### GetBrand50Ok
+
+`func (o *AccountExperienceColors) GetBrand50Ok() (*string, bool)`
+
+GetBrand50Ok returns a tuple with the Brand50 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrand50
+
+`func (o *AccountExperienceColors) SetBrand50(v string)`
+
+SetBrand50 sets Brand50 field to given value.
+
+### HasBrand50
+
+`func (o *AccountExperienceColors) HasBrand50() bool`
+
+HasBrand50 returns a boolean if a field has been set.
+
+### GetBrand500
+
+`func (o *AccountExperienceColors) GetBrand500() string`
+
+GetBrand500 returns the Brand500 field if non-nil, zero value otherwise.
+
+### GetBrand500Ok
+
+`func (o *AccountExperienceColors) GetBrand500Ok() (*string, bool)`
+
+GetBrand500Ok returns a tuple with the Brand500 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrand500
+
+`func (o *AccountExperienceColors) SetBrand500(v string)`
+
+SetBrand500 sets Brand500 field to given value.
+
+### HasBrand500
+
+`func (o *AccountExperienceColors) HasBrand500() bool`
+
+HasBrand500 returns a boolean if a field has been set.
+
+### GetBrand600
+
+`func (o *AccountExperienceColors) GetBrand600() string`
+
+GetBrand600 returns the Brand600 field if non-nil, zero value otherwise.
+
+### GetBrand600Ok
+
+`func (o *AccountExperienceColors) GetBrand600Ok() (*string, bool)`
+
+GetBrand600Ok returns a tuple with the Brand600 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrand600
+
+`func (o *AccountExperienceColors) SetBrand600(v string)`
+
+SetBrand600 sets Brand600 field to given value.
+
+### HasBrand600
+
+`func (o *AccountExperienceColors) HasBrand600() bool`
+
+HasBrand600 returns a boolean if a field has been set.
+
+### GetBrand700
+
+`func (o *AccountExperienceColors) GetBrand700() string`
+
+GetBrand700 returns the Brand700 field if non-nil, zero value otherwise.
+
+### GetBrand700Ok
+
+`func (o *AccountExperienceColors) GetBrand700Ok() (*string, bool)`
+
+GetBrand700Ok returns a tuple with the Brand700 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrand700
+
+`func (o *AccountExperienceColors) SetBrand700(v string)`
+
+SetBrand700 sets Brand700 field to given value.
+
+### HasBrand700
+
+`func (o *AccountExperienceColors) HasBrand700() bool`
+
+HasBrand700 returns a boolean if a field has been set.
+
+### GetBrand800
+
+`func (o *AccountExperienceColors) GetBrand800() string`
+
+GetBrand800 returns the Brand800 field if non-nil, zero value otherwise.
+
+### GetBrand800Ok
+
+`func (o *AccountExperienceColors) GetBrand800Ok() (*string, bool)`
+
+GetBrand800Ok returns a tuple with the Brand800 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrand800
+
+`func (o *AccountExperienceColors) SetBrand800(v string)`
+
+SetBrand800 sets Brand800 field to given value.
+
+### HasBrand800
+
+`func (o *AccountExperienceColors) HasBrand800() bool`
+
+HasBrand800 returns a boolean if a field has been set.
+
+### GetBrand900
+
+`func (o *AccountExperienceColors) GetBrand900() string`
+
+GetBrand900 returns the Brand900 field if non-nil, zero value otherwise.
+
+### GetBrand900Ok
+
+`func (o *AccountExperienceColors) GetBrand900Ok() (*string, bool)`
+
+GetBrand900Ok returns a tuple with the Brand900 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrand900
+
+`func (o *AccountExperienceColors) SetBrand900(v string)`
+
+SetBrand900 sets Brand900 field to given value.
+
+### HasBrand900
+
+`func (o *AccountExperienceColors) HasBrand900() bool`
+
+HasBrand900 returns a boolean if a field has been set.
+
+### GetBrand950
+
+`func (o *AccountExperienceColors) GetBrand950() string`
+
+GetBrand950 returns the Brand950 field if non-nil, zero value otherwise.
+
+### GetBrand950Ok
+
+`func (o *AccountExperienceColors) GetBrand950Ok() (*string, bool)`
+
+GetBrand950Ok returns a tuple with the Brand950 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrand950
+
+`func (o *AccountExperienceColors) SetBrand950(v string)`
+
+SetBrand950 sets Brand950 field to given value.
+
+### HasBrand950
+
+`func (o *AccountExperienceColors) HasBrand950() bool`
+
+HasBrand950 returns a boolean if a field has been set.
 
 ### GetButtonIdentifierBackgroundDefault
 
@@ -3013,6 +3316,431 @@ SetToggleForegroundDefault sets ToggleForegroundDefault field to given value.
 `func (o *AccountExperienceColors) HasToggleForegroundDefault() bool`
 
 HasToggleForegroundDefault returns a boolean if a field has been set.
+
+### GetUi100
+
+`func (o *AccountExperienceColors) GetUi100() string`
+
+GetUi100 returns the Ui100 field if non-nil, zero value otherwise.
+
+### GetUi100Ok
+
+`func (o *AccountExperienceColors) GetUi100Ok() (*string, bool)`
+
+GetUi100Ok returns a tuple with the Ui100 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUi100
+
+`func (o *AccountExperienceColors) SetUi100(v string)`
+
+SetUi100 sets Ui100 field to given value.
+
+### HasUi100
+
+`func (o *AccountExperienceColors) HasUi100() bool`
+
+HasUi100 returns a boolean if a field has been set.
+
+### GetUi200
+
+`func (o *AccountExperienceColors) GetUi200() string`
+
+GetUi200 returns the Ui200 field if non-nil, zero value otherwise.
+
+### GetUi200Ok
+
+`func (o *AccountExperienceColors) GetUi200Ok() (*string, bool)`
+
+GetUi200Ok returns a tuple with the Ui200 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUi200
+
+`func (o *AccountExperienceColors) SetUi200(v string)`
+
+SetUi200 sets Ui200 field to given value.
+
+### HasUi200
+
+`func (o *AccountExperienceColors) HasUi200() bool`
+
+HasUi200 returns a boolean if a field has been set.
+
+### GetUi300
+
+`func (o *AccountExperienceColors) GetUi300() string`
+
+GetUi300 returns the Ui300 field if non-nil, zero value otherwise.
+
+### GetUi300Ok
+
+`func (o *AccountExperienceColors) GetUi300Ok() (*string, bool)`
+
+GetUi300Ok returns a tuple with the Ui300 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUi300
+
+`func (o *AccountExperienceColors) SetUi300(v string)`
+
+SetUi300 sets Ui300 field to given value.
+
+### HasUi300
+
+`func (o *AccountExperienceColors) HasUi300() bool`
+
+HasUi300 returns a boolean if a field has been set.
+
+### GetUi400
+
+`func (o *AccountExperienceColors) GetUi400() string`
+
+GetUi400 returns the Ui400 field if non-nil, zero value otherwise.
+
+### GetUi400Ok
+
+`func (o *AccountExperienceColors) GetUi400Ok() (*string, bool)`
+
+GetUi400Ok returns a tuple with the Ui400 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUi400
+
+`func (o *AccountExperienceColors) SetUi400(v string)`
+
+SetUi400 sets Ui400 field to given value.
+
+### HasUi400
+
+`func (o *AccountExperienceColors) HasUi400() bool`
+
+HasUi400 returns a boolean if a field has been set.
+
+### GetUi50
+
+`func (o *AccountExperienceColors) GetUi50() string`
+
+GetUi50 returns the Ui50 field if non-nil, zero value otherwise.
+
+### GetUi50Ok
+
+`func (o *AccountExperienceColors) GetUi50Ok() (*string, bool)`
+
+GetUi50Ok returns a tuple with the Ui50 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUi50
+
+`func (o *AccountExperienceColors) SetUi50(v string)`
+
+SetUi50 sets Ui50 field to given value.
+
+### HasUi50
+
+`func (o *AccountExperienceColors) HasUi50() bool`
+
+HasUi50 returns a boolean if a field has been set.
+
+### GetUi500
+
+`func (o *AccountExperienceColors) GetUi500() string`
+
+GetUi500 returns the Ui500 field if non-nil, zero value otherwise.
+
+### GetUi500Ok
+
+`func (o *AccountExperienceColors) GetUi500Ok() (*string, bool)`
+
+GetUi500Ok returns a tuple with the Ui500 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUi500
+
+`func (o *AccountExperienceColors) SetUi500(v string)`
+
+SetUi500 sets Ui500 field to given value.
+
+### HasUi500
+
+`func (o *AccountExperienceColors) HasUi500() bool`
+
+HasUi500 returns a boolean if a field has been set.
+
+### GetUi600
+
+`func (o *AccountExperienceColors) GetUi600() string`
+
+GetUi600 returns the Ui600 field if non-nil, zero value otherwise.
+
+### GetUi600Ok
+
+`func (o *AccountExperienceColors) GetUi600Ok() (*string, bool)`
+
+GetUi600Ok returns a tuple with the Ui600 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUi600
+
+`func (o *AccountExperienceColors) SetUi600(v string)`
+
+SetUi600 sets Ui600 field to given value.
+
+### HasUi600
+
+`func (o *AccountExperienceColors) HasUi600() bool`
+
+HasUi600 returns a boolean if a field has been set.
+
+### GetUi700
+
+`func (o *AccountExperienceColors) GetUi700() string`
+
+GetUi700 returns the Ui700 field if non-nil, zero value otherwise.
+
+### GetUi700Ok
+
+`func (o *AccountExperienceColors) GetUi700Ok() (*string, bool)`
+
+GetUi700Ok returns a tuple with the Ui700 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUi700
+
+`func (o *AccountExperienceColors) SetUi700(v string)`
+
+SetUi700 sets Ui700 field to given value.
+
+### HasUi700
+
+`func (o *AccountExperienceColors) HasUi700() bool`
+
+HasUi700 returns a boolean if a field has been set.
+
+### GetUi800
+
+`func (o *AccountExperienceColors) GetUi800() string`
+
+GetUi800 returns the Ui800 field if non-nil, zero value otherwise.
+
+### GetUi800Ok
+
+`func (o *AccountExperienceColors) GetUi800Ok() (*string, bool)`
+
+GetUi800Ok returns a tuple with the Ui800 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUi800
+
+`func (o *AccountExperienceColors) SetUi800(v string)`
+
+SetUi800 sets Ui800 field to given value.
+
+### HasUi800
+
+`func (o *AccountExperienceColors) HasUi800() bool`
+
+HasUi800 returns a boolean if a field has been set.
+
+### GetUi900
+
+`func (o *AccountExperienceColors) GetUi900() string`
+
+GetUi900 returns the Ui900 field if non-nil, zero value otherwise.
+
+### GetUi900Ok
+
+`func (o *AccountExperienceColors) GetUi900Ok() (*string, bool)`
+
+GetUi900Ok returns a tuple with the Ui900 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUi900
+
+`func (o *AccountExperienceColors) SetUi900(v string)`
+
+SetUi900 sets Ui900 field to given value.
+
+### HasUi900
+
+`func (o *AccountExperienceColors) HasUi900() bool`
+
+HasUi900 returns a boolean if a field has been set.
+
+### GetUi950
+
+`func (o *AccountExperienceColors) GetUi950() string`
+
+GetUi950 returns the Ui950 field if non-nil, zero value otherwise.
+
+### GetUi950Ok
+
+`func (o *AccountExperienceColors) GetUi950Ok() (*string, bool)`
+
+GetUi950Ok returns a tuple with the Ui950 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUi950
+
+`func (o *AccountExperienceColors) SetUi950(v string)`
+
+SetUi950 sets Ui950 field to given value.
+
+### HasUi950
+
+`func (o *AccountExperienceColors) HasUi950() bool`
+
+HasUi950 returns a boolean if a field has been set.
+
+### GetUiBlack
+
+`func (o *AccountExperienceColors) GetUiBlack() string`
+
+GetUiBlack returns the UiBlack field if non-nil, zero value otherwise.
+
+### GetUiBlackOk
+
+`func (o *AccountExperienceColors) GetUiBlackOk() (*string, bool)`
+
+GetUiBlackOk returns a tuple with the UiBlack field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUiBlack
+
+`func (o *AccountExperienceColors) SetUiBlack(v string)`
+
+SetUiBlack sets UiBlack field to given value.
+
+### HasUiBlack
+
+`func (o *AccountExperienceColors) HasUiBlack() bool`
+
+HasUiBlack returns a boolean if a field has been set.
+
+### GetUiDanger
+
+`func (o *AccountExperienceColors) GetUiDanger() string`
+
+GetUiDanger returns the UiDanger field if non-nil, zero value otherwise.
+
+### GetUiDangerOk
+
+`func (o *AccountExperienceColors) GetUiDangerOk() (*string, bool)`
+
+GetUiDangerOk returns a tuple with the UiDanger field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUiDanger
+
+`func (o *AccountExperienceColors) SetUiDanger(v string)`
+
+SetUiDanger sets UiDanger field to given value.
+
+### HasUiDanger
+
+`func (o *AccountExperienceColors) HasUiDanger() bool`
+
+HasUiDanger returns a boolean if a field has been set.
+
+### GetUiSuccess
+
+`func (o *AccountExperienceColors) GetUiSuccess() string`
+
+GetUiSuccess returns the UiSuccess field if non-nil, zero value otherwise.
+
+### GetUiSuccessOk
+
+`func (o *AccountExperienceColors) GetUiSuccessOk() (*string, bool)`
+
+GetUiSuccessOk returns a tuple with the UiSuccess field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUiSuccess
+
+`func (o *AccountExperienceColors) SetUiSuccess(v string)`
+
+SetUiSuccess sets UiSuccess field to given value.
+
+### HasUiSuccess
+
+`func (o *AccountExperienceColors) HasUiSuccess() bool`
+
+HasUiSuccess returns a boolean if a field has been set.
+
+### GetUiTransparent
+
+`func (o *AccountExperienceColors) GetUiTransparent() string`
+
+GetUiTransparent returns the UiTransparent field if non-nil, zero value otherwise.
+
+### GetUiTransparentOk
+
+`func (o *AccountExperienceColors) GetUiTransparentOk() (*string, bool)`
+
+GetUiTransparentOk returns a tuple with the UiTransparent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUiTransparent
+
+`func (o *AccountExperienceColors) SetUiTransparent(v string)`
+
+SetUiTransparent sets UiTransparent field to given value.
+
+### HasUiTransparent
+
+`func (o *AccountExperienceColors) HasUiTransparent() bool`
+
+HasUiTransparent returns a boolean if a field has been set.
+
+### GetUiWarning
+
+`func (o *AccountExperienceColors) GetUiWarning() string`
+
+GetUiWarning returns the UiWarning field if non-nil, zero value otherwise.
+
+### GetUiWarningOk
+
+`func (o *AccountExperienceColors) GetUiWarningOk() (*string, bool)`
+
+GetUiWarningOk returns a tuple with the UiWarning field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUiWarning
+
+`func (o *AccountExperienceColors) SetUiWarning(v string)`
+
+SetUiWarning sets UiWarning field to given value.
+
+### HasUiWarning
+
+`func (o *AccountExperienceColors) HasUiWarning() bool`
+
+HasUiWarning returns a boolean if a field has been set.
+
+### GetUiWhite
+
+`func (o *AccountExperienceColors) GetUiWhite() string`
+
+GetUiWhite returns the UiWhite field if non-nil, zero value otherwise.
+
+### GetUiWhiteOk
+
+`func (o *AccountExperienceColors) GetUiWhiteOk() (*string, bool)`
+
+GetUiWhiteOk returns a tuple with the UiWhite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUiWhite
+
+`func (o *AccountExperienceColors) SetUiWhite(v string)`
+
+SetUiWhite sets UiWhite field to given value.
+
+### HasUiWhite
+
+`func (o *AccountExperienceColors) HasUiWhite() bool`
+
+HasUiWhite returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

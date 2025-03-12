@@ -29,7 +29,11 @@ Method | HTTP request | Description
 
 Create multiple identities
 
-Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Creates multiple
+[identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+This endpoint can also be used to [import
+credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
+for instance passwords, social sign in configurations or multifactor methods.
 
 ### Example
 
@@ -111,7 +115,9 @@ Name | Type | Description  | Notes
 
 Create an Identity
 
-Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
+[import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
+for instance passwords, social sign in configurations or multifactor methods.
 
 ### Example
 
@@ -193,7 +199,8 @@ Name | Type | Description  | Notes
 
 Create a Recovery Code
 
-This endpoint creates a recovery code which should be given to the user in order for them to recover (or activate) their account.
+This endpoint creates a recovery code which should be given to the user in order for them to recover
+(or activate) their account.
 
 ### Example
 
@@ -275,7 +282,8 @@ Name | Type | Description  | Notes
 
 Create a Recovery Link
 
-This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
+This endpoint creates a recovery link which should be given to the user in order for them to recover
+(or activate) their account.
 
 ### Example
 
@@ -359,7 +367,9 @@ Name | Type | Description  | Notes
 
 Delete an Identity
 
-Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.
+Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
+This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is
+assumed that is has been deleted already.
 
 ### Example
 
@@ -436,7 +446,8 @@ void (empty response body)
 
 Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete password or code auth credentials through this API.
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
+You cannot delete password or code auth credentials through this API.
 
 ### Example
 
@@ -674,7 +685,17 @@ void (empty response body)
 
 Extend a Session
 
-Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it
+will only extend the session after the specified time has passed.
+
+This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may
+return a 200 OK response with the session in the body. Returning the session as part of the response
+will be deprecated in the future and should not be relied upon.
+
+This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those
+scenarios. This endpoint also returns 404 errors if the session does not exist.
+
+Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
 ### Example
 
@@ -756,7 +777,8 @@ Name | Type | Description  | Notes
 
 Get an Identity
 
-Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
+include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
 
 ### Example
 
@@ -907,7 +929,9 @@ No authorization required
 
 Get Session
 
-This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
+This endpoint is useful for:
+
+Getting a session object with all specified expandables that exist in an administrative context.
 
 ### Example
 
@@ -1338,7 +1362,8 @@ Name | Type | Description  | Notes
 
 Patch an Identity
 
-Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/). The fields `id`, `stateChangedAt` and `credentials` can not be updated using this method.
+Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
+The fields `id`, `stateChangedAt` and `credentials` can not be updated using this method.
 
 ### Example
 
@@ -1423,7 +1448,8 @@ Name | Type | Description  | Notes
 
 Update an Identity
 
-This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity payload (except credentials) is expected. It is possible to update the identity's credentials as well.
+This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity
+payload (except credentials) is expected. It is possible to update the identity's credentials as well.
 
 ### Example
 

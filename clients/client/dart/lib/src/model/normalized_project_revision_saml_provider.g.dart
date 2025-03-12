@@ -72,10 +72,6 @@ class _$NormalizedProjectRevisionSAMLProviderStateEnumSerializer
 class _$NormalizedProjectRevisionSAMLProvider
     extends NormalizedProjectRevisionSAMLProvider {
   @override
-  final String? clientId;
-  @override
-  final String? clientSecret;
-  @override
   final DateTime? createdAt;
   @override
   final String? id;
@@ -103,9 +99,7 @@ class _$NormalizedProjectRevisionSAMLProvider
           ._build();
 
   _$NormalizedProjectRevisionSAMLProvider._(
-      {this.clientId,
-      this.clientSecret,
-      this.createdAt,
+      {this.createdAt,
       this.id,
       this.label,
       this.mapperUrl,
@@ -131,8 +125,6 @@ class _$NormalizedProjectRevisionSAMLProvider
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is NormalizedProjectRevisionSAMLProvider &&
-        clientId == other.clientId &&
-        clientSecret == other.clientSecret &&
         createdAt == other.createdAt &&
         id == other.id &&
         label == other.label &&
@@ -148,8 +140,6 @@ class _$NormalizedProjectRevisionSAMLProvider
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, clientId.hashCode);
-    _$hash = $jc(_$hash, clientSecret.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, label.hashCode);
@@ -168,8 +158,6 @@ class _$NormalizedProjectRevisionSAMLProvider
   String toString() {
     return (newBuiltValueToStringHelper(
             r'NormalizedProjectRevisionSAMLProvider')
-          ..add('clientId', clientId)
-          ..add('clientSecret', clientSecret)
           ..add('createdAt', createdAt)
           ..add('id', id)
           ..add('label', label)
@@ -189,14 +177,6 @@ class NormalizedProjectRevisionSAMLProviderBuilder
         Builder<NormalizedProjectRevisionSAMLProvider,
             NormalizedProjectRevisionSAMLProviderBuilder> {
   _$NormalizedProjectRevisionSAMLProvider? _$v;
-
-  String? _clientId;
-  String? get clientId => _$this._clientId;
-  set clientId(String? clientId) => _$this._clientId = clientId;
-
-  String? _clientSecret;
-  String? get clientSecret => _$this._clientSecret;
-  set clientSecret(String? clientSecret) => _$this._clientSecret = clientSecret;
 
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
@@ -249,8 +229,6 @@ class NormalizedProjectRevisionSAMLProviderBuilder
   NormalizedProjectRevisionSAMLProviderBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _clientId = $v.clientId;
-      _clientSecret = $v.clientSecret;
       _createdAt = $v.createdAt;
       _id = $v.id;
       _label = $v.label;
@@ -284,8 +262,6 @@ class NormalizedProjectRevisionSAMLProviderBuilder
   _$NormalizedProjectRevisionSAMLProvider _build() {
     final _$result = _$v ??
         new _$NormalizedProjectRevisionSAMLProvider._(
-            clientId: clientId,
-            clientSecret: clientSecret,
             createdAt: createdAt,
             id: id,
             label: label,

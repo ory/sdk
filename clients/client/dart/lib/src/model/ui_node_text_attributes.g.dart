@@ -18,6 +18,8 @@ const UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnum_a =
 const UiNodeTextAttributesNodeTypeEnum
     _$uiNodeTextAttributesNodeTypeEnum_script =
     const UiNodeTextAttributesNodeTypeEnum._('script');
+const UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnum_div =
+    const UiNodeTextAttributesNodeTypeEnum._('div');
 
 UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnumValueOf(
     String name) {
@@ -32,6 +34,8 @@ UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnumValueOf(
       return _$uiNodeTextAttributesNodeTypeEnum_a;
     case 'script':
       return _$uiNodeTextAttributesNodeTypeEnum_script;
+    case 'div':
+      return _$uiNodeTextAttributesNodeTypeEnum_div;
     default:
       throw new ArgumentError(name);
   }
@@ -45,6 +49,7 @@ final BuiltSet<UiNodeTextAttributesNodeTypeEnum>
   _$uiNodeTextAttributesNodeTypeEnum_img,
   _$uiNodeTextAttributesNodeTypeEnum_a,
   _$uiNodeTextAttributesNodeTypeEnum_script,
+  _$uiNodeTextAttributesNodeTypeEnum_div,
 ]);
 
 Serializer<UiNodeTextAttributesNodeTypeEnum>
@@ -59,6 +64,7 @@ class _$UiNodeTextAttributesNodeTypeEnumSerializer
     'img': 'img',
     'a': 'a',
     'script': 'script',
+    'div': 'div',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'text': 'text',
@@ -66,6 +72,7 @@ class _$UiNodeTextAttributesNodeTypeEnumSerializer
     'img': 'img',
     'a': 'a',
     'script': 'script',
+    'div': 'div',
   };
 
   @override

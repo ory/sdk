@@ -243,6 +243,7 @@ lib/ory/model/ui_container.ex
 lib/ory/model/ui_node.ex
 lib/ory/model/ui_node_anchor_attributes.ex
 lib/ory/model/ui_node_attributes.ex
+lib/ory/model/ui_node_division_attributes.ex
 lib/ory/model/ui_node_image_attributes.ex
 lib/ory/model/ui_node_input_attributes.ex
 lib/ory/model/ui_node_meta.ex

@@ -5,6 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**brand_100** | **str** |  | [optional] 
+**brand_200** | **str** |  | [optional] 
+**brand_300** | **str** |  | [optional] 
+**brand_400** | **str** |  | [optional] 
+**brand_50** | **str** |  | [optional] 
+**brand_500** | **str** |  | [optional] 
+**brand_600** | **str** |  | [optional] 
+**brand_700** | **str** |  | [optional] 
+**brand_800** | **str** |  | [optional] 
+**brand_900** | **str** |  | [optional] 
+**brand_950** | **str** |  | [optional] 
 **button_identifier_background_default** | **str** |  | [optional] 
 **button_identifier_background_hover** | **str** |  | [optional] 
 **button_identifier_border_border_default** | **str** |  | [optional] 
@@ -120,6 +131,23 @@ Name | Type | Description | Notes
 **toggle_border_default** | **str** |  | [optional] 
 **toggle_foreground_checked** | **str** |  | [optional] 
 **toggle_foreground_default** | **str** |  | [optional] 
+**ui_100** | **str** |  | [optional] 
+**ui_200** | **str** |  | [optional] 
+**ui_300** | **str** |  | [optional] 
+**ui_400** | **str** |  | [optional] 
+**ui_50** | **str** |  | [optional] 
+**ui_500** | **str** |  | [optional] 
+**ui_600** | **str** |  | [optional] 
+**ui_700** | **str** |  | [optional] 
+**ui_800** | **str** |  | [optional] 
+**ui_900** | **str** |  | [optional] 
+**ui_950** | **str** |  | [optional] 
+**ui_black** | **str** |  | [optional] 
+**ui_danger** | **str** |  | [optional] 
+**ui_success** | **str** |  | [optional] 
+**ui_transparent** | **str** |  | [optional] 
+**ui_warning** | **str** |  | [optional] 
+**ui_white** | **str** |  | [optional] 
 
 ## Example
 

@@ -14,7 +14,7 @@ part 'ui_node_image_attributes.g.dart';
 /// Properties:
 /// * [height] - Height of the image
 /// * [id] - A unique identifier
-/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script
+/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script div Division
 /// * [src] - The image's source URL.  format: uri
 /// * [width] - Width of the image
 @BuiltValue()
@@ -27,10 +27,10 @@ abstract class UiNodeImageAttributes implements Built<UiNodeImageAttributes, UiN
   @BuiltValueField(wireName: r'id')
   String get id;
 
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueField(wireName: r'node_type')
   UiNodeImageAttributesNodeTypeEnum get nodeType;
-  // enum nodeTypeEnum {  text,  input,  img,  a,  script,  };
+  // enum nodeTypeEnum {  text,  input,  img,  a,  script,  div,  };
 
   /// The image's source URL.  format: uri
   @BuiltValueField(wireName: r'src')
@@ -177,21 +177,24 @@ class _$UiNodeImageAttributesSerializer implements PrimitiveSerializer<UiNodeIma
 
 class UiNodeImageAttributesNodeTypeEnum extends EnumClass {
 
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'text')
   static const UiNodeImageAttributesNodeTypeEnum text = _$uiNodeImageAttributesNodeTypeEnum_text;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'input')
   static const UiNodeImageAttributesNodeTypeEnum input = _$uiNodeImageAttributesNodeTypeEnum_input;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'img')
   static const UiNodeImageAttributesNodeTypeEnum img = _$uiNodeImageAttributesNodeTypeEnum_img;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'a')
   static const UiNodeImageAttributesNodeTypeEnum a = _$uiNodeImageAttributesNodeTypeEnum_a;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'script')
   static const UiNodeImageAttributesNodeTypeEnum script = _$uiNodeImageAttributesNodeTypeEnum_script;
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"img\". text Text input Input img Image a Anchor script Script div Division
+  @BuiltValueEnumConst(wireName: r'div')
+  static const UiNodeImageAttributesNodeTypeEnum div = _$uiNodeImageAttributesNodeTypeEnum_div;
 
   static Serializer<UiNodeImageAttributesNodeTypeEnum> get serializer => _$uiNodeImageAttributesNodeTypeEnumSerializer;
 

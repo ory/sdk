@@ -203,6 +203,7 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosSelfserviceMethodsLookupSecretEnabled] - Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \"selfservice.methods.lookup_secret.enabled\" setting.
 /// * [kratosSelfserviceMethodsOidcConfigBaseRedirectUri] - Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \"selfservice.methods.oidc.config.base_redirect_uri\" setting.
 /// * [kratosSelfserviceMethodsOidcConfigProviders] 
+/// * [kratosSelfserviceMethodsOidcEnableAutoLinkPolicy] - Configures whether Ory Kratos allows auto-linking of OIDC credentials without a subject  This governs the \"selfservice.methods.oidc.enable_auto_link_policy\" setting.
 /// * [kratosSelfserviceMethodsOidcEnabled] - Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
 /// * [kratosSelfserviceMethodsPasskeyConfigRpDisplayName] - Configures the Ory Kratos Passkey RP Display Name  This governs the \"selfservice.methods.passkey.config.rp.display_name\" setting.
 /// * [kratosSelfserviceMethodsPasskeyConfigRpId] - Configures the Ory Kratos Passkey RP ID  This governs the \"selfservice.methods.passkey.config.rp.id\" setting.
@@ -964,6 +965,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
 
   @BuiltValueField(wireName: r'kratos_selfservice_methods_oidc_config_providers')
   BuiltList<NormalizedProjectRevisionThirdPartyProvider>? get kratosSelfserviceMethodsOidcConfigProviders;
+
+  /// Configures whether Ory Kratos allows auto-linking of OIDC credentials without a subject  This governs the \"selfservice.methods.oidc.enable_auto_link_policy\" setting.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_oidc_enable_auto_link_policy')
+  bool? get kratosSelfserviceMethodsOidcEnableAutoLinkPolicy;
 
   /// Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_oidc_enabled')
@@ -2417,6 +2422,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.kratosSelfserviceMethodsOidcConfigProviders,
         specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionThirdPartyProvider)]),
+      );
+    }
+    if (object.kratosSelfserviceMethodsOidcEnableAutoLinkPolicy != null) {
+      yield r'kratos_selfservice_methods_oidc_enable_auto_link_policy';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsOidcEnableAutoLinkPolicy,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceMethodsOidcEnabled != null) {
@@ -3982,6 +3994,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionThirdPartyProvider)]),
           ) as BuiltList<NormalizedProjectRevisionThirdPartyProvider>;
           result.kratosSelfserviceMethodsOidcConfigProviders.replace(valueDes);
+          break;
+        case r'kratos_selfservice_methods_oidc_enable_auto_link_policy':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceMethodsOidcEnableAutoLinkPolicy = valueDes;
           break;
         case r'kratos_selfservice_methods_oidc_enabled':
           final valueDes = serializers.deserialize(

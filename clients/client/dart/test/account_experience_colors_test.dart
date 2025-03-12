@@ -7,6 +7,61 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(AccountExperienceColors, () {
+    // String brand100
+    test('to test the property `brand100`', () async {
+      // TODO
+    });
+
+    // String brand200
+    test('to test the property `brand200`', () async {
+      // TODO
+    });
+
+    // String brand300
+    test('to test the property `brand300`', () async {
+      // TODO
+    });
+
+    // String brand400
+    test('to test the property `brand400`', () async {
+      // TODO
+    });
+
+    // String brand50
+    test('to test the property `brand50`', () async {
+      // TODO
+    });
+
+    // String brand500
+    test('to test the property `brand500`', () async {
+      // TODO
+    });
+
+    // String brand600
+    test('to test the property `brand600`', () async {
+      // TODO
+    });
+
+    // String brand700
+    test('to test the property `brand700`', () async {
+      // TODO
+    });
+
+    // String brand800
+    test('to test the property `brand800`', () async {
+      // TODO
+    });
+
+    // String brand900
+    test('to test the property `brand900`', () async {
+      // TODO
+    });
+
+    // String brand950
+    test('to test the property `brand950`', () async {
+      // TODO
+    });
+
     // String buttonIdentifierBackgroundDefault
     test('to test the property `buttonIdentifierBackgroundDefault`', () async {
       // TODO
@@ -579,6 +634,91 @@ void main() {
 
     // String toggleForegroundDefault
     test('to test the property `toggleForegroundDefault`', () async {
+      // TODO
+    });
+
+    // String ui100
+    test('to test the property `ui100`', () async {
+      // TODO
+    });
+
+    // String ui200
+    test('to test the property `ui200`', () async {
+      // TODO
+    });
+
+    // String ui300
+    test('to test the property `ui300`', () async {
+      // TODO
+    });
+
+    // String ui400
+    test('to test the property `ui400`', () async {
+      // TODO
+    });
+
+    // String ui50
+    test('to test the property `ui50`', () async {
+      // TODO
+    });
+
+    // String ui500
+    test('to test the property `ui500`', () async {
+      // TODO
+    });
+
+    // String ui600
+    test('to test the property `ui600`', () async {
+      // TODO
+    });
+
+    // String ui700
+    test('to test the property `ui700`', () async {
+      // TODO
+    });
+
+    // String ui800
+    test('to test the property `ui800`', () async {
+      // TODO
+    });
+
+    // String ui900
+    test('to test the property `ui900`', () async {
+      // TODO
+    });
+
+    // String ui950
+    test('to test the property `ui950`', () async {
+      // TODO
+    });
+
+    // String uiBlack
+    test('to test the property `uiBlack`', () async {
+      // TODO
+    });
+
+    // String uiDanger
+    test('to test the property `uiDanger`', () async {
+      // TODO
+    });
+
+    // String uiSuccess
+    test('to test the property `uiSuccess`', () async {
+      // TODO
+    });
+
+    // String uiTransparent
+    test('to test the property `uiTransparent`', () async {
+      // TODO
+    });
+
+    // String uiWarning
+    test('to test the property `uiWarning`', () async {
+      // TODO
+    });
+
+    // String uiWhite
+    test('to test the property `uiWhite`', () async {
       // TODO
     });
 

@@ -7,8 +7,6 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**clientId** | **String** | ClientID is the application&#39;s Client ID. |  [optional] |
-|**clientSecret** | **String** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** | The Project&#39;s Revision Creation Date |  [optional] [readonly] |
 |**id** | **String** |  |  [optional] |
 |**label** | **String** | Label represents an optional label which can be used in the UI generation. |  [optional] |

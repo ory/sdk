@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.17.2
+API version: v1.18.4
 Contact: support@ory.sh
 */
 
@@ -20,6 +20,17 @@ var _ MappedNullable = &AccountExperienceColors{}
 
 // AccountExperienceColors struct for AccountExperienceColors
 type AccountExperienceColors struct {
+	Brand100 *string `json:"brand-100,omitempty"`
+	Brand200 *string `json:"brand-200,omitempty"`
+	Brand300 *string `json:"brand-300,omitempty"`
+	Brand400 *string `json:"brand-400,omitempty"`
+	Brand50 *string `json:"brand-50,omitempty"`
+	Brand500 *string `json:"brand-500,omitempty"`
+	Brand600 *string `json:"brand-600,omitempty"`
+	Brand700 *string `json:"brand-700,omitempty"`
+	Brand800 *string `json:"brand-800,omitempty"`
+	Brand900 *string `json:"brand-900,omitempty"`
+	Brand950 *string `json:"brand-950,omitempty"`
 	ButtonIdentifierBackgroundDefault *string `json:"button-identifier-background-default,omitempty"`
 	ButtonIdentifierBackgroundHover *string `json:"button-identifier-background-hover,omitempty"`
 	ButtonIdentifierBorderBorderDefault *string `json:"button-identifier-border-border-default,omitempty"`
@@ -135,6 +146,23 @@ type AccountExperienceColors struct {
 	ToggleBorderDefault *string `json:"toggle-border-default,omitempty"`
 	ToggleForegroundChecked *string `json:"toggle-foreground-checked,omitempty"`
 	ToggleForegroundDefault *string `json:"toggle-foreground-default,omitempty"`
+	Ui100 *string `json:"ui-100,omitempty"`
+	Ui200 *string `json:"ui-200,omitempty"`
+	Ui300 *string `json:"ui-300,omitempty"`
+	Ui400 *string `json:"ui-400,omitempty"`
+	Ui50 *string `json:"ui-50,omitempty"`
+	Ui500 *string `json:"ui-500,omitempty"`
+	Ui600 *string `json:"ui-600,omitempty"`
+	Ui700 *string `json:"ui-700,omitempty"`
+	Ui800 *string `json:"ui-800,omitempty"`
+	Ui900 *string `json:"ui-900,omitempty"`
+	Ui950 *string `json:"ui-950,omitempty"`
+	UiBlack *string `json:"ui-black,omitempty"`
+	UiDanger *string `json:"ui-danger,omitempty"`
+	UiSuccess *string `json:"ui-success,omitempty"`
+	UiTransparent *string `json:"ui-transparent,omitempty"`
+	UiWarning *string `json:"ui-warning,omitempty"`
+	UiWhite *string `json:"ui-white,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -155,6 +183,358 @@ func NewAccountExperienceColors() *AccountExperienceColors {
 func NewAccountExperienceColorsWithDefaults() *AccountExperienceColors {
 	this := AccountExperienceColors{}
 	return &this
+}
+
+// GetBrand100 returns the Brand100 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetBrand100() string {
+	if o == nil || IsNil(o.Brand100) {
+		var ret string
+		return ret
+	}
+	return *o.Brand100
+}
+
+// GetBrand100Ok returns a tuple with the Brand100 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetBrand100Ok() (*string, bool) {
+	if o == nil || IsNil(o.Brand100) {
+		return nil, false
+	}
+	return o.Brand100, true
+}
+
+// HasBrand100 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasBrand100() bool {
+	if o != nil && !IsNil(o.Brand100) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand100 gets a reference to the given string and assigns it to the Brand100 field.
+func (o *AccountExperienceColors) SetBrand100(v string) {
+	o.Brand100 = &v
+}
+
+// GetBrand200 returns the Brand200 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetBrand200() string {
+	if o == nil || IsNil(o.Brand200) {
+		var ret string
+		return ret
+	}
+	return *o.Brand200
+}
+
+// GetBrand200Ok returns a tuple with the Brand200 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetBrand200Ok() (*string, bool) {
+	if o == nil || IsNil(o.Brand200) {
+		return nil, false
+	}
+	return o.Brand200, true
+}
+
+// HasBrand200 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasBrand200() bool {
+	if o != nil && !IsNil(o.Brand200) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand200 gets a reference to the given string and assigns it to the Brand200 field.
+func (o *AccountExperienceColors) SetBrand200(v string) {
+	o.Brand200 = &v
+}
+
+// GetBrand300 returns the Brand300 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetBrand300() string {
+	if o == nil || IsNil(o.Brand300) {
+		var ret string
+		return ret
+	}
+	return *o.Brand300
+}
+
+// GetBrand300Ok returns a tuple with the Brand300 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetBrand300Ok() (*string, bool) {
+	if o == nil || IsNil(o.Brand300) {
+		return nil, false
+	}
+	return o.Brand300, true
+}
+
+// HasBrand300 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasBrand300() bool {
+	if o != nil && !IsNil(o.Brand300) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand300 gets a reference to the given string and assigns it to the Brand300 field.
+func (o *AccountExperienceColors) SetBrand300(v string) {
+	o.Brand300 = &v
+}
+
+// GetBrand400 returns the Brand400 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetBrand400() string {
+	if o == nil || IsNil(o.Brand400) {
+		var ret string
+		return ret
+	}
+	return *o.Brand400
+}
+
+// GetBrand400Ok returns a tuple with the Brand400 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetBrand400Ok() (*string, bool) {
+	if o == nil || IsNil(o.Brand400) {
+		return nil, false
+	}
+	return o.Brand400, true
+}
+
+// HasBrand400 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasBrand400() bool {
+	if o != nil && !IsNil(o.Brand400) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand400 gets a reference to the given string and assigns it to the Brand400 field.
+func (o *AccountExperienceColors) SetBrand400(v string) {
+	o.Brand400 = &v
+}
+
+// GetBrand50 returns the Brand50 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetBrand50() string {
+	if o == nil || IsNil(o.Brand50) {
+		var ret string
+		return ret
+	}
+	return *o.Brand50
+}
+
+// GetBrand50Ok returns a tuple with the Brand50 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetBrand50Ok() (*string, bool) {
+	if o == nil || IsNil(o.Brand50) {
+		return nil, false
+	}
+	return o.Brand50, true
+}
+
+// HasBrand50 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasBrand50() bool {
+	if o != nil && !IsNil(o.Brand50) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand50 gets a reference to the given string and assigns it to the Brand50 field.
+func (o *AccountExperienceColors) SetBrand50(v string) {
+	o.Brand50 = &v
+}
+
+// GetBrand500 returns the Brand500 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetBrand500() string {
+	if o == nil || IsNil(o.Brand500) {
+		var ret string
+		return ret
+	}
+	return *o.Brand500
+}
+
+// GetBrand500Ok returns a tuple with the Brand500 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetBrand500Ok() (*string, bool) {
+	if o == nil || IsNil(o.Brand500) {
+		return nil, false
+	}
+	return o.Brand500, true
+}
+
+// HasBrand500 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasBrand500() bool {
+	if o != nil && !IsNil(o.Brand500) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand500 gets a reference to the given string and assigns it to the Brand500 field.
+func (o *AccountExperienceColors) SetBrand500(v string) {
+	o.Brand500 = &v
+}
+
+// GetBrand600 returns the Brand600 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetBrand600() string {
+	if o == nil || IsNil(o.Brand600) {
+		var ret string
+		return ret
+	}
+	return *o.Brand600
+}
+
+// GetBrand600Ok returns a tuple with the Brand600 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetBrand600Ok() (*string, bool) {
+	if o == nil || IsNil(o.Brand600) {
+		return nil, false
+	}
+	return o.Brand600, true
+}
+
+// HasBrand600 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasBrand600() bool {
+	if o != nil && !IsNil(o.Brand600) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand600 gets a reference to the given string and assigns it to the Brand600 field.
+func (o *AccountExperienceColors) SetBrand600(v string) {
+	o.Brand600 = &v
+}
+
+// GetBrand700 returns the Brand700 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetBrand700() string {
+	if o == nil || IsNil(o.Brand700) {
+		var ret string
+		return ret
+	}
+	return *o.Brand700
+}
+
+// GetBrand700Ok returns a tuple with the Brand700 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetBrand700Ok() (*string, bool) {
+	if o == nil || IsNil(o.Brand700) {
+		return nil, false
+	}
+	return o.Brand700, true
+}
+
+// HasBrand700 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasBrand700() bool {
+	if o != nil && !IsNil(o.Brand700) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand700 gets a reference to the given string and assigns it to the Brand700 field.
+func (o *AccountExperienceColors) SetBrand700(v string) {
+	o.Brand700 = &v
+}
+
+// GetBrand800 returns the Brand800 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetBrand800() string {
+	if o == nil || IsNil(o.Brand800) {
+		var ret string
+		return ret
+	}
+	return *o.Brand800
+}
+
+// GetBrand800Ok returns a tuple with the Brand800 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetBrand800Ok() (*string, bool) {
+	if o == nil || IsNil(o.Brand800) {
+		return nil, false
+	}
+	return o.Brand800, true
+}
+
+// HasBrand800 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasBrand800() bool {
+	if o != nil && !IsNil(o.Brand800) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand800 gets a reference to the given string and assigns it to the Brand800 field.
+func (o *AccountExperienceColors) SetBrand800(v string) {
+	o.Brand800 = &v
+}
+
+// GetBrand900 returns the Brand900 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetBrand900() string {
+	if o == nil || IsNil(o.Brand900) {
+		var ret string
+		return ret
+	}
+	return *o.Brand900
+}
+
+// GetBrand900Ok returns a tuple with the Brand900 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetBrand900Ok() (*string, bool) {
+	if o == nil || IsNil(o.Brand900) {
+		return nil, false
+	}
+	return o.Brand900, true
+}
+
+// HasBrand900 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasBrand900() bool {
+	if o != nil && !IsNil(o.Brand900) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand900 gets a reference to the given string and assigns it to the Brand900 field.
+func (o *AccountExperienceColors) SetBrand900(v string) {
+	o.Brand900 = &v
+}
+
+// GetBrand950 returns the Brand950 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetBrand950() string {
+	if o == nil || IsNil(o.Brand950) {
+		var ret string
+		return ret
+	}
+	return *o.Brand950
+}
+
+// GetBrand950Ok returns a tuple with the Brand950 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetBrand950Ok() (*string, bool) {
+	if o == nil || IsNil(o.Brand950) {
+		return nil, false
+	}
+	return o.Brand950, true
+}
+
+// HasBrand950 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasBrand950() bool {
+	if o != nil && !IsNil(o.Brand950) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrand950 gets a reference to the given string and assigns it to the Brand950 field.
+func (o *AccountExperienceColors) SetBrand950(v string) {
+	o.Brand950 = &v
 }
 
 // GetButtonIdentifierBackgroundDefault returns the ButtonIdentifierBackgroundDefault field value if set, zero value otherwise.
@@ -3837,6 +4217,550 @@ func (o *AccountExperienceColors) SetToggleForegroundDefault(v string) {
 	o.ToggleForegroundDefault = &v
 }
 
+// GetUi100 returns the Ui100 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUi100() string {
+	if o == nil || IsNil(o.Ui100) {
+		var ret string
+		return ret
+	}
+	return *o.Ui100
+}
+
+// GetUi100Ok returns a tuple with the Ui100 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUi100Ok() (*string, bool) {
+	if o == nil || IsNil(o.Ui100) {
+		return nil, false
+	}
+	return o.Ui100, true
+}
+
+// HasUi100 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUi100() bool {
+	if o != nil && !IsNil(o.Ui100) {
+		return true
+	}
+
+	return false
+}
+
+// SetUi100 gets a reference to the given string and assigns it to the Ui100 field.
+func (o *AccountExperienceColors) SetUi100(v string) {
+	o.Ui100 = &v
+}
+
+// GetUi200 returns the Ui200 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUi200() string {
+	if o == nil || IsNil(o.Ui200) {
+		var ret string
+		return ret
+	}
+	return *o.Ui200
+}
+
+// GetUi200Ok returns a tuple with the Ui200 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUi200Ok() (*string, bool) {
+	if o == nil || IsNil(o.Ui200) {
+		return nil, false
+	}
+	return o.Ui200, true
+}
+
+// HasUi200 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUi200() bool {
+	if o != nil && !IsNil(o.Ui200) {
+		return true
+	}
+
+	return false
+}
+
+// SetUi200 gets a reference to the given string and assigns it to the Ui200 field.
+func (o *AccountExperienceColors) SetUi200(v string) {
+	o.Ui200 = &v
+}
+
+// GetUi300 returns the Ui300 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUi300() string {
+	if o == nil || IsNil(o.Ui300) {
+		var ret string
+		return ret
+	}
+	return *o.Ui300
+}
+
+// GetUi300Ok returns a tuple with the Ui300 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUi300Ok() (*string, bool) {
+	if o == nil || IsNil(o.Ui300) {
+		return nil, false
+	}
+	return o.Ui300, true
+}
+
+// HasUi300 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUi300() bool {
+	if o != nil && !IsNil(o.Ui300) {
+		return true
+	}
+
+	return false
+}
+
+// SetUi300 gets a reference to the given string and assigns it to the Ui300 field.
+func (o *AccountExperienceColors) SetUi300(v string) {
+	o.Ui300 = &v
+}
+
+// GetUi400 returns the Ui400 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUi400() string {
+	if o == nil || IsNil(o.Ui400) {
+		var ret string
+		return ret
+	}
+	return *o.Ui400
+}
+
+// GetUi400Ok returns a tuple with the Ui400 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUi400Ok() (*string, bool) {
+	if o == nil || IsNil(o.Ui400) {
+		return nil, false
+	}
+	return o.Ui400, true
+}
+
+// HasUi400 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUi400() bool {
+	if o != nil && !IsNil(o.Ui400) {
+		return true
+	}
+
+	return false
+}
+
+// SetUi400 gets a reference to the given string and assigns it to the Ui400 field.
+func (o *AccountExperienceColors) SetUi400(v string) {
+	o.Ui400 = &v
+}
+
+// GetUi50 returns the Ui50 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUi50() string {
+	if o == nil || IsNil(o.Ui50) {
+		var ret string
+		return ret
+	}
+	return *o.Ui50
+}
+
+// GetUi50Ok returns a tuple with the Ui50 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUi50Ok() (*string, bool) {
+	if o == nil || IsNil(o.Ui50) {
+		return nil, false
+	}
+	return o.Ui50, true
+}
+
+// HasUi50 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUi50() bool {
+	if o != nil && !IsNil(o.Ui50) {
+		return true
+	}
+
+	return false
+}
+
+// SetUi50 gets a reference to the given string and assigns it to the Ui50 field.
+func (o *AccountExperienceColors) SetUi50(v string) {
+	o.Ui50 = &v
+}
+
+// GetUi500 returns the Ui500 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUi500() string {
+	if o == nil || IsNil(o.Ui500) {
+		var ret string
+		return ret
+	}
+	return *o.Ui500
+}
+
+// GetUi500Ok returns a tuple with the Ui500 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUi500Ok() (*string, bool) {
+	if o == nil || IsNil(o.Ui500) {
+		return nil, false
+	}
+	return o.Ui500, true
+}
+
+// HasUi500 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUi500() bool {
+	if o != nil && !IsNil(o.Ui500) {
+		return true
+	}
+
+	return false
+}
+
+// SetUi500 gets a reference to the given string and assigns it to the Ui500 field.
+func (o *AccountExperienceColors) SetUi500(v string) {
+	o.Ui500 = &v
+}
+
+// GetUi600 returns the Ui600 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUi600() string {
+	if o == nil || IsNil(o.Ui600) {
+		var ret string
+		return ret
+	}
+	return *o.Ui600
+}
+
+// GetUi600Ok returns a tuple with the Ui600 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUi600Ok() (*string, bool) {
+	if o == nil || IsNil(o.Ui600) {
+		return nil, false
+	}
+	return o.Ui600, true
+}
+
+// HasUi600 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUi600() bool {
+	if o != nil && !IsNil(o.Ui600) {
+		return true
+	}
+
+	return false
+}
+
+// SetUi600 gets a reference to the given string and assigns it to the Ui600 field.
+func (o *AccountExperienceColors) SetUi600(v string) {
+	o.Ui600 = &v
+}
+
+// GetUi700 returns the Ui700 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUi700() string {
+	if o == nil || IsNil(o.Ui700) {
+		var ret string
+		return ret
+	}
+	return *o.Ui700
+}
+
+// GetUi700Ok returns a tuple with the Ui700 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUi700Ok() (*string, bool) {
+	if o == nil || IsNil(o.Ui700) {
+		return nil, false
+	}
+	return o.Ui700, true
+}
+
+// HasUi700 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUi700() bool {
+	if o != nil && !IsNil(o.Ui700) {
+		return true
+	}
+
+	return false
+}
+
+// SetUi700 gets a reference to the given string and assigns it to the Ui700 field.
+func (o *AccountExperienceColors) SetUi700(v string) {
+	o.Ui700 = &v
+}
+
+// GetUi800 returns the Ui800 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUi800() string {
+	if o == nil || IsNil(o.Ui800) {
+		var ret string
+		return ret
+	}
+	return *o.Ui800
+}
+
+// GetUi800Ok returns a tuple with the Ui800 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUi800Ok() (*string, bool) {
+	if o == nil || IsNil(o.Ui800) {
+		return nil, false
+	}
+	return o.Ui800, true
+}
+
+// HasUi800 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUi800() bool {
+	if o != nil && !IsNil(o.Ui800) {
+		return true
+	}
+
+	return false
+}
+
+// SetUi800 gets a reference to the given string and assigns it to the Ui800 field.
+func (o *AccountExperienceColors) SetUi800(v string) {
+	o.Ui800 = &v
+}
+
+// GetUi900 returns the Ui900 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUi900() string {
+	if o == nil || IsNil(o.Ui900) {
+		var ret string
+		return ret
+	}
+	return *o.Ui900
+}
+
+// GetUi900Ok returns a tuple with the Ui900 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUi900Ok() (*string, bool) {
+	if o == nil || IsNil(o.Ui900) {
+		return nil, false
+	}
+	return o.Ui900, true
+}
+
+// HasUi900 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUi900() bool {
+	if o != nil && !IsNil(o.Ui900) {
+		return true
+	}
+
+	return false
+}
+
+// SetUi900 gets a reference to the given string and assigns it to the Ui900 field.
+func (o *AccountExperienceColors) SetUi900(v string) {
+	o.Ui900 = &v
+}
+
+// GetUi950 returns the Ui950 field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUi950() string {
+	if o == nil || IsNil(o.Ui950) {
+		var ret string
+		return ret
+	}
+	return *o.Ui950
+}
+
+// GetUi950Ok returns a tuple with the Ui950 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUi950Ok() (*string, bool) {
+	if o == nil || IsNil(o.Ui950) {
+		return nil, false
+	}
+	return o.Ui950, true
+}
+
+// HasUi950 returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUi950() bool {
+	if o != nil && !IsNil(o.Ui950) {
+		return true
+	}
+
+	return false
+}
+
+// SetUi950 gets a reference to the given string and assigns it to the Ui950 field.
+func (o *AccountExperienceColors) SetUi950(v string) {
+	o.Ui950 = &v
+}
+
+// GetUiBlack returns the UiBlack field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUiBlack() string {
+	if o == nil || IsNil(o.UiBlack) {
+		var ret string
+		return ret
+	}
+	return *o.UiBlack
+}
+
+// GetUiBlackOk returns a tuple with the UiBlack field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUiBlackOk() (*string, bool) {
+	if o == nil || IsNil(o.UiBlack) {
+		return nil, false
+	}
+	return o.UiBlack, true
+}
+
+// HasUiBlack returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUiBlack() bool {
+	if o != nil && !IsNil(o.UiBlack) {
+		return true
+	}
+
+	return false
+}
+
+// SetUiBlack gets a reference to the given string and assigns it to the UiBlack field.
+func (o *AccountExperienceColors) SetUiBlack(v string) {
+	o.UiBlack = &v
+}
+
+// GetUiDanger returns the UiDanger field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUiDanger() string {
+	if o == nil || IsNil(o.UiDanger) {
+		var ret string
+		return ret
+	}
+	return *o.UiDanger
+}
+
+// GetUiDangerOk returns a tuple with the UiDanger field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUiDangerOk() (*string, bool) {
+	if o == nil || IsNil(o.UiDanger) {
+		return nil, false
+	}
+	return o.UiDanger, true
+}
+
+// HasUiDanger returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUiDanger() bool {
+	if o != nil && !IsNil(o.UiDanger) {
+		return true
+	}
+
+	return false
+}
+
+// SetUiDanger gets a reference to the given string and assigns it to the UiDanger field.
+func (o *AccountExperienceColors) SetUiDanger(v string) {
+	o.UiDanger = &v
+}
+
+// GetUiSuccess returns the UiSuccess field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUiSuccess() string {
+	if o == nil || IsNil(o.UiSuccess) {
+		var ret string
+		return ret
+	}
+	return *o.UiSuccess
+}
+
+// GetUiSuccessOk returns a tuple with the UiSuccess field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUiSuccessOk() (*string, bool) {
+	if o == nil || IsNil(o.UiSuccess) {
+		return nil, false
+	}
+	return o.UiSuccess, true
+}
+
+// HasUiSuccess returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUiSuccess() bool {
+	if o != nil && !IsNil(o.UiSuccess) {
+		return true
+	}
+
+	return false
+}
+
+// SetUiSuccess gets a reference to the given string and assigns it to the UiSuccess field.
+func (o *AccountExperienceColors) SetUiSuccess(v string) {
+	o.UiSuccess = &v
+}
+
+// GetUiTransparent returns the UiTransparent field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUiTransparent() string {
+	if o == nil || IsNil(o.UiTransparent) {
+		var ret string
+		return ret
+	}
+	return *o.UiTransparent
+}
+
+// GetUiTransparentOk returns a tuple with the UiTransparent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUiTransparentOk() (*string, bool) {
+	if o == nil || IsNil(o.UiTransparent) {
+		return nil, false
+	}
+	return o.UiTransparent, true
+}
+
+// HasUiTransparent returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUiTransparent() bool {
+	if o != nil && !IsNil(o.UiTransparent) {
+		return true
+	}
+
+	return false
+}
+
+// SetUiTransparent gets a reference to the given string and assigns it to the UiTransparent field.
+func (o *AccountExperienceColors) SetUiTransparent(v string) {
+	o.UiTransparent = &v
+}
+
+// GetUiWarning returns the UiWarning field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUiWarning() string {
+	if o == nil || IsNil(o.UiWarning) {
+		var ret string
+		return ret
+	}
+	return *o.UiWarning
+}
+
+// GetUiWarningOk returns a tuple with the UiWarning field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUiWarningOk() (*string, bool) {
+	if o == nil || IsNil(o.UiWarning) {
+		return nil, false
+	}
+	return o.UiWarning, true
+}
+
+// HasUiWarning returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUiWarning() bool {
+	if o != nil && !IsNil(o.UiWarning) {
+		return true
+	}
+
+	return false
+}
+
+// SetUiWarning gets a reference to the given string and assigns it to the UiWarning field.
+func (o *AccountExperienceColors) SetUiWarning(v string) {
+	o.UiWarning = &v
+}
+
+// GetUiWhite returns the UiWhite field value if set, zero value otherwise.
+func (o *AccountExperienceColors) GetUiWhite() string {
+	if o == nil || IsNil(o.UiWhite) {
+		var ret string
+		return ret
+	}
+	return *o.UiWhite
+}
+
+// GetUiWhiteOk returns a tuple with the UiWhite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceColors) GetUiWhiteOk() (*string, bool) {
+	if o == nil || IsNil(o.UiWhite) {
+		return nil, false
+	}
+	return o.UiWhite, true
+}
+
+// HasUiWhite returns a boolean if a field has been set.
+func (o *AccountExperienceColors) HasUiWhite() bool {
+	if o != nil && !IsNil(o.UiWhite) {
+		return true
+	}
+
+	return false
+}
+
+// SetUiWhite gets a reference to the given string and assigns it to the UiWhite field.
+func (o *AccountExperienceColors) SetUiWhite(v string) {
+	o.UiWhite = &v
+}
+
 func (o AccountExperienceColors) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -3847,6 +4771,39 @@ func (o AccountExperienceColors) MarshalJSON() ([]byte, error) {
 
 func (o AccountExperienceColors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Brand100) {
+		toSerialize["brand-100"] = o.Brand100
+	}
+	if !IsNil(o.Brand200) {
+		toSerialize["brand-200"] = o.Brand200
+	}
+	if !IsNil(o.Brand300) {
+		toSerialize["brand-300"] = o.Brand300
+	}
+	if !IsNil(o.Brand400) {
+		toSerialize["brand-400"] = o.Brand400
+	}
+	if !IsNil(o.Brand50) {
+		toSerialize["brand-50"] = o.Brand50
+	}
+	if !IsNil(o.Brand500) {
+		toSerialize["brand-500"] = o.Brand500
+	}
+	if !IsNil(o.Brand600) {
+		toSerialize["brand-600"] = o.Brand600
+	}
+	if !IsNil(o.Brand700) {
+		toSerialize["brand-700"] = o.Brand700
+	}
+	if !IsNil(o.Brand800) {
+		toSerialize["brand-800"] = o.Brand800
+	}
+	if !IsNil(o.Brand900) {
+		toSerialize["brand-900"] = o.Brand900
+	}
+	if !IsNil(o.Brand950) {
+		toSerialize["brand-950"] = o.Brand950
+	}
 	if !IsNil(o.ButtonIdentifierBackgroundDefault) {
 		toSerialize["button-identifier-background-default"] = o.ButtonIdentifierBackgroundDefault
 	}
@@ -4192,6 +5149,57 @@ func (o AccountExperienceColors) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ToggleForegroundDefault) {
 		toSerialize["toggle-foreground-default"] = o.ToggleForegroundDefault
 	}
+	if !IsNil(o.Ui100) {
+		toSerialize["ui-100"] = o.Ui100
+	}
+	if !IsNil(o.Ui200) {
+		toSerialize["ui-200"] = o.Ui200
+	}
+	if !IsNil(o.Ui300) {
+		toSerialize["ui-300"] = o.Ui300
+	}
+	if !IsNil(o.Ui400) {
+		toSerialize["ui-400"] = o.Ui400
+	}
+	if !IsNil(o.Ui50) {
+		toSerialize["ui-50"] = o.Ui50
+	}
+	if !IsNil(o.Ui500) {
+		toSerialize["ui-500"] = o.Ui500
+	}
+	if !IsNil(o.Ui600) {
+		toSerialize["ui-600"] = o.Ui600
+	}
+	if !IsNil(o.Ui700) {
+		toSerialize["ui-700"] = o.Ui700
+	}
+	if !IsNil(o.Ui800) {
+		toSerialize["ui-800"] = o.Ui800
+	}
+	if !IsNil(o.Ui900) {
+		toSerialize["ui-900"] = o.Ui900
+	}
+	if !IsNil(o.Ui950) {
+		toSerialize["ui-950"] = o.Ui950
+	}
+	if !IsNil(o.UiBlack) {
+		toSerialize["ui-black"] = o.UiBlack
+	}
+	if !IsNil(o.UiDanger) {
+		toSerialize["ui-danger"] = o.UiDanger
+	}
+	if !IsNil(o.UiSuccess) {
+		toSerialize["ui-success"] = o.UiSuccess
+	}
+	if !IsNil(o.UiTransparent) {
+		toSerialize["ui-transparent"] = o.UiTransparent
+	}
+	if !IsNil(o.UiWarning) {
+		toSerialize["ui-warning"] = o.UiWarning
+	}
+	if !IsNil(o.UiWhite) {
+		toSerialize["ui-white"] = o.UiWhite
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -4214,6 +5222,17 @@ func (o *AccountExperienceColors) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "brand-100")
+		delete(additionalProperties, "brand-200")
+		delete(additionalProperties, "brand-300")
+		delete(additionalProperties, "brand-400")
+		delete(additionalProperties, "brand-50")
+		delete(additionalProperties, "brand-500")
+		delete(additionalProperties, "brand-600")
+		delete(additionalProperties, "brand-700")
+		delete(additionalProperties, "brand-800")
+		delete(additionalProperties, "brand-900")
+		delete(additionalProperties, "brand-950")
 		delete(additionalProperties, "button-identifier-background-default")
 		delete(additionalProperties, "button-identifier-background-hover")
 		delete(additionalProperties, "button-identifier-border-border-default")
@@ -4329,6 +5348,23 @@ func (o *AccountExperienceColors) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "toggle-border-default")
 		delete(additionalProperties, "toggle-foreground-checked")
 		delete(additionalProperties, "toggle-foreground-default")
+		delete(additionalProperties, "ui-100")
+		delete(additionalProperties, "ui-200")
+		delete(additionalProperties, "ui-300")
+		delete(additionalProperties, "ui-400")
+		delete(additionalProperties, "ui-50")
+		delete(additionalProperties, "ui-500")
+		delete(additionalProperties, "ui-600")
+		delete(additionalProperties, "ui-700")
+		delete(additionalProperties, "ui-800")
+		delete(additionalProperties, "ui-900")
+		delete(additionalProperties, "ui-950")
+		delete(additionalProperties, "ui-black")
+		delete(additionalProperties, "ui-danger")
+		delete(additionalProperties, "ui-success")
+		delete(additionalProperties, "ui-transparent")
+		delete(additionalProperties, "ui-warning")
+		delete(additionalProperties, "ui-white")
 		o.AdditionalProperties = additionalProperties
 	}
 

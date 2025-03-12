@@ -446,6 +446,8 @@ pub mod ui_node_anchor_attributes;
 pub use self::ui_node_anchor_attributes::UiNodeAnchorAttributes;
 pub mod ui_node_attributes;
 pub use self::ui_node_attributes::UiNodeAttributes;
+pub mod ui_node_division_attributes;
+pub use self::ui_node_division_attributes::UiNodeDivisionAttributes;
 pub mod ui_node_image_attributes;
 pub use self::ui_node_image_attributes::UiNodeImageAttributes;
 pub mod ui_node_input_attributes;

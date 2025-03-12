@@ -4,8 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientId** | Pointer to **string** | ClientID is the application&#39;s Client ID. | [optional] 
-**ClientSecret** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Id** | Pointer to **string** |  | [optional] 
 **Label** | Pointer to **string** | Label represents an optional label which can be used in the UI generation. | [optional] 
@@ -36,66 +34,6 @@ NewNormalizedProjectRevisionSAMLProviderWithDefaults instantiates a new Normaliz
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetClientId
-
-`func (o *NormalizedProjectRevisionSAMLProvider) GetClientId() string`
-
-GetClientId returns the ClientId field if non-nil, zero value otherwise.
-
-### GetClientIdOk
-
-`func (o *NormalizedProjectRevisionSAMLProvider) GetClientIdOk() (*string, bool)`
-
-GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClientId
-
-`func (o *NormalizedProjectRevisionSAMLProvider) SetClientId(v string)`
-
-SetClientId sets ClientId field to given value.
-
-### HasClientId
-
-`func (o *NormalizedProjectRevisionSAMLProvider) HasClientId() bool`
-
-HasClientId returns a boolean if a field has been set.
-
-### GetClientSecret
-
-`func (o *NormalizedProjectRevisionSAMLProvider) GetClientSecret() string`
-
-GetClientSecret returns the ClientSecret field if non-nil, zero value otherwise.
-
-### GetClientSecretOk
-
-`func (o *NormalizedProjectRevisionSAMLProvider) GetClientSecretOk() (*string, bool)`
-
-GetClientSecretOk returns a tuple with the ClientSecret field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClientSecret
-
-`func (o *NormalizedProjectRevisionSAMLProvider) SetClientSecret(v string)`
-
-SetClientSecret sets ClientSecret field to given value.
-
-### HasClientSecret
-
-`func (o *NormalizedProjectRevisionSAMLProvider) HasClientSecret() bool`
-
-HasClientSecret returns a boolean if a field has been set.
-
-### SetClientSecretNil
-
-`func (o *NormalizedProjectRevisionSAMLProvider) SetClientSecretNil(b bool)`
-
- SetClientSecretNil sets the value for ClientSecret to be an explicit nil
-
-### UnsetClientSecret
-`func (o *NormalizedProjectRevisionSAMLProvider) UnsetClientSecret()`
-
-UnsetClientSecret ensures that no value is present for ClientSecret, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *NormalizedProjectRevisionSAMLProvider) GetCreatedAt() time.Time`

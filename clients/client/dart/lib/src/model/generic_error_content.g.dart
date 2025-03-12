@@ -6,6 +6,61 @@ part of 'generic_error_content.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const GenericErrorContentIdEnum
+    _$genericErrorContentIdEnum_featureNotAvailable =
+    const GenericErrorContentIdEnum._('featureNotAvailable');
+const GenericErrorContentIdEnum _$genericErrorContentIdEnum_quotaExceeded =
+    const GenericErrorContentIdEnum._('quotaExceeded');
+
+GenericErrorContentIdEnum _$genericErrorContentIdEnumValueOf(String name) {
+  switch (name) {
+    case 'featureNotAvailable':
+      return _$genericErrorContentIdEnum_featureNotAvailable;
+    case 'quotaExceeded':
+      return _$genericErrorContentIdEnum_quotaExceeded;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<GenericErrorContentIdEnum> _$genericErrorContentIdEnumValues =
+    new BuiltSet<GenericErrorContentIdEnum>(const <GenericErrorContentIdEnum>[
+  _$genericErrorContentIdEnum_featureNotAvailable,
+  _$genericErrorContentIdEnum_quotaExceeded,
+]);
+
+Serializer<GenericErrorContentIdEnum> _$genericErrorContentIdEnumSerializer =
+    new _$GenericErrorContentIdEnumSerializer();
+
+class _$GenericErrorContentIdEnumSerializer
+    implements PrimitiveSerializer<GenericErrorContentIdEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'featureNotAvailable': 'feature_not_available',
+    'quotaExceeded': 'quota_exceeded',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'feature_not_available': 'featureNotAvailable',
+    'quota_exceeded': 'quotaExceeded',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[GenericErrorContentIdEnum];
+  @override
+  final String wireName = 'GenericErrorContentIdEnum';
+
+  @override
+  Object serialize(Serializers serializers, GenericErrorContentIdEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  GenericErrorContentIdEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      GenericErrorContentIdEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$GenericErrorContent extends GenericErrorContent {
   @override
   final String? debug;
@@ -13,6 +68,8 @@ class _$GenericErrorContent extends GenericErrorContent {
   final String? error;
   @override
   final String? errorDescription;
+  @override
+  final GenericErrorContentIdEnum? id;
   @override
   final String? message;
   @override
@@ -26,6 +83,7 @@ class _$GenericErrorContent extends GenericErrorContent {
       {this.debug,
       this.error,
       this.errorDescription,
+      this.id,
       this.message,
       this.statusCode})
       : super._();
@@ -46,6 +104,7 @@ class _$GenericErrorContent extends GenericErrorContent {
         debug == other.debug &&
         error == other.error &&
         errorDescription == other.errorDescription &&
+        id == other.id &&
         message == other.message &&
         statusCode == other.statusCode;
   }
@@ -56,6 +115,7 @@ class _$GenericErrorContent extends GenericErrorContent {
     _$hash = $jc(_$hash, debug.hashCode);
     _$hash = $jc(_$hash, error.hashCode);
     _$hash = $jc(_$hash, errorDescription.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, message.hashCode);
     _$hash = $jc(_$hash, statusCode.hashCode);
     _$hash = $jf(_$hash);
@@ -68,6 +128,7 @@ class _$GenericErrorContent extends GenericErrorContent {
           ..add('debug', debug)
           ..add('error', error)
           ..add('errorDescription', errorDescription)
+          ..add('id', id)
           ..add('message', message)
           ..add('statusCode', statusCode))
         .toString();
@@ -91,6 +152,10 @@ class GenericErrorContentBuilder
   set errorDescription(String? errorDescription) =>
       _$this._errorDescription = errorDescription;
 
+  GenericErrorContentIdEnum? _id;
+  GenericErrorContentIdEnum? get id => _$this._id;
+  set id(GenericErrorContentIdEnum? id) => _$this._id = id;
+
   String? _message;
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
@@ -109,6 +174,7 @@ class GenericErrorContentBuilder
       _debug = $v.debug;
       _error = $v.error;
       _errorDescription = $v.errorDescription;
+      _id = $v.id;
       _message = $v.message;
       _statusCode = $v.statusCode;
       _$v = null;
@@ -136,6 +202,7 @@ class GenericErrorContentBuilder
             debug: debug,
             error: error,
             errorDescription: errorDescription,
+            id: id,
             message: message,
             statusCode: statusCode);
     replace(_$result);

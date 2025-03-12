@@ -8,4 +8,5 @@ export enum FlowType {
   Verification = "verification",
   Settings = "settings",
   Error = "error",
+  OAuth2Consent = "oauth2_consent"
 }

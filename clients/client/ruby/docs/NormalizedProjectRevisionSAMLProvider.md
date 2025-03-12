@@ -4,8 +4,6 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **client_id** | **String** | ClientID is the application&#39;s Client ID. | [optional] |
-| **client_secret** | **String** |  | [optional] |
 | **created_at** | **Time** | The Project&#39;s Revision Creation Date | [optional][readonly] |
 | **id** | **String** |  | [optional] |
 | **label** | **String** | Label represents an optional label which can be used in the UI generation. | [optional] |
@@ -23,8 +21,6 @@
 require 'ory-client'
 
 instance = OryClient::NormalizedProjectRevisionSAMLProvider.new(
-  client_id: null,
-  client_secret: null,
   created_at: null,
   id: null,
   label: null,

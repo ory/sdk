@@ -8,6 +8,28 @@ part of 'account_experience_colors.dart';
 
 class _$AccountExperienceColors extends AccountExperienceColors {
   @override
+  final String? brand100;
+  @override
+  final String? brand200;
+  @override
+  final String? brand300;
+  @override
+  final String? brand400;
+  @override
+  final String? brand50;
+  @override
+  final String? brand500;
+  @override
+  final String? brand600;
+  @override
+  final String? brand700;
+  @override
+  final String? brand800;
+  @override
+  final String? brand900;
+  @override
+  final String? brand950;
+  @override
   final String? buttonIdentifierBackgroundDefault;
   @override
   final String? buttonIdentifierBackgroundHover;
@@ -237,13 +259,58 @@ class _$AccountExperienceColors extends AccountExperienceColors {
   final String? toggleForegroundChecked;
   @override
   final String? toggleForegroundDefault;
+  @override
+  final String? ui100;
+  @override
+  final String? ui200;
+  @override
+  final String? ui300;
+  @override
+  final String? ui400;
+  @override
+  final String? ui50;
+  @override
+  final String? ui500;
+  @override
+  final String? ui600;
+  @override
+  final String? ui700;
+  @override
+  final String? ui800;
+  @override
+  final String? ui900;
+  @override
+  final String? ui950;
+  @override
+  final String? uiBlack;
+  @override
+  final String? uiDanger;
+  @override
+  final String? uiSuccess;
+  @override
+  final String? uiTransparent;
+  @override
+  final String? uiWarning;
+  @override
+  final String? uiWhite;
 
   factory _$AccountExperienceColors(
           [void Function(AccountExperienceColorsBuilder)? updates]) =>
       (new AccountExperienceColorsBuilder()..update(updates))._build();
 
   _$AccountExperienceColors._(
-      {this.buttonIdentifierBackgroundDefault,
+      {this.brand100,
+      this.brand200,
+      this.brand300,
+      this.brand400,
+      this.brand50,
+      this.brand500,
+      this.brand600,
+      this.brand700,
+      this.brand800,
+      this.brand900,
+      this.brand950,
+      this.buttonIdentifierBackgroundDefault,
       this.buttonIdentifierBackgroundHover,
       this.buttonIdentifierBorderBorderDefault,
       this.buttonIdentifierBorderBorderHover,
@@ -357,7 +424,24 @@ class _$AccountExperienceColors extends AccountExperienceColors {
       this.toggleBorderChecked,
       this.toggleBorderDefault,
       this.toggleForegroundChecked,
-      this.toggleForegroundDefault})
+      this.toggleForegroundDefault,
+      this.ui100,
+      this.ui200,
+      this.ui300,
+      this.ui400,
+      this.ui50,
+      this.ui500,
+      this.ui600,
+      this.ui700,
+      this.ui800,
+      this.ui900,
+      this.ui950,
+      this.uiBlack,
+      this.uiDanger,
+      this.uiSuccess,
+      this.uiTransparent,
+      this.uiWarning,
+      this.uiWhite})
       : super._();
 
   @override
@@ -373,6 +457,17 @@ class _$AccountExperienceColors extends AccountExperienceColors {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is AccountExperienceColors &&
+        brand100 == other.brand100 &&
+        brand200 == other.brand200 &&
+        brand300 == other.brand300 &&
+        brand400 == other.brand400 &&
+        brand50 == other.brand50 &&
+        brand500 == other.brand500 &&
+        brand600 == other.brand600 &&
+        brand700 == other.brand700 &&
+        brand800 == other.brand800 &&
+        brand900 == other.brand900 &&
+        brand950 == other.brand950 &&
         buttonIdentifierBackgroundDefault ==
             other.buttonIdentifierBackgroundDefault &&
         buttonIdentifierBackgroundHover ==
@@ -546,12 +641,40 @@ class _$AccountExperienceColors extends AccountExperienceColors {
         toggleBorderChecked == other.toggleBorderChecked &&
         toggleBorderDefault == other.toggleBorderDefault &&
         toggleForegroundChecked == other.toggleForegroundChecked &&
-        toggleForegroundDefault == other.toggleForegroundDefault;
+        toggleForegroundDefault == other.toggleForegroundDefault &&
+        ui100 == other.ui100 &&
+        ui200 == other.ui200 &&
+        ui300 == other.ui300 &&
+        ui400 == other.ui400 &&
+        ui50 == other.ui50 &&
+        ui500 == other.ui500 &&
+        ui600 == other.ui600 &&
+        ui700 == other.ui700 &&
+        ui800 == other.ui800 &&
+        ui900 == other.ui900 &&
+        ui950 == other.ui950 &&
+        uiBlack == other.uiBlack &&
+        uiDanger == other.uiDanger &&
+        uiSuccess == other.uiSuccess &&
+        uiTransparent == other.uiTransparent &&
+        uiWarning == other.uiWarning &&
+        uiWhite == other.uiWhite;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, brand100.hashCode);
+    _$hash = $jc(_$hash, brand200.hashCode);
+    _$hash = $jc(_$hash, brand300.hashCode);
+    _$hash = $jc(_$hash, brand400.hashCode);
+    _$hash = $jc(_$hash, brand50.hashCode);
+    _$hash = $jc(_$hash, brand500.hashCode);
+    _$hash = $jc(_$hash, brand600.hashCode);
+    _$hash = $jc(_$hash, brand700.hashCode);
+    _$hash = $jc(_$hash, brand800.hashCode);
+    _$hash = $jc(_$hash, brand900.hashCode);
+    _$hash = $jc(_$hash, brand950.hashCode);
     _$hash = $jc(_$hash, buttonIdentifierBackgroundDefault.hashCode);
     _$hash = $jc(_$hash, buttonIdentifierBackgroundHover.hashCode);
     _$hash = $jc(_$hash, buttonIdentifierBorderBorderDefault.hashCode);
@@ -667,6 +790,23 @@ class _$AccountExperienceColors extends AccountExperienceColors {
     _$hash = $jc(_$hash, toggleBorderDefault.hashCode);
     _$hash = $jc(_$hash, toggleForegroundChecked.hashCode);
     _$hash = $jc(_$hash, toggleForegroundDefault.hashCode);
+    _$hash = $jc(_$hash, ui100.hashCode);
+    _$hash = $jc(_$hash, ui200.hashCode);
+    _$hash = $jc(_$hash, ui300.hashCode);
+    _$hash = $jc(_$hash, ui400.hashCode);
+    _$hash = $jc(_$hash, ui50.hashCode);
+    _$hash = $jc(_$hash, ui500.hashCode);
+    _$hash = $jc(_$hash, ui600.hashCode);
+    _$hash = $jc(_$hash, ui700.hashCode);
+    _$hash = $jc(_$hash, ui800.hashCode);
+    _$hash = $jc(_$hash, ui900.hashCode);
+    _$hash = $jc(_$hash, ui950.hashCode);
+    _$hash = $jc(_$hash, uiBlack.hashCode);
+    _$hash = $jc(_$hash, uiDanger.hashCode);
+    _$hash = $jc(_$hash, uiSuccess.hashCode);
+    _$hash = $jc(_$hash, uiTransparent.hashCode);
+    _$hash = $jc(_$hash, uiWarning.hashCode);
+    _$hash = $jc(_$hash, uiWhite.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -674,6 +814,17 @@ class _$AccountExperienceColors extends AccountExperienceColors {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'AccountExperienceColors')
+          ..add('brand100', brand100)
+          ..add('brand200', brand200)
+          ..add('brand300', brand300)
+          ..add('brand400', brand400)
+          ..add('brand50', brand50)
+          ..add('brand500', brand500)
+          ..add('brand600', brand600)
+          ..add('brand700', brand700)
+          ..add('brand800', brand800)
+          ..add('brand900', brand900)
+          ..add('brand950', brand950)
           ..add('buttonIdentifierBackgroundDefault',
               buttonIdentifierBackgroundDefault)
           ..add('buttonIdentifierBackgroundHover',
@@ -847,7 +998,24 @@ class _$AccountExperienceColors extends AccountExperienceColors {
           ..add('toggleBorderChecked', toggleBorderChecked)
           ..add('toggleBorderDefault', toggleBorderDefault)
           ..add('toggleForegroundChecked', toggleForegroundChecked)
-          ..add('toggleForegroundDefault', toggleForegroundDefault))
+          ..add('toggleForegroundDefault', toggleForegroundDefault)
+          ..add('ui100', ui100)
+          ..add('ui200', ui200)
+          ..add('ui300', ui300)
+          ..add('ui400', ui400)
+          ..add('ui50', ui50)
+          ..add('ui500', ui500)
+          ..add('ui600', ui600)
+          ..add('ui700', ui700)
+          ..add('ui800', ui800)
+          ..add('ui900', ui900)
+          ..add('ui950', ui950)
+          ..add('uiBlack', uiBlack)
+          ..add('uiDanger', uiDanger)
+          ..add('uiSuccess', uiSuccess)
+          ..add('uiTransparent', uiTransparent)
+          ..add('uiWarning', uiWarning)
+          ..add('uiWhite', uiWhite))
         .toString();
   }
 }
@@ -856,6 +1024,50 @@ class AccountExperienceColorsBuilder
     implements
         Builder<AccountExperienceColors, AccountExperienceColorsBuilder> {
   _$AccountExperienceColors? _$v;
+
+  String? _brand100;
+  String? get brand100 => _$this._brand100;
+  set brand100(String? brand100) => _$this._brand100 = brand100;
+
+  String? _brand200;
+  String? get brand200 => _$this._brand200;
+  set brand200(String? brand200) => _$this._brand200 = brand200;
+
+  String? _brand300;
+  String? get brand300 => _$this._brand300;
+  set brand300(String? brand300) => _$this._brand300 = brand300;
+
+  String? _brand400;
+  String? get brand400 => _$this._brand400;
+  set brand400(String? brand400) => _$this._brand400 = brand400;
+
+  String? _brand50;
+  String? get brand50 => _$this._brand50;
+  set brand50(String? brand50) => _$this._brand50 = brand50;
+
+  String? _brand500;
+  String? get brand500 => _$this._brand500;
+  set brand500(String? brand500) => _$this._brand500 = brand500;
+
+  String? _brand600;
+  String? get brand600 => _$this._brand600;
+  set brand600(String? brand600) => _$this._brand600 = brand600;
+
+  String? _brand700;
+  String? get brand700 => _$this._brand700;
+  set brand700(String? brand700) => _$this._brand700 = brand700;
+
+  String? _brand800;
+  String? get brand800 => _$this._brand800;
+  set brand800(String? brand800) => _$this._brand800 = brand800;
+
+  String? _brand900;
+  String? get brand900 => _$this._brand900;
+  set brand900(String? brand900) => _$this._brand900 = brand900;
+
+  String? _brand950;
+  String? get brand950 => _$this._brand950;
+  set brand950(String? brand950) => _$this._brand950 = brand950;
 
   String? _buttonIdentifierBackgroundDefault;
   String? get buttonIdentifierBackgroundDefault =>
@@ -1595,6 +1807,75 @@ class AccountExperienceColorsBuilder
   set toggleForegroundDefault(String? toggleForegroundDefault) =>
       _$this._toggleForegroundDefault = toggleForegroundDefault;
 
+  String? _ui100;
+  String? get ui100 => _$this._ui100;
+  set ui100(String? ui100) => _$this._ui100 = ui100;
+
+  String? _ui200;
+  String? get ui200 => _$this._ui200;
+  set ui200(String? ui200) => _$this._ui200 = ui200;
+
+  String? _ui300;
+  String? get ui300 => _$this._ui300;
+  set ui300(String? ui300) => _$this._ui300 = ui300;
+
+  String? _ui400;
+  String? get ui400 => _$this._ui400;
+  set ui400(String? ui400) => _$this._ui400 = ui400;
+
+  String? _ui50;
+  String? get ui50 => _$this._ui50;
+  set ui50(String? ui50) => _$this._ui50 = ui50;
+
+  String? _ui500;
+  String? get ui500 => _$this._ui500;
+  set ui500(String? ui500) => _$this._ui500 = ui500;
+
+  String? _ui600;
+  String? get ui600 => _$this._ui600;
+  set ui600(String? ui600) => _$this._ui600 = ui600;
+
+  String? _ui700;
+  String? get ui700 => _$this._ui700;
+  set ui700(String? ui700) => _$this._ui700 = ui700;
+
+  String? _ui800;
+  String? get ui800 => _$this._ui800;
+  set ui800(String? ui800) => _$this._ui800 = ui800;
+
+  String? _ui900;
+  String? get ui900 => _$this._ui900;
+  set ui900(String? ui900) => _$this._ui900 = ui900;
+
+  String? _ui950;
+  String? get ui950 => _$this._ui950;
+  set ui950(String? ui950) => _$this._ui950 = ui950;
+
+  String? _uiBlack;
+  String? get uiBlack => _$this._uiBlack;
+  set uiBlack(String? uiBlack) => _$this._uiBlack = uiBlack;
+
+  String? _uiDanger;
+  String? get uiDanger => _$this._uiDanger;
+  set uiDanger(String? uiDanger) => _$this._uiDanger = uiDanger;
+
+  String? _uiSuccess;
+  String? get uiSuccess => _$this._uiSuccess;
+  set uiSuccess(String? uiSuccess) => _$this._uiSuccess = uiSuccess;
+
+  String? _uiTransparent;
+  String? get uiTransparent => _$this._uiTransparent;
+  set uiTransparent(String? uiTransparent) =>
+      _$this._uiTransparent = uiTransparent;
+
+  String? _uiWarning;
+  String? get uiWarning => _$this._uiWarning;
+  set uiWarning(String? uiWarning) => _$this._uiWarning = uiWarning;
+
+  String? _uiWhite;
+  String? get uiWhite => _$this._uiWhite;
+  set uiWhite(String? uiWhite) => _$this._uiWhite = uiWhite;
+
   AccountExperienceColorsBuilder() {
     AccountExperienceColors._defaults(this);
   }
@@ -1602,6 +1883,17 @@ class AccountExperienceColorsBuilder
   AccountExperienceColorsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _brand100 = $v.brand100;
+      _brand200 = $v.brand200;
+      _brand300 = $v.brand300;
+      _brand400 = $v.brand400;
+      _brand50 = $v.brand50;
+      _brand500 = $v.brand500;
+      _brand600 = $v.brand600;
+      _brand700 = $v.brand700;
+      _brand800 = $v.brand800;
+      _brand900 = $v.brand900;
+      _brand950 = $v.brand950;
       _buttonIdentifierBackgroundDefault = $v.buttonIdentifierBackgroundDefault;
       _buttonIdentifierBackgroundHover = $v.buttonIdentifierBackgroundHover;
       _buttonIdentifierBorderBorderDefault =
@@ -1744,6 +2036,23 @@ class AccountExperienceColorsBuilder
       _toggleBorderDefault = $v.toggleBorderDefault;
       _toggleForegroundChecked = $v.toggleForegroundChecked;
       _toggleForegroundDefault = $v.toggleForegroundDefault;
+      _ui100 = $v.ui100;
+      _ui200 = $v.ui200;
+      _ui300 = $v.ui300;
+      _ui400 = $v.ui400;
+      _ui50 = $v.ui50;
+      _ui500 = $v.ui500;
+      _ui600 = $v.ui600;
+      _ui700 = $v.ui700;
+      _ui800 = $v.ui800;
+      _ui900 = $v.ui900;
+      _ui950 = $v.ui950;
+      _uiBlack = $v.uiBlack;
+      _uiDanger = $v.uiDanger;
+      _uiSuccess = $v.uiSuccess;
+      _uiTransparent = $v.uiTransparent;
+      _uiWarning = $v.uiWarning;
+      _uiWhite = $v.uiWhite;
       _$v = null;
     }
     return this;
@@ -1766,6 +2075,17 @@ class AccountExperienceColorsBuilder
   _$AccountExperienceColors _build() {
     final _$result = _$v ??
         new _$AccountExperienceColors._(
+            brand100: brand100,
+            brand200: brand200,
+            brand300: brand300,
+            brand400: brand400,
+            brand50: brand50,
+            brand500: brand500,
+            brand600: brand600,
+            brand700: brand700,
+            brand800: brand800,
+            brand900: brand900,
+            brand950: brand950,
             buttonIdentifierBackgroundDefault:
                 buttonIdentifierBackgroundDefault,
             buttonIdentifierBackgroundHover: buttonIdentifierBackgroundHover,
@@ -1918,7 +2238,24 @@ class AccountExperienceColorsBuilder
             toggleBorderChecked: toggleBorderChecked,
             toggleBorderDefault: toggleBorderDefault,
             toggleForegroundChecked: toggleForegroundChecked,
-            toggleForegroundDefault: toggleForegroundDefault);
+            toggleForegroundDefault: toggleForegroundDefault,
+            ui100: ui100,
+            ui200: ui200,
+            ui300: ui300,
+            ui400: ui400,
+            ui50: ui50,
+            ui500: ui500,
+            ui600: ui600,
+            ui700: ui700,
+            ui800: ui800,
+            ui900: ui900,
+            ui950: ui950,
+            uiBlack: uiBlack,
+            uiDanger: uiDanger,
+            uiSuccess: uiSuccess,
+            uiTransparent: uiTransparent,
+            uiWarning: uiWarning,
+            uiWhite: uiWhite);
     replace(_$result);
     return _$result;
   }

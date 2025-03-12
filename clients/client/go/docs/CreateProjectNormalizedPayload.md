@@ -187,6 +187,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsLookupSecretEnabled** | Pointer to **bool** | Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \&quot;selfservice.methods.lookup_secret.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsOidcConfigBaseRedirectUri** | Pointer to **string** | Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \&quot;selfservice.methods.oidc.config.base_redirect_uri\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsOidcConfigProviders** | Pointer to [**[]NormalizedProjectRevisionThirdPartyProvider**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] 
+**KratosSelfserviceMethodsOidcEnableAutoLinkPolicy** | Pointer to **bool** | Configures whether Ory Kratos allows auto-linking of OIDC credentials without a subject  This governs the \&quot;selfservice.methods.oidc.enable_auto_link_policy\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsOidcEnabled** | Pointer to **bool** | Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \&quot;selfservice.methods.oidc.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasskeyConfigRpDisplayName** | Pointer to **string** | Configures the Ory Kratos Passkey RP Display Name  This governs the \&quot;selfservice.methods.passkey.config.rp.display_name\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasskeyConfigRpId** | Pointer to **string** | Configures the Ory Kratos Passkey RP ID  This governs the \&quot;selfservice.methods.passkey.config.rp.id\&quot; setting. | [optional] 
@@ -4843,6 +4844,31 @@ SetKratosSelfserviceMethodsOidcConfigProviders sets KratosSelfserviceMethodsOidc
 `func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsOidcConfigProviders() bool`
 
 HasKratosSelfserviceMethodsOidcConfigProviders returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsOidcEnableAutoLinkPolicy
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsOidcEnableAutoLinkPolicy() bool`
+
+GetKratosSelfserviceMethodsOidcEnableAutoLinkPolicy returns the KratosSelfserviceMethodsOidcEnableAutoLinkPolicy field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsOidcEnableAutoLinkPolicyOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsOidcEnableAutoLinkPolicyOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsOidcEnableAutoLinkPolicyOk returns a tuple with the KratosSelfserviceMethodsOidcEnableAutoLinkPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsOidcEnableAutoLinkPolicy
+
+`func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsOidcEnableAutoLinkPolicy(v bool)`
+
+SetKratosSelfserviceMethodsOidcEnableAutoLinkPolicy sets KratosSelfserviceMethodsOidcEnableAutoLinkPolicy field to given value.
+
+### HasKratosSelfserviceMethodsOidcEnableAutoLinkPolicy
+
+`func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsOidcEnableAutoLinkPolicy() bool`
+
+HasKratosSelfserviceMethodsOidcEnableAutoLinkPolicy returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsOidcEnabled
 

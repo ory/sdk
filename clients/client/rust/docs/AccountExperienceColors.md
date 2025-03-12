@@ -4,6 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**brand_100** | Option<**String**> |  | [optional]
+**brand_200** | Option<**String**> |  | [optional]
+**brand_300** | Option<**String**> |  | [optional]
+**brand_400** | Option<**String**> |  | [optional]
+**brand_50** | Option<**String**> |  | [optional]
+**brand_500** | Option<**String**> |  | [optional]
+**brand_600** | Option<**String**> |  | [optional]
+**brand_700** | Option<**String**> |  | [optional]
+**brand_800** | Option<**String**> |  | [optional]
+**brand_900** | Option<**String**> |  | [optional]
+**brand_950** | Option<**String**> |  | [optional]
 **button_identifier_background_default** | Option<**String**> |  | [optional]
 **button_identifier_background_hover** | Option<**String**> |  | [optional]
 **button_identifier_border_border_default** | Option<**String**> |  | [optional]
@@ -119,6 +130,23 @@ Name | Type | Description | Notes
 **toggle_border_default** | Option<**String**> |  | [optional]
 **toggle_foreground_checked** | Option<**String**> |  | [optional]
 **toggle_foreground_default** | Option<**String**> |  | [optional]
+**ui_100** | Option<**String**> |  | [optional]
+**ui_200** | Option<**String**> |  | [optional]
+**ui_300** | Option<**String**> |  | [optional]
+**ui_400** | Option<**String**> |  | [optional]
+**ui_50** | Option<**String**> |  | [optional]
+**ui_500** | Option<**String**> |  | [optional]
+**ui_600** | Option<**String**> |  | [optional]
+**ui_700** | Option<**String**> |  | [optional]
+**ui_800** | Option<**String**> |  | [optional]
+**ui_900** | Option<**String**> |  | [optional]
+**ui_950** | Option<**String**> |  | [optional]
+**ui_black** | Option<**String**> |  | [optional]
+**ui_danger** | Option<**String**> |  | [optional]
+**ui_success** | Option<**String**> |  | [optional]
+**ui_transparent** | Option<**String**> |  | [optional]
+**ui_warning** | Option<**String**> |  | [optional]
+**ui_white** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

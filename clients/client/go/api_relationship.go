@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.17.2
+API version: v1.18.4
 Contact: support@ory.sh
 */
 
@@ -453,25 +453,25 @@ func (a *RelationshipAPIService) DeleteRelationshipsExecute(r RelationshipAPIDel
 	localVarFormParams := url.Values{}
 
 	if r.namespace != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "namespace", r.namespace, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "namespace", r.namespace, "form", "")
 	}
 	if r.object != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "object", r.object, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "object", r.object, "form", "")
 	}
 	if r.relation != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "relation", r.relation, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relation", r.relation, "form", "")
 	}
 	if r.subjectId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_id", r.subjectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_id", r.subjectId, "form", "")
 	}
 	if r.subjectSetNamespace != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.namespace", r.subjectSetNamespace, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.namespace", r.subjectSetNamespace, "form", "")
 	}
 	if r.subjectSetObject != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.object", r.subjectSetObject, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.object", r.subjectSetObject, "form", "")
 	}
 	if r.subjectSetRelation != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.relation", r.subjectSetRelation, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.relation", r.subjectSetRelation, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -644,31 +644,31 @@ func (a *RelationshipAPIService) GetRelationshipsExecute(r RelationshipAPIGetRel
 	localVarFormParams := url.Values{}
 
 	if r.pageToken != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
 	}
 	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	}
 	if r.namespace != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "namespace", r.namespace, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "namespace", r.namespace, "form", "")
 	}
 	if r.object != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "object", r.object, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "object", r.object, "form", "")
 	}
 	if r.relation != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "relation", r.relation, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relation", r.relation, "form", "")
 	}
 	if r.subjectId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_id", r.subjectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_id", r.subjectId, "form", "")
 	}
 	if r.subjectSetNamespace != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.namespace", r.subjectSetNamespace, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.namespace", r.subjectSetNamespace, "form", "")
 	}
 	if r.subjectSetObject != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.object", r.subjectSetObject, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.object", r.subjectSetObject, "form", "")
 	}
 	if r.subjectSetRelation != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.relation", r.subjectSetRelation, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject_set.relation", r.subjectSetRelation, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -7,17 +7,6 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(NormalizedProjectRevisionSAMLProvider, () {
-    // ClientID is the application's Client ID.
-    // String clientId
-    test('to test the property `clientId`', () async {
-      // TODO
-    });
-
-    // String clientSecret
-    test('to test the property `clientSecret`', () async {
-      // TODO
-    });
-
     // The Project's Revision Creation Date
     // DateTime createdAt
     test('to test the property `createdAt`', () async {

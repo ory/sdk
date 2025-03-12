@@ -4,6 +4,17 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **brand_100** | **String** |  | [optional] |
+| **brand_200** | **String** |  | [optional] |
+| **brand_300** | **String** |  | [optional] |
+| **brand_400** | **String** |  | [optional] |
+| **brand_50** | **String** |  | [optional] |
+| **brand_500** | **String** |  | [optional] |
+| **brand_600** | **String** |  | [optional] |
+| **brand_700** | **String** |  | [optional] |
+| **brand_800** | **String** |  | [optional] |
+| **brand_900** | **String** |  | [optional] |
+| **brand_950** | **String** |  | [optional] |
 | **button_identifier_background_default** | **String** |  | [optional] |
 | **button_identifier_background_hover** | **String** |  | [optional] |
 | **button_identifier_border_border_default** | **String** |  | [optional] |
@@ -119,6 +130,23 @@
 | **toggle_border_default** | **String** |  | [optional] |
 | **toggle_foreground_checked** | **String** |  | [optional] |
 | **toggle_foreground_default** | **String** |  | [optional] |
+| **ui_100** | **String** |  | [optional] |
+| **ui_200** | **String** |  | [optional] |
+| **ui_300** | **String** |  | [optional] |
+| **ui_400** | **String** |  | [optional] |
+| **ui_50** | **String** |  | [optional] |
+| **ui_500** | **String** |  | [optional] |
+| **ui_600** | **String** |  | [optional] |
+| **ui_700** | **String** |  | [optional] |
+| **ui_800** | **String** |  | [optional] |
+| **ui_900** | **String** |  | [optional] |
+| **ui_950** | **String** |  | [optional] |
+| **ui_black** | **String** |  | [optional] |
+| **ui_danger** | **String** |  | [optional] |
+| **ui_success** | **String** |  | [optional] |
+| **ui_transparent** | **String** |  | [optional] |
+| **ui_warning** | **String** |  | [optional] |
+| **ui_white** | **String** |  | [optional] |
 
 ## Example
 
@@ -126,6 +154,17 @@
 require 'ory-client'
 
 instance = OryClient::AccountExperienceColors.new(
+  brand_100: null,
+  brand_200: null,
+  brand_300: null,
+  brand_400: null,
+  brand_50: null,
+  brand_500: null,
+  brand_600: null,
+  brand_700: null,
+  brand_800: null,
+  brand_900: null,
+  brand_950: null,
   button_identifier_background_default: null,
   button_identifier_background_hover: null,
   button_identifier_border_border_default: null,
@@ -240,7 +279,24 @@ instance = OryClient::AccountExperienceColors.new(
   toggle_border_checked: null,
   toggle_border_default: null,
   toggle_foreground_checked: null,
-  toggle_foreground_default: null
+  toggle_foreground_default: null,
+  ui_100: null,
+  ui_200: null,
+  ui_300: null,
+  ui_400: null,
+  ui_50: null,
+  ui_500: null,
+  ui_600: null,
+  ui_700: null,
+  ui_800: null,
+  ui_900: null,
+  ui_950: null,
+  ui_black: null,
+  ui_danger: null,
+  ui_success: null,
+  ui_transparent: null,
+  ui_warning: null,
+  ui_white: null
 )
 ```
 

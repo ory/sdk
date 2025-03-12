@@ -7,6 +7,17 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**brand100** | **String** |  |  [optional] |
+|**brand200** | **String** |  |  [optional] |
+|**brand300** | **String** |  |  [optional] |
+|**brand400** | **String** |  |  [optional] |
+|**brand50** | **String** |  |  [optional] |
+|**brand500** | **String** |  |  [optional] |
+|**brand600** | **String** |  |  [optional] |
+|**brand700** | **String** |  |  [optional] |
+|**brand800** | **String** |  |  [optional] |
+|**brand900** | **String** |  |  [optional] |
+|**brand950** | **String** |  |  [optional] |
 |**buttonIdentifierBackgroundDefault** | **String** |  |  [optional] |
 |**buttonIdentifierBackgroundHover** | **String** |  |  [optional] |
 |**buttonIdentifierBorderBorderDefault** | **String** |  |  [optional] |
@@ -122,6 +133,23 @@
 |**toggleBorderDefault** | **String** |  |  [optional] |
 |**toggleForegroundChecked** | **String** |  |  [optional] |
 |**toggleForegroundDefault** | **String** |  |  [optional] |
+|**ui100** | **String** |  |  [optional] |
+|**ui200** | **String** |  |  [optional] |
+|**ui300** | **String** |  |  [optional] |
+|**ui400** | **String** |  |  [optional] |
+|**ui50** | **String** |  |  [optional] |
+|**ui500** | **String** |  |  [optional] |
+|**ui600** | **String** |  |  [optional] |
+|**ui700** | **String** |  |  [optional] |
+|**ui800** | **String** |  |  [optional] |
+|**ui900** | **String** |  |  [optional] |
+|**ui950** | **String** |  |  [optional] |
+|**uiBlack** | **String** |  |  [optional] |
+|**uiDanger** | **String** |  |  [optional] |
+|**uiSuccess** | **String** |  |  [optional] |
+|**uiTransparent** | **String** |  |  [optional] |
+|**uiWarning** | **String** |  |  [optional] |
+|**uiWhite** | **String** |  |  [optional] |
 
 
 

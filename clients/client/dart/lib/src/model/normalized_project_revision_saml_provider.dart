@@ -12,8 +12,6 @@ part 'normalized_project_revision_saml_provider.g.dart';
 /// NormalizedProjectRevisionSAMLProvider
 ///
 /// Properties:
-/// * [clientId] - ClientID is the application's Client ID.
-/// * [clientSecret] 
 /// * [createdAt] - The Project's Revision Creation Date
 /// * [id] 
 /// * [label] - Label represents an optional label which can be used in the UI generation.
@@ -26,13 +24,6 @@ part 'normalized_project_revision_saml_provider.g.dart';
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
 abstract class NormalizedProjectRevisionSAMLProvider implements Built<NormalizedProjectRevisionSAMLProvider, NormalizedProjectRevisionSAMLProviderBuilder> {
-  /// ClientID is the application's Client ID.
-  @BuiltValueField(wireName: r'client_id')
-  String? get clientId;
-
-  @BuiltValueField(wireName: r'client_secret')
-  String? get clientSecret;
-
   /// The Project's Revision Creation Date
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
@@ -95,20 +86,6 @@ class _$NormalizedProjectRevisionSAMLProviderSerializer implements PrimitiveSeri
     NormalizedProjectRevisionSAMLProvider object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.clientId != null) {
-      yield r'client_id';
-      yield serializers.serialize(
-        object.clientId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.clientSecret != null) {
-      yield r'client_secret';
-      yield serializers.serialize(
-        object.clientSecret,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
     if (object.createdAt != null) {
       yield r'created_at';
       yield serializers.serialize(
@@ -202,21 +179,6 @@ class _$NormalizedProjectRevisionSAMLProviderSerializer implements PrimitiveSeri
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'client_id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.clientId = valueDes;
-          break;
-        case r'client_secret':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.clientSecret = valueDes;
-          break;
         case r'created_at':
           final valueDes = serializers.deserialize(
             value,
