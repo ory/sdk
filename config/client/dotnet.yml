@@ -1,8 +1,8 @@
 licenseId: Apache-2.0
 packageName: "${DOTNET_PACKAGE_NAME}"
 packageVersion: $RAW_VERSION
-packageAuthors: ORY
-packageCompany: ORY GmbH
+packageAuthors: Ory
+packageCompany: Ory Corp
 netCoreProjectFile: true
 infoUrl: https://www.ory.sh
 targetFramework: net8.0
