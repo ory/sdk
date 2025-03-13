@@ -41,8 +41,8 @@ typescript () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.12.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.12.0
+  npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g typescript-axios \
     -o "$dir" \
     --git-user-id ory \
@@ -65,14 +65,14 @@ typescript_fetch () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.12.0
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.12.0
 
   config_file=./config/client/typescript-fetch.yml.proc.yml
   if [ $project == "client" ]; then
     config_file=./config/client/typescript-client-fetch.yml.proc.yml
   fi
 
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g typescript-fetch \
     -o "$dir" \
     --git-user-id ory \
@@ -104,8 +104,8 @@ java () {
   # new versions of the generator introduce changes to the pom dependencies.
   #
   # Read contrib/poms/README.md for upgrade instructions.
-  openapi-generator-cli version-manager set 7.7.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.7.0
+  npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
     --git-user-id ory \
@@ -126,8 +126,8 @@ php() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.12.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.12.0
+  npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g php \
     -o "$dir" \
     --git-user-id ory \
@@ -151,8 +151,8 @@ python () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.12.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.12.0
+  npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g python \
     -o "$dir" \
     --git-user-id ory \
@@ -171,8 +171,8 @@ ruby () {
 
   rm "${dir}/lib/${RUBY_PROJECT_NAME}/version.rb" || true
 
-  openapi-generator-cli version-manager set 7.12.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.12.0
+  npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g ruby \
     -o "$dir" \
     --git-user-id ory \
@@ -199,8 +199,8 @@ golang () {
 
   mkdir -p "${dir}"
 
-  openapi-generator-cli version-manager set 7.12.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.12.0
+  npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g go \
     -o "$dir" \
     --git-user-id ory \
@@ -225,8 +225,8 @@ dotnet () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.12.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.11.0
+  npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g csharp \
     -o "$dir" \
     --model-name-prefix "${PROJECT_UCF}" \
@@ -244,8 +244,8 @@ dart () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.12.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.12.0
+  npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g dart-dio \
     -o "$dir" \
     --git-user-id ory \
@@ -269,8 +269,8 @@ rust () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.12.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.12.0
+  npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g rust \
     -o "$dir" \
     --git-user-id ory \
@@ -298,8 +298,8 @@ elixir () {
   file="${dir}/mix.exs"
 
   # 7.7.0
-  openapi-generator-cli version-manager set 7.12.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.12.0
+  npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     	-g elixir \
 	    -o "$dir" \
 	    --git-user-id ory \
@@ -329,7 +329,7 @@ php
 python
 
 ruby
-# dotnet
+dotnet
 dart
 
 cleanup

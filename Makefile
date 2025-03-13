@@ -9,4 +9,4 @@ node_modules: package-lock.json
 	touch node_modules
 
 docker:
-	docker build -t ory/sdk:latest .
+	docker build -t oryd/sdk:latest .
