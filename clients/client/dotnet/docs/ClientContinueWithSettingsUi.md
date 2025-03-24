@@ -1,0 +1,12 @@
+# Ory.Client.Model.ClientContinueWithSettingsUi
+Indicates, that the UI flow could be continued by showing a settings ui
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Action** | **string** | Action will always be &#x60;show_settings_ui&#x60; show_settings_ui ContinueWithActionShowSettingsUIString | 
+**Flow** | [**ClientContinueWithSettingsUiFlow**](ClientContinueWithSettingsUiFlow.md) |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
