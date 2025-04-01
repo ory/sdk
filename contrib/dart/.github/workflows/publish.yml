@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: dart-lang/setup-dart
+      - uses: dart-lang/setup-dart@v1
       - name: Install dependencies
         run: dart pub get
       - name: Publish - dry run
