@@ -11,12 +11,15 @@ class _$IdentityWithCredentials extends IdentityWithCredentials {
   final IdentityWithCredentialsOidc? oidc;
   @override
   final IdentityWithCredentialsPassword? password;
+  @override
+  final IdentityWithCredentialsSaml? saml;
 
   factory _$IdentityWithCredentials(
           [void Function(IdentityWithCredentialsBuilder)? updates]) =>
       (new IdentityWithCredentialsBuilder()..update(updates))._build();
 
-  _$IdentityWithCredentials._({this.oidc, this.password}) : super._();
+  _$IdentityWithCredentials._({this.oidc, this.password, this.saml})
+      : super._();
 
   @override
   IdentityWithCredentials rebuild(
@@ -32,7 +35,8 @@ class _$IdentityWithCredentials extends IdentityWithCredentials {
     if (identical(other, this)) return true;
     return other is IdentityWithCredentials &&
         oidc == other.oidc &&
-        password == other.password;
+        password == other.password &&
+        saml == other.saml;
   }
 
   @override
@@ -40,6 +44,7 @@ class _$IdentityWithCredentials extends IdentityWithCredentials {
     var _$hash = 0;
     _$hash = $jc(_$hash, oidc.hashCode);
     _$hash = $jc(_$hash, password.hashCode);
+    _$hash = $jc(_$hash, saml.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -48,7 +53,8 @@ class _$IdentityWithCredentials extends IdentityWithCredentials {
   String toString() {
     return (newBuiltValueToStringHelper(r'IdentityWithCredentials')
           ..add('oidc', oidc)
-          ..add('password', password))
+          ..add('password', password)
+          ..add('saml', saml))
         .toString();
   }
 }
@@ -69,6 +75,11 @@ class IdentityWithCredentialsBuilder
   set password(IdentityWithCredentialsPasswordBuilder? password) =>
       _$this._password = password;
 
+  IdentityWithCredentialsSamlBuilder? _saml;
+  IdentityWithCredentialsSamlBuilder get saml =>
+      _$this._saml ??= new IdentityWithCredentialsSamlBuilder();
+  set saml(IdentityWithCredentialsSamlBuilder? saml) => _$this._saml = saml;
+
   IdentityWithCredentialsBuilder() {
     IdentityWithCredentials._defaults(this);
   }
@@ -78,6 +89,7 @@ class IdentityWithCredentialsBuilder
     if ($v != null) {
       _oidc = $v.oidc?.toBuilder();
       _password = $v.password?.toBuilder();
+      _saml = $v.saml?.toBuilder();
       _$v = null;
     }
     return this;
@@ -102,7 +114,9 @@ class IdentityWithCredentialsBuilder
     try {
       _$result = _$v ??
           new _$IdentityWithCredentials._(
-              oidc: _oidc?.build(), password: _password?.build());
+              oidc: _oidc?.build(),
+              password: _password?.build(),
+              saml: _saml?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -110,6 +124,8 @@ class IdentityWithCredentialsBuilder
         _oidc?.build();
         _$failedField = 'password';
         _password?.build();
+        _$failedField = 'saml';
+        _saml?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'IdentityWithCredentials', _$failedField, e.toString());

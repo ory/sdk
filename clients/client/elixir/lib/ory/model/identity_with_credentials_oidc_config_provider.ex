@@ -8,12 +8,14 @@ defmodule Ory.Model.IdentityWithCredentialsOidcConfigProvider do
 
   @derive Jason.Encoder
   defstruct [
+    :organization,
     :provider,
     :subject,
     :use_auto_link
   ]
 
   @type t :: %__MODULE__{
+    :organization => String.t | nil,
     :provider => String.t,
     :subject => String.t,
     :use_auto_link => boolean() | nil

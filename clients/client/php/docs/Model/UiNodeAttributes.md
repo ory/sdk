@@ -30,5 +30,7 @@ Name | Type | Description | Notes
 **integrity** | **string** | The script&#39;s integrity hash |
 **nonce** | **string** | Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value! |
 **referrerpolicy** | **string** | The script referrer policy |
+**class** | **string** | The script MIME type | [optional]
+**data** | **array<string,string>** | Data is a map of key-value pairs that are passed to the division.  They may be used for &#x60;data-...&#x60; attributes. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

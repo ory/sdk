@@ -9,6 +9,8 @@ part of 'update_settings_flow_with_saml_method.dart';
 class _$UpdateSettingsFlowWithSamlMethod
     extends UpdateSettingsFlowWithSamlMethod {
   @override
+  final String? csrfToken;
+  @override
   final String? flow;
   @override
   final String? link;
@@ -26,7 +28,8 @@ class _$UpdateSettingsFlowWithSamlMethod
       (new UpdateSettingsFlowWithSamlMethodBuilder()..update(updates))._build();
 
   _$UpdateSettingsFlowWithSamlMethod._(
-      {this.flow,
+      {this.csrfToken,
+      this.flow,
       this.link,
       required this.method,
       this.traits,
@@ -50,6 +53,7 @@ class _$UpdateSettingsFlowWithSamlMethod
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is UpdateSettingsFlowWithSamlMethod &&
+        csrfToken == other.csrfToken &&
         flow == other.flow &&
         link == other.link &&
         method == other.method &&
@@ -61,6 +65,7 @@ class _$UpdateSettingsFlowWithSamlMethod
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, flow.hashCode);
     _$hash = $jc(_$hash, link.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
@@ -74,6 +79,7 @@ class _$UpdateSettingsFlowWithSamlMethod
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'UpdateSettingsFlowWithSamlMethod')
+          ..add('csrfToken', csrfToken)
           ..add('flow', flow)
           ..add('link', link)
           ..add('method', method)
@@ -89,6 +95,10 @@ class UpdateSettingsFlowWithSamlMethodBuilder
         Builder<UpdateSettingsFlowWithSamlMethod,
             UpdateSettingsFlowWithSamlMethodBuilder> {
   _$UpdateSettingsFlowWithSamlMethod? _$v;
+
+  String? _csrfToken;
+  String? get csrfToken => _$this._csrfToken;
+  set csrfToken(String? csrfToken) => _$this._csrfToken = csrfToken;
 
   String? _flow;
   String? get flow => _$this._flow;
@@ -122,6 +132,7 @@ class UpdateSettingsFlowWithSamlMethodBuilder
   UpdateSettingsFlowWithSamlMethodBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _csrfToken = $v.csrfToken;
       _flow = $v.flow;
       _link = $v.link;
       _method = $v.method;
@@ -150,6 +161,7 @@ class UpdateSettingsFlowWithSamlMethodBuilder
   _$UpdateSettingsFlowWithSamlMethod _build() {
     final _$result = _$v ??
         new _$UpdateSettingsFlowWithSamlMethod._(
+            csrfToken: csrfToken,
             flow: flow,
             link: link,
             method: BuiltValueNullFieldError.checkNotNull(

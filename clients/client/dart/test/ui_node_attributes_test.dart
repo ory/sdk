@@ -160,5 +160,17 @@ void main() {
       // TODO
     });
 
+    // The script MIME type
+    // String class_
+    test('to test the property `class_`', () async {
+      // TODO
+    });
+
+    // Data is a map of key-value pairs that are passed to the division.  They may be used for `data-...` attributes.
+    // BuiltMap<String, String> data
+    test('to test the property `data`', () async {
+      // TODO
+    });
+
   });
 }

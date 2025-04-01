@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | Pointer to [**IdentityWithCredentialsPasswordConfig**](IdentityWithCredentialsPasswordConfig.md) |  | [optional] 
 **Providers** | Pointer to [**[]IdentityWithCredentialsOidcConfigProvider**](IdentityWithCredentialsOidcConfigProvider.md) | A list of OpenID Connect Providers | [optional] 
 
 ## Methods
@@ -25,31 +24,6 @@ will change when the set of required properties is changed
 NewIdentityWithCredentialsOidcConfigWithDefaults instantiates a new IdentityWithCredentialsOidcConfig object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetConfig
-
-`func (o *IdentityWithCredentialsOidcConfig) GetConfig() IdentityWithCredentialsPasswordConfig`
-
-GetConfig returns the Config field if non-nil, zero value otherwise.
-
-### GetConfigOk
-
-`func (o *IdentityWithCredentialsOidcConfig) GetConfigOk() (*IdentityWithCredentialsPasswordConfig, bool)`
-
-GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConfig
-
-`func (o *IdentityWithCredentialsOidcConfig) SetConfig(v IdentityWithCredentialsPasswordConfig)`
-
-SetConfig sets Config field to given value.
-
-### HasConfig
-
-`func (o *IdentityWithCredentialsOidcConfig) HasConfig() bool`
-
-HasConfig returns a boolean if a field has been set.
 
 ### GetProviders
 

@@ -15,7 +15,6 @@ part 'update_login_flow_with_saml_method.g.dart';
 /// * [csrfToken] - The CSRF Token
 /// * [method] - Method to use  This field must be set to `saml` when using the saml method.
 /// * [provider] - The provider to register with
-/// * [traits] - The identity traits. This is a placeholder for the registration flow.
 /// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
 abstract class UpdateLoginFlowWithSamlMethod implements Built<UpdateLoginFlowWithSamlMethod, UpdateLoginFlowWithSamlMethodBuilder> {
@@ -30,10 +29,6 @@ abstract class UpdateLoginFlowWithSamlMethod implements Built<UpdateLoginFlowWit
   /// The provider to register with
   @BuiltValueField(wireName: r'provider')
   String get provider;
-
-  /// The identity traits. This is a placeholder for the registration flow.
-  @BuiltValueField(wireName: r'traits')
-  JsonObject? get traits;
 
   /// Transient data to pass along to any webhooks
   @BuiltValueField(wireName: r'transient_payload')
@@ -79,13 +74,6 @@ class _$UpdateLoginFlowWithSamlMethodSerializer implements PrimitiveSerializer<U
       object.provider,
       specifiedType: const FullType(String),
     );
-    if (object.traits != null) {
-      yield r'traits';
-      yield serializers.serialize(
-        object.traits,
-        specifiedType: const FullType(JsonObject),
-      );
-    }
     if (object.transientPayload != null) {
       yield r'transient_payload';
       yield serializers.serialize(
@@ -136,13 +124,6 @@ class _$UpdateLoginFlowWithSamlMethodSerializer implements PrimitiveSerializer<U
             specifiedType: const FullType(String),
           ) as String;
           result.provider = valueDes;
-          break;
-        case r'traits':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
-          result.traits = valueDes;
           break;
         case r'transient_payload':
           final valueDes = serializers.deserialize(

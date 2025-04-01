@@ -25,12 +25,6 @@ void main() {
       // TODO
     });
 
-    // The identity traits. This is a placeholder for the registration flow.
-    // JsonObject traits
-    test('to test the property `traits`', () async {
-      // TODO
-    });
-
     // Transient data to pass along to any webhooks
     // JsonObject transientPayload
     test('to test the property `transientPayload`', () async {

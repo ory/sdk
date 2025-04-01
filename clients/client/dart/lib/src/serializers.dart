@@ -112,6 +112,9 @@ import 'package:ory_client/src/model/identity_with_credentials_oidc_config.dart'
 import 'package:ory_client/src/model/identity_with_credentials_oidc_config_provider.dart';
 import 'package:ory_client/src/model/identity_with_credentials_password.dart';
 import 'package:ory_client/src/model/identity_with_credentials_password_config.dart';
+import 'package:ory_client/src/model/identity_with_credentials_saml.dart';
+import 'package:ory_client/src/model/identity_with_credentials_saml_config.dart';
+import 'package:ory_client/src/model/identity_with_credentials_saml_config_provider.dart';
 import 'package:ory_client/src/model/internal_get_project_branding_body.dart';
 import 'package:ory_client/src/model/internal_is_ax_welcome_screen_enabled_for_project_body.dart';
 import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_body.dart';
@@ -395,6 +398,9 @@ part 'serializers.g.dart';
   IdentityWithCredentialsOidcConfigProvider,
   IdentityWithCredentialsPassword,
   IdentityWithCredentialsPasswordConfig,
+  IdentityWithCredentialsSaml,
+  IdentityWithCredentialsSamlConfig,
+  IdentityWithCredentialsSamlConfigProvider,
   InternalGetProjectBrandingBody,
   InternalIsAXWelcomeScreenEnabledForProjectBody,
   InternalIsOwnerForProjectBySlugBody,

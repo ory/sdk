@@ -109,6 +109,9 @@ docs/IdentityWithCredentialsOidcConfig.md
 docs/IdentityWithCredentialsOidcConfigProvider.md
 docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
+docs/IdentityWithCredentialsSaml.md
+docs/IdentityWithCredentialsSamlConfig.md
+docs/IdentityWithCredentialsSamlConfigProvider.md
 docs/InternalGetProjectBrandingBody.md
 docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
@@ -415,6 +418,9 @@ lib/ory-client/models/identity_with_credentials_oidc_config.rb
 lib/ory-client/models/identity_with_credentials_oidc_config_provider.rb
 lib/ory-client/models/identity_with_credentials_password.rb
 lib/ory-client/models/identity_with_credentials_password_config.rb
+lib/ory-client/models/identity_with_credentials_saml.rb
+lib/ory-client/models/identity_with_credentials_saml_config.rb
+lib/ory-client/models/identity_with_credentials_saml_config_provider.rb
 lib/ory-client/models/internal_get_project_branding_body.rb
 lib/ory-client/models/internal_is_ax_welcome_screen_enabled_for_project_body.rb
 lib/ory-client/models/internal_is_owner_for_project_by_slug_body.rb
@@ -708,6 +714,9 @@ spec/models/identity_with_credentials_oidc_config_spec.rb
 spec/models/identity_with_credentials_oidc_spec.rb
 spec/models/identity_with_credentials_password_config_spec.rb
 spec/models/identity_with_credentials_password_spec.rb
+spec/models/identity_with_credentials_saml_config_provider_spec.rb
+spec/models/identity_with_credentials_saml_config_spec.rb
+spec/models/identity_with_credentials_saml_spec.rb
 spec/models/identity_with_credentials_spec.rb
 spec/models/internal_get_project_branding_body_spec.rb
 spec/models/internal_is_ax_welcome_screen_enabled_for_project_body_spec.rb

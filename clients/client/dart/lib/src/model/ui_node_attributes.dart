@@ -11,6 +11,7 @@ import 'package:ory_client/src/model/ui_node_image_attributes.dart';
 import 'package:ory_client/src/model/ui_node_script_attributes.dart';
 import 'package:ory_client/src/model/ui_node_input_attributes.dart';
 import 'package:built_value/json_object.dart';
+import 'package:ory_client/src/model/ui_node_division_attributes.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:one_of/one_of.dart';
@@ -46,15 +47,18 @@ part 'ui_node_attributes.g.dart';
 /// * [integrity] - The script's integrity hash
 /// * [nonce] - Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
 /// * [referrerpolicy] - The script referrer policy
+/// * [class_] - The script MIME type
+/// * [data] - Data is a map of key-value pairs that are passed to the division.  They may be used for `data-...` attributes.
 @BuiltValue()
 abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttributesBuilder> {
-  /// One Of [UiNodeAnchorAttributes], [UiNodeImageAttributes], [UiNodeInputAttributes], [UiNodeScriptAttributes], [UiNodeTextAttributes]
+  /// One Of [UiNodeAnchorAttributes], [UiNodeDivisionAttributes], [UiNodeImageAttributes], [UiNodeInputAttributes], [UiNodeScriptAttributes], [UiNodeTextAttributes]
   OneOf get oneOf;
 
   static const String discriminatorFieldName = r'node_type';
 
   static const Map<String, Type> discriminatorMapping = {
     r'a': UiNodeAnchorAttributes,
+    r'div': UiNodeDivisionAttributes,
     r'img': UiNodeImageAttributes,
     r'input': UiNodeInputAttributes,
     r'script': UiNodeScriptAttributes,
@@ -77,6 +81,9 @@ extension UiNodeAttributesDiscriminatorExt on UiNodeAttributes {
         if (this is UiNodeAnchorAttributes) {
             return r'a';
         }
+        if (this is UiNodeDivisionAttributes) {
+            return r'div';
+        }
         if (this is UiNodeImageAttributes) {
             return r'img';
         }
@@ -96,6 +103,9 @@ extension UiNodeAttributesBuilderDiscriminatorExt on UiNodeAttributesBuilder {
     String? get discriminatorValue {
         if (this is UiNodeAnchorAttributesBuilder) {
             return r'a';
+        }
+        if (this is UiNodeDivisionAttributesBuilder) {
+            return r'div';
         }
         if (this is UiNodeImageAttributesBuilder) {
             return r'img';
@@ -149,7 +159,7 @@ class _$UiNodeAttributesSerializer implements PrimitiveSerializer<UiNodeAttribut
     final discIndex = serializedList.indexOf(UiNodeAttributes.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UiNodeAnchorAttributes, UiNodeImageAttributes, UiNodeInputAttributes, UiNodeScriptAttributes, UiNodeTextAttributes, ];
+    final oneOfTypes = [UiNodeAnchorAttributes, UiNodeDivisionAttributes, UiNodeImageAttributes, UiNodeInputAttributes, UiNodeScriptAttributes, UiNodeTextAttributes, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
@@ -159,6 +169,13 @@ class _$UiNodeAttributesSerializer implements PrimitiveSerializer<UiNodeAttribut
           specifiedType: FullType(UiNodeAnchorAttributes),
         ) as UiNodeAnchorAttributes;
         oneOfType = UiNodeAnchorAttributes;
+        break;
+      case r'div':
+        oneOfResult = serializers.deserialize(
+          oneOfDataSrc,
+          specifiedType: FullType(UiNodeDivisionAttributes),
+        ) as UiNodeDivisionAttributes;
+        oneOfType = UiNodeDivisionAttributes;
         break;
       case r'img':
         oneOfResult = serializers.deserialize(

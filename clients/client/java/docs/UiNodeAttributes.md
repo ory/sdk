@@ -33,6 +33,8 @@
 |**integrity** | **String** | The script&#39;s integrity hash |  |
 |**nonce** | **String** | Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value! |  |
 |**referrerpolicy** | **String** | The script referrer policy |  |
+|**propertyClass** | **String** | The script MIME type |  [optional] |
+|**data** | **Map&lt;String, String&gt;** | Data is a map of key-value pairs that are passed to the division.  They may be used for &#x60;data-...&#x60; attributes. |  [optional] |
 
 
 

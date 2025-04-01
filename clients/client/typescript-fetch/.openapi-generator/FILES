@@ -123,6 +123,9 @@ src/models/IdentityWithCredentialsOidcConfig.ts
 src/models/IdentityWithCredentialsOidcConfigProvider.ts
 src/models/IdentityWithCredentialsPassword.ts
 src/models/IdentityWithCredentialsPasswordConfig.ts
+src/models/IdentityWithCredentialsSaml.ts
+src/models/IdentityWithCredentialsSamlConfig.ts
+src/models/IdentityWithCredentialsSamlConfigProvider.ts
 src/models/InternalGetProjectBrandingBody.ts
 src/models/InternalIsAXWelcomeScreenEnabledForProjectBody.ts
 src/models/InternalIsOwnerForProjectBySlugBody.ts

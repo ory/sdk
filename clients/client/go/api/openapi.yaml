@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.19.0
+  version: v1.20.0
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -12822,6 +12822,8 @@ components:
           $ref: '#/components/schemas/identityWithCredentialsOidc'
         password:
           $ref: '#/components/schemas/identityWithCredentialsPassword'
+        saml:
+          $ref: '#/components/schemas/identityWithCredentialsSaml'
       type: object
     identityWithCredentialsOidc:
       description: Create Identity and Import Social Sign In Credentials
@@ -12831,8 +12833,6 @@ components:
       type: object
     identityWithCredentialsOidcConfig:
       properties:
-        config:
-          $ref: '#/components/schemas/identityWithCredentialsPasswordConfig'
         providers:
           description: A list of OpenID Connect Providers
           items:
@@ -12842,6 +12842,10 @@ components:
     identityWithCredentialsOidcConfigProvider:
       description: Create Identity and Import Social Sign In Credentials Configuration
       properties:
+        organization:
+          format: uuid4
+          nullable: true
+          type: string
         provider:
           description: The OpenID Connect provider to link the subject to. Usually
             something like `google` or `github`.
@@ -12877,6 +12881,39 @@ components:
           description: "If set to true, the password will be migrated using the password\
             \ migration hook."
           type: boolean
+      type: object
+    identityWithCredentialsSaml:
+      description: Payload to import SAML credentials
+      properties:
+        config:
+          $ref: '#/components/schemas/identityWithCredentialsSamlConfig'
+      type: object
+    identityWithCredentialsSamlConfig:
+      description: Payload of SAML providers
+      properties:
+        providers:
+          description: A list of SAML Providers
+          items:
+            $ref: '#/components/schemas/identityWithCredentialsSamlConfigProvider'
+          type: array
+      type: object
+    identityWithCredentialsSamlConfigProvider:
+      description: Payload of specific SAML provider
+      properties:
+        organization:
+          format: uuid4
+          nullable: true
+          type: string
+        provider:
+          description: The SAML provider to link the subject to.
+          type: string
+        subject:
+          description: The unique subject of the SAML connection. This value must
+            be immutable at the source.
+          type: string
+      required:
+      - provider
+      - subject
       type: object
     internalGetProjectBrandingBody:
       description: Get Project Branding Request Body
@@ -21055,6 +21092,7 @@ components:
       discriminator:
         mapping:
           a: '#/components/schemas/uiNodeAnchorAttributes'
+          div: '#/components/schemas/uiNodeDivisionAttributes'
           img: '#/components/schemas/uiNodeImageAttributes'
           input: '#/components/schemas/uiNodeInputAttributes'
           script: '#/components/schemas/uiNodeScriptAttributes'
@@ -21066,6 +21104,7 @@ components:
       - $ref: '#/components/schemas/uiNodeImageAttributes'
       - $ref: '#/components/schemas/uiNodeAnchorAttributes'
       - $ref: '#/components/schemas/uiNodeScriptAttributes'
+      - $ref: '#/components/schemas/uiNodeDivisionAttributes'
       title: Attributes represents a list of attributes (e.g. `href="foo"` for links).
     uiNodeDivisionAttributes:
       description: Division sections are used for interactive widgets that require
@@ -21796,10 +21835,6 @@ components:
         provider:
           description: The provider to register with
           type: string
-        traits:
-          description: The identity traits. This is a placeholder for the registration
-            flow.
-          type: object
         transient_payload:
           description: Transient data to pass along to any webhooks
           type: object
@@ -22397,6 +22432,9 @@ components:
     updateSettingsFlowWithSamlMethod:
       description: Update settings flow using SAML
       properties:
+        csrf_token:
+          description: The CSRF Token
+          type: string
         flow:
           description: |-
             Flow ID is the flow's ID.

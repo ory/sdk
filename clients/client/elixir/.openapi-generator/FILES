@@ -117,6 +117,9 @@ lib/ory/model/identity_with_credentials_oidc_config.ex
 lib/ory/model/identity_with_credentials_oidc_config_provider.ex
 lib/ory/model/identity_with_credentials_password.ex
 lib/ory/model/identity_with_credentials_password_config.ex
+lib/ory/model/identity_with_credentials_saml.ex
+lib/ory/model/identity_with_credentials_saml_config.ex
+lib/ory/model/identity_with_credentials_saml_config_provider.ex
 lib/ory/model/internal_get_project_branding_body.ex
 lib/ory/model/internal_is_ax_welcome_screen_enabled_for_project_body.ex
 lib/ory/model/internal_is_owner_for_project_by_slug_body.ex

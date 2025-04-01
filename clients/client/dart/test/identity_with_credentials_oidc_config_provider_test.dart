@@ -7,6 +7,11 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(IdentityWithCredentialsOidcConfigProvider, () {
+    // String organization
+    test('to test the property `organization`', () async {
+      // TODO
+    });
+
     // The OpenID Connect provider to link the subject to. Usually something like `google` or `github`.
     // String provider
     test('to test the property `provider`', () async {

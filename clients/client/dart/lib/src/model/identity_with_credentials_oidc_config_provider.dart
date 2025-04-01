@@ -11,11 +11,15 @@ part 'identity_with_credentials_oidc_config_provider.g.dart';
 /// Create Identity and Import Social Sign In Credentials Configuration
 ///
 /// Properties:
+/// * [organization] 
 /// * [provider] - The OpenID Connect provider to link the subject to. Usually something like `google` or `github`.
 /// * [subject] - The subject (`sub`) of the OpenID Connect connection. Usually the `sub` field of the ID Token.
 /// * [useAutoLink] - If set, this credential allows the user to sign in using the OpenID Connect provider without setting the subject first.
 @BuiltValue()
 abstract class IdentityWithCredentialsOidcConfigProvider implements Built<IdentityWithCredentialsOidcConfigProvider, IdentityWithCredentialsOidcConfigProviderBuilder> {
+  @BuiltValueField(wireName: r'organization')
+  String? get organization;
+
   /// The OpenID Connect provider to link the subject to. Usually something like `google` or `github`.
   @BuiltValueField(wireName: r'provider')
   String get provider;
@@ -51,6 +55,13 @@ class _$IdentityWithCredentialsOidcConfigProviderSerializer implements Primitive
     IdentityWithCredentialsOidcConfigProvider object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.organization != null) {
+      yield r'organization';
+      yield serializers.serialize(
+        object.organization,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     yield r'provider';
     yield serializers.serialize(
       object.provider,
@@ -91,6 +102,14 @@ class _$IdentityWithCredentialsOidcConfigProviderSerializer implements Primitive
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'organization':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.organization = valueDes;
+          break;
         case r'provider':
           final valueDes = serializers.deserialize(
             value,

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Organization** | Pointer to **NullableString** |  | [optional] 
 **Provider** | **string** | The OpenID Connect provider to link the subject to. Usually something like &#x60;google&#x60; or &#x60;github&#x60;. | 
 **Subject** | **string** | The subject (&#x60;sub&#x60;) of the OpenID Connect connection. Usually the &#x60;sub&#x60; field of the ID Token. | 
 **UseAutoLink** | Pointer to **bool** | If set, this credential allows the user to sign in using the OpenID Connect provider without setting the subject first. | [optional] 
@@ -27,6 +28,41 @@ NewIdentityWithCredentialsOidcConfigProviderWithDefaults instantiates a new Iden
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetOrganization
+
+`func (o *IdentityWithCredentialsOidcConfigProvider) GetOrganization() string`
+
+GetOrganization returns the Organization field if non-nil, zero value otherwise.
+
+### GetOrganizationOk
+
+`func (o *IdentityWithCredentialsOidcConfigProvider) GetOrganizationOk() (*string, bool)`
+
+GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganization
+
+`func (o *IdentityWithCredentialsOidcConfigProvider) SetOrganization(v string)`
+
+SetOrganization sets Organization field to given value.
+
+### HasOrganization
+
+`func (o *IdentityWithCredentialsOidcConfigProvider) HasOrganization() bool`
+
+HasOrganization returns a boolean if a field has been set.
+
+### SetOrganizationNil
+
+`func (o *IdentityWithCredentialsOidcConfigProvider) SetOrganizationNil(b bool)`
+
+ SetOrganizationNil sets the value for Organization to be an explicit nil
+
+### UnsetOrganization
+`func (o *IdentityWithCredentialsOidcConfigProvider) UnsetOrganization()`
+
+UnsetOrganization ensures that no value is present for Organization, not even an explicit nil
 ### GetProvider
 
 `func (o *IdentityWithCredentialsOidcConfigProvider) GetProvider() string`

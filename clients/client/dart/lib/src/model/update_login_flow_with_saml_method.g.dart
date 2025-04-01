@@ -14,8 +14,6 @@ class _$UpdateLoginFlowWithSamlMethod extends UpdateLoginFlowWithSamlMethod {
   @override
   final String provider;
   @override
-  final JsonObject? traits;
-  @override
   final JsonObject? transientPayload;
 
   factory _$UpdateLoginFlowWithSamlMethod(
@@ -26,7 +24,6 @@ class _$UpdateLoginFlowWithSamlMethod extends UpdateLoginFlowWithSamlMethod {
       {this.csrfToken,
       required this.method,
       required this.provider,
-      this.traits,
       this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -51,7 +48,6 @@ class _$UpdateLoginFlowWithSamlMethod extends UpdateLoginFlowWithSamlMethod {
         csrfToken == other.csrfToken &&
         method == other.method &&
         provider == other.provider &&
-        traits == other.traits &&
         transientPayload == other.transientPayload;
   }
 
@@ -61,7 +57,6 @@ class _$UpdateLoginFlowWithSamlMethod extends UpdateLoginFlowWithSamlMethod {
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
-    _$hash = $jc(_$hash, traits.hashCode);
     _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -73,7 +68,6 @@ class _$UpdateLoginFlowWithSamlMethod extends UpdateLoginFlowWithSamlMethod {
           ..add('csrfToken', csrfToken)
           ..add('method', method)
           ..add('provider', provider)
-          ..add('traits', traits)
           ..add('transientPayload', transientPayload))
         .toString();
   }
@@ -97,10 +91,6 @@ class UpdateLoginFlowWithSamlMethodBuilder
   String? get provider => _$this._provider;
   set provider(String? provider) => _$this._provider = provider;
 
-  JsonObject? _traits;
-  JsonObject? get traits => _$this._traits;
-  set traits(JsonObject? traits) => _$this._traits = traits;
-
   JsonObject? _transientPayload;
   JsonObject? get transientPayload => _$this._transientPayload;
   set transientPayload(JsonObject? transientPayload) =>
@@ -116,7 +106,6 @@ class UpdateLoginFlowWithSamlMethodBuilder
       _csrfToken = $v.csrfToken;
       _method = $v.method;
       _provider = $v.provider;
-      _traits = $v.traits;
       _transientPayload = $v.transientPayload;
       _$v = null;
     }
@@ -145,7 +134,6 @@ class UpdateLoginFlowWithSamlMethodBuilder
                 method, r'UpdateLoginFlowWithSamlMethod', 'method'),
             provider: BuiltValueNullFieldError.checkNotNull(
                 provider, r'UpdateLoginFlowWithSamlMethod', 'provider'),
-            traits: traits,
             transientPayload: transientPayload);
     replace(_$result);
     return _$result;

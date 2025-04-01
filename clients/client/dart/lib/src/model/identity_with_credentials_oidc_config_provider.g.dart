@@ -9,6 +9,8 @@ part of 'identity_with_credentials_oidc_config_provider.dart';
 class _$IdentityWithCredentialsOidcConfigProvider
     extends IdentityWithCredentialsOidcConfigProvider {
   @override
+  final String? organization;
+  @override
   final String provider;
   @override
   final String subject;
@@ -22,7 +24,10 @@ class _$IdentityWithCredentialsOidcConfigProvider
           ._build();
 
   _$IdentityWithCredentialsOidcConfigProvider._(
-      {required this.provider, required this.subject, this.useAutoLink})
+      {this.organization,
+      required this.provider,
+      required this.subject,
+      this.useAutoLink})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         provider, r'IdentityWithCredentialsOidcConfigProvider', 'provider');
@@ -44,6 +49,7 @@ class _$IdentityWithCredentialsOidcConfigProvider
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is IdentityWithCredentialsOidcConfigProvider &&
+        organization == other.organization &&
         provider == other.provider &&
         subject == other.subject &&
         useAutoLink == other.useAutoLink;
@@ -52,6 +58,7 @@ class _$IdentityWithCredentialsOidcConfigProvider
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, organization.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, subject.hashCode);
     _$hash = $jc(_$hash, useAutoLink.hashCode);
@@ -63,6 +70,7 @@ class _$IdentityWithCredentialsOidcConfigProvider
   String toString() {
     return (newBuiltValueToStringHelper(
             r'IdentityWithCredentialsOidcConfigProvider')
+          ..add('organization', organization)
           ..add('provider', provider)
           ..add('subject', subject)
           ..add('useAutoLink', useAutoLink))
@@ -75,6 +83,10 @@ class IdentityWithCredentialsOidcConfigProviderBuilder
         Builder<IdentityWithCredentialsOidcConfigProvider,
             IdentityWithCredentialsOidcConfigProviderBuilder> {
   _$IdentityWithCredentialsOidcConfigProvider? _$v;
+
+  String? _organization;
+  String? get organization => _$this._organization;
+  set organization(String? organization) => _$this._organization = organization;
 
   String? _provider;
   String? get provider => _$this._provider;
@@ -95,6 +107,7 @@ class IdentityWithCredentialsOidcConfigProviderBuilder
   IdentityWithCredentialsOidcConfigProviderBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _organization = $v.organization;
       _provider = $v.provider;
       _subject = $v.subject;
       _useAutoLink = $v.useAutoLink;
@@ -122,6 +135,7 @@ class IdentityWithCredentialsOidcConfigProviderBuilder
   _$IdentityWithCredentialsOidcConfigProvider _build() {
     final _$result = _$v ??
         new _$IdentityWithCredentialsOidcConfigProvider._(
+            organization: organization,
             provider: BuiltValueNullFieldError.checkNotNull(provider,
                 r'IdentityWithCredentialsOidcConfigProvider', 'provider'),
             subject: BuiltValueNullFieldError.checkNotNull(subject,

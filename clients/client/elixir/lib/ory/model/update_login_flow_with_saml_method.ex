@@ -11,7 +11,6 @@ defmodule Ory.Model.UpdateLoginFlowWithSamlMethod do
     :csrf_token,
     :method,
     :provider,
-    :traits,
     :transient_payload
   ]
 
@@ -19,7 +18,6 @@ defmodule Ory.Model.UpdateLoginFlowWithSamlMethod do
     :csrf_token => String.t | nil,
     :method => String.t,
     :provider => String.t,
-    :traits => map() | nil,
     :transient_payload => map() | nil
   }
 

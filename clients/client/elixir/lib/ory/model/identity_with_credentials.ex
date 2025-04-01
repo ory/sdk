@@ -9,12 +9,14 @@ defmodule Ory.Model.IdentityWithCredentials do
   @derive Jason.Encoder
   defstruct [
     :oidc,
-    :password
+    :password,
+    :saml
   ]
 
   @type t :: %__MODULE__{
     :oidc => Ory.Model.IdentityWithCredentialsOidc.t | nil,
-    :password => Ory.Model.IdentityWithCredentialsPassword.t | nil
+    :password => Ory.Model.IdentityWithCredentialsPassword.t | nil,
+    :saml => Ory.Model.IdentityWithCredentialsSaml.t | nil
   }
 
   alias Ory.Deserializer
@@ -23,6 +25,7 @@ defmodule Ory.Model.IdentityWithCredentials do
     value
      |> Deserializer.deserialize(:oidc, :struct, Ory.Model.IdentityWithCredentialsOidc)
      |> Deserializer.deserialize(:password, :struct, Ory.Model.IdentityWithCredentialsPassword)
+     |> Deserializer.deserialize(:saml, :struct, Ory.Model.IdentityWithCredentialsSaml)
   end
 end
 

@@ -102,6 +102,9 @@ docs/ClientIdentityWithCredentialsOidcConfig.md
 docs/ClientIdentityWithCredentialsOidcConfigProvider.md
 docs/ClientIdentityWithCredentialsPassword.md
 docs/ClientIdentityWithCredentialsPasswordConfig.md
+docs/ClientIdentityWithCredentialsSaml.md
+docs/ClientIdentityWithCredentialsSamlConfig.md
+docs/ClientIdentityWithCredentialsSamlConfigProvider.md
 docs/ClientInternalGetProjectBrandingBody.md
 docs/ClientInternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/ClientInternalIsOwnerForProjectBySlugBody.md
@@ -407,6 +410,9 @@ src/Ory.Client.Test/Model/ClientIdentityWithCredentialsOidcConfigTests.cs
 src/Ory.Client.Test/Model/ClientIdentityWithCredentialsOidcTests.cs
 src/Ory.Client.Test/Model/ClientIdentityWithCredentialsPasswordConfigTests.cs
 src/Ory.Client.Test/Model/ClientIdentityWithCredentialsPasswordTests.cs
+src/Ory.Client.Test/Model/ClientIdentityWithCredentialsSamlConfigProviderTests.cs
+src/Ory.Client.Test/Model/ClientIdentityWithCredentialsSamlConfigTests.cs
+src/Ory.Client.Test/Model/ClientIdentityWithCredentialsSamlTests.cs
 src/Ory.Client.Test/Model/ClientIdentityWithCredentialsTests.cs
 src/Ory.Client.Test/Model/ClientInternalGetProjectBrandingBodyTests.cs
 src/Ory.Client.Test/Model/ClientInternalIsAXWelcomeScreenEnabledForProjectBodyTests.cs
@@ -721,6 +727,9 @@ src/Ory.Client/Model/ClientIdentityWithCredentialsOidcConfig.cs
 src/Ory.Client/Model/ClientIdentityWithCredentialsOidcConfigProvider.cs
 src/Ory.Client/Model/ClientIdentityWithCredentialsPassword.cs
 src/Ory.Client/Model/ClientIdentityWithCredentialsPasswordConfig.cs
+src/Ory.Client/Model/ClientIdentityWithCredentialsSaml.cs
+src/Ory.Client/Model/ClientIdentityWithCredentialsSamlConfig.cs
+src/Ory.Client/Model/ClientIdentityWithCredentialsSamlConfigProvider.cs
 src/Ory.Client/Model/ClientInternalGetProjectBrandingBody.cs
 src/Ory.Client/Model/ClientInternalIsAXWelcomeScreenEnabledForProjectBody.cs
 src/Ory.Client/Model/ClientInternalIsOwnerForProjectBySlugBody.cs

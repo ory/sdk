@@ -17,5 +17,10 @@ void main() {
       // TODO
     });
 
+    // IdentityWithCredentialsSaml saml
+    test('to test the property `saml`', () async {
+      // TODO
+    });
+
   });
 }

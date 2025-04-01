@@ -105,6 +105,9 @@ docs/IdentityWithCredentialsOidcConfig.md
 docs/IdentityWithCredentialsOidcConfigProvider.md
 docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
+docs/IdentityWithCredentialsSaml.md
+docs/IdentityWithCredentialsSamlConfig.md
+docs/IdentityWithCredentialsSamlConfigProvider.md
 docs/InternalGetProjectBrandingBody.md
 docs/InternalIsAxWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
@@ -410,6 +413,9 @@ src/models/identity_with_credentials_oidc_config.rs
 src/models/identity_with_credentials_oidc_config_provider.rs
 src/models/identity_with_credentials_password.rs
 src/models/identity_with_credentials_password_config.rs
+src/models/identity_with_credentials_saml.rs
+src/models/identity_with_credentials_saml_config.rs
+src/models/identity_with_credentials_saml_config_provider.rs
 src/models/internal_get_project_branding_body.rs
 src/models/internal_is_ax_welcome_screen_enabled_for_project_body.rs
 src/models/internal_is_owner_for_project_by_slug_body.rs

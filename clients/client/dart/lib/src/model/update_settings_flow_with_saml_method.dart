@@ -12,6 +12,7 @@ part 'update_settings_flow_with_saml_method.g.dart';
 /// Update settings flow using SAML
 ///
 /// Properties:
+/// * [csrfToken] - The CSRF Token
 /// * [flow] - Flow ID is the flow's ID.  in: query
 /// * [link] - Link this provider  Either this or `unlink` must be set.  type: string in: body
 /// * [method] - Method  Should be set to saml when trying to update a profile.
@@ -20,6 +21,10 @@ part 'update_settings_flow_with_saml_method.g.dart';
 /// * [unlink] - Unlink this provider  Either this or `link` must be set.  type: string in: body
 @BuiltValue()
 abstract class UpdateSettingsFlowWithSamlMethod implements Built<UpdateSettingsFlowWithSamlMethod, UpdateSettingsFlowWithSamlMethodBuilder> {
+  /// The CSRF Token
+  @BuiltValueField(wireName: r'csrf_token')
+  String? get csrfToken;
+
   /// Flow ID is the flow's ID.  in: query
   @BuiltValueField(wireName: r'flow')
   String? get flow;
@@ -67,6 +72,13 @@ class _$UpdateSettingsFlowWithSamlMethodSerializer implements PrimitiveSerialize
     UpdateSettingsFlowWithSamlMethod object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.csrfToken != null) {
+      yield r'csrf_token';
+      yield serializers.serialize(
+        object.csrfToken,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.flow != null) {
       yield r'flow';
       yield serializers.serialize(
@@ -130,6 +142,13 @@ class _$UpdateSettingsFlowWithSamlMethodSerializer implements PrimitiveSerialize
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'csrf_token':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.csrfToken = valueDes;
+          break;
         case r'flow':
           final valueDes = serializers.deserialize(
             value,

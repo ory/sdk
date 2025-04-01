@@ -5,6 +5,7 @@ Update settings flow using SAML
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CsrfToken** | **string** | The CSRF Token | [optional] 
 **Flow** | **string** | Flow ID is the flow&#39;s ID.  in: query | [optional] 
 **Link** | **string** | Link this provider  Either this or &#x60;unlink&#x60; must be set.  type: string in: body | [optional] 
 **Method** | **string** | Method  Should be set to saml when trying to update a profile. | 

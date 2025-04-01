@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **CsrfToken** | Pointer to **string** | The CSRF Token | [optional] 
 **Method** | **string** | Method to use  This field must be set to &#x60;saml&#x60; when using the saml method. | 
 **Provider** | **string** | The provider to register with | 
-**Traits** | Pointer to **map[string]interface{}** | The identity traits. This is a placeholder for the registration flow. | [optional] 
 **TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 
 ## Methods
@@ -93,31 +92,6 @@ and a boolean to check if the value has been set.
 
 SetProvider sets Provider field to given value.
 
-
-### GetTraits
-
-`func (o *UpdateLoginFlowWithSamlMethod) GetTraits() map[string]interface{}`
-
-GetTraits returns the Traits field if non-nil, zero value otherwise.
-
-### GetTraitsOk
-
-`func (o *UpdateLoginFlowWithSamlMethod) GetTraitsOk() (*map[string]interface{}, bool)`
-
-GetTraitsOk returns a tuple with the Traits field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTraits
-
-`func (o *UpdateLoginFlowWithSamlMethod) SetTraits(v map[string]interface{})`
-
-SetTraits sets Traits field to given value.
-
-### HasTraits
-
-`func (o *UpdateLoginFlowWithSamlMethod) HasTraits() bool`
-
-HasTraits returns a boolean if a field has been set.
 
 ### GetTransientPayload
 

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CsrfToken** | Pointer to **string** | The CSRF Token | [optional] 
 **Flow** | Pointer to **string** | Flow ID is the flow&#39;s ID.  in: query | [optional] 
 **Link** | Pointer to **string** | Link this provider  Either this or &#x60;unlink&#x60; must be set.  type: string in: body | [optional] 
 **Method** | **string** | Method  Should be set to saml when trying to update a profile. | 
@@ -29,6 +30,31 @@ will change when the set of required properties is changed
 NewUpdateSettingsFlowWithSamlMethodWithDefaults instantiates a new UpdateSettingsFlowWithSamlMethod object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCsrfToken
+
+`func (o *UpdateSettingsFlowWithSamlMethod) GetCsrfToken() string`
+
+GetCsrfToken returns the CsrfToken field if non-nil, zero value otherwise.
+
+### GetCsrfTokenOk
+
+`func (o *UpdateSettingsFlowWithSamlMethod) GetCsrfTokenOk() (*string, bool)`
+
+GetCsrfTokenOk returns a tuple with the CsrfToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCsrfToken
+
+`func (o *UpdateSettingsFlowWithSamlMethod) SetCsrfToken(v string)`
+
+SetCsrfToken sets CsrfToken field to given value.
+
+### HasCsrfToken
+
+`func (o *UpdateSettingsFlowWithSamlMethod) HasCsrfToken() bool`
+
+HasCsrfToken returns a boolean if a field has been set.
 
 ### GetFlow
 

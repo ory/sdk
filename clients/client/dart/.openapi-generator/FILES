@@ -104,6 +104,9 @@ doc/IdentityWithCredentialsOidcConfig.md
 doc/IdentityWithCredentialsOidcConfigProvider.md
 doc/IdentityWithCredentialsPassword.md
 doc/IdentityWithCredentialsPasswordConfig.md
+doc/IdentityWithCredentialsSaml.md
+doc/IdentityWithCredentialsSamlConfig.md
+doc/IdentityWithCredentialsSamlConfigProvider.md
 doc/InternalGetProjectBrandingBody.md
 doc/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 doc/InternalIsOwnerForProjectBySlugBody.md
@@ -415,6 +418,9 @@ lib/src/model/identity_with_credentials_oidc_config.dart
 lib/src/model/identity_with_credentials_oidc_config_provider.dart
 lib/src/model/identity_with_credentials_password.dart
 lib/src/model/identity_with_credentials_password_config.dart
+lib/src/model/identity_with_credentials_saml.dart
+lib/src/model/identity_with_credentials_saml_config.dart
+lib/src/model/identity_with_credentials_saml_config_provider.dart
 lib/src/model/internal_get_project_branding_body.dart
 lib/src/model/internal_is_ax_welcome_screen_enabled_for_project_body.dart
 lib/src/model/internal_is_owner_for_project_by_slug_body.dart
@@ -699,6 +705,9 @@ test/identity_with_credentials_oidc_config_test.dart
 test/identity_with_credentials_oidc_test.dart
 test/identity_with_credentials_password_config_test.dart
 test/identity_with_credentials_password_test.dart
+test/identity_with_credentials_saml_config_provider_test.dart
+test/identity_with_credentials_saml_config_test.dart
+test/identity_with_credentials_saml_test.dart
 test/identity_with_credentials_test.dart
 test/internal_get_project_branding_body_test.dart
 test/internal_is_ax_welcome_screen_enabled_for_project_body_test.dart

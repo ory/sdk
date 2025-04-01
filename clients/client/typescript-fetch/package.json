@@ -1,6 +1,6 @@
 {
   "name": "@ory/client-fetch",
-  "version": "v1.19.0",
+  "version": "v1.20.0",
   "description": "OpenAPI client for @ory/client-fetch",
   "author": "Ory Corp",
   "repository": {

@@ -8,6 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**organization** | **String** |  | [optional] 
 **provider** | **String** | The OpenID Connect provider to link the subject to. Usually something like `google` or `github`. | 
 **subject** | **String** | The subject (`sub`) of the OpenID Connect connection. Usually the `sub` field of the ID Token. | 
 **useAutoLink** | **bool** | If set, this credential allows the user to sign in using the OpenID Connect provider without setting the subject first. | [optional] 

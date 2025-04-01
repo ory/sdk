@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**csrf_token** | Option<**String**> | The CSRF Token | [optional]
 **flow** | Option<**String**> | Flow ID is the flow's ID.  in: query | [optional]
 **link** | Option<**String**> | Link this provider  Either this or `unlink` must be set.  type: string in: body | [optional]
 **method** | **String** | Method  Should be set to saml when trying to update a profile. | 

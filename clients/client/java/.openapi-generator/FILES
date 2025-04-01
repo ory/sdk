@@ -108,6 +108,9 @@ docs/IdentityWithCredentialsOidcConfig.md
 docs/IdentityWithCredentialsOidcConfigProvider.md
 docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
+docs/IdentityWithCredentialsSaml.md
+docs/IdentityWithCredentialsSamlConfig.md
+docs/IdentityWithCredentialsSamlConfigProvider.md
 docs/InternalGetProjectBrandingBody.md
 docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlugBody.md
@@ -440,6 +443,9 @@ src/main/java/sh/ory/model/IdentityWithCredentialsOidcConfig.java
 src/main/java/sh/ory/model/IdentityWithCredentialsOidcConfigProvider.java
 src/main/java/sh/ory/model/IdentityWithCredentialsPassword.java
 src/main/java/sh/ory/model/IdentityWithCredentialsPasswordConfig.java
+src/main/java/sh/ory/model/IdentityWithCredentialsSaml.java
+src/main/java/sh/ory/model/IdentityWithCredentialsSamlConfig.java
+src/main/java/sh/ory/model/IdentityWithCredentialsSamlConfigProvider.java
 src/main/java/sh/ory/model/InternalGetProjectBrandingBody.java
 src/main/java/sh/ory/model/InternalIsAXWelcomeScreenEnabledForProjectBody.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugBody.java
@@ -731,6 +737,9 @@ src/test/java/sh/ory/model/IdentityWithCredentialsOidcConfigTest.java
 src/test/java/sh/ory/model/IdentityWithCredentialsOidcTest.java
 src/test/java/sh/ory/model/IdentityWithCredentialsPasswordConfigTest.java
 src/test/java/sh/ory/model/IdentityWithCredentialsPasswordTest.java
+src/test/java/sh/ory/model/IdentityWithCredentialsSamlConfigProviderTest.java
+src/test/java/sh/ory/model/IdentityWithCredentialsSamlConfigTest.java
+src/test/java/sh/ory/model/IdentityWithCredentialsSamlTest.java
 src/test/java/sh/ory/model/IdentityWithCredentialsTest.java
 src/test/java/sh/ory/model/InternalGetProjectBrandingBodyTest.java
 src/test/java/sh/ory/model/InternalIsAXWelcomeScreenEnabledForProjectBodyTest.java

@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UpdateSettingsFlowWithSamlMethod, () {
+    // The CSRF Token
+    // String csrfToken
+    test('to test the property `csrfToken`', () async {
+      // TODO
+    });
+
     // Flow ID is the flow's ID.  in: query
     // String flow
     test('to test the property `flow`', () async {

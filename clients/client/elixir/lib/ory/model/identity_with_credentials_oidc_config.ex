@@ -8,12 +8,10 @@ defmodule Ory.Model.IdentityWithCredentialsOidcConfig do
 
   @derive Jason.Encoder
   defstruct [
-    :config,
     :providers
   ]
 
   @type t :: %__MODULE__{
-    :config => Ory.Model.IdentityWithCredentialsPasswordConfig.t | nil,
     :providers => [Ory.Model.IdentityWithCredentialsOidcConfigProvider.t] | nil
   }
 
@@ -21,7 +19,6 @@ defmodule Ory.Model.IdentityWithCredentialsOidcConfig do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:config, :struct, Ory.Model.IdentityWithCredentialsPasswordConfig)
      |> Deserializer.deserialize(:providers, :list, Ory.Model.IdentityWithCredentialsOidcConfigProvider)
   end
 end

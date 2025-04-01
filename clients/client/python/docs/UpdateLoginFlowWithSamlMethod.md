@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **csrf_token** | **str** | The CSRF Token | [optional] 
 **method** | **str** | Method to use  This field must be set to &#x60;saml&#x60; when using the saml method. | 
 **provider** | **str** | The provider to register with | 
-**traits** | **object** | The identity traits. This is a placeholder for the registration flow. | [optional] 
 **transient_payload** | **object** | Transient data to pass along to any webhooks | [optional] 
 
 ## Example

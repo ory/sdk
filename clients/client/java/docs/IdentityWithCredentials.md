@@ -10,6 +10,7 @@ Create Identity and Import Credentials
 |------------ | ------------- | ------------- | -------------|
 |**oidc** | [**IdentityWithCredentialsOidc**](IdentityWithCredentialsOidc.md) |  |  [optional] |
 |**password** | [**IdentityWithCredentialsPassword**](IdentityWithCredentialsPassword.md) |  |  [optional] |
+|**saml** | [**IdentityWithCredentialsSaml**](IdentityWithCredentialsSaml.md) |  |  [optional] |
 
 
 

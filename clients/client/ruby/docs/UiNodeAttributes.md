@@ -15,6 +15,7 @@ OryClient::UiNodeAttributes.openapi_one_of
 # =>
 # [
 #   :'UiNodeAnchorAttributes',
+#   :'UiNodeDivisionAttributes',
 #   :'UiNodeImageAttributes',
 #   :'UiNodeInputAttributes',
 #   :'UiNodeScriptAttributes',
@@ -48,6 +49,7 @@ OryClient::UiNodeAttributes.openapi_discriminator_mapping
 # =>
 # {
 #   :'a' => :'UiNodeAnchorAttributes',
+#   :'div' => :'UiNodeDivisionAttributes',
 #   :'img' => :'UiNodeImageAttributes',
 #   :'input' => :'UiNodeInputAttributes',
 #   :'script' => :'UiNodeScriptAttributes',
@@ -80,6 +82,7 @@ OryClient::UiNodeAttributes.build(data_that_doesnt_match)
 #### Return type
 
 - `UiNodeAnchorAttributes`
+- `UiNodeDivisionAttributes`
 - `UiNodeImageAttributes`
 - `UiNodeInputAttributes`
 - `UiNodeScriptAttributes`

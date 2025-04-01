@@ -33,7 +33,9 @@ defmodule Ory.Model.UiNodeAttributes do
     :crossorigin,
     :integrity,
     :nonce,
-    :referrerpolicy
+    :referrerpolicy,
+    :class,
+    :data
   ]
 
   @type t :: %__MODULE__{
@@ -62,7 +64,9 @@ defmodule Ory.Model.UiNodeAttributes do
     :crossorigin => String.t,
     :integrity => String.t,
     :nonce => String.t,
-    :referrerpolicy => String.t
+    :referrerpolicy => String.t,
+    :class => String.t | nil,
+    :data => %{optional(String.t) => String.t} | nil
   }
 
   alias Ory.Deserializer

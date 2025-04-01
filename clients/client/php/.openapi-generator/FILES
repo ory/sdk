@@ -115,6 +115,9 @@ docs/Model/IdentityWithCredentialsOidcConfig.md
 docs/Model/IdentityWithCredentialsOidcConfigProvider.md
 docs/Model/IdentityWithCredentialsPassword.md
 docs/Model/IdentityWithCredentialsPasswordConfig.md
+docs/Model/IdentityWithCredentialsSaml.md
+docs/Model/IdentityWithCredentialsSamlConfig.md
+docs/Model/IdentityWithCredentialsSamlConfigProvider.md
 docs/Model/InternalGetProjectBrandingBody.md
 docs/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/Model/InternalIsOwnerForProjectBySlugBody.md
@@ -411,6 +414,9 @@ lib/Model/IdentityWithCredentialsOidcConfig.php
 lib/Model/IdentityWithCredentialsOidcConfigProvider.php
 lib/Model/IdentityWithCredentialsPassword.php
 lib/Model/IdentityWithCredentialsPasswordConfig.php
+lib/Model/IdentityWithCredentialsSaml.php
+lib/Model/IdentityWithCredentialsSamlConfig.php
+lib/Model/IdentityWithCredentialsSamlConfigProvider.php
 lib/Model/InternalGetProjectBrandingBody.php
 lib/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.php
 lib/Model/InternalIsOwnerForProjectBySlugBody.php
@@ -705,6 +711,9 @@ test/Model/IdentityWithCredentialsOidcConfigTest.php
 test/Model/IdentityWithCredentialsOidcTest.php
 test/Model/IdentityWithCredentialsPasswordConfigTest.php
 test/Model/IdentityWithCredentialsPasswordTest.php
+test/Model/IdentityWithCredentialsSamlConfigProviderTest.php
+test/Model/IdentityWithCredentialsSamlConfigTest.php
+test/Model/IdentityWithCredentialsSamlTest.php
 test/Model/IdentityWithCredentialsTest.php
 test/Model/InternalGetProjectBrandingBodyTest.php
 test/Model/InternalIsAXWelcomeScreenEnabledForProjectBodyTest.php

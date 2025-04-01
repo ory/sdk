@@ -143,6 +143,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(IdentityWithCredentialsOidcConfigProvider.serializer)
       ..add(IdentityWithCredentialsPassword.serializer)
       ..add(IdentityWithCredentialsPasswordConfig.serializer)
+      ..add(IdentityWithCredentialsSaml.serializer)
+      ..add(IdentityWithCredentialsSamlConfig.serializer)
+      ..add(IdentityWithCredentialsSamlConfigProvider.serializer)
       ..add(InternalGetProjectBrandingBody.serializer)
       ..add(InternalIsAXWelcomeScreenEnabledForProjectBody.serializer)
       ..add(InternalIsOwnerForProjectBySlugBody.serializer)
@@ -442,6 +445,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
             const FullType(IdentityWithCredentialsOidcConfigProvider)
           ]),
           () => new ListBuilder<IdentityWithCredentialsOidcConfigProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(IdentityWithCredentialsSamlConfigProvider)
+          ]),
+          () => new ListBuilder<IdentityWithCredentialsSamlConfigProvider>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Invoice)]),
           () => new ListBuilder<Invoice>())
