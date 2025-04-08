@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.20.3
+  version: v1.20.4
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -10951,6 +10951,7 @@ components:
       type: string
     UpdateFedcmFlowBody:
       example:
+        transient_payload: "{}"
         csrf_token: csrf_token
         nonce: nonce
         token: token
@@ -10966,6 +10967,9 @@ components:
         token:
           description: Token contains the result of `navigator.credentials.get`.
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks.
+          type: object
       required:
       - csrf_token
       - token

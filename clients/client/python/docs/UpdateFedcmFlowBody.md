@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **csrf_token** | **str** | CSRFToken is the anti-CSRF token. | 
 **nonce** | **str** | Nonce is the nonce that was used in the &#x60;navigator.credentials.get&#x60; call. If specified, it must match the &#x60;nonce&#x60; claim in the token. | [optional] 
 **token** | **str** | Token contains the result of &#x60;navigator.credentials.get&#x60;. | 
+**transient_payload** | **object** | Transient data to pass along to any webhooks. | [optional] 
 
 ## Example
 

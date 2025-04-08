@@ -10,13 +10,15 @@ defmodule Ory.Model.UpdateFedcmFlowBody do
   defstruct [
     :csrf_token,
     :nonce,
-    :token
+    :token,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
     :csrf_token => String.t,
     :nonce => String.t | nil,
-    :token => String.t
+    :token => String.t,
+    :transient_payload => map() | nil
   }
 
   def decode(value) do

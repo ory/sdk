@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,6 +15,7 @@ part 'update_fedcm_flow_body.g.dart';
 /// * [csrfToken] - CSRFToken is the anti-CSRF token.
 /// * [nonce] - Nonce is the nonce that was used in the `navigator.credentials.get` call. If specified, it must match the `nonce` claim in the token.
 /// * [token] - Token contains the result of `navigator.credentials.get`.
+/// * [transientPayload] - Transient data to pass along to any webhooks.
 @BuiltValue()
 abstract class UpdateFedcmFlowBody implements Built<UpdateFedcmFlowBody, UpdateFedcmFlowBodyBuilder> {
   /// CSRFToken is the anti-CSRF token.
@@ -27,6 +29,10 @@ abstract class UpdateFedcmFlowBody implements Built<UpdateFedcmFlowBody, UpdateF
   /// Token contains the result of `navigator.credentials.get`.
   @BuiltValueField(wireName: r'token')
   String get token;
+
+  /// Transient data to pass along to any webhooks.
+  @BuiltValueField(wireName: r'transient_payload')
+  JsonObject? get transientPayload;
 
   UpdateFedcmFlowBody._();
 
@@ -68,6 +74,13 @@ class _$UpdateFedcmFlowBodySerializer implements PrimitiveSerializer<UpdateFedcm
       object.token,
       specifiedType: const FullType(String),
     );
+    if (object.transientPayload != null) {
+      yield r'transient_payload';
+      yield serializers.serialize(
+        object.transientPayload,
+        specifiedType: const FullType(JsonObject),
+      );
+    }
   }
 
   @override
@@ -111,6 +124,13 @@ class _$UpdateFedcmFlowBodySerializer implements PrimitiveSerializer<UpdateFedcm
             specifiedType: const FullType(String),
           ) as String;
           result.token = valueDes;
+          break;
+        case r'transient_payload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(JsonObject),
+          ) as JsonObject;
+          result.transientPayload = valueDes;
           break;
         default:
           unhandled.add(key);

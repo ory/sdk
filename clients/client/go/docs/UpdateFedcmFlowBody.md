@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CsrfToken** | **string** | CSRFToken is the anti-CSRF token. | 
 **Nonce** | Pointer to **string** | Nonce is the nonce that was used in the &#x60;navigator.credentials.get&#x60; call. If specified, it must match the &#x60;nonce&#x60; claim in the token. | [optional] 
 **Token** | **string** | Token contains the result of &#x60;navigator.credentials.get&#x60;. | 
+**TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks. | [optional] 
 
 ## Methods
 
@@ -91,6 +92,31 @@ and a boolean to check if the value has been set.
 
 SetToken sets Token field to given value.
 
+
+### GetTransientPayload
+
+`func (o *UpdateFedcmFlowBody) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *UpdateFedcmFlowBody) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *UpdateFedcmFlowBody) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *UpdateFedcmFlowBody) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

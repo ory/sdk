@@ -13,13 +13,18 @@ class _$UpdateFedcmFlowBody extends UpdateFedcmFlowBody {
   final String? nonce;
   @override
   final String token;
+  @override
+  final JsonObject? transientPayload;
 
   factory _$UpdateFedcmFlowBody(
           [void Function(UpdateFedcmFlowBodyBuilder)? updates]) =>
       (new UpdateFedcmFlowBodyBuilder()..update(updates))._build();
 
   _$UpdateFedcmFlowBody._(
-      {required this.csrfToken, this.nonce, required this.token})
+      {required this.csrfToken,
+      this.nonce,
+      required this.token,
+      this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         csrfToken, r'UpdateFedcmFlowBody', 'csrfToken');
@@ -42,7 +47,8 @@ class _$UpdateFedcmFlowBody extends UpdateFedcmFlowBody {
     return other is UpdateFedcmFlowBody &&
         csrfToken == other.csrfToken &&
         nonce == other.nonce &&
-        token == other.token;
+        token == other.token &&
+        transientPayload == other.transientPayload;
   }
 
   @override
@@ -51,6 +57,7 @@ class _$UpdateFedcmFlowBody extends UpdateFedcmFlowBody {
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, nonce.hashCode);
     _$hash = $jc(_$hash, token.hashCode);
+    _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -60,7 +67,8 @@ class _$UpdateFedcmFlowBody extends UpdateFedcmFlowBody {
     return (newBuiltValueToStringHelper(r'UpdateFedcmFlowBody')
           ..add('csrfToken', csrfToken)
           ..add('nonce', nonce)
-          ..add('token', token))
+          ..add('token', token)
+          ..add('transientPayload', transientPayload))
         .toString();
   }
 }
@@ -81,6 +89,11 @@ class UpdateFedcmFlowBodyBuilder
   String? get token => _$this._token;
   set token(String? token) => _$this._token = token;
 
+  JsonObject? _transientPayload;
+  JsonObject? get transientPayload => _$this._transientPayload;
+  set transientPayload(JsonObject? transientPayload) =>
+      _$this._transientPayload = transientPayload;
+
   UpdateFedcmFlowBodyBuilder() {
     UpdateFedcmFlowBody._defaults(this);
   }
@@ -91,6 +104,7 @@ class UpdateFedcmFlowBodyBuilder
       _csrfToken = $v.csrfToken;
       _nonce = $v.nonce;
       _token = $v.token;
+      _transientPayload = $v.transientPayload;
       _$v = null;
     }
     return this;
@@ -117,7 +131,8 @@ class UpdateFedcmFlowBodyBuilder
                 csrfToken, r'UpdateFedcmFlowBody', 'csrfToken'),
             nonce: nonce,
             token: BuiltValueNullFieldError.checkNotNull(
-                token, r'UpdateFedcmFlowBody', 'token'));
+                token, r'UpdateFedcmFlowBody', 'token'),
+            transientPayload: transientPayload);
     replace(_$result);
     return _$result;
   }
