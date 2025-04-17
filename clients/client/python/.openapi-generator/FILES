@@ -148,6 +148,7 @@ docs/NormalizedProjectRevisionCourierChannel.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionSAMLProvider.md
+docs/NormalizedProjectRevisionScimClient.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
 docs/NormalizedProjectRevisionTokenizerTemplate.md
 docs/OAuth2Api.md
@@ -458,6 +459,7 @@ ory_client/models/normalized_project_revision_courier_channel.py
 ory_client/models/normalized_project_revision_hook.py
 ory_client/models/normalized_project_revision_identity_schema.py
 ory_client/models/normalized_project_revision_saml_provider.py
+ory_client/models/normalized_project_revision_scim_client.py
 ory_client/models/normalized_project_revision_third_party_provider.py
 ory_client/models/normalized_project_revision_tokenizer_template.py
 ory_client/models/o_auth2_client.py
@@ -754,6 +756,7 @@ test/test_normalized_project_revision_courier_channel.py
 test/test_normalized_project_revision_hook.py
 test/test_normalized_project_revision_identity_schema.py
 test/test_normalized_project_revision_saml_provider.py
+test/test_normalized_project_revision_scim_client.py
 test/test_normalized_project_revision_third_party_provider.py
 test/test_normalized_project_revision_tokenizer_template.py
 test/test_o_auth2_api.py

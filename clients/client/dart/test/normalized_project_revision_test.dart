@@ -1264,6 +1264,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<NormalizedProjectRevisionScimClient> scimClients
+    test('to test the property `scimClients`', () async {
+      // TODO
+    });
+
     // BuiltList<String> serveAdminCorsAllowedOrigins
     test('to test the property `serveAdminCorsAllowedOrigins`', () async {
       // TODO

@@ -163,6 +163,7 @@ src/models/NormalizedProjectRevisionCourierChannel.ts
 src/models/NormalizedProjectRevisionHook.ts
 src/models/NormalizedProjectRevisionIdentitySchema.ts
 src/models/NormalizedProjectRevisionSAMLProvider.ts
+src/models/NormalizedProjectRevisionScimClient.ts
 src/models/NormalizedProjectRevisionThirdPartyProvider.ts
 src/models/NormalizedProjectRevisionTokenizerTemplate.ts
 src/models/OAuth2Client.ts

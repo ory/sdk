@@ -223,6 +223,7 @@ Create project (normalized) request payload
 |**name** | **String** | The project&#39;s name. |  |
 |**projectId** | **String** | The Revision&#39;s Project ID |  [optional] |
 |**projectRevisionHooks** | [**List&lt;NormalizedProjectRevisionHook&gt;**](NormalizedProjectRevisionHook.md) |  |  [optional] |
+|**scimClients** | [**List&lt;NormalizedProjectRevisionScimClient&gt;**](NormalizedProjectRevisionScimClient.md) |  |  [optional] |
 |**serveAdminCorsAllowedOrigins** | **List&lt;String&gt;** |  |  [optional] |
 |**serveAdminCorsEnabled** | **Boolean** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. |  [optional] |
 |**servePublicCorsAllowedOrigins** | **List&lt;String&gt;** |  |  [optional] |

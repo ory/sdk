@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.20.6
+  version: v1.20.7
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -9976,6 +9976,10 @@ components:
           items:
             $ref: '#/components/schemas/normalizedProjectRevisionHook'
           type: array
+        scim_clients:
+          items:
+            $ref: '#/components/schemas/normalizedProjectRevisionScimClient'
+          type: array
         serve_admin_cors_allowed_origins:
           items:
             type: string
@@ -15671,6 +15675,10 @@ components:
           items:
             $ref: '#/components/schemas/normalizedProjectRevisionHook'
           type: array
+        scim_clients:
+          items:
+            $ref: '#/components/schemas/normalizedProjectRevisionScimClient'
+          type: array
         serve_admin_cors_allowed_origins:
           items:
             type: string
@@ -15892,6 +15900,61 @@ components:
           format: date-time
           readOnly: true
           type: string
+      type: object
+    normalizedProjectRevisionScimClient:
+      description: |-
+        SCIMClient represents a SCIM client configuration to be used by an external
+        identity provider.
+      properties:
+        authorization_header_secret:
+          description: The secret that the client uses in the authorization header
+            to authenticate itself.
+          type: string
+        client_id:
+          description: The unique ID of the SCIM server.
+          type: string
+        created_at:
+          description: The SCIM client's creation time
+          format: date-time
+          readOnly: true
+          type: string
+        label:
+          description: The SCIM server's label
+          type: string
+        mapper_url:
+          description: |-
+            Mapper specifies the JSONNet code snippet which uses the SCIM provider's data
+            to hydrate the identity's data.
+          type: string
+        organization_id:
+          description: OrganizationID is the organization ID for this SCIM server.
+          format: uuid
+          type: string
+        state:
+          description: |-
+            State indicates the state of the SCIM server
+
+            Only servers with state `enabled` will be available for SCIM provisioning.
+            enabled ThirdPartyProviderStateEnabled
+            disabled ThirdPartyProviderStateDisabled
+          enum:
+          - enabled
+          - disabled
+          type: string
+          x-go-enum-desc: |-
+            enabled ThirdPartyProviderStateEnabled
+            disabled ThirdPartyProviderStateDisabled
+        updated_at:
+          description: Last time the SCIM client was updated
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - authorization_header_secret
+      - client_id
+      - label
+      - mapper_url
+      - organization_id
       type: object
     normalizedProjectRevisionThirdPartyProvider:
       properties:
@@ -18611,6 +18674,10 @@ components:
       items:
         $ref: '#/components/schemas/normalizedProjectRevisionSAMLProvider'
       type: array
+    projectRevisionScimClients:
+      items:
+        $ref: '#/components/schemas/normalizedProjectRevisionScimClient'
+      type: array
     projectRevisionThirdPartyLoginProviders:
       items:
         $ref: '#/components/schemas/normalizedProjectRevisionThirdPartyProvider'
@@ -18700,6 +18767,7 @@ components:
             saml_sp SAMLSP
             saml_idp SAMLIDP
             auto_link_policy AutoLinkPolicy
+            scim_clients SCIMClients
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -18736,6 +18804,7 @@ components:
           - saml_sp
           - saml_idp
           - auto_link_policy
+          - scim_clients
           - data_location_regional
           - rate_limit_tier
           - session_rate_limit_tier
@@ -18773,6 +18842,7 @@ components:
             saml_sp SAMLSP
             saml_idp SAMLIDP
             auto_link_policy AutoLinkPolicy
+            scim_clients SCIMClients
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions

@@ -146,6 +146,7 @@ doc/NormalizedProjectRevisionCourierChannel.md
 doc/NormalizedProjectRevisionHook.md
 doc/NormalizedProjectRevisionIdentitySchema.md
 doc/NormalizedProjectRevisionSAMLProvider.md
+doc/NormalizedProjectRevisionScimClient.md
 doc/NormalizedProjectRevisionThirdPartyProvider.md
 doc/NormalizedProjectRevisionTokenizerTemplate.md
 doc/OAuth2Api.md
@@ -458,6 +459,7 @@ lib/src/model/normalized_project_revision_courier_channel.dart
 lib/src/model/normalized_project_revision_hook.dart
 lib/src/model/normalized_project_revision_identity_schema.dart
 lib/src/model/normalized_project_revision_saml_provider.dart
+lib/src/model/normalized_project_revision_scim_client.dart
 lib/src/model/normalized_project_revision_third_party_provider.dart
 lib/src/model/normalized_project_revision_tokenizer_template.dart
 lib/src/model/o_auth2_client.dart
@@ -746,6 +748,7 @@ test/normalized_project_revision_courier_channel_test.dart
 test/normalized_project_revision_hook_test.dart
 test/normalized_project_revision_identity_schema_test.dart
 test/normalized_project_revision_saml_provider_test.dart
+test/normalized_project_revision_scim_client_test.dart
 test/normalized_project_revision_test.dart
 test/normalized_project_revision_third_party_provider_test.dart
 test/normalized_project_revision_tokenizer_template_test.dart

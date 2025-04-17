@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.20.6
-  - Build date: 2025-04-09T14:57:28.440140570Z[Etc/UTC]
+- API version: v1.20.7
+  - Build date: 2025-04-17T09:54:32.134311945Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.20.6</version>
+  <version>v1.20.7</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.20.6"
+     implementation "sh.ory:client:v1.20.7"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.20.6.jar`
+* `target/client-v1.20.7.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -420,6 +420,7 @@ Class | Method | HTTP request | Description
  - [NormalizedProjectRevisionHook](docs/NormalizedProjectRevisionHook.md)
  - [NormalizedProjectRevisionIdentitySchema](docs/NormalizedProjectRevisionIdentitySchema.md)
  - [NormalizedProjectRevisionSAMLProvider](docs/NormalizedProjectRevisionSAMLProvider.md)
+ - [NormalizedProjectRevisionScimClient](docs/NormalizedProjectRevisionScimClient.md)
  - [NormalizedProjectRevisionThirdPartyProvider](docs/NormalizedProjectRevisionThirdPartyProvider.md)
  - [NormalizedProjectRevisionTokenizerTemplate](docs/NormalizedProjectRevisionTokenizerTemplate.md)
  - [OAuth2Client](docs/OAuth2Client.md)

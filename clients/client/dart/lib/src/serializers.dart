@@ -152,6 +152,7 @@ import 'package:ory_client/src/model/normalized_project_revision_courier_channel
 import 'package:ory_client/src/model/normalized_project_revision_hook.dart';
 import 'package:ory_client/src/model/normalized_project_revision_identity_schema.dart';
 import 'package:ory_client/src/model/normalized_project_revision_saml_provider.dart';
+import 'package:ory_client/src/model/normalized_project_revision_scim_client.dart';
 import 'package:ory_client/src/model/normalized_project_revision_third_party_provider.dart';
 import 'package:ory_client/src/model/normalized_project_revision_tokenizer_template.dart';
 import 'package:ory_client/src/model/o_auth2_client.dart';
@@ -438,6 +439,7 @@ part 'serializers.g.dart';
   NormalizedProjectRevisionHook,
   NormalizedProjectRevisionIdentitySchema,
   NormalizedProjectRevisionSAMLProvider,
+  NormalizedProjectRevisionScimClient,
   NormalizedProjectRevisionThirdPartyProvider,
   NormalizedProjectRevisionTokenizerTemplate,
   OAuth2Client,

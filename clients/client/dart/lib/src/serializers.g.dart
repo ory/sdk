@@ -203,6 +203,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
           .serializer)
       ..add(NormalizedProjectRevisionSAMLProvider.serializer)
       ..add(NormalizedProjectRevisionSAMLProviderStateEnum.serializer)
+      ..add(NormalizedProjectRevisionScimClient.serializer)
+      ..add(NormalizedProjectRevisionScimClientStateEnum.serializer)
       ..add(NormalizedProjectRevisionThirdPartyProvider.serializer)
       ..add(NormalizedProjectRevisionThirdPartyProviderPkceEnum.serializer)
       ..add(NormalizedProjectRevisionThirdPartyProviderStateEnum.serializer)
@@ -751,6 +753,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
           () => new ListBuilder<NormalizedProjectRevisionHook>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionScimClient)]),
+          () => new ListBuilder<NormalizedProjectRevisionScimClient>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
@@ -827,6 +833,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
           () => new ListBuilder<NormalizedProjectRevisionHook>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionScimClient)]),
+          () => new ListBuilder<NormalizedProjectRevisionScimClient>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

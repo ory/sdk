@@ -221,6 +221,7 @@ Name | Type | Description | Notes
 **name** | **String** | The project's name. | 
 **projectId** | **String** | The Revision's Project ID | [optional] 
 **projectRevisionHooks** | [**BuiltList&lt;NormalizedProjectRevisionHook&gt;**](NormalizedProjectRevisionHook.md) |  | [optional] 
+**scimClients** | [**BuiltList&lt;NormalizedProjectRevisionScimClient&gt;**](NormalizedProjectRevisionScimClient.md) |  | [optional] 
 **serveAdminCorsAllowedOrigins** | **BuiltList&lt;String&gt;** |  | [optional] 
 **serveAdminCorsEnabled** | **bool** | Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting. | [optional] 
 **servePublicCorsAllowedOrigins** | **BuiltList&lt;String&gt;** |  | [optional] 

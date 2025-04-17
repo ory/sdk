@@ -219,6 +219,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The project&#39;s name. | 
 **ProjectId** | Pointer to **string** | The Revision&#39;s Project ID | [optional] 
 **ProjectRevisionHooks** | Pointer to [**[]NormalizedProjectRevisionHook**](NormalizedProjectRevisionHook.md) |  | [optional] 
+**ScimClients** | Pointer to [**[]NormalizedProjectRevisionScimClient**](NormalizedProjectRevisionScimClient.md) |  | [optional] 
 **ServeAdminCorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
 **ServeAdminCorsEnabled** | Pointer to **bool** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] 
 **ServePublicCorsAllowedOrigins** | Pointer to **[]string** |  | [optional] 
@@ -5640,6 +5641,31 @@ SetProjectRevisionHooks sets ProjectRevisionHooks field to given value.
 `func (o *CreateProjectNormalizedPayload) HasProjectRevisionHooks() bool`
 
 HasProjectRevisionHooks returns a boolean if a field has been set.
+
+### GetScimClients
+
+`func (o *CreateProjectNormalizedPayload) GetScimClients() []NormalizedProjectRevisionScimClient`
+
+GetScimClients returns the ScimClients field if non-nil, zero value otherwise.
+
+### GetScimClientsOk
+
+`func (o *CreateProjectNormalizedPayload) GetScimClientsOk() (*[]NormalizedProjectRevisionScimClient, bool)`
+
+GetScimClientsOk returns a tuple with the ScimClients field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScimClients
+
+`func (o *CreateProjectNormalizedPayload) SetScimClients(v []NormalizedProjectRevisionScimClient)`
+
+SetScimClients sets ScimClients field to given value.
+
+### HasScimClients
+
+`func (o *CreateProjectNormalizedPayload) HasScimClients() bool`
+
+HasScimClients returns a boolean if a field has been set.
 
 ### GetServeAdminCorsAllowedOrigins
 

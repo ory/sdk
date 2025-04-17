@@ -219,6 +219,7 @@ Name | Type | Description | Notes
 **name** | **String** | The project's name. | 
 **project_id** | Option<**String**> | The Revision's Project ID | [optional]
 **project_revision_hooks** | Option<[**Vec<models::NormalizedProjectRevisionHook>**](normalizedProjectRevisionHook.md)> |  | [optional]
+**scim_clients** | Option<[**Vec<models::NormalizedProjectRevisionScimClient>**](normalizedProjectRevisionScimClient.md)> |  | [optional]
 **serve_admin_cors_allowed_origins** | Option<**Vec<String>**> |  | [optional]
 **serve_admin_cors_enabled** | Option<**bool**> | Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting. | [optional]
 **serve_public_cors_allowed_origins** | Option<**Vec<String>**> |  | [optional]

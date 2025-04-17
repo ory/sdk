@@ -219,6 +219,7 @@
 | **name** | **String** | The project&#39;s name. |  |
 | **project_id** | **String** | The Revision&#39;s Project ID | [optional] |
 | **project_revision_hooks** | [**Array&lt;NormalizedProjectRevisionHook&gt;**](NormalizedProjectRevisionHook.md) |  | [optional] |
+| **scim_clients** | [**Array&lt;NormalizedProjectRevisionScimClient&gt;**](NormalizedProjectRevisionScimClient.md) |  | [optional] |
 | **serve_admin_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
 | **serve_admin_cors_enabled** | **Boolean** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] |
 | **serve_public_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
@@ -448,6 +449,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   name: null,
   project_id: null,
   project_revision_hooks: null,
+  scim_clients: null,
   serve_admin_cors_allowed_origins: null,
   serve_admin_cors_enabled: null,
   serve_public_cors_allowed_origins: null,

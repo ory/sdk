@@ -155,6 +155,7 @@ docs/Model/NormalizedProjectRevisionCourierChannel.md
 docs/Model/NormalizedProjectRevisionHook.md
 docs/Model/NormalizedProjectRevisionIdentitySchema.md
 docs/Model/NormalizedProjectRevisionSAMLProvider.md
+docs/Model/NormalizedProjectRevisionScimClient.md
 docs/Model/NormalizedProjectRevisionThirdPartyProvider.md
 docs/Model/NormalizedProjectRevisionTokenizerTemplate.md
 docs/Model/OAuth2Client.md
@@ -455,6 +456,7 @@ lib/Model/NormalizedProjectRevisionCourierChannel.php
 lib/Model/NormalizedProjectRevisionHook.php
 lib/Model/NormalizedProjectRevisionIdentitySchema.php
 lib/Model/NormalizedProjectRevisionSAMLProvider.php
+lib/Model/NormalizedProjectRevisionScimClient.php
 lib/Model/NormalizedProjectRevisionThirdPartyProvider.php
 lib/Model/NormalizedProjectRevisionTokenizerTemplate.php
 lib/Model/OAuth2Client.php
@@ -750,6 +752,7 @@ test/Model/NormalizedProjectRevisionCourierChannelTest.php
 test/Model/NormalizedProjectRevisionHookTest.php
 test/Model/NormalizedProjectRevisionIdentitySchemaTest.php
 test/Model/NormalizedProjectRevisionSAMLProviderTest.php
+test/Model/NormalizedProjectRevisionScimClientTest.php
 test/Model/NormalizedProjectRevisionTest.php
 test/Model/NormalizedProjectRevisionThirdPartyProviderTest.php
 test/Model/NormalizedProjectRevisionTokenizerTemplateTest.php

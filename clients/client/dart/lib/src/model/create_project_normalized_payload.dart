@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/keto_namespace.dart';
+import 'package:ory_client/src/model/normalized_project_revision_scim_client.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/normalized_project_revision_identity_schema.dart';
 import 'package:ory_client/src/model/normalized_project_revision_tokenizer_template.dart';
@@ -235,6 +236,7 @@ part 'create_project_normalized_payload.g.dart';
 /// * [name] - The project's name.
 /// * [projectId] - The Revision's Project ID
 /// * [projectRevisionHooks] 
+/// * [scimClients] 
 /// * [serveAdminCorsAllowedOrigins] 
 /// * [serveAdminCorsEnabled] - Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting.
 /// * [servePublicCorsAllowedOrigins] 
@@ -1089,6 +1091,9 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
 
   @BuiltValueField(wireName: r'project_revision_hooks')
   BuiltList<NormalizedProjectRevisionHook>? get projectRevisionHooks;
+
+  @BuiltValueField(wireName: r'scim_clients')
+  BuiltList<NormalizedProjectRevisionScimClient>? get scimClients;
 
   @BuiltValueField(wireName: r'serve_admin_cors_allowed_origins')
   BuiltList<String>? get serveAdminCorsAllowedOrigins;
@@ -2649,6 +2654,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.projectRevisionHooks,
         specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionHook)]),
+      );
+    }
+    if (object.scimClients != null) {
+      yield r'scim_clients';
+      yield serializers.serialize(
+        object.scimClients,
+        specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionScimClient)]),
       );
     }
     if (object.serveAdminCorsAllowedOrigins != null) {
@@ -4230,6 +4242,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionHook)]),
           ) as BuiltList<NormalizedProjectRevisionHook>;
           result.projectRevisionHooks.replace(valueDes);
+          break;
+        case r'scim_clients':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionScimClient)]),
+          ) as BuiltList<NormalizedProjectRevisionScimClient>;
+          result.scimClients.replace(valueDes);
           break;
         case r'serve_admin_cors_allowed_origins':
           final valueDes = serializers.deserialize(

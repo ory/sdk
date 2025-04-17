@@ -157,6 +157,7 @@ lib/ory/model/normalized_project_revision_courier_channel.ex
 lib/ory/model/normalized_project_revision_hook.ex
 lib/ory/model/normalized_project_revision_identity_schema.ex
 lib/ory/model/normalized_project_revision_saml_provider.ex
+lib/ory/model/normalized_project_revision_scim_client.ex
 lib/ory/model/normalized_project_revision_third_party_provider.ex
 lib/ory/model/normalized_project_revision_tokenizer_template.ex
 lib/ory/model/o_auth2_client.ex

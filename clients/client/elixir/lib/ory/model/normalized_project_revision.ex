@@ -221,6 +221,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :name,
     :project_id,
     :project_revision_hooks,
+    :scim_clients,
     :serve_admin_cors_allowed_origins,
     :serve_admin_cors_enabled,
     :serve_public_cors_allowed_origins,
@@ -443,6 +444,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :name => String.t,
     :project_id => String.t | nil,
     :project_revision_hooks => [Ory.Model.NormalizedProjectRevisionHook.t] | nil,
+    :scim_clients => [Ory.Model.NormalizedProjectRevisionScimClient.t] | nil,
     :serve_admin_cors_allowed_origins => [String.t] | nil,
     :serve_admin_cors_enabled => boolean() | nil,
     :serve_public_cors_allowed_origins => [String.t] | nil,
@@ -463,6 +465,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
      |> Deserializer.deserialize(:kratos_selfservice_methods_saml_config_providers, :list, Ory.Model.NormalizedProjectRevisionSamlProvider)
      |> Deserializer.deserialize(:kratos_session_whoami_tokenizer_templates, :list, Ory.Model.NormalizedProjectRevisionTokenizerTemplate)
      |> Deserializer.deserialize(:project_revision_hooks, :list, Ory.Model.NormalizedProjectRevisionHook)
+     |> Deserializer.deserialize(:scim_clients, :list, Ory.Model.NormalizedProjectRevisionScimClient)
      |> Deserializer.deserialize(:updated_at, :datetime, nil)
   end
 end

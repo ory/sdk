@@ -150,6 +150,7 @@ docs/NormalizedProjectRevisionCourierChannel.md
 docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionSAMLProvider.md
+docs/NormalizedProjectRevisionScimClient.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
 docs/NormalizedProjectRevisionTokenizerTemplate.md
 docs/OAuth2Api.md
@@ -483,6 +484,7 @@ src/main/java/sh/ory/model/NormalizedProjectRevisionCourierChannel.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionHook.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionIdentitySchema.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionSAMLProvider.java
+src/main/java/sh/ory/model/NormalizedProjectRevisionScimClient.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionThirdPartyProvider.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionTokenizerTemplate.java
 src/main/java/sh/ory/model/OAuth2Client.java
@@ -776,6 +778,7 @@ src/test/java/sh/ory/model/NormalizedProjectRevisionCourierChannelTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionHookTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionIdentitySchemaTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionSAMLProviderTest.java
+src/test/java/sh/ory/model/NormalizedProjectRevisionScimClientTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionThirdPartyProviderTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionTokenizerTemplateTest.java

@@ -217,6 +217,7 @@ Name | Type | Description | Notes
 **name** | **string** | The project&#39;s name. |
 **projectId** | **string** | The Revision&#39;s Project ID | [optional]
 **projectRevisionHooks** | [**\Ory\Client\Model\NormalizedProjectRevisionHook[]**](NormalizedProjectRevisionHook.md) |  | [optional]
+**scimClients** | [**\Ory\Client\Model\NormalizedProjectRevisionScimClient[]**](NormalizedProjectRevisionScimClient.md) |  | [optional]
 **serveAdminCorsAllowedOrigins** | **string[]** |  | [optional]
 **serveAdminCorsEnabled** | **bool** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional]
 **servePublicCorsAllowedOrigins** | **string[]** |  | [optional]

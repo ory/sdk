@@ -981,6 +981,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final BuiltList<NormalizedProjectRevisionHook>? projectRevisionHooks;
   @override
+  final BuiltList<NormalizedProjectRevisionScimClient>? scimClients;
+  @override
   final BuiltList<String>? serveAdminCorsAllowedOrigins;
   @override
   final bool? serveAdminCorsEnabled;
@@ -1215,6 +1217,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       required this.name,
       this.projectId,
       this.projectRevisionHooks,
+      this.scimClients,
       this.serveAdminCorsAllowedOrigins,
       this.serveAdminCorsEnabled,
       this.servePublicCorsAllowedOrigins,
@@ -1644,6 +1647,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         name == other.name &&
         projectId == other.projectId &&
         projectRevisionHooks == other.projectRevisionHooks &&
+        scimClients == other.scimClients &&
         serveAdminCorsAllowedOrigins == other.serveAdminCorsAllowedOrigins &&
         serveAdminCorsEnabled == other.serveAdminCorsEnabled &&
         servePublicCorsAllowedOrigins == other.servePublicCorsAllowedOrigins &&
@@ -1999,6 +2003,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, projectId.hashCode);
     _$hash = $jc(_$hash, projectRevisionHooks.hashCode);
+    _$hash = $jc(_$hash, scimClients.hashCode);
     _$hash = $jc(_$hash, serveAdminCorsAllowedOrigins.hashCode);
     _$hash = $jc(_$hash, serveAdminCorsEnabled.hashCode);
     _$hash = $jc(_$hash, servePublicCorsAllowedOrigins.hashCode);
@@ -2412,6 +2417,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
           ..add('name', name)
           ..add('projectId', projectId)
           ..add('projectRevisionHooks', projectRevisionHooks)
+          ..add('scimClients', scimClients)
           ..add('serveAdminCorsAllowedOrigins', serveAdminCorsAllowedOrigins)
           ..add('serveAdminCorsEnabled', serveAdminCorsEnabled)
           ..add('servePublicCorsAllowedOrigins', servePublicCorsAllowedOrigins)
@@ -4090,6 +4096,14 @@ class CreateProjectNormalizedPayloadBuilder
           ListBuilder<NormalizedProjectRevisionHook>? projectRevisionHooks) =>
       _$this._projectRevisionHooks = projectRevisionHooks;
 
+  ListBuilder<NormalizedProjectRevisionScimClient>? _scimClients;
+  ListBuilder<NormalizedProjectRevisionScimClient> get scimClients =>
+      _$this._scimClients ??=
+          new ListBuilder<NormalizedProjectRevisionScimClient>();
+  set scimClients(
+          ListBuilder<NormalizedProjectRevisionScimClient>? scimClients) =>
+      _$this._scimClients = scimClients;
+
   ListBuilder<String>? _serveAdminCorsAllowedOrigins;
   ListBuilder<String> get serveAdminCorsAllowedOrigins =>
       _$this._serveAdminCorsAllowedOrigins ??= new ListBuilder<String>();
@@ -4502,6 +4516,7 @@ class CreateProjectNormalizedPayloadBuilder
       _name = $v.name;
       _projectId = $v.projectId;
       _projectRevisionHooks = $v.projectRevisionHooks?.toBuilder();
+      _scimClients = $v.scimClients?.toBuilder();
       _serveAdminCorsAllowedOrigins =
           $v.serveAdminCorsAllowedOrigins?.toBuilder();
       _serveAdminCorsEnabled = $v.serveAdminCorsEnabled;
@@ -4779,6 +4794,7 @@ class CreateProjectNormalizedPayloadBuilder
               name: BuiltValueNullFieldError.checkNotNull(name, r'CreateProjectNormalizedPayload', 'name'),
               projectId: projectId,
               projectRevisionHooks: _projectRevisionHooks?.build(),
+              scimClients: _scimClients?.build(),
               serveAdminCorsAllowedOrigins: _serveAdminCorsAllowedOrigins?.build(),
               serveAdminCorsEnabled: serveAdminCorsEnabled,
               servePublicCorsAllowedOrigins: _servePublicCorsAllowedOrigins?.build(),
@@ -4845,6 +4861,8 @@ class CreateProjectNormalizedPayloadBuilder
 
         _$failedField = 'projectRevisionHooks';
         _projectRevisionHooks?.build();
+        _$failedField = 'scimClients';
+        _scimClients?.build();
         _$failedField = 'serveAdminCorsAllowedOrigins';
         _serveAdminCorsAllowedOrigins?.build();
 
