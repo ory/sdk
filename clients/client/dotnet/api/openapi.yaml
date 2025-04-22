@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.20.7
+  version: v1.20.8
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -18768,6 +18768,7 @@ components:
             saml_idp SAMLIDP
             auto_link_policy AutoLinkPolicy
             scim_clients SCIMClients
+            default_smtp_email_customization DefaultSMTPEmailCustomization
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -18805,6 +18806,7 @@ components:
           - saml_idp
           - auto_link_policy
           - scim_clients
+          - default_smtp_email_customization
           - data_location_regional
           - rate_limit_tier
           - session_rate_limit_tier
@@ -18843,6 +18845,7 @@ components:
             saml_idp SAMLIDP
             auto_link_policy AutoLinkPolicy
             scim_clients SCIMClients
+            default_smtp_email_customization DefaultSMTPEmailCustomization
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions

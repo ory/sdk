@@ -65,6 +65,9 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_autoLinkPolicy =
     const QuotaUsageFeatureEnum._('autoLinkPolicy');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_scimClients =
     const QuotaUsageFeatureEnum._('scimClients');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_defaultSmtpEmailCustomization =
+    const QuotaUsageFeatureEnum._('defaultSmtpEmailCustomization');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationRegional =
     const QuotaUsageFeatureEnum._('dataLocationRegional');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
@@ -144,6 +147,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_autoLinkPolicy;
     case 'scimClients':
       return _$quotaUsageFeatureEnum_scimClients;
+    case 'defaultSmtpEmailCustomization':
+      return _$quotaUsageFeatureEnum_defaultSmtpEmailCustomization;
     case 'dataLocationRegional':
       return _$quotaUsageFeatureEnum_dataLocationRegional;
     case 'rateLimitTier':
@@ -194,6 +199,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_samlIdp,
   _$quotaUsageFeatureEnum_autoLinkPolicy,
   _$quotaUsageFeatureEnum_scimClients,
+  _$quotaUsageFeatureEnum_defaultSmtpEmailCustomization,
   _$quotaUsageFeatureEnum_dataLocationRegional,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
@@ -238,6 +244,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'samlIdp': 'saml_idp',
     'autoLinkPolicy': 'auto_link_policy',
     'scimClients': 'scim_clients',
+    'defaultSmtpEmailCustomization': 'default_smtp_email_customization',
     'dataLocationRegional': 'data_location_regional',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
@@ -276,6 +283,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'saml_idp': 'samlIdp',
     'auto_link_policy': 'autoLinkPolicy',
     'scim_clients': 'scimClients',
+    'default_smtp_email_customization': 'defaultSmtpEmailCustomization',
     'data_location_regional': 'dataLocationRegional',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',
