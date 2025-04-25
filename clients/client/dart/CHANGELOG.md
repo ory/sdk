@@ -1,3 +1,3 @@
-# 1.20.8
+# 1.20.9
 
 Please refer to https://changelog.ory.sh and https://www.ory.sh/docs/sdk
