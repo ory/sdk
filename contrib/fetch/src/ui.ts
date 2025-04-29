@@ -8,6 +8,7 @@ import {
   UiNodeInputAttributes,
   UiNodeScriptAttributes,
   UiNodeTextAttributes,
+  UiNodeDivisionAttributes,
   UiText,
 } from "../"
 
@@ -71,6 +72,17 @@ export function isUiNodeInputAttributes(
   attrs: ObjWithNodeType,
 ): attrs is UiNodeInputAttributes {
   return attrs.node_type === "input"
+}
+
+/**
+ * A TypeScript type guard for nodes of the type <div>
+ *
+ * @param attrs - the attributes of the node
+ */
+export function isUiNodeDivAttributes(
+  attrs: ObjWithNodeType,
+): attrs is UiNodeDivisionAttributes {
+  return attrs.node_type === "div"
 }
 
 /**
