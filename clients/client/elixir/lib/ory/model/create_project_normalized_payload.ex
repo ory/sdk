@@ -8,8 +8,10 @@ defmodule Ory.Model.CreateProjectNormalizedPayload do
 
   @derive Jason.Encoder
   defstruct [
+    :account_experience_default_locale,
     :account_experience_favicon_dark,
     :account_experience_favicon_light,
+    :account_experience_locale_behavior,
     :account_experience_logo_dark,
     :account_experience_logo_light,
     :account_experience_theme_variables_dark,
@@ -234,8 +236,10 @@ defmodule Ory.Model.CreateProjectNormalizedPayload do
   ]
 
   @type t :: %__MODULE__{
+    :account_experience_default_locale => String.t | nil,
     :account_experience_favicon_dark => String.t | nil,
     :account_experience_favicon_light => String.t | nil,
+    :account_experience_locale_behavior => String.t | nil,
     :account_experience_logo_dark => String.t | nil,
     :account_experience_logo_light => String.t | nil,
     :account_experience_theme_variables_dark => String.t | nil,

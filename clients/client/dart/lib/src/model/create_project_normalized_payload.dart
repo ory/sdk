@@ -21,8 +21,10 @@ part 'create_project_normalized_payload.g.dart';
 /// Create project (normalized) request payload
 ///
 /// Properties:
+/// * [accountExperienceDefaultLocale] - Holds the default locale for the account experience.
 /// * [accountExperienceFaviconDark] - Holds the URL to the account experience's dark theme favicon (currently unused).
 /// * [accountExperienceFaviconLight] - Holds the URL to the account experience's favicon.
+/// * [accountExperienceLocaleBehavior] - Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language.
 /// * [accountExperienceLogoDark] - Holds the URL to the account experience's dark theme logo (currently unused).
 /// * [accountExperienceLogoLight] - Holds the URL to the account experience's logo.
 /// * [accountExperienceThemeVariablesDark] - Holds the URL to the account experience's dark theme variables.
@@ -246,6 +248,10 @@ part 'create_project_normalized_payload.g.dart';
 /// * [workspaceId] 
 @BuiltValue()
 abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNormalizedPayload, CreateProjectNormalizedPayloadBuilder> {
+  /// Holds the default locale for the account experience.
+  @BuiltValueField(wireName: r'account_experience_default_locale')
+  String? get accountExperienceDefaultLocale;
+
   /// Holds the URL to the account experience's dark theme favicon (currently unused).
   @BuiltValueField(wireName: r'account_experience_favicon_dark')
   String? get accountExperienceFaviconDark;
@@ -253,6 +259,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   /// Holds the URL to the account experience's favicon.
   @BuiltValueField(wireName: r'account_experience_favicon_light')
   String? get accountExperienceFaviconLight;
+
+  /// Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language.
+  @BuiltValueField(wireName: r'account_experience_locale_behavior')
+  String? get accountExperienceLocaleBehavior;
 
   /// Holds the URL to the account experience's dark theme logo (currently unused).
   @BuiltValueField(wireName: r'account_experience_logo_dark')
@@ -1155,6 +1165,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
     CreateProjectNormalizedPayload object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.accountExperienceDefaultLocale != null) {
+      yield r'account_experience_default_locale';
+      yield serializers.serialize(
+        object.accountExperienceDefaultLocale,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.accountExperienceFaviconDark != null) {
       yield r'account_experience_favicon_dark';
       yield serializers.serialize(
@@ -1166,6 +1183,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield r'account_experience_favicon_light';
       yield serializers.serialize(
         object.accountExperienceFaviconLight,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.accountExperienceLocaleBehavior != null) {
+      yield r'account_experience_locale_behavior';
+      yield serializers.serialize(
+        object.accountExperienceLocaleBehavior,
         specifiedType: const FullType(String),
       );
     }
@@ -2735,6 +2759,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'account_experience_default_locale':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.accountExperienceDefaultLocale = valueDes;
+          break;
         case r'account_experience_favicon_dark':
           final valueDes = serializers.deserialize(
             value,
@@ -2748,6 +2779,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(String),
           ) as String;
           result.accountExperienceFaviconLight = valueDes;
+          break;
+        case r'account_experience_locale_behavior':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.accountExperienceLocaleBehavior = valueDes;
           break;
         case r'account_experience_logo_dark':
           final valueDes = serializers.deserialize(

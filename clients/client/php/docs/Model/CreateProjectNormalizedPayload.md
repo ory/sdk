@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**accountExperienceDefaultLocale** | **string** | Holds the default locale for the account experience. | [optional]
 **accountExperienceFaviconDark** | **string** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). | [optional]
 **accountExperienceFaviconLight** | **string** | Holds the URL to the account experience&#39;s favicon. | [optional]
+**accountExperienceLocaleBehavior** | **string** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. | [optional]
 **accountExperienceLogoDark** | **string** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). | [optional]
 **accountExperienceLogoLight** | **string** | Holds the URL to the account experience&#39;s logo. | [optional]
 **accountExperienceThemeVariablesDark** | **string** | Holds the URL to the account experience&#39;s dark theme variables. | [optional]

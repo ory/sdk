@@ -7,6 +7,11 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(AccountExperienceConfiguration, () {
+    // String defaultLocale
+    test('to test the property `defaultLocale`', () async {
+      // TODO
+    });
+
     // String defaultRedirectUrl
     test('to test the property `defaultRedirectUrl`', () async {
       // TODO
@@ -24,6 +29,12 @@ void main() {
 
     // String faviconLightUrl
     test('to test the property `faviconLightUrl`', () async {
+      // TODO
+    });
+
+    //  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage
+    // String localeBehavior
+    test('to test the property `localeBehavior`', () async {
       // TODO
     });
 

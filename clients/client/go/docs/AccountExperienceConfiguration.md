@@ -4,10 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DefaultLocale** | **string** |  | 
 **DefaultRedirectUrl** | **string** |  | 
 **ErrorUiUrl** | **string** |  | 
 **FaviconDarkUrl** | Pointer to **string** |  | [optional] 
 **FaviconLightUrl** | Pointer to **string** |  | [optional] 
+**LocaleBehavior** | **string** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
 **LoginUiUrl** | **string** |  | 
 **LogoDarkUrl** | Pointer to **string** |  | [optional] 
 **LogoLightUrl** | Pointer to **string** |  | [optional] 
@@ -25,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewAccountExperienceConfiguration
 
-`func NewAccountExperienceConfiguration(defaultRedirectUrl string, errorUiUrl string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, verificationEnabled bool, verificationUiUrl string, ) *AccountExperienceConfiguration`
+`func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, errorUiUrl string, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, verificationEnabled bool, verificationUiUrl string, ) *AccountExperienceConfiguration`
 
 NewAccountExperienceConfiguration instantiates a new AccountExperienceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -39,6 +41,26 @@ will change when the set of required properties is changed
 NewAccountExperienceConfigurationWithDefaults instantiates a new AccountExperienceConfiguration object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDefaultLocale
+
+`func (o *AccountExperienceConfiguration) GetDefaultLocale() string`
+
+GetDefaultLocale returns the DefaultLocale field if non-nil, zero value otherwise.
+
+### GetDefaultLocaleOk
+
+`func (o *AccountExperienceConfiguration) GetDefaultLocaleOk() (*string, bool)`
+
+GetDefaultLocaleOk returns a tuple with the DefaultLocale field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultLocale
+
+`func (o *AccountExperienceConfiguration) SetDefaultLocale(v string)`
+
+SetDefaultLocale sets DefaultLocale field to given value.
+
 
 ### GetDefaultRedirectUrl
 
@@ -129,6 +151,26 @@ SetFaviconLightUrl sets FaviconLightUrl field to given value.
 `func (o *AccountExperienceConfiguration) HasFaviconLightUrl() bool`
 
 HasFaviconLightUrl returns a boolean if a field has been set.
+
+### GetLocaleBehavior
+
+`func (o *AccountExperienceConfiguration) GetLocaleBehavior() string`
+
+GetLocaleBehavior returns the LocaleBehavior field if non-nil, zero value otherwise.
+
+### GetLocaleBehaviorOk
+
+`func (o *AccountExperienceConfiguration) GetLocaleBehaviorOk() (*string, bool)`
+
+GetLocaleBehaviorOk returns a tuple with the LocaleBehavior field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocaleBehavior
+
+`func (o *AccountExperienceConfiguration) SetLocaleBehavior(v string)`
+
+SetLocaleBehavior sets LocaleBehavior field to given value.
+
 
 ### GetLoginUiUrl
 

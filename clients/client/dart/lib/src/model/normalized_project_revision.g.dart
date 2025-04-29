@@ -351,9 +351,13 @@ class _$NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnumSerial
 
 class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
+  final String? accountExperienceDefaultLocale;
+  @override
   final String? accountExperienceFaviconDark;
   @override
   final String? accountExperienceFaviconLight;
+  @override
+  final String? accountExperienceLocaleBehavior;
   @override
   final String? accountExperienceLogoDark;
   @override
@@ -818,8 +822,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       (new NormalizedProjectRevisionBuilder()..update(updates))._build();
 
   _$NormalizedProjectRevision._(
-      {this.accountExperienceFaviconDark,
+      {this.accountExperienceDefaultLocale,
+      this.accountExperienceFaviconDark,
       this.accountExperienceFaviconLight,
+      this.accountExperienceLocaleBehavior,
       this.accountExperienceLogoDark,
       this.accountExperienceLogoLight,
       this.accountExperienceThemeVariablesDark,
@@ -1056,8 +1062,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is NormalizedProjectRevision &&
+        accountExperienceDefaultLocale ==
+            other.accountExperienceDefaultLocale &&
         accountExperienceFaviconDark == other.accountExperienceFaviconDark &&
         accountExperienceFaviconLight == other.accountExperienceFaviconLight &&
+        accountExperienceLocaleBehavior ==
+            other.accountExperienceLocaleBehavior &&
         accountExperienceLogoDark == other.accountExperienceLogoDark &&
         accountExperienceLogoLight == other.accountExperienceLogoLight &&
         accountExperienceThemeVariablesDark ==
@@ -1468,8 +1478,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, accountExperienceDefaultLocale.hashCode);
     _$hash = $jc(_$hash, accountExperienceFaviconDark.hashCode);
     _$hash = $jc(_$hash, accountExperienceFaviconLight.hashCode);
+    _$hash = $jc(_$hash, accountExperienceLocaleBehavior.hashCode);
     _$hash = $jc(_$hash, accountExperienceLogoDark.hashCode);
     _$hash = $jc(_$hash, accountExperienceLogoLight.hashCode);
     _$hash = $jc(_$hash, accountExperienceThemeVariablesDark.hashCode);
@@ -1823,8 +1835,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'NormalizedProjectRevision')
+          ..add(
+              'accountExperienceDefaultLocale', accountExperienceDefaultLocale)
           ..add('accountExperienceFaviconDark', accountExperienceFaviconDark)
           ..add('accountExperienceFaviconLight', accountExperienceFaviconLight)
+          ..add('accountExperienceLocaleBehavior',
+              accountExperienceLocaleBehavior)
           ..add('accountExperienceLogoDark', accountExperienceLogoDark)
           ..add('accountExperienceLogoLight', accountExperienceLogoLight)
           ..add('accountExperienceThemeVariablesDark',
@@ -2236,6 +2252,12 @@ class NormalizedProjectRevisionBuilder
         Builder<NormalizedProjectRevision, NormalizedProjectRevisionBuilder> {
   _$NormalizedProjectRevision? _$v;
 
+  String? _accountExperienceDefaultLocale;
+  String? get accountExperienceDefaultLocale =>
+      _$this._accountExperienceDefaultLocale;
+  set accountExperienceDefaultLocale(String? accountExperienceDefaultLocale) =>
+      _$this._accountExperienceDefaultLocale = accountExperienceDefaultLocale;
+
   String? _accountExperienceFaviconDark;
   String? get accountExperienceFaviconDark =>
       _$this._accountExperienceFaviconDark;
@@ -2247,6 +2269,13 @@ class NormalizedProjectRevisionBuilder
       _$this._accountExperienceFaviconLight;
   set accountExperienceFaviconLight(String? accountExperienceFaviconLight) =>
       _$this._accountExperienceFaviconLight = accountExperienceFaviconLight;
+
+  String? _accountExperienceLocaleBehavior;
+  String? get accountExperienceLocaleBehavior =>
+      _$this._accountExperienceLocaleBehavior;
+  set accountExperienceLocaleBehavior(
+          String? accountExperienceLocaleBehavior) =>
+      _$this._accountExperienceLocaleBehavior = accountExperienceLocaleBehavior;
 
   String? _accountExperienceLogoDark;
   String? get accountExperienceLogoDark => _$this._accountExperienceLogoDark;
@@ -3933,8 +3962,10 @@ class NormalizedProjectRevisionBuilder
   NormalizedProjectRevisionBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _accountExperienceDefaultLocale = $v.accountExperienceDefaultLocale;
       _accountExperienceFaviconDark = $v.accountExperienceFaviconDark;
       _accountExperienceFaviconLight = $v.accountExperienceFaviconLight;
+      _accountExperienceLocaleBehavior = $v.accountExperienceLocaleBehavior;
       _accountExperienceLogoDark = $v.accountExperienceLogoDark;
       _accountExperienceLogoLight = $v.accountExperienceLogoLight;
       _accountExperienceThemeVariablesDark =
@@ -4332,8 +4363,10 @@ class NormalizedProjectRevisionBuilder
     try {
       _$result = _$v ??
           new _$NormalizedProjectRevision._(
+              accountExperienceDefaultLocale: accountExperienceDefaultLocale,
               accountExperienceFaviconDark: accountExperienceFaviconDark,
               accountExperienceFaviconLight: accountExperienceFaviconLight,
+              accountExperienceLocaleBehavior: accountExperienceLocaleBehavior,
               accountExperienceLogoDark: accountExperienceLogoDark,
               accountExperienceLogoLight: accountExperienceLogoLight,
               accountExperienceThemeVariablesDark:
@@ -4500,7 +4533,8 @@ class NormalizedProjectRevisionBuilder
                   kratosCourierTemplatesVerificationValidEmailBodyHtml,
               kratosCourierTemplatesVerificationValidEmailBodyPlaintext:
                   kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationValidEmailSubject: kratosCourierTemplatesVerificationValidEmailSubject,
+              kratosCourierTemplatesVerificationValidEmailSubject:
+                  kratosCourierTemplatesVerificationValidEmailSubject,
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
               kratosFeatureFlagsCacheableSessionsMaxAge: kratosFeatureFlagsCacheableSessionsMaxAge,
               kratosFeatureFlagsFasterSessionExtend: kratosFeatureFlagsFasterSessionExtend,

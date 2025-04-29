@@ -4,10 +4,12 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **default_locale** | **String** |  |  |
 | **default_redirect_url** | **String** |  |  |
 | **error_ui_url** | **String** |  |  |
 | **favicon_dark_url** | **String** |  | [optional] |
 | **favicon_light_url** | **String** |  | [optional] |
+| **locale_behavior** | **String** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage |  |
 | **login_ui_url** | **String** |  |  |
 | **logo_dark_url** | **String** |  | [optional] |
 | **logo_light_url** | **String** |  | [optional] |
@@ -27,10 +29,12 @@
 require 'ory-client'
 
 instance = OryClient::AccountExperienceConfiguration.new(
+  default_locale: null,
   default_redirect_url: null,
   error_ui_url: null,
   favicon_dark_url: null,
   favicon_light_url: null,
+  locale_behavior: null,
   login_ui_url: null,
   logo_dark_url: null,
   logo_light_url: null,

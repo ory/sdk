@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(NormalizedProjectRevision, () {
+    // Holds the default locale for the account experience.
+    // String accountExperienceDefaultLocale
+    test('to test the property `accountExperienceDefaultLocale`', () async {
+      // TODO
+    });
+
     // Holds the URL to the account experience's dark theme favicon (currently unused).
     // String accountExperienceFaviconDark
     test('to test the property `accountExperienceFaviconDark`', () async {
@@ -16,6 +22,12 @@ void main() {
     // Holds the URL to the account experience's favicon.
     // String accountExperienceFaviconLight
     test('to test the property `accountExperienceFaviconLight`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language.
+    // String accountExperienceLocaleBehavior
+    test('to test the property `accountExperienceLocaleBehavior`', () async {
       // TODO
     });
 

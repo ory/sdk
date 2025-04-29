@@ -4,10 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DefaultLocale** | **string** |  | 
 **DefaultRedirectUrl** | **string** |  | 
 **ErrorUiUrl** | **string** |  | 
 **FaviconDarkUrl** | **string** |  | [optional] 
 **FaviconLightUrl** | **string** |  | [optional] 
+**LocaleBehavior** | **string** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
 **LoginUiUrl** | **string** |  | 
 **LogoDarkUrl** | **string** |  | [optional] 
 **LogoLightUrl** | **string** |  | [optional] 

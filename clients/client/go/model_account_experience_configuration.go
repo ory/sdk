@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.20.9
+API version: v1.20.10
 Contact: support@ory.sh
 */
 
@@ -21,10 +21,13 @@ var _ MappedNullable = &AccountExperienceConfiguration{}
 
 // AccountExperienceConfiguration struct for AccountExperienceConfiguration
 type AccountExperienceConfiguration struct {
+	DefaultLocale string `json:"default_locale"`
 	DefaultRedirectUrl string `json:"default_redirect_url"`
 	ErrorUiUrl string `json:"error_ui_url"`
 	FaviconDarkUrl *string `json:"favicon_dark_url,omitempty"`
 	FaviconLightUrl *string `json:"favicon_light_url,omitempty"`
+	//  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage
+	LocaleBehavior string `json:"locale_behavior"`
 	LoginUiUrl string `json:"login_ui_url"`
 	LogoDarkUrl *string `json:"logo_dark_url,omitempty"`
 	LogoLightUrl *string `json:"logo_light_url,omitempty"`
@@ -46,10 +49,12 @@ type _AccountExperienceConfiguration AccountExperienceConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccountExperienceConfiguration(defaultRedirectUrl string, errorUiUrl string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, verificationEnabled bool, verificationUiUrl string) *AccountExperienceConfiguration {
+func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, errorUiUrl string, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, verificationEnabled bool, verificationUiUrl string) *AccountExperienceConfiguration {
 	this := AccountExperienceConfiguration{}
+	this.DefaultLocale = defaultLocale
 	this.DefaultRedirectUrl = defaultRedirectUrl
 	this.ErrorUiUrl = errorUiUrl
+	this.LocaleBehavior = localeBehavior
 	this.LoginUiUrl = loginUiUrl
 	this.Name = name
 	this.RecoveryEnabled = recoveryEnabled
@@ -68,6 +73,30 @@ func NewAccountExperienceConfiguration(defaultRedirectUrl string, errorUiUrl str
 func NewAccountExperienceConfigurationWithDefaults() *AccountExperienceConfiguration {
 	this := AccountExperienceConfiguration{}
 	return &this
+}
+
+// GetDefaultLocale returns the DefaultLocale field value
+func (o *AccountExperienceConfiguration) GetDefaultLocale() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DefaultLocale
+}
+
+// GetDefaultLocaleOk returns a tuple with the DefaultLocale field value
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetDefaultLocaleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DefaultLocale, true
+}
+
+// SetDefaultLocale sets field value
+func (o *AccountExperienceConfiguration) SetDefaultLocale(v string) {
+	o.DefaultLocale = v
 }
 
 // GetDefaultRedirectUrl returns the DefaultRedirectUrl field value
@@ -180,6 +209,30 @@ func (o *AccountExperienceConfiguration) HasFaviconLightUrl() bool {
 // SetFaviconLightUrl gets a reference to the given string and assigns it to the FaviconLightUrl field.
 func (o *AccountExperienceConfiguration) SetFaviconLightUrl(v string) {
 	o.FaviconLightUrl = &v
+}
+
+// GetLocaleBehavior returns the LocaleBehavior field value
+func (o *AccountExperienceConfiguration) GetLocaleBehavior() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LocaleBehavior
+}
+
+// GetLocaleBehaviorOk returns a tuple with the LocaleBehavior field value
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetLocaleBehaviorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LocaleBehavior, true
+}
+
+// SetLocaleBehavior sets field value
+func (o *AccountExperienceConfiguration) SetLocaleBehavior(v string) {
+	o.LocaleBehavior = v
 }
 
 // GetLoginUiUrl returns the LoginUiUrl field value
@@ -504,6 +557,7 @@ func (o AccountExperienceConfiguration) MarshalJSON() ([]byte, error) {
 
 func (o AccountExperienceConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["default_locale"] = o.DefaultLocale
 	toSerialize["default_redirect_url"] = o.DefaultRedirectUrl
 	toSerialize["error_ui_url"] = o.ErrorUiUrl
 	if !IsNil(o.FaviconDarkUrl) {
@@ -512,6 +566,7 @@ func (o AccountExperienceConfiguration) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.FaviconLightUrl) {
 		toSerialize["favicon_light_url"] = o.FaviconLightUrl
 	}
+	toSerialize["locale_behavior"] = o.LocaleBehavior
 	toSerialize["login_ui_url"] = o.LoginUiUrl
 	if !IsNil(o.LogoDarkUrl) {
 		toSerialize["logo_dark_url"] = o.LogoDarkUrl
@@ -543,8 +598,10 @@ func (o *AccountExperienceConfiguration) UnmarshalJSON(data []byte) (err error) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"default_locale",
 		"default_redirect_url",
 		"error_ui_url",
+		"locale_behavior",
 		"login_ui_url",
 		"name",
 		"recovery_enabled",
@@ -583,10 +640,12 @@ func (o *AccountExperienceConfiguration) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "default_locale")
 		delete(additionalProperties, "default_redirect_url")
 		delete(additionalProperties, "error_ui_url")
 		delete(additionalProperties, "favicon_dark_url")
 		delete(additionalProperties, "favicon_light_url")
+		delete(additionalProperties, "locale_behavior")
 		delete(additionalProperties, "login_ui_url")
 		delete(additionalProperties, "logo_dark_url")
 		delete(additionalProperties, "logo_light_url")

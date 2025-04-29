@@ -5,10 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**default_locale** | **str** |  | 
 **default_redirect_url** | **str** |  | 
 **error_ui_url** | **str** |  | 
 **favicon_dark_url** | **str** |  | [optional] 
 **favicon_light_url** | **str** |  | [optional] 
+**locale_behavior** | **str** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
 **login_ui_url** | **str** |  | 
 **logo_dark_url** | **str** |  | [optional] 
 **logo_light_url** | **str** |  | [optional] 

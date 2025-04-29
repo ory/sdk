@@ -528,9 +528,13 @@ class _$CreateProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnumS
 
 class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
+  final String? accountExperienceDefaultLocale;
+  @override
   final String? accountExperienceFaviconDark;
   @override
   final String? accountExperienceFaviconLight;
+  @override
+  final String? accountExperienceLocaleBehavior;
   @override
   final String? accountExperienceLogoDark;
   @override
@@ -1002,8 +1006,10 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       (new CreateProjectNormalizedPayloadBuilder()..update(updates))._build();
 
   _$CreateProjectNormalizedPayload._(
-      {this.accountExperienceFaviconDark,
+      {this.accountExperienceDefaultLocale,
+      this.accountExperienceFaviconDark,
       this.accountExperienceFaviconLight,
+      this.accountExperienceLocaleBehavior,
       this.accountExperienceLogoDark,
       this.accountExperienceLogoLight,
       this.accountExperienceThemeVariablesDark,
@@ -1245,8 +1251,12 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is CreateProjectNormalizedPayload &&
+        accountExperienceDefaultLocale ==
+            other.accountExperienceDefaultLocale &&
         accountExperienceFaviconDark == other.accountExperienceFaviconDark &&
         accountExperienceFaviconLight == other.accountExperienceFaviconLight &&
+        accountExperienceLocaleBehavior ==
+            other.accountExperienceLocaleBehavior &&
         accountExperienceLogoDark == other.accountExperienceLogoDark &&
         accountExperienceLogoLight == other.accountExperienceLogoLight &&
         accountExperienceThemeVariablesDark ==
@@ -1660,8 +1670,10 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, accountExperienceDefaultLocale.hashCode);
     _$hash = $jc(_$hash, accountExperienceFaviconDark.hashCode);
     _$hash = $jc(_$hash, accountExperienceFaviconLight.hashCode);
+    _$hash = $jc(_$hash, accountExperienceLocaleBehavior.hashCode);
     _$hash = $jc(_$hash, accountExperienceLogoDark.hashCode);
     _$hash = $jc(_$hash, accountExperienceLogoLight.hashCode);
     _$hash = $jc(_$hash, accountExperienceThemeVariablesDark.hashCode);
@@ -2018,8 +2030,12 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CreateProjectNormalizedPayload')
+          ..add(
+              'accountExperienceDefaultLocale', accountExperienceDefaultLocale)
           ..add('accountExperienceFaviconDark', accountExperienceFaviconDark)
           ..add('accountExperienceFaviconLight', accountExperienceFaviconLight)
+          ..add('accountExperienceLocaleBehavior',
+              accountExperienceLocaleBehavior)
           ..add('accountExperienceLogoDark', accountExperienceLogoDark)
           ..add('accountExperienceLogoLight', accountExperienceLogoLight)
           ..add('accountExperienceThemeVariablesDark',
@@ -2435,6 +2451,12 @@ class CreateProjectNormalizedPayloadBuilder
             CreateProjectNormalizedPayloadBuilder> {
   _$CreateProjectNormalizedPayload? _$v;
 
+  String? _accountExperienceDefaultLocale;
+  String? get accountExperienceDefaultLocale =>
+      _$this._accountExperienceDefaultLocale;
+  set accountExperienceDefaultLocale(String? accountExperienceDefaultLocale) =>
+      _$this._accountExperienceDefaultLocale = accountExperienceDefaultLocale;
+
   String? _accountExperienceFaviconDark;
   String? get accountExperienceFaviconDark =>
       _$this._accountExperienceFaviconDark;
@@ -2446,6 +2468,13 @@ class CreateProjectNormalizedPayloadBuilder
       _$this._accountExperienceFaviconLight;
   set accountExperienceFaviconLight(String? accountExperienceFaviconLight) =>
       _$this._accountExperienceFaviconLight = accountExperienceFaviconLight;
+
+  String? _accountExperienceLocaleBehavior;
+  String? get accountExperienceLocaleBehavior =>
+      _$this._accountExperienceLocaleBehavior;
+  set accountExperienceLocaleBehavior(
+          String? accountExperienceLocaleBehavior) =>
+      _$this._accountExperienceLocaleBehavior = accountExperienceLocaleBehavior;
 
   String? _accountExperienceLogoDark;
   String? get accountExperienceLogoDark => _$this._accountExperienceLogoDark;
@@ -4148,8 +4177,10 @@ class CreateProjectNormalizedPayloadBuilder
   CreateProjectNormalizedPayloadBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _accountExperienceDefaultLocale = $v.accountExperienceDefaultLocale;
       _accountExperienceFaviconDark = $v.accountExperienceFaviconDark;
       _accountExperienceFaviconLight = $v.accountExperienceFaviconLight;
+      _accountExperienceLocaleBehavior = $v.accountExperienceLocaleBehavior;
       _accountExperienceLogoDark = $v.accountExperienceLogoDark;
       _accountExperienceLogoLight = $v.accountExperienceLogoLight;
       _accountExperienceThemeVariablesDark =
@@ -4550,8 +4581,10 @@ class CreateProjectNormalizedPayloadBuilder
     try {
       _$result = _$v ??
           new _$CreateProjectNormalizedPayload._(
+              accountExperienceDefaultLocale: accountExperienceDefaultLocale,
               accountExperienceFaviconDark: accountExperienceFaviconDark,
               accountExperienceFaviconLight: accountExperienceFaviconLight,
+              accountExperienceLocaleBehavior: accountExperienceLocaleBehavior,
               accountExperienceLogoDark: accountExperienceLogoDark,
               accountExperienceLogoLight: accountExperienceLogoLight,
               accountExperienceThemeVariablesDark:
@@ -4646,7 +4679,8 @@ class CreateProjectNormalizedPayloadBuilder
                   kratosCourierHttpRequestConfigAuthType,
               kratosCourierHttpRequestConfigBody:
                   kratosCourierHttpRequestConfigBody,
-              kratosCourierHttpRequestConfigHeaders: kratosCourierHttpRequestConfigHeaders,
+              kratosCourierHttpRequestConfigHeaders:
+                  kratosCourierHttpRequestConfigHeaders,
               kratosCourierHttpRequestConfigMethod: kratosCourierHttpRequestConfigMethod,
               kratosCourierHttpRequestConfigUrl: kratosCourierHttpRequestConfigUrl,
               kratosCourierSmtpConnectionUri: kratosCourierSmtpConnectionUri,

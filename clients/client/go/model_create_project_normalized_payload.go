@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.20.9
+API version: v1.20.10
 Contact: support@ory.sh
 */
 
@@ -22,10 +22,14 @@ var _ MappedNullable = &CreateProjectNormalizedPayload{}
 
 // CreateProjectNormalizedPayload Create project (normalized) request payload
 type CreateProjectNormalizedPayload struct {
+	// Holds the default locale for the account experience.
+	AccountExperienceDefaultLocale *string `json:"account_experience_default_locale,omitempty"`
 	// Holds the URL to the account experience's dark theme favicon (currently unused).
 	AccountExperienceFaviconDark *string `json:"account_experience_favicon_dark,omitempty"`
 	// Holds the URL to the account experience's favicon.
 	AccountExperienceFaviconLight *string `json:"account_experience_favicon_light,omitempty"`
+	// Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language.
+	AccountExperienceLocaleBehavior *string `json:"account_experience_locale_behavior,omitempty"`
 	// Holds the URL to the account experience's dark theme logo (currently unused).
 	AccountExperienceLogoDark *string `json:"account_experience_logo_dark,omitempty"`
 	// Holds the URL to the account experience's logo.
@@ -515,6 +519,38 @@ func NewCreateProjectNormalizedPayloadWithDefaults() *CreateProjectNormalizedPay
 	return &this
 }
 
+// GetAccountExperienceDefaultLocale returns the AccountExperienceDefaultLocale field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceDefaultLocale() string {
+	if o == nil || IsNil(o.AccountExperienceDefaultLocale) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceDefaultLocale
+}
+
+// GetAccountExperienceDefaultLocaleOk returns a tuple with the AccountExperienceDefaultLocale field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceDefaultLocaleOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceDefaultLocale) {
+		return nil, false
+	}
+	return o.AccountExperienceDefaultLocale, true
+}
+
+// HasAccountExperienceDefaultLocale returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasAccountExperienceDefaultLocale() bool {
+	if o != nil && !IsNil(o.AccountExperienceDefaultLocale) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceDefaultLocale gets a reference to the given string and assigns it to the AccountExperienceDefaultLocale field.
+func (o *CreateProjectNormalizedPayload) SetAccountExperienceDefaultLocale(v string) {
+	o.AccountExperienceDefaultLocale = &v
+}
+
 // GetAccountExperienceFaviconDark returns the AccountExperienceFaviconDark field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetAccountExperienceFaviconDark() string {
 	if o == nil || IsNil(o.AccountExperienceFaviconDark) {
@@ -577,6 +613,38 @@ func (o *CreateProjectNormalizedPayload) HasAccountExperienceFaviconLight() bool
 // SetAccountExperienceFaviconLight gets a reference to the given string and assigns it to the AccountExperienceFaviconLight field.
 func (o *CreateProjectNormalizedPayload) SetAccountExperienceFaviconLight(v string) {
 	o.AccountExperienceFaviconLight = &v
+}
+
+// GetAccountExperienceLocaleBehavior returns the AccountExperienceLocaleBehavior field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceLocaleBehavior() string {
+	if o == nil || IsNil(o.AccountExperienceLocaleBehavior) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceLocaleBehavior
+}
+
+// GetAccountExperienceLocaleBehaviorOk returns a tuple with the AccountExperienceLocaleBehavior field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceLocaleBehaviorOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceLocaleBehavior) {
+		return nil, false
+	}
+	return o.AccountExperienceLocaleBehavior, true
+}
+
+// HasAccountExperienceLocaleBehavior returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasAccountExperienceLocaleBehavior() bool {
+	if o != nil && !IsNil(o.AccountExperienceLocaleBehavior) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceLocaleBehavior gets a reference to the given string and assigns it to the AccountExperienceLocaleBehavior field.
+func (o *CreateProjectNormalizedPayload) SetAccountExperienceLocaleBehavior(v string) {
+	o.AccountExperienceLocaleBehavior = &v
 }
 
 // GetAccountExperienceLogoDark returns the AccountExperienceLogoDark field value if set, zero value otherwise.
@@ -7648,11 +7716,17 @@ func (o CreateProjectNormalizedPayload) MarshalJSON() ([]byte, error) {
 
 func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AccountExperienceDefaultLocale) {
+		toSerialize["account_experience_default_locale"] = o.AccountExperienceDefaultLocale
+	}
 	if !IsNil(o.AccountExperienceFaviconDark) {
 		toSerialize["account_experience_favicon_dark"] = o.AccountExperienceFaviconDark
 	}
 	if !IsNil(o.AccountExperienceFaviconLight) {
 		toSerialize["account_experience_favicon_light"] = o.AccountExperienceFaviconLight
+	}
+	if !IsNil(o.AccountExperienceLocaleBehavior) {
+		toSerialize["account_experience_locale_behavior"] = o.AccountExperienceLocaleBehavior
 	}
 	if !IsNil(o.AccountExperienceLogoDark) {
 		toSerialize["account_experience_logo_dark"] = o.AccountExperienceLogoDark
@@ -8357,8 +8431,10 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "account_experience_default_locale")
 		delete(additionalProperties, "account_experience_favicon_dark")
 		delete(additionalProperties, "account_experience_favicon_light")
+		delete(additionalProperties, "account_experience_locale_behavior")
 		delete(additionalProperties, "account_experience_logo_dark")
 		delete(additionalProperties, "account_experience_logo_light")
 		delete(additionalProperties, "account_experience_theme_variables_dark")

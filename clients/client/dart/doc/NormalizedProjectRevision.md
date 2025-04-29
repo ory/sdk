@@ -8,8 +8,10 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**accountExperienceDefaultLocale** | **String** | Holds the default locale for the account experience. | [optional] 
 **accountExperienceFaviconDark** | **String** | Holds the URL to the account experience's dark theme favicon (currently unused). | [optional] 
 **accountExperienceFaviconLight** | **String** | Holds the URL to the account experience's favicon. | [optional] 
+**accountExperienceLocaleBehavior** | **String** | Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language. | [optional] 
 **accountExperienceLogoDark** | **String** | Holds the URL to the account experience's dark theme logo (currently unused). | [optional] 
 **accountExperienceLogoLight** | **String** | Holds the URL to the account experience's logo. | [optional] 
 **accountExperienceThemeVariablesDark** | **String** | Holds the URL to the account experience's dark theme variables. | [optional] 

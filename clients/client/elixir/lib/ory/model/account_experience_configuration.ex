@@ -8,10 +8,12 @@ defmodule Ory.Model.AccountExperienceConfiguration do
 
   @derive Jason.Encoder
   defstruct [
+    :default_locale,
     :default_redirect_url,
     :error_ui_url,
     :favicon_dark_url,
     :favicon_light_url,
+    :locale_behavior,
     :login_ui_url,
     :logo_dark_url,
     :logo_light_url,
@@ -27,10 +29,12 @@ defmodule Ory.Model.AccountExperienceConfiguration do
   ]
 
   @type t :: %__MODULE__{
+    :default_locale => String.t,
     :default_redirect_url => String.t,
     :error_ui_url => String.t,
     :favicon_dark_url => String.t | nil,
     :favicon_light_url => String.t | nil,
+    :locale_behavior => String.t,
     :login_ui_url => String.t,
     :logo_dark_url => String.t | nil,
     :logo_light_url => String.t | nil,

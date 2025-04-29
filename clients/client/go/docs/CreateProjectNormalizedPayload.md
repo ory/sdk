@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AccountExperienceDefaultLocale** | Pointer to **string** | Holds the default locale for the account experience. | [optional] 
 **AccountExperienceFaviconDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). | [optional] 
 **AccountExperienceFaviconLight** | Pointer to **string** | Holds the URL to the account experience&#39;s favicon. | [optional] 
+**AccountExperienceLocaleBehavior** | Pointer to **string** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. | [optional] 
 **AccountExperienceLogoDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). | [optional] 
 **AccountExperienceLogoLight** | Pointer to **string** | Holds the URL to the account experience&#39;s logo. | [optional] 
 **AccountExperienceThemeVariablesDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme variables. | [optional] 
@@ -247,6 +249,31 @@ NewCreateProjectNormalizedPayloadWithDefaults instantiates a new CreateProjectNo
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetAccountExperienceDefaultLocale
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceDefaultLocale() string`
+
+GetAccountExperienceDefaultLocale returns the AccountExperienceDefaultLocale field if non-nil, zero value otherwise.
+
+### GetAccountExperienceDefaultLocaleOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceDefaultLocaleOk() (*string, bool)`
+
+GetAccountExperienceDefaultLocaleOk returns a tuple with the AccountExperienceDefaultLocale field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceDefaultLocale
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceDefaultLocale(v string)`
+
+SetAccountExperienceDefaultLocale sets AccountExperienceDefaultLocale field to given value.
+
+### HasAccountExperienceDefaultLocale
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceDefaultLocale() bool`
+
+HasAccountExperienceDefaultLocale returns a boolean if a field has been set.
+
 ### GetAccountExperienceFaviconDark
 
 `func (o *CreateProjectNormalizedPayload) GetAccountExperienceFaviconDark() string`
@@ -296,6 +323,31 @@ SetAccountExperienceFaviconLight sets AccountExperienceFaviconLight field to giv
 `func (o *CreateProjectNormalizedPayload) HasAccountExperienceFaviconLight() bool`
 
 HasAccountExperienceFaviconLight returns a boolean if a field has been set.
+
+### GetAccountExperienceLocaleBehavior
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceLocaleBehavior() string`
+
+GetAccountExperienceLocaleBehavior returns the AccountExperienceLocaleBehavior field if non-nil, zero value otherwise.
+
+### GetAccountExperienceLocaleBehaviorOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceLocaleBehaviorOk() (*string, bool)`
+
+GetAccountExperienceLocaleBehaviorOk returns a tuple with the AccountExperienceLocaleBehavior field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceLocaleBehavior
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceLocaleBehavior(v string)`
+
+SetAccountExperienceLocaleBehavior sets AccountExperienceLocaleBehavior field to given value.
+
+### HasAccountExperienceLocaleBehavior
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceLocaleBehavior() bool`
+
+HasAccountExperienceLocaleBehavior returns a boolean if a field has been set.
 
 ### GetAccountExperienceLogoDark
 

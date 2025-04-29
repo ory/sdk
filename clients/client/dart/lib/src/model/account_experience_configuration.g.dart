@@ -6,7 +6,73 @@ part of 'account_experience_configuration.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const AccountExperienceConfigurationLocaleBehaviorEnum
+    _$accountExperienceConfigurationLocaleBehaviorEnum_forceDefault =
+    const AccountExperienceConfigurationLocaleBehaviorEnum._('forceDefault');
+const AccountExperienceConfigurationLocaleBehaviorEnum
+    _$accountExperienceConfigurationLocaleBehaviorEnum_respectAcceptLanguage =
+    const AccountExperienceConfigurationLocaleBehaviorEnum._(
+        'respectAcceptLanguage');
+
+AccountExperienceConfigurationLocaleBehaviorEnum
+    _$accountExperienceConfigurationLocaleBehaviorEnumValueOf(String name) {
+  switch (name) {
+    case 'forceDefault':
+      return _$accountExperienceConfigurationLocaleBehaviorEnum_forceDefault;
+    case 'respectAcceptLanguage':
+      return _$accountExperienceConfigurationLocaleBehaviorEnum_respectAcceptLanguage;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<AccountExperienceConfigurationLocaleBehaviorEnum>
+    _$accountExperienceConfigurationLocaleBehaviorEnumValues = new BuiltSet<
+        AccountExperienceConfigurationLocaleBehaviorEnum>(const <AccountExperienceConfigurationLocaleBehaviorEnum>[
+  _$accountExperienceConfigurationLocaleBehaviorEnum_forceDefault,
+  _$accountExperienceConfigurationLocaleBehaviorEnum_respectAcceptLanguage,
+]);
+
+Serializer<AccountExperienceConfigurationLocaleBehaviorEnum>
+    _$accountExperienceConfigurationLocaleBehaviorEnumSerializer =
+    new _$AccountExperienceConfigurationLocaleBehaviorEnumSerializer();
+
+class _$AccountExperienceConfigurationLocaleBehaviorEnumSerializer
+    implements
+        PrimitiveSerializer<AccountExperienceConfigurationLocaleBehaviorEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'forceDefault': 'force_default',
+    'respectAcceptLanguage': 'respect_accept_language',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'force_default': 'forceDefault',
+    'respect_accept_language': 'respectAcceptLanguage',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    AccountExperienceConfigurationLocaleBehaviorEnum
+  ];
+  @override
+  final String wireName = 'AccountExperienceConfigurationLocaleBehaviorEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          AccountExperienceConfigurationLocaleBehaviorEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  AccountExperienceConfigurationLocaleBehaviorEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      AccountExperienceConfigurationLocaleBehaviorEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
+  @override
+  final String defaultLocale;
   @override
   final String defaultRedirectUrl;
   @override
@@ -15,6 +81,8 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
   final String? faviconDarkUrl;
   @override
   final String? faviconLightUrl;
+  @override
+  final AccountExperienceConfigurationLocaleBehaviorEnum localeBehavior;
   @override
   final String loginUiUrl;
   @override
@@ -45,10 +113,12 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
       (new AccountExperienceConfigurationBuilder()..update(updates))._build();
 
   _$AccountExperienceConfiguration._(
-      {required this.defaultRedirectUrl,
+      {required this.defaultLocale,
+      required this.defaultRedirectUrl,
       required this.errorUiUrl,
       this.faviconDarkUrl,
       this.faviconLightUrl,
+      required this.localeBehavior,
       required this.loginUiUrl,
       this.logoDarkUrl,
       this.logoLightUrl,
@@ -62,10 +132,14 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
       required this.verificationEnabled,
       required this.verificationUiUrl})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        defaultLocale, r'AccountExperienceConfiguration', 'defaultLocale');
     BuiltValueNullFieldError.checkNotNull(defaultRedirectUrl,
         r'AccountExperienceConfiguration', 'defaultRedirectUrl');
     BuiltValueNullFieldError.checkNotNull(
         errorUiUrl, r'AccountExperienceConfiguration', 'errorUiUrl');
+    BuiltValueNullFieldError.checkNotNull(
+        localeBehavior, r'AccountExperienceConfiguration', 'localeBehavior');
     BuiltValueNullFieldError.checkNotNull(
         loginUiUrl, r'AccountExperienceConfiguration', 'loginUiUrl');
     BuiltValueNullFieldError.checkNotNull(
@@ -99,10 +173,12 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is AccountExperienceConfiguration &&
+        defaultLocale == other.defaultLocale &&
         defaultRedirectUrl == other.defaultRedirectUrl &&
         errorUiUrl == other.errorUiUrl &&
         faviconDarkUrl == other.faviconDarkUrl &&
         faviconLightUrl == other.faviconLightUrl &&
+        localeBehavior == other.localeBehavior &&
         loginUiUrl == other.loginUiUrl &&
         logoDarkUrl == other.logoDarkUrl &&
         logoLightUrl == other.logoLightUrl &&
@@ -120,10 +196,12 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, defaultLocale.hashCode);
     _$hash = $jc(_$hash, defaultRedirectUrl.hashCode);
     _$hash = $jc(_$hash, errorUiUrl.hashCode);
     _$hash = $jc(_$hash, faviconDarkUrl.hashCode);
     _$hash = $jc(_$hash, faviconLightUrl.hashCode);
+    _$hash = $jc(_$hash, localeBehavior.hashCode);
     _$hash = $jc(_$hash, loginUiUrl.hashCode);
     _$hash = $jc(_$hash, logoDarkUrl.hashCode);
     _$hash = $jc(_$hash, logoLightUrl.hashCode);
@@ -143,10 +221,12 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'AccountExperienceConfiguration')
+          ..add('defaultLocale', defaultLocale)
           ..add('defaultRedirectUrl', defaultRedirectUrl)
           ..add('errorUiUrl', errorUiUrl)
           ..add('faviconDarkUrl', faviconDarkUrl)
           ..add('faviconLightUrl', faviconLightUrl)
+          ..add('localeBehavior', localeBehavior)
           ..add('loginUiUrl', loginUiUrl)
           ..add('logoDarkUrl', logoDarkUrl)
           ..add('logoLightUrl', logoLightUrl)
@@ -169,6 +249,11 @@ class AccountExperienceConfigurationBuilder
             AccountExperienceConfigurationBuilder> {
   _$AccountExperienceConfiguration? _$v;
 
+  String? _defaultLocale;
+  String? get defaultLocale => _$this._defaultLocale;
+  set defaultLocale(String? defaultLocale) =>
+      _$this._defaultLocale = defaultLocale;
+
   String? _defaultRedirectUrl;
   String? get defaultRedirectUrl => _$this._defaultRedirectUrl;
   set defaultRedirectUrl(String? defaultRedirectUrl) =>
@@ -187,6 +272,13 @@ class AccountExperienceConfigurationBuilder
   String? get faviconLightUrl => _$this._faviconLightUrl;
   set faviconLightUrl(String? faviconLightUrl) =>
       _$this._faviconLightUrl = faviconLightUrl;
+
+  AccountExperienceConfigurationLocaleBehaviorEnum? _localeBehavior;
+  AccountExperienceConfigurationLocaleBehaviorEnum? get localeBehavior =>
+      _$this._localeBehavior;
+  set localeBehavior(
+          AccountExperienceConfigurationLocaleBehaviorEnum? localeBehavior) =>
+      _$this._localeBehavior = localeBehavior;
 
   String? _loginUiUrl;
   String? get loginUiUrl => _$this._loginUiUrl;
@@ -250,10 +342,12 @@ class AccountExperienceConfigurationBuilder
   AccountExperienceConfigurationBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _defaultLocale = $v.defaultLocale;
       _defaultRedirectUrl = $v.defaultRedirectUrl;
       _errorUiUrl = $v.errorUiUrl;
       _faviconDarkUrl = $v.faviconDarkUrl;
       _faviconLightUrl = $v.faviconLightUrl;
+      _localeBehavior = $v.localeBehavior;
       _loginUiUrl = $v.loginUiUrl;
       _logoDarkUrl = $v.logoDarkUrl;
       _logoLightUrl = $v.logoLightUrl;
@@ -288,12 +382,16 @@ class AccountExperienceConfigurationBuilder
   _$AccountExperienceConfiguration _build() {
     final _$result = _$v ??
         new _$AccountExperienceConfiguration._(
+            defaultLocale: BuiltValueNullFieldError.checkNotNull(
+                defaultLocale, r'AccountExperienceConfiguration', 'defaultLocale'),
             defaultRedirectUrl: BuiltValueNullFieldError.checkNotNull(
                 defaultRedirectUrl, r'AccountExperienceConfiguration', 'defaultRedirectUrl'),
             errorUiUrl: BuiltValueNullFieldError.checkNotNull(
                 errorUiUrl, r'AccountExperienceConfiguration', 'errorUiUrl'),
             faviconDarkUrl: faviconDarkUrl,
             faviconLightUrl: faviconLightUrl,
+            localeBehavior: BuiltValueNullFieldError.checkNotNull(
+                localeBehavior, r'AccountExperienceConfiguration', 'localeBehavior'),
             loginUiUrl: BuiltValueNullFieldError.checkNotNull(
                 loginUiUrl, r'AccountExperienceConfiguration', 'loginUiUrl'),
             logoDarkUrl: logoDarkUrl,
@@ -302,10 +400,8 @@ class AccountExperienceConfigurationBuilder
                 name, r'AccountExperienceConfiguration', 'name'),
             recoveryEnabled: BuiltValueNullFieldError.checkNotNull(
                 recoveryEnabled, r'AccountExperienceConfiguration', 'recoveryEnabled'),
-            recoveryUiUrl: BuiltValueNullFieldError.checkNotNull(
-                recoveryUiUrl, r'AccountExperienceConfiguration', 'recoveryUiUrl'),
-            registrationEnabled: BuiltValueNullFieldError.checkNotNull(
-                registrationEnabled, r'AccountExperienceConfiguration', 'registrationEnabled'),
+            recoveryUiUrl: BuiltValueNullFieldError.checkNotNull(recoveryUiUrl, r'AccountExperienceConfiguration', 'recoveryUiUrl'),
+            registrationEnabled: BuiltValueNullFieldError.checkNotNull(registrationEnabled, r'AccountExperienceConfiguration', 'registrationEnabled'),
             registrationUiUrl: BuiltValueNullFieldError.checkNotNull(registrationUiUrl, r'AccountExperienceConfiguration', 'registrationUiUrl'),
             settingsUiUrl: BuiltValueNullFieldError.checkNotNull(settingsUiUrl, r'AccountExperienceConfiguration', 'settingsUiUrl'),
             stylesheet: stylesheet,

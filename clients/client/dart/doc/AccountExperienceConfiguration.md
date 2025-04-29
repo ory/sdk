@@ -8,10 +8,12 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**defaultLocale** | **String** |  | 
 **defaultRedirectUrl** | **String** |  | 
 **errorUiUrl** | **String** |  | 
 **faviconDarkUrl** | **String** |  | [optional] 
 **faviconLightUrl** | **String** |  | [optional] 
+**localeBehavior** | **String** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
 **loginUiUrl** | **String** |  | 
 **logoDarkUrl** | **String** |  | [optional] 
 **logoLightUrl** | **String** |  | [optional] 

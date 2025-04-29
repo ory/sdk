@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**account_experience_default_locale** | Option<**String**> | Holds the default locale for the account experience. | [optional]
 **account_experience_favicon_dark** | Option<**String**> | Holds the URL to the account experience's dark theme favicon (currently unused). | [optional]
 **account_experience_favicon_light** | Option<**String**> | Holds the URL to the account experience's favicon. | [optional]
+**account_experience_locale_behavior** | Option<**String**> | Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language. | [optional]
 **account_experience_logo_dark** | Option<**String**> | Holds the URL to the account experience's dark theme logo (currently unused). | [optional]
 **account_experience_logo_light** | Option<**String**> | Holds the URL to the account experience's logo. | [optional]
 **account_experience_theme_variables_dark** | Option<**String**> | Holds the URL to the account experience's dark theme variables. | [optional]

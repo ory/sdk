@@ -8,8 +8,10 @@ Create project (normalized) request payload
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**accountExperienceDefaultLocale** | **String** | Holds the default locale for the account experience. |  [optional] |
 |**accountExperienceFaviconDark** | **String** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). |  [optional] |
 |**accountExperienceFaviconLight** | **String** | Holds the URL to the account experience&#39;s favicon. |  [optional] |
+|**accountExperienceLocaleBehavior** | **String** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. |  [optional] |
 |**accountExperienceLogoDark** | **String** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). |  [optional] |
 |**accountExperienceLogoLight** | **String** | Holds the URL to the account experience&#39;s logo. |  [optional] |
 |**accountExperienceThemeVariablesDark** | **String** | Holds the URL to the account experience&#39;s dark theme variables. |  [optional] |

@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -11,10 +12,12 @@ part 'account_experience_configuration.g.dart';
 /// AccountExperienceConfiguration
 ///
 /// Properties:
+/// * [defaultLocale] 
 /// * [defaultRedirectUrl] 
 /// * [errorUiUrl] 
 /// * [faviconDarkUrl] 
 /// * [faviconLightUrl] 
+/// * [localeBehavior] -  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage
 /// * [loginUiUrl] 
 /// * [logoDarkUrl] 
 /// * [logoLightUrl] 
@@ -29,6 +32,9 @@ part 'account_experience_configuration.g.dart';
 /// * [verificationUiUrl] 
 @BuiltValue()
 abstract class AccountExperienceConfiguration implements Built<AccountExperienceConfiguration, AccountExperienceConfigurationBuilder> {
+  @BuiltValueField(wireName: r'default_locale')
+  String get defaultLocale;
+
   @BuiltValueField(wireName: r'default_redirect_url')
   String get defaultRedirectUrl;
 
@@ -40,6 +46,11 @@ abstract class AccountExperienceConfiguration implements Built<AccountExperience
 
   @BuiltValueField(wireName: r'favicon_light_url')
   String? get faviconLightUrl;
+
+  ///  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage
+  @BuiltValueField(wireName: r'locale_behavior')
+  AccountExperienceConfigurationLocaleBehaviorEnum get localeBehavior;
+  // enum localeBehaviorEnum {  force_default,  respect_accept_language,  };
 
   @BuiltValueField(wireName: r'login_ui_url')
   String get loginUiUrl;
@@ -100,6 +111,11 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
     AccountExperienceConfiguration object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    yield r'default_locale';
+    yield serializers.serialize(
+      object.defaultLocale,
+      specifiedType: const FullType(String),
+    );
     yield r'default_redirect_url';
     yield serializers.serialize(
       object.defaultRedirectUrl,
@@ -124,6 +140,11 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
         specifiedType: const FullType(String),
       );
     }
+    yield r'locale_behavior';
+    yield serializers.serialize(
+      object.localeBehavior,
+      specifiedType: const FullType(AccountExperienceConfigurationLocaleBehaviorEnum),
+    );
     yield r'login_ui_url';
     yield serializers.serialize(
       object.loginUiUrl,
@@ -213,6 +234,13 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'default_locale':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.defaultLocale = valueDes;
+          break;
         case r'default_redirect_url':
           final valueDes = serializers.deserialize(
             value,
@@ -240,6 +268,13 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(String),
           ) as String;
           result.faviconLightUrl = valueDes;
+          break;
+        case r'locale_behavior':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AccountExperienceConfigurationLocaleBehaviorEnum),
+          ) as AccountExperienceConfigurationLocaleBehaviorEnum;
+          result.localeBehavior = valueDes;
           break;
         case r'login_ui_url':
           final valueDes = serializers.deserialize(
@@ -352,5 +387,22 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
     );
     return result.build();
   }
+}
+
+class AccountExperienceConfigurationLocaleBehaviorEnum extends EnumClass {
+
+  ///  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage
+  @BuiltValueEnumConst(wireName: r'force_default')
+  static const AccountExperienceConfigurationLocaleBehaviorEnum forceDefault = _$accountExperienceConfigurationLocaleBehaviorEnum_forceDefault;
+  ///  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage
+  @BuiltValueEnumConst(wireName: r'respect_accept_language')
+  static const AccountExperienceConfigurationLocaleBehaviorEnum respectAcceptLanguage = _$accountExperienceConfigurationLocaleBehaviorEnum_respectAcceptLanguage;
+
+  static Serializer<AccountExperienceConfigurationLocaleBehaviorEnum> get serializer => _$accountExperienceConfigurationLocaleBehaviorEnumSerializer;
+
+  const AccountExperienceConfigurationLocaleBehaviorEnum._(String name): super(name);
+
+  static BuiltSet<AccountExperienceConfigurationLocaleBehaviorEnum> get values => _$accountExperienceConfigurationLocaleBehaviorEnumValues;
+  static AccountExperienceConfigurationLocaleBehaviorEnum valueOf(String name) => _$accountExperienceConfigurationLocaleBehaviorEnumValueOf(name);
 }
 
