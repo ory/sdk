@@ -1,4 +1,4 @@
-## @ory/client-fetch@v1.20.10
+## @ory/client-fetch@v1.20.11
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client-fetch@v1.20.10 --save
+npm install @ory/client-fetch@v1.20.11 --save
 ```
 
 _unPublished (not recommended):_

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.20.10
+API version: v1.20.11
 Contact: support@ory.sh
 */
 
@@ -252,6 +252,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosSecretsCipher []string `json:"kratos_secrets_cipher,omitempty"`
 	KratosSecretsCookie []string `json:"kratos_secrets_cookie,omitempty"`
 	KratosSecretsDefault []string `json:"kratos_secrets_default,omitempty"`
+	// Configures if account enumeration should be mitigated when using identifier first login.
+	KratosSecurityAccountEnumerationMitigate *bool `json:"kratos_security_account_enumeration_mitigate,omitempty"`
 	KratosSelfserviceAllowedReturnUrls []string `json:"kratos_selfservice_allowed_return_urls,omitempty"`
 	// Configures the Ory Kratos Default Return URL  This governs the \"selfservice.allowed_return_urls\" setting.
 	KratosSelfserviceDefaultBrowserReturnUrl *string `json:"kratos_selfservice_default_browser_return_url,omitempty"`
@@ -4418,6 +4420,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosSecretsDefault(v []string) {
 	o.KratosSecretsDefault = v
 }
 
+// GetKratosSecurityAccountEnumerationMitigate returns the KratosSecurityAccountEnumerationMitigate field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSecurityAccountEnumerationMitigate() bool {
+	if o == nil || IsNil(o.KratosSecurityAccountEnumerationMitigate) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSecurityAccountEnumerationMitigate
+}
+
+// GetKratosSecurityAccountEnumerationMitigateOk returns a tuple with the KratosSecurityAccountEnumerationMitigate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSecurityAccountEnumerationMitigateOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSecurityAccountEnumerationMitigate) {
+		return nil, false
+	}
+	return o.KratosSecurityAccountEnumerationMitigate, true
+}
+
+// HasKratosSecurityAccountEnumerationMitigate returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSecurityAccountEnumerationMitigate() bool {
+	if o != nil && !IsNil(o.KratosSecurityAccountEnumerationMitigate) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSecurityAccountEnumerationMitigate gets a reference to the given bool and assigns it to the KratosSecurityAccountEnumerationMitigate field.
+func (o *CreateProjectNormalizedPayload) SetKratosSecurityAccountEnumerationMitigate(v bool) {
+	o.KratosSecurityAccountEnumerationMitigate = &v
+}
+
 // GetKratosSelfserviceAllowedReturnUrls returns the KratosSelfserviceAllowedReturnUrls field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceAllowedReturnUrls() []string {
 	if o == nil || IsNil(o.KratosSelfserviceAllowedReturnUrls) {
@@ -8080,6 +8114,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSecretsDefault) {
 		toSerialize["kratos_secrets_default"] = o.KratosSecretsDefault
 	}
+	if !IsNil(o.KratosSecurityAccountEnumerationMitigate) {
+		toSerialize["kratos_security_account_enumeration_mitigate"] = o.KratosSecurityAccountEnumerationMitigate
+	}
 	if !IsNil(o.KratosSelfserviceAllowedReturnUrls) {
 		toSerialize["kratos_selfservice_allowed_return_urls"] = o.KratosSelfserviceAllowedReturnUrls
 	}
@@ -8553,6 +8590,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_secrets_cipher")
 		delete(additionalProperties, "kratos_secrets_cookie")
 		delete(additionalProperties, "kratos_secrets_default")
+		delete(additionalProperties, "kratos_security_account_enumeration_mitigate")
 		delete(additionalProperties, "kratos_selfservice_allowed_return_urls")
 		delete(additionalProperties, "kratos_selfservice_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_error_ui_url")

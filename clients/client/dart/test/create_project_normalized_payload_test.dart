@@ -725,6 +725,12 @@ void main() {
       // TODO
     });
 
+    // Configures if account enumeration should be mitigated when using identifier first login.
+    // bool kratosSecurityAccountEnumerationMitigate
+    test('to test the property `kratosSecurityAccountEnumerationMitigate`', () async {
+      // TODO
+    });
+
     // BuiltList<String> kratosSelfserviceAllowedReturnUrls
     test('to test the property `kratosSelfserviceAllowedReturnUrls`', () async {
       // TODO

@@ -126,6 +126,7 @@
 | **kratos_secrets_cipher** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_secrets_cookie** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_secrets_default** | **Array&lt;String&gt;** |  | [optional] |
+| **kratos_security_account_enumeration_mitigate** | **Boolean** | Configures if account enumeration should be mitigated when using identifier first login. | [optional] |
 | **kratos_selfservice_allowed_return_urls** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_selfservice_default_browser_return_url** | **String** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_error_ui_url** | **String** | Configures the Ory Kratos Error UI URL  This governs the \&quot;selfservice.flows.error.ui_url\&quot; setting. | [optional] |
@@ -358,6 +359,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_secrets_cipher: null,
   kratos_secrets_cookie: null,
   kratos_secrets_default: null,
+  kratos_security_account_enumeration_mitigate: null,
   kratos_selfservice_allowed_return_urls: null,
   kratos_selfservice_default_browser_return_url: null,
   kratos_selfservice_flows_error_ui_url: null,

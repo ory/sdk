@@ -124,6 +124,7 @@ Name | Type | Description | Notes
 **KratosSecretsCipher** | **List&lt;string&gt;** |  | [optional] 
 **KratosSecretsCookie** | **List&lt;string&gt;** |  | [optional] 
 **KratosSecretsDefault** | **List&lt;string&gt;** |  | [optional] 
+**KratosSecurityAccountEnumerationMitigate** | **bool** | Configures if account enumeration should be mitigated when using identifier first login. | [optional] 
 **KratosSelfserviceAllowedReturnUrls** | **List&lt;string&gt;** |  | [optional] 
 **KratosSelfserviceDefaultBrowserReturnUrl** | **string** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsErrorUiUrl** | **string** | Configures the Ory Kratos Error UI URL  This governs the \&quot;selfservice.flows.error.ui_url\&quot; setting. | [optional] 

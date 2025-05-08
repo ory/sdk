@@ -126,6 +126,7 @@ Name | Type | Description | Notes
 **kratos_secrets_cipher** | Option<**Vec<String>**> |  | [optional]
 **kratos_secrets_cookie** | Option<**Vec<String>**> |  | [optional]
 **kratos_secrets_default** | Option<**Vec<String>**> |  | [optional]
+**kratos_security_account_enumeration_mitigate** | Option<**bool**> | Configures if account enumeration should be mitigated when using identifier first login. | [optional]
 **kratos_selfservice_allowed_return_urls** | Option<**Vec<String>**> |  | [optional]
 **kratos_selfservice_default_browser_return_url** | Option<**String**> | Configures the Ory Kratos Default Return URL  This governs the \"selfservice.allowed_return_urls\" setting. | [optional]
 **kratos_selfservice_flows_error_ui_url** | Option<**String**> | Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting. | [optional]

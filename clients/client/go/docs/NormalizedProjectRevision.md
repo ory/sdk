@@ -124,6 +124,7 @@ Name | Type | Description | Notes
 **KratosSecretsCipher** | Pointer to **[]string** |  | [optional] 
 **KratosSecretsCookie** | Pointer to **[]string** |  | [optional] 
 **KratosSecretsDefault** | Pointer to **[]string** |  | [optional] 
+**KratosSecurityAccountEnumerationMitigate** | Pointer to **bool** | Configures if account enumeration should be mitigated when using identifier first login. | [optional] 
 **KratosSelfserviceAllowedReturnUrls** | Pointer to **[]string** |  | [optional] 
 **KratosSelfserviceDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsErrorUiUrl** | Pointer to **string** | Configures the Ory Kratos Error UI URL  This governs the \&quot;selfservice.flows.error.ui_url\&quot; setting. | [optional] 
@@ -3275,6 +3276,31 @@ SetKratosSecretsDefault sets KratosSecretsDefault field to given value.
 `func (o *NormalizedProjectRevision) HasKratosSecretsDefault() bool`
 
 HasKratosSecretsDefault returns a boolean if a field has been set.
+
+### GetKratosSecurityAccountEnumerationMitigate
+
+`func (o *NormalizedProjectRevision) GetKratosSecurityAccountEnumerationMitigate() bool`
+
+GetKratosSecurityAccountEnumerationMitigate returns the KratosSecurityAccountEnumerationMitigate field if non-nil, zero value otherwise.
+
+### GetKratosSecurityAccountEnumerationMitigateOk
+
+`func (o *NormalizedProjectRevision) GetKratosSecurityAccountEnumerationMitigateOk() (*bool, bool)`
+
+GetKratosSecurityAccountEnumerationMitigateOk returns a tuple with the KratosSecurityAccountEnumerationMitigate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSecurityAccountEnumerationMitigate
+
+`func (o *NormalizedProjectRevision) SetKratosSecurityAccountEnumerationMitigate(v bool)`
+
+SetKratosSecurityAccountEnumerationMitigate sets KratosSecurityAccountEnumerationMitigate field to given value.
+
+### HasKratosSecurityAccountEnumerationMitigate
+
+`func (o *NormalizedProjectRevision) HasKratosSecurityAccountEnumerationMitigate() bool`
+
+HasKratosSecurityAccountEnumerationMitigate returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceAllowedReturnUrls
 

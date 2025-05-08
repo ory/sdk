@@ -143,6 +143,7 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosSecretsCipher] 
 /// * [kratosSecretsCookie] 
 /// * [kratosSecretsDefault] 
+/// * [kratosSecurityAccountEnumerationMitigate] - Configures if account enumeration should be mitigated when using identifier first login.
 /// * [kratosSelfserviceAllowedReturnUrls] 
 /// * [kratosSelfserviceDefaultBrowserReturnUrl] - Configures the Ory Kratos Default Return URL  This governs the \"selfservice.allowed_return_urls\" setting.
 /// * [kratosSelfserviceFlowsErrorUiUrl] - Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting.
@@ -726,6 +727,10 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
 
   @BuiltValueField(wireName: r'kratos_secrets_default')
   BuiltList<String>? get kratosSecretsDefault;
+
+  /// Configures if account enumeration should be mitigated when using identifier first login.
+  @BuiltValueField(wireName: r'kratos_security_account_enumeration_mitigate')
+  bool? get kratosSecurityAccountEnumerationMitigate;
 
   @BuiltValueField(wireName: r'kratos_selfservice_allowed_return_urls')
   BuiltList<String>? get kratosSelfserviceAllowedReturnUrls;
@@ -2015,6 +2020,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.kratosSecretsDefault,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.kratosSecurityAccountEnumerationMitigate != null) {
+      yield r'kratos_security_account_enumeration_mitigate';
+      yield serializers.serialize(
+        object.kratosSecurityAccountEnumerationMitigate,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.kratosSelfserviceAllowedReturnUrls != null) {
@@ -3615,6 +3627,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(BuiltList, [FullType(String)]),
           ) as BuiltList<String>;
           result.kratosSecretsDefault.replace(valueDes);
+          break;
+        case r'kratos_security_account_enumeration_mitigate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSecurityAccountEnumerationMitigate = valueDes;
           break;
         case r'kratos_selfservice_allowed_return_urls':
           final valueDes = serializers.deserialize(

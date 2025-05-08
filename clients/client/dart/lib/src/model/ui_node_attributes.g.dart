@@ -22,6 +22,9 @@ const UiNodeAttributesAutocompleteEnum
 const UiNodeAttributesAutocompleteEnum
     _$uiNodeAttributesAutocompleteEnum_oneTimeCode =
     const UiNodeAttributesAutocompleteEnum._('oneTimeCode');
+const UiNodeAttributesAutocompleteEnum
+    _$uiNodeAttributesAutocompleteEnum_usernameWebauthn =
+    const UiNodeAttributesAutocompleteEnum._('usernameWebauthn');
 
 UiNodeAttributesAutocompleteEnum _$uiNodeAttributesAutocompleteEnumValueOf(
     String name) {
@@ -38,6 +41,8 @@ UiNodeAttributesAutocompleteEnum _$uiNodeAttributesAutocompleteEnumValueOf(
       return _$uiNodeAttributesAutocompleteEnum_newPassword;
     case 'oneTimeCode':
       return _$uiNodeAttributesAutocompleteEnum_oneTimeCode;
+    case 'usernameWebauthn':
+      return _$uiNodeAttributesAutocompleteEnum_usernameWebauthn;
     default:
       throw new ArgumentError(name);
   }
@@ -52,6 +57,7 @@ final BuiltSet<UiNodeAttributesAutocompleteEnum>
   _$uiNodeAttributesAutocompleteEnum_currentPassword,
   _$uiNodeAttributesAutocompleteEnum_newPassword,
   _$uiNodeAttributesAutocompleteEnum_oneTimeCode,
+  _$uiNodeAttributesAutocompleteEnum_usernameWebauthn,
 ]);
 
 const UiNodeAttributesNodeTypeEnum _$uiNodeAttributesNodeTypeEnum_text =
@@ -223,6 +229,7 @@ class _$UiNodeAttributesAutocompleteEnumSerializer
     'currentPassword': 'current-password',
     'newPassword': 'new-password',
     'oneTimeCode': 'one-time-code',
+    'usernameWebauthn': 'username webauthn',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'email': 'email',
@@ -231,6 +238,7 @@ class _$UiNodeAttributesAutocompleteEnumSerializer
     'current-password': 'currentPassword',
     'new-password': 'newPassword',
     'one-time-code': 'oneTimeCode',
+    'username webauthn': 'usernameWebauthn',
   };
 
   @override

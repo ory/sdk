@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.20.10
+  version: v1.20.11
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -9723,6 +9723,10 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        kratos_security_account_enumeration_mitigate:
+          description: Configures if account enumeration should be mitigated when
+            using identifier first login.
+          type: boolean
         kratos_selfservice_allowed_return_urls:
           items:
             type: string
@@ -15473,6 +15477,10 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        kratos_security_account_enumeration_mitigate:
+          description: Configures if account enumeration should be mitigated when
+            using identifier first login.
+          type: boolean
         kratos_selfservice_allowed_return_urls:
           items:
             type: string
@@ -19163,6 +19171,7 @@ components:
             permission_checks_rate_limit_tier RateLimitTierPermissionChecks
             oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect
             create_recovery_admin_rate_limit_tier RateLimitTierCreateAdminRecovery
+            scim_rate_limit_tier RateLimitTierSCIM
           enum:
           - production_projects
           - staging_projects
@@ -19201,6 +19210,7 @@ components:
           - permission_checks_rate_limit_tier
           - oauth2_introspect_rate_limit_tier
           - create_recovery_admin_rate_limit_tier
+          - scim_rate_limit_tier
           type: string
           x-go-enum-desc: |-
             production_projects ProductionProjects
@@ -19240,6 +19250,7 @@ components:
             permission_checks_rate_limit_tier RateLimitTierPermissionChecks
             oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect
             create_recovery_admin_rate_limit_tier RateLimitTierCreateAdminRecovery
+            scim_rate_limit_tier RateLimitTierSCIM
         feature_available:
           type: boolean
         included:
@@ -21677,6 +21688,7 @@ components:
             current-password InputAttributeAutocompleteCurrentPassword
             new-password InputAttributeAutocompleteNewPassword
             one-time-code InputAttributeAutocompleteOneTimeCode
+            username webauthn InputAttributeAutocompleteUsernameWebauthn
           enum:
           - email
           - tel
@@ -21684,6 +21696,7 @@ components:
           - current-password
           - new-password
           - one-time-code
+          - username webauthn
           type: string
           x-go-enum-desc: |-
             email InputAttributeAutocompleteEmail
@@ -21692,6 +21705,7 @@ components:
             current-password InputAttributeAutocompleteCurrentPassword
             new-password InputAttributeAutocompleteNewPassword
             one-time-code InputAttributeAutocompleteOneTimeCode
+            username webauthn InputAttributeAutocompleteUsernameWebauthn
         disabled:
           description: Sets the input's disabled field to true or false.
           type: boolean

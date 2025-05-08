@@ -86,6 +86,8 @@ const QuotaUsageFeatureEnum
 const QuotaUsageFeatureEnum
     _$quotaUsageFeatureEnum_createRecoveryAdminRateLimitTier =
     const QuotaUsageFeatureEnum._('createRecoveryAdminRateLimitTier');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_scimRateLimitTier =
+    const QuotaUsageFeatureEnum._('scimRateLimitTier');
 
 QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
   switch (name) {
@@ -163,6 +165,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_oauth2IntrospectRateLimitTier;
     case 'createRecoveryAdminRateLimitTier':
       return _$quotaUsageFeatureEnum_createRecoveryAdminRateLimitTier;
+    case 'scimRateLimitTier':
+      return _$quotaUsageFeatureEnum_scimRateLimitTier;
     default:
       throw new ArgumentError(name);
   }
@@ -207,6 +211,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_permissionChecksRateLimitTier,
   _$quotaUsageFeatureEnum_oauth2IntrospectRateLimitTier,
   _$quotaUsageFeatureEnum_createRecoveryAdminRateLimitTier,
+  _$quotaUsageFeatureEnum_scimRateLimitTier,
 ]);
 
 Serializer<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumSerializer =
@@ -252,6 +257,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'permissionChecksRateLimitTier': 'permission_checks_rate_limit_tier',
     'oauth2IntrospectRateLimitTier': 'oauth2_introspect_rate_limit_tier',
     'createRecoveryAdminRateLimitTier': 'create_recovery_admin_rate_limit_tier',
+    'scimRateLimitTier': 'scim_rate_limit_tier',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'production_projects': 'productionProjects',
@@ -291,6 +297,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'permission_checks_rate_limit_tier': 'permissionChecksRateLimitTier',
     'oauth2_introspect_rate_limit_tier': 'oauth2IntrospectRateLimitTier',
     'create_recovery_admin_rate_limit_tier': 'createRecoveryAdminRateLimitTier',
+    'scim_rate_limit_tier': 'scimRateLimitTier',
   };
 
   @override
