@@ -225,7 +225,7 @@ dotnet () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.11.0
+  npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.12.0
   npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g csharp \
     -o "$dir" \
