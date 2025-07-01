@@ -127,7 +127,7 @@ if [ $project == "client" ]; then
   export NETWORK_OR_SELFHOSTED="## Ory Network
 
 This SDK is for use with [Ory Network](https://www.ory.sh/docs/sdk).
-If you are developing aginst a self-hosted Ory instance, please use the individual ${PROJECT_UCF} SDK
+If you are developing against a self-hosted Ory instance, please use the individual ${PROJECT_UCF} SDK
 and refer to the [self-hosted documentation](https://www.ory.sh/docs/ecosystem/projects).
 
 "
