@@ -327,9 +327,9 @@ golang
 java
 php
 python
-
 ruby
-dotnet
+# TODO: https://github.com/ory/sdk/issues/434
+# dotnet
 dart
 
 cleanup

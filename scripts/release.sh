@@ -232,7 +232,8 @@ dart || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} dart,"; }
 rust || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} rust,"; }
 elixir || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} elixir,"; }
 java || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} java,"; }
-dotnet || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} dotnet,"; }
+# TODO: https://github.com/ory/sdk/issues/434
+# dotnet || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} dotnet,"; }
 upstream || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} upstream,"; }
 
 echo "$FAIL"
