@@ -163,6 +163,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**acceptOAuth2ConsentRequest**](docs/Api/OAuth2Api.md#acceptoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
 *OAuth2Api* | [**acceptOAuth2LoginRequest**](docs/Api/OAuth2Api.md#acceptoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
 *OAuth2Api* | [**acceptOAuth2LogoutRequest**](docs/Api/OAuth2Api.md#acceptoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
+*OAuth2Api* | [**acceptUserCodeRequest**](docs/Api/OAuth2Api.md#acceptusercoderequest) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request
 *OAuth2Api* | [**createOAuth2Client**](docs/Api/OAuth2Api.md#createoauth2client) | **POST** /admin/clients | Create OAuth 2.0 Client
 *OAuth2Api* | [**deleteOAuth2Client**](docs/Api/OAuth2Api.md#deleteoauth2client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
 *OAuth2Api* | [**deleteOAuth2Token**](docs/Api/OAuth2Api.md#deleteoauth2token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
@@ -177,8 +178,10 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**listOAuth2ConsentSessions**](docs/Api/OAuth2Api.md#listoauth2consentsessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
 *OAuth2Api* | [**listTrustedOAuth2JwtGrantIssuers**](docs/Api/OAuth2Api.md#listtrustedoauth2jwtgrantissuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 *OAuth2Api* | [**oAuth2Authorize**](docs/Api/OAuth2Api.md#oauth2authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint
+*OAuth2Api* | [**oAuth2DeviceFlow**](docs/Api/OAuth2Api.md#oauth2deviceflow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint
 *OAuth2Api* | [**oauth2TokenExchange**](docs/Api/OAuth2Api.md#oauth2tokenexchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 *OAuth2Api* | [**patchOAuth2Client**](docs/Api/OAuth2Api.md#patchoauth2client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client
+*OAuth2Api* | [**performOAuth2DeviceVerificationFlow**](docs/Api/OAuth2Api.md#performoauth2deviceverificationflow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint
 *OAuth2Api* | [**rejectOAuth2ConsentRequest**](docs/Api/OAuth2Api.md#rejectoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
 *OAuth2Api* | [**rejectOAuth2LoginRequest**](docs/Api/OAuth2Api.md#rejectoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 *OAuth2Api* | [**rejectOAuth2LogoutRequest**](docs/Api/OAuth2Api.md#rejectoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
@@ -203,11 +206,14 @@ Class | Method | HTTP request | Description
 *PermissionApi* | [**postCheckPermission**](docs/Api/PermissionApi.md#postcheckpermission) | **POST** /relation-tuples/check/openapi | Check a permission
 *PermissionApi* | [**postCheckPermissionOrError**](docs/Api/PermissionApi.md#postcheckpermissionorerror) | **POST** /relation-tuples/check | Check a permission
 *ProjectApi* | [**createOrganization**](docs/Api/ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
+*ProjectApi* | [**createOrganizationOnboardingPortalLink**](docs/Api/ProjectApi.md#createorganizationonboardingportallink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Create organization onboarding portal link
 *ProjectApi* | [**createProject**](docs/Api/ProjectApi.md#createproject) | **POST** /projects | Create a Project
 *ProjectApi* | [**createProjectApiKey**](docs/Api/ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API key
 *ProjectApi* | [**deleteOrganization**](docs/Api/ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
+*ProjectApi* | [**deleteOrganizationOnboardingPortalLink**](docs/Api/ProjectApi.md#deleteorganizationonboardingportallink) | **DELETE** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Delete an organization onboarding portal link
 *ProjectApi* | [**deleteProjectApiKey**](docs/Api/ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key
 *ProjectApi* | [**getOrganization**](docs/Api/ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
+*ProjectApi* | [**getOrganizationOnboardingPortalLinks**](docs/Api/ProjectApi.md#getorganizationonboardingportallinks) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links
 *ProjectApi* | [**getProject**](docs/Api/ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
 *ProjectApi* | [**getProjectMembers**](docs/Api/ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
 *ProjectApi* | [**listOrganizations**](docs/Api/ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
@@ -219,6 +225,7 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**removeProjectMember**](docs/Api/ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 *ProjectApi* | [**setProject**](docs/Api/ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 *ProjectApi* | [**updateOrganization**](docs/Api/ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
+*ProjectApi* | [**updateOrganizationOnboardingPortalLink**](docs/Api/ProjectApi.md#updateorganizationonboardingportallink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link
 *RelationshipApi* | [**checkOplSyntax**](docs/Api/RelationshipApi.md#checkoplsyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
 *RelationshipApi* | [**createRelationship**](docs/Api/RelationshipApi.md#createrelationship) | **PUT** /admin/relation-tuples | Create a Relationship
 *RelationshipApi* | [**deleteRelationships**](docs/Api/RelationshipApi.md#deleterelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
@@ -237,6 +244,7 @@ Class | Method | HTTP request | Description
 
 ## Models
 
+- [AcceptDeviceUserCodeRequest](docs/Model/AcceptDeviceUserCodeRequest.md)
 - [AcceptOAuth2ConsentRequest](docs/Model/AcceptOAuth2ConsentRequest.md)
 - [AcceptOAuth2ConsentRequestSession](docs/Model/AcceptOAuth2ConsentRequestSession.md)
 - [AcceptOAuth2LoginRequest](docs/Model/AcceptOAuth2LoginRequest.md)
@@ -249,6 +257,7 @@ Class | Method | HTTP request | Description
 - [AttributeFilter](docs/Model/AttributeFilter.md)
 - [AttributesCountDatapoint](docs/Model/AttributesCountDatapoint.md)
 - [AuthenticatorAssuranceLevel](docs/Model/AuthenticatorAssuranceLevel.md)
+- [BasicOrganization](docs/Model/BasicOrganization.md)
 - [BatchCheckPermissionBody](docs/Model/BatchCheckPermissionBody.md)
 - [BatchCheckPermissionResult](docs/Model/BatchCheckPermissionResult.md)
 - [BatchPatchIdentitiesResponse](docs/Model/BatchPatchIdentitiesResponse.md)
@@ -275,6 +284,7 @@ Class | Method | HTTP request | Description
 - [CreateIdentityBody](docs/Model/CreateIdentityBody.md)
 - [CreateInviteResponse](docs/Model/CreateInviteResponse.md)
 - [CreateJsonWebKeySet](docs/Model/CreateJsonWebKeySet.md)
+- [CreateOrganizationOnboardingPortalLinkBody](docs/Model/CreateOrganizationOnboardingPortalLinkBody.md)
 - [CreateProjectApiKeyRequest](docs/Model/CreateProjectApiKeyRequest.md)
 - [CreateProjectBody](docs/Model/CreateProjectBody.md)
 - [CreateProjectBranding](docs/Model/CreateProjectBranding.md)
@@ -293,6 +303,8 @@ Class | Method | HTTP request | Description
 - [CredentialSupportedDraft00](docs/Model/CredentialSupportedDraft00.md)
 - [CustomDomain](docs/Model/CustomDomain.md)
 - [DeleteMySessionsCount](docs/Model/DeleteMySessionsCount.md)
+- [DeviceAuthorization](docs/Model/DeviceAuthorization.md)
+- [DeviceUserAuthRequest](docs/Model/DeviceUserAuthRequest.md)
 - [EmailTemplateData](docs/Model/EmailTemplateData.md)
 - [EmailTemplateDataBody](docs/Model/EmailTemplateDataBody.md)
 - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
@@ -351,6 +363,8 @@ Class | Method | HTTP request | Description
 - [JsonWebKey](docs/Model/JsonWebKey.md)
 - [JsonWebKeySet](docs/Model/JsonWebKeySet.md)
 - [KetoNamespace](docs/Model/KetoNamespace.md)
+- [KeysetPaginationRequestParameters](docs/Model/KeysetPaginationRequestParameters.md)
+- [KeysetPaginationResponseHeaders](docs/Model/KeysetPaginationResponseHeaders.md)
 - [LineItemV1](docs/Model/LineItemV1.md)
 - [ListEventStreams](docs/Model/ListEventStreams.md)
 - [ListInvoicesResponse](docs/Model/ListInvoicesResponse.md)
@@ -390,10 +404,11 @@ Class | Method | HTTP request | Description
 - [OAuth2TokenExchange](docs/Model/OAuth2TokenExchange.md)
 - [OidcConfiguration](docs/Model/OidcConfiguration.md)
 - [OidcUserInfo](docs/Model/OidcUserInfo.md)
+- [OnboardingPortalLink](docs/Model/OnboardingPortalLink.md)
+- [OnboardingPortalOrganization](docs/Model/OnboardingPortalOrganization.md)
 - [Organization](docs/Model/Organization.md)
 - [OrganizationBody](docs/Model/OrganizationBody.md)
-- [Pagination](docs/Model/Pagination.md)
-- [PaginationHeaders](docs/Model/PaginationHeaders.md)
+- [OrganizationOnboardingPortalLinksResponse](docs/Model/OrganizationOnboardingPortalLinksResponse.md)
 - [ParseError](docs/Model/ParseError.md)
 - [PatchIdentitiesBody](docs/Model/PatchIdentitiesBody.md)
 - [PerformNativeLogoutBody](docs/Model/PerformNativeLogoutBody.md)
@@ -441,6 +456,7 @@ Class | Method | HTTP request | Description
 - [SetActiveProjectInConsoleBody](docs/Model/SetActiveProjectInConsoleBody.md)
 - [SetCustomDomainBody](docs/Model/SetCustomDomainBody.md)
 - [SetEventStreamBody](docs/Model/SetEventStreamBody.md)
+- [SetOrganizationFromOnboardingPortalLinkBody](docs/Model/SetOrganizationFromOnboardingPortalLinkBody.md)
 - [SetProject](docs/Model/SetProject.md)
 - [SetProjectBrandingThemeBody](docs/Model/SetProjectBrandingThemeBody.md)
 - [SettingsFlow](docs/Model/SettingsFlow.md)
@@ -484,6 +500,7 @@ Class | Method | HTTP request | Description
 - [UpdateLoginFlowWithSamlMethod](docs/Model/UpdateLoginFlowWithSamlMethod.md)
 - [UpdateLoginFlowWithTotpMethod](docs/Model/UpdateLoginFlowWithTotpMethod.md)
 - [UpdateLoginFlowWithWebAuthnMethod](docs/Model/UpdateLoginFlowWithWebAuthnMethod.md)
+- [UpdateOrganizationOnboardingPortalLinkBody](docs/Model/UpdateOrganizationOnboardingPortalLinkBody.md)
 - [UpdateRecoveryFlowBody](docs/Model/UpdateRecoveryFlowBody.md)
 - [UpdateRecoveryFlowWithCodeMethod](docs/Model/UpdateRecoveryFlowWithCodeMethod.md)
 - [UpdateRecoveryFlowWithLinkMethod](docs/Model/UpdateRecoveryFlowWithLinkMethod.md)
@@ -516,6 +533,7 @@ Class | Method | HTTP request | Description
 - [VerifiableIdentityAddress](docs/Model/VerifiableIdentityAddress.md)
 - [VerificationFlow](docs/Model/VerificationFlow.md)
 - [VerificationFlowState](docs/Model/VerificationFlowState.md)
+- [VerifyUserCodeRequest](docs/Model/VerifyUserCodeRequest.md)
 - [Version](docs/Model/Version.md)
 - [Warning](docs/Model/Warning.md)
 - [Workspace](docs/Model/Workspace.md)
@@ -567,6 +585,6 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.20.11`
+- API version: `v1.20.22`
     - Generator version: `7.12.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

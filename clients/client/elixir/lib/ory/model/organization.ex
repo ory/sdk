@@ -11,18 +11,14 @@ defmodule Ory.Model.Organization do
     :created_at,
     :domains,
     :id,
-    :label,
-    :project_id,
-    :updated_at
+    :label
   ]
 
   @type t :: %__MODULE__{
     :created_at => DateTime.t,
     :domains => [String.t],
     :id => String.t,
-    :label => String.t,
-    :project_id => String.t,
-    :updated_at => DateTime.t
+    :label => String.t
   }
 
   alias Ory.Deserializer
@@ -30,7 +26,6 @@ defmodule Ory.Model.Organization do
   def decode(value) do
     value
      |> Deserializer.deserialize(:created_at, :datetime, nil)
-     |> Deserializer.deserialize(:updated_at, :datetime, nil)
   end
 end
 

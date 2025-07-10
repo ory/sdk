@@ -24,6 +24,9 @@ defmodule Ory.Model.OAuth2Client do
     :client_uri,
     :contacts,
     :created_at,
+    :device_authorization_grant_access_token_lifespan,
+    :device_authorization_grant_id_token_lifespan,
+    :device_authorization_grant_refresh_token_lifespan,
     :frontchannel_logout_session_required,
     :frontchannel_logout_uri,
     :grant_types,
@@ -75,12 +78,15 @@ defmodule Ory.Model.OAuth2Client do
     :client_uri => String.t | nil,
     :contacts => [String.t] | nil,
     :created_at => DateTime.t | nil,
+    :device_authorization_grant_access_token_lifespan => String.t | nil,
+    :device_authorization_grant_id_token_lifespan => String.t | nil,
+    :device_authorization_grant_refresh_token_lifespan => String.t | nil,
     :frontchannel_logout_session_required => boolean() | nil,
     :frontchannel_logout_uri => String.t | nil,
     :grant_types => [String.t] | nil,
     :implicit_grant_access_token_lifespan => String.t | nil,
     :implicit_grant_id_token_lifespan => String.t | nil,
-    :jwks => any() | nil,
+    :jwks => Ory.Model.JsonWebKeySet.t | nil,
     :jwks_uri => String.t | nil,
     :jwt_bearer_grant_access_token_lifespan => String.t | nil,
     :logo_uri => String.t | nil,
@@ -114,6 +120,7 @@ defmodule Ory.Model.OAuth2Client do
   def decode(value) do
     value
      |> Deserializer.deserialize(:created_at, :datetime, nil)
+     |> Deserializer.deserialize(:jwks, :struct, Ory.Model.JsonWebKeySet)
      |> Deserializer.deserialize(:updated_at, :datetime, nil)
   end
 end

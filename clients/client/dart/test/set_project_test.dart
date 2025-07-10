@@ -23,6 +23,12 @@ void main() {
       // TODO
     });
 
+    // The organizations that are part of this project.
+    // BuiltList<BasicOrganization> organizations
+    test('to test the property `organizations`', () async {
+      // TODO
+    });
+
     // ProjectServices services
     test('to test the property `services`', () async {
       // TODO

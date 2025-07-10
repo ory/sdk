@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.20.11
+API version: v1.20.22
 Contact: support@ory.sh
 */
 
@@ -22,17 +22,12 @@ var _ MappedNullable = &Organization{}
 
 // Organization B2B SSO Organization
 type Organization struct {
-	// The organization's creation date.
 	CreatedAt time.Time `json:"created_at"`
 	Domains []string `json:"domains"`
 	// The organization's ID.
 	Id string `json:"id"`
 	// The organization's human-readable label.
 	Label string `json:"label"`
-	// The project's ID.
-	ProjectId string `json:"project_id"`
-	// The last time the organization was updated.
-	UpdatedAt time.Time `json:"updated_at"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -42,14 +37,12 @@ type _Organization Organization
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrganization(createdAt time.Time, domains []string, id string, label string, projectId string, updatedAt time.Time) *Organization {
+func NewOrganization(createdAt time.Time, domains []string, id string, label string) *Organization {
 	this := Organization{}
 	this.CreatedAt = createdAt
 	this.Domains = domains
 	this.Id = id
 	this.Label = label
-	this.ProjectId = projectId
-	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -157,54 +150,6 @@ func (o *Organization) SetLabel(v string) {
 	o.Label = v
 }
 
-// GetProjectId returns the ProjectId field value
-func (o *Organization) GetProjectId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ProjectId
-}
-
-// GetProjectIdOk returns a tuple with the ProjectId field value
-// and a boolean to check if the value has been set.
-func (o *Organization) GetProjectIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ProjectId, true
-}
-
-// SetProjectId sets field value
-func (o *Organization) SetProjectId(v string) {
-	o.ProjectId = v
-}
-
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *Organization) GetUpdatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
-// and a boolean to check if the value has been set.
-func (o *Organization) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UpdatedAt, true
-}
-
-// SetUpdatedAt sets field value
-func (o *Organization) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = v
-}
-
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -219,8 +164,6 @@ func (o Organization) ToMap() (map[string]interface{}, error) {
 	toSerialize["domains"] = o.Domains
 	toSerialize["id"] = o.Id
 	toSerialize["label"] = o.Label
-	toSerialize["project_id"] = o.ProjectId
-	toSerialize["updated_at"] = o.UpdatedAt
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -238,8 +181,6 @@ func (o *Organization) UnmarshalJSON(data []byte) (err error) {
 		"domains",
 		"id",
 		"label",
-		"project_id",
-		"updated_at",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -273,8 +214,6 @@ func (o *Organization) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "domains")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "label")
-		delete(additionalProperties, "project_id")
-		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}
 

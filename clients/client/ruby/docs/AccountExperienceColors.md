@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **ax_background_default** | **String** |  | [optional] |
 | **brand_100** | **String** |  | [optional] |
 | **brand_200** | **String** |  | [optional] |
 | **brand_300** | **String** |  | [optional] |
@@ -154,6 +155,7 @@
 require 'ory-client'
 
 instance = OryClient::AccountExperienceColors.new(
+  ax_background_default: null,
   brand_100: null,
   brand_200: null,
   brand_300: null,

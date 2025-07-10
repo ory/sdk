@@ -34,6 +34,15 @@ void main() {
       // TODO
     });
 
+    // Accepts a device grant user_code request
+    //
+    // Accepts a device grant user_code request
+    //
+    //Future<OAuth2RedirectTo> acceptUserCodeRequest(String deviceChallenge, { AcceptDeviceUserCodeRequest acceptDeviceUserCodeRequest }) async
+    test('test acceptUserCodeRequest', () async {
+      // TODO
+    });
+
     // Create OAuth 2.0 Client
     //
     // Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
@@ -146,7 +155,7 @@ void main() {
     //
     // Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
     //
-    //Future<BuiltList<TrustedOAuth2JwtGrantIssuer>> listTrustedOAuth2JwtGrantIssuers({ int maxItems, int defaultItems, String issuer }) async
+    //Future<BuiltList<TrustedOAuth2JwtGrantIssuer>> listTrustedOAuth2JwtGrantIssuers({ int pageSize, String pageToken, String issuer }) async
     test('test listTrustedOAuth2JwtGrantIssuers', () async {
       // TODO
     });
@@ -157,6 +166,15 @@ void main() {
     //
     //Future<ErrorOAuth2> oAuth2Authorize() async
     test('test oAuth2Authorize', () async {
+      // TODO
+    });
+
+    // The OAuth 2.0 Device Authorize Endpoint
+    //
+    // This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+    //
+    //Future<DeviceAuthorization> oAuth2DeviceFlow() async
+    test('test oAuth2DeviceFlow', () async {
       // TODO
     });
 
@@ -175,6 +193,15 @@ void main() {
     //
     //Future<OAuth2Client> patchOAuth2Client(String id, BuiltList<JsonPatch> jsonPatch) async
     test('test patchOAuth2Client', () async {
+      // TODO
+    });
+
+    // OAuth 2.0 Device Verification Endpoint
+    //
+    // This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+    //
+    //Future<ErrorOAuth2> performOAuth2DeviceVerificationFlow() async
+    test('test performOAuth2DeviceVerificationFlow', () async {
       // TODO
     });
 

@@ -25,6 +25,7 @@ src/contrib/ui.ts
 src/contrib/urlHelpers.ts
 src/contrib/utils.ts
 src/index.ts
+src/models/AcceptDeviceUserCodeRequest.ts
 src/models/AcceptOAuth2ConsentRequest.ts
 src/models/AcceptOAuth2ConsentRequestSession.ts
 src/models/AcceptOAuth2LoginRequest.ts
@@ -37,6 +38,7 @@ src/models/Attribute.ts
 src/models/AttributeFilter.ts
 src/models/AttributesCountDatapoint.ts
 src/models/AuthenticatorAssuranceLevel.ts
+src/models/BasicOrganization.ts
 src/models/BatchCheckPermissionBody.ts
 src/models/BatchCheckPermissionResult.ts
 src/models/BatchPatchIdentitiesResponse.ts
@@ -63,6 +65,7 @@ src/models/CreateFedcmFlowResponse.ts
 src/models/CreateIdentityBody.ts
 src/models/CreateInviteResponse.ts
 src/models/CreateJsonWebKeySet.ts
+src/models/CreateOrganizationOnboardingPortalLinkBody.ts
 src/models/CreateProjectApiKeyRequest.ts
 src/models/CreateProjectBody.ts
 src/models/CreateProjectBranding.ts
@@ -81,6 +84,8 @@ src/models/CreateWorkspaceSubscriptionBody.ts
 src/models/CredentialSupportedDraft00.ts
 src/models/CustomDomain.ts
 src/models/DeleteMySessionsCount.ts
+src/models/DeviceAuthorization.ts
+src/models/DeviceUserAuthRequest.ts
 src/models/EmailTemplateData.ts
 src/models/EmailTemplateDataBody.ts
 src/models/ErrorAuthenticatorAssuranceLevelNotSatisfied.ts
@@ -139,6 +144,8 @@ src/models/JsonPatch.ts
 src/models/JsonWebKey.ts
 src/models/JsonWebKeySet.ts
 src/models/KetoNamespace.ts
+src/models/KeysetPaginationRequestParameters.ts
+src/models/KeysetPaginationResponseHeaders.ts
 src/models/LineItemV1.ts
 src/models/ListEventStreams.ts
 src/models/ListInvoicesResponse.ts
@@ -178,10 +185,11 @@ src/models/OAuth2RedirectTo.ts
 src/models/OAuth2TokenExchange.ts
 src/models/OidcConfiguration.ts
 src/models/OidcUserInfo.ts
+src/models/OnboardingPortalLink.ts
+src/models/OnboardingPortalOrganization.ts
 src/models/Organization.ts
 src/models/OrganizationBody.ts
-src/models/Pagination.ts
-src/models/PaginationHeaders.ts
+src/models/OrganizationOnboardingPortalLinksResponse.ts
 src/models/ParseError.ts
 src/models/PatchIdentitiesBody.ts
 src/models/PerformNativeLogoutBody.ts
@@ -229,6 +237,7 @@ src/models/SessionDevice.ts
 src/models/SetActiveProjectInConsoleBody.ts
 src/models/SetCustomDomainBody.ts
 src/models/SetEventStreamBody.ts
+src/models/SetOrganizationFromOnboardingPortalLinkBody.ts
 src/models/SetProject.ts
 src/models/SetProjectBrandingThemeBody.ts
 src/models/SettingsFlow.ts
@@ -272,6 +281,7 @@ src/models/UpdateLoginFlowWithPasswordMethod.ts
 src/models/UpdateLoginFlowWithSamlMethod.ts
 src/models/UpdateLoginFlowWithTotpMethod.ts
 src/models/UpdateLoginFlowWithWebAuthnMethod.ts
+src/models/UpdateOrganizationOnboardingPortalLinkBody.ts
 src/models/UpdateRecoveryFlowBody.ts
 src/models/UpdateRecoveryFlowWithCodeMethod.ts
 src/models/UpdateRecoveryFlowWithLinkMethod.ts
@@ -304,6 +314,7 @@ src/models/VerifiableCredentialResponse.ts
 src/models/VerifiableIdentityAddress.ts
 src/models/VerificationFlow.ts
 src/models/VerificationFlowState.ts
+src/models/VerifyUserCodeRequest.ts
 src/models/Version.ts
 src/models/Warning.ts
 src/models/Workspace.ts

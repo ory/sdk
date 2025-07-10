@@ -12,15 +12,12 @@ part 'organization.g.dart';
 /// B2B SSO Organization
 ///
 /// Properties:
-/// * [createdAt] - The organization's creation date.
+/// * [createdAt] 
 /// * [domains] 
 /// * [id] - The organization's ID.
 /// * [label] - The organization's human-readable label.
-/// * [projectId] - The project's ID.
-/// * [updatedAt] - The last time the organization was updated.
 @BuiltValue()
 abstract class Organization implements Built<Organization, OrganizationBuilder> {
-  /// The organization's creation date.
   @BuiltValueField(wireName: r'created_at')
   DateTime get createdAt;
 
@@ -34,14 +31,6 @@ abstract class Organization implements Built<Organization, OrganizationBuilder> 
   /// The organization's human-readable label.
   @BuiltValueField(wireName: r'label')
   String get label;
-
-  /// The project's ID.
-  @BuiltValueField(wireName: r'project_id')
-  String get projectId;
-
-  /// The last time the organization was updated.
-  @BuiltValueField(wireName: r'updated_at')
-  DateTime get updatedAt;
 
   Organization._();
 
@@ -85,16 +74,6 @@ class _$OrganizationSerializer implements PrimitiveSerializer<Organization> {
     yield serializers.serialize(
       object.label,
       specifiedType: const FullType(String),
-    );
-    yield r'project_id';
-    yield serializers.serialize(
-      object.projectId,
-      specifiedType: const FullType(String),
-    );
-    yield r'updated_at';
-    yield serializers.serialize(
-      object.updatedAt,
-      specifiedType: const FullType(DateTime),
     );
   }
 
@@ -146,20 +125,6 @@ class _$OrganizationSerializer implements PrimitiveSerializer<Organization> {
             specifiedType: const FullType(String),
           ) as String;
           result.label = valueDes;
-          break;
-        case r'project_id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.projectId = valueDes;
-          break;
-        case r'updated_at':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.updatedAt = valueDes;
           break;
         default:
           unhandled.add(key);

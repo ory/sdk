@@ -5,11 +5,14 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_organization**](ProjectApi.md#create_organization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
+[**create_organization_onboarding_portal_link**](ProjectApi.md#create_organization_onboarding_portal_link) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Create organization onboarding portal link
 [**create_project**](ProjectApi.md#create_project) | **POST** /projects | Create a Project
 [**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API key
 [**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
+[**delete_organization_onboarding_portal_link**](ProjectApi.md#delete_organization_onboarding_portal_link) | **DELETE** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Delete an organization onboarding portal link
 [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key
 [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
+[**get_organization_onboarding_portal_links**](ProjectApi.md#get_organization_onboarding_portal_links) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links
 [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
 [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project
 [**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
@@ -21,6 +24,7 @@ Method | HTTP request | Description
 [**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 [**update_organization**](ProjectApi.md#update_organization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
+[**update_organization_onboarding_portal_link**](ProjectApi.md#update_organization_onboarding_portal_link) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link
 
 
 # **create_organization**
@@ -104,6 +108,90 @@ Name | Type | Description  | Notes
 **400** | errorGeneric |  -  |
 **403** | errorGeneric |  -  |
 **409** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_organization_onboarding_portal_link**
+> OnboardingPortalLink create_organization_onboarding_portal_link(project_id, organization_id, create_organization_onboarding_portal_link_body=create_organization_onboarding_portal_link_body)
+
+Create organization onboarding portal link
+
+Create a onboarding portal link for an organization.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.models.create_organization_onboarding_portal_link_body import CreateOrganizationOnboardingPortalLinkBody
+from ory_client.models.onboarding_portal_link import OnboardingPortalLink
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.ProjectApi(api_client)
+    project_id = 'project_id_example' # str | Project ID  The project's ID.
+    organization_id = 'organization_id_example' # str | Organization ID  The Organization's ID.
+    create_organization_onboarding_portal_link_body = ory_client.CreateOrganizationOnboardingPortalLinkBody() # CreateOrganizationOnboardingPortalLinkBody |  (optional)
+
+    try:
+        # Create organization onboarding portal link
+        api_response = api_instance.create_organization_onboarding_portal_link(project_id, organization_id, create_organization_onboarding_portal_link_body=create_organization_onboarding_portal_link_body)
+        print("The response of ProjectApi->create_organization_onboarding_portal_link:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectApi->create_organization_onboarding_portal_link: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**| Project ID  The project&#39;s ID. | 
+ **organization_id** | **str**| Organization ID  The Organization&#39;s ID. | 
+ **create_organization_onboarding_portal_link_body** | [**CreateOrganizationOnboardingPortalLinkBody**](CreateOrganizationOnboardingPortalLinkBody.md)|  | [optional] 
+
+### Return type
+
+[**OnboardingPortalLink**](OnboardingPortalLink.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | onboardingPortalLink |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -355,6 +443,88 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_organization_onboarding_portal_link**
+> delete_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id)
+
+Delete an organization onboarding portal link
+
+Deletes a onboarding portal link for an organization.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.ProjectApi(api_client)
+    project_id = 'project_id_example' # str | 
+    organization_id = 'organization_id_example' # str | 
+    onboarding_portal_link_id = 'onboarding_portal_link_id_example' # str | 
+
+    try:
+        # Delete an organization onboarding portal link
+        api_instance.delete_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id)
+    except Exception as e:
+        print("Exception when calling ProjectApi->delete_organization_onboarding_portal_link: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  | 
+ **organization_id** | **str**|  | 
+ **onboarding_portal_link_id** | **str**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**400** | errorGeneric |  -  |
+**403** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_project_api_key**
 > delete_project_api_key(project, token_id)
 
@@ -510,6 +680,89 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | getOrganizationResponse |  -  |
+**400** | errorGeneric |  -  |
+**403** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_organization_onboarding_portal_links**
+> OrganizationOnboardingPortalLinksResponse get_organization_onboarding_portal_links(project_id, organization_id)
+
+Get the organization onboarding portal links
+
+Retrieves the organization onboarding portal links.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.models.organization_onboarding_portal_links_response import OrganizationOnboardingPortalLinksResponse
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.ProjectApi(api_client)
+    project_id = 'project_id_example' # str | Project ID  The project's ID.
+    organization_id = 'organization_id_example' # str | Organization ID  The Organization's ID.
+
+    try:
+        # Get the organization onboarding portal links
+        api_response = api_instance.get_organization_onboarding_portal_links(project_id, organization_id)
+        print("The response of ProjectApi->get_organization_onboarding_portal_links:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectApi->get_organization_onboarding_portal_links: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**| Project ID  The project&#39;s ID. | 
+ **organization_id** | **str**| Organization ID  The Organization&#39;s ID. | 
+
+### Return type
+
+[**OrganizationOnboardingPortalLinksResponse**](OrganizationOnboardingPortalLinksResponse.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | organizationOnboardingPortalLinksResponse |  -  |
 **400** | errorGeneric |  -  |
 **403** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
@@ -1481,6 +1734,92 @@ Name | Type | Description  | Notes
 **403** | errorGeneric |  -  |
 **404** | errorGeneric |  -  |
 **409** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_organization_onboarding_portal_link**
+> OnboardingPortalLink update_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id, update_organization_onboarding_portal_link_body=update_organization_onboarding_portal_link_body)
+
+Update organization onboarding portal link
+
+Update a onboarding portal link for an organization.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.models.onboarding_portal_link import OnboardingPortalLink
+from ory_client.models.update_organization_onboarding_portal_link_body import UpdateOrganizationOnboardingPortalLinkBody
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.ProjectApi(api_client)
+    project_id = 'project_id_example' # str | Project ID  The project's ID.
+    organization_id = 'organization_id_example' # str | Organization ID  The Organization's ID.
+    onboarding_portal_link_id = 'onboarding_portal_link_id_example' # str | 
+    update_organization_onboarding_portal_link_body = ory_client.UpdateOrganizationOnboardingPortalLinkBody() # UpdateOrganizationOnboardingPortalLinkBody |  (optional)
+
+    try:
+        # Update organization onboarding portal link
+        api_response = api_instance.update_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id, update_organization_onboarding_portal_link_body=update_organization_onboarding_portal_link_body)
+        print("The response of ProjectApi->update_organization_onboarding_portal_link:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectApi->update_organization_onboarding_portal_link: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**| Project ID  The project&#39;s ID. | 
+ **organization_id** | **str**| Organization ID  The Organization&#39;s ID. | 
+ **onboarding_portal_link_id** | **str**|  | 
+ **update_organization_onboarding_portal_link_body** | [**UpdateOrganizationOnboardingPortalLinkBody**](UpdateOrganizationOnboardingPortalLinkBody.md)|  | [optional] 
+
+### Return type
+
+[**OnboardingPortalLink**](OnboardingPortalLink.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | onboardingPortalLink |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

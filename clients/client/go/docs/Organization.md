@@ -4,18 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **time.Time** | The organization&#39;s creation date. | [readonly] 
+**CreatedAt** | **time.Time** |  | 
 **Domains** | **[]string** |  | 
 **Id** | **string** | The organization&#39;s ID. | 
 **Label** | **string** | The organization&#39;s human-readable label. | 
-**ProjectId** | **string** | The project&#39;s ID. | 
-**UpdatedAt** | **time.Time** | The last time the organization was updated. | [readonly] 
 
 ## Methods
 
 ### NewOrganization
 
-`func NewOrganization(createdAt time.Time, domains []string, id string, label string, projectId string, updatedAt time.Time, ) *Organization`
+`func NewOrganization(createdAt time.Time, domains []string, id string, label string, ) *Organization`
 
 NewOrganization instantiates a new Organization object
 This constructor will assign default values to properties that have it defined,
@@ -108,46 +106,6 @@ and a boolean to check if the value has been set.
 `func (o *Organization) SetLabel(v string)`
 
 SetLabel sets Label field to given value.
-
-
-### GetProjectId
-
-`func (o *Organization) GetProjectId() string`
-
-GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
-
-### GetProjectIdOk
-
-`func (o *Organization) GetProjectIdOk() (*string, bool)`
-
-GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProjectId
-
-`func (o *Organization) SetProjectId(v string)`
-
-SetProjectId sets ProjectId field to given value.
-
-
-### GetUpdatedAt
-
-`func (o *Organization) GetUpdatedAt() time.Time`
-
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
-
-### GetUpdatedAtOk
-
-`func (o *Organization) GetUpdatedAtOk() (*time.Time, bool)`
-
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedAt
-
-`func (o *Organization) SetUpdatedAt(v time.Time)`
-
-SetUpdatedAt sets UpdatedAt field to given value.
 
 
 

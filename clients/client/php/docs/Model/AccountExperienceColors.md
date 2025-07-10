@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**axBackgroundDefault** | **string** |  | [optional]
 **brand100** | **string** |  | [optional]
 **brand200** | **string** |  | [optional]
 **brand300** | **string** |  | [optional]

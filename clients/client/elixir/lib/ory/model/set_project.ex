@@ -11,6 +11,7 @@ defmodule Ory.Model.SetProject do
     :cors_admin,
     :cors_public,
     :name,
+    :organizations,
     :services
   ]
 
@@ -18,6 +19,7 @@ defmodule Ory.Model.SetProject do
     :cors_admin => Ory.Model.ProjectCors.t,
     :cors_public => Ory.Model.ProjectCors.t,
     :name => String.t,
+    :organizations => [Ory.Model.BasicOrganization.t],
     :services => Ory.Model.ProjectServices.t
   }
 
@@ -27,6 +29,7 @@ defmodule Ory.Model.SetProject do
     value
      |> Deserializer.deserialize(:cors_admin, :struct, Ory.Model.ProjectCors)
      |> Deserializer.deserialize(:cors_public, :struct, Ory.Model.ProjectCors)
+     |> Deserializer.deserialize(:organizations, :list, Ory.Model.BasicOrganization)
      |> Deserializer.deserialize(:services, :struct, Ory.Model.ProjectServices)
   end
 end

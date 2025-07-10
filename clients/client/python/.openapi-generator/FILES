@@ -4,6 +4,7 @@
 .openapi-generator-ignore
 .travis.yml
 README.md
+docs/AcceptDeviceUserCodeRequest.md
 docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
@@ -16,6 +17,7 @@ docs/Attribute.md
 docs/AttributeFilter.md
 docs/AttributesCountDatapoint.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BasicOrganization.md
 docs/BatchCheckPermissionBody.md
 docs/BatchCheckPermissionResult.md
 docs/BatchPatchIdentitiesResponse.md
@@ -43,6 +45,7 @@ docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
+docs/CreateOrganizationOnboardingPortalLinkBody.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
@@ -61,6 +64,8 @@ docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
+docs/DeviceAuthorization.md
+docs/DeviceUserAuthRequest.md
 docs/EmailTemplateData.md
 docs/EmailTemplateDataBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -123,6 +128,8 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/KeysetPaginationRequestParameters.md
+docs/KeysetPaginationResponseHeaders.md
 docs/LineItemV1.md
 docs/ListEventStreams.md
 docs/ListInvoicesResponse.md
@@ -165,10 +172,11 @@ docs/OAuth2TokenExchange.md
 docs/OidcApi.md
 docs/OidcConfiguration.md
 docs/OidcUserInfo.md
+docs/OnboardingPortalLink.md
+docs/OnboardingPortalOrganization.md
 docs/Organization.md
 docs/OrganizationBody.md
-docs/Pagination.md
-docs/PaginationHeaders.md
+docs/OrganizationOnboardingPortalLinksResponse.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
@@ -219,6 +227,7 @@ docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetEventStreamBody.md
+docs/SetOrganizationFromOnboardingPortalLinkBody.md
 docs/SetProject.md
 docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
@@ -262,6 +271,7 @@ docs/UpdateLoginFlowWithPasswordMethod.md
 docs/UpdateLoginFlowWithSamlMethod.md
 docs/UpdateLoginFlowWithTotpMethod.md
 docs/UpdateLoginFlowWithWebAuthnMethod.md
+docs/UpdateOrganizationOnboardingPortalLinkBody.md
 docs/UpdateRecoveryFlowBody.md
 docs/UpdateRecoveryFlowWithCodeMethod.md
 docs/UpdateRecoveryFlowWithLinkMethod.md
@@ -294,6 +304,7 @@ docs/VerifiableCredentialResponse.md
 docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
 docs/VerificationFlowState.md
+docs/VerifyUserCodeRequest.md
 docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
@@ -321,6 +332,7 @@ ory_client/api_response.py
 ory_client/configuration.py
 ory_client/exceptions.py
 ory_client/models/__init__.py
+ory_client/models/accept_device_user_code_request.py
 ory_client/models/accept_o_auth2_consent_request.py
 ory_client/models/accept_o_auth2_consent_request_session.py
 ory_client/models/accept_o_auth2_login_request.py
@@ -333,6 +345,7 @@ ory_client/models/attribute.py
 ory_client/models/attribute_filter.py
 ory_client/models/attributes_count_datapoint.py
 ory_client/models/authenticator_assurance_level.py
+ory_client/models/basic_organization.py
 ory_client/models/batch_check_permission_body.py
 ory_client/models/batch_check_permission_result.py
 ory_client/models/batch_patch_identities_response.py
@@ -359,6 +372,7 @@ ory_client/models/create_fedcm_flow_response.py
 ory_client/models/create_identity_body.py
 ory_client/models/create_invite_response.py
 ory_client/models/create_json_web_key_set.py
+ory_client/models/create_organization_onboarding_portal_link_body.py
 ory_client/models/create_project_api_key_request.py
 ory_client/models/create_project_body.py
 ory_client/models/create_project_branding.py
@@ -377,6 +391,8 @@ ory_client/models/create_workspace_subscription_body.py
 ory_client/models/credential_supported_draft00.py
 ory_client/models/custom_domain.py
 ory_client/models/delete_my_sessions_count.py
+ory_client/models/device_authorization.py
+ory_client/models/device_user_auth_request.py
 ory_client/models/email_template_data.py
 ory_client/models/email_template_data_body.py
 ory_client/models/error_authenticator_assurance_level_not_satisfied.py
@@ -435,6 +451,8 @@ ory_client/models/json_patch.py
 ory_client/models/json_web_key.py
 ory_client/models/json_web_key_set.py
 ory_client/models/keto_namespace.py
+ory_client/models/keyset_pagination_request_parameters.py
+ory_client/models/keyset_pagination_response_headers.py
 ory_client/models/line_item_v1.py
 ory_client/models/list_event_streams.py
 ory_client/models/list_invoices_response.py
@@ -474,10 +492,11 @@ ory_client/models/o_auth2_redirect_to.py
 ory_client/models/o_auth2_token_exchange.py
 ory_client/models/oidc_configuration.py
 ory_client/models/oidc_user_info.py
+ory_client/models/onboarding_portal_link.py
+ory_client/models/onboarding_portal_organization.py
 ory_client/models/organization.py
 ory_client/models/organization_body.py
-ory_client/models/pagination.py
-ory_client/models/pagination_headers.py
+ory_client/models/organization_onboarding_portal_links_response.py
 ory_client/models/parse_error.py
 ory_client/models/patch_identities_body.py
 ory_client/models/perform_native_logout_body.py
@@ -525,6 +544,7 @@ ory_client/models/session_device.py
 ory_client/models/set_active_project_in_console_body.py
 ory_client/models/set_custom_domain_body.py
 ory_client/models/set_event_stream_body.py
+ory_client/models/set_organization_from_onboarding_portal_link_body.py
 ory_client/models/set_project.py
 ory_client/models/set_project_branding_theme_body.py
 ory_client/models/settings_flow.py
@@ -568,6 +588,7 @@ ory_client/models/update_login_flow_with_password_method.py
 ory_client/models/update_login_flow_with_saml_method.py
 ory_client/models/update_login_flow_with_totp_method.py
 ory_client/models/update_login_flow_with_web_authn_method.py
+ory_client/models/update_organization_onboarding_portal_link_body.py
 ory_client/models/update_recovery_flow_body.py
 ory_client/models/update_recovery_flow_with_code_method.py
 ory_client/models/update_recovery_flow_with_link_method.py
@@ -600,6 +621,7 @@ ory_client/models/verifiable_credential_response.py
 ory_client/models/verifiable_identity_address.py
 ory_client/models/verification_flow.py
 ory_client/models/verification_flow_state.py
+ory_client/models/verify_user_code_request.py
 ory_client/models/version.py
 ory_client/models/warning.py
 ory_client/models/workspace.py
@@ -612,6 +634,7 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_accept_device_user_code_request.py
 test/test_accept_o_auth2_consent_request.py
 test/test_accept_o_auth2_consent_request_session.py
 test/test_accept_o_auth2_login_request.py
@@ -624,6 +647,7 @@ test/test_attribute.py
 test/test_attribute_filter.py
 test/test_attributes_count_datapoint.py
 test/test_authenticator_assurance_level.py
+test/test_basic_organization.py
 test/test_batch_check_permission_body.py
 test/test_batch_check_permission_result.py
 test/test_batch_patch_identities_response.py
@@ -651,6 +675,7 @@ test/test_create_fedcm_flow_response.py
 test/test_create_identity_body.py
 test/test_create_invite_response.py
 test/test_create_json_web_key_set.py
+test/test_create_organization_onboarding_portal_link_body.py
 test/test_create_project_api_key_request.py
 test/test_create_project_body.py
 test/test_create_project_branding.py
@@ -669,6 +694,8 @@ test/test_create_workspace_subscription_body.py
 test/test_credential_supported_draft00.py
 test/test_custom_domain.py
 test/test_delete_my_sessions_count.py
+test/test_device_authorization.py
+test/test_device_user_auth_request.py
 test/test_email_template_data.py
 test/test_email_template_data_body.py
 test/test_error_authenticator_assurance_level_not_satisfied.py
@@ -731,6 +758,8 @@ test/test_json_web_key.py
 test/test_json_web_key_set.py
 test/test_jwk_api.py
 test/test_keto_namespace.py
+test/test_keyset_pagination_request_parameters.py
+test/test_keyset_pagination_response_headers.py
 test/test_line_item_v1.py
 test/test_list_event_streams.py
 test/test_list_invoices_response.py
@@ -773,10 +802,11 @@ test/test_o_auth2_token_exchange.py
 test/test_oidc_api.py
 test/test_oidc_configuration.py
 test/test_oidc_user_info.py
+test/test_onboarding_portal_link.py
+test/test_onboarding_portal_organization.py
 test/test_organization.py
 test/test_organization_body.py
-test/test_pagination.py
-test/test_pagination_headers.py
+test/test_organization_onboarding_portal_links_response.py
 test/test_parse_error.py
 test/test_patch_identities_body.py
 test/test_perform_native_logout_body.py
@@ -827,6 +857,7 @@ test/test_session_device.py
 test/test_set_active_project_in_console_body.py
 test/test_set_custom_domain_body.py
 test/test_set_event_stream_body.py
+test/test_set_organization_from_onboarding_portal_link_body.py
 test/test_set_project.py
 test/test_set_project_branding_theme_body.py
 test/test_settings_flow.py
@@ -870,6 +901,7 @@ test/test_update_login_flow_with_password_method.py
 test/test_update_login_flow_with_saml_method.py
 test/test_update_login_flow_with_totp_method.py
 test/test_update_login_flow_with_web_authn_method.py
+test/test_update_organization_onboarding_portal_link_body.py
 test/test_update_recovery_flow_body.py
 test/test_update_recovery_flow_with_code_method.py
 test/test_update_recovery_flow_with_link_method.py
@@ -902,6 +934,7 @@ test/test_verifiable_credential_response.py
 test/test_verifiable_identity_address.py
 test/test_verification_flow.py
 test/test_verification_flow_state.py
+test/test_verify_user_code_request.py
 test/test_version.py
 test/test_warning.py
 test/test_wellknown_api.py

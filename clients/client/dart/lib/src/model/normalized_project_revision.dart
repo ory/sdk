@@ -13,6 +13,7 @@ import 'package:ory_client/src/model/normalized_project_revision_courier_channel
 import 'package:ory_client/src/model/normalized_project_revision_hook.dart';
 import 'package:built_value/json_object.dart';
 import 'package:ory_client/src/model/normalized_project_revision_third_party_provider.dart';
+import 'package:ory_client/src/model/organization.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -49,6 +50,7 @@ part 'normalized_project_revision.g.dart';
 /// * [hydraOidcSubjectIdentifiersPairwiseSalt] - Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \"oidc.subject_identifiers.pairwise_salt\" setting.
 /// * [hydraOidcSubjectIdentifiersSupportedTypes] 
 /// * [hydraSecretsCookie] 
+/// * [hydraSecretsPagination] 
 /// * [hydraSecretsSystem] 
 /// * [hydraServeCookiesSameSiteLegacyWorkaround] - Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting.
 /// * [hydraServeCookiesSameSiteMode] - Configures the Ory Hydra Cookie Same Site Mode  This governs the \"serve.cookies.same_site_mode\" setting.
@@ -78,6 +80,7 @@ part 'normalized_project_revision.g.dart';
 /// * [id] - The revision ID.
 /// * [ketoNamespaceConfiguration] - The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.
 /// * [ketoNamespaces] 
+/// * [ketoSecretsPagination] 
 /// * [kratosCookiesSameSite] - Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
 /// * [kratosCourierChannels] 
 /// * [kratosCourierDeliveryStrategy] - The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
@@ -132,6 +135,9 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosFeatureFlagsCacheableSessions] - Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
 /// * [kratosFeatureFlagsCacheableSessionsMaxAge] - Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
 /// * [kratosFeatureFlagsFasterSessionExtend] - Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
+/// * [kratosFeatureFlagsLegacyContinueWithVerificationUi] - Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.  This governs the \"feature_flags.legacy_continue_with_verification_ui\" setting.
+/// * [kratosFeatureFlagsLegacyOidcRegistrationNodeGroup] - Controls whether the UI nodes in an OIDC registration flow have group \"oidc\" in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \"oidc\" and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \"feature_flags.legacy_oidc_registration_node_group\" setting.
+/// * [kratosFeatureFlagsLegacyRequireVerifiedLoginError] - Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.  This flag is deprecated and will be removed in the future.  This governs the \"feature_flags.legacy_require_verified_login_error\" setting.
 /// * [kratosFeatureFlagsUseContinueWithTransitions] - Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
 /// * [kratosIdentitySchemas] 
 /// * [kratosOauth2ProviderHeaders] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
@@ -193,8 +199,10 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 /// * [kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret] - Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.
 /// * [kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey] - Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
+/// * [kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode] - Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
 /// * [kratosSelfserviceMethodsCaptchaEnabled] - Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
 /// * [kratosSelfserviceMethodsCodeConfigLifespan] - Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
+/// * [kratosSelfserviceMethodsCodeConfigMaxSubmissions] 
 /// * [kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled] - Enables a fallback method required in certain legacy use cases.  This governs the \"selfservice.methods.code.config.missing_credential_fallback_enabled\" setting.
 /// * [kratosSelfserviceMethodsCodeEnabled] - Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
 /// * [kratosSelfserviceMethodsCodeMfaEnabled] - Configures whether the code method can be used to fulfil MFA flows  This governs the \"selfservice.methods.code.mfa_enabled\" setting.
@@ -235,6 +243,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSessionWhoamiRequiredAal] - Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting.
 /// * [kratosSessionWhoamiTokenizerTemplates] 
 /// * [name] - The project's name.
+/// * [organizations] 
 /// * [projectId] - The Revision's Project ID
 /// * [projectRevisionHooks] 
 /// * [scimClients] 
@@ -354,6 +363,9 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'hydra_secrets_cookie')
   BuiltList<String>? get hydraSecretsCookie;
 
+  @BuiltValueField(wireName: r'hydra_secrets_pagination')
+  BuiltList<String>? get hydraSecretsPagination;
+
   @BuiltValueField(wireName: r'hydra_secrets_system')
   BuiltList<String>? get hydraSecretsSystem;
 
@@ -467,6 +479,9 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
 
   @BuiltValueField(wireName: r'keto_namespaces')
   BuiltList<KetoNamespace>? get ketoNamespaces;
+
+  @BuiltValueField(wireName: r'keto_secrets_pagination')
+  BuiltList<String>? get ketoSecretsPagination;
 
   /// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
   @BuiltValueField(wireName: r'kratos_cookies_same_site')
@@ -682,6 +697,18 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
   @BuiltValueField(wireName: r'kratos_feature_flags_faster_session_extend')
   bool? get kratosFeatureFlagsFasterSessionExtend;
+
+  /// Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.  This governs the \"feature_flags.legacy_continue_with_verification_ui\" setting.
+  @BuiltValueField(wireName: r'kratos_feature_flags_legacy_continue_with_verification_ui')
+  bool? get kratosFeatureFlagsLegacyContinueWithVerificationUi;
+
+  /// Controls whether the UI nodes in an OIDC registration flow have group \"oidc\" in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \"oidc\" and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \"feature_flags.legacy_oidc_registration_node_group\" setting.
+  @BuiltValueField(wireName: r'kratos_feature_flags_legacy_oidc_registration_node_group')
+  bool? get kratosFeatureFlagsLegacyOidcRegistrationNodeGroup;
+
+  /// Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.  This flag is deprecated and will be removed in the future.  This governs the \"feature_flags.legacy_require_verified_login_error\" setting.
+  @BuiltValueField(wireName: r'kratos_feature_flags_legacy_require_verified_login_error')
+  bool? get kratosFeatureFlagsLegacyRequireVerifiedLoginError;
 
   /// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
   @BuiltValueField(wireName: r'kratos_feature_flags_use_continue_with_transitions')
@@ -925,12 +952,19 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   String? get kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
 
   /// Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_captcha_config_legacy_inject_node')
+  bool? get kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode;
+
+  /// Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_captcha_enabled')
   bool? get kratosSelfserviceMethodsCaptchaEnabled;
 
   /// Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_config_lifespan')
   String? get kratosSelfserviceMethodsCodeConfigLifespan;
+
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_code_config_max_submissions')
+  int? get kratosSelfserviceMethodsCodeConfigMaxSubmissions;
 
   /// Enables a fallback method required in certain legacy use cases.  This governs the \"selfservice.methods.code.config.missing_credential_fallback_enabled\" setting.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_code_config_missing_credential_fallback_enabled')
@@ -1086,6 +1120,9 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// The project's name.
   @BuiltValueField(wireName: r'name')
   String get name;
+
+  @BuiltValueField(wireName: r'organizations')
+  BuiltList<Organization>? get organizations;
 
   /// The Revision's Project ID
   @BuiltValueField(wireName: r'project_id')
@@ -1350,6 +1387,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
+    if (object.hydraSecretsPagination != null) {
+      yield r'hydra_secrets_pagination';
+      yield serializers.serialize(
+        object.hydraSecretsPagination,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
     if (object.hydraSecretsSystem != null) {
       yield r'hydra_secrets_system';
       yield serializers.serialize(
@@ -1551,6 +1595,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.ketoNamespaces,
         specifiedType: const FullType(BuiltList, [FullType(KetoNamespace)]),
+      );
+    }
+    if (object.ketoSecretsPagination != null) {
+      yield r'keto_secrets_pagination';
+      yield serializers.serialize(
+        object.ketoSecretsPagination,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
     if (object.kratosCookiesSameSite != null) {
@@ -1928,6 +1979,27 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_feature_flags_faster_session_extend';
       yield serializers.serialize(
         object.kratosFeatureFlagsFasterSessionExtend,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.kratosFeatureFlagsLegacyContinueWithVerificationUi != null) {
+      yield r'kratos_feature_flags_legacy_continue_with_verification_ui';
+      yield serializers.serialize(
+        object.kratosFeatureFlagsLegacyContinueWithVerificationUi,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.kratosFeatureFlagsLegacyOidcRegistrationNodeGroup != null) {
+      yield r'kratos_feature_flags_legacy_oidc_registration_node_group';
+      yield serializers.serialize(
+        object.kratosFeatureFlagsLegacyOidcRegistrationNodeGroup,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.kratosFeatureFlagsLegacyRequireVerifiedLoginError != null) {
+      yield r'kratos_feature_flags_legacy_require_verified_login_error';
+      yield serializers.serialize(
+        object.kratosFeatureFlagsLegacyRequireVerifiedLoginError,
         specifiedType: const FullType(bool),
       );
     }
@@ -2358,6 +2430,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(String),
       );
     }
+    if (object.kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode != null) {
+      yield r'kratos_selfservice_methods_captcha_config_legacy_inject_node';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.kratosSelfserviceMethodsCaptchaEnabled != null) {
       yield r'kratos_selfservice_methods_captcha_enabled';
       yield serializers.serialize(
@@ -2370,6 +2449,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosSelfserviceMethodsCodeConfigLifespan,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.kratosSelfserviceMethodsCodeConfigMaxSubmissions != null) {
+      yield r'kratos_selfservice_methods_code_config_max_submissions';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsCodeConfigMaxSubmissions,
+        specifiedType: const FullType.nullable(int),
       );
     }
     if (object.kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled != null) {
@@ -2650,6 +2736,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       object.name,
       specifiedType: const FullType(String),
     );
+    if (object.organizations != null) {
+      yield r'organizations';
+      yield serializers.serialize(
+        object.organizations,
+        specifiedType: const FullType(BuiltList, [FullType(Organization)]),
+      );
+    }
     if (object.projectId != null) {
       yield r'project_id';
       yield serializers.serialize(
@@ -2932,6 +3025,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as BuiltList<String>;
           result.hydraSecretsCookie.replace(valueDes);
           break;
+        case r'hydra_secrets_pagination':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.hydraSecretsPagination.replace(valueDes);
+          break;
         case r'hydra_secrets_system':
           final valueDes = serializers.deserialize(
             value,
@@ -3134,6 +3234,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(BuiltList, [FullType(KetoNamespace)]),
           ) as BuiltList<KetoNamespace>;
           result.ketoNamespaces.replace(valueDes);
+          break;
+        case r'keto_secrets_pagination':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.ketoSecretsPagination.replace(valueDes);
           break;
         case r'kratos_cookies_same_site':
           final valueDes = serializers.deserialize(
@@ -3514,6 +3621,27 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(bool),
           ) as bool;
           result.kratosFeatureFlagsFasterSessionExtend = valueDes;
+          break;
+        case r'kratos_feature_flags_legacy_continue_with_verification_ui':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosFeatureFlagsLegacyContinueWithVerificationUi = valueDes;
+          break;
+        case r'kratos_feature_flags_legacy_oidc_registration_node_group':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosFeatureFlagsLegacyOidcRegistrationNodeGroup = valueDes;
+          break;
+        case r'kratos_feature_flags_legacy_require_verified_login_error':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosFeatureFlagsLegacyRequireVerifiedLoginError = valueDes;
           break;
         case r'kratos_feature_flags_use_continue_with_transitions':
           final valueDes = serializers.deserialize(
@@ -3943,6 +4071,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as String;
           result.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey = valueDes;
           break;
+        case r'kratos_selfservice_methods_captcha_config_legacy_inject_node':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode = valueDes;
+          break;
         case r'kratos_selfservice_methods_captcha_enabled':
           final valueDes = serializers.deserialize(
             value,
@@ -3956,6 +4091,14 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.kratosSelfserviceMethodsCodeConfigLifespan = valueDes;
+          break;
+        case r'kratos_selfservice_methods_code_config_max_submissions':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.kratosSelfserviceMethodsCodeConfigMaxSubmissions = valueDes;
           break;
         case r'kratos_selfservice_methods_code_config_missing_credential_fallback_enabled':
           final valueDes = serializers.deserialize(
@@ -4236,6 +4379,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(String),
           ) as String;
           result.name = valueDes;
+          break;
+        case r'organizations':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(Organization)]),
+          ) as BuiltList<Organization>;
+          result.organizations.replace(valueDes);
           break;
         case r'project_id':
           final valueDes = serializers.deserialize(

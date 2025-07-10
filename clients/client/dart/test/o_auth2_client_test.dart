@@ -7,7 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(OAuth2Client, () {
-    // OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token Setting the stragegy here overrides the global setting in `strategies.access_token`.
+    // OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token Setting the strategy here overrides the global setting in `strategies.access_token`.
     // String accessTokenStrategy
     test('to test the property `accessTokenStrategy`', () async {
       // TODO
@@ -96,6 +96,21 @@ void main() {
       // TODO
     });
 
+    // String deviceAuthorizationGrantAccessTokenLifespan
+    test('to test the property `deviceAuthorizationGrantAccessTokenLifespan`', () async {
+      // TODO
+    });
+
+    // String deviceAuthorizationGrantIdTokenLifespan
+    test('to test the property `deviceAuthorizationGrantIdTokenLifespan`', () async {
+      // TODO
+    });
+
+    // String deviceAuthorizationGrantRefreshTokenLifespan
+    test('to test the property `deviceAuthorizationGrantRefreshTokenLifespan`', () async {
+      // TODO
+    });
+
     // OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the RP requires that iss (issuer) and sid (session ID) query parameters be included to identify the RP session with the OP when the frontchannel_logout_uri is used. If omitted, the default value is false.
     // bool frontchannelLogoutSessionRequired
     test('to test the property `frontchannelLogoutSessionRequired`', () async {
@@ -123,8 +138,7 @@ void main() {
       // TODO
     });
 
-    // OAuth 2.0 Client JSON Web Key Set  Client's JSON Web Key Set [JWK] document, passed by value. The semantics of the jwks parameter are the same as the jwks_uri parameter, other than that the JWK Set is passed by value, rather than by reference. This parameter is intended only to be used by Clients that, for some reason, are unable to use the jwks_uri parameter, for instance, by native applications that might not have a location to host the contents of the JWK Set. If a Client can use jwks_uri, it MUST NOT use jwks. One significant downside of jwks is that it does not enable key rotation (which jwks_uri does, as described in Section 10 of OpenID Connect Core 1.0 [OpenID.Core]). The jwks_uri and jwks parameters MUST NOT be used together.
-    // JsonObject jwks
+    // JsonWebKeySet jwks
     test('to test the property `jwks`', () async {
       // TODO
     });

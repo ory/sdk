@@ -17,6 +17,7 @@ docs/Api/ProjectApi.md
 docs/Api/RelationshipApi.md
 docs/Api/WellknownApi.md
 docs/Api/WorkspaceApi.md
+docs/Model/AcceptDeviceUserCodeRequest.md
 docs/Model/AcceptOAuth2ConsentRequest.md
 docs/Model/AcceptOAuth2ConsentRequestSession.md
 docs/Model/AcceptOAuth2LoginRequest.md
@@ -29,6 +30,7 @@ docs/Model/Attribute.md
 docs/Model/AttributeFilter.md
 docs/Model/AttributesCountDatapoint.md
 docs/Model/AuthenticatorAssuranceLevel.md
+docs/Model/BasicOrganization.md
 docs/Model/BatchCheckPermissionBody.md
 docs/Model/BatchCheckPermissionResult.md
 docs/Model/BatchPatchIdentitiesResponse.md
@@ -55,6 +57,7 @@ docs/Model/CreateFedcmFlowResponse.md
 docs/Model/CreateIdentityBody.md
 docs/Model/CreateInviteResponse.md
 docs/Model/CreateJsonWebKeySet.md
+docs/Model/CreateOrganizationOnboardingPortalLinkBody.md
 docs/Model/CreateProjectApiKeyRequest.md
 docs/Model/CreateProjectBody.md
 docs/Model/CreateProjectBranding.md
@@ -73,6 +76,8 @@ docs/Model/CreateWorkspaceSubscriptionBody.md
 docs/Model/CredentialSupportedDraft00.md
 docs/Model/CustomDomain.md
 docs/Model/DeleteMySessionsCount.md
+docs/Model/DeviceAuthorization.md
+docs/Model/DeviceUserAuthRequest.md
 docs/Model/EmailTemplateData.md
 docs/Model/EmailTemplateDataBody.md
 docs/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -131,6 +136,8 @@ docs/Model/JsonPatch.md
 docs/Model/JsonWebKey.md
 docs/Model/JsonWebKeySet.md
 docs/Model/KetoNamespace.md
+docs/Model/KeysetPaginationRequestParameters.md
+docs/Model/KeysetPaginationResponseHeaders.md
 docs/Model/LineItemV1.md
 docs/Model/ListEventStreams.md
 docs/Model/ListInvoicesResponse.md
@@ -170,10 +177,11 @@ docs/Model/OAuth2RedirectTo.md
 docs/Model/OAuth2TokenExchange.md
 docs/Model/OidcConfiguration.md
 docs/Model/OidcUserInfo.md
+docs/Model/OnboardingPortalLink.md
+docs/Model/OnboardingPortalOrganization.md
 docs/Model/Organization.md
 docs/Model/OrganizationBody.md
-docs/Model/Pagination.md
-docs/Model/PaginationHeaders.md
+docs/Model/OrganizationOnboardingPortalLinksResponse.md
 docs/Model/ParseError.md
 docs/Model/PatchIdentitiesBody.md
 docs/Model/PerformNativeLogoutBody.md
@@ -221,6 +229,7 @@ docs/Model/SessionDevice.md
 docs/Model/SetActiveProjectInConsoleBody.md
 docs/Model/SetCustomDomainBody.md
 docs/Model/SetEventStreamBody.md
+docs/Model/SetOrganizationFromOnboardingPortalLinkBody.md
 docs/Model/SetProject.md
 docs/Model/SetProjectBrandingThemeBody.md
 docs/Model/SettingsFlow.md
@@ -264,6 +273,7 @@ docs/Model/UpdateLoginFlowWithPasswordMethod.md
 docs/Model/UpdateLoginFlowWithSamlMethod.md
 docs/Model/UpdateLoginFlowWithTotpMethod.md
 docs/Model/UpdateLoginFlowWithWebAuthnMethod.md
+docs/Model/UpdateOrganizationOnboardingPortalLinkBody.md
 docs/Model/UpdateRecoveryFlowBody.md
 docs/Model/UpdateRecoveryFlowWithCodeMethod.md
 docs/Model/UpdateRecoveryFlowWithLinkMethod.md
@@ -296,6 +306,7 @@ docs/Model/VerifiableCredentialResponse.md
 docs/Model/VerifiableIdentityAddress.md
 docs/Model/VerificationFlow.md
 docs/Model/VerificationFlowState.md
+docs/Model/VerifyUserCodeRequest.md
 docs/Model/Version.md
 docs/Model/Warning.md
 docs/Model/Workspace.md
@@ -317,6 +328,7 @@ lib/Api/WorkspaceApi.php
 lib/ApiException.php
 lib/Configuration.php
 lib/HeaderSelector.php
+lib/Model/AcceptDeviceUserCodeRequest.php
 lib/Model/AcceptOAuth2ConsentRequest.php
 lib/Model/AcceptOAuth2ConsentRequestSession.php
 lib/Model/AcceptOAuth2LoginRequest.php
@@ -329,6 +341,7 @@ lib/Model/Attribute.php
 lib/Model/AttributeFilter.php
 lib/Model/AttributesCountDatapoint.php
 lib/Model/AuthenticatorAssuranceLevel.php
+lib/Model/BasicOrganization.php
 lib/Model/BatchCheckPermissionBody.php
 lib/Model/BatchCheckPermissionResult.php
 lib/Model/BatchPatchIdentitiesResponse.php
@@ -355,6 +368,7 @@ lib/Model/CreateFedcmFlowResponse.php
 lib/Model/CreateIdentityBody.php
 lib/Model/CreateInviteResponse.php
 lib/Model/CreateJsonWebKeySet.php
+lib/Model/CreateOrganizationOnboardingPortalLinkBody.php
 lib/Model/CreateProjectApiKeyRequest.php
 lib/Model/CreateProjectBody.php
 lib/Model/CreateProjectBranding.php
@@ -373,6 +387,8 @@ lib/Model/CreateWorkspaceSubscriptionBody.php
 lib/Model/CredentialSupportedDraft00.php
 lib/Model/CustomDomain.php
 lib/Model/DeleteMySessionsCount.php
+lib/Model/DeviceAuthorization.php
+lib/Model/DeviceUserAuthRequest.php
 lib/Model/EmailTemplateData.php
 lib/Model/EmailTemplateDataBody.php
 lib/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.php
@@ -431,6 +447,8 @@ lib/Model/JsonPatch.php
 lib/Model/JsonWebKey.php
 lib/Model/JsonWebKeySet.php
 lib/Model/KetoNamespace.php
+lib/Model/KeysetPaginationRequestParameters.php
+lib/Model/KeysetPaginationResponseHeaders.php
 lib/Model/LineItemV1.php
 lib/Model/ListEventStreams.php
 lib/Model/ListInvoicesResponse.php
@@ -471,10 +489,11 @@ lib/Model/OAuth2RedirectTo.php
 lib/Model/OAuth2TokenExchange.php
 lib/Model/OidcConfiguration.php
 lib/Model/OidcUserInfo.php
+lib/Model/OnboardingPortalLink.php
+lib/Model/OnboardingPortalOrganization.php
 lib/Model/Organization.php
 lib/Model/OrganizationBody.php
-lib/Model/Pagination.php
-lib/Model/PaginationHeaders.php
+lib/Model/OrganizationOnboardingPortalLinksResponse.php
 lib/Model/ParseError.php
 lib/Model/PatchIdentitiesBody.php
 lib/Model/PerformNativeLogoutBody.php
@@ -522,6 +541,7 @@ lib/Model/SessionDevice.php
 lib/Model/SetActiveProjectInConsoleBody.php
 lib/Model/SetCustomDomainBody.php
 lib/Model/SetEventStreamBody.php
+lib/Model/SetOrganizationFromOnboardingPortalLinkBody.php
 lib/Model/SetProject.php
 lib/Model/SetProjectBrandingThemeBody.php
 lib/Model/SettingsFlow.php
@@ -565,6 +585,7 @@ lib/Model/UpdateLoginFlowWithPasswordMethod.php
 lib/Model/UpdateLoginFlowWithSamlMethod.php
 lib/Model/UpdateLoginFlowWithTotpMethod.php
 lib/Model/UpdateLoginFlowWithWebAuthnMethod.php
+lib/Model/UpdateOrganizationOnboardingPortalLinkBody.php
 lib/Model/UpdateRecoveryFlowBody.php
 lib/Model/UpdateRecoveryFlowWithCodeMethod.php
 lib/Model/UpdateRecoveryFlowWithLinkMethod.php
@@ -597,6 +618,7 @@ lib/Model/VerifiableCredentialResponse.php
 lib/Model/VerifiableIdentityAddress.php
 lib/Model/VerificationFlow.php
 lib/Model/VerificationFlowState.php
+lib/Model/VerifyUserCodeRequest.php
 lib/Model/Version.php
 lib/Model/Warning.php
 lib/Model/Workspace.php
@@ -616,6 +638,7 @@ test/Api/ProjectApiTest.php
 test/Api/RelationshipApiTest.php
 test/Api/WellknownApiTest.php
 test/Api/WorkspaceApiTest.php
+test/Model/AcceptDeviceUserCodeRequestTest.php
 test/Model/AcceptOAuth2ConsentRequestSessionTest.php
 test/Model/AcceptOAuth2ConsentRequestTest.php
 test/Model/AcceptOAuth2LoginRequestTest.php
@@ -628,6 +651,7 @@ test/Model/AttributeFilterTest.php
 test/Model/AttributeTest.php
 test/Model/AttributesCountDatapointTest.php
 test/Model/AuthenticatorAssuranceLevelTest.php
+test/Model/BasicOrganizationTest.php
 test/Model/BatchCheckPermissionBodyTest.php
 test/Model/BatchCheckPermissionResultTest.php
 test/Model/BatchPatchIdentitiesResponseTest.php
@@ -654,6 +678,7 @@ test/Model/CreateFedcmFlowResponseTest.php
 test/Model/CreateIdentityBodyTest.php
 test/Model/CreateInviteResponseTest.php
 test/Model/CreateJsonWebKeySetTest.php
+test/Model/CreateOrganizationOnboardingPortalLinkBodyTest.php
 test/Model/CreateProjectApiKeyRequestTest.php
 test/Model/CreateProjectBodyTest.php
 test/Model/CreateProjectBrandingTest.php
@@ -672,6 +697,8 @@ test/Model/CreateWorkspaceSubscriptionBodyTest.php
 test/Model/CredentialSupportedDraft00Test.php
 test/Model/CustomDomainTest.php
 test/Model/DeleteMySessionsCountTest.php
+test/Model/DeviceAuthorizationTest.php
+test/Model/DeviceUserAuthRequestTest.php
 test/Model/EmailTemplateDataBodyTest.php
 test/Model/EmailTemplateDataTest.php
 test/Model/ErrorAuthenticatorAssuranceLevelNotSatisfiedTest.php
@@ -730,6 +757,8 @@ test/Model/JsonPatchTest.php
 test/Model/JsonWebKeySetTest.php
 test/Model/JsonWebKeyTest.php
 test/Model/KetoNamespaceTest.php
+test/Model/KeysetPaginationRequestParametersTest.php
+test/Model/KeysetPaginationResponseHeadersTest.php
 test/Model/LineItemV1Test.php
 test/Model/ListEventStreamsTest.php
 test/Model/ListInvoicesResponseTest.php
@@ -769,10 +798,11 @@ test/Model/OAuth2RedirectToTest.php
 test/Model/OAuth2TokenExchangeTest.php
 test/Model/OidcConfigurationTest.php
 test/Model/OidcUserInfoTest.php
+test/Model/OnboardingPortalLinkTest.php
+test/Model/OnboardingPortalOrganizationTest.php
 test/Model/OrganizationBodyTest.php
+test/Model/OrganizationOnboardingPortalLinksResponseTest.php
 test/Model/OrganizationTest.php
-test/Model/PaginationHeadersTest.php
-test/Model/PaginationTest.php
 test/Model/ParseErrorTest.php
 test/Model/PatchIdentitiesBodyTest.php
 test/Model/PerformNativeLogoutBodyTest.php
@@ -820,6 +850,7 @@ test/Model/SessionTest.php
 test/Model/SetActiveProjectInConsoleBodyTest.php
 test/Model/SetCustomDomainBodyTest.php
 test/Model/SetEventStreamBodyTest.php
+test/Model/SetOrganizationFromOnboardingPortalLinkBodyTest.php
 test/Model/SetProjectBrandingThemeBodyTest.php
 test/Model/SetProjectTest.php
 test/Model/SettingsFlowStateTest.php
@@ -863,6 +894,7 @@ test/Model/UpdateLoginFlowWithPasswordMethodTest.php
 test/Model/UpdateLoginFlowWithSamlMethodTest.php
 test/Model/UpdateLoginFlowWithTotpMethodTest.php
 test/Model/UpdateLoginFlowWithWebAuthnMethodTest.php
+test/Model/UpdateOrganizationOnboardingPortalLinkBodyTest.php
 test/Model/UpdateRecoveryFlowBodyTest.php
 test/Model/UpdateRecoveryFlowWithCodeMethodTest.php
 test/Model/UpdateRecoveryFlowWithLinkMethodTest.php
@@ -895,6 +927,7 @@ test/Model/VerifiableCredentialResponseTest.php
 test/Model/VerifiableIdentityAddressTest.php
 test/Model/VerificationFlowStateTest.php
 test/Model/VerificationFlowTest.php
+test/Model/VerifyUserCodeRequestTest.php
 test/Model/VersionTest.php
 test/Model/WarningTest.php
 test/Model/WorkspaceApiKeyTest.php

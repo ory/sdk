@@ -16,6 +16,15 @@ void main() {
       // TODO
     });
 
+    // Create organization onboarding portal link
+    //
+    // Create a onboarding portal link for an organization.
+    //
+    //Future<OnboardingPortalLink> createOrganizationOnboardingPortalLink(String projectId, String organizationId, { CreateOrganizationOnboardingPortalLinkBody createOrganizationOnboardingPortalLinkBody }) async
+    test('test createOrganizationOnboardingPortalLink', () async {
+      // TODO
+    });
+
     // Create a Project
     //
     // Creates a new project.
@@ -43,6 +52,15 @@ void main() {
       // TODO
     });
 
+    // Delete an organization onboarding portal link
+    //
+    // Deletes a onboarding portal link for an organization.
+    //
+    //Future deleteOrganizationOnboardingPortalLink(String projectId, String organizationId, String onboardingPortalLinkId) async
+    test('test deleteOrganizationOnboardingPortalLink', () async {
+      // TODO
+    });
+
     // Delete project API key
     //
     // Deletes an API key and immediately removes it.
@@ -58,6 +76,15 @@ void main() {
     //
     //Future<GetOrganizationResponse> getOrganization(String projectId, String organizationId) async
     test('test getOrganization', () async {
+      // TODO
+    });
+
+    // Get the organization onboarding portal links
+    //
+    // Retrieves the organization onboarding portal links.
+    //
+    //Future<OrganizationOnboardingPortalLinksResponse> getOrganizationOnboardingPortalLinks(String projectId, String organizationId) async
+    test('test getOrganizationOnboardingPortalLinks', () async {
       // TODO
     });
 
@@ -157,6 +184,15 @@ void main() {
     //
     //Future<Organization> updateOrganization(String projectId, String organizationId, { OrganizationBody organizationBody }) async
     test('test updateOrganization', () async {
+      // TODO
+    });
+
+    // Update organization onboarding portal link
+    //
+    // Update a onboarding portal link for an organization.
+    //
+    //Future<OnboardingPortalLink> updateOrganizationOnboardingPortalLink(String projectId, String organizationId, String onboardingPortalLinkId, { UpdateOrganizationOnboardingPortalLinkBody updateOrganizationOnboardingPortalLinkBody }) async
+    test('test updateOrganizationOnboardingPortalLink', () async {
       // TODO
     });
 

@@ -7,6 +7,11 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(AccountExperienceColors, () {
+    // String axBackgroundDefault
+    test('to test the property `axBackgroundDefault`', () async {
+      // TODO
+    });
+
     // String brand100
     test('to test the property `brand100`', () async {
       // TODO

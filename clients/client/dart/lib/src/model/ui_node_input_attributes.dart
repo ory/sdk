@@ -53,7 +53,7 @@ abstract class UiNodeInputAttributes implements Built<UiNodeInputAttributes, UiN
   /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueField(wireName: r'node_type')
   UiNodeInputAttributesNodeTypeEnum get nodeType;
-  // enum nodeTypeEnum {  text,  input,  img,  a,  script,  div,  };
+  // enum nodeTypeEnum {  input,  };
 
   /// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.  Deprecated: Using OnClick requires the use of eval() which is a security risk. Use OnClickTrigger instead.
   @BuiltValueField(wireName: r'onclick')
@@ -389,23 +389,8 @@ class UiNodeInputAttributesAutocompleteEnum extends EnumClass {
 class UiNodeInputAttributesNodeTypeEnum extends EnumClass {
 
   /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'text')
-  static const UiNodeInputAttributesNodeTypeEnum text = _$uiNodeInputAttributesNodeTypeEnum_text;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'input')
   static const UiNodeInputAttributesNodeTypeEnum input = _$uiNodeInputAttributesNodeTypeEnum_input;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'img')
-  static const UiNodeInputAttributesNodeTypeEnum img = _$uiNodeInputAttributesNodeTypeEnum_img;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'a')
-  static const UiNodeInputAttributesNodeTypeEnum a = _$uiNodeInputAttributesNodeTypeEnum_a;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'script')
-  static const UiNodeInputAttributesNodeTypeEnum script = _$uiNodeInputAttributesNodeTypeEnum_script;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'div')
-  static const UiNodeInputAttributesNodeTypeEnum div = _$uiNodeInputAttributesNodeTypeEnum_div;
 
   static Serializer<UiNodeInputAttributesNodeTypeEnum> get serializer => _$uiNodeInputAttributesNodeTypeEnumSerializer;
 

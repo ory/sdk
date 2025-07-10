@@ -51,6 +51,45 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
+  Create organization onboarding portal link
+  Create a onboarding portal link for an organization.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `project_id` (String.t): Project ID  The project's ID.
+  - `organization_id` (String.t): Organization ID  The Organization's ID.
+  - `opts` (keyword): Optional parameters
+    - `:body` (CreateOrganizationOnboardingPortalLinkBody): 
+
+  ### Returns
+
+  - `{:ok, Ory.Model.OnboardingPortalLink.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec create_organization_onboarding_portal_link(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.OnboardingPortalLink.t} | {:error, Tesla.Env.t}
+  def create_organization_onboarding_portal_link(connection, project_id, organization_id, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:post)
+      |> url("/projects/#{project_id}/organizations/#{organization_id}/onboarding-portal-links")
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, Ory.Model.OnboardingPortalLink},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
   Create a Project
   Creates a new project.
 
@@ -165,6 +204,41 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
+  Delete an organization onboarding portal link
+  Deletes a onboarding portal link for an organization.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `project_id` (String.t): 
+  - `organization_id` (String.t): 
+  - `onboarding_portal_link_id` (String.t): 
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, nil}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec delete_organization_onboarding_portal_link(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:error, Tesla.Env.t}
+  def delete_organization_onboarding_portal_link(connection, project_id, organization_id, onboarding_portal_link_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:delete)
+      |> url("/projects/#{project_id}/organizations/#{organization_id}/onboarding-portal-links/#{onboarding_portal_link_id}")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {204, false},
+      {400, Ory.Model.ErrorGeneric},
+      {403, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
   Delete project API key
   Deletes an API key and immediately removes it.
 
@@ -224,6 +298,40 @@ defmodule Ory.Api.Project do
     |> Connection.request(request)
     |> evaluate_response([
       {200, Ory.Model.GetOrganizationResponse},
+      {400, Ory.Model.ErrorGeneric},
+      {403, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
+  Get the organization onboarding portal links
+  Retrieves the organization onboarding portal links.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `project_id` (String.t): Project ID  The project's ID.
+  - `organization_id` (String.t): Organization ID  The Organization's ID.
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.OrganizationOnboardingPortalLinksResponse.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_organization_onboarding_portal_links(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Ory.Model.OrganizationOnboardingPortalLinksResponse.t} | {:ok, Ory.Model.ErrorGeneric.t} | {:error, Tesla.Env.t}
+  def get_organization_onboarding_portal_links(connection, project_id, organization_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/projects/#{project_id}/organizations/#{organization_id}/onboarding-portal-links")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.OrganizationOnboardingPortalLinksResponse},
       {400, Ory.Model.ErrorGeneric},
       {403, Ory.Model.ErrorGeneric},
       {:default, Ory.Model.ErrorGeneric}
@@ -638,6 +746,46 @@ defmodule Ory.Api.Project do
       {403, Ory.Model.ErrorGeneric},
       {404, Ory.Model.ErrorGeneric},
       {409, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
+  Update organization onboarding portal link
+  Update a onboarding portal link for an organization.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `project_id` (String.t): Project ID  The project's ID.
+  - `organization_id` (String.t): Organization ID  The Organization's ID.
+  - `onboarding_portal_link_id` (String.t): 
+  - `opts` (keyword): Optional parameters
+    - `:body` (UpdateOrganizationOnboardingPortalLinkBody): 
+
+  ### Returns
+
+  - `{:ok, Ory.Model.OnboardingPortalLink.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec update_organization_onboarding_portal_link(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.OnboardingPortalLink.t} | {:error, Tesla.Env.t}
+  def update_organization_onboarding_portal_link(connection, project_id, organization_id, onboarding_portal_link_id, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:post)
+      |> url("/projects/#{project_id}/organizations/#{organization_id}/onboarding-portal-links/#{onboarding_portal_link_id}")
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.OnboardingPortalLink},
       {:default, Ory.Model.ErrorGeneric}
     ])
   end

@@ -10,8 +10,10 @@ import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/api_util.dart';
+import 'package:ory_client/src/model/accept_device_user_code_request.dart';
 import 'package:ory_client/src/model/accept_o_auth2_consent_request.dart';
 import 'package:ory_client/src/model/accept_o_auth2_login_request.dart';
+import 'package:ory_client/src/model/device_authorization.dart';
 import 'package:ory_client/src/model/error_o_auth2.dart';
 import 'package:ory_client/src/model/generic_error.dart';
 import 'package:ory_client/src/model/introspected_o_auth2_token.dart';
@@ -302,6 +304,115 @@ class OAuth2Api {
 
     final _response = await _dio.request<Object>(
       _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    OAuth2RedirectTo? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OAuth2RedirectTo),
+      ) as OAuth2RedirectTo;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<OAuth2RedirectTo>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Accepts a device grant user_code request
+  /// Accepts a device grant user_code request
+  ///
+  /// Parameters:
+  /// * [deviceChallenge] 
+  /// * [acceptDeviceUserCodeRequest] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [OAuth2RedirectTo] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<OAuth2RedirectTo>> acceptUserCodeRequest({ 
+    required String deviceChallenge,
+    AcceptDeviceUserCodeRequest? acceptDeviceUserCodeRequest,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/oauth2/auth/requests/device/accept';
+    final _options = Options(
+      method: r'PUT',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryAccessToken',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      r'device_challenge': encodeQueryParameter(_serializers, deviceChallenge, const FullType(String)),
+    };
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(AcceptDeviceUserCodeRequest);
+      _bodyData = acceptDeviceUserCodeRequest == null ? null : _serializers.serialize(acceptDeviceUserCodeRequest, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+          queryParameters: _queryParameters,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
       options: _options,
       queryParameters: _queryParameters,
       cancelToken: cancelToken,
@@ -1149,7 +1260,7 @@ class OAuth2Api {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<OAuth2Client>>> listOAuth2Clients({ 
     int? pageSize = 250,
-    String? pageToken = '1',
+    String? pageToken,
     String? clientName,
     String? owner,
     CancelToken? cancelToken,
@@ -1324,8 +1435,8 @@ class OAuth2Api {
   /// Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
   ///
   /// Parameters:
-  /// * [maxItems] 
-  /// * [defaultItems] 
+  /// * [pageSize] - Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [issuer] - If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -1337,8 +1448,8 @@ class OAuth2Api {
   /// Returns a [Future] containing a [Response] with a [BuiltList<TrustedOAuth2JwtGrantIssuer>] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<TrustedOAuth2JwtGrantIssuer>>> listTrustedOAuth2JwtGrantIssuers({ 
-    int? maxItems,
-    int? defaultItems,
+    int? pageSize = 250,
+    String? pageToken,
     String? issuer,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1367,8 +1478,8 @@ class OAuth2Api {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (maxItems != null) r'MaxItems': encodeQueryParameter(_serializers, maxItems, const FullType(int)),
-      if (defaultItems != null) r'DefaultItems': encodeQueryParameter(_serializers, defaultItems, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
       if (issuer != null) r'issuer': encodeQueryParameter(_serializers, issuer, const FullType(String)),
     };
 
@@ -1474,6 +1585,79 @@ class OAuth2Api {
     }
 
     return Response<ErrorOAuth2>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// The OAuth 2.0 Device Authorize Endpoint
+  /// This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+  ///
+  /// Parameters:
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [DeviceAuthorization] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<DeviceAuthorization>> oAuth2DeviceFlow({ 
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/oauth2/device/auth';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    DeviceAuthorization? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(DeviceAuthorization),
+      ) as DeviceAuthorization;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<DeviceAuthorization>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1694,6 +1878,79 @@ class OAuth2Api {
     }
 
     return Response<OAuth2Client>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// OAuth 2.0 Device Verification Endpoint
+  /// This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+  ///
+  /// Parameters:
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [ErrorOAuth2] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<ErrorOAuth2>> performOAuth2DeviceVerificationFlow({ 
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/oauth2/device/verify';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    ErrorOAuth2? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ErrorOAuth2),
+      ) as ErrorOAuth2;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ErrorOAuth2>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

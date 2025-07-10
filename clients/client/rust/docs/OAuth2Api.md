@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**accept_o_auth2_consent_request**](OAuth2Api.md#accept_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
 [**accept_o_auth2_login_request**](OAuth2Api.md#accept_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
 [**accept_o_auth2_logout_request**](OAuth2Api.md#accept_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
+[**accept_user_code_request**](OAuth2Api.md#accept_user_code_request) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request
 [**create_o_auth2_client**](OAuth2Api.md#create_o_auth2_client) | **POST** /admin/clients | Create OAuth 2.0 Client
 [**delete_o_auth2_client**](OAuth2Api.md#delete_o_auth2_client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
 [**delete_o_auth2_token**](OAuth2Api.md#delete_o_auth2_token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
@@ -21,8 +22,10 @@ Method | HTTP request | Description
 [**list_o_auth2_consent_sessions**](OAuth2Api.md#list_o_auth2_consent_sessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
 [**list_trusted_o_auth2_jwt_grant_issuers**](OAuth2Api.md#list_trusted_o_auth2_jwt_grant_issuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 [**o_auth2_authorize**](OAuth2Api.md#o_auth2_authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint
+[**o_auth2_device_flow**](OAuth2Api.md#o_auth2_device_flow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint
 [**oauth2_token_exchange**](OAuth2Api.md#oauth2_token_exchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**patch_o_auth2_client**](OAuth2Api.md#patch_o_auth2_client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client
+[**perform_o_auth2_device_verification_flow**](OAuth2Api.md#perform_o_auth2_device_verification_flow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint
 [**reject_o_auth2_consent_request**](OAuth2Api.md#reject_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
 [**reject_o_auth2_login_request**](OAuth2Api.md#reject_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 [**reject_o_auth2_logout_request**](OAuth2Api.md#reject_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
@@ -122,6 +125,37 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## accept_user_code_request
+
+> models::OAuth2RedirectTo accept_user_code_request(device_challenge, accept_device_user_code_request)
+Accepts a device grant user_code request
+
+Accepts a device grant user_code request
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_challenge** | **String** |  | [required] |
+**accept_device_user_code_request** | Option<[**AcceptDeviceUserCodeRequest**](AcceptDeviceUserCodeRequest.md)> |  |  |
+
+### Return type
+
+[**models::OAuth2RedirectTo**](oAuth2RedirectTo.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -441,7 +475,7 @@ This endpoint lists all clients in the database, and never returns client secret
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **page_size** | Option<**i64**> | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
-**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 1]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |
 **client_name** | Option<**String**> | The name of the clients to filter by. |  |
 **owner** | Option<**String**> | The owner of the clients to filter by. |  |
 
@@ -496,7 +530,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_trusted_o_auth2_jwt_grant_issuers
 
-> Vec<models::TrustedOAuth2JwtGrantIssuer> list_trusted_o_auth2_jwt_grant_issuers(max_items, default_items, issuer)
+> Vec<models::TrustedOAuth2JwtGrantIssuer> list_trusted_o_auth2_jwt_grant_issuers(page_size, page_token, issuer)
 List Trusted OAuth2 JWT Bearer Grant Type Issuers
 
 Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
@@ -506,8 +540,8 @@ Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**max_items** | Option<**i64**> |  |  |
-**default_items** | Option<**i64**> |  |  |
+**page_size** | Option<**i64**> | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |
 **issuer** | Option<**String**> | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. |  |
 
 ### Return type
@@ -540,6 +574,33 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**models::ErrorOAuth2**](errorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## o_auth2_device_flow
+
+> models::DeviceAuthorization o_auth2_device_flow()
+The OAuth 2.0 Device Authorize Endpoint
+
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::DeviceAuthorization**](deviceAuthorization.md)
 
 ### Authorization
 
@@ -613,6 +674,33 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## perform_o_auth2_device_verification_flow
+
+> models::ErrorOAuth2 perform_o_auth2_device_verification_flow()
+OAuth 2.0 Device Verification Endpoint
+
+This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::ErrorOAuth2**](errorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -407,6 +407,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final BuiltList<String>? hydraSecretsCookie;
   @override
+  final BuiltList<String>? hydraSecretsPagination;
+  @override
   final BuiltList<String>? hydraSecretsSystem;
   @override
   final bool? hydraServeCookiesSameSiteLegacyWorkaround;
@@ -466,6 +468,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final String? ketoNamespaceConfiguration;
   @override
   final BuiltList<KetoNamespace>? ketoNamespaces;
+  @override
+  final BuiltList<String>? ketoSecretsPagination;
   @override
   final String? kratosCookiesSameSite;
   @override
@@ -575,6 +579,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   final String? kratosFeatureFlagsCacheableSessionsMaxAge;
   @override
   final bool? kratosFeatureFlagsFasterSessionExtend;
+  @override
+  final bool? kratosFeatureFlagsLegacyContinueWithVerificationUi;
+  @override
+  final bool? kratosFeatureFlagsLegacyOidcRegistrationNodeGroup;
+  @override
+  final bool? kratosFeatureFlagsLegacyRequireVerifiedLoginError;
   @override
   final bool? kratosFeatureFlagsUseContinueWithTransitions;
   @override
@@ -712,9 +722,13 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
   @override
+  final bool? kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode;
+  @override
   final bool? kratosSelfserviceMethodsCaptchaEnabled;
   @override
   final String? kratosSelfserviceMethodsCodeConfigLifespan;
+  @override
+  final int? kratosSelfserviceMethodsCodeConfigMaxSubmissions;
   @override
   final bool?
       kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled;
@@ -801,6 +815,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String name;
   @override
+  final BuiltList<Organization>? organizations;
+  @override
   final String? projectId;
   @override
   final BuiltList<NormalizedProjectRevisionHook>? projectRevisionHooks;
@@ -852,6 +868,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.hydraOidcSubjectIdentifiersPairwiseSalt,
       this.hydraOidcSubjectIdentifiersSupportedTypes,
       this.hydraSecretsCookie,
+      this.hydraSecretsPagination,
       this.hydraSecretsSystem,
       this.hydraServeCookiesSameSiteLegacyWorkaround,
       this.hydraServeCookiesSameSiteMode,
@@ -881,6 +898,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.id,
       this.ketoNamespaceConfiguration,
       this.ketoNamespaces,
+      this.ketoSecretsPagination,
       this.kratosCookiesSameSite,
       this.kratosCourierChannels,
       this.kratosCourierDeliveryStrategy,
@@ -935,6 +953,9 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosFeatureFlagsCacheableSessions,
       this.kratosFeatureFlagsCacheableSessionsMaxAge,
       this.kratosFeatureFlagsFasterSessionExtend,
+      this.kratosFeatureFlagsLegacyContinueWithVerificationUi,
+      this.kratosFeatureFlagsLegacyOidcRegistrationNodeGroup,
+      this.kratosFeatureFlagsLegacyRequireVerifiedLoginError,
       this.kratosFeatureFlagsUseContinueWithTransitions,
       this.kratosIdentitySchemas,
       this.kratosOauth2ProviderHeaders,
@@ -996,8 +1017,10 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSelfserviceFlowsVerificationUse,
       this.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret,
       this.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey,
+      this.kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode,
       this.kratosSelfserviceMethodsCaptchaEnabled,
       this.kratosSelfserviceMethodsCodeConfigLifespan,
+      this.kratosSelfserviceMethodsCodeConfigMaxSubmissions,
       this.kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled,
       this.kratosSelfserviceMethodsCodeEnabled,
       this.kratosSelfserviceMethodsCodeMfaEnabled,
@@ -1038,6 +1061,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       this.kratosSessionWhoamiRequiredAal,
       this.kratosSessionWhoamiTokenizerTemplates,
       required this.name,
+      this.organizations,
       this.projectId,
       this.projectRevisionHooks,
       this.scimClients,
@@ -1110,6 +1134,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         hydraOidcSubjectIdentifiersSupportedTypes ==
             other.hydraOidcSubjectIdentifiersSupportedTypes &&
         hydraSecretsCookie == other.hydraSecretsCookie &&
+        hydraSecretsPagination == other.hydraSecretsPagination &&
         hydraSecretsSystem == other.hydraSecretsSystem &&
         hydraServeCookiesSameSiteLegacyWorkaround ==
             other.hydraServeCookiesSameSiteLegacyWorkaround &&
@@ -1148,6 +1173,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         id == other.id &&
         ketoNamespaceConfiguration == other.ketoNamespaceConfiguration &&
         ketoNamespaces == other.ketoNamespaces &&
+        ketoSecretsPagination == other.ketoSecretsPagination &&
         kratosCookiesSameSite == other.kratosCookiesSameSite &&
         kratosCourierChannels == other.kratosCourierChannels &&
         kratosCourierDeliveryStrategy == other.kratosCourierDeliveryStrategy &&
@@ -1252,6 +1278,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosFeatureFlagsCacheableSessionsMaxAge &&
         kratosFeatureFlagsFasterSessionExtend ==
             other.kratosFeatureFlagsFasterSessionExtend &&
+        kratosFeatureFlagsLegacyContinueWithVerificationUi ==
+            other.kratosFeatureFlagsLegacyContinueWithVerificationUi &&
+        kratosFeatureFlagsLegacyOidcRegistrationNodeGroup ==
+            other.kratosFeatureFlagsLegacyOidcRegistrationNodeGroup &&
+        kratosFeatureFlagsLegacyRequireVerifiedLoginError ==
+            other.kratosFeatureFlagsLegacyRequireVerifiedLoginError &&
         kratosFeatureFlagsUseContinueWithTransitions ==
             other.kratosFeatureFlagsUseContinueWithTransitions &&
         kratosIdentitySchemas == other.kratosIdentitySchemas &&
@@ -1386,10 +1418,14 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret &&
         kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey ==
             other.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey &&
+        kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode ==
+            other.kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode &&
         kratosSelfserviceMethodsCaptchaEnabled ==
             other.kratosSelfserviceMethodsCaptchaEnabled &&
         kratosSelfserviceMethodsCodeConfigLifespan ==
             other.kratosSelfserviceMethodsCodeConfigLifespan &&
+        kratosSelfserviceMethodsCodeConfigMaxSubmissions ==
+            other.kratosSelfserviceMethodsCodeConfigMaxSubmissions &&
         kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled ==
             other
                 .kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled &&
@@ -1469,6 +1505,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosSessionWhoamiTokenizerTemplates ==
             other.kratosSessionWhoamiTokenizerTemplates &&
         name == other.name &&
+        organizations == other.organizations &&
         projectId == other.projectId &&
         projectRevisionHooks == other.projectRevisionHooks &&
         scimClients == other.scimClients &&
@@ -1514,6 +1551,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, hydraOidcSubjectIdentifiersPairwiseSalt.hashCode);
     _$hash = $jc(_$hash, hydraOidcSubjectIdentifiersSupportedTypes.hashCode);
     _$hash = $jc(_$hash, hydraSecretsCookie.hashCode);
+    _$hash = $jc(_$hash, hydraSecretsPagination.hashCode);
     _$hash = $jc(_$hash, hydraSecretsSystem.hashCode);
     _$hash = $jc(_$hash, hydraServeCookiesSameSiteLegacyWorkaround.hashCode);
     _$hash = $jc(_$hash, hydraServeCookiesSameSiteMode.hashCode);
@@ -1544,6 +1582,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, ketoNamespaceConfiguration.hashCode);
     _$hash = $jc(_$hash, ketoNamespaces.hashCode);
+    _$hash = $jc(_$hash, ketoSecretsPagination.hashCode);
     _$hash = $jc(_$hash, kratosCookiesSameSite.hashCode);
     _$hash = $jc(_$hash, kratosCourierChannels.hashCode);
     _$hash = $jc(_$hash, kratosCourierDeliveryStrategy.hashCode);
@@ -1636,6 +1675,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessions.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessionsMaxAge.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsFasterSessionExtend.hashCode);
+    _$hash = $jc(
+        _$hash, kratosFeatureFlagsLegacyContinueWithVerificationUi.hashCode);
+    _$hash =
+        $jc(_$hash, kratosFeatureFlagsLegacyOidcRegistrationNodeGroup.hashCode);
+    _$hash =
+        $jc(_$hash, kratosFeatureFlagsLegacyRequireVerifiedLoginError.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsUseContinueWithTransitions.hashCode);
     _$hash = $jc(_$hash, kratosIdentitySchemas.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderHeaders.hashCode);
@@ -1764,8 +1809,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
         kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret.hashCode);
     _$hash = $jc(_$hash,
         kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey.hashCode);
+    _$hash = $jc(
+        _$hash, kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCaptchaEnabled.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsCodeConfigLifespan.hashCode);
+    _$hash =
+        $jc(_$hash, kratosSelfserviceMethodsCodeConfigMaxSubmissions.hashCode);
     _$hash = $jc(
         _$hash,
         kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled
@@ -1825,6 +1874,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     _$hash = $jc(_$hash, kratosSessionWhoamiRequiredAal.hashCode);
     _$hash = $jc(_$hash, kratosSessionWhoamiTokenizerTemplates.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, organizations.hashCode);
     _$hash = $jc(_$hash, projectId.hashCode);
     _$hash = $jc(_$hash, projectRevisionHooks.hashCode);
     _$hash = $jc(_$hash, scimClients.hashCode);
@@ -1886,6 +1936,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('hydraOidcSubjectIdentifiersSupportedTypes',
               hydraOidcSubjectIdentifiersSupportedTypes)
           ..add('hydraSecretsCookie', hydraSecretsCookie)
+          ..add('hydraSecretsPagination', hydraSecretsPagination)
           ..add('hydraSecretsSystem', hydraSecretsSystem)
           ..add('hydraServeCookiesSameSiteLegacyWorkaround',
               hydraServeCookiesSameSiteLegacyWorkaround)
@@ -1924,6 +1975,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('id', id)
           ..add('ketoNamespaceConfiguration', ketoNamespaceConfiguration)
           ..add('ketoNamespaces', ketoNamespaces)
+          ..add('ketoSecretsPagination', ketoSecretsPagination)
           ..add('kratosCookiesSameSite', kratosCookiesSameSite)
           ..add('kratosCourierChannels', kratosCourierChannels)
           ..add('kratosCourierDeliveryStrategy', kratosCourierDeliveryStrategy)
@@ -2026,6 +2078,12 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosFeatureFlagsCacheableSessionsMaxAge)
           ..add('kratosFeatureFlagsFasterSessionExtend',
               kratosFeatureFlagsFasterSessionExtend)
+          ..add('kratosFeatureFlagsLegacyContinueWithVerificationUi',
+              kratosFeatureFlagsLegacyContinueWithVerificationUi)
+          ..add('kratosFeatureFlagsLegacyOidcRegistrationNodeGroup',
+              kratosFeatureFlagsLegacyOidcRegistrationNodeGroup)
+          ..add('kratosFeatureFlagsLegacyRequireVerifiedLoginError',
+              kratosFeatureFlagsLegacyRequireVerifiedLoginError)
           ..add('kratosFeatureFlagsUseContinueWithTransitions',
               kratosFeatureFlagsUseContinueWithTransitions)
           ..add('kratosIdentitySchemas', kratosIdentitySchemas)
@@ -2160,10 +2218,14 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret)
           ..add('kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey',
               kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey)
+          ..add('kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode',
+              kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode)
           ..add('kratosSelfserviceMethodsCaptchaEnabled',
               kratosSelfserviceMethodsCaptchaEnabled)
           ..add('kratosSelfserviceMethodsCodeConfigLifespan',
               kratosSelfserviceMethodsCodeConfigLifespan)
+          ..add('kratosSelfserviceMethodsCodeConfigMaxSubmissions',
+              kratosSelfserviceMethodsCodeConfigMaxSubmissions)
           ..add(
               'kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled',
               kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled)
@@ -2242,6 +2304,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
           ..add('kratosSessionWhoamiTokenizerTemplates',
               kratosSessionWhoamiTokenizerTemplates)
           ..add('name', name)
+          ..add('organizations', organizations)
           ..add('projectId', projectId)
           ..add('projectRevisionHooks', projectRevisionHooks)
           ..add('scimClients', scimClients)
@@ -2447,6 +2510,12 @@ class NormalizedProjectRevisionBuilder
   set hydraSecretsCookie(ListBuilder<String>? hydraSecretsCookie) =>
       _$this._hydraSecretsCookie = hydraSecretsCookie;
 
+  ListBuilder<String>? _hydraSecretsPagination;
+  ListBuilder<String> get hydraSecretsPagination =>
+      _$this._hydraSecretsPagination ??= new ListBuilder<String>();
+  set hydraSecretsPagination(ListBuilder<String>? hydraSecretsPagination) =>
+      _$this._hydraSecretsPagination = hydraSecretsPagination;
+
   ListBuilder<String>? _hydraSecretsSystem;
   ListBuilder<String> get hydraSecretsSystem =>
       _$this._hydraSecretsSystem ??= new ListBuilder<String>();
@@ -2634,6 +2703,12 @@ class NormalizedProjectRevisionBuilder
       _$this._ketoNamespaces ??= new ListBuilder<KetoNamespace>();
   set ketoNamespaces(ListBuilder<KetoNamespace>? ketoNamespaces) =>
       _$this._ketoNamespaces = ketoNamespaces;
+
+  ListBuilder<String>? _ketoSecretsPagination;
+  ListBuilder<String> get ketoSecretsPagination =>
+      _$this._ketoSecretsPagination ??= new ListBuilder<String>();
+  set ketoSecretsPagination(ListBuilder<String>? ketoSecretsPagination) =>
+      _$this._ketoSecretsPagination = ketoSecretsPagination;
 
   String? _kratosCookiesSameSite;
   String? get kratosCookiesSameSite => _$this._kratosCookiesSameSite;
@@ -3056,6 +3131,30 @@ class NormalizedProjectRevisionBuilder
           bool? kratosFeatureFlagsFasterSessionExtend) =>
       _$this._kratosFeatureFlagsFasterSessionExtend =
           kratosFeatureFlagsFasterSessionExtend;
+
+  bool? _kratosFeatureFlagsLegacyContinueWithVerificationUi;
+  bool? get kratosFeatureFlagsLegacyContinueWithVerificationUi =>
+      _$this._kratosFeatureFlagsLegacyContinueWithVerificationUi;
+  set kratosFeatureFlagsLegacyContinueWithVerificationUi(
+          bool? kratosFeatureFlagsLegacyContinueWithVerificationUi) =>
+      _$this._kratosFeatureFlagsLegacyContinueWithVerificationUi =
+          kratosFeatureFlagsLegacyContinueWithVerificationUi;
+
+  bool? _kratosFeatureFlagsLegacyOidcRegistrationNodeGroup;
+  bool? get kratosFeatureFlagsLegacyOidcRegistrationNodeGroup =>
+      _$this._kratosFeatureFlagsLegacyOidcRegistrationNodeGroup;
+  set kratosFeatureFlagsLegacyOidcRegistrationNodeGroup(
+          bool? kratosFeatureFlagsLegacyOidcRegistrationNodeGroup) =>
+      _$this._kratosFeatureFlagsLegacyOidcRegistrationNodeGroup =
+          kratosFeatureFlagsLegacyOidcRegistrationNodeGroup;
+
+  bool? _kratosFeatureFlagsLegacyRequireVerifiedLoginError;
+  bool? get kratosFeatureFlagsLegacyRequireVerifiedLoginError =>
+      _$this._kratosFeatureFlagsLegacyRequireVerifiedLoginError;
+  set kratosFeatureFlagsLegacyRequireVerifiedLoginError(
+          bool? kratosFeatureFlagsLegacyRequireVerifiedLoginError) =>
+      _$this._kratosFeatureFlagsLegacyRequireVerifiedLoginError =
+          kratosFeatureFlagsLegacyRequireVerifiedLoginError;
 
   bool? _kratosFeatureFlagsUseContinueWithTransitions;
   bool? get kratosFeatureFlagsUseContinueWithTransitions =>
@@ -3575,6 +3674,14 @@ class NormalizedProjectRevisionBuilder
       _$this._kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey =
           kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
 
+  bool? _kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode;
+  bool? get kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode =>
+      _$this._kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode;
+  set kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode(
+          bool? kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode) =>
+      _$this._kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode =
+          kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode;
+
   bool? _kratosSelfserviceMethodsCaptchaEnabled;
   bool? get kratosSelfserviceMethodsCaptchaEnabled =>
       _$this._kratosSelfserviceMethodsCaptchaEnabled;
@@ -3590,6 +3697,14 @@ class NormalizedProjectRevisionBuilder
           String? kratosSelfserviceMethodsCodeConfigLifespan) =>
       _$this._kratosSelfserviceMethodsCodeConfigLifespan =
           kratosSelfserviceMethodsCodeConfigLifespan;
+
+  int? _kratosSelfserviceMethodsCodeConfigMaxSubmissions;
+  int? get kratosSelfserviceMethodsCodeConfigMaxSubmissions =>
+      _$this._kratosSelfserviceMethodsCodeConfigMaxSubmissions;
+  set kratosSelfserviceMethodsCodeConfigMaxSubmissions(
+          int? kratosSelfserviceMethodsCodeConfigMaxSubmissions) =>
+      _$this._kratosSelfserviceMethodsCodeConfigMaxSubmissions =
+          kratosSelfserviceMethodsCodeConfigMaxSubmissions;
 
   bool? _kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled;
   bool? get kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled =>
@@ -3918,6 +4033,12 @@ class NormalizedProjectRevisionBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  ListBuilder<Organization>? _organizations;
+  ListBuilder<Organization> get organizations =>
+      _$this._organizations ??= new ListBuilder<Organization>();
+  set organizations(ListBuilder<Organization>? organizations) =>
+      _$this._organizations = organizations;
+
   String? _projectId;
   String? get projectId => _$this._projectId;
   set projectId(String? projectId) => _$this._projectId = projectId;
@@ -4017,6 +4138,7 @@ class NormalizedProjectRevisionBuilder
       _hydraOidcSubjectIdentifiersSupportedTypes =
           $v.hydraOidcSubjectIdentifiersSupportedTypes?.toBuilder();
       _hydraSecretsCookie = $v.hydraSecretsCookie?.toBuilder();
+      _hydraSecretsPagination = $v.hydraSecretsPagination?.toBuilder();
       _hydraSecretsSystem = $v.hydraSecretsSystem?.toBuilder();
       _hydraServeCookiesSameSiteLegacyWorkaround =
           $v.hydraServeCookiesSameSiteLegacyWorkaround;
@@ -4055,6 +4177,7 @@ class NormalizedProjectRevisionBuilder
       _id = $v.id;
       _ketoNamespaceConfiguration = $v.ketoNamespaceConfiguration;
       _ketoNamespaces = $v.ketoNamespaces?.toBuilder();
+      _ketoSecretsPagination = $v.ketoSecretsPagination?.toBuilder();
       _kratosCookiesSameSite = $v.kratosCookiesSameSite;
       _kratosCourierChannels = $v.kratosCourierChannels?.toBuilder();
       _kratosCourierDeliveryStrategy = $v.kratosCourierDeliveryStrategy;
@@ -4154,6 +4277,12 @@ class NormalizedProjectRevisionBuilder
           $v.kratosFeatureFlagsCacheableSessionsMaxAge;
       _kratosFeatureFlagsFasterSessionExtend =
           $v.kratosFeatureFlagsFasterSessionExtend;
+      _kratosFeatureFlagsLegacyContinueWithVerificationUi =
+          $v.kratosFeatureFlagsLegacyContinueWithVerificationUi;
+      _kratosFeatureFlagsLegacyOidcRegistrationNodeGroup =
+          $v.kratosFeatureFlagsLegacyOidcRegistrationNodeGroup;
+      _kratosFeatureFlagsLegacyRequireVerifiedLoginError =
+          $v.kratosFeatureFlagsLegacyRequireVerifiedLoginError;
       _kratosFeatureFlagsUseContinueWithTransitions =
           $v.kratosFeatureFlagsUseContinueWithTransitions;
       _kratosIdentitySchemas = $v.kratosIdentitySchemas?.toBuilder();
@@ -4267,10 +4396,14 @@ class NormalizedProjectRevisionBuilder
           $v.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret;
       _kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey =
           $v.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
+      _kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode =
+          $v.kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode;
       _kratosSelfserviceMethodsCaptchaEnabled =
           $v.kratosSelfserviceMethodsCaptchaEnabled;
       _kratosSelfserviceMethodsCodeConfigLifespan =
           $v.kratosSelfserviceMethodsCodeConfigLifespan;
+      _kratosSelfserviceMethodsCodeConfigMaxSubmissions =
+          $v.kratosSelfserviceMethodsCodeConfigMaxSubmissions;
       _kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled =
           $v.kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled;
       _kratosSelfserviceMethodsCodeEnabled =
@@ -4346,6 +4479,7 @@ class NormalizedProjectRevisionBuilder
       _kratosSessionWhoamiTokenizerTemplates =
           $v.kratosSessionWhoamiTokenizerTemplates?.toBuilder();
       _name = $v.name;
+      _organizations = $v.organizations?.toBuilder();
       _projectId = $v.projectId;
       _projectRevisionHooks = $v.projectRevisionHooks?.toBuilder();
       _scimClients = $v.scimClients?.toBuilder();
@@ -4421,6 +4555,7 @@ class NormalizedProjectRevisionBuilder
               hydraOidcSubjectIdentifiersSupportedTypes:
                   _hydraOidcSubjectIdentifiersSupportedTypes?.build(),
               hydraSecretsCookie: _hydraSecretsCookie?.build(),
+              hydraSecretsPagination: _hydraSecretsPagination?.build(),
               hydraSecretsSystem: _hydraSecretsSystem?.build(),
               hydraServeCookiesSameSiteLegacyWorkaround:
                   hydraServeCookiesSameSiteLegacyWorkaround,
@@ -4459,6 +4594,7 @@ class NormalizedProjectRevisionBuilder
               id: id,
               ketoNamespaceConfiguration: ketoNamespaceConfiguration,
               ketoNamespaces: _ketoNamespaces?.build(),
+              ketoSecretsPagination: _ketoSecretsPagination?.build(),
               kratosCookiesSameSite: kratosCookiesSameSite,
               kratosCourierChannels: _kratosCourierChannels?.build(),
               kratosCourierDeliveryStrategy: kratosCourierDeliveryStrategy,
@@ -4556,6 +4692,9 @@ class NormalizedProjectRevisionBuilder
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
               kratosFeatureFlagsCacheableSessionsMaxAge: kratosFeatureFlagsCacheableSessionsMaxAge,
               kratosFeatureFlagsFasterSessionExtend: kratosFeatureFlagsFasterSessionExtend,
+              kratosFeatureFlagsLegacyContinueWithVerificationUi: kratosFeatureFlagsLegacyContinueWithVerificationUi,
+              kratosFeatureFlagsLegacyOidcRegistrationNodeGroup: kratosFeatureFlagsLegacyOidcRegistrationNodeGroup,
+              kratosFeatureFlagsLegacyRequireVerifiedLoginError: kratosFeatureFlagsLegacyRequireVerifiedLoginError,
               kratosFeatureFlagsUseContinueWithTransitions: kratosFeatureFlagsUseContinueWithTransitions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),
               kratosOauth2ProviderHeaders: kratosOauth2ProviderHeaders,
@@ -4617,8 +4756,10 @@ class NormalizedProjectRevisionBuilder
               kratosSelfserviceFlowsVerificationUse: kratosSelfserviceFlowsVerificationUse,
               kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret: kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret,
               kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey: kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey,
+              kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode: kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode,
               kratosSelfserviceMethodsCaptchaEnabled: kratosSelfserviceMethodsCaptchaEnabled,
               kratosSelfserviceMethodsCodeConfigLifespan: kratosSelfserviceMethodsCodeConfigLifespan,
+              kratosSelfserviceMethodsCodeConfigMaxSubmissions: kratosSelfserviceMethodsCodeConfigMaxSubmissions,
               kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled: kratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled,
               kratosSelfserviceMethodsCodeEnabled: kratosSelfserviceMethodsCodeEnabled,
               kratosSelfserviceMethodsCodeMfaEnabled: kratosSelfserviceMethodsCodeMfaEnabled,
@@ -4659,6 +4800,7 @@ class NormalizedProjectRevisionBuilder
               kratosSessionWhoamiRequiredAal: kratosSessionWhoamiRequiredAal,
               kratosSessionWhoamiTokenizerTemplates: _kratosSessionWhoamiTokenizerTemplates?.build(),
               name: BuiltValueNullFieldError.checkNotNull(name, r'NormalizedProjectRevision', 'name'),
+              organizations: _organizations?.build(),
               projectId: projectId,
               projectRevisionHooks: _projectRevisionHooks?.build(),
               scimClients: _scimClients?.build(),
@@ -4681,6 +4823,8 @@ class NormalizedProjectRevisionBuilder
         _hydraOidcSubjectIdentifiersSupportedTypes?.build();
         _$failedField = 'hydraSecretsCookie';
         _hydraSecretsCookie?.build();
+        _$failedField = 'hydraSecretsPagination';
+        _hydraSecretsPagination?.build();
         _$failedField = 'hydraSecretsSystem';
         _hydraSecretsSystem?.build();
 
@@ -4694,6 +4838,8 @@ class NormalizedProjectRevisionBuilder
 
         _$failedField = 'ketoNamespaces';
         _ketoNamespaces?.build();
+        _$failedField = 'ketoSecretsPagination';
+        _ketoSecretsPagination?.build();
 
         _$failedField = 'kratosCourierChannels';
         _kratosCourierChannels?.build();
@@ -4725,6 +4871,9 @@ class NormalizedProjectRevisionBuilder
 
         _$failedField = 'kratosSessionWhoamiTokenizerTemplates';
         _kratosSessionWhoamiTokenizerTemplates?.build();
+
+        _$failedField = 'organizations';
+        _organizations?.build();
 
         _$failedField = 'projectRevisionHooks';
         _projectRevisionHooks?.build();

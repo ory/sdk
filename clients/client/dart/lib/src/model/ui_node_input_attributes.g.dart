@@ -63,38 +63,14 @@ final BuiltSet<UiNodeInputAttributesAutocompleteEnum>
 ]);
 
 const UiNodeInputAttributesNodeTypeEnum
-    _$uiNodeInputAttributesNodeTypeEnum_text =
-    const UiNodeInputAttributesNodeTypeEnum._('text');
-const UiNodeInputAttributesNodeTypeEnum
     _$uiNodeInputAttributesNodeTypeEnum_input =
     const UiNodeInputAttributesNodeTypeEnum._('input');
-const UiNodeInputAttributesNodeTypeEnum
-    _$uiNodeInputAttributesNodeTypeEnum_img =
-    const UiNodeInputAttributesNodeTypeEnum._('img');
-const UiNodeInputAttributesNodeTypeEnum _$uiNodeInputAttributesNodeTypeEnum_a =
-    const UiNodeInputAttributesNodeTypeEnum._('a');
-const UiNodeInputAttributesNodeTypeEnum
-    _$uiNodeInputAttributesNodeTypeEnum_script =
-    const UiNodeInputAttributesNodeTypeEnum._('script');
-const UiNodeInputAttributesNodeTypeEnum
-    _$uiNodeInputAttributesNodeTypeEnum_div =
-    const UiNodeInputAttributesNodeTypeEnum._('div');
 
 UiNodeInputAttributesNodeTypeEnum _$uiNodeInputAttributesNodeTypeEnumValueOf(
     String name) {
   switch (name) {
-    case 'text':
-      return _$uiNodeInputAttributesNodeTypeEnum_text;
     case 'input':
       return _$uiNodeInputAttributesNodeTypeEnum_input;
-    case 'img':
-      return _$uiNodeInputAttributesNodeTypeEnum_img;
-    case 'a':
-      return _$uiNodeInputAttributesNodeTypeEnum_a;
-    case 'script':
-      return _$uiNodeInputAttributesNodeTypeEnum_script;
-    case 'div':
-      return _$uiNodeInputAttributesNodeTypeEnum_div;
     default:
       throw new ArgumentError(name);
   }
@@ -103,12 +79,7 @@ UiNodeInputAttributesNodeTypeEnum _$uiNodeInputAttributesNodeTypeEnumValueOf(
 final BuiltSet<UiNodeInputAttributesNodeTypeEnum>
     _$uiNodeInputAttributesNodeTypeEnumValues = new BuiltSet<
         UiNodeInputAttributesNodeTypeEnum>(const <UiNodeInputAttributesNodeTypeEnum>[
-  _$uiNodeInputAttributesNodeTypeEnum_text,
   _$uiNodeInputAttributesNodeTypeEnum_input,
-  _$uiNodeInputAttributesNodeTypeEnum_img,
-  _$uiNodeInputAttributesNodeTypeEnum_a,
-  _$uiNodeInputAttributesNodeTypeEnum_script,
-  _$uiNodeInputAttributesNodeTypeEnum_div,
 ]);
 
 const UiNodeInputAttributesOnclickTriggerEnum
@@ -351,20 +322,10 @@ class _$UiNodeInputAttributesAutocompleteEnumSerializer
 class _$UiNodeInputAttributesNodeTypeEnumSerializer
     implements PrimitiveSerializer<UiNodeInputAttributesNodeTypeEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'text': 'text',
     'input': 'input',
-    'img': 'img',
-    'a': 'a',
-    'script': 'script',
-    'div': 'div',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'text': 'text',
     'input': 'input',
-    'img': 'img',
-    'a': 'a',
-    'script': 'script',
-    'div': 'div',
   };
 
   @override

@@ -36,7 +36,7 @@ void main() {
       // TODO
     });
 
-    // NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
+    // NodeType represents this node's type. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
     // String nodeType
     test('to test the property `nodeType`', () async {
       // TODO
@@ -160,7 +160,7 @@ void main() {
       // TODO
     });
 
-    // The script MIME type
+    // A classname that should be rendered into the DOM.
     // String class_
     test('to test the property `class_`', () async {
       // TODO

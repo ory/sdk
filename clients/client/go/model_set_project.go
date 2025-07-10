@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.20.11
+API version: v1.20.22
 Contact: support@ory.sh
 */
 
@@ -25,6 +25,8 @@ type SetProject struct {
 	CorsPublic ProjectCors `json:"cors_public"`
 	// The name of the project.
 	Name string `json:"name"`
+	// The organizations that are part of this project.
+	Organizations []BasicOrganization `json:"organizations"`
 	Services ProjectServices `json:"services"`
 	AdditionalProperties map[string]interface{}
 }
@@ -35,11 +37,12 @@ type _SetProject SetProject
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSetProject(corsAdmin ProjectCors, corsPublic ProjectCors, name string, services ProjectServices) *SetProject {
+func NewSetProject(corsAdmin ProjectCors, corsPublic ProjectCors, name string, organizations []BasicOrganization, services ProjectServices) *SetProject {
 	this := SetProject{}
 	this.CorsAdmin = corsAdmin
 	this.CorsPublic = corsPublic
 	this.Name = name
+	this.Organizations = organizations
 	this.Services = services
 	return &this
 }
@@ -124,6 +127,30 @@ func (o *SetProject) SetName(v string) {
 	o.Name = v
 }
 
+// GetOrganizations returns the Organizations field value
+func (o *SetProject) GetOrganizations() []BasicOrganization {
+	if o == nil {
+		var ret []BasicOrganization
+		return ret
+	}
+
+	return o.Organizations
+}
+
+// GetOrganizationsOk returns a tuple with the Organizations field value
+// and a boolean to check if the value has been set.
+func (o *SetProject) GetOrganizationsOk() ([]BasicOrganization, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Organizations, true
+}
+
+// SetOrganizations sets field value
+func (o *SetProject) SetOrganizations(v []BasicOrganization) {
+	o.Organizations = v
+}
+
 // GetServices returns the Services field value
 func (o *SetProject) GetServices() ProjectServices {
 	if o == nil {
@@ -161,6 +188,7 @@ func (o SetProject) ToMap() (map[string]interface{}, error) {
 	toSerialize["cors_admin"] = o.CorsAdmin
 	toSerialize["cors_public"] = o.CorsPublic
 	toSerialize["name"] = o.Name
+	toSerialize["organizations"] = o.Organizations
 	toSerialize["services"] = o.Services
 
 	for key, value := range o.AdditionalProperties {
@@ -178,6 +206,7 @@ func (o *SetProject) UnmarshalJSON(data []byte) (err error) {
 		"cors_admin",
 		"cors_public",
 		"name",
+		"organizations",
 		"services",
 	}
 
@@ -211,6 +240,7 @@ func (o *SetProject) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "cors_admin")
 		delete(additionalProperties, "cors_public")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "organizations")
 		delete(additionalProperties, "services")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -8,34 +8,12 @@ part of 'ui_node_text_attributes.dart';
 
 const UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnum_text =
     const UiNodeTextAttributesNodeTypeEnum._('text');
-const UiNodeTextAttributesNodeTypeEnum
-    _$uiNodeTextAttributesNodeTypeEnum_input =
-    const UiNodeTextAttributesNodeTypeEnum._('input');
-const UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnum_img =
-    const UiNodeTextAttributesNodeTypeEnum._('img');
-const UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnum_a =
-    const UiNodeTextAttributesNodeTypeEnum._('a');
-const UiNodeTextAttributesNodeTypeEnum
-    _$uiNodeTextAttributesNodeTypeEnum_script =
-    const UiNodeTextAttributesNodeTypeEnum._('script');
-const UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnum_div =
-    const UiNodeTextAttributesNodeTypeEnum._('div');
 
 UiNodeTextAttributesNodeTypeEnum _$uiNodeTextAttributesNodeTypeEnumValueOf(
     String name) {
   switch (name) {
     case 'text':
       return _$uiNodeTextAttributesNodeTypeEnum_text;
-    case 'input':
-      return _$uiNodeTextAttributesNodeTypeEnum_input;
-    case 'img':
-      return _$uiNodeTextAttributesNodeTypeEnum_img;
-    case 'a':
-      return _$uiNodeTextAttributesNodeTypeEnum_a;
-    case 'script':
-      return _$uiNodeTextAttributesNodeTypeEnum_script;
-    case 'div':
-      return _$uiNodeTextAttributesNodeTypeEnum_div;
     default:
       throw new ArgumentError(name);
   }
@@ -45,11 +23,6 @@ final BuiltSet<UiNodeTextAttributesNodeTypeEnum>
     _$uiNodeTextAttributesNodeTypeEnumValues = new BuiltSet<
         UiNodeTextAttributesNodeTypeEnum>(const <UiNodeTextAttributesNodeTypeEnum>[
   _$uiNodeTextAttributesNodeTypeEnum_text,
-  _$uiNodeTextAttributesNodeTypeEnum_input,
-  _$uiNodeTextAttributesNodeTypeEnum_img,
-  _$uiNodeTextAttributesNodeTypeEnum_a,
-  _$uiNodeTextAttributesNodeTypeEnum_script,
-  _$uiNodeTextAttributesNodeTypeEnum_div,
 ]);
 
 Serializer<UiNodeTextAttributesNodeTypeEnum>
@@ -60,19 +33,9 @@ class _$UiNodeTextAttributesNodeTypeEnumSerializer
     implements PrimitiveSerializer<UiNodeTextAttributesNodeTypeEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
     'text': 'text',
-    'input': 'input',
-    'img': 'img',
-    'a': 'a',
-    'script': 'script',
-    'div': 'div',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'text': 'text',
-    'input': 'input',
-    'img': 'img',
-    'a': 'a',
-    'script': 'script',
-    'div': 'div',
   };
 
   @override

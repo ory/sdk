@@ -7,6 +7,7 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(AcceptDeviceUserCodeRequest.serializer)
       ..add(AcceptOAuth2ConsentRequest.serializer)
       ..add(AcceptOAuth2ConsentRequestSession.serializer)
       ..add(AcceptOAuth2LoginRequest.serializer)
@@ -23,6 +24,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AttributeFilterConditionEnum.serializer)
       ..add(AttributesCountDatapoint.serializer)
       ..add(AuthenticatorAssuranceLevel.serializer)
+      ..add(BasicOrganization.serializer)
       ..add(BatchCheckPermissionBody.serializer)
       ..add(BatchCheckPermissionResult.serializer)
       ..add(BatchPatchIdentitiesResponse.serializer)
@@ -57,6 +59,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CreateIdentityBodyStateEnum.serializer)
       ..add(CreateInviteResponse.serializer)
       ..add(CreateJsonWebKeySet.serializer)
+      ..add(CreateOrganizationOnboardingPortalLinkBody.serializer)
       ..add(CreateProjectApiKeyRequest.serializer)
       ..add(CreateProjectBody.serializer)
       ..add(CreateProjectBodyEnvironmentEnum.serializer)
@@ -97,6 +100,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CustomDomain.serializer)
       ..add(CustomDomainSslStatusEnum.serializer)
       ..add(DeleteMySessionsCount.serializer)
+      ..add(DeviceAuthorization.serializer)
+      ..add(DeviceUserAuthRequest.serializer)
       ..add(EmailTemplateData.serializer)
       ..add(EmailTemplateDataBody.serializer)
       ..add(ErrorAuthenticatorAssuranceLevelNotSatisfied.serializer)
@@ -163,6 +168,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(JsonWebKey.serializer)
       ..add(JsonWebKeySet.serializer)
       ..add(KetoNamespace.serializer)
+      ..add(KeysetPaginationRequestParameters.serializer)
+      ..add(KeysetPaginationResponseHeaders.serializer)
       ..add(LineItemV1.serializer)
       ..add(ListEventStreams.serializer)
       ..add(ListInvoicesResponse.serializer)
@@ -223,10 +230,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(OAuth2TokenExchange.serializer)
       ..add(OidcConfiguration.serializer)
       ..add(OidcUserInfo.serializer)
+      ..add(OnboardingPortalLink.serializer)
+      ..add(OnboardingPortalOrganization.serializer)
       ..add(Organization.serializer)
       ..add(OrganizationBody.serializer)
-      ..add(Pagination.serializer)
-      ..add(PaginationHeaders.serializer)
+      ..add(OrganizationOnboardingPortalLinksResponse.serializer)
       ..add(ParseError.serializer)
       ..add(PatchIdentitiesBody.serializer)
       ..add(PerformNativeLogoutBody.serializer)
@@ -285,6 +293,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SetCustomDomainBody.serializer)
       ..add(SetEventStreamBody.serializer)
       ..add(SetEventStreamBodyTypeEnum.serializer)
+      ..add(SetOrganizationFromOnboardingPortalLinkBody.serializer)
       ..add(SetProject.serializer)
       ..add(SetProjectBrandingThemeBody.serializer)
       ..add(SettingsFlow.serializer)
@@ -344,6 +353,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UpdateLoginFlowWithSamlMethod.serializer)
       ..add(UpdateLoginFlowWithTotpMethod.serializer)
       ..add(UpdateLoginFlowWithWebAuthnMethod.serializer)
+      ..add(UpdateOrganizationOnboardingPortalLinkBody.serializer)
       ..add(UpdateRecoveryFlowBody.serializer)
       ..add(UpdateRecoveryFlowWithCodeMethod.serializer)
       ..add(UpdateRecoveryFlowWithCodeMethodMethodEnum.serializer)
@@ -383,6 +393,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(VerifiableIdentityAddressViaEnum.serializer)
       ..add(VerificationFlow.serializer)
       ..add(VerificationFlowState.serializer)
+      ..add(VerifyUserCodeRequest.serializer)
       ..add(Version.serializer)
       ..add(Warning.serializer)
       ..add(Workspace.serializer)
@@ -401,6 +412,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(AttributesCountDatapoint)]),
           () => new ListBuilder<AttributesCountDatapoint>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(BasicOrganization)]),
+          () => new ListBuilder<BasicOrganization>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(BasicOrganization)]),
+          () => new ListBuilder<BasicOrganization>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(BillingPeriodBucket)]),
@@ -478,6 +495,28 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(Namespace)]),
           () => new ListBuilder<Namespace>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionThirdPartyProvider)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
+          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionThirdPartyProvider)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
+          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(OnboardingPortalLink)]),
+          () => new ListBuilder<OnboardingPortalLink>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Organization)]),
           () => new ListBuilder<Organization>())
       ..addBuilderFactory(
@@ -522,6 +561,21 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(SessionDevice)]),
           () => new ListBuilder<SessionDevice>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
@@ -707,8 +761,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(KetoNamespace)]),
           () => new ListBuilder<KetoNamespace>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(NormalizedProjectRevisionCourierChannel)]),
@@ -749,6 +809,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
             const FullType(NormalizedProjectRevisionTokenizerTemplate)
           ]),
           () => new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Organization)]),
+          () => new ListBuilder<Organization>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
@@ -788,8 +851,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(KetoNamespace)]),
           () => new ListBuilder<KetoNamespace>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(NormalizedProjectRevisionCourierChannel)]),
@@ -830,6 +899,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
             const FullType(NormalizedProjectRevisionTokenizerTemplate)
           ]),
           () => new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Organization)]),
+          () => new ListBuilder<Organization>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),

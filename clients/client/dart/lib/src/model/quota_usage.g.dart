@@ -68,6 +68,26 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_scimClients =
 const QuotaUsageFeatureEnum
     _$quotaUsageFeatureEnum_defaultSmtpEmailCustomization =
     const QuotaUsageFeatureEnum._('defaultSmtpEmailCustomization');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_onboardingPortal =
+    const QuotaUsageFeatureEnum._('onboardingPortal');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_updateSelfServiceRegistrationRateLimitTier =
+    const QuotaUsageFeatureEnum._('updateSelfServiceRegistrationRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_updateSelfServiceRecoveryRateLimitTier =
+    const QuotaUsageFeatureEnum._('updateSelfServiceRecoveryRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_updateSelfServiceSettingsRateLimitTier =
+    const QuotaUsageFeatureEnum._('updateSelfServiceSettingsRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_updateSelfServiceVerificationRateLimitTier =
+    const QuotaUsageFeatureEnum._('updateSelfServiceVerificationRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_identitiesCreateRateLimitTier =
+    const QuotaUsageFeatureEnum._('identitiesCreateRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_identitiesImportRateLimitTier =
+    const QuotaUsageFeatureEnum._('identitiesImportRateLimitTier');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationRegional =
     const QuotaUsageFeatureEnum._('dataLocationRegional');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
@@ -151,6 +171,20 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_scimClients;
     case 'defaultSmtpEmailCustomization':
       return _$quotaUsageFeatureEnum_defaultSmtpEmailCustomization;
+    case 'onboardingPortal':
+      return _$quotaUsageFeatureEnum_onboardingPortal;
+    case 'updateSelfServiceRegistrationRateLimitTier':
+      return _$quotaUsageFeatureEnum_updateSelfServiceRegistrationRateLimitTier;
+    case 'updateSelfServiceRecoveryRateLimitTier':
+      return _$quotaUsageFeatureEnum_updateSelfServiceRecoveryRateLimitTier;
+    case 'updateSelfServiceSettingsRateLimitTier':
+      return _$quotaUsageFeatureEnum_updateSelfServiceSettingsRateLimitTier;
+    case 'updateSelfServiceVerificationRateLimitTier':
+      return _$quotaUsageFeatureEnum_updateSelfServiceVerificationRateLimitTier;
+    case 'identitiesCreateRateLimitTier':
+      return _$quotaUsageFeatureEnum_identitiesCreateRateLimitTier;
+    case 'identitiesImportRateLimitTier':
+      return _$quotaUsageFeatureEnum_identitiesImportRateLimitTier;
     case 'dataLocationRegional':
       return _$quotaUsageFeatureEnum_dataLocationRegional;
     case 'rateLimitTier':
@@ -204,6 +238,13 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_autoLinkPolicy,
   _$quotaUsageFeatureEnum_scimClients,
   _$quotaUsageFeatureEnum_defaultSmtpEmailCustomization,
+  _$quotaUsageFeatureEnum_onboardingPortal,
+  _$quotaUsageFeatureEnum_updateSelfServiceRegistrationRateLimitTier,
+  _$quotaUsageFeatureEnum_updateSelfServiceRecoveryRateLimitTier,
+  _$quotaUsageFeatureEnum_updateSelfServiceSettingsRateLimitTier,
+  _$quotaUsageFeatureEnum_updateSelfServiceVerificationRateLimitTier,
+  _$quotaUsageFeatureEnum_identitiesCreateRateLimitTier,
+  _$quotaUsageFeatureEnum_identitiesImportRateLimitTier,
   _$quotaUsageFeatureEnum_dataLocationRegional,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
@@ -250,6 +291,17 @@ class _$QuotaUsageFeatureEnumSerializer
     'autoLinkPolicy': 'auto_link_policy',
     'scimClients': 'scim_clients',
     'defaultSmtpEmailCustomization': 'default_smtp_email_customization',
+    'onboardingPortal': 'onboarding_portal',
+    'updateSelfServiceRegistrationRateLimitTier':
+        'update_self_service_registration_rate_limit_tier',
+    'updateSelfServiceRecoveryRateLimitTier':
+        'update_self_service_recovery_rate_limit_tier',
+    'updateSelfServiceSettingsRateLimitTier':
+        'update_self_service_settings_rate_limit_tier',
+    'updateSelfServiceVerificationRateLimitTier':
+        'update_self_service_verification_rate_limit_tier',
+    'identitiesCreateRateLimitTier': 'identities_create_rate_limit_tier',
+    'identitiesImportRateLimitTier': 'identities_import_rate_limit_tier',
     'dataLocationRegional': 'data_location_regional',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
@@ -290,6 +342,17 @@ class _$QuotaUsageFeatureEnumSerializer
     'auto_link_policy': 'autoLinkPolicy',
     'scim_clients': 'scimClients',
     'default_smtp_email_customization': 'defaultSmtpEmailCustomization',
+    'onboarding_portal': 'onboardingPortal',
+    'update_self_service_registration_rate_limit_tier':
+        'updateSelfServiceRegistrationRateLimitTier',
+    'update_self_service_recovery_rate_limit_tier':
+        'updateSelfServiceRecoveryRateLimitTier',
+    'update_self_service_settings_rate_limit_tier':
+        'updateSelfServiceSettingsRateLimitTier',
+    'update_self_service_verification_rate_limit_tier':
+        'updateSelfServiceVerificationRateLimitTier',
+    'identities_create_rate_limit_tier': 'identitiesCreateRateLimitTier',
+    'identities_import_rate_limit_tier': 'identitiesImportRateLimitTier',
     'data_location_regional': 'dataLocationRegional',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',

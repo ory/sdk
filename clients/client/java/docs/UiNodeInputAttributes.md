@@ -43,12 +43,7 @@ InputAttributes represents the attributes of an input node
 
 | Name | Value |
 |---- | -----|
-| TEXT | &quot;text&quot; |
 | INPUT | &quot;input&quot; |
-| IMG | &quot;img&quot; |
-| A | &quot;a&quot; |
-| SCRIPT | &quot;script&quot; |
-| DIV | &quot;div&quot; |
 
 
 

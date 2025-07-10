@@ -6,6 +6,7 @@ README.md
 api/openapi.yaml
 build.gradle
 build.sbt
+docs/AcceptDeviceUserCodeRequest.md
 docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
@@ -18,6 +19,7 @@ docs/Attribute.md
 docs/AttributeFilter.md
 docs/AttributesCountDatapoint.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BasicOrganization.md
 docs/BatchCheckPermissionBody.md
 docs/BatchCheckPermissionResult.md
 docs/BatchPatchIdentitiesResponse.md
@@ -45,6 +47,7 @@ docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
+docs/CreateOrganizationOnboardingPortalLinkBody.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
@@ -63,6 +66,8 @@ docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
+docs/DeviceAuthorization.md
+docs/DeviceUserAuthRequest.md
 docs/EmailTemplateData.md
 docs/EmailTemplateDataBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -125,6 +130,8 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/KeysetPaginationRequestParameters.md
+docs/KeysetPaginationResponseHeaders.md
 docs/LineItemV1.md
 docs/ListEventStreams.md
 docs/ListInvoicesResponse.md
@@ -167,10 +174,11 @@ docs/OAuth2TokenExchange.md
 docs/OidcApi.md
 docs/OidcConfiguration.md
 docs/OidcUserInfo.md
+docs/OnboardingPortalLink.md
+docs/OnboardingPortalOrganization.md
 docs/Organization.md
 docs/OrganizationBody.md
-docs/Pagination.md
-docs/PaginationHeaders.md
+docs/OrganizationOnboardingPortalLinksResponse.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
@@ -221,6 +229,7 @@ docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetEventStreamBody.md
+docs/SetOrganizationFromOnboardingPortalLinkBody.md
 docs/SetProject.md
 docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
@@ -264,6 +273,7 @@ docs/UpdateLoginFlowWithPasswordMethod.md
 docs/UpdateLoginFlowWithSamlMethod.md
 docs/UpdateLoginFlowWithTotpMethod.md
 docs/UpdateLoginFlowWithWebAuthnMethod.md
+docs/UpdateOrganizationOnboardingPortalLinkBody.md
 docs/UpdateRecoveryFlowBody.md
 docs/UpdateRecoveryFlowWithCodeMethod.md
 docs/UpdateRecoveryFlowWithLinkMethod.md
@@ -296,6 +306,7 @@ docs/VerifiableCredentialResponse.md
 docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
 docs/VerificationFlowState.md
+docs/VerifyUserCodeRequest.md
 docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
@@ -346,6 +357,7 @@ src/main/java/sh/ory/auth/OAuthFlow.java
 src/main/java/sh/ory/auth/OAuthOkHttpClient.java
 src/main/java/sh/ory/auth/RetryingOAuth.java
 src/main/java/sh/ory/model/AbstractOpenApiSchema.java
+src/main/java/sh/ory/model/AcceptDeviceUserCodeRequest.java
 src/main/java/sh/ory/model/AcceptOAuth2ConsentRequest.java
 src/main/java/sh/ory/model/AcceptOAuth2ConsentRequestSession.java
 src/main/java/sh/ory/model/AcceptOAuth2LoginRequest.java
@@ -358,6 +370,7 @@ src/main/java/sh/ory/model/Attribute.java
 src/main/java/sh/ory/model/AttributeFilter.java
 src/main/java/sh/ory/model/AttributesCountDatapoint.java
 src/main/java/sh/ory/model/AuthenticatorAssuranceLevel.java
+src/main/java/sh/ory/model/BasicOrganization.java
 src/main/java/sh/ory/model/BatchCheckPermissionBody.java
 src/main/java/sh/ory/model/BatchCheckPermissionResult.java
 src/main/java/sh/ory/model/BatchPatchIdentitiesResponse.java
@@ -384,6 +397,7 @@ src/main/java/sh/ory/model/CreateFedcmFlowResponse.java
 src/main/java/sh/ory/model/CreateIdentityBody.java
 src/main/java/sh/ory/model/CreateInviteResponse.java
 src/main/java/sh/ory/model/CreateJsonWebKeySet.java
+src/main/java/sh/ory/model/CreateOrganizationOnboardingPortalLinkBody.java
 src/main/java/sh/ory/model/CreateProjectApiKeyRequest.java
 src/main/java/sh/ory/model/CreateProjectBody.java
 src/main/java/sh/ory/model/CreateProjectBranding.java
@@ -402,6 +416,8 @@ src/main/java/sh/ory/model/CreateWorkspaceSubscriptionBody.java
 src/main/java/sh/ory/model/CredentialSupportedDraft00.java
 src/main/java/sh/ory/model/CustomDomain.java
 src/main/java/sh/ory/model/DeleteMySessionsCount.java
+src/main/java/sh/ory/model/DeviceAuthorization.java
+src/main/java/sh/ory/model/DeviceUserAuthRequest.java
 src/main/java/sh/ory/model/EmailTemplateData.java
 src/main/java/sh/ory/model/EmailTemplateDataBody.java
 src/main/java/sh/ory/model/ErrorAuthenticatorAssuranceLevelNotSatisfied.java
@@ -460,6 +476,8 @@ src/main/java/sh/ory/model/JsonPatch.java
 src/main/java/sh/ory/model/JsonWebKey.java
 src/main/java/sh/ory/model/JsonWebKeySet.java
 src/main/java/sh/ory/model/KetoNamespace.java
+src/main/java/sh/ory/model/KeysetPaginationRequestParameters.java
+src/main/java/sh/ory/model/KeysetPaginationResponseHeaders.java
 src/main/java/sh/ory/model/LineItemV1.java
 src/main/java/sh/ory/model/ListEventStreams.java
 src/main/java/sh/ory/model/ListInvoicesResponse.java
@@ -499,10 +517,11 @@ src/main/java/sh/ory/model/OAuth2RedirectTo.java
 src/main/java/sh/ory/model/OAuth2TokenExchange.java
 src/main/java/sh/ory/model/OidcConfiguration.java
 src/main/java/sh/ory/model/OidcUserInfo.java
+src/main/java/sh/ory/model/OnboardingPortalLink.java
+src/main/java/sh/ory/model/OnboardingPortalOrganization.java
 src/main/java/sh/ory/model/Organization.java
 src/main/java/sh/ory/model/OrganizationBody.java
-src/main/java/sh/ory/model/Pagination.java
-src/main/java/sh/ory/model/PaginationHeaders.java
+src/main/java/sh/ory/model/OrganizationOnboardingPortalLinksResponse.java
 src/main/java/sh/ory/model/ParseError.java
 src/main/java/sh/ory/model/PatchIdentitiesBody.java
 src/main/java/sh/ory/model/PerformNativeLogoutBody.java
@@ -550,6 +569,7 @@ src/main/java/sh/ory/model/SessionDevice.java
 src/main/java/sh/ory/model/SetActiveProjectInConsoleBody.java
 src/main/java/sh/ory/model/SetCustomDomainBody.java
 src/main/java/sh/ory/model/SetEventStreamBody.java
+src/main/java/sh/ory/model/SetOrganizationFromOnboardingPortalLinkBody.java
 src/main/java/sh/ory/model/SetProject.java
 src/main/java/sh/ory/model/SetProjectBrandingThemeBody.java
 src/main/java/sh/ory/model/SettingsFlow.java
@@ -593,6 +613,7 @@ src/main/java/sh/ory/model/UpdateLoginFlowWithPasswordMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithSamlMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithTotpMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithWebAuthnMethod.java
+src/main/java/sh/ory/model/UpdateOrganizationOnboardingPortalLinkBody.java
 src/main/java/sh/ory/model/UpdateRecoveryFlowBody.java
 src/main/java/sh/ory/model/UpdateRecoveryFlowWithCodeMethod.java
 src/main/java/sh/ory/model/UpdateRecoveryFlowWithLinkMethod.java
@@ -625,6 +646,7 @@ src/main/java/sh/ory/model/VerifiableCredentialResponse.java
 src/main/java/sh/ory/model/VerifiableIdentityAddress.java
 src/main/java/sh/ory/model/VerificationFlow.java
 src/main/java/sh/ory/model/VerificationFlowState.java
+src/main/java/sh/ory/model/VerifyUserCodeRequest.java
 src/main/java/sh/ory/model/Version.java
 src/main/java/sh/ory/model/Warning.java
 src/main/java/sh/ory/model/Workspace.java
@@ -642,6 +664,7 @@ src/test/java/sh/ory/api/ProjectApiTest.java
 src/test/java/sh/ory/api/RelationshipApiTest.java
 src/test/java/sh/ory/api/WellknownApiTest.java
 src/test/java/sh/ory/api/WorkspaceApiTest.java
+src/test/java/sh/ory/model/AcceptDeviceUserCodeRequestTest.java
 src/test/java/sh/ory/model/AcceptOAuth2ConsentRequestSessionTest.java
 src/test/java/sh/ory/model/AcceptOAuth2ConsentRequestTest.java
 src/test/java/sh/ory/model/AcceptOAuth2LoginRequestTest.java
@@ -654,6 +677,7 @@ src/test/java/sh/ory/model/AttributeFilterTest.java
 src/test/java/sh/ory/model/AttributeTest.java
 src/test/java/sh/ory/model/AttributesCountDatapointTest.java
 src/test/java/sh/ory/model/AuthenticatorAssuranceLevelTest.java
+src/test/java/sh/ory/model/BasicOrganizationTest.java
 src/test/java/sh/ory/model/BatchCheckPermissionBodyTest.java
 src/test/java/sh/ory/model/BatchCheckPermissionResultTest.java
 src/test/java/sh/ory/model/BatchPatchIdentitiesResponseTest.java
@@ -680,6 +704,7 @@ src/test/java/sh/ory/model/CreateFedcmFlowResponseTest.java
 src/test/java/sh/ory/model/CreateIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateInviteResponseTest.java
 src/test/java/sh/ory/model/CreateJsonWebKeySetTest.java
+src/test/java/sh/ory/model/CreateOrganizationOnboardingPortalLinkBodyTest.java
 src/test/java/sh/ory/model/CreateProjectApiKeyRequestTest.java
 src/test/java/sh/ory/model/CreateProjectBodyTest.java
 src/test/java/sh/ory/model/CreateProjectBrandingTest.java
@@ -698,6 +723,8 @@ src/test/java/sh/ory/model/CreateWorkspaceSubscriptionBodyTest.java
 src/test/java/sh/ory/model/CredentialSupportedDraft00Test.java
 src/test/java/sh/ory/model/CustomDomainTest.java
 src/test/java/sh/ory/model/DeleteMySessionsCountTest.java
+src/test/java/sh/ory/model/DeviceAuthorizationTest.java
+src/test/java/sh/ory/model/DeviceUserAuthRequestTest.java
 src/test/java/sh/ory/model/EmailTemplateDataBodyTest.java
 src/test/java/sh/ory/model/EmailTemplateDataTest.java
 src/test/java/sh/ory/model/ErrorAuthenticatorAssuranceLevelNotSatisfiedTest.java
@@ -756,6 +783,8 @@ src/test/java/sh/ory/model/JsonPatchTest.java
 src/test/java/sh/ory/model/JsonWebKeySetTest.java
 src/test/java/sh/ory/model/JsonWebKeyTest.java
 src/test/java/sh/ory/model/KetoNamespaceTest.java
+src/test/java/sh/ory/model/KeysetPaginationRequestParametersTest.java
+src/test/java/sh/ory/model/KeysetPaginationResponseHeadersTest.java
 src/test/java/sh/ory/model/LineItemV1Test.java
 src/test/java/sh/ory/model/ListEventStreamsTest.java
 src/test/java/sh/ory/model/ListInvoicesResponseTest.java
@@ -795,10 +824,11 @@ src/test/java/sh/ory/model/OAuth2RedirectToTest.java
 src/test/java/sh/ory/model/OAuth2TokenExchangeTest.java
 src/test/java/sh/ory/model/OidcConfigurationTest.java
 src/test/java/sh/ory/model/OidcUserInfoTest.java
+src/test/java/sh/ory/model/OnboardingPortalLinkTest.java
+src/test/java/sh/ory/model/OnboardingPortalOrganizationTest.java
 src/test/java/sh/ory/model/OrganizationBodyTest.java
+src/test/java/sh/ory/model/OrganizationOnboardingPortalLinksResponseTest.java
 src/test/java/sh/ory/model/OrganizationTest.java
-src/test/java/sh/ory/model/PaginationHeadersTest.java
-src/test/java/sh/ory/model/PaginationTest.java
 src/test/java/sh/ory/model/ParseErrorTest.java
 src/test/java/sh/ory/model/PatchIdentitiesBodyTest.java
 src/test/java/sh/ory/model/PerformNativeLogoutBodyTest.java
@@ -846,6 +876,7 @@ src/test/java/sh/ory/model/SessionTest.java
 src/test/java/sh/ory/model/SetActiveProjectInConsoleBodyTest.java
 src/test/java/sh/ory/model/SetCustomDomainBodyTest.java
 src/test/java/sh/ory/model/SetEventStreamBodyTest.java
+src/test/java/sh/ory/model/SetOrganizationFromOnboardingPortalLinkBodyTest.java
 src/test/java/sh/ory/model/SetProjectBrandingThemeBodyTest.java
 src/test/java/sh/ory/model/SetProjectTest.java
 src/test/java/sh/ory/model/SettingsFlowStateTest.java
@@ -889,6 +920,7 @@ src/test/java/sh/ory/model/UpdateLoginFlowWithPasswordMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithSamlMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithTotpMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithWebAuthnMethodTest.java
+src/test/java/sh/ory/model/UpdateOrganizationOnboardingPortalLinkBodyTest.java
 src/test/java/sh/ory/model/UpdateRecoveryFlowBodyTest.java
 src/test/java/sh/ory/model/UpdateRecoveryFlowWithCodeMethodTest.java
 src/test/java/sh/ory/model/UpdateRecoveryFlowWithLinkMethodTest.java
@@ -921,6 +953,7 @@ src/test/java/sh/ory/model/VerifiableCredentialResponseTest.java
 src/test/java/sh/ory/model/VerifiableIdentityAddressTest.java
 src/test/java/sh/ory/model/VerificationFlowStateTest.java
 src/test/java/sh/ory/model/VerificationFlowTest.java
+src/test/java/sh/ory/model/VerifyUserCodeRequestTest.java
 src/test/java/sh/ory/model/VersionTest.java
 src/test/java/sh/ory/model/WarningTest.java
 src/test/java/sh/ory/model/WorkspaceApiKeyTest.java

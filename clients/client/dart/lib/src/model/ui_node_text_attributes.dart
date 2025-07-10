@@ -25,7 +25,7 @@ abstract class UiNodeTextAttributes implements Built<UiNodeTextAttributes, UiNod
   /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueField(wireName: r'node_type')
   UiNodeTextAttributesNodeTypeEnum get nodeType;
-  // enum nodeTypeEnum {  text,  input,  img,  a,  script,  div,  };
+  // enum nodeTypeEnum {  text,  };
 
   @BuiltValueField(wireName: r'text')
   UiText get text;
@@ -146,21 +146,6 @@ class UiNodeTextAttributesNodeTypeEnum extends EnumClass {
   /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'text')
   static const UiNodeTextAttributesNodeTypeEnum text = _$uiNodeTextAttributesNodeTypeEnum_text;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'input')
-  static const UiNodeTextAttributesNodeTypeEnum input = _$uiNodeTextAttributesNodeTypeEnum_input;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'img')
-  static const UiNodeTextAttributesNodeTypeEnum img = _$uiNodeTextAttributesNodeTypeEnum_img;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'a')
-  static const UiNodeTextAttributesNodeTypeEnum a = _$uiNodeTextAttributesNodeTypeEnum_a;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'script')
-  static const UiNodeTextAttributesNodeTypeEnum script = _$uiNodeTextAttributesNodeTypeEnum_script;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'div')
-  static const UiNodeTextAttributesNodeTypeEnum div = _$uiNodeTextAttributesNodeTypeEnum_div;
 
   static Serializer<UiNodeTextAttributesNodeTypeEnum> get serializer => _$uiNodeTextAttributesNodeTypeEnumSerializer;
 

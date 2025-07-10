@@ -34,6 +34,7 @@
 | **hydra_oidc_subject_identifiers_pairwise_salt** | **String** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] |
 | **hydra_oidc_subject_identifiers_supported_types** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_secrets_cookie** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_secrets_pagination** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_secrets_system** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_serve_cookies_same_site_legacy_workaround** | **Boolean** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. | [optional] |
 | **hydra_serve_cookies_same_site_mode** | **String** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] |
@@ -63,6 +64,7 @@
 | **id** | **String** | The revision ID. | [optional][readonly] |
 | **keto_namespace_configuration** | **String** | The Revisions&#39; Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration. | [optional] |
 | **keto_namespaces** | [**Array&lt;KetoNamespace&gt;**](KetoNamespace.md) |  | [optional] |
+| **keto_secrets_pagination** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_cookies_same_site** | **String** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] |
 | **kratos_courier_channels** | [**Array&lt;NormalizedProjectRevisionCourierChannel&gt;**](NormalizedProjectRevisionCourierChannel.md) |  | [optional] |
 | **kratos_courier_delivery_strategy** | **String** | The delivery strategy to use when sending emails  &#x60;smtp&#x60;: Use SMTP server &#x60;http&#x60;: Use the built in HTTP client to send the email to some remote service | [optional][default to &#39;smtp&#39;] |
@@ -117,6 +119,9 @@
 | **kratos_feature_flags_cacheable_sessions** | **Boolean** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] |
 | **kratos_feature_flags_cacheable_sessions_max_age** | **String** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional] |
 | **kratos_feature_flags_faster_session_extend** | **Boolean** | Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \&quot;feature_flags.faster_session_extend\&quot; setting. | [optional] |
+| **kratos_feature_flags_legacy_continue_with_verification_ui** | **Boolean** | Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including &#x60;show_verification_ui&#x60; in the registration flow&#39;s &#x60;continue_with&#x60; when verification is enabled. If set to false, &#x60;show_verification_ui&#x60; is only set in &#x60;continue_with&#x60; if the &#x60;show_verification_ui&#x60; hook is used. This flag will be removed in the future.  This governs the \&quot;feature_flags.legacy_continue_with_verification_ui\&quot; setting. | [optional] |
+| **kratos_feature_flags_legacy_oidc_registration_node_group** | **Boolean** | Controls whether the UI nodes in an OIDC registration flow have group \&quot;oidc\&quot; in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \&quot;oidc\&quot; and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \&quot;feature_flags.legacy_oidc_registration_node_group\&quot; setting. | [optional] |
+| **kratos_feature_flags_legacy_require_verified_login_error** | **Boolean** | Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the &#x60;continue_with&#x60; array will contain a &#x60;show_verification_ui&#x60; hook instead.  This flag is deprecated and will be removed in the future.  This governs the \&quot;feature_flags.legacy_require_verified_login_error\&quot; setting. | [optional] |
 | **kratos_feature_flags_use_continue_with_transitions** | **Boolean** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional] |
 | **kratos_identity_schemas** | [**Array&lt;NormalizedProjectRevisionIdentitySchema&gt;**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] |
 | **kratos_oauth2_provider_headers** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
@@ -178,8 +183,10 @@
 | **kratos_selfservice_flows_verification_use** | **String** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] |
 | **kratos_selfservice_methods_captcha_config_cf_turnstile_secret** | **String** | Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature. | [optional] |
 | **kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey** | **String** | Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] |
+| **kratos_selfservice_methods_captcha_config_legacy_inject_node** | **Boolean** | Configures the Ory Kratos Self-Service Methods&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] |
 | **kratos_selfservice_methods_captcha_enabled** | **Boolean** | Configures the Ory Kratos Self-Service Methods&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] |
 | **kratos_selfservice_methods_code_config_lifespan** | **String** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_code_config_max_submissions** | **Integer** |  | [optional] |
 | **kratos_selfservice_methods_code_config_missing_credential_fallback_enabled** | **Boolean** | Enables a fallback method required in certain legacy use cases.  This governs the \&quot;selfservice.methods.code.config.missing_credential_fallback_enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_enabled** | **Boolean** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_mfa_enabled** | **Boolean** | Configures whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] |
@@ -220,6 +227,7 @@
 | **kratos_session_whoami_required_aal** | **String** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] |
 | **kratos_session_whoami_tokenizer_templates** | [**Array&lt;NormalizedProjectRevisionTokenizerTemplate&gt;**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional] |
 | **name** | **String** | The project&#39;s name. |  |
+| **organizations** | [**Array&lt;Organization&gt;**](Organization.md) |  | [optional] |
 | **project_id** | **String** | The Revision&#39;s Project ID | [optional] |
 | **project_revision_hooks** | [**Array&lt;NormalizedProjectRevisionHook&gt;**](NormalizedProjectRevisionHook.md) |  | [optional] |
 | **scim_clients** | [**Array&lt;NormalizedProjectRevisionScimClient&gt;**](NormalizedProjectRevisionScimClient.md) |  | [optional] |
@@ -267,6 +275,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   hydra_oidc_subject_identifiers_pairwise_salt: null,
   hydra_oidc_subject_identifiers_supported_types: null,
   hydra_secrets_cookie: null,
+  hydra_secrets_pagination: null,
   hydra_secrets_system: null,
   hydra_serve_cookies_same_site_legacy_workaround: null,
   hydra_serve_cookies_same_site_mode: null,
@@ -296,6 +305,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   id: null,
   keto_namespace_configuration: null,
   keto_namespaces: null,
+  keto_secrets_pagination: null,
   kratos_cookies_same_site: null,
   kratos_courier_channels: null,
   kratos_courier_delivery_strategy: null,
@@ -350,6 +360,9 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_feature_flags_cacheable_sessions: null,
   kratos_feature_flags_cacheable_sessions_max_age: null,
   kratos_feature_flags_faster_session_extend: null,
+  kratos_feature_flags_legacy_continue_with_verification_ui: null,
+  kratos_feature_flags_legacy_oidc_registration_node_group: null,
+  kratos_feature_flags_legacy_require_verified_login_error: null,
   kratos_feature_flags_use_continue_with_transitions: null,
   kratos_identity_schemas: null,
   kratos_oauth2_provider_headers: null,
@@ -411,8 +424,10 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_selfservice_flows_verification_use: null,
   kratos_selfservice_methods_captcha_config_cf_turnstile_secret: null,
   kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey: null,
+  kratos_selfservice_methods_captcha_config_legacy_inject_node: null,
   kratos_selfservice_methods_captcha_enabled: null,
   kratos_selfservice_methods_code_config_lifespan: null,
+  kratos_selfservice_methods_code_config_max_submissions: null,
   kratos_selfservice_methods_code_config_missing_credential_fallback_enabled: null,
   kratos_selfservice_methods_code_enabled: null,
   kratos_selfservice_methods_code_mfa_enabled: null,
@@ -453,6 +468,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_session_whoami_required_aal: null,
   kratos_session_whoami_tokenizer_templates: null,
   name: null,
+  organizations: null,
   project_id: null,
   project_revision_hooks: null,
   scim_clients: null,

@@ -7,38 +7,14 @@ part of 'ui_node_image_attributes.dart';
 // **************************************************************************
 
 const UiNodeImageAttributesNodeTypeEnum
-    _$uiNodeImageAttributesNodeTypeEnum_text =
-    const UiNodeImageAttributesNodeTypeEnum._('text');
-const UiNodeImageAttributesNodeTypeEnum
-    _$uiNodeImageAttributesNodeTypeEnum_input =
-    const UiNodeImageAttributesNodeTypeEnum._('input');
-const UiNodeImageAttributesNodeTypeEnum
     _$uiNodeImageAttributesNodeTypeEnum_img =
     const UiNodeImageAttributesNodeTypeEnum._('img');
-const UiNodeImageAttributesNodeTypeEnum _$uiNodeImageAttributesNodeTypeEnum_a =
-    const UiNodeImageAttributesNodeTypeEnum._('a');
-const UiNodeImageAttributesNodeTypeEnum
-    _$uiNodeImageAttributesNodeTypeEnum_script =
-    const UiNodeImageAttributesNodeTypeEnum._('script');
-const UiNodeImageAttributesNodeTypeEnum
-    _$uiNodeImageAttributesNodeTypeEnum_div =
-    const UiNodeImageAttributesNodeTypeEnum._('div');
 
 UiNodeImageAttributesNodeTypeEnum _$uiNodeImageAttributesNodeTypeEnumValueOf(
     String name) {
   switch (name) {
-    case 'text':
-      return _$uiNodeImageAttributesNodeTypeEnum_text;
-    case 'input':
-      return _$uiNodeImageAttributesNodeTypeEnum_input;
     case 'img':
       return _$uiNodeImageAttributesNodeTypeEnum_img;
-    case 'a':
-      return _$uiNodeImageAttributesNodeTypeEnum_a;
-    case 'script':
-      return _$uiNodeImageAttributesNodeTypeEnum_script;
-    case 'div':
-      return _$uiNodeImageAttributesNodeTypeEnum_div;
     default:
       throw new ArgumentError(name);
   }
@@ -47,12 +23,7 @@ UiNodeImageAttributesNodeTypeEnum _$uiNodeImageAttributesNodeTypeEnumValueOf(
 final BuiltSet<UiNodeImageAttributesNodeTypeEnum>
     _$uiNodeImageAttributesNodeTypeEnumValues = new BuiltSet<
         UiNodeImageAttributesNodeTypeEnum>(const <UiNodeImageAttributesNodeTypeEnum>[
-  _$uiNodeImageAttributesNodeTypeEnum_text,
-  _$uiNodeImageAttributesNodeTypeEnum_input,
   _$uiNodeImageAttributesNodeTypeEnum_img,
-  _$uiNodeImageAttributesNodeTypeEnum_a,
-  _$uiNodeImageAttributesNodeTypeEnum_script,
-  _$uiNodeImageAttributesNodeTypeEnum_div,
 ]);
 
 Serializer<UiNodeImageAttributesNodeTypeEnum>
@@ -62,20 +33,10 @@ Serializer<UiNodeImageAttributesNodeTypeEnum>
 class _$UiNodeImageAttributesNodeTypeEnumSerializer
     implements PrimitiveSerializer<UiNodeImageAttributesNodeTypeEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'text': 'text',
-    'input': 'input',
     'img': 'img',
-    'a': 'a',
-    'script': 'script',
-    'div': 'div',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'text': 'text',
-    'input': 'input',
     'img': 'img',
-    'a': 'a',
-    'script': 'script',
-    'div': 'div',
   };
 
   @override

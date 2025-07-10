@@ -14,6 +14,8 @@ class _$SetProject extends SetProject {
   @override
   final String name;
   @override
+  final BuiltList<BasicOrganization> organizations;
+  @override
   final ProjectServices services;
 
   factory _$SetProject([void Function(SetProjectBuilder)? updates]) =>
@@ -23,6 +25,7 @@ class _$SetProject extends SetProject {
       {required this.corsAdmin,
       required this.corsPublic,
       required this.name,
+      required this.organizations,
       required this.services})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -30,6 +33,8 @@ class _$SetProject extends SetProject {
     BuiltValueNullFieldError.checkNotNull(
         corsPublic, r'SetProject', 'corsPublic');
     BuiltValueNullFieldError.checkNotNull(name, r'SetProject', 'name');
+    BuiltValueNullFieldError.checkNotNull(
+        organizations, r'SetProject', 'organizations');
     BuiltValueNullFieldError.checkNotNull(services, r'SetProject', 'services');
   }
 
@@ -47,6 +52,7 @@ class _$SetProject extends SetProject {
         corsAdmin == other.corsAdmin &&
         corsPublic == other.corsPublic &&
         name == other.name &&
+        organizations == other.organizations &&
         services == other.services;
   }
 
@@ -56,6 +62,7 @@ class _$SetProject extends SetProject {
     _$hash = $jc(_$hash, corsAdmin.hashCode);
     _$hash = $jc(_$hash, corsPublic.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, organizations.hashCode);
     _$hash = $jc(_$hash, services.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -67,6 +74,7 @@ class _$SetProject extends SetProject {
           ..add('corsAdmin', corsAdmin)
           ..add('corsPublic', corsPublic)
           ..add('name', name)
+          ..add('organizations', organizations)
           ..add('services', services))
         .toString();
   }
@@ -90,6 +98,12 @@ class SetProjectBuilder implements Builder<SetProject, SetProjectBuilder> {
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  ListBuilder<BasicOrganization>? _organizations;
+  ListBuilder<BasicOrganization> get organizations =>
+      _$this._organizations ??= new ListBuilder<BasicOrganization>();
+  set organizations(ListBuilder<BasicOrganization>? organizations) =>
+      _$this._organizations = organizations;
+
   ProjectServicesBuilder? _services;
   ProjectServicesBuilder get services =>
       _$this._services ??= new ProjectServicesBuilder();
@@ -105,6 +119,7 @@ class SetProjectBuilder implements Builder<SetProject, SetProjectBuilder> {
       _corsAdmin = $v.corsAdmin.toBuilder();
       _corsPublic = $v.corsPublic.toBuilder();
       _name = $v.name;
+      _organizations = $v.organizations.toBuilder();
       _services = $v.services.toBuilder();
       _$v = null;
     }
@@ -134,6 +149,7 @@ class SetProjectBuilder implements Builder<SetProject, SetProjectBuilder> {
               corsPublic: corsPublic.build(),
               name: BuiltValueNullFieldError.checkNotNull(
                   name, r'SetProject', 'name'),
+              organizations: organizations.build(),
               services: services.build());
     } catch (_) {
       late String _$failedField;
@@ -143,6 +159,8 @@ class SetProjectBuilder implements Builder<SetProject, SetProjectBuilder> {
         _$failedField = 'corsPublic';
         corsPublic.build();
 
+        _$failedField = 'organizations';
+        organizations.build();
         _$failedField = 'services';
         services.build();
       } catch (e) {

@@ -5,11 +5,14 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_organization**](ProjectApi.md#create_organization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization |
+| [**create_organization_onboarding_portal_link**](ProjectApi.md#create_organization_onboarding_portal_link) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Create organization onboarding portal link |
 | [**create_project**](ProjectApi.md#create_project) | **POST** /projects | Create a Project |
 | [**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API key |
 | [**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization |
+| [**delete_organization_onboarding_portal_link**](ProjectApi.md#delete_organization_onboarding_portal_link) | **DELETE** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Delete an organization onboarding portal link |
 | [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key |
 | [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
+| [**get_organization_onboarding_portal_links**](ProjectApi.md#get_organization_onboarding_portal_links) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links |
 | [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project |
 | [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
@@ -21,6 +24,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
 | [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
 | [**update_organization**](ProjectApi.md#update_organization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization |
+| [**update_organization_onboarding_portal_link**](ProjectApi.md#update_organization_onboarding_portal_link) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link |
 
 
 ## create_organization
@@ -85,6 +89,81 @@ end
 ### Return type
 
 [**Organization**](Organization.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## create_organization_onboarding_portal_link
+
+> <OnboardingPortalLink> create_organization_onboarding_portal_link(project_id, organization_id, opts)
+
+Create organization onboarding portal link
+
+Create a onboarding portal link for an organization.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryWorkspaceApiKey
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+organization_id = 'organization_id_example' # String | Organization ID  The Organization's ID.
+opts = {
+  create_organization_onboarding_portal_link_body: OryClient::CreateOrganizationOnboardingPortalLinkBody.new({enable_sso: false}) # CreateOrganizationOnboardingPortalLinkBody | 
+}
+
+begin
+  # Create organization onboarding portal link
+  result = api_instance.create_organization_onboarding_portal_link(project_id, organization_id, opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->create_organization_onboarding_portal_link: #{e}"
+end
+```
+
+#### Using the create_organization_onboarding_portal_link_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OnboardingPortalLink>, Integer, Hash)> create_organization_onboarding_portal_link_with_http_info(project_id, organization_id, opts)
+
+```ruby
+begin
+  # Create organization onboarding portal link
+  data, status_code, headers = api_instance.create_organization_onboarding_portal_link_with_http_info(project_id, organization_id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OnboardingPortalLink>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->create_organization_onboarding_portal_link_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **organization_id** | **String** | Organization ID  The Organization&#39;s ID. |  |
+| **create_organization_onboarding_portal_link_body** | [**CreateOrganizationOnboardingPortalLinkBody**](CreateOrganizationOnboardingPortalLinkBody.md) |  | [optional] |
+
+### Return type
+
+[**OnboardingPortalLink**](OnboardingPortalLink.md)
 
 ### Authorization
 
@@ -310,6 +389,78 @@ nil (empty response body)
 - **Accept**: application/json
 
 
+## delete_organization_onboarding_portal_link
+
+> delete_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id)
+
+Delete an organization onboarding portal link
+
+Deletes a onboarding portal link for an organization.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryWorkspaceApiKey
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | 
+organization_id = 'organization_id_example' # String | 
+onboarding_portal_link_id = 'onboarding_portal_link_id_example' # String | 
+
+begin
+  # Delete an organization onboarding portal link
+  api_instance.delete_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id)
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->delete_organization_onboarding_portal_link: #{e}"
+end
+```
+
+#### Using the delete_organization_onboarding_portal_link_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> delete_organization_onboarding_portal_link_with_http_info(project_id, organization_id, onboarding_portal_link_id)
+
+```ruby
+begin
+  # Delete an organization onboarding portal link
+  data, status_code, headers = api_instance.delete_organization_onboarding_portal_link_with_http_info(project_id, organization_id, onboarding_portal_link_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->delete_organization_onboarding_portal_link_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** |  |  |
+| **organization_id** | **String** |  |  |
+| **onboarding_portal_link_id** | **String** |  |  |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## delete_project_api_key
 
 > delete_project_api_key(project, token_id)
@@ -440,6 +591,77 @@ end
 ### Return type
 
 [**GetOrganizationResponse**](GetOrganizationResponse.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_organization_onboarding_portal_links
+
+> <OrganizationOnboardingPortalLinksResponse> get_organization_onboarding_portal_links(project_id, organization_id)
+
+Get the organization onboarding portal links
+
+Retrieves the organization onboarding portal links.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryWorkspaceApiKey
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+organization_id = 'organization_id_example' # String | Organization ID  The Organization's ID.
+
+begin
+  # Get the organization onboarding portal links
+  result = api_instance.get_organization_onboarding_portal_links(project_id, organization_id)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->get_organization_onboarding_portal_links: #{e}"
+end
+```
+
+#### Using the get_organization_onboarding_portal_links_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OrganizationOnboardingPortalLinksResponse>, Integer, Hash)> get_organization_onboarding_portal_links_with_http_info(project_id, organization_id)
+
+```ruby
+begin
+  # Get the organization onboarding portal links
+  data, status_code, headers = api_instance.get_organization_onboarding_portal_links_with_http_info(project_id, organization_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OrganizationOnboardingPortalLinksResponse>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->get_organization_onboarding_portal_links_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **organization_id** | **String** | Organization ID  The Organization&#39;s ID. |  |
+
+### Return type
+
+[**OrganizationOnboardingPortalLinksResponse**](OrganizationOnboardingPortalLinksResponse.md)
 
 ### Authorization
 
@@ -1109,7 +1331,7 @@ end
 api_instance = OryClient::ProjectApi.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
 opts = {
-  set_project: OryClient::SetProject.new({cors_admin: OryClient::ProjectCors.new, cors_public: OryClient::ProjectCors.new, name: 'name_example', services: OryClient::ProjectServices.new}) # SetProject | 
+  set_project: OryClient::SetProject.new({cors_admin: OryClient::ProjectCors.new, cors_public: OryClient::ProjectCors.new, name: 'name_example', organizations: [OryClient::BasicOrganization.new({domains: ['domains_example'], id: 'id_example', label: 'label_example'})], services: OryClient::ProjectServices.new}) # SetProject | 
 }
 
 begin
@@ -1224,6 +1446,83 @@ end
 ### Return type
 
 [**Organization**](Organization.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## update_organization_onboarding_portal_link
+
+> <OnboardingPortalLink> update_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id, opts)
+
+Update organization onboarding portal link
+
+Update a onboarding portal link for an organization.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryWorkspaceApiKey
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | Project ID  The project's ID.
+organization_id = 'organization_id_example' # String | Organization ID  The Organization's ID.
+onboarding_portal_link_id = 'onboarding_portal_link_id_example' # String | 
+opts = {
+  update_organization_onboarding_portal_link_body: OryClient::UpdateOrganizationOnboardingPortalLinkBody.new({enable_sso: false}) # UpdateOrganizationOnboardingPortalLinkBody | 
+}
+
+begin
+  # Update organization onboarding portal link
+  result = api_instance.update_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id, opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->update_organization_onboarding_portal_link: #{e}"
+end
+```
+
+#### Using the update_organization_onboarding_portal_link_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OnboardingPortalLink>, Integer, Hash)> update_organization_onboarding_portal_link_with_http_info(project_id, organization_id, onboarding_portal_link_id, opts)
+
+```ruby
+begin
+  # Update organization onboarding portal link
+  data, status_code, headers = api_instance.update_organization_onboarding_portal_link_with_http_info(project_id, organization_id, onboarding_portal_link_id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OnboardingPortalLink>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->update_organization_onboarding_portal_link_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | Project ID  The project&#39;s ID. |  |
+| **organization_id** | **String** | Organization ID  The Organization&#39;s ID. |  |
+| **onboarding_portal_link_id** | **String** |  |  |
+| **update_organization_onboarding_portal_link_body** | [**UpdateOrganizationOnboardingPortalLinkBody**](UpdateOrganizationOnboardingPortalLinkBody.md) |  | [optional] |
+
+### Return type
+
+[**OnboardingPortalLink**](OnboardingPortalLink.md)
 
 ### Authorization
 

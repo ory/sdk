@@ -6,12 +6,10 @@ B2B SSO Organization
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **datetime** | The organization&#39;s creation date. | [readonly] 
+**created_at** | **datetime** |  | 
 **domains** | **List[str]** |  | 
 **id** | **str** | The organization&#39;s ID. | 
 **label** | **str** | The organization&#39;s human-readable label. | 
-**project_id** | **str** | The project&#39;s ID. | 
-**updated_at** | **datetime** | The last time the organization was updated. | [readonly] 
 
 ## Example
 

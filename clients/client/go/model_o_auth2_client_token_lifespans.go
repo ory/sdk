@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.20.11
+API version: v1.20.22
 Contact: support@ory.sh
 */
 
@@ -24,6 +24,9 @@ type OAuth2ClientTokenLifespans struct {
 	AuthorizationCodeGrantIdTokenLifespan NullableString `json:"authorization_code_grant_id_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
 	AuthorizationCodeGrantRefreshTokenLifespan NullableString `json:"authorization_code_grant_refresh_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
 	ClientCredentialsGrantAccessTokenLifespan NullableString `json:"client_credentials_grant_access_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
+	DeviceAuthorizationGrantAccessTokenLifespan NullableString `json:"device_authorization_grant_access_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
+	DeviceAuthorizationGrantIdTokenLifespan NullableString `json:"device_authorization_grant_id_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
+	DeviceAuthorizationGrantRefreshTokenLifespan NullableString `json:"device_authorization_grant_refresh_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
 	ImplicitGrantAccessTokenLifespan NullableString `json:"implicit_grant_access_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
 	ImplicitGrantIdTokenLifespan NullableString `json:"implicit_grant_id_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
 	JwtBearerGrantAccessTokenLifespan NullableString `json:"jwt_bearer_grant_access_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
@@ -218,6 +221,132 @@ func (o *OAuth2ClientTokenLifespans) SetClientCredentialsGrantAccessTokenLifespa
 // UnsetClientCredentialsGrantAccessTokenLifespan ensures that no value is present for ClientCredentialsGrantAccessTokenLifespan, not even an explicit nil
 func (o *OAuth2ClientTokenLifespans) UnsetClientCredentialsGrantAccessTokenLifespan() {
 	o.ClientCredentialsGrantAccessTokenLifespan.Unset()
+}
+
+// GetDeviceAuthorizationGrantAccessTokenLifespan returns the DeviceAuthorizationGrantAccessTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OAuth2ClientTokenLifespans) GetDeviceAuthorizationGrantAccessTokenLifespan() string {
+	if o == nil || IsNil(o.DeviceAuthorizationGrantAccessTokenLifespan.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DeviceAuthorizationGrantAccessTokenLifespan.Get()
+}
+
+// GetDeviceAuthorizationGrantAccessTokenLifespanOk returns a tuple with the DeviceAuthorizationGrantAccessTokenLifespan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OAuth2ClientTokenLifespans) GetDeviceAuthorizationGrantAccessTokenLifespanOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeviceAuthorizationGrantAccessTokenLifespan.Get(), o.DeviceAuthorizationGrantAccessTokenLifespan.IsSet()
+}
+
+// HasDeviceAuthorizationGrantAccessTokenLifespan returns a boolean if a field has been set.
+func (o *OAuth2ClientTokenLifespans) HasDeviceAuthorizationGrantAccessTokenLifespan() bool {
+	if o != nil && o.DeviceAuthorizationGrantAccessTokenLifespan.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceAuthorizationGrantAccessTokenLifespan gets a reference to the given NullableString and assigns it to the DeviceAuthorizationGrantAccessTokenLifespan field.
+func (o *OAuth2ClientTokenLifespans) SetDeviceAuthorizationGrantAccessTokenLifespan(v string) {
+	o.DeviceAuthorizationGrantAccessTokenLifespan.Set(&v)
+}
+// SetDeviceAuthorizationGrantAccessTokenLifespanNil sets the value for DeviceAuthorizationGrantAccessTokenLifespan to be an explicit nil
+func (o *OAuth2ClientTokenLifespans) SetDeviceAuthorizationGrantAccessTokenLifespanNil() {
+	o.DeviceAuthorizationGrantAccessTokenLifespan.Set(nil)
+}
+
+// UnsetDeviceAuthorizationGrantAccessTokenLifespan ensures that no value is present for DeviceAuthorizationGrantAccessTokenLifespan, not even an explicit nil
+func (o *OAuth2ClientTokenLifespans) UnsetDeviceAuthorizationGrantAccessTokenLifespan() {
+	o.DeviceAuthorizationGrantAccessTokenLifespan.Unset()
+}
+
+// GetDeviceAuthorizationGrantIdTokenLifespan returns the DeviceAuthorizationGrantIdTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OAuth2ClientTokenLifespans) GetDeviceAuthorizationGrantIdTokenLifespan() string {
+	if o == nil || IsNil(o.DeviceAuthorizationGrantIdTokenLifespan.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DeviceAuthorizationGrantIdTokenLifespan.Get()
+}
+
+// GetDeviceAuthorizationGrantIdTokenLifespanOk returns a tuple with the DeviceAuthorizationGrantIdTokenLifespan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OAuth2ClientTokenLifespans) GetDeviceAuthorizationGrantIdTokenLifespanOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeviceAuthorizationGrantIdTokenLifespan.Get(), o.DeviceAuthorizationGrantIdTokenLifespan.IsSet()
+}
+
+// HasDeviceAuthorizationGrantIdTokenLifespan returns a boolean if a field has been set.
+func (o *OAuth2ClientTokenLifespans) HasDeviceAuthorizationGrantIdTokenLifespan() bool {
+	if o != nil && o.DeviceAuthorizationGrantIdTokenLifespan.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceAuthorizationGrantIdTokenLifespan gets a reference to the given NullableString and assigns it to the DeviceAuthorizationGrantIdTokenLifespan field.
+func (o *OAuth2ClientTokenLifespans) SetDeviceAuthorizationGrantIdTokenLifespan(v string) {
+	o.DeviceAuthorizationGrantIdTokenLifespan.Set(&v)
+}
+// SetDeviceAuthorizationGrantIdTokenLifespanNil sets the value for DeviceAuthorizationGrantIdTokenLifespan to be an explicit nil
+func (o *OAuth2ClientTokenLifespans) SetDeviceAuthorizationGrantIdTokenLifespanNil() {
+	o.DeviceAuthorizationGrantIdTokenLifespan.Set(nil)
+}
+
+// UnsetDeviceAuthorizationGrantIdTokenLifespan ensures that no value is present for DeviceAuthorizationGrantIdTokenLifespan, not even an explicit nil
+func (o *OAuth2ClientTokenLifespans) UnsetDeviceAuthorizationGrantIdTokenLifespan() {
+	o.DeviceAuthorizationGrantIdTokenLifespan.Unset()
+}
+
+// GetDeviceAuthorizationGrantRefreshTokenLifespan returns the DeviceAuthorizationGrantRefreshTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OAuth2ClientTokenLifespans) GetDeviceAuthorizationGrantRefreshTokenLifespan() string {
+	if o == nil || IsNil(o.DeviceAuthorizationGrantRefreshTokenLifespan.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DeviceAuthorizationGrantRefreshTokenLifespan.Get()
+}
+
+// GetDeviceAuthorizationGrantRefreshTokenLifespanOk returns a tuple with the DeviceAuthorizationGrantRefreshTokenLifespan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OAuth2ClientTokenLifespans) GetDeviceAuthorizationGrantRefreshTokenLifespanOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeviceAuthorizationGrantRefreshTokenLifespan.Get(), o.DeviceAuthorizationGrantRefreshTokenLifespan.IsSet()
+}
+
+// HasDeviceAuthorizationGrantRefreshTokenLifespan returns a boolean if a field has been set.
+func (o *OAuth2ClientTokenLifespans) HasDeviceAuthorizationGrantRefreshTokenLifespan() bool {
+	if o != nil && o.DeviceAuthorizationGrantRefreshTokenLifespan.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceAuthorizationGrantRefreshTokenLifespan gets a reference to the given NullableString and assigns it to the DeviceAuthorizationGrantRefreshTokenLifespan field.
+func (o *OAuth2ClientTokenLifespans) SetDeviceAuthorizationGrantRefreshTokenLifespan(v string) {
+	o.DeviceAuthorizationGrantRefreshTokenLifespan.Set(&v)
+}
+// SetDeviceAuthorizationGrantRefreshTokenLifespanNil sets the value for DeviceAuthorizationGrantRefreshTokenLifespan to be an explicit nil
+func (o *OAuth2ClientTokenLifespans) SetDeviceAuthorizationGrantRefreshTokenLifespanNil() {
+	o.DeviceAuthorizationGrantRefreshTokenLifespan.Set(nil)
+}
+
+// UnsetDeviceAuthorizationGrantRefreshTokenLifespan ensures that no value is present for DeviceAuthorizationGrantRefreshTokenLifespan, not even an explicit nil
+func (o *OAuth2ClientTokenLifespans) UnsetDeviceAuthorizationGrantRefreshTokenLifespan() {
+	o.DeviceAuthorizationGrantRefreshTokenLifespan.Unset()
 }
 
 // GetImplicitGrantAccessTokenLifespan returns the ImplicitGrantAccessTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -494,6 +623,15 @@ func (o OAuth2ClientTokenLifespans) ToMap() (map[string]interface{}, error) {
 	if o.ClientCredentialsGrantAccessTokenLifespan.IsSet() {
 		toSerialize["client_credentials_grant_access_token_lifespan"] = o.ClientCredentialsGrantAccessTokenLifespan.Get()
 	}
+	if o.DeviceAuthorizationGrantAccessTokenLifespan.IsSet() {
+		toSerialize["device_authorization_grant_access_token_lifespan"] = o.DeviceAuthorizationGrantAccessTokenLifespan.Get()
+	}
+	if o.DeviceAuthorizationGrantIdTokenLifespan.IsSet() {
+		toSerialize["device_authorization_grant_id_token_lifespan"] = o.DeviceAuthorizationGrantIdTokenLifespan.Get()
+	}
+	if o.DeviceAuthorizationGrantRefreshTokenLifespan.IsSet() {
+		toSerialize["device_authorization_grant_refresh_token_lifespan"] = o.DeviceAuthorizationGrantRefreshTokenLifespan.Get()
+	}
 	if o.ImplicitGrantAccessTokenLifespan.IsSet() {
 		toSerialize["implicit_grant_access_token_lifespan"] = o.ImplicitGrantAccessTokenLifespan.Get()
 	}
@@ -538,6 +676,9 @@ func (o *OAuth2ClientTokenLifespans) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "authorization_code_grant_id_token_lifespan")
 		delete(additionalProperties, "authorization_code_grant_refresh_token_lifespan")
 		delete(additionalProperties, "client_credentials_grant_access_token_lifespan")
+		delete(additionalProperties, "device_authorization_grant_access_token_lifespan")
+		delete(additionalProperties, "device_authorization_grant_id_token_lifespan")
+		delete(additionalProperties, "device_authorization_grant_refresh_token_lifespan")
 		delete(additionalProperties, "implicit_grant_access_token_lifespan")
 		delete(additionalProperties, "implicit_grant_id_token_lifespan")
 		delete(additionalProperties, "jwt_bearer_grant_access_token_lifespan")

@@ -3,6 +3,7 @@
 .travis.yml
 Cargo.toml
 README.md
+docs/AcceptDeviceUserCodeRequest.md
 docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
@@ -15,6 +16,7 @@ docs/Attribute.md
 docs/AttributeFilter.md
 docs/AttributesCountDatapoint.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BasicOrganization.md
 docs/BatchCheckPermissionBody.md
 docs/BatchCheckPermissionResult.md
 docs/BatchPatchIdentitiesResponse.md
@@ -42,6 +44,7 @@ docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
+docs/CreateOrganizationOnboardingPortalLinkBody.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
@@ -60,6 +63,8 @@ docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
+docs/DeviceAuthorization.md
+docs/DeviceUserAuthRequest.md
 docs/EmailTemplateData.md
 docs/EmailTemplateDataBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -122,6 +127,8 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/KeysetPaginationRequestParameters.md
+docs/KeysetPaginationResponseHeaders.md
 docs/LineItemV1.md
 docs/ListEventStreams.md
 docs/ListInvoicesResponse.md
@@ -164,10 +171,11 @@ docs/OAuth2TokenExchange.md
 docs/OidcApi.md
 docs/OidcConfiguration.md
 docs/OidcUserInfo.md
+docs/OnboardingPortalLink.md
+docs/OnboardingPortalOrganization.md
 docs/Organization.md
 docs/OrganizationBody.md
-docs/Pagination.md
-docs/PaginationHeaders.md
+docs/OrganizationOnboardingPortalLinksResponse.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
@@ -218,6 +226,7 @@ docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetEventStreamBody.md
+docs/SetOrganizationFromOnboardingPortalLinkBody.md
 docs/SetProject.md
 docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
@@ -261,6 +270,7 @@ docs/UpdateLoginFlowWithPasswordMethod.md
 docs/UpdateLoginFlowWithSamlMethod.md
 docs/UpdateLoginFlowWithTotpMethod.md
 docs/UpdateLoginFlowWithWebAuthnMethod.md
+docs/UpdateOrganizationOnboardingPortalLinkBody.md
 docs/UpdateRecoveryFlowBody.md
 docs/UpdateRecoveryFlowWithCodeMethod.md
 docs/UpdateRecoveryFlowWithLinkMethod.md
@@ -293,6 +303,7 @@ docs/VerifiableCredentialResponse.md
 docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
 docs/VerificationFlowState.md
+docs/VerifyUserCodeRequest.md
 docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
@@ -316,6 +327,7 @@ src/apis/relationship_api.rs
 src/apis/wellknown_api.rs
 src/apis/workspace_api.rs
 src/lib.rs
+src/models/accept_device_user_code_request.rs
 src/models/accept_o_auth2_consent_request.rs
 src/models/accept_o_auth2_consent_request_session.rs
 src/models/accept_o_auth2_login_request.rs
@@ -328,6 +340,7 @@ src/models/attribute.rs
 src/models/attribute_filter.rs
 src/models/attributes_count_datapoint.rs
 src/models/authenticator_assurance_level.rs
+src/models/basic_organization.rs
 src/models/batch_check_permission_body.rs
 src/models/batch_check_permission_result.rs
 src/models/batch_patch_identities_response.rs
@@ -354,6 +367,7 @@ src/models/create_fedcm_flow_response.rs
 src/models/create_identity_body.rs
 src/models/create_invite_response.rs
 src/models/create_json_web_key_set.rs
+src/models/create_organization_onboarding_portal_link_body.rs
 src/models/create_project_api_key_request.rs
 src/models/create_project_body.rs
 src/models/create_project_branding.rs
@@ -372,6 +386,8 @@ src/models/create_workspace_subscription_body.rs
 src/models/credential_supported_draft00.rs
 src/models/custom_domain.rs
 src/models/delete_my_sessions_count.rs
+src/models/device_authorization.rs
+src/models/device_user_auth_request.rs
 src/models/email_template_data.rs
 src/models/email_template_data_body.rs
 src/models/error_authenticator_assurance_level_not_satisfied.rs
@@ -430,6 +446,8 @@ src/models/json_patch.rs
 src/models/json_web_key.rs
 src/models/json_web_key_set.rs
 src/models/keto_namespace.rs
+src/models/keyset_pagination_request_parameters.rs
+src/models/keyset_pagination_response_headers.rs
 src/models/line_item_v1.rs
 src/models/list_event_streams.rs
 src/models/list_invoices_response.rs
@@ -470,10 +488,11 @@ src/models/o_auth2_redirect_to.rs
 src/models/o_auth2_token_exchange.rs
 src/models/oidc_configuration.rs
 src/models/oidc_user_info.rs
+src/models/onboarding_portal_link.rs
+src/models/onboarding_portal_organization.rs
 src/models/organization.rs
 src/models/organization_body.rs
-src/models/pagination.rs
-src/models/pagination_headers.rs
+src/models/organization_onboarding_portal_links_response.rs
 src/models/parse_error.rs
 src/models/patch_identities_body.rs
 src/models/perform_native_logout_body.rs
@@ -521,6 +540,7 @@ src/models/session_device.rs
 src/models/set_active_project_in_console_body.rs
 src/models/set_custom_domain_body.rs
 src/models/set_event_stream_body.rs
+src/models/set_organization_from_onboarding_portal_link_body.rs
 src/models/set_project.rs
 src/models/set_project_branding_theme_body.rs
 src/models/settings_flow.rs
@@ -564,6 +584,7 @@ src/models/update_login_flow_with_password_method.rs
 src/models/update_login_flow_with_saml_method.rs
 src/models/update_login_flow_with_totp_method.rs
 src/models/update_login_flow_with_web_authn_method.rs
+src/models/update_organization_onboarding_portal_link_body.rs
 src/models/update_recovery_flow_body.rs
 src/models/update_recovery_flow_with_code_method.rs
 src/models/update_recovery_flow_with_link_method.rs
@@ -596,6 +617,7 @@ src/models/verifiable_credential_response.rs
 src/models/verifiable_identity_address.rs
 src/models/verification_flow.rs
 src/models/verification_flow_state.rs
+src/models/verify_user_code_request.rs
 src/models/version.rs
 src/models/warning.rs
 src/models/workspace.rs

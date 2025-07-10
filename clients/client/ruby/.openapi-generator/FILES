@@ -7,6 +7,7 @@
 Gemfile
 README.md
 Rakefile
+docs/AcceptDeviceUserCodeRequest.md
 docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
@@ -19,6 +20,7 @@ docs/Attribute.md
 docs/AttributeFilter.md
 docs/AttributesCountDatapoint.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BasicOrganization.md
 docs/BatchCheckPermissionBody.md
 docs/BatchCheckPermissionResult.md
 docs/BatchPatchIdentitiesResponse.md
@@ -46,6 +48,7 @@ docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
+docs/CreateOrganizationOnboardingPortalLinkBody.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
@@ -64,6 +67,8 @@ docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
+docs/DeviceAuthorization.md
+docs/DeviceUserAuthRequest.md
 docs/EmailTemplateData.md
 docs/EmailTemplateDataBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -126,6 +131,8 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/KeysetPaginationRequestParameters.md
+docs/KeysetPaginationResponseHeaders.md
 docs/LineItemV1.md
 docs/ListEventStreams.md
 docs/ListInvoicesResponse.md
@@ -168,10 +175,11 @@ docs/OAuth2TokenExchange.md
 docs/OidcApi.md
 docs/OidcConfiguration.md
 docs/OidcUserInfo.md
+docs/OnboardingPortalLink.md
+docs/OnboardingPortalOrganization.md
 docs/Organization.md
 docs/OrganizationBody.md
-docs/Pagination.md
-docs/PaginationHeaders.md
+docs/OrganizationOnboardingPortalLinksResponse.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
@@ -222,6 +230,7 @@ docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetEventStreamBody.md
+docs/SetOrganizationFromOnboardingPortalLinkBody.md
 docs/SetProject.md
 docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
@@ -265,6 +274,7 @@ docs/UpdateLoginFlowWithPasswordMethod.md
 docs/UpdateLoginFlowWithSamlMethod.md
 docs/UpdateLoginFlowWithTotpMethod.md
 docs/UpdateLoginFlowWithWebAuthnMethod.md
+docs/UpdateOrganizationOnboardingPortalLinkBody.md
 docs/UpdateRecoveryFlowBody.md
 docs/UpdateRecoveryFlowWithCodeMethod.md
 docs/UpdateRecoveryFlowWithLinkMethod.md
@@ -297,6 +307,7 @@ docs/VerifiableCredentialResponse.md
 docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
 docs/VerificationFlowState.md
+docs/VerifyUserCodeRequest.md
 docs/Version.md
 docs/Warning.md
 docs/WellknownApi.md
@@ -321,6 +332,7 @@ lib/ory-client/api/workspace_api.rb
 lib/ory-client/api_client.rb
 lib/ory-client/api_error.rb
 lib/ory-client/configuration.rb
+lib/ory-client/models/accept_device_user_code_request.rb
 lib/ory-client/models/accept_o_auth2_consent_request.rb
 lib/ory-client/models/accept_o_auth2_consent_request_session.rb
 lib/ory-client/models/accept_o_auth2_login_request.rb
@@ -333,6 +345,7 @@ lib/ory-client/models/attribute.rb
 lib/ory-client/models/attribute_filter.rb
 lib/ory-client/models/attributes_count_datapoint.rb
 lib/ory-client/models/authenticator_assurance_level.rb
+lib/ory-client/models/basic_organization.rb
 lib/ory-client/models/batch_check_permission_body.rb
 lib/ory-client/models/batch_check_permission_result.rb
 lib/ory-client/models/batch_patch_identities_response.rb
@@ -359,6 +372,7 @@ lib/ory-client/models/create_fedcm_flow_response.rb
 lib/ory-client/models/create_identity_body.rb
 lib/ory-client/models/create_invite_response.rb
 lib/ory-client/models/create_json_web_key_set.rb
+lib/ory-client/models/create_organization_onboarding_portal_link_body.rb
 lib/ory-client/models/create_project_api_key_request.rb
 lib/ory-client/models/create_project_body.rb
 lib/ory-client/models/create_project_branding.rb
@@ -377,6 +391,8 @@ lib/ory-client/models/create_workspace_subscription_body.rb
 lib/ory-client/models/credential_supported_draft00.rb
 lib/ory-client/models/custom_domain.rb
 lib/ory-client/models/delete_my_sessions_count.rb
+lib/ory-client/models/device_authorization.rb
+lib/ory-client/models/device_user_auth_request.rb
 lib/ory-client/models/email_template_data.rb
 lib/ory-client/models/email_template_data_body.rb
 lib/ory-client/models/error_authenticator_assurance_level_not_satisfied.rb
@@ -435,6 +451,8 @@ lib/ory-client/models/json_patch.rb
 lib/ory-client/models/json_web_key.rb
 lib/ory-client/models/json_web_key_set.rb
 lib/ory-client/models/keto_namespace.rb
+lib/ory-client/models/keyset_pagination_request_parameters.rb
+lib/ory-client/models/keyset_pagination_response_headers.rb
 lib/ory-client/models/line_item_v1.rb
 lib/ory-client/models/list_event_streams.rb
 lib/ory-client/models/list_invoices_response.rb
@@ -474,10 +492,11 @@ lib/ory-client/models/o_auth2_redirect_to.rb
 lib/ory-client/models/o_auth2_token_exchange.rb
 lib/ory-client/models/oidc_configuration.rb
 lib/ory-client/models/oidc_user_info.rb
+lib/ory-client/models/onboarding_portal_link.rb
+lib/ory-client/models/onboarding_portal_organization.rb
 lib/ory-client/models/organization.rb
 lib/ory-client/models/organization_body.rb
-lib/ory-client/models/pagination.rb
-lib/ory-client/models/pagination_headers.rb
+lib/ory-client/models/organization_onboarding_portal_links_response.rb
 lib/ory-client/models/parse_error.rb
 lib/ory-client/models/patch_identities_body.rb
 lib/ory-client/models/perform_native_logout_body.rb
@@ -525,6 +544,7 @@ lib/ory-client/models/session_device.rb
 lib/ory-client/models/set_active_project_in_console_body.rb
 lib/ory-client/models/set_custom_domain_body.rb
 lib/ory-client/models/set_event_stream_body.rb
+lib/ory-client/models/set_organization_from_onboarding_portal_link_body.rb
 lib/ory-client/models/set_project.rb
 lib/ory-client/models/set_project_branding_theme_body.rb
 lib/ory-client/models/settings_flow.rb
@@ -568,6 +588,7 @@ lib/ory-client/models/update_login_flow_with_password_method.rb
 lib/ory-client/models/update_login_flow_with_saml_method.rb
 lib/ory-client/models/update_login_flow_with_totp_method.rb
 lib/ory-client/models/update_login_flow_with_web_authn_method.rb
+lib/ory-client/models/update_organization_onboarding_portal_link_body.rb
 lib/ory-client/models/update_recovery_flow_body.rb
 lib/ory-client/models/update_recovery_flow_with_code_method.rb
 lib/ory-client/models/update_recovery_flow_with_link_method.rb
@@ -600,6 +621,7 @@ lib/ory-client/models/verifiable_credential_response.rb
 lib/ory-client/models/verifiable_identity_address.rb
 lib/ory-client/models/verification_flow.rb
 lib/ory-client/models/verification_flow_state.rb
+lib/ory-client/models/verify_user_code_request.rb
 lib/ory-client/models/version.rb
 lib/ory-client/models/warning.rb
 lib/ory-client/models/workspace.rb
@@ -619,6 +641,7 @@ spec/api/project_api_spec.rb
 spec/api/relationship_api_spec.rb
 spec/api/wellknown_api_spec.rb
 spec/api/workspace_api_spec.rb
+spec/models/accept_device_user_code_request_spec.rb
 spec/models/accept_o_auth2_consent_request_session_spec.rb
 spec/models/accept_o_auth2_consent_request_spec.rb
 spec/models/accept_o_auth2_login_request_spec.rb
@@ -631,6 +654,7 @@ spec/models/attribute_filter_spec.rb
 spec/models/attribute_spec.rb
 spec/models/attributes_count_datapoint_spec.rb
 spec/models/authenticator_assurance_level_spec.rb
+spec/models/basic_organization_spec.rb
 spec/models/batch_check_permission_body_spec.rb
 spec/models/batch_check_permission_result_spec.rb
 spec/models/batch_patch_identities_response_spec.rb
@@ -657,6 +681,7 @@ spec/models/create_fedcm_flow_response_spec.rb
 spec/models/create_identity_body_spec.rb
 spec/models/create_invite_response_spec.rb
 spec/models/create_json_web_key_set_spec.rb
+spec/models/create_organization_onboarding_portal_link_body_spec.rb
 spec/models/create_project_api_key_request_spec.rb
 spec/models/create_project_body_spec.rb
 spec/models/create_project_branding_spec.rb
@@ -675,6 +700,8 @@ spec/models/create_workspace_subscription_body_spec.rb
 spec/models/credential_supported_draft00_spec.rb
 spec/models/custom_domain_spec.rb
 spec/models/delete_my_sessions_count_spec.rb
+spec/models/device_authorization_spec.rb
+spec/models/device_user_auth_request_spec.rb
 spec/models/email_template_data_body_spec.rb
 spec/models/email_template_data_spec.rb
 spec/models/error_authenticator_assurance_level_not_satisfied_spec.rb
@@ -733,6 +760,8 @@ spec/models/json_patch_spec.rb
 spec/models/json_web_key_set_spec.rb
 spec/models/json_web_key_spec.rb
 spec/models/keto_namespace_spec.rb
+spec/models/keyset_pagination_request_parameters_spec.rb
+spec/models/keyset_pagination_response_headers_spec.rb
 spec/models/line_item_v1_spec.rb
 spec/models/list_event_streams_spec.rb
 spec/models/list_invoices_response_spec.rb
@@ -772,10 +801,11 @@ spec/models/o_auth2_redirect_to_spec.rb
 spec/models/o_auth2_token_exchange_spec.rb
 spec/models/oidc_configuration_spec.rb
 spec/models/oidc_user_info_spec.rb
+spec/models/onboarding_portal_link_spec.rb
+spec/models/onboarding_portal_organization_spec.rb
 spec/models/organization_body_spec.rb
+spec/models/organization_onboarding_portal_links_response_spec.rb
 spec/models/organization_spec.rb
-spec/models/pagination_headers_spec.rb
-spec/models/pagination_spec.rb
 spec/models/parse_error_spec.rb
 spec/models/patch_identities_body_spec.rb
 spec/models/perform_native_logout_body_spec.rb
@@ -823,6 +853,7 @@ spec/models/session_spec.rb
 spec/models/set_active_project_in_console_body_spec.rb
 spec/models/set_custom_domain_body_spec.rb
 spec/models/set_event_stream_body_spec.rb
+spec/models/set_organization_from_onboarding_portal_link_body_spec.rb
 spec/models/set_project_branding_theme_body_spec.rb
 spec/models/set_project_spec.rb
 spec/models/settings_flow_spec.rb
@@ -866,6 +897,7 @@ spec/models/update_login_flow_with_password_method_spec.rb
 spec/models/update_login_flow_with_saml_method_spec.rb
 spec/models/update_login_flow_with_totp_method_spec.rb
 spec/models/update_login_flow_with_web_authn_method_spec.rb
+spec/models/update_organization_onboarding_portal_link_body_spec.rb
 spec/models/update_recovery_flow_body_spec.rb
 spec/models/update_recovery_flow_with_code_method_spec.rb
 spec/models/update_recovery_flow_with_link_method_spec.rb
@@ -898,6 +930,7 @@ spec/models/verifiable_credential_response_spec.rb
 spec/models/verifiable_identity_address_spec.rb
 spec/models/verification_flow_spec.rb
 spec/models/verification_flow_state_spec.rb
+spec/models/verify_user_code_request_spec.rb
 spec/models/version_spec.rb
 spec/models/warning_spec.rb
 spec/models/workspace_api_key_spec.rb

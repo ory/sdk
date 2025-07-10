@@ -40,6 +40,12 @@ class _$OAuth2Client extends OAuth2Client {
   @override
   final DateTime? createdAt;
   @override
+  final String? deviceAuthorizationGrantAccessTokenLifespan;
+  @override
+  final String? deviceAuthorizationGrantIdTokenLifespan;
+  @override
+  final String? deviceAuthorizationGrantRefreshTokenLifespan;
+  @override
   final bool? frontchannelLogoutSessionRequired;
   @override
   final String? frontchannelLogoutUri;
@@ -50,7 +56,7 @@ class _$OAuth2Client extends OAuth2Client {
   @override
   final String? implicitGrantIdTokenLifespan;
   @override
-  final JsonObject? jwks;
+  final JsonWebKeySet? jwks;
   @override
   final String? jwksUri;
   @override
@@ -124,6 +130,9 @@ class _$OAuth2Client extends OAuth2Client {
       this.clientUri,
       this.contacts,
       this.createdAt,
+      this.deviceAuthorizationGrantAccessTokenLifespan,
+      this.deviceAuthorizationGrantIdTokenLifespan,
+      this.deviceAuthorizationGrantRefreshTokenLifespan,
       this.frontchannelLogoutSessionRequired,
       this.frontchannelLogoutUri,
       this.grantTypes,
@@ -190,6 +199,12 @@ class _$OAuth2Client extends OAuth2Client {
         clientUri == other.clientUri &&
         contacts == other.contacts &&
         createdAt == other.createdAt &&
+        deviceAuthorizationGrantAccessTokenLifespan ==
+            other.deviceAuthorizationGrantAccessTokenLifespan &&
+        deviceAuthorizationGrantIdTokenLifespan ==
+            other.deviceAuthorizationGrantIdTokenLifespan &&
+        deviceAuthorizationGrantRefreshTokenLifespan ==
+            other.deviceAuthorizationGrantRefreshTokenLifespan &&
         frontchannelLogoutSessionRequired ==
             other.frontchannelLogoutSessionRequired &&
         frontchannelLogoutUri == other.frontchannelLogoutUri &&
@@ -249,6 +264,9 @@ class _$OAuth2Client extends OAuth2Client {
     _$hash = $jc(_$hash, clientUri.hashCode);
     _$hash = $jc(_$hash, contacts.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, deviceAuthorizationGrantAccessTokenLifespan.hashCode);
+    _$hash = $jc(_$hash, deviceAuthorizationGrantIdTokenLifespan.hashCode);
+    _$hash = $jc(_$hash, deviceAuthorizationGrantRefreshTokenLifespan.hashCode);
     _$hash = $jc(_$hash, frontchannelLogoutSessionRequired.hashCode);
     _$hash = $jc(_$hash, frontchannelLogoutUri.hashCode);
     _$hash = $jc(_$hash, grantTypes.hashCode);
@@ -309,6 +327,12 @@ class _$OAuth2Client extends OAuth2Client {
           ..add('clientUri', clientUri)
           ..add('contacts', contacts)
           ..add('createdAt', createdAt)
+          ..add('deviceAuthorizationGrantAccessTokenLifespan',
+              deviceAuthorizationGrantAccessTokenLifespan)
+          ..add('deviceAuthorizationGrantIdTokenLifespan',
+              deviceAuthorizationGrantIdTokenLifespan)
+          ..add('deviceAuthorizationGrantRefreshTokenLifespan',
+              deviceAuthorizationGrantRefreshTokenLifespan)
           ..add('frontchannelLogoutSessionRequired',
               frontchannelLogoutSessionRequired)
           ..add('frontchannelLogoutUri', frontchannelLogoutUri)
@@ -446,6 +470,30 @@ class OAuth2ClientBuilder
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
 
+  String? _deviceAuthorizationGrantAccessTokenLifespan;
+  String? get deviceAuthorizationGrantAccessTokenLifespan =>
+      _$this._deviceAuthorizationGrantAccessTokenLifespan;
+  set deviceAuthorizationGrantAccessTokenLifespan(
+          String? deviceAuthorizationGrantAccessTokenLifespan) =>
+      _$this._deviceAuthorizationGrantAccessTokenLifespan =
+          deviceAuthorizationGrantAccessTokenLifespan;
+
+  String? _deviceAuthorizationGrantIdTokenLifespan;
+  String? get deviceAuthorizationGrantIdTokenLifespan =>
+      _$this._deviceAuthorizationGrantIdTokenLifespan;
+  set deviceAuthorizationGrantIdTokenLifespan(
+          String? deviceAuthorizationGrantIdTokenLifespan) =>
+      _$this._deviceAuthorizationGrantIdTokenLifespan =
+          deviceAuthorizationGrantIdTokenLifespan;
+
+  String? _deviceAuthorizationGrantRefreshTokenLifespan;
+  String? get deviceAuthorizationGrantRefreshTokenLifespan =>
+      _$this._deviceAuthorizationGrantRefreshTokenLifespan;
+  set deviceAuthorizationGrantRefreshTokenLifespan(
+          String? deviceAuthorizationGrantRefreshTokenLifespan) =>
+      _$this._deviceAuthorizationGrantRefreshTokenLifespan =
+          deviceAuthorizationGrantRefreshTokenLifespan;
+
   bool? _frontchannelLogoutSessionRequired;
   bool? get frontchannelLogoutSessionRequired =>
       _$this._frontchannelLogoutSessionRequired;
@@ -479,9 +527,9 @@ class OAuth2ClientBuilder
   set implicitGrantIdTokenLifespan(String? implicitGrantIdTokenLifespan) =>
       _$this._implicitGrantIdTokenLifespan = implicitGrantIdTokenLifespan;
 
-  JsonObject? _jwks;
-  JsonObject? get jwks => _$this._jwks;
-  set jwks(JsonObject? jwks) => _$this._jwks = jwks;
+  JsonWebKeySetBuilder? _jwks;
+  JsonWebKeySetBuilder get jwks => _$this._jwks ??= new JsonWebKeySetBuilder();
+  set jwks(JsonWebKeySetBuilder? jwks) => _$this._jwks = jwks;
 
   String? _jwksUri;
   String? get jwksUri => _$this._jwksUri;
@@ -647,12 +695,18 @@ class OAuth2ClientBuilder
       _clientUri = $v.clientUri;
       _contacts = $v.contacts?.toBuilder();
       _createdAt = $v.createdAt;
+      _deviceAuthorizationGrantAccessTokenLifespan =
+          $v.deviceAuthorizationGrantAccessTokenLifespan;
+      _deviceAuthorizationGrantIdTokenLifespan =
+          $v.deviceAuthorizationGrantIdTokenLifespan;
+      _deviceAuthorizationGrantRefreshTokenLifespan =
+          $v.deviceAuthorizationGrantRefreshTokenLifespan;
       _frontchannelLogoutSessionRequired = $v.frontchannelLogoutSessionRequired;
       _frontchannelLogoutUri = $v.frontchannelLogoutUri;
       _grantTypes = $v.grantTypes?.toBuilder();
       _implicitGrantAccessTokenLifespan = $v.implicitGrantAccessTokenLifespan;
       _implicitGrantIdTokenLifespan = $v.implicitGrantIdTokenLifespan;
-      _jwks = $v.jwks;
+      _jwks = $v.jwks?.toBuilder();
       _jwksUri = $v.jwksUri;
       _jwtBearerGrantAccessTokenLifespan = $v.jwtBearerGrantAccessTokenLifespan;
       _logoUri = $v.logoUri;
@@ -726,6 +780,12 @@ class OAuth2ClientBuilder
               clientUri: clientUri,
               contacts: _contacts?.build(),
               createdAt: createdAt,
+              deviceAuthorizationGrantAccessTokenLifespan:
+                  deviceAuthorizationGrantAccessTokenLifespan,
+              deviceAuthorizationGrantIdTokenLifespan:
+                  deviceAuthorizationGrantIdTokenLifespan,
+              deviceAuthorizationGrantRefreshTokenLifespan:
+                  deviceAuthorizationGrantRefreshTokenLifespan,
               frontchannelLogoutSessionRequired:
                   frontchannelLogoutSessionRequired,
               frontchannelLogoutUri: frontchannelLogoutUri,
@@ -733,7 +793,7 @@ class OAuth2ClientBuilder
               implicitGrantAccessTokenLifespan:
                   implicitGrantAccessTokenLifespan,
               implicitGrantIdTokenLifespan: implicitGrantIdTokenLifespan,
-              jwks: jwks,
+              jwks: _jwks?.build(),
               jwksUri: jwksUri,
               jwtBearerGrantAccessTokenLifespan:
                   jwtBearerGrantAccessTokenLifespan,
@@ -777,6 +837,9 @@ class OAuth2ClientBuilder
 
         _$failedField = 'grantTypes';
         _grantTypes?.build();
+
+        _$failedField = 'jwks';
+        _jwks?.build();
 
         _$failedField = 'postLogoutRedirectUris';
         _postLogoutRedirectUris?.build();

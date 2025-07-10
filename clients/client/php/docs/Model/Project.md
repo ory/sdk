@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **homeRegion** | **string** | The project home region.  This is used to set where the project data is stored and where the project&#39;s endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global |
 **id** | **string** | The project&#39;s ID. | [readonly]
 **name** | **string** | The name of the project. |
+**organizations** | [**\Ory\Client\Model\BasicOrganization[]**](BasicOrganization.md) | The organizations of the project.  Organizations are used to group users and enforce certain restrictions like usage of SSO. |
 **revisionId** | **string** | The configuration revision ID. | [readonly]
 **services** | [**\Ory\Client\Model\ProjectServices**](ProjectServices.md) |  |
 **slug** | **string** | The project&#39;s slug | [readonly]

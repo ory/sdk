@@ -26,7 +26,7 @@ part 'ui_node_attributes.g.dart';
 /// * [label] 
 /// * [maxlength] - MaxLength may contain the input's maximum length.
 /// * [name] - The input's element name.
-/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
+/// * [nodeType] - NodeType represents this node's type. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
 /// * [onclick] - OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.  Deprecated: Using OnClick requires the use of eval() which is a security risk. Use OnClickTrigger instead.
 /// * [onclickTrigger] - OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
 /// * [onload] - OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.  Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead.
@@ -47,7 +47,7 @@ part 'ui_node_attributes.g.dart';
 /// * [integrity] - The script's integrity hash
 /// * [nonce] - Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
 /// * [referrerpolicy] - The script referrer policy
-/// * [class_] - The script MIME type
+/// * [class_] - A classname that should be rendered into the DOM.
 /// * [data] - Data is a map of key-value pairs that are passed to the division.  They may be used for `data-...` attributes.
 @BuiltValue()
 abstract class UiNodeAttributes implements Built<UiNodeAttributes, UiNodeAttributesBuilder> {
@@ -247,22 +247,7 @@ class UiNodeAttributesAutocompleteEnum extends EnumClass {
 
 class UiNodeAttributesNodeTypeEnum extends EnumClass {
 
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'text')
-  static const UiNodeAttributesNodeTypeEnum text = _$uiNodeAttributesNodeTypeEnum_text;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'input')
-  static const UiNodeAttributesNodeTypeEnum input = _$uiNodeAttributesNodeTypeEnum_input;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'img')
-  static const UiNodeAttributesNodeTypeEnum img = _$uiNodeAttributesNodeTypeEnum_img;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'a')
-  static const UiNodeAttributesNodeTypeEnum a = _$uiNodeAttributesNodeTypeEnum_a;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'script')
-  static const UiNodeAttributesNodeTypeEnum script = _$uiNodeAttributesNodeTypeEnum_script;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
+  /// NodeType represents this node's type. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'div')
   static const UiNodeAttributesNodeTypeEnum div = _$uiNodeAttributesNodeTypeEnum_div;
 

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **client** | Option<[**models::OAuth2Client**](oAuth2Client.md)> |  | [optional]
 **consent_request_id** | Option<**String**> | ConsentRequestID is the ID of the consent request. | [optional]
 **context** | Option<[**serde_json::Value**](.md)> |  | [optional]
+**device_challenge_id** | Option<**String**> | DeviceChallenge is the device challenge this consent challenge belongs to, if this flow was initiated by a device. | [optional]
 **login_challenge** | Option<**String**> | LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate a login and consent request in the login & consent app. | [optional]
 **login_session_id** | Option<**String**> | LoginSessionID is the login session ID. If the user-agent reuses a login session (via cookie / remember flag) this ID will remain the same. If the user-agent did not have an existing authentication session (e.g. remember is false) this will be a new random value. This value is used as the \"sid\" parameter in the ID Token and in OIDC Front-/Back- channel logout. It's value can generally be used to associate consecutive login requests by a certain user. | [optional]
 **oidc_context** | Option<[**models::OAuth2ConsentRequestOpenIdConnectContext**](oAuth2ConsentRequestOpenIDConnectContext.md)> |  | [optional]

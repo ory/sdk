@@ -183,6 +183,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<String> hydraSecretsPagination
+    test('to test the property `hydraSecretsPagination`', () async {
+      // TODO
+    });
+
     // BuiltList<String> hydraSecretsSystem
     test('to test the property `hydraSecretsSystem`', () async {
       // TODO
@@ -349,6 +354,11 @@ void main() {
 
     // BuiltList<KetoNamespace> ketoNamespaces
     test('to test the property `ketoNamespaces`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> ketoSecretsPagination
+    test('to test the property `ketoSecretsPagination`', () async {
       // TODO
     });
 
@@ -672,6 +682,24 @@ void main() {
     // Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
     // bool kratosFeatureFlagsFasterSessionExtend
     test('to test the property `kratosFeatureFlagsFasterSessionExtend`', () async {
+      // TODO
+    });
+
+    // Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.  This governs the \"feature_flags.legacy_continue_with_verification_ui\" setting.
+    // bool kratosFeatureFlagsLegacyContinueWithVerificationUi
+    test('to test the property `kratosFeatureFlagsLegacyContinueWithVerificationUi`', () async {
+      // TODO
+    });
+
+    // Controls whether the UI nodes in an OIDC registration flow have group \"oidc\" in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \"oidc\" and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \"feature_flags.legacy_oidc_registration_node_group\" setting.
+    // bool kratosFeatureFlagsLegacyOidcRegistrationNodeGroup
+    test('to test the property `kratosFeatureFlagsLegacyOidcRegistrationNodeGroup`', () async {
+      // TODO
+    });
+
+    // Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.  This flag is deprecated and will be removed in the future.  This governs the \"feature_flags.legacy_require_verified_login_error\" setting.
+    // bool kratosFeatureFlagsLegacyRequireVerifiedLoginError
+    test('to test the property `kratosFeatureFlagsLegacyRequireVerifiedLoginError`', () async {
       // TODO
     });
 
@@ -1037,6 +1065,12 @@ void main() {
     });
 
     // Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
+    // bool kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode
+    test('to test the property `kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
     // bool kratosSelfserviceMethodsCaptchaEnabled
     test('to test the property `kratosSelfserviceMethodsCaptchaEnabled`', () async {
       // TODO
@@ -1045,6 +1079,11 @@ void main() {
     // Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
     // String kratosSelfserviceMethodsCodeConfigLifespan
     test('to test the property `kratosSelfserviceMethodsCodeConfigLifespan`', () async {
+      // TODO
+    });
+
+    // int kratosSelfserviceMethodsCodeConfigMaxSubmissions
+    test('to test the property `kratosSelfserviceMethodsCodeConfigMaxSubmissions`', () async {
       // TODO
     });
 
@@ -1280,6 +1319,11 @@ void main() {
     // The project's name.
     // String name
     test('to test the property `name`', () async {
+      // TODO
+    });
+
+    // BuiltList<Organization> organizations
+    test('to test the property `organizations`', () async {
       // TODO
     });
 

@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ax_background_default** | **str** |  | [optional] 
 **brand_100** | **str** |  | [optional] 
 **brand_200** | **str** |  | [optional] 
 **brand_300** | **str** |  | [optional] 

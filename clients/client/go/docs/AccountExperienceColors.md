@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AxBackgroundDefault** | Pointer to **string** |  | [optional] 
 **Brand100** | Pointer to **string** |  | [optional] 
 **Brand200** | Pointer to **string** |  | [optional] 
 **Brand300** | Pointer to **string** |  | [optional] 
@@ -166,6 +167,31 @@ will change when the set of required properties is changed
 NewAccountExperienceColorsWithDefaults instantiates a new AccountExperienceColors object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAxBackgroundDefault
+
+`func (o *AccountExperienceColors) GetAxBackgroundDefault() string`
+
+GetAxBackgroundDefault returns the AxBackgroundDefault field if non-nil, zero value otherwise.
+
+### GetAxBackgroundDefaultOk
+
+`func (o *AccountExperienceColors) GetAxBackgroundDefaultOk() (*string, bool)`
+
+GetAxBackgroundDefaultOk returns a tuple with the AxBackgroundDefault field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAxBackgroundDefault
+
+`func (o *AccountExperienceColors) SetAxBackgroundDefault(v string)`
+
+SetAxBackgroundDefault sets AxBackgroundDefault field to given value.
+
+### HasAxBackgroundDefault
+
+`func (o *AccountExperienceColors) HasAxBackgroundDefault() bool`
+
+HasAxBackgroundDefault returns a boolean if a field has been set.
 
 ### GetBrand100
 

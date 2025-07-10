@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.20.11
+API version: v1.20.22
 Contact: support@ory.sh
 */
 
@@ -21,7 +21,7 @@ var _ MappedNullable = &OAuth2Client{}
 
 // OAuth2Client OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 type OAuth2Client struct {
-	// OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token Setting the stragegy here overrides the global setting in `strategies.access_token`.
+	// OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token Setting the strategy here overrides the global setting in `strategies.access_token`.
 	AccessTokenStrategy *string `json:"access_token_strategy,omitempty"`
 	AllowedCorsOrigins []string `json:"allowed_cors_origins,omitempty"`
 	Audience []string `json:"audience,omitempty"`
@@ -46,6 +46,9 @@ type OAuth2Client struct {
 	Contacts []string `json:"contacts,omitempty"`
 	// OAuth 2.0 Client Creation Date  CreatedAt returns the timestamp of the client's creation.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	DeviceAuthorizationGrantAccessTokenLifespan NullableString `json:"device_authorization_grant_access_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
+	DeviceAuthorizationGrantIdTokenLifespan NullableString `json:"device_authorization_grant_id_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
+	DeviceAuthorizationGrantRefreshTokenLifespan NullableString `json:"device_authorization_grant_refresh_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
 	// OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the RP requires that iss (issuer) and sid (session ID) query parameters be included to identify the RP session with the OP when the frontchannel_logout_uri is used. If omitted, the default value is false.
 	FrontchannelLogoutSessionRequired *bool `json:"frontchannel_logout_session_required,omitempty"`
 	// OpenID Connect Front-Channel Logout URI  RP URL that will cause the RP to log itself out when rendered in an iframe by the OP. An iss (issuer) query parameter and a sid (session ID) query parameter MAY be included by the OP to enable the RP to validate the request and to determine which of the potentially multiple sessions is to be logged out; if either is included, both MUST be.
@@ -53,8 +56,7 @@ type OAuth2Client struct {
 	GrantTypes []string `json:"grant_types,omitempty"`
 	ImplicitGrantAccessTokenLifespan NullableString `json:"implicit_grant_access_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
 	ImplicitGrantIdTokenLifespan NullableString `json:"implicit_grant_id_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
-	// OAuth 2.0 Client JSON Web Key Set  Client's JSON Web Key Set [JWK] document, passed by value. The semantics of the jwks parameter are the same as the jwks_uri parameter, other than that the JWK Set is passed by value, rather than by reference. This parameter is intended only to be used by Clients that, for some reason, are unable to use the jwks_uri parameter, for instance, by native applications that might not have a location to host the contents of the JWK Set. If a Client can use jwks_uri, it MUST NOT use jwks. One significant downside of jwks is that it does not enable key rotation (which jwks_uri does, as described in Section 10 of OpenID Connect Core 1.0 [OpenID.Core]). The jwks_uri and jwks parameters MUST NOT be used together.
-	Jwks interface{} `json:"jwks,omitempty"`
+	Jwks *JsonWebKeySet `json:"jwks,omitempty"`
 	// OAuth 2.0 Client JSON Web Key Set URL  URL for the Client's JSON Web Key Set [JWK] document. If the Client signs requests to the Server, it contains the signing key(s) the Server uses to validate signatures from the Client. The JWK Set MAY also contain the Client's encryption keys(s), which are used by the Server to encrypt responses to the Client. When both signing and encryption keys are made available, a use (Key Use) parameter value is REQUIRED for all keys in the referenced JWK Set to indicate each key's intended usage. Although some algorithms allow the same key to be used for both signatures and encryption, doing so is NOT RECOMMENDED, as it is less secure. The JWK x5c parameter MAY be used to provide X.509 representations of keys provided. When used, the bare key values MUST still be present and MUST match those in the certificate.
 	JwksUri *string `json:"jwks_uri,omitempty"`
 	JwtBearerGrantAccessTokenLifespan NullableString `json:"jwt_bearer_grant_access_token_lifespan,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
@@ -676,6 +678,132 @@ func (o *OAuth2Client) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetDeviceAuthorizationGrantAccessTokenLifespan returns the DeviceAuthorizationGrantAccessTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OAuth2Client) GetDeviceAuthorizationGrantAccessTokenLifespan() string {
+	if o == nil || IsNil(o.DeviceAuthorizationGrantAccessTokenLifespan.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DeviceAuthorizationGrantAccessTokenLifespan.Get()
+}
+
+// GetDeviceAuthorizationGrantAccessTokenLifespanOk returns a tuple with the DeviceAuthorizationGrantAccessTokenLifespan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OAuth2Client) GetDeviceAuthorizationGrantAccessTokenLifespanOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeviceAuthorizationGrantAccessTokenLifespan.Get(), o.DeviceAuthorizationGrantAccessTokenLifespan.IsSet()
+}
+
+// HasDeviceAuthorizationGrantAccessTokenLifespan returns a boolean if a field has been set.
+func (o *OAuth2Client) HasDeviceAuthorizationGrantAccessTokenLifespan() bool {
+	if o != nil && o.DeviceAuthorizationGrantAccessTokenLifespan.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceAuthorizationGrantAccessTokenLifespan gets a reference to the given NullableString and assigns it to the DeviceAuthorizationGrantAccessTokenLifespan field.
+func (o *OAuth2Client) SetDeviceAuthorizationGrantAccessTokenLifespan(v string) {
+	o.DeviceAuthorizationGrantAccessTokenLifespan.Set(&v)
+}
+// SetDeviceAuthorizationGrantAccessTokenLifespanNil sets the value for DeviceAuthorizationGrantAccessTokenLifespan to be an explicit nil
+func (o *OAuth2Client) SetDeviceAuthorizationGrantAccessTokenLifespanNil() {
+	o.DeviceAuthorizationGrantAccessTokenLifespan.Set(nil)
+}
+
+// UnsetDeviceAuthorizationGrantAccessTokenLifespan ensures that no value is present for DeviceAuthorizationGrantAccessTokenLifespan, not even an explicit nil
+func (o *OAuth2Client) UnsetDeviceAuthorizationGrantAccessTokenLifespan() {
+	o.DeviceAuthorizationGrantAccessTokenLifespan.Unset()
+}
+
+// GetDeviceAuthorizationGrantIdTokenLifespan returns the DeviceAuthorizationGrantIdTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OAuth2Client) GetDeviceAuthorizationGrantIdTokenLifespan() string {
+	if o == nil || IsNil(o.DeviceAuthorizationGrantIdTokenLifespan.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DeviceAuthorizationGrantIdTokenLifespan.Get()
+}
+
+// GetDeviceAuthorizationGrantIdTokenLifespanOk returns a tuple with the DeviceAuthorizationGrantIdTokenLifespan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OAuth2Client) GetDeviceAuthorizationGrantIdTokenLifespanOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeviceAuthorizationGrantIdTokenLifespan.Get(), o.DeviceAuthorizationGrantIdTokenLifespan.IsSet()
+}
+
+// HasDeviceAuthorizationGrantIdTokenLifespan returns a boolean if a field has been set.
+func (o *OAuth2Client) HasDeviceAuthorizationGrantIdTokenLifespan() bool {
+	if o != nil && o.DeviceAuthorizationGrantIdTokenLifespan.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceAuthorizationGrantIdTokenLifespan gets a reference to the given NullableString and assigns it to the DeviceAuthorizationGrantIdTokenLifespan field.
+func (o *OAuth2Client) SetDeviceAuthorizationGrantIdTokenLifespan(v string) {
+	o.DeviceAuthorizationGrantIdTokenLifespan.Set(&v)
+}
+// SetDeviceAuthorizationGrantIdTokenLifespanNil sets the value for DeviceAuthorizationGrantIdTokenLifespan to be an explicit nil
+func (o *OAuth2Client) SetDeviceAuthorizationGrantIdTokenLifespanNil() {
+	o.DeviceAuthorizationGrantIdTokenLifespan.Set(nil)
+}
+
+// UnsetDeviceAuthorizationGrantIdTokenLifespan ensures that no value is present for DeviceAuthorizationGrantIdTokenLifespan, not even an explicit nil
+func (o *OAuth2Client) UnsetDeviceAuthorizationGrantIdTokenLifespan() {
+	o.DeviceAuthorizationGrantIdTokenLifespan.Unset()
+}
+
+// GetDeviceAuthorizationGrantRefreshTokenLifespan returns the DeviceAuthorizationGrantRefreshTokenLifespan field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OAuth2Client) GetDeviceAuthorizationGrantRefreshTokenLifespan() string {
+	if o == nil || IsNil(o.DeviceAuthorizationGrantRefreshTokenLifespan.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DeviceAuthorizationGrantRefreshTokenLifespan.Get()
+}
+
+// GetDeviceAuthorizationGrantRefreshTokenLifespanOk returns a tuple with the DeviceAuthorizationGrantRefreshTokenLifespan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OAuth2Client) GetDeviceAuthorizationGrantRefreshTokenLifespanOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeviceAuthorizationGrantRefreshTokenLifespan.Get(), o.DeviceAuthorizationGrantRefreshTokenLifespan.IsSet()
+}
+
+// HasDeviceAuthorizationGrantRefreshTokenLifespan returns a boolean if a field has been set.
+func (o *OAuth2Client) HasDeviceAuthorizationGrantRefreshTokenLifespan() bool {
+	if o != nil && o.DeviceAuthorizationGrantRefreshTokenLifespan.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceAuthorizationGrantRefreshTokenLifespan gets a reference to the given NullableString and assigns it to the DeviceAuthorizationGrantRefreshTokenLifespan field.
+func (o *OAuth2Client) SetDeviceAuthorizationGrantRefreshTokenLifespan(v string) {
+	o.DeviceAuthorizationGrantRefreshTokenLifespan.Set(&v)
+}
+// SetDeviceAuthorizationGrantRefreshTokenLifespanNil sets the value for DeviceAuthorizationGrantRefreshTokenLifespan to be an explicit nil
+func (o *OAuth2Client) SetDeviceAuthorizationGrantRefreshTokenLifespanNil() {
+	o.DeviceAuthorizationGrantRefreshTokenLifespan.Set(nil)
+}
+
+// UnsetDeviceAuthorizationGrantRefreshTokenLifespan ensures that no value is present for DeviceAuthorizationGrantRefreshTokenLifespan, not even an explicit nil
+func (o *OAuth2Client) UnsetDeviceAuthorizationGrantRefreshTokenLifespan() {
+	o.DeviceAuthorizationGrantRefreshTokenLifespan.Unset()
+}
+
 // GetFrontchannelLogoutSessionRequired returns the FrontchannelLogoutSessionRequired field value if set, zero value otherwise.
 func (o *OAuth2Client) GetFrontchannelLogoutSessionRequired() bool {
 	if o == nil || IsNil(o.FrontchannelLogoutSessionRequired) {
@@ -856,23 +984,22 @@ func (o *OAuth2Client) UnsetImplicitGrantIdTokenLifespan() {
 	o.ImplicitGrantIdTokenLifespan.Unset()
 }
 
-// GetJwks returns the Jwks field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *OAuth2Client) GetJwks() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetJwks returns the Jwks field value if set, zero value otherwise.
+func (o *OAuth2Client) GetJwks() JsonWebKeySet {
+	if o == nil || IsNil(o.Jwks) {
+		var ret JsonWebKeySet
 		return ret
 	}
-	return o.Jwks
+	return *o.Jwks
 }
 
 // GetJwksOk returns a tuple with the Jwks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *OAuth2Client) GetJwksOk() (*interface{}, bool) {
+func (o *OAuth2Client) GetJwksOk() (*JsonWebKeySet, bool) {
 	if o == nil || IsNil(o.Jwks) {
 		return nil, false
 	}
-	return &o.Jwks, true
+	return o.Jwks, true
 }
 
 // HasJwks returns a boolean if a field has been set.
@@ -884,9 +1011,9 @@ func (o *OAuth2Client) HasJwks() bool {
 	return false
 }
 
-// SetJwks gets a reference to the given interface{} and assigns it to the Jwks field.
-func (o *OAuth2Client) SetJwks(v interface{}) {
-	o.Jwks = v
+// SetJwks gets a reference to the given JsonWebKeySet and assigns it to the Jwks field.
+func (o *OAuth2Client) SetJwks(v JsonWebKeySet) {
+	o.Jwks = &v
 }
 
 // GetJwksUri returns the JwksUri field value if set, zero value otherwise.
@@ -1819,6 +1946,15 @@ func (o OAuth2Client) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if o.DeviceAuthorizationGrantAccessTokenLifespan.IsSet() {
+		toSerialize["device_authorization_grant_access_token_lifespan"] = o.DeviceAuthorizationGrantAccessTokenLifespan.Get()
+	}
+	if o.DeviceAuthorizationGrantIdTokenLifespan.IsSet() {
+		toSerialize["device_authorization_grant_id_token_lifespan"] = o.DeviceAuthorizationGrantIdTokenLifespan.Get()
+	}
+	if o.DeviceAuthorizationGrantRefreshTokenLifespan.IsSet() {
+		toSerialize["device_authorization_grant_refresh_token_lifespan"] = o.DeviceAuthorizationGrantRefreshTokenLifespan.Get()
+	}
 	if !IsNil(o.FrontchannelLogoutSessionRequired) {
 		toSerialize["frontchannel_logout_session_required"] = o.FrontchannelLogoutSessionRequired
 	}
@@ -1834,7 +1970,7 @@ func (o OAuth2Client) ToMap() (map[string]interface{}, error) {
 	if o.ImplicitGrantIdTokenLifespan.IsSet() {
 		toSerialize["implicit_grant_id_token_lifespan"] = o.ImplicitGrantIdTokenLifespan.Get()
 	}
-	if o.Jwks != nil {
+	if !IsNil(o.Jwks) {
 		toSerialize["jwks"] = o.Jwks
 	}
 	if !IsNil(o.JwksUri) {
@@ -1953,6 +2089,9 @@ func (o *OAuth2Client) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "client_uri")
 		delete(additionalProperties, "contacts")
 		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "device_authorization_grant_access_token_lifespan")
+		delete(additionalProperties, "device_authorization_grant_id_token_lifespan")
+		delete(additionalProperties, "device_authorization_grant_refresh_token_lifespan")
 		delete(additionalProperties, "frontchannel_logout_session_required")
 		delete(additionalProperties, "frontchannel_logout_uri")
 		delete(additionalProperties, "grant_types")

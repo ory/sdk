@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accessTokenStrategy** | **string** | OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are &#x60;jwt&#x60; and &#x60;opaque&#x60;. &#x60;jwt&#x60; is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token Setting the stragegy here overrides the global setting in &#x60;strategies.access_token&#x60;. | [optional]
+**accessTokenStrategy** | **string** | OAuth 2.0 Access Token Strategy  AccessTokenStrategy is the strategy used to generate access tokens. Valid options are &#x60;jwt&#x60; and &#x60;opaque&#x60;. &#x60;jwt&#x60; is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token Setting the strategy here overrides the global setting in &#x60;strategies.access_token&#x60;. | [optional]
 **allowedCorsOrigins** | **string[]** |  | [optional]
 **audience** | **string[]** |  | [optional]
 **authorizationCodeGrantAccessTokenLifespan** | **string** |  | [optional]
@@ -20,12 +20,15 @@ Name | Type | Description | Notes
 **clientUri** | **string** | OAuth 2.0 Client URI  ClientURI is a URL string of a web page providing information about the client. If present, the server SHOULD display this URL to the end-user in a clickable fashion. | [optional]
 **contacts** | **string[]** |  | [optional]
 **createdAt** | **\DateTime** | OAuth 2.0 Client Creation Date  CreatedAt returns the timestamp of the client&#39;s creation. | [optional]
+**deviceAuthorizationGrantAccessTokenLifespan** | **string** |  | [optional]
+**deviceAuthorizationGrantIdTokenLifespan** | **string** |  | [optional]
+**deviceAuthorizationGrantRefreshTokenLifespan** | **string** |  | [optional]
 **frontchannelLogoutSessionRequired** | **bool** | OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the RP requires that iss (issuer) and sid (session ID) query parameters be included to identify the RP session with the OP when the frontchannel_logout_uri is used. If omitted, the default value is false. | [optional]
 **frontchannelLogoutUri** | **string** | OpenID Connect Front-Channel Logout URI  RP URL that will cause the RP to log itself out when rendered in an iframe by the OP. An iss (issuer) query parameter and a sid (session ID) query parameter MAY be included by the OP to enable the RP to validate the request and to determine which of the potentially multiple sessions is to be logged out; if either is included, both MUST be. | [optional]
 **grantTypes** | **string[]** |  | [optional]
 **implicitGrantAccessTokenLifespan** | **string** |  | [optional]
 **implicitGrantIdTokenLifespan** | **string** |  | [optional]
-**jwks** | **mixed** | OAuth 2.0 Client JSON Web Key Set  Client&#39;s JSON Web Key Set [JWK] document, passed by value. The semantics of the jwks parameter are the same as the jwks_uri parameter, other than that the JWK Set is passed by value, rather than by reference. This parameter is intended only to be used by Clients that, for some reason, are unable to use the jwks_uri parameter, for instance, by native applications that might not have a location to host the contents of the JWK Set. If a Client can use jwks_uri, it MUST NOT use jwks. One significant downside of jwks is that it does not enable key rotation (which jwks_uri does, as described in Section 10 of OpenID Connect Core 1.0 [OpenID.Core]). The jwks_uri and jwks parameters MUST NOT be used together. | [optional]
+**jwks** | [**\Ory\Client\Model\JsonWebKeySet**](JsonWebKeySet.md) |  | [optional]
 **jwksUri** | **string** | OAuth 2.0 Client JSON Web Key Set URL  URL for the Client&#39;s JSON Web Key Set [JWK] document. If the Client signs requests to the Server, it contains the signing key(s) the Server uses to validate signatures from the Client. The JWK Set MAY also contain the Client&#39;s encryption keys(s), which are used by the Server to encrypt responses to the Client. When both signing and encryption keys are made available, a use (Key Use) parameter value is REQUIRED for all keys in the referenced JWK Set to indicate each key&#39;s intended usage. Although some algorithms allow the same key to be used for both signatures and encryption, doing so is NOT RECOMMENDED, as it is less secure. The JWK x5c parameter MAY be used to provide X.509 representations of keys provided. When used, the bare key values MUST still be present and MUST match those in the certificate. | [optional]
 **jwtBearerGrantAccessTokenLifespan** | **string** |  | [optional]
 **logoUri** | **string** | OAuth 2.0 Client Logo URI  A URL string referencing the client&#39;s logo. | [optional]

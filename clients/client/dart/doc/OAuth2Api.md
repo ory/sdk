@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**acceptOAuth2ConsentRequest**](OAuth2Api.md#acceptoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
 [**acceptOAuth2LoginRequest**](OAuth2Api.md#acceptoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
 [**acceptOAuth2LogoutRequest**](OAuth2Api.md#acceptoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
+[**acceptUserCodeRequest**](OAuth2Api.md#acceptusercoderequest) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request
 [**createOAuth2Client**](OAuth2Api.md#createoauth2client) | **POST** /admin/clients | Create OAuth 2.0 Client
 [**deleteOAuth2Client**](OAuth2Api.md#deleteoauth2client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
 [**deleteOAuth2Token**](OAuth2Api.md#deleteoauth2token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
@@ -26,8 +27,10 @@ Method | HTTP request | Description
 [**listOAuth2ConsentSessions**](OAuth2Api.md#listoauth2consentsessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
 [**listTrustedOAuth2JwtGrantIssuers**](OAuth2Api.md#listtrustedoauth2jwtgrantissuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 [**oAuth2Authorize**](OAuth2Api.md#oauth2authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint
+[**oAuth2DeviceFlow**](OAuth2Api.md#oauth2deviceflow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint
 [**oauth2TokenExchange**](OAuth2Api.md#oauth2tokenexchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**patchOAuth2Client**](OAuth2Api.md#patchoauth2client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client
+[**performOAuth2DeviceVerificationFlow**](OAuth2Api.md#performoauth2deviceverificationflow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint
 [**rejectOAuth2ConsentRequest**](OAuth2Api.md#rejectoauth2consentrequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
 [**rejectOAuth2LoginRequest**](OAuth2Api.md#rejectoauth2loginrequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 [**rejectOAuth2LogoutRequest**](OAuth2Api.md#rejectoauth2logoutrequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
@@ -168,6 +171,51 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **acceptUserCodeRequest**
+> OAuth2RedirectTo acceptUserCodeRequest(deviceChallenge, acceptDeviceUserCodeRequest)
+
+Accepts a device grant user_code request
+
+Accepts a device grant user_code request
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getOAuth2Api();
+final String deviceChallenge = deviceChallenge_example; // String | 
+final AcceptDeviceUserCodeRequest acceptDeviceUserCodeRequest = ; // AcceptDeviceUserCodeRequest | 
+
+try {
+    final response = api.acceptUserCodeRequest(deviceChallenge, acceptDeviceUserCodeRequest);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling OAuth2Api->acceptUserCodeRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceChallenge** | **String**|  | 
+ **acceptDeviceUserCodeRequest** | [**AcceptDeviceUserCodeRequest**](AcceptDeviceUserCodeRequest.md)|  | [optional] 
+
+### Return type
+
+[**OAuth2RedirectTo**](OAuth2RedirectTo.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -631,7 +679,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
- **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to '1']
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] 
  **clientName** | **String**| The name of the clients to filter by. | [optional] 
  **owner** | **String**| The owner of the clients to filter by. | [optional] 
 
@@ -700,7 +748,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listTrustedOAuth2JwtGrantIssuers**
-> BuiltList<TrustedOAuth2JwtGrantIssuer> listTrustedOAuth2JwtGrantIssuers(maxItems, defaultItems, issuer)
+> BuiltList<TrustedOAuth2JwtGrantIssuer> listTrustedOAuth2JwtGrantIssuers(pageSize, pageToken, issuer)
 
 List Trusted OAuth2 JWT Bearer Grant Type Issuers
 
@@ -711,12 +759,12 @@ Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
 import 'package:ory_client/api.dart';
 
 final api = OryClient().getOAuth2Api();
-final int maxItems = 789; // int | 
-final int defaultItems = 789; // int | 
+final int pageSize = 789; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 final String issuer = issuer_example; // String | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned.
 
 try {
-    final response = api.listTrustedOAuth2JwtGrantIssuers(maxItems, defaultItems, issuer);
+    final response = api.listTrustedOAuth2JwtGrantIssuers(pageSize, pageToken, issuer);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling OAuth2Api->listTrustedOAuth2JwtGrantIssuers: $e\n');
@@ -727,8 +775,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **maxItems** | **int**|  | [optional] 
- **defaultItems** | **int**|  | [optional] 
+ **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] 
  **issuer** | **String**| If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. | [optional] 
 
 ### Return type
@@ -773,6 +821,45 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ErrorOAuth2**](ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **oAuth2DeviceFlow**
+> DeviceAuthorization oAuth2DeviceFlow()
+
+The OAuth 2.0 Device Authorize Endpoint
+
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getOAuth2Api();
+
+try {
+    final response = api.oAuth2DeviceFlow();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling OAuth2Api->oAuth2DeviceFlow: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DeviceAuthorization**](DeviceAuthorization.md)
 
 ### Authorization
 
@@ -882,6 +969,45 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **performOAuth2DeviceVerificationFlow**
+> ErrorOAuth2 performOAuth2DeviceVerificationFlow()
+
+OAuth 2.0 Device Verification Endpoint
+
+This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getOAuth2Api();
+
+try {
+    final response = api.performOAuth2DeviceVerificationFlow();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling OAuth2Api->performOAuth2DeviceVerificationFlow: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ErrorOAuth2**](ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

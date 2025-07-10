@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.20.11
-  - Build date: 2025-05-08T10:02:27.587403848Z[Etc/UTC]
+- API version: v1.20.22
+  - Build date: 2025-07-10T08:53:25.129526867Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.20.11</version>
+  <version>v1.20.22</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.20.11"
+     implementation "sh.ory:client:v1.20.22"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.20.11.jar`
+* `target/client-v1.20.22.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -207,6 +207,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**acceptOAuth2ConsentRequest**](docs/OAuth2Api.md#acceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
 *OAuth2Api* | [**acceptOAuth2LoginRequest**](docs/OAuth2Api.md#acceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
 *OAuth2Api* | [**acceptOAuth2LogoutRequest**](docs/OAuth2Api.md#acceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
+*OAuth2Api* | [**acceptUserCodeRequest**](docs/OAuth2Api.md#acceptUserCodeRequest) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request
 *OAuth2Api* | [**createOAuth2Client**](docs/OAuth2Api.md#createOAuth2Client) | **POST** /admin/clients | Create OAuth 2.0 Client
 *OAuth2Api* | [**deleteOAuth2Client**](docs/OAuth2Api.md#deleteOAuth2Client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
 *OAuth2Api* | [**deleteOAuth2Token**](docs/OAuth2Api.md#deleteOAuth2Token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
@@ -221,8 +222,10 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**listOAuth2ConsentSessions**](docs/OAuth2Api.md#listOAuth2ConsentSessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
 *OAuth2Api* | [**listTrustedOAuth2JwtGrantIssuers**](docs/OAuth2Api.md#listTrustedOAuth2JwtGrantIssuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 *OAuth2Api* | [**oAuth2Authorize**](docs/OAuth2Api.md#oAuth2Authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint
+*OAuth2Api* | [**oAuth2DeviceFlow**](docs/OAuth2Api.md#oAuth2DeviceFlow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint
 *OAuth2Api* | [**oauth2TokenExchange**](docs/OAuth2Api.md#oauth2TokenExchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint
 *OAuth2Api* | [**patchOAuth2Client**](docs/OAuth2Api.md#patchOAuth2Client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client
+*OAuth2Api* | [**performOAuth2DeviceVerificationFlow**](docs/OAuth2Api.md#performOAuth2DeviceVerificationFlow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint
 *OAuth2Api* | [**rejectOAuth2ConsentRequest**](docs/OAuth2Api.md#rejectOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
 *OAuth2Api* | [**rejectOAuth2LoginRequest**](docs/OAuth2Api.md#rejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 *OAuth2Api* | [**rejectOAuth2LogoutRequest**](docs/OAuth2Api.md#rejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
@@ -247,11 +250,14 @@ Class | Method | HTTP request | Description
 *PermissionApi* | [**postCheckPermission**](docs/PermissionApi.md#postCheckPermission) | **POST** /relation-tuples/check/openapi | Check a permission
 *PermissionApi* | [**postCheckPermissionOrError**](docs/PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission
 *ProjectApi* | [**createOrganization**](docs/ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
+*ProjectApi* | [**createOrganizationOnboardingPortalLink**](docs/ProjectApi.md#createOrganizationOnboardingPortalLink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Create organization onboarding portal link
 *ProjectApi* | [**createProject**](docs/ProjectApi.md#createProject) | **POST** /projects | Create a Project
 *ProjectApi* | [**createProjectApiKey**](docs/ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API key
 *ProjectApi* | [**deleteOrganization**](docs/ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
+*ProjectApi* | [**deleteOrganizationOnboardingPortalLink**](docs/ProjectApi.md#deleteOrganizationOnboardingPortalLink) | **DELETE** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Delete an organization onboarding portal link
 *ProjectApi* | [**deleteProjectApiKey**](docs/ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key
 *ProjectApi* | [**getOrganization**](docs/ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
+*ProjectApi* | [**getOrganizationOnboardingPortalLinks**](docs/ProjectApi.md#getOrganizationOnboardingPortalLinks) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links
 *ProjectApi* | [**getProject**](docs/ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project
 *ProjectApi* | [**getProjectMembers**](docs/ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project
 *ProjectApi* | [**listOrganizations**](docs/ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
@@ -263,6 +269,7 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**removeProjectMember**](docs/ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 *ProjectApi* | [**setProject**](docs/ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 *ProjectApi* | [**updateOrganization**](docs/ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
+*ProjectApi* | [**updateOrganizationOnboardingPortalLink**](docs/ProjectApi.md#updateOrganizationOnboardingPortalLink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link
 *RelationshipApi* | [**checkOplSyntax**](docs/RelationshipApi.md#checkOplSyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
 *RelationshipApi* | [**createRelationship**](docs/RelationshipApi.md#createRelationship) | **PUT** /admin/relation-tuples | Create a Relationship
 *RelationshipApi* | [**deleteRelationships**](docs/RelationshipApi.md#deleteRelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
@@ -282,6 +289,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AcceptDeviceUserCodeRequest](docs/AcceptDeviceUserCodeRequest.md)
  - [AcceptOAuth2ConsentRequest](docs/AcceptOAuth2ConsentRequest.md)
  - [AcceptOAuth2ConsentRequestSession](docs/AcceptOAuth2ConsentRequestSession.md)
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
@@ -294,6 +302,7 @@ Class | Method | HTTP request | Description
  - [AttributeFilter](docs/AttributeFilter.md)
  - [AttributesCountDatapoint](docs/AttributesCountDatapoint.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
+ - [BasicOrganization](docs/BasicOrganization.md)
  - [BatchCheckPermissionBody](docs/BatchCheckPermissionBody.md)
  - [BatchCheckPermissionResult](docs/BatchCheckPermissionResult.md)
  - [BatchPatchIdentitiesResponse](docs/BatchPatchIdentitiesResponse.md)
@@ -320,6 +329,7 @@ Class | Method | HTTP request | Description
  - [CreateIdentityBody](docs/CreateIdentityBody.md)
  - [CreateInviteResponse](docs/CreateInviteResponse.md)
  - [CreateJsonWebKeySet](docs/CreateJsonWebKeySet.md)
+ - [CreateOrganizationOnboardingPortalLinkBody](docs/CreateOrganizationOnboardingPortalLinkBody.md)
  - [CreateProjectApiKeyRequest](docs/CreateProjectApiKeyRequest.md)
  - [CreateProjectBody](docs/CreateProjectBody.md)
  - [CreateProjectBranding](docs/CreateProjectBranding.md)
@@ -338,6 +348,8 @@ Class | Method | HTTP request | Description
  - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [CustomDomain](docs/CustomDomain.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
+ - [DeviceAuthorization](docs/DeviceAuthorization.md)
+ - [DeviceUserAuthRequest](docs/DeviceUserAuthRequest.md)
  - [EmailTemplateData](docs/EmailTemplateData.md)
  - [EmailTemplateDataBody](docs/EmailTemplateDataBody.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
@@ -396,6 +408,8 @@ Class | Method | HTTP request | Description
  - [JsonWebKey](docs/JsonWebKey.md)
  - [JsonWebKeySet](docs/JsonWebKeySet.md)
  - [KetoNamespace](docs/KetoNamespace.md)
+ - [KeysetPaginationRequestParameters](docs/KeysetPaginationRequestParameters.md)
+ - [KeysetPaginationResponseHeaders](docs/KeysetPaginationResponseHeaders.md)
  - [LineItemV1](docs/LineItemV1.md)
  - [ListEventStreams](docs/ListEventStreams.md)
  - [ListInvoicesResponse](docs/ListInvoicesResponse.md)
@@ -435,10 +449,11 @@ Class | Method | HTTP request | Description
  - [OAuth2TokenExchange](docs/OAuth2TokenExchange.md)
  - [OidcConfiguration](docs/OidcConfiguration.md)
  - [OidcUserInfo](docs/OidcUserInfo.md)
+ - [OnboardingPortalLink](docs/OnboardingPortalLink.md)
+ - [OnboardingPortalOrganization](docs/OnboardingPortalOrganization.md)
  - [Organization](docs/Organization.md)
  - [OrganizationBody](docs/OrganizationBody.md)
- - [Pagination](docs/Pagination.md)
- - [PaginationHeaders](docs/PaginationHeaders.md)
+ - [OrganizationOnboardingPortalLinksResponse](docs/OrganizationOnboardingPortalLinksResponse.md)
  - [ParseError](docs/ParseError.md)
  - [PatchIdentitiesBody](docs/PatchIdentitiesBody.md)
  - [PerformNativeLogoutBody](docs/PerformNativeLogoutBody.md)
@@ -486,6 +501,7 @@ Class | Method | HTTP request | Description
  - [SetActiveProjectInConsoleBody](docs/SetActiveProjectInConsoleBody.md)
  - [SetCustomDomainBody](docs/SetCustomDomainBody.md)
  - [SetEventStreamBody](docs/SetEventStreamBody.md)
+ - [SetOrganizationFromOnboardingPortalLinkBody](docs/SetOrganizationFromOnboardingPortalLinkBody.md)
  - [SetProject](docs/SetProject.md)
  - [SetProjectBrandingThemeBody](docs/SetProjectBrandingThemeBody.md)
  - [SettingsFlow](docs/SettingsFlow.md)
@@ -529,6 +545,7 @@ Class | Method | HTTP request | Description
  - [UpdateLoginFlowWithSamlMethod](docs/UpdateLoginFlowWithSamlMethod.md)
  - [UpdateLoginFlowWithTotpMethod](docs/UpdateLoginFlowWithTotpMethod.md)
  - [UpdateLoginFlowWithWebAuthnMethod](docs/UpdateLoginFlowWithWebAuthnMethod.md)
+ - [UpdateOrganizationOnboardingPortalLinkBody](docs/UpdateOrganizationOnboardingPortalLinkBody.md)
  - [UpdateRecoveryFlowBody](docs/UpdateRecoveryFlowBody.md)
  - [UpdateRecoveryFlowWithCodeMethod](docs/UpdateRecoveryFlowWithCodeMethod.md)
  - [UpdateRecoveryFlowWithLinkMethod](docs/UpdateRecoveryFlowWithLinkMethod.md)
@@ -561,6 +578,7 @@ Class | Method | HTTP request | Description
  - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
  - [VerificationFlow](docs/VerificationFlow.md)
  - [VerificationFlowState](docs/VerificationFlowState.md)
+ - [VerifyUserCodeRequest](docs/VerifyUserCodeRequest.md)
  - [Version](docs/Version.md)
  - [Warning](docs/Warning.md)
  - [Workspace](docs/Workspace.md)

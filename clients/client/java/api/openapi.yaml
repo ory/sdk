@@ -39,14 +39,14 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.20.11
+  version: v1.20.22
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
     project_slug:
       default: playground
       description: "Your Ory Network Project slug. You can find it in the [Ory Network\
-        \ Console](https://console.ory.sh/projects/current/developers/guides)."
+        \ Console](https://console.ory.sh/projects/current/get-started)."
 tags:
 - description: APIs for managing identities.
   name: identity
@@ -157,7 +157,7 @@ paths:
         schema:
           default: 250
           format: int64
-          maximum: 500
+          maximum: 1000
           minimum: 1
           type: integer
         style: form
@@ -171,8 +171,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: The name of the clients to filter by.
@@ -793,11 +791,28 @@ paths:
       - application/json
     patch:
       description: |-
-        Creates multiple
-        [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
-        This endpoint can also be used to [import
-        credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
-        for instance passwords, social sign in configurations or multifactor methods.
+        Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+
+        You can also use this endpoint to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities),
+        including passwords, social sign-in settings, and multi-factor authentication methods.
+
+        You can import:
+        Up to 1,000 identities per request
+        Up to 200 identities per request if including plaintext passwords
+
+        Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
+
+        If at least one identity is imported successfully, the response status is 200 OK.
+        If all imports fail, the response is one of the following 4xx errors:
+        400 Bad Request: The request payload is invalid or improperly formatted.
+        409 Conflict: Duplicate identities or conflicting data were detected.
+
+        If you get a 504 Gateway Timeout:
+        Reduce the batch size
+        Avoid duplicate identities
+        Pre-hash passwords with BCrypt
+
+        If the issue persists, contact support.
       operationId: batchPatchIdentities
       requestBody:
         content:
@@ -887,8 +902,7 @@ paths:
     delete:
       description: |-
         Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
-        This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is
-        assumed that is has been deleted already.
+        This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
       operationId: deleteIdentity
       parameters:
       - description: ID is the identity's ID.
@@ -1051,7 +1065,10 @@ paths:
     put:
       description: |-
         This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity
-        payload (except credentials) is expected. It is possible to update the identity's credentials as well.
+        payload, except credentials, is expected. For partial updates, use the [patchIdentity](https://www.ory.sh/docs/reference/api#tag/identity/operation/patchIdentity) operation.
+
+        A credential can be provided via the `credentials` field in the request body.
+        If provided, the credentials will be imported and added to the existing credentials of the identity.
       operationId: updateIdentity
       parameters:
       - description: ID must be set to the ID of identity you want to update
@@ -1111,7 +1128,7 @@ paths:
     delete:
       description: |-
         Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
-        You cannot delete password or code auth credentials through this API.
+        You cannot delete passkeys or code auth credentials through this API.
       operationId: deleteIdentityCredentials
       parameters:
       - description: ID is the identity's ID.
@@ -1167,8 +1184,8 @@ paths:
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
       - description: |-
-          Identifier is the identifier of the OIDC credential to delete.
-          Find the identifier by calling the `GET /admin/identities/{id}?include_credential=oidc` endpoint.
+          Identifier is the identifier of the OIDC/SAML credential to delete.
+          Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint.
         explode: true
         in: query
         name: identifier
@@ -1816,6 +1833,45 @@ paths:
       security:
       - oryAccessToken: []
       summary: Reject OAuth 2.0 Consent Request
+      tags:
+      - oAuth2
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /admin/oauth2/auth/requests/device/accept:
+    put:
+      description: Accepts a device grant user_code request
+      operationId: acceptUserCodeRequest
+      parameters:
+      - explode: true
+        in: query
+        name: device_challenge
+        required: true
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/acceptDeviceUserCodeRequest'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/oAuth2RedirectTo'
+          description: oAuth2RedirectTo
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorOAuth2'
+          description: errorOAuth2
+      security:
+      - oryAccessToken: []
+      summary: Accepts a device grant user_code request
       tags:
       - oAuth2
       x-content-type: application/json
@@ -2855,21 +2911,33 @@ paths:
       description: Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
       operationId: listTrustedOAuth2JwtGrantIssuers
       parameters:
-      - explode: true
+      - description: |-
+          Items per Page
+
+          This is the number of items per page to return.
+          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
         in: query
-        name: MaxItems
+        name: page_size
         required: false
         schema:
+          default: 250
           format: int64
+          maximum: 1000
+          minimum: 1
           type: integer
         style: form
-      - explode: true
+      - description: |-
+          Next Page Token
+
+          The next page token.
+          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
         in: query
-        name: DefaultItems
+        name: page_token
         required: false
         schema:
-          format: int64
-          type: integer
+          type: string
         style: form
       - description: "If optional \"issuer\" is supplied, only jwt-bearer grants with\
           \ this issuer will be returned."
@@ -3089,6 +3157,53 @@ paths:
                 $ref: '#/components/schemas/errorOAuth2'
           description: errorOAuth2
       summary: OAuth 2.0 Authorize Endpoint
+      tags:
+      - oAuth2
+      x-accepts:
+      - application/json
+  /oauth2/device/auth:
+    post:
+      description: |-
+        This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows.
+        OAuth2 is a very popular protocol and a library for your programming language will exists.
+
+        To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+      operationId: oAuth2DeviceFlow
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deviceAuthorization'
+          description: deviceAuthorization
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorOAuth2'
+          description: errorOAuth2
+      summary: The OAuth 2.0 Device Authorize Endpoint
+      tags:
+      - oAuth2
+      x-accepts:
+      - application/json
+  /oauth2/device/verify:
+    get:
+      description: This is the device user verification endpoint. The user is redirected
+        here when trying to login using the device flow.
+      operationId: performOAuth2DeviceVerificationFlow
+      responses:
+        "302":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorOAuth2'
+          description: errorOAuth2
+      summary: OAuth 2.0 Device Verification Endpoint
       tags:
       - oAuth2
       x-accepts:
@@ -4430,6 +4545,250 @@ paths:
           Ory Network projects and workspaces.
         url: https://api.console.ory.sh
       summary: Update an Enterprise SSO Organization
+      tags:
+      - project
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links:
+    get:
+      description: Retrieves the organization onboarding portal links.
+      operationId: getOrganizationOnboardingPortalLinks
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Organization ID
+
+          The Organization's ID.
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organizationOnboardingPortalLinksResponse'
+          description: organizationOnboardingPortalLinksResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Get the organization onboarding portal links
+      tags:
+      - project
+      x-accepts:
+      - application/json
+    post:
+      description: Create a onboarding portal link for an organization.
+      operationId: createOrganizationOnboardingPortalLink
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Organization ID
+
+          The Organization's ID.
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createOrganizationOnboardingPortalLinkBody'
+        x-originalParamName: Body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/onboardingPortalLink'
+          description: onboardingPortalLink
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Create organization onboarding portal link
+      tags:
+      - project
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id}:
+    delete:
+      description: Deletes a onboarding portal link for an organization.
+      operationId: deleteOrganizationOnboardingPortalLink
+      parameters:
+      - explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: onboarding_portal_link_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Delete an organization onboarding portal link
+      tags:
+      - project
+      x-accepts:
+      - application/json
+    post:
+      description: Update a onboarding portal link for an organization.
+      operationId: updateOrganizationOnboardingPortalLink
+      parameters:
+      - description: |-
+          Project ID
+
+          The project's ID.
+        explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Organization ID
+
+          The Organization's ID.
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: onboarding_portal_link_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateOrganizationOnboardingPortalLinkBody'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/onboardingPortalLink'
+          description: onboardingPortalLink
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryWorkspaceApiKey: []
+      servers:
+      - description: The Ory Network control plane API which is used to manage your
+          Ory Network projects and workspaces.
+        url: https://api.console.ory.sh
+      summary: Update organization onboarding portal link
       tags:
       - project
       x-content-type: application/json
@@ -8521,6 +8880,8 @@ components:
   schemas:
     AccountExperienceColors:
       properties:
+        ax-background-default:
+          type: string
         brand-100:
           type: string
         brand-200:
@@ -9098,6 +9459,12 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        hydra_secrets_pagination:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         hydra_secrets_system:
           items:
             type: string
@@ -9329,6 +9696,12 @@ components:
         keto_namespaces:
           items:
             $ref: '#/components/schemas/KetoNamespace'
+          type: array
+        keto_secrets_pagination:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
           type: array
         kratos_cookies_same_site:
           description: |-
@@ -9659,6 +10032,32 @@ components:
             Disabling this feature will be deprecated in the future.
 
             This governs the "feature_flags.faster_session_extend" setting.
+          type: boolean
+        kratos_feature_flags_legacy_continue_with_verification_ui:
+          description: |-
+            Always include show_verification_ui in continue_with
+
+            If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.
+
+            This governs the "feature_flags.legacy_continue_with_verification_ui" setting.
+          type: boolean
+        kratos_feature_flags_legacy_oidc_registration_node_group:
+          description: |-
+            Controls whether the UI nodes in an OIDC registration flow have group "oidc" in case required fields are not returned by the OIDC provider.
+
+            If set to true, the UI nodes will have group "oidc" and the flow will be considered successful if the user completes the flow. This is the legacy behavior.
+
+            This governs the "feature_flags.legacy_oidc_registration_node_group" setting.
+          type: boolean
+        kratos_feature_flags_legacy_require_verified_login_error:
+          description: |-
+            Return a form error if the login identifier is not verified
+
+            If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.
+
+            This flag is deprecated and will be removed in the future.
+
+            This governs the "feature_flags.legacy_require_verified_login_error" setting.
           type: boolean
         kratos_feature_flags_use_continue_with_transitions:
           description: |-
@@ -10059,6 +10458,12 @@ components:
 
             Reach out to your account manager to enable this feature.
           type: string
+        kratos_selfservice_methods_captcha_config_legacy_inject_node:
+          description: |-
+            Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting
+
+            Reach out to your account manager to enable this feature.
+          type: boolean
         kratos_selfservice_methods_captcha_enabled:
           description: |-
             Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting
@@ -10071,6 +10476,9 @@ components:
 
             This governs the "selfservice.methods.code.config.lifespan" setting.
           type: string
+        kratos_selfservice_methods_code_config_max_submissions:
+          nullable: true
+          type: integer
         kratos_selfservice_methods_code_config_missing_credential_fallback_enabled:
           description: |-
             Enables a fallback method required in certain legacy use cases.
@@ -10308,6 +10716,10 @@ components:
         name:
           description: The project's name.
           type: string
+        organizations:
+          items:
+            $ref: '#/components/schemas/organization'
+          type: array
         project_id:
           description: The Revision's Project ID
           format: uuid
@@ -10459,6 +10871,38 @@ components:
         CustomHostnameSSL.
       type: string
     DefaultError: {}
+    DeviceUserAuthRequest:
+      properties:
+        challenge:
+          description: |-
+            ID is the identifier ("device challenge") of the device grant request. It is used to
+            identify the session.
+          type: string
+        client:
+          $ref: '#/components/schemas/oAuth2Client'
+        handled_at:
+          format: date-time
+          title: NullTime implements sql.NullTime functionality.
+          type: string
+        request_url:
+          description: RequestURL is the original Device Authorization URL requested.
+          type: string
+        requested_access_token_audience:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        requested_scope:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+      required:
+      - challenge
+      title: Contains information on an ongoing device grant request.
+      type: object
     Duration:
       description: |-
         A Duration represents the elapsed time between two instants
@@ -11020,6 +11464,12 @@ components:
         message:
           type: string
       type: object
+    acceptDeviceUserCodeRequest:
+      description: Contains information on an device verification
+      properties:
+        user_code:
+          type: string
+      type: object
     acceptOAuth2ConsentRequest:
       properties:
         context:
@@ -11459,6 +11909,32 @@ components:
       - aal3
       title: Authenticator Assurance Level (AAL)
       type: string
+    basicOrganization:
+      example:
+        domains:
+        - domains
+        - domains
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        label: label
+      properties:
+        domains:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        id:
+          description: The organization's ID.
+          format: uuid
+          type: string
+        label:
+          description: The organization's human-readable label.
+          type: string
+      required:
+      - domains
+      - id
+      - label
+      type: object
     batchCheckPermissionBody:
       description: Batch Check Permission Body
       properties:
@@ -11962,6 +12438,17 @@ components:
       type: object
     createMemberInviteResponse:
       $ref: '#/components/schemas/CreateInviteResponse'
+    createOrganizationOnboardingPortalLinkBody:
+      properties:
+        enable_sso:
+          description: Feature flag to enable SSO configuration
+          type: boolean
+        expires_at:
+          format: date-time
+          type: string
+      required:
+      - enable_sso
+      type: object
     createProjectBody:
       description: Create Project Request Body
       properties:
@@ -12318,6 +12805,53 @@ components:
           description: The number of sessions that were revoked.
           format: int64
           type: integer
+      type: object
+    deviceAuthorization:
+      description: '# Ory''s OAuth 2.0 Device Authorization API'
+      example:
+        user_code: AAAAAA
+        device_code: ory_dc_smldfksmdfkl.mslkmlkmlk
+        interval: 5
+        verification_uri_complete: https://auth.ory.sh/tv?user_code=AAAAAA
+        verification_uri: https://auth.ory.sh/tv
+        expires_in: 16830
+      properties:
+        device_code:
+          description: The device verification code.
+          example: ory_dc_smldfksmdfkl.mslkmlkmlk
+          type: string
+        expires_in:
+          description: The lifetime in seconds of the "device_code" and "user_code".
+          example: 16830
+          format: int64
+          type: integer
+        interval:
+          description: |-
+            The minimum amount of time in seconds that the client
+            SHOULD wait between polling requests to the token endpoint.  If no
+            value is provided, clients MUST use 5 as the default.
+          example: 5
+          format: int64
+          type: integer
+        user_code:
+          description: The end-user verification code.
+          example: AAAAAA
+          type: string
+        verification_uri:
+          description: |-
+            The end-user verification URI on the authorization
+            server.  The URI should be short and easy to remember as end users
+            will be asked to manually type it into their user agent.
+          example: https://auth.ory.sh/tv
+          type: string
+        verification_uri_complete:
+          description: |-
+            A verification URI that includes the "user_code" (or
+            other information with the same function as the "user_code"),
+            which is designed for non-textual transmission.
+          example: https://auth.ory.sh/tv?user_code=AAAAAA
+          type: string
+      title: OAuth2 Device Flow
       type: object
     emailTemplateData:
       description: "Contains the data of the email template, including the subject\
@@ -12703,8 +13237,6 @@ components:
     getOrganizationResponse:
       example:
         organization:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
@@ -13709,6 +14241,55 @@ components:
             $ref: '#/components/schemas/jsonWebKey'
           type: array
       type: object
+    keysetPaginationRequestParameters:
+      description: |-
+        The `Link` HTTP header contains multiple links (`first`, `next`) formatted as:
+        `<https://{project-slug}.projects.oryapis.com/admin/sessions?page_size=250&page_token=>; rel="first"`
+
+        For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+      properties:
+        page_size:
+          default: 250
+          description: |-
+            Items per Page
+
+            This is the number of items per page to return.
+            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          format: int64
+          maximum: 1000
+          minimum: 1
+          type: integer
+        page_token:
+          description: |-
+            Next Page Token
+
+            The next page token.
+            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          type: string
+      title: Pagination Request Parameters
+      type: object
+    keysetPaginationResponseHeaders:
+      description: |-
+        The `Link` HTTP header contains multiple links (`first`, `next`) formatted as:
+        `<https://{project-slug}.projects.oryapis.com/admin/sessions?page_size=250&page_token=>; rel="first"`
+
+        For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+      properties:
+        link:
+          description: |-
+            The Link HTTP Header
+
+            The `Link` header contains a comma-delimited list of links to the following pages:
+
+            first: The first page of results.
+            next: The next page of results.
+
+            Pages are omitted if they do not exist. For example, if there is no next page, the `next` link is omitted. Examples:
+
+            </admin/sessions?page_size=250&page_token={last_item_uuid}; rel="first",/admin/sessions?page_size=250&page_token=>; rel="next"
+          type: string
+      title: Pagination Response Header
+      type: object
     listCustomDomains:
       description: Custom Hostname List
       items:
@@ -13757,17 +14338,13 @@ components:
         next_page_token: next_page_token
         has_next_page: true
         organizations:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
+        - created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
           - domains
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
+        - created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
           - domains
@@ -13916,47 +14493,28 @@ components:
           challenge: challenge
           client:
             metadata: "{}"
-            token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
-            client_uri: client_uri
-            jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
-            jwks: ""
             logo_uri: logo_uri
-            created_at: 2000-01-23T04:56:07.000+00:00
-            registration_client_uri: registration_client_uri
             allowed_cors_origins:
             - allowed_cors_origins
             - allowed_cors_origins
             refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
-            registration_access_token: registration_access_token
             client_id: client_id
-            token_endpoint_auth_method: client_secret_basic
-            userinfo_signed_response_alg: userinfo_signed_response_alg
-            authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
             authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
             client_credentials_grant_access_token_lifespan: client_credentials_grant_access_token_lifespan
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            scope: scope1 scope-2 scope.3 scope:4
             request_uris:
             - request_uris
             - request_uris
             client_secret: client_secret
             backchannel_logout_session_required: true
             backchannel_logout_uri: backchannel_logout_uri
-            client_name: client_name
-            policy_uri: policy_uri
-            owner: owner
-            skip_consent: true
             audience:
             - audience
             - audience
-            authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
             post_logout_redirect_uris:
             - post_logout_redirect_uris
             - post_logout_redirect_uris
-            grant_types:
-            - grant_types
-            - grant_types
-            subject_type: subject_type
+            device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
+            device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
             refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
             redirect_uris:
             - redirect_uris
@@ -13964,21 +14522,82 @@ components:
             sector_identifier_uri: sector_identifier_uri
             frontchannel_logout_session_required: true
             frontchannel_logout_uri: frontchannel_logout_uri
-            skip_logout_consent: true
             refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
-            implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
-            client_secret_expires_at: 0
-            implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
             access_token_strategy: access_token_strategy
-            jwks_uri: jwks_uri
             request_object_signing_alg: request_object_signing_alg
             tos_uri: tos_uri
-            contacts:
-            - contacts
-            - contacts
             response_types:
             - response_types
             - response_types
+            token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
+            client_uri: client_uri
+            jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
+            jwks:
+              keys:
+              - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+                e: AQAB
+                crv: P-256
+                use: sig
+                kid: 1603dfe0af8f4596
+                x5c:
+                - x5c
+                - x5c
+                k: GawgguFyGrWKav7AX4VKUg
+                dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+                dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+                "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+                p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+                kty: RSA
+                q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+                qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+                x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+                "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+                alg: RS256
+              - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+                e: AQAB
+                crv: P-256
+                use: sig
+                kid: 1603dfe0af8f4596
+                x5c:
+                - x5c
+                - x5c
+                k: GawgguFyGrWKav7AX4VKUg
+                dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+                dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+                "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+                p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+                kty: RSA
+                q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+                qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+                x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+                "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+                alg: RS256
+            created_at: 2000-01-23T04:56:07.000+00:00
+            registration_client_uri: registration_client_uri
+            registration_access_token: registration_access_token
+            token_endpoint_auth_method: client_secret_basic
+            userinfo_signed_response_alg: userinfo_signed_response_alg
+            authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            scope: scope1 scope-2 scope.3 scope:4
+            device_authorization_grant_refresh_token_lifespan: device_authorization_grant_refresh_token_lifespan
+            client_name: client_name
+            policy_uri: policy_uri
+            owner: owner
+            skip_consent: true
+            authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
+            grant_types:
+            - grant_types
+            - grant_types
+            subject_type: subject_type
+            skip_logout_consent: true
+            implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
+            client_secret_expires_at: 0
+            implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+            jwks_uri: jwks_uri
+            contacts:
+            - contacts
+            - contacts
           session_id: session_id
           skip: true
           request_url: request_url
@@ -14017,7 +14636,7 @@ components:
               type: text
               required: true
               onload: onload
-              node_type: text
+              node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
               disabled: true
@@ -14053,7 +14672,7 @@ components:
               type: text
               required: true
               onload: onload
-              node_type: text
+              node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
               disabled: true
@@ -14852,6 +15471,12 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        hydra_secrets_pagination:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         hydra_secrets_system:
           items:
             type: string
@@ -15083,6 +15708,12 @@ components:
         keto_namespaces:
           items:
             $ref: '#/components/schemas/KetoNamespace'
+          type: array
+        keto_secrets_pagination:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
           type: array
         kratos_cookies_same_site:
           description: |-
@@ -15413,6 +16044,32 @@ components:
             Disabling this feature will be deprecated in the future.
 
             This governs the "feature_flags.faster_session_extend" setting.
+          type: boolean
+        kratos_feature_flags_legacy_continue_with_verification_ui:
+          description: |-
+            Always include show_verification_ui in continue_with
+
+            If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.
+
+            This governs the "feature_flags.legacy_continue_with_verification_ui" setting.
+          type: boolean
+        kratos_feature_flags_legacy_oidc_registration_node_group:
+          description: |-
+            Controls whether the UI nodes in an OIDC registration flow have group "oidc" in case required fields are not returned by the OIDC provider.
+
+            If set to true, the UI nodes will have group "oidc" and the flow will be considered successful if the user completes the flow. This is the legacy behavior.
+
+            This governs the "feature_flags.legacy_oidc_registration_node_group" setting.
+          type: boolean
+        kratos_feature_flags_legacy_require_verified_login_error:
+          description: |-
+            Return a form error if the login identifier is not verified
+
+            If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.
+
+            This flag is deprecated and will be removed in the future.
+
+            This governs the "feature_flags.legacy_require_verified_login_error" setting.
           type: boolean
         kratos_feature_flags_use_continue_with_transitions:
           description: |-
@@ -15813,6 +16470,12 @@ components:
 
             Reach out to your account manager to enable this feature.
           type: string
+        kratos_selfservice_methods_captcha_config_legacy_inject_node:
+          description: |-
+            Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting
+
+            Reach out to your account manager to enable this feature.
+          type: boolean
         kratos_selfservice_methods_captcha_enabled:
           description: |-
             Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting
@@ -15825,6 +16488,9 @@ components:
 
             This governs the "selfservice.methods.code.config.lifespan" setting.
           type: string
+        kratos_selfservice_methods_code_config_max_submissions:
+          nullable: true
+          type: integer
         kratos_selfservice_methods_code_config_missing_credential_fallback_enabled:
           description: |-
             Enables a fallback method required in certain legacy use cases.
@@ -16062,6 +16728,10 @@ components:
         name:
           description: The project's name.
           type: string
+        organizations:
+          items:
+            $ref: '#/components/schemas/organization'
+          type: array
         project_id:
           description: The Revision's Project ID
           format: uuid
@@ -16585,47 +17255,28 @@ components:
         generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
       example:
         metadata: "{}"
-        token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
-        client_uri: client_uri
-        jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
-        jwks: ""
         logo_uri: logo_uri
-        created_at: 2000-01-23T04:56:07.000+00:00
-        registration_client_uri: registration_client_uri
         allowed_cors_origins:
         - allowed_cors_origins
         - allowed_cors_origins
         refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
-        registration_access_token: registration_access_token
         client_id: client_id
-        token_endpoint_auth_method: client_secret_basic
-        userinfo_signed_response_alg: userinfo_signed_response_alg
-        authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
         authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
         client_credentials_grant_access_token_lifespan: client_credentials_grant_access_token_lifespan
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        scope: scope1 scope-2 scope.3 scope:4
         request_uris:
         - request_uris
         - request_uris
         client_secret: client_secret
         backchannel_logout_session_required: true
         backchannel_logout_uri: backchannel_logout_uri
-        client_name: client_name
-        policy_uri: policy_uri
-        owner: owner
-        skip_consent: true
         audience:
         - audience
         - audience
-        authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
         post_logout_redirect_uris:
         - post_logout_redirect_uris
         - post_logout_redirect_uris
-        grant_types:
-        - grant_types
-        - grant_types
-        subject_type: subject_type
+        device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
+        device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
         refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
         redirect_uris:
         - redirect_uris
@@ -16633,21 +17284,82 @@ components:
         sector_identifier_uri: sector_identifier_uri
         frontchannel_logout_session_required: true
         frontchannel_logout_uri: frontchannel_logout_uri
-        skip_logout_consent: true
         refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
-        implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
-        client_secret_expires_at: 0
-        implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
         access_token_strategy: access_token_strategy
-        jwks_uri: jwks_uri
         request_object_signing_alg: request_object_signing_alg
         tos_uri: tos_uri
-        contacts:
-        - contacts
-        - contacts
         response_types:
         - response_types
         - response_types
+        token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
+        client_uri: client_uri
+        jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
+        jwks:
+          keys:
+          - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+            e: AQAB
+            crv: P-256
+            use: sig
+            kid: 1603dfe0af8f4596
+            x5c:
+            - x5c
+            - x5c
+            k: GawgguFyGrWKav7AX4VKUg
+            dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+            dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+            "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+            p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+            kty: RSA
+            q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+            qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+            x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+            "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+            alg: RS256
+          - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+            e: AQAB
+            crv: P-256
+            use: sig
+            kid: 1603dfe0af8f4596
+            x5c:
+            - x5c
+            - x5c
+            k: GawgguFyGrWKav7AX4VKUg
+            dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+            dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+            "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+            p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+            kty: RSA
+            q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+            qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+            x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+            "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+            alg: RS256
+        created_at: 2000-01-23T04:56:07.000+00:00
+        registration_client_uri: registration_client_uri
+        registration_access_token: registration_access_token
+        token_endpoint_auth_method: client_secret_basic
+        userinfo_signed_response_alg: userinfo_signed_response_alg
+        authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        scope: scope1 scope-2 scope.3 scope:4
+        device_authorization_grant_refresh_token_lifespan: device_authorization_grant_refresh_token_lifespan
+        client_name: client_name
+        policy_uri: policy_uri
+        owner: owner
+        skip_consent: true
+        authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
+        grant_types:
+        - grant_types
+        - grant_types
+        subject_type: subject_type
+        skip_logout_consent: true
+        implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
+        client_secret_expires_at: 0
+        implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+        jwks_uri: jwks_uri
+        contacts:
+        - contacts
+        - contacts
       properties:
         access_token_strategy:
           description: |-
@@ -16655,7 +17367,7 @@ components:
 
             AccessTokenStrategy is the strategy used to generate access tokens.
             Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token
-            Setting the stragegy here overrides the global setting in `strategies.access_token`.
+            Setting the strategy here overrides the global setting in `strategies.access_token`.
           type: string
         allowed_cors_origins:
           items:
@@ -16747,6 +17459,18 @@ components:
             CreatedAt returns the timestamp of the client's creation.
           format: date-time
           type: string
+        device_authorization_grant_access_token_lifespan:
+          nullable: true
+          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          type: string
+        device_authorization_grant_id_token_lifespan:
+          nullable: true
+          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          type: string
+        device_authorization_grant_refresh_token_lifespan:
+          nullable: true
+          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          type: string
         frontchannel_logout_session_required:
           description: |-
             OpenID Connect Front-Channel Logout Session Required
@@ -16779,16 +17503,7 @@ components:
           pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
           type: string
         jwks:
-          description: |-
-            OAuth 2.0 Client JSON Web Key Set
-
-            Client's JSON Web Key Set [JWK] document, passed by value. The semantics of the jwks parameter are the same as
-            the jwks_uri parameter, other than that the JWK Set is passed by value, rather than by reference. This parameter
-            is intended only to be used by Clients that, for some reason, are unable to use the jwks_uri parameter, for
-            instance, by native applications that might not have a location to host the contents of the JWK Set. If a Client
-            can use jwks_uri, it MUST NOT use jwks. One significant downside of jwks is that it does not enable key rotation
-            (which jwks_uri does, as described in Section 10 of OpenID Connect Core 1.0 [OpenID.Core]). The jwks_uri and jwks
-            parameters MUST NOT be used together.
+          $ref: '#/components/schemas/jsonWebKeySet'
         jwks_uri:
           description: |-
             OAuth 2.0 Client JSON Web Key Set URL
@@ -16982,6 +17697,18 @@ components:
           nullable: true
           pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
           type: string
+        device_authorization_grant_access_token_lifespan:
+          nullable: true
+          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          type: string
+        device_authorization_grant_id_token_lifespan:
+          nullable: true
+          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          type: string
+        device_authorization_grant_refresh_token_lifespan:
+          nullable: true
+          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          type: string
         implicit_grant_access_token_lifespan:
           nullable: true
           pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
@@ -17030,6 +17757,7 @@ components:
           - acr_values
           - acr_values
           display: display
+        device_challenge_id: device_challenge_id
         skip: true
         request_url: request_url
         acr: acr
@@ -17037,47 +17765,28 @@ components:
         challenge: challenge
         client:
           metadata: "{}"
-          token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
-          client_uri: client_uri
-          jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
-          jwks: ""
           logo_uri: logo_uri
-          created_at: 2000-01-23T04:56:07.000+00:00
-          registration_client_uri: registration_client_uri
           allowed_cors_origins:
           - allowed_cors_origins
           - allowed_cors_origins
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
-          registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: client_secret_basic
-          userinfo_signed_response_alg: userinfo_signed_response_alg
-          authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
           client_credentials_grant_access_token_lifespan: client_credentials_grant_access_token_lifespan
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          scope: scope1 scope-2 scope.3 scope:4
           request_uris:
           - request_uris
           - request_uris
           client_secret: client_secret
           backchannel_logout_session_required: true
           backchannel_logout_uri: backchannel_logout_uri
-          client_name: client_name
-          policy_uri: policy_uri
-          owner: owner
-          skip_consent: true
           audience:
           - audience
           - audience
-          authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
           post_logout_redirect_uris:
           - post_logout_redirect_uris
           - post_logout_redirect_uris
-          grant_types:
-          - grant_types
-          - grant_types
-          subject_type: subject_type
+          device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
+          device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
           refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
           redirect_uris:
           - redirect_uris
@@ -17085,21 +17794,82 @@ components:
           sector_identifier_uri: sector_identifier_uri
           frontchannel_logout_session_required: true
           frontchannel_logout_uri: frontchannel_logout_uri
-          skip_logout_consent: true
           refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
-          implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
-          client_secret_expires_at: 0
-          implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
           access_token_strategy: access_token_strategy
-          jwks_uri: jwks_uri
           request_object_signing_alg: request_object_signing_alg
           tos_uri: tos_uri
-          contacts:
-          - contacts
-          - contacts
           response_types:
           - response_types
           - response_types
+          token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
+          client_uri: client_uri
+          jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
+          jwks:
+            keys:
+            - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+              e: AQAB
+              crv: P-256
+              use: sig
+              kid: 1603dfe0af8f4596
+              x5c:
+              - x5c
+              - x5c
+              k: GawgguFyGrWKav7AX4VKUg
+              dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+              dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+              "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+              p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+              kty: RSA
+              q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+              qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+              x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+              "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+              alg: RS256
+            - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+              e: AQAB
+              crv: P-256
+              use: sig
+              kid: 1603dfe0af8f4596
+              x5c:
+              - x5c
+              - x5c
+              k: GawgguFyGrWKav7AX4VKUg
+              dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+              dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+              "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+              p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+              kty: RSA
+              q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+              qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+              x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+              "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+              alg: RS256
+          created_at: 2000-01-23T04:56:07.000+00:00
+          registration_client_uri: registration_client_uri
+          registration_access_token: registration_access_token
+          token_endpoint_auth_method: client_secret_basic
+          userinfo_signed_response_alg: userinfo_signed_response_alg
+          authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          scope: scope1 scope-2 scope.3 scope:4
+          device_authorization_grant_refresh_token_lifespan: device_authorization_grant_refresh_token_lifespan
+          client_name: client_name
+          policy_uri: policy_uri
+          owner: owner
+          skip_consent: true
+          authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
+          grant_types:
+          - grant_types
+          - grant_types
+          subject_type: subject_type
+          skip_logout_consent: true
+          implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
+          client_secret_expires_at: 0
+          implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+          jwks_uri: jwks_uri
+          contacts:
+          - contacts
+          - contacts
         login_session_id: login_session_id
         requested_scope:
         - requested_scope
@@ -17128,6 +17898,10 @@ components:
           title: "JSONRawMessage represents a json.RawMessage that works well with\
             \ JSON, SQL, and Swagger."
           type: object
+        device_challenge_id:
+          description: "DeviceChallenge is the device challenge this consent challenge\
+            \ belongs to, if this flow was initiated by a device."
+          type: string
         login_challenge:
           description: |-
             LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate
@@ -17264,6 +18038,7 @@ components:
             - acr_values
             - acr_values
             display: display
+          device_challenge_id: device_challenge_id
           skip: true
           request_url: request_url
           acr: acr
@@ -17271,47 +18046,28 @@ components:
           challenge: challenge
           client:
             metadata: "{}"
-            token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
-            client_uri: client_uri
-            jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
-            jwks: ""
             logo_uri: logo_uri
-            created_at: 2000-01-23T04:56:07.000+00:00
-            registration_client_uri: registration_client_uri
             allowed_cors_origins:
             - allowed_cors_origins
             - allowed_cors_origins
             refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
-            registration_access_token: registration_access_token
             client_id: client_id
-            token_endpoint_auth_method: client_secret_basic
-            userinfo_signed_response_alg: userinfo_signed_response_alg
-            authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
             authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
             client_credentials_grant_access_token_lifespan: client_credentials_grant_access_token_lifespan
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            scope: scope1 scope-2 scope.3 scope:4
             request_uris:
             - request_uris
             - request_uris
             client_secret: client_secret
             backchannel_logout_session_required: true
             backchannel_logout_uri: backchannel_logout_uri
-            client_name: client_name
-            policy_uri: policy_uri
-            owner: owner
-            skip_consent: true
             audience:
             - audience
             - audience
-            authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
             post_logout_redirect_uris:
             - post_logout_redirect_uris
             - post_logout_redirect_uris
-            grant_types:
-            - grant_types
-            - grant_types
-            subject_type: subject_type
+            device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
+            device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
             refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
             redirect_uris:
             - redirect_uris
@@ -17319,21 +18075,82 @@ components:
             sector_identifier_uri: sector_identifier_uri
             frontchannel_logout_session_required: true
             frontchannel_logout_uri: frontchannel_logout_uri
-            skip_logout_consent: true
             refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
-            implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
-            client_secret_expires_at: 0
-            implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
             access_token_strategy: access_token_strategy
-            jwks_uri: jwks_uri
             request_object_signing_alg: request_object_signing_alg
             tos_uri: tos_uri
-            contacts:
-            - contacts
-            - contacts
             response_types:
             - response_types
             - response_types
+            token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
+            client_uri: client_uri
+            jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
+            jwks:
+              keys:
+              - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+                e: AQAB
+                crv: P-256
+                use: sig
+                kid: 1603dfe0af8f4596
+                x5c:
+                - x5c
+                - x5c
+                k: GawgguFyGrWKav7AX4VKUg
+                dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+                dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+                "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+                p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+                kty: RSA
+                q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+                qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+                x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+                "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+                alg: RS256
+              - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+                e: AQAB
+                crv: P-256
+                use: sig
+                kid: 1603dfe0af8f4596
+                x5c:
+                - x5c
+                - x5c
+                k: GawgguFyGrWKav7AX4VKUg
+                dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+                dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+                "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+                p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+                kty: RSA
+                q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+                qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+                x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+                "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+                alg: RS256
+            created_at: 2000-01-23T04:56:07.000+00:00
+            registration_client_uri: registration_client_uri
+            registration_access_token: registration_access_token
+            token_endpoint_auth_method: client_secret_basic
+            userinfo_signed_response_alg: userinfo_signed_response_alg
+            authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            scope: scope1 scope-2 scope.3 scope:4
+            device_authorization_grant_refresh_token_lifespan: device_authorization_grant_refresh_token_lifespan
+            client_name: client_name
+            policy_uri: policy_uri
+            owner: owner
+            skip_consent: true
+            authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
+            grant_types:
+            - grant_types
+            - grant_types
+            subject_type: subject_type
+            skip_logout_consent: true
+            implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
+            client_secret_expires_at: 0
+            implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+            jwks_uri: jwks_uri
+            contacts:
+            - contacts
+            - contacts
           login_session_id: login_session_id
           requested_scope:
           - requested_scope
@@ -17429,47 +18246,28 @@ components:
         challenge: challenge
         client:
           metadata: "{}"
-          token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
-          client_uri: client_uri
-          jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
-          jwks: ""
           logo_uri: logo_uri
-          created_at: 2000-01-23T04:56:07.000+00:00
-          registration_client_uri: registration_client_uri
           allowed_cors_origins:
           - allowed_cors_origins
           - allowed_cors_origins
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
-          registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: client_secret_basic
-          userinfo_signed_response_alg: userinfo_signed_response_alg
-          authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
           client_credentials_grant_access_token_lifespan: client_credentials_grant_access_token_lifespan
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          scope: scope1 scope-2 scope.3 scope:4
           request_uris:
           - request_uris
           - request_uris
           client_secret: client_secret
           backchannel_logout_session_required: true
           backchannel_logout_uri: backchannel_logout_uri
-          client_name: client_name
-          policy_uri: policy_uri
-          owner: owner
-          skip_consent: true
           audience:
           - audience
           - audience
-          authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
           post_logout_redirect_uris:
           - post_logout_redirect_uris
           - post_logout_redirect_uris
-          grant_types:
-          - grant_types
-          - grant_types
-          subject_type: subject_type
+          device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
+          device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
           refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
           redirect_uris:
           - redirect_uris
@@ -17477,21 +18275,82 @@ components:
           sector_identifier_uri: sector_identifier_uri
           frontchannel_logout_session_required: true
           frontchannel_logout_uri: frontchannel_logout_uri
-          skip_logout_consent: true
           refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
-          implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
-          client_secret_expires_at: 0
-          implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
           access_token_strategy: access_token_strategy
-          jwks_uri: jwks_uri
           request_object_signing_alg: request_object_signing_alg
           tos_uri: tos_uri
-          contacts:
-          - contacts
-          - contacts
           response_types:
           - response_types
           - response_types
+          token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
+          client_uri: client_uri
+          jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
+          jwks:
+            keys:
+            - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+              e: AQAB
+              crv: P-256
+              use: sig
+              kid: 1603dfe0af8f4596
+              x5c:
+              - x5c
+              - x5c
+              k: GawgguFyGrWKav7AX4VKUg
+              dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+              dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+              "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+              p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+              kty: RSA
+              q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+              qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+              x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+              "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+              alg: RS256
+            - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+              e: AQAB
+              crv: P-256
+              use: sig
+              kid: 1603dfe0af8f4596
+              x5c:
+              - x5c
+              - x5c
+              k: GawgguFyGrWKav7AX4VKUg
+              dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+              dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+              "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+              p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+              kty: RSA
+              q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+              qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+              x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+              "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+              alg: RS256
+          created_at: 2000-01-23T04:56:07.000+00:00
+          registration_client_uri: registration_client_uri
+          registration_access_token: registration_access_token
+          token_endpoint_auth_method: client_secret_basic
+          userinfo_signed_response_alg: userinfo_signed_response_alg
+          authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          scope: scope1 scope-2 scope.3 scope:4
+          device_authorization_grant_refresh_token_lifespan: device_authorization_grant_refresh_token_lifespan
+          client_name: client_name
+          policy_uri: policy_uri
+          owner: owner
+          skip_consent: true
+          authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
+          grant_types:
+          - grant_types
+          - grant_types
+          subject_type: subject_type
+          skip_logout_consent: true
+          implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
+          client_secret_expires_at: 0
+          implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+          jwks_uri: jwks_uri
+          contacts:
+          - contacts
+          - contacts
         session_id: session_id
         skip: true
         request_url: request_url
@@ -17559,47 +18418,28 @@ components:
         challenge: challenge
         client:
           metadata: "{}"
-          token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
-          client_uri: client_uri
-          jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
-          jwks: ""
           logo_uri: logo_uri
-          created_at: 2000-01-23T04:56:07.000+00:00
-          registration_client_uri: registration_client_uri
           allowed_cors_origins:
           - allowed_cors_origins
           - allowed_cors_origins
           refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
-          registration_access_token: registration_access_token
           client_id: client_id
-          token_endpoint_auth_method: client_secret_basic
-          userinfo_signed_response_alg: userinfo_signed_response_alg
-          authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
           authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
           client_credentials_grant_access_token_lifespan: client_credentials_grant_access_token_lifespan
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          scope: scope1 scope-2 scope.3 scope:4
           request_uris:
           - request_uris
           - request_uris
           client_secret: client_secret
           backchannel_logout_session_required: true
           backchannel_logout_uri: backchannel_logout_uri
-          client_name: client_name
-          policy_uri: policy_uri
-          owner: owner
-          skip_consent: true
           audience:
           - audience
           - audience
-          authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
           post_logout_redirect_uris:
           - post_logout_redirect_uris
           - post_logout_redirect_uris
-          grant_types:
-          - grant_types
-          - grant_types
-          subject_type: subject_type
+          device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
+          device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
           refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
           redirect_uris:
           - redirect_uris
@@ -17607,21 +18447,82 @@ components:
           sector_identifier_uri: sector_identifier_uri
           frontchannel_logout_session_required: true
           frontchannel_logout_uri: frontchannel_logout_uri
-          skip_logout_consent: true
           refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
-          implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
-          client_secret_expires_at: 0
-          implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
           access_token_strategy: access_token_strategy
-          jwks_uri: jwks_uri
           request_object_signing_alg: request_object_signing_alg
           tos_uri: tos_uri
-          contacts:
-          - contacts
-          - contacts
           response_types:
           - response_types
           - response_types
+          token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
+          client_uri: client_uri
+          jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
+          jwks:
+            keys:
+            - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+              e: AQAB
+              crv: P-256
+              use: sig
+              kid: 1603dfe0af8f4596
+              x5c:
+              - x5c
+              - x5c
+              k: GawgguFyGrWKav7AX4VKUg
+              dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+              dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+              "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+              p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+              kty: RSA
+              q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+              qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+              x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+              "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+              alg: RS256
+            - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+              e: AQAB
+              crv: P-256
+              use: sig
+              kid: 1603dfe0af8f4596
+              x5c:
+              - x5c
+              - x5c
+              k: GawgguFyGrWKav7AX4VKUg
+              dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+              dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+              "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+              p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+              kty: RSA
+              q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+              qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+              x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+              "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+              alg: RS256
+          created_at: 2000-01-23T04:56:07.000+00:00
+          registration_client_uri: registration_client_uri
+          registration_access_token: registration_access_token
+          token_endpoint_auth_method: client_secret_basic
+          userinfo_signed_response_alg: userinfo_signed_response_alg
+          authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          scope: scope1 scope-2 scope.3 scope:4
+          device_authorization_grant_refresh_token_lifespan: device_authorization_grant_refresh_token_lifespan
+          client_name: client_name
+          policy_uri: policy_uri
+          owner: owner
+          skip_consent: true
+          authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
+          grant_types:
+          - grant_types
+          - grant_types
+          subject_type: subject_type
+          skip_logout_consent: true
+          implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
+          client_secret_expires_at: 0
+          implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+          jwks_uri: jwks_uri
+          contacts:
+          - contacts
+          - contacts
         rp_initiated: true
         request_url: request_url
         requested_at: 2000-01-23T04:56:07.000+00:00
@@ -17721,6 +18622,7 @@ components:
         - userinfo_signed_response_alg
         - userinfo_signed_response_alg
         authorization_endpoint: https://playground.ory.sh/ory-hydra/public/oauth2/auth
+        device_authorization_endpoint: https://playground.ory.sh/ory-hydra/public/oauth2/device/oauth
         claims_supported:
         - claims_supported
         - claims_supported
@@ -17843,6 +18745,10 @@ components:
           items:
             $ref: '#/components/schemas/credentialSupportedDraft00'
           type: array
+        device_authorization_endpoint:
+          description: OAuth 2.0 Device Authorization Endpoint URL
+          example: https://playground.ory.sh/ory-hydra/public/oauth2/device/oauth
+          type: string
         end_session_endpoint:
           description: |-
             OpenID Connect End-Session Endpoint
@@ -18022,6 +18928,7 @@ components:
           type: array
       required:
       - authorization_endpoint
+      - device_authorization_endpoint
       - id_token_signed_response_alg
       - id_token_signing_alg_values_supported
       - issuer
@@ -18170,11 +19077,86 @@ components:
             \ the End-User's time zone. For example, Europe/Paris or America/Los_Angeles."
           type: string
       type: object
+    onboardingPortalLink:
+      example:
+        expires_at: 2000-01-23T04:56:07.000+00:00
+        project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        value: value
+        enable_sso: true
+      properties:
+        created_at:
+          description: The onboarding portal link's creation date
+          format: date-time
+          readOnly: true
+          type: string
+        enable_sso:
+          description: Feature flag to enable SSO configuration
+          type: boolean
+        expires_at:
+          description: The onboarding portal link's expiry date
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          description: The onboarding portal link's ID.
+          format: uuid
+          readOnly: true
+          type: string
+        organization_id:
+          description: The onboarding portal link's organization ID
+          format: uuid
+          readOnly: true
+          type: string
+        project_id:
+          description: The onboarding portal link's project ID
+          format: uuid
+          readOnly: true
+          type: string
+        value:
+          description: The onboarding portal link's value
+          readOnly: true
+          type: string
+      required:
+      - expires_at
+      - id
+      - organization_id
+      - project_id
+      - value
+      type: object
+    onboardingPortalOrganization:
+      properties:
+        base_url:
+          type: string
+        kratos_selfservice_methods_oidc_config_providers:
+          items:
+            $ref: '#/components/schemas/normalizedProjectRevisionThirdPartyProvider'
+          type: array
+        kratos_selfservice_methods_saml_config_providers:
+          items:
+            $ref: '#/components/schemas/normalizedProjectRevisionSAMLProvider'
+          type: array
+        organization_id:
+          description: Organization ID
+          format: uuid
+          type: string
+        organization_label:
+          description: Organization Label
+          type: string
+        revision_id:
+          format: uuid
+          type: string
+      required:
+      - base_url
+      - kratos_selfservice_methods_oidc_config_providers
+      - kratos_selfservice_methods_saml_config_providers
+      - revision_id
+      type: object
     organization:
       description: B2B SSO Organization
       example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         created_at: 2000-01-23T04:56:07.000+00:00
         domains:
         - domains
@@ -18183,9 +19165,7 @@ components:
         label: label
       properties:
         created_at:
-          description: The organization's creation date.
           format: date-time
-          readOnly: true
           type: string
         domains:
           items:
@@ -18200,63 +19180,41 @@ components:
         label:
           description: The organization's human-readable label.
           type: string
-        project_id:
-          description: The project's ID.
-          format: uuid
-          type: string
-        updated_at:
-          description: The last time the organization was updated.
-          format: date-time
-          readOnly: true
-          type: string
       required:
       - created_at
       - domains
       - id
       - label
-      - project_id
-      - updated_at
       type: object
-    pagination:
+    organizationOnboardingPortalLinksResponse:
+      example:
+        links:
+        - expires_at: 2000-01-23T04:56:07.000+00:00
+          project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          value: value
+          enable_sso: true
+        - expires_at: 2000-01-23T04:56:07.000+00:00
+          project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          value: value
+          enable_sso: true
       properties:
-        page_size:
-          default: 250
-          description: |-
-            Items per page
-
-            This is the number of items per page to return.
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-          format: int64
-          maximum: 1000
-          minimum: 1
-          type: integer
-        page_token:
-          default: "1"
-          description: |-
-            Next Page Token
-
-            The next page token.
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-          minimum: 1
-          type: string
+        links:
+          items:
+            $ref: '#/components/schemas/onboardingPortalLink'
+          type: array
+      required:
+      - links
       type: object
-    paginationHeaders:
-      properties:
-        link:
-          description: |-
-            The link header contains pagination links.
-
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-
-            in: header
-          type: string
-        x-total-count:
-          description: |-
-            The total number of clients.
-
-            in: header
-          type: string
-      type: object
+    organizations:
+      items:
+        $ref: '#/components/schemas/organization'
+      type: array
     patchIdentitiesBody:
       description: Patch Identities Body
       properties:
@@ -18344,6 +19302,17 @@ components:
         environment: prod
         home_region: eu-central
         name: name
+        organizations:
+        - domains:
+          - domains
+          - domains
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          label: label
+        - domains:
+          - domains
+          - domains
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          label: label
         cors_admin:
           origins:
           - origins
@@ -18419,6 +19388,14 @@ components:
         name:
           description: The name of the project.
           type: string
+        organizations:
+          description: |-
+            The organizations of the project.
+
+            Organizations are used to group users and enforce certain restrictions like usage of SSO.
+          items:
+            $ref: '#/components/schemas/basicOrganization'
+          type: array
         revision_id:
           description: The configuration revision ID.
           format: uuid
@@ -18455,6 +19432,7 @@ components:
       - home_region
       - id
       - name
+      - organizations
       - revision_id
       - services
       - slug
@@ -19164,6 +20142,13 @@ components:
             auto_link_policy AutoLinkPolicy
             scim_clients SCIMClients
             default_smtp_email_customization DefaultSMTPEmailCustomization
+            onboarding_portal OnboardingPortal
+            update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
+            update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
+            update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
+            update_self_service_verification_rate_limit_tier RateLimitTierUpdateSelfServiceVerification
+            identities_create_rate_limit_tier RateLimitTierIdentitiesCreate
+            identities_import_rate_limit_tier RateLimitTierIdentitiesImport
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -19203,6 +20188,13 @@ components:
           - auto_link_policy
           - scim_clients
           - default_smtp_email_customization
+          - onboarding_portal
+          - update_self_service_registration_rate_limit_tier
+          - update_self_service_recovery_rate_limit_tier
+          - update_self_service_settings_rate_limit_tier
+          - update_self_service_verification_rate_limit_tier
+          - identities_create_rate_limit_tier
+          - identities_import_rate_limit_tier
           - data_location_regional
           - rate_limit_tier
           - session_rate_limit_tier
@@ -19243,6 +20235,13 @@ components:
             auto_link_policy AutoLinkPolicy
             scim_clients SCIMClients
             default_smtp_email_customization DefaultSMTPEmailCustomization
+            onboarding_portal OnboardingPortal
+            update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
+            update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
+            update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
+            update_self_service_verification_rate_limit_tier RateLimitTierUpdateSelfServiceVerification
+            identities_create_rate_limit_tier RateLimitTierIdentitiesCreate
+            identities_import_rate_limit_tier RateLimitTierIdentitiesImport
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -19337,7 +20336,7 @@ components:
               type: text
               required: true
               onload: onload
-              node_type: text
+              node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
               disabled: true
@@ -19373,7 +20372,7 @@ components:
               type: text
               required: true
               onload: onload
-              node_type: text
+              node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
               disabled: true
@@ -19561,47 +20560,28 @@ components:
           challenge: challenge
           client:
             metadata: "{}"
-            token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
-            client_uri: client_uri
-            jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
-            jwks: ""
             logo_uri: logo_uri
-            created_at: 2000-01-23T04:56:07.000+00:00
-            registration_client_uri: registration_client_uri
             allowed_cors_origins:
             - allowed_cors_origins
             - allowed_cors_origins
             refresh_token_grant_access_token_lifespan: refresh_token_grant_access_token_lifespan
-            registration_access_token: registration_access_token
             client_id: client_id
-            token_endpoint_auth_method: client_secret_basic
-            userinfo_signed_response_alg: userinfo_signed_response_alg
-            authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
             authorization_code_grant_refresh_token_lifespan: authorization_code_grant_refresh_token_lifespan
             client_credentials_grant_access_token_lifespan: client_credentials_grant_access_token_lifespan
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            scope: scope1 scope-2 scope.3 scope:4
             request_uris:
             - request_uris
             - request_uris
             client_secret: client_secret
             backchannel_logout_session_required: true
             backchannel_logout_uri: backchannel_logout_uri
-            client_name: client_name
-            policy_uri: policy_uri
-            owner: owner
-            skip_consent: true
             audience:
             - audience
             - audience
-            authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
             post_logout_redirect_uris:
             - post_logout_redirect_uris
             - post_logout_redirect_uris
-            grant_types:
-            - grant_types
-            - grant_types
-            subject_type: subject_type
+            device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
+            device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
             refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
             redirect_uris:
             - redirect_uris
@@ -19609,21 +20589,82 @@ components:
             sector_identifier_uri: sector_identifier_uri
             frontchannel_logout_session_required: true
             frontchannel_logout_uri: frontchannel_logout_uri
-            skip_logout_consent: true
             refresh_token_grant_id_token_lifespan: refresh_token_grant_id_token_lifespan
-            implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
-            client_secret_expires_at: 0
-            implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
             access_token_strategy: access_token_strategy
-            jwks_uri: jwks_uri
             request_object_signing_alg: request_object_signing_alg
             tos_uri: tos_uri
-            contacts:
-            - contacts
-            - contacts
             response_types:
             - response_types
             - response_types
+            token_endpoint_auth_signing_alg: token_endpoint_auth_signing_alg
+            client_uri: client_uri
+            jwt_bearer_grant_access_token_lifespan: jwt_bearer_grant_access_token_lifespan
+            jwks:
+              keys:
+              - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+                e: AQAB
+                crv: P-256
+                use: sig
+                kid: 1603dfe0af8f4596
+                x5c:
+                - x5c
+                - x5c
+                k: GawgguFyGrWKav7AX4VKUg
+                dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+                dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+                "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+                p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+                kty: RSA
+                q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+                qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+                x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+                "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+                alg: RS256
+              - d: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+                e: AQAB
+                crv: P-256
+                use: sig
+                kid: 1603dfe0af8f4596
+                x5c:
+                - x5c
+                - x5c
+                k: GawgguFyGrWKav7AX4VKUg
+                dp: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+                dq: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+                "n": vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+                p: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+                kty: RSA
+                q: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+                qi: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+                x: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+                "y": x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+                alg: RS256
+            created_at: 2000-01-23T04:56:07.000+00:00
+            registration_client_uri: registration_client_uri
+            registration_access_token: registration_access_token
+            token_endpoint_auth_method: client_secret_basic
+            userinfo_signed_response_alg: userinfo_signed_response_alg
+            authorization_code_grant_id_token_lifespan: authorization_code_grant_id_token_lifespan
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            scope: scope1 scope-2 scope.3 scope:4
+            device_authorization_grant_refresh_token_lifespan: device_authorization_grant_refresh_token_lifespan
+            client_name: client_name
+            policy_uri: policy_uri
+            owner: owner
+            skip_consent: true
+            authorization_code_grant_access_token_lifespan: authorization_code_grant_access_token_lifespan
+            grant_types:
+            - grant_types
+            - grant_types
+            subject_type: subject_type
+            skip_logout_consent: true
+            implicit_grant_id_token_lifespan: implicit_grant_id_token_lifespan
+            client_secret_expires_at: 0
+            implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
+            jwks_uri: jwks_uri
+            contacts:
+            - contacts
+            - contacts
           session_id: session_id
           skip: true
           request_url: request_url
@@ -19662,7 +20703,7 @@ components:
               type: text
               required: true
               onload: onload
-              node_type: text
+              node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
               disabled: true
@@ -19698,7 +20739,7 @@ components:
               type: text
               required: true
               onload: onload
-              node_type: text
+              node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
               disabled: true
@@ -20280,6 +21321,24 @@ components:
       - topic_arn
       - type
       type: object
+    setOrganizationFromOnboardingPortalLinkBody:
+      properties:
+        kratos_selfservice_methods_oidc_config_providers:
+          items:
+            $ref: '#/components/schemas/normalizedProjectRevisionThirdPartyProvider'
+          type: array
+        kratos_selfservice_methods_saml_config_providers:
+          items:
+            $ref: '#/components/schemas/normalizedProjectRevisionSAMLProvider'
+          type: array
+        revision_id:
+          format: uuid
+          type: string
+      required:
+      - kratos_selfservice_methods_oidc_config_providers
+      - kratos_selfservice_methods_saml_config_providers
+      - revision_id
+      type: object
     setProject:
       properties:
         cors_admin:
@@ -20289,12 +21348,18 @@ components:
         name:
           description: The name of the project.
           type: string
+        organizations:
+          description: The organizations that are part of this project.
+          items:
+            $ref: '#/components/schemas/basicOrganization'
+          type: array
         services:
           $ref: '#/components/schemas/projectServices'
       required:
       - cors_admin
       - cors_public
       - name
+      - organizations
       - services
       type: object
     setProjectBrandingThemeBody:
@@ -20359,7 +21424,7 @@ components:
               type: text
               required: true
               onload: onload
-              node_type: text
+              node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
               disabled: true
@@ -20395,7 +21460,7 @@ components:
               type: text
               required: true
               onload: onload
-              node_type: text
+              node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
               disabled: true
@@ -21000,6 +22065,17 @@ components:
           environment: prod
           home_region: eu-central
           name: name
+          organizations:
+          - domains:
+            - domains
+            - domains
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            label: label
+          - domains:
+            - domains
+            - domains
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            label: label
           cors_admin:
             origins:
             - origins
@@ -21291,7 +22367,7 @@ components:
             type: text
             required: true
             onload: onload
-            node_type: text
+            node_type: input
             onloadTrigger: oryWebAuthnRegistration
             name: name
             disabled: true
@@ -21327,7 +22403,7 @@ components:
             type: text
             required: true
             onload: onload
-            node_type: text
+            node_type: input
             onloadTrigger: oryWebAuthnRegistration
             name: name
             disabled: true
@@ -21400,7 +22476,7 @@ components:
           type: text
           required: true
           onload: onload
-          node_type: text
+          node_type: input
           onloadTrigger: oryWebAuthnRegistration
           name: name
           disabled: true
@@ -21516,12 +22592,7 @@ components:
             script Script
             div Division
           enum:
-          - text
-          - input
-          - img
           - a
-          - script
-          - div
           type: string
           x-go-enum-desc: |-
             text Text
@@ -21562,7 +22633,7 @@ components:
         a hook in the DOM / view.
       properties:
         class:
-          description: The script MIME type
+          description: A classname that should be rendered into the DOM.
           type: string
         data:
           additionalProperties:
@@ -21577,7 +22648,7 @@ components:
           type: string
         node_type:
           description: |-
-            NodeType represents this node's types. It is a mirror of `node.type` and
+            NodeType represents this node's type. It is a mirror of `node.type` and
             is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is "script".
             text Text
             input Input
@@ -21586,11 +22657,6 @@ components:
             script Script
             div Division
           enum:
-          - text
-          - input
-          - img
-          - a
-          - script
           - div
           type: string
           x-go-enum-desc: |-
@@ -21625,12 +22691,7 @@ components:
             script Script
             div Division
           enum:
-          - text
-          - input
           - img
-          - a
-          - script
-          - div
           type: string
           x-go-enum-desc: |-
             text Text
@@ -21673,7 +22734,7 @@ components:
         type: text
         required: true
         onload: onload
-        node_type: text
+        node_type: input
         onloadTrigger: oryWebAuthnRegistration
         name: name
         disabled: true
@@ -21729,12 +22790,7 @@ components:
             script Script
             div Division
           enum:
-          - text
           - input
-          - img
-          - a
-          - script
-          - div
           type: string
           x-go-enum-desc: |-
             text Text
@@ -21906,12 +22962,7 @@ components:
             script Script
             div Division
           enum:
-          - text
-          - input
-          - img
-          - a
           - script
-          - div
           type: string
           x-go-enum-desc: |-
             text Text
@@ -21966,11 +23017,6 @@ components:
             div Division
           enum:
           - text
-          - input
-          - img
-          - a
-          - script
-          - div
           type: string
           x-go-enum-desc: |-
             text Text
@@ -22344,6 +23390,17 @@ components:
       required:
       - identifier
       - method
+      type: object
+    updateOrganizationOnboardingPortalLinkBody:
+      properties:
+        enable_sso:
+          description: Feature flag to enable SSO configuration
+          type: boolean
+        expires_at:
+          format: date-time
+          type: string
+      required:
+      - enable_sso
       type: object
     updateRecoveryFlowBody:
       description: Update Recovery Flow Request Body
@@ -23258,7 +24315,7 @@ components:
               type: text
               required: true
               onload: onload
-              node_type: text
+              node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
               disabled: true
@@ -23294,7 +24351,7 @@ components:
               type: text
               required: true
               onload: onload
-              node_type: text
+              node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
               disabled: true
@@ -23385,6 +24442,39 @@ components:
       - passed_challenge
       title: Verification flow state (experimental)
       type: string
+    verifyUserCodeRequest:
+      properties:
+        challenge:
+          description: |-
+            ID is the identifier ("device challenge") of the device request. It is used to
+            identify the session.
+          type: string
+        client:
+          $ref: '#/components/schemas/oAuth2Client'
+        device_code_request_id:
+          type: string
+        handled_at:
+          format: date-time
+          title: NullTime implements sql.NullTime functionality.
+          type: string
+        request_url:
+          description: RequestURL is the original Device Authorization URL requested.
+          type: string
+        requested_access_token_audience:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        requested_scope:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+      title: HandledDeviceUserAuthRequest is the request payload used to accept a
+        device user_code.
+      type: object
     version:
       properties:
         version:

@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**AcceptOAuth2ConsentRequest**](OAuth2API.md#AcceptOAuth2ConsentRequest) | **Put** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request
 [**AcceptOAuth2LoginRequest**](OAuth2API.md#AcceptOAuth2LoginRequest) | **Put** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request
 [**AcceptOAuth2LogoutRequest**](OAuth2API.md#AcceptOAuth2LogoutRequest) | **Put** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request
+[**AcceptUserCodeRequest**](OAuth2API.md#AcceptUserCodeRequest) | **Put** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request
 [**CreateOAuth2Client**](OAuth2API.md#CreateOAuth2Client) | **Post** /admin/clients | Create OAuth 2.0 Client
 [**DeleteOAuth2Client**](OAuth2API.md#DeleteOAuth2Client) | **Delete** /admin/clients/{id} | Delete OAuth 2.0 Client
 [**DeleteOAuth2Token**](OAuth2API.md#DeleteOAuth2Token) | **Delete** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
@@ -21,8 +22,10 @@ Method | HTTP request | Description
 [**ListOAuth2ConsentSessions**](OAuth2API.md#ListOAuth2ConsentSessions) | **Get** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject
 [**ListTrustedOAuth2JwtGrantIssuers**](OAuth2API.md#ListTrustedOAuth2JwtGrantIssuers) | **Get** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers
 [**OAuth2Authorize**](OAuth2API.md#OAuth2Authorize) | **Get** /oauth2/auth | OAuth 2.0 Authorize Endpoint
+[**OAuth2DeviceFlow**](OAuth2API.md#OAuth2DeviceFlow) | **Post** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint
 [**Oauth2TokenExchange**](OAuth2API.md#Oauth2TokenExchange) | **Post** /oauth2/token | The OAuth 2.0 Token Endpoint
 [**PatchOAuth2Client**](OAuth2API.md#PatchOAuth2Client) | **Patch** /admin/clients/{id} | Patch OAuth 2.0 Client
+[**PerformOAuth2DeviceVerificationFlow**](OAuth2API.md#PerformOAuth2DeviceVerificationFlow) | **Get** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint
 [**RejectOAuth2ConsentRequest**](OAuth2API.md#RejectOAuth2ConsentRequest) | **Put** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request
 [**RejectOAuth2LoginRequest**](OAuth2API.md#RejectOAuth2LoginRequest) | **Put** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request
 [**RejectOAuth2LogoutRequest**](OAuth2API.md#RejectOAuth2LogoutRequest) | **Put** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request
@@ -230,6 +233,74 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AcceptUserCodeRequest
+
+> OAuth2RedirectTo AcceptUserCodeRequest(ctx).DeviceChallenge(deviceChallenge).AcceptDeviceUserCodeRequest(acceptDeviceUserCodeRequest).Execute()
+
+Accepts a device grant user_code request
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	deviceChallenge := "deviceChallenge_example" // string | 
+	acceptDeviceUserCodeRequest := *openapiclient.NewAcceptDeviceUserCodeRequest() // AcceptDeviceUserCodeRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OAuth2API.AcceptUserCodeRequest(context.Background()).DeviceChallenge(deviceChallenge).AcceptDeviceUserCodeRequest(acceptDeviceUserCodeRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.AcceptUserCodeRequest``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcceptUserCodeRequest`: OAuth2RedirectTo
+	fmt.Fprintf(os.Stdout, "Response from `OAuth2API.AcceptUserCodeRequest`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAcceptUserCodeRequestRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceChallenge** | **string** |  | 
+ **acceptDeviceUserCodeRequest** | [**AcceptDeviceUserCodeRequest**](AcceptDeviceUserCodeRequest.md) |  | 
+
+### Return type
+
+[**OAuth2RedirectTo**](OAuth2RedirectTo.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -931,7 +1002,7 @@ import (
 
 func main() {
 	pageSize := int64(789) // int64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
-	pageToken := "pageToken_example" // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to "1")
+	pageToken := "pageToken_example" // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
 	clientName := "clientName_example" // string | The name of the clients to filter by. (optional)
 	owner := "owner_example" // string | The owner of the clients to filter by. (optional)
 
@@ -959,7 +1030,7 @@ Other parameters are passed through a pointer to a apiListOAuth2ClientsRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int64** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [default to 250]
- **pageToken** | **string** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [default to &quot;1&quot;]
+ **pageToken** | **string** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | 
  **clientName** | **string** | The name of the clients to filter by. | 
  **owner** | **string** | The owner of the clients to filter by. | 
 
@@ -1055,7 +1126,7 @@ Name | Type | Description  | Notes
 
 ## ListTrustedOAuth2JwtGrantIssuers
 
-> []TrustedOAuth2JwtGrantIssuer ListTrustedOAuth2JwtGrantIssuers(ctx).MaxItems(maxItems).DefaultItems(defaultItems).Issuer(issuer).Execute()
+> []TrustedOAuth2JwtGrantIssuer ListTrustedOAuth2JwtGrantIssuers(ctx).PageSize(pageSize).PageToken(pageToken).Issuer(issuer).Execute()
 
 List Trusted OAuth2 JWT Bearer Grant Type Issuers
 
@@ -1074,13 +1145,13 @@ import (
 )
 
 func main() {
-	maxItems := int64(789) // int64 |  (optional)
-	defaultItems := int64(789) // int64 |  (optional)
+	pageSize := int64(789) // int64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+	pageToken := "pageToken_example" // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
 	issuer := "issuer_example" // string | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OAuth2API.ListTrustedOAuth2JwtGrantIssuers(context.Background()).MaxItems(maxItems).DefaultItems(defaultItems).Issuer(issuer).Execute()
+	resp, r, err := apiClient.OAuth2API.ListTrustedOAuth2JwtGrantIssuers(context.Background()).PageSize(pageSize).PageToken(pageToken).Issuer(issuer).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.ListTrustedOAuth2JwtGrantIssuers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1101,8 +1172,8 @@ Other parameters are passed through a pointer to a apiListTrustedOAuth2JwtGrantI
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **maxItems** | **int64** |  | 
- **defaultItems** | **int64** |  | 
+ **pageSize** | **int64** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [default to 250]
+ **pageToken** | **string** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | 
  **issuer** | **string** | If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | 
 
 ### Return type
@@ -1169,6 +1240,67 @@ Other parameters are passed through a pointer to a apiOAuth2AuthorizeRequest str
 ### Return type
 
 [**ErrorOAuth2**](ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OAuth2DeviceFlow
+
+> DeviceAuthorization OAuth2DeviceFlow(ctx).Execute()
+
+The OAuth 2.0 Device Authorize Endpoint
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OAuth2API.OAuth2DeviceFlow(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.OAuth2DeviceFlow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OAuth2DeviceFlow`: DeviceAuthorization
+	fmt.Fprintf(os.Stdout, "Response from `OAuth2API.OAuth2DeviceFlow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOAuth2DeviceFlowRequest struct via the builder pattern
+
+
+### Return type
+
+[**DeviceAuthorization**](DeviceAuthorization.md)
 
 ### Authorization
 
@@ -1323,6 +1455,67 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PerformOAuth2DeviceVerificationFlow
+
+> ErrorOAuth2 PerformOAuth2DeviceVerificationFlow(ctx).Execute()
+
+OAuth 2.0 Device Verification Endpoint
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OAuth2API.PerformOAuth2DeviceVerificationFlow(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.PerformOAuth2DeviceVerificationFlow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PerformOAuth2DeviceVerificationFlow`: ErrorOAuth2
+	fmt.Fprintf(os.Stdout, "Response from `OAuth2API.PerformOAuth2DeviceVerificationFlow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPerformOAuth2DeviceVerificationFlowRequest struct via the builder pattern
+
+
+### Return type
+
+[**ErrorOAuth2**](ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

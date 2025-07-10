@@ -121,6 +121,45 @@ defmodule Ory.Api.OAuth2 do
   end
 
   @doc """
+  Accepts a device grant user_code request
+  Accepts a device grant user_code request
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `device_challenge` (String.t): 
+  - `opts` (keyword): Optional parameters
+    - `:body` (AcceptDeviceUserCodeRequest): 
+
+  ### Returns
+
+  - `{:ok, Ory.Model.OAuth2RedirectTo.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec accept_user_code_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2RedirectTo.t} | {:error, Tesla.Env.t}
+  def accept_user_code_request(connection, device_challenge, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:put)
+      |> url("/admin/oauth2/auth/requests/device/accept")
+      |> add_param(:query, :device_challenge, device_challenge)
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.OAuth2RedirectTo},
+      {:default, Ory.Model.ErrorOAuth2}
+    ])
+  end
+
+  @doc """
   Create OAuth 2.0 Client
   Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
 
@@ -538,8 +577,8 @@ defmodule Ory.Api.OAuth2 do
 
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:MaxItems` (integer()): 
-    - `:DefaultItems` (integer()): 
+    - `:page_size` (integer()): Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    - `:page_token` (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     - `:issuer` (String.t): If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned.
 
   ### Returns
@@ -550,8 +589,8 @@ defmodule Ory.Api.OAuth2 do
   @spec list_trusted_o_auth2_jwt_grant_issuers(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, [Ory.Model.TrustedOAuth2JwtGrantIssuer.t]} | {:error, Tesla.Env.t}
   def list_trusted_o_auth2_jwt_grant_issuers(connection, opts \\ []) do
     optional_params = %{
-      :MaxItems => :query,
-      :DefaultItems => :query,
+      :page_size => :query,
+      :page_token => :query,
       :issuer => :query
     }
 
@@ -596,6 +635,37 @@ defmodule Ory.Api.OAuth2 do
     |> Connection.request(request)
     |> evaluate_response([
       {302, false},
+      {:default, Ory.Model.ErrorOAuth2}
+    ])
+  end
+
+  @doc """
+  The OAuth 2.0 Device Authorize Endpoint
+  This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.DeviceAuthorization.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec o_auth2_device_flow(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.DeviceAuthorization.t} | {:error, Tesla.Env.t}
+  def o_auth2_device_flow(connection, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/oauth2/device/auth")
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.DeviceAuthorization},
       {:default, Ory.Model.ErrorOAuth2}
     ])
   end
@@ -674,6 +744,36 @@ defmodule Ory.Api.OAuth2 do
     |> evaluate_response([
       {200, Ory.Model.OAuth2Client},
       {404, Ory.Model.ErrorOAuth2},
+      {:default, Ory.Model.ErrorOAuth2}
+    ])
+  end
+
+  @doc """
+  OAuth 2.0 Device Verification Endpoint
+  This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.ErrorOAuth2.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec perform_o_auth2_device_verification_flow(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorOAuth2.t} | {:error, Tesla.Env.t}
+  def perform_o_auth2_device_verification_flow(connection, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/oauth2/device/verify")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {302, false},
       {:default, Ory.Model.ErrorOAuth2}
     ])
   end

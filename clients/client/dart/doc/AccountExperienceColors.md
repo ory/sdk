@@ -8,6 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**axBackgroundDefault** | **String** |  | [optional] 
 **brand100** | **String** |  | [optional] 
 **brand200** | **String** |  | [optional] 
 **brand300** | **String** |  | [optional] 

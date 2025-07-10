@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/api_util.dart';
+import 'package:ory_client/src/model/create_organization_onboarding_portal_link_body.dart';
 import 'package:ory_client/src/model/create_project_api_key_request.dart';
 import 'package:ory_client/src/model/create_project_body.dart';
 import 'package:ory_client/src/model/error_generic.dart';
@@ -17,14 +18,17 @@ import 'package:ory_client/src/model/generic_error.dart';
 import 'package:ory_client/src/model/get_organization_response.dart';
 import 'package:ory_client/src/model/json_patch.dart';
 import 'package:ory_client/src/model/list_organizations_response.dart';
+import 'package:ory_client/src/model/onboarding_portal_link.dart';
 import 'package:ory_client/src/model/organization.dart';
 import 'package:ory_client/src/model/organization_body.dart';
+import 'package:ory_client/src/model/organization_onboarding_portal_links_response.dart';
 import 'package:ory_client/src/model/project.dart';
 import 'package:ory_client/src/model/project_api_key.dart';
 import 'package:ory_client/src/model/project_member.dart';
 import 'package:ory_client/src/model/project_metadata.dart';
 import 'package:ory_client/src/model/set_project.dart';
 import 'package:ory_client/src/model/successful_project_update.dart';
+import 'package:ory_client/src/model/update_organization_onboarding_portal_link_body.dart';
 
 class ProjectApi {
 
@@ -126,6 +130,111 @@ class ProjectApi {
     }
 
     return Response<Organization>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Create organization onboarding portal link
+  /// Create a onboarding portal link for an organization.
+  ///
+  /// Parameters:
+  /// * [projectId] - Project ID  The project's ID.
+  /// * [organizationId] - Organization ID  The Organization's ID.
+  /// * [createOrganizationOnboardingPortalLinkBody] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [OnboardingPortalLink] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<OnboardingPortalLink>> createOrganizationOnboardingPortalLink({ 
+    required String projectId,
+    required String organizationId,
+    CreateOrganizationOnboardingPortalLinkBody? createOrganizationOnboardingPortalLinkBody,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/projects/{project_id}/organizations/{organization_id}/onboarding-portal-links'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString()).replaceAll('{' r'organization_id' '}', encodeQueryParameter(_serializers, organizationId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryWorkspaceApiKey',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(CreateOrganizationOnboardingPortalLinkBody);
+      _bodyData = createOrganizationOnboardingPortalLinkBody == null ? null : _serializers.serialize(createOrganizationOnboardingPortalLinkBody, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    OnboardingPortalLink? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OnboardingPortalLink),
+      ) as OnboardingPortalLink;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<OnboardingPortalLink>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -396,6 +505,63 @@ class ProjectApi {
     return _response;
   }
 
+  /// Delete an organization onboarding portal link
+  /// Deletes a onboarding portal link for an organization.
+  ///
+  /// Parameters:
+  /// * [projectId] 
+  /// * [organizationId] 
+  /// * [onboardingPortalLinkId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future]
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<void>> deleteOrganizationOnboardingPortalLink({ 
+    required String projectId,
+    required String organizationId,
+    required String onboardingPortalLinkId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id}'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString()).replaceAll('{' r'organization_id' '}', encodeQueryParameter(_serializers, organizationId, const FullType(String)).toString()).replaceAll('{' r'onboarding_portal_link_id' '}', encodeQueryParameter(_serializers, onboardingPortalLinkId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'DELETE',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryWorkspaceApiKey',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    return _response;
+  }
+
   /// Delete project API key
   /// Deletes an API key and immediately removes it.
   ///
@@ -523,6 +689,89 @@ class ProjectApi {
     }
 
     return Response<GetOrganizationResponse>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Get the organization onboarding portal links
+  /// Retrieves the organization onboarding portal links.
+  ///
+  /// Parameters:
+  /// * [projectId] - Project ID  The project's ID.
+  /// * [organizationId] - Organization ID  The Organization's ID.
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [OrganizationOnboardingPortalLinksResponse] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<OrganizationOnboardingPortalLinksResponse>> getOrganizationOnboardingPortalLinks({ 
+    required String projectId,
+    required String organizationId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/projects/{project_id}/organizations/{organization_id}/onboarding-portal-links'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString()).replaceAll('{' r'organization_id' '}', encodeQueryParameter(_serializers, organizationId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryWorkspaceApiKey',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    OrganizationOnboardingPortalLinksResponse? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OrganizationOnboardingPortalLinksResponse),
+      ) as OrganizationOnboardingPortalLinksResponse;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<OrganizationOnboardingPortalLinksResponse>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -1463,6 +1712,113 @@ class ProjectApi {
     }
 
     return Response<Organization>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Update organization onboarding portal link
+  /// Update a onboarding portal link for an organization.
+  ///
+  /// Parameters:
+  /// * [projectId] - Project ID  The project's ID.
+  /// * [organizationId] - Organization ID  The Organization's ID.
+  /// * [onboardingPortalLinkId] 
+  /// * [updateOrganizationOnboardingPortalLinkBody] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [OnboardingPortalLink] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<OnboardingPortalLink>> updateOrganizationOnboardingPortalLink({ 
+    required String projectId,
+    required String organizationId,
+    required String onboardingPortalLinkId,
+    UpdateOrganizationOnboardingPortalLinkBody? updateOrganizationOnboardingPortalLinkBody,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id}'.replaceAll('{' r'project_id' '}', encodeQueryParameter(_serializers, projectId, const FullType(String)).toString()).replaceAll('{' r'organization_id' '}', encodeQueryParameter(_serializers, organizationId, const FullType(String)).toString()).replaceAll('{' r'onboarding_portal_link_id' '}', encodeQueryParameter(_serializers, onboardingPortalLinkId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'oryWorkspaceApiKey',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(UpdateOrganizationOnboardingPortalLinkBody);
+      _bodyData = updateOrganizationOnboardingPortalLinkBody == null ? null : _serializers.serialize(updateOrganizationOnboardingPortalLinkBody, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    OnboardingPortalLink? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(OnboardingPortalLink),
+      ) as OnboardingPortalLink;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<OnboardingPortalLink>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

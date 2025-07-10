@@ -7,6 +7,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**accept_o_auth2_consent_request**](OAuth2Api.md#accept_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request |
 | [**accept_o_auth2_login_request**](OAuth2Api.md#accept_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request |
 | [**accept_o_auth2_logout_request**](OAuth2Api.md#accept_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request |
+| [**accept_user_code_request**](OAuth2Api.md#accept_user_code_request) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request |
 | [**create_o_auth2_client**](OAuth2Api.md#create_o_auth2_client) | **POST** /admin/clients | Create OAuth 2.0 Client |
 | [**delete_o_auth2_client**](OAuth2Api.md#delete_o_auth2_client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client |
 | [**delete_o_auth2_token**](OAuth2Api.md#delete_o_auth2_token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client |
@@ -21,8 +22,10 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**list_o_auth2_consent_sessions**](OAuth2Api.md#list_o_auth2_consent_sessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject |
 | [**list_trusted_o_auth2_jwt_grant_issuers**](OAuth2Api.md#list_trusted_o_auth2_jwt_grant_issuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers |
 | [**o_auth2_authorize**](OAuth2Api.md#o_auth2_authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint |
+| [**o_auth2_device_flow**](OAuth2Api.md#o_auth2_device_flow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint |
 | [**oauth2_token_exchange**](OAuth2Api.md#oauth2_token_exchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint |
 | [**patch_o_auth2_client**](OAuth2Api.md#patch_o_auth2_client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client |
+| [**perform_o_auth2_device_verification_flow**](OAuth2Api.md#perform_o_auth2_device_verification_flow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint |
 | [**reject_o_auth2_consent_request**](OAuth2Api.md#reject_o_auth2_consent_request) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request |
 | [**reject_o_auth2_login_request**](OAuth2Api.md#reject_o_auth2_login_request) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request |
 | [**reject_o_auth2_logout_request**](OAuth2Api.md#reject_o_auth2_logout_request) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request |
@@ -246,6 +249,79 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## accept_user_code_request
+
+> <OAuth2RedirectTo> accept_user_code_request(device_challenge, opts)
+
+Accepts a device grant user_code request
+
+Accepts a device grant user_code request
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::OAuth2Api.new
+device_challenge = 'device_challenge_example' # String | 
+opts = {
+  accept_device_user_code_request: OryClient::AcceptDeviceUserCodeRequest.new # AcceptDeviceUserCodeRequest | 
+}
+
+begin
+  # Accepts a device grant user_code request
+  result = api_instance.accept_user_code_request(device_challenge, opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling OAuth2Api->accept_user_code_request: #{e}"
+end
+```
+
+#### Using the accept_user_code_request_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OAuth2RedirectTo>, Integer, Hash)> accept_user_code_request_with_http_info(device_challenge, opts)
+
+```ruby
+begin
+  # Accepts a device grant user_code request
+  data, status_code, headers = api_instance.accept_user_code_request_with_http_info(device_challenge, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OAuth2RedirectTo>
+rescue OryClient::ApiError => e
+  puts "Error when calling OAuth2Api->accept_user_code_request_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **device_challenge** | **String** |  |  |
+| **accept_device_user_code_request** | [**AcceptDeviceUserCodeRequest**](AcceptDeviceUserCodeRequest.md) |  | [optional] |
+
+### Return type
+
+[**OAuth2RedirectTo**](OAuth2RedirectTo.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 
@@ -999,7 +1075,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **page_size** | **Integer** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to 250] |
-| **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to &#39;1&#39;] |
+| **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **client_name** | **String** | The name of the clients to filter by. | [optional] |
 | **owner** | **String** | The owner of the clients to filter by. | [optional] |
 
@@ -1115,8 +1191,8 @@ end
 
 api_instance = OryClient::OAuth2Api.new
 opts = {
-  max_items: 789, # Integer | 
-  default_items: 789, # Integer | 
+  page_size: 789, # Integer | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  page_token: 'page_token_example', # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   issuer: 'issuer_example' # String | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned.
 }
 
@@ -1151,8 +1227,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **max_items** | **Integer** |  | [optional] |
-| **default_items** | **Integer** |  | [optional] |
+| **page_size** | **Integer** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to 250] |
+| **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **issuer** | **String** | If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional] |
 
 ### Return type
@@ -1219,6 +1295,67 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ErrorOAuth2**](ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## o_auth2_device_flow
+
+> <DeviceAuthorization> o_auth2_device_flow
+
+The OAuth 2.0 Device Authorize Endpoint
+
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exists.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+
+api_instance = OryClient::OAuth2Api.new
+
+begin
+  # The OAuth 2.0 Device Authorize Endpoint
+  result = api_instance.o_auth2_device_flow
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling OAuth2Api->o_auth2_device_flow: #{e}"
+end
+```
+
+#### Using the o_auth2_device_flow_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<DeviceAuthorization>, Integer, Hash)> o_auth2_device_flow_with_http_info
+
+```ruby
+begin
+  # The OAuth 2.0 Device Authorize Endpoint
+  data, status_code, headers = api_instance.o_auth2_device_flow_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <DeviceAuthorization>
+rescue OryClient::ApiError => e
+  puts "Error when calling OAuth2Api->o_auth2_device_flow_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DeviceAuthorization**](DeviceAuthorization.md)
 
 ### Authorization
 
@@ -1381,6 +1518,67 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## perform_o_auth2_device_verification_flow
+
+> <ErrorOAuth2> perform_o_auth2_device_verification_flow
+
+OAuth 2.0 Device Verification Endpoint
+
+This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+
+api_instance = OryClient::OAuth2Api.new
+
+begin
+  # OAuth 2.0 Device Verification Endpoint
+  result = api_instance.perform_o_auth2_device_verification_flow
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling OAuth2Api->perform_o_auth2_device_verification_flow: #{e}"
+end
+```
+
+#### Using the perform_o_auth2_device_verification_flow_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ErrorOAuth2>, Integer, Hash)> perform_o_auth2_device_verification_flow_with_http_info
+
+```ruby
+begin
+  # OAuth 2.0 Device Verification Endpoint
+  data, status_code, headers = api_instance.perform_o_auth2_device_verification_flow_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ErrorOAuth2>
+rescue OryClient::ApiError => e
+  puts "Error when calling OAuth2Api->perform_o_auth2_device_verification_flow_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ErrorOAuth2**](ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.20.11
+API version: v1.20.22
 Contact: support@ory.sh
 */
 
@@ -30,6 +30,8 @@ type OAuth2ConsentRequest struct {
 	// ConsentRequestID is the ID of the consent request.
 	ConsentRequestId *string `json:"consent_request_id,omitempty"`
 	Context map[string]interface{} `json:"context,omitempty"`
+	// DeviceChallenge is the device challenge this consent challenge belongs to, if this flow was initiated by a device.
+	DeviceChallengeId *string `json:"device_challenge_id,omitempty"`
 	// LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate a login and consent request in the login & consent app.
 	LoginChallenge *string `json:"login_challenge,omitempty"`
 	// LoginSessionID is the login session ID. If the user-agent reuses a login session (via cookie / remember flag) this ID will remain the same. If the user-agent did not have an existing authentication session (e.g. remember is false) this will be a new random value. This value is used as the \"sid\" parameter in the ID Token and in OIDC Front-/Back- channel logout. It's value can generally be used to associate consecutive login requests by a certain user.
@@ -248,6 +250,38 @@ func (o *OAuth2ConsentRequest) HasContext() bool {
 // SetContext gets a reference to the given map[string]interface{} and assigns it to the Context field.
 func (o *OAuth2ConsentRequest) SetContext(v map[string]interface{}) {
 	o.Context = v
+}
+
+// GetDeviceChallengeId returns the DeviceChallengeId field value if set, zero value otherwise.
+func (o *OAuth2ConsentRequest) GetDeviceChallengeId() string {
+	if o == nil || IsNil(o.DeviceChallengeId) {
+		var ret string
+		return ret
+	}
+	return *o.DeviceChallengeId
+}
+
+// GetDeviceChallengeIdOk returns a tuple with the DeviceChallengeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OAuth2ConsentRequest) GetDeviceChallengeIdOk() (*string, bool) {
+	if o == nil || IsNil(o.DeviceChallengeId) {
+		return nil, false
+	}
+	return o.DeviceChallengeId, true
+}
+
+// HasDeviceChallengeId returns a boolean if a field has been set.
+func (o *OAuth2ConsentRequest) HasDeviceChallengeId() bool {
+	if o != nil && !IsNil(o.DeviceChallengeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceChallengeId gets a reference to the given string and assigns it to the DeviceChallengeId field.
+func (o *OAuth2ConsentRequest) SetDeviceChallengeId(v string) {
+	o.DeviceChallengeId = &v
 }
 
 // GetLoginChallenge returns the LoginChallenge field value if set, zero value otherwise.
@@ -532,6 +566,9 @@ func (o OAuth2ConsentRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Context) {
 		toSerialize["context"] = o.Context
 	}
+	if !IsNil(o.DeviceChallengeId) {
+		toSerialize["device_challenge_id"] = o.DeviceChallengeId
+	}
 	if !IsNil(o.LoginChallenge) {
 		toSerialize["login_challenge"] = o.LoginChallenge
 	}
@@ -605,6 +642,7 @@ func (o *OAuth2ConsentRequest) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "client")
 		delete(additionalProperties, "consent_request_id")
 		delete(additionalProperties, "context")
+		delete(additionalProperties, "device_challenge_id")
 		delete(additionalProperties, "login_challenge")
 		delete(additionalProperties, "login_session_id")
 		delete(additionalProperties, "oidc_context")

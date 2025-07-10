@@ -19,6 +19,7 @@ lib/ory/api/wellknown.ex
 lib/ory/api/workspace.ex
 lib/ory/connection.ex
 lib/ory/deserializer.ex
+lib/ory/model/accept_device_user_code_request.ex
 lib/ory/model/accept_o_auth2_consent_request.ex
 lib/ory/model/accept_o_auth2_consent_request_session.ex
 lib/ory/model/accept_o_auth2_login_request.ex
@@ -31,6 +32,7 @@ lib/ory/model/attribute.ex
 lib/ory/model/attribute_filter.ex
 lib/ory/model/attributes_count_datapoint.ex
 lib/ory/model/authenticator_assurance_level.ex
+lib/ory/model/basic_organization.ex
 lib/ory/model/batch_check_permission_body.ex
 lib/ory/model/batch_check_permission_result.ex
 lib/ory/model/batch_patch_identities_response.ex
@@ -57,6 +59,7 @@ lib/ory/model/create_fedcm_flow_response.ex
 lib/ory/model/create_identity_body.ex
 lib/ory/model/create_invite_response.ex
 lib/ory/model/create_json_web_key_set.ex
+lib/ory/model/create_organization_onboarding_portal_link_body.ex
 lib/ory/model/create_project_api_key_request.ex
 lib/ory/model/create_project_body.ex
 lib/ory/model/create_project_branding.ex
@@ -75,6 +78,8 @@ lib/ory/model/create_workspace_subscription_body.ex
 lib/ory/model/credential_supported_draft00.ex
 lib/ory/model/custom_domain.ex
 lib/ory/model/delete_my_sessions_count.ex
+lib/ory/model/device_authorization.ex
+lib/ory/model/device_user_auth_request.ex
 lib/ory/model/email_template_data.ex
 lib/ory/model/email_template_data_body.ex
 lib/ory/model/error_authenticator_assurance_level_not_satisfied.ex
@@ -133,6 +138,8 @@ lib/ory/model/json_patch.ex
 lib/ory/model/json_web_key.ex
 lib/ory/model/json_web_key_set.ex
 lib/ory/model/keto_namespace.ex
+lib/ory/model/keyset_pagination_request_parameters.ex
+lib/ory/model/keyset_pagination_response_headers.ex
 lib/ory/model/line_item_v1.ex
 lib/ory/model/list_event_streams.ex
 lib/ory/model/list_invoices_response.ex
@@ -172,10 +179,11 @@ lib/ory/model/o_auth2_redirect_to.ex
 lib/ory/model/o_auth2_token_exchange.ex
 lib/ory/model/oidc_configuration.ex
 lib/ory/model/oidc_user_info.ex
+lib/ory/model/onboarding_portal_link.ex
+lib/ory/model/onboarding_portal_organization.ex
 lib/ory/model/organization.ex
 lib/ory/model/organization_body.ex
-lib/ory/model/pagination.ex
-lib/ory/model/pagination_headers.ex
+lib/ory/model/organization_onboarding_portal_links_response.ex
 lib/ory/model/parse_error.ex
 lib/ory/model/patch_identities_body.ex
 lib/ory/model/perform_native_logout_body.ex
@@ -223,6 +231,7 @@ lib/ory/model/session_device.ex
 lib/ory/model/set_active_project_in_console_body.ex
 lib/ory/model/set_custom_domain_body.ex
 lib/ory/model/set_event_stream_body.ex
+lib/ory/model/set_organization_from_onboarding_portal_link_body.ex
 lib/ory/model/set_project.ex
 lib/ory/model/set_project_branding_theme_body.ex
 lib/ory/model/settings_flow.ex
@@ -266,6 +275,7 @@ lib/ory/model/update_login_flow_with_password_method.ex
 lib/ory/model/update_login_flow_with_saml_method.ex
 lib/ory/model/update_login_flow_with_totp_method.ex
 lib/ory/model/update_login_flow_with_web_authn_method.ex
+lib/ory/model/update_organization_onboarding_portal_link_body.ex
 lib/ory/model/update_recovery_flow_body.ex
 lib/ory/model/update_recovery_flow_with_code_method.ex
 lib/ory/model/update_recovery_flow_with_link_method.ex
@@ -298,6 +308,7 @@ lib/ory/model/verifiable_credential_response.ex
 lib/ory/model/verifiable_identity_address.ex
 lib/ory/model/verification_flow.ex
 lib/ory/model/verification_flow_state.ex
+lib/ory/model/verify_user_code_request.ex
 lib/ory/model/version.ex
 lib/ory/model/warning.ex
 lib/ory/model/workspace.ex

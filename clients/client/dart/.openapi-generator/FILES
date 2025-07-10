@@ -2,6 +2,7 @@
 .openapi-generator-ignore
 README.md
 analysis_options.yaml
+doc/AcceptDeviceUserCodeRequest.md
 doc/AcceptOAuth2ConsentRequest.md
 doc/AcceptOAuth2ConsentRequestSession.md
 doc/AcceptOAuth2LoginRequest.md
@@ -14,6 +15,7 @@ doc/Attribute.md
 doc/AttributeFilter.md
 doc/AttributesCountDatapoint.md
 doc/AuthenticatorAssuranceLevel.md
+doc/BasicOrganization.md
 doc/BatchCheckPermissionBody.md
 doc/BatchCheckPermissionResult.md
 doc/BatchPatchIdentitiesResponse.md
@@ -41,6 +43,7 @@ doc/CreateFedcmFlowResponse.md
 doc/CreateIdentityBody.md
 doc/CreateInviteResponse.md
 doc/CreateJsonWebKeySet.md
+doc/CreateOrganizationOnboardingPortalLinkBody.md
 doc/CreateProjectApiKeyRequest.md
 doc/CreateProjectBody.md
 doc/CreateProjectBranding.md
@@ -59,6 +62,8 @@ doc/CreateWorkspaceSubscriptionBody.md
 doc/CredentialSupportedDraft00.md
 doc/CustomDomain.md
 doc/DeleteMySessionsCount.md
+doc/DeviceAuthorization.md
+doc/DeviceUserAuthRequest.md
 doc/EmailTemplateData.md
 doc/EmailTemplateDataBody.md
 doc/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -121,6 +126,8 @@ doc/JsonWebKey.md
 doc/JsonWebKeySet.md
 doc/JwkApi.md
 doc/KetoNamespace.md
+doc/KeysetPaginationRequestParameters.md
+doc/KeysetPaginationResponseHeaders.md
 doc/LineItemV1.md
 doc/ListEventStreams.md
 doc/ListInvoicesResponse.md
@@ -163,10 +170,11 @@ doc/OAuth2TokenExchange.md
 doc/OidcApi.md
 doc/OidcConfiguration.md
 doc/OidcUserInfo.md
+doc/OnboardingPortalLink.md
+doc/OnboardingPortalOrganization.md
 doc/Organization.md
 doc/OrganizationBody.md
-doc/Pagination.md
-doc/PaginationHeaders.md
+doc/OrganizationOnboardingPortalLinksResponse.md
 doc/ParseError.md
 doc/PatchIdentitiesBody.md
 doc/PerformNativeLogoutBody.md
@@ -217,6 +225,7 @@ doc/SessionDevice.md
 doc/SetActiveProjectInConsoleBody.md
 doc/SetCustomDomainBody.md
 doc/SetEventStreamBody.md
+doc/SetOrganizationFromOnboardingPortalLinkBody.md
 doc/SetProject.md
 doc/SetProjectBrandingThemeBody.md
 doc/SettingsFlow.md
@@ -260,6 +269,7 @@ doc/UpdateLoginFlowWithPasswordMethod.md
 doc/UpdateLoginFlowWithSamlMethod.md
 doc/UpdateLoginFlowWithTotpMethod.md
 doc/UpdateLoginFlowWithWebAuthnMethod.md
+doc/UpdateOrganizationOnboardingPortalLinkBody.md
 doc/UpdateRecoveryFlowBody.md
 doc/UpdateRecoveryFlowWithCodeMethod.md
 doc/UpdateRecoveryFlowWithLinkMethod.md
@@ -292,6 +302,7 @@ doc/VerifiableCredentialResponse.md
 doc/VerifiableIdentityAddress.md
 doc/VerificationFlow.md
 doc/VerificationFlowState.md
+doc/VerifyUserCodeRequest.md
 doc/Version.md
 doc/Warning.md
 doc/WellknownApi.md
@@ -320,6 +331,7 @@ lib/src/auth/basic_auth.dart
 lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
+lib/src/model/accept_device_user_code_request.dart
 lib/src/model/accept_o_auth2_consent_request.dart
 lib/src/model/accept_o_auth2_consent_request_session.dart
 lib/src/model/accept_o_auth2_login_request.dart
@@ -332,6 +344,7 @@ lib/src/model/attribute.dart
 lib/src/model/attribute_filter.dart
 lib/src/model/attributes_count_datapoint.dart
 lib/src/model/authenticator_assurance_level.dart
+lib/src/model/basic_organization.dart
 lib/src/model/batch_check_permission_body.dart
 lib/src/model/batch_check_permission_result.dart
 lib/src/model/batch_patch_identities_response.dart
@@ -358,6 +371,7 @@ lib/src/model/create_fedcm_flow_response.dart
 lib/src/model/create_identity_body.dart
 lib/src/model/create_invite_response.dart
 lib/src/model/create_json_web_key_set.dart
+lib/src/model/create_organization_onboarding_portal_link_body.dart
 lib/src/model/create_project_api_key_request.dart
 lib/src/model/create_project_body.dart
 lib/src/model/create_project_branding.dart
@@ -377,6 +391,8 @@ lib/src/model/credential_supported_draft00.dart
 lib/src/model/custom_domain.dart
 lib/src/model/date.dart
 lib/src/model/delete_my_sessions_count.dart
+lib/src/model/device_authorization.dart
+lib/src/model/device_user_auth_request.dart
 lib/src/model/email_template_data.dart
 lib/src/model/email_template_data_body.dart
 lib/src/model/error_authenticator_assurance_level_not_satisfied.dart
@@ -435,6 +451,8 @@ lib/src/model/json_patch.dart
 lib/src/model/json_web_key.dart
 lib/src/model/json_web_key_set.dart
 lib/src/model/keto_namespace.dart
+lib/src/model/keyset_pagination_request_parameters.dart
+lib/src/model/keyset_pagination_response_headers.dart
 lib/src/model/line_item_v1.dart
 lib/src/model/list_event_streams.dart
 lib/src/model/list_invoices_response.dart
@@ -474,10 +492,11 @@ lib/src/model/o_auth2_redirect_to.dart
 lib/src/model/o_auth2_token_exchange.dart
 lib/src/model/oidc_configuration.dart
 lib/src/model/oidc_user_info.dart
+lib/src/model/onboarding_portal_link.dart
+lib/src/model/onboarding_portal_organization.dart
 lib/src/model/organization.dart
 lib/src/model/organization_body.dart
-lib/src/model/pagination.dart
-lib/src/model/pagination_headers.dart
+lib/src/model/organization_onboarding_portal_links_response.dart
 lib/src/model/parse_error.dart
 lib/src/model/patch_identities_body.dart
 lib/src/model/perform_native_logout_body.dart
@@ -525,6 +544,7 @@ lib/src/model/session_device.dart
 lib/src/model/set_active_project_in_console_body.dart
 lib/src/model/set_custom_domain_body.dart
 lib/src/model/set_event_stream_body.dart
+lib/src/model/set_organization_from_onboarding_portal_link_body.dart
 lib/src/model/set_project.dart
 lib/src/model/set_project_branding_theme_body.dart
 lib/src/model/settings_flow.dart
@@ -568,6 +588,7 @@ lib/src/model/update_login_flow_with_password_method.dart
 lib/src/model/update_login_flow_with_saml_method.dart
 lib/src/model/update_login_flow_with_totp_method.dart
 lib/src/model/update_login_flow_with_web_authn_method.dart
+lib/src/model/update_organization_onboarding_portal_link_body.dart
 lib/src/model/update_recovery_flow_body.dart
 lib/src/model/update_recovery_flow_with_code_method.dart
 lib/src/model/update_recovery_flow_with_link_method.dart
@@ -600,12 +621,14 @@ lib/src/model/verifiable_credential_response.dart
 lib/src/model/verifiable_identity_address.dart
 lib/src/model/verification_flow.dart
 lib/src/model/verification_flow_state.dart
+lib/src/model/verify_user_code_request.dart
 lib/src/model/version.dart
 lib/src/model/warning.dart
 lib/src/model/workspace.dart
 lib/src/model/workspace_api_key.dart
 lib/src/serializers.dart
 pubspec.yaml
+test/accept_device_user_code_request_test.dart
 test/accept_o_auth2_consent_request_session_test.dart
 test/accept_o_auth2_consent_request_test.dart
 test/accept_o_auth2_login_request_test.dart
@@ -618,6 +641,7 @@ test/attribute_filter_test.dart
 test/attribute_test.dart
 test/attributes_count_datapoint_test.dart
 test/authenticator_assurance_level_test.dart
+test/basic_organization_test.dart
 test/batch_check_permission_body_test.dart
 test/batch_check_permission_result_test.dart
 test/batch_patch_identities_response_test.dart
@@ -645,6 +669,7 @@ test/create_fedcm_flow_response_test.dart
 test/create_identity_body_test.dart
 test/create_invite_response_test.dart
 test/create_json_web_key_set_test.dart
+test/create_organization_onboarding_portal_link_body_test.dart
 test/create_project_api_key_request_test.dart
 test/create_project_body_test.dart
 test/create_project_branding_test.dart
@@ -663,6 +688,8 @@ test/create_workspace_subscription_body_test.dart
 test/credential_supported_draft00_test.dart
 test/custom_domain_test.dart
 test/delete_my_sessions_count_test.dart
+test/device_authorization_test.dart
+test/device_user_auth_request_test.dart
 test/email_template_data_body_test.dart
 test/email_template_data_test.dart
 test/error_authenticator_assurance_level_not_satisfied_test.dart
@@ -725,6 +752,8 @@ test/json_web_key_set_test.dart
 test/json_web_key_test.dart
 test/jwk_api_test.dart
 test/keto_namespace_test.dart
+test/keyset_pagination_request_parameters_test.dart
+test/keyset_pagination_response_headers_test.dart
 test/line_item_v1_test.dart
 test/list_event_streams_test.dart
 test/list_invoices_response_test.dart
@@ -767,10 +796,11 @@ test/o_auth2_token_exchange_test.dart
 test/oidc_api_test.dart
 test/oidc_configuration_test.dart
 test/oidc_user_info_test.dart
+test/onboarding_portal_link_test.dart
+test/onboarding_portal_organization_test.dart
 test/organization_body_test.dart
+test/organization_onboarding_portal_links_response_test.dart
 test/organization_test.dart
-test/pagination_headers_test.dart
-test/pagination_test.dart
 test/parse_error_test.dart
 test/patch_identities_body_test.dart
 test/perform_native_logout_body_test.dart
@@ -821,6 +851,7 @@ test/session_test.dart
 test/set_active_project_in_console_body_test.dart
 test/set_custom_domain_body_test.dart
 test/set_event_stream_body_test.dart
+test/set_organization_from_onboarding_portal_link_body_test.dart
 test/set_project_branding_theme_body_test.dart
 test/set_project_test.dart
 test/settings_flow_state_test.dart
@@ -864,6 +895,7 @@ test/update_login_flow_with_password_method_test.dart
 test/update_login_flow_with_saml_method_test.dart
 test/update_login_flow_with_totp_method_test.dart
 test/update_login_flow_with_web_authn_method_test.dart
+test/update_organization_onboarding_portal_link_body_test.dart
 test/update_recovery_flow_body_test.dart
 test/update_recovery_flow_with_code_method_test.dart
 test/update_recovery_flow_with_link_method_test.dart
@@ -896,6 +928,7 @@ test/verifiable_credential_response_test.dart
 test/verifiable_identity_address_test.dart
 test/verification_flow_state_test.dart
 test/verification_flow_test.dart
+test/verify_user_code_request_test.dart
 test/version_test.dart
 test/warning_test.dart
 test/wellknown_api_test.dart

@@ -14,6 +14,7 @@ defmodule Ory.Model.Project do
     :home_region,
     :id,
     :name,
+    :organizations,
     :revision_id,
     :services,
     :slug,
@@ -28,6 +29,7 @@ defmodule Ory.Model.Project do
     :home_region => String.t,
     :id => String.t,
     :name => String.t,
+    :organizations => [Ory.Model.BasicOrganization.t],
     :revision_id => String.t,
     :services => Ory.Model.ProjectServices.t,
     :slug => String.t,
@@ -41,6 +43,7 @@ defmodule Ory.Model.Project do
     value
      |> Deserializer.deserialize(:cors_admin, :struct, Ory.Model.ProjectCors)
      |> Deserializer.deserialize(:cors_public, :struct, Ory.Model.ProjectCors)
+     |> Deserializer.deserialize(:organizations, :list, Ory.Model.BasicOrganization)
      |> Deserializer.deserialize(:services, :struct, Ory.Model.ProjectServices)
   end
 end

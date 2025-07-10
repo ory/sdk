@@ -18,6 +18,7 @@ api_wellknown.go
 api_workspace.go
 client.go
 configuration.go
+docs/AcceptDeviceUserCodeRequest.md
 docs/AcceptOAuth2ConsentRequest.md
 docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
@@ -30,6 +31,7 @@ docs/Attribute.md
 docs/AttributeFilter.md
 docs/AttributesCountDatapoint.md
 docs/AuthenticatorAssuranceLevel.md
+docs/BasicOrganization.md
 docs/BatchCheckPermissionBody.md
 docs/BatchCheckPermissionResult.md
 docs/BatchPatchIdentitiesResponse.md
@@ -57,6 +59,7 @@ docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
+docs/CreateOrganizationOnboardingPortalLinkBody.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
@@ -75,6 +78,8 @@ docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/DeleteMySessionsCount.md
+docs/DeviceAuthorization.md
+docs/DeviceUserAuthRequest.md
 docs/EmailTemplateData.md
 docs/EmailTemplateDataBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -137,6 +142,8 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkAPI.md
 docs/KetoNamespace.md
+docs/KeysetPaginationRequestParameters.md
+docs/KeysetPaginationResponseHeaders.md
 docs/LineItemV1.md
 docs/ListEventStreams.md
 docs/ListInvoicesResponse.md
@@ -179,10 +186,11 @@ docs/OAuth2TokenExchange.md
 docs/OidcAPI.md
 docs/OidcConfiguration.md
 docs/OidcUserInfo.md
+docs/OnboardingPortalLink.md
+docs/OnboardingPortalOrganization.md
 docs/Organization.md
 docs/OrganizationBody.md
-docs/Pagination.md
-docs/PaginationHeaders.md
+docs/OrganizationOnboardingPortalLinksResponse.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
@@ -233,6 +241,7 @@ docs/SessionDevice.md
 docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetEventStreamBody.md
+docs/SetOrganizationFromOnboardingPortalLinkBody.md
 docs/SetProject.md
 docs/SetProjectBrandingThemeBody.md
 docs/SettingsFlow.md
@@ -276,6 +285,7 @@ docs/UpdateLoginFlowWithPasswordMethod.md
 docs/UpdateLoginFlowWithSamlMethod.md
 docs/UpdateLoginFlowWithTotpMethod.md
 docs/UpdateLoginFlowWithWebAuthnMethod.md
+docs/UpdateOrganizationOnboardingPortalLinkBody.md
 docs/UpdateRecoveryFlowBody.md
 docs/UpdateRecoveryFlowWithCodeMethod.md
 docs/UpdateRecoveryFlowWithLinkMethod.md
@@ -308,6 +318,7 @@ docs/VerifiableCredentialResponse.md
 docs/VerifiableIdentityAddress.md
 docs/VerificationFlow.md
 docs/VerificationFlowState.md
+docs/VerifyUserCodeRequest.md
 docs/Version.md
 docs/Warning.md
 docs/WellknownAPI.md
@@ -317,6 +328,7 @@ docs/WorkspaceApiKey.md
 git_push.sh
 go.mod
 go.sum
+model_accept_device_user_code_request.go
 model_accept_o_auth2_consent_request.go
 model_accept_o_auth2_consent_request_session.go
 model_accept_o_auth2_login_request.go
@@ -329,6 +341,7 @@ model_attribute.go
 model_attribute_filter.go
 model_attributes_count_datapoint.go
 model_authenticator_assurance_level.go
+model_basic_organization.go
 model_batch_check_permission_body.go
 model_batch_check_permission_result.go
 model_batch_patch_identities_response.go
@@ -355,6 +368,7 @@ model_create_fedcm_flow_response.go
 model_create_identity_body.go
 model_create_invite_response.go
 model_create_json_web_key_set.go
+model_create_organization_onboarding_portal_link_body.go
 model_create_project_api_key_request.go
 model_create_project_body.go
 model_create_project_branding.go
@@ -373,6 +387,8 @@ model_create_workspace_subscription_body.go
 model_credential_supported_draft00.go
 model_custom_domain.go
 model_delete_my_sessions_count.go
+model_device_authorization.go
+model_device_user_auth_request.go
 model_email_template_data.go
 model_email_template_data_body.go
 model_error_authenticator_assurance_level_not_satisfied.go
@@ -431,6 +447,8 @@ model_json_patch.go
 model_json_web_key.go
 model_json_web_key_set.go
 model_keto_namespace.go
+model_keyset_pagination_request_parameters.go
+model_keyset_pagination_response_headers.go
 model_line_item_v1.go
 model_list_event_streams.go
 model_list_invoices_response.go
@@ -470,10 +488,11 @@ model_o_auth2_redirect_to.go
 model_o_auth2_token_exchange.go
 model_oidc_configuration.go
 model_oidc_user_info.go
+model_onboarding_portal_link.go
+model_onboarding_portal_organization.go
 model_organization.go
 model_organization_body.go
-model_pagination.go
-model_pagination_headers.go
+model_organization_onboarding_portal_links_response.go
 model_parse_error.go
 model_patch_identities_body.go
 model_perform_native_logout_body.go
@@ -521,6 +540,7 @@ model_session_device.go
 model_set_active_project_in_console_body.go
 model_set_custom_domain_body.go
 model_set_event_stream_body.go
+model_set_organization_from_onboarding_portal_link_body.go
 model_set_project.go
 model_set_project_branding_theme_body.go
 model_settings_flow.go
@@ -564,6 +584,7 @@ model_update_login_flow_with_password_method.go
 model_update_login_flow_with_saml_method.go
 model_update_login_flow_with_totp_method.go
 model_update_login_flow_with_web_authn_method.go
+model_update_organization_onboarding_portal_link_body.go
 model_update_recovery_flow_body.go
 model_update_recovery_flow_with_code_method.go
 model_update_recovery_flow_with_link_method.go
@@ -596,6 +617,7 @@ model_verifiable_credential_response.go
 model_verifiable_identity_address.go
 model_verification_flow.go
 model_verification_flow_state.go
+model_verify_user_code_request.go
 model_version.go
 model_warning.go
 model_workspace.go

@@ -12,13 +12,13 @@ part 'ui_node_division_attributes.g.dart';
 /// Division sections are used for interactive widgets that require a hook in the DOM / view.
 ///
 /// Properties:
-/// * [class_] - The script MIME type
+/// * [class_] - A classname that should be rendered into the DOM.
 /// * [data] - Data is a map of key-value pairs that are passed to the division.  They may be used for `data-...` attributes.
 /// * [id] - A unique identifier
-/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
+/// * [nodeType] - NodeType represents this node's type. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
 @BuiltValue()
 abstract class UiNodeDivisionAttributes implements Built<UiNodeDivisionAttributes, UiNodeDivisionAttributesBuilder> {
-  /// The script MIME type
+  /// A classname that should be rendered into the DOM.
   @BuiltValueField(wireName: r'class')
   String? get class_;
 
@@ -30,10 +30,10 @@ abstract class UiNodeDivisionAttributes implements Built<UiNodeDivisionAttribute
   @BuiltValueField(wireName: r'id')
   String get id;
 
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
+  /// NodeType represents this node's type. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueField(wireName: r'node_type')
   UiNodeDivisionAttributesNodeTypeEnum get nodeType;
-  // enum nodeTypeEnum {  text,  input,  img,  a,  script,  div,  };
+  // enum nodeTypeEnum {  div,  };
 
   UiNodeDivisionAttributes._();
 
@@ -164,22 +164,7 @@ class _$UiNodeDivisionAttributesSerializer implements PrimitiveSerializer<UiNode
 
 class UiNodeDivisionAttributesNodeTypeEnum extends EnumClass {
 
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'text')
-  static const UiNodeDivisionAttributesNodeTypeEnum text = _$uiNodeDivisionAttributesNodeTypeEnum_text;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'input')
-  static const UiNodeDivisionAttributesNodeTypeEnum input = _$uiNodeDivisionAttributesNodeTypeEnum_input;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'img')
-  static const UiNodeDivisionAttributesNodeTypeEnum img = _$uiNodeDivisionAttributesNodeTypeEnum_img;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'a')
-  static const UiNodeDivisionAttributesNodeTypeEnum a = _$uiNodeDivisionAttributesNodeTypeEnum_a;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
-  @BuiltValueEnumConst(wireName: r'script')
-  static const UiNodeDivisionAttributesNodeTypeEnum script = _$uiNodeDivisionAttributesNodeTypeEnum_script;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
+  /// NodeType represents this node's type. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'div')
   static const UiNodeDivisionAttributesNodeTypeEnum div = _$uiNodeDivisionAttributesNodeTypeEnum_div;
 

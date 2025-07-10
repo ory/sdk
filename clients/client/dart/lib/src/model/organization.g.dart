@@ -15,10 +15,6 @@ class _$Organization extends Organization {
   final String id;
   @override
   final String label;
-  @override
-  final String projectId;
-  @override
-  final DateTime updatedAt;
 
   factory _$Organization([void Function(OrganizationBuilder)? updates]) =>
       (new OrganizationBuilder()..update(updates))._build();
@@ -27,19 +23,13 @@ class _$Organization extends Organization {
       {required this.createdAt,
       required this.domains,
       required this.id,
-      required this.label,
-      required this.projectId,
-      required this.updatedAt})
+      required this.label})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'Organization', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(domains, r'Organization', 'domains');
     BuiltValueNullFieldError.checkNotNull(id, r'Organization', 'id');
     BuiltValueNullFieldError.checkNotNull(label, r'Organization', 'label');
-    BuiltValueNullFieldError.checkNotNull(
-        projectId, r'Organization', 'projectId');
-    BuiltValueNullFieldError.checkNotNull(
-        updatedAt, r'Organization', 'updatedAt');
   }
 
   @override
@@ -56,9 +46,7 @@ class _$Organization extends Organization {
         createdAt == other.createdAt &&
         domains == other.domains &&
         id == other.id &&
-        label == other.label &&
-        projectId == other.projectId &&
-        updatedAt == other.updatedAt;
+        label == other.label;
   }
 
   @override
@@ -68,8 +56,6 @@ class _$Organization extends Organization {
     _$hash = $jc(_$hash, domains.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, label.hashCode);
-    _$hash = $jc(_$hash, projectId.hashCode);
-    _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -80,9 +66,7 @@ class _$Organization extends Organization {
           ..add('createdAt', createdAt)
           ..add('domains', domains)
           ..add('id', id)
-          ..add('label', label)
-          ..add('projectId', projectId)
-          ..add('updatedAt', updatedAt))
+          ..add('label', label))
         .toString();
   }
 }
@@ -108,14 +92,6 @@ class OrganizationBuilder
   String? get label => _$this._label;
   set label(String? label) => _$this._label = label;
 
-  String? _projectId;
-  String? get projectId => _$this._projectId;
-  set projectId(String? projectId) => _$this._projectId = projectId;
-
-  DateTime? _updatedAt;
-  DateTime? get updatedAt => _$this._updatedAt;
-  set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
-
   OrganizationBuilder() {
     Organization._defaults(this);
   }
@@ -127,8 +103,6 @@ class OrganizationBuilder
       _domains = $v.domains.toBuilder();
       _id = $v.id;
       _label = $v.label;
-      _projectId = $v.projectId;
-      _updatedAt = $v.updatedAt;
       _$v = null;
     }
     return this;
@@ -159,11 +133,7 @@ class OrganizationBuilder
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'Organization', 'id'),
               label: BuiltValueNullFieldError.checkNotNull(
-                  label, r'Organization', 'label'),
-              projectId: BuiltValueNullFieldError.checkNotNull(
-                  projectId, r'Organization', 'projectId'),
-              updatedAt: BuiltValueNullFieldError.checkNotNull(
-                  updatedAt, r'Organization', 'updatedAt'));
+                  label, r'Organization', 'label'));
     } catch (_) {
       late String _$failedField;
       try {

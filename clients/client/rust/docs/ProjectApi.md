@@ -5,11 +5,14 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_organization**](ProjectApi.md#create_organization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
+[**create_organization_onboarding_portal_link**](ProjectApi.md#create_organization_onboarding_portal_link) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Create organization onboarding portal link
 [**create_project**](ProjectApi.md#create_project) | **POST** /projects | Create a Project
 [**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API key
 [**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
+[**delete_organization_onboarding_portal_link**](ProjectApi.md#delete_organization_onboarding_portal_link) | **DELETE** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Delete an organization onboarding portal link
 [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key
 [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
+[**get_organization_onboarding_portal_links**](ProjectApi.md#get_organization_onboarding_portal_links) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links
 [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
 [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project
 [**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
@@ -21,6 +24,7 @@ Method | HTTP request | Description
 [**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 [**update_organization**](ProjectApi.md#update_organization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
+[**update_organization_onboarding_portal_link**](ProjectApi.md#update_organization_onboarding_portal_link) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link
 
 
 
@@ -42,6 +46,38 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::Organization**](organization.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## create_organization_onboarding_portal_link
+
+> models::OnboardingPortalLink create_organization_onboarding_portal_link(project_id, organization_id, create_organization_onboarding_portal_link_body)
+Create organization onboarding portal link
+
+Create a onboarding portal link for an organization.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**project_id** | **String** | Project ID  The project's ID. | [required] |
+**organization_id** | **String** | Organization ID  The Organization's ID. | [required] |
+**create_organization_onboarding_portal_link_body** | Option<[**CreateOrganizationOnboardingPortalLinkBody**](CreateOrganizationOnboardingPortalLinkBody.md)> |  |  |
+
+### Return type
+
+[**models::OnboardingPortalLink**](onboardingPortalLink.md)
 
 ### Authorization
 
@@ -147,6 +183,38 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## delete_organization_onboarding_portal_link
+
+> delete_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id)
+Delete an organization onboarding portal link
+
+Deletes a onboarding portal link for an organization.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**project_id** | **String** |  | [required] |
+**organization_id** | **String** |  | [required] |
+**onboarding_portal_link_id** | **String** |  | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## delete_project_api_key
 
 > delete_project_api_key(project, token_id)
@@ -196,6 +264,37 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::GetOrganizationResponse**](getOrganizationResponse.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_organization_onboarding_portal_links
+
+> models::OrganizationOnboardingPortalLinksResponse get_organization_onboarding_portal_links(project_id, organization_id)
+Get the organization onboarding portal links
+
+Retrieves the organization onboarding portal links.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**project_id** | **String** | Project ID  The project's ID. | [required] |
+**organization_id** | **String** | Organization ID  The Organization's ID. | [required] |
+
+### Return type
+
+[**models::OrganizationOnboardingPortalLinksResponse**](organizationOnboardingPortalLinksResponse.md)
 
 ### Authorization
 
@@ -533,6 +632,39 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::Organization**](organization.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_organization_onboarding_portal_link
+
+> models::OnboardingPortalLink update_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id, update_organization_onboarding_portal_link_body)
+Update organization onboarding portal link
+
+Update a onboarding portal link for an organization.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**project_id** | **String** | Project ID  The project's ID. | [required] |
+**organization_id** | **String** | Organization ID  The Organization's ID. | [required] |
+**onboarding_portal_link_id** | **String** |  | [required] |
+**update_organization_onboarding_portal_link_body** | Option<[**UpdateOrganizationOnboardingPortalLinkBody**](UpdateOrganizationOnboardingPortalLinkBody.md)> |  |  |
+
+### Return type
+
+[**models::OnboardingPortalLink**](onboardingPortalLink.md)
 
 ### Authorization
 

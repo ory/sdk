@@ -8,6 +8,7 @@ defmodule Ory.Model.AccountExperienceColors do
 
   @derive Jason.Encoder
   defstruct [
+    :"ax-background-default",
     :"brand-100",
     :"brand-200",
     :"brand-300",
@@ -154,6 +155,7 @@ defmodule Ory.Model.AccountExperienceColors do
   ]
 
   @type t :: %__MODULE__{
+    :"ax-background-default" => String.t | nil,
     :"brand-100" => String.t | nil,
     :"brand-200" => String.t | nil,
     :"brand-300" => String.t | nil,

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **homeRegion** | **String** | The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | 
 **id** | **String** | The project's ID. | 
 **name** | **String** | The name of the project. | 
+**organizations** | [**BuiltList&lt;BasicOrganization&gt;**](BasicOrganization.md) | The organizations of the project.  Organizations are used to group users and enforce certain restrictions like usage of SSO. | 
 **revisionId** | **String** | The configuration revision ID. | 
 **services** | [**ProjectServices**](ProjectServices.md) |  | 
 **slug** | **String** | The project's slug | 

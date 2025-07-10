@@ -5,11 +5,14 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createOrganization**](ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization |
+| [**createOrganizationOnboardingPortalLink**](ProjectApi.md#createOrganizationOnboardingPortalLink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Create organization onboarding portal link |
 | [**createProject**](ProjectApi.md#createProject) | **POST** /projects | Create a Project |
 | [**createProjectApiKey**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API key |
 | [**deleteOrganization**](ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization |
+| [**deleteOrganizationOnboardingPortalLink**](ProjectApi.md#deleteOrganizationOnboardingPortalLink) | **DELETE** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Delete an organization onboarding portal link |
 | [**deleteProjectApiKey**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key |
 | [**getOrganization**](ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
+| [**getOrganizationOnboardingPortalLinks**](ProjectApi.md#getOrganizationOnboardingPortalLinks) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links |
 | [**getProject**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
 | [**getProjectMembers**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**listOrganizations**](ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
@@ -21,6 +24,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**removeProjectMember**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
 | [**setProject**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
 | [**updateOrganization**](ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization |
+| [**updateOrganizationOnboardingPortalLink**](ProjectApi.md#updateOrganizationOnboardingPortalLink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link |
 
 
 <a id="createOrganization"></a>
@@ -94,6 +98,78 @@ public class Example {
 | **400** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
 | **409** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+<a id="createOrganizationOnboardingPortalLink"></a>
+# **createOrganizationOnboardingPortalLink**
+> OnboardingPortalLink createOrganizationOnboardingPortalLink(projectId, organizationId, createOrganizationOnboardingPortalLinkBody)
+
+Create organization onboarding portal link
+
+Create a onboarding portal link for an organization.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ProjectApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
+
+    ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    String organizationId = "organizationId_example"; // String | Organization ID  The Organization's ID.
+    CreateOrganizationOnboardingPortalLinkBody createOrganizationOnboardingPortalLinkBody = new CreateOrganizationOnboardingPortalLinkBody(); // CreateOrganizationOnboardingPortalLinkBody | 
+    try {
+      OnboardingPortalLink result = apiInstance.createOrganizationOnboardingPortalLink(projectId, organizationId, createOrganizationOnboardingPortalLinkBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ProjectApi#createOrganizationOnboardingPortalLink");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **organizationId** | **String**| Organization ID  The Organization&#39;s ID. | |
+| **createOrganizationOnboardingPortalLinkBody** | [**CreateOrganizationOnboardingPortalLinkBody**](CreateOrganizationOnboardingPortalLinkBody.md)|  | [optional] |
+
+### Return type
+
+[**OnboardingPortalLink**](OnboardingPortalLink.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | onboardingPortalLink |  -  |
 | **0** | errorGeneric |  -  |
 
 <a id="createProject"></a>
@@ -310,6 +386,79 @@ null (empty response body)
 | **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
+<a id="deleteOrganizationOnboardingPortalLink"></a>
+# **deleteOrganizationOnboardingPortalLink**
+> deleteOrganizationOnboardingPortalLink(projectId, organizationId, onboardingPortalLinkId)
+
+Delete an organization onboarding portal link
+
+Deletes a onboarding portal link for an organization.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ProjectApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
+
+    ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String projectId = "projectId_example"; // String | 
+    String organizationId = "organizationId_example"; // String | 
+    String onboardingPortalLinkId = "onboardingPortalLinkId_example"; // String | 
+    try {
+      apiInstance.deleteOrganizationOnboardingPortalLink(projectId, organizationId, onboardingPortalLinkId);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ProjectApi#deleteOrganizationOnboardingPortalLink");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**|  | |
+| **organizationId** | **String**|  | |
+| **onboardingPortalLinkId** | **String**|  | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
 <a id="deleteProjectApiKey"></a>
 # **deleteProjectApiKey**
 > deleteProjectApiKey(project, tokenId)
@@ -447,6 +596,78 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | getOrganizationResponse |  -  |
+| **400** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+<a id="getOrganizationOnboardingPortalLinks"></a>
+# **getOrganizationOnboardingPortalLinks**
+> OrganizationOnboardingPortalLinksResponse getOrganizationOnboardingPortalLinks(projectId, organizationId)
+
+Get the organization onboarding portal links
+
+Retrieves the organization onboarding portal links.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ProjectApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
+
+    ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    String organizationId = "organizationId_example"; // String | Organization ID  The Organization's ID.
+    try {
+      OrganizationOnboardingPortalLinksResponse result = apiInstance.getOrganizationOnboardingPortalLinks(projectId, organizationId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ProjectApi#getOrganizationOnboardingPortalLinks");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **organizationId** | **String**| Organization ID  The Organization&#39;s ID. | |
+
+### Return type
+
+[**OrganizationOnboardingPortalLinksResponse**](OrganizationOnboardingPortalLinksResponse.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | organizationOnboardingPortalLinksResponse |  -  |
 | **400** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
@@ -1242,5 +1463,79 @@ public class Example {
 | **403** | errorGeneric |  -  |
 | **404** | errorGeneric |  -  |
 | **409** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+<a id="updateOrganizationOnboardingPortalLink"></a>
+# **updateOrganizationOnboardingPortalLink**
+> OnboardingPortalLink updateOrganizationOnboardingPortalLink(projectId, organizationId, onboardingPortalLinkId, updateOrganizationOnboardingPortalLinkBody)
+
+Update organization onboarding portal link
+
+Update a onboarding portal link for an organization.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ProjectApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryWorkspaceApiKey
+    HttpBearerAuth oryWorkspaceApiKey = (HttpBearerAuth) defaultClient.getAuthentication("oryWorkspaceApiKey");
+    oryWorkspaceApiKey.setBearerToken("BEARER TOKEN");
+
+    ProjectApi apiInstance = new ProjectApi(defaultClient);
+    String projectId = "projectId_example"; // String | Project ID  The project's ID.
+    String organizationId = "organizationId_example"; // String | Organization ID  The Organization's ID.
+    String onboardingPortalLinkId = "onboardingPortalLinkId_example"; // String | 
+    UpdateOrganizationOnboardingPortalLinkBody updateOrganizationOnboardingPortalLinkBody = new UpdateOrganizationOnboardingPortalLinkBody(); // UpdateOrganizationOnboardingPortalLinkBody | 
+    try {
+      OnboardingPortalLink result = apiInstance.updateOrganizationOnboardingPortalLink(projectId, organizationId, onboardingPortalLinkId, updateOrganizationOnboardingPortalLinkBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ProjectApi#updateOrganizationOnboardingPortalLink");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | **String**| Project ID  The project&#39;s ID. | |
+| **organizationId** | **String**| Organization ID  The Organization&#39;s ID. | |
+| **onboardingPortalLinkId** | **String**|  | |
+| **updateOrganizationOnboardingPortalLinkBody** | [**UpdateOrganizationOnboardingPortalLinkBody**](UpdateOrganizationOnboardingPortalLinkBody.md)|  | [optional] |
+
+### Return type
+
+[**OnboardingPortalLink**](OnboardingPortalLink.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | onboardingPortalLink |  -  |
 | **0** | errorGeneric |  -  |
 

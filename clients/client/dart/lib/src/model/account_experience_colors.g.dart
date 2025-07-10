@@ -8,6 +8,8 @@ part of 'account_experience_colors.dart';
 
 class _$AccountExperienceColors extends AccountExperienceColors {
   @override
+  final String? axBackgroundDefault;
+  @override
   final String? brand100;
   @override
   final String? brand200;
@@ -299,7 +301,8 @@ class _$AccountExperienceColors extends AccountExperienceColors {
       (new AccountExperienceColorsBuilder()..update(updates))._build();
 
   _$AccountExperienceColors._(
-      {this.brand100,
+      {this.axBackgroundDefault,
+      this.brand100,
       this.brand200,
       this.brand300,
       this.brand400,
@@ -457,6 +460,7 @@ class _$AccountExperienceColors extends AccountExperienceColors {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is AccountExperienceColors &&
+        axBackgroundDefault == other.axBackgroundDefault &&
         brand100 == other.brand100 &&
         brand200 == other.brand200 &&
         brand300 == other.brand300 &&
@@ -664,6 +668,7 @@ class _$AccountExperienceColors extends AccountExperienceColors {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, axBackgroundDefault.hashCode);
     _$hash = $jc(_$hash, brand100.hashCode);
     _$hash = $jc(_$hash, brand200.hashCode);
     _$hash = $jc(_$hash, brand300.hashCode);
@@ -814,6 +819,7 @@ class _$AccountExperienceColors extends AccountExperienceColors {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'AccountExperienceColors')
+          ..add('axBackgroundDefault', axBackgroundDefault)
           ..add('brand100', brand100)
           ..add('brand200', brand200)
           ..add('brand300', brand300)
@@ -1024,6 +1030,11 @@ class AccountExperienceColorsBuilder
     implements
         Builder<AccountExperienceColors, AccountExperienceColorsBuilder> {
   _$AccountExperienceColors? _$v;
+
+  String? _axBackgroundDefault;
+  String? get axBackgroundDefault => _$this._axBackgroundDefault;
+  set axBackgroundDefault(String? axBackgroundDefault) =>
+      _$this._axBackgroundDefault = axBackgroundDefault;
 
   String? _brand100;
   String? get brand100 => _$this._brand100;
@@ -1883,6 +1894,7 @@ class AccountExperienceColorsBuilder
   AccountExperienceColorsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _axBackgroundDefault = $v.axBackgroundDefault;
       _brand100 = $v.brand100;
       _brand200 = $v.brand200;
       _brand300 = $v.brand300;
@@ -2075,6 +2087,7 @@ class AccountExperienceColorsBuilder
   _$AccountExperienceColors _build() {
     final _$result = _$v ??
         new _$AccountExperienceColors._(
+            axBackgroundDefault: axBackgroundDefault,
             brand100: brand100,
             brand200: brand200,
             brand300: brand300,

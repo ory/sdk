@@ -41,6 +41,12 @@ void main() {
       // TODO
     });
 
+    // The organizations of the project.  Organizations are used to group users and enforce certain restrictions like usage of SSO.
+    // BuiltList<BasicOrganization> organizations
+    test('to test the property `organizations`', () async {
+      // TODO
+    });
+
     // The configuration revision ID.
     // String revisionId
     test('to test the property `revisionId`', () async {

@@ -55,6 +55,12 @@ void main() {
       // TODO
     });
 
+    // OAuth 2.0 Device Authorization Endpoint URL
+    // String deviceAuthorizationEndpoint
+    test('to test the property `deviceAuthorizationEndpoint`', () async {
+      // TODO
+    });
+
     // OpenID Connect End-Session Endpoint  URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
     // String endSessionEndpoint
     test('to test the property `endSessionEndpoint`', () async {

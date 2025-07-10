@@ -11,6 +11,7 @@ part 'account_experience_colors.g.dart';
 /// AccountExperienceColors
 ///
 /// Properties:
+/// * [axBackgroundDefault] 
 /// * [brand100] 
 /// * [brand200] 
 /// * [brand300] 
@@ -156,6 +157,9 @@ part 'account_experience_colors.g.dart';
 /// * [uiWhite] 
 @BuiltValue()
 abstract class AccountExperienceColors implements Built<AccountExperienceColors, AccountExperienceColorsBuilder> {
+  @BuiltValueField(wireName: r'ax-background-default')
+  String? get axBackgroundDefault;
+
   @BuiltValueField(wireName: r'brand-100')
   String? get brand100;
 
@@ -608,6 +612,13 @@ class _$AccountExperienceColorsSerializer implements PrimitiveSerializer<Account
     AccountExperienceColors object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.axBackgroundDefault != null) {
+      yield r'ax-background-default';
+      yield serializers.serialize(
+        object.axBackgroundDefault,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.brand100 != null) {
       yield r'brand-100';
       yield serializers.serialize(
@@ -1632,6 +1643,13 @@ class _$AccountExperienceColorsSerializer implements PrimitiveSerializer<Account
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'ax-background-default':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.axBackgroundDefault = valueDes;
+          break;
         case r'brand-100':
           final valueDes = serializers.deserialize(
             value,

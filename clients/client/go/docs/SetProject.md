@@ -7,13 +7,14 @@ Name | Type | Description | Notes
 **CorsAdmin** | [**ProjectCors**](ProjectCors.md) |  | 
 **CorsPublic** | [**ProjectCors**](ProjectCors.md) |  | 
 **Name** | **string** | The name of the project. | 
+**Organizations** | [**[]BasicOrganization**](BasicOrganization.md) | The organizations that are part of this project. | 
 **Services** | [**ProjectServices**](ProjectServices.md) |  | 
 
 ## Methods
 
 ### NewSetProject
 
-`func NewSetProject(corsAdmin ProjectCors, corsPublic ProjectCors, name string, services ProjectServices, ) *SetProject`
+`func NewSetProject(corsAdmin ProjectCors, corsPublic ProjectCors, name string, organizations []BasicOrganization, services ProjectServices, ) *SetProject`
 
 NewSetProject instantiates a new SetProject object
 This constructor will assign default values to properties that have it defined,
@@ -86,6 +87,26 @@ and a boolean to check if the value has been set.
 `func (o *SetProject) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetOrganizations
+
+`func (o *SetProject) GetOrganizations() []BasicOrganization`
+
+GetOrganizations returns the Organizations field if non-nil, zero value otherwise.
+
+### GetOrganizationsOk
+
+`func (o *SetProject) GetOrganizationsOk() (*[]BasicOrganization, bool)`
+
+GetOrganizationsOk returns a tuple with the Organizations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizations
+
+`func (o *SetProject) SetOrganizations(v []BasicOrganization)`
+
+SetOrganizations sets Organizations field to given value.
 
 
 ### GetServices

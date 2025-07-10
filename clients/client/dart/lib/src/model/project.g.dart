@@ -219,6 +219,8 @@ class _$Project extends Project {
   @override
   final String name;
   @override
+  final BuiltList<BasicOrganization> organizations;
+  @override
   final String revisionId;
   @override
   final ProjectServices services;
@@ -239,6 +241,7 @@ class _$Project extends Project {
       required this.homeRegion,
       required this.id,
       required this.name,
+      required this.organizations,
       required this.revisionId,
       required this.services,
       required this.slug,
@@ -250,6 +253,8 @@ class _$Project extends Project {
     BuiltValueNullFieldError.checkNotNull(homeRegion, r'Project', 'homeRegion');
     BuiltValueNullFieldError.checkNotNull(id, r'Project', 'id');
     BuiltValueNullFieldError.checkNotNull(name, r'Project', 'name');
+    BuiltValueNullFieldError.checkNotNull(
+        organizations, r'Project', 'organizations');
     BuiltValueNullFieldError.checkNotNull(revisionId, r'Project', 'revisionId');
     BuiltValueNullFieldError.checkNotNull(services, r'Project', 'services');
     BuiltValueNullFieldError.checkNotNull(slug, r'Project', 'slug');
@@ -273,6 +278,7 @@ class _$Project extends Project {
         homeRegion == other.homeRegion &&
         id == other.id &&
         name == other.name &&
+        organizations == other.organizations &&
         revisionId == other.revisionId &&
         services == other.services &&
         slug == other.slug &&
@@ -289,6 +295,7 @@ class _$Project extends Project {
     _$hash = $jc(_$hash, homeRegion.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, organizations.hashCode);
     _$hash = $jc(_$hash, revisionId.hashCode);
     _$hash = $jc(_$hash, services.hashCode);
     _$hash = $jc(_$hash, slug.hashCode);
@@ -307,6 +314,7 @@ class _$Project extends Project {
           ..add('homeRegion', homeRegion)
           ..add('id', id)
           ..add('name', name)
+          ..add('organizations', organizations)
           ..add('revisionId', revisionId)
           ..add('services', services)
           ..add('slug', slug)
@@ -348,6 +356,12 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  ListBuilder<BasicOrganization>? _organizations;
+  ListBuilder<BasicOrganization> get organizations =>
+      _$this._organizations ??= new ListBuilder<BasicOrganization>();
+  set organizations(ListBuilder<BasicOrganization>? organizations) =>
+      _$this._organizations = organizations;
+
   String? _revisionId;
   String? get revisionId => _$this._revisionId;
   set revisionId(String? revisionId) => _$this._revisionId = revisionId;
@@ -382,6 +396,7 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
       _homeRegion = $v.homeRegion;
       _id = $v.id;
       _name = $v.name;
+      _organizations = $v.organizations.toBuilder();
       _revisionId = $v.revisionId;
       _services = $v.services.toBuilder();
       _slug = $v.slug;
@@ -420,6 +435,7 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
               id: BuiltValueNullFieldError.checkNotNull(id, r'Project', 'id'),
               name: BuiltValueNullFieldError.checkNotNull(
                   name, r'Project', 'name'),
+              organizations: organizations.build(),
               revisionId: BuiltValueNullFieldError.checkNotNull(
                   revisionId, r'Project', 'revisionId'),
               services: services.build(),
@@ -435,6 +451,9 @@ class ProjectBuilder implements Builder<Project, ProjectBuilder> {
         _corsAdmin?.build();
         _$failedField = 'corsPublic';
         _corsPublic?.build();
+
+        _$failedField = 'organizations';
+        organizations.build();
 
         _$failedField = 'services';
         services.build();

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.20.11
+API version: v1.20.22
 Contact: support@ory.sh
 */
 
@@ -74,6 +74,7 @@ type NormalizedProjectRevision struct {
 	HydraOidcSubjectIdentifiersPairwiseSalt *string `json:"hydra_oidc_subject_identifiers_pairwise_salt,omitempty"`
 	HydraOidcSubjectIdentifiersSupportedTypes []string `json:"hydra_oidc_subject_identifiers_supported_types,omitempty"`
 	HydraSecretsCookie []string `json:"hydra_secrets_cookie,omitempty"`
+	HydraSecretsPagination []string `json:"hydra_secrets_pagination,omitempty"`
 	HydraSecretsSystem []string `json:"hydra_secrets_system,omitempty"`
 	// Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting.
 	HydraServeCookiesSameSiteLegacyWorkaround *bool `json:"hydra_serve_cookies_same_site_legacy_workaround,omitempty"`
@@ -127,6 +128,7 @@ type NormalizedProjectRevision struct {
 	// The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.
 	KetoNamespaceConfiguration *string `json:"keto_namespace_configuration,omitempty"`
 	KetoNamespaces []KetoNamespace `json:"keto_namespaces,omitempty"`
+	KetoSecretsPagination []string `json:"keto_secrets_pagination,omitempty"`
 	// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
 	KratosCookiesSameSite *string `json:"kratos_cookies_same_site,omitempty"`
 	KratosCourierChannels []NormalizedProjectRevisionCourierChannel `json:"kratos_courier_channels,omitempty"`
@@ -234,6 +236,12 @@ type NormalizedProjectRevision struct {
 	KratosFeatureFlagsCacheableSessionsMaxAge *string `json:"kratos_feature_flags_cacheable_sessions_max_age,omitempty"`
 	// Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
 	KratosFeatureFlagsFasterSessionExtend *bool `json:"kratos_feature_flags_faster_session_extend,omitempty"`
+	// Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.  This governs the \"feature_flags.legacy_continue_with_verification_ui\" setting.
+	KratosFeatureFlagsLegacyContinueWithVerificationUi *bool `json:"kratos_feature_flags_legacy_continue_with_verification_ui,omitempty"`
+	// Controls whether the UI nodes in an OIDC registration flow have group \"oidc\" in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \"oidc\" and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \"feature_flags.legacy_oidc_registration_node_group\" setting.
+	KratosFeatureFlagsLegacyOidcRegistrationNodeGroup *bool `json:"kratos_feature_flags_legacy_oidc_registration_node_group,omitempty"`
+	// Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.  This flag is deprecated and will be removed in the future.  This governs the \"feature_flags.legacy_require_verified_login_error\" setting.
+	KratosFeatureFlagsLegacyRequireVerifiedLoginError *bool `json:"kratos_feature_flags_legacy_require_verified_login_error,omitempty"`
 	// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
 	KratosFeatureFlagsUseContinueWithTransitions *bool `json:"kratos_feature_flags_use_continue_with_transitions,omitempty"`
 	KratosIdentitySchemas []NormalizedProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
@@ -352,9 +360,12 @@ type NormalizedProjectRevision struct {
 	// Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
 	KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey *string `json:"kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey,omitempty"`
 	// Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
+	KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode *bool `json:"kratos_selfservice_methods_captcha_config_legacy_inject_node,omitempty"`
+	// Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
 	KratosSelfserviceMethodsCaptchaEnabled *bool `json:"kratos_selfservice_methods_captcha_enabled,omitempty"`
 	// Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
 	KratosSelfserviceMethodsCodeConfigLifespan *string `json:"kratos_selfservice_methods_code_config_lifespan,omitempty"`
+	KratosSelfserviceMethodsCodeConfigMaxSubmissions NullableInt32 `json:"kratos_selfservice_methods_code_config_max_submissions,omitempty"`
 	// Enables a fallback method required in certain legacy use cases.  This governs the \"selfservice.methods.code.config.missing_credential_fallback_enabled\" setting.
 	KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled *bool `json:"kratos_selfservice_methods_code_config_missing_credential_fallback_enabled,omitempty"`
 	// Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
@@ -430,6 +441,7 @@ type NormalizedProjectRevision struct {
 	KratosSessionWhoamiTokenizerTemplates []NormalizedProjectRevisionTokenizerTemplate `json:"kratos_session_whoami_tokenizer_templates,omitempty"`
 	// The project's name.
 	Name string `json:"name"`
+	Organizations []Organization `json:"organizations,omitempty"`
 	// The Revision's Project ID
 	ProjectId *string `json:"project_id,omitempty"`
 	ProjectRevisionHooks []NormalizedProjectRevisionHook `json:"project_revision_hooks,omitempty"`
@@ -1411,6 +1423,38 @@ func (o *NormalizedProjectRevision) SetHydraSecretsCookie(v []string) {
 	o.HydraSecretsCookie = v
 }
 
+// GetHydraSecretsPagination returns the HydraSecretsPagination field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraSecretsPagination() []string {
+	if o == nil || IsNil(o.HydraSecretsPagination) {
+		var ret []string
+		return ret
+	}
+	return o.HydraSecretsPagination
+}
+
+// GetHydraSecretsPaginationOk returns a tuple with the HydraSecretsPagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraSecretsPaginationOk() ([]string, bool) {
+	if o == nil || IsNil(o.HydraSecretsPagination) {
+		return nil, false
+	}
+	return o.HydraSecretsPagination, true
+}
+
+// HasHydraSecretsPagination returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraSecretsPagination() bool {
+	if o != nil && !IsNil(o.HydraSecretsPagination) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraSecretsPagination gets a reference to the given []string and assigns it to the HydraSecretsPagination field.
+func (o *NormalizedProjectRevision) SetHydraSecretsPagination(v []string) {
+	o.HydraSecretsPagination = v
+}
+
 // GetHydraSecretsSystem returns the HydraSecretsSystem field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetHydraSecretsSystem() []string {
 	if o == nil || IsNil(o.HydraSecretsSystem) {
@@ -2337,6 +2381,38 @@ func (o *NormalizedProjectRevision) HasKetoNamespaces() bool {
 // SetKetoNamespaces gets a reference to the given []KetoNamespace and assigns it to the KetoNamespaces field.
 func (o *NormalizedProjectRevision) SetKetoNamespaces(v []KetoNamespace) {
 	o.KetoNamespaces = v
+}
+
+// GetKetoSecretsPagination returns the KetoSecretsPagination field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKetoSecretsPagination() []string {
+	if o == nil || IsNil(o.KetoSecretsPagination) {
+		var ret []string
+		return ret
+	}
+	return o.KetoSecretsPagination
+}
+
+// GetKetoSecretsPaginationOk returns a tuple with the KetoSecretsPagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKetoSecretsPaginationOk() ([]string, bool) {
+	if o == nil || IsNil(o.KetoSecretsPagination) {
+		return nil, false
+	}
+	return o.KetoSecretsPagination, true
+}
+
+// HasKetoSecretsPagination returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKetoSecretsPagination() bool {
+	if o != nil && !IsNil(o.KetoSecretsPagination) {
+		return true
+	}
+
+	return false
+}
+
+// SetKetoSecretsPagination gets a reference to the given []string and assigns it to the KetoSecretsPagination field.
+func (o *NormalizedProjectRevision) SetKetoSecretsPagination(v []string) {
+	o.KetoSecretsPagination = v
 }
 
 // GetKratosCookiesSameSite returns the KratosCookiesSameSite field value if set, zero value otherwise.
@@ -4067,6 +4143,102 @@ func (o *NormalizedProjectRevision) HasKratosFeatureFlagsFasterSessionExtend() b
 // SetKratosFeatureFlagsFasterSessionExtend gets a reference to the given bool and assigns it to the KratosFeatureFlagsFasterSessionExtend field.
 func (o *NormalizedProjectRevision) SetKratosFeatureFlagsFasterSessionExtend(v bool) {
 	o.KratosFeatureFlagsFasterSessionExtend = &v
+}
+
+// GetKratosFeatureFlagsLegacyContinueWithVerificationUi returns the KratosFeatureFlagsLegacyContinueWithVerificationUi field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsLegacyContinueWithVerificationUi() bool {
+	if o == nil || IsNil(o.KratosFeatureFlagsLegacyContinueWithVerificationUi) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosFeatureFlagsLegacyContinueWithVerificationUi
+}
+
+// GetKratosFeatureFlagsLegacyContinueWithVerificationUiOk returns a tuple with the KratosFeatureFlagsLegacyContinueWithVerificationUi field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsLegacyContinueWithVerificationUiOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosFeatureFlagsLegacyContinueWithVerificationUi) {
+		return nil, false
+	}
+	return o.KratosFeatureFlagsLegacyContinueWithVerificationUi, true
+}
+
+// HasKratosFeatureFlagsLegacyContinueWithVerificationUi returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosFeatureFlagsLegacyContinueWithVerificationUi() bool {
+	if o != nil && !IsNil(o.KratosFeatureFlagsLegacyContinueWithVerificationUi) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosFeatureFlagsLegacyContinueWithVerificationUi gets a reference to the given bool and assigns it to the KratosFeatureFlagsLegacyContinueWithVerificationUi field.
+func (o *NormalizedProjectRevision) SetKratosFeatureFlagsLegacyContinueWithVerificationUi(v bool) {
+	o.KratosFeatureFlagsLegacyContinueWithVerificationUi = &v
+}
+
+// GetKratosFeatureFlagsLegacyOidcRegistrationNodeGroup returns the KratosFeatureFlagsLegacyOidcRegistrationNodeGroup field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsLegacyOidcRegistrationNodeGroup() bool {
+	if o == nil || IsNil(o.KratosFeatureFlagsLegacyOidcRegistrationNodeGroup) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosFeatureFlagsLegacyOidcRegistrationNodeGroup
+}
+
+// GetKratosFeatureFlagsLegacyOidcRegistrationNodeGroupOk returns a tuple with the KratosFeatureFlagsLegacyOidcRegistrationNodeGroup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsLegacyOidcRegistrationNodeGroupOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosFeatureFlagsLegacyOidcRegistrationNodeGroup) {
+		return nil, false
+	}
+	return o.KratosFeatureFlagsLegacyOidcRegistrationNodeGroup, true
+}
+
+// HasKratosFeatureFlagsLegacyOidcRegistrationNodeGroup returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosFeatureFlagsLegacyOidcRegistrationNodeGroup() bool {
+	if o != nil && !IsNil(o.KratosFeatureFlagsLegacyOidcRegistrationNodeGroup) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosFeatureFlagsLegacyOidcRegistrationNodeGroup gets a reference to the given bool and assigns it to the KratosFeatureFlagsLegacyOidcRegistrationNodeGroup field.
+func (o *NormalizedProjectRevision) SetKratosFeatureFlagsLegacyOidcRegistrationNodeGroup(v bool) {
+	o.KratosFeatureFlagsLegacyOidcRegistrationNodeGroup = &v
+}
+
+// GetKratosFeatureFlagsLegacyRequireVerifiedLoginError returns the KratosFeatureFlagsLegacyRequireVerifiedLoginError field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsLegacyRequireVerifiedLoginError() bool {
+	if o == nil || IsNil(o.KratosFeatureFlagsLegacyRequireVerifiedLoginError) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosFeatureFlagsLegacyRequireVerifiedLoginError
+}
+
+// GetKratosFeatureFlagsLegacyRequireVerifiedLoginErrorOk returns a tuple with the KratosFeatureFlagsLegacyRequireVerifiedLoginError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsLegacyRequireVerifiedLoginErrorOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosFeatureFlagsLegacyRequireVerifiedLoginError) {
+		return nil, false
+	}
+	return o.KratosFeatureFlagsLegacyRequireVerifiedLoginError, true
+}
+
+// HasKratosFeatureFlagsLegacyRequireVerifiedLoginError returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosFeatureFlagsLegacyRequireVerifiedLoginError() bool {
+	if o != nil && !IsNil(o.KratosFeatureFlagsLegacyRequireVerifiedLoginError) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosFeatureFlagsLegacyRequireVerifiedLoginError gets a reference to the given bool and assigns it to the KratosFeatureFlagsLegacyRequireVerifiedLoginError field.
+func (o *NormalizedProjectRevision) SetKratosFeatureFlagsLegacyRequireVerifiedLoginError(v bool) {
+	o.KratosFeatureFlagsLegacyRequireVerifiedLoginError = &v
 }
 
 // GetKratosFeatureFlagsUseContinueWithTransitions returns the KratosFeatureFlagsUseContinueWithTransitions field value if set, zero value otherwise.
@@ -6022,6 +6194,38 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCaptchaConfigCfTu
 	o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey = &v
 }
 
+// GetKratosSelfserviceMethodsCaptchaConfigLegacyInjectNode returns the KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigLegacyInjectNode() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode
+}
+
+// GetKratosSelfserviceMethodsCaptchaConfigLegacyInjectNodeOk returns a tuple with the KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigLegacyInjectNodeOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode, true
+}
+
+// HasKratosSelfserviceMethodsCaptchaConfigLegacyInjectNode returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCaptchaConfigLegacyInjectNode() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsCaptchaConfigLegacyInjectNode gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCaptchaConfigLegacyInjectNode(v bool) {
+	o.KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode = &v
+}
+
 // GetKratosSelfserviceMethodsCaptchaEnabled returns the KratosSelfserviceMethodsCaptchaEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaEnabled() bool {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsCaptchaEnabled) {
@@ -6084,6 +6288,48 @@ func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeConfigLifespa
 // SetKratosSelfserviceMethodsCodeConfigLifespan gets a reference to the given string and assigns it to the KratosSelfserviceMethodsCodeConfigLifespan field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodeConfigLifespan(v string) {
 	o.KratosSelfserviceMethodsCodeConfigLifespan = &v
+}
+
+// GetKratosSelfserviceMethodsCodeConfigMaxSubmissions returns the KratosSelfserviceMethodsCodeConfigMaxSubmissions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigMaxSubmissions() int32 {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Get()
+}
+
+// GetKratosSelfserviceMethodsCodeConfigMaxSubmissionsOk returns a tuple with the KratosSelfserviceMethodsCodeConfigMaxSubmissions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigMaxSubmissionsOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Get(), o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.IsSet()
+}
+
+// HasKratosSelfserviceMethodsCodeConfigMaxSubmissions returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeConfigMaxSubmissions() bool {
+	if o != nil && o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsCodeConfigMaxSubmissions gets a reference to the given NullableInt32 and assigns it to the KratosSelfserviceMethodsCodeConfigMaxSubmissions field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodeConfigMaxSubmissions(v int32) {
+	o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Set(&v)
+}
+// SetKratosSelfserviceMethodsCodeConfigMaxSubmissionsNil sets the value for KratosSelfserviceMethodsCodeConfigMaxSubmissions to be an explicit nil
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodeConfigMaxSubmissionsNil() {
+	o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Set(nil)
+}
+
+// UnsetKratosSelfserviceMethodsCodeConfigMaxSubmissions ensures that no value is present for KratosSelfserviceMethodsCodeConfigMaxSubmissions, not even an explicit nil
+func (o *NormalizedProjectRevision) UnsetKratosSelfserviceMethodsCodeConfigMaxSubmissions() {
+	o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Unset()
 }
 
 // GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled returns the KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled field value if set, zero value otherwise.
@@ -7358,6 +7604,38 @@ func (o *NormalizedProjectRevision) SetName(v string) {
 	o.Name = v
 }
 
+// GetOrganizations returns the Organizations field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetOrganizations() []Organization {
+	if o == nil || IsNil(o.Organizations) {
+		var ret []Organization
+		return ret
+	}
+	return o.Organizations
+}
+
+// GetOrganizationsOk returns a tuple with the Organizations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetOrganizationsOk() ([]Organization, bool) {
+	if o == nil || IsNil(o.Organizations) {
+		return nil, false
+	}
+	return o.Organizations, true
+}
+
+// HasOrganizations returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasOrganizations() bool {
+	if o != nil && !IsNil(o.Organizations) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizations gets a reference to the given []Organization and assigns it to the Organizations field.
+func (o *NormalizedProjectRevision) SetOrganizations(v []Organization) {
+	o.Organizations = v
+}
+
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetProjectId() string {
 	if o == nil || IsNil(o.ProjectId) {
@@ -7740,6 +8018,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HydraSecretsCookie) {
 		toSerialize["hydra_secrets_cookie"] = o.HydraSecretsCookie
 	}
+	if !IsNil(o.HydraSecretsPagination) {
+		toSerialize["hydra_secrets_pagination"] = o.HydraSecretsPagination
+	}
 	if !IsNil(o.HydraSecretsSystem) {
 		toSerialize["hydra_secrets_system"] = o.HydraSecretsSystem
 	}
@@ -7826,6 +8107,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.KetoNamespaces) {
 		toSerialize["keto_namespaces"] = o.KetoNamespaces
+	}
+	if !IsNil(o.KetoSecretsPagination) {
+		toSerialize["keto_secrets_pagination"] = o.KetoSecretsPagination
 	}
 	if !IsNil(o.KratosCookiesSameSite) {
 		toSerialize["kratos_cookies_same_site"] = o.KratosCookiesSameSite
@@ -7988,6 +8272,15 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.KratosFeatureFlagsFasterSessionExtend) {
 		toSerialize["kratos_feature_flags_faster_session_extend"] = o.KratosFeatureFlagsFasterSessionExtend
+	}
+	if !IsNil(o.KratosFeatureFlagsLegacyContinueWithVerificationUi) {
+		toSerialize["kratos_feature_flags_legacy_continue_with_verification_ui"] = o.KratosFeatureFlagsLegacyContinueWithVerificationUi
+	}
+	if !IsNil(o.KratosFeatureFlagsLegacyOidcRegistrationNodeGroup) {
+		toSerialize["kratos_feature_flags_legacy_oidc_registration_node_group"] = o.KratosFeatureFlagsLegacyOidcRegistrationNodeGroup
+	}
+	if !IsNil(o.KratosFeatureFlagsLegacyRequireVerifiedLoginError) {
+		toSerialize["kratos_feature_flags_legacy_require_verified_login_error"] = o.KratosFeatureFlagsLegacyRequireVerifiedLoginError
 	}
 	if !IsNil(o.KratosFeatureFlagsUseContinueWithTransitions) {
 		toSerialize["kratos_feature_flags_use_continue_with_transitions"] = o.KratosFeatureFlagsUseContinueWithTransitions
@@ -8172,11 +8465,17 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey) {
 		toSerialize["kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey"] = o.KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey
 	}
+	if !IsNil(o.KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode) {
+		toSerialize["kratos_selfservice_methods_captcha_config_legacy_inject_node"] = o.KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode
+	}
 	if !IsNil(o.KratosSelfserviceMethodsCaptchaEnabled) {
 		toSerialize["kratos_selfservice_methods_captcha_enabled"] = o.KratosSelfserviceMethodsCaptchaEnabled
 	}
 	if !IsNil(o.KratosSelfserviceMethodsCodeConfigLifespan) {
 		toSerialize["kratos_selfservice_methods_code_config_lifespan"] = o.KratosSelfserviceMethodsCodeConfigLifespan
+	}
+	if o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.IsSet() {
+		toSerialize["kratos_selfservice_methods_code_config_max_submissions"] = o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Get()
 	}
 	if !IsNil(o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled) {
 		toSerialize["kratos_selfservice_methods_code_config_missing_credential_fallback_enabled"] = o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled
@@ -8296,6 +8595,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 		toSerialize["kratos_session_whoami_tokenizer_templates"] = o.KratosSessionWhoamiTokenizerTemplates
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.Organizations) {
+		toSerialize["organizations"] = o.Organizations
+	}
 	if !IsNil(o.ProjectId) {
 		toSerialize["project_id"] = o.ProjectId
 	}
@@ -8394,6 +8696,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "hydra_oidc_subject_identifiers_pairwise_salt")
 		delete(additionalProperties, "hydra_oidc_subject_identifiers_supported_types")
 		delete(additionalProperties, "hydra_secrets_cookie")
+		delete(additionalProperties, "hydra_secrets_pagination")
 		delete(additionalProperties, "hydra_secrets_system")
 		delete(additionalProperties, "hydra_serve_cookies_same_site_legacy_workaround")
 		delete(additionalProperties, "hydra_serve_cookies_same_site_mode")
@@ -8423,6 +8726,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "keto_namespace_configuration")
 		delete(additionalProperties, "keto_namespaces")
+		delete(additionalProperties, "keto_secrets_pagination")
 		delete(additionalProperties, "kratos_cookies_same_site")
 		delete(additionalProperties, "kratos_courier_channels")
 		delete(additionalProperties, "kratos_courier_delivery_strategy")
@@ -8477,6 +8781,9 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions")
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions_max_age")
 		delete(additionalProperties, "kratos_feature_flags_faster_session_extend")
+		delete(additionalProperties, "kratos_feature_flags_legacy_continue_with_verification_ui")
+		delete(additionalProperties, "kratos_feature_flags_legacy_oidc_registration_node_group")
+		delete(additionalProperties, "kratos_feature_flags_legacy_require_verified_login_error")
 		delete(additionalProperties, "kratos_feature_flags_use_continue_with_transitions")
 		delete(additionalProperties, "kratos_identity_schemas")
 		delete(additionalProperties, "kratos_oauth2_provider_headers")
@@ -8538,8 +8845,10 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kratos_selfservice_flows_verification_use")
 		delete(additionalProperties, "kratos_selfservice_methods_captcha_config_cf_turnstile_secret")
 		delete(additionalProperties, "kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey")
+		delete(additionalProperties, "kratos_selfservice_methods_captcha_config_legacy_inject_node")
 		delete(additionalProperties, "kratos_selfservice_methods_captcha_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_config_lifespan")
+		delete(additionalProperties, "kratos_selfservice_methods_code_config_max_submissions")
 		delete(additionalProperties, "kratos_selfservice_methods_code_config_missing_credential_fallback_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_mfa_enabled")
@@ -8580,6 +8889,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kratos_session_whoami_required_aal")
 		delete(additionalProperties, "kratos_session_whoami_tokenizer_templates")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "organizations")
 		delete(additionalProperties, "project_id")
 		delete(additionalProperties, "project_revision_hooks")
 		delete(additionalProperties, "scim_clients")
