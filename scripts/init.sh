@@ -20,14 +20,14 @@ cat <<EOT >> ~/.m2/settings.xml
 <settings>
     <servers>
         <server>
-            <id>ossrh</id>
-            <username>${OSSRH_USERNAME}</username>
-            <password>${OSSRH_PASSWORD}</password>
+            <id>central</id>
+            <username>${MVN_CENTRAL_USERNAME}</username>
+            <password>${MVN_CENTRAL_PASSWORD}</password>
         </server>
     </servers>
     <profiles>
         <profile>
-            <id>ossrh</id>
+            <id>central</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -38,7 +38,7 @@ cat <<EOT >> ~/.m2/settings.xml
         </profile>
     </profiles>
     <activeProfiles>
-      <activeProfile>ossrh</activeProfile>
+      <activeProfile>central</activeProfile>
     </activeProfiles>
 </settings>
 EOT
