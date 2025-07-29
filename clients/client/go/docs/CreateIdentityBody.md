@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Credentials** | Pointer to [**IdentityWithCredentials**](IdentityWithCredentials.md) |  | [optional] 
+**ExternalId** | Pointer to **string** | ExternalID is an optional external ID of the identity. This is used to link the identity to an external system. If set, the external ID must be unique across all identities. | [optional] 
 **MetadataAdmin** | Pointer to **interface{}** | Store metadata about the user which is only accessible through admin APIs such as &#x60;GET /admin/identities/&lt;id&gt;&#x60;. | [optional] 
 **MetadataPublic** | Pointer to **interface{}** | Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field. | [optional] 
 **OrganizationId** | Pointer to **NullableString** |  | [optional] 
@@ -57,6 +58,31 @@ SetCredentials sets Credentials field to given value.
 `func (o *CreateIdentityBody) HasCredentials() bool`
 
 HasCredentials returns a boolean if a field has been set.
+
+### GetExternalId
+
+`func (o *CreateIdentityBody) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *CreateIdentityBody) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *CreateIdentityBody) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *CreateIdentityBody) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
 
 ### GetMetadataAdmin
 

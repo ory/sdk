@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**DisableSession**](IdentityAPI.md#DisableSession) | **Delete** /admin/sessions/{id} | Deactivate a Session
 [**ExtendSession**](IdentityAPI.md#ExtendSession) | **Patch** /admin/sessions/{id}/extend | Extend a Session
 [**GetIdentity**](IdentityAPI.md#GetIdentity) | **Get** /admin/identities/{id} | Get an Identity
+[**GetIdentityByExternalID**](IdentityAPI.md#GetIdentityByExternalID) | **Get** /admin/identities/by/external/{externalID} | Get an Identity by its External ID
 [**GetIdentitySchema**](IdentityAPI.md#GetIdentitySchema) | **Get** /schemas/{id} | Get Identity JSON Schema
 [**GetSession**](IdentityAPI.md#GetSession) | **Get** /admin/sessions/{id} | Get Session
 [**ListIdentities**](IdentityAPI.md#ListIdentities) | **Get** /admin/identities | List Identities
@@ -685,6 +686,78 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetIdentityRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **includeCredential** | **[]string** | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | 
+
+### Return type
+
+[**Identity**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetIdentityByExternalID
+
+> Identity GetIdentityByExternalID(ctx, externalID).IncludeCredential(includeCredential).Execute()
+
+Get an Identity by its External ID
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	externalID := "externalID_example" // string | ExternalID must be set to the ID of identity you want to get
+	includeCredential := []string{"IncludeCredential_example"} // []string | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IdentityAPI.GetIdentityByExternalID(context.Background(), externalID).IncludeCredential(includeCredential).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.GetIdentityByExternalID``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetIdentityByExternalID`: Identity
+	fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.GetIdentityByExternalID`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**externalID** | **string** | ExternalID must be set to the ID of identity you want to get | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetIdentityByExternalIDRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

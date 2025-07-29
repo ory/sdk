@@ -31,6 +31,30 @@ void main() {
       // TODO
     });
 
+    // A recovery address that is registered for the user. It can be an email, a phone number (to receive the code via SMS), etc. Used in RecoveryV2.
+    // String recoveryAddress
+    test('to test the property `recoveryAddress`', () async {
+      // TODO
+    });
+
+    // If there are multiple recovery addresses registered for the user, and the initially provided address is different from the address chosen when the choice (of masked addresses) is presented, then we need to make sure that the user actually knows the full address to avoid information exfiltration, so we ask for the full address. Used in RecoveryV2.
+    // String recoveryConfirmAddress
+    test('to test the property `recoveryConfirmAddress`', () async {
+      // TODO
+    });
+
+    // If there are multiple addresses registered for the user, a choice is presented and this field stores the result of this choice. Addresses are 'masked' (never sent in full to the client and shown partially in the UI) since at this point in the recovery flow, the user has not yet proven that it knows the full address and we want to avoid information exfiltration. So for all intents and purposes, the value of this field should be treated as an opaque identifier. Used in RecoveryV2.
+    // String recoverySelectAddress
+    test('to test the property `recoverySelectAddress`', () async {
+      // TODO
+    });
+
+    // Set to \"previous\" to return to the previous screen. Used in RecoveryV2.
+    // String screen
+    test('to test the property `screen`', () async {
+      // TODO
+    });
+
     // Transient data to pass along to any webhooks
     // JsonObject transientPayload
     test('to test the property `transientPayload`', () async {

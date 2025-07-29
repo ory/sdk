@@ -79,6 +79,14 @@ class _$UpdateRecoveryFlowWithCodeMethod
   @override
   final UpdateRecoveryFlowWithCodeMethodMethodEnum method;
   @override
+  final String? recoveryAddress;
+  @override
+  final String? recoveryConfirmAddress;
+  @override
+  final String? recoverySelectAddress;
+  @override
+  final String? screen;
+  @override
   final JsonObject? transientPayload;
 
   factory _$UpdateRecoveryFlowWithCodeMethod(
@@ -90,6 +98,10 @@ class _$UpdateRecoveryFlowWithCodeMethod
       this.csrfToken,
       this.email,
       required this.method,
+      this.recoveryAddress,
+      this.recoveryConfirmAddress,
+      this.recoverySelectAddress,
+      this.screen,
       this.transientPayload})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -113,6 +125,10 @@ class _$UpdateRecoveryFlowWithCodeMethod
         csrfToken == other.csrfToken &&
         email == other.email &&
         method == other.method &&
+        recoveryAddress == other.recoveryAddress &&
+        recoveryConfirmAddress == other.recoveryConfirmAddress &&
+        recoverySelectAddress == other.recoverySelectAddress &&
+        screen == other.screen &&
         transientPayload == other.transientPayload;
   }
 
@@ -123,6 +139,10 @@ class _$UpdateRecoveryFlowWithCodeMethod
     _$hash = $jc(_$hash, csrfToken.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
     _$hash = $jc(_$hash, method.hashCode);
+    _$hash = $jc(_$hash, recoveryAddress.hashCode);
+    _$hash = $jc(_$hash, recoveryConfirmAddress.hashCode);
+    _$hash = $jc(_$hash, recoverySelectAddress.hashCode);
+    _$hash = $jc(_$hash, screen.hashCode);
     _$hash = $jc(_$hash, transientPayload.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -135,6 +155,10 @@ class _$UpdateRecoveryFlowWithCodeMethod
           ..add('csrfToken', csrfToken)
           ..add('email', email)
           ..add('method', method)
+          ..add('recoveryAddress', recoveryAddress)
+          ..add('recoveryConfirmAddress', recoveryConfirmAddress)
+          ..add('recoverySelectAddress', recoverySelectAddress)
+          ..add('screen', screen)
           ..add('transientPayload', transientPayload))
         .toString();
   }
@@ -163,6 +187,25 @@ class UpdateRecoveryFlowWithCodeMethodBuilder
   set method(UpdateRecoveryFlowWithCodeMethodMethodEnum? method) =>
       _$this._method = method;
 
+  String? _recoveryAddress;
+  String? get recoveryAddress => _$this._recoveryAddress;
+  set recoveryAddress(String? recoveryAddress) =>
+      _$this._recoveryAddress = recoveryAddress;
+
+  String? _recoveryConfirmAddress;
+  String? get recoveryConfirmAddress => _$this._recoveryConfirmAddress;
+  set recoveryConfirmAddress(String? recoveryConfirmAddress) =>
+      _$this._recoveryConfirmAddress = recoveryConfirmAddress;
+
+  String? _recoverySelectAddress;
+  String? get recoverySelectAddress => _$this._recoverySelectAddress;
+  set recoverySelectAddress(String? recoverySelectAddress) =>
+      _$this._recoverySelectAddress = recoverySelectAddress;
+
+  String? _screen;
+  String? get screen => _$this._screen;
+  set screen(String? screen) => _$this._screen = screen;
+
   JsonObject? _transientPayload;
   JsonObject? get transientPayload => _$this._transientPayload;
   set transientPayload(JsonObject? transientPayload) =>
@@ -179,6 +222,10 @@ class UpdateRecoveryFlowWithCodeMethodBuilder
       _csrfToken = $v.csrfToken;
       _email = $v.email;
       _method = $v.method;
+      _recoveryAddress = $v.recoveryAddress;
+      _recoveryConfirmAddress = $v.recoveryConfirmAddress;
+      _recoverySelectAddress = $v.recoverySelectAddress;
+      _screen = $v.screen;
       _transientPayload = $v.transientPayload;
       _$v = null;
     }
@@ -207,6 +254,10 @@ class UpdateRecoveryFlowWithCodeMethodBuilder
             email: email,
             method: BuiltValueNullFieldError.checkNotNull(
                 method, r'UpdateRecoveryFlowWithCodeMethod', 'method'),
+            recoveryAddress: recoveryAddress,
+            recoveryConfirmAddress: recoveryConfirmAddress,
+            recoverySelectAddress: recoverySelectAddress,
+            screen: screen,
             transientPayload: transientPayload);
     replace(_$result);
     return _$result;

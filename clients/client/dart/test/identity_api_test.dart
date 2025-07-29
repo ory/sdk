@@ -97,6 +97,15 @@ void main() {
       // TODO
     });
 
+    // Get an Identity by its External ID
+    //
+    // Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+    //
+    //Future<Identity> getIdentityByExternalID(String externalID, { BuiltList<String> includeCredential }) async
+    test('test getIdentityByExternalID', () async {
+      // TODO
+    });
+
     // Get Identity JSON Schema
     //
     // Return a specific identity schema.

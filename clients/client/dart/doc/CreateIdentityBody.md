@@ -9,6 +9,7 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **credentials** | [**IdentityWithCredentials**](IdentityWithCredentials.md) |  | [optional] 
+**externalId** | **String** | ExternalID is an optional external ID of the identity. This is used to link the identity to an external system. If set, the external ID must be unique across all identities. | [optional] 
 **metadataAdmin** | [**JsonObject**](.md) | Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`. | [optional] 
 **metadataPublic** | [**JsonObject**](.md) | Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field. | [optional] 
 **organizationId** | **String** |  | [optional] 

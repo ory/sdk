@@ -116,10 +116,12 @@ Name | Type | Description | Notes
 **KratosCourierTemplatesVerificationValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. | [optional] 
 **KratosFeatureFlagsCacheableSessions** | Pointer to **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] 
 **KratosFeatureFlagsCacheableSessionsMaxAge** | Pointer to **string** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional] 
+**KratosFeatureFlagsChooseRecoveryAddress** | Pointer to **bool** | This governs the \&quot;feature_flags.choose_recovery_address\&quot; setting. | [optional] 
 **KratosFeatureFlagsFasterSessionExtend** | Pointer to **bool** | Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \&quot;feature_flags.faster_session_extend\&quot; setting. | [optional] 
 **KratosFeatureFlagsLegacyContinueWithVerificationUi** | Pointer to **bool** | Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including &#x60;show_verification_ui&#x60; in the registration flow&#39;s &#x60;continue_with&#x60; when verification is enabled. If set to false, &#x60;show_verification_ui&#x60; is only set in &#x60;continue_with&#x60; if the &#x60;show_verification_ui&#x60; hook is used. This flag will be removed in the future.  This governs the \&quot;feature_flags.legacy_continue_with_verification_ui\&quot; setting. | [optional] 
 **KratosFeatureFlagsLegacyOidcRegistrationNodeGroup** | Pointer to **bool** | Controls whether the UI nodes in an OIDC registration flow have group \&quot;oidc\&quot; in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \&quot;oidc\&quot; and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \&quot;feature_flags.legacy_oidc_registration_node_group\&quot; setting. | [optional] 
 **KratosFeatureFlagsLegacyRequireVerifiedLoginError** | Pointer to **bool** | Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the &#x60;continue_with&#x60; array will contain a &#x60;show_verification_ui&#x60; hook instead.  This flag is deprecated and will be removed in the future.  This governs the \&quot;feature_flags.legacy_require_verified_login_error\&quot; setting. | [optional] 
+**KratosFeatureFlagsPasswordProfileRegistrationNodeGroup** | Pointer to **bool** | Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \&quot;password\&quot; if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \&quot;default\&quot;. | [optional] 
 **KratosFeatureFlagsUseContinueWithTransitions** | Pointer to **bool** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional] 
 **KratosIdentitySchemas** | Pointer to [**[]NormalizedProjectRevisionIdentitySchema**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
 **KratosOauth2ProviderHeaders** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
@@ -3075,6 +3077,31 @@ SetKratosFeatureFlagsCacheableSessionsMaxAge sets KratosFeatureFlagsCacheableSes
 
 HasKratosFeatureFlagsCacheableSessionsMaxAge returns a boolean if a field has been set.
 
+### GetKratosFeatureFlagsChooseRecoveryAddress
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsChooseRecoveryAddress() bool`
+
+GetKratosFeatureFlagsChooseRecoveryAddress returns the KratosFeatureFlagsChooseRecoveryAddress field if non-nil, zero value otherwise.
+
+### GetKratosFeatureFlagsChooseRecoveryAddressOk
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsChooseRecoveryAddressOk() (*bool, bool)`
+
+GetKratosFeatureFlagsChooseRecoveryAddressOk returns a tuple with the KratosFeatureFlagsChooseRecoveryAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosFeatureFlagsChooseRecoveryAddress
+
+`func (o *NormalizedProjectRevision) SetKratosFeatureFlagsChooseRecoveryAddress(v bool)`
+
+SetKratosFeatureFlagsChooseRecoveryAddress sets KratosFeatureFlagsChooseRecoveryAddress field to given value.
+
+### HasKratosFeatureFlagsChooseRecoveryAddress
+
+`func (o *NormalizedProjectRevision) HasKratosFeatureFlagsChooseRecoveryAddress() bool`
+
+HasKratosFeatureFlagsChooseRecoveryAddress returns a boolean if a field has been set.
+
 ### GetKratosFeatureFlagsFasterSessionExtend
 
 `func (o *NormalizedProjectRevision) GetKratosFeatureFlagsFasterSessionExtend() bool`
@@ -3174,6 +3201,31 @@ SetKratosFeatureFlagsLegacyRequireVerifiedLoginError sets KratosFeatureFlagsLega
 `func (o *NormalizedProjectRevision) HasKratosFeatureFlagsLegacyRequireVerifiedLoginError() bool`
 
 HasKratosFeatureFlagsLegacyRequireVerifiedLoginError returns a boolean if a field has been set.
+
+### GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup() bool`
+
+GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup returns the KratosFeatureFlagsPasswordProfileRegistrationNodeGroup field if non-nil, zero value otherwise.
+
+### GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroupOk
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroupOk() (*bool, bool)`
+
+GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroupOk returns a tuple with the KratosFeatureFlagsPasswordProfileRegistrationNodeGroup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup
+
+`func (o *NormalizedProjectRevision) SetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup(v bool)`
+
+SetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup sets KratosFeatureFlagsPasswordProfileRegistrationNodeGroup field to given value.
+
+### HasKratosFeatureFlagsPasswordProfileRegistrationNodeGroup
+
+`func (o *NormalizedProjectRevision) HasKratosFeatureFlagsPasswordProfileRegistrationNodeGroup() bool`
+
+HasKratosFeatureFlagsPasswordProfileRegistrationNodeGroup returns a boolean if a field has been set.
 
 ### GetKratosFeatureFlagsUseContinueWithTransitions
 

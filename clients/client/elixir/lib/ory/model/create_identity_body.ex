@@ -9,6 +9,7 @@ defmodule Ory.Model.CreateIdentityBody do
   @derive Jason.Encoder
   defstruct [
     :credentials,
+    :external_id,
     :metadata_admin,
     :metadata_public,
     :organization_id,
@@ -21,6 +22,7 @@ defmodule Ory.Model.CreateIdentityBody do
 
   @type t :: %__MODULE__{
     :credentials => Ory.Model.IdentityWithCredentials.t | nil,
+    :external_id => String.t | nil,
     :metadata_admin => any() | nil,
     :metadata_public => any() | nil,
     :organization_id => String.t | nil,

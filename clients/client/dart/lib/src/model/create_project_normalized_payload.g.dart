@@ -760,6 +760,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final String? kratosFeatureFlagsCacheableSessionsMaxAge;
   @override
+  final bool? kratosFeatureFlagsChooseRecoveryAddress;
+  @override
   final bool? kratosFeatureFlagsFasterSessionExtend;
   @override
   final bool? kratosFeatureFlagsLegacyContinueWithVerificationUi;
@@ -767,6 +769,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   final bool? kratosFeatureFlagsLegacyOidcRegistrationNodeGroup;
   @override
   final bool? kratosFeatureFlagsLegacyRequireVerifiedLoginError;
+  @override
+  final bool? kratosFeatureFlagsPasswordProfileRegistrationNodeGroup;
   @override
   final bool? kratosFeatureFlagsUseContinueWithTransitions;
   @override
@@ -1138,10 +1142,12 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosCourierTemplatesVerificationValidEmailSubject,
       this.kratosFeatureFlagsCacheableSessions,
       this.kratosFeatureFlagsCacheableSessionsMaxAge,
+      this.kratosFeatureFlagsChooseRecoveryAddress,
       this.kratosFeatureFlagsFasterSessionExtend,
       this.kratosFeatureFlagsLegacyContinueWithVerificationUi,
       this.kratosFeatureFlagsLegacyOidcRegistrationNodeGroup,
       this.kratosFeatureFlagsLegacyRequireVerifiedLoginError,
+      this.kratosFeatureFlagsPasswordProfileRegistrationNodeGroup,
       this.kratosFeatureFlagsUseContinueWithTransitions,
       this.kratosIdentitySchemas,
       this.kratosOauth2ProviderHeaders,
@@ -1467,6 +1473,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
             other.kratosFeatureFlagsCacheableSessions &&
         kratosFeatureFlagsCacheableSessionsMaxAge ==
             other.kratosFeatureFlagsCacheableSessionsMaxAge &&
+        kratosFeatureFlagsChooseRecoveryAddress ==
+            other.kratosFeatureFlagsChooseRecoveryAddress &&
         kratosFeatureFlagsFasterSessionExtend ==
             other.kratosFeatureFlagsFasterSessionExtend &&
         kratosFeatureFlagsLegacyContinueWithVerificationUi ==
@@ -1475,6 +1483,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
             other.kratosFeatureFlagsLegacyOidcRegistrationNodeGroup &&
         kratosFeatureFlagsLegacyRequireVerifiedLoginError ==
             other.kratosFeatureFlagsLegacyRequireVerifiedLoginError &&
+        kratosFeatureFlagsPasswordProfileRegistrationNodeGroup ==
+            other.kratosFeatureFlagsPasswordProfileRegistrationNodeGroup &&
         kratosFeatureFlagsUseContinueWithTransitions ==
             other.kratosFeatureFlagsUseContinueWithTransitions &&
         kratosIdentitySchemas == other.kratosIdentitySchemas &&
@@ -1868,6 +1878,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         _$hash, kratosCourierTemplatesVerificationValidEmailSubject.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessions.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsCacheableSessionsMaxAge.hashCode);
+    _$hash = $jc(_$hash, kratosFeatureFlagsChooseRecoveryAddress.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsFasterSessionExtend.hashCode);
     _$hash = $jc(
         _$hash, kratosFeatureFlagsLegacyContinueWithVerificationUi.hashCode);
@@ -1875,6 +1886,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         $jc(_$hash, kratosFeatureFlagsLegacyOidcRegistrationNodeGroup.hashCode);
     _$hash =
         $jc(_$hash, kratosFeatureFlagsLegacyRequireVerifiedLoginError.hashCode);
+    _$hash = $jc(_$hash,
+        kratosFeatureFlagsPasswordProfileRegistrationNodeGroup.hashCode);
     _$hash = $jc(_$hash, kratosFeatureFlagsUseContinueWithTransitions.hashCode);
     _$hash = $jc(_$hash, kratosIdentitySchemas.hashCode);
     _$hash = $jc(_$hash, kratosOauth2ProviderHeaders.hashCode);
@@ -2273,6 +2286,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               kratosFeatureFlagsCacheableSessions)
           ..add('kratosFeatureFlagsCacheableSessionsMaxAge',
               kratosFeatureFlagsCacheableSessionsMaxAge)
+          ..add('kratosFeatureFlagsChooseRecoveryAddress',
+              kratosFeatureFlagsChooseRecoveryAddress)
           ..add('kratosFeatureFlagsFasterSessionExtend',
               kratosFeatureFlagsFasterSessionExtend)
           ..add('kratosFeatureFlagsLegacyContinueWithVerificationUi',
@@ -2281,6 +2296,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               kratosFeatureFlagsLegacyOidcRegistrationNodeGroup)
           ..add('kratosFeatureFlagsLegacyRequireVerifiedLoginError',
               kratosFeatureFlagsLegacyRequireVerifiedLoginError)
+          ..add('kratosFeatureFlagsPasswordProfileRegistrationNodeGroup',
+              kratosFeatureFlagsPasswordProfileRegistrationNodeGroup)
           ..add('kratosFeatureFlagsUseContinueWithTransitions',
               kratosFeatureFlagsUseContinueWithTransitions)
           ..add('kratosIdentitySchemas', kratosIdentitySchemas)
@@ -3335,6 +3352,14 @@ class CreateProjectNormalizedPayloadBuilder
       _$this._kratosFeatureFlagsCacheableSessionsMaxAge =
           kratosFeatureFlagsCacheableSessionsMaxAge;
 
+  bool? _kratosFeatureFlagsChooseRecoveryAddress;
+  bool? get kratosFeatureFlagsChooseRecoveryAddress =>
+      _$this._kratosFeatureFlagsChooseRecoveryAddress;
+  set kratosFeatureFlagsChooseRecoveryAddress(
+          bool? kratosFeatureFlagsChooseRecoveryAddress) =>
+      _$this._kratosFeatureFlagsChooseRecoveryAddress =
+          kratosFeatureFlagsChooseRecoveryAddress;
+
   bool? _kratosFeatureFlagsFasterSessionExtend;
   bool? get kratosFeatureFlagsFasterSessionExtend =>
       _$this._kratosFeatureFlagsFasterSessionExtend;
@@ -3366,6 +3391,14 @@ class CreateProjectNormalizedPayloadBuilder
           bool? kratosFeatureFlagsLegacyRequireVerifiedLoginError) =>
       _$this._kratosFeatureFlagsLegacyRequireVerifiedLoginError =
           kratosFeatureFlagsLegacyRequireVerifiedLoginError;
+
+  bool? _kratosFeatureFlagsPasswordProfileRegistrationNodeGroup;
+  bool? get kratosFeatureFlagsPasswordProfileRegistrationNodeGroup =>
+      _$this._kratosFeatureFlagsPasswordProfileRegistrationNodeGroup;
+  set kratosFeatureFlagsPasswordProfileRegistrationNodeGroup(
+          bool? kratosFeatureFlagsPasswordProfileRegistrationNodeGroup) =>
+      _$this._kratosFeatureFlagsPasswordProfileRegistrationNodeGroup =
+          kratosFeatureFlagsPasswordProfileRegistrationNodeGroup;
 
   bool? _kratosFeatureFlagsUseContinueWithTransitions;
   bool? get kratosFeatureFlagsUseContinueWithTransitions =>
@@ -4492,6 +4525,8 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosFeatureFlagsCacheableSessions;
       _kratosFeatureFlagsCacheableSessionsMaxAge =
           $v.kratosFeatureFlagsCacheableSessionsMaxAge;
+      _kratosFeatureFlagsChooseRecoveryAddress =
+          $v.kratosFeatureFlagsChooseRecoveryAddress;
       _kratosFeatureFlagsFasterSessionExtend =
           $v.kratosFeatureFlagsFasterSessionExtend;
       _kratosFeatureFlagsLegacyContinueWithVerificationUi =
@@ -4500,6 +4535,8 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosFeatureFlagsLegacyOidcRegistrationNodeGroup;
       _kratosFeatureFlagsLegacyRequireVerifiedLoginError =
           $v.kratosFeatureFlagsLegacyRequireVerifiedLoginError;
+      _kratosFeatureFlagsPasswordProfileRegistrationNodeGroup =
+          $v.kratosFeatureFlagsPasswordProfileRegistrationNodeGroup;
       _kratosFeatureFlagsUseContinueWithTransitions =
           $v.kratosFeatureFlagsUseContinueWithTransitions;
       _kratosIdentitySchemas = $v.kratosIdentitySchemas?.toBuilder();
@@ -4877,10 +4914,12 @@ class CreateProjectNormalizedPayloadBuilder
               kratosCourierTemplatesVerificationValidEmailSubject: kratosCourierTemplatesVerificationValidEmailSubject,
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
               kratosFeatureFlagsCacheableSessionsMaxAge: kratosFeatureFlagsCacheableSessionsMaxAge,
+              kratosFeatureFlagsChooseRecoveryAddress: kratosFeatureFlagsChooseRecoveryAddress,
               kratosFeatureFlagsFasterSessionExtend: kratosFeatureFlagsFasterSessionExtend,
               kratosFeatureFlagsLegacyContinueWithVerificationUi: kratosFeatureFlagsLegacyContinueWithVerificationUi,
               kratosFeatureFlagsLegacyOidcRegistrationNodeGroup: kratosFeatureFlagsLegacyOidcRegistrationNodeGroup,
               kratosFeatureFlagsLegacyRequireVerifiedLoginError: kratosFeatureFlagsLegacyRequireVerifiedLoginError,
+              kratosFeatureFlagsPasswordProfileRegistrationNodeGroup: kratosFeatureFlagsPasswordProfileRegistrationNodeGroup,
               kratosFeatureFlagsUseContinueWithTransitions: kratosFeatureFlagsUseContinueWithTransitions,
               kratosIdentitySchemas: _kratosIdentitySchemas?.build(),
               kratosOauth2ProviderHeaders: kratosOauth2ProviderHeaders,

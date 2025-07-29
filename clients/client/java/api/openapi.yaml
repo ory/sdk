@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.20.23
+  version: v1.21.1
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -896,6 +896,73 @@ paths:
       tags:
       - identity
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /admin/identities/by/external/{externalID}:
+    get:
+      description: |-
+        Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
+        include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+      operationId: getIdentityByExternalID
+      parameters:
+      - description: ExternalID must be set to the ID of identity you want to get
+        explode: false
+        in: path
+        name: externalID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Include Credentials in Response
+
+          Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return
+          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+        explode: true
+        in: query
+        name: include_credential
+        required: false
+        schema:
+          items:
+            enum:
+            - password
+            - oidc
+            - totp
+            - lookup_secret
+            - webauthn
+            - code
+            - passkey
+            - profile
+            - saml
+            - link_recovery
+            - code_recovery
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/identity'
+          description: identity
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Get an Identity by its External ID
+      tags:
+      - identity
       x-accepts:
       - application/json
   /admin/identities/{id}:
@@ -10024,6 +10091,9 @@ components:
 
             This governs the "feature_flags.cacheable_sessions_max_age" setting.
           type: string
+        kratos_feature_flags_choose_recovery_address:
+          description: This governs the "feature_flags.choose_recovery_address" setting.
+          type: boolean
         kratos_feature_flags_faster_session_extend:
           description: |-
             Configures the Ory Kratos Faster Session Extend setting
@@ -10058,6 +10128,13 @@ components:
             This flag is deprecated and will be removed in the future.
 
             This governs the "feature_flags.legacy_require_verified_login_error" setting.
+          type: boolean
+        kratos_feature_flags_password_profile_registration_node_group:
+          description: |-
+            Configures the group for the password method in the registration flow.
+
+            If true, it sets the password method group value to "password" if it is the only method available. This is the legacy behavior.
+            If false is, it sets the password method group value to "default".
           type: boolean
         kratos_feature_flags_use_continue_with_transitions:
           description: |-
@@ -12350,6 +12427,12 @@ components:
       properties:
         credentials:
           $ref: '#/components/schemas/identityWithCredentials'
+        external_id:
+          description: |-
+            ExternalID is an optional external ID of the identity. This is used to link
+            the identity to an external system. If set, the external ID must be unique
+            across all identities.
+          type: string
         metadata_admin:
           description: Store metadata about the user which is only accessible through
             admin APIs such as `GET /admin/identities/<id>`.
@@ -13356,6 +13439,7 @@ components:
             version: 0
         state_changed_at: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
+        external_id: external_id
         recovery_addresses:
         - updated_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -13403,6 +13487,12 @@ components:
           description: Credentials represents all credentials that can be used for
             authenticating this identity.
           type: object
+        external_id:
+          description: |-
+            ExternalID is an optional external ID of the identity. This is used to link
+            the identity to an external system. If set, the external ID must be unique
+            across all identities.
+          type: string
         id:
           description: |-
             ID is the identity's unique identifier.
@@ -16036,6 +16126,9 @@ components:
 
             This governs the "feature_flags.cacheable_sessions_max_age" setting.
           type: string
+        kratos_feature_flags_choose_recovery_address:
+          description: This governs the "feature_flags.choose_recovery_address" setting.
+          type: boolean
         kratos_feature_flags_faster_session_extend:
           description: |-
             Configures the Ory Kratos Faster Session Extend setting
@@ -16070,6 +16163,13 @@ components:
             This flag is deprecated and will be removed in the future.
 
             This governs the "feature_flags.legacy_require_verified_login_error" setting.
+          type: boolean
+        kratos_feature_flags_password_profile_registration_node_group:
+          description: |-
+            Configures the group for the password method in the registration flow.
+
+            If true, it sets the password method group value to "password" if it is the only method available. This is the legacy behavior.
+            If false is, it sets the password method group value to "default".
           type: boolean
         kratos_feature_flags_use_continue_with_transitions:
           description: |-
@@ -21104,6 +21204,7 @@ components:
               version: 0
           state_changed_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
+          external_id: external_id
           recovery_addresses:
           - updated_at: 2000-01-23T04:56:07.000+00:00
             created_at: 2000-01-23T04:56:07.000+00:00
@@ -21492,6 +21593,7 @@ components:
               version: 0
           state_changed_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
+          external_id: external_id
           recovery_addresses:
           - updated_at: 2000-01-23T04:56:07.000+00:00
             created_at: 2000-01-23T04:56:07.000+00:00
@@ -21803,6 +21905,7 @@ components:
                 version: 0
             state_changed_at: 2000-01-23T04:56:07.000+00:00
             created_at: 2000-01-23T04:56:07.000+00:00
+            external_id: external_id
             recovery_addresses:
             - updated_at: 2000-01-23T04:56:07.000+00:00
               created_at: 2000-01-23T04:56:07.000+00:00
@@ -21898,6 +22001,7 @@ components:
               version: 0
           state_changed_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
+          external_id: external_id
           recovery_addresses:
           - updated_at: 2000-01-23T04:56:07.000+00:00
             created_at: 2000-01-23T04:56:07.000+00:00
@@ -21972,6 +22076,7 @@ components:
                 version: 0
             state_changed_at: 2000-01-23T04:56:07.000+00:00
             created_at: 2000-01-23T04:56:07.000+00:00
+            external_id: external_id
             recovery_addresses:
             - updated_at: 2000-01-23T04:56:07.000+00:00
               created_at: 2000-01-23T04:56:07.000+00:00
@@ -23084,6 +23189,12 @@ components:
       properties:
         credentials:
           $ref: '#/components/schemas/identityWithCredentials'
+        external_id:
+          description: |-
+            ExternalID is an optional external ID of the identity. This is used to link
+            the identity to an external system. If set, the external ID must be unique
+            across all identities.
+          type: string
         metadata_admin:
           description: Store metadata about the user which is only accessible through
             admin APIs such as `GET /admin/identities/<id>`.
@@ -23452,6 +23563,34 @@ components:
           x-go-enum-desc: |-
             link RecoveryStrategyLink
             code RecoveryStrategyCode
+        recovery_address:
+          description: |-
+            A recovery address that is registered for the user.
+            It can be an email, a phone number (to receive the code via SMS), etc.
+            Used in RecoveryV2.
+          type: string
+        recovery_confirm_address:
+          description: |-
+            If there are multiple recovery addresses registered for the user, and the initially provided address
+            is different from the address chosen when the choice (of masked addresses) is presented, then we need to make sure
+            that the user actually knows the full address to avoid information exfiltration, so we ask for the full address.
+            Used in RecoveryV2.
+          type: string
+        recovery_select_address:
+          description: |-
+            If there are multiple addresses registered for the user, a choice is presented and this field
+            stores the result of this choice.
+            Addresses are 'masked' (never sent in full to the client and shown partially in the UI) since at this point in the recovery flow,
+            the user has not yet proven that it knows the full address and we want to avoid
+            information exfiltration.
+            So for all intents and purposes, the value of this field should be treated as an opaque identifier.
+            Used in RecoveryV2.
+          type: string
+        screen:
+          description: |-
+            Set to "previous" to return to the previous screen.
+            Used in RecoveryV2.
+          type: string
         transient_payload:
           description: Transient data to pass along to any webhooks
           type: object

@@ -65,6 +65,8 @@ class _$Identity extends Identity {
   @override
   final BuiltMap<String, IdentityCredentials>? credentials;
   @override
+  final String? externalId;
+  @override
   final String id;
   @override
   final JsonObject? metadataAdmin;
@@ -95,6 +97,7 @@ class _$Identity extends Identity {
   _$Identity._(
       {this.createdAt,
       this.credentials,
+      this.externalId,
       required this.id,
       this.metadataAdmin,
       this.metadataPublic,
@@ -126,6 +129,7 @@ class _$Identity extends Identity {
     return other is Identity &&
         createdAt == other.createdAt &&
         credentials == other.credentials &&
+        externalId == other.externalId &&
         id == other.id &&
         metadataAdmin == other.metadataAdmin &&
         metadataPublic == other.metadataPublic &&
@@ -145,6 +149,7 @@ class _$Identity extends Identity {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, credentials.hashCode);
+    _$hash = $jc(_$hash, externalId.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, metadataAdmin.hashCode);
     _$hash = $jc(_$hash, metadataPublic.hashCode);
@@ -166,6 +171,7 @@ class _$Identity extends Identity {
     return (newBuiltValueToStringHelper(r'Identity')
           ..add('createdAt', createdAt)
           ..add('credentials', credentials)
+          ..add('externalId', externalId)
           ..add('id', id)
           ..add('metadataAdmin', metadataAdmin)
           ..add('metadataPublic', metadataPublic)
@@ -194,6 +200,10 @@ class IdentityBuilder implements Builder<Identity, IdentityBuilder> {
       _$this._credentials ??= new MapBuilder<String, IdentityCredentials>();
   set credentials(MapBuilder<String, IdentityCredentials>? credentials) =>
       _$this._credentials = credentials;
+
+  String? _externalId;
+  String? get externalId => _$this._externalId;
+  set externalId(String? externalId) => _$this._externalId = externalId;
 
   String? _id;
   String? get id => _$this._id;
@@ -263,6 +273,7 @@ class IdentityBuilder implements Builder<Identity, IdentityBuilder> {
     if ($v != null) {
       _createdAt = $v.createdAt;
       _credentials = $v.credentials?.toBuilder();
+      _externalId = $v.externalId;
       _id = $v.id;
       _metadataAdmin = $v.metadataAdmin;
       _metadataPublic = $v.metadataPublic;
@@ -301,6 +312,7 @@ class IdentityBuilder implements Builder<Identity, IdentityBuilder> {
           new _$Identity._(
               createdAt: createdAt,
               credentials: _credentials?.build(),
+              externalId: externalId,
               id: BuiltValueNullFieldError.checkNotNull(id, r'Identity', 'id'),
               metadataAdmin: metadataAdmin,
               metadataPublic: metadataPublic,

@@ -17,6 +17,7 @@ part 'create_identity_body.g.dart';
 ///
 /// Properties:
 /// * [credentials] 
+/// * [externalId] - ExternalID is an optional external ID of the identity. This is used to link the identity to an external system. If set, the external ID must be unique across all identities.
 /// * [metadataAdmin] - Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
 /// * [metadataPublic] - Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
 /// * [organizationId] 
@@ -29,6 +30,10 @@ part 'create_identity_body.g.dart';
 abstract class CreateIdentityBody implements Built<CreateIdentityBody, CreateIdentityBodyBuilder> {
   @BuiltValueField(wireName: r'credentials')
   IdentityWithCredentials? get credentials;
+
+  /// ExternalID is an optional external ID of the identity. This is used to link the identity to an external system. If set, the external ID must be unique across all identities.
+  @BuiltValueField(wireName: r'external_id')
+  String? get externalId;
 
   /// Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
   @BuiltValueField(wireName: r'metadata_admin')
@@ -90,6 +95,13 @@ class _$CreateIdentityBodySerializer implements PrimitiveSerializer<CreateIdenti
       yield serializers.serialize(
         object.credentials,
         specifiedType: const FullType(IdentityWithCredentials),
+      );
+    }
+    if (object.externalId != null) {
+      yield r'external_id';
+      yield serializers.serialize(
+        object.externalId,
+        specifiedType: const FullType(String),
       );
     }
     if (object.metadataAdmin != null) {
@@ -173,6 +185,13 @@ class _$CreateIdentityBodySerializer implements PrimitiveSerializer<CreateIdenti
             specifiedType: const FullType(IdentityWithCredentials),
           ) as IdentityWithCredentials;
           result.credentials.replace(valueDes);
+          break;
+        case r'external_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.externalId = valueDes;
           break;
         case r'metadata_admin':
           final valueDes = serializers.deserialize(

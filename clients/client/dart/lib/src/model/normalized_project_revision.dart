@@ -134,10 +134,12 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosCourierTemplatesVerificationValidEmailSubject] - Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting.
 /// * [kratosFeatureFlagsCacheableSessions] - Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
 /// * [kratosFeatureFlagsCacheableSessionsMaxAge] - Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
+/// * [kratosFeatureFlagsChooseRecoveryAddress] - This governs the \"feature_flags.choose_recovery_address\" setting.
 /// * [kratosFeatureFlagsFasterSessionExtend] - Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
 /// * [kratosFeatureFlagsLegacyContinueWithVerificationUi] - Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.  This governs the \"feature_flags.legacy_continue_with_verification_ui\" setting.
 /// * [kratosFeatureFlagsLegacyOidcRegistrationNodeGroup] - Controls whether the UI nodes in an OIDC registration flow have group \"oidc\" in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \"oidc\" and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \"feature_flags.legacy_oidc_registration_node_group\" setting.
 /// * [kratosFeatureFlagsLegacyRequireVerifiedLoginError] - Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.  This flag is deprecated and will be removed in the future.  This governs the \"feature_flags.legacy_require_verified_login_error\" setting.
+/// * [kratosFeatureFlagsPasswordProfileRegistrationNodeGroup] - Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \"password\" if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \"default\".
 /// * [kratosFeatureFlagsUseContinueWithTransitions] - Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
 /// * [kratosIdentitySchemas] 
 /// * [kratosOauth2ProviderHeaders] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
@@ -694,6 +696,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_feature_flags_cacheable_sessions_max_age')
   String? get kratosFeatureFlagsCacheableSessionsMaxAge;
 
+  /// This governs the \"feature_flags.choose_recovery_address\" setting.
+  @BuiltValueField(wireName: r'kratos_feature_flags_choose_recovery_address')
+  bool? get kratosFeatureFlagsChooseRecoveryAddress;
+
   /// Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
   @BuiltValueField(wireName: r'kratos_feature_flags_faster_session_extend')
   bool? get kratosFeatureFlagsFasterSessionExtend;
@@ -709,6 +715,10 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   /// Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.  This flag is deprecated and will be removed in the future.  This governs the \"feature_flags.legacy_require_verified_login_error\" setting.
   @BuiltValueField(wireName: r'kratos_feature_flags_legacy_require_verified_login_error')
   bool? get kratosFeatureFlagsLegacyRequireVerifiedLoginError;
+
+  /// Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \"password\" if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \"default\".
+  @BuiltValueField(wireName: r'kratos_feature_flags_password_profile_registration_node_group')
+  bool? get kratosFeatureFlagsPasswordProfileRegistrationNodeGroup;
 
   /// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
   @BuiltValueField(wireName: r'kratos_feature_flags_use_continue_with_transitions')
@@ -1975,6 +1985,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
         specifiedType: const FullType(String),
       );
     }
+    if (object.kratosFeatureFlagsChooseRecoveryAddress != null) {
+      yield r'kratos_feature_flags_choose_recovery_address';
+      yield serializers.serialize(
+        object.kratosFeatureFlagsChooseRecoveryAddress,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.kratosFeatureFlagsFasterSessionExtend != null) {
       yield r'kratos_feature_flags_faster_session_extend';
       yield serializers.serialize(
@@ -2000,6 +2017,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield r'kratos_feature_flags_legacy_require_verified_login_error';
       yield serializers.serialize(
         object.kratosFeatureFlagsLegacyRequireVerifiedLoginError,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.kratosFeatureFlagsPasswordProfileRegistrationNodeGroup != null) {
+      yield r'kratos_feature_flags_password_profile_registration_node_group';
+      yield serializers.serialize(
+        object.kratosFeatureFlagsPasswordProfileRegistrationNodeGroup,
         specifiedType: const FullType(bool),
       );
     }
@@ -3615,6 +3639,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
           ) as String;
           result.kratosFeatureFlagsCacheableSessionsMaxAge = valueDes;
           break;
+        case r'kratos_feature_flags_choose_recovery_address':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosFeatureFlagsChooseRecoveryAddress = valueDes;
+          break;
         case r'kratos_feature_flags_faster_session_extend':
           final valueDes = serializers.deserialize(
             value,
@@ -3642,6 +3673,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(bool),
           ) as bool;
           result.kratosFeatureFlagsLegacyRequireVerifiedLoginError = valueDes;
+          break;
+        case r'kratos_feature_flags_password_profile_registration_node_group':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.kratosFeatureFlagsPasswordProfileRegistrationNodeGroup = valueDes;
           break;
         case r'kratos_feature_flags_use_continue_with_transitions':
           final valueDes = serializers.deserialize(

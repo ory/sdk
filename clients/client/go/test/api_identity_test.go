@@ -151,6 +151,20 @@ func Test_client_IdentityAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test IdentityAPIService GetIdentityByExternalID", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var externalID string
+
+		resp, httpRes, err := apiClient.IdentityAPI.GetIdentityByExternalID(context.Background(), externalID).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test IdentityAPIService GetIdentitySchema", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

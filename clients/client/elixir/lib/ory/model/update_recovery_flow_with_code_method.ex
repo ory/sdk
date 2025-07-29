@@ -12,6 +12,10 @@ defmodule Ory.Model.UpdateRecoveryFlowWithCodeMethod do
     :csrf_token,
     :email,
     :method,
+    :recovery_address,
+    :recovery_confirm_address,
+    :recovery_select_address,
+    :screen,
     :transient_payload
   ]
 
@@ -20,6 +24,10 @@ defmodule Ory.Model.UpdateRecoveryFlowWithCodeMethod do
     :csrf_token => String.t | nil,
     :email => String.t | nil,
     :method => String.t,
+    :recovery_address => String.t | nil,
+    :recovery_confirm_address => String.t | nil,
+    :recovery_select_address => String.t | nil,
+    :screen => String.t | nil,
     :transient_payload => map() | nil
   }
 

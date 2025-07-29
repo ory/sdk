@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**disableSession**](IdentityApi.md#disablesession) | **DELETE** /admin/sessions/{id} | Deactivate a Session
 [**extendSession**](IdentityApi.md#extendsession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 [**getIdentity**](IdentityApi.md#getidentity) | **GET** /admin/identities/{id} | Get an Identity
+[**getIdentityByExternalID**](IdentityApi.md#getidentitybyexternalid) | **GET** /admin/identities/by/external/{externalID} | Get an Identity by its External ID
 [**getIdentitySchema**](IdentityApi.md#getidentityschema) | **GET** /schemas/{id} | Get Identity JSON Schema
 [**getSession**](IdentityApi.md#getsession) | **GET** /admin/sessions/{id} | Get Session
 [**listIdentities**](IdentityApi.md#listidentities) | **GET** /admin/identities | List Identities
@@ -446,6 +447,51 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID must be set to the ID of identity you want to get | 
+ **includeCredential** | [**BuiltList&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] 
+
+### Return type
+
+[**Identity**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getIdentityByExternalID**
+> Identity getIdentityByExternalID(externalID, includeCredential)
+
+Get an Identity by its External ID
+
+Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getIdentityApi();
+final String externalID = externalID_example; // String | ExternalID must be set to the ID of identity you want to get
+final BuiltList<String> includeCredential = ; // BuiltList<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+
+try {
+    final response = api.getIdentityByExternalID(externalID, includeCredential);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling IdentityApi->getIdentityByExternalID: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **externalID** | **String**| ExternalID must be set to the ID of identity you want to get | 
  **includeCredential** | [**BuiltList&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] 
 
 ### Return type

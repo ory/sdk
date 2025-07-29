@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**disable_session**](IdentityApi.md#disable_session) | **DELETE** /admin/sessions/{id} | Deactivate a Session
 [**extend_session**](IdentityApi.md#extend_session) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 [**get_identity**](IdentityApi.md#get_identity) | **GET** /admin/identities/{id} | Get an Identity
+[**get_identity_by_external_id**](IdentityApi.md#get_identity_by_external_id) | **GET** /admin/identities/by/external/{externalID} | Get an Identity by its External ID
 [**get_identity_schema**](IdentityApi.md#get_identity_schema) | **GET** /schemas/{id} | Get Identity JSON Schema
 [**get_session**](IdentityApi.md#get_session) | **GET** /admin/sessions/{id} | Get Session
 [**list_identities**](IdentityApi.md#list_identities) | **GET** /admin/identities | List Identities
@@ -846,6 +847,89 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID must be set to the ID of identity you want to get | 
+ **include_credential** | [**List[str]**](str.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] 
+
+### Return type
+
+[**Identity**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | identity |  -  |
+**404** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_identity_by_external_id**
+> Identity get_identity_by_external_id(external_id, include_credential=include_credential)
+
+Get an Identity by its External ID
+
+Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
+include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import ory_client
+from ory_client.models.identity import Identity
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.IdentityApi(api_client)
+    external_id = 'external_id_example' # str | ExternalID must be set to the ID of identity you want to get
+    include_credential = ['include_credential_example'] # List[str] | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. (optional)
+
+    try:
+        # Get an Identity by its External ID
+        api_response = api_instance.get_identity_by_external_id(external_id, include_credential=include_credential)
+        print("The response of IdentityApi->get_identity_by_external_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling IdentityApi->get_identity_by_external_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **external_id** | **str**| ExternalID must be set to the ID of identity you want to get | 
  **include_credential** | [**List[str]**](str.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] 
 
 ### Return type

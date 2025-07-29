@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.20.23
-  - Build date: 2025-07-22T12:04:10.118811658Z[Etc/UTC]
+- API version: v1.21.1
+  - Build date: 2025-07-29T10:12:12.730402277Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.20.23</version>
+  <version>v1.21.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.20.23"
+     implementation "sh.ory:client:v1.21.1"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.20.23.jar`
+* `target/client-v1.21.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -188,6 +188,7 @@ Class | Method | HTTP request | Description
 *IdentityApi* | [**disableSession**](docs/IdentityApi.md#disableSession) | **DELETE** /admin/sessions/{id} | Deactivate a Session
 *IdentityApi* | [**extendSession**](docs/IdentityApi.md#extendSession) | **PATCH** /admin/sessions/{id}/extend | Extend a Session
 *IdentityApi* | [**getIdentity**](docs/IdentityApi.md#getIdentity) | **GET** /admin/identities/{id} | Get an Identity
+*IdentityApi* | [**getIdentityByExternalID**](docs/IdentityApi.md#getIdentityByExternalID) | **GET** /admin/identities/by/external/{externalID} | Get an Identity by its External ID
 *IdentityApi* | [**getIdentitySchema**](docs/IdentityApi.md#getIdentitySchema) | **GET** /schemas/{id} | Get Identity JSON Schema
 *IdentityApi* | [**getSession**](docs/IdentityApi.md#getSession) | **GET** /admin/sessions/{id} | Get Session
 *IdentityApi* | [**listIdentities**](docs/IdentityApi.md#listIdentities) | **GET** /admin/identities | List Identities

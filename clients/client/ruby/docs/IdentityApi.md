@@ -14,6 +14,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**disable_session**](IdentityApi.md#disable_session) | **DELETE** /admin/sessions/{id} | Deactivate a Session |
 | [**extend_session**](IdentityApi.md#extend_session) | **PATCH** /admin/sessions/{id}/extend | Extend a Session |
 | [**get_identity**](IdentityApi.md#get_identity) | **GET** /admin/identities/{id} | Get an Identity |
+| [**get_identity_by_external_id**](IdentityApi.md#get_identity_by_external_id) | **GET** /admin/identities/by/external/{externalID} | Get an Identity by its External ID |
 | [**get_identity_schema**](IdentityApi.md#get_identity_schema) | **GET** /schemas/{id} | Get Identity JSON Schema |
 | [**get_session**](IdentityApi.md#get_session) | **GET** /admin/sessions/{id} | Get Session |
 | [**list_identities**](IdentityApi.md#list_identities) | **GET** /admin/identities | List Identities |
@@ -714,6 +715,79 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID must be set to the ID of identity you want to get |  |
+| **include_credential** | [**Array&lt;String&gt;**](String.md) | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
+
+### Return type
+
+[**Identity**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_identity_by_external_id
+
+> <Identity> get_identity_by_external_id(external_id, opts)
+
+Get an Identity by its External ID
+
+Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::IdentityApi.new
+external_id = 'external_id_example' # String | ExternalID must be set to the ID of identity you want to get
+opts = {
+  include_credential: ['password'] # Array<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+}
+
+begin
+  # Get an Identity by its External ID
+  result = api_instance.get_identity_by_external_id(external_id, opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling IdentityApi->get_identity_by_external_id: #{e}"
+end
+```
+
+#### Using the get_identity_by_external_id_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Identity>, Integer, Hash)> get_identity_by_external_id_with_http_info(external_id, opts)
+
+```ruby
+begin
+  # Get an Identity by its External ID
+  data, status_code, headers = api_instance.get_identity_by_external_id_with_http_info(external_id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Identity>
+rescue OryClient::ApiError => e
+  puts "Error when calling IdentityApi->get_identity_by_external_id_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **external_id** | **String** | ExternalID must be set to the ID of identity you want to get |  |
 | **include_credential** | [**Array&lt;String&gt;**](String.md) | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
 
 ### Return type

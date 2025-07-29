@@ -12,7 +12,11 @@ defmodule Ory.Model.UpdateRecoveryFlowBody do
     :email,
     :method,
     :transient_payload,
-    :code
+    :code,
+    :recovery_address,
+    :recovery_confirm_address,
+    :recovery_select_address,
+    :screen
   ]
 
   @type t :: %__MODULE__{
@@ -20,7 +24,11 @@ defmodule Ory.Model.UpdateRecoveryFlowBody do
     :email => String.t,
     :method => String.t,
     :transient_payload => map() | nil,
-    :code => String.t | nil
+    :code => String.t | nil,
+    :recovery_address => String.t | nil,
+    :recovery_confirm_address => String.t | nil,
+    :recovery_select_address => String.t | nil,
+    :screen => String.t | nil
   }
 
   def decode(value) do

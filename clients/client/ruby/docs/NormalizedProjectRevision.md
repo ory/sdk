@@ -116,10 +116,12 @@
 | **kratos_courier_templates_verification_valid_email_subject** | **String** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. | [optional] |
 | **kratos_feature_flags_cacheable_sessions** | **Boolean** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] |
 | **kratos_feature_flags_cacheable_sessions_max_age** | **String** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional] |
+| **kratos_feature_flags_choose_recovery_address** | **Boolean** | This governs the \&quot;feature_flags.choose_recovery_address\&quot; setting. | [optional] |
 | **kratos_feature_flags_faster_session_extend** | **Boolean** | Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \&quot;feature_flags.faster_session_extend\&quot; setting. | [optional] |
 | **kratos_feature_flags_legacy_continue_with_verification_ui** | **Boolean** | Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including &#x60;show_verification_ui&#x60; in the registration flow&#39;s &#x60;continue_with&#x60; when verification is enabled. If set to false, &#x60;show_verification_ui&#x60; is only set in &#x60;continue_with&#x60; if the &#x60;show_verification_ui&#x60; hook is used. This flag will be removed in the future.  This governs the \&quot;feature_flags.legacy_continue_with_verification_ui\&quot; setting. | [optional] |
 | **kratos_feature_flags_legacy_oidc_registration_node_group** | **Boolean** | Controls whether the UI nodes in an OIDC registration flow have group \&quot;oidc\&quot; in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \&quot;oidc\&quot; and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \&quot;feature_flags.legacy_oidc_registration_node_group\&quot; setting. | [optional] |
 | **kratos_feature_flags_legacy_require_verified_login_error** | **Boolean** | Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the &#x60;continue_with&#x60; array will contain a &#x60;show_verification_ui&#x60; hook instead.  This flag is deprecated and will be removed in the future.  This governs the \&quot;feature_flags.legacy_require_verified_login_error\&quot; setting. | [optional] |
+| **kratos_feature_flags_password_profile_registration_node_group** | **Boolean** | Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \&quot;password\&quot; if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \&quot;default\&quot;. | [optional] |
 | **kratos_feature_flags_use_continue_with_transitions** | **Boolean** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional] |
 | **kratos_identity_schemas** | [**Array&lt;NormalizedProjectRevisionIdentitySchema&gt;**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] |
 | **kratos_oauth2_provider_headers** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
@@ -354,10 +356,12 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_courier_templates_verification_valid_email_subject: null,
   kratos_feature_flags_cacheable_sessions: null,
   kratos_feature_flags_cacheable_sessions_max_age: null,
+  kratos_feature_flags_choose_recovery_address: null,
   kratos_feature_flags_faster_session_extend: null,
   kratos_feature_flags_legacy_continue_with_verification_ui: null,
   kratos_feature_flags_legacy_oidc_registration_node_group: null,
   kratos_feature_flags_legacy_require_verified_login_error: null,
+  kratos_feature_flags_password_profile_registration_node_group: null,
   kratos_feature_flags_use_continue_with_transitions: null,
   kratos_identity_schemas: null,
   kratos_oauth2_provider_headers: null,

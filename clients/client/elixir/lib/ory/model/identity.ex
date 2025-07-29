@@ -10,6 +10,7 @@ defmodule Ory.Model.Identity do
   defstruct [
     :created_at,
     :credentials,
+    :external_id,
     :id,
     :metadata_admin,
     :metadata_public,
@@ -27,6 +28,7 @@ defmodule Ory.Model.Identity do
   @type t :: %__MODULE__{
     :created_at => DateTime.t | nil,
     :credentials => %{optional(String.t) => Ory.Model.IdentityCredentials.t} | nil,
+    :external_id => String.t | nil,
     :id => String.t,
     :metadata_admin => map() | nil,
     :metadata_public => map() | nil,

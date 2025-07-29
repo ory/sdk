@@ -18,6 +18,7 @@ part 'identity.g.dart';
 /// Properties:
 /// * [createdAt] - CreatedAt is a helper struct field for gobuffalo.pop.
 /// * [credentials] - Credentials represents all credentials that can be used for authenticating this identity.
+/// * [externalId] - ExternalID is an optional external ID of the identity. This is used to link the identity to an external system. If set, the external ID must be unique across all identities.
 /// * [id] - ID is the identity's unique identifier.  The Identity ID can not be changed and can not be chosen. This ensures future compatibility and optimization for distributed stores such as CockroachDB.
 /// * [metadataAdmin] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
 /// * [metadataPublic] - NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
@@ -39,6 +40,10 @@ abstract class Identity implements Built<Identity, IdentityBuilder> {
   /// Credentials represents all credentials that can be used for authenticating this identity.
   @BuiltValueField(wireName: r'credentials')
   BuiltMap<String, IdentityCredentials>? get credentials;
+
+  /// ExternalID is an optional external ID of the identity. This is used to link the identity to an external system. If set, the external ID must be unique across all identities.
+  @BuiltValueField(wireName: r'external_id')
+  String? get externalId;
 
   /// ID is the identity's unique identifier.  The Identity ID can not be changed and can not be chosen. This ensures future compatibility and optimization for distributed stores such as CockroachDB.
   @BuiltValueField(wireName: r'id')
@@ -122,6 +127,13 @@ class _$IdentitySerializer implements PrimitiveSerializer<Identity> {
       yield serializers.serialize(
         object.credentials,
         specifiedType: const FullType(BuiltMap, [FullType(String), FullType(IdentityCredentials)]),
+      );
+    }
+    if (object.externalId != null) {
+      yield r'external_id';
+      yield serializers.serialize(
+        object.externalId,
+        specifiedType: const FullType(String),
       );
     }
     yield r'id';
@@ -236,6 +248,13 @@ class _$IdentitySerializer implements PrimitiveSerializer<Identity> {
             specifiedType: const FullType(BuiltMap, [FullType(String), FullType(IdentityCredentials)]),
           ) as BuiltMap<String, IdentityCredentials>;
           result.credentials.replace(valueDes);
+          break;
+        case r'external_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.externalId = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(

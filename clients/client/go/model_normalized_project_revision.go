@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.20.23
+API version: v1.21.1
 Contact: support@ory.sh
 */
 
@@ -234,6 +234,8 @@ type NormalizedProjectRevision struct {
 	KratosFeatureFlagsCacheableSessions *bool `json:"kratos_feature_flags_cacheable_sessions,omitempty"`
 	// Configures the Ory Kratos Session caching max-age feature flag  This governs the \"feature_flags.cacheable_sessions_max_age\" setting.
 	KratosFeatureFlagsCacheableSessionsMaxAge *string `json:"kratos_feature_flags_cacheable_sessions_max_age,omitempty"`
+	// This governs the \"feature_flags.choose_recovery_address\" setting.
+	KratosFeatureFlagsChooseRecoveryAddress *bool `json:"kratos_feature_flags_choose_recovery_address,omitempty"`
 	// Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
 	KratosFeatureFlagsFasterSessionExtend *bool `json:"kratos_feature_flags_faster_session_extend,omitempty"`
 	// Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.  This governs the \"feature_flags.legacy_continue_with_verification_ui\" setting.
@@ -242,6 +244,8 @@ type NormalizedProjectRevision struct {
 	KratosFeatureFlagsLegacyOidcRegistrationNodeGroup *bool `json:"kratos_feature_flags_legacy_oidc_registration_node_group,omitempty"`
 	// Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.  This flag is deprecated and will be removed in the future.  This governs the \"feature_flags.legacy_require_verified_login_error\" setting.
 	KratosFeatureFlagsLegacyRequireVerifiedLoginError *bool `json:"kratos_feature_flags_legacy_require_verified_login_error,omitempty"`
+	// Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \"password\" if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \"default\".
+	KratosFeatureFlagsPasswordProfileRegistrationNodeGroup *bool `json:"kratos_feature_flags_password_profile_registration_node_group,omitempty"`
 	// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
 	KratosFeatureFlagsUseContinueWithTransitions *bool `json:"kratos_feature_flags_use_continue_with_transitions,omitempty"`
 	KratosIdentitySchemas []NormalizedProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
@@ -4113,6 +4117,38 @@ func (o *NormalizedProjectRevision) SetKratosFeatureFlagsCacheableSessionsMaxAge
 	o.KratosFeatureFlagsCacheableSessionsMaxAge = &v
 }
 
+// GetKratosFeatureFlagsChooseRecoveryAddress returns the KratosFeatureFlagsChooseRecoveryAddress field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsChooseRecoveryAddress() bool {
+	if o == nil || IsNil(o.KratosFeatureFlagsChooseRecoveryAddress) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosFeatureFlagsChooseRecoveryAddress
+}
+
+// GetKratosFeatureFlagsChooseRecoveryAddressOk returns a tuple with the KratosFeatureFlagsChooseRecoveryAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsChooseRecoveryAddressOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosFeatureFlagsChooseRecoveryAddress) {
+		return nil, false
+	}
+	return o.KratosFeatureFlagsChooseRecoveryAddress, true
+}
+
+// HasKratosFeatureFlagsChooseRecoveryAddress returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosFeatureFlagsChooseRecoveryAddress() bool {
+	if o != nil && !IsNil(o.KratosFeatureFlagsChooseRecoveryAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosFeatureFlagsChooseRecoveryAddress gets a reference to the given bool and assigns it to the KratosFeatureFlagsChooseRecoveryAddress field.
+func (o *NormalizedProjectRevision) SetKratosFeatureFlagsChooseRecoveryAddress(v bool) {
+	o.KratosFeatureFlagsChooseRecoveryAddress = &v
+}
+
 // GetKratosFeatureFlagsFasterSessionExtend returns the KratosFeatureFlagsFasterSessionExtend field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosFeatureFlagsFasterSessionExtend() bool {
 	if o == nil || IsNil(o.KratosFeatureFlagsFasterSessionExtend) {
@@ -4239,6 +4275,38 @@ func (o *NormalizedProjectRevision) HasKratosFeatureFlagsLegacyRequireVerifiedLo
 // SetKratosFeatureFlagsLegacyRequireVerifiedLoginError gets a reference to the given bool and assigns it to the KratosFeatureFlagsLegacyRequireVerifiedLoginError field.
 func (o *NormalizedProjectRevision) SetKratosFeatureFlagsLegacyRequireVerifiedLoginError(v bool) {
 	o.KratosFeatureFlagsLegacyRequireVerifiedLoginError = &v
+}
+
+// GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup returns the KratosFeatureFlagsPasswordProfileRegistrationNodeGroup field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup() bool {
+	if o == nil || IsNil(o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup
+}
+
+// GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroupOk returns a tuple with the KratosFeatureFlagsPasswordProfileRegistrationNodeGroup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroupOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup) {
+		return nil, false
+	}
+	return o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup, true
+}
+
+// HasKratosFeatureFlagsPasswordProfileRegistrationNodeGroup returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosFeatureFlagsPasswordProfileRegistrationNodeGroup() bool {
+	if o != nil && !IsNil(o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup gets a reference to the given bool and assigns it to the KratosFeatureFlagsPasswordProfileRegistrationNodeGroup field.
+func (o *NormalizedProjectRevision) SetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup(v bool) {
+	o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup = &v
 }
 
 // GetKratosFeatureFlagsUseContinueWithTransitions returns the KratosFeatureFlagsUseContinueWithTransitions field value if set, zero value otherwise.
@@ -8270,6 +8338,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KratosFeatureFlagsCacheableSessionsMaxAge) {
 		toSerialize["kratos_feature_flags_cacheable_sessions_max_age"] = o.KratosFeatureFlagsCacheableSessionsMaxAge
 	}
+	if !IsNil(o.KratosFeatureFlagsChooseRecoveryAddress) {
+		toSerialize["kratos_feature_flags_choose_recovery_address"] = o.KratosFeatureFlagsChooseRecoveryAddress
+	}
 	if !IsNil(o.KratosFeatureFlagsFasterSessionExtend) {
 		toSerialize["kratos_feature_flags_faster_session_extend"] = o.KratosFeatureFlagsFasterSessionExtend
 	}
@@ -8281,6 +8352,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.KratosFeatureFlagsLegacyRequireVerifiedLoginError) {
 		toSerialize["kratos_feature_flags_legacy_require_verified_login_error"] = o.KratosFeatureFlagsLegacyRequireVerifiedLoginError
+	}
+	if !IsNil(o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup) {
+		toSerialize["kratos_feature_flags_password_profile_registration_node_group"] = o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup
 	}
 	if !IsNil(o.KratosFeatureFlagsUseContinueWithTransitions) {
 		toSerialize["kratos_feature_flags_use_continue_with_transitions"] = o.KratosFeatureFlagsUseContinueWithTransitions
@@ -8780,10 +8854,12 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kratos_courier_templates_verification_valid_email_subject")
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions")
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions_max_age")
+		delete(additionalProperties, "kratos_feature_flags_choose_recovery_address")
 		delete(additionalProperties, "kratos_feature_flags_faster_session_extend")
 		delete(additionalProperties, "kratos_feature_flags_legacy_continue_with_verification_ui")
 		delete(additionalProperties, "kratos_feature_flags_legacy_oidc_registration_node_group")
 		delete(additionalProperties, "kratos_feature_flags_legacy_require_verified_login_error")
+		delete(additionalProperties, "kratos_feature_flags_password_profile_registration_node_group")
 		delete(additionalProperties, "kratos_feature_flags_use_continue_with_transitions")
 		delete(additionalProperties, "kratos_identity_schemas")
 		delete(additionalProperties, "kratos_oauth2_provider_headers")

@@ -9,6 +9,7 @@ defmodule Ory.Model.UpdateIdentityBody do
   @derive Jason.Encoder
   defstruct [
     :credentials,
+    :external_id,
     :metadata_admin,
     :metadata_public,
     :schema_id,
@@ -18,6 +19,7 @@ defmodule Ory.Model.UpdateIdentityBody do
 
   @type t :: %__MODULE__{
     :credentials => Ory.Model.IdentityWithCredentials.t | nil,
+    :external_id => String.t | nil,
     :metadata_admin => any() | nil,
     :metadata_public => any() | nil,
     :schema_id => String.t,

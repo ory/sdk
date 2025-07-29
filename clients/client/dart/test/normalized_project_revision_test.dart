@@ -667,6 +667,12 @@ void main() {
       // TODO
     });
 
+    // This governs the \"feature_flags.choose_recovery_address\" setting.
+    // bool kratosFeatureFlagsChooseRecoveryAddress
+    test('to test the property `kratosFeatureFlagsChooseRecoveryAddress`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
     // bool kratosFeatureFlagsFasterSessionExtend
     test('to test the property `kratosFeatureFlagsFasterSessionExtend`', () async {
@@ -688,6 +694,12 @@ void main() {
     // Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.  This flag is deprecated and will be removed in the future.  This governs the \"feature_flags.legacy_require_verified_login_error\" setting.
     // bool kratosFeatureFlagsLegacyRequireVerifiedLoginError
     test('to test the property `kratosFeatureFlagsLegacyRequireVerifiedLoginError`', () async {
+      // TODO
+    });
+
+    // Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \"password\" if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \"default\".
+    // bool kratosFeatureFlagsPasswordProfileRegistrationNodeGroup
+    test('to test the property `kratosFeatureFlagsPasswordProfileRegistrationNodeGroup`', () async {
       // TODO
     });
 

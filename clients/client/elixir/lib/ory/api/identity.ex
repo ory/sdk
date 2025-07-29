@@ -379,6 +379,44 @@ defmodule Ory.Api.Identity do
   end
 
   @doc """
+  Get an Identity by its External ID
+  Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `external_id` (String.t): ExternalID must be set to the ID of identity you want to get
+  - `opts` (keyword): Optional parameters
+    - `:include_credential` ([String.t]): Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+
+  ### Returns
+
+  - `{:ok, Ory.Model.Identity.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_identity_by_external_id(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.Identity.t} | {:error, Tesla.Env.t}
+  def get_identity_by_external_id(connection, external_id, opts \\ []) do
+    optional_params = %{
+      :include_credential => :query
+    }
+
+    request =
+      %{}
+      |> method(:get)
+      |> url("/admin/identities/by/external/#{external_id}")
+      |> add_optional_params(optional_params, opts)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.Identity},
+      {404, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
   Get Identity JSON Schema
   Return a specific identity schema.
 
