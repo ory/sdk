@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.21.1
+  version: v1.21.2
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -20224,6 +20224,7 @@ components:
             edge_cache EdgeCache
             branding_themes BrandingThemes
             zendesk_support ZendeskSupport
+            zendesk_support_on_call ZendeskSupportOnCall
             project_metrics ProjectMetrics
             project_metrics_time_window ProjectMetricsTimeWindow
             project_metrics_events_history ProjectMetricsEventsHistory
@@ -20249,6 +20250,7 @@ components:
             update_self_service_verification_rate_limit_tier RateLimitTierUpdateSelfServiceVerification
             identities_create_rate_limit_tier RateLimitTierIdentitiesCreate
             identities_import_rate_limit_tier RateLimitTierIdentitiesImport
+            fed_cm_parameters_rate_limit_tier RateLimitTierFedCMParameters
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -20270,6 +20272,7 @@ components:
           - edge_cache
           - branding_themes
           - zendesk_support
+          - zendesk_support_on_call
           - project_metrics
           - project_metrics_time_window
           - project_metrics_events_history
@@ -20295,6 +20298,7 @@ components:
           - update_self_service_verification_rate_limit_tier
           - identities_create_rate_limit_tier
           - identities_import_rate_limit_tier
+          - fed_cm_parameters_rate_limit_tier
           - data_location_regional
           - rate_limit_tier
           - session_rate_limit_tier
@@ -20317,6 +20321,7 @@ components:
             edge_cache EdgeCache
             branding_themes BrandingThemes
             zendesk_support ZendeskSupport
+            zendesk_support_on_call ZendeskSupportOnCall
             project_metrics ProjectMetrics
             project_metrics_time_window ProjectMetricsTimeWindow
             project_metrics_events_history ProjectMetricsEventsHistory
@@ -20342,6 +20347,7 @@ components:
             update_self_service_verification_rate_limit_tier RateLimitTierUpdateSelfServiceVerification
             identities_create_rate_limit_tier RateLimitTierIdentitiesCreate
             identities_import_rate_limit_tier RateLimitTierIdentitiesImport
+            fed_cm_parameters_rate_limit_tier RateLimitTierFedCMParameters
             data_location_regional DataLocationRegional  Required Features
             rate_limit_tier RateLimitTier
             session_rate_limit_tier RateLimitTierSessions
@@ -23588,7 +23594,7 @@ components:
           type: string
         screen:
           description: |-
-            Set to "previous" to return to the previous screen.
+            Set to "previous" to go back in the flow, meaningfully.
             Used in RecoveryV2.
           type: string
         transient_payload:

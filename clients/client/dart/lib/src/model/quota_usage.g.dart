@@ -30,6 +30,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_brandingThemes =
     const QuotaUsageFeatureEnum._('brandingThemes');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_zendeskSupport =
     const QuotaUsageFeatureEnum._('zendeskSupport');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_zendeskSupportOnCall =
+    const QuotaUsageFeatureEnum._('zendeskSupportOnCall');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_projectMetrics =
     const QuotaUsageFeatureEnum._('projectMetrics');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_projectMetricsTimeWindow =
@@ -88,6 +90,9 @@ const QuotaUsageFeatureEnum
 const QuotaUsageFeatureEnum
     _$quotaUsageFeatureEnum_identitiesImportRateLimitTier =
     const QuotaUsageFeatureEnum._('identitiesImportRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_fedCmParametersRateLimitTier =
+    const QuotaUsageFeatureEnum._('fedCmParametersRateLimitTier');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationRegional =
     const QuotaUsageFeatureEnum._('dataLocationRegional');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
@@ -135,6 +140,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_brandingThemes;
     case 'zendeskSupport':
       return _$quotaUsageFeatureEnum_zendeskSupport;
+    case 'zendeskSupportOnCall':
+      return _$quotaUsageFeatureEnum_zendeskSupportOnCall;
     case 'projectMetrics':
       return _$quotaUsageFeatureEnum_projectMetrics;
     case 'projectMetricsTimeWindow':
@@ -185,6 +192,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_identitiesCreateRateLimitTier;
     case 'identitiesImportRateLimitTier':
       return _$quotaUsageFeatureEnum_identitiesImportRateLimitTier;
+    case 'fedCmParametersRateLimitTier':
+      return _$quotaUsageFeatureEnum_fedCmParametersRateLimitTier;
     case 'dataLocationRegional':
       return _$quotaUsageFeatureEnum_dataLocationRegional;
     case 'rateLimitTier':
@@ -220,6 +229,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_edgeCache,
   _$quotaUsageFeatureEnum_brandingThemes,
   _$quotaUsageFeatureEnum_zendeskSupport,
+  _$quotaUsageFeatureEnum_zendeskSupportOnCall,
   _$quotaUsageFeatureEnum_projectMetrics,
   _$quotaUsageFeatureEnum_projectMetricsTimeWindow,
   _$quotaUsageFeatureEnum_projectMetricsEventsHistory,
@@ -245,6 +255,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_updateSelfServiceVerificationRateLimitTier,
   _$quotaUsageFeatureEnum_identitiesCreateRateLimitTier,
   _$quotaUsageFeatureEnum_identitiesImportRateLimitTier,
+  _$quotaUsageFeatureEnum_fedCmParametersRateLimitTier,
   _$quotaUsageFeatureEnum_dataLocationRegional,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
@@ -273,6 +284,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'edgeCache': 'edge_cache',
     'brandingThemes': 'branding_themes',
     'zendeskSupport': 'zendesk_support',
+    'zendeskSupportOnCall': 'zendesk_support_on_call',
     'projectMetrics': 'project_metrics',
     'projectMetricsTimeWindow': 'project_metrics_time_window',
     'projectMetricsEventsHistory': 'project_metrics_events_history',
@@ -302,6 +314,7 @@ class _$QuotaUsageFeatureEnumSerializer
         'update_self_service_verification_rate_limit_tier',
     'identitiesCreateRateLimitTier': 'identities_create_rate_limit_tier',
     'identitiesImportRateLimitTier': 'identities_import_rate_limit_tier',
+    'fedCmParametersRateLimitTier': 'fed_cm_parameters_rate_limit_tier',
     'dataLocationRegional': 'data_location_regional',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
@@ -324,6 +337,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'edge_cache': 'edgeCache',
     'branding_themes': 'brandingThemes',
     'zendesk_support': 'zendeskSupport',
+    'zendesk_support_on_call': 'zendeskSupportOnCall',
     'project_metrics': 'projectMetrics',
     'project_metrics_time_window': 'projectMetricsTimeWindow',
     'project_metrics_events_history': 'projectMetricsEventsHistory',
@@ -353,6 +367,7 @@ class _$QuotaUsageFeatureEnumSerializer
         'updateSelfServiceVerificationRateLimitTier',
     'identities_create_rate_limit_tier': 'identitiesCreateRateLimitTier',
     'identities_import_rate_limit_tier': 'identitiesImportRateLimitTier',
+    'fed_cm_parameters_rate_limit_tier': 'fedCmParametersRateLimitTier',
     'data_location_regional': 'dataLocationRegional',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',

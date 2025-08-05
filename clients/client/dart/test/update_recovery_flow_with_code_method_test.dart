@@ -49,7 +49,7 @@ void main() {
       // TODO
     });
 
-    // Set to \"previous\" to return to the previous screen. Used in RecoveryV2.
+    // Set to \"previous\" to go back in the flow, meaningfully. Used in RecoveryV2.
     // String screen
     test('to test the property `screen`', () async {
       // TODO
