@@ -51,6 +51,7 @@ class FrontendApi {
   /// * [loginChallenge] - An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
   /// * [organization] - An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
   /// * [via] - Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
+  /// * [identitySchema] - An optional identity schema to use for the registration flow.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -68,6 +69,7 @@ class FrontendApi {
     String? loginChallenge,
     String? organization,
     String? via,
+    String? identitySchema,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -96,6 +98,7 @@ class FrontendApi {
       if (loginChallenge != null) r'login_challenge': encodeQueryParameter(_serializers, loginChallenge, const FullType(String)),
       if (organization != null) r'organization': encodeQueryParameter(_serializers, organization, const FullType(String)),
       if (via != null) r'via': encodeQueryParameter(_serializers, via, const FullType(String)),
+      if (identitySchema != null) r'identity_schema': encodeQueryParameter(_serializers, identitySchema, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -309,6 +312,7 @@ class FrontendApi {
   /// * [loginChallenge] - Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
   /// * [afterVerificationReturnTo] - The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
   /// * [organization] - An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
+  /// * [identitySchema] - An optional identity schema to use for the registration flow.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -323,6 +327,7 @@ class FrontendApi {
     String? loginChallenge,
     String? afterVerificationReturnTo,
     String? organization,
+    String? identitySchema,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -348,6 +353,7 @@ class FrontendApi {
       if (loginChallenge != null) r'login_challenge': encodeQueryParameter(_serializers, loginChallenge, const FullType(String)),
       if (afterVerificationReturnTo != null) r'after_verification_return_to': encodeQueryParameter(_serializers, afterVerificationReturnTo, const FullType(String)),
       if (organization != null) r'organization': encodeQueryParameter(_serializers, organization, const FullType(String)),
+      if (identitySchema != null) r'identity_schema': encodeQueryParameter(_serializers, identitySchema, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -637,6 +643,7 @@ class FrontendApi {
   /// * [returnTo] - The URL to return the browser to after the flow was completed.
   /// * [organization] - An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
   /// * [via] - Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
+  /// * [identitySchema] - An optional identity schema to use for the registration flow.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -654,6 +661,7 @@ class FrontendApi {
     String? returnTo,
     String? organization,
     String? via,
+    String? identitySchema,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -682,6 +690,7 @@ class FrontendApi {
       if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
       if (organization != null) r'organization': encodeQueryParameter(_serializers, organization, const FullType(String)),
       if (via != null) r'via': encodeQueryParameter(_serializers, via, const FullType(String)),
+      if (identitySchema != null) r'identity_schema': encodeQueryParameter(_serializers, identitySchema, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -804,6 +813,7 @@ class FrontendApi {
   /// * [returnSessionTokenExchangeCode] - EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
   /// * [returnTo] - The URL to return the browser to after the flow was completed.
   /// * [organization] - An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
+  /// * [identitySchema] - An optional identity schema to use for the registration flow.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -817,6 +827,7 @@ class FrontendApi {
     bool? returnSessionTokenExchangeCode,
     String? returnTo,
     String? organization,
+    String? identitySchema,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -841,6 +852,7 @@ class FrontendApi {
       if (returnSessionTokenExchangeCode != null) r'return_session_token_exchange_code': encodeQueryParameter(_serializers, returnSessionTokenExchangeCode, const FullType(bool)),
       if (returnTo != null) r'return_to': encodeQueryParameter(_serializers, returnTo, const FullType(String)),
       if (organization != null) r'organization': encodeQueryParameter(_serializers, organization, const FullType(String)),
+      if (identitySchema != null) r'identity_schema': encodeQueryParameter(_serializers, identitySchema, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

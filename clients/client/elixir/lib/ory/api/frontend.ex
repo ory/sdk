@@ -24,6 +24,7 @@ defmodule Ory.Api.Frontend do
     - `:login_challenge` (String.t): An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
     - `:organization` (String.t): An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
     - `:via` (String.t): Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
+    - `:identity_schema` (String.t): An optional identity schema to use for the registration flow.
 
   ### Returns
 
@@ -39,7 +40,8 @@ defmodule Ory.Api.Frontend do
       :Cookie => :headers,
       :login_challenge => :query,
       :organization => :query,
-      :via => :query
+      :via => :query,
+      :identity_schema => :query
     }
 
     request =
@@ -149,6 +151,7 @@ defmodule Ory.Api.Frontend do
     - `:login_challenge` (String.t): Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
     - `:after_verification_return_to` (String.t): The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
     - `:organization` (String.t): An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
+    - `:identity_schema` (String.t): An optional identity schema to use for the registration flow.
 
   ### Returns
 
@@ -161,7 +164,8 @@ defmodule Ory.Api.Frontend do
       :return_to => :query,
       :login_challenge => :query,
       :after_verification_return_to => :query,
-      :organization => :query
+      :organization => :query,
+      :identity_schema => :query
     }
 
     request =
@@ -305,6 +309,7 @@ defmodule Ory.Api.Frontend do
     - `:return_to` (String.t): The URL to return the browser to after the flow was completed.
     - `:organization` (String.t): An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
     - `:via` (String.t): Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
+    - `:identity_schema` (String.t): An optional identity schema to use for the registration flow.
 
   ### Returns
 
@@ -320,7 +325,8 @@ defmodule Ory.Api.Frontend do
       :return_session_token_exchange_code => :query,
       :return_to => :query,
       :organization => :query,
-      :via => :query
+      :via => :query,
+      :identity_schema => :query
     }
 
     request =
@@ -381,6 +387,7 @@ defmodule Ory.Api.Frontend do
     - `:return_session_token_exchange_code` (boolean()): EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
     - `:return_to` (String.t): The URL to return the browser to after the flow was completed.
     - `:organization` (String.t): An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
+    - `:identity_schema` (String.t): An optional identity schema to use for the registration flow.
 
   ### Returns
 
@@ -392,7 +399,8 @@ defmodule Ory.Api.Frontend do
     optional_params = %{
       :return_session_token_exchange_code => :query,
       :return_to => :query,
-      :organization => :query
+      :organization => :query,
+      :identity_schema => :query
     }
 
     request =

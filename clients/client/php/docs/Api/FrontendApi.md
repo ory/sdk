@@ -41,7 +41,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 ## `createBrowserLoginFlow()`
 
 ```php
-createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge, $organization, $via): \Ory\Client\Model\LoginFlow
+createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge, $organization, $via, $identitySchema): \Ory\Client\Model\LoginFlow
 ```
 
 Create Login Flow for Browsers
@@ -68,9 +68,10 @@ $cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a br
 $loginChallenge = 'loginChallenge_example'; // string | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
 $organization = 'organization_example'; // string | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
 $via = 'via_example'; // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
+$identitySchema = 'identitySchema_example'; // string | An optional identity schema to use for the registration flow.
 
 try {
-    $result = $apiInstance->createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge, $organization, $via);
+    $result = $apiInstance->createBrowserLoginFlow($refresh, $aal, $returnTo, $cookie, $loginChallenge, $organization, $via, $identitySchema);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createBrowserLoginFlow: ', $e->getMessage(), PHP_EOL;
@@ -88,6 +89,7 @@ try {
 | **loginChallenge** | **string**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] |
 | **organization** | **string**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
 | **via** | **string**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] |
+| **identitySchema** | **string**| An optional identity schema to use for the registration flow. | [optional] |
 
 ### Return type
 
@@ -223,7 +225,7 @@ No authorization required
 ## `createBrowserRegistrationFlow()`
 
 ```php
-createBrowserRegistrationFlow($returnTo, $loginChallenge, $afterVerificationReturnTo, $organization): \Ory\Client\Model\RegistrationFlow
+createBrowserRegistrationFlow($returnTo, $loginChallenge, $afterVerificationReturnTo, $organization, $identitySchema): \Ory\Client\Model\RegistrationFlow
 ```
 
 Create Registration Flow for Browsers
@@ -247,9 +249,10 @@ $returnTo = 'returnTo_example'; // string | The URL to return the browser to aft
 $loginChallenge = 'loginChallenge_example'; // string | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
 $afterVerificationReturnTo = 'afterVerificationReturnTo_example'; // string | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
 $organization = 'organization_example'; // string | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
+$identitySchema = 'identitySchema_example'; // string | An optional identity schema to use for the registration flow.
 
 try {
-    $result = $apiInstance->createBrowserRegistrationFlow($returnTo, $loginChallenge, $afterVerificationReturnTo, $organization);
+    $result = $apiInstance->createBrowserRegistrationFlow($returnTo, $loginChallenge, $afterVerificationReturnTo, $organization, $identitySchema);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createBrowserRegistrationFlow: ', $e->getMessage(), PHP_EOL;
@@ -264,6 +267,7 @@ try {
 | **loginChallenge** | **string**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional] |
 | **afterVerificationReturnTo** | **string**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional] |
 | **organization** | **string**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] |
+| **identitySchema** | **string**| An optional identity schema to use for the registration flow. | [optional] |
 
 ### Return type
 
@@ -452,7 +456,7 @@ No authorization required
 ## `createNativeLoginFlow()`
 
 ```php
-createNativeLoginFlow($refresh, $aal, $xSessionToken, $returnSessionTokenExchangeCode, $returnTo, $organization, $via): \Ory\Client\Model\LoginFlow
+createNativeLoginFlow($refresh, $aal, $xSessionToken, $returnSessionTokenExchangeCode, $returnTo, $organization, $via, $identitySchema): \Ory\Client\Model\LoginFlow
 ```
 
 Create Login Flow for Native Apps
@@ -479,9 +483,10 @@ $returnSessionTokenExchangeCode = True; // bool | EnableSessionTokenExchangeCode
 $returnTo = 'returnTo_example'; // string | The URL to return the browser to after the flow was completed.
 $organization = 'organization_example'; // string | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
 $via = 'via_example'; // string | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
+$identitySchema = 'identitySchema_example'; // string | An optional identity schema to use for the registration flow.
 
 try {
-    $result = $apiInstance->createNativeLoginFlow($refresh, $aal, $xSessionToken, $returnSessionTokenExchangeCode, $returnTo, $organization, $via);
+    $result = $apiInstance->createNativeLoginFlow($refresh, $aal, $xSessionToken, $returnSessionTokenExchangeCode, $returnTo, $organization, $via, $identitySchema);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createNativeLoginFlow: ', $e->getMessage(), PHP_EOL;
@@ -499,6 +504,7 @@ try {
 | **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional] |
 | **organization** | **string**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
 | **via** | **string**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] |
+| **identitySchema** | **string**| An optional identity schema to use for the registration flow. | [optional] |
 
 ### Return type
 
@@ -573,7 +579,7 @@ No authorization required
 ## `createNativeRegistrationFlow()`
 
 ```php
-createNativeRegistrationFlow($returnSessionTokenExchangeCode, $returnTo, $organization): \Ory\Client\Model\RegistrationFlow
+createNativeRegistrationFlow($returnSessionTokenExchangeCode, $returnTo, $organization, $identitySchema): \Ory\Client\Model\RegistrationFlow
 ```
 
 Create Registration Flow for Native Apps
@@ -596,9 +602,10 @@ $apiInstance = new Ory\Client\Api\FrontendApi(
 $returnSessionTokenExchangeCode = True; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
 $returnTo = 'returnTo_example'; // string | The URL to return the browser to after the flow was completed.
 $organization = 'organization_example'; // string | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
+$identitySchema = 'identitySchema_example'; // string | An optional identity schema to use for the registration flow.
 
 try {
-    $result = $apiInstance->createNativeRegistrationFlow($returnSessionTokenExchangeCode, $returnTo, $organization);
+    $result = $apiInstance->createNativeRegistrationFlow($returnSessionTokenExchangeCode, $returnTo, $organization, $identitySchema);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createNativeRegistrationFlow: ', $e->getMessage(), PHP_EOL;
@@ -612,6 +619,7 @@ try {
 | **returnSessionTokenExchangeCode** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] |
 | **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional] |
 | **organization** | **string**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] |
+| **identitySchema** | **string**| An optional identity schema to use for the registration flow. | [optional] |
 
 ### Return type
 

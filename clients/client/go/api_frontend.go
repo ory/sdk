@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.21.3
+API version: v1.21.4
 Contact: support@ory.sh
 */
 
@@ -969,6 +969,7 @@ type FrontendAPICreateBrowserLoginFlowRequest struct {
 	loginChallenge *string
 	organization *string
 	via *string
+	identitySchema *string
 }
 
 // Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
@@ -1010,6 +1011,12 @@ func (r FrontendAPICreateBrowserLoginFlowRequest) Organization(organization stri
 // Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
 func (r FrontendAPICreateBrowserLoginFlowRequest) Via(via string) FrontendAPICreateBrowserLoginFlowRequest {
 	r.via = &via
+	return r
+}
+
+// An optional identity schema to use for the registration flow.
+func (r FrontendAPICreateBrowserLoginFlowRequest) IdentitySchema(identitySchema string) FrontendAPICreateBrowserLoginFlowRequest {
+	r.identitySchema = &identitySchema
 	return r
 }
 
@@ -1092,6 +1099,9 @@ func (a *FrontendAPIService) CreateBrowserLoginFlowExecute(r FrontendAPICreateBr
 	}
 	if r.via != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "via", r.via, "form", "")
+	}
+	if r.identitySchema != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identity_schema", r.identitySchema, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1473,6 +1483,7 @@ type FrontendAPICreateBrowserRegistrationFlowRequest struct {
 	loginChallenge *string
 	afterVerificationReturnTo *string
 	organization *string
+	identitySchema *string
 }
 
 // The URL to return the browser to after the flow was completed.
@@ -1496,6 +1507,12 @@ func (r FrontendAPICreateBrowserRegistrationFlowRequest) AfterVerificationReturn
 // An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
 func (r FrontendAPICreateBrowserRegistrationFlowRequest) Organization(organization string) FrontendAPICreateBrowserRegistrationFlowRequest {
 	r.organization = &organization
+	return r
+}
+
+// An optional identity schema to use for the registration flow.
+func (r FrontendAPICreateBrowserRegistrationFlowRequest) IdentitySchema(identitySchema string) FrontendAPICreateBrowserRegistrationFlowRequest {
+	r.identitySchema = &identitySchema
 	return r
 }
 
@@ -1568,6 +1585,9 @@ func (a *FrontendAPIService) CreateBrowserRegistrationFlowExecute(r FrontendAPIC
 	}
 	if r.organization != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "organization", r.organization, "form", "")
+	}
+	if r.identitySchema != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identity_schema", r.identitySchema, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2068,6 +2088,7 @@ type FrontendAPICreateNativeLoginFlowRequest struct {
 	returnTo *string
 	organization *string
 	via *string
+	identitySchema *string
 }
 
 // Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session.
@@ -2109,6 +2130,12 @@ func (r FrontendAPICreateNativeLoginFlowRequest) Organization(organization strin
 // Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
 func (r FrontendAPICreateNativeLoginFlowRequest) Via(via string) FrontendAPICreateNativeLoginFlowRequest {
 	r.via = &via
+	return r
+}
+
+// An optional identity schema to use for the registration flow.
+func (r FrontendAPICreateNativeLoginFlowRequest) IdentitySchema(identitySchema string) FrontendAPICreateNativeLoginFlowRequest {
+	r.identitySchema = &identitySchema
 	return r
 }
 
@@ -2188,6 +2215,9 @@ func (a *FrontendAPIService) CreateNativeLoginFlowExecute(r FrontendAPICreateNat
 	}
 	if r.via != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "via", r.via, "form", "")
+	}
+	if r.identitySchema != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identity_schema", r.identitySchema, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2401,6 +2431,7 @@ type FrontendAPICreateNativeRegistrationFlowRequest struct {
 	returnSessionTokenExchangeCode *bool
 	returnTo *string
 	organization *string
+	identitySchema *string
 }
 
 // EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
@@ -2418,6 +2449,12 @@ func (r FrontendAPICreateNativeRegistrationFlowRequest) ReturnTo(returnTo string
 // An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
 func (r FrontendAPICreateNativeRegistrationFlowRequest) Organization(organization string) FrontendAPICreateNativeRegistrationFlowRequest {
 	r.organization = &organization
+	return r
+}
+
+// An optional identity schema to use for the registration flow.
+func (r FrontendAPICreateNativeRegistrationFlowRequest) IdentitySchema(identitySchema string) FrontendAPICreateNativeRegistrationFlowRequest {
+	r.identitySchema = &identitySchema
 	return r
 }
 
@@ -2487,6 +2524,9 @@ func (a *FrontendAPIService) CreateNativeRegistrationFlowExecute(r FrontendAPICr
 	}
 	if r.organization != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "organization", r.organization, "form", "")
+	}
+	if r.identitySchema != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identity_schema", r.identitySchema, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.21.3
+API version: v1.21.4
 Contact: support@ory.sh
 */
 
@@ -37,6 +37,7 @@ type NormalizedProjectRevisionIdentitySchema struct {
 	Preset *string `json:"preset,omitempty"`
 	// The Revision's ID this schema belongs to
 	ProjectRevisionId *string `json:"project_revision_id,omitempty"`
+	SelfserviceSelectable *bool `json:"selfservice_selectable,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -359,6 +360,38 @@ func (o *NormalizedProjectRevisionIdentitySchema) SetProjectRevisionId(v string)
 	o.ProjectRevisionId = &v
 }
 
+// GetSelfserviceSelectable returns the SelfserviceSelectable field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionIdentitySchema) GetSelfserviceSelectable() bool {
+	if o == nil || IsNil(o.SelfserviceSelectable) {
+		var ret bool
+		return ret
+	}
+	return *o.SelfserviceSelectable
+}
+
+// GetSelfserviceSelectableOk returns a tuple with the SelfserviceSelectable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionIdentitySchema) GetSelfserviceSelectableOk() (*bool, bool) {
+	if o == nil || IsNil(o.SelfserviceSelectable) {
+		return nil, false
+	}
+	return o.SelfserviceSelectable, true
+}
+
+// HasSelfserviceSelectable returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionIdentitySchema) HasSelfserviceSelectable() bool {
+	if o != nil && !IsNil(o.SelfserviceSelectable) {
+		return true
+	}
+
+	return false
+}
+
+// SetSelfserviceSelectable gets a reference to the given bool and assigns it to the SelfserviceSelectable field.
+func (o *NormalizedProjectRevisionIdentitySchema) SetSelfserviceSelectable(v bool) {
+	o.SelfserviceSelectable = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionIdentitySchema) GetUpdatedAt() time.Time {
 	if o == nil || IsNil(o.UpdatedAt) {
@@ -428,6 +461,9 @@ func (o NormalizedProjectRevisionIdentitySchema) ToMap() (map[string]interface{}
 	if !IsNil(o.ProjectRevisionId) {
 		toSerialize["project_revision_id"] = o.ProjectRevisionId
 	}
+	if !IsNil(o.SelfserviceSelectable) {
+		toSerialize["selfservice_selectable"] = o.SelfserviceSelectable
+	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
@@ -462,6 +498,7 @@ func (o *NormalizedProjectRevisionIdentitySchema) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "is_default")
 		delete(additionalProperties, "preset")
 		delete(additionalProperties, "project_revision_id")
+		delete(additionalProperties, "selfservice_selectable")
 		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}

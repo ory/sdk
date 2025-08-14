@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **IsDefault** | Pointer to **bool** | If true sets the default schema for identities  Only one schema can ever be the default schema. If you try to add two schemas with default to true, the request will fail. | [optional] 
 **Preset** | Pointer to **string** | Use a preset instead of a custom identity schema. | [optional] 
 **ProjectRevisionId** | Pointer to **string** | The Revision&#39;s ID this schema belongs to | [optional] 
+**SelfserviceSelectable** | Pointer to **bool** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 
 ## Methods
@@ -268,6 +269,31 @@ SetProjectRevisionId sets ProjectRevisionId field to given value.
 `func (o *NormalizedProjectRevisionIdentitySchema) HasProjectRevisionId() bool`
 
 HasProjectRevisionId returns a boolean if a field has been set.
+
+### GetSelfserviceSelectable
+
+`func (o *NormalizedProjectRevisionIdentitySchema) GetSelfserviceSelectable() bool`
+
+GetSelfserviceSelectable returns the SelfserviceSelectable field if non-nil, zero value otherwise.
+
+### GetSelfserviceSelectableOk
+
+`func (o *NormalizedProjectRevisionIdentitySchema) GetSelfserviceSelectableOk() (*bool, bool)`
+
+GetSelfserviceSelectableOk returns a tuple with the SelfserviceSelectable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfserviceSelectable
+
+`func (o *NormalizedProjectRevisionIdentitySchema) SetSelfserviceSelectable(v bool)`
+
+SetSelfserviceSelectable sets SelfserviceSelectable field to given value.
+
+### HasSelfserviceSelectable
+
+`func (o *NormalizedProjectRevisionIdentitySchema) HasSelfserviceSelectable() bool`
+
+HasSelfserviceSelectable returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

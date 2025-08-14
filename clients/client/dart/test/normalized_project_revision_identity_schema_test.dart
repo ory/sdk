@@ -59,6 +59,11 @@ void main() {
       // TODO
     });
 
+    // bool selfserviceSelectable
+    test('to test the property `selfserviceSelectable`', () async {
+      // TODO
+    });
+
     // Last Time Project's Revision was Updated
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {

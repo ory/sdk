@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.21.3
+  version: v1.21.4
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -6181,6 +6181,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: An optional identity schema to use for the registration flow.
+        explode: true
+        in: query
+        name: identity_schema
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -6311,6 +6319,14 @@ paths:
         explode: true
         in: query
         name: via
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: An optional identity schema to use for the registration flow.
+        explode: true
+        in: query
+        name: identity_schema
         required: false
         schema:
           type: string
@@ -7051,6 +7067,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: An optional identity schema to use for the registration flow.
+        explode: true
+        in: query
+        name: identity_schema
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -7142,6 +7166,14 @@ paths:
         explode: true
         in: query
         name: organization
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: An optional identity schema to use for the registration flow.
+        explode: true
+        in: query
+        name: identity_schema
         required: false
         schema:
           type: string
@@ -17003,6 +17035,8 @@ components:
           description: The Revision's ID this schema belongs to
           format: uuid
           type: string
+        selfservice_selectable:
+          type: boolean
         updated_at:
           description: Last Time Project's Revision was Updated
           format: date-time

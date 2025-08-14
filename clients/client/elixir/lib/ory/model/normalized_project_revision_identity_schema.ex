@@ -17,6 +17,7 @@ defmodule Ory.Model.NormalizedProjectRevisionIdentitySchema do
     :is_default,
     :preset,
     :project_revision_id,
+    :selfservice_selectable,
     :updated_at
   ]
 
@@ -30,6 +31,7 @@ defmodule Ory.Model.NormalizedProjectRevisionIdentitySchema do
     :is_default => boolean() | nil,
     :preset => String.t | nil,
     :project_revision_id => String.t | nil,
+    :selfservice_selectable => boolean() | nil,
     :updated_at => DateTime.t | nil
   }
 

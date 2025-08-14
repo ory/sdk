@@ -40,7 +40,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 <a id="createBrowserLoginFlow"></a>
 # **createBrowserLoginFlow**
-> LoginFlow createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via)
+> LoginFlow createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via, identitySchema)
 
 Create Login Flow for Browsers
 
@@ -68,8 +68,9 @@ public class Example {
     String loginChallenge = "loginChallenge_example"; // String | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
     String organization = "organization_example"; // String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
     String via = "via_example"; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
+    String identitySchema = "identitySchema_example"; // String | An optional identity schema to use for the registration flow.
     try {
-      LoginFlow result = apiInstance.createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via);
+      LoginFlow result = apiInstance.createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via, identitySchema);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createBrowserLoginFlow");
@@ -93,6 +94,7 @@ public class Example {
 | **loginChallenge** | **String**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] |
 | **organization** | **String**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
 | **via** | **String**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] |
+| **identitySchema** | **String**| An optional identity schema to use for the registration flow. | [optional] |
 
 ### Return type
 
@@ -249,7 +251,7 @@ No authorization required
 
 <a id="createBrowserRegistrationFlow"></a>
 # **createBrowserRegistrationFlow**
-> RegistrationFlow createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization)
+> RegistrationFlow createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization, identitySchema)
 
 Create Registration Flow for Browsers
 
@@ -274,8 +276,9 @@ public class Example {
     String loginChallenge = "loginChallenge_example"; // String | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
     String afterVerificationReturnTo = "afterVerificationReturnTo_example"; // String | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
     String organization = "organization_example"; // String | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
+    String identitySchema = "identitySchema_example"; // String | An optional identity schema to use for the registration flow.
     try {
-      RegistrationFlow result = apiInstance.createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization);
+      RegistrationFlow result = apiInstance.createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization, identitySchema);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createBrowserRegistrationFlow");
@@ -296,6 +299,7 @@ public class Example {
 | **loginChallenge** | **String**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional] |
 | **afterVerificationReturnTo** | **String**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional] |
 | **organization** | **String**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] |
+| **identitySchema** | **String**| An optional identity schema to use for the registration flow. | [optional] |
 
 ### Return type
 
@@ -512,7 +516,7 @@ No authorization required
 
 <a id="createNativeLoginFlow"></a>
 # **createNativeLoginFlow**
-> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via)
+> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via, identitySchema)
 
 Create Login Flow for Native Apps
 
@@ -540,8 +544,9 @@ public class Example {
     String returnTo = "returnTo_example"; // String | The URL to return the browser to after the flow was completed.
     String organization = "organization_example"; // String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
     String via = "via_example"; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
+    String identitySchema = "identitySchema_example"; // String | An optional identity schema to use for the registration flow.
     try {
-      LoginFlow result = apiInstance.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via);
+      LoginFlow result = apiInstance.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via, identitySchema);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createNativeLoginFlow");
@@ -565,6 +570,7 @@ public class Example {
 | **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
 | **organization** | **String**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
 | **via** | **String**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] |
+| **identitySchema** | **String**| An optional identity schema to use for the registration flow. | [optional] |
 
 ### Return type
 
@@ -648,7 +654,7 @@ No authorization required
 
 <a id="createNativeRegistrationFlow"></a>
 # **createNativeRegistrationFlow**
-> RegistrationFlow createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization)
+> RegistrationFlow createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization, identitySchema)
 
 Create Registration Flow for Native Apps
 
@@ -672,8 +678,9 @@ public class Example {
     Boolean returnSessionTokenExchangeCode = true; // Boolean | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
     String returnTo = "returnTo_example"; // String | The URL to return the browser to after the flow was completed.
     String organization = "organization_example"; // String | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
+    String identitySchema = "identitySchema_example"; // String | An optional identity schema to use for the registration flow.
     try {
-      RegistrationFlow result = apiInstance.createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization);
+      RegistrationFlow result = apiInstance.createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization, identitySchema);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createNativeRegistrationFlow");
@@ -693,6 +700,7 @@ public class Example {
 | **returnSessionTokenExchangeCode** | **Boolean**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] |
 | **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
 | **organization** | **String**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] |
+| **identitySchema** | **String**| An optional identity schema to use for the registration flow. | [optional] |
 
 ### Return type
 

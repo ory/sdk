@@ -39,7 +39,7 @@ Method | HTTP request | Description
 
 
 # **create_browser_login_flow**
-> LoginFlow create_browser_login_flow(refresh=refresh, aal=aal, return_to=return_to, cookie=cookie, login_challenge=login_challenge, organization=organization, via=via)
+> LoginFlow create_browser_login_flow(refresh=refresh, aal=aal, return_to=return_to, cookie=cookie, login_challenge=login_challenge, organization=organization, via=via, identity_schema=identity_schema)
 
 Create Login Flow for Browsers
 
@@ -94,10 +94,11 @@ with ory_client.ApiClient(configuration) as api_client:
     login_challenge = 'login_challenge_example' # str | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional)
     organization = 'organization_example' # str | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
     via = 'via_example' # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
+    identity_schema = 'identity_schema_example' # str | An optional identity schema to use for the registration flow. (optional)
 
     try:
         # Create Login Flow for Browsers
-        api_response = api_instance.create_browser_login_flow(refresh=refresh, aal=aal, return_to=return_to, cookie=cookie, login_challenge=login_challenge, organization=organization, via=via)
+        api_response = api_instance.create_browser_login_flow(refresh=refresh, aal=aal, return_to=return_to, cookie=cookie, login_challenge=login_challenge, organization=organization, via=via, identity_schema=identity_schema)
         print("The response of FrontendApi->create_browser_login_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -118,6 +119,7 @@ Name | Type | Description  | Notes
  **login_challenge** | **str**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] 
  **organization** | **str**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
  **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] 
+ **identity_schema** | **str**| An optional identity schema to use for the registration flow. | [optional] 
 
 ### Return type
 
@@ -306,7 +308,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_browser_registration_flow**
-> RegistrationFlow create_browser_registration_flow(return_to=return_to, login_challenge=login_challenge, after_verification_return_to=after_verification_return_to, organization=organization)
+> RegistrationFlow create_browser_registration_flow(return_to=return_to, login_challenge=login_challenge, after_verification_return_to=after_verification_return_to, organization=organization, identity_schema=identity_schema)
 
 Create Registration Flow for Browsers
 
@@ -354,10 +356,11 @@ with ory_client.ApiClient(configuration) as api_client:
     login_challenge = 'login_challenge_example' # str | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional)
     after_verification_return_to = 'after_verification_return_to_example' # str | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional)
     organization = 'organization_example' # str | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
+    identity_schema = 'identity_schema_example' # str | An optional identity schema to use for the registration flow. (optional)
 
     try:
         # Create Registration Flow for Browsers
-        api_response = api_instance.create_browser_registration_flow(return_to=return_to, login_challenge=login_challenge, after_verification_return_to=after_verification_return_to, organization=organization)
+        api_response = api_instance.create_browser_registration_flow(return_to=return_to, login_challenge=login_challenge, after_verification_return_to=after_verification_return_to, organization=organization, identity_schema=identity_schema)
         print("The response of FrontendApi->create_browser_registration_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -375,6 +378,7 @@ Name | Type | Description  | Notes
  **login_challenge** | **str**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional] 
  **after_verification_return_to** | **str**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional] 
  **organization** | **str**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] 
+ **identity_schema** | **str**| An optional identity schema to use for the registration flow. | [optional] 
 
 ### Return type
 
@@ -643,7 +647,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_login_flow**
-> LoginFlow create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization, via=via)
+> LoginFlow create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization, via=via, identity_schema=identity_schema)
 
 Create Login Flow for Native Apps
 
@@ -695,10 +699,11 @@ with ory_client.ApiClient(configuration) as api_client:
     return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
     organization = 'organization_example' # str | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
     via = 'via_example' # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
+    identity_schema = 'identity_schema_example' # str | An optional identity schema to use for the registration flow. (optional)
 
     try:
         # Create Login Flow for Native Apps
-        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization, via=via)
+        api_response = api_instance.create_native_login_flow(refresh=refresh, aal=aal, x_session_token=x_session_token, return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization, via=via, identity_schema=identity_schema)
         print("The response of FrontendApi->create_native_login_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -719,6 +724,7 @@ Name | Type | Description  | Notes
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
  **organization** | **str**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
  **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] 
+ **identity_schema** | **str**| An optional identity schema to use for the registration flow. | [optional] 
 
 ### Return type
 
@@ -822,7 +828,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_registration_flow**
-> RegistrationFlow create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization)
+> RegistrationFlow create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization, identity_schema=identity_schema)
 
 Create Registration Flow for Native Apps
 
@@ -869,10 +875,11 @@ with ory_client.ApiClient(configuration) as api_client:
     return_session_token_exchange_code = True # bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
     return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
     organization = 'organization_example' # str | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
+    identity_schema = 'identity_schema_example' # str | An optional identity schema to use for the registration flow. (optional)
 
     try:
         # Create Registration Flow for Native Apps
-        api_response = api_instance.create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization)
+        api_response = api_instance.create_native_registration_flow(return_session_token_exchange_code=return_session_token_exchange_code, return_to=return_to, organization=organization, identity_schema=identity_schema)
         print("The response of FrontendApi->create_native_registration_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -889,6 +896,7 @@ Name | Type | Description  | Notes
  **return_session_token_exchange_code** | **bool**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] 
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
  **organization** | **str**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] 
+ **identity_schema** | **str**| An optional identity schema to use for the registration flow. | [optional] 
 
 ### Return type
 

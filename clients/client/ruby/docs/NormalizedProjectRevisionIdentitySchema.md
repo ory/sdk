@@ -13,6 +13,7 @@
 | **is_default** | **Boolean** | If true sets the default schema for identities  Only one schema can ever be the default schema. If you try to add two schemas with default to true, the request will fail. | [optional] |
 | **preset** | **String** | Use a preset instead of a custom identity schema. | [optional] |
 | **project_revision_id** | **String** | The Revision&#39;s ID this schema belongs to | [optional] |
+| **selfservice_selectable** | **Boolean** |  | [optional] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
 
 ## Example
@@ -30,6 +31,7 @@ instance = OryClient::NormalizedProjectRevisionIdentitySchema.new(
   is_default: null,
   preset: null,
   project_revision_id: null,
+  selfservice_selectable: null,
   updated_at: null
 )
 ```
