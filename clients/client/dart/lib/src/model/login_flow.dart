@@ -20,6 +20,7 @@ part 'login_flow.g.dart';
 /// * [createdAt] - CreatedAt is a helper struct field for gobuffalo.pop.
 /// * [expiresAt] - ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
 /// * [id] - ID represents the flow's unique ID. When performing the login flow, this represents the id in the login UI's query parameter: http://<selfservice.flows.login.ui_url>/?flow=<flow_id>
+/// * [identitySchema] - IdentitySchema optionally holds the ID of the identity schema that is used for this flow. This value can be set by the user when creating the flow and should be retained when the flow is saved or converted to another flow.
 /// * [issuedAt] - IssuedAt is the time (UTC) when the flow started.
 /// * [oauth2LoginChallenge] - Ory OAuth 2.0 Login Challenge.  This value is set using the `login_challenge` query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
 /// * [oauth2LoginRequest] 
@@ -52,6 +53,10 @@ abstract class LoginFlow implements Built<LoginFlow, LoginFlowBuilder> {
   /// ID represents the flow's unique ID. When performing the login flow, this represents the id in the login UI's query parameter: http://<selfservice.flows.login.ui_url>/?flow=<flow_id>
   @BuiltValueField(wireName: r'id')
   String get id;
+
+  /// IdentitySchema optionally holds the ID of the identity schema that is used for this flow. This value can be set by the user when creating the flow and should be retained when the flow is saved or converted to another flow.
+  @BuiltValueField(wireName: r'identity_schema')
+  String? get identitySchema;
 
   /// IssuedAt is the time (UTC) when the flow started.
   @BuiltValueField(wireName: r'issued_at')
@@ -153,6 +158,13 @@ class _$LoginFlowSerializer implements PrimitiveSerializer<LoginFlow> {
       object.id,
       specifiedType: const FullType(String),
     );
+    if (object.identitySchema != null) {
+      yield r'identity_schema';
+      yield serializers.serialize(
+        object.identitySchema,
+        specifiedType: const FullType(String),
+      );
+    }
     yield r'issued_at';
     yield serializers.serialize(
       object.issuedAt,
@@ -291,6 +303,13 @@ class _$LoginFlowSerializer implements PrimitiveSerializer<LoginFlow> {
             specifiedType: const FullType(String),
           ) as String;
           result.id = valueDes;
+          break;
+        case r'identity_schema':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.identitySchema = valueDes;
           break;
         case r'issued_at':
           final valueDes = serializers.deserialize(

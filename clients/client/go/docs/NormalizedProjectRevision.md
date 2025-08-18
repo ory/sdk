@@ -181,6 +181,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsVerificationNotifyUnknownRecipients** | Pointer to **bool** | Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \&quot;selfservice.flows.verification.notify_unknown_recipients\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationUiUrl** | Pointer to **string** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationUse** | Pointer to **string** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
+**KratosSelfserviceMethodsCaptchaConfigAllowedDomains** | Pointer to **[]string** |  | [optional] 
 **KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret** | Pointer to **string** | Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature. | [optional] 
 **KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey** | Pointer to **string** | Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] 
 **KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode** | Pointer to **bool** | Configures the Ory Kratos Self-Service Methods&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] 
@@ -4711,6 +4712,31 @@ SetKratosSelfserviceFlowsVerificationUse sets KratosSelfserviceFlowsVerification
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsVerificationUse() bool`
 
 HasKratosSelfserviceFlowsVerificationUse returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCaptchaConfigAllowedDomains
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigAllowedDomains() []string`
+
+GetKratosSelfserviceMethodsCaptchaConfigAllowedDomains returns the KratosSelfserviceMethodsCaptchaConfigAllowedDomains field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCaptchaConfigAllowedDomainsOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigAllowedDomainsOk() (*[]string, bool)`
+
+GetKratosSelfserviceMethodsCaptchaConfigAllowedDomainsOk returns a tuple with the KratosSelfserviceMethodsCaptchaConfigAllowedDomains field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCaptchaConfigAllowedDomains
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCaptchaConfigAllowedDomains(v []string)`
+
+SetKratosSelfserviceMethodsCaptchaConfigAllowedDomains sets KratosSelfserviceMethodsCaptchaConfigAllowedDomains field to given value.
+
+### HasKratosSelfserviceMethodsCaptchaConfigAllowedDomains
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCaptchaConfigAllowedDomains() bool`
+
+HasKratosSelfserviceMethodsCaptchaConfigAllowedDomains returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret
 

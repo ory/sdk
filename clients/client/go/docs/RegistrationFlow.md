@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Active** | Pointer to **string** | Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [optional] 
 **ExpiresAt** | **time.Time** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. | 
 **Id** | **string** | ID represents the flow&#39;s unique ID. When performing the registration flow, this represents the id in the registration ui&#39;s query parameter: http://&lt;selfservice.flows.registration.ui_url&gt;/?flow&#x3D;&lt;id&gt; | 
+**IdentitySchema** | Pointer to **string** | IdentitySchema optionally holds the ID of the identity schema that is used for this flow. This value can be set by the user when creating the flow and should be retained when the flow is saved or converted to another flow. | [optional] 
 **IssuedAt** | **time.Time** | IssuedAt is the time (UTC) when the flow occurred. | 
 **Oauth2LoginChallenge** | Pointer to **string** | Ory OAuth 2.0 Login Challenge.  This value is set using the &#x60;login_challenge&#x60; query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider. | [optional] 
 **Oauth2LoginRequest** | Pointer to [**OAuth2LoginRequest**](OAuth2LoginRequest.md) |  | [optional] 
@@ -102,6 +103,31 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetIdentitySchema
+
+`func (o *RegistrationFlow) GetIdentitySchema() string`
+
+GetIdentitySchema returns the IdentitySchema field if non-nil, zero value otherwise.
+
+### GetIdentitySchemaOk
+
+`func (o *RegistrationFlow) GetIdentitySchemaOk() (*string, bool)`
+
+GetIdentitySchemaOk returns a tuple with the IdentitySchema field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdentitySchema
+
+`func (o *RegistrationFlow) SetIdentitySchema(v string)`
+
+SetIdentitySchema sets IdentitySchema field to given value.
+
+### HasIdentitySchema
+
+`func (o *RegistrationFlow) HasIdentitySchema() bool`
+
+HasIdentitySchema returns a boolean if a field has been set.
 
 ### GetIssuedAt
 

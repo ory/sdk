@@ -18,6 +18,7 @@ part 'registration_flow.g.dart';
 /// * [active] - Active, if set, contains the registration method that is being used. It is initially not set. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 /// * [expiresAt] - ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated.
 /// * [id] - ID represents the flow's unique ID. When performing the registration flow, this represents the id in the registration ui's query parameter: http://<selfservice.flows.registration.ui_url>/?flow=<id>
+/// * [identitySchema] - IdentitySchema optionally holds the ID of the identity schema that is used for this flow. This value can be set by the user when creating the flow and should be retained when the flow is saved or converted to another flow.
 /// * [issuedAt] - IssuedAt is the time (UTC) when the flow occurred.
 /// * [oauth2LoginChallenge] - Ory OAuth 2.0 Login Challenge.  This value is set using the `login_challenge` query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
 /// * [oauth2LoginRequest] 
@@ -43,6 +44,10 @@ abstract class RegistrationFlow implements Built<RegistrationFlow, RegistrationF
   /// ID represents the flow's unique ID. When performing the registration flow, this represents the id in the registration ui's query parameter: http://<selfservice.flows.registration.ui_url>/?flow=<id>
   @BuiltValueField(wireName: r'id')
   String get id;
+
+  /// IdentitySchema optionally holds the ID of the identity schema that is used for this flow. This value can be set by the user when creating the flow and should be retained when the flow is saved or converted to another flow.
+  @BuiltValueField(wireName: r'identity_schema')
+  String? get identitySchema;
 
   /// IssuedAt is the time (UTC) when the flow occurred.
   @BuiltValueField(wireName: r'issued_at')
@@ -125,6 +130,13 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
       object.id,
       specifiedType: const FullType(String),
     );
+    if (object.identitySchema != null) {
+      yield r'identity_schema';
+      yield serializers.serialize(
+        object.identitySchema,
+        specifiedType: const FullType(String),
+      );
+    }
     yield r'issued_at';
     yield serializers.serialize(
       object.issuedAt,
@@ -235,6 +247,13 @@ class _$RegistrationFlowSerializer implements PrimitiveSerializer<RegistrationFl
             specifiedType: const FullType(String),
           ) as String;
           result.id = valueDes;
+          break;
+        case r'identity_schema':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.identitySchema = valueDes;
           break;
         case r'issued_at':
           final valueDes = serializers.deserialize(

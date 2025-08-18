@@ -8,6 +8,7 @@
 | **created_at** | **Time** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] |
 | **expires_at** | **Time** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. |  |
 | **id** | **String** | ID represents the flow&#39;s unique ID. When performing the login flow, this represents the id in the login UI&#39;s query parameter: http://&lt;selfservice.flows.login.ui_url&gt;/?flow&#x3D;&lt;flow_id&gt; |  |
+| **identity_schema** | **String** | IdentitySchema optionally holds the ID of the identity schema that is used for this flow. This value can be set by the user when creating the flow and should be retained when the flow is saved or converted to another flow. | [optional] |
 | **issued_at** | **Time** | IssuedAt is the time (UTC) when the flow started. |  |
 | **oauth2_login_challenge** | **String** | Ory OAuth 2.0 Login Challenge.  This value is set using the &#x60;login_challenge&#x60; query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider. | [optional] |
 | **oauth2_login_request** | [**OAuth2LoginRequest**](OAuth2LoginRequest.md) |  | [optional] |
@@ -33,6 +34,7 @@ instance = OryClient::LoginFlow.new(
   created_at: null,
   expires_at: null,
   id: null,
+  identity_schema: null,
   issued_at: null,
   oauth2_login_challenge: null,
   oauth2_login_request: null,

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.21.4
+API version: v1.21.5
 Contact: support@ory.sh
 */
 
@@ -28,6 +28,8 @@ type RegistrationFlow struct {
 	ExpiresAt time.Time `json:"expires_at"`
 	// ID represents the flow's unique ID. When performing the registration flow, this represents the id in the registration ui's query parameter: http://<selfservice.flows.registration.ui_url>/?flow=<id>
 	Id string `json:"id"`
+	// IdentitySchema optionally holds the ID of the identity schema that is used for this flow. This value can be set by the user when creating the flow and should be retained when the flow is saved or converted to another flow.
+	IdentitySchema *string `json:"identity_schema,omitempty"`
 	// IssuedAt is the time (UTC) when the flow occurred.
 	IssuedAt time.Time `json:"issued_at"`
 	// Ory OAuth 2.0 Login Challenge.  This value is set using the `login_challenge` query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
@@ -154,6 +156,38 @@ func (o *RegistrationFlow) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *RegistrationFlow) SetId(v string) {
 	o.Id = v
+}
+
+// GetIdentitySchema returns the IdentitySchema field value if set, zero value otherwise.
+func (o *RegistrationFlow) GetIdentitySchema() string {
+	if o == nil || IsNil(o.IdentitySchema) {
+		var ret string
+		return ret
+	}
+	return *o.IdentitySchema
+}
+
+// GetIdentitySchemaOk returns a tuple with the IdentitySchema field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegistrationFlow) GetIdentitySchemaOk() (*string, bool) {
+	if o == nil || IsNil(o.IdentitySchema) {
+		return nil, false
+	}
+	return o.IdentitySchema, true
+}
+
+// HasIdentitySchema returns a boolean if a field has been set.
+func (o *RegistrationFlow) HasIdentitySchema() bool {
+	if o != nil && !IsNil(o.IdentitySchema) {
+		return true
+	}
+
+	return false
+}
+
+// SetIdentitySchema gets a reference to the given string and assigns it to the IdentitySchema field.
+func (o *RegistrationFlow) SetIdentitySchema(v string) {
+	o.IdentitySchema = &v
 }
 
 // GetIssuedAt returns the IssuedAt field value
@@ -495,6 +529,9 @@ func (o RegistrationFlow) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["expires_at"] = o.ExpiresAt
 	toSerialize["id"] = o.Id
+	if !IsNil(o.IdentitySchema) {
+		toSerialize["identity_schema"] = o.IdentitySchema
+	}
 	toSerialize["issued_at"] = o.IssuedAt
 	if !IsNil(o.Oauth2LoginChallenge) {
 		toSerialize["oauth2_login_challenge"] = o.Oauth2LoginChallenge
@@ -572,6 +609,7 @@ func (o *RegistrationFlow) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "active")
 		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "identity_schema")
 		delete(additionalProperties, "issued_at")
 		delete(additionalProperties, "oauth2_login_challenge")
 		delete(additionalProperties, "oauth2_login_request")

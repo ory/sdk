@@ -199,6 +199,7 @@ part 'normalized_project_revision.g.dart';
 /// * [kratosSelfserviceFlowsVerificationNotifyUnknownRecipients] - Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \"selfservice.flows.verification.notify_unknown_recipients\" setting.
 /// * [kratosSelfserviceFlowsVerificationUiUrl] - Configures the Ory Kratos Verification UI URL  This governs the \"selfservice.flows.verification.ui_url\" setting.
 /// * [kratosSelfserviceFlowsVerificationUse] - Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
+/// * [kratosSelfserviceMethodsCaptchaConfigAllowedDomains] 
 /// * [kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret] - Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.
 /// * [kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey] - Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
 /// * [kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode] - Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
@@ -952,6 +953,9 @@ abstract class NormalizedProjectRevision implements Built<NormalizedProjectRevis
   @BuiltValueField(wireName: r'kratos_selfservice_flows_verification_use')
   NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum? get kratosSelfserviceFlowsVerificationUse;
   // enum kratosSelfserviceFlowsVerificationUseEnum {  link,  code,  };
+
+  @BuiltValueField(wireName: r'kratos_selfservice_methods_captcha_config_allowed_domains')
+  BuiltList<String>? get kratosSelfserviceMethodsCaptchaConfigAllowedDomains;
 
   /// Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.
   @BuiltValueField(wireName: r'kratos_selfservice_methods_captcha_config_cf_turnstile_secret')
@@ -2438,6 +2442,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
       yield serializers.serialize(
         object.kratosSelfserviceFlowsVerificationUse,
         specifiedType: const FullType(NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum),
+      );
+    }
+    if (object.kratosSelfserviceMethodsCaptchaConfigAllowedDomains != null) {
+      yield r'kratos_selfservice_methods_captcha_config_allowed_domains';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsCaptchaConfigAllowedDomains,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
     if (object.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret != null) {
@@ -4094,6 +4105,13 @@ class _$NormalizedProjectRevisionSerializer implements PrimitiveSerializer<Norma
             specifiedType: const FullType(NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum),
           ) as NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum;
           result.kratosSelfserviceFlowsVerificationUse = valueDes;
+          break;
+        case r'kratos_selfservice_methods_captcha_config_allowed_domains':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.kratosSelfserviceMethodsCaptchaConfigAllowedDomains.replace(valueDes);
           break;
         case r'kratos_selfservice_methods_captcha_config_cf_turnstile_secret':
           final valueDes = serializers.deserialize(

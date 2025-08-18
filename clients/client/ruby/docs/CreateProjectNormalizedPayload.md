@@ -183,6 +183,7 @@
 | **kratos_selfservice_flows_verification_notify_unknown_recipients** | **Boolean** | Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \&quot;selfservice.flows.verification.notify_unknown_recipients\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_verification_ui_url** | **String** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_verification_use** | **String** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] |
+| **kratos_selfservice_methods_captcha_config_allowed_domains** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_selfservice_methods_captcha_config_cf_turnstile_secret** | **String** | Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature. | [optional] |
 | **kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey** | **String** | Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] |
 | **kratos_selfservice_methods_captcha_config_legacy_inject_node** | **Boolean** | Configures the Ory Kratos Self-Service Methods&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] |
@@ -426,6 +427,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_selfservice_flows_verification_notify_unknown_recipients: null,
   kratos_selfservice_flows_verification_ui_url: null,
   kratos_selfservice_flows_verification_use: null,
+  kratos_selfservice_methods_captcha_config_allowed_domains: null,
   kratos_selfservice_methods_captcha_config_cf_turnstile_secret: null,
   kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey: null,
   kratos_selfservice_methods_captcha_config_legacy_inject_node: null,

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **ExpiresAt** | **time.Time** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. | 
 **Id** | **string** | ID represents the flow&#39;s unique ID. When performing the login flow, this represents the id in the login UI&#39;s query parameter: http://&lt;selfservice.flows.login.ui_url&gt;/?flow&#x3D;&lt;flow_id&gt; | 
+**IdentitySchema** | Pointer to **string** | IdentitySchema optionally holds the ID of the identity schema that is used for this flow. This value can be set by the user when creating the flow and should be retained when the flow is saved or converted to another flow. | [optional] 
 **IssuedAt** | **time.Time** | IssuedAt is the time (UTC) when the flow started. | 
 **Oauth2LoginChallenge** | Pointer to **string** | Ory OAuth 2.0 Login Challenge.  This value is set using the &#x60;login_challenge&#x60; query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider. | [optional] 
 **Oauth2LoginRequest** | Pointer to [**OAuth2LoginRequest**](OAuth2LoginRequest.md) |  | [optional] 
@@ -131,6 +132,31 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetIdentitySchema
+
+`func (o *LoginFlow) GetIdentitySchema() string`
+
+GetIdentitySchema returns the IdentitySchema field if non-nil, zero value otherwise.
+
+### GetIdentitySchemaOk
+
+`func (o *LoginFlow) GetIdentitySchemaOk() (*string, bool)`
+
+GetIdentitySchemaOk returns a tuple with the IdentitySchema field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdentitySchema
+
+`func (o *LoginFlow) SetIdentitySchema(v string)`
+
+SetIdentitySchema sets IdentitySchema field to given value.
+
+### HasIdentitySchema
+
+`func (o *LoginFlow) HasIdentitySchema() bool`
+
+HasIdentitySchema returns a boolean if a field has been set.
 
 ### GetIssuedAt
 

@@ -904,6 +904,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   final CreateProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnum?
       kratosSelfserviceFlowsVerificationUse;
   @override
+  final BuiltList<String>? kratosSelfserviceMethodsCaptchaConfigAllowedDomains;
+  @override
   final String? kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret;
   @override
   final String? kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey;
@@ -1207,6 +1209,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosSelfserviceFlowsVerificationNotifyUnknownRecipients,
       this.kratosSelfserviceFlowsVerificationUiUrl,
       this.kratosSelfserviceFlowsVerificationUse,
+      this.kratosSelfserviceMethodsCaptchaConfigAllowedDomains,
       this.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret,
       this.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey,
       this.kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode,
@@ -1615,6 +1618,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
             other.kratosSelfserviceFlowsVerificationUiUrl &&
         kratosSelfserviceFlowsVerificationUse ==
             other.kratosSelfserviceFlowsVerificationUse &&
+        kratosSelfserviceMethodsCaptchaConfigAllowedDomains ==
+            other.kratosSelfserviceMethodsCaptchaConfigAllowedDomains &&
         kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret ==
             other.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret &&
         kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey ==
@@ -2012,6 +2017,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         kratosSelfserviceFlowsVerificationNotifyUnknownRecipients.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsVerificationUiUrl.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceFlowsVerificationUse.hashCode);
+    _$hash = $jc(
+        _$hash, kratosSelfserviceMethodsCaptchaConfigAllowedDomains.hashCode);
     _$hash = $jc(_$hash,
         kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret.hashCode);
     _$hash = $jc(_$hash,
@@ -2428,6 +2435,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
               kratosSelfserviceFlowsVerificationUiUrl)
           ..add('kratosSelfserviceFlowsVerificationUse',
               kratosSelfserviceFlowsVerificationUse)
+          ..add('kratosSelfserviceMethodsCaptchaConfigAllowedDomains',
+              kratosSelfserviceMethodsCaptchaConfigAllowedDomains)
           ..add('kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret',
               kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret)
           ..add('kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey',
@@ -3902,6 +3911,16 @@ class CreateProjectNormalizedPayloadBuilder
       _$this._kratosSelfserviceFlowsVerificationUse =
           kratosSelfserviceFlowsVerificationUse;
 
+  ListBuilder<String>? _kratosSelfserviceMethodsCaptchaConfigAllowedDomains;
+  ListBuilder<String> get kratosSelfserviceMethodsCaptchaConfigAllowedDomains =>
+      _$this._kratosSelfserviceMethodsCaptchaConfigAllowedDomains ??=
+          new ListBuilder<String>();
+  set kratosSelfserviceMethodsCaptchaConfigAllowedDomains(
+          ListBuilder<String>?
+              kratosSelfserviceMethodsCaptchaConfigAllowedDomains) =>
+      _$this._kratosSelfserviceMethodsCaptchaConfigAllowedDomains =
+          kratosSelfserviceMethodsCaptchaConfigAllowedDomains;
+
   String? _kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret;
   String? get kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret =>
       _$this._kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret;
@@ -4646,6 +4665,8 @@ class CreateProjectNormalizedPayloadBuilder
           $v.kratosSelfserviceFlowsVerificationUiUrl;
       _kratosSelfserviceFlowsVerificationUse =
           $v.kratosSelfserviceFlowsVerificationUse;
+      _kratosSelfserviceMethodsCaptchaConfigAllowedDomains =
+          $v.kratosSelfserviceMethodsCaptchaConfigAllowedDomains?.toBuilder();
       _kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret =
           $v.kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret;
       _kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey =
@@ -4979,6 +5000,7 @@ class CreateProjectNormalizedPayloadBuilder
               kratosSelfserviceFlowsVerificationNotifyUnknownRecipients: kratosSelfserviceFlowsVerificationNotifyUnknownRecipients,
               kratosSelfserviceFlowsVerificationUiUrl: kratosSelfserviceFlowsVerificationUiUrl,
               kratosSelfserviceFlowsVerificationUse: kratosSelfserviceFlowsVerificationUse,
+              kratosSelfserviceMethodsCaptchaConfigAllowedDomains: _kratosSelfserviceMethodsCaptchaConfigAllowedDomains?.build(),
               kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret: kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret,
               kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey: kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey,
               kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode: kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode,
@@ -5082,6 +5104,9 @@ class CreateProjectNormalizedPayloadBuilder
 
         _$failedField = 'kratosSelfserviceAllowedReturnUrls';
         _kratosSelfserviceAllowedReturnUrls?.build();
+
+        _$failedField = 'kratosSelfserviceMethodsCaptchaConfigAllowedDomains';
+        _kratosSelfserviceMethodsCaptchaConfigAllowedDomains?.build();
 
         _$failedField = 'kratosSelfserviceMethodsOidcConfigProviders';
         _kratosSelfserviceMethodsOidcConfigProviders?.build();

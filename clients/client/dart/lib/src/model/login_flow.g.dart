@@ -132,6 +132,8 @@ class _$LoginFlow extends LoginFlow {
   @override
   final String id;
   @override
+  final String? identitySchema;
+  @override
   final DateTime issuedAt;
   @override
   final String? oauth2LoginChallenge;
@@ -168,6 +170,7 @@ class _$LoginFlow extends LoginFlow {
       this.createdAt,
       required this.expiresAt,
       required this.id,
+      this.identitySchema,
       required this.issuedAt,
       this.oauth2LoginChallenge,
       this.oauth2LoginRequest,
@@ -207,6 +210,7 @@ class _$LoginFlow extends LoginFlow {
         createdAt == other.createdAt &&
         expiresAt == other.expiresAt &&
         id == other.id &&
+        identitySchema == other.identitySchema &&
         issuedAt == other.issuedAt &&
         oauth2LoginChallenge == other.oauth2LoginChallenge &&
         oauth2LoginRequest == other.oauth2LoginRequest &&
@@ -230,6 +234,7 @@ class _$LoginFlow extends LoginFlow {
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, identitySchema.hashCode);
     _$hash = $jc(_$hash, issuedAt.hashCode);
     _$hash = $jc(_$hash, oauth2LoginChallenge.hashCode);
     _$hash = $jc(_$hash, oauth2LoginRequest.hashCode);
@@ -255,6 +260,7 @@ class _$LoginFlow extends LoginFlow {
           ..add('createdAt', createdAt)
           ..add('expiresAt', expiresAt)
           ..add('id', id)
+          ..add('identitySchema', identitySchema)
           ..add('issuedAt', issuedAt)
           ..add('oauth2LoginChallenge', oauth2LoginChallenge)
           ..add('oauth2LoginRequest', oauth2LoginRequest)
@@ -291,6 +297,11 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
   String? _id;
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
+
+  String? _identitySchema;
+  String? get identitySchema => _$this._identitySchema;
+  set identitySchema(String? identitySchema) =>
+      _$this._identitySchema = identitySchema;
 
   DateTime? _issuedAt;
   DateTime? get issuedAt => _$this._issuedAt;
@@ -366,6 +377,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
       _createdAt = $v.createdAt;
       _expiresAt = $v.expiresAt;
       _id = $v.id;
+      _identitySchema = $v.identitySchema;
       _issuedAt = $v.issuedAt;
       _oauth2LoginChallenge = $v.oauth2LoginChallenge;
       _oauth2LoginRequest = $v.oauth2LoginRequest?.toBuilder();
@@ -409,6 +421,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
               expiresAt: BuiltValueNullFieldError.checkNotNull(
                   expiresAt, r'LoginFlow', 'expiresAt'),
               id: BuiltValueNullFieldError.checkNotNull(id, r'LoginFlow', 'id'),
+              identitySchema: identitySchema,
               issuedAt: BuiltValueNullFieldError.checkNotNull(
                   issuedAt, r'LoginFlow', 'issuedAt'),
               oauth2LoginChallenge: oauth2LoginChallenge,

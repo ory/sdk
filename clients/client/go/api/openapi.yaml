@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.21.4
+  version: v1.21.5
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -10207,6 +10207,12 @@ components:
           x-go-enum-desc: |-
             link SelfServiceMessageVerificationStrategyLink
             code SelfServiceMessageVerificationStrategyCode
+        kratos_selfservice_methods_captcha_config_allowed_domains:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         kratos_selfservice_methods_captcha_config_cf_turnstile_secret:
           description: |-
             Configures the Cloudflare Turnstile site secret for CAPTCHA protection
@@ -14242,6 +14248,7 @@ components:
 
         Once a login flow is completed successfully, a session cookie or session token will be issued.
       example:
+        identity_schema: identity_schema
         requested_aal: aal0
         active: password
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -14530,6 +14537,12 @@ components:
             ID represents the flow's unique ID. When performing the login flow, this
             represents the id in the login UI's query parameter: http://<selfservice.flows.login.ui_url>/?flow=<flow_id>
           format: uuid
+          type: string
+        identity_schema:
+          description: |-
+            IdentitySchema optionally holds the ID of the identity schema that is used
+            for this flow. This value can be set by the user when creating the flow and
+            should be retained when the flow is saved or converted to another flow.
           type: string
         issued_at:
           description: IssuedAt is the time (UTC) when the flow started.
@@ -16242,6 +16255,12 @@ components:
           x-go-enum-desc: |-
             link SelfServiceMessageVerificationStrategyLink
             code SelfServiceMessageVerificationStrategyCode
+        kratos_selfservice_methods_captcha_config_allowed_domains:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         kratos_selfservice_methods_captcha_config_cf_turnstile_secret:
           description: |-
             Configures the Cloudflare Turnstile site secret for CAPTCHA protection
@@ -20330,6 +20349,7 @@ components:
       type: object
     registrationFlow:
       example:
+        identity_schema: identity_schema
         active: password
         return_to: return_to
         session_token_exchange_code: session_token_exchange_code
@@ -20609,6 +20629,12 @@ components:
             ID represents the flow's unique ID. When performing the registration flow, this
             represents the id in the registration ui's query parameter: http://<selfservice.flows.registration.ui_url>/?flow=<id>
           format: uuid
+          type: string
+        identity_schema:
+          description: |-
+            IdentitySchema optionally holds the ID of the identity schema that is used
+            for this flow. This value can be set by the user when creating the flow and
+            should be retained when the flow is saved or converted to another flow.
           type: string
         issued_at:
           description: IssuedAt is the time (UTC) when the flow occurred.

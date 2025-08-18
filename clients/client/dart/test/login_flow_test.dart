@@ -31,6 +31,12 @@ void main() {
       // TODO
     });
 
+    // IdentitySchema optionally holds the ID of the identity schema that is used for this flow. This value can be set by the user when creating the flow and should be retained when the flow is saved or converted to another flow.
+    // String identitySchema
+    test('to test the property `identitySchema`', () async {
+      // TODO
+    });
+
     // IssuedAt is the time (UTC) when the flow started.
     // DateTime issuedAt
     test('to test the property `issuedAt`', () async {

@@ -1064,6 +1064,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<String> kratosSelfserviceMethodsCaptchaConfigAllowedDomains
+    test('to test the property `kratosSelfserviceMethodsCaptchaConfigAllowedDomains`', () async {
+      // TODO
+    });
+
     // Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.
     // String kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret
     test('to test the property `kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret`', () async {
