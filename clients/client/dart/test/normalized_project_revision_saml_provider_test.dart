@@ -7,6 +7,11 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(NormalizedProjectRevisionSAMLProvider, () {
+    // String audienceOverrideBaseUrl
+    test('to test the property `audienceOverrideBaseUrl`', () async {
+      // TODO
+    });
+
     // The Project's Revision Creation Date
     // DateTime createdAt
     test('to test the property `createdAt`', () async {

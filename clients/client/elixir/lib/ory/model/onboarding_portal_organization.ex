@@ -13,7 +13,10 @@ defmodule Ory.Model.OnboardingPortalOrganization do
     :kratos_selfservice_methods_saml_config_providers,
     :organization_id,
     :organization_label,
-    :revision_id
+    :revision_id,
+    :scim_clients,
+    :scim_enabled,
+    :sso_enabled
   ]
 
   @type t :: %__MODULE__{
@@ -22,7 +25,10 @@ defmodule Ory.Model.OnboardingPortalOrganization do
     :kratos_selfservice_methods_saml_config_providers => [Ory.Model.NormalizedProjectRevisionSamlProvider.t],
     :organization_id => String.t | nil,
     :organization_label => String.t | nil,
-    :revision_id => String.t
+    :revision_id => String.t,
+    :scim_clients => [Ory.Model.NormalizedProjectRevisionScimClient.t],
+    :scim_enabled => boolean(),
+    :sso_enabled => boolean()
   }
 
   alias Ory.Deserializer
@@ -31,6 +37,7 @@ defmodule Ory.Model.OnboardingPortalOrganization do
     value
      |> Deserializer.deserialize(:kratos_selfservice_methods_oidc_config_providers, :list, Ory.Model.NormalizedProjectRevisionThirdPartyProvider)
      |> Deserializer.deserialize(:kratos_selfservice_methods_saml_config_providers, :list, Ory.Model.NormalizedProjectRevisionSamlProvider)
+     |> Deserializer.deserialize(:scim_clients, :list, Ory.Model.NormalizedProjectRevisionScimClient)
   end
 end
 

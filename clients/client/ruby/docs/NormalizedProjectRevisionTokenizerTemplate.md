@@ -10,6 +10,7 @@
 | **jwks_url** | **String** | JSON Web Key URL | [optional] |
 | **key** | **String** | The unique key of the template | [optional] |
 | **project_revision_id** | **String** | The Revision&#39;s ID this schema belongs to | [optional] |
+| **subject_source** | **String** | Subject source for the tokenizer  Can be either id or external_id or empty | [optional][default to &#39;id&#39;] |
 | **ttl** | **String** | Token time to live | [optional][default to &#39;1m&#39;] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
 
@@ -25,6 +26,7 @@ instance = OryClient::NormalizedProjectRevisionTokenizerTemplate.new(
   jwks_url: null,
   key: null,
   project_revision_id: null,
+  subject_source: null,
   ttl: 1h,
   updated_at: null
 )

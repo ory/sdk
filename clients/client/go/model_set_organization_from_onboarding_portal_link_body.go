@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.21.5
+API version: v1.22.3
 Contact: support@ory.sh
 */
 
@@ -21,9 +21,10 @@ var _ MappedNullable = &SetOrganizationFromOnboardingPortalLinkBody{}
 
 // SetOrganizationFromOnboardingPortalLinkBody struct for SetOrganizationFromOnboardingPortalLinkBody
 type SetOrganizationFromOnboardingPortalLinkBody struct {
-	KratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider `json:"kratos_selfservice_methods_oidc_config_providers"`
-	KratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider `json:"kratos_selfservice_methods_saml_config_providers"`
+	KratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider `json:"kratos_selfservice_methods_oidc_config_providers,omitempty"`
+	KratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider `json:"kratos_selfservice_methods_saml_config_providers,omitempty"`
 	RevisionId string `json:"revision_id"`
+	ScimClients []NormalizedProjectRevisionScimClient `json:"scim_clients,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +34,8 @@ type _SetOrganizationFromOnboardingPortalLinkBody SetOrganizationFromOnboardingP
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSetOrganizationFromOnboardingPortalLinkBody(kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, revisionId string) *SetOrganizationFromOnboardingPortalLinkBody {
+func NewSetOrganizationFromOnboardingPortalLinkBody(revisionId string) *SetOrganizationFromOnboardingPortalLinkBody {
 	this := SetOrganizationFromOnboardingPortalLinkBody{}
-	this.KratosSelfserviceMethodsOidcConfigProviders = kratosSelfserviceMethodsOidcConfigProviders
-	this.KratosSelfserviceMethodsSamlConfigProviders = kratosSelfserviceMethodsSamlConfigProviders
 	this.RevisionId = revisionId
 	return &this
 }
@@ -49,50 +48,66 @@ func NewSetOrganizationFromOnboardingPortalLinkBodyWithDefaults() *SetOrganizati
 	return &this
 }
 
-// GetKratosSelfserviceMethodsOidcConfigProviders returns the KratosSelfserviceMethodsOidcConfigProviders field value
+// GetKratosSelfserviceMethodsOidcConfigProviders returns the KratosSelfserviceMethodsOidcConfigProviders field value if set, zero value otherwise.
 func (o *SetOrganizationFromOnboardingPortalLinkBody) GetKratosSelfserviceMethodsOidcConfigProviders() []NormalizedProjectRevisionThirdPartyProvider {
-	if o == nil {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsOidcConfigProviders) {
 		var ret []NormalizedProjectRevisionThirdPartyProvider
 		return ret
 	}
-
 	return o.KratosSelfserviceMethodsOidcConfigProviders
 }
 
-// GetKratosSelfserviceMethodsOidcConfigProvidersOk returns a tuple with the KratosSelfserviceMethodsOidcConfigProviders field value
+// GetKratosSelfserviceMethodsOidcConfigProvidersOk returns a tuple with the KratosSelfserviceMethodsOidcConfigProviders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SetOrganizationFromOnboardingPortalLinkBody) GetKratosSelfserviceMethodsOidcConfigProvidersOk() ([]NormalizedProjectRevisionThirdPartyProvider, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsOidcConfigProviders) {
 		return nil, false
 	}
 	return o.KratosSelfserviceMethodsOidcConfigProviders, true
 }
 
-// SetKratosSelfserviceMethodsOidcConfigProviders sets field value
+// HasKratosSelfserviceMethodsOidcConfigProviders returns a boolean if a field has been set.
+func (o *SetOrganizationFromOnboardingPortalLinkBody) HasKratosSelfserviceMethodsOidcConfigProviders() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsOidcConfigProviders) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsOidcConfigProviders gets a reference to the given []NormalizedProjectRevisionThirdPartyProvider and assigns it to the KratosSelfserviceMethodsOidcConfigProviders field.
 func (o *SetOrganizationFromOnboardingPortalLinkBody) SetKratosSelfserviceMethodsOidcConfigProviders(v []NormalizedProjectRevisionThirdPartyProvider) {
 	o.KratosSelfserviceMethodsOidcConfigProviders = v
 }
 
-// GetKratosSelfserviceMethodsSamlConfigProviders returns the KratosSelfserviceMethodsSamlConfigProviders field value
+// GetKratosSelfserviceMethodsSamlConfigProviders returns the KratosSelfserviceMethodsSamlConfigProviders field value if set, zero value otherwise.
 func (o *SetOrganizationFromOnboardingPortalLinkBody) GetKratosSelfserviceMethodsSamlConfigProviders() []NormalizedProjectRevisionSAMLProvider {
-	if o == nil {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsSamlConfigProviders) {
 		var ret []NormalizedProjectRevisionSAMLProvider
 		return ret
 	}
-
 	return o.KratosSelfserviceMethodsSamlConfigProviders
 }
 
-// GetKratosSelfserviceMethodsSamlConfigProvidersOk returns a tuple with the KratosSelfserviceMethodsSamlConfigProviders field value
+// GetKratosSelfserviceMethodsSamlConfigProvidersOk returns a tuple with the KratosSelfserviceMethodsSamlConfigProviders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SetOrganizationFromOnboardingPortalLinkBody) GetKratosSelfserviceMethodsSamlConfigProvidersOk() ([]NormalizedProjectRevisionSAMLProvider, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsSamlConfigProviders) {
 		return nil, false
 	}
 	return o.KratosSelfserviceMethodsSamlConfigProviders, true
 }
 
-// SetKratosSelfserviceMethodsSamlConfigProviders sets field value
+// HasKratosSelfserviceMethodsSamlConfigProviders returns a boolean if a field has been set.
+func (o *SetOrganizationFromOnboardingPortalLinkBody) HasKratosSelfserviceMethodsSamlConfigProviders() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsSamlConfigProviders) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsSamlConfigProviders gets a reference to the given []NormalizedProjectRevisionSAMLProvider and assigns it to the KratosSelfserviceMethodsSamlConfigProviders field.
 func (o *SetOrganizationFromOnboardingPortalLinkBody) SetKratosSelfserviceMethodsSamlConfigProviders(v []NormalizedProjectRevisionSAMLProvider) {
 	o.KratosSelfserviceMethodsSamlConfigProviders = v
 }
@@ -121,6 +136,38 @@ func (o *SetOrganizationFromOnboardingPortalLinkBody) SetRevisionId(v string) {
 	o.RevisionId = v
 }
 
+// GetScimClients returns the ScimClients field value if set, zero value otherwise.
+func (o *SetOrganizationFromOnboardingPortalLinkBody) GetScimClients() []NormalizedProjectRevisionScimClient {
+	if o == nil || IsNil(o.ScimClients) {
+		var ret []NormalizedProjectRevisionScimClient
+		return ret
+	}
+	return o.ScimClients
+}
+
+// GetScimClientsOk returns a tuple with the ScimClients field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SetOrganizationFromOnboardingPortalLinkBody) GetScimClientsOk() ([]NormalizedProjectRevisionScimClient, bool) {
+	if o == nil || IsNil(o.ScimClients) {
+		return nil, false
+	}
+	return o.ScimClients, true
+}
+
+// HasScimClients returns a boolean if a field has been set.
+func (o *SetOrganizationFromOnboardingPortalLinkBody) HasScimClients() bool {
+	if o != nil && !IsNil(o.ScimClients) {
+		return true
+	}
+
+	return false
+}
+
+// SetScimClients gets a reference to the given []NormalizedProjectRevisionScimClient and assigns it to the ScimClients field.
+func (o *SetOrganizationFromOnboardingPortalLinkBody) SetScimClients(v []NormalizedProjectRevisionScimClient) {
+	o.ScimClients = v
+}
+
 func (o SetOrganizationFromOnboardingPortalLinkBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -131,9 +178,16 @@ func (o SetOrganizationFromOnboardingPortalLinkBody) MarshalJSON() ([]byte, erro
 
 func (o SetOrganizationFromOnboardingPortalLinkBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["kratos_selfservice_methods_oidc_config_providers"] = o.KratosSelfserviceMethodsOidcConfigProviders
-	toSerialize["kratos_selfservice_methods_saml_config_providers"] = o.KratosSelfserviceMethodsSamlConfigProviders
+	if !IsNil(o.KratosSelfserviceMethodsOidcConfigProviders) {
+		toSerialize["kratos_selfservice_methods_oidc_config_providers"] = o.KratosSelfserviceMethodsOidcConfigProviders
+	}
+	if !IsNil(o.KratosSelfserviceMethodsSamlConfigProviders) {
+		toSerialize["kratos_selfservice_methods_saml_config_providers"] = o.KratosSelfserviceMethodsSamlConfigProviders
+	}
 	toSerialize["revision_id"] = o.RevisionId
+	if !IsNil(o.ScimClients) {
+		toSerialize["scim_clients"] = o.ScimClients
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -147,8 +201,6 @@ func (o *SetOrganizationFromOnboardingPortalLinkBody) UnmarshalJSON(data []byte)
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"kratos_selfservice_methods_oidc_config_providers",
-		"kratos_selfservice_methods_saml_config_providers",
 		"revision_id",
 	}
 
@@ -182,6 +234,7 @@ func (o *SetOrganizationFromOnboardingPortalLinkBody) UnmarshalJSON(data []byte)
 		delete(additionalProperties, "kratos_selfservice_methods_oidc_config_providers")
 		delete(additionalProperties, "kratos_selfservice_methods_saml_config_providers")
 		delete(additionalProperties, "revision_id")
+		delete(additionalProperties, "scim_clients")
 		o.AdditionalProperties = additionalProperties
 	}
 

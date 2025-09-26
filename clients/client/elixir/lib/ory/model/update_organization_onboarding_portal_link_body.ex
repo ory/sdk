@@ -8,11 +8,13 @@ defmodule Ory.Model.UpdateOrganizationOnboardingPortalLinkBody do
 
   @derive Jason.Encoder
   defstruct [
+    :enable_scim,
     :enable_sso,
     :expires_at
   ]
 
   @type t :: %__MODULE__{
+    :enable_scim => boolean(),
     :enable_sso => boolean(),
     :expires_at => DateTime.t | nil
   }

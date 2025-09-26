@@ -20,7 +20,6 @@ import 'package:ory_client/src/model/accept_o_auth2_consent_request_session.dart
 import 'package:ory_client/src/model/accept_o_auth2_login_request.dart';
 import 'package:ory_client/src/model/account_experience_colors.dart';
 import 'package:ory_client/src/model/account_experience_configuration.dart';
-import 'package:ory_client/src/model/account_experience_theme_variables.dart';
 import 'package:ory_client/src/model/active_project_in_console.dart';
 import 'package:ory_client/src/model/add_project_to_workspace_body.dart';
 import 'package:ory_client/src/model/attribute.dart';
@@ -167,7 +166,6 @@ import 'package:ory_client/src/model/o_auth2_client_token_lifespans.dart';
 import 'package:ory_client/src/model/o_auth2_consent_request.dart';
 import 'package:ory_client/src/model/o_auth2_consent_request_open_id_connect_context.dart';
 import 'package:ory_client/src/model/o_auth2_consent_session.dart';
-import 'package:ory_client/src/model/o_auth2_consent_session_expires_at.dart';
 import 'package:ory_client/src/model/o_auth2_login_request.dart';
 import 'package:ory_client/src/model/o_auth2_logout_request.dart';
 import 'package:ory_client/src/model/o_auth2_redirect_to.dart';
@@ -197,6 +195,7 @@ import 'package:ory_client/src/model/project_events_datapoint.dart';
 import 'package:ory_client/src/model/project_host.dart';
 import 'package:ory_client/src/model/project_member.dart';
 import 'package:ory_client/src/model/project_metadata.dart';
+import 'package:ory_client/src/model/project_service_account_experience.dart';
 import 'package:ory_client/src/model/project_service_identity.dart';
 import 'package:ory_client/src/model/project_service_o_auth2.dart';
 import 'package:ory_client/src/model/project_service_permission.dart';
@@ -318,7 +317,6 @@ part 'serializers.g.dart';
   AcceptOAuth2LoginRequest,
   AccountExperienceColors,
   AccountExperienceConfiguration,
-  AccountExperienceThemeVariables,
   ActiveProjectInConsole,
   AddProjectToWorkspaceBody,
   Attribute,
@@ -465,7 +463,6 @@ part 'serializers.g.dart';
   OAuth2ConsentRequest,
   OAuth2ConsentRequestOpenIDConnectContext,
   OAuth2ConsentSession,
-  OAuth2ConsentSessionExpiresAt,
   OAuth2LoginRequest,
   OAuth2LogoutRequest,
   OAuth2RedirectTo,
@@ -495,6 +492,7 @@ part 'serializers.g.dart';
   ProjectHost,
   ProjectMember,
   ProjectMetadata,
+  ProjectServiceAccountExperience,
   ProjectServiceIdentity,
   ProjectServiceOAuth2,
   ProjectServicePermission,

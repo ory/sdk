@@ -11,7 +11,6 @@ A completed OAuth 2.0 Consent Session.
 |**consentRequest** | [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  |  [optional] |
 |**consentRequestId** | **String** | ConsentRequestID is the identifier of the consent request that initiated this consent session. |  [optional] |
 |**context** | **Object** |  |  [optional] |
-|**expiresAt** | [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  |  [optional] |
 |**grantAccessTokenAudience** | **List&lt;String&gt;** |  |  [optional] |
 |**grantScope** | **List&lt;String&gt;** |  |  [optional] |
 |**handledAt** | **OffsetDateTime** |  |  [optional] |

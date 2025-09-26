@@ -18,11 +18,11 @@ part 'identity_schema_container.g.dart';
 abstract class IdentitySchemaContainer implements Built<IdentitySchemaContainer, IdentitySchemaContainerBuilder> {
   /// The ID of the Identity JSON Schema
   @BuiltValueField(wireName: r'id')
-  String? get id;
+  String get id;
 
   /// The actual Identity JSON Schema
   @BuiltValueField(wireName: r'schema')
-  JsonObject? get schema;
+  JsonObject get schema;
 
   IdentitySchemaContainer._();
 
@@ -47,20 +47,16 @@ class _$IdentitySchemaContainerSerializer implements PrimitiveSerializer<Identit
     IdentitySchemaContainer object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.schema != null) {
-      yield r'schema';
-      yield serializers.serialize(
-        object.schema,
-        specifiedType: const FullType(JsonObject),
-      );
-    }
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
+    yield r'schema';
+    yield serializers.serialize(
+      object.schema,
+      specifiedType: const FullType(JsonObject),
+    );
   }
 
   @override

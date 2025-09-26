@@ -24,7 +24,6 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
-docs/AccountExperienceThemeVariables.md
 docs/ActiveProjectInConsole.md
 docs/AddProjectToWorkspaceBody.md
 docs/Attribute.md
@@ -178,7 +177,6 @@ docs/OAuth2ClientTokenLifespans.md
 docs/OAuth2ConsentRequest.md
 docs/OAuth2ConsentRequestOpenIDConnectContext.md
 docs/OAuth2ConsentSession.md
-docs/OAuth2ConsentSessionExpiresAt.md
 docs/OAuth2LoginRequest.md
 docs/OAuth2LogoutRequest.md
 docs/OAuth2RedirectTo.md
@@ -211,6 +209,7 @@ docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
 docs/ProjectMember.md
 docs/ProjectMetadata.md
+docs/ProjectServiceAccountExperience.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
@@ -334,7 +333,6 @@ model_accept_o_auth2_consent_request_session.go
 model_accept_o_auth2_login_request.go
 model_account_experience_colors.go
 model_account_experience_configuration.go
-model_account_experience_theme_variables.go
 model_active_project_in_console.go
 model_add_project_to_workspace_body.go
 model_attribute.go
@@ -481,7 +479,6 @@ model_o_auth2_client_token_lifespans.go
 model_o_auth2_consent_request.go
 model_o_auth2_consent_request_open_id_connect_context.go
 model_o_auth2_consent_session.go
-model_o_auth2_consent_session_expires_at.go
 model_o_auth2_login_request.go
 model_o_auth2_logout_request.go
 model_o_auth2_redirect_to.go
@@ -511,6 +508,7 @@ model_project_events_datapoint.go
 model_project_host.go
 model_project_member.go
 model_project_metadata.go
+model_project_service_account_experience.go
 model_project_service_identity.go
 model_project_service_o_auth2.go
 model_project_service_permission.go

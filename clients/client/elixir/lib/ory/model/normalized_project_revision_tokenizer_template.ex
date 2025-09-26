@@ -14,6 +14,7 @@ defmodule Ory.Model.NormalizedProjectRevisionTokenizerTemplate do
     :jwks_url,
     :key,
     :project_revision_id,
+    :subject_source,
     :ttl,
     :updated_at
   ]
@@ -25,6 +26,7 @@ defmodule Ory.Model.NormalizedProjectRevisionTokenizerTemplate do
     :jwks_url => String.t | nil,
     :key => String.t | nil,
     :project_revision_id => String.t | nil,
+    :subject_source => String.t | nil,
     :ttl => String.t | nil,
     :updated_at => DateTime.t | nil
   }

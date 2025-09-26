@@ -10,7 +10,6 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
-docs/AccountExperienceThemeVariables.md
 docs/ActiveProjectInConsole.md
 docs/AddProjectToWorkspaceBody.md
 docs/Attribute.md
@@ -164,7 +163,6 @@ docs/OAuth2ClientTokenLifespans.md
 docs/OAuth2ConsentRequest.md
 docs/OAuth2ConsentRequestOpenIDConnectContext.md
 docs/OAuth2ConsentSession.md
-docs/OAuth2ConsentSessionExpiresAt.md
 docs/OAuth2LoginRequest.md
 docs/OAuth2LogoutRequest.md
 docs/OAuth2RedirectTo.md
@@ -197,6 +195,7 @@ docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
 docs/ProjectMember.md
 docs/ProjectMetadata.md
+docs/ProjectServiceAccountExperience.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
@@ -338,7 +337,6 @@ ory_client/models/accept_o_auth2_consent_request_session.py
 ory_client/models/accept_o_auth2_login_request.py
 ory_client/models/account_experience_colors.py
 ory_client/models/account_experience_configuration.py
-ory_client/models/account_experience_theme_variables.py
 ory_client/models/active_project_in_console.py
 ory_client/models/add_project_to_workspace_body.py
 ory_client/models/attribute.py
@@ -485,7 +483,6 @@ ory_client/models/o_auth2_client_token_lifespans.py
 ory_client/models/o_auth2_consent_request.py
 ory_client/models/o_auth2_consent_request_open_id_connect_context.py
 ory_client/models/o_auth2_consent_session.py
-ory_client/models/o_auth2_consent_session_expires_at.py
 ory_client/models/o_auth2_login_request.py
 ory_client/models/o_auth2_logout_request.py
 ory_client/models/o_auth2_redirect_to.py
@@ -515,6 +512,7 @@ ory_client/models/project_events_datapoint.py
 ory_client/models/project_host.py
 ory_client/models/project_member.py
 ory_client/models/project_metadata.py
+ory_client/models/project_service_account_experience.py
 ory_client/models/project_service_identity.py
 ory_client/models/project_service_o_auth2.py
 ory_client/models/project_service_permission.py
@@ -640,7 +638,6 @@ test/test_accept_o_auth2_consent_request_session.py
 test/test_accept_o_auth2_login_request.py
 test/test_account_experience_colors.py
 test/test_account_experience_configuration.py
-test/test_account_experience_theme_variables.py
 test/test_active_project_in_console.py
 test/test_add_project_to_workspace_body.py
 test/test_attribute.py
@@ -794,7 +791,6 @@ test/test_o_auth2_client_token_lifespans.py
 test/test_o_auth2_consent_request.py
 test/test_o_auth2_consent_request_open_id_connect_context.py
 test/test_o_auth2_consent_session.py
-test/test_o_auth2_consent_session_expires_at.py
 test/test_o_auth2_login_request.py
 test/test_o_auth2_logout_request.py
 test/test_o_auth2_redirect_to.py
@@ -827,6 +823,7 @@ test/test_project_events_datapoint.py
 test/test_project_host.py
 test/test_project_member.py
 test/test_project_metadata.py
+test/test_project_service_account_experience.py
 test/test_project_service_identity.py
 test/test_project_service_o_auth2.py
 test/test_project_service_permission.py

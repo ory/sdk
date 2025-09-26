@@ -14,6 +14,9 @@ Name | Type | Description | Notes
 **organizationId** | **String** | Organization ID | [optional] 
 **organizationLabel** | **String** | Organization Label | [optional] 
 **revisionId** | **String** |  | 
+**scimClients** | [**BuiltList&lt;NormalizedProjectRevisionScimClient&gt;**](NormalizedProjectRevisionScimClient.md) |  | 
+**scimEnabled** | **bool** |  | 
+**ssoEnabled** | **bool** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -17,6 +18,7 @@ part 'normalized_project_revision_tokenizer_template.g.dart';
 /// * [jwksUrl] - JSON Web Key URL
 /// * [key] - The unique key of the template
 /// * [projectRevisionId] - The Revision's ID this schema belongs to
+/// * [subjectSource] - Subject source for the tokenizer  Can be either id or external_id or empty
 /// * [ttl] - Token time to live
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
@@ -45,6 +47,11 @@ abstract class NormalizedProjectRevisionTokenizerTemplate implements Built<Norma
   @BuiltValueField(wireName: r'project_revision_id')
   String? get projectRevisionId;
 
+  /// Subject source for the tokenizer  Can be either id or external_id or empty
+  @BuiltValueField(wireName: r'subject_source')
+  NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum? get subjectSource;
+  // enum subjectSourceEnum {  id,  external_id,  };
+
   /// Token time to live
   @BuiltValueField(wireName: r'ttl')
   String? get ttl;
@@ -59,6 +66,7 @@ abstract class NormalizedProjectRevisionTokenizerTemplate implements Built<Norma
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(NormalizedProjectRevisionTokenizerTemplateBuilder b) => b
+      ..subjectSource = const NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum._('id')
       ..ttl = '1m';
 
   @BuiltValueSerializer(custom: true)
@@ -117,6 +125,13 @@ class _$NormalizedProjectRevisionTokenizerTemplateSerializer implements Primitiv
       yield serializers.serialize(
         object.projectRevisionId,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.subjectSource != null) {
+      yield r'subject_source';
+      yield serializers.serialize(
+        object.subjectSource,
+        specifiedType: const FullType(NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum),
       );
     }
     if (object.ttl != null) {
@@ -198,6 +213,13 @@ class _$NormalizedProjectRevisionTokenizerTemplateSerializer implements Primitiv
           ) as String;
           result.projectRevisionId = valueDes;
           break;
+        case r'subject_source':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum),
+          ) as NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum;
+          result.subjectSource = valueDes;
+          break;
         case r'ttl':
           final valueDes = serializers.deserialize(
             value,
@@ -239,5 +261,22 @@ class _$NormalizedProjectRevisionTokenizerTemplateSerializer implements Primitiv
     );
     return result.build();
   }
+}
+
+class NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum extends EnumClass {
+
+  /// Subject source for the tokenizer  Can be either id or external_id or empty
+  @BuiltValueEnumConst(wireName: r'id')
+  static const NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum id = _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnum_id;
+  /// Subject source for the tokenizer  Can be either id or external_id or empty
+  @BuiltValueEnumConst(wireName: r'external_id')
+  static const NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum externalId = _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnum_externalId;
+
+  static Serializer<NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum> get serializer => _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnumSerializer;
+
+  const NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum._(String name): super(name);
+
+  static BuiltSet<NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum> get values => _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnumValues;
+  static NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum valueOf(String name) => _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnumValueOf(name);
 }
 

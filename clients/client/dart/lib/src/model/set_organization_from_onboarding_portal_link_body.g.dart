@@ -9,13 +9,15 @@ part of 'set_organization_from_onboarding_portal_link_body.dart';
 class _$SetOrganizationFromOnboardingPortalLinkBody
     extends SetOrganizationFromOnboardingPortalLinkBody {
   @override
-  final BuiltList<NormalizedProjectRevisionThirdPartyProvider>
+  final BuiltList<NormalizedProjectRevisionThirdPartyProvider>?
       kratosSelfserviceMethodsOidcConfigProviders;
   @override
-  final BuiltList<NormalizedProjectRevisionSAMLProvider>
+  final BuiltList<NormalizedProjectRevisionSAMLProvider>?
       kratosSelfserviceMethodsSamlConfigProviders;
   @override
   final String revisionId;
+  @override
+  final BuiltList<NormalizedProjectRevisionScimClient>? scimClients;
 
   factory _$SetOrganizationFromOnboardingPortalLinkBody(
           [void Function(SetOrganizationFromOnboardingPortalLinkBodyBuilder)?
@@ -25,18 +27,11 @@ class _$SetOrganizationFromOnboardingPortalLinkBody
           ._build();
 
   _$SetOrganizationFromOnboardingPortalLinkBody._(
-      {required this.kratosSelfserviceMethodsOidcConfigProviders,
-      required this.kratosSelfserviceMethodsSamlConfigProviders,
-      required this.revisionId})
+      {this.kratosSelfserviceMethodsOidcConfigProviders,
+      this.kratosSelfserviceMethodsSamlConfigProviders,
+      required this.revisionId,
+      this.scimClients})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        kratosSelfserviceMethodsOidcConfigProviders,
-        r'SetOrganizationFromOnboardingPortalLinkBody',
-        'kratosSelfserviceMethodsOidcConfigProviders');
-    BuiltValueNullFieldError.checkNotNull(
-        kratosSelfserviceMethodsSamlConfigProviders,
-        r'SetOrganizationFromOnboardingPortalLinkBody',
-        'kratosSelfserviceMethodsSamlConfigProviders');
     BuiltValueNullFieldError.checkNotNull(revisionId,
         r'SetOrganizationFromOnboardingPortalLinkBody', 'revisionId');
   }
@@ -59,7 +54,8 @@ class _$SetOrganizationFromOnboardingPortalLinkBody
             other.kratosSelfserviceMethodsOidcConfigProviders &&
         kratosSelfserviceMethodsSamlConfigProviders ==
             other.kratosSelfserviceMethodsSamlConfigProviders &&
-        revisionId == other.revisionId;
+        revisionId == other.revisionId &&
+        scimClients == other.scimClients;
   }
 
   @override
@@ -68,6 +64,7 @@ class _$SetOrganizationFromOnboardingPortalLinkBody
     _$hash = $jc(_$hash, kratosSelfserviceMethodsOidcConfigProviders.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceMethodsSamlConfigProviders.hashCode);
     _$hash = $jc(_$hash, revisionId.hashCode);
+    _$hash = $jc(_$hash, scimClients.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -80,7 +77,8 @@ class _$SetOrganizationFromOnboardingPortalLinkBody
               kratosSelfserviceMethodsOidcConfigProviders)
           ..add('kratosSelfserviceMethodsSamlConfigProviders',
               kratosSelfserviceMethodsSamlConfigProviders)
-          ..add('revisionId', revisionId))
+          ..add('revisionId', revisionId)
+          ..add('scimClients', scimClients))
         .toString();
   }
 }
@@ -119,6 +117,14 @@ class SetOrganizationFromOnboardingPortalLinkBodyBuilder
   String? get revisionId => _$this._revisionId;
   set revisionId(String? revisionId) => _$this._revisionId = revisionId;
 
+  ListBuilder<NormalizedProjectRevisionScimClient>? _scimClients;
+  ListBuilder<NormalizedProjectRevisionScimClient> get scimClients =>
+      _$this._scimClients ??=
+          new ListBuilder<NormalizedProjectRevisionScimClient>();
+  set scimClients(
+          ListBuilder<NormalizedProjectRevisionScimClient>? scimClients) =>
+      _$this._scimClients = scimClients;
+
   SetOrganizationFromOnboardingPortalLinkBodyBuilder() {
     SetOrganizationFromOnboardingPortalLinkBody._defaults(this);
   }
@@ -127,10 +133,11 @@ class SetOrganizationFromOnboardingPortalLinkBodyBuilder
     final $v = _$v;
     if ($v != null) {
       _kratosSelfserviceMethodsOidcConfigProviders =
-          $v.kratosSelfserviceMethodsOidcConfigProviders.toBuilder();
+          $v.kratosSelfserviceMethodsOidcConfigProviders?.toBuilder();
       _kratosSelfserviceMethodsSamlConfigProviders =
-          $v.kratosSelfserviceMethodsSamlConfigProviders.toBuilder();
+          $v.kratosSelfserviceMethodsSamlConfigProviders?.toBuilder();
       _revisionId = $v.revisionId;
+      _scimClients = $v.scimClients?.toBuilder();
       _$v = null;
     }
     return this;
@@ -158,20 +165,22 @@ class SetOrganizationFromOnboardingPortalLinkBodyBuilder
       _$result = _$v ??
           new _$SetOrganizationFromOnboardingPortalLinkBody._(
               kratosSelfserviceMethodsOidcConfigProviders:
-                  kratosSelfserviceMethodsOidcConfigProviders.build(),
+                  _kratosSelfserviceMethodsOidcConfigProviders?.build(),
               kratosSelfserviceMethodsSamlConfigProviders:
-                  kratosSelfserviceMethodsSamlConfigProviders.build(),
-              revisionId: BuiltValueNullFieldError.checkNotNull(
-                  revisionId,
-                  r'SetOrganizationFromOnboardingPortalLinkBody',
-                  'revisionId'));
+                  _kratosSelfserviceMethodsSamlConfigProviders?.build(),
+              revisionId: BuiltValueNullFieldError.checkNotNull(revisionId,
+                  r'SetOrganizationFromOnboardingPortalLinkBody', 'revisionId'),
+              scimClients: _scimClients?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'kratosSelfserviceMethodsOidcConfigProviders';
-        kratosSelfserviceMethodsOidcConfigProviders.build();
+        _kratosSelfserviceMethodsOidcConfigProviders?.build();
         _$failedField = 'kratosSelfserviceMethodsSamlConfigProviders';
-        kratosSelfserviceMethodsSamlConfigProviders.build();
+        _kratosSelfserviceMethodsSamlConfigProviders?.build();
+
+        _$failedField = 'scimClients';
+        _scimClients?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'SetOrganizationFromOnboardingPortalLinkBody',

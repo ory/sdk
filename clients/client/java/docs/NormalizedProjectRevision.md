@@ -134,6 +134,7 @@
 |**kratosSecretsCipher** | **List&lt;String&gt;** |  |  [optional] |
 |**kratosSecretsCookie** | **List&lt;String&gt;** |  |  [optional] |
 |**kratosSecretsDefault** | **List&lt;String&gt;** |  |  [optional] |
+|**kratosSecretsPagination** | **List&lt;String&gt;** |  |  [optional] |
 |**kratosSecurityAccountEnumerationMitigate** | **Boolean** | Configures if account enumeration should be mitigated when using identifier first login. |  [optional] |
 |**kratosSelfserviceAllowedReturnUrls** | **List&lt;String&gt;** |  |  [optional] |
 |**kratosSelfserviceDefaultBrowserReturnUrl** | **String** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. |  [optional] |

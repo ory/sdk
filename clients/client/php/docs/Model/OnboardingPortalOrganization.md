@@ -10,5 +10,8 @@ Name | Type | Description | Notes
 **organizationId** | **string** | Organization ID | [optional]
 **organizationLabel** | **string** | Organization Label | [optional]
 **revisionId** | **string** |  |
+**scimClients** | [**\Ory\Client\Model\NormalizedProjectRevisionScimClient[]**](NormalizedProjectRevisionScimClient.md) |  |
+**scimEnabled** | **bool** |  |
+**ssoEnabled** | **bool** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

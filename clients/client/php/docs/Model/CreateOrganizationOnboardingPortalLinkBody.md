@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**customHostnameId** | **string** |  | [optional]
+**enableScim** | **bool** | Feature flag to enable SCIM configuration |
 **enableSso** | **bool** | Feature flag to enable SSO configuration |
 **expiresAt** | **\DateTime** |  | [optional]
 

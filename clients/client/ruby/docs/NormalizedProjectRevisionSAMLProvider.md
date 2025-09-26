@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **audience_override_base_url** | **String** |  | [optional] |
 | **created_at** | **Time** | The Project&#39;s Revision Creation Date | [optional][readonly] |
 | **id** | **String** |  | [optional] |
 | **label** | **String** | Label represents an optional label which can be used in the UI generation. | [optional] |
@@ -21,6 +22,7 @@
 require 'ory-client'
 
 instance = OryClient::NormalizedProjectRevisionSAMLProvider.new(
+  audience_override_base_url: null,
   created_at: null,
   id: null,
   label: null,

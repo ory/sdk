@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **ConsentRequest** | Pointer to [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  | [optional] 
 **ConsentRequestId** | Pointer to **string** | ConsentRequestID is the identifier of the consent request that initiated this consent session. | [optional] 
 **Context** | Pointer to **map[string]interface{}** |  | [optional] 
-**ExpiresAt** | Pointer to [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  | [optional] 
 **GrantAccessTokenAudience** | Pointer to **[]string** |  | [optional] 
 **GrantScope** | Pointer to **[]string** |  | [optional] 
 **HandledAt** | Pointer to **time.Time** |  | [optional] 
@@ -108,31 +107,6 @@ SetContext sets Context field to given value.
 `func (o *OAuth2ConsentSession) HasContext() bool`
 
 HasContext returns a boolean if a field has been set.
-
-### GetExpiresAt
-
-`func (o *OAuth2ConsentSession) GetExpiresAt() OAuth2ConsentSessionExpiresAt`
-
-GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
-
-### GetExpiresAtOk
-
-`func (o *OAuth2ConsentSession) GetExpiresAtOk() (*OAuth2ConsentSessionExpiresAt, bool)`
-
-GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExpiresAt
-
-`func (o *OAuth2ConsentSession) SetExpiresAt(v OAuth2ConsentSessionExpiresAt)`
-
-SetExpiresAt sets ExpiresAt field to given value.
-
-### HasExpiresAt
-
-`func (o *OAuth2ConsentSession) HasExpiresAt() bool`
-
-HasExpiresAt returns a boolean if a field has been set.
 
 ### GetGrantAccessTokenAudience
 

@@ -307,8 +307,8 @@ class RelationshipApi {
   /// Get all relationships that match the query. Only the namespace field is required.
   ///
   /// Parameters:
-  /// * [pageToken] 
-  /// * [pageSize] 
+  /// * [pageSize] - Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  /// * [pageToken] - Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   /// * [namespace] - Namespace of the Relationship
   /// * [object] - Object of the Relationship
   /// * [relation] - Relation of the Relationship
@@ -326,8 +326,8 @@ class RelationshipApi {
   /// Returns a [Future] containing a [Response] with a [Relationships] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<Relationships>> getRelationships({ 
+    int? pageSize = 250,
     String? pageToken,
-    int? pageSize,
     String? namespace,
     String? object,
     String? relation,
@@ -362,8 +362,8 @@ class RelationshipApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
       if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (pageToken != null) r'page_token': encodeQueryParameter(_serializers, pageToken, const FullType(String)),
       if (namespace != null) r'namespace': encodeQueryParameter(_serializers, namespace, const FullType(String)),
       if (object != null) r'object': encodeQueryParameter(_serializers, object, const FullType(String)),
       if (relation != null) r'relation': encodeQueryParameter(_serializers, relation, const FullType(String)),

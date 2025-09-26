@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**audience_override_base_url** | **str** |  | [optional] 
 **created_at** | **datetime** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **id** | **str** |  | [optional] 
 **label** | **str** | Label represents an optional label which can be used in the UI generation. | [optional] 

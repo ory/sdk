@@ -8,12 +8,14 @@ defmodule Ory.Model.ProjectServices do
 
   @derive Jason.Encoder
   defstruct [
+    :account_experience,
     :identity,
     :oauth2,
     :permission
   ]
 
   @type t :: %__MODULE__{
+    :account_experience => Ory.Model.ProjectServiceAccountExperience.t | nil,
     :identity => Ory.Model.ProjectServiceIdentity.t | nil,
     :oauth2 => Ory.Model.ProjectServiceOAuth2.t | nil,
     :permission => Ory.Model.ProjectServicePermission.t | nil
@@ -23,6 +25,7 @@ defmodule Ory.Model.ProjectServices do
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:account_experience, :struct, Ory.Model.ProjectServiceAccountExperience)
      |> Deserializer.deserialize(:identity, :struct, Ory.Model.ProjectServiceIdentity)
      |> Deserializer.deserialize(:oauth2, :struct, Ory.Model.ProjectServiceOAuth2)
      |> Deserializer.deserialize(:permission, :struct, Ory.Model.ProjectServicePermission)

@@ -22,5 +22,10 @@ void main() {
       // TODO
     });
 
+    // BuiltList<NormalizedProjectRevisionScimClient> scimClients
+    test('to test the property `scimClients`', () async {
+      // TODO
+    });
+
   });
 }

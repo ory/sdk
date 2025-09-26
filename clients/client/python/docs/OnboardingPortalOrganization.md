@@ -11,6 +11,9 @@ Name | Type | Description | Notes
 **organization_id** | **str** | Organization ID | [optional] 
 **organization_label** | **str** | Organization Label | [optional] 
 **revision_id** | **str** |  | 
+**scim_clients** | [**List[NormalizedProjectRevisionScimClient]**](NormalizedProjectRevisionScimClient.md) |  | 
+**scim_enabled** | **bool** |  | 
+**sso_enabled** | **bool** |  | 
 
 ## Example
 

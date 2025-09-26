@@ -263,7 +263,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_relationships**
-> Relationships get_relationships(page_token=page_token, page_size=page_size, namespace=namespace, object=object, relation=relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation)
+> Relationships get_relationships(page_size=page_size, page_token=page_token, namespace=namespace, object=object, relation=relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation)
 
 Query relationships
 
@@ -299,8 +299,8 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.RelationshipApi(api_client)
-    page_token = 'page_token_example' # str |  (optional)
-    page_size = 56 # int |  (optional)
+    page_size = 250 # int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+    page_token = 'page_token_example' # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
     namespace = 'namespace_example' # str | Namespace of the Relationship (optional)
     object = 'object_example' # str | Object of the Relationship (optional)
     relation = 'relation_example' # str | Relation of the Relationship (optional)
@@ -311,7 +311,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     try:
         # Query relationships
-        api_response = api_instance.get_relationships(page_token=page_token, page_size=page_size, namespace=namespace, object=object, relation=relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation)
+        api_response = api_instance.get_relationships(page_size=page_size, page_token=page_token, namespace=namespace, object=object, relation=relation, subject_id=subject_id, subject_set_namespace=subject_set_namespace, subject_set_object=subject_set_object, subject_set_relation=subject_set_relation)
         print("The response of RelationshipApi->get_relationships:\n")
         pprint(api_response)
     except Exception as e:
@@ -325,8 +325,8 @@ with ory_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page_token** | **str**|  | [optional] 
- **page_size** | **int**|  | [optional] 
+ **page_size** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] 
  **namespace** | **str**| Namespace of the Relationship | [optional] 
  **object** | **str**| Object of the Relationship | [optional] 
  **relation** | **str**| Relation of the Relationship | [optional] 

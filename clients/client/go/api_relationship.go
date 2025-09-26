@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.21.5
+API version: v1.22.3
 Contact: support@ory.sh
 */
 
@@ -540,8 +540,8 @@ func (a *RelationshipAPIService) DeleteRelationshipsExecute(r RelationshipAPIDel
 type RelationshipAPIGetRelationshipsRequest struct {
 	ctx context.Context
 	ApiService RelationshipAPI
-	pageToken *string
 	pageSize *int64
+	pageToken *string
 	namespace *string
 	object *string
 	relation *string
@@ -551,13 +551,15 @@ type RelationshipAPIGetRelationshipsRequest struct {
 	subjectSetRelation *string
 }
 
-func (r RelationshipAPIGetRelationshipsRequest) PageToken(pageToken string) RelationshipAPIGetRelationshipsRequest {
-	r.pageToken = &pageToken
+// Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r RelationshipAPIGetRelationshipsRequest) PageSize(pageSize int64) RelationshipAPIGetRelationshipsRequest {
+	r.pageSize = &pageSize
 	return r
 }
 
-func (r RelationshipAPIGetRelationshipsRequest) PageSize(pageSize int64) RelationshipAPIGetRelationshipsRequest {
-	r.pageSize = &pageSize
+// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+func (r RelationshipAPIGetRelationshipsRequest) PageToken(pageToken string) RelationshipAPIGetRelationshipsRequest {
+	r.pageToken = &pageToken
 	return r
 }
 
@@ -643,11 +645,14 @@ func (a *RelationshipAPIService) GetRelationshipsExecute(r RelationshipAPIGetRel
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.pageToken != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
-	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
+	} else {
+		var defaultValue int64 = 250
+		r.pageSize = &defaultValue
+	}
+	if r.pageToken != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
 	}
 	if r.namespace != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "namespace", r.namespace, "form", "")

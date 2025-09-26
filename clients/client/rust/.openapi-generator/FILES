@@ -9,7 +9,6 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
-docs/AccountExperienceThemeVariables.md
 docs/ActiveProjectInConsole.md
 docs/AddProjectToWorkspaceBody.md
 docs/Attribute.md
@@ -163,7 +162,6 @@ docs/OAuth2ClientTokenLifespans.md
 docs/OAuth2ConsentRequest.md
 docs/OAuth2ConsentRequestOpenIdConnectContext.md
 docs/OAuth2ConsentSession.md
-docs/OAuth2ConsentSessionExpiresAt.md
 docs/OAuth2LoginRequest.md
 docs/OAuth2LogoutRequest.md
 docs/OAuth2RedirectTo.md
@@ -196,6 +194,7 @@ docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
 docs/ProjectMember.md
 docs/ProjectMetadata.md
+docs/ProjectServiceAccountExperience.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
@@ -333,7 +332,6 @@ src/models/accept_o_auth2_consent_request_session.rs
 src/models/accept_o_auth2_login_request.rs
 src/models/account_experience_colors.rs
 src/models/account_experience_configuration.rs
-src/models/account_experience_theme_variables.rs
 src/models/active_project_in_console.rs
 src/models/add_project_to_workspace_body.rs
 src/models/attribute.rs
@@ -481,7 +479,6 @@ src/models/o_auth2_client_token_lifespans.rs
 src/models/o_auth2_consent_request.rs
 src/models/o_auth2_consent_request_open_id_connect_context.rs
 src/models/o_auth2_consent_session.rs
-src/models/o_auth2_consent_session_expires_at.rs
 src/models/o_auth2_login_request.rs
 src/models/o_auth2_logout_request.rs
 src/models/o_auth2_redirect_to.rs
@@ -511,6 +508,7 @@ src/models/project_events_datapoint.rs
 src/models/project_host.rs
 src/models/project_member.rs
 src/models/project_metadata.rs
+src/models/project_service_account_experience.rs
 src/models/project_service_identity.rs
 src/models/project_service_o_auth2.rs
 src/models/project_service_permission.rs

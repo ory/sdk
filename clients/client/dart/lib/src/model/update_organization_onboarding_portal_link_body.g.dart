@@ -9,6 +9,8 @@ part of 'update_organization_onboarding_portal_link_body.dart';
 class _$UpdateOrganizationOnboardingPortalLinkBody
     extends UpdateOrganizationOnboardingPortalLinkBody {
   @override
+  final bool enableScim;
+  @override
   final bool enableSso;
   @override
   final DateTime? expiresAt;
@@ -20,8 +22,10 @@ class _$UpdateOrganizationOnboardingPortalLinkBody
           ._build();
 
   _$UpdateOrganizationOnboardingPortalLinkBody._(
-      {required this.enableSso, this.expiresAt})
+      {required this.enableScim, required this.enableSso, this.expiresAt})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(enableScim,
+        r'UpdateOrganizationOnboardingPortalLinkBody', 'enableScim');
     BuiltValueNullFieldError.checkNotNull(
         enableSso, r'UpdateOrganizationOnboardingPortalLinkBody', 'enableSso');
   }
@@ -40,6 +44,7 @@ class _$UpdateOrganizationOnboardingPortalLinkBody
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is UpdateOrganizationOnboardingPortalLinkBody &&
+        enableScim == other.enableScim &&
         enableSso == other.enableSso &&
         expiresAt == other.expiresAt;
   }
@@ -47,6 +52,7 @@ class _$UpdateOrganizationOnboardingPortalLinkBody
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, enableScim.hashCode);
     _$hash = $jc(_$hash, enableSso.hashCode);
     _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jf(_$hash);
@@ -57,6 +63,7 @@ class _$UpdateOrganizationOnboardingPortalLinkBody
   String toString() {
     return (newBuiltValueToStringHelper(
             r'UpdateOrganizationOnboardingPortalLinkBody')
+          ..add('enableScim', enableScim)
           ..add('enableSso', enableSso)
           ..add('expiresAt', expiresAt))
         .toString();
@@ -68,6 +75,10 @@ class UpdateOrganizationOnboardingPortalLinkBodyBuilder
         Builder<UpdateOrganizationOnboardingPortalLinkBody,
             UpdateOrganizationOnboardingPortalLinkBodyBuilder> {
   _$UpdateOrganizationOnboardingPortalLinkBody? _$v;
+
+  bool? _enableScim;
+  bool? get enableScim => _$this._enableScim;
+  set enableScim(bool? enableScim) => _$this._enableScim = enableScim;
 
   bool? _enableSso;
   bool? get enableSso => _$this._enableSso;
@@ -84,6 +95,7 @@ class UpdateOrganizationOnboardingPortalLinkBodyBuilder
   UpdateOrganizationOnboardingPortalLinkBodyBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _enableScim = $v.enableScim;
       _enableSso = $v.enableSso;
       _expiresAt = $v.expiresAt;
       _$v = null;
@@ -110,6 +122,8 @@ class UpdateOrganizationOnboardingPortalLinkBodyBuilder
   _$UpdateOrganizationOnboardingPortalLinkBody _build() {
     final _$result = _$v ??
         new _$UpdateOrganizationOnboardingPortalLinkBody._(
+            enableScim: BuiltValueNullFieldError.checkNotNull(enableScim,
+                r'UpdateOrganizationOnboardingPortalLinkBody', 'enableScim'),
             enableSso: BuiltValueNullFieldError.checkNotNull(enableSso,
                 r'UpdateOrganizationOnboardingPortalLinkBody', 'enableSso'),
             expiresAt: expiresAt);

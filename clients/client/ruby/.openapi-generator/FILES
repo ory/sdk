@@ -13,7 +13,6 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
-docs/AccountExperienceThemeVariables.md
 docs/ActiveProjectInConsole.md
 docs/AddProjectToWorkspaceBody.md
 docs/Attribute.md
@@ -167,7 +166,6 @@ docs/OAuth2ClientTokenLifespans.md
 docs/OAuth2ConsentRequest.md
 docs/OAuth2ConsentRequestOpenIDConnectContext.md
 docs/OAuth2ConsentSession.md
-docs/OAuth2ConsentSessionExpiresAt.md
 docs/OAuth2LoginRequest.md
 docs/OAuth2LogoutRequest.md
 docs/OAuth2RedirectTo.md
@@ -200,6 +198,7 @@ docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
 docs/ProjectMember.md
 docs/ProjectMetadata.md
+docs/ProjectServiceAccountExperience.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
@@ -338,7 +337,6 @@ lib/ory-client/models/accept_o_auth2_consent_request_session.rb
 lib/ory-client/models/accept_o_auth2_login_request.rb
 lib/ory-client/models/account_experience_colors.rb
 lib/ory-client/models/account_experience_configuration.rb
-lib/ory-client/models/account_experience_theme_variables.rb
 lib/ory-client/models/active_project_in_console.rb
 lib/ory-client/models/add_project_to_workspace_body.rb
 lib/ory-client/models/attribute.rb
@@ -485,7 +483,6 @@ lib/ory-client/models/o_auth2_client_token_lifespans.rb
 lib/ory-client/models/o_auth2_consent_request.rb
 lib/ory-client/models/o_auth2_consent_request_open_id_connect_context.rb
 lib/ory-client/models/o_auth2_consent_session.rb
-lib/ory-client/models/o_auth2_consent_session_expires_at.rb
 lib/ory-client/models/o_auth2_login_request.rb
 lib/ory-client/models/o_auth2_logout_request.rb
 lib/ory-client/models/o_auth2_redirect_to.rb
@@ -515,6 +512,7 @@ lib/ory-client/models/project_events_datapoint.rb
 lib/ory-client/models/project_host.rb
 lib/ory-client/models/project_member.rb
 lib/ory-client/models/project_metadata.rb
+lib/ory-client/models/project_service_account_experience.rb
 lib/ory-client/models/project_service_identity.rb
 lib/ory-client/models/project_service_o_auth2.rb
 lib/ory-client/models/project_service_permission.rb
@@ -647,7 +645,6 @@ spec/models/accept_o_auth2_consent_request_spec.rb
 spec/models/accept_o_auth2_login_request_spec.rb
 spec/models/account_experience_colors_spec.rb
 spec/models/account_experience_configuration_spec.rb
-spec/models/account_experience_theme_variables_spec.rb
 spec/models/active_project_in_console_spec.rb
 spec/models/add_project_to_workspace_body_spec.rb
 spec/models/attribute_filter_spec.rb
@@ -793,7 +790,6 @@ spec/models/o_auth2_client_spec.rb
 spec/models/o_auth2_client_token_lifespans_spec.rb
 spec/models/o_auth2_consent_request_open_id_connect_context_spec.rb
 spec/models/o_auth2_consent_request_spec.rb
-spec/models/o_auth2_consent_session_expires_at_spec.rb
 spec/models/o_auth2_consent_session_spec.rb
 spec/models/o_auth2_login_request_spec.rb
 spec/models/o_auth2_logout_request_spec.rb
@@ -823,6 +819,7 @@ spec/models/project_events_datapoint_spec.rb
 spec/models/project_host_spec.rb
 spec/models/project_member_spec.rb
 spec/models/project_metadata_spec.rb
+spec/models/project_service_account_experience_spec.rb
 spec/models/project_service_identity_spec.rb
 spec/models/project_service_o_auth2_spec.rb
 spec/models/project_service_permission_spec.rb

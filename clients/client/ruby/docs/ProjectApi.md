@@ -123,7 +123,7 @@ api_instance = OryClient::ProjectApi.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
 organization_id = 'organization_id_example' # String | Organization ID  The Organization's ID.
 opts = {
-  create_organization_onboarding_portal_link_body: OryClient::CreateOrganizationOnboardingPortalLinkBody.new({enable_sso: false}) # CreateOrganizationOnboardingPortalLinkBody | 
+  create_organization_onboarding_portal_link_body: OryClient::CreateOrganizationOnboardingPortalLinkBody.new({enable_scim: false, enable_sso: false}) # CreateOrganizationOnboardingPortalLinkBody | 
 }
 
 begin
@@ -1481,7 +1481,7 @@ project_id = 'project_id_example' # String | Project ID  The project's ID.
 organization_id = 'organization_id_example' # String | Organization ID  The Organization's ID.
 onboarding_portal_link_id = 'onboarding_portal_link_id_example' # String | 
 opts = {
-  update_organization_onboarding_portal_link_body: OryClient::UpdateOrganizationOnboardingPortalLinkBody.new({enable_sso: false}) # UpdateOrganizationOnboardingPortalLinkBody | 
+  update_organization_onboarding_portal_link_body: OryClient::UpdateOrganizationOnboardingPortalLinkBody.new({enable_scim: false, enable_sso: false}) # UpdateOrganizationOnboardingPortalLinkBody | 
 }
 
 begin

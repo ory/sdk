@@ -133,6 +133,7 @@ Name | Type | Description | Notes
 **KratosSecretsCipher** | Pointer to **[]string** |  | [optional] 
 **KratosSecretsCookie** | Pointer to **[]string** |  | [optional] 
 **KratosSecretsDefault** | Pointer to **[]string** |  | [optional] 
+**KratosSecretsPagination** | Pointer to **[]string** |  | [optional] 
 **KratosSecurityAccountEnumerationMitigate** | Pointer to **bool** | Configures if account enumeration should be mitigated when using identifier first login. | [optional] 
 **KratosSelfserviceAllowedReturnUrls** | Pointer to **[]string** |  | [optional] 
 **KratosSelfserviceDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] 
@@ -3510,6 +3511,31 @@ SetKratosSecretsDefault sets KratosSecretsDefault field to given value.
 `func (o *CreateProjectNormalizedPayload) HasKratosSecretsDefault() bool`
 
 HasKratosSecretsDefault returns a boolean if a field has been set.
+
+### GetKratosSecretsPagination
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSecretsPagination() []string`
+
+GetKratosSecretsPagination returns the KratosSecretsPagination field if non-nil, zero value otherwise.
+
+### GetKratosSecretsPaginationOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSecretsPaginationOk() (*[]string, bool)`
+
+GetKratosSecretsPaginationOk returns a tuple with the KratosSecretsPagination field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSecretsPagination
+
+`func (o *CreateProjectNormalizedPayload) SetKratosSecretsPagination(v []string)`
+
+SetKratosSecretsPagination sets KratosSecretsPagination field to given value.
+
+### HasKratosSecretsPagination
+
+`func (o *CreateProjectNormalizedPayload) HasKratosSecretsPagination() bool`
+
+HasKratosSecretsPagination returns a boolean if a field has been set.
 
 ### GetKratosSecurityAccountEnumerationMitigate
 

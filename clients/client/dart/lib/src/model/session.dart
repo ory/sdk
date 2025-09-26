@@ -25,7 +25,7 @@ part 'session.g.dart';
 /// * [id] - Session ID
 /// * [identity] 
 /// * [issuedAt] - The Session Issuance Timestamp  When this session was issued at. Usually equal or close to `authenticated_at`.
-/// * [tokenized] - Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the `tokenize` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
+/// * [tokenized] - Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the `tokenize_as` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
 @BuiltValue()
 abstract class Session implements Built<Session, SessionBuilder> {
   /// Active state. If false the session is no longer active.
@@ -63,7 +63,7 @@ abstract class Session implements Built<Session, SessionBuilder> {
   @BuiltValueField(wireName: r'issued_at')
   DateTime? get issuedAt;
 
-  /// Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the `tokenize` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
+  /// Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the `tokenize_as` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
   @BuiltValueField(wireName: r'tokenized')
   String? get tokenized;
 

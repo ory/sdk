@@ -10,12 +10,15 @@ Name | Type | Description | Notes
 **OrganizationId** | Pointer to **string** | Organization ID | [optional] 
 **OrganizationLabel** | Pointer to **string** | Organization Label | [optional] 
 **RevisionId** | **string** |  | 
+**ScimClients** | [**[]NormalizedProjectRevisionScimClient**](NormalizedProjectRevisionScimClient.md) |  | 
+**ScimEnabled** | **bool** |  | 
+**SsoEnabled** | **bool** |  | 
 
 ## Methods
 
 ### NewOnboardingPortalOrganization
 
-`func NewOnboardingPortalOrganization(baseUrl string, kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, revisionId string, ) *OnboardingPortalOrganization`
+`func NewOnboardingPortalOrganization(baseUrl string, kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, revisionId string, scimClients []NormalizedProjectRevisionScimClient, scimEnabled bool, ssoEnabled bool, ) *OnboardingPortalOrganization`
 
 NewOnboardingPortalOrganization instantiates a new OnboardingPortalOrganization object
 This constructor will assign default values to properties that have it defined,
@@ -158,6 +161,66 @@ and a boolean to check if the value has been set.
 `func (o *OnboardingPortalOrganization) SetRevisionId(v string)`
 
 SetRevisionId sets RevisionId field to given value.
+
+
+### GetScimClients
+
+`func (o *OnboardingPortalOrganization) GetScimClients() []NormalizedProjectRevisionScimClient`
+
+GetScimClients returns the ScimClients field if non-nil, zero value otherwise.
+
+### GetScimClientsOk
+
+`func (o *OnboardingPortalOrganization) GetScimClientsOk() (*[]NormalizedProjectRevisionScimClient, bool)`
+
+GetScimClientsOk returns a tuple with the ScimClients field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScimClients
+
+`func (o *OnboardingPortalOrganization) SetScimClients(v []NormalizedProjectRevisionScimClient)`
+
+SetScimClients sets ScimClients field to given value.
+
+
+### GetScimEnabled
+
+`func (o *OnboardingPortalOrganization) GetScimEnabled() bool`
+
+GetScimEnabled returns the ScimEnabled field if non-nil, zero value otherwise.
+
+### GetScimEnabledOk
+
+`func (o *OnboardingPortalOrganization) GetScimEnabledOk() (*bool, bool)`
+
+GetScimEnabledOk returns a tuple with the ScimEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScimEnabled
+
+`func (o *OnboardingPortalOrganization) SetScimEnabled(v bool)`
+
+SetScimEnabled sets ScimEnabled field to given value.
+
+
+### GetSsoEnabled
+
+`func (o *OnboardingPortalOrganization) GetSsoEnabled() bool`
+
+GetSsoEnabled returns the SsoEnabled field if non-nil, zero value otherwise.
+
+### GetSsoEnabledOk
+
+`func (o *OnboardingPortalOrganization) GetSsoEnabledOk() (*bool, bool)`
+
+GetSsoEnabledOk returns a tuple with the SsoEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSsoEnabled
+
+`func (o *OnboardingPortalOrganization) SetSsoEnabled(v bool)`
+
+SetSsoEnabled sets SsoEnabled field to given value.
 
 
 

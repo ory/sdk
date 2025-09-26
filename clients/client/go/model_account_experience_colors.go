@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.21.5
+API version: v1.22.3
 Contact: support@ory.sh
 */
 
@@ -20,150 +20,150 @@ var _ MappedNullable = &AccountExperienceColors{}
 
 // AccountExperienceColors struct for AccountExperienceColors
 type AccountExperienceColors struct {
-	AxBackgroundDefault *string `json:"ax-background-default,omitempty"`
-	Brand100 *string `json:"brand-100,omitempty"`
-	Brand200 *string `json:"brand-200,omitempty"`
-	Brand300 *string `json:"brand-300,omitempty"`
-	Brand400 *string `json:"brand-400,omitempty"`
-	Brand50 *string `json:"brand-50,omitempty"`
-	Brand500 *string `json:"brand-500,omitempty"`
-	Brand600 *string `json:"brand-600,omitempty"`
-	Brand700 *string `json:"brand-700,omitempty"`
-	Brand800 *string `json:"brand-800,omitempty"`
-	Brand900 *string `json:"brand-900,omitempty"`
-	Brand950 *string `json:"brand-950,omitempty"`
-	ButtonIdentifierBackgroundDefault *string `json:"button-identifier-background-default,omitempty"`
-	ButtonIdentifierBackgroundHover *string `json:"button-identifier-background-hover,omitempty"`
-	ButtonIdentifierBorderBorderDefault *string `json:"button-identifier-border-border-default,omitempty"`
-	ButtonIdentifierBorderBorderHover *string `json:"button-identifier-border-border-hover,omitempty"`
-	ButtonIdentifierForegroundDefault *string `json:"button-identifier-foreground-default,omitempty"`
-	ButtonIdentifierForegroundHover *string `json:"button-identifier-foreground-hover,omitempty"`
-	ButtonLinkBrandBrand *string `json:"button-link-brand-brand,omitempty"`
-	ButtonLinkBrandBrandHover *string `json:"button-link-brand-brand-hover,omitempty"`
-	ButtonLinkDefaultPrimary *string `json:"button-link-default-primary,omitempty"`
-	ButtonLinkDefaultPrimaryHover *string `json:"button-link-default-primary-hover,omitempty"`
-	ButtonLinkDefaultSecondary *string `json:"button-link-default-secondary,omitempty"`
-	ButtonLinkDefaultSecondaryHover *string `json:"button-link-default-secondary-hover,omitempty"`
-	ButtonLinkDisabledDisabled *string `json:"button-link-disabled-disabled,omitempty"`
-	ButtonPrimaryBackgroundDefault *string `json:"button-primary-background-default,omitempty"`
-	ButtonPrimaryBackgroundDisabled *string `json:"button-primary-background-disabled,omitempty"`
-	ButtonPrimaryBackgroundHover *string `json:"button-primary-background-hover,omitempty"`
-	ButtonPrimaryBorderDefault *string `json:"button-primary-border-default,omitempty"`
-	ButtonPrimaryBorderDisabled *string `json:"button-primary-border-disabled,omitempty"`
-	ButtonPrimaryBorderHover *string `json:"button-primary-border-hover,omitempty"`
-	ButtonPrimaryForegroundDefault *string `json:"button-primary-foreground-default,omitempty"`
-	ButtonPrimaryForegroundDisabled *string `json:"button-primary-foreground-disabled,omitempty"`
-	ButtonPrimaryForegroundHover *string `json:"button-primary-foreground-hover,omitempty"`
-	ButtonSecondaryBackgroundDefault *string `json:"button-secondary-background-default,omitempty"`
-	ButtonSecondaryBackgroundDisabled *string `json:"button-secondary-background-disabled,omitempty"`
-	ButtonSecondaryBackgroundHover *string `json:"button-secondary-background-hover,omitempty"`
-	ButtonSecondaryBorderDefault *string `json:"button-secondary-border-default,omitempty"`
-	ButtonSecondaryBorderDisabled *string `json:"button-secondary-border-disabled,omitempty"`
-	ButtonSecondaryBorderHover *string `json:"button-secondary-border-hover,omitempty"`
-	ButtonSecondaryForegroundDefault *string `json:"button-secondary-foreground-default,omitempty"`
-	ButtonSecondaryForegroundDisabled *string `json:"button-secondary-foreground-disabled,omitempty"`
-	ButtonSecondaryForegroundHover *string `json:"button-secondary-foreground-hover,omitempty"`
-	ButtonSocialBackgroundDefault *string `json:"button-social-background-default,omitempty"`
-	ButtonSocialBackgroundDisabled *string `json:"button-social-background-disabled,omitempty"`
-	ButtonSocialBackgroundGenericProvider *string `json:"button-social-background-generic-provider,omitempty"`
-	ButtonSocialBackgroundHover *string `json:"button-social-background-hover,omitempty"`
-	ButtonSocialBorderDefault *string `json:"button-social-border-default,omitempty"`
-	ButtonSocialBorderDisabled *string `json:"button-social-border-disabled,omitempty"`
-	ButtonSocialBorderGenericProvider *string `json:"button-social-border-generic-provider,omitempty"`
-	ButtonSocialBorderHover *string `json:"button-social-border-hover,omitempty"`
-	ButtonSocialForegroundDefault *string `json:"button-social-foreground-default,omitempty"`
-	ButtonSocialForegroundDisabled *string `json:"button-social-foreground-disabled,omitempty"`
-	ButtonSocialForegroundGenericProvider *string `json:"button-social-foreground-generic-provider,omitempty"`
-	ButtonSocialForegroundHover *string `json:"button-social-foreground-hover,omitempty"`
-	CheckboxBackgroundChecked *string `json:"checkbox-background-checked,omitempty"`
-	CheckboxBackgroundDefault *string `json:"checkbox-background-default,omitempty"`
-	CheckboxBorderCheckboxBorderChecked *string `json:"checkbox-border-checkbox-border-checked,omitempty"`
-	CheckboxBorderCheckboxBorderDefault *string `json:"checkbox-border-checkbox-border-default,omitempty"`
-	CheckboxForegroundChecked *string `json:"checkbox-foreground-checked,omitempty"`
-	CheckboxForegroundDefault *string `json:"checkbox-foreground-default,omitempty"`
-	FormBackgroundDefault *string `json:"form-background-default,omitempty"`
-	FormBorderDefault *string `json:"form-border-default,omitempty"`
-	InputBackgroundDefault *string `json:"input-background-default,omitempty"`
-	InputBackgroundDisabled *string `json:"input-background-disabled,omitempty"`
-	InputBackgroundHover *string `json:"input-background-hover,omitempty"`
-	InputBorderDefault *string `json:"input-border-default,omitempty"`
-	InputBorderDisabled *string `json:"input-border-disabled,omitempty"`
-	InputBorderFocus *string `json:"input-border-focus,omitempty"`
-	InputBorderHover *string `json:"input-border-hover,omitempty"`
-	InputForegroundDisabled *string `json:"input-foreground-disabled,omitempty"`
-	InputForegroundPrimary *string `json:"input-foreground-primary,omitempty"`
-	InputForegroundSecondary *string `json:"input-foreground-secondary,omitempty"`
-	InputForegroundTertiary *string `json:"input-foreground-tertiary,omitempty"`
-	InterfaceBackgroundBrandPrimary *string `json:"interface-background-brand-primary,omitempty"`
-	InterfaceBackgroundBrandPrimaryHover *string `json:"interface-background-brand-primary-hover,omitempty"`
-	InterfaceBackgroundBrandSecondary *string `json:"interface-background-brand-secondary,omitempty"`
-	InterfaceBackgroundBrandSecondaryHover *string `json:"interface-background-brand-secondary-hover,omitempty"`
-	InterfaceBackgroundDefaultInverted *string `json:"interface-background-default-inverted,omitempty"`
-	InterfaceBackgroundDefaultInvertedHover *string `json:"interface-background-default-inverted-hover,omitempty"`
-	InterfaceBackgroundDefaultNone *string `json:"interface-background-default-none,omitempty"`
-	InterfaceBackgroundDefaultPrimary *string `json:"interface-background-default-primary,omitempty"`
-	InterfaceBackgroundDefaultPrimaryHover *string `json:"interface-background-default-primary-hover,omitempty"`
-	InterfaceBackgroundDefaultSecondary *string `json:"interface-background-default-secondary,omitempty"`
-	InterfaceBackgroundDefaultSecondaryHover *string `json:"interface-background-default-secondary-hover,omitempty"`
-	InterfaceBackgroundDefaultTertiary *string `json:"interface-background-default-tertiary,omitempty"`
-	InterfaceBackgroundDefaultTertiaryHover *string `json:"interface-background-default-tertiary-hover,omitempty"`
-	InterfaceBackgroundDisabledDisabled *string `json:"interface-background-disabled-disabled,omitempty"`
-	InterfaceBackgroundValidationDanger *string `json:"interface-background-validation-danger,omitempty"`
-	InterfaceBackgroundValidationSuccess *string `json:"interface-background-validation-success,omitempty"`
-	InterfaceBackgroundValidationWarning *string `json:"interface-background-validation-warning,omitempty"`
-	InterfaceBorderBrandBrand *string `json:"interface-border-brand-brand,omitempty"`
-	InterfaceBorderDefaultInverted *string `json:"interface-border-default-inverted,omitempty"`
-	InterfaceBorderDefaultNone *string `json:"interface-border-default-none,omitempty"`
-	InterfaceBorderDefaultPrimary *string `json:"interface-border-default-primary,omitempty"`
-	InterfaceBorderDisabledDisabled *string `json:"interface-border-disabled-disabled,omitempty"`
-	InterfaceBorderValidationDanger *string `json:"interface-border-validation-danger,omitempty"`
-	InterfaceBorderValidationSuccess *string `json:"interface-border-validation-success,omitempty"`
-	InterfaceBorderValidationWarning *string `json:"interface-border-validation-warning,omitempty"`
-	InterfaceForegroundBrandOnPrimary *string `json:"interface-foreground-brand-on-primary,omitempty"`
-	InterfaceForegroundBrandOnSecondary *string `json:"interface-foreground-brand-on-secondary,omitempty"`
-	InterfaceForegroundBrandPrimary *string `json:"interface-foreground-brand-primary,omitempty"`
-	InterfaceForegroundBrandSecondary *string `json:"interface-foreground-brand-secondary,omitempty"`
-	InterfaceForegroundDefaultInverted *string `json:"interface-foreground-default-inverted,omitempty"`
-	InterfaceForegroundDefaultPrimary *string `json:"interface-foreground-default-primary,omitempty"`
-	InterfaceForegroundDefaultSecondary *string `json:"interface-foreground-default-secondary,omitempty"`
-	InterfaceForegroundDefaultTertiary *string `json:"interface-foreground-default-tertiary,omitempty"`
-	InterfaceForegroundDisabledDisabled *string `json:"interface-foreground-disabled-disabled,omitempty"`
-	InterfaceForegroundDisabledOnDisabled *string `json:"interface-foreground-disabled-on-disabled,omitempty"`
-	InterfaceForegroundValidationDanger *string `json:"interface-foreground-validation-danger,omitempty"`
-	InterfaceForegroundValidationSuccess *string `json:"interface-foreground-validation-success,omitempty"`
-	InterfaceForegroundValidationWarning *string `json:"interface-foreground-validation-warning,omitempty"`
-	OryBackgroundDefault *string `json:"ory-background-default,omitempty"`
-	OryBorderDefault *string `json:"ory-border-default,omitempty"`
-	OryForegroundDefault *string `json:"ory-foreground-default,omitempty"`
-	RadioBackgroundChecked *string `json:"radio-background-checked,omitempty"`
-	RadioBackgroundDefault *string `json:"radio-background-default,omitempty"`
-	RadioBorderChecked *string `json:"radio-border-checked,omitempty"`
-	RadioBorderDefault *string `json:"radio-border-default,omitempty"`
-	RadioForegroundChecked *string `json:"radio-foreground-checked,omitempty"`
-	RadioForegroundDefault *string `json:"radio-foreground-default,omitempty"`
-	ToggleBackgroundChecked *string `json:"toggle-background-checked,omitempty"`
-	ToggleBackgroundDefault *string `json:"toggle-background-default,omitempty"`
-	ToggleBorderChecked *string `json:"toggle-border-checked,omitempty"`
-	ToggleBorderDefault *string `json:"toggle-border-default,omitempty"`
-	ToggleForegroundChecked *string `json:"toggle-foreground-checked,omitempty"`
-	ToggleForegroundDefault *string `json:"toggle-foreground-default,omitempty"`
-	Ui100 *string `json:"ui-100,omitempty"`
-	Ui200 *string `json:"ui-200,omitempty"`
-	Ui300 *string `json:"ui-300,omitempty"`
-	Ui400 *string `json:"ui-400,omitempty"`
-	Ui50 *string `json:"ui-50,omitempty"`
-	Ui500 *string `json:"ui-500,omitempty"`
-	Ui600 *string `json:"ui-600,omitempty"`
-	Ui700 *string `json:"ui-700,omitempty"`
-	Ui800 *string `json:"ui-800,omitempty"`
-	Ui900 *string `json:"ui-900,omitempty"`
-	Ui950 *string `json:"ui-950,omitempty"`
-	UiBlack *string `json:"ui-black,omitempty"`
-	UiDanger *string `json:"ui-danger,omitempty"`
-	UiSuccess *string `json:"ui-success,omitempty"`
-	UiTransparent *string `json:"ui-transparent,omitempty"`
-	UiWarning *string `json:"ui-warning,omitempty"`
-	UiWhite *string `json:"ui-white,omitempty"`
+	AxBackgroundDefault *string `json:"ax_background_default,omitempty"`
+	Brand100 *string `json:"brand_100,omitempty"`
+	Brand200 *string `json:"brand_200,omitempty"`
+	Brand300 *string `json:"brand_300,omitempty"`
+	Brand400 *string `json:"brand_400,omitempty"`
+	Brand50 *string `json:"brand_50,omitempty"`
+	Brand500 *string `json:"brand_500,omitempty"`
+	Brand600 *string `json:"brand_600,omitempty"`
+	Brand700 *string `json:"brand_700,omitempty"`
+	Brand800 *string `json:"brand_800,omitempty"`
+	Brand900 *string `json:"brand_900,omitempty"`
+	Brand950 *string `json:"brand_950,omitempty"`
+	ButtonIdentifierBackgroundDefault *string `json:"button_identifier_background_default,omitempty"`
+	ButtonIdentifierBackgroundHover *string `json:"button_identifier_background_hover,omitempty"`
+	ButtonIdentifierBorderBorderDefault *string `json:"button_identifier_border_border_default,omitempty"`
+	ButtonIdentifierBorderBorderHover *string `json:"button_identifier_border_border_hover,omitempty"`
+	ButtonIdentifierForegroundDefault *string `json:"button_identifier_foreground_default,omitempty"`
+	ButtonIdentifierForegroundHover *string `json:"button_identifier_foreground_hover,omitempty"`
+	ButtonLinkBrandBrand *string `json:"button_link_brand_brand,omitempty"`
+	ButtonLinkBrandBrandHover *string `json:"button_link_brand_brand_hover,omitempty"`
+	ButtonLinkDefaultPrimary *string `json:"button_link_default_primary,omitempty"`
+	ButtonLinkDefaultPrimaryHover *string `json:"button_link_default_primary_hover,omitempty"`
+	ButtonLinkDefaultSecondary *string `json:"button_link_default_secondary,omitempty"`
+	ButtonLinkDefaultSecondaryHover *string `json:"button_link_default_secondary_hover,omitempty"`
+	ButtonLinkDisabledDisabled *string `json:"button_link_disabled_disabled,omitempty"`
+	ButtonPrimaryBackgroundDefault *string `json:"button_primary_background_default,omitempty"`
+	ButtonPrimaryBackgroundDisabled *string `json:"button_primary_background_disabled,omitempty"`
+	ButtonPrimaryBackgroundHover *string `json:"button_primary_background_hover,omitempty"`
+	ButtonPrimaryBorderDefault *string `json:"button_primary_border_default,omitempty"`
+	ButtonPrimaryBorderDisabled *string `json:"button_primary_border_disabled,omitempty"`
+	ButtonPrimaryBorderHover *string `json:"button_primary_border_hover,omitempty"`
+	ButtonPrimaryForegroundDefault *string `json:"button_primary_foreground_default,omitempty"`
+	ButtonPrimaryForegroundDisabled *string `json:"button_primary_foreground_disabled,omitempty"`
+	ButtonPrimaryForegroundHover *string `json:"button_primary_foreground_hover,omitempty"`
+	ButtonSecondaryBackgroundDefault *string `json:"button_secondary_background_default,omitempty"`
+	ButtonSecondaryBackgroundDisabled *string `json:"button_secondary_background_disabled,omitempty"`
+	ButtonSecondaryBackgroundHover *string `json:"button_secondary_background_hover,omitempty"`
+	ButtonSecondaryBorderDefault *string `json:"button_secondary_border_default,omitempty"`
+	ButtonSecondaryBorderDisabled *string `json:"button_secondary_border_disabled,omitempty"`
+	ButtonSecondaryBorderHover *string `json:"button_secondary_border_hover,omitempty"`
+	ButtonSecondaryForegroundDefault *string `json:"button_secondary_foreground_default,omitempty"`
+	ButtonSecondaryForegroundDisabled *string `json:"button_secondary_foreground_disabled,omitempty"`
+	ButtonSecondaryForegroundHover *string `json:"button_secondary_foreground_hover,omitempty"`
+	ButtonSocialBackgroundDefault *string `json:"button_social_background_default,omitempty"`
+	ButtonSocialBackgroundDisabled *string `json:"button_social_background_disabled,omitempty"`
+	ButtonSocialBackgroundGenericProvider *string `json:"button_social_background_generic_provider,omitempty"`
+	ButtonSocialBackgroundHover *string `json:"button_social_background_hover,omitempty"`
+	ButtonSocialBorderDefault *string `json:"button_social_border_default,omitempty"`
+	ButtonSocialBorderDisabled *string `json:"button_social_border_disabled,omitempty"`
+	ButtonSocialBorderGenericProvider *string `json:"button_social_border_generic_provider,omitempty"`
+	ButtonSocialBorderHover *string `json:"button_social_border_hover,omitempty"`
+	ButtonSocialForegroundDefault *string `json:"button_social_foreground_default,omitempty"`
+	ButtonSocialForegroundDisabled *string `json:"button_social_foreground_disabled,omitempty"`
+	ButtonSocialForegroundGenericProvider *string `json:"button_social_foreground_generic_provider,omitempty"`
+	ButtonSocialForegroundHover *string `json:"button_social_foreground_hover,omitempty"`
+	CheckboxBackgroundChecked *string `json:"checkbox_background_checked,omitempty"`
+	CheckboxBackgroundDefault *string `json:"checkbox_background_default,omitempty"`
+	CheckboxBorderCheckboxBorderChecked *string `json:"checkbox_border_checkbox_border_checked,omitempty"`
+	CheckboxBorderCheckboxBorderDefault *string `json:"checkbox_border_checkbox_border_default,omitempty"`
+	CheckboxForegroundChecked *string `json:"checkbox_foreground_checked,omitempty"`
+	CheckboxForegroundDefault *string `json:"checkbox_foreground_default,omitempty"`
+	FormBackgroundDefault *string `json:"form_background_default,omitempty"`
+	FormBorderDefault *string `json:"form_border_default,omitempty"`
+	InputBackgroundDefault *string `json:"input_background_default,omitempty"`
+	InputBackgroundDisabled *string `json:"input_background_disabled,omitempty"`
+	InputBackgroundHover *string `json:"input_background_hover,omitempty"`
+	InputBorderDefault *string `json:"input_border_default,omitempty"`
+	InputBorderDisabled *string `json:"input_border_disabled,omitempty"`
+	InputBorderFocus *string `json:"input_border_focus,omitempty"`
+	InputBorderHover *string `json:"input_border_hover,omitempty"`
+	InputForegroundDisabled *string `json:"input_foreground_disabled,omitempty"`
+	InputForegroundPrimary *string `json:"input_foreground_primary,omitempty"`
+	InputForegroundSecondary *string `json:"input_foreground_secondary,omitempty"`
+	InputForegroundTertiary *string `json:"input_foreground_tertiary,omitempty"`
+	InterfaceBackgroundBrandPrimary *string `json:"interface_background_brand_primary,omitempty"`
+	InterfaceBackgroundBrandPrimaryHover *string `json:"interface_background_brand_primary_hover,omitempty"`
+	InterfaceBackgroundBrandSecondary *string `json:"interface_background_brand_secondary,omitempty"`
+	InterfaceBackgroundBrandSecondaryHover *string `json:"interface_background_brand_secondary_hover,omitempty"`
+	InterfaceBackgroundDefaultInverted *string `json:"interface_background_default_inverted,omitempty"`
+	InterfaceBackgroundDefaultInvertedHover *string `json:"interface_background_default_inverted_hover,omitempty"`
+	InterfaceBackgroundDefaultNone *string `json:"interface_background_default_none,omitempty"`
+	InterfaceBackgroundDefaultPrimary *string `json:"interface_background_default_primary,omitempty"`
+	InterfaceBackgroundDefaultPrimaryHover *string `json:"interface_background_default_primary_hover,omitempty"`
+	InterfaceBackgroundDefaultSecondary *string `json:"interface_background_default_secondary,omitempty"`
+	InterfaceBackgroundDefaultSecondaryHover *string `json:"interface_background_default_secondary_hover,omitempty"`
+	InterfaceBackgroundDefaultTertiary *string `json:"interface_background_default_tertiary,omitempty"`
+	InterfaceBackgroundDefaultTertiaryHover *string `json:"interface_background_default_tertiary_hover,omitempty"`
+	InterfaceBackgroundDisabledDisabled *string `json:"interface_background_disabled_disabled,omitempty"`
+	InterfaceBackgroundValidationDanger *string `json:"interface_background_validation_danger,omitempty"`
+	InterfaceBackgroundValidationSuccess *string `json:"interface_background_validation_success,omitempty"`
+	InterfaceBackgroundValidationWarning *string `json:"interface_background_validation_warning,omitempty"`
+	InterfaceBorderBrandBrand *string `json:"interface_border_brand_brand,omitempty"`
+	InterfaceBorderDefaultInverted *string `json:"interface_border_default_inverted,omitempty"`
+	InterfaceBorderDefaultNone *string `json:"interface_border_default_none,omitempty"`
+	InterfaceBorderDefaultPrimary *string `json:"interface_border_default_primary,omitempty"`
+	InterfaceBorderDisabledDisabled *string `json:"interface_border_disabled_disabled,omitempty"`
+	InterfaceBorderValidationDanger *string `json:"interface_border_validation_danger,omitempty"`
+	InterfaceBorderValidationSuccess *string `json:"interface_border_validation_success,omitempty"`
+	InterfaceBorderValidationWarning *string `json:"interface_border_validation_warning,omitempty"`
+	InterfaceForegroundBrandOnPrimary *string `json:"interface_foreground_brand_on_primary,omitempty"`
+	InterfaceForegroundBrandOnSecondary *string `json:"interface_foreground_brand_on_secondary,omitempty"`
+	InterfaceForegroundBrandPrimary *string `json:"interface_foreground_brand_primary,omitempty"`
+	InterfaceForegroundBrandSecondary *string `json:"interface_foreground_brand_secondary,omitempty"`
+	InterfaceForegroundDefaultInverted *string `json:"interface_foreground_default_inverted,omitempty"`
+	InterfaceForegroundDefaultPrimary *string `json:"interface_foreground_default_primary,omitempty"`
+	InterfaceForegroundDefaultSecondary *string `json:"interface_foreground_default_secondary,omitempty"`
+	InterfaceForegroundDefaultTertiary *string `json:"interface_foreground_default_tertiary,omitempty"`
+	InterfaceForegroundDisabledDisabled *string `json:"interface_foreground_disabled_disabled,omitempty"`
+	InterfaceForegroundDisabledOnDisabled *string `json:"interface_foreground_disabled_on_disabled,omitempty"`
+	InterfaceForegroundValidationDanger *string `json:"interface_foreground_validation_danger,omitempty"`
+	InterfaceForegroundValidationSuccess *string `json:"interface_foreground_validation_success,omitempty"`
+	InterfaceForegroundValidationWarning *string `json:"interface_foreground_validation_warning,omitempty"`
+	OryBackgroundDefault *string `json:"ory_background_default,omitempty"`
+	OryBorderDefault *string `json:"ory_border_default,omitempty"`
+	OryForegroundDefault *string `json:"ory_foreground_default,omitempty"`
+	RadioBackgroundChecked *string `json:"radio_background_checked,omitempty"`
+	RadioBackgroundDefault *string `json:"radio_background_default,omitempty"`
+	RadioBorderChecked *string `json:"radio_border_checked,omitempty"`
+	RadioBorderDefault *string `json:"radio_border_default,omitempty"`
+	RadioForegroundChecked *string `json:"radio_foreground_checked,omitempty"`
+	RadioForegroundDefault *string `json:"radio_foreground_default,omitempty"`
+	ToggleBackgroundChecked *string `json:"toggle_background_checked,omitempty"`
+	ToggleBackgroundDefault *string `json:"toggle_background_default,omitempty"`
+	ToggleBorderChecked *string `json:"toggle_border_checked,omitempty"`
+	ToggleBorderDefault *string `json:"toggle_border_default,omitempty"`
+	ToggleForegroundChecked *string `json:"toggle_foreground_checked,omitempty"`
+	ToggleForegroundDefault *string `json:"toggle_foreground_default,omitempty"`
+	Ui100 *string `json:"ui_100,omitempty"`
+	Ui200 *string `json:"ui_200,omitempty"`
+	Ui300 *string `json:"ui_300,omitempty"`
+	Ui400 *string `json:"ui_400,omitempty"`
+	Ui50 *string `json:"ui_50,omitempty"`
+	Ui500 *string `json:"ui_500,omitempty"`
+	Ui600 *string `json:"ui_600,omitempty"`
+	Ui700 *string `json:"ui_700,omitempty"`
+	Ui800 *string `json:"ui_800,omitempty"`
+	Ui900 *string `json:"ui_900,omitempty"`
+	Ui950 *string `json:"ui_950,omitempty"`
+	UiBlack *string `json:"ui_black,omitempty"`
+	UiDanger *string `json:"ui_danger,omitempty"`
+	UiSuccess *string `json:"ui_success,omitempty"`
+	UiTransparent *string `json:"ui_transparent,omitempty"`
+	UiWarning *string `json:"ui_warning,omitempty"`
+	UiWhite *string `json:"ui_white,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -4805,436 +4805,436 @@ func (o AccountExperienceColors) MarshalJSON() ([]byte, error) {
 func (o AccountExperienceColors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AxBackgroundDefault) {
-		toSerialize["ax-background-default"] = o.AxBackgroundDefault
+		toSerialize["ax_background_default"] = o.AxBackgroundDefault
 	}
 	if !IsNil(o.Brand100) {
-		toSerialize["brand-100"] = o.Brand100
+		toSerialize["brand_100"] = o.Brand100
 	}
 	if !IsNil(o.Brand200) {
-		toSerialize["brand-200"] = o.Brand200
+		toSerialize["brand_200"] = o.Brand200
 	}
 	if !IsNil(o.Brand300) {
-		toSerialize["brand-300"] = o.Brand300
+		toSerialize["brand_300"] = o.Brand300
 	}
 	if !IsNil(o.Brand400) {
-		toSerialize["brand-400"] = o.Brand400
+		toSerialize["brand_400"] = o.Brand400
 	}
 	if !IsNil(o.Brand50) {
-		toSerialize["brand-50"] = o.Brand50
+		toSerialize["brand_50"] = o.Brand50
 	}
 	if !IsNil(o.Brand500) {
-		toSerialize["brand-500"] = o.Brand500
+		toSerialize["brand_500"] = o.Brand500
 	}
 	if !IsNil(o.Brand600) {
-		toSerialize["brand-600"] = o.Brand600
+		toSerialize["brand_600"] = o.Brand600
 	}
 	if !IsNil(o.Brand700) {
-		toSerialize["brand-700"] = o.Brand700
+		toSerialize["brand_700"] = o.Brand700
 	}
 	if !IsNil(o.Brand800) {
-		toSerialize["brand-800"] = o.Brand800
+		toSerialize["brand_800"] = o.Brand800
 	}
 	if !IsNil(o.Brand900) {
-		toSerialize["brand-900"] = o.Brand900
+		toSerialize["brand_900"] = o.Brand900
 	}
 	if !IsNil(o.Brand950) {
-		toSerialize["brand-950"] = o.Brand950
+		toSerialize["brand_950"] = o.Brand950
 	}
 	if !IsNil(o.ButtonIdentifierBackgroundDefault) {
-		toSerialize["button-identifier-background-default"] = o.ButtonIdentifierBackgroundDefault
+		toSerialize["button_identifier_background_default"] = o.ButtonIdentifierBackgroundDefault
 	}
 	if !IsNil(o.ButtonIdentifierBackgroundHover) {
-		toSerialize["button-identifier-background-hover"] = o.ButtonIdentifierBackgroundHover
+		toSerialize["button_identifier_background_hover"] = o.ButtonIdentifierBackgroundHover
 	}
 	if !IsNil(o.ButtonIdentifierBorderBorderDefault) {
-		toSerialize["button-identifier-border-border-default"] = o.ButtonIdentifierBorderBorderDefault
+		toSerialize["button_identifier_border_border_default"] = o.ButtonIdentifierBorderBorderDefault
 	}
 	if !IsNil(o.ButtonIdentifierBorderBorderHover) {
-		toSerialize["button-identifier-border-border-hover"] = o.ButtonIdentifierBorderBorderHover
+		toSerialize["button_identifier_border_border_hover"] = o.ButtonIdentifierBorderBorderHover
 	}
 	if !IsNil(o.ButtonIdentifierForegroundDefault) {
-		toSerialize["button-identifier-foreground-default"] = o.ButtonIdentifierForegroundDefault
+		toSerialize["button_identifier_foreground_default"] = o.ButtonIdentifierForegroundDefault
 	}
 	if !IsNil(o.ButtonIdentifierForegroundHover) {
-		toSerialize["button-identifier-foreground-hover"] = o.ButtonIdentifierForegroundHover
+		toSerialize["button_identifier_foreground_hover"] = o.ButtonIdentifierForegroundHover
 	}
 	if !IsNil(o.ButtonLinkBrandBrand) {
-		toSerialize["button-link-brand-brand"] = o.ButtonLinkBrandBrand
+		toSerialize["button_link_brand_brand"] = o.ButtonLinkBrandBrand
 	}
 	if !IsNil(o.ButtonLinkBrandBrandHover) {
-		toSerialize["button-link-brand-brand-hover"] = o.ButtonLinkBrandBrandHover
+		toSerialize["button_link_brand_brand_hover"] = o.ButtonLinkBrandBrandHover
 	}
 	if !IsNil(o.ButtonLinkDefaultPrimary) {
-		toSerialize["button-link-default-primary"] = o.ButtonLinkDefaultPrimary
+		toSerialize["button_link_default_primary"] = o.ButtonLinkDefaultPrimary
 	}
 	if !IsNil(o.ButtonLinkDefaultPrimaryHover) {
-		toSerialize["button-link-default-primary-hover"] = o.ButtonLinkDefaultPrimaryHover
+		toSerialize["button_link_default_primary_hover"] = o.ButtonLinkDefaultPrimaryHover
 	}
 	if !IsNil(o.ButtonLinkDefaultSecondary) {
-		toSerialize["button-link-default-secondary"] = o.ButtonLinkDefaultSecondary
+		toSerialize["button_link_default_secondary"] = o.ButtonLinkDefaultSecondary
 	}
 	if !IsNil(o.ButtonLinkDefaultSecondaryHover) {
-		toSerialize["button-link-default-secondary-hover"] = o.ButtonLinkDefaultSecondaryHover
+		toSerialize["button_link_default_secondary_hover"] = o.ButtonLinkDefaultSecondaryHover
 	}
 	if !IsNil(o.ButtonLinkDisabledDisabled) {
-		toSerialize["button-link-disabled-disabled"] = o.ButtonLinkDisabledDisabled
+		toSerialize["button_link_disabled_disabled"] = o.ButtonLinkDisabledDisabled
 	}
 	if !IsNil(o.ButtonPrimaryBackgroundDefault) {
-		toSerialize["button-primary-background-default"] = o.ButtonPrimaryBackgroundDefault
+		toSerialize["button_primary_background_default"] = o.ButtonPrimaryBackgroundDefault
 	}
 	if !IsNil(o.ButtonPrimaryBackgroundDisabled) {
-		toSerialize["button-primary-background-disabled"] = o.ButtonPrimaryBackgroundDisabled
+		toSerialize["button_primary_background_disabled"] = o.ButtonPrimaryBackgroundDisabled
 	}
 	if !IsNil(o.ButtonPrimaryBackgroundHover) {
-		toSerialize["button-primary-background-hover"] = o.ButtonPrimaryBackgroundHover
+		toSerialize["button_primary_background_hover"] = o.ButtonPrimaryBackgroundHover
 	}
 	if !IsNil(o.ButtonPrimaryBorderDefault) {
-		toSerialize["button-primary-border-default"] = o.ButtonPrimaryBorderDefault
+		toSerialize["button_primary_border_default"] = o.ButtonPrimaryBorderDefault
 	}
 	if !IsNil(o.ButtonPrimaryBorderDisabled) {
-		toSerialize["button-primary-border-disabled"] = o.ButtonPrimaryBorderDisabled
+		toSerialize["button_primary_border_disabled"] = o.ButtonPrimaryBorderDisabled
 	}
 	if !IsNil(o.ButtonPrimaryBorderHover) {
-		toSerialize["button-primary-border-hover"] = o.ButtonPrimaryBorderHover
+		toSerialize["button_primary_border_hover"] = o.ButtonPrimaryBorderHover
 	}
 	if !IsNil(o.ButtonPrimaryForegroundDefault) {
-		toSerialize["button-primary-foreground-default"] = o.ButtonPrimaryForegroundDefault
+		toSerialize["button_primary_foreground_default"] = o.ButtonPrimaryForegroundDefault
 	}
 	if !IsNil(o.ButtonPrimaryForegroundDisabled) {
-		toSerialize["button-primary-foreground-disabled"] = o.ButtonPrimaryForegroundDisabled
+		toSerialize["button_primary_foreground_disabled"] = o.ButtonPrimaryForegroundDisabled
 	}
 	if !IsNil(o.ButtonPrimaryForegroundHover) {
-		toSerialize["button-primary-foreground-hover"] = o.ButtonPrimaryForegroundHover
+		toSerialize["button_primary_foreground_hover"] = o.ButtonPrimaryForegroundHover
 	}
 	if !IsNil(o.ButtonSecondaryBackgroundDefault) {
-		toSerialize["button-secondary-background-default"] = o.ButtonSecondaryBackgroundDefault
+		toSerialize["button_secondary_background_default"] = o.ButtonSecondaryBackgroundDefault
 	}
 	if !IsNil(o.ButtonSecondaryBackgroundDisabled) {
-		toSerialize["button-secondary-background-disabled"] = o.ButtonSecondaryBackgroundDisabled
+		toSerialize["button_secondary_background_disabled"] = o.ButtonSecondaryBackgroundDisabled
 	}
 	if !IsNil(o.ButtonSecondaryBackgroundHover) {
-		toSerialize["button-secondary-background-hover"] = o.ButtonSecondaryBackgroundHover
+		toSerialize["button_secondary_background_hover"] = o.ButtonSecondaryBackgroundHover
 	}
 	if !IsNil(o.ButtonSecondaryBorderDefault) {
-		toSerialize["button-secondary-border-default"] = o.ButtonSecondaryBorderDefault
+		toSerialize["button_secondary_border_default"] = o.ButtonSecondaryBorderDefault
 	}
 	if !IsNil(o.ButtonSecondaryBorderDisabled) {
-		toSerialize["button-secondary-border-disabled"] = o.ButtonSecondaryBorderDisabled
+		toSerialize["button_secondary_border_disabled"] = o.ButtonSecondaryBorderDisabled
 	}
 	if !IsNil(o.ButtonSecondaryBorderHover) {
-		toSerialize["button-secondary-border-hover"] = o.ButtonSecondaryBorderHover
+		toSerialize["button_secondary_border_hover"] = o.ButtonSecondaryBorderHover
 	}
 	if !IsNil(o.ButtonSecondaryForegroundDefault) {
-		toSerialize["button-secondary-foreground-default"] = o.ButtonSecondaryForegroundDefault
+		toSerialize["button_secondary_foreground_default"] = o.ButtonSecondaryForegroundDefault
 	}
 	if !IsNil(o.ButtonSecondaryForegroundDisabled) {
-		toSerialize["button-secondary-foreground-disabled"] = o.ButtonSecondaryForegroundDisabled
+		toSerialize["button_secondary_foreground_disabled"] = o.ButtonSecondaryForegroundDisabled
 	}
 	if !IsNil(o.ButtonSecondaryForegroundHover) {
-		toSerialize["button-secondary-foreground-hover"] = o.ButtonSecondaryForegroundHover
+		toSerialize["button_secondary_foreground_hover"] = o.ButtonSecondaryForegroundHover
 	}
 	if !IsNil(o.ButtonSocialBackgroundDefault) {
-		toSerialize["button-social-background-default"] = o.ButtonSocialBackgroundDefault
+		toSerialize["button_social_background_default"] = o.ButtonSocialBackgroundDefault
 	}
 	if !IsNil(o.ButtonSocialBackgroundDisabled) {
-		toSerialize["button-social-background-disabled"] = o.ButtonSocialBackgroundDisabled
+		toSerialize["button_social_background_disabled"] = o.ButtonSocialBackgroundDisabled
 	}
 	if !IsNil(o.ButtonSocialBackgroundGenericProvider) {
-		toSerialize["button-social-background-generic-provider"] = o.ButtonSocialBackgroundGenericProvider
+		toSerialize["button_social_background_generic_provider"] = o.ButtonSocialBackgroundGenericProvider
 	}
 	if !IsNil(o.ButtonSocialBackgroundHover) {
-		toSerialize["button-social-background-hover"] = o.ButtonSocialBackgroundHover
+		toSerialize["button_social_background_hover"] = o.ButtonSocialBackgroundHover
 	}
 	if !IsNil(o.ButtonSocialBorderDefault) {
-		toSerialize["button-social-border-default"] = o.ButtonSocialBorderDefault
+		toSerialize["button_social_border_default"] = o.ButtonSocialBorderDefault
 	}
 	if !IsNil(o.ButtonSocialBorderDisabled) {
-		toSerialize["button-social-border-disabled"] = o.ButtonSocialBorderDisabled
+		toSerialize["button_social_border_disabled"] = o.ButtonSocialBorderDisabled
 	}
 	if !IsNil(o.ButtonSocialBorderGenericProvider) {
-		toSerialize["button-social-border-generic-provider"] = o.ButtonSocialBorderGenericProvider
+		toSerialize["button_social_border_generic_provider"] = o.ButtonSocialBorderGenericProvider
 	}
 	if !IsNil(o.ButtonSocialBorderHover) {
-		toSerialize["button-social-border-hover"] = o.ButtonSocialBorderHover
+		toSerialize["button_social_border_hover"] = o.ButtonSocialBorderHover
 	}
 	if !IsNil(o.ButtonSocialForegroundDefault) {
-		toSerialize["button-social-foreground-default"] = o.ButtonSocialForegroundDefault
+		toSerialize["button_social_foreground_default"] = o.ButtonSocialForegroundDefault
 	}
 	if !IsNil(o.ButtonSocialForegroundDisabled) {
-		toSerialize["button-social-foreground-disabled"] = o.ButtonSocialForegroundDisabled
+		toSerialize["button_social_foreground_disabled"] = o.ButtonSocialForegroundDisabled
 	}
 	if !IsNil(o.ButtonSocialForegroundGenericProvider) {
-		toSerialize["button-social-foreground-generic-provider"] = o.ButtonSocialForegroundGenericProvider
+		toSerialize["button_social_foreground_generic_provider"] = o.ButtonSocialForegroundGenericProvider
 	}
 	if !IsNil(o.ButtonSocialForegroundHover) {
-		toSerialize["button-social-foreground-hover"] = o.ButtonSocialForegroundHover
+		toSerialize["button_social_foreground_hover"] = o.ButtonSocialForegroundHover
 	}
 	if !IsNil(o.CheckboxBackgroundChecked) {
-		toSerialize["checkbox-background-checked"] = o.CheckboxBackgroundChecked
+		toSerialize["checkbox_background_checked"] = o.CheckboxBackgroundChecked
 	}
 	if !IsNil(o.CheckboxBackgroundDefault) {
-		toSerialize["checkbox-background-default"] = o.CheckboxBackgroundDefault
+		toSerialize["checkbox_background_default"] = o.CheckboxBackgroundDefault
 	}
 	if !IsNil(o.CheckboxBorderCheckboxBorderChecked) {
-		toSerialize["checkbox-border-checkbox-border-checked"] = o.CheckboxBorderCheckboxBorderChecked
+		toSerialize["checkbox_border_checkbox_border_checked"] = o.CheckboxBorderCheckboxBorderChecked
 	}
 	if !IsNil(o.CheckboxBorderCheckboxBorderDefault) {
-		toSerialize["checkbox-border-checkbox-border-default"] = o.CheckboxBorderCheckboxBorderDefault
+		toSerialize["checkbox_border_checkbox_border_default"] = o.CheckboxBorderCheckboxBorderDefault
 	}
 	if !IsNil(o.CheckboxForegroundChecked) {
-		toSerialize["checkbox-foreground-checked"] = o.CheckboxForegroundChecked
+		toSerialize["checkbox_foreground_checked"] = o.CheckboxForegroundChecked
 	}
 	if !IsNil(o.CheckboxForegroundDefault) {
-		toSerialize["checkbox-foreground-default"] = o.CheckboxForegroundDefault
+		toSerialize["checkbox_foreground_default"] = o.CheckboxForegroundDefault
 	}
 	if !IsNil(o.FormBackgroundDefault) {
-		toSerialize["form-background-default"] = o.FormBackgroundDefault
+		toSerialize["form_background_default"] = o.FormBackgroundDefault
 	}
 	if !IsNil(o.FormBorderDefault) {
-		toSerialize["form-border-default"] = o.FormBorderDefault
+		toSerialize["form_border_default"] = o.FormBorderDefault
 	}
 	if !IsNil(o.InputBackgroundDefault) {
-		toSerialize["input-background-default"] = o.InputBackgroundDefault
+		toSerialize["input_background_default"] = o.InputBackgroundDefault
 	}
 	if !IsNil(o.InputBackgroundDisabled) {
-		toSerialize["input-background-disabled"] = o.InputBackgroundDisabled
+		toSerialize["input_background_disabled"] = o.InputBackgroundDisabled
 	}
 	if !IsNil(o.InputBackgroundHover) {
-		toSerialize["input-background-hover"] = o.InputBackgroundHover
+		toSerialize["input_background_hover"] = o.InputBackgroundHover
 	}
 	if !IsNil(o.InputBorderDefault) {
-		toSerialize["input-border-default"] = o.InputBorderDefault
+		toSerialize["input_border_default"] = o.InputBorderDefault
 	}
 	if !IsNil(o.InputBorderDisabled) {
-		toSerialize["input-border-disabled"] = o.InputBorderDisabled
+		toSerialize["input_border_disabled"] = o.InputBorderDisabled
 	}
 	if !IsNil(o.InputBorderFocus) {
-		toSerialize["input-border-focus"] = o.InputBorderFocus
+		toSerialize["input_border_focus"] = o.InputBorderFocus
 	}
 	if !IsNil(o.InputBorderHover) {
-		toSerialize["input-border-hover"] = o.InputBorderHover
+		toSerialize["input_border_hover"] = o.InputBorderHover
 	}
 	if !IsNil(o.InputForegroundDisabled) {
-		toSerialize["input-foreground-disabled"] = o.InputForegroundDisabled
+		toSerialize["input_foreground_disabled"] = o.InputForegroundDisabled
 	}
 	if !IsNil(o.InputForegroundPrimary) {
-		toSerialize["input-foreground-primary"] = o.InputForegroundPrimary
+		toSerialize["input_foreground_primary"] = o.InputForegroundPrimary
 	}
 	if !IsNil(o.InputForegroundSecondary) {
-		toSerialize["input-foreground-secondary"] = o.InputForegroundSecondary
+		toSerialize["input_foreground_secondary"] = o.InputForegroundSecondary
 	}
 	if !IsNil(o.InputForegroundTertiary) {
-		toSerialize["input-foreground-tertiary"] = o.InputForegroundTertiary
+		toSerialize["input_foreground_tertiary"] = o.InputForegroundTertiary
 	}
 	if !IsNil(o.InterfaceBackgroundBrandPrimary) {
-		toSerialize["interface-background-brand-primary"] = o.InterfaceBackgroundBrandPrimary
+		toSerialize["interface_background_brand_primary"] = o.InterfaceBackgroundBrandPrimary
 	}
 	if !IsNil(o.InterfaceBackgroundBrandPrimaryHover) {
-		toSerialize["interface-background-brand-primary-hover"] = o.InterfaceBackgroundBrandPrimaryHover
+		toSerialize["interface_background_brand_primary_hover"] = o.InterfaceBackgroundBrandPrimaryHover
 	}
 	if !IsNil(o.InterfaceBackgroundBrandSecondary) {
-		toSerialize["interface-background-brand-secondary"] = o.InterfaceBackgroundBrandSecondary
+		toSerialize["interface_background_brand_secondary"] = o.InterfaceBackgroundBrandSecondary
 	}
 	if !IsNil(o.InterfaceBackgroundBrandSecondaryHover) {
-		toSerialize["interface-background-brand-secondary-hover"] = o.InterfaceBackgroundBrandSecondaryHover
+		toSerialize["interface_background_brand_secondary_hover"] = o.InterfaceBackgroundBrandSecondaryHover
 	}
 	if !IsNil(o.InterfaceBackgroundDefaultInverted) {
-		toSerialize["interface-background-default-inverted"] = o.InterfaceBackgroundDefaultInverted
+		toSerialize["interface_background_default_inverted"] = o.InterfaceBackgroundDefaultInverted
 	}
 	if !IsNil(o.InterfaceBackgroundDefaultInvertedHover) {
-		toSerialize["interface-background-default-inverted-hover"] = o.InterfaceBackgroundDefaultInvertedHover
+		toSerialize["interface_background_default_inverted_hover"] = o.InterfaceBackgroundDefaultInvertedHover
 	}
 	if !IsNil(o.InterfaceBackgroundDefaultNone) {
-		toSerialize["interface-background-default-none"] = o.InterfaceBackgroundDefaultNone
+		toSerialize["interface_background_default_none"] = o.InterfaceBackgroundDefaultNone
 	}
 	if !IsNil(o.InterfaceBackgroundDefaultPrimary) {
-		toSerialize["interface-background-default-primary"] = o.InterfaceBackgroundDefaultPrimary
+		toSerialize["interface_background_default_primary"] = o.InterfaceBackgroundDefaultPrimary
 	}
 	if !IsNil(o.InterfaceBackgroundDefaultPrimaryHover) {
-		toSerialize["interface-background-default-primary-hover"] = o.InterfaceBackgroundDefaultPrimaryHover
+		toSerialize["interface_background_default_primary_hover"] = o.InterfaceBackgroundDefaultPrimaryHover
 	}
 	if !IsNil(o.InterfaceBackgroundDefaultSecondary) {
-		toSerialize["interface-background-default-secondary"] = o.InterfaceBackgroundDefaultSecondary
+		toSerialize["interface_background_default_secondary"] = o.InterfaceBackgroundDefaultSecondary
 	}
 	if !IsNil(o.InterfaceBackgroundDefaultSecondaryHover) {
-		toSerialize["interface-background-default-secondary-hover"] = o.InterfaceBackgroundDefaultSecondaryHover
+		toSerialize["interface_background_default_secondary_hover"] = o.InterfaceBackgroundDefaultSecondaryHover
 	}
 	if !IsNil(o.InterfaceBackgroundDefaultTertiary) {
-		toSerialize["interface-background-default-tertiary"] = o.InterfaceBackgroundDefaultTertiary
+		toSerialize["interface_background_default_tertiary"] = o.InterfaceBackgroundDefaultTertiary
 	}
 	if !IsNil(o.InterfaceBackgroundDefaultTertiaryHover) {
-		toSerialize["interface-background-default-tertiary-hover"] = o.InterfaceBackgroundDefaultTertiaryHover
+		toSerialize["interface_background_default_tertiary_hover"] = o.InterfaceBackgroundDefaultTertiaryHover
 	}
 	if !IsNil(o.InterfaceBackgroundDisabledDisabled) {
-		toSerialize["interface-background-disabled-disabled"] = o.InterfaceBackgroundDisabledDisabled
+		toSerialize["interface_background_disabled_disabled"] = o.InterfaceBackgroundDisabledDisabled
 	}
 	if !IsNil(o.InterfaceBackgroundValidationDanger) {
-		toSerialize["interface-background-validation-danger"] = o.InterfaceBackgroundValidationDanger
+		toSerialize["interface_background_validation_danger"] = o.InterfaceBackgroundValidationDanger
 	}
 	if !IsNil(o.InterfaceBackgroundValidationSuccess) {
-		toSerialize["interface-background-validation-success"] = o.InterfaceBackgroundValidationSuccess
+		toSerialize["interface_background_validation_success"] = o.InterfaceBackgroundValidationSuccess
 	}
 	if !IsNil(o.InterfaceBackgroundValidationWarning) {
-		toSerialize["interface-background-validation-warning"] = o.InterfaceBackgroundValidationWarning
+		toSerialize["interface_background_validation_warning"] = o.InterfaceBackgroundValidationWarning
 	}
 	if !IsNil(o.InterfaceBorderBrandBrand) {
-		toSerialize["interface-border-brand-brand"] = o.InterfaceBorderBrandBrand
+		toSerialize["interface_border_brand_brand"] = o.InterfaceBorderBrandBrand
 	}
 	if !IsNil(o.InterfaceBorderDefaultInverted) {
-		toSerialize["interface-border-default-inverted"] = o.InterfaceBorderDefaultInverted
+		toSerialize["interface_border_default_inverted"] = o.InterfaceBorderDefaultInverted
 	}
 	if !IsNil(o.InterfaceBorderDefaultNone) {
-		toSerialize["interface-border-default-none"] = o.InterfaceBorderDefaultNone
+		toSerialize["interface_border_default_none"] = o.InterfaceBorderDefaultNone
 	}
 	if !IsNil(o.InterfaceBorderDefaultPrimary) {
-		toSerialize["interface-border-default-primary"] = o.InterfaceBorderDefaultPrimary
+		toSerialize["interface_border_default_primary"] = o.InterfaceBorderDefaultPrimary
 	}
 	if !IsNil(o.InterfaceBorderDisabledDisabled) {
-		toSerialize["interface-border-disabled-disabled"] = o.InterfaceBorderDisabledDisabled
+		toSerialize["interface_border_disabled_disabled"] = o.InterfaceBorderDisabledDisabled
 	}
 	if !IsNil(o.InterfaceBorderValidationDanger) {
-		toSerialize["interface-border-validation-danger"] = o.InterfaceBorderValidationDanger
+		toSerialize["interface_border_validation_danger"] = o.InterfaceBorderValidationDanger
 	}
 	if !IsNil(o.InterfaceBorderValidationSuccess) {
-		toSerialize["interface-border-validation-success"] = o.InterfaceBorderValidationSuccess
+		toSerialize["interface_border_validation_success"] = o.InterfaceBorderValidationSuccess
 	}
 	if !IsNil(o.InterfaceBorderValidationWarning) {
-		toSerialize["interface-border-validation-warning"] = o.InterfaceBorderValidationWarning
+		toSerialize["interface_border_validation_warning"] = o.InterfaceBorderValidationWarning
 	}
 	if !IsNil(o.InterfaceForegroundBrandOnPrimary) {
-		toSerialize["interface-foreground-brand-on-primary"] = o.InterfaceForegroundBrandOnPrimary
+		toSerialize["interface_foreground_brand_on_primary"] = o.InterfaceForegroundBrandOnPrimary
 	}
 	if !IsNil(o.InterfaceForegroundBrandOnSecondary) {
-		toSerialize["interface-foreground-brand-on-secondary"] = o.InterfaceForegroundBrandOnSecondary
+		toSerialize["interface_foreground_brand_on_secondary"] = o.InterfaceForegroundBrandOnSecondary
 	}
 	if !IsNil(o.InterfaceForegroundBrandPrimary) {
-		toSerialize["interface-foreground-brand-primary"] = o.InterfaceForegroundBrandPrimary
+		toSerialize["interface_foreground_brand_primary"] = o.InterfaceForegroundBrandPrimary
 	}
 	if !IsNil(o.InterfaceForegroundBrandSecondary) {
-		toSerialize["interface-foreground-brand-secondary"] = o.InterfaceForegroundBrandSecondary
+		toSerialize["interface_foreground_brand_secondary"] = o.InterfaceForegroundBrandSecondary
 	}
 	if !IsNil(o.InterfaceForegroundDefaultInverted) {
-		toSerialize["interface-foreground-default-inverted"] = o.InterfaceForegroundDefaultInverted
+		toSerialize["interface_foreground_default_inverted"] = o.InterfaceForegroundDefaultInverted
 	}
 	if !IsNil(o.InterfaceForegroundDefaultPrimary) {
-		toSerialize["interface-foreground-default-primary"] = o.InterfaceForegroundDefaultPrimary
+		toSerialize["interface_foreground_default_primary"] = o.InterfaceForegroundDefaultPrimary
 	}
 	if !IsNil(o.InterfaceForegroundDefaultSecondary) {
-		toSerialize["interface-foreground-default-secondary"] = o.InterfaceForegroundDefaultSecondary
+		toSerialize["interface_foreground_default_secondary"] = o.InterfaceForegroundDefaultSecondary
 	}
 	if !IsNil(o.InterfaceForegroundDefaultTertiary) {
-		toSerialize["interface-foreground-default-tertiary"] = o.InterfaceForegroundDefaultTertiary
+		toSerialize["interface_foreground_default_tertiary"] = o.InterfaceForegroundDefaultTertiary
 	}
 	if !IsNil(o.InterfaceForegroundDisabledDisabled) {
-		toSerialize["interface-foreground-disabled-disabled"] = o.InterfaceForegroundDisabledDisabled
+		toSerialize["interface_foreground_disabled_disabled"] = o.InterfaceForegroundDisabledDisabled
 	}
 	if !IsNil(o.InterfaceForegroundDisabledOnDisabled) {
-		toSerialize["interface-foreground-disabled-on-disabled"] = o.InterfaceForegroundDisabledOnDisabled
+		toSerialize["interface_foreground_disabled_on_disabled"] = o.InterfaceForegroundDisabledOnDisabled
 	}
 	if !IsNil(o.InterfaceForegroundValidationDanger) {
-		toSerialize["interface-foreground-validation-danger"] = o.InterfaceForegroundValidationDanger
+		toSerialize["interface_foreground_validation_danger"] = o.InterfaceForegroundValidationDanger
 	}
 	if !IsNil(o.InterfaceForegroundValidationSuccess) {
-		toSerialize["interface-foreground-validation-success"] = o.InterfaceForegroundValidationSuccess
+		toSerialize["interface_foreground_validation_success"] = o.InterfaceForegroundValidationSuccess
 	}
 	if !IsNil(o.InterfaceForegroundValidationWarning) {
-		toSerialize["interface-foreground-validation-warning"] = o.InterfaceForegroundValidationWarning
+		toSerialize["interface_foreground_validation_warning"] = o.InterfaceForegroundValidationWarning
 	}
 	if !IsNil(o.OryBackgroundDefault) {
-		toSerialize["ory-background-default"] = o.OryBackgroundDefault
+		toSerialize["ory_background_default"] = o.OryBackgroundDefault
 	}
 	if !IsNil(o.OryBorderDefault) {
-		toSerialize["ory-border-default"] = o.OryBorderDefault
+		toSerialize["ory_border_default"] = o.OryBorderDefault
 	}
 	if !IsNil(o.OryForegroundDefault) {
-		toSerialize["ory-foreground-default"] = o.OryForegroundDefault
+		toSerialize["ory_foreground_default"] = o.OryForegroundDefault
 	}
 	if !IsNil(o.RadioBackgroundChecked) {
-		toSerialize["radio-background-checked"] = o.RadioBackgroundChecked
+		toSerialize["radio_background_checked"] = o.RadioBackgroundChecked
 	}
 	if !IsNil(o.RadioBackgroundDefault) {
-		toSerialize["radio-background-default"] = o.RadioBackgroundDefault
+		toSerialize["radio_background_default"] = o.RadioBackgroundDefault
 	}
 	if !IsNil(o.RadioBorderChecked) {
-		toSerialize["radio-border-checked"] = o.RadioBorderChecked
+		toSerialize["radio_border_checked"] = o.RadioBorderChecked
 	}
 	if !IsNil(o.RadioBorderDefault) {
-		toSerialize["radio-border-default"] = o.RadioBorderDefault
+		toSerialize["radio_border_default"] = o.RadioBorderDefault
 	}
 	if !IsNil(o.RadioForegroundChecked) {
-		toSerialize["radio-foreground-checked"] = o.RadioForegroundChecked
+		toSerialize["radio_foreground_checked"] = o.RadioForegroundChecked
 	}
 	if !IsNil(o.RadioForegroundDefault) {
-		toSerialize["radio-foreground-default"] = o.RadioForegroundDefault
+		toSerialize["radio_foreground_default"] = o.RadioForegroundDefault
 	}
 	if !IsNil(o.ToggleBackgroundChecked) {
-		toSerialize["toggle-background-checked"] = o.ToggleBackgroundChecked
+		toSerialize["toggle_background_checked"] = o.ToggleBackgroundChecked
 	}
 	if !IsNil(o.ToggleBackgroundDefault) {
-		toSerialize["toggle-background-default"] = o.ToggleBackgroundDefault
+		toSerialize["toggle_background_default"] = o.ToggleBackgroundDefault
 	}
 	if !IsNil(o.ToggleBorderChecked) {
-		toSerialize["toggle-border-checked"] = o.ToggleBorderChecked
+		toSerialize["toggle_border_checked"] = o.ToggleBorderChecked
 	}
 	if !IsNil(o.ToggleBorderDefault) {
-		toSerialize["toggle-border-default"] = o.ToggleBorderDefault
+		toSerialize["toggle_border_default"] = o.ToggleBorderDefault
 	}
 	if !IsNil(o.ToggleForegroundChecked) {
-		toSerialize["toggle-foreground-checked"] = o.ToggleForegroundChecked
+		toSerialize["toggle_foreground_checked"] = o.ToggleForegroundChecked
 	}
 	if !IsNil(o.ToggleForegroundDefault) {
-		toSerialize["toggle-foreground-default"] = o.ToggleForegroundDefault
+		toSerialize["toggle_foreground_default"] = o.ToggleForegroundDefault
 	}
 	if !IsNil(o.Ui100) {
-		toSerialize["ui-100"] = o.Ui100
+		toSerialize["ui_100"] = o.Ui100
 	}
 	if !IsNil(o.Ui200) {
-		toSerialize["ui-200"] = o.Ui200
+		toSerialize["ui_200"] = o.Ui200
 	}
 	if !IsNil(o.Ui300) {
-		toSerialize["ui-300"] = o.Ui300
+		toSerialize["ui_300"] = o.Ui300
 	}
 	if !IsNil(o.Ui400) {
-		toSerialize["ui-400"] = o.Ui400
+		toSerialize["ui_400"] = o.Ui400
 	}
 	if !IsNil(o.Ui50) {
-		toSerialize["ui-50"] = o.Ui50
+		toSerialize["ui_50"] = o.Ui50
 	}
 	if !IsNil(o.Ui500) {
-		toSerialize["ui-500"] = o.Ui500
+		toSerialize["ui_500"] = o.Ui500
 	}
 	if !IsNil(o.Ui600) {
-		toSerialize["ui-600"] = o.Ui600
+		toSerialize["ui_600"] = o.Ui600
 	}
 	if !IsNil(o.Ui700) {
-		toSerialize["ui-700"] = o.Ui700
+		toSerialize["ui_700"] = o.Ui700
 	}
 	if !IsNil(o.Ui800) {
-		toSerialize["ui-800"] = o.Ui800
+		toSerialize["ui_800"] = o.Ui800
 	}
 	if !IsNil(o.Ui900) {
-		toSerialize["ui-900"] = o.Ui900
+		toSerialize["ui_900"] = o.Ui900
 	}
 	if !IsNil(o.Ui950) {
-		toSerialize["ui-950"] = o.Ui950
+		toSerialize["ui_950"] = o.Ui950
 	}
 	if !IsNil(o.UiBlack) {
-		toSerialize["ui-black"] = o.UiBlack
+		toSerialize["ui_black"] = o.UiBlack
 	}
 	if !IsNil(o.UiDanger) {
-		toSerialize["ui-danger"] = o.UiDanger
+		toSerialize["ui_danger"] = o.UiDanger
 	}
 	if !IsNil(o.UiSuccess) {
-		toSerialize["ui-success"] = o.UiSuccess
+		toSerialize["ui_success"] = o.UiSuccess
 	}
 	if !IsNil(o.UiTransparent) {
-		toSerialize["ui-transparent"] = o.UiTransparent
+		toSerialize["ui_transparent"] = o.UiTransparent
 	}
 	if !IsNil(o.UiWarning) {
-		toSerialize["ui-warning"] = o.UiWarning
+		toSerialize["ui_warning"] = o.UiWarning
 	}
 	if !IsNil(o.UiWhite) {
-		toSerialize["ui-white"] = o.UiWhite
+		toSerialize["ui_white"] = o.UiWhite
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -5258,150 +5258,150 @@ func (o *AccountExperienceColors) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "ax-background-default")
-		delete(additionalProperties, "brand-100")
-		delete(additionalProperties, "brand-200")
-		delete(additionalProperties, "brand-300")
-		delete(additionalProperties, "brand-400")
-		delete(additionalProperties, "brand-50")
-		delete(additionalProperties, "brand-500")
-		delete(additionalProperties, "brand-600")
-		delete(additionalProperties, "brand-700")
-		delete(additionalProperties, "brand-800")
-		delete(additionalProperties, "brand-900")
-		delete(additionalProperties, "brand-950")
-		delete(additionalProperties, "button-identifier-background-default")
-		delete(additionalProperties, "button-identifier-background-hover")
-		delete(additionalProperties, "button-identifier-border-border-default")
-		delete(additionalProperties, "button-identifier-border-border-hover")
-		delete(additionalProperties, "button-identifier-foreground-default")
-		delete(additionalProperties, "button-identifier-foreground-hover")
-		delete(additionalProperties, "button-link-brand-brand")
-		delete(additionalProperties, "button-link-brand-brand-hover")
-		delete(additionalProperties, "button-link-default-primary")
-		delete(additionalProperties, "button-link-default-primary-hover")
-		delete(additionalProperties, "button-link-default-secondary")
-		delete(additionalProperties, "button-link-default-secondary-hover")
-		delete(additionalProperties, "button-link-disabled-disabled")
-		delete(additionalProperties, "button-primary-background-default")
-		delete(additionalProperties, "button-primary-background-disabled")
-		delete(additionalProperties, "button-primary-background-hover")
-		delete(additionalProperties, "button-primary-border-default")
-		delete(additionalProperties, "button-primary-border-disabled")
-		delete(additionalProperties, "button-primary-border-hover")
-		delete(additionalProperties, "button-primary-foreground-default")
-		delete(additionalProperties, "button-primary-foreground-disabled")
-		delete(additionalProperties, "button-primary-foreground-hover")
-		delete(additionalProperties, "button-secondary-background-default")
-		delete(additionalProperties, "button-secondary-background-disabled")
-		delete(additionalProperties, "button-secondary-background-hover")
-		delete(additionalProperties, "button-secondary-border-default")
-		delete(additionalProperties, "button-secondary-border-disabled")
-		delete(additionalProperties, "button-secondary-border-hover")
-		delete(additionalProperties, "button-secondary-foreground-default")
-		delete(additionalProperties, "button-secondary-foreground-disabled")
-		delete(additionalProperties, "button-secondary-foreground-hover")
-		delete(additionalProperties, "button-social-background-default")
-		delete(additionalProperties, "button-social-background-disabled")
-		delete(additionalProperties, "button-social-background-generic-provider")
-		delete(additionalProperties, "button-social-background-hover")
-		delete(additionalProperties, "button-social-border-default")
-		delete(additionalProperties, "button-social-border-disabled")
-		delete(additionalProperties, "button-social-border-generic-provider")
-		delete(additionalProperties, "button-social-border-hover")
-		delete(additionalProperties, "button-social-foreground-default")
-		delete(additionalProperties, "button-social-foreground-disabled")
-		delete(additionalProperties, "button-social-foreground-generic-provider")
-		delete(additionalProperties, "button-social-foreground-hover")
-		delete(additionalProperties, "checkbox-background-checked")
-		delete(additionalProperties, "checkbox-background-default")
-		delete(additionalProperties, "checkbox-border-checkbox-border-checked")
-		delete(additionalProperties, "checkbox-border-checkbox-border-default")
-		delete(additionalProperties, "checkbox-foreground-checked")
-		delete(additionalProperties, "checkbox-foreground-default")
-		delete(additionalProperties, "form-background-default")
-		delete(additionalProperties, "form-border-default")
-		delete(additionalProperties, "input-background-default")
-		delete(additionalProperties, "input-background-disabled")
-		delete(additionalProperties, "input-background-hover")
-		delete(additionalProperties, "input-border-default")
-		delete(additionalProperties, "input-border-disabled")
-		delete(additionalProperties, "input-border-focus")
-		delete(additionalProperties, "input-border-hover")
-		delete(additionalProperties, "input-foreground-disabled")
-		delete(additionalProperties, "input-foreground-primary")
-		delete(additionalProperties, "input-foreground-secondary")
-		delete(additionalProperties, "input-foreground-tertiary")
-		delete(additionalProperties, "interface-background-brand-primary")
-		delete(additionalProperties, "interface-background-brand-primary-hover")
-		delete(additionalProperties, "interface-background-brand-secondary")
-		delete(additionalProperties, "interface-background-brand-secondary-hover")
-		delete(additionalProperties, "interface-background-default-inverted")
-		delete(additionalProperties, "interface-background-default-inverted-hover")
-		delete(additionalProperties, "interface-background-default-none")
-		delete(additionalProperties, "interface-background-default-primary")
-		delete(additionalProperties, "interface-background-default-primary-hover")
-		delete(additionalProperties, "interface-background-default-secondary")
-		delete(additionalProperties, "interface-background-default-secondary-hover")
-		delete(additionalProperties, "interface-background-default-tertiary")
-		delete(additionalProperties, "interface-background-default-tertiary-hover")
-		delete(additionalProperties, "interface-background-disabled-disabled")
-		delete(additionalProperties, "interface-background-validation-danger")
-		delete(additionalProperties, "interface-background-validation-success")
-		delete(additionalProperties, "interface-background-validation-warning")
-		delete(additionalProperties, "interface-border-brand-brand")
-		delete(additionalProperties, "interface-border-default-inverted")
-		delete(additionalProperties, "interface-border-default-none")
-		delete(additionalProperties, "interface-border-default-primary")
-		delete(additionalProperties, "interface-border-disabled-disabled")
-		delete(additionalProperties, "interface-border-validation-danger")
-		delete(additionalProperties, "interface-border-validation-success")
-		delete(additionalProperties, "interface-border-validation-warning")
-		delete(additionalProperties, "interface-foreground-brand-on-primary")
-		delete(additionalProperties, "interface-foreground-brand-on-secondary")
-		delete(additionalProperties, "interface-foreground-brand-primary")
-		delete(additionalProperties, "interface-foreground-brand-secondary")
-		delete(additionalProperties, "interface-foreground-default-inverted")
-		delete(additionalProperties, "interface-foreground-default-primary")
-		delete(additionalProperties, "interface-foreground-default-secondary")
-		delete(additionalProperties, "interface-foreground-default-tertiary")
-		delete(additionalProperties, "interface-foreground-disabled-disabled")
-		delete(additionalProperties, "interface-foreground-disabled-on-disabled")
-		delete(additionalProperties, "interface-foreground-validation-danger")
-		delete(additionalProperties, "interface-foreground-validation-success")
-		delete(additionalProperties, "interface-foreground-validation-warning")
-		delete(additionalProperties, "ory-background-default")
-		delete(additionalProperties, "ory-border-default")
-		delete(additionalProperties, "ory-foreground-default")
-		delete(additionalProperties, "radio-background-checked")
-		delete(additionalProperties, "radio-background-default")
-		delete(additionalProperties, "radio-border-checked")
-		delete(additionalProperties, "radio-border-default")
-		delete(additionalProperties, "radio-foreground-checked")
-		delete(additionalProperties, "radio-foreground-default")
-		delete(additionalProperties, "toggle-background-checked")
-		delete(additionalProperties, "toggle-background-default")
-		delete(additionalProperties, "toggle-border-checked")
-		delete(additionalProperties, "toggle-border-default")
-		delete(additionalProperties, "toggle-foreground-checked")
-		delete(additionalProperties, "toggle-foreground-default")
-		delete(additionalProperties, "ui-100")
-		delete(additionalProperties, "ui-200")
-		delete(additionalProperties, "ui-300")
-		delete(additionalProperties, "ui-400")
-		delete(additionalProperties, "ui-50")
-		delete(additionalProperties, "ui-500")
-		delete(additionalProperties, "ui-600")
-		delete(additionalProperties, "ui-700")
-		delete(additionalProperties, "ui-800")
-		delete(additionalProperties, "ui-900")
-		delete(additionalProperties, "ui-950")
-		delete(additionalProperties, "ui-black")
-		delete(additionalProperties, "ui-danger")
-		delete(additionalProperties, "ui-success")
-		delete(additionalProperties, "ui-transparent")
-		delete(additionalProperties, "ui-warning")
-		delete(additionalProperties, "ui-white")
+		delete(additionalProperties, "ax_background_default")
+		delete(additionalProperties, "brand_100")
+		delete(additionalProperties, "brand_200")
+		delete(additionalProperties, "brand_300")
+		delete(additionalProperties, "brand_400")
+		delete(additionalProperties, "brand_50")
+		delete(additionalProperties, "brand_500")
+		delete(additionalProperties, "brand_600")
+		delete(additionalProperties, "brand_700")
+		delete(additionalProperties, "brand_800")
+		delete(additionalProperties, "brand_900")
+		delete(additionalProperties, "brand_950")
+		delete(additionalProperties, "button_identifier_background_default")
+		delete(additionalProperties, "button_identifier_background_hover")
+		delete(additionalProperties, "button_identifier_border_border_default")
+		delete(additionalProperties, "button_identifier_border_border_hover")
+		delete(additionalProperties, "button_identifier_foreground_default")
+		delete(additionalProperties, "button_identifier_foreground_hover")
+		delete(additionalProperties, "button_link_brand_brand")
+		delete(additionalProperties, "button_link_brand_brand_hover")
+		delete(additionalProperties, "button_link_default_primary")
+		delete(additionalProperties, "button_link_default_primary_hover")
+		delete(additionalProperties, "button_link_default_secondary")
+		delete(additionalProperties, "button_link_default_secondary_hover")
+		delete(additionalProperties, "button_link_disabled_disabled")
+		delete(additionalProperties, "button_primary_background_default")
+		delete(additionalProperties, "button_primary_background_disabled")
+		delete(additionalProperties, "button_primary_background_hover")
+		delete(additionalProperties, "button_primary_border_default")
+		delete(additionalProperties, "button_primary_border_disabled")
+		delete(additionalProperties, "button_primary_border_hover")
+		delete(additionalProperties, "button_primary_foreground_default")
+		delete(additionalProperties, "button_primary_foreground_disabled")
+		delete(additionalProperties, "button_primary_foreground_hover")
+		delete(additionalProperties, "button_secondary_background_default")
+		delete(additionalProperties, "button_secondary_background_disabled")
+		delete(additionalProperties, "button_secondary_background_hover")
+		delete(additionalProperties, "button_secondary_border_default")
+		delete(additionalProperties, "button_secondary_border_disabled")
+		delete(additionalProperties, "button_secondary_border_hover")
+		delete(additionalProperties, "button_secondary_foreground_default")
+		delete(additionalProperties, "button_secondary_foreground_disabled")
+		delete(additionalProperties, "button_secondary_foreground_hover")
+		delete(additionalProperties, "button_social_background_default")
+		delete(additionalProperties, "button_social_background_disabled")
+		delete(additionalProperties, "button_social_background_generic_provider")
+		delete(additionalProperties, "button_social_background_hover")
+		delete(additionalProperties, "button_social_border_default")
+		delete(additionalProperties, "button_social_border_disabled")
+		delete(additionalProperties, "button_social_border_generic_provider")
+		delete(additionalProperties, "button_social_border_hover")
+		delete(additionalProperties, "button_social_foreground_default")
+		delete(additionalProperties, "button_social_foreground_disabled")
+		delete(additionalProperties, "button_social_foreground_generic_provider")
+		delete(additionalProperties, "button_social_foreground_hover")
+		delete(additionalProperties, "checkbox_background_checked")
+		delete(additionalProperties, "checkbox_background_default")
+		delete(additionalProperties, "checkbox_border_checkbox_border_checked")
+		delete(additionalProperties, "checkbox_border_checkbox_border_default")
+		delete(additionalProperties, "checkbox_foreground_checked")
+		delete(additionalProperties, "checkbox_foreground_default")
+		delete(additionalProperties, "form_background_default")
+		delete(additionalProperties, "form_border_default")
+		delete(additionalProperties, "input_background_default")
+		delete(additionalProperties, "input_background_disabled")
+		delete(additionalProperties, "input_background_hover")
+		delete(additionalProperties, "input_border_default")
+		delete(additionalProperties, "input_border_disabled")
+		delete(additionalProperties, "input_border_focus")
+		delete(additionalProperties, "input_border_hover")
+		delete(additionalProperties, "input_foreground_disabled")
+		delete(additionalProperties, "input_foreground_primary")
+		delete(additionalProperties, "input_foreground_secondary")
+		delete(additionalProperties, "input_foreground_tertiary")
+		delete(additionalProperties, "interface_background_brand_primary")
+		delete(additionalProperties, "interface_background_brand_primary_hover")
+		delete(additionalProperties, "interface_background_brand_secondary")
+		delete(additionalProperties, "interface_background_brand_secondary_hover")
+		delete(additionalProperties, "interface_background_default_inverted")
+		delete(additionalProperties, "interface_background_default_inverted_hover")
+		delete(additionalProperties, "interface_background_default_none")
+		delete(additionalProperties, "interface_background_default_primary")
+		delete(additionalProperties, "interface_background_default_primary_hover")
+		delete(additionalProperties, "interface_background_default_secondary")
+		delete(additionalProperties, "interface_background_default_secondary_hover")
+		delete(additionalProperties, "interface_background_default_tertiary")
+		delete(additionalProperties, "interface_background_default_tertiary_hover")
+		delete(additionalProperties, "interface_background_disabled_disabled")
+		delete(additionalProperties, "interface_background_validation_danger")
+		delete(additionalProperties, "interface_background_validation_success")
+		delete(additionalProperties, "interface_background_validation_warning")
+		delete(additionalProperties, "interface_border_brand_brand")
+		delete(additionalProperties, "interface_border_default_inverted")
+		delete(additionalProperties, "interface_border_default_none")
+		delete(additionalProperties, "interface_border_default_primary")
+		delete(additionalProperties, "interface_border_disabled_disabled")
+		delete(additionalProperties, "interface_border_validation_danger")
+		delete(additionalProperties, "interface_border_validation_success")
+		delete(additionalProperties, "interface_border_validation_warning")
+		delete(additionalProperties, "interface_foreground_brand_on_primary")
+		delete(additionalProperties, "interface_foreground_brand_on_secondary")
+		delete(additionalProperties, "interface_foreground_brand_primary")
+		delete(additionalProperties, "interface_foreground_brand_secondary")
+		delete(additionalProperties, "interface_foreground_default_inverted")
+		delete(additionalProperties, "interface_foreground_default_primary")
+		delete(additionalProperties, "interface_foreground_default_secondary")
+		delete(additionalProperties, "interface_foreground_default_tertiary")
+		delete(additionalProperties, "interface_foreground_disabled_disabled")
+		delete(additionalProperties, "interface_foreground_disabled_on_disabled")
+		delete(additionalProperties, "interface_foreground_validation_danger")
+		delete(additionalProperties, "interface_foreground_validation_success")
+		delete(additionalProperties, "interface_foreground_validation_warning")
+		delete(additionalProperties, "ory_background_default")
+		delete(additionalProperties, "ory_border_default")
+		delete(additionalProperties, "ory_foreground_default")
+		delete(additionalProperties, "radio_background_checked")
+		delete(additionalProperties, "radio_background_default")
+		delete(additionalProperties, "radio_border_checked")
+		delete(additionalProperties, "radio_border_default")
+		delete(additionalProperties, "radio_foreground_checked")
+		delete(additionalProperties, "radio_foreground_default")
+		delete(additionalProperties, "toggle_background_checked")
+		delete(additionalProperties, "toggle_background_default")
+		delete(additionalProperties, "toggle_border_checked")
+		delete(additionalProperties, "toggle_border_default")
+		delete(additionalProperties, "toggle_foreground_checked")
+		delete(additionalProperties, "toggle_foreground_default")
+		delete(additionalProperties, "ui_100")
+		delete(additionalProperties, "ui_200")
+		delete(additionalProperties, "ui_300")
+		delete(additionalProperties, "ui_400")
+		delete(additionalProperties, "ui_50")
+		delete(additionalProperties, "ui_500")
+		delete(additionalProperties, "ui_600")
+		delete(additionalProperties, "ui_700")
+		delete(additionalProperties, "ui_800")
+		delete(additionalProperties, "ui_900")
+		delete(additionalProperties, "ui_950")
+		delete(additionalProperties, "ui_black")
+		delete(additionalProperties, "ui_danger")
+		delete(additionalProperties, "ui_success")
+		delete(additionalProperties, "ui_transparent")
+		delete(additionalProperties, "ui_warning")
+		delete(additionalProperties, "ui_white")
 		o.AdditionalProperties = additionalProperties
 	}
 

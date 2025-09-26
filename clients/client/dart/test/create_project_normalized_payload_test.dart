@@ -765,6 +765,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<String> kratosSecretsPagination
+    test('to test the property `kratosSecretsPagination`', () async {
+      // TODO
+    });
+
     // Configures if account enumeration should be mitigated when using identifier first login.
     // bool kratosSecurityAccountEnumerationMitigate
     test('to test the property `kratosSecurityAccountEnumerationMitigate`', () async {

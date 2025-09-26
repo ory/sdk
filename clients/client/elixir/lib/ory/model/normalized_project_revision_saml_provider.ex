@@ -8,6 +8,7 @@ defmodule Ory.Model.NormalizedProjectRevisionSamlProvider do
 
   @derive Jason.Encoder
   defstruct [
+    :audience_override_base_url,
     :created_at,
     :id,
     :label,
@@ -21,6 +22,7 @@ defmodule Ory.Model.NormalizedProjectRevisionSamlProvider do
   ]
 
   @type t :: %__MODULE__{
+    :audience_override_base_url => String.t | nil,
     :created_at => DateTime.t | nil,
     :id => String.t | nil,
     :label => String.t | nil,

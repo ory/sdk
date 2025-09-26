@@ -9,6 +9,8 @@ defmodule Ory.Model.OnboardingPortalLink do
   @derive Jason.Encoder
   defstruct [
     :created_at,
+    :custom_hostname_id,
+    :enable_scim,
     :enable_sso,
     :expires_at,
     :id,
@@ -19,6 +21,8 @@ defmodule Ory.Model.OnboardingPortalLink do
 
   @type t :: %__MODULE__{
     :created_at => DateTime.t | nil,
+    :custom_hostname_id => String.t | nil,
+    :enable_scim => boolean() | nil,
     :enable_sso => boolean() | nil,
     :expires_at => DateTime.t,
     :id => String.t,

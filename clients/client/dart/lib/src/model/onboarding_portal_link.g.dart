@@ -10,6 +10,10 @@ class _$OnboardingPortalLink extends OnboardingPortalLink {
   @override
   final DateTime? createdAt;
   @override
+  final String? customHostnameId;
+  @override
+  final bool? enableScim;
+  @override
   final bool? enableSso;
   @override
   final DateTime expiresAt;
@@ -28,6 +32,8 @@ class _$OnboardingPortalLink extends OnboardingPortalLink {
 
   _$OnboardingPortalLink._(
       {this.createdAt,
+      this.customHostnameId,
+      this.enableScim,
       this.enableSso,
       required this.expiresAt,
       required this.id,
@@ -60,6 +66,8 @@ class _$OnboardingPortalLink extends OnboardingPortalLink {
     if (identical(other, this)) return true;
     return other is OnboardingPortalLink &&
         createdAt == other.createdAt &&
+        customHostnameId == other.customHostnameId &&
+        enableScim == other.enableScim &&
         enableSso == other.enableSso &&
         expiresAt == other.expiresAt &&
         id == other.id &&
@@ -72,6 +80,8 @@ class _$OnboardingPortalLink extends OnboardingPortalLink {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, customHostnameId.hashCode);
+    _$hash = $jc(_$hash, enableScim.hashCode);
     _$hash = $jc(_$hash, enableSso.hashCode);
     _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
@@ -86,6 +96,8 @@ class _$OnboardingPortalLink extends OnboardingPortalLink {
   String toString() {
     return (newBuiltValueToStringHelper(r'OnboardingPortalLink')
           ..add('createdAt', createdAt)
+          ..add('customHostnameId', customHostnameId)
+          ..add('enableScim', enableScim)
           ..add('enableSso', enableSso)
           ..add('expiresAt', expiresAt)
           ..add('id', id)
@@ -103,6 +115,15 @@ class OnboardingPortalLinkBuilder
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  String? _customHostnameId;
+  String? get customHostnameId => _$this._customHostnameId;
+  set customHostnameId(String? customHostnameId) =>
+      _$this._customHostnameId = customHostnameId;
+
+  bool? _enableScim;
+  bool? get enableScim => _$this._enableScim;
+  set enableScim(bool? enableScim) => _$this._enableScim = enableScim;
 
   bool? _enableSso;
   bool? get enableSso => _$this._enableSso;
@@ -137,6 +158,8 @@ class OnboardingPortalLinkBuilder
     final $v = _$v;
     if ($v != null) {
       _createdAt = $v.createdAt;
+      _customHostnameId = $v.customHostnameId;
+      _enableScim = $v.enableScim;
       _enableSso = $v.enableSso;
       _expiresAt = $v.expiresAt;
       _id = $v.id;
@@ -166,6 +189,8 @@ class OnboardingPortalLinkBuilder
     final _$result = _$v ??
         new _$OnboardingPortalLink._(
             createdAt: createdAt,
+            customHostnameId: customHostnameId,
+            enableScim: enableScim,
             enableSso: enableSso,
             expiresAt: BuiltValueNullFieldError.checkNotNull(
                 expiresAt, r'OnboardingPortalLink', 'expiresAt'),

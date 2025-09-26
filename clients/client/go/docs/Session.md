@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Id** | **string** | Session ID | 
 **Identity** | Pointer to [**Identity**](Identity.md) |  | [optional] 
 **IssuedAt** | Pointer to **time.Time** | The Session Issuance Timestamp  When this session was issued at. Usually equal or close to &#x60;authenticated_at&#x60;. | [optional] 
-**Tokenized** | Pointer to **string** | Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the &#x60;tokenize&#x60; query parameter was set to a valid tokenize template during calls to &#x60;/session/whoami&#x60;. | [optional] 
+**Tokenized** | Pointer to **string** | Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the &#x60;tokenize_as&#x60; query parameter was set to a valid tokenize template during calls to &#x60;/session/whoami&#x60;. | [optional] 
 
 ## Methods
 

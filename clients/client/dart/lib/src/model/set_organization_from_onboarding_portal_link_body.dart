@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:ory_client/src/model/normalized_project_revision_scim_client.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/normalized_project_revision_saml_provider.dart';
 import 'package:ory_client/src/model/normalized_project_revision_third_party_provider.dart';
@@ -17,16 +18,20 @@ part 'set_organization_from_onboarding_portal_link_body.g.dart';
 /// * [kratosSelfserviceMethodsOidcConfigProviders] 
 /// * [kratosSelfserviceMethodsSamlConfigProviders] 
 /// * [revisionId] 
+/// * [scimClients] 
 @BuiltValue()
 abstract class SetOrganizationFromOnboardingPortalLinkBody implements Built<SetOrganizationFromOnboardingPortalLinkBody, SetOrganizationFromOnboardingPortalLinkBodyBuilder> {
   @BuiltValueField(wireName: r'kratos_selfservice_methods_oidc_config_providers')
-  BuiltList<NormalizedProjectRevisionThirdPartyProvider> get kratosSelfserviceMethodsOidcConfigProviders;
+  BuiltList<NormalizedProjectRevisionThirdPartyProvider>? get kratosSelfserviceMethodsOidcConfigProviders;
 
   @BuiltValueField(wireName: r'kratos_selfservice_methods_saml_config_providers')
-  BuiltList<NormalizedProjectRevisionSAMLProvider> get kratosSelfserviceMethodsSamlConfigProviders;
+  BuiltList<NormalizedProjectRevisionSAMLProvider>? get kratosSelfserviceMethodsSamlConfigProviders;
 
   @BuiltValueField(wireName: r'revision_id')
   String get revisionId;
+
+  @BuiltValueField(wireName: r'scim_clients')
+  BuiltList<NormalizedProjectRevisionScimClient>? get scimClients;
 
   SetOrganizationFromOnboardingPortalLinkBody._();
 
@@ -51,21 +56,32 @@ class _$SetOrganizationFromOnboardingPortalLinkBodySerializer implements Primiti
     SetOrganizationFromOnboardingPortalLinkBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'kratos_selfservice_methods_oidc_config_providers';
-    yield serializers.serialize(
-      object.kratosSelfserviceMethodsOidcConfigProviders,
-      specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionThirdPartyProvider)]),
-    );
-    yield r'kratos_selfservice_methods_saml_config_providers';
-    yield serializers.serialize(
-      object.kratosSelfserviceMethodsSamlConfigProviders,
-      specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionSAMLProvider)]),
-    );
+    if (object.kratosSelfserviceMethodsOidcConfigProviders != null) {
+      yield r'kratos_selfservice_methods_oidc_config_providers';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsOidcConfigProviders,
+        specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionThirdPartyProvider)]),
+      );
+    }
+    if (object.kratosSelfserviceMethodsSamlConfigProviders != null) {
+      yield r'kratos_selfservice_methods_saml_config_providers';
+      yield serializers.serialize(
+        object.kratosSelfserviceMethodsSamlConfigProviders,
+        specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionSAMLProvider)]),
+      );
+    }
     yield r'revision_id';
     yield serializers.serialize(
       object.revisionId,
       specifiedType: const FullType(String),
     );
+    if (object.scimClients != null) {
+      yield r'scim_clients';
+      yield serializers.serialize(
+        object.scimClients,
+        specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionScimClient)]),
+      );
+    }
   }
 
   @override
@@ -109,6 +125,13 @@ class _$SetOrganizationFromOnboardingPortalLinkBodySerializer implements Primiti
             specifiedType: const FullType(String),
           ) as String;
           result.revisionId = valueDes;
+          break;
+        case r'scim_clients':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionScimClient)]),
+          ) as BuiltList<NormalizedProjectRevisionScimClient>;
+          result.scimClients.replace(valueDes);
           break;
         default:
           unhandled.add(key);

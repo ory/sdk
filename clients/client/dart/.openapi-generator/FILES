@@ -8,7 +8,6 @@ doc/AcceptOAuth2ConsentRequestSession.md
 doc/AcceptOAuth2LoginRequest.md
 doc/AccountExperienceColors.md
 doc/AccountExperienceConfiguration.md
-doc/AccountExperienceThemeVariables.md
 doc/ActiveProjectInConsole.md
 doc/AddProjectToWorkspaceBody.md
 doc/Attribute.md
@@ -162,7 +161,6 @@ doc/OAuth2ClientTokenLifespans.md
 doc/OAuth2ConsentRequest.md
 doc/OAuth2ConsentRequestOpenIDConnectContext.md
 doc/OAuth2ConsentSession.md
-doc/OAuth2ConsentSessionExpiresAt.md
 doc/OAuth2LoginRequest.md
 doc/OAuth2LogoutRequest.md
 doc/OAuth2RedirectTo.md
@@ -195,6 +193,7 @@ doc/ProjectEventsDatapoint.md
 doc/ProjectHost.md
 doc/ProjectMember.md
 doc/ProjectMetadata.md
+doc/ProjectServiceAccountExperience.md
 doc/ProjectServiceIdentity.md
 doc/ProjectServiceOAuth2.md
 doc/ProjectServicePermission.md
@@ -337,7 +336,6 @@ lib/src/model/accept_o_auth2_consent_request_session.dart
 lib/src/model/accept_o_auth2_login_request.dart
 lib/src/model/account_experience_colors.dart
 lib/src/model/account_experience_configuration.dart
-lib/src/model/account_experience_theme_variables.dart
 lib/src/model/active_project_in_console.dart
 lib/src/model/add_project_to_workspace_body.dart
 lib/src/model/attribute.dart
@@ -485,7 +483,6 @@ lib/src/model/o_auth2_client_token_lifespans.dart
 lib/src/model/o_auth2_consent_request.dart
 lib/src/model/o_auth2_consent_request_open_id_connect_context.dart
 lib/src/model/o_auth2_consent_session.dart
-lib/src/model/o_auth2_consent_session_expires_at.dart
 lib/src/model/o_auth2_login_request.dart
 lib/src/model/o_auth2_logout_request.dart
 lib/src/model/o_auth2_redirect_to.dart
@@ -515,6 +512,7 @@ lib/src/model/project_events_datapoint.dart
 lib/src/model/project_host.dart
 lib/src/model/project_member.dart
 lib/src/model/project_metadata.dart
+lib/src/model/project_service_account_experience.dart
 lib/src/model/project_service_identity.dart
 lib/src/model/project_service_o_auth2.dart
 lib/src/model/project_service_permission.dart
@@ -634,7 +632,6 @@ test/accept_o_auth2_consent_request_test.dart
 test/accept_o_auth2_login_request_test.dart
 test/account_experience_colors_test.dart
 test/account_experience_configuration_test.dart
-test/account_experience_theme_variables_test.dart
 test/active_project_in_console_test.dart
 test/add_project_to_workspace_body_test.dart
 test/attribute_filter_test.dart
@@ -787,7 +784,6 @@ test/o_auth2_client_test.dart
 test/o_auth2_client_token_lifespans_test.dart
 test/o_auth2_consent_request_open_id_connect_context_test.dart
 test/o_auth2_consent_request_test.dart
-test/o_auth2_consent_session_expires_at_test.dart
 test/o_auth2_consent_session_test.dart
 test/o_auth2_login_request_test.dart
 test/o_auth2_logout_request_test.dart
@@ -820,6 +816,7 @@ test/project_events_datapoint_test.dart
 test/project_host_test.dart
 test/project_member_test.dart
 test/project_metadata_test.dart
+test/project_service_account_experience_test.dart
 test/project_service_identity_test.dart
 test/project_service_o_auth2_test.dart
 test/project_service_permission_test.dart

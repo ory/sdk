@@ -7,54 +7,64 @@ part of 'session_authentication_method.dart';
 // **************************************************************************
 
 const SessionAuthenticationMethodMethodEnum
+    _$sessionAuthenticationMethodMethodEnum_password =
+    const SessionAuthenticationMethodMethodEnum._('password');
+const SessionAuthenticationMethodMethodEnum
+    _$sessionAuthenticationMethodMethodEnum_oidc =
+    const SessionAuthenticationMethodMethodEnum._('oidc');
+const SessionAuthenticationMethodMethodEnum
+    _$sessionAuthenticationMethodMethodEnum_totp =
+    const SessionAuthenticationMethodMethodEnum._('totp');
+const SessionAuthenticationMethodMethodEnum
+    _$sessionAuthenticationMethodMethodEnum_lookupSecret =
+    const SessionAuthenticationMethodMethodEnum._('lookupSecret');
+const SessionAuthenticationMethodMethodEnum
+    _$sessionAuthenticationMethodMethodEnum_webauthn =
+    const SessionAuthenticationMethodMethodEnum._('webauthn');
+const SessionAuthenticationMethodMethodEnum
+    _$sessionAuthenticationMethodMethodEnum_code =
+    const SessionAuthenticationMethodMethodEnum._('code');
+const SessionAuthenticationMethodMethodEnum
+    _$sessionAuthenticationMethodMethodEnum_passkey =
+    const SessionAuthenticationMethodMethodEnum._('passkey');
+const SessionAuthenticationMethodMethodEnum
+    _$sessionAuthenticationMethodMethodEnum_profile =
+    const SessionAuthenticationMethodMethodEnum._('profile');
+const SessionAuthenticationMethodMethodEnum
+    _$sessionAuthenticationMethodMethodEnum_saml =
+    const SessionAuthenticationMethodMethodEnum._('saml');
+const SessionAuthenticationMethodMethodEnum
     _$sessionAuthenticationMethodMethodEnum_linkRecovery =
     const SessionAuthenticationMethodMethodEnum._('linkRecovery');
 const SessionAuthenticationMethodMethodEnum
     _$sessionAuthenticationMethodMethodEnum_codeRecovery =
     const SessionAuthenticationMethodMethodEnum._('codeRecovery');
-const SessionAuthenticationMethodMethodEnum
-    _$sessionAuthenticationMethodMethodEnum_password =
-    const SessionAuthenticationMethodMethodEnum._('password');
-const SessionAuthenticationMethodMethodEnum
-    _$sessionAuthenticationMethodMethodEnum_code =
-    const SessionAuthenticationMethodMethodEnum._('code');
-const SessionAuthenticationMethodMethodEnum
-    _$sessionAuthenticationMethodMethodEnum_totp =
-    const SessionAuthenticationMethodMethodEnum._('totp');
-const SessionAuthenticationMethodMethodEnum
-    _$sessionAuthenticationMethodMethodEnum_oidc =
-    const SessionAuthenticationMethodMethodEnum._('oidc');
-const SessionAuthenticationMethodMethodEnum
-    _$sessionAuthenticationMethodMethodEnum_webauthn =
-    const SessionAuthenticationMethodMethodEnum._('webauthn');
-const SessionAuthenticationMethodMethodEnum
-    _$sessionAuthenticationMethodMethodEnum_lookupSecret =
-    const SessionAuthenticationMethodMethodEnum._('lookupSecret');
-const SessionAuthenticationMethodMethodEnum
-    _$sessionAuthenticationMethodMethodEnum_v0Period6LegacySession =
-    const SessionAuthenticationMethodMethodEnum._('v0Period6LegacySession');
 
 SessionAuthenticationMethodMethodEnum
     _$sessionAuthenticationMethodMethodEnumValueOf(String name) {
   switch (name) {
+    case 'password':
+      return _$sessionAuthenticationMethodMethodEnum_password;
+    case 'oidc':
+      return _$sessionAuthenticationMethodMethodEnum_oidc;
+    case 'totp':
+      return _$sessionAuthenticationMethodMethodEnum_totp;
+    case 'lookupSecret':
+      return _$sessionAuthenticationMethodMethodEnum_lookupSecret;
+    case 'webauthn':
+      return _$sessionAuthenticationMethodMethodEnum_webauthn;
+    case 'code':
+      return _$sessionAuthenticationMethodMethodEnum_code;
+    case 'passkey':
+      return _$sessionAuthenticationMethodMethodEnum_passkey;
+    case 'profile':
+      return _$sessionAuthenticationMethodMethodEnum_profile;
+    case 'saml':
+      return _$sessionAuthenticationMethodMethodEnum_saml;
     case 'linkRecovery':
       return _$sessionAuthenticationMethodMethodEnum_linkRecovery;
     case 'codeRecovery':
       return _$sessionAuthenticationMethodMethodEnum_codeRecovery;
-    case 'password':
-      return _$sessionAuthenticationMethodMethodEnum_password;
-    case 'code':
-      return _$sessionAuthenticationMethodMethodEnum_code;
-    case 'totp':
-      return _$sessionAuthenticationMethodMethodEnum_totp;
-    case 'oidc':
-      return _$sessionAuthenticationMethodMethodEnum_oidc;
-    case 'webauthn':
-      return _$sessionAuthenticationMethodMethodEnum_webauthn;
-    case 'lookupSecret':
-      return _$sessionAuthenticationMethodMethodEnum_lookupSecret;
-    case 'v0Period6LegacySession':
-      return _$sessionAuthenticationMethodMethodEnum_v0Period6LegacySession;
     default:
       throw new ArgumentError(name);
   }
@@ -63,15 +73,17 @@ SessionAuthenticationMethodMethodEnum
 final BuiltSet<SessionAuthenticationMethodMethodEnum>
     _$sessionAuthenticationMethodMethodEnumValues = new BuiltSet<
         SessionAuthenticationMethodMethodEnum>(const <SessionAuthenticationMethodMethodEnum>[
+  _$sessionAuthenticationMethodMethodEnum_password,
+  _$sessionAuthenticationMethodMethodEnum_oidc,
+  _$sessionAuthenticationMethodMethodEnum_totp,
+  _$sessionAuthenticationMethodMethodEnum_lookupSecret,
+  _$sessionAuthenticationMethodMethodEnum_webauthn,
+  _$sessionAuthenticationMethodMethodEnum_code,
+  _$sessionAuthenticationMethodMethodEnum_passkey,
+  _$sessionAuthenticationMethodMethodEnum_profile,
+  _$sessionAuthenticationMethodMethodEnum_saml,
   _$sessionAuthenticationMethodMethodEnum_linkRecovery,
   _$sessionAuthenticationMethodMethodEnum_codeRecovery,
-  _$sessionAuthenticationMethodMethodEnum_password,
-  _$sessionAuthenticationMethodMethodEnum_code,
-  _$sessionAuthenticationMethodMethodEnum_totp,
-  _$sessionAuthenticationMethodMethodEnum_oidc,
-  _$sessionAuthenticationMethodMethodEnum_webauthn,
-  _$sessionAuthenticationMethodMethodEnum_lookupSecret,
-  _$sessionAuthenticationMethodMethodEnum_v0Period6LegacySession,
 ]);
 
 Serializer<SessionAuthenticationMethodMethodEnum>
@@ -81,26 +93,30 @@ Serializer<SessionAuthenticationMethodMethodEnum>
 class _$SessionAuthenticationMethodMethodEnumSerializer
     implements PrimitiveSerializer<SessionAuthenticationMethodMethodEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
+    'password': 'password',
+    'oidc': 'oidc',
+    'totp': 'totp',
+    'lookupSecret': 'lookup_secret',
+    'webauthn': 'webauthn',
+    'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
+    'saml': 'saml',
     'linkRecovery': 'link_recovery',
     'codeRecovery': 'code_recovery',
-    'password': 'password',
-    'code': 'code',
-    'totp': 'totp',
-    'oidc': 'oidc',
-    'webauthn': 'webauthn',
-    'lookupSecret': 'lookup_secret',
-    'v0Period6LegacySession': 'v0.6_legacy_session',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
+    'password': 'password',
+    'oidc': 'oidc',
+    'totp': 'totp',
+    'lookup_secret': 'lookupSecret',
+    'webauthn': 'webauthn',
+    'code': 'code',
+    'passkey': 'passkey',
+    'profile': 'profile',
+    'saml': 'saml',
     'link_recovery': 'linkRecovery',
     'code_recovery': 'codeRecovery',
-    'password': 'password',
-    'code': 'code',
-    'totp': 'totp',
-    'oidc': 'oidc',
-    'webauthn': 'webauthn',
-    'lookup_secret': 'lookupSecret',
-    'v0.6_legacy_session': 'v0Period6LegacySession',
   };
 
   @override

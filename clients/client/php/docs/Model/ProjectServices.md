@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**accountExperience** | [**\Ory\Client\Model\ProjectServiceAccountExperience**](ProjectServiceAccountExperience.md) |  | [optional]
 **identity** | [**\Ory\Client\Model\ProjectServiceIdentity**](ProjectServiceIdentity.md) |  | [optional]
 **oauth2** | [**\Ory\Client\Model\ProjectServiceOAuth2**](ProjectServiceOAuth2.md) |  | [optional]
 **permission** | [**\Ory\Client\Model\ProjectServicePermission**](ProjectServicePermission.md) |  | [optional]

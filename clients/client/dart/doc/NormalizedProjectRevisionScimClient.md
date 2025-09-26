@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **authorizationHeaderSecret** | **String** | The secret that the client uses in the authorization header to authenticate itself. | 
 **clientId** | **String** | The unique ID of the SCIM server. | 
 **createdAt** | [**DateTime**](DateTime.md) | The SCIM client's creation time | [optional] 
+**id** | **String** |  | [optional] 
 **label** | **String** | The SCIM server's label | 
 **mapperUrl** | **String** | Mapper specifies the JSONNet code snippet which uses the SCIM provider's data to hydrate the identity's data. | 
 **organizationId** | **String** | OrganizationID is the organization ID for this SCIM server. | 

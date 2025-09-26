@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | Option<**String**> | The onboarding portal link's creation date | [optional][readonly]
+**custom_hostname_id** | Option<**String**> |  | [optional]
+**enable_scim** | Option<**bool**> | Feature flag to enable SCIM configuration | [optional]
 **enable_sso** | Option<**bool**> | Feature flag to enable SSO configuration | [optional]
 **expires_at** | **String** | The onboarding portal link's expiry date | [readonly]
 **id** | **String** | The onboarding portal link's ID. | [readonly]

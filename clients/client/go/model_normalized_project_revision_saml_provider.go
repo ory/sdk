@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.21.5
+API version: v1.22.3
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,7 @@ var _ MappedNullable = &NormalizedProjectRevisionSAMLProvider{}
 
 // NormalizedProjectRevisionSAMLProvider struct for NormalizedProjectRevisionSAMLProvider
 type NormalizedProjectRevisionSAMLProvider struct {
+	AudienceOverrideBaseUrl NullableString `json:"audience_override_base_url,omitempty"`
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -59,6 +60,48 @@ func NewNormalizedProjectRevisionSAMLProvider() *NormalizedProjectRevisionSAMLPr
 func NewNormalizedProjectRevisionSAMLProviderWithDefaults() *NormalizedProjectRevisionSAMLProvider {
 	this := NormalizedProjectRevisionSAMLProvider{}
 	return &this
+}
+
+// GetAudienceOverrideBaseUrl returns the AudienceOverrideBaseUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionSAMLProvider) GetAudienceOverrideBaseUrl() string {
+	if o == nil || IsNil(o.AudienceOverrideBaseUrl.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.AudienceOverrideBaseUrl.Get()
+}
+
+// GetAudienceOverrideBaseUrlOk returns a tuple with the AudienceOverrideBaseUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevisionSAMLProvider) GetAudienceOverrideBaseUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AudienceOverrideBaseUrl.Get(), o.AudienceOverrideBaseUrl.IsSet()
+}
+
+// HasAudienceOverrideBaseUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasAudienceOverrideBaseUrl() bool {
+	if o != nil && o.AudienceOverrideBaseUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAudienceOverrideBaseUrl gets a reference to the given NullableString and assigns it to the AudienceOverrideBaseUrl field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetAudienceOverrideBaseUrl(v string) {
+	o.AudienceOverrideBaseUrl.Set(&v)
+}
+// SetAudienceOverrideBaseUrlNil sets the value for AudienceOverrideBaseUrl to be an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) SetAudienceOverrideBaseUrlNil() {
+	o.AudienceOverrideBaseUrl.Set(nil)
+}
+
+// UnsetAudienceOverrideBaseUrl ensures that no value is present for AudienceOverrideBaseUrl, not even an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) UnsetAudienceOverrideBaseUrl() {
+	o.AudienceOverrideBaseUrl.Unset()
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -401,6 +444,9 @@ func (o NormalizedProjectRevisionSAMLProvider) MarshalJSON() ([]byte, error) {
 
 func (o NormalizedProjectRevisionSAMLProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AudienceOverrideBaseUrl.IsSet() {
+		toSerialize["audience_override_base_url"] = o.AudienceOverrideBaseUrl.Get()
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -453,6 +499,7 @@ func (o *NormalizedProjectRevisionSAMLProvider) UnmarshalJSON(data []byte) (err 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "audience_override_base_url")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "label")

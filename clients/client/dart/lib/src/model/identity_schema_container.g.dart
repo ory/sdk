@@ -8,15 +8,20 @@ part of 'identity_schema_container.dart';
 
 class _$IdentitySchemaContainer extends IdentitySchemaContainer {
   @override
-  final String? id;
+  final String id;
   @override
-  final JsonObject? schema;
+  final JsonObject schema;
 
   factory _$IdentitySchemaContainer(
           [void Function(IdentitySchemaContainerBuilder)? updates]) =>
       (new IdentitySchemaContainerBuilder()..update(updates))._build();
 
-  _$IdentitySchemaContainer._({this.id, this.schema}) : super._();
+  _$IdentitySchemaContainer._({required this.id, required this.schema})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, r'IdentitySchemaContainer', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        schema, r'IdentitySchemaContainer', 'schema');
+  }
 
   @override
   IdentitySchemaContainer rebuild(
@@ -95,8 +100,12 @@ class IdentitySchemaContainerBuilder
   IdentitySchemaContainer build() => _build();
 
   _$IdentitySchemaContainer _build() {
-    final _$result =
-        _$v ?? new _$IdentitySchemaContainer._(id: id, schema: schema);
+    final _$result = _$v ??
+        new _$IdentitySchemaContainer._(
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'IdentitySchemaContainer', 'id'),
+            schema: BuiltValueNullFieldError.checkNotNull(
+                schema, r'IdentitySchemaContainer', 'schema'));
     replace(_$result);
     return _$result;
   }

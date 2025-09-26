@@ -7,7 +7,6 @@ import 'package:ory_client/src/model/accept_o_auth2_consent_request_session.dart
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/o_auth2_consent_request.dart';
 import 'package:built_value/json_object.dart';
-import 'package:ory_client/src/model/o_auth2_consent_session_expires_at.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -19,7 +18,6 @@ part 'o_auth2_consent_session.g.dart';
 /// * [consentRequest] 
 /// * [consentRequestId] - ConsentRequestID is the identifier of the consent request that initiated this consent session.
 /// * [context] 
-/// * [expiresAt] 
 /// * [grantAccessTokenAudience] 
 /// * [grantScope] 
 /// * [handledAt] 
@@ -37,9 +35,6 @@ abstract class OAuth2ConsentSession implements Built<OAuth2ConsentSession, OAuth
 
   @BuiltValueField(wireName: r'context')
   JsonObject? get context;
-
-  @BuiltValueField(wireName: r'expires_at')
-  OAuth2ConsentSessionExpiresAt? get expiresAt;
 
   @BuiltValueField(wireName: r'grant_access_token_audience')
   BuiltList<String>? get grantAccessTokenAudience;
@@ -103,13 +98,6 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
       yield serializers.serialize(
         object.context,
         specifiedType: const FullType(JsonObject),
-      );
-    }
-    if (object.expiresAt != null) {
-      yield r'expires_at';
-      yield serializers.serialize(
-        object.expiresAt,
-        specifiedType: const FullType(OAuth2ConsentSessionExpiresAt),
       );
     }
     if (object.grantAccessTokenAudience != null) {
@@ -197,13 +185,6 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
             specifiedType: const FullType(JsonObject),
           ) as JsonObject;
           result.context = valueDes;
-          break;
-        case r'expires_at':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(OAuth2ConsentSessionExpiresAt),
-          ) as OAuth2ConsentSessionExpiresAt;
-          result.expiresAt.replace(valueDes);
           break;
         case r'grant_access_token_audience':
           final valueDes = serializers.deserialize(

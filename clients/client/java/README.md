@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.21.5
-  - Build date: 2025-08-18T09:53:47.019309544Z[Etc/UTC]
+- API version: v1.22.3
+  - Build date: 2025-09-26T12:45:41.727297619Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.21.5</version>
+  <version>v1.22.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.21.5"
+     implementation "sh.ory:client:v1.22.3"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.21.5.jar`
+* `target/client-v1.22.3.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -296,7 +296,6 @@ Class | Method | HTTP request | Description
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
  - [AccountExperienceColors](docs/AccountExperienceColors.md)
  - [AccountExperienceConfiguration](docs/AccountExperienceConfiguration.md)
- - [AccountExperienceThemeVariables](docs/AccountExperienceThemeVariables.md)
  - [ActiveProjectInConsole](docs/ActiveProjectInConsole.md)
  - [AddProjectToWorkspaceBody](docs/AddProjectToWorkspaceBody.md)
  - [Attribute](docs/Attribute.md)
@@ -443,7 +442,6 @@ Class | Method | HTTP request | Description
  - [OAuth2ConsentRequest](docs/OAuth2ConsentRequest.md)
  - [OAuth2ConsentRequestOpenIDConnectContext](docs/OAuth2ConsentRequestOpenIDConnectContext.md)
  - [OAuth2ConsentSession](docs/OAuth2ConsentSession.md)
- - [OAuth2ConsentSessionExpiresAt](docs/OAuth2ConsentSessionExpiresAt.md)
  - [OAuth2LoginRequest](docs/OAuth2LoginRequest.md)
  - [OAuth2LogoutRequest](docs/OAuth2LogoutRequest.md)
  - [OAuth2RedirectTo](docs/OAuth2RedirectTo.md)
@@ -473,6 +471,7 @@ Class | Method | HTTP request | Description
  - [ProjectHost](docs/ProjectHost.md)
  - [ProjectMember](docs/ProjectMember.md)
  - [ProjectMetadata](docs/ProjectMetadata.md)
+ - [ProjectServiceAccountExperience](docs/ProjectServiceAccountExperience.md)
  - [ProjectServiceIdentity](docs/ProjectServiceIdentity.md)
  - [ProjectServiceOAuth2](docs/ProjectServiceOAuth2.md)
  - [ProjectServicePermission](docs/ProjectServicePermission.md)

@@ -7,7 +7,6 @@
 | **consent_request** | [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  | [optional] |
 | **consent_request_id** | **String** | ConsentRequestID is the identifier of the consent request that initiated this consent session. | [optional] |
 | **context** | **Object** |  | [optional] |
-| **expires_at** | [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  | [optional] |
 | **grant_access_token_audience** | **Array&lt;String&gt;** |  | [optional] |
 | **grant_scope** | **Array&lt;String&gt;** |  | [optional] |
 | **handled_at** | **Time** |  | [optional] |
@@ -24,7 +23,6 @@ instance = OryClient::OAuth2ConsentSession.new(
   consent_request: null,
   consent_request_id: null,
   context: null,
-  expires_at: null,
   grant_access_token_audience: null,
   grant_scope: null,
   handled_at: null,

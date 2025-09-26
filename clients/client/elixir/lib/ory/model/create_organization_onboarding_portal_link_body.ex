@@ -8,11 +8,15 @@ defmodule Ory.Model.CreateOrganizationOnboardingPortalLinkBody do
 
   @derive Jason.Encoder
   defstruct [
+    :custom_hostname_id,
+    :enable_scim,
     :enable_sso,
     :expires_at
   ]
 
   @type t :: %__MODULE__{
+    :custom_hostname_id => String.t | nil,
+    :enable_scim => boolean(),
     :enable_sso => boolean(),
     :expires_at => DateTime.t | nil
   }

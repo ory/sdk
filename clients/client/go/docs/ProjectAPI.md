@@ -123,7 +123,7 @@ import (
 func main() {
 	projectId := "projectId_example" // string | Project ID  The project's ID.
 	organizationId := "organizationId_example" // string | Organization ID  The Organization's ID.
-	createOrganizationOnboardingPortalLinkBody := *openapiclient.NewCreateOrganizationOnboardingPortalLinkBody(false) // CreateOrganizationOnboardingPortalLinkBody |  (optional)
+	createOrganizationOnboardingPortalLinkBody := *openapiclient.NewCreateOrganizationOnboardingPortalLinkBody(false, false) // CreateOrganizationOnboardingPortalLinkBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1479,7 +1479,7 @@ func main() {
 	projectId := "projectId_example" // string | Project ID  The project's ID.
 	organizationId := "organizationId_example" // string | Organization ID  The Organization's ID.
 	onboardingPortalLinkId := "onboardingPortalLinkId_example" // string | 
-	updateOrganizationOnboardingPortalLinkBody := *openapiclient.NewUpdateOrganizationOnboardingPortalLinkBody(false) // UpdateOrganizationOnboardingPortalLinkBody |  (optional)
+	updateOrganizationOnboardingPortalLinkBody := *openapiclient.NewUpdateOrganizationOnboardingPortalLinkBody(false, false) // UpdateOrganizationOnboardingPortalLinkBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

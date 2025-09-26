@@ -6,6 +6,74 @@ part of 'normalized_project_revision_tokenizer_template.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum
+    _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnum_id =
+    const NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum._('id');
+const NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum
+    _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnum_externalId =
+    const NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum._(
+        'externalId');
+
+NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum
+    _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnumValueOf(
+        String name) {
+  switch (name) {
+    case 'id':
+      return _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnum_id;
+    case 'externalId':
+      return _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnum_externalId;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum>
+    _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnumValues =
+    new BuiltSet<
+        NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum>(const <NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum>[
+  _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnum_id,
+  _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnum_externalId,
+]);
+
+Serializer<NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum>
+    _$normalizedProjectRevisionTokenizerTemplateSubjectSourceEnumSerializer =
+    new _$NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnumSerializer();
+
+class _$NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnumSerializer
+    implements
+        PrimitiveSerializer<
+            NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'id': 'id',
+    'externalId': 'external_id',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'id': 'id',
+    'external_id': 'externalId',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum
+  ];
+  @override
+  final String wireName =
+      'NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$NormalizedProjectRevisionTokenizerTemplate
     extends NormalizedProjectRevisionTokenizerTemplate {
   @override
@@ -20,6 +88,9 @@ class _$NormalizedProjectRevisionTokenizerTemplate
   final String? key;
   @override
   final String? projectRevisionId;
+  @override
+  final NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum?
+      subjectSource;
   @override
   final String? ttl;
   @override
@@ -38,6 +109,7 @@ class _$NormalizedProjectRevisionTokenizerTemplate
       this.jwksUrl,
       this.key,
       this.projectRevisionId,
+      this.subjectSource,
       this.ttl,
       this.updatedAt})
       : super._();
@@ -62,6 +134,7 @@ class _$NormalizedProjectRevisionTokenizerTemplate
         jwksUrl == other.jwksUrl &&
         key == other.key &&
         projectRevisionId == other.projectRevisionId &&
+        subjectSource == other.subjectSource &&
         ttl == other.ttl &&
         updatedAt == other.updatedAt;
   }
@@ -75,6 +148,7 @@ class _$NormalizedProjectRevisionTokenizerTemplate
     _$hash = $jc(_$hash, jwksUrl.hashCode);
     _$hash = $jc(_$hash, key.hashCode);
     _$hash = $jc(_$hash, projectRevisionId.hashCode);
+    _$hash = $jc(_$hash, subjectSource.hashCode);
     _$hash = $jc(_$hash, ttl.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
@@ -91,6 +165,7 @@ class _$NormalizedProjectRevisionTokenizerTemplate
           ..add('jwksUrl', jwksUrl)
           ..add('key', key)
           ..add('projectRevisionId', projectRevisionId)
+          ..add('subjectSource', subjectSource)
           ..add('ttl', ttl)
           ..add('updatedAt', updatedAt))
         .toString();
@@ -129,6 +204,14 @@ class NormalizedProjectRevisionTokenizerTemplateBuilder
   set projectRevisionId(String? projectRevisionId) =>
       _$this._projectRevisionId = projectRevisionId;
 
+  NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum? _subjectSource;
+  NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum?
+      get subjectSource => _$this._subjectSource;
+  set subjectSource(
+          NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum?
+              subjectSource) =>
+      _$this._subjectSource = subjectSource;
+
   String? _ttl;
   String? get ttl => _$this._ttl;
   set ttl(String? ttl) => _$this._ttl = ttl;
@@ -150,6 +233,7 @@ class NormalizedProjectRevisionTokenizerTemplateBuilder
       _jwksUrl = $v.jwksUrl;
       _key = $v.key;
       _projectRevisionId = $v.projectRevisionId;
+      _subjectSource = $v.subjectSource;
       _ttl = $v.ttl;
       _updatedAt = $v.updatedAt;
       _$v = null;
@@ -182,6 +266,7 @@ class NormalizedProjectRevisionTokenizerTemplateBuilder
             jwksUrl: jwksUrl,
             key: key,
             projectRevisionId: projectRevisionId,
+            subjectSource: subjectSource,
             ttl: ttl,
             updatedAt: updatedAt);
     replace(_$result);

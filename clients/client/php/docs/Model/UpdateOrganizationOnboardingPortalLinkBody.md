@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enableScim** | **bool** | Feature flag to enable SCIM configuration |
 **enableSso** | **bool** | Feature flag to enable SSO configuration |
 **expiresAt** | **\DateTime** |  | [optional]
 

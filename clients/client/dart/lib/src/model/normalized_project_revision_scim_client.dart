@@ -15,6 +15,7 @@ part 'normalized_project_revision_scim_client.g.dart';
 /// * [authorizationHeaderSecret] - The secret that the client uses in the authorization header to authenticate itself.
 /// * [clientId] - The unique ID of the SCIM server.
 /// * [createdAt] - The SCIM client's creation time
+/// * [id] 
 /// * [label] - The SCIM server's label
 /// * [mapperUrl] - Mapper specifies the JSONNet code snippet which uses the SCIM provider's data to hydrate the identity's data.
 /// * [organizationId] - OrganizationID is the organization ID for this SCIM server.
@@ -33,6 +34,9 @@ abstract class NormalizedProjectRevisionScimClient implements Built<NormalizedPr
   /// The SCIM client's creation time
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
+
+  @BuiltValueField(wireName: r'id')
+  String? get id;
 
   /// The SCIM server's label
   @BuiltValueField(wireName: r'label')
@@ -93,6 +97,13 @@ class _$NormalizedProjectRevisionScimClientSerializer implements PrimitiveSerial
       yield serializers.serialize(
         object.createdAt,
         specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
       );
     }
     yield r'label';
@@ -167,6 +178,13 @@ class _$NormalizedProjectRevisionScimClientSerializer implements PrimitiveSerial
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.createdAt = valueDes;
+          break;
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
           break;
         case r'label':
           final valueDes = serializers.deserialize(

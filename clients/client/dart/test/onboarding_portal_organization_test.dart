@@ -39,5 +39,20 @@ void main() {
       // TODO
     });
 
+    // BuiltList<NormalizedProjectRevisionScimClient> scimClients
+    test('to test the property `scimClients`', () async {
+      // TODO
+    });
+
+    // bool scimEnabled
+    test('to test the property `scimEnabled`', () async {
+      // TODO
+    });
+
+    // bool ssoEnabled
+    test('to test the property `ssoEnabled`', () async {
+      // TODO
+    });
+
   });
 }

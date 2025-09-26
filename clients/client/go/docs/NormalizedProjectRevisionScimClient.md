@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **AuthorizationHeaderSecret** | **string** | The secret that the client uses in the authorization header to authenticate itself. | 
 **ClientId** | **string** | The unique ID of the SCIM server. | 
 **CreatedAt** | Pointer to **time.Time** | The SCIM client&#39;s creation time | [optional] [readonly] 
+**Id** | Pointer to **string** |  | [optional] 
 **Label** | **string** | The SCIM server&#39;s label | 
 **MapperUrl** | **string** | Mapper specifies the JSONNet code snippet which uses the SCIM provider&#39;s data to hydrate the identity&#39;s data. | 
 **OrganizationId** | **string** | OrganizationID is the organization ID for this SCIM server. | 
@@ -96,6 +97,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *NormalizedProjectRevisionScimClient) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *NormalizedProjectRevisionScimClient) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *NormalizedProjectRevisionScimClient) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *NormalizedProjectRevisionScimClient) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *NormalizedProjectRevisionScimClient) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetLabel
 

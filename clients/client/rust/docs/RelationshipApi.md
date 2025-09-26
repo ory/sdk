@@ -111,7 +111,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_relationships
 
-> models::Relationships get_relationships(page_token, page_size, namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation)
+> models::Relationships get_relationships(page_size, page_token, namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation)
 Query relationships
 
 Get all relationships that match the query. Only the namespace field is required.
@@ -121,8 +121,8 @@ Get all relationships that match the query. Only the namespace field is required
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**page_token** | Option<**String**> |  |  |
-**page_size** | Option<**i64**> |  |  |
+**page_size** | Option<**i64**> | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |
 **namespace** | Option<**String**> | Namespace of the Relationship |  |
 **object** | Option<**String**> | Object of the Relationship |  |
 **relation** | Option<**String**> | Relation of the Relationship |  |

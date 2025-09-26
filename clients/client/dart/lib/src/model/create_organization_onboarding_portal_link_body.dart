@@ -11,10 +11,19 @@ part 'create_organization_onboarding_portal_link_body.g.dart';
 /// CreateOrganizationOnboardingPortalLinkBody
 ///
 /// Properties:
+/// * [customHostnameId] 
+/// * [enableScim] - Feature flag to enable SCIM configuration
 /// * [enableSso] - Feature flag to enable SSO configuration
 /// * [expiresAt] 
 @BuiltValue()
 abstract class CreateOrganizationOnboardingPortalLinkBody implements Built<CreateOrganizationOnboardingPortalLinkBody, CreateOrganizationOnboardingPortalLinkBodyBuilder> {
+  @BuiltValueField(wireName: r'custom_hostname_id')
+  String? get customHostnameId;
+
+  /// Feature flag to enable SCIM configuration
+  @BuiltValueField(wireName: r'enable_scim')
+  bool get enableScim;
+
   /// Feature flag to enable SSO configuration
   @BuiltValueField(wireName: r'enable_sso')
   bool get enableSso;
@@ -45,6 +54,18 @@ class _$CreateOrganizationOnboardingPortalLinkBodySerializer implements Primitiv
     CreateOrganizationOnboardingPortalLinkBody object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.customHostnameId != null) {
+      yield r'custom_hostname_id';
+      yield serializers.serialize(
+        object.customHostnameId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    yield r'enable_scim';
+    yield serializers.serialize(
+      object.enableScim,
+      specifiedType: const FullType(bool),
+    );
     yield r'enable_sso';
     yield serializers.serialize(
       object.enableSso,
@@ -80,6 +101,21 @@ class _$CreateOrganizationOnboardingPortalLinkBodySerializer implements Primitiv
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'custom_hostname_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.customHostnameId = valueDes;
+          break;
+        case r'enable_scim':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.enableScim = valueDes;
+          break;
         case r'enable_sso':
           final valueDes = serializers.deserialize(
             value,

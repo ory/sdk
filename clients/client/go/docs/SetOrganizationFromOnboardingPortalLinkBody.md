@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**KratosSelfserviceMethodsOidcConfigProviders** | [**[]NormalizedProjectRevisionThirdPartyProvider**](NormalizedProjectRevisionThirdPartyProvider.md) |  | 
-**KratosSelfserviceMethodsSamlConfigProviders** | [**[]NormalizedProjectRevisionSAMLProvider**](NormalizedProjectRevisionSAMLProvider.md) |  | 
+**KratosSelfserviceMethodsOidcConfigProviders** | Pointer to [**[]NormalizedProjectRevisionThirdPartyProvider**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] 
+**KratosSelfserviceMethodsSamlConfigProviders** | Pointer to [**[]NormalizedProjectRevisionSAMLProvider**](NormalizedProjectRevisionSAMLProvider.md) |  | [optional] 
 **RevisionId** | **string** |  | 
+**ScimClients** | Pointer to [**[]NormalizedProjectRevisionScimClient**](NormalizedProjectRevisionScimClient.md) |  | [optional] 
 
 ## Methods
 
 ### NewSetOrganizationFromOnboardingPortalLinkBody
 
-`func NewSetOrganizationFromOnboardingPortalLinkBody(kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, revisionId string, ) *SetOrganizationFromOnboardingPortalLinkBody`
+`func NewSetOrganizationFromOnboardingPortalLinkBody(revisionId string, ) *SetOrganizationFromOnboardingPortalLinkBody`
 
 NewSetOrganizationFromOnboardingPortalLinkBody instantiates a new SetOrganizationFromOnboardingPortalLinkBody object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetKratosSelfserviceMethodsOidcConfigProviders sets KratosSelfserviceMethodsOidcConfigProviders field to given value.
 
+### HasKratosSelfserviceMethodsOidcConfigProviders
+
+`func (o *SetOrganizationFromOnboardingPortalLinkBody) HasKratosSelfserviceMethodsOidcConfigProviders() bool`
+
+HasKratosSelfserviceMethodsOidcConfigProviders returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsSamlConfigProviders
 
@@ -66,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetKratosSelfserviceMethodsSamlConfigProviders sets KratosSelfserviceMethodsSamlConfigProviders field to given value.
 
+### HasKratosSelfserviceMethodsSamlConfigProviders
+
+`func (o *SetOrganizationFromOnboardingPortalLinkBody) HasKratosSelfserviceMethodsSamlConfigProviders() bool`
+
+HasKratosSelfserviceMethodsSamlConfigProviders returns a boolean if a field has been set.
 
 ### GetRevisionId
 
@@ -86,6 +97,31 @@ and a boolean to check if the value has been set.
 
 SetRevisionId sets RevisionId field to given value.
 
+
+### GetScimClients
+
+`func (o *SetOrganizationFromOnboardingPortalLinkBody) GetScimClients() []NormalizedProjectRevisionScimClient`
+
+GetScimClients returns the ScimClients field if non-nil, zero value otherwise.
+
+### GetScimClientsOk
+
+`func (o *SetOrganizationFromOnboardingPortalLinkBody) GetScimClientsOk() (*[]NormalizedProjectRevisionScimClient, bool)`
+
+GetScimClientsOk returns a tuple with the ScimClients field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScimClients
+
+`func (o *SetOrganizationFromOnboardingPortalLinkBody) SetScimClients(v []NormalizedProjectRevisionScimClient)`
+
+SetScimClients sets ScimClients field to given value.
+
+### HasScimClients
+
+`func (o *SetOrganizationFromOnboardingPortalLinkBody) HasScimClients() bool`
+
+HasScimClients returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

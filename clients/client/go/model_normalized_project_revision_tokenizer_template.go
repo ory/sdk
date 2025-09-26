@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.21.5
+API version: v1.22.3
 Contact: support@ory.sh
 */
 
@@ -33,6 +33,8 @@ type NormalizedProjectRevisionTokenizerTemplate struct {
 	Key *string `json:"key,omitempty"`
 	// The Revision's ID this schema belongs to
 	ProjectRevisionId *string `json:"project_revision_id,omitempty"`
+	// Subject source for the tokenizer  Can be either id or external_id or empty
+	SubjectSource *string `json:"subject_source,omitempty"`
 	// Token time to live
 	Ttl *string `json:"ttl,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
 	// Last Time Project's Revision was Updated
@@ -48,6 +50,8 @@ type _NormalizedProjectRevisionTokenizerTemplate NormalizedProjectRevisionTokeni
 // will change when the set of required properties is changed
 func NewNormalizedProjectRevisionTokenizerTemplate() *NormalizedProjectRevisionTokenizerTemplate {
 	this := NormalizedProjectRevisionTokenizerTemplate{}
+	var subjectSource string = "id"
+	this.SubjectSource = &subjectSource
 	var ttl string = "1m"
 	this.Ttl = &ttl
 	return &this
@@ -58,6 +62,8 @@ func NewNormalizedProjectRevisionTokenizerTemplate() *NormalizedProjectRevisionT
 // but it doesn't guarantee that properties required by API are set
 func NewNormalizedProjectRevisionTokenizerTemplateWithDefaults() *NormalizedProjectRevisionTokenizerTemplate {
 	this := NormalizedProjectRevisionTokenizerTemplate{}
+	var subjectSource string = "id"
+	this.SubjectSource = &subjectSource
 	var ttl string = "1m"
 	this.Ttl = &ttl
 	return &this
@@ -255,6 +261,38 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) SetProjectRevisionId(v stri
 	o.ProjectRevisionId = &v
 }
 
+// GetSubjectSource returns the SubjectSource field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionTokenizerTemplate) GetSubjectSource() string {
+	if o == nil || IsNil(o.SubjectSource) {
+		var ret string
+		return ret
+	}
+	return *o.SubjectSource
+}
+
+// GetSubjectSourceOk returns a tuple with the SubjectSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionTokenizerTemplate) GetSubjectSourceOk() (*string, bool) {
+	if o == nil || IsNil(o.SubjectSource) {
+		return nil, false
+	}
+	return o.SubjectSource, true
+}
+
+// HasSubjectSource returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionTokenizerTemplate) HasSubjectSource() bool {
+	if o != nil && !IsNil(o.SubjectSource) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubjectSource gets a reference to the given string and assigns it to the SubjectSource field.
+func (o *NormalizedProjectRevisionTokenizerTemplate) SetSubjectSource(v string) {
+	o.SubjectSource = &v
+}
+
 // GetTtl returns the Ttl field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionTokenizerTemplate) GetTtl() string {
 	if o == nil || IsNil(o.Ttl) {
@@ -347,6 +385,9 @@ func (o NormalizedProjectRevisionTokenizerTemplate) ToMap() (map[string]interfac
 	if !IsNil(o.ProjectRevisionId) {
 		toSerialize["project_revision_id"] = o.ProjectRevisionId
 	}
+	if !IsNil(o.SubjectSource) {
+		toSerialize["subject_source"] = o.SubjectSource
+	}
 	if !IsNil(o.Ttl) {
 		toSerialize["ttl"] = o.Ttl
 	}
@@ -381,6 +422,7 @@ func (o *NormalizedProjectRevisionTokenizerTemplate) UnmarshalJSON(data []byte) 
 		delete(additionalProperties, "jwks_url")
 		delete(additionalProperties, "key")
 		delete(additionalProperties, "project_revision_id")
+		delete(additionalProperties, "subject_source")
 		delete(additionalProperties, "ttl")
 		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties

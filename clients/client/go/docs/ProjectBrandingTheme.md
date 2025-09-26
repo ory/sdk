@@ -9,8 +9,6 @@ Name | Type | Description | Notes
 **AccentEmphasisColor** | Pointer to **string** | AccentEmphasisColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **AccentMutedColor** | Pointer to **string** | AccentMutedColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **AccentSubtleColor** | Pointer to **string** | AccentSubtleColor is a hex color code used by the Ory Account Experience theme. | [optional] 
-**AccountExperienceVariables** | Pointer to [**[]AccountExperienceThemeVariables**](AccountExperienceThemeVariables.md) | The Account Experience Theme Variables. | [optional] 
-**AccountExperienceVariablesStylesheet** | Pointer to **string** | AccountExperienceVariableStylesheet holds a reference to the current stylesheet that can be used in the AX | [optional] 
 **BackgroundCanvasColor** | Pointer to **string** | BackgroundCanvasColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **BackgroundSubtleColor** | Pointer to **string** | BackgroundSubtleColor is a hex color code used by the Ory Account Experience theme. | [optional] 
 **BackgroundSurfaceColor** | Pointer to **string** | BackgroundSurfaceColor is a hex color code used by the Ory Account Experience theme. | [optional] 
@@ -188,56 +186,6 @@ SetAccentSubtleColor sets AccentSubtleColor field to given value.
 `func (o *ProjectBrandingTheme) HasAccentSubtleColor() bool`
 
 HasAccentSubtleColor returns a boolean if a field has been set.
-
-### GetAccountExperienceVariables
-
-`func (o *ProjectBrandingTheme) GetAccountExperienceVariables() []AccountExperienceThemeVariables`
-
-GetAccountExperienceVariables returns the AccountExperienceVariables field if non-nil, zero value otherwise.
-
-### GetAccountExperienceVariablesOk
-
-`func (o *ProjectBrandingTheme) GetAccountExperienceVariablesOk() (*[]AccountExperienceThemeVariables, bool)`
-
-GetAccountExperienceVariablesOk returns a tuple with the AccountExperienceVariables field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAccountExperienceVariables
-
-`func (o *ProjectBrandingTheme) SetAccountExperienceVariables(v []AccountExperienceThemeVariables)`
-
-SetAccountExperienceVariables sets AccountExperienceVariables field to given value.
-
-### HasAccountExperienceVariables
-
-`func (o *ProjectBrandingTheme) HasAccountExperienceVariables() bool`
-
-HasAccountExperienceVariables returns a boolean if a field has been set.
-
-### GetAccountExperienceVariablesStylesheet
-
-`func (o *ProjectBrandingTheme) GetAccountExperienceVariablesStylesheet() string`
-
-GetAccountExperienceVariablesStylesheet returns the AccountExperienceVariablesStylesheet field if non-nil, zero value otherwise.
-
-### GetAccountExperienceVariablesStylesheetOk
-
-`func (o *ProjectBrandingTheme) GetAccountExperienceVariablesStylesheetOk() (*string, bool)`
-
-GetAccountExperienceVariablesStylesheetOk returns a tuple with the AccountExperienceVariablesStylesheet field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAccountExperienceVariablesStylesheet
-
-`func (o *ProjectBrandingTheme) SetAccountExperienceVariablesStylesheet(v string)`
-
-SetAccountExperienceVariablesStylesheet sets AccountExperienceVariablesStylesheet field to given value.
-
-### HasAccountExperienceVariablesStylesheet
-
-`func (o *ProjectBrandingTheme) HasAccountExperienceVariablesStylesheet() bool`
-
-HasAccountExperienceVariablesStylesheet returns a boolean if a field has been set.
 
 ### GetBackgroundCanvasColor
 

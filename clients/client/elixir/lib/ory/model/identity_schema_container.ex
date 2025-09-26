@@ -13,8 +13,8 @@ defmodule Ory.Model.IdentitySchemaContainer do
   ]
 
   @type t :: %__MODULE__{
-    :id => String.t | nil,
-    :schema => map() | nil
+    :id => String.t,
+    :schema => map()
   }
 
   def decode(value) do

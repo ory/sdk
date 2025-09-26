@@ -14,8 +14,6 @@ class _$OAuth2ConsentSession extends OAuth2ConsentSession {
   @override
   final JsonObject? context;
   @override
-  final OAuth2ConsentSessionExpiresAt? expiresAt;
-  @override
   final BuiltList<String>? grantAccessTokenAudience;
   @override
   final BuiltList<String>? grantScope;
@@ -36,7 +34,6 @@ class _$OAuth2ConsentSession extends OAuth2ConsentSession {
       {this.consentRequest,
       this.consentRequestId,
       this.context,
-      this.expiresAt,
       this.grantAccessTokenAudience,
       this.grantScope,
       this.handledAt,
@@ -61,7 +58,6 @@ class _$OAuth2ConsentSession extends OAuth2ConsentSession {
         consentRequest == other.consentRequest &&
         consentRequestId == other.consentRequestId &&
         context == other.context &&
-        expiresAt == other.expiresAt &&
         grantAccessTokenAudience == other.grantAccessTokenAudience &&
         grantScope == other.grantScope &&
         handledAt == other.handledAt &&
@@ -76,7 +72,6 @@ class _$OAuth2ConsentSession extends OAuth2ConsentSession {
     _$hash = $jc(_$hash, consentRequest.hashCode);
     _$hash = $jc(_$hash, consentRequestId.hashCode);
     _$hash = $jc(_$hash, context.hashCode);
-    _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, grantAccessTokenAudience.hashCode);
     _$hash = $jc(_$hash, grantScope.hashCode);
     _$hash = $jc(_$hash, handledAt.hashCode);
@@ -93,7 +88,6 @@ class _$OAuth2ConsentSession extends OAuth2ConsentSession {
           ..add('consentRequest', consentRequest)
           ..add('consentRequestId', consentRequestId)
           ..add('context', context)
-          ..add('expiresAt', expiresAt)
           ..add('grantAccessTokenAudience', grantAccessTokenAudience)
           ..add('grantScope', grantScope)
           ..add('handledAt', handledAt)
@@ -122,12 +116,6 @@ class OAuth2ConsentSessionBuilder
   JsonObject? _context;
   JsonObject? get context => _$this._context;
   set context(JsonObject? context) => _$this._context = context;
-
-  OAuth2ConsentSessionExpiresAtBuilder? _expiresAt;
-  OAuth2ConsentSessionExpiresAtBuilder get expiresAt =>
-      _$this._expiresAt ??= new OAuth2ConsentSessionExpiresAtBuilder();
-  set expiresAt(OAuth2ConsentSessionExpiresAtBuilder? expiresAt) =>
-      _$this._expiresAt = expiresAt;
 
   ListBuilder<String>? _grantAccessTokenAudience;
   ListBuilder<String> get grantAccessTokenAudience =>
@@ -169,7 +157,6 @@ class OAuth2ConsentSessionBuilder
       _consentRequest = $v.consentRequest?.toBuilder();
       _consentRequestId = $v.consentRequestId;
       _context = $v.context;
-      _expiresAt = $v.expiresAt?.toBuilder();
       _grantAccessTokenAudience = $v.grantAccessTokenAudience?.toBuilder();
       _grantScope = $v.grantScope?.toBuilder();
       _handledAt = $v.handledAt;
@@ -203,7 +190,6 @@ class OAuth2ConsentSessionBuilder
               consentRequest: _consentRequest?.build(),
               consentRequestId: consentRequestId,
               context: context,
-              expiresAt: _expiresAt?.build(),
               grantAccessTokenAudience: _grantAccessTokenAudience?.build(),
               grantScope: _grantScope?.build(),
               handledAt: handledAt,
@@ -216,8 +202,6 @@ class OAuth2ConsentSessionBuilder
         _$failedField = 'consentRequest';
         _consentRequest?.build();
 
-        _$failedField = 'expiresAt';
-        _expiresAt?.build();
         _$failedField = 'grantAccessTokenAudience';
         _grantAccessTokenAudience?.build();
         _$failedField = 'grantScope';

@@ -23,11 +23,6 @@ void main() {
       // TODO
     });
 
-    // OAuth2ConsentSessionExpiresAt expiresAt
-    test('to test the property `expiresAt`', () async {
-      // TODO
-    });
-
     // BuiltList<String> grantAccessTokenAudience
     test('to test the property `grantAccessTokenAudience`', () async {
       // TODO

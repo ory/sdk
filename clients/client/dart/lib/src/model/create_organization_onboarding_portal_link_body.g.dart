@@ -9,6 +9,10 @@ part of 'create_organization_onboarding_portal_link_body.dart';
 class _$CreateOrganizationOnboardingPortalLinkBody
     extends CreateOrganizationOnboardingPortalLinkBody {
   @override
+  final String? customHostnameId;
+  @override
+  final bool enableScim;
+  @override
   final bool enableSso;
   @override
   final DateTime? expiresAt;
@@ -20,8 +24,13 @@ class _$CreateOrganizationOnboardingPortalLinkBody
           ._build();
 
   _$CreateOrganizationOnboardingPortalLinkBody._(
-      {required this.enableSso, this.expiresAt})
+      {this.customHostnameId,
+      required this.enableScim,
+      required this.enableSso,
+      this.expiresAt})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(enableScim,
+        r'CreateOrganizationOnboardingPortalLinkBody', 'enableScim');
     BuiltValueNullFieldError.checkNotNull(
         enableSso, r'CreateOrganizationOnboardingPortalLinkBody', 'enableSso');
   }
@@ -40,6 +49,8 @@ class _$CreateOrganizationOnboardingPortalLinkBody
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is CreateOrganizationOnboardingPortalLinkBody &&
+        customHostnameId == other.customHostnameId &&
+        enableScim == other.enableScim &&
         enableSso == other.enableSso &&
         expiresAt == other.expiresAt;
   }
@@ -47,6 +58,8 @@ class _$CreateOrganizationOnboardingPortalLinkBody
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, customHostnameId.hashCode);
+    _$hash = $jc(_$hash, enableScim.hashCode);
     _$hash = $jc(_$hash, enableSso.hashCode);
     _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jf(_$hash);
@@ -57,6 +70,8 @@ class _$CreateOrganizationOnboardingPortalLinkBody
   String toString() {
     return (newBuiltValueToStringHelper(
             r'CreateOrganizationOnboardingPortalLinkBody')
+          ..add('customHostnameId', customHostnameId)
+          ..add('enableScim', enableScim)
           ..add('enableSso', enableSso)
           ..add('expiresAt', expiresAt))
         .toString();
@@ -68,6 +83,15 @@ class CreateOrganizationOnboardingPortalLinkBodyBuilder
         Builder<CreateOrganizationOnboardingPortalLinkBody,
             CreateOrganizationOnboardingPortalLinkBodyBuilder> {
   _$CreateOrganizationOnboardingPortalLinkBody? _$v;
+
+  String? _customHostnameId;
+  String? get customHostnameId => _$this._customHostnameId;
+  set customHostnameId(String? customHostnameId) =>
+      _$this._customHostnameId = customHostnameId;
+
+  bool? _enableScim;
+  bool? get enableScim => _$this._enableScim;
+  set enableScim(bool? enableScim) => _$this._enableScim = enableScim;
 
   bool? _enableSso;
   bool? get enableSso => _$this._enableSso;
@@ -84,6 +108,8 @@ class CreateOrganizationOnboardingPortalLinkBodyBuilder
   CreateOrganizationOnboardingPortalLinkBodyBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _customHostnameId = $v.customHostnameId;
+      _enableScim = $v.enableScim;
       _enableSso = $v.enableSso;
       _expiresAt = $v.expiresAt;
       _$v = null;
@@ -110,6 +136,9 @@ class CreateOrganizationOnboardingPortalLinkBodyBuilder
   _$CreateOrganizationOnboardingPortalLinkBody _build() {
     final _$result = _$v ??
         new _$CreateOrganizationOnboardingPortalLinkBody._(
+            customHostnameId: customHostnameId,
+            enableScim: BuiltValueNullFieldError.checkNotNull(enableScim,
+                r'CreateOrganizationOnboardingPortalLinkBody', 'enableScim'),
             enableSso: BuiltValueNullFieldError.checkNotNull(enableSso,
                 r'CreateOrganizationOnboardingPortalLinkBody', 'enableSso'),
             expiresAt: expiresAt);

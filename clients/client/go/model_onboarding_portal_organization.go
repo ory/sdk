@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.21.5
+API version: v1.22.3
 Contact: support@ory.sh
 */
 
@@ -29,6 +29,9 @@ type OnboardingPortalOrganization struct {
 	// Organization Label
 	OrganizationLabel *string `json:"organization_label,omitempty"`
 	RevisionId string `json:"revision_id"`
+	ScimClients []NormalizedProjectRevisionScimClient `json:"scim_clients"`
+	ScimEnabled bool `json:"scim_enabled"`
+	SsoEnabled bool `json:"sso_enabled"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,12 +41,15 @@ type _OnboardingPortalOrganization OnboardingPortalOrganization
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOnboardingPortalOrganization(baseUrl string, kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, revisionId string) *OnboardingPortalOrganization {
+func NewOnboardingPortalOrganization(baseUrl string, kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, revisionId string, scimClients []NormalizedProjectRevisionScimClient, scimEnabled bool, ssoEnabled bool) *OnboardingPortalOrganization {
 	this := OnboardingPortalOrganization{}
 	this.BaseUrl = baseUrl
 	this.KratosSelfserviceMethodsOidcConfigProviders = kratosSelfserviceMethodsOidcConfigProviders
 	this.KratosSelfserviceMethodsSamlConfigProviders = kratosSelfserviceMethodsSamlConfigProviders
 	this.RevisionId = revisionId
+	this.ScimClients = scimClients
+	this.ScimEnabled = scimEnabled
+	this.SsoEnabled = ssoEnabled
 	return &this
 }
 
@@ -215,6 +221,78 @@ func (o *OnboardingPortalOrganization) SetRevisionId(v string) {
 	o.RevisionId = v
 }
 
+// GetScimClients returns the ScimClients field value
+func (o *OnboardingPortalOrganization) GetScimClients() []NormalizedProjectRevisionScimClient {
+	if o == nil {
+		var ret []NormalizedProjectRevisionScimClient
+		return ret
+	}
+
+	return o.ScimClients
+}
+
+// GetScimClientsOk returns a tuple with the ScimClients field value
+// and a boolean to check if the value has been set.
+func (o *OnboardingPortalOrganization) GetScimClientsOk() ([]NormalizedProjectRevisionScimClient, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ScimClients, true
+}
+
+// SetScimClients sets field value
+func (o *OnboardingPortalOrganization) SetScimClients(v []NormalizedProjectRevisionScimClient) {
+	o.ScimClients = v
+}
+
+// GetScimEnabled returns the ScimEnabled field value
+func (o *OnboardingPortalOrganization) GetScimEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ScimEnabled
+}
+
+// GetScimEnabledOk returns a tuple with the ScimEnabled field value
+// and a boolean to check if the value has been set.
+func (o *OnboardingPortalOrganization) GetScimEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ScimEnabled, true
+}
+
+// SetScimEnabled sets field value
+func (o *OnboardingPortalOrganization) SetScimEnabled(v bool) {
+	o.ScimEnabled = v
+}
+
+// GetSsoEnabled returns the SsoEnabled field value
+func (o *OnboardingPortalOrganization) GetSsoEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SsoEnabled
+}
+
+// GetSsoEnabledOk returns a tuple with the SsoEnabled field value
+// and a boolean to check if the value has been set.
+func (o *OnboardingPortalOrganization) GetSsoEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SsoEnabled, true
+}
+
+// SetSsoEnabled sets field value
+func (o *OnboardingPortalOrganization) SetSsoEnabled(v bool) {
+	o.SsoEnabled = v
+}
+
 func (o OnboardingPortalOrganization) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -235,6 +313,9 @@ func (o OnboardingPortalOrganization) ToMap() (map[string]interface{}, error) {
 		toSerialize["organization_label"] = o.OrganizationLabel
 	}
 	toSerialize["revision_id"] = o.RevisionId
+	toSerialize["scim_clients"] = o.ScimClients
+	toSerialize["scim_enabled"] = o.ScimEnabled
+	toSerialize["sso_enabled"] = o.SsoEnabled
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -252,6 +333,9 @@ func (o *OnboardingPortalOrganization) UnmarshalJSON(data []byte) (err error) {
 		"kratos_selfservice_methods_oidc_config_providers",
 		"kratos_selfservice_methods_saml_config_providers",
 		"revision_id",
+		"scim_clients",
+		"scim_enabled",
+		"sso_enabled",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -287,6 +371,9 @@ func (o *OnboardingPortalOrganization) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "organization_id")
 		delete(additionalProperties, "organization_label")
 		delete(additionalProperties, "revision_id")
+		delete(additionalProperties, "scim_clients")
+		delete(additionalProperties, "scim_enabled")
+		delete(additionalProperties, "sso_enabled")
 		o.AdditionalProperties = additionalProperties
 	}
 

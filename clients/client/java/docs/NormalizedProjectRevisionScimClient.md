@@ -11,6 +11,7 @@ SCIMClient represents a SCIM client configuration to be used by an external iden
 |**authorizationHeaderSecret** | **String** | The secret that the client uses in the authorization header to authenticate itself. |  |
 |**clientId** | **String** | The unique ID of the SCIM server. |  |
 |**createdAt** | **OffsetDateTime** | The SCIM client&#39;s creation time |  [optional] [readonly] |
+|**id** | **String** |  |  [optional] |
 |**label** | **String** | The SCIM server&#39;s label |  |
 |**mapperUrl** | **String** | Mapper specifies the JSONNet code snippet which uses the SCIM provider&#39;s data to hydrate the identity&#39;s data. |  |
 |**organizationId** | **String** | OrganizationID is the organization ID for this SCIM server. |  |

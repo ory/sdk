@@ -23,7 +23,6 @@ docs/Model/AcceptOAuth2ConsentRequestSession.md
 docs/Model/AcceptOAuth2LoginRequest.md
 docs/Model/AccountExperienceColors.md
 docs/Model/AccountExperienceConfiguration.md
-docs/Model/AccountExperienceThemeVariables.md
 docs/Model/ActiveProjectInConsole.md
 docs/Model/AddProjectToWorkspaceBody.md
 docs/Model/Attribute.md
@@ -170,7 +169,6 @@ docs/Model/OAuth2ClientTokenLifespans.md
 docs/Model/OAuth2ConsentRequest.md
 docs/Model/OAuth2ConsentRequestOpenIDConnectContext.md
 docs/Model/OAuth2ConsentSession.md
-docs/Model/OAuth2ConsentSessionExpiresAt.md
 docs/Model/OAuth2LoginRequest.md
 docs/Model/OAuth2LogoutRequest.md
 docs/Model/OAuth2RedirectTo.md
@@ -200,6 +198,7 @@ docs/Model/ProjectEventsDatapoint.md
 docs/Model/ProjectHost.md
 docs/Model/ProjectMember.md
 docs/Model/ProjectMetadata.md
+docs/Model/ProjectServiceAccountExperience.md
 docs/Model/ProjectServiceIdentity.md
 docs/Model/ProjectServiceOAuth2.md
 docs/Model/ProjectServicePermission.md
@@ -334,7 +333,6 @@ lib/Model/AcceptOAuth2ConsentRequestSession.php
 lib/Model/AcceptOAuth2LoginRequest.php
 lib/Model/AccountExperienceColors.php
 lib/Model/AccountExperienceConfiguration.php
-lib/Model/AccountExperienceThemeVariables.php
 lib/Model/ActiveProjectInConsole.php
 lib/Model/AddProjectToWorkspaceBody.php
 lib/Model/Attribute.php
@@ -482,7 +480,6 @@ lib/Model/OAuth2ClientTokenLifespans.php
 lib/Model/OAuth2ConsentRequest.php
 lib/Model/OAuth2ConsentRequestOpenIDConnectContext.php
 lib/Model/OAuth2ConsentSession.php
-lib/Model/OAuth2ConsentSessionExpiresAt.php
 lib/Model/OAuth2LoginRequest.php
 lib/Model/OAuth2LogoutRequest.php
 lib/Model/OAuth2RedirectTo.php
@@ -512,6 +509,7 @@ lib/Model/ProjectEventsDatapoint.php
 lib/Model/ProjectHost.php
 lib/Model/ProjectMember.php
 lib/Model/ProjectMetadata.php
+lib/Model/ProjectServiceAccountExperience.php
 lib/Model/ProjectServiceIdentity.php
 lib/Model/ProjectServiceOAuth2.php
 lib/Model/ProjectServicePermission.php
@@ -644,7 +642,6 @@ test/Model/AcceptOAuth2ConsentRequestTest.php
 test/Model/AcceptOAuth2LoginRequestTest.php
 test/Model/AccountExperienceColorsTest.php
 test/Model/AccountExperienceConfigurationTest.php
-test/Model/AccountExperienceThemeVariablesTest.php
 test/Model/ActiveProjectInConsoleTest.php
 test/Model/AddProjectToWorkspaceBodyTest.php
 test/Model/AttributeFilterTest.php
@@ -790,7 +787,6 @@ test/Model/OAuth2ClientTest.php
 test/Model/OAuth2ClientTokenLifespansTest.php
 test/Model/OAuth2ConsentRequestOpenIDConnectContextTest.php
 test/Model/OAuth2ConsentRequestTest.php
-test/Model/OAuth2ConsentSessionExpiresAtTest.php
 test/Model/OAuth2ConsentSessionTest.php
 test/Model/OAuth2LoginRequestTest.php
 test/Model/OAuth2LogoutRequestTest.php
@@ -820,6 +816,7 @@ test/Model/ProjectEventsDatapointTest.php
 test/Model/ProjectHostTest.php
 test/Model/ProjectMemberTest.php
 test/Model/ProjectMetadataTest.php
+test/Model/ProjectServiceAccountExperienceTest.php
 test/Model/ProjectServiceIdentityTest.php
 test/Model/ProjectServiceOAuth2Test.php
 test/Model/ProjectServicePermissionTest.php

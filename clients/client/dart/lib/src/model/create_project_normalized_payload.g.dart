@@ -791,6 +791,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   final BuiltList<String>? kratosSecretsDefault;
   @override
+  final BuiltList<String>? kratosSecretsPagination;
+  @override
   final bool? kratosSecurityAccountEnumerationMitigate;
   @override
   final BuiltList<String>? kratosSelfserviceAllowedReturnUrls;
@@ -1159,6 +1161,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       this.kratosSecretsCipher,
       this.kratosSecretsCookie,
       this.kratosSecretsDefault,
+      this.kratosSecretsPagination,
       this.kratosSecurityAccountEnumerationMitigate,
       this.kratosSelfserviceAllowedReturnUrls,
       this.kratosSelfserviceDefaultBrowserReturnUrl,
@@ -1500,6 +1503,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
         kratosSecretsCipher == other.kratosSecretsCipher &&
         kratosSecretsCookie == other.kratosSecretsCookie &&
         kratosSecretsDefault == other.kratosSecretsDefault &&
+        kratosSecretsPagination == other.kratosSecretsPagination &&
         kratosSecurityAccountEnumerationMitigate ==
             other.kratosSecurityAccountEnumerationMitigate &&
         kratosSelfserviceAllowedReturnUrls ==
@@ -1902,6 +1906,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
     _$hash = $jc(_$hash, kratosSecretsCipher.hashCode);
     _$hash = $jc(_$hash, kratosSecretsCookie.hashCode);
     _$hash = $jc(_$hash, kratosSecretsDefault.hashCode);
+    _$hash = $jc(_$hash, kratosSecretsPagination.hashCode);
     _$hash = $jc(_$hash, kratosSecurityAccountEnumerationMitigate.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceAllowedReturnUrls.hashCode);
     _$hash = $jc(_$hash, kratosSelfserviceDefaultBrowserReturnUrl.hashCode);
@@ -2317,6 +2322,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
           ..add('kratosSecretsCipher', kratosSecretsCipher)
           ..add('kratosSecretsCookie', kratosSecretsCookie)
           ..add('kratosSecretsDefault', kratosSecretsDefault)
+          ..add('kratosSecretsPagination', kratosSecretsPagination)
           ..add('kratosSecurityAccountEnumerationMitigate',
               kratosSecurityAccountEnumerationMitigate)
           ..add('kratosSelfserviceAllowedReturnUrls',
@@ -3471,6 +3477,12 @@ class CreateProjectNormalizedPayloadBuilder
   set kratosSecretsDefault(ListBuilder<String>? kratosSecretsDefault) =>
       _$this._kratosSecretsDefault = kratosSecretsDefault;
 
+  ListBuilder<String>? _kratosSecretsPagination;
+  ListBuilder<String> get kratosSecretsPagination =>
+      _$this._kratosSecretsPagination ??= new ListBuilder<String>();
+  set kratosSecretsPagination(ListBuilder<String>? kratosSecretsPagination) =>
+      _$this._kratosSecretsPagination = kratosSecretsPagination;
+
   bool? _kratosSecurityAccountEnumerationMitigate;
   bool? get kratosSecurityAccountEnumerationMitigate =>
       _$this._kratosSecurityAccountEnumerationMitigate;
@@ -4568,6 +4580,7 @@ class CreateProjectNormalizedPayloadBuilder
       _kratosSecretsCipher = $v.kratosSecretsCipher?.toBuilder();
       _kratosSecretsCookie = $v.kratosSecretsCookie?.toBuilder();
       _kratosSecretsDefault = $v.kratosSecretsDefault?.toBuilder();
+      _kratosSecretsPagination = $v.kratosSecretsPagination?.toBuilder();
       _kratosSecurityAccountEnumerationMitigate =
           $v.kratosSecurityAccountEnumerationMitigate;
       _kratosSelfserviceAllowedReturnUrls =
@@ -4950,6 +4963,7 @@ class CreateProjectNormalizedPayloadBuilder
               kratosSecretsCipher: _kratosSecretsCipher?.build(),
               kratosSecretsCookie: _kratosSecretsCookie?.build(),
               kratosSecretsDefault: _kratosSecretsDefault?.build(),
+              kratosSecretsPagination: _kratosSecretsPagination?.build(),
               kratosSecurityAccountEnumerationMitigate: kratosSecurityAccountEnumerationMitigate,
               kratosSelfserviceAllowedReturnUrls: _kratosSelfserviceAllowedReturnUrls?.build(),
               kratosSelfserviceDefaultBrowserReturnUrl: kratosSelfserviceDefaultBrowserReturnUrl,
@@ -5101,6 +5115,8 @@ class CreateProjectNormalizedPayloadBuilder
         _kratosSecretsCookie?.build();
         _$failedField = 'kratosSecretsDefault';
         _kratosSecretsDefault?.build();
+        _$failedField = 'kratosSecretsPagination';
+        _kratosSecretsPagination?.build();
 
         _$failedField = 'kratosSelfserviceAllowedReturnUrls';
         _kratosSelfserviceAllowedReturnUrls?.build();

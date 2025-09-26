@@ -59,6 +59,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_permissionChecks =
     const QuotaUsageFeatureEnum._('permissionChecks');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_captcha =
     const QuotaUsageFeatureEnum._('captcha');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_identitySearchApi =
+    const QuotaUsageFeatureEnum._('identitySearchApi');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_samlSp =
     const QuotaUsageFeatureEnum._('samlSp');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_samlIdp =
@@ -168,6 +170,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_permissionChecks;
     case 'captcha':
       return _$quotaUsageFeatureEnum_captcha;
+    case 'identitySearchApi':
+      return _$quotaUsageFeatureEnum_identitySearchApi;
     case 'samlSp':
       return _$quotaUsageFeatureEnum_samlSp;
     case 'samlIdp':
@@ -243,6 +247,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_m2mTokenIssuance,
   _$quotaUsageFeatureEnum_permissionChecks,
   _$quotaUsageFeatureEnum_captcha,
+  _$quotaUsageFeatureEnum_identitySearchApi,
   _$quotaUsageFeatureEnum_samlSp,
   _$quotaUsageFeatureEnum_samlIdp,
   _$quotaUsageFeatureEnum_autoLinkPolicy,
@@ -298,6 +303,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'm2mTokenIssuance': 'm2m_token_issuance',
     'permissionChecks': 'permission_checks',
     'captcha': 'captcha',
+    'identitySearchApi': 'identity_search_api',
     'samlSp': 'saml_sp',
     'samlIdp': 'saml_idp',
     'autoLinkPolicy': 'auto_link_policy',
@@ -351,6 +357,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'm2m_token_issuance': 'm2mTokenIssuance',
     'permission_checks': 'permissionChecks',
     'captcha': 'captcha',
+    'identity_search_api': 'identitySearchApi',
     'saml_sp': 'samlSp',
     'saml_idp': 'samlIdp',
     'auto_link_policy': 'autoLinkPolicy',

@@ -12,7 +12,6 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
-docs/AccountExperienceThemeVariables.md
 docs/ActiveProjectInConsole.md
 docs/AddProjectToWorkspaceBody.md
 docs/Attribute.md
@@ -166,7 +165,6 @@ docs/OAuth2ClientTokenLifespans.md
 docs/OAuth2ConsentRequest.md
 docs/OAuth2ConsentRequestOpenIDConnectContext.md
 docs/OAuth2ConsentSession.md
-docs/OAuth2ConsentSessionExpiresAt.md
 docs/OAuth2LoginRequest.md
 docs/OAuth2LogoutRequest.md
 docs/OAuth2RedirectTo.md
@@ -199,6 +197,7 @@ docs/ProjectEventsDatapoint.md
 docs/ProjectHost.md
 docs/ProjectMember.md
 docs/ProjectMetadata.md
+docs/ProjectServiceAccountExperience.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
@@ -363,7 +362,6 @@ src/main/java/sh/ory/model/AcceptOAuth2ConsentRequestSession.java
 src/main/java/sh/ory/model/AcceptOAuth2LoginRequest.java
 src/main/java/sh/ory/model/AccountExperienceColors.java
 src/main/java/sh/ory/model/AccountExperienceConfiguration.java
-src/main/java/sh/ory/model/AccountExperienceThemeVariables.java
 src/main/java/sh/ory/model/ActiveProjectInConsole.java
 src/main/java/sh/ory/model/AddProjectToWorkspaceBody.java
 src/main/java/sh/ory/model/Attribute.java
@@ -510,7 +508,6 @@ src/main/java/sh/ory/model/OAuth2ClientTokenLifespans.java
 src/main/java/sh/ory/model/OAuth2ConsentRequest.java
 src/main/java/sh/ory/model/OAuth2ConsentRequestOpenIDConnectContext.java
 src/main/java/sh/ory/model/OAuth2ConsentSession.java
-src/main/java/sh/ory/model/OAuth2ConsentSessionExpiresAt.java
 src/main/java/sh/ory/model/OAuth2LoginRequest.java
 src/main/java/sh/ory/model/OAuth2LogoutRequest.java
 src/main/java/sh/ory/model/OAuth2RedirectTo.java
@@ -540,6 +537,7 @@ src/main/java/sh/ory/model/ProjectEventsDatapoint.java
 src/main/java/sh/ory/model/ProjectHost.java
 src/main/java/sh/ory/model/ProjectMember.java
 src/main/java/sh/ory/model/ProjectMetadata.java
+src/main/java/sh/ory/model/ProjectServiceAccountExperience.java
 src/main/java/sh/ory/model/ProjectServiceIdentity.java
 src/main/java/sh/ory/model/ProjectServiceOAuth2.java
 src/main/java/sh/ory/model/ProjectServicePermission.java
@@ -670,7 +668,6 @@ src/test/java/sh/ory/model/AcceptOAuth2ConsentRequestTest.java
 src/test/java/sh/ory/model/AcceptOAuth2LoginRequestTest.java
 src/test/java/sh/ory/model/AccountExperienceColorsTest.java
 src/test/java/sh/ory/model/AccountExperienceConfigurationTest.java
-src/test/java/sh/ory/model/AccountExperienceThemeVariablesTest.java
 src/test/java/sh/ory/model/ActiveProjectInConsoleTest.java
 src/test/java/sh/ory/model/AddProjectToWorkspaceBodyTest.java
 src/test/java/sh/ory/model/AttributeFilterTest.java
@@ -816,7 +813,6 @@ src/test/java/sh/ory/model/OAuth2ClientTest.java
 src/test/java/sh/ory/model/OAuth2ClientTokenLifespansTest.java
 src/test/java/sh/ory/model/OAuth2ConsentRequestOpenIDConnectContextTest.java
 src/test/java/sh/ory/model/OAuth2ConsentRequestTest.java
-src/test/java/sh/ory/model/OAuth2ConsentSessionExpiresAtTest.java
 src/test/java/sh/ory/model/OAuth2ConsentSessionTest.java
 src/test/java/sh/ory/model/OAuth2LoginRequestTest.java
 src/test/java/sh/ory/model/OAuth2LogoutRequestTest.java
@@ -846,6 +842,7 @@ src/test/java/sh/ory/model/ProjectEventsDatapointTest.java
 src/test/java/sh/ory/model/ProjectHostTest.java
 src/test/java/sh/ory/model/ProjectMemberTest.java
 src/test/java/sh/ory/model/ProjectMetadataTest.java
+src/test/java/sh/ory/model/ProjectServiceAccountExperienceTest.java
 src/test/java/sh/ory/model/ProjectServiceIdentityTest.java
 src/test/java/sh/ory/model/ProjectServiceOAuth2Test.java
 src/test/java/sh/ory/model/ProjectServicePermissionTest.java

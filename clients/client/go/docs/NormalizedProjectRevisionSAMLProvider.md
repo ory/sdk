@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AudienceOverrideBaseUrl** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Id** | Pointer to **string** |  | [optional] 
 **Label** | Pointer to **string** | Label represents an optional label which can be used in the UI generation. | [optional] 
@@ -34,6 +35,41 @@ NewNormalizedProjectRevisionSAMLProviderWithDefaults instantiates a new Normaliz
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetAudienceOverrideBaseUrl
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetAudienceOverrideBaseUrl() string`
+
+GetAudienceOverrideBaseUrl returns the AudienceOverrideBaseUrl field if non-nil, zero value otherwise.
+
+### GetAudienceOverrideBaseUrlOk
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetAudienceOverrideBaseUrlOk() (*string, bool)`
+
+GetAudienceOverrideBaseUrlOk returns a tuple with the AudienceOverrideBaseUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAudienceOverrideBaseUrl
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetAudienceOverrideBaseUrl(v string)`
+
+SetAudienceOverrideBaseUrl sets AudienceOverrideBaseUrl field to given value.
+
+### HasAudienceOverrideBaseUrl
+
+`func (o *NormalizedProjectRevisionSAMLProvider) HasAudienceOverrideBaseUrl() bool`
+
+HasAudienceOverrideBaseUrl returns a boolean if a field has been set.
+
+### SetAudienceOverrideBaseUrlNil
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetAudienceOverrideBaseUrlNil(b bool)`
+
+ SetAudienceOverrideBaseUrlNil sets the value for AudienceOverrideBaseUrl to be an explicit nil
+
+### UnsetAudienceOverrideBaseUrl
+`func (o *NormalizedProjectRevisionSAMLProvider) UnsetAudienceOverrideBaseUrl()`
+
+UnsetAudienceOverrideBaseUrl ensures that no value is present for AudienceOverrideBaseUrl, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *NormalizedProjectRevisionSAMLProvider) GetCreatedAt() time.Time`

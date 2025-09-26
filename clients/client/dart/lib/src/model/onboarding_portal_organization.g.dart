@@ -21,6 +21,12 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
   final String? organizationLabel;
   @override
   final String revisionId;
+  @override
+  final BuiltList<NormalizedProjectRevisionScimClient> scimClients;
+  @override
+  final bool scimEnabled;
+  @override
+  final bool ssoEnabled;
 
   factory _$OnboardingPortalOrganization(
           [void Function(OnboardingPortalOrganizationBuilder)? updates]) =>
@@ -32,7 +38,10 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
       required this.kratosSelfserviceMethodsSamlConfigProviders,
       this.organizationId,
       this.organizationLabel,
-      required this.revisionId})
+      required this.revisionId,
+      required this.scimClients,
+      required this.scimEnabled,
+      required this.ssoEnabled})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         baseUrl, r'OnboardingPortalOrganization', 'baseUrl');
@@ -46,6 +55,12 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
         'kratosSelfserviceMethodsSamlConfigProviders');
     BuiltValueNullFieldError.checkNotNull(
         revisionId, r'OnboardingPortalOrganization', 'revisionId');
+    BuiltValueNullFieldError.checkNotNull(
+        scimClients, r'OnboardingPortalOrganization', 'scimClients');
+    BuiltValueNullFieldError.checkNotNull(
+        scimEnabled, r'OnboardingPortalOrganization', 'scimEnabled');
+    BuiltValueNullFieldError.checkNotNull(
+        ssoEnabled, r'OnboardingPortalOrganization', 'ssoEnabled');
   }
 
   @override
@@ -68,7 +83,10 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
             other.kratosSelfserviceMethodsSamlConfigProviders &&
         organizationId == other.organizationId &&
         organizationLabel == other.organizationLabel &&
-        revisionId == other.revisionId;
+        revisionId == other.revisionId &&
+        scimClients == other.scimClients &&
+        scimEnabled == other.scimEnabled &&
+        ssoEnabled == other.ssoEnabled;
   }
 
   @override
@@ -80,6 +98,9 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
     _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, organizationLabel.hashCode);
     _$hash = $jc(_$hash, revisionId.hashCode);
+    _$hash = $jc(_$hash, scimClients.hashCode);
+    _$hash = $jc(_$hash, scimEnabled.hashCode);
+    _$hash = $jc(_$hash, ssoEnabled.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -94,7 +115,10 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
               kratosSelfserviceMethodsSamlConfigProviders)
           ..add('organizationId', organizationId)
           ..add('organizationLabel', organizationLabel)
-          ..add('revisionId', revisionId))
+          ..add('revisionId', revisionId)
+          ..add('scimClients', scimClients)
+          ..add('scimEnabled', scimEnabled)
+          ..add('ssoEnabled', ssoEnabled))
         .toString();
   }
 }
@@ -147,6 +171,22 @@ class OnboardingPortalOrganizationBuilder
   String? get revisionId => _$this._revisionId;
   set revisionId(String? revisionId) => _$this._revisionId = revisionId;
 
+  ListBuilder<NormalizedProjectRevisionScimClient>? _scimClients;
+  ListBuilder<NormalizedProjectRevisionScimClient> get scimClients =>
+      _$this._scimClients ??=
+          new ListBuilder<NormalizedProjectRevisionScimClient>();
+  set scimClients(
+          ListBuilder<NormalizedProjectRevisionScimClient>? scimClients) =>
+      _$this._scimClients = scimClients;
+
+  bool? _scimEnabled;
+  bool? get scimEnabled => _$this._scimEnabled;
+  set scimEnabled(bool? scimEnabled) => _$this._scimEnabled = scimEnabled;
+
+  bool? _ssoEnabled;
+  bool? get ssoEnabled => _$this._ssoEnabled;
+  set ssoEnabled(bool? ssoEnabled) => _$this._ssoEnabled = ssoEnabled;
+
   OnboardingPortalOrganizationBuilder() {
     OnboardingPortalOrganization._defaults(this);
   }
@@ -162,6 +202,9 @@ class OnboardingPortalOrganizationBuilder
       _organizationId = $v.organizationId;
       _organizationLabel = $v.organizationLabel;
       _revisionId = $v.revisionId;
+      _scimClients = $v.scimClients.toBuilder();
+      _scimEnabled = $v.scimEnabled;
+      _ssoEnabled = $v.ssoEnabled;
       _$v = null;
     }
     return this;
@@ -195,7 +238,12 @@ class OnboardingPortalOrganizationBuilder
               organizationId: organizationId,
               organizationLabel: organizationLabel,
               revisionId: BuiltValueNullFieldError.checkNotNull(
-                  revisionId, r'OnboardingPortalOrganization', 'revisionId'));
+                  revisionId, r'OnboardingPortalOrganization', 'revisionId'),
+              scimClients: scimClients.build(),
+              scimEnabled: BuiltValueNullFieldError.checkNotNull(
+                  scimEnabled, r'OnboardingPortalOrganization', 'scimEnabled'),
+              ssoEnabled: BuiltValueNullFieldError.checkNotNull(
+                  ssoEnabled, r'OnboardingPortalOrganization', 'ssoEnabled'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -203,6 +251,9 @@ class OnboardingPortalOrganizationBuilder
         kratosSelfserviceMethodsOidcConfigProviders.build();
         _$failedField = 'kratosSelfserviceMethodsSamlConfigProviders';
         kratosSelfserviceMethodsSamlConfigProviders.build();
+
+        _$failedField = 'scimClients';
+        scimClients.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'OnboardingPortalOrganization', _$failedField, e.toString());

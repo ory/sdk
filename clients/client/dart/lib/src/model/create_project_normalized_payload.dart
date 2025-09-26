@@ -151,6 +151,7 @@ part 'create_project_normalized_payload.g.dart';
 /// * [kratosSecretsCipher] 
 /// * [kratosSecretsCookie] 
 /// * [kratosSecretsDefault] 
+/// * [kratosSecretsPagination] 
 /// * [kratosSecurityAccountEnumerationMitigate] - Configures if account enumeration should be mitigated when using identifier first login.
 /// * [kratosSelfserviceAllowedReturnUrls] 
 /// * [kratosSelfserviceDefaultBrowserReturnUrl] - Configures the Ory Kratos Default Return URL  This governs the \"selfservice.allowed_return_urls\" setting.
@@ -765,6 +766,9 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
 
   @BuiltValueField(wireName: r'kratos_secrets_default')
   BuiltList<String>? get kratosSecretsDefault;
+
+  @BuiltValueField(wireName: r'kratos_secrets_pagination')
+  BuiltList<String>? get kratosSecretsPagination;
 
   /// Configures if account enumeration should be mitigated when using identifier first login.
   @BuiltValueField(wireName: r'kratos_security_account_enumeration_mitigate')
@@ -2119,6 +2123,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield r'kratos_secrets_default';
       yield serializers.serialize(
         object.kratosSecretsDefault,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.kratosSecretsPagination != null) {
+      yield r'kratos_secrets_pagination';
+      yield serializers.serialize(
+        object.kratosSecretsPagination,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
@@ -3804,6 +3815,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(BuiltList, [FullType(String)]),
           ) as BuiltList<String>;
           result.kratosSecretsDefault.replace(valueDes);
+          break;
+        case r'kratos_secrets_pagination':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.kratosSecretsPagination.replace(valueDes);
           break;
         case r'kratos_security_account_enumeration_mitigate':
           final valueDes = serializers.deserialize(

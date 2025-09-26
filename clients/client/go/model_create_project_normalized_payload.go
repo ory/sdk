@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.21.5
+API version: v1.22.3
 Contact: support@ory.sh
 */
 
@@ -264,6 +264,7 @@ type CreateProjectNormalizedPayload struct {
 	KratosSecretsCipher []string `json:"kratos_secrets_cipher,omitempty"`
 	KratosSecretsCookie []string `json:"kratos_secrets_cookie,omitempty"`
 	KratosSecretsDefault []string `json:"kratos_secrets_default,omitempty"`
+	KratosSecretsPagination []string `json:"kratos_secrets_pagination,omitempty"`
 	// Configures if account enumeration should be mitigated when using identifier first login.
 	KratosSecurityAccountEnumerationMitigate *bool `json:"kratos_security_account_enumeration_mitigate,omitempty"`
 	KratosSelfserviceAllowedReturnUrls []string `json:"kratos_selfservice_allowed_return_urls,omitempty"`
@@ -4661,6 +4662,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosSecretsDefault(v []string) {
 	o.KratosSecretsDefault = v
 }
 
+// GetKratosSecretsPagination returns the KratosSecretsPagination field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSecretsPagination() []string {
+	if o == nil || IsNil(o.KratosSecretsPagination) {
+		var ret []string
+		return ret
+	}
+	return o.KratosSecretsPagination
+}
+
+// GetKratosSecretsPaginationOk returns a tuple with the KratosSecretsPagination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSecretsPaginationOk() ([]string, bool) {
+	if o == nil || IsNil(o.KratosSecretsPagination) {
+		return nil, false
+	}
+	return o.KratosSecretsPagination, true
+}
+
+// HasKratosSecretsPagination returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSecretsPagination() bool {
+	if o != nil && !IsNil(o.KratosSecretsPagination) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSecretsPagination gets a reference to the given []string and assigns it to the KratosSecretsPagination field.
+func (o *CreateProjectNormalizedPayload) SetKratosSecretsPagination(v []string) {
+	o.KratosSecretsPagination = v
+}
+
 // GetKratosSecurityAccountEnumerationMitigate returns the KratosSecurityAccountEnumerationMitigate field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSecurityAccountEnumerationMitigate() bool {
 	if o == nil || IsNil(o.KratosSecurityAccountEnumerationMitigate) {
@@ -8514,6 +8547,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSecretsDefault) {
 		toSerialize["kratos_secrets_default"] = o.KratosSecretsDefault
 	}
+	if !IsNil(o.KratosSecretsPagination) {
+		toSerialize["kratos_secrets_pagination"] = o.KratosSecretsPagination
+	}
 	if !IsNil(o.KratosSecurityAccountEnumerationMitigate) {
 		toSerialize["kratos_security_account_enumeration_mitigate"] = o.KratosSecurityAccountEnumerationMitigate
 	}
@@ -9009,6 +9045,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_secrets_cipher")
 		delete(additionalProperties, "kratos_secrets_cookie")
 		delete(additionalProperties, "kratos_secrets_default")
+		delete(additionalProperties, "kratos_secrets_pagination")
 		delete(additionalProperties, "kratos_security_account_enumeration_mitigate")
 		delete(additionalProperties, "kratos_selfservice_allowed_return_urls")
 		delete(additionalProperties, "kratos_selfservice_default_browser_return_url")

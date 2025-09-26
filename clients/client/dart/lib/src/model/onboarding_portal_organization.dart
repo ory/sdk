@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:ory_client/src/model/normalized_project_revision_scim_client.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/normalized_project_revision_saml_provider.dart';
 import 'package:ory_client/src/model/normalized_project_revision_third_party_provider.dart';
@@ -20,6 +21,9 @@ part 'onboarding_portal_organization.g.dart';
 /// * [organizationId] - Organization ID
 /// * [organizationLabel] - Organization Label
 /// * [revisionId] 
+/// * [scimClients] 
+/// * [scimEnabled] 
+/// * [ssoEnabled] 
 @BuiltValue()
 abstract class OnboardingPortalOrganization implements Built<OnboardingPortalOrganization, OnboardingPortalOrganizationBuilder> {
   @BuiltValueField(wireName: r'base_url')
@@ -41,6 +45,15 @@ abstract class OnboardingPortalOrganization implements Built<OnboardingPortalOrg
 
   @BuiltValueField(wireName: r'revision_id')
   String get revisionId;
+
+  @BuiltValueField(wireName: r'scim_clients')
+  BuiltList<NormalizedProjectRevisionScimClient> get scimClients;
+
+  @BuiltValueField(wireName: r'scim_enabled')
+  bool get scimEnabled;
+
+  @BuiltValueField(wireName: r'sso_enabled')
+  bool get ssoEnabled;
 
   OnboardingPortalOrganization._();
 
@@ -98,6 +111,21 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
     yield serializers.serialize(
       object.revisionId,
       specifiedType: const FullType(String),
+    );
+    yield r'scim_clients';
+    yield serializers.serialize(
+      object.scimClients,
+      specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionScimClient)]),
+    );
+    yield r'scim_enabled';
+    yield serializers.serialize(
+      object.scimEnabled,
+      specifiedType: const FullType(bool),
+    );
+    yield r'sso_enabled';
+    yield serializers.serialize(
+      object.ssoEnabled,
+      specifiedType: const FullType(bool),
     );
   }
 
@@ -163,6 +191,27 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
             specifiedType: const FullType(String),
           ) as String;
           result.revisionId = valueDes;
+          break;
+        case r'scim_clients':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionScimClient)]),
+          ) as BuiltList<NormalizedProjectRevisionScimClient>;
+          result.scimClients.replace(valueDes);
+          break;
+        case r'scim_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.scimEnabled = valueDes;
+          break;
+        case r'sso_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.ssoEnabled = valueDes;
           break;
         default:
           unhandled.add(key);

@@ -12,6 +12,7 @@ part 'normalized_project_revision_saml_provider.g.dart';
 /// NormalizedProjectRevisionSAMLProvider
 ///
 /// Properties:
+/// * [audienceOverrideBaseUrl] 
 /// * [createdAt] - The Project's Revision Creation Date
 /// * [id] 
 /// * [label] - Label represents an optional label which can be used in the UI generation.
@@ -24,6 +25,9 @@ part 'normalized_project_revision_saml_provider.g.dart';
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
 abstract class NormalizedProjectRevisionSAMLProvider implements Built<NormalizedProjectRevisionSAMLProvider, NormalizedProjectRevisionSAMLProviderBuilder> {
+  @BuiltValueField(wireName: r'audience_override_base_url')
+  String? get audienceOverrideBaseUrl;
+
   /// The Project's Revision Creation Date
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
@@ -86,6 +90,13 @@ class _$NormalizedProjectRevisionSAMLProviderSerializer implements PrimitiveSeri
     NormalizedProjectRevisionSAMLProvider object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.audienceOverrideBaseUrl != null) {
+      yield r'audience_override_base_url';
+      yield serializers.serialize(
+        object.audienceOverrideBaseUrl,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.createdAt != null) {
       yield r'created_at';
       yield serializers.serialize(
@@ -179,6 +190,14 @@ class _$NormalizedProjectRevisionSAMLProviderSerializer implements PrimitiveSeri
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'audience_override_base_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.audienceOverrideBaseUrl = valueDes;
+          break;
         case r'created_at':
           final valueDes = serializers.deserialize(
             value,

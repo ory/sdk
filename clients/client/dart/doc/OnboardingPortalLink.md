@@ -9,6 +9,8 @@ import 'package:ory_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**DateTime**](DateTime.md) | The onboarding portal link's creation date | [optional] 
+**customHostnameId** | **String** |  | [optional] 
+**enableScim** | **bool** | Feature flag to enable SCIM configuration | [optional] 
 **enableSso** | **bool** | Feature flag to enable SSO configuration | [optional] 
 **expiresAt** | [**DateTime**](DateTime.md) | The onboarding portal link's expiry date | 
 **id** | **String** | The onboarding portal link's ID. | 

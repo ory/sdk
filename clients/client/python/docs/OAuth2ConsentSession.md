@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **consent_request** | [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  | [optional] 
 **consent_request_id** | **str** | ConsentRequestID is the identifier of the consent request that initiated this consent session. | [optional] 
 **context** | **object** |  | [optional] 
-**expires_at** | [**OAuth2ConsentSessionExpiresAt**](OAuth2ConsentSessionExpiresAt.md) |  | [optional] 
 **grant_access_token_audience** | **List[str]** |  | [optional] 
 **grant_scope** | **List[str]** |  | [optional] 
 **handled_at** | **datetime** |  | [optional] 

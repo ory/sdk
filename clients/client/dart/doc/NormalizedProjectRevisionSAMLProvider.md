@@ -8,6 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**audienceOverrideBaseUrl** | **String** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) | The Project's Revision Creation Date | [optional] 
 **id** | **String** |  | [optional] 
 **label** | **String** | Label represents an optional label which can be used in the UI generation. | [optional] 

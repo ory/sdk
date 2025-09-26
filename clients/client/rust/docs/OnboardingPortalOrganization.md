@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **organization_id** | Option<**String**> | Organization ID | [optional]
 **organization_label** | Option<**String**> | Organization Label | [optional]
 **revision_id** | **String** |  | 
+**scim_clients** | [**Vec<models::NormalizedProjectRevisionScimClient>**](normalizedProjectRevisionScimClient.md) |  | 
+**scim_enabled** | **bool** |  | 
+**sso_enabled** | **bool** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

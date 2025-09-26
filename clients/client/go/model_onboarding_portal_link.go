@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.21.5
+API version: v1.22.3
 Contact: support@ory.sh
 */
 
@@ -24,6 +24,9 @@ var _ MappedNullable = &OnboardingPortalLink{}
 type OnboardingPortalLink struct {
 	// The onboarding portal link's creation date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CustomHostnameId NullableString `json:"custom_hostname_id,omitempty"`
+	// Feature flag to enable SCIM configuration
+	EnableScim *bool `json:"enable_scim,omitempty"`
 	// Feature flag to enable SSO configuration
 	EnableSso *bool `json:"enable_sso,omitempty"`
 	// The onboarding portal link's expiry date
@@ -93,6 +96,80 @@ func (o *OnboardingPortalLink) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *OnboardingPortalLink) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetCustomHostnameId returns the CustomHostnameId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OnboardingPortalLink) GetCustomHostnameId() string {
+	if o == nil || IsNil(o.CustomHostnameId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CustomHostnameId.Get()
+}
+
+// GetCustomHostnameIdOk returns a tuple with the CustomHostnameId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OnboardingPortalLink) GetCustomHostnameIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CustomHostnameId.Get(), o.CustomHostnameId.IsSet()
+}
+
+// HasCustomHostnameId returns a boolean if a field has been set.
+func (o *OnboardingPortalLink) HasCustomHostnameId() bool {
+	if o != nil && o.CustomHostnameId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomHostnameId gets a reference to the given NullableString and assigns it to the CustomHostnameId field.
+func (o *OnboardingPortalLink) SetCustomHostnameId(v string) {
+	o.CustomHostnameId.Set(&v)
+}
+// SetCustomHostnameIdNil sets the value for CustomHostnameId to be an explicit nil
+func (o *OnboardingPortalLink) SetCustomHostnameIdNil() {
+	o.CustomHostnameId.Set(nil)
+}
+
+// UnsetCustomHostnameId ensures that no value is present for CustomHostnameId, not even an explicit nil
+func (o *OnboardingPortalLink) UnsetCustomHostnameId() {
+	o.CustomHostnameId.Unset()
+}
+
+// GetEnableScim returns the EnableScim field value if set, zero value otherwise.
+func (o *OnboardingPortalLink) GetEnableScim() bool {
+	if o == nil || IsNil(o.EnableScim) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableScim
+}
+
+// GetEnableScimOk returns a tuple with the EnableScim field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OnboardingPortalLink) GetEnableScimOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnableScim) {
+		return nil, false
+	}
+	return o.EnableScim, true
+}
+
+// HasEnableScim returns a boolean if a field has been set.
+func (o *OnboardingPortalLink) HasEnableScim() bool {
+	if o != nil && !IsNil(o.EnableScim) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableScim gets a reference to the given bool and assigns it to the EnableScim field.
+func (o *OnboardingPortalLink) SetEnableScim(v bool) {
+	o.EnableScim = &v
 }
 
 // GetEnableSso returns the EnableSso field value if set, zero value otherwise.
@@ -260,6 +337,12 @@ func (o OnboardingPortalLink) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if o.CustomHostnameId.IsSet() {
+		toSerialize["custom_hostname_id"] = o.CustomHostnameId.Get()
+	}
+	if !IsNil(o.EnableScim) {
+		toSerialize["enable_scim"] = o.EnableScim
+	}
 	if !IsNil(o.EnableSso) {
 		toSerialize["enable_sso"] = o.EnableSso
 	}
@@ -316,6 +399,8 @@ func (o *OnboardingPortalLink) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "custom_hostname_id")
+		delete(additionalProperties, "enable_scim")
 		delete(additionalProperties, "enable_sso")
 		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "id")

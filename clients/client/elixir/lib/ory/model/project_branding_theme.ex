@@ -13,8 +13,6 @@ defmodule Ory.Model.ProjectBrandingTheme do
     :accent_emphasis_color,
     :accent_muted_color,
     :accent_subtle_color,
-    :account_experience_variables,
-    :account_experience_variables_stylesheet,
     :background_canvas_color,
     :background_subtle_color,
     :background_surface_color,
@@ -56,8 +54,6 @@ defmodule Ory.Model.ProjectBrandingTheme do
     :accent_emphasis_color => String.t | nil,
     :accent_muted_color => String.t | nil,
     :accent_subtle_color => String.t | nil,
-    :account_experience_variables => [Ory.Model.AccountExperienceThemeVariables.t] | nil,
-    :account_experience_variables_stylesheet => String.t | nil,
     :background_canvas_color => String.t | nil,
     :background_subtle_color => String.t | nil,
     :background_surface_color => String.t | nil,
@@ -97,7 +93,6 @@ defmodule Ory.Model.ProjectBrandingTheme do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:account_experience_variables, :list, Ory.Model.AccountExperienceThemeVariables)
      |> Deserializer.deserialize(:created_at, :datetime, nil)
      |> Deserializer.deserialize(:updated_at, :datetime, nil)
   end

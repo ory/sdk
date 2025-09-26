@@ -12,6 +12,8 @@ part 'onboarding_portal_link.g.dart';
 ///
 /// Properties:
 /// * [createdAt] - The onboarding portal link's creation date
+/// * [customHostnameId] 
+/// * [enableScim] - Feature flag to enable SCIM configuration
 /// * [enableSso] - Feature flag to enable SSO configuration
 /// * [expiresAt] - The onboarding portal link's expiry date
 /// * [id] - The onboarding portal link's ID.
@@ -23,6 +25,13 @@ abstract class OnboardingPortalLink implements Built<OnboardingPortalLink, Onboa
   /// The onboarding portal link's creation date
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
+
+  @BuiltValueField(wireName: r'custom_hostname_id')
+  String? get customHostnameId;
+
+  /// Feature flag to enable SCIM configuration
+  @BuiltValueField(wireName: r'enable_scim')
+  bool? get enableScim;
 
   /// Feature flag to enable SSO configuration
   @BuiltValueField(wireName: r'enable_sso')
@@ -76,6 +85,20 @@ class _$OnboardingPortalLinkSerializer implements PrimitiveSerializer<Onboarding
       yield serializers.serialize(
         object.createdAt,
         specifiedType: const FullType(DateTime),
+      );
+    }
+    if (object.customHostnameId != null) {
+      yield r'custom_hostname_id';
+      yield serializers.serialize(
+        object.customHostnameId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.enableScim != null) {
+      yield r'enable_scim';
+      yield serializers.serialize(
+        object.enableScim,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.enableSso != null) {
@@ -139,6 +162,21 @@ class _$OnboardingPortalLinkSerializer implements PrimitiveSerializer<Onboarding
             specifiedType: const FullType(DateTime),
           ) as DateTime;
           result.createdAt = valueDes;
+          break;
+        case r'custom_hostname_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.customHostnameId = valueDes;
+          break;
+        case r'enable_scim':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.enableScim = valueDes;
           break;
         case r'enable_sso':
           final valueDes = serializers.deserialize(

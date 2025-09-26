@@ -31,7 +31,6 @@ src/models/AcceptOAuth2ConsentRequestSession.ts
 src/models/AcceptOAuth2LoginRequest.ts
 src/models/AccountExperienceColors.ts
 src/models/AccountExperienceConfiguration.ts
-src/models/AccountExperienceThemeVariables.ts
 src/models/ActiveProjectInConsole.ts
 src/models/AddProjectToWorkspaceBody.ts
 src/models/Attribute.ts
@@ -178,7 +177,6 @@ src/models/OAuth2ClientTokenLifespans.ts
 src/models/OAuth2ConsentRequest.ts
 src/models/OAuth2ConsentRequestOpenIDConnectContext.ts
 src/models/OAuth2ConsentSession.ts
-src/models/OAuth2ConsentSessionExpiresAt.ts
 src/models/OAuth2LoginRequest.ts
 src/models/OAuth2LogoutRequest.ts
 src/models/OAuth2RedirectTo.ts
@@ -208,6 +206,7 @@ src/models/ProjectEventsDatapoint.ts
 src/models/ProjectHost.ts
 src/models/ProjectMember.ts
 src/models/ProjectMetadata.ts
+src/models/ProjectServiceAccountExperience.ts
 src/models/ProjectServiceIdentity.ts
 src/models/ProjectServiceOAuth2.ts
 src/models/ProjectServicePermission.ts

@@ -25,7 +25,6 @@ lib/ory/model/accept_o_auth2_consent_request_session.ex
 lib/ory/model/accept_o_auth2_login_request.ex
 lib/ory/model/account_experience_colors.ex
 lib/ory/model/account_experience_configuration.ex
-lib/ory/model/account_experience_theme_variables.ex
 lib/ory/model/active_project_in_console.ex
 lib/ory/model/add_project_to_workspace_body.ex
 lib/ory/model/attribute.ex
@@ -172,7 +171,6 @@ lib/ory/model/o_auth2_client_token_lifespans.ex
 lib/ory/model/o_auth2_consent_request.ex
 lib/ory/model/o_auth2_consent_request_open_id_connect_context.ex
 lib/ory/model/o_auth2_consent_session.ex
-lib/ory/model/o_auth2_consent_session_expires_at.ex
 lib/ory/model/o_auth2_login_request.ex
 lib/ory/model/o_auth2_logout_request.ex
 lib/ory/model/o_auth2_redirect_to.ex
@@ -202,6 +200,7 @@ lib/ory/model/project_events_datapoint.ex
 lib/ory/model/project_host.ex
 lib/ory/model/project_member.ex
 lib/ory/model/project_metadata.ex
+lib/ory/model/project_service_account_experience.ex
 lib/ory/model/project_service_identity.ex
 lib/ory/model/project_service_o_auth2.ex
 lib/ory/model/project_service_permission.ex

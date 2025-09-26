@@ -78,6 +78,8 @@ class _$NormalizedProjectRevisionScimClient
   @override
   final DateTime? createdAt;
   @override
+  final String? id;
+  @override
   final String label;
   @override
   final String mapperUrl;
@@ -98,6 +100,7 @@ class _$NormalizedProjectRevisionScimClient
       {required this.authorizationHeaderSecret,
       required this.clientId,
       this.createdAt,
+      this.id,
       required this.label,
       required this.mapperUrl,
       required this.organizationId,
@@ -132,6 +135,7 @@ class _$NormalizedProjectRevisionScimClient
         authorizationHeaderSecret == other.authorizationHeaderSecret &&
         clientId == other.clientId &&
         createdAt == other.createdAt &&
+        id == other.id &&
         label == other.label &&
         mapperUrl == other.mapperUrl &&
         organizationId == other.organizationId &&
@@ -145,6 +149,7 @@ class _$NormalizedProjectRevisionScimClient
     _$hash = $jc(_$hash, authorizationHeaderSecret.hashCode);
     _$hash = $jc(_$hash, clientId.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, label.hashCode);
     _$hash = $jc(_$hash, mapperUrl.hashCode);
     _$hash = $jc(_$hash, organizationId.hashCode);
@@ -160,6 +165,7 @@ class _$NormalizedProjectRevisionScimClient
           ..add('authorizationHeaderSecret', authorizationHeaderSecret)
           ..add('clientId', clientId)
           ..add('createdAt', createdAt)
+          ..add('id', id)
           ..add('label', label)
           ..add('mapperUrl', mapperUrl)
           ..add('organizationId', organizationId)
@@ -187,6 +193,10 @@ class NormalizedProjectRevisionScimClientBuilder
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
   String? _label;
   String? get label => _$this._label;
@@ -220,6 +230,7 @@ class NormalizedProjectRevisionScimClientBuilder
       _authorizationHeaderSecret = $v.authorizationHeaderSecret;
       _clientId = $v.clientId;
       _createdAt = $v.createdAt;
+      _id = $v.id;
       _label = $v.label;
       _mapperUrl = $v.mapperUrl;
       _organizationId = $v.organizationId;
@@ -255,6 +266,7 @@ class NormalizedProjectRevisionScimClientBuilder
             clientId: BuiltValueNullFieldError.checkNotNull(
                 clientId, r'NormalizedProjectRevisionScimClient', 'clientId'),
             createdAt: createdAt,
+            id: id,
             label: BuiltValueNullFieldError.checkNotNull(
                 label, r'NormalizedProjectRevisionScimClient', 'label'),
             mapperUrl: BuiltValueNullFieldError.checkNotNull(

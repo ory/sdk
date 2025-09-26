@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**kratos_selfservice_methods_oidc_config_providers** | [**List[NormalizedProjectRevisionThirdPartyProvider]**](NormalizedProjectRevisionThirdPartyProvider.md) |  | 
-**kratos_selfservice_methods_saml_config_providers** | [**List[NormalizedProjectRevisionSAMLProvider]**](NormalizedProjectRevisionSAMLProvider.md) |  | 
+**kratos_selfservice_methods_oidc_config_providers** | [**List[NormalizedProjectRevisionThirdPartyProvider]**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] 
+**kratos_selfservice_methods_saml_config_providers** | [**List[NormalizedProjectRevisionSAMLProvider]**](NormalizedProjectRevisionSAMLProvider.md) |  | [optional] 
 **revision_id** | **str** |  | 
+**scim_clients** | [**List[NormalizedProjectRevisionScimClient]**](NormalizedProjectRevisionScimClient.md) |  | [optional] 
 
 ## Example
 

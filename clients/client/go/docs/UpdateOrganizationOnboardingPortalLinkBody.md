@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**EnableScim** | **bool** | Feature flag to enable SCIM configuration | 
 **EnableSso** | **bool** | Feature flag to enable SSO configuration | 
 **ExpiresAt** | Pointer to **time.Time** |  | [optional] 
 
@@ -11,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateOrganizationOnboardingPortalLinkBody
 
-`func NewUpdateOrganizationOnboardingPortalLinkBody(enableSso bool, ) *UpdateOrganizationOnboardingPortalLinkBody`
+`func NewUpdateOrganizationOnboardingPortalLinkBody(enableScim bool, enableSso bool, ) *UpdateOrganizationOnboardingPortalLinkBody`
 
 NewUpdateOrganizationOnboardingPortalLinkBody instantiates a new UpdateOrganizationOnboardingPortalLinkBody object
 This constructor will assign default values to properties that have it defined,
@@ -25,6 +26,26 @@ will change when the set of required properties is changed
 NewUpdateOrganizationOnboardingPortalLinkBodyWithDefaults instantiates a new UpdateOrganizationOnboardingPortalLinkBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetEnableScim
+
+`func (o *UpdateOrganizationOnboardingPortalLinkBody) GetEnableScim() bool`
+
+GetEnableScim returns the EnableScim field if non-nil, zero value otherwise.
+
+### GetEnableScimOk
+
+`func (o *UpdateOrganizationOnboardingPortalLinkBody) GetEnableScimOk() (*bool, bool)`
+
+GetEnableScimOk returns a tuple with the EnableScim field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableScim
+
+`func (o *UpdateOrganizationOnboardingPortalLinkBody) SetEnableScim(v bool)`
+
+SetEnableScim sets EnableScim field to given value.
+
 
 ### GetEnableSso
 

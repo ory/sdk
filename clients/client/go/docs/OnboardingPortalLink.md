@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | The onboarding portal link&#39;s creation date | [optional] [readonly] 
+**CustomHostnameId** | Pointer to **NullableString** |  | [optional] 
+**EnableScim** | Pointer to **bool** | Feature flag to enable SCIM configuration | [optional] 
 **EnableSso** | Pointer to **bool** | Feature flag to enable SSO configuration | [optional] 
 **ExpiresAt** | **time.Time** | The onboarding portal link&#39;s expiry date | [readonly] 
 **Id** | **string** | The onboarding portal link&#39;s ID. | [readonly] 
@@ -55,6 +57,66 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *OnboardingPortalLink) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetCustomHostnameId
+
+`func (o *OnboardingPortalLink) GetCustomHostnameId() string`
+
+GetCustomHostnameId returns the CustomHostnameId field if non-nil, zero value otherwise.
+
+### GetCustomHostnameIdOk
+
+`func (o *OnboardingPortalLink) GetCustomHostnameIdOk() (*string, bool)`
+
+GetCustomHostnameIdOk returns a tuple with the CustomHostnameId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomHostnameId
+
+`func (o *OnboardingPortalLink) SetCustomHostnameId(v string)`
+
+SetCustomHostnameId sets CustomHostnameId field to given value.
+
+### HasCustomHostnameId
+
+`func (o *OnboardingPortalLink) HasCustomHostnameId() bool`
+
+HasCustomHostnameId returns a boolean if a field has been set.
+
+### SetCustomHostnameIdNil
+
+`func (o *OnboardingPortalLink) SetCustomHostnameIdNil(b bool)`
+
+ SetCustomHostnameIdNil sets the value for CustomHostnameId to be an explicit nil
+
+### UnsetCustomHostnameId
+`func (o *OnboardingPortalLink) UnsetCustomHostnameId()`
+
+UnsetCustomHostnameId ensures that no value is present for CustomHostnameId, not even an explicit nil
+### GetEnableScim
+
+`func (o *OnboardingPortalLink) GetEnableScim() bool`
+
+GetEnableScim returns the EnableScim field if non-nil, zero value otherwise.
+
+### GetEnableScimOk
+
+`func (o *OnboardingPortalLink) GetEnableScimOk() (*bool, bool)`
+
+GetEnableScimOk returns a tuple with the EnableScim field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableScim
+
+`func (o *OnboardingPortalLink) SetEnableScim(v bool)`
+
+SetEnableScim sets EnableScim field to given value.
+
+### HasEnableScim
+
+`func (o *OnboardingPortalLink) HasEnableScim() bool`
+
+HasEnableScim returns a boolean if a field has been set.
 
 ### GetEnableSso
 
