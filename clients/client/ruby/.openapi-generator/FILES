@@ -220,6 +220,7 @@ docs/RelationshipApi.md
 docs/RelationshipNamespaces.md
 docs/RelationshipPatch.md
 docs/Relationships.md
+docs/RevisionAccountExperienceCustomTranslation.md
 docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
@@ -532,6 +533,7 @@ lib/ory-client/models/relationship.rb
 lib/ory-client/models/relationship_namespaces.rb
 lib/ory-client/models/relationship_patch.rb
 lib/ory-client/models/relationships.rb
+lib/ory-client/models/revision_account_experience_custom_translation.rb
 lib/ory-client/models/rfc6749_error_json.rb
 lib/ory-client/models/schema_patch.rb
 lib/ory-client/models/self_service_flow_expired_error.rb
@@ -840,6 +842,7 @@ spec/models/relationship_namespaces_spec.rb
 spec/models/relationship_patch_spec.rb
 spec/models/relationship_spec.rb
 spec/models/relationships_spec.rb
+spec/models/revision_account_experience_custom_translation_spec.rb
 spec/models/rfc6749_error_json_spec.rb
 spec/models/schema_patch_spec.rb
 spec/models/self_service_flow_expired_error_spec.rb

@@ -219,6 +219,7 @@ docs/Model/Relationship.md
 docs/Model/RelationshipNamespaces.md
 docs/Model/RelationshipPatch.md
 docs/Model/Relationships.md
+docs/Model/RevisionAccountExperienceCustomTranslation.md
 docs/Model/SchemaPatch.md
 docs/Model/SelfServiceFlowExpiredError.md
 docs/Model/Session.md
@@ -530,6 +531,7 @@ lib/Model/Relationship.php
 lib/Model/RelationshipNamespaces.php
 lib/Model/RelationshipPatch.php
 lib/Model/Relationships.php
+lib/Model/RevisionAccountExperienceCustomTranslation.php
 lib/Model/SchemaPatch.php
 lib/Model/SelfServiceFlowExpiredError.php
 lib/Model/Session.php
@@ -838,6 +840,7 @@ test/Model/RelationshipNamespacesTest.php
 test/Model/RelationshipPatchTest.php
 test/Model/RelationshipTest.php
 test/Model/RelationshipsTest.php
+test/Model/RevisionAccountExperienceCustomTranslationTest.php
 test/Model/SchemaPatchTest.php
 test/Model/SelfServiceFlowExpiredErrorTest.php
 test/Model/SessionActivityDatapointTest.php

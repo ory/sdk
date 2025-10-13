@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **registrationUiUrl** | **string** |  |
 **settingsUiUrl** | **string** |  |
 **stylesheet** | **string** |  | [optional]
+**translations** | [**\Ory\Client\Model\RevisionAccountExperienceCustomTranslation[]**](RevisionAccountExperienceCustomTranslation.md) |  |
 **verificationEnabled** | **bool** |  |
 **verificationUiUrl** | **string** |  |
 

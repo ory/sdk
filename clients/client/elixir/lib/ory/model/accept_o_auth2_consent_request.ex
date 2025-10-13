@@ -11,7 +11,6 @@ defmodule Ory.Model.AcceptOAuth2ConsentRequest do
     :context,
     :grant_access_token_audience,
     :grant_scope,
-    :handled_at,
     :remember,
     :remember_for,
     :session
@@ -21,7 +20,6 @@ defmodule Ory.Model.AcceptOAuth2ConsentRequest do
     :context => map() | nil,
     :grant_access_token_audience => [String.t] | nil,
     :grant_scope => [String.t] | nil,
-    :handled_at => DateTime.t | nil,
     :remember => boolean() | nil,
     :remember_for => integer() | nil,
     :session => Ory.Model.AcceptOAuth2ConsentRequestSession.t | nil
@@ -31,7 +29,6 @@ defmodule Ory.Model.AcceptOAuth2ConsentRequest do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:handled_at, :datetime, nil)
      |> Deserializer.deserialize(:session, :struct, Ory.Model.AcceptOAuth2ConsentRequestSession)
   end
 end

@@ -8,20 +8,16 @@ defmodule Ory.Model.VerifyUserCodeRequest do
 
   @derive Jason.Encoder
   defstruct [
-    :challenge,
     :client,
     :device_code_request_id,
-    :handled_at,
     :request_url,
     :requested_access_token_audience,
     :requested_scope
   ]
 
   @type t :: %__MODULE__{
-    :challenge => String.t | nil,
     :client => Ory.Model.OAuth2Client.t | nil,
     :device_code_request_id => String.t | nil,
-    :handled_at => DateTime.t | nil,
     :request_url => String.t | nil,
     :requested_access_token_audience => [String.t] | nil,
     :requested_scope => [String.t] | nil
@@ -32,7 +28,6 @@ defmodule Ory.Model.VerifyUserCodeRequest do
   def decode(value) do
     value
      |> Deserializer.deserialize(:client, :struct, Ory.Model.OAuth2Client)
-     |> Deserializer.deserialize(:handled_at, :datetime, nil)
   end
 end
 

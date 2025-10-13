@@ -13,27 +13,18 @@ part 'verify_user_code_request.g.dart';
 /// VerifyUserCodeRequest
 ///
 /// Properties:
-/// * [challenge] - ID is the identifier (\"device challenge\") of the device request. It is used to identify the session.
 /// * [client] 
 /// * [deviceCodeRequestId] 
-/// * [handledAt] 
 /// * [requestUrl] - RequestURL is the original Device Authorization URL requested.
 /// * [requestedAccessTokenAudience] 
 /// * [requestedScope] 
 @BuiltValue()
 abstract class VerifyUserCodeRequest implements Built<VerifyUserCodeRequest, VerifyUserCodeRequestBuilder> {
-  /// ID is the identifier (\"device challenge\") of the device request. It is used to identify the session.
-  @BuiltValueField(wireName: r'challenge')
-  String? get challenge;
-
   @BuiltValueField(wireName: r'client')
   OAuth2Client? get client;
 
   @BuiltValueField(wireName: r'device_code_request_id')
   String? get deviceCodeRequestId;
-
-  @BuiltValueField(wireName: r'handled_at')
-  DateTime? get handledAt;
 
   /// RequestURL is the original Device Authorization URL requested.
   @BuiltValueField(wireName: r'request_url')
@@ -68,13 +59,6 @@ class _$VerifyUserCodeRequestSerializer implements PrimitiveSerializer<VerifyUse
     VerifyUserCodeRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.challenge != null) {
-      yield r'challenge';
-      yield serializers.serialize(
-        object.challenge,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.client != null) {
       yield r'client';
       yield serializers.serialize(
@@ -87,13 +71,6 @@ class _$VerifyUserCodeRequestSerializer implements PrimitiveSerializer<VerifyUse
       yield serializers.serialize(
         object.deviceCodeRequestId,
         specifiedType: const FullType(String),
-      );
-    }
-    if (object.handledAt != null) {
-      yield r'handled_at';
-      yield serializers.serialize(
-        object.handledAt,
-        specifiedType: const FullType(DateTime),
       );
     }
     if (object.requestUrl != null) {
@@ -140,13 +117,6 @@ class _$VerifyUserCodeRequestSerializer implements PrimitiveSerializer<VerifyUse
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'challenge':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.challenge = valueDes;
-          break;
         case r'client':
           final valueDes = serializers.deserialize(
             value,
@@ -160,13 +130,6 @@ class _$VerifyUserCodeRequestSerializer implements PrimitiveSerializer<VerifyUse
             specifiedType: const FullType(String),
           ) as String;
           result.deviceCodeRequestId = valueDes;
-          break;
-        case r'handled_at':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.handledAt = valueDes;
           break;
         case r'request_url':
           final valueDes = serializers.deserialize(

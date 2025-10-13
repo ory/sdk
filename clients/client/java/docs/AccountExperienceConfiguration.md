@@ -23,6 +23,7 @@
 |**registrationUiUrl** | **String** |  |  |
 |**settingsUiUrl** | **String** |  |  |
 |**stylesheet** | **String** |  |  [optional] |
+|**translations** | [**List&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) |  |  |
 |**verificationEnabled** | **Boolean** |  |  |
 |**verificationUiUrl** | **String** |  |  |
 

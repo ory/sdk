@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.3
-  - Build date: 2025-09-26T12:45:41.727297619Z[Etc/UTC]
+- API version: v1.22.6
+  - Build date: 2025-10-13T07:56:14.986835864Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.3</version>
+  <version>v1.22.6</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.3"
+     implementation "sh.ory:client:v1.22.6"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.3.jar`
+* `target/client-v1.22.6.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -492,6 +492,7 @@ Class | Method | HTTP request | Description
  - [RelationshipNamespaces](docs/RelationshipNamespaces.md)
  - [RelationshipPatch](docs/RelationshipPatch.md)
  - [Relationships](docs/Relationships.md)
+ - [RevisionAccountExperienceCustomTranslation](docs/RevisionAccountExperienceCustomTranslation.md)
  - [SchemaPatch](docs/SchemaPatch.md)
  - [SelfServiceFlowExpiredError](docs/SelfServiceFlowExpiredError.md)
  - [Session](docs/Session.md)

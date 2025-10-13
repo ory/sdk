@@ -8,10 +8,8 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**challenge** | **String** | ID is the identifier (\"device challenge\") of the device request. It is used to identify the session. | [optional] 
 **client** | [**OAuth2Client**](OAuth2Client.md) |  | [optional] 
 **deviceCodeRequestId** | **String** |  | [optional] 
-**handledAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **requestUrl** | **String** | RequestURL is the original Device Authorization URL requested. | [optional] 
 **requestedAccessTokenAudience** | **BuiltList&lt;String&gt;** |  | [optional] 
 **requestedScope** | **BuiltList&lt;String&gt;** |  | [optional] 

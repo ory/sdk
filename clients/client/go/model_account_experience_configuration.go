@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.3
+API version: v1.22.6
 Contact: support@ory.sh
 */
 
@@ -38,6 +38,7 @@ type AccountExperienceConfiguration struct {
 	RegistrationUiUrl string `json:"registration_ui_url"`
 	SettingsUiUrl string `json:"settings_ui_url"`
 	Stylesheet *string `json:"stylesheet,omitempty"`
+	Translations []RevisionAccountExperienceCustomTranslation `json:"translations"`
 	VerificationEnabled bool `json:"verification_enabled"`
 	VerificationUiUrl string `json:"verification_ui_url"`
 	AdditionalProperties map[string]interface{}
@@ -49,7 +50,7 @@ type _AccountExperienceConfiguration AccountExperienceConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, errorUiUrl string, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, verificationEnabled bool, verificationUiUrl string) *AccountExperienceConfiguration {
+func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, errorUiUrl string, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, translations []RevisionAccountExperienceCustomTranslation, verificationEnabled bool, verificationUiUrl string) *AccountExperienceConfiguration {
 	this := AccountExperienceConfiguration{}
 	this.DefaultLocale = defaultLocale
 	this.DefaultRedirectUrl = defaultRedirectUrl
@@ -62,6 +63,7 @@ func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl 
 	this.RegistrationEnabled = registrationEnabled
 	this.RegistrationUiUrl = registrationUiUrl
 	this.SettingsUiUrl = settingsUiUrl
+	this.Translations = translations
 	this.VerificationEnabled = verificationEnabled
 	this.VerificationUiUrl = verificationUiUrl
 	return &this
@@ -499,6 +501,30 @@ func (o *AccountExperienceConfiguration) SetStylesheet(v string) {
 	o.Stylesheet = &v
 }
 
+// GetTranslations returns the Translations field value
+func (o *AccountExperienceConfiguration) GetTranslations() []RevisionAccountExperienceCustomTranslation {
+	if o == nil {
+		var ret []RevisionAccountExperienceCustomTranslation
+		return ret
+	}
+
+	return o.Translations
+}
+
+// GetTranslationsOk returns a tuple with the Translations field value
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetTranslationsOk() ([]RevisionAccountExperienceCustomTranslation, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Translations, true
+}
+
+// SetTranslations sets field value
+func (o *AccountExperienceConfiguration) SetTranslations(v []RevisionAccountExperienceCustomTranslation) {
+	o.Translations = v
+}
+
 // GetVerificationEnabled returns the VerificationEnabled field value
 func (o *AccountExperienceConfiguration) GetVerificationEnabled() bool {
 	if o == nil {
@@ -583,6 +609,7 @@ func (o AccountExperienceConfiguration) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.Stylesheet) {
 		toSerialize["stylesheet"] = o.Stylesheet
 	}
+	toSerialize["translations"] = o.Translations
 	toSerialize["verification_enabled"] = o.VerificationEnabled
 	toSerialize["verification_ui_url"] = o.VerificationUiUrl
 
@@ -609,6 +636,7 @@ func (o *AccountExperienceConfiguration) UnmarshalJSON(data []byte) (err error) 
 		"registration_enabled",
 		"registration_ui_url",
 		"settings_ui_url",
+		"translations",
 		"verification_enabled",
 		"verification_ui_url",
 	}
@@ -656,6 +684,7 @@ func (o *AccountExperienceConfiguration) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "registration_ui_url")
 		delete(additionalProperties, "settings_ui_url")
 		delete(additionalProperties, "stylesheet")
+		delete(additionalProperties, "translations")
 		delete(additionalProperties, "verification_enabled")
 		delete(additionalProperties, "verification_ui_url")
 		o.AdditionalProperties = additionalProperties

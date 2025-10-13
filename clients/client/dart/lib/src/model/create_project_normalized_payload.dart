@@ -7,6 +7,7 @@ import 'package:ory_client/src/model/keto_namespace.dart';
 import 'package:ory_client/src/model/normalized_project_revision_scim_client.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/normalized_project_revision_identity_schema.dart';
+import 'package:ory_client/src/model/revision_account_experience_custom_translation.dart';
 import 'package:ory_client/src/model/normalized_project_revision_tokenizer_template.dart';
 import 'package:ory_client/src/model/normalized_project_revision_saml_provider.dart';
 import 'package:ory_client/src/model/normalized_project_revision_courier_channel.dart';
@@ -22,6 +23,7 @@ part 'create_project_normalized_payload.g.dart';
 /// Create project (normalized) request payload
 ///
 /// Properties:
+/// * [accountExperienceCustomTranslations] - The Account Experience's Custom Translations  Contains all Custom Translations for this project.
 /// * [accountExperienceDefaultLocale] - Holds the default locale for the account experience.
 /// * [accountExperienceFaviconDark] - Holds the URL to the account experience's dark theme favicon (currently unused).
 /// * [accountExperienceFaviconLight] - Holds the URL to the account experience's favicon.
@@ -262,6 +264,10 @@ part 'create_project_normalized_payload.g.dart';
 /// * [workspaceId] 
 @BuiltValue()
 abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNormalizedPayload, CreateProjectNormalizedPayloadBuilder> {
+  /// The Account Experience's Custom Translations  Contains all Custom Translations for this project.
+  @BuiltValueField(wireName: r'account_experience_custom_translations')
+  BuiltList<RevisionAccountExperienceCustomTranslation>? get accountExperienceCustomTranslations;
+
   /// Holds the default locale for the account experience.
   @BuiltValueField(wireName: r'account_experience_default_locale')
   String? get accountExperienceDefaultLocale;
@@ -1225,6 +1231,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
     CreateProjectNormalizedPayload object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.accountExperienceCustomTranslations != null) {
+      yield r'account_experience_custom_translations';
+      yield serializers.serialize(
+        object.accountExperienceCustomTranslations,
+        specifiedType: const FullType(BuiltList, [FullType(RevisionAccountExperienceCustomTranslation)]),
+      );
+    }
     if (object.accountExperienceDefaultLocale != null) {
       yield r'account_experience_default_locale';
       yield serializers.serialize(
@@ -2910,6 +2923,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'account_experience_custom_translations':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(RevisionAccountExperienceCustomTranslation)]),
+          ) as BuiltList<RevisionAccountExperienceCustomTranslation>;
+          result.accountExperienceCustomTranslations.replace(valueDes);
+          break;
         case r'account_experience_default_locale':
           final valueDes = serializers.deserialize(
             value,

@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **registrationUiUrl** | **String** |  | 
 **settingsUiUrl** | **String** |  | 
 **stylesheet** | **String** |  | [optional] 
+**translations** | [**BuiltList&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) |  | 
 **verificationEnabled** | **bool** |  | 
 **verificationUiUrl** | **String** |  | 
 

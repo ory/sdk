@@ -8,6 +8,7 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**accountExperienceCustomTranslations** | [**BuiltList&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) | The Account Experience's Custom Translations  Contains all Custom Translations for this project. | [optional] 
 **accountExperienceDefaultLocale** | **String** | Holds the default locale for the account experience. | [optional] 
 **accountExperienceFaviconDark** | **String** | Holds the URL to the account experience's dark theme favicon (currently unused). | [optional] 
 **accountExperienceFaviconLight** | **String** | Holds the URL to the account experience's favicon. | [optional] 

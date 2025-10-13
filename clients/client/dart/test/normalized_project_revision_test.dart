@@ -7,6 +7,12 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(NormalizedProjectRevision, () {
+    // The Account Experience's Custom Translations  Contains all Custom Translations for this project.
+    // BuiltList<RevisionAccountExperienceCustomTranslation> accountExperienceCustomTranslations
+    test('to test the property `accountExperienceCustomTranslations`', () async {
+      // TODO
+    });
+
     // Holds the default locale for the account experience.
     // String accountExperienceDefaultLocale
     test('to test the property `accountExperienceDefaultLocale`', () async {

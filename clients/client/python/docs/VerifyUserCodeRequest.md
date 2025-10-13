@@ -5,10 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**challenge** | **str** | ID is the identifier (\&quot;device challenge\&quot;) of the device request. It is used to identify the session. | [optional] 
 **client** | [**OAuth2Client**](OAuth2Client.md) |  | [optional] 
 **device_code_request_id** | **str** |  | [optional] 
-**handled_at** | **datetime** |  | [optional] 
 **request_url** | **str** | RequestURL is the original Device Authorization URL requested. | [optional] 
 **requested_access_token_audience** | **List[str]** |  | [optional] 
 **requested_scope** | **List[str]** |  | [optional] 

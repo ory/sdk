@@ -8,6 +8,7 @@ Create project (normalized) request payload
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**accountExperienceCustomTranslations** | [**List&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) | The Account Experience&#39;s Custom Translations  Contains all Custom Translations for this project. |  [optional] |
 |**accountExperienceDefaultLocale** | **String** | Holds the default locale for the account experience. |  [optional] |
 |**accountExperienceFaviconDark** | **String** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). |  [optional] |
 |**accountExperienceFaviconLight** | **String** | Holds the URL to the account experience&#39;s favicon. |  [optional] |

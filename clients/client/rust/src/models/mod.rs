@@ -400,6 +400,8 @@ pub mod relationship_patch;
 pub use self::relationship_patch::RelationshipPatch;
 pub mod relationships;
 pub use self::relationships::Relationships;
+pub mod revision_account_experience_custom_translation;
+pub use self::revision_account_experience_custom_translation::RevisionAccountExperienceCustomTranslation;
 pub mod rfc6749_error_json;
 pub use self::rfc6749_error_json::Rfc6749ErrorJson;
 pub mod schema_patch;

@@ -20,6 +20,7 @@
 | **registration_ui_url** | **String** |  |  |
 | **settings_ui_url** | **String** |  |  |
 | **stylesheet** | **String** |  | [optional] |
+| **translations** | [**Array&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) |  |  |
 | **verification_enabled** | **Boolean** |  |  |
 | **verification_ui_url** | **String** |  |  |
 
@@ -45,6 +46,7 @@ instance = OryClient::AccountExperienceConfiguration.new(
   registration_ui_url: null,
   settings_ui_url: null,
   stylesheet: null,
+  translations: null,
   verification_enabled: null,
   verification_ui_url: null
 )

@@ -215,6 +215,7 @@ doc/RelationshipApi.md
 doc/RelationshipNamespaces.md
 doc/RelationshipPatch.md
 doc/Relationships.md
+doc/RevisionAccountExperienceCustomTranslation.md
 doc/SchemaPatch.md
 doc/SelfServiceFlowExpiredError.md
 doc/Session.md
@@ -532,6 +533,7 @@ lib/src/model/relationship.dart
 lib/src/model/relationship_namespaces.dart
 lib/src/model/relationship_patch.dart
 lib/src/model/relationships.dart
+lib/src/model/revision_account_experience_custom_translation.dart
 lib/src/model/rfc6749_error_json.dart
 lib/src/model/schema_patch.dart
 lib/src/model/self_service_flow_expired_error.dart
@@ -838,6 +840,7 @@ test/relationship_namespaces_test.dart
 test/relationship_patch_test.dart
 test/relationship_test.dart
 test/relationships_test.dart
+test/revision_account_experience_custom_translation_test.dart
 test/rfc6749_error_json_test.dart
 test/schema_patch_test.dart
 test/self_service_flow_expired_error_test.dart

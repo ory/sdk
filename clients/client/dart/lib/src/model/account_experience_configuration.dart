@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:ory_client/src/model/revision_account_experience_custom_translation.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -28,6 +29,7 @@ part 'account_experience_configuration.g.dart';
 /// * [registrationUiUrl] 
 /// * [settingsUiUrl] 
 /// * [stylesheet] 
+/// * [translations] 
 /// * [verificationEnabled] 
 /// * [verificationUiUrl] 
 @BuiltValue()
@@ -81,6 +83,9 @@ abstract class AccountExperienceConfiguration implements Built<AccountExperience
 
   @BuiltValueField(wireName: r'stylesheet')
   String? get stylesheet;
+
+  @BuiltValueField(wireName: r'translations')
+  BuiltList<RevisionAccountExperienceCustomTranslation> get translations;
 
   @BuiltValueField(wireName: r'verification_enabled')
   bool get verificationEnabled;
@@ -201,6 +206,11 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
         specifiedType: const FullType(String),
       );
     }
+    yield r'translations';
+    yield serializers.serialize(
+      object.translations,
+      specifiedType: const FullType(BuiltList, [FullType(RevisionAccountExperienceCustomTranslation)]),
+    );
     yield r'verification_enabled';
     yield serializers.serialize(
       object.verificationEnabled,
@@ -345,6 +355,13 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(String),
           ) as String;
           result.stylesheet = valueDes;
+          break;
+        case r'translations':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(RevisionAccountExperienceCustomTranslation)]),
+          ) as BuiltList<RevisionAccountExperienceCustomTranslation>;
+          result.translations.replace(valueDes);
           break;
         case r'verification_enabled':
           final valueDes = serializers.deserialize(

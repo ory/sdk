@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.3
+API version: v1.22.6
 Contact: support@ory.sh
 */
 
@@ -13,7 +13,6 @@ package client
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // checks if the AcceptOAuth2ConsentRequest type satisfies the MappedNullable interface at compile time
@@ -24,7 +23,6 @@ type AcceptOAuth2ConsentRequest struct {
 	Context map[string]interface{} `json:"context,omitempty"`
 	GrantAccessTokenAudience []string `json:"grant_access_token_audience,omitempty"`
 	GrantScope []string `json:"grant_scope,omitempty"`
-	HandledAt *time.Time `json:"handled_at,omitempty"`
 	// Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.
 	Remember *bool `json:"remember,omitempty"`
 	// RememberFor sets how long the consent authorization should be remembered for in seconds. If set to `0`, the authorization will be remembered indefinitely.
@@ -148,38 +146,6 @@ func (o *AcceptOAuth2ConsentRequest) SetGrantScope(v []string) {
 	o.GrantScope = v
 }
 
-// GetHandledAt returns the HandledAt field value if set, zero value otherwise.
-func (o *AcceptOAuth2ConsentRequest) GetHandledAt() time.Time {
-	if o == nil || IsNil(o.HandledAt) {
-		var ret time.Time
-		return ret
-	}
-	return *o.HandledAt
-}
-
-// GetHandledAtOk returns a tuple with the HandledAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AcceptOAuth2ConsentRequest) GetHandledAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.HandledAt) {
-		return nil, false
-	}
-	return o.HandledAt, true
-}
-
-// HasHandledAt returns a boolean if a field has been set.
-func (o *AcceptOAuth2ConsentRequest) HasHandledAt() bool {
-	if o != nil && !IsNil(o.HandledAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetHandledAt gets a reference to the given time.Time and assigns it to the HandledAt field.
-func (o *AcceptOAuth2ConsentRequest) SetHandledAt(v time.Time) {
-	o.HandledAt = &v
-}
-
 // GetRemember returns the Remember field value if set, zero value otherwise.
 func (o *AcceptOAuth2ConsentRequest) GetRemember() bool {
 	if o == nil || IsNil(o.Remember) {
@@ -295,9 +261,6 @@ func (o AcceptOAuth2ConsentRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.GrantScope) {
 		toSerialize["grant_scope"] = o.GrantScope
 	}
-	if !IsNil(o.HandledAt) {
-		toSerialize["handled_at"] = o.HandledAt
-	}
 	if !IsNil(o.Remember) {
 		toSerialize["remember"] = o.Remember
 	}
@@ -332,7 +295,6 @@ func (o *AcceptOAuth2ConsentRequest) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "context")
 		delete(additionalProperties, "grant_access_token_audience")
 		delete(additionalProperties, "grant_scope")
-		delete(additionalProperties, "handled_at")
 		delete(additionalProperties, "remember")
 		delete(additionalProperties, "remember_for")
 		delete(additionalProperties, "session")

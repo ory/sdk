@@ -231,6 +231,7 @@ docs/RelationshipAPI.md
 docs/RelationshipNamespaces.md
 docs/RelationshipPatch.md
 docs/Relationships.md
+docs/RevisionAccountExperienceCustomTranslation.md
 docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
@@ -528,6 +529,7 @@ model_relationship.go
 model_relationship_namespaces.go
 model_relationship_patch.go
 model_relationships.go
+model_revision_account_experience_custom_translation.go
 model_rfc6749_error_json.go
 model_schema_patch.go
 model_self_service_flow_expired_error.go

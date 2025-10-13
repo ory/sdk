@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **RegistrationUiUrl** | **string** |  | 
 **SettingsUiUrl** | **string** |  | 
 **Stylesheet** | Pointer to **string** |  | [optional] 
+**Translations** | [**[]RevisionAccountExperienceCustomTranslation**](RevisionAccountExperienceCustomTranslation.md) |  | 
 **VerificationEnabled** | **bool** |  | 
 **VerificationUiUrl** | **string** |  | 
 
@@ -27,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewAccountExperienceConfiguration
 
-`func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, errorUiUrl string, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, verificationEnabled bool, verificationUiUrl string, ) *AccountExperienceConfiguration`
+`func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, errorUiUrl string, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, translations []RevisionAccountExperienceCustomTranslation, verificationEnabled bool, verificationUiUrl string, ) *AccountExperienceConfiguration`
 
 NewAccountExperienceConfiguration instantiates a new AccountExperienceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -386,6 +387,26 @@ SetStylesheet sets Stylesheet field to given value.
 `func (o *AccountExperienceConfiguration) HasStylesheet() bool`
 
 HasStylesheet returns a boolean if a field has been set.
+
+### GetTranslations
+
+`func (o *AccountExperienceConfiguration) GetTranslations() []RevisionAccountExperienceCustomTranslation`
+
+GetTranslations returns the Translations field if non-nil, zero value otherwise.
+
+### GetTranslationsOk
+
+`func (o *AccountExperienceConfiguration) GetTranslationsOk() (*[]RevisionAccountExperienceCustomTranslation, bool)`
+
+GetTranslationsOk returns a tuple with the Translations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTranslations
+
+`func (o *AccountExperienceConfiguration) SetTranslations(v []RevisionAccountExperienceCustomTranslation)`
+
+SetTranslations sets Translations field to given value.
+
 
 ### GetVerificationEnabled
 

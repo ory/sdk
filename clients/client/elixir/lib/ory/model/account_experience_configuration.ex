@@ -24,6 +24,7 @@ defmodule Ory.Model.AccountExperienceConfiguration do
     :registration_ui_url,
     :settings_ui_url,
     :stylesheet,
+    :translations,
     :verification_enabled,
     :verification_ui_url
   ]
@@ -45,12 +46,16 @@ defmodule Ory.Model.AccountExperienceConfiguration do
     :registration_ui_url => String.t,
     :settings_ui_url => String.t,
     :stylesheet => String.t | nil,
+    :translations => [Ory.Model.RevisionAccountExperienceCustomTranslation.t],
     :verification_enabled => boolean(),
     :verification_ui_url => String.t
   }
 
+  alias Ory.Deserializer
+
   def decode(value) do
     value
+     |> Deserializer.deserialize(:translations, :list, Ory.Model.RevisionAccountExperienceCustomTranslation)
   end
 end
 

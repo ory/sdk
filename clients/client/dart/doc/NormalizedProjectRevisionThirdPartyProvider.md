@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **mapperUrl** | **String** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data. | [optional] 
 **netIdTokenOriginHeader** | **String** |  | [optional] 
 **organizationId** | **String** |  | [optional] 
-**pkce** | **String** | PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange). Possible values are: `auto` (default), `never`, `force`. `auto`: PKCE is used if the provider supports it. Requires setting `issuer_url`. `never`: Disable PKCE entirely for this provider, even if the provider advertises support for it. `force`: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE. IMPORTANT: If you set this to `force`, you must whitelist a different return URL for your OAuth2 client in the provider's configuration. Instead of <base-url>/self-service/methods/oidc/callback/<provider>, you must use <base-url>/self-service/methods/oidc/callback (Note the missing <provider> path segment and no trailing slash). | [optional] 
+**pkce** | **String** |  | [optional] 
 **projectRevisionId** | **String** | The Revision's ID this schema belongs to | [optional] 
 **provider** | **String** | Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] 
 **providerId** | **String** | ID is the provider's ID | [optional] 

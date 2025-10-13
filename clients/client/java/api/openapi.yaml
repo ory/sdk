@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.3
+  version: v1.22.6
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -3232,7 +3232,7 @@ paths:
     post:
       description: |-
         This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows.
-        OAuth2 is a very popular protocol and a library for your programming language will exists.
+        OAuth2 is a very popular protocol and a library for your programming language will exist.
 
         To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
       operationId: oAuth2DeviceFlow
@@ -3257,7 +3257,7 @@ paths:
   /oauth2/device/verify:
     get:
       description: This is the device user verification endpoint. The user is redirected
-        here when trying to login using the device flow.
+        here when trying to log in using the device flow.
       operationId: performOAuth2DeviceVerificationFlow
       responses:
         "302":
@@ -9367,6 +9367,14 @@ components:
     CreateProjectNormalizedPayload:
       description: Create project (normalized) request payload
       properties:
+        account_experience_custom_translations:
+          description: |-
+            The Account Experience's Custom Translations
+
+            Contains all Custom Translations for this project.
+          items:
+            $ref: '#/components/schemas/RevisionAccountExperienceCustomTranslation'
+          type: array
         account_experience_default_locale:
           description: Holds the default locale for the account experience.
           type: string
@@ -11466,6 +11474,18 @@ components:
       title: RecoveryAddressType must not exceed 16 characters as that is the limitation
         in the SQL Schema.
       type: string
+    RevisionAccountExperienceCustomTranslation:
+      properties:
+        locale:
+          description: "The locale (e.g. \"en\", \"de\")"
+          type: string
+        translations:
+          description: The URL where the i18n json can be found
+          type: string
+      required:
+      - locale
+      - translations
+      type: object
     SessionActivityDatapoint:
       properties:
         country:
@@ -11622,10 +11642,6 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
-        handled_at:
-          format: date-time
-          title: NullTime implements sql.NullTime functionality.
-          type: string
         remember:
           description: |-
             Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same
@@ -11663,7 +11679,7 @@ components:
         acr:
           description: |-
             ACR sets the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it
-            to express that, for example, a user authenticated using two factor authentication.
+            to express that, for example, a user authenticated using two-factor authentication.
           type: string
         amr:
           items:
@@ -11710,8 +11726,8 @@ components:
           type: string
         remember:
           description: |-
-            Remember, if set to true, tells ORY Hydra to remember this user by telling the user agent (browser) to store
-            a cookie with authentication data. If the same user performs another OAuth 2.0 Authorization Request, he/she
+            Remember, if set to true, tells Ory Hydra to remember this user by telling the user agent (browser) to store
+            a cookie with authentication data. If the same user performs another OAuth 2.0 Authorization Request, they
             will not be asked to log in again.
           type: boolean
         remember_for:
@@ -11771,6 +11787,10 @@ components:
           type: string
         stylesheet:
           type: string
+        translations:
+          items:
+            $ref: '#/components/schemas/RevisionAccountExperienceCustomTranslation'
+          type: array
         verification_enabled:
           type: boolean
         verification_ui_url:
@@ -11787,6 +11807,7 @@ components:
       - registration_enabled
       - registration_ui_url
       - settings_ui_url
+      - translations
       - verification_enabled
       - verification_ui_url
       type: object
@@ -15280,6 +15301,14 @@ components:
       type: object
     normalizedProjectRevision:
       properties:
+        account_experience_custom_translations:
+          description: |-
+            The Account Experience's Custom Translations
+
+            Contains all Custom Translations for this project.
+          items:
+            $ref: '#/components/schemas/RevisionAccountExperienceCustomTranslation'
+          type: array
         account_experience_default_locale:
           description: Holds the default locale for the account experience.
           type: string
@@ -17108,15 +17137,6 @@ components:
           nullable: true
           type: string
         pkce:
-          description: |-
-            PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange).
-            Possible values are: `auto` (default), `never`, `force`.
-            `auto`: PKCE is used if the provider supports it. Requires setting `issuer_url`.
-            `never`: Disable PKCE entirely for this provider, even if the provider advertises support for it.
-            `force`: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE.
-            IMPORTANT: If you set this to `force`, you must whitelist a different return URL for your OAuth2 client in the provider's configuration.
-            Instead of <base-url>/self-service/methods/oidc/callback/<provider>, you must use <base-url>/self-service/methods/oidc/callback
-            (Note the missing <provider> path segment and no trailing slash).
           enum:
           - auto
           - never
@@ -24569,18 +24589,9 @@ components:
       type: string
     verifyUserCodeRequest:
       properties:
-        challenge:
-          description: |-
-            ID is the identifier ("device challenge") of the device request. It is used to
-            identify the session.
-          type: string
         client:
           $ref: '#/components/schemas/oAuth2Client'
         device_code_request_id:
-          type: string
-        handled_at:
-          format: date-time
-          title: NullTime implements sql.NullTime functionality.
           type: string
         request_url:
           description: RequestURL is the original Device Authorization URL requested.

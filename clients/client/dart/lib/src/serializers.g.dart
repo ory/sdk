@@ -283,6 +283,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(RelationshipPatch.serializer)
       ..add(RelationshipPatchActionEnum.serializer)
       ..add(Relationships.serializer)
+      ..add(RevisionAccountExperienceCustomTranslation.serializer)
       ..add(SchemaPatch.serializer)
       ..add(SelfServiceFlowExpiredError.serializer)
       ..add(Session.serializer)
@@ -556,6 +557,213 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(Relationship)]),
           () => new ListBuilder<Relationship>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(RevisionAccountExperienceCustomTranslation)
+          ]),
+          () => new ListBuilder<RevisionAccountExperienceCustomTranslation>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(RevisionAccountExperienceCustomTranslation)
+          ]),
+          () => new ListBuilder<RevisionAccountExperienceCustomTranslation>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(KetoNamespace)]),
+          () => new ListBuilder<KetoNamespace>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionCourierChannel)]),
+          () => new ListBuilder<NormalizedProjectRevisionCourierChannel>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionIdentitySchema)]),
+          () => new ListBuilder<NormalizedProjectRevisionIdentitySchema>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionThirdPartyProvider)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
+          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionTokenizerTemplate)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Organization)]),
+          () => new ListBuilder<Organization>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
+          () => new ListBuilder<NormalizedProjectRevisionHook>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionScimClient)]),
+          () => new ListBuilder<NormalizedProjectRevisionScimClient>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(RevisionAccountExperienceCustomTranslation)
+          ]),
+          () => new ListBuilder<RevisionAccountExperienceCustomTranslation>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(KetoNamespace)]),
+          () => new ListBuilder<KetoNamespace>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionCourierChannel)]),
+          () => new ListBuilder<NormalizedProjectRevisionCourierChannel>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionIdentitySchema)]),
+          () => new ListBuilder<NormalizedProjectRevisionIdentitySchema>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionThirdPartyProvider)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
+          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionTokenizerTemplate)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Organization)]),
+          () => new ListBuilder<Organization>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
+          () => new ListBuilder<NormalizedProjectRevisionHook>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionScimClient)]),
+          () => new ListBuilder<NormalizedProjectRevisionScimClient>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(SessionActivityDatapoint)]),
           () => new ListBuilder<SessionActivityDatapoint>())
@@ -735,198 +943,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(KetoNamespace)]),
-          () => new ListBuilder<KetoNamespace>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionCourierChannel)]),
-          () => new ListBuilder<NormalizedProjectRevisionCourierChannel>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionIdentitySchema)]),
-          () => new ListBuilder<NormalizedProjectRevisionIdentitySchema>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(NormalizedProjectRevisionThirdPartyProvider)
-          ]),
-          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
-          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(NormalizedProjectRevisionTokenizerTemplate)
-          ]),
-          () => new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Organization)]),
-          () => new ListBuilder<Organization>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
-          () => new ListBuilder<NormalizedProjectRevisionHook>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionScimClient)]),
-          () => new ListBuilder<NormalizedProjectRevisionScimClient>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(KetoNamespace)]),
-          () => new ListBuilder<KetoNamespace>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionCourierChannel)]),
-          () => new ListBuilder<NormalizedProjectRevisionCourierChannel>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionIdentitySchema)]),
-          () => new ListBuilder<NormalizedProjectRevisionIdentitySchema>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(NormalizedProjectRevisionThirdPartyProvider)
-          ]),
-          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
-          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(NormalizedProjectRevisionTokenizerTemplate)
-          ]),
-          () => new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Organization)]),
-          () => new ListBuilder<Organization>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
-          () => new ListBuilder<NormalizedProjectRevisionHook>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionScimClient)]),
-          () => new ListBuilder<NormalizedProjectRevisionScimClient>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

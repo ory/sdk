@@ -202,6 +202,7 @@ export * from './Relationship';
 export * from './RelationshipNamespaces';
 export * from './RelationshipPatch';
 export * from './Relationships';
+export * from './RevisionAccountExperienceCustomTranslation';
 export * from './SchemaPatch';
 export * from './SelfServiceFlowExpiredError';
 export * from './Session';

@@ -8,6 +8,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
 
   @derive Jason.Encoder
   defstruct [
+    :account_experience_custom_translations,
     :account_experience_default_locale,
     :account_experience_favicon_dark,
     :account_experience_favicon_light,
@@ -246,6 +247,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
   ]
 
   @type t :: %__MODULE__{
+    :account_experience_custom_translations => [Ory.Model.RevisionAccountExperienceCustomTranslation.t] | nil,
     :account_experience_default_locale => String.t | nil,
     :account_experience_favicon_dark => String.t | nil,
     :account_experience_favicon_light => String.t | nil,
@@ -487,6 +489,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:account_experience_custom_translations, :list, Ory.Model.RevisionAccountExperienceCustomTranslation)
      |> Deserializer.deserialize(:created_at, :datetime, nil)
      |> Deserializer.deserialize(:keto_namespaces, :list, Ory.Model.KetoNamespace)
      |> Deserializer.deserialize(:kratos_courier_channels, :list, Ory.Model.NormalizedProjectRevisionCourierChannel)

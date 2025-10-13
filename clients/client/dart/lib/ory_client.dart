@@ -226,6 +226,7 @@ export 'package:ory_client/src/model/relationship.dart';
 export 'package:ory_client/src/model/relationship_namespaces.dart';
 export 'package:ory_client/src/model/relationship_patch.dart';
 export 'package:ory_client/src/model/relationships.dart';
+export 'package:ory_client/src/model/revision_account_experience_custom_translation.dart';
 export 'package:ory_client/src/model/schema_patch.dart';
 export 'package:ory_client/src/model/self_service_flow_expired_error.dart';
 export 'package:ory_client/src/model/session.dart';

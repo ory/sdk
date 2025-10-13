@@ -216,6 +216,7 @@ import 'package:ory_client/src/model/relationship.dart';
 import 'package:ory_client/src/model/relationship_namespaces.dart';
 import 'package:ory_client/src/model/relationship_patch.dart';
 import 'package:ory_client/src/model/relationships.dart';
+import 'package:ory_client/src/model/revision_account_experience_custom_translation.dart';
 import 'package:ory_client/src/model/schema_patch.dart';
 import 'package:ory_client/src/model/self_service_flow_expired_error.dart';
 import 'package:ory_client/src/model/session.dart';
@@ -513,6 +514,7 @@ part 'serializers.g.dart';
   RelationshipNamespaces,
   RelationshipPatch,
   Relationships,
+  RevisionAccountExperienceCustomTranslation,
   SchemaPatch,
   SelfServiceFlowExpiredError,
   Session,

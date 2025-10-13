@@ -215,6 +215,7 @@ docs/RelationshipApi.md
 docs/RelationshipNamespaces.md
 docs/RelationshipPatch.md
 docs/Relationships.md
+docs/RevisionAccountExperienceCustomTranslation.md
 docs/Rfc6749ErrorJson.md
 docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
@@ -528,6 +529,7 @@ src/models/relationship.rs
 src/models/relationship_namespaces.rs
 src/models/relationship_patch.rs
 src/models/relationships.rs
+src/models/revision_account_experience_custom_translation.rs
 src/models/rfc6749_error_json.rs
 src/models/schema_patch.rs
 src/models/self_service_flow_expired_error.rs

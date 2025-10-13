@@ -217,6 +217,7 @@ docs/RelationshipApi.md
 docs/RelationshipNamespaces.md
 docs/RelationshipPatch.md
 docs/Relationships.md
+docs/RevisionAccountExperienceCustomTranslation.md
 docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
@@ -532,6 +533,7 @@ ory_client/models/relationship.py
 ory_client/models/relationship_namespaces.py
 ory_client/models/relationship_patch.py
 ory_client/models/relationships.py
+ory_client/models/revision_account_experience_custom_translation.py
 ory_client/models/rfc6749_error_json.py
 ory_client/models/schema_patch.py
 ory_client/models/self_service_flow_expired_error.py
@@ -844,6 +846,7 @@ test/test_relationship_api.py
 test/test_relationship_namespaces.py
 test/test_relationship_patch.py
 test/test_relationships.py
+test/test_revision_account_experience_custom_translation.py
 test/test_rfc6749_error_json.py
 test/test_schema_patch.py
 test/test_self_service_flow_expired_error.py

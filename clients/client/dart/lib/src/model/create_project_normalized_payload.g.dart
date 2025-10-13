@@ -528,6 +528,9 @@ class _$CreateProjectNormalizedPayloadKratosSelfserviceFlowsVerificationUseEnumS
 
 class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
+  final BuiltList<RevisionAccountExperienceCustomTranslation>?
+      accountExperienceCustomTranslations;
+  @override
   final String? accountExperienceDefaultLocale;
   @override
   final String? accountExperienceFaviconDark;
@@ -1032,7 +1035,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
       (new CreateProjectNormalizedPayloadBuilder()..update(updates))._build();
 
   _$CreateProjectNormalizedPayload._(
-      {this.accountExperienceDefaultLocale,
+      {this.accountExperienceCustomTranslations,
+      this.accountExperienceDefaultLocale,
       this.accountExperienceFaviconDark,
       this.accountExperienceFaviconLight,
       this.accountExperienceLocaleBehavior,
@@ -1290,6 +1294,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is CreateProjectNormalizedPayload &&
+        accountExperienceCustomTranslations ==
+            other.accountExperienceCustomTranslations &&
         accountExperienceDefaultLocale ==
             other.accountExperienceDefaultLocale &&
         accountExperienceFaviconDark == other.accountExperienceFaviconDark &&
@@ -1731,6 +1737,7 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, accountExperienceCustomTranslations.hashCode);
     _$hash = $jc(_$hash, accountExperienceDefaultLocale.hashCode);
     _$hash = $jc(_$hash, accountExperienceFaviconDark.hashCode);
     _$hash = $jc(_$hash, accountExperienceFaviconLight.hashCode);
@@ -2111,6 +2118,8 @@ class _$CreateProjectNormalizedPayload extends CreateProjectNormalizedPayload {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CreateProjectNormalizedPayload')
+          ..add('accountExperienceCustomTranslations',
+              accountExperienceCustomTranslations)
           ..add(
               'accountExperienceDefaultLocale', accountExperienceDefaultLocale)
           ..add('accountExperienceFaviconDark', accountExperienceFaviconDark)
@@ -2553,6 +2562,18 @@ class CreateProjectNormalizedPayloadBuilder
         Builder<CreateProjectNormalizedPayload,
             CreateProjectNormalizedPayloadBuilder> {
   _$CreateProjectNormalizedPayload? _$v;
+
+  ListBuilder<RevisionAccountExperienceCustomTranslation>?
+      _accountExperienceCustomTranslations;
+  ListBuilder<RevisionAccountExperienceCustomTranslation>
+      get accountExperienceCustomTranslations =>
+          _$this._accountExperienceCustomTranslations ??=
+              new ListBuilder<RevisionAccountExperienceCustomTranslation>();
+  set accountExperienceCustomTranslations(
+          ListBuilder<RevisionAccountExperienceCustomTranslation>?
+              accountExperienceCustomTranslations) =>
+      _$this._accountExperienceCustomTranslations =
+          accountExperienceCustomTranslations;
 
   String? _accountExperienceDefaultLocale;
   String? get accountExperienceDefaultLocale =>
@@ -4378,6 +4399,8 @@ class CreateProjectNormalizedPayloadBuilder
   CreateProjectNormalizedPayloadBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _accountExperienceCustomTranslations =
+          $v.accountExperienceCustomTranslations?.toBuilder();
       _accountExperienceDefaultLocale = $v.accountExperienceDefaultLocale;
       _accountExperienceFaviconDark = $v.accountExperienceFaviconDark;
       _accountExperienceFaviconLight = $v.accountExperienceFaviconLight;
@@ -4804,6 +4827,8 @@ class CreateProjectNormalizedPayloadBuilder
     try {
       _$result = _$v ??
           new _$CreateProjectNormalizedPayload._(
+              accountExperienceCustomTranslations:
+                  _accountExperienceCustomTranslations?.build(),
               accountExperienceDefaultLocale: accountExperienceDefaultLocale,
               accountExperienceFaviconDark: accountExperienceFaviconDark,
               accountExperienceFaviconLight: accountExperienceFaviconLight,
@@ -4898,14 +4923,10 @@ class CreateProjectNormalizedPayloadBuilder
                   kratosCourierHttpRequestConfigAuthApiKeyValue,
               kratosCourierHttpRequestConfigAuthBasicAuthPassword:
                   kratosCourierHttpRequestConfigAuthBasicAuthPassword,
-              kratosCourierHttpRequestConfigAuthBasicAuthUser:
-                  kratosCourierHttpRequestConfigAuthBasicAuthUser,
-              kratosCourierHttpRequestConfigAuthType:
-                  kratosCourierHttpRequestConfigAuthType,
-              kratosCourierHttpRequestConfigBody:
-                  kratosCourierHttpRequestConfigBody,
-              kratosCourierHttpRequestConfigHeaders:
-                  kratosCourierHttpRequestConfigHeaders,
+              kratosCourierHttpRequestConfigAuthBasicAuthUser: kratosCourierHttpRequestConfigAuthBasicAuthUser,
+              kratosCourierHttpRequestConfigAuthType: kratosCourierHttpRequestConfigAuthType,
+              kratosCourierHttpRequestConfigBody: kratosCourierHttpRequestConfigBody,
+              kratosCourierHttpRequestConfigHeaders: kratosCourierHttpRequestConfigHeaders,
               kratosCourierHttpRequestConfigMethod: kratosCourierHttpRequestConfigMethod,
               kratosCourierHttpRequestConfigUrl: kratosCourierHttpRequestConfigUrl,
               kratosCourierSmtpConnectionUri: kratosCourierSmtpConnectionUri,
@@ -5075,6 +5096,9 @@ class CreateProjectNormalizedPayloadBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'accountExperienceCustomTranslations';
+        _accountExperienceCustomTranslations?.build();
+
         _$failedField = 'hydraOauth2AllowedTopLevelClaims';
         _hydraOauth2AllowedTopLevelClaims?.build();
 

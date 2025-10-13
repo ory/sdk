@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.3
+API version: v1.22.6
 Contact: support@ory.sh
 */
 
@@ -347,7 +347,7 @@ Instead, use one of the libraries linked above.
 	OAuth2DeviceFlow The OAuth 2.0 Device Authorize Endpoint
 
 	This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows.
-OAuth2 is a very popular protocol and a library for your programming language will exists.
+OAuth2 is a very popular protocol and a library for your programming language will exist.
 
 To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
 
@@ -401,7 +401,7 @@ generated for applications which want to consume your OAuth 2.0 or OpenID Connec
 	/*
 	PerformOAuth2DeviceVerificationFlow OAuth 2.0 Device Verification Endpoint
 
-	This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+	This is the device user verification endpoint. The user is redirected here when trying to log in using the device flow.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return OAuth2APIPerformOAuth2DeviceVerificationFlowRequest
@@ -2886,7 +2886,7 @@ func (r OAuth2APIOAuth2DeviceFlowRequest) Execute() (*DeviceAuthorization, *http
 OAuth2DeviceFlow The OAuth 2.0 Device Authorize Endpoint
 
 This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows.
-OAuth2 is a very popular protocol and a library for your programming language will exists.
+OAuth2 is a very popular protocol and a library for your programming language will exist.
 
 To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
 
@@ -3291,7 +3291,7 @@ func (r OAuth2APIPerformOAuth2DeviceVerificationFlowRequest) Execute() (*ErrorOA
 /*
 PerformOAuth2DeviceVerificationFlow OAuth 2.0 Device Verification Endpoint
 
-This is the device user verification endpoint. The user is redirected here when trying to login using the device flow.
+This is the device user verification endpoint. The user is redirected here when trying to log in using the device flow.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return OAuth2APIPerformOAuth2DeviceVerificationFlowRequest

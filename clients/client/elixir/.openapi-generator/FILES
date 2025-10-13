@@ -220,6 +220,7 @@ lib/ory/model/relationship.ex
 lib/ory/model/relationship_namespaces.ex
 lib/ory/model/relationship_patch.ex
 lib/ory/model/relationships.ex
+lib/ory/model/revision_account_experience_custom_translation.ex
 lib/ory/model/rfc6749_error_json.ex
 lib/ory/model/schema_patch.ex
 lib/ory/model/self_service_flow_expired_error.ex

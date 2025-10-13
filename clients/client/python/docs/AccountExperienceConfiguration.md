@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **registration_ui_url** | **str** |  | 
 **settings_ui_url** | **str** |  | 
 **stylesheet** | **str** |  | [optional] 
+**translations** | [**List[RevisionAccountExperienceCustomTranslation]**](RevisionAccountExperienceCustomTranslation.md) |  | 
 **verification_enabled** | **bool** |  | 
 **verification_ui_url** | **str** |  | 
 

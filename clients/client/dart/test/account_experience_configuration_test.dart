@@ -88,6 +88,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<RevisionAccountExperienceCustomTranslation> translations
+    test('to test the property `translations`', () async {
+      // TODO
+    });
+
     // bool verificationEnabled
     test('to test the property `verificationEnabled`', () async {
       // TODO

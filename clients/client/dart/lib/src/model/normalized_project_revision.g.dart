@@ -351,6 +351,9 @@ class _$NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnumSerial
 
 class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
+  final BuiltList<RevisionAccountExperienceCustomTranslation>?
+      accountExperienceCustomTranslations;
+  @override
   final String? accountExperienceDefaultLocale;
   @override
   final String? accountExperienceFaviconDark;
@@ -848,7 +851,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
       (new NormalizedProjectRevisionBuilder()..update(updates))._build();
 
   _$NormalizedProjectRevision._(
-      {this.accountExperienceDefaultLocale,
+      {this.accountExperienceCustomTranslations,
+      this.accountExperienceDefaultLocale,
       this.accountExperienceFaviconDark,
       this.accountExperienceFaviconLight,
       this.accountExperienceLocaleBehavior,
@@ -1101,6 +1105,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is NormalizedProjectRevision &&
+        accountExperienceCustomTranslations ==
+            other.accountExperienceCustomTranslations &&
         accountExperienceDefaultLocale ==
             other.accountExperienceDefaultLocale &&
         accountExperienceFaviconDark == other.accountExperienceFaviconDark &&
@@ -1539,6 +1545,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, accountExperienceCustomTranslations.hashCode);
     _$hash = $jc(_$hash, accountExperienceDefaultLocale.hashCode);
     _$hash = $jc(_$hash, accountExperienceFaviconDark.hashCode);
     _$hash = $jc(_$hash, accountExperienceFaviconLight.hashCode);
@@ -1916,6 +1923,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'NormalizedProjectRevision')
+          ..add('accountExperienceCustomTranslations',
+              accountExperienceCustomTranslations)
           ..add(
               'accountExperienceDefaultLocale', accountExperienceDefaultLocale)
           ..add('accountExperienceFaviconDark', accountExperienceFaviconDark)
@@ -2354,6 +2363,18 @@ class NormalizedProjectRevisionBuilder
     implements
         Builder<NormalizedProjectRevision, NormalizedProjectRevisionBuilder> {
   _$NormalizedProjectRevision? _$v;
+
+  ListBuilder<RevisionAccountExperienceCustomTranslation>?
+      _accountExperienceCustomTranslations;
+  ListBuilder<RevisionAccountExperienceCustomTranslation>
+      get accountExperienceCustomTranslations =>
+          _$this._accountExperienceCustomTranslations ??=
+              new ListBuilder<RevisionAccountExperienceCustomTranslation>();
+  set accountExperienceCustomTranslations(
+          ListBuilder<RevisionAccountExperienceCustomTranslation>?
+              accountExperienceCustomTranslations) =>
+      _$this._accountExperienceCustomTranslations =
+          accountExperienceCustomTranslations;
 
   String? _accountExperienceDefaultLocale;
   String? get accountExperienceDefaultLocale =>
@@ -4163,6 +4184,8 @@ class NormalizedProjectRevisionBuilder
   NormalizedProjectRevisionBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _accountExperienceCustomTranslations =
+          $v.accountExperienceCustomTranslations?.toBuilder();
       _accountExperienceDefaultLocale = $v.accountExperienceDefaultLocale;
       _accountExperienceFaviconDark = $v.accountExperienceFaviconDark;
       _accountExperienceFaviconLight = $v.accountExperienceFaviconLight;
@@ -4586,6 +4609,8 @@ class NormalizedProjectRevisionBuilder
     try {
       _$result = _$v ??
           new _$NormalizedProjectRevision._(
+              accountExperienceCustomTranslations:
+                  _accountExperienceCustomTranslations?.build(),
               accountExperienceDefaultLocale: accountExperienceDefaultLocale,
               accountExperienceFaviconDark: accountExperienceFaviconDark,
               accountExperienceFaviconLight: accountExperienceFaviconLight,
@@ -4718,48 +4743,27 @@ class NormalizedProjectRevisionBuilder
                   kratosCourierTemplatesRecoveryInvalidEmailBodyHtml,
               kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext:
                   kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesRecoveryInvalidEmailSubject:
-                  kratosCourierTemplatesRecoveryInvalidEmailSubject,
-              kratosCourierTemplatesRecoveryValidEmailBodyHtml:
-                  kratosCourierTemplatesRecoveryValidEmailBodyHtml,
-              kratosCourierTemplatesRecoveryValidEmailBodyPlaintext:
-                  kratosCourierTemplatesRecoveryValidEmailBodyPlaintext,
-              kratosCourierTemplatesRecoveryValidEmailSubject:
-                  kratosCourierTemplatesRecoveryValidEmailSubject,
-              kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml:
-                  kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml,
-              kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext:
-                  kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext,
-              kratosCourierTemplatesRegistrationCodeValidEmailSubject:
-                  kratosCourierTemplatesRegistrationCodeValidEmailSubject,
-              kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext:
-                  kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext,
-              kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml:
-                  kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
-              kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext:
-                  kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationCodeInvalidEmailSubject:
-                  kratosCourierTemplatesVerificationCodeInvalidEmailSubject,
-              kratosCourierTemplatesVerificationCodeValidEmailBodyHtml:
-                  kratosCourierTemplatesVerificationCodeValidEmailBodyHtml,
-              kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext:
-                  kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationCodeValidEmailSubject:
-                  kratosCourierTemplatesVerificationCodeValidEmailSubject,
-              kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext:
-                  kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext,
-              kratosCourierTemplatesVerificationInvalidEmailBodyHtml:
-                  kratosCourierTemplatesVerificationInvalidEmailBodyHtml,
-              kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext:
-                  kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationInvalidEmailSubject:
-                  kratosCourierTemplatesVerificationInvalidEmailSubject,
-              kratosCourierTemplatesVerificationValidEmailBodyHtml:
-                  kratosCourierTemplatesVerificationValidEmailBodyHtml,
-              kratosCourierTemplatesVerificationValidEmailBodyPlaintext:
-                  kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
-              kratosCourierTemplatesVerificationValidEmailSubject:
-                  kratosCourierTemplatesVerificationValidEmailSubject,
+              kratosCourierTemplatesRecoveryInvalidEmailSubject: kratosCourierTemplatesRecoveryInvalidEmailSubject,
+              kratosCourierTemplatesRecoveryValidEmailBodyHtml: kratosCourierTemplatesRecoveryValidEmailBodyHtml,
+              kratosCourierTemplatesRecoveryValidEmailBodyPlaintext: kratosCourierTemplatesRecoveryValidEmailBodyPlaintext,
+              kratosCourierTemplatesRecoveryValidEmailSubject: kratosCourierTemplatesRecoveryValidEmailSubject,
+              kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml: kratosCourierTemplatesRegistrationCodeValidEmailBodyHtml,
+              kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext: kratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext,
+              kratosCourierTemplatesRegistrationCodeValidEmailSubject: kratosCourierTemplatesRegistrationCodeValidEmailSubject,
+              kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext: kratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext,
+              kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml: kratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml,
+              kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext: kratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationCodeInvalidEmailSubject: kratosCourierTemplatesVerificationCodeInvalidEmailSubject,
+              kratosCourierTemplatesVerificationCodeValidEmailBodyHtml: kratosCourierTemplatesVerificationCodeValidEmailBodyHtml,
+              kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext: kratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationCodeValidEmailSubject: kratosCourierTemplatesVerificationCodeValidEmailSubject,
+              kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext: kratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext,
+              kratosCourierTemplatesVerificationInvalidEmailBodyHtml: kratosCourierTemplatesVerificationInvalidEmailBodyHtml,
+              kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext: kratosCourierTemplatesVerificationInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationInvalidEmailSubject: kratosCourierTemplatesVerificationInvalidEmailSubject,
+              kratosCourierTemplatesVerificationValidEmailBodyHtml: kratosCourierTemplatesVerificationValidEmailBodyHtml,
+              kratosCourierTemplatesVerificationValidEmailBodyPlaintext: kratosCourierTemplatesVerificationValidEmailBodyPlaintext,
+              kratosCourierTemplatesVerificationValidEmailSubject: kratosCourierTemplatesVerificationValidEmailSubject,
               kratosFeatureFlagsCacheableSessions: kratosFeatureFlagsCacheableSessions,
               kratosFeatureFlagsCacheableSessionsMaxAge: kratosFeatureFlagsCacheableSessionsMaxAge,
               kratosFeatureFlagsChooseRecoveryAddress: kratosFeatureFlagsChooseRecoveryAddress,
@@ -4888,6 +4892,9 @@ class NormalizedProjectRevisionBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'accountExperienceCustomTranslations';
+        _accountExperienceCustomTranslations?.build();
+
         _$failedField = 'hydraOauth2AllowedTopLevelClaims';
         _hydraOauth2AllowedTopLevelClaims?.build();
 

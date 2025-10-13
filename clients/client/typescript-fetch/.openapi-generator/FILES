@@ -227,6 +227,7 @@ src/models/Relationship.ts
 src/models/RelationshipNamespaces.ts
 src/models/RelationshipPatch.ts
 src/models/Relationships.ts
+src/models/RevisionAccountExperienceCustomTranslation.ts
 src/models/SchemaPatch.ts
 src/models/SelfServiceFlowExpiredError.ts
 src/models/Session.ts

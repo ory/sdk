@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AccountExperienceCustomTranslations** | Pointer to [**[]RevisionAccountExperienceCustomTranslation**](RevisionAccountExperienceCustomTranslation.md) | The Account Experience&#39;s Custom Translations  Contains all Custom Translations for this project. | [optional] 
 **AccountExperienceDefaultLocale** | Pointer to **string** | Holds the default locale for the account experience. | [optional] 
 **AccountExperienceFaviconDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). | [optional] 
 **AccountExperienceFaviconLight** | Pointer to **string** | Holds the URL to the account experience&#39;s favicon. | [optional] 
@@ -258,6 +259,31 @@ will change when the set of required properties is changed
 NewNormalizedProjectRevisionWithDefaults instantiates a new NormalizedProjectRevision object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAccountExperienceCustomTranslations
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceCustomTranslations() []RevisionAccountExperienceCustomTranslation`
+
+GetAccountExperienceCustomTranslations returns the AccountExperienceCustomTranslations field if non-nil, zero value otherwise.
+
+### GetAccountExperienceCustomTranslationsOk
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceCustomTranslationsOk() (*[]RevisionAccountExperienceCustomTranslation, bool)`
+
+GetAccountExperienceCustomTranslationsOk returns a tuple with the AccountExperienceCustomTranslations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceCustomTranslations
+
+`func (o *NormalizedProjectRevision) SetAccountExperienceCustomTranslations(v []RevisionAccountExperienceCustomTranslation)`
+
+SetAccountExperienceCustomTranslations sets AccountExperienceCustomTranslations field to given value.
+
+### HasAccountExperienceCustomTranslations
+
+`func (o *NormalizedProjectRevision) HasAccountExperienceCustomTranslations() bool`
+
+HasAccountExperienceCustomTranslations returns a boolean if a field has been set.
 
 ### GetAccountExperienceDefaultLocale
 

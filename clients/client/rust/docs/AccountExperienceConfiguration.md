@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **registration_ui_url** | **String** |  | 
 **settings_ui_url** | **String** |  | 
 **stylesheet** | Option<**String**> |  | [optional]
+**translations** | [**Vec<models::RevisionAccountExperienceCustomTranslation>**](RevisionAccountExperienceCustomTranslation.md) |  | 
 **verification_enabled** | **bool** |  | 
 **verification_ui_url** | **String** |  | 
 

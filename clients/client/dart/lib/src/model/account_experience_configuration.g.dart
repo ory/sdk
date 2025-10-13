@@ -104,6 +104,8 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
   @override
   final String? stylesheet;
   @override
+  final BuiltList<RevisionAccountExperienceCustomTranslation> translations;
+  @override
   final bool verificationEnabled;
   @override
   final String verificationUiUrl;
@@ -129,6 +131,7 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
       required this.registrationUiUrl,
       required this.settingsUiUrl,
       this.stylesheet,
+      required this.translations,
       required this.verificationEnabled,
       required this.verificationUiUrl})
       : super._() {
@@ -154,6 +157,8 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
         r'AccountExperienceConfiguration', 'registrationUiUrl');
     BuiltValueNullFieldError.checkNotNull(
         settingsUiUrl, r'AccountExperienceConfiguration', 'settingsUiUrl');
+    BuiltValueNullFieldError.checkNotNull(
+        translations, r'AccountExperienceConfiguration', 'translations');
     BuiltValueNullFieldError.checkNotNull(verificationEnabled,
         r'AccountExperienceConfiguration', 'verificationEnabled');
     BuiltValueNullFieldError.checkNotNull(verificationUiUrl,
@@ -189,6 +194,7 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
         registrationUiUrl == other.registrationUiUrl &&
         settingsUiUrl == other.settingsUiUrl &&
         stylesheet == other.stylesheet &&
+        translations == other.translations &&
         verificationEnabled == other.verificationEnabled &&
         verificationUiUrl == other.verificationUiUrl;
   }
@@ -212,6 +218,7 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
     _$hash = $jc(_$hash, registrationUiUrl.hashCode);
     _$hash = $jc(_$hash, settingsUiUrl.hashCode);
     _$hash = $jc(_$hash, stylesheet.hashCode);
+    _$hash = $jc(_$hash, translations.hashCode);
     _$hash = $jc(_$hash, verificationEnabled.hashCode);
     _$hash = $jc(_$hash, verificationUiUrl.hashCode);
     _$hash = $jf(_$hash);
@@ -237,6 +244,7 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
           ..add('registrationUiUrl', registrationUiUrl)
           ..add('settingsUiUrl', settingsUiUrl)
           ..add('stylesheet', stylesheet)
+          ..add('translations', translations)
           ..add('verificationEnabled', verificationEnabled)
           ..add('verificationUiUrl', verificationUiUrl))
         .toString();
@@ -325,6 +333,15 @@ class AccountExperienceConfigurationBuilder
   String? get stylesheet => _$this._stylesheet;
   set stylesheet(String? stylesheet) => _$this._stylesheet = stylesheet;
 
+  ListBuilder<RevisionAccountExperienceCustomTranslation>? _translations;
+  ListBuilder<RevisionAccountExperienceCustomTranslation> get translations =>
+      _$this._translations ??=
+          new ListBuilder<RevisionAccountExperienceCustomTranslation>();
+  set translations(
+          ListBuilder<RevisionAccountExperienceCustomTranslation>?
+              translations) =>
+      _$this._translations = translations;
+
   bool? _verificationEnabled;
   bool? get verificationEnabled => _$this._verificationEnabled;
   set verificationEnabled(bool? verificationEnabled) =>
@@ -358,6 +375,7 @@ class AccountExperienceConfigurationBuilder
       _registrationUiUrl = $v.registrationUiUrl;
       _settingsUiUrl = $v.settingsUiUrl;
       _stylesheet = $v.stylesheet;
+      _translations = $v.translations.toBuilder();
       _verificationEnabled = $v.verificationEnabled;
       _verificationUiUrl = $v.verificationUiUrl;
       _$v = null;
@@ -380,33 +398,47 @@ class AccountExperienceConfigurationBuilder
   AccountExperienceConfiguration build() => _build();
 
   _$AccountExperienceConfiguration _build() {
-    final _$result = _$v ??
-        new _$AccountExperienceConfiguration._(
-            defaultLocale: BuiltValueNullFieldError.checkNotNull(
-                defaultLocale, r'AccountExperienceConfiguration', 'defaultLocale'),
-            defaultRedirectUrl: BuiltValueNullFieldError.checkNotNull(
-                defaultRedirectUrl, r'AccountExperienceConfiguration', 'defaultRedirectUrl'),
-            errorUiUrl: BuiltValueNullFieldError.checkNotNull(
-                errorUiUrl, r'AccountExperienceConfiguration', 'errorUiUrl'),
-            faviconDarkUrl: faviconDarkUrl,
-            faviconLightUrl: faviconLightUrl,
-            localeBehavior: BuiltValueNullFieldError.checkNotNull(
-                localeBehavior, r'AccountExperienceConfiguration', 'localeBehavior'),
-            loginUiUrl: BuiltValueNullFieldError.checkNotNull(
-                loginUiUrl, r'AccountExperienceConfiguration', 'loginUiUrl'),
-            logoDarkUrl: logoDarkUrl,
-            logoLightUrl: logoLightUrl,
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'AccountExperienceConfiguration', 'name'),
-            recoveryEnabled: BuiltValueNullFieldError.checkNotNull(
-                recoveryEnabled, r'AccountExperienceConfiguration', 'recoveryEnabled'),
-            recoveryUiUrl: BuiltValueNullFieldError.checkNotNull(recoveryUiUrl, r'AccountExperienceConfiguration', 'recoveryUiUrl'),
-            registrationEnabled: BuiltValueNullFieldError.checkNotNull(registrationEnabled, r'AccountExperienceConfiguration', 'registrationEnabled'),
-            registrationUiUrl: BuiltValueNullFieldError.checkNotNull(registrationUiUrl, r'AccountExperienceConfiguration', 'registrationUiUrl'),
-            settingsUiUrl: BuiltValueNullFieldError.checkNotNull(settingsUiUrl, r'AccountExperienceConfiguration', 'settingsUiUrl'),
-            stylesheet: stylesheet,
-            verificationEnabled: BuiltValueNullFieldError.checkNotNull(verificationEnabled, r'AccountExperienceConfiguration', 'verificationEnabled'),
-            verificationUiUrl: BuiltValueNullFieldError.checkNotNull(verificationUiUrl, r'AccountExperienceConfiguration', 'verificationUiUrl'));
+    _$AccountExperienceConfiguration _$result;
+    try {
+      _$result = _$v ??
+          new _$AccountExperienceConfiguration._(
+              defaultLocale: BuiltValueNullFieldError.checkNotNull(
+                  defaultLocale, r'AccountExperienceConfiguration', 'defaultLocale'),
+              defaultRedirectUrl: BuiltValueNullFieldError.checkNotNull(
+                  defaultRedirectUrl, r'AccountExperienceConfiguration', 'defaultRedirectUrl'),
+              errorUiUrl: BuiltValueNullFieldError.checkNotNull(
+                  errorUiUrl, r'AccountExperienceConfiguration', 'errorUiUrl'),
+              faviconDarkUrl: faviconDarkUrl,
+              faviconLightUrl: faviconLightUrl,
+              localeBehavior: BuiltValueNullFieldError.checkNotNull(
+                  localeBehavior, r'AccountExperienceConfiguration', 'localeBehavior'),
+              loginUiUrl: BuiltValueNullFieldError.checkNotNull(
+                  loginUiUrl, r'AccountExperienceConfiguration', 'loginUiUrl'),
+              logoDarkUrl: logoDarkUrl,
+              logoLightUrl: logoLightUrl,
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'AccountExperienceConfiguration', 'name'),
+              recoveryEnabled: BuiltValueNullFieldError.checkNotNull(
+                  recoveryEnabled, r'AccountExperienceConfiguration', 'recoveryEnabled'),
+              recoveryUiUrl: BuiltValueNullFieldError.checkNotNull(recoveryUiUrl, r'AccountExperienceConfiguration', 'recoveryUiUrl'),
+              registrationEnabled: BuiltValueNullFieldError.checkNotNull(registrationEnabled, r'AccountExperienceConfiguration', 'registrationEnabled'),
+              registrationUiUrl: BuiltValueNullFieldError.checkNotNull(registrationUiUrl, r'AccountExperienceConfiguration', 'registrationUiUrl'),
+              settingsUiUrl: BuiltValueNullFieldError.checkNotNull(settingsUiUrl, r'AccountExperienceConfiguration', 'settingsUiUrl'),
+              stylesheet: stylesheet,
+              translations: translations.build(),
+              verificationEnabled: BuiltValueNullFieldError.checkNotNull(verificationEnabled, r'AccountExperienceConfiguration', 'verificationEnabled'),
+              verificationUiUrl: BuiltValueNullFieldError.checkNotNull(verificationUiUrl, r'AccountExperienceConfiguration', 'verificationUiUrl'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'translations';
+        translations.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'AccountExperienceConfiguration', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

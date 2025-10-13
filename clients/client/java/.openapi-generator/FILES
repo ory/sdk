@@ -219,6 +219,7 @@ docs/RelationshipApi.md
 docs/RelationshipNamespaces.md
 docs/RelationshipPatch.md
 docs/Relationships.md
+docs/RevisionAccountExperienceCustomTranslation.md
 docs/SchemaPatch.md
 docs/SelfServiceFlowExpiredError.md
 docs/Session.md
@@ -558,6 +559,7 @@ src/main/java/sh/ory/model/Relationship.java
 src/main/java/sh/ory/model/RelationshipNamespaces.java
 src/main/java/sh/ory/model/RelationshipPatch.java
 src/main/java/sh/ory/model/Relationships.java
+src/main/java/sh/ory/model/RevisionAccountExperienceCustomTranslation.java
 src/main/java/sh/ory/model/SchemaPatch.java
 src/main/java/sh/ory/model/SelfServiceFlowExpiredError.java
 src/main/java/sh/ory/model/Session.java
@@ -864,6 +866,7 @@ src/test/java/sh/ory/model/RelationshipNamespacesTest.java
 src/test/java/sh/ory/model/RelationshipPatchTest.java
 src/test/java/sh/ory/model/RelationshipTest.java
 src/test/java/sh/ory/model/RelationshipsTest.java
+src/test/java/sh/ory/model/RevisionAccountExperienceCustomTranslationTest.java
 src/test/java/sh/ory/model/SchemaPatchTest.java
 src/test/java/sh/ory/model/SelfServiceFlowExpiredErrorTest.java
 src/test/java/sh/ory/model/SessionActivityDatapointTest.java
