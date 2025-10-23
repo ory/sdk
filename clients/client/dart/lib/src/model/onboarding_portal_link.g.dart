@@ -24,6 +24,14 @@ class _$OnboardingPortalLink extends OnboardingPortalLink {
   @override
   final String projectId;
   @override
+  final String? proxyAcsUrl;
+  @override
+  final String? proxyOidcRedirectUrl;
+  @override
+  final String? proxySamlAudienceOverride;
+  @override
+  final String? proxyScimServerUrl;
+  @override
   final String value;
 
   factory _$OnboardingPortalLink(
@@ -39,6 +47,10 @@ class _$OnboardingPortalLink extends OnboardingPortalLink {
       required this.id,
       required this.organizationId,
       required this.projectId,
+      this.proxyAcsUrl,
+      this.proxyOidcRedirectUrl,
+      this.proxySamlAudienceOverride,
+      this.proxyScimServerUrl,
       required this.value})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -73,6 +85,10 @@ class _$OnboardingPortalLink extends OnboardingPortalLink {
         id == other.id &&
         organizationId == other.organizationId &&
         projectId == other.projectId &&
+        proxyAcsUrl == other.proxyAcsUrl &&
+        proxyOidcRedirectUrl == other.proxyOidcRedirectUrl &&
+        proxySamlAudienceOverride == other.proxySamlAudienceOverride &&
+        proxyScimServerUrl == other.proxyScimServerUrl &&
         value == other.value;
   }
 
@@ -87,6 +103,10 @@ class _$OnboardingPortalLink extends OnboardingPortalLink {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, projectId.hashCode);
+    _$hash = $jc(_$hash, proxyAcsUrl.hashCode);
+    _$hash = $jc(_$hash, proxyOidcRedirectUrl.hashCode);
+    _$hash = $jc(_$hash, proxySamlAudienceOverride.hashCode);
+    _$hash = $jc(_$hash, proxyScimServerUrl.hashCode);
     _$hash = $jc(_$hash, value.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -103,6 +123,10 @@ class _$OnboardingPortalLink extends OnboardingPortalLink {
           ..add('id', id)
           ..add('organizationId', organizationId)
           ..add('projectId', projectId)
+          ..add('proxyAcsUrl', proxyAcsUrl)
+          ..add('proxyOidcRedirectUrl', proxyOidcRedirectUrl)
+          ..add('proxySamlAudienceOverride', proxySamlAudienceOverride)
+          ..add('proxyScimServerUrl', proxyScimServerUrl)
           ..add('value', value))
         .toString();
   }
@@ -146,6 +170,25 @@ class OnboardingPortalLinkBuilder
   String? get projectId => _$this._projectId;
   set projectId(String? projectId) => _$this._projectId = projectId;
 
+  String? _proxyAcsUrl;
+  String? get proxyAcsUrl => _$this._proxyAcsUrl;
+  set proxyAcsUrl(String? proxyAcsUrl) => _$this._proxyAcsUrl = proxyAcsUrl;
+
+  String? _proxyOidcRedirectUrl;
+  String? get proxyOidcRedirectUrl => _$this._proxyOidcRedirectUrl;
+  set proxyOidcRedirectUrl(String? proxyOidcRedirectUrl) =>
+      _$this._proxyOidcRedirectUrl = proxyOidcRedirectUrl;
+
+  String? _proxySamlAudienceOverride;
+  String? get proxySamlAudienceOverride => _$this._proxySamlAudienceOverride;
+  set proxySamlAudienceOverride(String? proxySamlAudienceOverride) =>
+      _$this._proxySamlAudienceOverride = proxySamlAudienceOverride;
+
+  String? _proxyScimServerUrl;
+  String? get proxyScimServerUrl => _$this._proxyScimServerUrl;
+  set proxyScimServerUrl(String? proxyScimServerUrl) =>
+      _$this._proxyScimServerUrl = proxyScimServerUrl;
+
   String? _value;
   String? get value => _$this._value;
   set value(String? value) => _$this._value = value;
@@ -165,6 +208,10 @@ class OnboardingPortalLinkBuilder
       _id = $v.id;
       _organizationId = $v.organizationId;
       _projectId = $v.projectId;
+      _proxyAcsUrl = $v.proxyAcsUrl;
+      _proxyOidcRedirectUrl = $v.proxyOidcRedirectUrl;
+      _proxySamlAudienceOverride = $v.proxySamlAudienceOverride;
+      _proxyScimServerUrl = $v.proxyScimServerUrl;
       _value = $v.value;
       _$v = null;
     }
@@ -200,6 +247,10 @@ class OnboardingPortalLinkBuilder
                 organizationId, r'OnboardingPortalLink', 'organizationId'),
             projectId: BuiltValueNullFieldError.checkNotNull(
                 projectId, r'OnboardingPortalLink', 'projectId'),
+            proxyAcsUrl: proxyAcsUrl,
+            proxyOidcRedirectUrl: proxyOidcRedirectUrl,
+            proxySamlAudienceOverride: proxySamlAudienceOverride,
+            proxyScimServerUrl: proxyScimServerUrl,
             value: BuiltValueNullFieldError.checkNotNull(
                 value, r'OnboardingPortalLink', 'value'));
     replace(_$result);

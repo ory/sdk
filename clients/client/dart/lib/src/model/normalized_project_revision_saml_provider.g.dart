@@ -88,6 +88,10 @@ class _$NormalizedProjectRevisionSAMLProvider
   @override
   final String? providerId;
   @override
+  final String? proxyAcsUrl;
+  @override
+  final String? proxySamlAudienceOverride;
+  @override
   final String? rawIdpMetadataXml;
   @override
   final NormalizedProjectRevisionSAMLProviderStateEnum? state;
@@ -109,6 +113,8 @@ class _$NormalizedProjectRevisionSAMLProvider
       this.organizationId,
       this.projectRevisionId,
       this.providerId,
+      this.proxyAcsUrl,
+      this.proxySamlAudienceOverride,
       this.rawIdpMetadataXml,
       this.state,
       this.updatedAt})
@@ -136,6 +142,8 @@ class _$NormalizedProjectRevisionSAMLProvider
         organizationId == other.organizationId &&
         projectRevisionId == other.projectRevisionId &&
         providerId == other.providerId &&
+        proxyAcsUrl == other.proxyAcsUrl &&
+        proxySamlAudienceOverride == other.proxySamlAudienceOverride &&
         rawIdpMetadataXml == other.rawIdpMetadataXml &&
         state == other.state &&
         updatedAt == other.updatedAt;
@@ -152,6 +160,8 @@ class _$NormalizedProjectRevisionSAMLProvider
     _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, projectRevisionId.hashCode);
     _$hash = $jc(_$hash, providerId.hashCode);
+    _$hash = $jc(_$hash, proxyAcsUrl.hashCode);
+    _$hash = $jc(_$hash, proxySamlAudienceOverride.hashCode);
     _$hash = $jc(_$hash, rawIdpMetadataXml.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
@@ -171,6 +181,8 @@ class _$NormalizedProjectRevisionSAMLProvider
           ..add('organizationId', organizationId)
           ..add('projectRevisionId', projectRevisionId)
           ..add('providerId', providerId)
+          ..add('proxyAcsUrl', proxyAcsUrl)
+          ..add('proxySamlAudienceOverride', proxySamlAudienceOverride)
           ..add('rawIdpMetadataXml', rawIdpMetadataXml)
           ..add('state', state)
           ..add('updatedAt', updatedAt))
@@ -219,6 +231,15 @@ class NormalizedProjectRevisionSAMLProviderBuilder
   String? get providerId => _$this._providerId;
   set providerId(String? providerId) => _$this._providerId = providerId;
 
+  String? _proxyAcsUrl;
+  String? get proxyAcsUrl => _$this._proxyAcsUrl;
+  set proxyAcsUrl(String? proxyAcsUrl) => _$this._proxyAcsUrl = proxyAcsUrl;
+
+  String? _proxySamlAudienceOverride;
+  String? get proxySamlAudienceOverride => _$this._proxySamlAudienceOverride;
+  set proxySamlAudienceOverride(String? proxySamlAudienceOverride) =>
+      _$this._proxySamlAudienceOverride = proxySamlAudienceOverride;
+
   String? _rawIdpMetadataXml;
   String? get rawIdpMetadataXml => _$this._rawIdpMetadataXml;
   set rawIdpMetadataXml(String? rawIdpMetadataXml) =>
@@ -248,6 +269,8 @@ class NormalizedProjectRevisionSAMLProviderBuilder
       _organizationId = $v.organizationId;
       _projectRevisionId = $v.projectRevisionId;
       _providerId = $v.providerId;
+      _proxyAcsUrl = $v.proxyAcsUrl;
+      _proxySamlAudienceOverride = $v.proxySamlAudienceOverride;
       _rawIdpMetadataXml = $v.rawIdpMetadataXml;
       _state = $v.state;
       _updatedAt = $v.updatedAt;
@@ -282,6 +305,8 @@ class NormalizedProjectRevisionSAMLProviderBuilder
             organizationId: organizationId,
             projectRevisionId: projectRevisionId,
             providerId: providerId,
+            proxyAcsUrl: proxyAcsUrl,
+            proxySamlAudienceOverride: proxySamlAudienceOverride,
             rawIdpMetadataXml: rawIdpMetadataXml,
             state: state,
             updatedAt: updatedAt);

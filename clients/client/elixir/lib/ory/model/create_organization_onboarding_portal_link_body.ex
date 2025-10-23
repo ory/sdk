@@ -11,14 +11,22 @@ defmodule Ory.Model.CreateOrganizationOnboardingPortalLinkBody do
     :custom_hostname_id,
     :enable_scim,
     :enable_sso,
-    :expires_at
+    :expires_at,
+    :proxy_acs_url,
+    :proxy_oidc_redirect_url,
+    :proxy_saml_audience_override,
+    :proxy_scim_server_url
   ]
 
   @type t :: %__MODULE__{
     :custom_hostname_id => String.t | nil,
     :enable_scim => boolean(),
     :enable_sso => boolean(),
-    :expires_at => DateTime.t | nil
+    :expires_at => DateTime.t | nil,
+    :proxy_acs_url => String.t | nil,
+    :proxy_oidc_redirect_url => String.t | nil,
+    :proxy_saml_audience_override => String.t | nil,
+    :proxy_scim_server_url => String.t | nil
   }
 
   alias Ory.Deserializer

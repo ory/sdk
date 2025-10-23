@@ -20,6 +20,8 @@ part 'normalized_project_revision_saml_provider.g.dart';
 /// * [organizationId] 
 /// * [projectRevisionId] - The Revision's ID this schema belongs to
 /// * [providerId] - ID is the provider's ID
+/// * [proxyAcsUrl] 
+/// * [proxySamlAudienceOverride] 
 /// * [rawIdpMetadataXml] - RawIDPMetadataXML is the raw XML metadata of the IDP.
 /// * [state] - State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
 /// * [updatedAt] - Last Time Project's Revision was Updated
@@ -53,6 +55,12 @@ abstract class NormalizedProjectRevisionSAMLProvider implements Built<Normalized
   /// ID is the provider's ID
   @BuiltValueField(wireName: r'provider_id')
   String? get providerId;
+
+  @BuiltValueField(wireName: r'proxy_acs_url')
+  String? get proxyAcsUrl;
+
+  @BuiltValueField(wireName: r'proxy_saml_audience_override')
+  String? get proxySamlAudienceOverride;
 
   /// RawIDPMetadataXML is the raw XML metadata of the IDP.
   @BuiltValueField(wireName: r'raw_idp_metadata_xml')
@@ -144,6 +152,20 @@ class _$NormalizedProjectRevisionSAMLProviderSerializer implements PrimitiveSeri
       yield serializers.serialize(
         object.providerId,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.proxyAcsUrl != null) {
+      yield r'proxy_acs_url';
+      yield serializers.serialize(
+        object.proxyAcsUrl,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.proxySamlAudienceOverride != null) {
+      yield r'proxy_saml_audience_override';
+      yield serializers.serialize(
+        object.proxySamlAudienceOverride,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.rawIdpMetadataXml != null) {
@@ -247,6 +269,22 @@ class _$NormalizedProjectRevisionSAMLProviderSerializer implements PrimitiveSeri
             specifiedType: const FullType(String),
           ) as String;
           result.providerId = valueDes;
+          break;
+        case r'proxy_acs_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.proxyAcsUrl = valueDes;
+          break;
+        case r'proxy_saml_audience_override':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.proxySamlAudienceOverride = valueDes;
           break;
         case r'raw_idp_metadata_xml':
           final valueDes = serializers.deserialize(

@@ -25,6 +25,7 @@
 | **project_revision_id** | **String** | The Revision&#39;s ID this schema belongs to | [optional] |
 | **provider** | **String** | Provider is either \&quot;generic\&quot; for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] |
 | **provider_id** | **String** | ID is the provider&#39;s ID | [optional] |
+| **proxy_oidc_redirect_url** | **String** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional][readonly] |
 | **requested_claims** | **Object** |  | [optional] |
 | **scope** | **Array&lt;String&gt;** |  | [optional] |
 | **state** | **String** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] |
@@ -59,6 +60,7 @@ instance = OryClient::NormalizedProjectRevisionThirdPartyProvider.new(
   project_revision_id: null,
   provider: google,
   provider_id: null,
+  proxy_oidc_redirect_url: null,
   requested_claims: null,
   scope: null,
   state: null,

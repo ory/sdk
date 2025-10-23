@@ -16,6 +16,10 @@ defmodule Ory.Model.OnboardingPortalLink do
     :id,
     :organization_id,
     :project_id,
+    :proxy_acs_url,
+    :proxy_oidc_redirect_url,
+    :proxy_saml_audience_override,
+    :proxy_scim_server_url,
     :value
   ]
 
@@ -28,6 +32,10 @@ defmodule Ory.Model.OnboardingPortalLink do
     :id => String.t,
     :organization_id => String.t,
     :project_id => String.t,
+    :proxy_acs_url => String.t | nil,
+    :proxy_oidc_redirect_url => String.t | nil,
+    :proxy_saml_audience_override => String.t | nil,
+    :proxy_scim_server_url => String.t | nil,
     :value => String.t
   }
 

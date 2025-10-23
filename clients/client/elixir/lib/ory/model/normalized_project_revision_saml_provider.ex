@@ -16,6 +16,8 @@ defmodule Ory.Model.NormalizedProjectRevisionSamlProvider do
     :organization_id,
     :project_revision_id,
     :provider_id,
+    :proxy_acs_url,
+    :proxy_saml_audience_override,
     :raw_idp_metadata_xml,
     :state,
     :updated_at
@@ -30,6 +32,8 @@ defmodule Ory.Model.NormalizedProjectRevisionSamlProvider do
     :organization_id => String.t | nil,
     :project_revision_id => String.t | nil,
     :provider_id => String.t | nil,
+    :proxy_acs_url => String.t | nil,
+    :proxy_saml_audience_override => String.t | nil,
     :raw_idp_metadata_xml => String.t | nil,
     :state => String.t | nil,
     :updated_at => DateTime.t | nil

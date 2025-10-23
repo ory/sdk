@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **client** | [**OAuth2Client**](OAuth2Client.md) |  | [optional] 
 **consentRequestId** | **String** | ConsentRequestID is the ID of the consent request. | [optional] 
 **context** | [**JsonObject**](.md) |  | [optional] 
-**deviceChallengeId** | **String** | DeviceChallenge is the device challenge this consent challenge belongs to, if this flow was initiated by a device. | [optional] 
 **loginChallenge** | **String** | LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate a login and consent request in the login & consent app. | [optional] 
 **loginSessionId** | **String** | LoginSessionID is the login session ID. If the user-agent reuses a login session (via cookie / remember flag) this ID will remain the same. If the user-agent did not have an existing authentication session (e.g. remember is false) this will be a new random value. This value is used as the \"sid\" parameter in the ID Token and in OIDC Front-/Back- channel logout. It's value can generally be used to associate consecutive login requests by a certain user. | [optional] 
 **oidcContext** | [**OAuth2ConsentRequestOpenIDConnectContext**](OAuth2ConsentRequestOpenIDConnectContext.md) |  | [optional] 

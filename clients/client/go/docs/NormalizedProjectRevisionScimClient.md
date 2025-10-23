@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Label** | **string** | The SCIM server&#39;s label | 
 **MapperUrl** | **string** | Mapper specifies the JSONNet code snippet which uses the SCIM provider&#39;s data to hydrate the identity&#39;s data. | 
 **OrganizationId** | **string** | OrganizationID is the organization ID for this SCIM server. | 
+**ProxyScimServerUrl** | Pointer to **NullableString** |  | [optional] 
 **State** | Pointer to **string** | State indicates the state of the SCIM server  Only servers with state &#x60;enabled&#x60; will be available for SCIM provisioning. enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last time the SCIM client was updated | [optional] [readonly] 
 
@@ -183,6 +184,41 @@ and a boolean to check if the value has been set.
 SetOrganizationId sets OrganizationId field to given value.
 
 
+### GetProxyScimServerUrl
+
+`func (o *NormalizedProjectRevisionScimClient) GetProxyScimServerUrl() string`
+
+GetProxyScimServerUrl returns the ProxyScimServerUrl field if non-nil, zero value otherwise.
+
+### GetProxyScimServerUrlOk
+
+`func (o *NormalizedProjectRevisionScimClient) GetProxyScimServerUrlOk() (*string, bool)`
+
+GetProxyScimServerUrlOk returns a tuple with the ProxyScimServerUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxyScimServerUrl
+
+`func (o *NormalizedProjectRevisionScimClient) SetProxyScimServerUrl(v string)`
+
+SetProxyScimServerUrl sets ProxyScimServerUrl field to given value.
+
+### HasProxyScimServerUrl
+
+`func (o *NormalizedProjectRevisionScimClient) HasProxyScimServerUrl() bool`
+
+HasProxyScimServerUrl returns a boolean if a field has been set.
+
+### SetProxyScimServerUrlNil
+
+`func (o *NormalizedProjectRevisionScimClient) SetProxyScimServerUrlNil(b bool)`
+
+ SetProxyScimServerUrlNil sets the value for ProxyScimServerUrl to be an explicit nil
+
+### UnsetProxyScimServerUrl
+`func (o *NormalizedProjectRevisionScimClient) UnsetProxyScimServerUrl()`
+
+UnsetProxyScimServerUrl ensures that no value is present for ProxyScimServerUrl, not even an explicit nil
 ### GetState
 
 `func (o *NormalizedProjectRevisionScimClient) GetState() string`

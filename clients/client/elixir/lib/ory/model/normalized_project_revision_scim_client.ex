@@ -15,6 +15,7 @@ defmodule Ory.Model.NormalizedProjectRevisionScimClient do
     :label,
     :mapper_url,
     :organization_id,
+    :proxy_scim_server_url,
     :state,
     :updated_at
   ]
@@ -27,6 +28,7 @@ defmodule Ory.Model.NormalizedProjectRevisionScimClient do
     :label => String.t,
     :mapper_url => String.t,
     :organization_id => String.t,
+    :proxy_scim_server_url => String.t | nil,
     :state => String.t | nil,
     :updated_at => DateTime.t | nil
   }

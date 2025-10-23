@@ -8,6 +8,10 @@ Name | Type | Description | Notes
 **EnableScim** | **bool** | Feature flag to enable SCIM configuration | 
 **EnableSso** | **bool** | Feature flag to enable SSO configuration | 
 **ExpiresAt** | Pointer to **time.Time** |  | [optional] 
+**ProxyAcsUrl** | Pointer to **string** | Proxy ACS URL if overriding with a customer-controlled URL | [optional] 
+**ProxyOidcRedirectUrl** | Pointer to **string** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] 
+**ProxySamlAudienceOverride** | Pointer to **string** | SAML Audience Override if overriding with a customer-controlled one | [optional] 
+**ProxyScimServerUrl** | Pointer to **string** | Proxy SCIM Server URL if overriding with a customer-controlled URL | [optional] 
 
 ## Methods
 
@@ -127,6 +131,106 @@ SetExpiresAt sets ExpiresAt field to given value.
 `func (o *CreateOrganizationOnboardingPortalLinkBody) HasExpiresAt() bool`
 
 HasExpiresAt returns a boolean if a field has been set.
+
+### GetProxyAcsUrl
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyAcsUrl() string`
+
+GetProxyAcsUrl returns the ProxyAcsUrl field if non-nil, zero value otherwise.
+
+### GetProxyAcsUrlOk
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyAcsUrlOk() (*string, bool)`
+
+GetProxyAcsUrlOk returns a tuple with the ProxyAcsUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxyAcsUrl
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) SetProxyAcsUrl(v string)`
+
+SetProxyAcsUrl sets ProxyAcsUrl field to given value.
+
+### HasProxyAcsUrl
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) HasProxyAcsUrl() bool`
+
+HasProxyAcsUrl returns a boolean if a field has been set.
+
+### GetProxyOidcRedirectUrl
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyOidcRedirectUrl() string`
+
+GetProxyOidcRedirectUrl returns the ProxyOidcRedirectUrl field if non-nil, zero value otherwise.
+
+### GetProxyOidcRedirectUrlOk
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyOidcRedirectUrlOk() (*string, bool)`
+
+GetProxyOidcRedirectUrlOk returns a tuple with the ProxyOidcRedirectUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxyOidcRedirectUrl
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) SetProxyOidcRedirectUrl(v string)`
+
+SetProxyOidcRedirectUrl sets ProxyOidcRedirectUrl field to given value.
+
+### HasProxyOidcRedirectUrl
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) HasProxyOidcRedirectUrl() bool`
+
+HasProxyOidcRedirectUrl returns a boolean if a field has been set.
+
+### GetProxySamlAudienceOverride
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxySamlAudienceOverride() string`
+
+GetProxySamlAudienceOverride returns the ProxySamlAudienceOverride field if non-nil, zero value otherwise.
+
+### GetProxySamlAudienceOverrideOk
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxySamlAudienceOverrideOk() (*string, bool)`
+
+GetProxySamlAudienceOverrideOk returns a tuple with the ProxySamlAudienceOverride field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxySamlAudienceOverride
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) SetProxySamlAudienceOverride(v string)`
+
+SetProxySamlAudienceOverride sets ProxySamlAudienceOverride field to given value.
+
+### HasProxySamlAudienceOverride
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) HasProxySamlAudienceOverride() bool`
+
+HasProxySamlAudienceOverride returns a boolean if a field has been set.
+
+### GetProxyScimServerUrl
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyScimServerUrl() string`
+
+GetProxyScimServerUrl returns the ProxyScimServerUrl field if non-nil, zero value otherwise.
+
+### GetProxyScimServerUrlOk
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyScimServerUrlOk() (*string, bool)`
+
+GetProxyScimServerUrlOk returns a tuple with the ProxyScimServerUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxyScimServerUrl
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) SetProxyScimServerUrl(v string)`
+
+SetProxyScimServerUrl sets ProxyScimServerUrl field to given value.
+
+### HasProxyScimServerUrl
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) HasProxyScimServerUrl() bool`
+
+HasProxyScimServerUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

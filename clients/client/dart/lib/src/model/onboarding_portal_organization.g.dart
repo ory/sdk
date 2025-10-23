@@ -20,6 +20,14 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
   @override
   final String? organizationLabel;
   @override
+  final String? proxyAcsUrl;
+  @override
+  final String? proxyOidcRedirectUrl;
+  @override
+  final String? proxySamlAudienceOverride;
+  @override
+  final String? proxyScimServerUrl;
+  @override
   final String revisionId;
   @override
   final BuiltList<NormalizedProjectRevisionScimClient> scimClients;
@@ -38,6 +46,10 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
       required this.kratosSelfserviceMethodsSamlConfigProviders,
       this.organizationId,
       this.organizationLabel,
+      this.proxyAcsUrl,
+      this.proxyOidcRedirectUrl,
+      this.proxySamlAudienceOverride,
+      this.proxyScimServerUrl,
       required this.revisionId,
       required this.scimClients,
       required this.scimEnabled,
@@ -83,6 +95,10 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
             other.kratosSelfserviceMethodsSamlConfigProviders &&
         organizationId == other.organizationId &&
         organizationLabel == other.organizationLabel &&
+        proxyAcsUrl == other.proxyAcsUrl &&
+        proxyOidcRedirectUrl == other.proxyOidcRedirectUrl &&
+        proxySamlAudienceOverride == other.proxySamlAudienceOverride &&
+        proxyScimServerUrl == other.proxyScimServerUrl &&
         revisionId == other.revisionId &&
         scimClients == other.scimClients &&
         scimEnabled == other.scimEnabled &&
@@ -97,6 +113,10 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
     _$hash = $jc(_$hash, kratosSelfserviceMethodsSamlConfigProviders.hashCode);
     _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, organizationLabel.hashCode);
+    _$hash = $jc(_$hash, proxyAcsUrl.hashCode);
+    _$hash = $jc(_$hash, proxyOidcRedirectUrl.hashCode);
+    _$hash = $jc(_$hash, proxySamlAudienceOverride.hashCode);
+    _$hash = $jc(_$hash, proxyScimServerUrl.hashCode);
     _$hash = $jc(_$hash, revisionId.hashCode);
     _$hash = $jc(_$hash, scimClients.hashCode);
     _$hash = $jc(_$hash, scimEnabled.hashCode);
@@ -115,6 +135,10 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
               kratosSelfserviceMethodsSamlConfigProviders)
           ..add('organizationId', organizationId)
           ..add('organizationLabel', organizationLabel)
+          ..add('proxyAcsUrl', proxyAcsUrl)
+          ..add('proxyOidcRedirectUrl', proxyOidcRedirectUrl)
+          ..add('proxySamlAudienceOverride', proxySamlAudienceOverride)
+          ..add('proxyScimServerUrl', proxyScimServerUrl)
           ..add('revisionId', revisionId)
           ..add('scimClients', scimClients)
           ..add('scimEnabled', scimEnabled)
@@ -167,6 +191,25 @@ class OnboardingPortalOrganizationBuilder
   set organizationLabel(String? organizationLabel) =>
       _$this._organizationLabel = organizationLabel;
 
+  String? _proxyAcsUrl;
+  String? get proxyAcsUrl => _$this._proxyAcsUrl;
+  set proxyAcsUrl(String? proxyAcsUrl) => _$this._proxyAcsUrl = proxyAcsUrl;
+
+  String? _proxyOidcRedirectUrl;
+  String? get proxyOidcRedirectUrl => _$this._proxyOidcRedirectUrl;
+  set proxyOidcRedirectUrl(String? proxyOidcRedirectUrl) =>
+      _$this._proxyOidcRedirectUrl = proxyOidcRedirectUrl;
+
+  String? _proxySamlAudienceOverride;
+  String? get proxySamlAudienceOverride => _$this._proxySamlAudienceOverride;
+  set proxySamlAudienceOverride(String? proxySamlAudienceOverride) =>
+      _$this._proxySamlAudienceOverride = proxySamlAudienceOverride;
+
+  String? _proxyScimServerUrl;
+  String? get proxyScimServerUrl => _$this._proxyScimServerUrl;
+  set proxyScimServerUrl(String? proxyScimServerUrl) =>
+      _$this._proxyScimServerUrl = proxyScimServerUrl;
+
   String? _revisionId;
   String? get revisionId => _$this._revisionId;
   set revisionId(String? revisionId) => _$this._revisionId = revisionId;
@@ -201,6 +244,10 @@ class OnboardingPortalOrganizationBuilder
           $v.kratosSelfserviceMethodsSamlConfigProviders.toBuilder();
       _organizationId = $v.organizationId;
       _organizationLabel = $v.organizationLabel;
+      _proxyAcsUrl = $v.proxyAcsUrl;
+      _proxyOidcRedirectUrl = $v.proxyOidcRedirectUrl;
+      _proxySamlAudienceOverride = $v.proxySamlAudienceOverride;
+      _proxyScimServerUrl = $v.proxyScimServerUrl;
       _revisionId = $v.revisionId;
       _scimClients = $v.scimClients.toBuilder();
       _scimEnabled = $v.scimEnabled;
@@ -237,6 +284,10 @@ class OnboardingPortalOrganizationBuilder
                   kratosSelfserviceMethodsSamlConfigProviders.build(),
               organizationId: organizationId,
               organizationLabel: organizationLabel,
+              proxyAcsUrl: proxyAcsUrl,
+              proxyOidcRedirectUrl: proxyOidcRedirectUrl,
+              proxySamlAudienceOverride: proxySamlAudienceOverride,
+              proxyScimServerUrl: proxyScimServerUrl,
               revisionId: BuiltValueNullFieldError.checkNotNull(
                   revisionId, r'OnboardingPortalOrganization', 'revisionId'),
               scimClients: scimClients.build(),

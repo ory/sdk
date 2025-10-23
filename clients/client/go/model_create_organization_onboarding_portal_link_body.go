@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.6
+API version: v1.22.7
 Contact: support@ory.sh
 */
 
@@ -28,6 +28,14 @@ type CreateOrganizationOnboardingPortalLinkBody struct {
 	// Feature flag to enable SSO configuration
 	EnableSso bool `json:"enable_sso"`
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
+	// Proxy ACS URL if overriding with a customer-controlled URL
+	ProxyAcsUrl *string `json:"proxy_acs_url,omitempty"`
+	// Proxy OIDC Redirect URL if overriding with a customer-controlled URL
+	ProxyOidcRedirectUrl *string `json:"proxy_oidc_redirect_url,omitempty"`
+	// SAML Audience Override if overriding with a customer-controlled one
+	ProxySamlAudienceOverride *string `json:"proxy_saml_audience_override,omitempty"`
+	// Proxy SCIM Server URL if overriding with a customer-controlled URL
+	ProxyScimServerUrl *string `json:"proxy_scim_server_url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -174,6 +182,134 @@ func (o *CreateOrganizationOnboardingPortalLinkBody) SetExpiresAt(v time.Time) {
 	o.ExpiresAt = &v
 }
 
+// GetProxyAcsUrl returns the ProxyAcsUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyAcsUrl() string {
+	if o == nil || IsNil(o.ProxyAcsUrl) {
+		var ret string
+		return ret
+	}
+	return *o.ProxyAcsUrl
+}
+
+// GetProxyAcsUrlOk returns a tuple with the ProxyAcsUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyAcsUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.ProxyAcsUrl) {
+		return nil, false
+	}
+	return o.ProxyAcsUrl, true
+}
+
+// HasProxyAcsUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasProxyAcsUrl() bool {
+	if o != nil && !IsNil(o.ProxyAcsUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetProxyAcsUrl gets a reference to the given string and assigns it to the ProxyAcsUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetProxyAcsUrl(v string) {
+	o.ProxyAcsUrl = &v
+}
+
+// GetProxyOidcRedirectUrl returns the ProxyOidcRedirectUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyOidcRedirectUrl() string {
+	if o == nil || IsNil(o.ProxyOidcRedirectUrl) {
+		var ret string
+		return ret
+	}
+	return *o.ProxyOidcRedirectUrl
+}
+
+// GetProxyOidcRedirectUrlOk returns a tuple with the ProxyOidcRedirectUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyOidcRedirectUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.ProxyOidcRedirectUrl) {
+		return nil, false
+	}
+	return o.ProxyOidcRedirectUrl, true
+}
+
+// HasProxyOidcRedirectUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasProxyOidcRedirectUrl() bool {
+	if o != nil && !IsNil(o.ProxyOidcRedirectUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetProxyOidcRedirectUrl gets a reference to the given string and assigns it to the ProxyOidcRedirectUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetProxyOidcRedirectUrl(v string) {
+	o.ProxyOidcRedirectUrl = &v
+}
+
+// GetProxySamlAudienceOverride returns the ProxySamlAudienceOverride field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxySamlAudienceOverride() string {
+	if o == nil || IsNil(o.ProxySamlAudienceOverride) {
+		var ret string
+		return ret
+	}
+	return *o.ProxySamlAudienceOverride
+}
+
+// GetProxySamlAudienceOverrideOk returns a tuple with the ProxySamlAudienceOverride field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxySamlAudienceOverrideOk() (*string, bool) {
+	if o == nil || IsNil(o.ProxySamlAudienceOverride) {
+		return nil, false
+	}
+	return o.ProxySamlAudienceOverride, true
+}
+
+// HasProxySamlAudienceOverride returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasProxySamlAudienceOverride() bool {
+	if o != nil && !IsNil(o.ProxySamlAudienceOverride) {
+		return true
+	}
+
+	return false
+}
+
+// SetProxySamlAudienceOverride gets a reference to the given string and assigns it to the ProxySamlAudienceOverride field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetProxySamlAudienceOverride(v string) {
+	o.ProxySamlAudienceOverride = &v
+}
+
+// GetProxyScimServerUrl returns the ProxyScimServerUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyScimServerUrl() string {
+	if o == nil || IsNil(o.ProxyScimServerUrl) {
+		var ret string
+		return ret
+	}
+	return *o.ProxyScimServerUrl
+}
+
+// GetProxyScimServerUrlOk returns a tuple with the ProxyScimServerUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetProxyScimServerUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.ProxyScimServerUrl) {
+		return nil, false
+	}
+	return o.ProxyScimServerUrl, true
+}
+
+// HasProxyScimServerUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasProxyScimServerUrl() bool {
+	if o != nil && !IsNil(o.ProxyScimServerUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetProxyScimServerUrl gets a reference to the given string and assigns it to the ProxyScimServerUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetProxyScimServerUrl(v string) {
+	o.ProxyScimServerUrl = &v
+}
+
 func (o CreateOrganizationOnboardingPortalLinkBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -191,6 +327,18 @@ func (o CreateOrganizationOnboardingPortalLinkBody) ToMap() (map[string]interfac
 	toSerialize["enable_sso"] = o.EnableSso
 	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
+	}
+	if !IsNil(o.ProxyAcsUrl) {
+		toSerialize["proxy_acs_url"] = o.ProxyAcsUrl
+	}
+	if !IsNil(o.ProxyOidcRedirectUrl) {
+		toSerialize["proxy_oidc_redirect_url"] = o.ProxyOidcRedirectUrl
+	}
+	if !IsNil(o.ProxySamlAudienceOverride) {
+		toSerialize["proxy_saml_audience_override"] = o.ProxySamlAudienceOverride
+	}
+	if !IsNil(o.ProxyScimServerUrl) {
+		toSerialize["proxy_scim_server_url"] = o.ProxyScimServerUrl
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -240,6 +388,10 @@ func (o *CreateOrganizationOnboardingPortalLinkBody) UnmarshalJSON(data []byte) 
 		delete(additionalProperties, "enable_scim")
 		delete(additionalProperties, "enable_sso")
 		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "proxy_acs_url")
+		delete(additionalProperties, "proxy_oidc_redirect_url")
+		delete(additionalProperties, "proxy_saml_audience_override")
+		delete(additionalProperties, "proxy_scim_server_url")
 		o.AdditionalProperties = additionalProperties
 	}
 

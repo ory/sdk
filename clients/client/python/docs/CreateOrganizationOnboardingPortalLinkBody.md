@@ -9,6 +9,10 @@ Name | Type | Description | Notes
 **enable_scim** | **bool** | Feature flag to enable SCIM configuration | 
 **enable_sso** | **bool** | Feature flag to enable SSO configuration | 
 **expires_at** | **datetime** |  | [optional] 
+**proxy_acs_url** | **str** | Proxy ACS URL if overriding with a customer-controlled URL | [optional] 
+**proxy_oidc_redirect_url** | **str** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] 
+**proxy_saml_audience_override** | **str** | SAML Audience Override if overriding with a customer-controlled one | [optional] 
+**proxy_scim_server_url** | **str** | Proxy SCIM Server URL if overriding with a customer-controlled URL | [optional] 
 
 ## Example
 

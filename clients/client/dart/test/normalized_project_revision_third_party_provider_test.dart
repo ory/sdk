@@ -124,6 +124,12 @@ void main() {
       // TODO
     });
 
+    // Proxy OIDC Redirect URL if overriding with a customer-controlled URL
+    // String proxyOidcRedirectUrl
+    test('to test the property `proxyOidcRedirectUrl`', () async {
+      // TODO
+    });
+
     // JsonObject requestedClaims
     test('to test the property `requestedClaims`', () async {
       // TODO

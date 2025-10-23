@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **label** | **str** | The SCIM server&#39;s label | 
 **mapper_url** | **str** | Mapper specifies the JSONNet code snippet which uses the SCIM provider&#39;s data to hydrate the identity&#39;s data. | 
 **organization_id** | **str** | OrganizationID is the organization ID for this SCIM server. | 
+**proxy_scim_server_url** | **str** |  | [optional] 
 **state** | **str** | State indicates the state of the SCIM server  Only servers with state &#x60;enabled&#x60; will be available for SCIM provisioning. enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **updated_at** | **datetime** | Last time the SCIM client was updated | [optional] [readonly] 
 

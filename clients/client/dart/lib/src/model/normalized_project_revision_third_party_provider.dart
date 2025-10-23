@@ -34,6 +34,7 @@ part 'normalized_project_revision_third_party_provider.g.dart';
 /// * [projectRevisionId] - The Revision's ID this schema belongs to
 /// * [provider] - Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple
 /// * [providerId] - ID is the provider's ID
+/// * [proxyOidcRedirectUrl] - Proxy OIDC Redirect URL if overriding with a customer-controlled URL
 /// * [requestedClaims] 
 /// * [scope] 
 /// * [state] - State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
@@ -117,6 +118,10 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
   /// ID is the provider's ID
   @BuiltValueField(wireName: r'provider_id')
   String? get providerId;
+
+  /// Proxy OIDC Redirect URL if overriding with a customer-controlled URL
+  @BuiltValueField(wireName: r'proxy_oidc_redirect_url')
+  String? get proxyOidcRedirectUrl;
 
   @BuiltValueField(wireName: r'requested_claims')
   JsonObject? get requestedClaims;
@@ -307,6 +312,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
       yield r'provider_id';
       yield serializers.serialize(
         object.providerId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.proxyOidcRedirectUrl != null) {
+      yield r'proxy_oidc_redirect_url';
+      yield serializers.serialize(
+        object.proxyOidcRedirectUrl,
         specifiedType: const FullType(String),
       );
     }
@@ -528,6 +540,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
             specifiedType: const FullType(String),
           ) as String;
           result.providerId = valueDes;
+          break;
+        case r'proxy_oidc_redirect_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.proxyOidcRedirectUrl = valueDes;
           break;
         case r'requested_claims':
           final valueDes = serializers.deserialize(

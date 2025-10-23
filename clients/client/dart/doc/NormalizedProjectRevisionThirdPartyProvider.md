@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **projectRevisionId** | **String** | The Revision's ID this schema belongs to | [optional] 
 **provider** | **String** | Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] 
 **providerId** | **String** | ID is the provider's ID | [optional] 
+**proxyOidcRedirectUrl** | **String** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] 
 **requestedClaims** | [**JsonObject**](.md) |  | [optional] 
 **scope** | **BuiltList&lt;String&gt;** |  | [optional] 
 **state** | **String** | State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 

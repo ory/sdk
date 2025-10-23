@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **ProjectRevisionId** | Pointer to **string** | The Revision&#39;s ID this schema belongs to | [optional] 
 **Provider** | Pointer to **string** | Provider is either \&quot;generic\&quot; for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] 
 **ProviderId** | Pointer to **string** | ID is the provider&#39;s ID | [optional] 
+**ProxyOidcRedirectUrl** | Pointer to **string** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] [readonly] 
 **RequestedClaims** | Pointer to **map[string]interface{}** |  | [optional] 
 **Scope** | Pointer to **[]string** |  | [optional] 
 **State** | Pointer to **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
@@ -645,6 +646,31 @@ SetProviderId sets ProviderId field to given value.
 `func (o *NormalizedProjectRevisionThirdPartyProvider) HasProviderId() bool`
 
 HasProviderId returns a boolean if a field has been set.
+
+### GetProxyOidcRedirectUrl
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetProxyOidcRedirectUrl() string`
+
+GetProxyOidcRedirectUrl returns the ProxyOidcRedirectUrl field if non-nil, zero value otherwise.
+
+### GetProxyOidcRedirectUrlOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetProxyOidcRedirectUrlOk() (*string, bool)`
+
+GetProxyOidcRedirectUrlOk returns a tuple with the ProxyOidcRedirectUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxyOidcRedirectUrl
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetProxyOidcRedirectUrl(v string)`
+
+SetProxyOidcRedirectUrl sets ProxyOidcRedirectUrl field to given value.
+
+### HasProxyOidcRedirectUrl
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasProxyOidcRedirectUrl() bool`
+
+HasProxyOidcRedirectUrl returns a boolean if a field has been set.
 
 ### GetRequestedClaims
 

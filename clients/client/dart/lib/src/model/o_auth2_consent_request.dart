@@ -21,7 +21,6 @@ part 'o_auth2_consent_request.g.dart';
 /// * [client] 
 /// * [consentRequestId] - ConsentRequestID is the ID of the consent request.
 /// * [context] 
-/// * [deviceChallengeId] - DeviceChallenge is the device challenge this consent challenge belongs to, if this flow was initiated by a device.
 /// * [loginChallenge] - LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate a login and consent request in the login & consent app.
 /// * [loginSessionId] - LoginSessionID is the login session ID. If the user-agent reuses a login session (via cookie / remember flag) this ID will remain the same. If the user-agent did not have an existing authentication session (e.g. remember is false) this will be a new random value. This value is used as the \"sid\" parameter in the ID Token and in OIDC Front-/Back- channel logout. It's value can generally be used to associate consecutive login requests by a certain user.
 /// * [oidcContext] 
@@ -52,10 +51,6 @@ abstract class OAuth2ConsentRequest implements Built<OAuth2ConsentRequest, OAuth
 
   @BuiltValueField(wireName: r'context')
   JsonObject? get context;
-
-  /// DeviceChallenge is the device challenge this consent challenge belongs to, if this flow was initiated by a device.
-  @BuiltValueField(wireName: r'device_challenge_id')
-  String? get deviceChallengeId;
 
   /// LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate a login and consent request in the login & consent app.
   @BuiltValueField(wireName: r'login_challenge')
@@ -147,13 +142,6 @@ class _$OAuth2ConsentRequestSerializer implements PrimitiveSerializer<OAuth2Cons
       yield serializers.serialize(
         object.context,
         specifiedType: const FullType(JsonObject),
-      );
-    }
-    if (object.deviceChallengeId != null) {
-      yield r'device_challenge_id';
-      yield serializers.serialize(
-        object.deviceChallengeId,
-        specifiedType: const FullType(String),
       );
     }
     if (object.loginChallenge != null) {
@@ -276,13 +264,6 @@ class _$OAuth2ConsentRequestSerializer implements PrimitiveSerializer<OAuth2Cons
             specifiedType: const FullType(JsonObject),
           ) as JsonObject;
           result.context = valueDes;
-          break;
-        case r'device_challenge_id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.deviceChallengeId = valueDes;
           break;
         case r'login_challenge':
           final valueDes = serializers.deserialize(

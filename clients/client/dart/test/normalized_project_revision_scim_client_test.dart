@@ -48,6 +48,11 @@ void main() {
       // TODO
     });
 
+    // String proxyScimServerUrl
+    test('to test the property `proxyScimServerUrl`', () async {
+      // TODO
+    });
+
     // State indicates the state of the SCIM server  Only servers with state `enabled` will be available for SCIM provisioning. enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
     // String state
     test('to test the property `state`', () async {

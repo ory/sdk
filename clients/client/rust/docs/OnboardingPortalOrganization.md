@@ -9,6 +9,10 @@ Name | Type | Description | Notes
 **kratos_selfservice_methods_saml_config_providers** | [**Vec<models::NormalizedProjectRevisionSamlProvider>**](normalizedProjectRevisionSAMLProvider.md) |  | 
 **organization_id** | Option<**String**> | Organization ID | [optional]
 **organization_label** | Option<**String**> | Organization Label | [optional]
+**proxy_acs_url** | Option<**String**> | Proxy ACS URL if overriding with a customer-controlled URL | [optional]
+**proxy_oidc_redirect_url** | Option<**String**> | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional]
+**proxy_saml_audience_override** | Option<**String**> | SAML Audience Override if overriding with a customer-controlled one | [optional]
+**proxy_scim_server_url** | Option<**String**> | Proxy SCIM Server URL if overriding with a customer-controlled URL | [optional]
 **revision_id** | **String** |  | 
 **scim_clients** | [**Vec<models::NormalizedProjectRevisionScimClient>**](normalizedProjectRevisionScimClient.md) |  | 
 **scim_enabled** | **bool** |  | 

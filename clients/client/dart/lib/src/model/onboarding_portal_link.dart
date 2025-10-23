@@ -19,6 +19,10 @@ part 'onboarding_portal_link.g.dart';
 /// * [id] - The onboarding portal link's ID.
 /// * [organizationId] - The onboarding portal link's organization ID
 /// * [projectId] - The onboarding portal link's project ID
+/// * [proxyAcsUrl] - Proxy ACS URL if overriding with a customer-controlled URL
+/// * [proxyOidcRedirectUrl] - Proxy OIDC Redirect URL if overriding with a customer-controlled URL
+/// * [proxySamlAudienceOverride] - SAML Audience Override if overriding with a customer-controlled one
+/// * [proxyScimServerUrl] - Proxy SCIM Server URL if overriding with a customer-controlled URL
 /// * [value] - The onboarding portal link's value
 @BuiltValue()
 abstract class OnboardingPortalLink implements Built<OnboardingPortalLink, OnboardingPortalLinkBuilder> {
@@ -52,6 +56,22 @@ abstract class OnboardingPortalLink implements Built<OnboardingPortalLink, Onboa
   /// The onboarding portal link's project ID
   @BuiltValueField(wireName: r'project_id')
   String get projectId;
+
+  /// Proxy ACS URL if overriding with a customer-controlled URL
+  @BuiltValueField(wireName: r'proxy_acs_url')
+  String? get proxyAcsUrl;
+
+  /// Proxy OIDC Redirect URL if overriding with a customer-controlled URL
+  @BuiltValueField(wireName: r'proxy_oidc_redirect_url')
+  String? get proxyOidcRedirectUrl;
+
+  /// SAML Audience Override if overriding with a customer-controlled one
+  @BuiltValueField(wireName: r'proxy_saml_audience_override')
+  String? get proxySamlAudienceOverride;
+
+  /// Proxy SCIM Server URL if overriding with a customer-controlled URL
+  @BuiltValueField(wireName: r'proxy_scim_server_url')
+  String? get proxyScimServerUrl;
 
   /// The onboarding portal link's value
   @BuiltValueField(wireName: r'value')
@@ -128,6 +148,34 @@ class _$OnboardingPortalLinkSerializer implements PrimitiveSerializer<Onboarding
       object.projectId,
       specifiedType: const FullType(String),
     );
+    if (object.proxyAcsUrl != null) {
+      yield r'proxy_acs_url';
+      yield serializers.serialize(
+        object.proxyAcsUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.proxyOidcRedirectUrl != null) {
+      yield r'proxy_oidc_redirect_url';
+      yield serializers.serialize(
+        object.proxyOidcRedirectUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.proxySamlAudienceOverride != null) {
+      yield r'proxy_saml_audience_override';
+      yield serializers.serialize(
+        object.proxySamlAudienceOverride,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.proxyScimServerUrl != null) {
+      yield r'proxy_scim_server_url';
+      yield serializers.serialize(
+        object.proxyScimServerUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     yield r'value';
     yield serializers.serialize(
       object.value,
@@ -212,6 +260,34 @@ class _$OnboardingPortalLinkSerializer implements PrimitiveSerializer<Onboarding
             specifiedType: const FullType(String),
           ) as String;
           result.projectId = valueDes;
+          break;
+        case r'proxy_acs_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.proxyAcsUrl = valueDes;
+          break;
+        case r'proxy_oidc_redirect_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.proxyOidcRedirectUrl = valueDes;
+          break;
+        case r'proxy_saml_audience_override':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.proxySamlAudienceOverride = valueDes;
+          break;
+        case r'proxy_scim_server_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.proxyScimServerUrl = valueDes;
           break;
         case r'value':
           final valueDes = serializers.deserialize(

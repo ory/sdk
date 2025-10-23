@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.6
+  version: v1.22.7
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -12426,6 +12426,21 @@ components:
         expires_at:
           format: date-time
           type: string
+        proxy_acs_url:
+          description: Proxy ACS URL if overriding with a customer-controlled URL
+          type: string
+        proxy_oidc_redirect_url:
+          description: Proxy OIDC Redirect URL if overriding with a customer-controlled
+            URL
+          type: string
+        proxy_saml_audience_override:
+          description: SAML Audience Override if overriding with a customer-controlled
+            one
+          type: string
+        proxy_scim_server_url:
+          description: Proxy SCIM Server URL if overriding with a customer-controlled
+            URL
+          type: string
       required:
       - enable_scim
       - enable_sso
@@ -13173,7 +13188,7 @@ components:
           format: int64
           type: integer
       type: object
-    getAttributesCountResponse:
+    getAttributesCount:
       description: Response of the getAttributesCount endpoint
       properties:
         data:
@@ -13191,7 +13206,23 @@ components:
         location:
           type: string
       type: object
-    getMetricsEventAttributesResponse:
+    getMetricsCount:
+      description: Response of the getIdentityCount endpoint
+      properties:
+        count:
+          description: The total count
+          format: int64
+          readOnly: true
+          type: integer
+        service_name:
+          description: Helper field to identify the service used for this response
+          readOnly: true
+          type: string
+      required:
+      - count
+      - service_name
+      type: object
+    getMetricsEventAttributes:
       description: Response of the getMetricsEventAttributes endpoint
       properties:
         events:
@@ -13203,7 +13234,7 @@ components:
       required:
       - events
       type: object
-    getMetricsEventTypesResponse:
+    getMetricsEventTypes:
       description: Response of the getMetricsEventTypes endpoint
       properties:
         events:
@@ -13230,6 +13261,22 @@ components:
       required:
       - organization
       title: getOrganizationResponse represents a B2B SSO Organization.
+      type: object
+    getProjectEvents:
+      description: Response of the getProjectEvents endpoint
+      properties:
+        events:
+          description: The list of data points.
+          items:
+            $ref: '#/components/schemas/ProjectEventsDatapoint'
+          readOnly: true
+          type: array
+        page_token:
+          description: Pagination token to be included in next page request
+          readOnly: true
+          type: string
+      required:
+      - events
       type: object
     getProjectEventsBody:
       description: Body of the getProjectEvents endpoint
@@ -13263,23 +13310,7 @@ components:
       - from
       - to
       type: object
-    getProjectEventsResponse:
-      description: Response of the getProjectEvents endpoint
-      properties:
-        events:
-          description: The list of data points.
-          items:
-            $ref: '#/components/schemas/ProjectEventsDatapoint'
-          readOnly: true
-          type: array
-        page_token:
-          description: Pagination token to be included in next page request
-          readOnly: true
-          type: string
-      required:
-      - events
-      type: object
-    getProjectMetricsResponse:
+    getProjectMetrics:
       description: Response of the getMetrics endpoint
       properties:
         data:
@@ -13291,7 +13322,7 @@ components:
       required:
       - data
       type: object
-    getSessionActivityResponse:
+    getSessionActivity:
       description: Response of the getSessionActivity endpoint
       properties:
         data:
@@ -13821,6 +13852,14 @@ components:
       - path
       - project_slug
       type: object
+    internalIsOwnerForProjectBySlug:
+      properties:
+        project_id:
+          description: ProjectID is the project's ID.
+          type: string
+      required:
+      - project_id
+      type: object
     internalIsOwnerForProjectBySlugBody:
       description: Is Owner For Project By Slug Request Body
       properties:
@@ -13845,14 +13884,6 @@ components:
       - namespace
       - project_slug
       - subject
-      type: object
-    internalIsOwnerForProjectBySlugResponse:
-      properties:
-        project_id:
-          description: ProjectID is the project's ID.
-          type: string
-      required:
-      - project_id
       type: object
     introspectedOAuth2Token:
       description: |-
@@ -16973,6 +17004,12 @@ components:
         provider_id:
           description: ID is the provider's ID
           type: string
+        proxy_acs_url:
+          nullable: true
+          type: string
+        proxy_saml_audience_override:
+          nullable: true
+          type: string
         raw_idp_metadata_xml:
           description: RawIDPMetadataXML is the raw XML metadata of the IDP.
           type: string
@@ -17027,6 +17064,9 @@ components:
         organization_id:
           description: OrganizationID is the organization ID for this SCIM server.
           format: uuid
+          type: string
+        proxy_scim_server_url:
+          nullable: true
           type: string
         state:
           description: |-
@@ -17165,6 +17205,11 @@ components:
           type: string
         provider_id:
           description: ID is the provider's ID
+          type: string
+        proxy_oidc_redirect_url:
+          description: Proxy OIDC Redirect URL if overriding with a customer-controlled
+            URL
+          readOnly: true
           type: string
         requested_claims:
           title: "JSONRawMessage represents a json.RawMessage that works well with\
@@ -17791,7 +17836,6 @@ components:
           - acr_values
           - acr_values
           display: display
-        device_challenge_id: device_challenge_id
         skip: true
         request_url: request_url
         acr: acr
@@ -17932,10 +17976,6 @@ components:
           title: "JSONRawMessage represents a json.RawMessage that works well with\
             \ JSON, SQL, and Swagger."
           type: object
-        device_challenge_id:
-          description: "DeviceChallenge is the device challenge this consent challenge\
-            \ belongs to, if this flow was initiated by a device."
-          type: string
         login_challenge:
           description: |-
             LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate
@@ -18072,7 +18112,6 @@ components:
             - acr_values
             - acr_values
             display: display
-          device_challenge_id: device_challenge_id
           skip: true
           request_url: request_url
           acr: acr
@@ -19105,15 +19144,19 @@ components:
       type: object
     onboardingPortalLink:
       example:
+        proxy_oidc_redirect_url: proxy_oidc_redirect_url
+        proxy_saml_audience_override: proxy_saml_audience_override
+        proxy_scim_server_url: proxy_scim_server_url
+        enable_scim: true
+        created_at: 2000-01-23T04:56:07.000+00:00
+        proxy_acs_url: proxy_acs_url
+        enable_sso: true
         custom_hostname_id: custom_hostname_id
         expires_at: 2000-01-23T04:56:07.000+00:00
-        enable_scim: true
         project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         value: value
-        enable_sso: true
       properties:
         created_at:
           description: The onboarding portal link's creation date
@@ -19150,6 +19193,21 @@ components:
           format: uuid
           readOnly: true
           type: string
+        proxy_acs_url:
+          description: Proxy ACS URL if overriding with a customer-controlled URL
+          type: string
+        proxy_oidc_redirect_url:
+          description: Proxy OIDC Redirect URL if overriding with a customer-controlled
+            URL
+          type: string
+        proxy_saml_audience_override:
+          description: SAML Audience Override if overriding with a customer-controlled
+            one
+          type: string
+        proxy_scim_server_url:
+          description: Proxy SCIM Server URL if overriding with a customer-controlled
+            URL
+          type: string
         value:
           description: The onboarding portal link's value
           readOnly: true
@@ -19179,6 +19237,21 @@ components:
           type: string
         organization_label:
           description: Organization Label
+          type: string
+        proxy_acs_url:
+          description: Proxy ACS URL if overriding with a customer-controlled URL
+          type: string
+        proxy_oidc_redirect_url:
+          description: Proxy OIDC Redirect URL if overriding with a customer-controlled
+            URL
+          type: string
+        proxy_saml_audience_override:
+          description: SAML Audience Override if overriding with a customer-controlled
+            one
+          type: string
+        proxy_scim_server_url:
+          description: Proxy SCIM Server URL if overriding with a customer-controlled
+            URL
           type: string
         revision_id:
           format: uuid
@@ -19235,24 +19308,32 @@ components:
     organizationOnboardingPortalLinksResponse:
       example:
         links:
-        - custom_hostname_id: custom_hostname_id
-          expires_at: 2000-01-23T04:56:07.000+00:00
+        - proxy_oidc_redirect_url: proxy_oidc_redirect_url
+          proxy_saml_audience_override: proxy_saml_audience_override
+          proxy_scim_server_url: proxy_scim_server_url
           enable_scim: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          proxy_acs_url: proxy_acs_url
+          enable_sso: true
+          custom_hostname_id: custom_hostname_id
+          expires_at: 2000-01-23T04:56:07.000+00:00
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           value: value
-          enable_sso: true
-        - custom_hostname_id: custom_hostname_id
-          expires_at: 2000-01-23T04:56:07.000+00:00
+        - proxy_oidc_redirect_url: proxy_oidc_redirect_url
+          proxy_saml_audience_override: proxy_saml_audience_override
+          proxy_scim_server_url: proxy_scim_server_url
           enable_scim: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          proxy_acs_url: proxy_acs_url
+          enable_sso: true
+          custom_hostname_id: custom_hostname_id
+          expires_at: 2000-01-23T04:56:07.000+00:00
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           value: value
-          enable_sso: true
       properties:
         links:
           items:

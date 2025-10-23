@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.6
+API version: v1.22.7
 Contact: support@ory.sh
 */
 
@@ -54,6 +54,8 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	Provider *string `json:"provider,omitempty"`
 	// ID is the provider's ID
 	ProviderId *string `json:"provider_id,omitempty"`
+	// Proxy OIDC Redirect URL if overriding with a customer-controlled URL
+	ProxyOidcRedirectUrl *string `json:"proxy_oidc_redirect_url,omitempty"`
 	RequestedClaims map[string]interface{} `json:"requested_claims,omitempty"`
 	Scope []string `json:"scope,omitempty"`
 	// State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
@@ -827,6 +829,38 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) SetProviderId(v string) {
 	o.ProviderId = &v
 }
 
+// GetProxyOidcRedirectUrl returns the ProxyOidcRedirectUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetProxyOidcRedirectUrl() string {
+	if o == nil || IsNil(o.ProxyOidcRedirectUrl) {
+		var ret string
+		return ret
+	}
+	return *o.ProxyOidcRedirectUrl
+}
+
+// GetProxyOidcRedirectUrlOk returns a tuple with the ProxyOidcRedirectUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetProxyOidcRedirectUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.ProxyOidcRedirectUrl) {
+		return nil, false
+	}
+	return o.ProxyOidcRedirectUrl, true
+}
+
+// HasProxyOidcRedirectUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasProxyOidcRedirectUrl() bool {
+	if o != nil && !IsNil(o.ProxyOidcRedirectUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetProxyOidcRedirectUrl gets a reference to the given string and assigns it to the ProxyOidcRedirectUrl field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetProxyOidcRedirectUrl(v string) {
+	o.ProxyOidcRedirectUrl = &v
+}
+
 // GetRequestedClaims returns the RequestedClaims field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionThirdPartyProvider) GetRequestedClaims() map[string]interface{} {
 	if o == nil || IsNil(o.RequestedClaims) {
@@ -1102,6 +1136,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) ToMap() (map[string]interfa
 	if !IsNil(o.ProviderId) {
 		toSerialize["provider_id"] = o.ProviderId
 	}
+	if !IsNil(o.ProxyOidcRedirectUrl) {
+		toSerialize["proxy_oidc_redirect_url"] = o.ProxyOidcRedirectUrl
+	}
 	if !IsNil(o.RequestedClaims) {
 		toSerialize["requested_claims"] = o.RequestedClaims
 	}
@@ -1163,6 +1200,7 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(data []byte)
 		delete(additionalProperties, "project_revision_id")
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "provider_id")
+		delete(additionalProperties, "proxy_oidc_redirect_url")
 		delete(additionalProperties, "requested_claims")
 		delete(additionalProperties, "scope")
 		delete(additionalProperties, "state")

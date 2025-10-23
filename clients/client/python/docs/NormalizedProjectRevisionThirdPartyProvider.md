@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **project_revision_id** | **str** | The Revision&#39;s ID this schema belongs to | [optional] 
 **provider** | **str** | Provider is either \&quot;generic\&quot; for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] 
 **provider_id** | **str** | ID is the provider&#39;s ID | [optional] 
+**proxy_oidc_redirect_url** | **str** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] [readonly] 
 **requested_claims** | **object** |  | [optional] 
 **scope** | **List[str]** |  | [optional] 
 **state** | **str** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 

@@ -34,6 +34,30 @@ void main() {
       // TODO
     });
 
+    // Proxy ACS URL if overriding with a customer-controlled URL
+    // String proxyAcsUrl
+    test('to test the property `proxyAcsUrl`', () async {
+      // TODO
+    });
+
+    // Proxy OIDC Redirect URL if overriding with a customer-controlled URL
+    // String proxyOidcRedirectUrl
+    test('to test the property `proxyOidcRedirectUrl`', () async {
+      // TODO
+    });
+
+    // SAML Audience Override if overriding with a customer-controlled one
+    // String proxySamlAudienceOverride
+    test('to test the property `proxySamlAudienceOverride`', () async {
+      // TODO
+    });
+
+    // Proxy SCIM Server URL if overriding with a customer-controlled URL
+    // String proxyScimServerUrl
+    test('to test the property `proxyScimServerUrl`', () async {
+      // TODO
+    });
+
     // String revisionId
     test('to test the property `revisionId`', () async {
       // TODO

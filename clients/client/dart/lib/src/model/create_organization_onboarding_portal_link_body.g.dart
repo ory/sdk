@@ -16,6 +16,14 @@ class _$CreateOrganizationOnboardingPortalLinkBody
   final bool enableSso;
   @override
   final DateTime? expiresAt;
+  @override
+  final String? proxyAcsUrl;
+  @override
+  final String? proxyOidcRedirectUrl;
+  @override
+  final String? proxySamlAudienceOverride;
+  @override
+  final String? proxyScimServerUrl;
 
   factory _$CreateOrganizationOnboardingPortalLinkBody(
           [void Function(CreateOrganizationOnboardingPortalLinkBodyBuilder)?
@@ -27,7 +35,11 @@ class _$CreateOrganizationOnboardingPortalLinkBody
       {this.customHostnameId,
       required this.enableScim,
       required this.enableSso,
-      this.expiresAt})
+      this.expiresAt,
+      this.proxyAcsUrl,
+      this.proxyOidcRedirectUrl,
+      this.proxySamlAudienceOverride,
+      this.proxyScimServerUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(enableScim,
         r'CreateOrganizationOnboardingPortalLinkBody', 'enableScim');
@@ -52,7 +64,11 @@ class _$CreateOrganizationOnboardingPortalLinkBody
         customHostnameId == other.customHostnameId &&
         enableScim == other.enableScim &&
         enableSso == other.enableSso &&
-        expiresAt == other.expiresAt;
+        expiresAt == other.expiresAt &&
+        proxyAcsUrl == other.proxyAcsUrl &&
+        proxyOidcRedirectUrl == other.proxyOidcRedirectUrl &&
+        proxySamlAudienceOverride == other.proxySamlAudienceOverride &&
+        proxyScimServerUrl == other.proxyScimServerUrl;
   }
 
   @override
@@ -62,6 +78,10 @@ class _$CreateOrganizationOnboardingPortalLinkBody
     _$hash = $jc(_$hash, enableScim.hashCode);
     _$hash = $jc(_$hash, enableSso.hashCode);
     _$hash = $jc(_$hash, expiresAt.hashCode);
+    _$hash = $jc(_$hash, proxyAcsUrl.hashCode);
+    _$hash = $jc(_$hash, proxyOidcRedirectUrl.hashCode);
+    _$hash = $jc(_$hash, proxySamlAudienceOverride.hashCode);
+    _$hash = $jc(_$hash, proxyScimServerUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -73,7 +93,11 @@ class _$CreateOrganizationOnboardingPortalLinkBody
           ..add('customHostnameId', customHostnameId)
           ..add('enableScim', enableScim)
           ..add('enableSso', enableSso)
-          ..add('expiresAt', expiresAt))
+          ..add('expiresAt', expiresAt)
+          ..add('proxyAcsUrl', proxyAcsUrl)
+          ..add('proxyOidcRedirectUrl', proxyOidcRedirectUrl)
+          ..add('proxySamlAudienceOverride', proxySamlAudienceOverride)
+          ..add('proxyScimServerUrl', proxyScimServerUrl))
         .toString();
   }
 }
@@ -101,6 +125,25 @@ class CreateOrganizationOnboardingPortalLinkBodyBuilder
   DateTime? get expiresAt => _$this._expiresAt;
   set expiresAt(DateTime? expiresAt) => _$this._expiresAt = expiresAt;
 
+  String? _proxyAcsUrl;
+  String? get proxyAcsUrl => _$this._proxyAcsUrl;
+  set proxyAcsUrl(String? proxyAcsUrl) => _$this._proxyAcsUrl = proxyAcsUrl;
+
+  String? _proxyOidcRedirectUrl;
+  String? get proxyOidcRedirectUrl => _$this._proxyOidcRedirectUrl;
+  set proxyOidcRedirectUrl(String? proxyOidcRedirectUrl) =>
+      _$this._proxyOidcRedirectUrl = proxyOidcRedirectUrl;
+
+  String? _proxySamlAudienceOverride;
+  String? get proxySamlAudienceOverride => _$this._proxySamlAudienceOverride;
+  set proxySamlAudienceOverride(String? proxySamlAudienceOverride) =>
+      _$this._proxySamlAudienceOverride = proxySamlAudienceOverride;
+
+  String? _proxyScimServerUrl;
+  String? get proxyScimServerUrl => _$this._proxyScimServerUrl;
+  set proxyScimServerUrl(String? proxyScimServerUrl) =>
+      _$this._proxyScimServerUrl = proxyScimServerUrl;
+
   CreateOrganizationOnboardingPortalLinkBodyBuilder() {
     CreateOrganizationOnboardingPortalLinkBody._defaults(this);
   }
@@ -112,6 +155,10 @@ class CreateOrganizationOnboardingPortalLinkBodyBuilder
       _enableScim = $v.enableScim;
       _enableSso = $v.enableSso;
       _expiresAt = $v.expiresAt;
+      _proxyAcsUrl = $v.proxyAcsUrl;
+      _proxyOidcRedirectUrl = $v.proxyOidcRedirectUrl;
+      _proxySamlAudienceOverride = $v.proxySamlAudienceOverride;
+      _proxyScimServerUrl = $v.proxyScimServerUrl;
       _$v = null;
     }
     return this;
@@ -141,7 +188,11 @@ class CreateOrganizationOnboardingPortalLinkBodyBuilder
                 r'CreateOrganizationOnboardingPortalLinkBody', 'enableScim'),
             enableSso: BuiltValueNullFieldError.checkNotNull(enableSso,
                 r'CreateOrganizationOnboardingPortalLinkBody', 'enableSso'),
-            expiresAt: expiresAt);
+            expiresAt: expiresAt,
+            proxyAcsUrl: proxyAcsUrl,
+            proxyOidcRedirectUrl: proxyOidcRedirectUrl,
+            proxySamlAudienceOverride: proxySamlAudienceOverride,
+            proxyScimServerUrl: proxyScimServerUrl);
     replace(_$result);
     return _$result;
   }

@@ -187,6 +187,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   @override
   final String? providerId;
   @override
+  final String? proxyOidcRedirectUrl;
+  @override
   final JsonObject? requestedClaims;
   @override
   final BuiltList<String>? scope;
@@ -228,6 +230,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
       this.projectRevisionId,
       this.provider,
       this.providerId,
+      this.proxyOidcRedirectUrl,
       this.requestedClaims,
       this.scope,
       this.state,
@@ -271,6 +274,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
         projectRevisionId == other.projectRevisionId &&
         provider == other.provider &&
         providerId == other.providerId &&
+        proxyOidcRedirectUrl == other.proxyOidcRedirectUrl &&
         requestedClaims == other.requestedClaims &&
         scope == other.scope &&
         state == other.state &&
@@ -303,6 +307,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
     _$hash = $jc(_$hash, projectRevisionId.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, providerId.hashCode);
+    _$hash = $jc(_$hash, proxyOidcRedirectUrl.hashCode);
     _$hash = $jc(_$hash, requestedClaims.hashCode);
     _$hash = $jc(_$hash, scope.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
@@ -338,6 +343,7 @@ class _$NormalizedProjectRevisionThirdPartyProvider
           ..add('projectRevisionId', projectRevisionId)
           ..add('provider', provider)
           ..add('providerId', providerId)
+          ..add('proxyOidcRedirectUrl', proxyOidcRedirectUrl)
           ..add('requestedClaims', requestedClaims)
           ..add('scope', scope)
           ..add('state', state)
@@ -448,6 +454,11 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   String? get providerId => _$this._providerId;
   set providerId(String? providerId) => _$this._providerId = providerId;
 
+  String? _proxyOidcRedirectUrl;
+  String? get proxyOidcRedirectUrl => _$this._proxyOidcRedirectUrl;
+  set proxyOidcRedirectUrl(String? proxyOidcRedirectUrl) =>
+      _$this._proxyOidcRedirectUrl = proxyOidcRedirectUrl;
+
   JsonObject? _requestedClaims;
   JsonObject? get requestedClaims => _$this._requestedClaims;
   set requestedClaims(JsonObject? requestedClaims) =>
@@ -504,6 +515,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
       _projectRevisionId = $v.projectRevisionId;
       _provider = $v.provider;
       _providerId = $v.providerId;
+      _proxyOidcRedirectUrl = $v.proxyOidcRedirectUrl;
       _requestedClaims = $v.requestedClaims;
       _scope = $v.scope?.toBuilder();
       _state = $v.state;
@@ -557,6 +569,7 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
               projectRevisionId: projectRevisionId,
               provider: provider,
               providerId: providerId,
+              proxyOidcRedirectUrl: proxyOidcRedirectUrl,
               requestedClaims: requestedClaims,
               scope: _scope?.build(),
               state: state,

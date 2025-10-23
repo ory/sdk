@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.6
-  - Build date: 2025-10-13T07:56:14.986835864Z[Etc/UTC]
+- API version: v1.22.7
+  - Build date: 2025-10-23T13:25:58.431692674Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.6</version>
+  <version>v1.22.7</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.6"
+     implementation "sh.ory:client:v1.22.7"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.6.jar`
+* `target/client-v1.22.7.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -363,15 +363,16 @@ Class | Method | HTTP request | Description
  - [GenericError](docs/GenericError.md)
  - [GenericErrorContent](docs/GenericErrorContent.md)
  - [GenericUsage](docs/GenericUsage.md)
- - [GetAttributesCountResponse](docs/GetAttributesCountResponse.md)
+ - [GetAttributesCount](docs/GetAttributesCount.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
- - [GetMetricsEventAttributesResponse](docs/GetMetricsEventAttributesResponse.md)
- - [GetMetricsEventTypesResponse](docs/GetMetricsEventTypesResponse.md)
+ - [GetMetricsCount](docs/GetMetricsCount.md)
+ - [GetMetricsEventAttributes](docs/GetMetricsEventAttributes.md)
+ - [GetMetricsEventTypes](docs/GetMetricsEventTypes.md)
  - [GetOrganizationResponse](docs/GetOrganizationResponse.md)
+ - [GetProjectEvents](docs/GetProjectEvents.md)
  - [GetProjectEventsBody](docs/GetProjectEventsBody.md)
- - [GetProjectEventsResponse](docs/GetProjectEventsResponse.md)
- - [GetProjectMetricsResponse](docs/GetProjectMetricsResponse.md)
- - [GetSessionActivityResponse](docs/GetSessionActivityResponse.md)
+ - [GetProjectMetrics](docs/GetProjectMetrics.md)
+ - [GetSessionActivity](docs/GetSessionActivity.md)
  - [GetVersion200Response](docs/GetVersion200Response.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
@@ -397,8 +398,8 @@ Class | Method | HTTP request | Description
  - [IdentityWithCredentialsSamlConfigProvider](docs/IdentityWithCredentialsSamlConfigProvider.md)
  - [InternalGetProjectBrandingBody](docs/InternalGetProjectBrandingBody.md)
  - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
+ - [InternalIsOwnerForProjectBySlug](docs/InternalIsOwnerForProjectBySlug.md)
  - [InternalIsOwnerForProjectBySlugBody](docs/InternalIsOwnerForProjectBySlugBody.md)
- - [InternalIsOwnerForProjectBySlugResponse](docs/InternalIsOwnerForProjectBySlugResponse.md)
  - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
  - [InviteTokenBody](docs/InviteTokenBody.md)
  - [Invoice](docs/Invoice.md)

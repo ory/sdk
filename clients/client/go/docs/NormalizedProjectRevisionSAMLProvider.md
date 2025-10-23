@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **ProjectRevisionId** | Pointer to **string** | The Revision&#39;s ID this schema belongs to | [optional] 
 **ProviderId** | Pointer to **string** | ID is the provider&#39;s ID | [optional] 
+**ProxyAcsUrl** | Pointer to **NullableString** |  | [optional] 
+**ProxySamlAudienceOverride** | Pointer to **NullableString** |  | [optional] 
 **RawIdpMetadataXml** | Pointer to **string** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] 
 **State** | Pointer to **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
@@ -255,6 +257,76 @@ SetProviderId sets ProviderId field to given value.
 
 HasProviderId returns a boolean if a field has been set.
 
+### GetProxyAcsUrl
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetProxyAcsUrl() string`
+
+GetProxyAcsUrl returns the ProxyAcsUrl field if non-nil, zero value otherwise.
+
+### GetProxyAcsUrlOk
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetProxyAcsUrlOk() (*string, bool)`
+
+GetProxyAcsUrlOk returns a tuple with the ProxyAcsUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxyAcsUrl
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetProxyAcsUrl(v string)`
+
+SetProxyAcsUrl sets ProxyAcsUrl field to given value.
+
+### HasProxyAcsUrl
+
+`func (o *NormalizedProjectRevisionSAMLProvider) HasProxyAcsUrl() bool`
+
+HasProxyAcsUrl returns a boolean if a field has been set.
+
+### SetProxyAcsUrlNil
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetProxyAcsUrlNil(b bool)`
+
+ SetProxyAcsUrlNil sets the value for ProxyAcsUrl to be an explicit nil
+
+### UnsetProxyAcsUrl
+`func (o *NormalizedProjectRevisionSAMLProvider) UnsetProxyAcsUrl()`
+
+UnsetProxyAcsUrl ensures that no value is present for ProxyAcsUrl, not even an explicit nil
+### GetProxySamlAudienceOverride
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetProxySamlAudienceOverride() string`
+
+GetProxySamlAudienceOverride returns the ProxySamlAudienceOverride field if non-nil, zero value otherwise.
+
+### GetProxySamlAudienceOverrideOk
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetProxySamlAudienceOverrideOk() (*string, bool)`
+
+GetProxySamlAudienceOverrideOk returns a tuple with the ProxySamlAudienceOverride field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxySamlAudienceOverride
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetProxySamlAudienceOverride(v string)`
+
+SetProxySamlAudienceOverride sets ProxySamlAudienceOverride field to given value.
+
+### HasProxySamlAudienceOverride
+
+`func (o *NormalizedProjectRevisionSAMLProvider) HasProxySamlAudienceOverride() bool`
+
+HasProxySamlAudienceOverride returns a boolean if a field has been set.
+
+### SetProxySamlAudienceOverrideNil
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetProxySamlAudienceOverrideNil(b bool)`
+
+ SetProxySamlAudienceOverrideNil sets the value for ProxySamlAudienceOverride to be an explicit nil
+
+### UnsetProxySamlAudienceOverride
+`func (o *NormalizedProjectRevisionSAMLProvider) UnsetProxySamlAudienceOverride()`
+
+UnsetProxySamlAudienceOverride ensures that no value is present for ProxySamlAudienceOverride, not even an explicit nil
 ### GetRawIdpMetadataXml
 
 `func (o *NormalizedProjectRevisionSAMLProvider) GetRawIdpMetadataXml() string`

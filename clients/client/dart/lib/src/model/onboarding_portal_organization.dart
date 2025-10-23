@@ -20,6 +20,10 @@ part 'onboarding_portal_organization.g.dart';
 /// * [kratosSelfserviceMethodsSamlConfigProviders] 
 /// * [organizationId] - Organization ID
 /// * [organizationLabel] - Organization Label
+/// * [proxyAcsUrl] - Proxy ACS URL if overriding with a customer-controlled URL
+/// * [proxyOidcRedirectUrl] - Proxy OIDC Redirect URL if overriding with a customer-controlled URL
+/// * [proxySamlAudienceOverride] - SAML Audience Override if overriding with a customer-controlled one
+/// * [proxyScimServerUrl] - Proxy SCIM Server URL if overriding with a customer-controlled URL
 /// * [revisionId] 
 /// * [scimClients] 
 /// * [scimEnabled] 
@@ -42,6 +46,22 @@ abstract class OnboardingPortalOrganization implements Built<OnboardingPortalOrg
   /// Organization Label
   @BuiltValueField(wireName: r'organization_label')
   String? get organizationLabel;
+
+  /// Proxy ACS URL if overriding with a customer-controlled URL
+  @BuiltValueField(wireName: r'proxy_acs_url')
+  String? get proxyAcsUrl;
+
+  /// Proxy OIDC Redirect URL if overriding with a customer-controlled URL
+  @BuiltValueField(wireName: r'proxy_oidc_redirect_url')
+  String? get proxyOidcRedirectUrl;
+
+  /// SAML Audience Override if overriding with a customer-controlled one
+  @BuiltValueField(wireName: r'proxy_saml_audience_override')
+  String? get proxySamlAudienceOverride;
+
+  /// Proxy SCIM Server URL if overriding with a customer-controlled URL
+  @BuiltValueField(wireName: r'proxy_scim_server_url')
+  String? get proxyScimServerUrl;
 
   @BuiltValueField(wireName: r'revision_id')
   String get revisionId;
@@ -104,6 +124,34 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
       yield r'organization_label';
       yield serializers.serialize(
         object.organizationLabel,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.proxyAcsUrl != null) {
+      yield r'proxy_acs_url';
+      yield serializers.serialize(
+        object.proxyAcsUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.proxyOidcRedirectUrl != null) {
+      yield r'proxy_oidc_redirect_url';
+      yield serializers.serialize(
+        object.proxyOidcRedirectUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.proxySamlAudienceOverride != null) {
+      yield r'proxy_saml_audience_override';
+      yield serializers.serialize(
+        object.proxySamlAudienceOverride,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.proxyScimServerUrl != null) {
+      yield r'proxy_scim_server_url';
+      yield serializers.serialize(
+        object.proxyScimServerUrl,
         specifiedType: const FullType(String),
       );
     }
@@ -184,6 +232,34 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
             specifiedType: const FullType(String),
           ) as String;
           result.organizationLabel = valueDes;
+          break;
+        case r'proxy_acs_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.proxyAcsUrl = valueDes;
+          break;
+        case r'proxy_oidc_redirect_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.proxyOidcRedirectUrl = valueDes;
+          break;
+        case r'proxy_saml_audience_override':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.proxySamlAudienceOverride = valueDes;
+          break;
+        case r'proxy_scim_server_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.proxyScimServerUrl = valueDes;
           break;
         case r'revision_id':
           final valueDes = serializers.deserialize(

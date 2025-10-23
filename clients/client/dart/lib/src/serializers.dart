@@ -87,15 +87,16 @@ import 'package:ory_client/src/model/flow_error.dart';
 import 'package:ory_client/src/model/generic_error.dart';
 import 'package:ory_client/src/model/generic_error_content.dart';
 import 'package:ory_client/src/model/generic_usage.dart';
-import 'package:ory_client/src/model/get_attributes_count_response.dart';
+import 'package:ory_client/src/model/get_attributes_count.dart';
 import 'package:ory_client/src/model/get_managed_identity_schema_location.dart';
-import 'package:ory_client/src/model/get_metrics_event_attributes_response.dart';
-import 'package:ory_client/src/model/get_metrics_event_types_response.dart';
+import 'package:ory_client/src/model/get_metrics_count.dart';
+import 'package:ory_client/src/model/get_metrics_event_attributes.dart';
+import 'package:ory_client/src/model/get_metrics_event_types.dart';
 import 'package:ory_client/src/model/get_organization_response.dart';
+import 'package:ory_client/src/model/get_project_events.dart';
 import 'package:ory_client/src/model/get_project_events_body.dart';
-import 'package:ory_client/src/model/get_project_events_response.dart';
-import 'package:ory_client/src/model/get_project_metrics_response.dart';
-import 'package:ory_client/src/model/get_session_activity_response.dart';
+import 'package:ory_client/src/model/get_project_metrics.dart';
+import 'package:ory_client/src/model/get_session_activity.dart';
 import 'package:ory_client/src/model/get_version200_response.dart';
 import 'package:ory_client/src/model/health_not_ready_status.dart';
 import 'package:ory_client/src/model/health_status.dart';
@@ -121,8 +122,8 @@ import 'package:ory_client/src/model/identity_with_credentials_saml_config.dart'
 import 'package:ory_client/src/model/identity_with_credentials_saml_config_provider.dart';
 import 'package:ory_client/src/model/internal_get_project_branding_body.dart';
 import 'package:ory_client/src/model/internal_is_ax_welcome_screen_enabled_for_project_body.dart';
+import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug.dart';
 import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_body.dart';
-import 'package:ory_client/src/model/internal_is_owner_for_project_by_slug_response.dart';
 import 'package:ory_client/src/model/introspected_o_auth2_token.dart';
 import 'package:ory_client/src/model/invite_token_body.dart';
 import 'package:ory_client/src/model/invoice.dart';
@@ -385,15 +386,16 @@ part 'serializers.g.dart';
   GenericError,
   GenericErrorContent,
   GenericUsage,
-  GetAttributesCountResponse,
+  GetAttributesCount,
   GetManagedIdentitySchemaLocation,
-  GetMetricsEventAttributesResponse,
-  GetMetricsEventTypesResponse,
+  GetMetricsCount,
+  GetMetricsEventAttributes,
+  GetMetricsEventTypes,
   GetOrganizationResponse,
+  GetProjectEvents,
   GetProjectEventsBody,
-  GetProjectEventsResponse,
-  GetProjectMetricsResponse,
-  GetSessionActivityResponse,
+  GetProjectMetrics,
+  GetSessionActivity,
   GetVersion200Response,
   HealthNotReadyStatus,
   HealthStatus,
@@ -419,8 +421,8 @@ part 'serializers.g.dart';
   IdentityWithCredentialsSamlConfigProvider,
   InternalGetProjectBrandingBody,
   InternalIsAXWelcomeScreenEnabledForProjectBody,
+  InternalIsOwnerForProjectBySlug,
   InternalIsOwnerForProjectBySlugBody,
-  InternalIsOwnerForProjectBySlugResponse,
   IntrospectedOAuth2Token,
   InviteTokenBody,
   Invoice,

@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **organizationId** | **String** |  | [optional] 
 **projectRevisionId** | **String** | The Revision's ID this schema belongs to | [optional] 
 **providerId** | **String** | ID is the provider's ID | [optional] 
+**proxyAcsUrl** | **String** |  | [optional] 
+**proxySamlAudienceOverride** | **String** |  | [optional] 
 **rawIdpMetadataXml** | **String** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] 
 **state** | **String** | State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | Last Time Project's Revision was Updated | [optional] 

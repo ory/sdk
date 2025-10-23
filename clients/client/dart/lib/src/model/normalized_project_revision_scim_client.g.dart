@@ -86,6 +86,8 @@ class _$NormalizedProjectRevisionScimClient
   @override
   final String organizationId;
   @override
+  final String? proxyScimServerUrl;
+  @override
   final NormalizedProjectRevisionScimClientStateEnum? state;
   @override
   final DateTime? updatedAt;
@@ -104,6 +106,7 @@ class _$NormalizedProjectRevisionScimClient
       required this.label,
       required this.mapperUrl,
       required this.organizationId,
+      this.proxyScimServerUrl,
       this.state,
       this.updatedAt})
       : super._() {
@@ -139,6 +142,7 @@ class _$NormalizedProjectRevisionScimClient
         label == other.label &&
         mapperUrl == other.mapperUrl &&
         organizationId == other.organizationId &&
+        proxyScimServerUrl == other.proxyScimServerUrl &&
         state == other.state &&
         updatedAt == other.updatedAt;
   }
@@ -153,6 +157,7 @@ class _$NormalizedProjectRevisionScimClient
     _$hash = $jc(_$hash, label.hashCode);
     _$hash = $jc(_$hash, mapperUrl.hashCode);
     _$hash = $jc(_$hash, organizationId.hashCode);
+    _$hash = $jc(_$hash, proxyScimServerUrl.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
@@ -169,6 +174,7 @@ class _$NormalizedProjectRevisionScimClient
           ..add('label', label)
           ..add('mapperUrl', mapperUrl)
           ..add('organizationId', organizationId)
+          ..add('proxyScimServerUrl', proxyScimServerUrl)
           ..add('state', state)
           ..add('updatedAt', updatedAt))
         .toString();
@@ -211,6 +217,11 @@ class NormalizedProjectRevisionScimClientBuilder
   set organizationId(String? organizationId) =>
       _$this._organizationId = organizationId;
 
+  String? _proxyScimServerUrl;
+  String? get proxyScimServerUrl => _$this._proxyScimServerUrl;
+  set proxyScimServerUrl(String? proxyScimServerUrl) =>
+      _$this._proxyScimServerUrl = proxyScimServerUrl;
+
   NormalizedProjectRevisionScimClientStateEnum? _state;
   NormalizedProjectRevisionScimClientStateEnum? get state => _$this._state;
   set state(NormalizedProjectRevisionScimClientStateEnum? state) =>
@@ -234,6 +245,7 @@ class NormalizedProjectRevisionScimClientBuilder
       _label = $v.label;
       _mapperUrl = $v.mapperUrl;
       _organizationId = $v.organizationId;
+      _proxyScimServerUrl = $v.proxyScimServerUrl;
       _state = $v.state;
       _updatedAt = $v.updatedAt;
       _$v = null;
@@ -275,6 +287,7 @@ class NormalizedProjectRevisionScimClientBuilder
                 organizationId,
                 r'NormalizedProjectRevisionScimClient',
                 'organizationId'),
+            proxyScimServerUrl: proxyScimServerUrl,
             state: state,
             updatedAt: updatedAt);
     replace(_$result);

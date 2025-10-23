@@ -19,6 +19,7 @@ part 'normalized_project_revision_scim_client.g.dart';
 /// * [label] - The SCIM server's label
 /// * [mapperUrl] - Mapper specifies the JSONNet code snippet which uses the SCIM provider's data to hydrate the identity's data.
 /// * [organizationId] - OrganizationID is the organization ID for this SCIM server.
+/// * [proxyScimServerUrl] 
 /// * [state] - State indicates the state of the SCIM server  Only servers with state `enabled` will be available for SCIM provisioning. enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
 /// * [updatedAt] - Last time the SCIM client was updated
 @BuiltValue()
@@ -49,6 +50,9 @@ abstract class NormalizedProjectRevisionScimClient implements Built<NormalizedPr
   /// OrganizationID is the organization ID for this SCIM server.
   @BuiltValueField(wireName: r'organization_id')
   String get organizationId;
+
+  @BuiltValueField(wireName: r'proxy_scim_server_url')
+  String? get proxyScimServerUrl;
 
   /// State indicates the state of the SCIM server  Only servers with state `enabled` will be available for SCIM provisioning. enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
   @BuiltValueField(wireName: r'state')
@@ -121,6 +125,13 @@ class _$NormalizedProjectRevisionScimClientSerializer implements PrimitiveSerial
       object.organizationId,
       specifiedType: const FullType(String),
     );
+    if (object.proxyScimServerUrl != null) {
+      yield r'proxy_scim_server_url';
+      yield serializers.serialize(
+        object.proxyScimServerUrl,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.state != null) {
       yield r'state';
       yield serializers.serialize(
@@ -206,6 +217,14 @@ class _$NormalizedProjectRevisionScimClientSerializer implements PrimitiveSerial
             specifiedType: const FullType(String),
           ) as String;
           result.organizationId = valueDes;
+          break;
+        case r'proxy_scim_server_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.proxyScimServerUrl = valueDes;
           break;
         case r'state':
           final valueDes = serializers.deserialize(

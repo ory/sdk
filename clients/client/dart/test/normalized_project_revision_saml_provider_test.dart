@@ -52,6 +52,16 @@ void main() {
       // TODO
     });
 
+    // String proxyAcsUrl
+    test('to test the property `proxyAcsUrl`', () async {
+      // TODO
+    });
+
+    // String proxySamlAudienceOverride
+    test('to test the property `proxySamlAudienceOverride`', () async {
+      // TODO
+    });
+
     // RawIDPMetadataXML is the raw XML metadata of the IDP.
     // String rawIdpMetadataXml
     test('to test the property `rawIdpMetadataXml`', () async {
