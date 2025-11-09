@@ -282,7 +282,9 @@ rust () {
 
   sed -i "s/${VERSION}/${RAW_VERSION}/g" "${file}"
   sed -i "s/Apache 2.0/Apache-2.0/g" "${file}"
-  sed -i "s/description = \"[^\"]*\"/description = \"${PACKAGE_DESCRIPTION}\"/g" "${file}"
+  safe_desc=$(printf '%s' "$PACKAGE_DESCRIPTION" | sed -e 's/[&\\]/\\&/g' -e 's/"/\\"/g')
+  sed -i "s/description = \"[^\"]*\"/description = \"${safe_desc}\"/g" "${file}"
+
 
   cp "LICENSE" "clients/${PROJECT}/rust"
 }
