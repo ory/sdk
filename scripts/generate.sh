@@ -198,23 +198,25 @@ golang () {
   mkdir -p "$dir"
 
   mkdir -p "${dir}"
+  name="${GIT_REPO}-go/v${RAW_VERSION%%.*}"
+  if [ "${PROJECT}" == "client" ]; then
+    name="${GIT_REPO}-go"
+  fi
 
   npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.12.0
   npx @openapitools/openapi-generator-cli@2.17.0 generate -i "${SPEC_FILE}" \
     -g go \
     -o "$dir" \
     --git-user-id ory \
-    --git-repo-id "${GIT_REPO}-go" \
+    --git-repo-id "${GIT_REPO}-go/v${RAW_VERSION%%.*}" \
     --git-host github.com \
     -c ./config/client/go.yml.proc.yml
   cp "LICENSE" "clients/${PROJECT}/go"
 
-  if [ "${PROJECT}" == "hydra" ]; then
-    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go/v2"; go mod tidy -compat=1.17)
-  elif [ "${PROJECT}" == "client" ]; then
+  if [ "${PROJECT}" == "client" ]; then
     (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/client-go"; go mod tidy -compat=1.17)
   else
-    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go"; go mod tidy -compat=1.17)
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go/v${RAW_VERSION%%.*}"; go mod tidy -compat=1.17)
   fi
 }
 
@@ -321,17 +323,17 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
-elixir
-typescript
-typescript_fetch
-rust
+#elixir
+#typescript
+#typescript_fetch
+#rust
 golang
-java
-php
-python
-ruby
-# TODO: https://github.com/ory/sdk/issues/434
-# dotnet
-dart
+#java
+#php
+#python
+#ruby
+## TODO: https://github.com/ory/sdk/issues/434
+## dotnet
+#dart
 
 cleanup
