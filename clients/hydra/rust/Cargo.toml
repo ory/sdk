@@ -1,0 +1,15 @@
+[package]
+name = "ory-hydra-client"
+version = "25.4.0"
+authors = ["hi@ory.sh"]
+description = "OpenAPI API client for Ory Hydra, Ory's open source OpenID Connect and OAuth provider."
+license = "Apache-2.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "^1.0", features = ["derive"] }
+serde_with = { version = "^3.8", default-features = false, features = ["base64", "std", "macros"] }
+serde_json = "^1.0"
+serde_repr = "^0.1"
+url = "^2.5"
+reqwest = { version = "^0.12", default-features = false, features = ["json", "multipart"] }

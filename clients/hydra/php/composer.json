@@ -1,0 +1,43 @@
+{
+  "name": "ory/hydra-client-php",
+  "description": "Documentation for all of Ory Hydra's APIs.",
+  "keywords": [
+    "openapitools",
+    "openapi-generator",
+    "openapi",
+    "php",
+    "sdk",
+    "rest",
+    "api"
+  ],
+  "homepage": "https://github.com/ory/hydra-client-php",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Ory Corp",
+      "homepage": "https://www.ory.sh"
+    }
+  ],
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "guzzlehttp/guzzle": "^7.3",
+    "guzzlehttp/psr7": "^1.7 || ^2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0 || ^9.0",
+    "friendsofphp/php-cs-fixer": "^3.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ory\\Hydra\\Client\\": "lib/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Ory\\Hydra\\Client\\Test\\": "test/"
+    }
+  }
+}
