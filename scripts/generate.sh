@@ -208,7 +208,7 @@ golang () {
     -g go \
     -o "$dir" \
     --git-user-id ory \
-    --git-repo-id "${GIT_REPO}-go/v${RAW_VERSION%%.*}" \
+    --git-repo-id "${name}" \
     --git-host github.com \
     -c ./config/client/go.yml.proc.yml
   cp "LICENSE" "clients/${PROJECT}/go"
