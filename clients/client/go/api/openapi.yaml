@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.7
+  version: v1.22.10
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -3579,7 +3579,7 @@ paths:
       tags:
       - project
     get:
-      description: Get a projects you have access to by its ID.
+      description: Get a project you have access to by its ID.
       operationId: getProject
       parameters:
       - description: |-
@@ -4052,7 +4052,10 @@ paths:
       - events
   /projects/{project_id}/organizations:
     get:
-      description: Lists all Enterprise SSO organizations in a project.
+      description: |-
+        Deprecated: use getProject instead
+
+        Lists all Enterprise SSO organizations in a project.
       operationId: listOrganizations
       parameters:
       - description: |-
@@ -4140,7 +4143,10 @@ paths:
       tags:
       - project
     post:
-      description: Creates an Enterprise SSO Organization in a project.
+      description: |-
+        Deprecated: use setProject or patchProjectWithRevision instead
+
+        Creates an Enterprise SSO Organization in a project.
       operationId: createOrganization
       parameters:
       - description: |-
@@ -4202,8 +4208,10 @@ paths:
       - project
   /projects/{project_id}/organizations/{organization_id}:
     delete:
-      description: Irrecoverably deletes an Enterprise SSO Organization in a project
-        by its ID.
+      description: |-
+        Deprecated: use setProject or patchProjectWithRevision instead
+
+        Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
       operationId: deleteOrganization
       parameters:
       - description: |-
@@ -4273,7 +4281,10 @@ paths:
       tags:
       - project
     get:
-      description: Retrieves an Enterprise SSO Organization for a project by its ID
+      description: |-
+        Deprecated: use getProject instead
+
+        Retrieves an Enterprise SSO Organization for a project by its ID
       operationId: getOrganization
       parameters:
       - description: |-
@@ -4333,7 +4344,10 @@ paths:
       tags:
       - project
     put:
-      description: Updates an Enterprise SSO Organization in a project by its ID.
+      description: |-
+        Deprecated: use setProject or patchProjectWithRevision instead
+
+        Updates an Enterprise SSO Organization in a project by its ID.
       operationId: updateOrganization
       parameters:
       - description: |-
@@ -5932,7 +5946,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: An optional identity schema to use for the registration flow.
+      - description: An optional identity schema to use for the login flow.
         explode: true
         in: query
         name: identity_schema
@@ -6072,7 +6086,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: An optional identity schema to use for the registration flow.
+      - description: An optional identity schema to use for the login flow.
         explode: true
         in: query
         name: identity_schema
@@ -9034,6 +9048,12 @@ components:
         account_experience_default_locale:
           description: Holds the default locale for the account experience.
           type: string
+        account_experience_enabled_locales:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         account_experience_favicon_dark:
           description: Holds the URL to the account experience's dark theme favicon
             (currently unused).
@@ -11405,6 +11425,10 @@ components:
           type: string
         default_redirect_url:
           type: string
+        enabled_locales:
+          items:
+            type: string
+          type: array
         error_ui_url:
           type: string
         favicon_dark_url:
@@ -11454,6 +11478,7 @@ components:
       required:
       - default_locale
       - default_redirect_url
+      - enabled_locales
       - error_ui_url
       - locale_behavior
       - login_ui_url
@@ -14999,6 +15024,12 @@ components:
         account_experience_default_locale:
           description: Holds the default locale for the account experience.
           type: string
+        account_experience_enabled_locales:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
         account_experience_favicon_dark:
           description: Holds the URL to the account experience's dark theme favicon
             (currently unused).
@@ -18888,7 +18919,6 @@ components:
             $ref: '#/components/schemas/normalizedProjectRevisionSAMLProvider'
           type: array
         organization_id:
-          description: Organization ID
           format: uuid
           type: string
         organization_label:
@@ -18924,6 +18954,7 @@ components:
       - base_url
       - kratos_selfservice_methods_oidc_config_providers
       - kratos_selfservice_methods_saml_config_providers
+      - organization_id
       - revision_id
       - scim_clients
       - scim_enabled
@@ -20307,7 +20338,6 @@ components:
             limitation in the SQL Schema.
           type: string
       required:
-      - id
       - value
       - via
       type: object

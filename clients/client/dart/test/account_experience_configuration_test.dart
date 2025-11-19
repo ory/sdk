@@ -17,6 +17,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<String> enabledLocales
+    test('to test the property `enabledLocales`', () async {
+      // TODO
+    });
+
     // String errorUiUrl
     test('to test the property `errorUiUrl`', () async {
       // TODO

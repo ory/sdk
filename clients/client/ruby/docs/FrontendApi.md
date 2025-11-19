@@ -61,7 +61,7 @@ opts = {
   login_challenge: 'login_challenge_example', # String | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
   organization: 'organization_example', # String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
   via: 'via_example', # String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
-  identity_schema: 'identity_schema_example' # String | An optional identity schema to use for the registration flow.
+  identity_schema: 'identity_schema_example' # String | An optional identity schema to use for the login flow.
 }
 
 begin
@@ -102,7 +102,7 @@ end
 | **login_challenge** | **String** | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] |
 | **organization** | **String** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
 | **via** | **String** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] |
-| **identity_schema** | **String** | An optional identity schema to use for the registration flow. | [optional] |
+| **identity_schema** | **String** | An optional identity schema to use for the login flow. | [optional] |
 
 ### Return type
 
@@ -544,7 +544,7 @@ opts = {
   return_to: 'return_to_example', # String | The URL to return the browser to after the flow was completed.
   organization: 'organization_example', # String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
   via: 'via_example', # String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
-  identity_schema: 'identity_schema_example' # String | An optional identity schema to use for the registration flow.
+  identity_schema: 'identity_schema_example' # String | An optional identity schema to use for the login flow.
 }
 
 begin
@@ -585,7 +585,7 @@ end
 | **return_to** | **String** | The URL to return the browser to after the flow was completed. | [optional] |
 | **organization** | **String** | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
 | **via** | **String** | Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] |
-| **identity_schema** | **String** | An optional identity schema to use for the registration flow. | [optional] |
+| **identity_schema** | **String** | An optional identity schema to use for the login flow. | [optional] |
 
 ### Return type
 

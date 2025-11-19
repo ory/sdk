@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **default_locale** | **String** |  | 
 **default_redirect_url** | **String** |  | 
+**enabled_locales** | **Vec<String>** |  | 
 **error_ui_url** | **String** |  | 
 **favicon_dark_url** | Option<**String**> |  | [optional]
 **favicon_light_url** | Option<**String**> |  | [optional]

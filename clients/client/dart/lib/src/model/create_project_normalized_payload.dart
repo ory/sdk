@@ -25,6 +25,7 @@ part 'create_project_normalized_payload.g.dart';
 /// Properties:
 /// * [accountExperienceCustomTranslations] - The Account Experience's Custom Translations  Contains all Custom Translations for this project.
 /// * [accountExperienceDefaultLocale] - Holds the default locale for the account experience.
+/// * [accountExperienceEnabledLocales] 
 /// * [accountExperienceFaviconDark] - Holds the URL to the account experience's dark theme favicon (currently unused).
 /// * [accountExperienceFaviconLight] - Holds the URL to the account experience's favicon.
 /// * [accountExperienceLocaleBehavior] - Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language.
@@ -271,6 +272,9 @@ abstract class CreateProjectNormalizedPayload implements Built<CreateProjectNorm
   /// Holds the default locale for the account experience.
   @BuiltValueField(wireName: r'account_experience_default_locale')
   String? get accountExperienceDefaultLocale;
+
+  @BuiltValueField(wireName: r'account_experience_enabled_locales')
+  BuiltList<String>? get accountExperienceEnabledLocales;
 
   /// Holds the URL to the account experience's dark theme favicon (currently unused).
   @BuiltValueField(wireName: r'account_experience_favicon_dark')
@@ -1243,6 +1247,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
       yield serializers.serialize(
         object.accountExperienceDefaultLocale,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.accountExperienceEnabledLocales != null) {
+      yield r'account_experience_enabled_locales';
+      yield serializers.serialize(
+        object.accountExperienceEnabledLocales,
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
     if (object.accountExperienceFaviconDark != null) {
@@ -2936,6 +2947,13 @@ class _$CreateProjectNormalizedPayloadSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(String),
           ) as String;
           result.accountExperienceDefaultLocale = valueDes;
+          break;
+        case r'account_experience_enabled_locales':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.accountExperienceEnabledLocales.replace(valueDes);
           break;
         case r'account_experience_favicon_dark':
           final valueDes = serializers.deserialize(

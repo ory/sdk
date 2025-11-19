@@ -33,7 +33,7 @@ Method | HTTP request | Description
 > models::Organization create_organization(project_id, organization_body)
 Create an Enterprise SSO Organization
 
-Creates an Enterprise SSO Organization in a project.
+Deprecated: use setProject or patchProjectWithRevision instead  Creates an Enterprise SSO Organization in a project.
 
 ### Parameters
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Required | Notes
 > delete_organization(project_id, organization_id)
 Delete Enterprise SSO Organization
 
-Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
+Deprecated: use setProject or patchProjectWithRevision instead  Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
 ### Parameters
 
@@ -251,7 +251,7 @@ Name | Type | Description  | Required | Notes
 > models::GetOrganizationResponse get_organization(project_id, organization_id)
 Get Enterprise SSO Organization by ID
 
-Retrieves an Enterprise SSO Organization for a project by its ID
+Deprecated: use getProject instead  Retrieves an Enterprise SSO Organization for a project by its ID
 
 ### Parameters
 
@@ -313,7 +313,7 @@ Name | Type | Description  | Required | Notes
 > models::Project get_project(project_id)
 Get a Project
 
-Get a projects you have access to by its ID.
+Get a project you have access to by its ID.
 
 ### Parameters
 
@@ -373,7 +373,7 @@ Name | Type | Description  | Required | Notes
 > models::ListOrganizationsResponse list_organizations(project_id, page_size, page_token, domain)
 List all Enterprise SSO organizations
 
-Lists all Enterprise SSO organizations in a project.
+Deprecated: use getProject instead  Lists all Enterprise SSO organizations in a project.
 
 ### Parameters
 
@@ -618,7 +618,7 @@ Name | Type | Description  | Required | Notes
 > models::Organization update_organization(project_id, organization_id, organization_body)
 Update an Enterprise SSO Organization
 
-Updates an Enterprise SSO Organization in a project by its ID.
+Deprecated: use setProject or patchProjectWithRevision instead  Updates an Enterprise SSO Organization in a project by its ID.
 
 ### Parameters
 

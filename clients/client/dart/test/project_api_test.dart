@@ -9,7 +9,7 @@ void main() {
   group(ProjectApi, () {
     // Create an Enterprise SSO Organization
     //
-    // Creates an Enterprise SSO Organization in a project.
+    // Deprecated: use setProject or patchProjectWithRevision instead  Creates an Enterprise SSO Organization in a project.
     //
     //Future<Organization> createOrganization(String projectId, { OrganizationBody organizationBody }) async
     test('test createOrganization', () async {
@@ -45,7 +45,7 @@ void main() {
 
     // Delete Enterprise SSO Organization
     //
-    // Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
+    // Deprecated: use setProject or patchProjectWithRevision instead  Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
     //
     //Future deleteOrganization(String projectId, String organizationId) async
     test('test deleteOrganization', () async {
@@ -72,7 +72,7 @@ void main() {
 
     // Get Enterprise SSO Organization by ID
     //
-    // Retrieves an Enterprise SSO Organization for a project by its ID
+    // Deprecated: use getProject instead  Retrieves an Enterprise SSO Organization for a project by its ID
     //
     //Future<GetOrganizationResponse> getOrganization(String projectId, String organizationId) async
     test('test getOrganization', () async {
@@ -90,7 +90,7 @@ void main() {
 
     // Get a Project
     //
-    // Get a projects you have access to by its ID.
+    // Get a project you have access to by its ID.
     //
     //Future<Project> getProject(String projectId) async
     test('test getProject', () async {
@@ -108,7 +108,7 @@ void main() {
 
     // List all Enterprise SSO organizations
     //
-    // Lists all Enterprise SSO organizations in a project.
+    // Deprecated: use getProject instead  Lists all Enterprise SSO organizations in a project.
     //
     //Future<ListOrganizationsResponse> listOrganizations(String projectId, { int pageSize, String pageToken, String domain }) async
     test('test listOrganizations', () async {
@@ -180,7 +180,7 @@ void main() {
 
     // Update an Enterprise SSO Organization
     //
-    // Updates an Enterprise SSO Organization in a project by its ID.
+    // Deprecated: use setProject or patchProjectWithRevision instead  Updates an Enterprise SSO Organization in a project by its ID.
     //
     //Future<Organization> updateOrganization(String projectId, String organizationId, { OrganizationBody organizationBody }) async
     test('test updateOrganization', () async {

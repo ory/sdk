@@ -6,6 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **account_experience_custom_translations** | [**Array&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) | The Account Experience&#39;s Custom Translations  Contains all Custom Translations for this project. | [optional] |
 | **account_experience_default_locale** | **String** | Holds the default locale for the account experience. | [optional] |
+| **account_experience_enabled_locales** | **Array&lt;String&gt;** |  | [optional] |
 | **account_experience_favicon_dark** | **String** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). | [optional] |
 | **account_experience_favicon_light** | **String** | Holds the URL to the account experience&#39;s favicon. | [optional] |
 | **account_experience_locale_behavior** | **String** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. | [optional] |
@@ -252,6 +253,7 @@ require 'ory-client'
 instance = OryClient::CreateProjectNormalizedPayload.new(
   account_experience_custom_translations: null,
   account_experience_default_locale: null,
+  account_experience_enabled_locales: null,
   account_experience_favicon_dark: null,
   account_experience_favicon_light: null,
   account_experience_locale_behavior: null,

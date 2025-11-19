@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**accountExperienceCustomTranslations** | [**List&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) | The Account Experience&#39;s Custom Translations  Contains all Custom Translations for this project. |  [optional] |
 |**accountExperienceDefaultLocale** | **String** | Holds the default locale for the account experience. |  [optional] |
+|**accountExperienceEnabledLocales** | **List&lt;String&gt;** |  |  [optional] |
 |**accountExperienceFaviconDark** | **String** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). |  [optional] |
 |**accountExperienceFaviconLight** | **String** | Holds the URL to the account experience&#39;s favicon. |  [optional] |
 |**accountExperienceLocaleBehavior** | **String** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. |  [optional] |

@@ -27,7 +27,7 @@ defmodule Ory.Model.OnboardingPortalOrganization do
     :base_url => String.t,
     :kratos_selfservice_methods_oidc_config_providers => [Ory.Model.NormalizedProjectRevisionThirdPartyProvider.t],
     :kratos_selfservice_methods_saml_config_providers => [Ory.Model.NormalizedProjectRevisionSamlProvider.t],
-    :organization_id => String.t | nil,
+    :organization_id => String.t,
     :organization_label => String.t | nil,
     :proxy_acs_url => String.t | nil,
     :proxy_oidc_redirect_url => String.t | nil,

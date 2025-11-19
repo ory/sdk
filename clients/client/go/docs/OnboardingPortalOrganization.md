@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **BaseUrl** | **string** |  | 
 **KratosSelfserviceMethodsOidcConfigProviders** | [**[]NormalizedProjectRevisionThirdPartyProvider**](NormalizedProjectRevisionThirdPartyProvider.md) |  | 
 **KratosSelfserviceMethodsSamlConfigProviders** | [**[]NormalizedProjectRevisionSAMLProvider**](NormalizedProjectRevisionSAMLProvider.md) |  | 
-**OrganizationId** | Pointer to **string** | Organization ID | [optional] 
+**OrganizationId** | **string** |  | 
 **OrganizationLabel** | Pointer to **string** | Organization Label | [optional] 
 **ProxyAcsUrl** | Pointer to **string** | Proxy ACS URL if overriding with a customer-controlled URL | [optional] 
 **ProxyOidcRedirectUrl** | Pointer to **string** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewOnboardingPortalOrganization
 
-`func NewOnboardingPortalOrganization(baseUrl string, kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, revisionId string, scimClients []NormalizedProjectRevisionScimClient, scimEnabled bool, ssoEnabled bool, ) *OnboardingPortalOrganization`
+`func NewOnboardingPortalOrganization(baseUrl string, kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, organizationId string, revisionId string, scimClients []NormalizedProjectRevisionScimClient, scimEnabled bool, ssoEnabled bool, ) *OnboardingPortalOrganization`
 
 NewOnboardingPortalOrganization instantiates a new OnboardingPortalOrganization object
 This constructor will assign default values to properties that have it defined,
@@ -116,11 +116,6 @@ and a boolean to check if the value has been set.
 
 SetOrganizationId sets OrganizationId field to given value.
 
-### HasOrganizationId
-
-`func (o *OnboardingPortalOrganization) HasOrganizationId() bool`
-
-HasOrganizationId returns a boolean if a field has been set.
 
 ### GetOrganizationLabel
 

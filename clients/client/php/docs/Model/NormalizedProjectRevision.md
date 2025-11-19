@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **accountExperienceCustomTranslations** | [**\Ory\Client\Model\RevisionAccountExperienceCustomTranslation[]**](RevisionAccountExperienceCustomTranslation.md) | The Account Experience&#39;s Custom Translations  Contains all Custom Translations for this project. | [optional]
 **accountExperienceDefaultLocale** | **string** | Holds the default locale for the account experience. | [optional]
+**accountExperienceEnabledLocales** | **string[]** |  | [optional]
 **accountExperienceFaviconDark** | **string** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). | [optional]
 **accountExperienceFaviconLight** | **string** | Holds the URL to the account experience&#39;s favicon. | [optional]
 **accountExperienceLocaleBehavior** | **string** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. | [optional]

@@ -6,6 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **default_locale** | **String** |  |  |
 | **default_redirect_url** | **String** |  |  |
+| **enabled_locales** | **Array&lt;String&gt;** |  |  |
 | **error_ui_url** | **String** |  |  |
 | **favicon_dark_url** | **String** |  | [optional] |
 | **favicon_light_url** | **String** |  | [optional] |
@@ -32,6 +33,7 @@ require 'ory-client'
 instance = OryClient::AccountExperienceConfiguration.new(
   default_locale: null,
   default_redirect_url: null,
+  enabled_locales: null,
   error_ui_url: null,
   favicon_dark_url: null,
   favicon_light_url: null,

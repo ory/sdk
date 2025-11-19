@@ -563,10 +563,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
           ]),
           () => new ListBuilder<RevisionAccountExperienceCustomTranslation>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(RevisionAccountExperienceCustomTranslation)
-          ]),
-          () => new ListBuilder<RevisionAccountExperienceCustomTranslation>())
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
@@ -668,6 +666,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
             const FullType(RevisionAccountExperienceCustomTranslation)
           ]),
           () => new ListBuilder<RevisionAccountExperienceCustomTranslation>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
@@ -823,6 +824,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(RevisionAccountExperienceCustomTranslation)
+          ]),
+          () => new ListBuilder<RevisionAccountExperienceCustomTranslation>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

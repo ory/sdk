@@ -76,6 +76,8 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
   @override
   final String defaultRedirectUrl;
   @override
+  final BuiltList<String> enabledLocales;
+  @override
   final String errorUiUrl;
   @override
   final String? faviconDarkUrl;
@@ -117,6 +119,7 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
   _$AccountExperienceConfiguration._(
       {required this.defaultLocale,
       required this.defaultRedirectUrl,
+      required this.enabledLocales,
       required this.errorUiUrl,
       this.faviconDarkUrl,
       this.faviconLightUrl,
@@ -139,6 +142,8 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
         defaultLocale, r'AccountExperienceConfiguration', 'defaultLocale');
     BuiltValueNullFieldError.checkNotNull(defaultRedirectUrl,
         r'AccountExperienceConfiguration', 'defaultRedirectUrl');
+    BuiltValueNullFieldError.checkNotNull(
+        enabledLocales, r'AccountExperienceConfiguration', 'enabledLocales');
     BuiltValueNullFieldError.checkNotNull(
         errorUiUrl, r'AccountExperienceConfiguration', 'errorUiUrl');
     BuiltValueNullFieldError.checkNotNull(
@@ -180,6 +185,7 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
     return other is AccountExperienceConfiguration &&
         defaultLocale == other.defaultLocale &&
         defaultRedirectUrl == other.defaultRedirectUrl &&
+        enabledLocales == other.enabledLocales &&
         errorUiUrl == other.errorUiUrl &&
         faviconDarkUrl == other.faviconDarkUrl &&
         faviconLightUrl == other.faviconLightUrl &&
@@ -204,6 +210,7 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
     var _$hash = 0;
     _$hash = $jc(_$hash, defaultLocale.hashCode);
     _$hash = $jc(_$hash, defaultRedirectUrl.hashCode);
+    _$hash = $jc(_$hash, enabledLocales.hashCode);
     _$hash = $jc(_$hash, errorUiUrl.hashCode);
     _$hash = $jc(_$hash, faviconDarkUrl.hashCode);
     _$hash = $jc(_$hash, faviconLightUrl.hashCode);
@@ -230,6 +237,7 @@ class _$AccountExperienceConfiguration extends AccountExperienceConfiguration {
     return (newBuiltValueToStringHelper(r'AccountExperienceConfiguration')
           ..add('defaultLocale', defaultLocale)
           ..add('defaultRedirectUrl', defaultRedirectUrl)
+          ..add('enabledLocales', enabledLocales)
           ..add('errorUiUrl', errorUiUrl)
           ..add('faviconDarkUrl', faviconDarkUrl)
           ..add('faviconLightUrl', faviconLightUrl)
@@ -266,6 +274,12 @@ class AccountExperienceConfigurationBuilder
   String? get defaultRedirectUrl => _$this._defaultRedirectUrl;
   set defaultRedirectUrl(String? defaultRedirectUrl) =>
       _$this._defaultRedirectUrl = defaultRedirectUrl;
+
+  ListBuilder<String>? _enabledLocales;
+  ListBuilder<String> get enabledLocales =>
+      _$this._enabledLocales ??= new ListBuilder<String>();
+  set enabledLocales(ListBuilder<String>? enabledLocales) =>
+      _$this._enabledLocales = enabledLocales;
 
   String? _errorUiUrl;
   String? get errorUiUrl => _$this._errorUiUrl;
@@ -361,6 +375,7 @@ class AccountExperienceConfigurationBuilder
     if ($v != null) {
       _defaultLocale = $v.defaultLocale;
       _defaultRedirectUrl = $v.defaultRedirectUrl;
+      _enabledLocales = $v.enabledLocales.toBuilder();
       _errorUiUrl = $v.errorUiUrl;
       _faviconDarkUrl = $v.faviconDarkUrl;
       _faviconLightUrl = $v.faviconLightUrl;
@@ -406,6 +421,7 @@ class AccountExperienceConfigurationBuilder
                   defaultLocale, r'AccountExperienceConfiguration', 'defaultLocale'),
               defaultRedirectUrl: BuiltValueNullFieldError.checkNotNull(
                   defaultRedirectUrl, r'AccountExperienceConfiguration', 'defaultRedirectUrl'),
+              enabledLocales: enabledLocales.build(),
               errorUiUrl: BuiltValueNullFieldError.checkNotNull(
                   errorUiUrl, r'AccountExperienceConfiguration', 'errorUiUrl'),
               faviconDarkUrl: faviconDarkUrl,
@@ -431,6 +447,9 @@ class AccountExperienceConfigurationBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'enabledLocales';
+        enabledLocales.build();
+
         _$failedField = 'translations';
         translations.build();
       } catch (e) {

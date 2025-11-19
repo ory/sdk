@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountExperienceCustomTranslations** | Pointer to [**[]RevisionAccountExperienceCustomTranslation**](RevisionAccountExperienceCustomTranslation.md) | The Account Experience&#39;s Custom Translations  Contains all Custom Translations for this project. | [optional] 
 **AccountExperienceDefaultLocale** | Pointer to **string** | Holds the default locale for the account experience. | [optional] 
+**AccountExperienceEnabledLocales** | Pointer to **[]string** |  | [optional] 
 **AccountExperienceFaviconDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). | [optional] 
 **AccountExperienceFaviconLight** | Pointer to **string** | Holds the URL to the account experience&#39;s favicon. | [optional] 
 **AccountExperienceLocaleBehavior** | Pointer to **string** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. | [optional] 
@@ -309,6 +310,31 @@ SetAccountExperienceDefaultLocale sets AccountExperienceDefaultLocale field to g
 `func (o *NormalizedProjectRevision) HasAccountExperienceDefaultLocale() bool`
 
 HasAccountExperienceDefaultLocale returns a boolean if a field has been set.
+
+### GetAccountExperienceEnabledLocales
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceEnabledLocales() []string`
+
+GetAccountExperienceEnabledLocales returns the AccountExperienceEnabledLocales field if non-nil, zero value otherwise.
+
+### GetAccountExperienceEnabledLocalesOk
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceEnabledLocalesOk() (*[]string, bool)`
+
+GetAccountExperienceEnabledLocalesOk returns a tuple with the AccountExperienceEnabledLocales field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceEnabledLocales
+
+`func (o *NormalizedProjectRevision) SetAccountExperienceEnabledLocales(v []string)`
+
+SetAccountExperienceEnabledLocales sets AccountExperienceEnabledLocales field to given value.
+
+### HasAccountExperienceEnabledLocales
+
+`func (o *NormalizedProjectRevision) HasAccountExperienceEnabledLocales() bool`
+
+HasAccountExperienceEnabledLocales returns a boolean if a field has been set.
 
 ### GetAccountExperienceFaviconDark
 

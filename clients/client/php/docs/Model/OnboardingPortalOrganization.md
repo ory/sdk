@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **baseUrl** | **string** |  |
 **kratosSelfserviceMethodsOidcConfigProviders** | [**\Ory\Client\Model\NormalizedProjectRevisionThirdPartyProvider[]**](NormalizedProjectRevisionThirdPartyProvider.md) |  |
 **kratosSelfserviceMethodsSamlConfigProviders** | [**\Ory\Client\Model\NormalizedProjectRevisionSAMLProvider[]**](NormalizedProjectRevisionSAMLProvider.md) |  |
-**organizationId** | **string** | Organization ID | [optional]
+**organizationId** | **string** |  |
 **organizationLabel** | **string** | Organization Label | [optional]
 **proxyAcsUrl** | **string** | Proxy ACS URL if overriding with a customer-controlled URL | [optional]
 **proxyOidcRedirectUrl** | **string** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional]

@@ -39,7 +39,7 @@ class ProjectApi {
   const ProjectApi(this._dio, this._serializers);
 
   /// Create an Enterprise SSO Organization
-  /// Creates an Enterprise SSO Organization in a project.
+  /// Deprecated: use setProject or patchProjectWithRevision instead  Creates an Enterprise SSO Organization in a project.
   ///
   /// Parameters:
   /// * [projectId] - Project ID  The project's ID.
@@ -451,7 +451,7 @@ class ProjectApi {
   }
 
   /// Delete Enterprise SSO Organization
-  /// Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
+  /// Deprecated: use setProject or patchProjectWithRevision instead  Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
   ///
   /// Parameters:
   /// * [projectId] - Project ID  The project's ID.
@@ -618,7 +618,7 @@ class ProjectApi {
   }
 
   /// Get Enterprise SSO Organization by ID
-  /// Retrieves an Enterprise SSO Organization for a project by its ID
+  /// Deprecated: use getProject instead  Retrieves an Enterprise SSO Organization for a project by its ID
   ///
   /// Parameters:
   /// * [projectId] - Project ID  The project's ID.
@@ -784,7 +784,7 @@ class ProjectApi {
   }
 
   /// Get a Project
-  /// Get a projects you have access to by its ID.
+  /// Get a project you have access to by its ID.
   ///
   /// Parameters:
   /// * [projectId] - Project ID  The project's ID.
@@ -946,7 +946,7 @@ class ProjectApi {
   }
 
   /// List all Enterprise SSO organizations
-  /// Lists all Enterprise SSO organizations in a project.
+  /// Deprecated: use getProject instead  Lists all Enterprise SSO organizations in a project.
   ///
   /// Parameters:
   /// * [projectId] - Project ID  The project's ID.
@@ -1619,7 +1619,7 @@ class ProjectApi {
   }
 
   /// Update an Enterprise SSO Organization
-  /// Updates an Enterprise SSO Organization in a project by its ID.
+  /// Deprecated: use setProject or patchProjectWithRevision instead  Updates an Enterprise SSO Organization in a project by its ID.
   ///
   /// Parameters:
   /// * [projectId] - Project ID  The project's ID.

@@ -356,6 +356,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   @override
   final String? accountExperienceDefaultLocale;
   @override
+  final BuiltList<String>? accountExperienceEnabledLocales;
+  @override
   final String? accountExperienceFaviconDark;
   @override
   final String? accountExperienceFaviconLight;
@@ -853,6 +855,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
   _$NormalizedProjectRevision._(
       {this.accountExperienceCustomTranslations,
       this.accountExperienceDefaultLocale,
+      this.accountExperienceEnabledLocales,
       this.accountExperienceFaviconDark,
       this.accountExperienceFaviconLight,
       this.accountExperienceLocaleBehavior,
@@ -1109,6 +1112,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
             other.accountExperienceCustomTranslations &&
         accountExperienceDefaultLocale ==
             other.accountExperienceDefaultLocale &&
+        accountExperienceEnabledLocales ==
+            other.accountExperienceEnabledLocales &&
         accountExperienceFaviconDark == other.accountExperienceFaviconDark &&
         accountExperienceFaviconLight == other.accountExperienceFaviconLight &&
         accountExperienceLocaleBehavior ==
@@ -1547,6 +1552,7 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
     var _$hash = 0;
     _$hash = $jc(_$hash, accountExperienceCustomTranslations.hashCode);
     _$hash = $jc(_$hash, accountExperienceDefaultLocale.hashCode);
+    _$hash = $jc(_$hash, accountExperienceEnabledLocales.hashCode);
     _$hash = $jc(_$hash, accountExperienceFaviconDark.hashCode);
     _$hash = $jc(_$hash, accountExperienceFaviconLight.hashCode);
     _$hash = $jc(_$hash, accountExperienceLocaleBehavior.hashCode);
@@ -1927,6 +1933,8 @@ class _$NormalizedProjectRevision extends NormalizedProjectRevision {
               accountExperienceCustomTranslations)
           ..add(
               'accountExperienceDefaultLocale', accountExperienceDefaultLocale)
+          ..add('accountExperienceEnabledLocales',
+              accountExperienceEnabledLocales)
           ..add('accountExperienceFaviconDark', accountExperienceFaviconDark)
           ..add('accountExperienceFaviconLight', accountExperienceFaviconLight)
           ..add('accountExperienceLocaleBehavior',
@@ -2381,6 +2389,13 @@ class NormalizedProjectRevisionBuilder
       _$this._accountExperienceDefaultLocale;
   set accountExperienceDefaultLocale(String? accountExperienceDefaultLocale) =>
       _$this._accountExperienceDefaultLocale = accountExperienceDefaultLocale;
+
+  ListBuilder<String>? _accountExperienceEnabledLocales;
+  ListBuilder<String> get accountExperienceEnabledLocales =>
+      _$this._accountExperienceEnabledLocales ??= new ListBuilder<String>();
+  set accountExperienceEnabledLocales(
+          ListBuilder<String>? accountExperienceEnabledLocales) =>
+      _$this._accountExperienceEnabledLocales = accountExperienceEnabledLocales;
 
   String? _accountExperienceFaviconDark;
   String? get accountExperienceFaviconDark =>
@@ -4187,6 +4202,8 @@ class NormalizedProjectRevisionBuilder
       _accountExperienceCustomTranslations =
           $v.accountExperienceCustomTranslations?.toBuilder();
       _accountExperienceDefaultLocale = $v.accountExperienceDefaultLocale;
+      _accountExperienceEnabledLocales =
+          $v.accountExperienceEnabledLocales?.toBuilder();
       _accountExperienceFaviconDark = $v.accountExperienceFaviconDark;
       _accountExperienceFaviconLight = $v.accountExperienceFaviconLight;
       _accountExperienceLocaleBehavior = $v.accountExperienceLocaleBehavior;
@@ -4612,6 +4629,8 @@ class NormalizedProjectRevisionBuilder
               accountExperienceCustomTranslations:
                   _accountExperienceCustomTranslations?.build(),
               accountExperienceDefaultLocale: accountExperienceDefaultLocale,
+              accountExperienceEnabledLocales:
+                  _accountExperienceEnabledLocales?.build(),
               accountExperienceFaviconDark: accountExperienceFaviconDark,
               accountExperienceFaviconLight: accountExperienceFaviconLight,
               accountExperienceLocaleBehavior: accountExperienceLocaleBehavior,
@@ -4727,22 +4746,14 @@ class NormalizedProjectRevisionBuilder
                   kratosCourierTemplatesLoginCodeValidEmailSubject,
               kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext:
                   kratosCourierTemplatesLoginCodeValidSmsBodyPlaintext,
-              kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml:
-                  kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
-              kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext:
-                  kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext,
-              kratosCourierTemplatesRecoveryCodeInvalidEmailSubject:
-                  kratosCourierTemplatesRecoveryCodeInvalidEmailSubject,
-              kratosCourierTemplatesRecoveryCodeValidEmailBodyHtml:
-                  kratosCourierTemplatesRecoveryCodeValidEmailBodyHtml,
-              kratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext:
-                  kratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext,
-              kratosCourierTemplatesRecoveryCodeValidEmailSubject:
-                  kratosCourierTemplatesRecoveryCodeValidEmailSubject,
-              kratosCourierTemplatesRecoveryInvalidEmailBodyHtml:
-                  kratosCourierTemplatesRecoveryInvalidEmailBodyHtml,
-              kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext:
-                  kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml: kratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml,
+              kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext: kratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext,
+              kratosCourierTemplatesRecoveryCodeInvalidEmailSubject: kratosCourierTemplatesRecoveryCodeInvalidEmailSubject,
+              kratosCourierTemplatesRecoveryCodeValidEmailBodyHtml: kratosCourierTemplatesRecoveryCodeValidEmailBodyHtml,
+              kratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext: kratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext,
+              kratosCourierTemplatesRecoveryCodeValidEmailSubject: kratosCourierTemplatesRecoveryCodeValidEmailSubject,
+              kratosCourierTemplatesRecoveryInvalidEmailBodyHtml: kratosCourierTemplatesRecoveryInvalidEmailBodyHtml,
+              kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext: kratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext,
               kratosCourierTemplatesRecoveryInvalidEmailSubject: kratosCourierTemplatesRecoveryInvalidEmailSubject,
               kratosCourierTemplatesRecoveryValidEmailBodyHtml: kratosCourierTemplatesRecoveryValidEmailBodyHtml,
               kratosCourierTemplatesRecoveryValidEmailBodyPlaintext: kratosCourierTemplatesRecoveryValidEmailBodyPlaintext,
@@ -4894,6 +4905,9 @@ class NormalizedProjectRevisionBuilder
       try {
         _$failedField = 'accountExperienceCustomTranslations';
         _accountExperienceCustomTranslations?.build();
+
+        _$failedField = 'accountExperienceEnabledLocales';
+        _accountExperienceEnabledLocales?.build();
 
         _$failedField = 'hydraOauth2AllowedTopLevelClaims';
         _hydraOauth2AllowedTopLevelClaims?.build();

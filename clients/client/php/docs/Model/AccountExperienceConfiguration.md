@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **defaultLocale** | **string** |  |
 **defaultRedirectUrl** | **string** |  |
+**enabledLocales** | **string[]** |  |
 **errorUiUrl** | **string** |  |
 **faviconDarkUrl** | **string** |  | [optional]
 **faviconLightUrl** | **string** |  | [optional]

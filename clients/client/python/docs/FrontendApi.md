@@ -94,7 +94,7 @@ with ory_client.ApiClient(configuration) as api_client:
     login_challenge = 'login_challenge_example' # str | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional)
     organization = 'organization_example' # str | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
     via = 'via_example' # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
-    identity_schema = 'identity_schema_example' # str | An optional identity schema to use for the registration flow. (optional)
+    identity_schema = 'identity_schema_example' # str | An optional identity schema to use for the login flow. (optional)
 
     try:
         # Create Login Flow for Browsers
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
  **login_challenge** | **str**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] 
  **organization** | **str**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
  **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] 
- **identity_schema** | **str**| An optional identity schema to use for the registration flow. | [optional] 
+ **identity_schema** | **str**| An optional identity schema to use for the login flow. | [optional] 
 
 ### Return type
 
@@ -699,7 +699,7 @@ with ory_client.ApiClient(configuration) as api_client:
     return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
     organization = 'organization_example' # str | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
     via = 'via_example' # str | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
-    identity_schema = 'identity_schema_example' # str | An optional identity schema to use for the registration flow. (optional)
+    identity_schema = 'identity_schema_example' # str | An optional identity schema to use for the login flow. (optional)
 
     try:
         # Create Login Flow for Native Apps
@@ -724,7 +724,7 @@ Name | Type | Description  | Notes
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
  **organization** | **str**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] 
  **via** | **str**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] 
- **identity_schema** | **str**| An optional identity schema to use for the registration flow. | [optional] 
+ **identity_schema** | **str**| An optional identity schema to use for the login flow. | [optional] 
 
 ### Return type
 

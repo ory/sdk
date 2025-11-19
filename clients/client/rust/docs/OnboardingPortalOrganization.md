@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **base_url** | **String** |  | 
 **kratos_selfservice_methods_oidc_config_providers** | [**Vec<models::NormalizedProjectRevisionThirdPartyProvider>**](normalizedProjectRevisionThirdPartyProvider.md) |  | 
 **kratos_selfservice_methods_saml_config_providers** | [**Vec<models::NormalizedProjectRevisionSamlProvider>**](normalizedProjectRevisionSAMLProvider.md) |  | 
-**organization_id** | Option<**String**> | Organization ID | [optional]
+**organization_id** | **String** |  | 
 **organization_label** | Option<**String**> | Organization Label | [optional]
 **proxy_acs_url** | Option<**String**> | Proxy ACS URL if overriding with a customer-controlled URL | [optional]
 **proxy_oidc_redirect_url** | Option<**String**> | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional]

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **base_url** | **str** |  | 
 **kratos_selfservice_methods_oidc_config_providers** | [**List[NormalizedProjectRevisionThirdPartyProvider]**](NormalizedProjectRevisionThirdPartyProvider.md) |  | 
 **kratos_selfservice_methods_saml_config_providers** | [**List[NormalizedProjectRevisionSAMLProvider]**](NormalizedProjectRevisionSAMLProvider.md) |  | 
-**organization_id** | **str** | Organization ID | [optional] 
+**organization_id** | **str** |  | 
 **organization_label** | **str** | Organization Label | [optional] 
 **proxy_acs_url** | **str** | Proxy ACS URL if overriding with a customer-controlled URL | [optional] 
 **proxy_oidc_redirect_url** | **str** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] 

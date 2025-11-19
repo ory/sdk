@@ -17,7 +17,7 @@ defmodule Ory.Model.RecoveryIdentityAddress do
 
   @type t :: %__MODULE__{
     :created_at => DateTime.t | nil,
-    :id => String.t,
+    :id => String.t | nil,
     :updated_at => DateTime.t | nil,
     :value => String.t,
     :via => String.t

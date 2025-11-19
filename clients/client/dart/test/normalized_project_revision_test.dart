@@ -19,6 +19,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<String> accountExperienceEnabledLocales
+    test('to test the property `accountExperienceEnabledLocales`', () async {
+      // TODO
+    });
+
     // Holds the URL to the account experience's dark theme favicon (currently unused).
     // String accountExperienceFaviconDark
     test('to test the property `accountExperienceFaviconDark`', () async {

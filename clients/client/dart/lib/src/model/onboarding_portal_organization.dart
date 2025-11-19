@@ -18,7 +18,7 @@ part 'onboarding_portal_organization.g.dart';
 /// * [baseUrl] 
 /// * [kratosSelfserviceMethodsOidcConfigProviders] 
 /// * [kratosSelfserviceMethodsSamlConfigProviders] 
-/// * [organizationId] - Organization ID
+/// * [organizationId] 
 /// * [organizationLabel] - Organization Label
 /// * [proxyAcsUrl] - Proxy ACS URL if overriding with a customer-controlled URL
 /// * [proxyOidcRedirectUrl] - Proxy OIDC Redirect URL if overriding with a customer-controlled URL
@@ -39,9 +39,8 @@ abstract class OnboardingPortalOrganization implements Built<OnboardingPortalOrg
   @BuiltValueField(wireName: r'kratos_selfservice_methods_saml_config_providers')
   BuiltList<NormalizedProjectRevisionSAMLProvider> get kratosSelfserviceMethodsSamlConfigProviders;
 
-  /// Organization ID
   @BuiltValueField(wireName: r'organization_id')
-  String? get organizationId;
+  String get organizationId;
 
   /// Organization Label
   @BuiltValueField(wireName: r'organization_label')
@@ -113,13 +112,11 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
       object.kratosSelfserviceMethodsSamlConfigProviders,
       specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionSAMLProvider)]),
     );
-    if (object.organizationId != null) {
-      yield r'organization_id';
-      yield serializers.serialize(
-        object.organizationId,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'organization_id';
+    yield serializers.serialize(
+      object.organizationId,
+      specifiedType: const FullType(String),
+    );
     if (object.organizationLabel != null) {
       yield r'organization_label';
       yield serializers.serialize(

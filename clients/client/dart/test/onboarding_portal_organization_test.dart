@@ -22,7 +22,6 @@ void main() {
       // TODO
     });
 
-    // Organization ID
     // String organizationId
     test('to test the property `organizationId`', () async {
       // TODO

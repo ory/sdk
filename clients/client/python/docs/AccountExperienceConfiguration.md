@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **default_locale** | **str** |  | 
 **default_redirect_url** | **str** |  | 
+**enabled_locales** | **List[str]** |  | 
 **error_ui_url** | **str** |  | 
 **favicon_dark_url** | **str** |  | [optional] 
 **favicon_light_url** | **str** |  | [optional] 

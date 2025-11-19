@@ -16,7 +16,7 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
   final BuiltList<NormalizedProjectRevisionSAMLProvider>
       kratosSelfserviceMethodsSamlConfigProviders;
   @override
-  final String? organizationId;
+  final String organizationId;
   @override
   final String? organizationLabel;
   @override
@@ -44,7 +44,7 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
       {required this.baseUrl,
       required this.kratosSelfserviceMethodsOidcConfigProviders,
       required this.kratosSelfserviceMethodsSamlConfigProviders,
-      this.organizationId,
+      required this.organizationId,
       this.organizationLabel,
       this.proxyAcsUrl,
       this.proxyOidcRedirectUrl,
@@ -65,6 +65,8 @@ class _$OnboardingPortalOrganization extends OnboardingPortalOrganization {
         kratosSelfserviceMethodsSamlConfigProviders,
         r'OnboardingPortalOrganization',
         'kratosSelfserviceMethodsSamlConfigProviders');
+    BuiltValueNullFieldError.checkNotNull(
+        organizationId, r'OnboardingPortalOrganization', 'organizationId');
     BuiltValueNullFieldError.checkNotNull(
         revisionId, r'OnboardingPortalOrganization', 'revisionId');
     BuiltValueNullFieldError.checkNotNull(
@@ -282,7 +284,10 @@ class OnboardingPortalOrganizationBuilder
                   kratosSelfserviceMethodsOidcConfigProviders.build(),
               kratosSelfserviceMethodsSamlConfigProviders:
                   kratosSelfserviceMethodsSamlConfigProviders.build(),
-              organizationId: organizationId,
+              organizationId: BuiltValueNullFieldError.checkNotNull(
+                  organizationId,
+                  r'OnboardingPortalOrganization',
+                  'organizationId'),
               organizationLabel: organizationLabel,
               proxyAcsUrl: proxyAcsUrl,
               proxyOidcRedirectUrl: proxyOidcRedirectUrl,

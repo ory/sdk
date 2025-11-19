@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **defaultLocale** | **String** |  | 
 **defaultRedirectUrl** | **String** |  | 
+**enabledLocales** | **BuiltList&lt;String&gt;** |  | 
 **errorUiUrl** | **String** |  | 
 **faviconDarkUrl** | **String** |  | [optional] 
 **faviconLightUrl** | **String** |  | [optional] 

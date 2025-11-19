@@ -15,6 +15,7 @@ part 'account_experience_configuration.g.dart';
 /// Properties:
 /// * [defaultLocale] 
 /// * [defaultRedirectUrl] 
+/// * [enabledLocales] 
 /// * [errorUiUrl] 
 /// * [faviconDarkUrl] 
 /// * [faviconLightUrl] 
@@ -39,6 +40,9 @@ abstract class AccountExperienceConfiguration implements Built<AccountExperience
 
   @BuiltValueField(wireName: r'default_redirect_url')
   String get defaultRedirectUrl;
+
+  @BuiltValueField(wireName: r'enabled_locales')
+  BuiltList<String> get enabledLocales;
 
   @BuiltValueField(wireName: r'error_ui_url')
   String get errorUiUrl;
@@ -125,6 +129,11 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
     yield serializers.serialize(
       object.defaultRedirectUrl,
       specifiedType: const FullType(String),
+    );
+    yield r'enabled_locales';
+    yield serializers.serialize(
+      object.enabledLocales,
+      specifiedType: const FullType(BuiltList, [FullType(String)]),
     );
     yield r'error_ui_url';
     yield serializers.serialize(
@@ -257,6 +266,13 @@ class _$AccountExperienceConfigurationSerializer implements PrimitiveSerializer<
             specifiedType: const FullType(String),
           ) as String;
           result.defaultRedirectUrl = valueDes;
+          break;
+        case r'enabled_locales':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.enabledLocales.replace(valueDes);
           break;
         case r'error_ui_url':
           final valueDes = serializers.deserialize(

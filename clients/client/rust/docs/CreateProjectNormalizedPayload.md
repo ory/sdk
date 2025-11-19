@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_experience_custom_translations** | Option<[**Vec<models::RevisionAccountExperienceCustomTranslation>**](RevisionAccountExperienceCustomTranslation.md)> | The Account Experience's Custom Translations  Contains all Custom Translations for this project. | [optional]
 **account_experience_default_locale** | Option<**String**> | Holds the default locale for the account experience. | [optional]
+**account_experience_enabled_locales** | Option<**Vec<String>**> |  | [optional]
 **account_experience_favicon_dark** | Option<**String**> | Holds the URL to the account experience's dark theme favicon (currently unused). | [optional]
 **account_experience_favicon_light** | Option<**String**> | Holds the URL to the account experience's favicon. | [optional]
 **account_experience_locale_behavior** | Option<**String**> | Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language. | [optional]

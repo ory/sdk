@@ -10,7 +10,7 @@ class _$RecoveryIdentityAddress extends RecoveryIdentityAddress {
   @override
   final DateTime? createdAt;
   @override
-  final String id;
+  final String? id;
   @override
   final DateTime? updatedAt;
   @override
@@ -24,12 +24,11 @@ class _$RecoveryIdentityAddress extends RecoveryIdentityAddress {
 
   _$RecoveryIdentityAddress._(
       {this.createdAt,
-      required this.id,
+      this.id,
       this.updatedAt,
       required this.value,
       required this.via})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, r'RecoveryIdentityAddress', 'id');
     BuiltValueNullFieldError.checkNotNull(
         value, r'RecoveryIdentityAddress', 'value');
     BuiltValueNullFieldError.checkNotNull(
@@ -140,8 +139,7 @@ class RecoveryIdentityAddressBuilder
     final _$result = _$v ??
         new _$RecoveryIdentityAddress._(
             createdAt: createdAt,
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'RecoveryIdentityAddress', 'id'),
+            id: id,
             updatedAt: updatedAt,
             value: BuiltValueNullFieldError.checkNotNull(
                 value, r'RecoveryIdentityAddress', 'value'),

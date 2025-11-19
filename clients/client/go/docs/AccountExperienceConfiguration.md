@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DefaultLocale** | **string** |  | 
 **DefaultRedirectUrl** | **string** |  | 
+**EnabledLocales** | **[]string** |  | 
 **ErrorUiUrl** | **string** |  | 
 **FaviconDarkUrl** | Pointer to **string** |  | [optional] 
 **FaviconLightUrl** | Pointer to **string** |  | [optional] 
@@ -28,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewAccountExperienceConfiguration
 
-`func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, errorUiUrl string, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, translations []RevisionAccountExperienceCustomTranslation, verificationEnabled bool, verificationUiUrl string, ) *AccountExperienceConfiguration`
+`func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, enabledLocales []string, errorUiUrl string, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, translations []RevisionAccountExperienceCustomTranslation, verificationEnabled bool, verificationUiUrl string, ) *AccountExperienceConfiguration`
 
 NewAccountExperienceConfiguration instantiates a new AccountExperienceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -81,6 +82,26 @@ and a boolean to check if the value has been set.
 `func (o *AccountExperienceConfiguration) SetDefaultRedirectUrl(v string)`
 
 SetDefaultRedirectUrl sets DefaultRedirectUrl field to given value.
+
+
+### GetEnabledLocales
+
+`func (o *AccountExperienceConfiguration) GetEnabledLocales() []string`
+
+GetEnabledLocales returns the EnabledLocales field if non-nil, zero value otherwise.
+
+### GetEnabledLocalesOk
+
+`func (o *AccountExperienceConfiguration) GetEnabledLocalesOk() (*[]string, bool)`
+
+GetEnabledLocalesOk returns a tuple with the EnabledLocales field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnabledLocales
+
+`func (o *AccountExperienceConfiguration) SetEnabledLocales(v []string)`
+
+SetEnabledLocales sets EnabledLocales field to given value.
 
 
 ### GetErrorUiUrl

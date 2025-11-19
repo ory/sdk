@@ -10,6 +10,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
   defstruct [
     :account_experience_custom_translations,
     :account_experience_default_locale,
+    :account_experience_enabled_locales,
     :account_experience_favicon_dark,
     :account_experience_favicon_light,
     :account_experience_locale_behavior,
@@ -249,6 +250,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
   @type t :: %__MODULE__{
     :account_experience_custom_translations => [Ory.Model.RevisionAccountExperienceCustomTranslation.t] | nil,
     :account_experience_default_locale => String.t | nil,
+    :account_experience_enabled_locales => [String.t] | nil,
     :account_experience_favicon_dark => String.t | nil,
     :account_experience_favicon_light => String.t | nil,
     :account_experience_locale_behavior => String.t | nil,

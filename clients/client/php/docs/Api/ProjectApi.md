@@ -36,7 +36,7 @@ createOrganization($projectId, $organizationBody): \Ory\Client\Model\Organizatio
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 Create an Enterprise SSO Organization
 
-Creates an Enterprise SSO Organization in a project.
+Deprecated: use setProject or patchProjectWithRevision instead  Creates an Enterprise SSO Organization in a project.
 
 ### Example
 
@@ -312,7 +312,7 @@ deleteOrganization($projectId, $organizationId)
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 Delete Enterprise SSO Organization
 
-Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
+Deprecated: use setProject or patchProjectWithRevision instead  Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 
@@ -518,7 +518,7 @@ getOrganization($projectId, $organizationId): \Ory\Client\Model\GetOrganizationR
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 Get Enterprise SSO Organization by ID
 
-Retrieves an Enterprise SSO Organization for a project by its ID
+Deprecated: use getProject instead  Retrieves an Enterprise SSO Organization for a project by its ID
 
 ### Example
 
@@ -656,7 +656,7 @@ getProject($projectId): \Ory\Client\Model\Project
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 Get a Project
 
-Get a projects you have access to by its ID.
+Get a project you have access to by its ID.
 
 ### Example
 
@@ -790,7 +790,7 @@ listOrganizations($projectId, $pageSize, $pageToken, $domain): \Ory\Client\Model
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 List all Enterprise SSO organizations
 
-Lists all Enterprise SSO organizations in a project.
+Deprecated: use getProject instead  Lists all Enterprise SSO organizations in a project.
 
 ### Example
 
@@ -1337,7 +1337,7 @@ updateOrganization($projectId, $organizationId, $organizationBody): \Ory\Client\
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 Update an Enterprise SSO Organization
 
-Updates an Enterprise SSO Organization in a project by its ID.
+Deprecated: use setProject or patchProjectWithRevision instead  Updates an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 

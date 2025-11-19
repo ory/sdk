@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**defaultLocale** | **String** |  |  |
 |**defaultRedirectUrl** | **String** |  |  |
+|**enabledLocales** | **List&lt;String&gt;** |  |  |
 |**errorUiUrl** | **String** |  |  |
 |**faviconDarkUrl** | **String** |  |  [optional] |
 |**faviconLightUrl** | **String** |  |  [optional] |

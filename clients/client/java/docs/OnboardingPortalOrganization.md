@@ -10,7 +10,7 @@
 |**baseUrl** | **String** |  |  |
 |**kratosSelfserviceMethodsOidcConfigProviders** | [**List&lt;NormalizedProjectRevisionThirdPartyProvider&gt;**](NormalizedProjectRevisionThirdPartyProvider.md) |  |  |
 |**kratosSelfserviceMethodsSamlConfigProviders** | [**List&lt;NormalizedProjectRevisionSAMLProvider&gt;**](NormalizedProjectRevisionSAMLProvider.md) |  |  |
-|**organizationId** | **String** | Organization ID |  [optional] |
+|**organizationId** | **String** |  |  |
 |**organizationLabel** | **String** | Organization Label |  [optional] |
 |**proxyAcsUrl** | **String** | Proxy ACS URL if overriding with a customer-controlled URL |  [optional] |
 |**proxyOidcRedirectUrl** | **String** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL |  [optional] |
