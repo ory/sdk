@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.15
+  version: v1.22.16
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -11490,10 +11490,6 @@ components:
           type: integer
       title: RFC6749ErrorJson is a helper struct for JSON encoding/decoding of RFC6749Error.
       type: object
-    RecoveryAddressType:
-      title: RecoveryAddressType must not exceed 16 characters as that is the limitation
-        in the SQL Schema.
-      type: string
     RevisionAccountExperienceCustomTranslation:
       properties:
         locale:
@@ -20678,8 +20674,6 @@ components:
         value:
           type: string
         via:
-          title: RecoveryAddressType must not exceed 16 characters as that is the
-            limitation in the SQL Schema.
           type: string
       required:
       - value
