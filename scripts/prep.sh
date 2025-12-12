@@ -1,10 +1,10 @@
 #!/bin/bash
 
-set -Eeuxo pipefail
+set -Eexo pipefail
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
-source "$HOME/.bashrc" || true
-source "$HOME/.cargo/env" || true
+source "$HOME/.bashrc"
+source "$HOME/.cargo/env"
 
 if [ -z "${FORCE_VERSION+x}" ]; then
   if [ -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
