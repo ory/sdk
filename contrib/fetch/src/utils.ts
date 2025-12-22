@@ -9,6 +9,7 @@ import {
   isNeedsPrivilegedSessionError,
   isResponseError,
   isSelfServiceFlowExpiredError,
+  isSessionAal2Required,
 } from "./error"
 
 export type ValidationErrorHandler<T> = (body: T) => void
@@ -78,6 +79,9 @@ export const handleFlowError =
             opts.onRestartFlow(body.use_flow_id)
             return
           } else if (isNeedsPrivilegedSessionError(body)) {
+            opts.onRedirect(body.redirect_browser_to, true)
+            return
+          } else if (isSessionAal2Required(body)) {
             opts.onRedirect(body.redirect_browser_to, true)
             return
           } else if (isCsrfError(body)) {
