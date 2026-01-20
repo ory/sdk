@@ -332,6 +332,6 @@ php
 python
 ruby
 dotnet
-dart
+# dart
 
 cleanup
