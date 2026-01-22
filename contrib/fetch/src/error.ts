@@ -156,7 +156,7 @@ export function isSessionAal1Required(
  */
 export function isSessionAal2Required(
   response: unknown,
-): response is GenericError {
+): response is GenericError & { redirect_browser_to: string } {
   return (
     isGenericErrorResponse(response) &&
     response.error.id === "session_aal2_required"
