@@ -8,34 +8,56 @@ defmodule Ory.Model.OnboardingPortalLink do
 
   @derive Jason.Encoder
   defstruct [
+    :apple_mapper_url,
+    :auth0_mapper_url,
     :created_at,
     :custom_hostname_id,
     :enable_scim,
     :enable_sso,
     :expires_at,
+    :facebook_mapper_url,
+    :generic_oidc_mapper_url,
+    :github_mapper_url,
+    :gitlab_mapper_url,
+    :google_mapper_url,
     :id,
+    :microsoft_mapper_url,
+    :netid_mapper_url,
     :organization_id,
     :project_id,
     :proxy_acs_url,
     :proxy_oidc_redirect_url,
     :proxy_saml_audience_override,
     :proxy_scim_server_url,
+    :saml_mapper_url,
+    :scim_mapper_url,
     :value
   ]
 
   @type t :: %__MODULE__{
+    :apple_mapper_url => String.t | nil,
+    :auth0_mapper_url => String.t | nil,
     :created_at => DateTime.t | nil,
     :custom_hostname_id => String.t | nil,
     :enable_scim => boolean() | nil,
     :enable_sso => boolean() | nil,
     :expires_at => DateTime.t,
+    :facebook_mapper_url => String.t | nil,
+    :generic_oidc_mapper_url => String.t | nil,
+    :github_mapper_url => String.t | nil,
+    :gitlab_mapper_url => String.t | nil,
+    :google_mapper_url => String.t | nil,
     :id => String.t,
+    :microsoft_mapper_url => String.t | nil,
+    :netid_mapper_url => String.t | nil,
     :organization_id => String.t,
     :project_id => String.t,
     :proxy_acs_url => String.t | nil,
     :proxy_oidc_redirect_url => String.t | nil,
     :proxy_saml_audience_override => String.t | nil,
     :proxy_scim_server_url => String.t | nil,
+    :saml_mapper_url => String.t | nil,
+    :scim_mapper_url => String.t | nil,
     :value => String.t
   }
 

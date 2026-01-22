@@ -7,6 +7,18 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(OnboardingPortalLink, () {
+    // AppleMapper specifies the JSONNet code snippet which uses Apple's profile information to hydrate the identity's data.
+    // String appleMapperUrl
+    test('to test the property `appleMapperUrl`', () async {
+      // TODO
+    });
+
+    // Auth0Mapper specifies the JSONNet code snippet which uses Auth0's profile information to hydrate the identity's data.
+    // String auth0MapperUrl
+    test('to test the property `auth0MapperUrl`', () async {
+      // TODO
+    });
+
     // The onboarding portal link's creation date
     // DateTime createdAt
     test('to test the property `createdAt`', () async {
@@ -36,9 +48,51 @@ void main() {
       // TODO
     });
 
+    // FacebookMapper specifies the JSONNet code snippet which uses Facebook's profile information to hydrate the identity's data.
+    // String facebookMapperUrl
+    test('to test the property `facebookMapperUrl`', () async {
+      // TODO
+    });
+
+    // GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider's profile information to hydrate the identity's data.
+    // String genericOidcMapperUrl
+    test('to test the property `genericOidcMapperUrl`', () async {
+      // TODO
+    });
+
+    // GithubMapper specifies the JSONNet code snippet which uses GitHub's profile information to hydrate the identity's data.
+    // String githubMapperUrl
+    test('to test the property `githubMapperUrl`', () async {
+      // TODO
+    });
+
+    // GitLabMapper specifies the JSONNet code snippet which uses GitLab's profile information to hydrate the identity's data.
+    // String gitlabMapperUrl
+    test('to test the property `gitlabMapperUrl`', () async {
+      // TODO
+    });
+
+    // GoogleMapper specifies the JSONNet code snippet which uses Google's profile information to hydrate the identity's data.
+    // String googleMapperUrl
+    test('to test the property `googleMapperUrl`', () async {
+      // TODO
+    });
+
     // The onboarding portal link's ID.
     // String id
     test('to test the property `id`', () async {
+      // TODO
+    });
+
+    // MicrosoftMapper specifies the JSONNet code snippet which uses Microsoft's profile information to hydrate the identity's data.
+    // String microsoftMapperUrl
+    test('to test the property `microsoftMapperUrl`', () async {
+      // TODO
+    });
+
+    // NetIDMapper specifies the JSONNet code snippet which uses NetID's profile information to hydrate the identity's data.
+    // String netidMapperUrl
+    test('to test the property `netidMapperUrl`', () async {
       // TODO
     });
 
@@ -75,6 +129,18 @@ void main() {
     // Proxy SCIM Server URL if overriding with a customer-controlled URL
     // String proxyScimServerUrl
     test('to test the property `proxyScimServerUrl`', () async {
+      // TODO
+    });
+
+    // SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider's profile information to hydrate the identity's data.
+    // String samlMapperUrl
+    test('to test the property `samlMapperUrl`', () async {
+      // TODO
+    });
+
+    // SCIMMapper specifies the JSONNet code snippet which uses the SCIM Provider's profile information to hydrate the identity's data.
+    // String scimMapperUrl
+    test('to test the property `scimMapperUrl`', () async {
       // TODO
     });
 

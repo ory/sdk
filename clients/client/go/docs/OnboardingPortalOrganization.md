@@ -4,9 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AppleMapperUrl** | Pointer to **string** | AppleMapper specifies the JSONNet code snippet which uses Apple&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
+**Auth0MapperUrl** | Pointer to **string** | Auth0Mapper specifies the JSONNet code snippet which uses Auth0&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
 **BaseUrl** | **string** |  | 
+**FacebookMapperUrl** | Pointer to **string** | FacebookMapper specifies the JSONNet code snippet which uses Facebook&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
+**GenericOidcMapperUrl** | Pointer to **string** | GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
+**GithubMapperUrl** | Pointer to **string** | GithubMapper specifies the JSONNet code snippet which uses GitHub&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
+**GitlabMapperUrl** | Pointer to **string** | GitLabMapper specifies the JSONNet code snippet which uses GitLab&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
+**GoogleMapperUrl** | Pointer to **string** | GoogleMapper specifies the JSONNet code snippet which uses Google&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
 **KratosSelfserviceMethodsOidcConfigProviders** | [**[]NormalizedProjectRevisionThirdPartyProvider**](NormalizedProjectRevisionThirdPartyProvider.md) |  | 
 **KratosSelfserviceMethodsSamlConfigProviders** | [**[]NormalizedProjectRevisionSAMLProvider**](NormalizedProjectRevisionSAMLProvider.md) |  | 
+**MicrosoftMapperUrl** | Pointer to **string** | MicrosoftMapper specifies the JSONNet code snippet which uses Microsoft&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
+**NetidMapperUrl** | Pointer to **string** | NetIDMapper specifies the JSONNet code snippet which uses NetID&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
+**OidcSsoEnabled** | Pointer to **bool** |  | [optional] 
 **OrganizationId** | **string** |  | 
 **OrganizationLabel** | Pointer to **string** | Organization Label | [optional] 
 **ProxyAcsUrl** | Pointer to **string** | Proxy ACS URL if overriding with a customer-controlled URL | [optional] 
@@ -14,8 +24,11 @@ Name | Type | Description | Notes
 **ProxySamlAudienceOverride** | Pointer to **string** | SAML Audience Override if overriding with a customer-controlled one | [optional] 
 **ProxyScimServerUrl** | Pointer to **string** | Proxy SCIM Server URL if overriding with a customer-controlled URL | [optional] 
 **RevisionId** | **string** |  | 
+**SamlMapperUrl** | Pointer to **string** | SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
+**SamlSsoEnabled** | Pointer to **bool** |  | [optional] 
 **ScimClients** | [**[]NormalizedProjectRevisionScimClient**](NormalizedProjectRevisionScimClient.md) |  | 
 **ScimEnabled** | **bool** |  | 
+**ScimMapperUrl** | Pointer to **string** | SCIMMapper specifies the JSONNet code snippet which uses the SCIM Provider&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
 **SsoEnabled** | **bool** |  | 
 
 ## Methods
@@ -37,6 +50,56 @@ NewOnboardingPortalOrganizationWithDefaults instantiates a new OnboardingPortalO
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetAppleMapperUrl
+
+`func (o *OnboardingPortalOrganization) GetAppleMapperUrl() string`
+
+GetAppleMapperUrl returns the AppleMapperUrl field if non-nil, zero value otherwise.
+
+### GetAppleMapperUrlOk
+
+`func (o *OnboardingPortalOrganization) GetAppleMapperUrlOk() (*string, bool)`
+
+GetAppleMapperUrlOk returns a tuple with the AppleMapperUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAppleMapperUrl
+
+`func (o *OnboardingPortalOrganization) SetAppleMapperUrl(v string)`
+
+SetAppleMapperUrl sets AppleMapperUrl field to given value.
+
+### HasAppleMapperUrl
+
+`func (o *OnboardingPortalOrganization) HasAppleMapperUrl() bool`
+
+HasAppleMapperUrl returns a boolean if a field has been set.
+
+### GetAuth0MapperUrl
+
+`func (o *OnboardingPortalOrganization) GetAuth0MapperUrl() string`
+
+GetAuth0MapperUrl returns the Auth0MapperUrl field if non-nil, zero value otherwise.
+
+### GetAuth0MapperUrlOk
+
+`func (o *OnboardingPortalOrganization) GetAuth0MapperUrlOk() (*string, bool)`
+
+GetAuth0MapperUrlOk returns a tuple with the Auth0MapperUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuth0MapperUrl
+
+`func (o *OnboardingPortalOrganization) SetAuth0MapperUrl(v string)`
+
+SetAuth0MapperUrl sets Auth0MapperUrl field to given value.
+
+### HasAuth0MapperUrl
+
+`func (o *OnboardingPortalOrganization) HasAuth0MapperUrl() bool`
+
+HasAuth0MapperUrl returns a boolean if a field has been set.
+
 ### GetBaseUrl
 
 `func (o *OnboardingPortalOrganization) GetBaseUrl() string`
@@ -56,6 +119,131 @@ and a boolean to check if the value has been set.
 
 SetBaseUrl sets BaseUrl field to given value.
 
+
+### GetFacebookMapperUrl
+
+`func (o *OnboardingPortalOrganization) GetFacebookMapperUrl() string`
+
+GetFacebookMapperUrl returns the FacebookMapperUrl field if non-nil, zero value otherwise.
+
+### GetFacebookMapperUrlOk
+
+`func (o *OnboardingPortalOrganization) GetFacebookMapperUrlOk() (*string, bool)`
+
+GetFacebookMapperUrlOk returns a tuple with the FacebookMapperUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFacebookMapperUrl
+
+`func (o *OnboardingPortalOrganization) SetFacebookMapperUrl(v string)`
+
+SetFacebookMapperUrl sets FacebookMapperUrl field to given value.
+
+### HasFacebookMapperUrl
+
+`func (o *OnboardingPortalOrganization) HasFacebookMapperUrl() bool`
+
+HasFacebookMapperUrl returns a boolean if a field has been set.
+
+### GetGenericOidcMapperUrl
+
+`func (o *OnboardingPortalOrganization) GetGenericOidcMapperUrl() string`
+
+GetGenericOidcMapperUrl returns the GenericOidcMapperUrl field if non-nil, zero value otherwise.
+
+### GetGenericOidcMapperUrlOk
+
+`func (o *OnboardingPortalOrganization) GetGenericOidcMapperUrlOk() (*string, bool)`
+
+GetGenericOidcMapperUrlOk returns a tuple with the GenericOidcMapperUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGenericOidcMapperUrl
+
+`func (o *OnboardingPortalOrganization) SetGenericOidcMapperUrl(v string)`
+
+SetGenericOidcMapperUrl sets GenericOidcMapperUrl field to given value.
+
+### HasGenericOidcMapperUrl
+
+`func (o *OnboardingPortalOrganization) HasGenericOidcMapperUrl() bool`
+
+HasGenericOidcMapperUrl returns a boolean if a field has been set.
+
+### GetGithubMapperUrl
+
+`func (o *OnboardingPortalOrganization) GetGithubMapperUrl() string`
+
+GetGithubMapperUrl returns the GithubMapperUrl field if non-nil, zero value otherwise.
+
+### GetGithubMapperUrlOk
+
+`func (o *OnboardingPortalOrganization) GetGithubMapperUrlOk() (*string, bool)`
+
+GetGithubMapperUrlOk returns a tuple with the GithubMapperUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGithubMapperUrl
+
+`func (o *OnboardingPortalOrganization) SetGithubMapperUrl(v string)`
+
+SetGithubMapperUrl sets GithubMapperUrl field to given value.
+
+### HasGithubMapperUrl
+
+`func (o *OnboardingPortalOrganization) HasGithubMapperUrl() bool`
+
+HasGithubMapperUrl returns a boolean if a field has been set.
+
+### GetGitlabMapperUrl
+
+`func (o *OnboardingPortalOrganization) GetGitlabMapperUrl() string`
+
+GetGitlabMapperUrl returns the GitlabMapperUrl field if non-nil, zero value otherwise.
+
+### GetGitlabMapperUrlOk
+
+`func (o *OnboardingPortalOrganization) GetGitlabMapperUrlOk() (*string, bool)`
+
+GetGitlabMapperUrlOk returns a tuple with the GitlabMapperUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGitlabMapperUrl
+
+`func (o *OnboardingPortalOrganization) SetGitlabMapperUrl(v string)`
+
+SetGitlabMapperUrl sets GitlabMapperUrl field to given value.
+
+### HasGitlabMapperUrl
+
+`func (o *OnboardingPortalOrganization) HasGitlabMapperUrl() bool`
+
+HasGitlabMapperUrl returns a boolean if a field has been set.
+
+### GetGoogleMapperUrl
+
+`func (o *OnboardingPortalOrganization) GetGoogleMapperUrl() string`
+
+GetGoogleMapperUrl returns the GoogleMapperUrl field if non-nil, zero value otherwise.
+
+### GetGoogleMapperUrlOk
+
+`func (o *OnboardingPortalOrganization) GetGoogleMapperUrlOk() (*string, bool)`
+
+GetGoogleMapperUrlOk returns a tuple with the GoogleMapperUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGoogleMapperUrl
+
+`func (o *OnboardingPortalOrganization) SetGoogleMapperUrl(v string)`
+
+SetGoogleMapperUrl sets GoogleMapperUrl field to given value.
+
+### HasGoogleMapperUrl
+
+`func (o *OnboardingPortalOrganization) HasGoogleMapperUrl() bool`
+
+HasGoogleMapperUrl returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsOidcConfigProviders
 
@@ -96,6 +284,81 @@ and a boolean to check if the value has been set.
 
 SetKratosSelfserviceMethodsSamlConfigProviders sets KratosSelfserviceMethodsSamlConfigProviders field to given value.
 
+
+### GetMicrosoftMapperUrl
+
+`func (o *OnboardingPortalOrganization) GetMicrosoftMapperUrl() string`
+
+GetMicrosoftMapperUrl returns the MicrosoftMapperUrl field if non-nil, zero value otherwise.
+
+### GetMicrosoftMapperUrlOk
+
+`func (o *OnboardingPortalOrganization) GetMicrosoftMapperUrlOk() (*string, bool)`
+
+GetMicrosoftMapperUrlOk returns a tuple with the MicrosoftMapperUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMicrosoftMapperUrl
+
+`func (o *OnboardingPortalOrganization) SetMicrosoftMapperUrl(v string)`
+
+SetMicrosoftMapperUrl sets MicrosoftMapperUrl field to given value.
+
+### HasMicrosoftMapperUrl
+
+`func (o *OnboardingPortalOrganization) HasMicrosoftMapperUrl() bool`
+
+HasMicrosoftMapperUrl returns a boolean if a field has been set.
+
+### GetNetidMapperUrl
+
+`func (o *OnboardingPortalOrganization) GetNetidMapperUrl() string`
+
+GetNetidMapperUrl returns the NetidMapperUrl field if non-nil, zero value otherwise.
+
+### GetNetidMapperUrlOk
+
+`func (o *OnboardingPortalOrganization) GetNetidMapperUrlOk() (*string, bool)`
+
+GetNetidMapperUrlOk returns a tuple with the NetidMapperUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetidMapperUrl
+
+`func (o *OnboardingPortalOrganization) SetNetidMapperUrl(v string)`
+
+SetNetidMapperUrl sets NetidMapperUrl field to given value.
+
+### HasNetidMapperUrl
+
+`func (o *OnboardingPortalOrganization) HasNetidMapperUrl() bool`
+
+HasNetidMapperUrl returns a boolean if a field has been set.
+
+### GetOidcSsoEnabled
+
+`func (o *OnboardingPortalOrganization) GetOidcSsoEnabled() bool`
+
+GetOidcSsoEnabled returns the OidcSsoEnabled field if non-nil, zero value otherwise.
+
+### GetOidcSsoEnabledOk
+
+`func (o *OnboardingPortalOrganization) GetOidcSsoEnabledOk() (*bool, bool)`
+
+GetOidcSsoEnabledOk returns a tuple with the OidcSsoEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOidcSsoEnabled
+
+`func (o *OnboardingPortalOrganization) SetOidcSsoEnabled(v bool)`
+
+SetOidcSsoEnabled sets OidcSsoEnabled field to given value.
+
+### HasOidcSsoEnabled
+
+`func (o *OnboardingPortalOrganization) HasOidcSsoEnabled() bool`
+
+HasOidcSsoEnabled returns a boolean if a field has been set.
 
 ### GetOrganizationId
 
@@ -262,6 +525,56 @@ and a boolean to check if the value has been set.
 SetRevisionId sets RevisionId field to given value.
 
 
+### GetSamlMapperUrl
+
+`func (o *OnboardingPortalOrganization) GetSamlMapperUrl() string`
+
+GetSamlMapperUrl returns the SamlMapperUrl field if non-nil, zero value otherwise.
+
+### GetSamlMapperUrlOk
+
+`func (o *OnboardingPortalOrganization) GetSamlMapperUrlOk() (*string, bool)`
+
+GetSamlMapperUrlOk returns a tuple with the SamlMapperUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSamlMapperUrl
+
+`func (o *OnboardingPortalOrganization) SetSamlMapperUrl(v string)`
+
+SetSamlMapperUrl sets SamlMapperUrl field to given value.
+
+### HasSamlMapperUrl
+
+`func (o *OnboardingPortalOrganization) HasSamlMapperUrl() bool`
+
+HasSamlMapperUrl returns a boolean if a field has been set.
+
+### GetSamlSsoEnabled
+
+`func (o *OnboardingPortalOrganization) GetSamlSsoEnabled() bool`
+
+GetSamlSsoEnabled returns the SamlSsoEnabled field if non-nil, zero value otherwise.
+
+### GetSamlSsoEnabledOk
+
+`func (o *OnboardingPortalOrganization) GetSamlSsoEnabledOk() (*bool, bool)`
+
+GetSamlSsoEnabledOk returns a tuple with the SamlSsoEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSamlSsoEnabled
+
+`func (o *OnboardingPortalOrganization) SetSamlSsoEnabled(v bool)`
+
+SetSamlSsoEnabled sets SamlSsoEnabled field to given value.
+
+### HasSamlSsoEnabled
+
+`func (o *OnboardingPortalOrganization) HasSamlSsoEnabled() bool`
+
+HasSamlSsoEnabled returns a boolean if a field has been set.
+
 ### GetScimClients
 
 `func (o *OnboardingPortalOrganization) GetScimClients() []NormalizedProjectRevisionScimClient`
@@ -301,6 +614,31 @@ and a boolean to check if the value has been set.
 
 SetScimEnabled sets ScimEnabled field to given value.
 
+
+### GetScimMapperUrl
+
+`func (o *OnboardingPortalOrganization) GetScimMapperUrl() string`
+
+GetScimMapperUrl returns the ScimMapperUrl field if non-nil, zero value otherwise.
+
+### GetScimMapperUrlOk
+
+`func (o *OnboardingPortalOrganization) GetScimMapperUrlOk() (*string, bool)`
+
+GetScimMapperUrlOk returns a tuple with the ScimMapperUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScimMapperUrl
+
+`func (o *OnboardingPortalOrganization) SetScimMapperUrl(v string)`
+
+SetScimMapperUrl sets ScimMapperUrl field to given value.
+
+### HasScimMapperUrl
+
+`func (o *OnboardingPortalOrganization) HasScimMapperUrl() bool`
+
+HasScimMapperUrl returns a boolean if a field has been set.
 
 ### GetSsoEnabled
 

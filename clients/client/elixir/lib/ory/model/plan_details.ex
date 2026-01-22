@@ -12,9 +12,12 @@ defmodule Ory.Model.PlanDetails do
     :base_fee_yearly,
     :custom,
     :description,
+    :development_features,
     :features,
     :latest,
     :name,
+    :production_features,
+    :staging_features,
     :version
   ]
 
@@ -23,9 +26,12 @@ defmodule Ory.Model.PlanDetails do
     :base_fee_yearly => integer(),
     :custom => boolean(),
     :description => String.t,
+    :development_features => %{optional(String.t) => Ory.Model.GenericUsage.t},
     :features => %{optional(String.t) => Ory.Model.GenericUsage.t},
     :latest => boolean() | nil,
     :name => String.t,
+    :production_features => %{optional(String.t) => Ory.Model.GenericUsage.t},
+    :staging_features => %{optional(String.t) => Ory.Model.GenericUsage.t},
     :version => integer()
   }
 
@@ -33,7 +39,10 @@ defmodule Ory.Model.PlanDetails do
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:development_features, :map, Ory.Model.GenericUsage)
      |> Deserializer.deserialize(:features, :map, Ory.Model.GenericUsage)
+     |> Deserializer.deserialize(:production_features, :map, Ory.Model.GenericUsage)
+     |> Deserializer.deserialize(:staging_features, :map, Ory.Model.GenericUsage)
   end
 end
 

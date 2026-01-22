@@ -15,7 +15,7 @@ part 'identity_credentials.g.dart';
 /// Properties:
 /// * [config] 
 /// * [createdAt] - CreatedAt is a helper struct field for gobuffalo.pop.
-/// * [identifiers] - Identifiers represents a list of unique identifiers this credential type matches.
+/// * [identifiers] - Identifiers represent a list of unique identifiers this credential type matches.
 /// * [type] - Type discriminates between different types of credentials. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 /// * [updatedAt] - UpdatedAt is a helper struct field for gobuffalo.pop.
 /// * [version] - Version refers to the version of the credential. Useful when changing the config schema.
@@ -28,7 +28,7 @@ abstract class IdentityCredentials implements Built<IdentityCredentials, Identit
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
 
-  /// Identifiers represents a list of unique identifiers this credential type matches.
+  /// Identifiers represent a list of unique identifiers this credential type matches.
   @BuiltValueField(wireName: r'identifiers')
   BuiltList<String>? get identifiers;
 

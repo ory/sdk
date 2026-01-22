@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.16
+API version: v1.22.21
 Contact: support@ory.sh
 */
 
@@ -29,11 +29,14 @@ type PlanDetails struct {
 	Custom bool `json:"custom"`
 	// Description is the description of the plan.
 	Description string `json:"description"`
+	DevelopmentFeatures map[string]GenericUsage `json:"development_features"`
 	Features map[string]GenericUsage `json:"features"`
 	// Latest is true if the plan is the latest version of a plan and should be available for self-service usage.
 	Latest *bool `json:"latest,omitempty"`
 	// Name is the name of the plan.
 	Name string `json:"name"`
+	ProductionFeatures map[string]GenericUsage `json:"production_features"`
+	StagingFeatures map[string]GenericUsage `json:"staging_features"`
 	// Version is the version of the plan. The combination of `name@version` must be unique.
 	Version int64 `json:"version"`
 	AdditionalProperties map[string]interface{}
@@ -45,14 +48,17 @@ type _PlanDetails PlanDetails
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlanDetails(baseFeeMonthly int64, baseFeeYearly int64, custom bool, description string, features map[string]GenericUsage, name string, version int64) *PlanDetails {
+func NewPlanDetails(baseFeeMonthly int64, baseFeeYearly int64, custom bool, description string, developmentFeatures map[string]GenericUsage, features map[string]GenericUsage, name string, productionFeatures map[string]GenericUsage, stagingFeatures map[string]GenericUsage, version int64) *PlanDetails {
 	this := PlanDetails{}
 	this.BaseFeeMonthly = baseFeeMonthly
 	this.BaseFeeYearly = baseFeeYearly
 	this.Custom = custom
 	this.Description = description
+	this.DevelopmentFeatures = developmentFeatures
 	this.Features = features
 	this.Name = name
+	this.ProductionFeatures = productionFeatures
+	this.StagingFeatures = stagingFeatures
 	this.Version = version
 	return &this
 }
@@ -161,6 +167,30 @@ func (o *PlanDetails) SetDescription(v string) {
 	o.Description = v
 }
 
+// GetDevelopmentFeatures returns the DevelopmentFeatures field value
+func (o *PlanDetails) GetDevelopmentFeatures() map[string]GenericUsage {
+	if o == nil {
+		var ret map[string]GenericUsage
+		return ret
+	}
+
+	return o.DevelopmentFeatures
+}
+
+// GetDevelopmentFeaturesOk returns a tuple with the DevelopmentFeatures field value
+// and a boolean to check if the value has been set.
+func (o *PlanDetails) GetDevelopmentFeaturesOk() (*map[string]GenericUsage, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DevelopmentFeatures, true
+}
+
+// SetDevelopmentFeatures sets field value
+func (o *PlanDetails) SetDevelopmentFeatures(v map[string]GenericUsage) {
+	o.DevelopmentFeatures = v
+}
+
 // GetFeatures returns the Features field value
 func (o *PlanDetails) GetFeatures() map[string]GenericUsage {
 	if o == nil {
@@ -241,6 +271,54 @@ func (o *PlanDetails) SetName(v string) {
 	o.Name = v
 }
 
+// GetProductionFeatures returns the ProductionFeatures field value
+func (o *PlanDetails) GetProductionFeatures() map[string]GenericUsage {
+	if o == nil {
+		var ret map[string]GenericUsage
+		return ret
+	}
+
+	return o.ProductionFeatures
+}
+
+// GetProductionFeaturesOk returns a tuple with the ProductionFeatures field value
+// and a boolean to check if the value has been set.
+func (o *PlanDetails) GetProductionFeaturesOk() (*map[string]GenericUsage, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProductionFeatures, true
+}
+
+// SetProductionFeatures sets field value
+func (o *PlanDetails) SetProductionFeatures(v map[string]GenericUsage) {
+	o.ProductionFeatures = v
+}
+
+// GetStagingFeatures returns the StagingFeatures field value
+func (o *PlanDetails) GetStagingFeatures() map[string]GenericUsage {
+	if o == nil {
+		var ret map[string]GenericUsage
+		return ret
+	}
+
+	return o.StagingFeatures
+}
+
+// GetStagingFeaturesOk returns a tuple with the StagingFeatures field value
+// and a boolean to check if the value has been set.
+func (o *PlanDetails) GetStagingFeaturesOk() (*map[string]GenericUsage, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StagingFeatures, true
+}
+
+// SetStagingFeatures sets field value
+func (o *PlanDetails) SetStagingFeatures(v map[string]GenericUsage) {
+	o.StagingFeatures = v
+}
+
 // GetVersion returns the Version field value
 func (o *PlanDetails) GetVersion() int64 {
 	if o == nil {
@@ -279,11 +357,14 @@ func (o PlanDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize["base_fee_yearly"] = o.BaseFeeYearly
 	toSerialize["custom"] = o.Custom
 	toSerialize["description"] = o.Description
+	toSerialize["development_features"] = o.DevelopmentFeatures
 	toSerialize["features"] = o.Features
 	if !IsNil(o.Latest) {
 		toSerialize["latest"] = o.Latest
 	}
 	toSerialize["name"] = o.Name
+	toSerialize["production_features"] = o.ProductionFeatures
+	toSerialize["staging_features"] = o.StagingFeatures
 	toSerialize["version"] = o.Version
 
 	for key, value := range o.AdditionalProperties {
@@ -302,8 +383,11 @@ func (o *PlanDetails) UnmarshalJSON(data []byte) (err error) {
 		"base_fee_yearly",
 		"custom",
 		"description",
+		"development_features",
 		"features",
 		"name",
+		"production_features",
+		"staging_features",
 		"version",
 	}
 
@@ -338,9 +422,12 @@ func (o *PlanDetails) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "base_fee_yearly")
 		delete(additionalProperties, "custom")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "development_features")
 		delete(additionalProperties, "features")
 		delete(additionalProperties, "latest")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "production_features")
+		delete(additionalProperties, "staging_features")
 		delete(additionalProperties, "version")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -15,9 +15,19 @@ part 'onboarding_portal_organization.g.dart';
 /// OnboardingPortalOrganization
 ///
 /// Properties:
+/// * [appleMapperUrl] - AppleMapper specifies the JSONNet code snippet which uses Apple's profile information to hydrate the identity's data.
+/// * [auth0MapperUrl] - Auth0Mapper specifies the JSONNet code snippet which uses Auth0's profile information to hydrate the identity's data.
 /// * [baseUrl] 
+/// * [facebookMapperUrl] - FacebookMapper specifies the JSONNet code snippet which uses Facebook's profile information to hydrate the identity's data.
+/// * [genericOidcMapperUrl] - GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider's profile information to hydrate the identity's data.
+/// * [githubMapperUrl] - GithubMapper specifies the JSONNet code snippet which uses GitHub's profile information to hydrate the identity's data.
+/// * [gitlabMapperUrl] - GitLabMapper specifies the JSONNet code snippet which uses GitLab's profile information to hydrate the identity's data.
+/// * [googleMapperUrl] - GoogleMapper specifies the JSONNet code snippet which uses Google's profile information to hydrate the identity's data.
 /// * [kratosSelfserviceMethodsOidcConfigProviders] 
 /// * [kratosSelfserviceMethodsSamlConfigProviders] 
+/// * [microsoftMapperUrl] - MicrosoftMapper specifies the JSONNet code snippet which uses Microsoft's profile information to hydrate the identity's data.
+/// * [netidMapperUrl] - NetIDMapper specifies the JSONNet code snippet which uses NetID's profile information to hydrate the identity's data.
+/// * [oidcSsoEnabled] 
 /// * [organizationId] 
 /// * [organizationLabel] - Organization Label
 /// * [proxyAcsUrl] - Proxy ACS URL if overriding with a customer-controlled URL
@@ -25,19 +35,61 @@ part 'onboarding_portal_organization.g.dart';
 /// * [proxySamlAudienceOverride] - SAML Audience Override if overriding with a customer-controlled one
 /// * [proxyScimServerUrl] - Proxy SCIM Server URL if overriding with a customer-controlled URL
 /// * [revisionId] 
+/// * [samlMapperUrl] - SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider's profile information to hydrate the identity's data.
+/// * [samlSsoEnabled] 
 /// * [scimClients] 
 /// * [scimEnabled] 
+/// * [scimMapperUrl] - SCIMMapper specifies the JSONNet code snippet which uses the SCIM Provider's profile information to hydrate the identity's data.
 /// * [ssoEnabled] 
 @BuiltValue()
 abstract class OnboardingPortalOrganization implements Built<OnboardingPortalOrganization, OnboardingPortalOrganizationBuilder> {
+  /// AppleMapper specifies the JSONNet code snippet which uses Apple's profile information to hydrate the identity's data.
+  @BuiltValueField(wireName: r'apple_mapper_url')
+  String? get appleMapperUrl;
+
+  /// Auth0Mapper specifies the JSONNet code snippet which uses Auth0's profile information to hydrate the identity's data.
+  @BuiltValueField(wireName: r'auth0_mapper_url')
+  String? get auth0MapperUrl;
+
   @BuiltValueField(wireName: r'base_url')
   String get baseUrl;
+
+  /// FacebookMapper specifies the JSONNet code snippet which uses Facebook's profile information to hydrate the identity's data.
+  @BuiltValueField(wireName: r'facebook_mapper_url')
+  String? get facebookMapperUrl;
+
+  /// GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider's profile information to hydrate the identity's data.
+  @BuiltValueField(wireName: r'generic_oidc_mapper_url')
+  String? get genericOidcMapperUrl;
+
+  /// GithubMapper specifies the JSONNet code snippet which uses GitHub's profile information to hydrate the identity's data.
+  @BuiltValueField(wireName: r'github_mapper_url')
+  String? get githubMapperUrl;
+
+  /// GitLabMapper specifies the JSONNet code snippet which uses GitLab's profile information to hydrate the identity's data.
+  @BuiltValueField(wireName: r'gitlab_mapper_url')
+  String? get gitlabMapperUrl;
+
+  /// GoogleMapper specifies the JSONNet code snippet which uses Google's profile information to hydrate the identity's data.
+  @BuiltValueField(wireName: r'google_mapper_url')
+  String? get googleMapperUrl;
 
   @BuiltValueField(wireName: r'kratos_selfservice_methods_oidc_config_providers')
   BuiltList<NormalizedProjectRevisionThirdPartyProvider> get kratosSelfserviceMethodsOidcConfigProviders;
 
   @BuiltValueField(wireName: r'kratos_selfservice_methods_saml_config_providers')
   BuiltList<NormalizedProjectRevisionSAMLProvider> get kratosSelfserviceMethodsSamlConfigProviders;
+
+  /// MicrosoftMapper specifies the JSONNet code snippet which uses Microsoft's profile information to hydrate the identity's data.
+  @BuiltValueField(wireName: r'microsoft_mapper_url')
+  String? get microsoftMapperUrl;
+
+  /// NetIDMapper specifies the JSONNet code snippet which uses NetID's profile information to hydrate the identity's data.
+  @BuiltValueField(wireName: r'netid_mapper_url')
+  String? get netidMapperUrl;
+
+  @BuiltValueField(wireName: r'oidc_sso_enabled')
+  bool? get oidcSsoEnabled;
 
   @BuiltValueField(wireName: r'organization_id')
   String get organizationId;
@@ -65,11 +117,22 @@ abstract class OnboardingPortalOrganization implements Built<OnboardingPortalOrg
   @BuiltValueField(wireName: r'revision_id')
   String get revisionId;
 
+  /// SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider's profile information to hydrate the identity's data.
+  @BuiltValueField(wireName: r'saml_mapper_url')
+  String? get samlMapperUrl;
+
+  @BuiltValueField(wireName: r'saml_sso_enabled')
+  bool? get samlSsoEnabled;
+
   @BuiltValueField(wireName: r'scim_clients')
   BuiltList<NormalizedProjectRevisionScimClient> get scimClients;
 
   @BuiltValueField(wireName: r'scim_enabled')
   bool get scimEnabled;
+
+  /// SCIMMapper specifies the JSONNet code snippet which uses the SCIM Provider's profile information to hydrate the identity's data.
+  @BuiltValueField(wireName: r'scim_mapper_url')
+  String? get scimMapperUrl;
 
   @BuiltValueField(wireName: r'sso_enabled')
   bool get ssoEnabled;
@@ -97,11 +160,60 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
     OnboardingPortalOrganization object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.appleMapperUrl != null) {
+      yield r'apple_mapper_url';
+      yield serializers.serialize(
+        object.appleMapperUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.auth0MapperUrl != null) {
+      yield r'auth0_mapper_url';
+      yield serializers.serialize(
+        object.auth0MapperUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     yield r'base_url';
     yield serializers.serialize(
       object.baseUrl,
       specifiedType: const FullType(String),
     );
+    if (object.facebookMapperUrl != null) {
+      yield r'facebook_mapper_url';
+      yield serializers.serialize(
+        object.facebookMapperUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.genericOidcMapperUrl != null) {
+      yield r'generic_oidc_mapper_url';
+      yield serializers.serialize(
+        object.genericOidcMapperUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.githubMapperUrl != null) {
+      yield r'github_mapper_url';
+      yield serializers.serialize(
+        object.githubMapperUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.gitlabMapperUrl != null) {
+      yield r'gitlab_mapper_url';
+      yield serializers.serialize(
+        object.gitlabMapperUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.googleMapperUrl != null) {
+      yield r'google_mapper_url';
+      yield serializers.serialize(
+        object.googleMapperUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     yield r'kratos_selfservice_methods_oidc_config_providers';
     yield serializers.serialize(
       object.kratosSelfserviceMethodsOidcConfigProviders,
@@ -112,6 +224,27 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
       object.kratosSelfserviceMethodsSamlConfigProviders,
       specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionSAMLProvider)]),
     );
+    if (object.microsoftMapperUrl != null) {
+      yield r'microsoft_mapper_url';
+      yield serializers.serialize(
+        object.microsoftMapperUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.netidMapperUrl != null) {
+      yield r'netid_mapper_url';
+      yield serializers.serialize(
+        object.netidMapperUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.oidcSsoEnabled != null) {
+      yield r'oidc_sso_enabled';
+      yield serializers.serialize(
+        object.oidcSsoEnabled,
+        specifiedType: const FullType(bool),
+      );
+    }
     yield r'organization_id';
     yield serializers.serialize(
       object.organizationId,
@@ -157,6 +290,20 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
       object.revisionId,
       specifiedType: const FullType(String),
     );
+    if (object.samlMapperUrl != null) {
+      yield r'saml_mapper_url';
+      yield serializers.serialize(
+        object.samlMapperUrl,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.samlSsoEnabled != null) {
+      yield r'saml_sso_enabled';
+      yield serializers.serialize(
+        object.samlSsoEnabled,
+        specifiedType: const FullType(bool),
+      );
+    }
     yield r'scim_clients';
     yield serializers.serialize(
       object.scimClients,
@@ -167,6 +314,13 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
       object.scimEnabled,
       specifiedType: const FullType(bool),
     );
+    if (object.scimMapperUrl != null) {
+      yield r'scim_mapper_url';
+      yield serializers.serialize(
+        object.scimMapperUrl,
+        specifiedType: const FullType(String),
+      );
+    }
     yield r'sso_enabled';
     yield serializers.serialize(
       object.ssoEnabled,
@@ -195,12 +349,61 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'apple_mapper_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.appleMapperUrl = valueDes;
+          break;
+        case r'auth0_mapper_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.auth0MapperUrl = valueDes;
+          break;
         case r'base_url':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.baseUrl = valueDes;
+          break;
+        case r'facebook_mapper_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.facebookMapperUrl = valueDes;
+          break;
+        case r'generic_oidc_mapper_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.genericOidcMapperUrl = valueDes;
+          break;
+        case r'github_mapper_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.githubMapperUrl = valueDes;
+          break;
+        case r'gitlab_mapper_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.gitlabMapperUrl = valueDes;
+          break;
+        case r'google_mapper_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.googleMapperUrl = valueDes;
           break;
         case r'kratos_selfservice_methods_oidc_config_providers':
           final valueDes = serializers.deserialize(
@@ -215,6 +418,27 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
             specifiedType: const FullType(BuiltList, [FullType(NormalizedProjectRevisionSAMLProvider)]),
           ) as BuiltList<NormalizedProjectRevisionSAMLProvider>;
           result.kratosSelfserviceMethodsSamlConfigProviders.replace(valueDes);
+          break;
+        case r'microsoft_mapper_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.microsoftMapperUrl = valueDes;
+          break;
+        case r'netid_mapper_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.netidMapperUrl = valueDes;
+          break;
+        case r'oidc_sso_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.oidcSsoEnabled = valueDes;
           break;
         case r'organization_id':
           final valueDes = serializers.deserialize(
@@ -265,6 +489,20 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
           ) as String;
           result.revisionId = valueDes;
           break;
+        case r'saml_mapper_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.samlMapperUrl = valueDes;
+          break;
+        case r'saml_sso_enabled':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.samlSsoEnabled = valueDes;
+          break;
         case r'scim_clients':
           final valueDes = serializers.deserialize(
             value,
@@ -278,6 +516,13 @@ class _$OnboardingPortalOrganizationSerializer implements PrimitiveSerializer<On
             specifiedType: const FullType(bool),
           ) as bool;
           result.scimEnabled = valueDes;
+          break;
+        case r'scim_mapper_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.scimMapperUrl = valueDes;
           break;
         case r'sso_enabled':
           final valueDes = serializers.deserialize(

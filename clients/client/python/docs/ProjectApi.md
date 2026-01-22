@@ -1384,6 +1384,7 @@ Name | Type | Description  | Notes
 **401** | errorGeneric |  -  |
 **403** | errorGeneric |  -  |
 **404** | errorGeneric |  -  |
+**409** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

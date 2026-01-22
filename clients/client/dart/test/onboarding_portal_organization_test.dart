@@ -7,8 +7,50 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(OnboardingPortalOrganization, () {
+    // AppleMapper specifies the JSONNet code snippet which uses Apple's profile information to hydrate the identity's data.
+    // String appleMapperUrl
+    test('to test the property `appleMapperUrl`', () async {
+      // TODO
+    });
+
+    // Auth0Mapper specifies the JSONNet code snippet which uses Auth0's profile information to hydrate the identity's data.
+    // String auth0MapperUrl
+    test('to test the property `auth0MapperUrl`', () async {
+      // TODO
+    });
+
     // String baseUrl
     test('to test the property `baseUrl`', () async {
+      // TODO
+    });
+
+    // FacebookMapper specifies the JSONNet code snippet which uses Facebook's profile information to hydrate the identity's data.
+    // String facebookMapperUrl
+    test('to test the property `facebookMapperUrl`', () async {
+      // TODO
+    });
+
+    // GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider's profile information to hydrate the identity's data.
+    // String genericOidcMapperUrl
+    test('to test the property `genericOidcMapperUrl`', () async {
+      // TODO
+    });
+
+    // GithubMapper specifies the JSONNet code snippet which uses GitHub's profile information to hydrate the identity's data.
+    // String githubMapperUrl
+    test('to test the property `githubMapperUrl`', () async {
+      // TODO
+    });
+
+    // GitLabMapper specifies the JSONNet code snippet which uses GitLab's profile information to hydrate the identity's data.
+    // String gitlabMapperUrl
+    test('to test the property `gitlabMapperUrl`', () async {
+      // TODO
+    });
+
+    // GoogleMapper specifies the JSONNet code snippet which uses Google's profile information to hydrate the identity's data.
+    // String googleMapperUrl
+    test('to test the property `googleMapperUrl`', () async {
       // TODO
     });
 
@@ -19,6 +61,23 @@ void main() {
 
     // BuiltList<NormalizedProjectRevisionSAMLProvider> kratosSelfserviceMethodsSamlConfigProviders
     test('to test the property `kratosSelfserviceMethodsSamlConfigProviders`', () async {
+      // TODO
+    });
+
+    // MicrosoftMapper specifies the JSONNet code snippet which uses Microsoft's profile information to hydrate the identity's data.
+    // String microsoftMapperUrl
+    test('to test the property `microsoftMapperUrl`', () async {
+      // TODO
+    });
+
+    // NetIDMapper specifies the JSONNet code snippet which uses NetID's profile information to hydrate the identity's data.
+    // String netidMapperUrl
+    test('to test the property `netidMapperUrl`', () async {
+      // TODO
+    });
+
+    // bool oidcSsoEnabled
+    test('to test the property `oidcSsoEnabled`', () async {
       // TODO
     });
 
@@ -62,6 +121,17 @@ void main() {
       // TODO
     });
 
+    // SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider's profile information to hydrate the identity's data.
+    // String samlMapperUrl
+    test('to test the property `samlMapperUrl`', () async {
+      // TODO
+    });
+
+    // bool samlSsoEnabled
+    test('to test the property `samlSsoEnabled`', () async {
+      // TODO
+    });
+
     // BuiltList<NormalizedProjectRevisionScimClient> scimClients
     test('to test the property `scimClients`', () async {
       // TODO
@@ -69,6 +139,12 @@ void main() {
 
     // bool scimEnabled
     test('to test the property `scimEnabled`', () async {
+      // TODO
+    });
+
+    // SCIMMapper specifies the JSONNet code snippet which uses the SCIM Provider's profile information to hydrate the identity's data.
+    // String scimMapperUrl
+    test('to test the property `scimMapperUrl`', () async {
       // TODO
     });
 

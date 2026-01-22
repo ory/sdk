@@ -8,9 +8,19 @@ defmodule Ory.Model.OnboardingPortalOrganization do
 
   @derive Jason.Encoder
   defstruct [
+    :apple_mapper_url,
+    :auth0_mapper_url,
     :base_url,
+    :facebook_mapper_url,
+    :generic_oidc_mapper_url,
+    :github_mapper_url,
+    :gitlab_mapper_url,
+    :google_mapper_url,
     :kratos_selfservice_methods_oidc_config_providers,
     :kratos_selfservice_methods_saml_config_providers,
+    :microsoft_mapper_url,
+    :netid_mapper_url,
+    :oidc_sso_enabled,
     :organization_id,
     :organization_label,
     :proxy_acs_url,
@@ -18,15 +28,28 @@ defmodule Ory.Model.OnboardingPortalOrganization do
     :proxy_saml_audience_override,
     :proxy_scim_server_url,
     :revision_id,
+    :saml_mapper_url,
+    :saml_sso_enabled,
     :scim_clients,
     :scim_enabled,
+    :scim_mapper_url,
     :sso_enabled
   ]
 
   @type t :: %__MODULE__{
+    :apple_mapper_url => String.t | nil,
+    :auth0_mapper_url => String.t | nil,
     :base_url => String.t,
+    :facebook_mapper_url => String.t | nil,
+    :generic_oidc_mapper_url => String.t | nil,
+    :github_mapper_url => String.t | nil,
+    :gitlab_mapper_url => String.t | nil,
+    :google_mapper_url => String.t | nil,
     :kratos_selfservice_methods_oidc_config_providers => [Ory.Model.NormalizedProjectRevisionThirdPartyProvider.t],
     :kratos_selfservice_methods_saml_config_providers => [Ory.Model.NormalizedProjectRevisionSamlProvider.t],
+    :microsoft_mapper_url => String.t | nil,
+    :netid_mapper_url => String.t | nil,
+    :oidc_sso_enabled => boolean() | nil,
     :organization_id => String.t,
     :organization_label => String.t | nil,
     :proxy_acs_url => String.t | nil,
@@ -34,8 +57,11 @@ defmodule Ory.Model.OnboardingPortalOrganization do
     :proxy_saml_audience_override => String.t | nil,
     :proxy_scim_server_url => String.t | nil,
     :revision_id => String.t,
+    :saml_mapper_url => String.t | nil,
+    :saml_sso_enabled => boolean() | nil,
     :scim_clients => [Ory.Model.NormalizedProjectRevisionScimClient.t],
     :scim_enabled => boolean(),
+    :scim_mapper_url => String.t | nil,
     :sso_enabled => boolean()
   }
 

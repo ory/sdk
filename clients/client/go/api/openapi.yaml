@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.16
+  version: v1.22.21
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -1468,7 +1468,7 @@ paths:
       - jwk
     post:
       description: |-
-        This endpoint is capable of generating JSON Web Key Sets for you. There a different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.
+        This endpoint is capable of generating JSON Web Key Sets for you. There are different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymmetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.
 
         A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
       operationId: createJsonWebKeySet
@@ -4734,6 +4734,12 @@ paths:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
         "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "409":
           content:
             application/json:
               schema:
@@ -11019,10 +11025,15 @@ components:
         description:
           description: Description is the description of the plan.
           type: string
+        development_features:
+          additionalProperties:
+            $ref: '#/components/schemas/GenericUsage'
+          title: PlanFeatures are the feature definitions included in the plan.
+          type: object
         features:
           additionalProperties:
             $ref: '#/components/schemas/GenericUsage'
-          title: Features are the feature definitions included in the plan.
+          title: PlanFeatures are the feature definitions included in the plan.
           type: object
         latest:
           description: Latest is true if the plan is the latest version of a plan
@@ -11031,6 +11042,16 @@ components:
         name:
           description: Name is the name of the plan.
           type: string
+        production_features:
+          additionalProperties:
+            $ref: '#/components/schemas/GenericUsage'
+          title: PlanFeatures are the feature definitions included in the plan.
+          type: object
+        staging_features:
+          additionalProperties:
+            $ref: '#/components/schemas/GenericUsage'
+          title: PlanFeatures are the feature definitions included in the plan.
+          type: object
         version:
           description: Version is the version of the plan. The combination of `name@version`
             must be unique.
@@ -11041,14 +11062,17 @@ components:
       - base_fee_yearly
       - custom
       - description
+      - development_features
       - features
       - name
+      - production_features
+      - staging_features
       - version
       type: object
     PlanFeatures:
       additionalProperties:
         $ref: '#/components/schemas/GenericUsage'
-      title: Features are the feature definitions included in the plan.
+      title: PlanFeatures are the feature definitions included in the plan.
       type: object
     Pricing:
       items:
@@ -12090,6 +12114,16 @@ components:
       $ref: '#/components/schemas/CreateInviteResponse'
     createOrganizationOnboardingPortalLinkBody:
       properties:
+        apple_mapper_url:
+          description: |-
+            AppleMapper specifies the JSONNet code snippet which uses Apple's
+            profile information to hydrate the identity's data.
+          type: string
+        auth0_mapper_url:
+          description: |-
+            Auth0Mapper specifies the JSONNet code snippet which uses Auth0's
+            profile information to hydrate the identity's data.
+          type: string
         custom_hostname_id:
           format: uuid4
           nullable: true
@@ -12102,6 +12136,41 @@ components:
           type: boolean
         expires_at:
           format: date-time
+          type: string
+        facebook_mapper_url:
+          description: |-
+            FacebookMapper specifies the JSONNet code snippet which uses Facebook's
+            profile information to hydrate the identity's data.
+          type: string
+        generic_oidc_mapper_url:
+          description: |-
+            GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider's
+            profile information to hydrate the identity's data.
+          type: string
+        github_mapper_url:
+          description: |-
+            GithubMapper specifies the JSONNet code snippet which uses GitHub's
+            profile information to hydrate the identity's data.
+          type: string
+        gitlab_mapper_url:
+          description: |-
+            GitLabMapper specifies the JSONNet code snippet which uses GitLab's
+            profile information to hydrate the identity's data.
+          type: string
+        google_mapper_url:
+          description: |-
+            GoogleMapper specifies the JSONNet code snippet which uses Google's
+            profile information to hydrate the identity's data.
+          type: string
+        microsoft_mapper_url:
+          description: |-
+            MicrosoftMapper specifies the JSONNet code snippet which uses Microsoft's
+            profile information to hydrate the identity's data.
+          type: string
+        netid_mapper_url:
+          description: |-
+            NetIDMapper specifies the JSONNet code snippet which uses NetID's
+            profile information to hydrate the identity's data.
           type: string
         proxy_acs_url:
           description: Proxy ACS URL if overriding with a customer-controlled URL
@@ -12117,6 +12186,16 @@ components:
         proxy_scim_server_url:
           description: Proxy SCIM Server URL if overriding with a customer-controlled
             URL
+          type: string
+        saml_mapper_url:
+          description: |-
+            SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider's
+            profile information to hydrate the identity's data.
+          type: string
+        scim_mapper_url:
+          description: |-
+            SCIMMapper specifies the JSONNet code snippet which uses the SCIM Provider's
+            profile information to hydrate the identity's data.
           type: string
       required:
       - enable_scim
@@ -13200,7 +13279,7 @@ components:
           format: date-time
           type: string
         identifiers:
-          description: Identifiers represents a list of unique identifiers this credential
+          description: Identifiers represent a list of unique identifiers this credential
             type matches.
           items:
             type: string
@@ -13604,7 +13683,7 @@ components:
           type: array
         client_id:
           description: |-
-            ID is aclient identifier for the OAuth 2.0 client that
+            ID is a client identifier for the OAuth 2.0 client that
             requested this token.
           type: string
         exp:
@@ -18829,18 +18908,39 @@ components:
       example:
         proxy_oidc_redirect_url: proxy_oidc_redirect_url
         proxy_saml_audience_override: proxy_saml_audience_override
+        microsoft_mapper_url: microsoft_mapper_url
         proxy_scim_server_url: proxy_scim_server_url
+        netid_mapper_url: netid_mapper_url
         enable_scim: true
+        generic_oidc_mapper_url: generic_oidc_mapper_url
         created_at: 2000-01-23T04:56:07.000+00:00
         proxy_acs_url: proxy_acs_url
         enable_sso: true
+        scim_mapper_url: scim_mapper_url
+        apple_mapper_url: apple_mapper_url
+        saml_mapper_url: saml_mapper_url
         custom_hostname_id: custom_hostname_id
         expires_at: 2000-01-23T04:56:07.000+00:00
         project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        facebook_mapper_url: facebook_mapper_url
         organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        google_mapper_url: google_mapper_url
+        auth0_mapper_url: auth0_mapper_url
+        gitlab_mapper_url: gitlab_mapper_url
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        github_mapper_url: github_mapper_url
         value: value
       properties:
+        apple_mapper_url:
+          description: |-
+            AppleMapper specifies the JSONNet code snippet which uses Apple's
+            profile information to hydrate the identity's data.
+          type: string
+        auth0_mapper_url:
+          description: |-
+            Auth0Mapper specifies the JSONNet code snippet which uses Auth0's
+            profile information to hydrate the identity's data.
+          type: string
         created_at:
           description: The onboarding portal link's creation date
           format: date-time
@@ -18861,10 +18961,45 @@ components:
           format: date-time
           readOnly: true
           type: string
+        facebook_mapper_url:
+          description: |-
+            FacebookMapper specifies the JSONNet code snippet which uses Facebook's
+            profile information to hydrate the identity's data.
+          type: string
+        generic_oidc_mapper_url:
+          description: |-
+            GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider's
+            profile information to hydrate the identity's data.
+          type: string
+        github_mapper_url:
+          description: |-
+            GithubMapper specifies the JSONNet code snippet which uses GitHub's
+            profile information to hydrate the identity's data.
+          type: string
+        gitlab_mapper_url:
+          description: |-
+            GitLabMapper specifies the JSONNet code snippet which uses GitLab's
+            profile information to hydrate the identity's data.
+          type: string
+        google_mapper_url:
+          description: |-
+            GoogleMapper specifies the JSONNet code snippet which uses Google's
+            profile information to hydrate the identity's data.
+          type: string
         id:
           description: The onboarding portal link's ID.
           format: uuid
           readOnly: true
+          type: string
+        microsoft_mapper_url:
+          description: |-
+            MicrosoftMapper specifies the JSONNet code snippet which uses Microsoft's
+            profile information to hydrate the identity's data.
+          type: string
+        netid_mapper_url:
+          description: |-
+            NetIDMapper specifies the JSONNet code snippet which uses NetID's
+            profile information to hydrate the identity's data.
           type: string
         organization_id:
           description: The onboarding portal link's organization ID
@@ -18891,6 +19026,16 @@ components:
           description: Proxy SCIM Server URL if overriding with a customer-controlled
             URL
           type: string
+        saml_mapper_url:
+          description: |-
+            SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider's
+            profile information to hydrate the identity's data.
+          type: string
+        scim_mapper_url:
+          description: |-
+            SCIMMapper specifies the JSONNet code snippet which uses the SCIM Provider's
+            profile information to hydrate the identity's data.
+          type: string
         value:
           description: The onboarding portal link's value
           readOnly: true
@@ -18904,7 +19049,42 @@ components:
       type: object
     onboardingPortalOrganization:
       properties:
+        apple_mapper_url:
+          description: |-
+            AppleMapper specifies the JSONNet code snippet which uses Apple's
+            profile information to hydrate the identity's data.
+          type: string
+        auth0_mapper_url:
+          description: |-
+            Auth0Mapper specifies the JSONNet code snippet which uses Auth0's
+            profile information to hydrate the identity's data.
+          type: string
         base_url:
+          type: string
+        facebook_mapper_url:
+          description: |-
+            FacebookMapper specifies the JSONNet code snippet which uses Facebook's
+            profile information to hydrate the identity's data.
+          type: string
+        generic_oidc_mapper_url:
+          description: |-
+            GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider's
+            profile information to hydrate the identity's data.
+          type: string
+        github_mapper_url:
+          description: |-
+            GithubMapper specifies the JSONNet code snippet which uses GitHub's
+            profile information to hydrate the identity's data.
+          type: string
+        gitlab_mapper_url:
+          description: |-
+            GitLabMapper specifies the JSONNet code snippet which uses GitLab's
+            profile information to hydrate the identity's data.
+          type: string
+        google_mapper_url:
+          description: |-
+            GoogleMapper specifies the JSONNet code snippet which uses Google's
+            profile information to hydrate the identity's data.
           type: string
         kratos_selfservice_methods_oidc_config_providers:
           items:
@@ -18914,6 +19094,18 @@ components:
           items:
             $ref: '#/components/schemas/normalizedProjectRevisionSAMLProvider'
           type: array
+        microsoft_mapper_url:
+          description: |-
+            MicrosoftMapper specifies the JSONNet code snippet which uses Microsoft's
+            profile information to hydrate the identity's data.
+          type: string
+        netid_mapper_url:
+          description: |-
+            NetIDMapper specifies the JSONNet code snippet which uses NetID's
+            profile information to hydrate the identity's data.
+          type: string
+        oidc_sso_enabled:
+          type: boolean
         organization_id:
           format: uuid
           type: string
@@ -18938,12 +19130,24 @@ components:
         revision_id:
           format: uuid
           type: string
+        saml_mapper_url:
+          description: |-
+            SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider's
+            profile information to hydrate the identity's data.
+          type: string
+        saml_sso_enabled:
+          type: boolean
         scim_clients:
           items:
             $ref: '#/components/schemas/normalizedProjectRevisionScimClient'
           type: array
         scim_enabled:
           type: boolean
+        scim_mapper_url:
+          description: |-
+            SCIMMapper specifies the JSONNet code snippet which uses the SCIM Provider's
+            profile information to hydrate the identity's data.
+          type: string
         sso_enabled:
           type: boolean
       required:
@@ -18993,29 +19197,51 @@ components:
         links:
         - proxy_oidc_redirect_url: proxy_oidc_redirect_url
           proxy_saml_audience_override: proxy_saml_audience_override
+          microsoft_mapper_url: microsoft_mapper_url
           proxy_scim_server_url: proxy_scim_server_url
+          netid_mapper_url: netid_mapper_url
           enable_scim: true
+          generic_oidc_mapper_url: generic_oidc_mapper_url
           created_at: 2000-01-23T04:56:07.000+00:00
           proxy_acs_url: proxy_acs_url
           enable_sso: true
+          scim_mapper_url: scim_mapper_url
+          apple_mapper_url: apple_mapper_url
+          saml_mapper_url: saml_mapper_url
           custom_hostname_id: custom_hostname_id
           expires_at: 2000-01-23T04:56:07.000+00:00
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          facebook_mapper_url: facebook_mapper_url
           organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          google_mapper_url: google_mapper_url
+          auth0_mapper_url: auth0_mapper_url
+          gitlab_mapper_url: gitlab_mapper_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          github_mapper_url: github_mapper_url
           value: value
         - proxy_oidc_redirect_url: proxy_oidc_redirect_url
           proxy_saml_audience_override: proxy_saml_audience_override
+          microsoft_mapper_url: microsoft_mapper_url
           proxy_scim_server_url: proxy_scim_server_url
+          netid_mapper_url: netid_mapper_url
           enable_scim: true
+          generic_oidc_mapper_url: generic_oidc_mapper_url
           created_at: 2000-01-23T04:56:07.000+00:00
           proxy_acs_url: proxy_acs_url
           enable_sso: true
+          scim_mapper_url: scim_mapper_url
+          apple_mapper_url: apple_mapper_url
+          saml_mapper_url: saml_mapper_url
           custom_hostname_id: custom_hostname_id
           expires_at: 2000-01-23T04:56:07.000+00:00
           project_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          facebook_mapper_url: facebook_mapper_url
           organization_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          google_mapper_url: google_mapper_url
+          auth0_mapper_url: auth0_mapper_url
+          gitlab_mapper_url: gitlab_mapper_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          github_mapper_url: github_mapper_url
           value: value
       properties:
         links:
@@ -23377,7 +23603,7 @@ components:
 
             Needs to be set when initiating the flow. If the email is a registered
             recovery email, a recovery link will be sent. If the email is not known,
-            a email with details on what happened will be sent instead.
+            an email with details on what happened will be sent instead.
 
             format: email
           type: string

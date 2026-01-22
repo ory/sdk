@@ -1007,6 +1007,18 @@ Serializers _$serializers = (new Serializers().toBuilder()
               const [const FullType(String), const FullType(GenericUsage)]),
           () => new MapBuilder<String, GenericUsage>())
       ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(GenericUsage)]),
+          () => new MapBuilder<String, GenericUsage>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(GenericUsage)]),
+          () => new MapBuilder<String, GenericUsage>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(GenericUsage)]),
+          () => new MapBuilder<String, GenericUsage>())
+      ..addBuilderFactory(
           const FullType(BuiltMap, const [
             const FullType(String),
             const FullType(IdentityCredentials)

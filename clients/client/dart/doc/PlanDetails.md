@@ -12,9 +12,12 @@ Name | Type | Description | Notes
 **baseFeeYearly** | **int** | BaseFeeYearly is the yearly base fee for the plan. | 
 **custom** | **bool** | Custom is true if the plan is custom. This means it will be hidden from the pricing page. | 
 **description** | **String** | Description is the description of the plan. | 
+**developmentFeatures** | [**BuiltMap&lt;String, GenericUsage&gt;**](GenericUsage.md) |  | 
 **features** | [**BuiltMap&lt;String, GenericUsage&gt;**](GenericUsage.md) |  | 
 **latest** | **bool** | Latest is true if the plan is the latest version of a plan and should be available for self-service usage. | [optional] 
 **name** | **String** | Name is the name of the plan. | 
+**productionFeatures** | [**BuiltMap&lt;String, GenericUsage&gt;**](GenericUsage.md) |  | 
+**stagingFeatures** | [**BuiltMap&lt;String, GenericUsage&gt;**](GenericUsage.md) |  | 
 **version** | **int** | Version is the version of the plan. The combination of `name@version` must be unique. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

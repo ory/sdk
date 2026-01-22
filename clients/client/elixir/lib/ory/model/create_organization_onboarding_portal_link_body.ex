@@ -8,25 +8,47 @@ defmodule Ory.Model.CreateOrganizationOnboardingPortalLinkBody do
 
   @derive Jason.Encoder
   defstruct [
+    :apple_mapper_url,
+    :auth0_mapper_url,
     :custom_hostname_id,
     :enable_scim,
     :enable_sso,
     :expires_at,
+    :facebook_mapper_url,
+    :generic_oidc_mapper_url,
+    :github_mapper_url,
+    :gitlab_mapper_url,
+    :google_mapper_url,
+    :microsoft_mapper_url,
+    :netid_mapper_url,
     :proxy_acs_url,
     :proxy_oidc_redirect_url,
     :proxy_saml_audience_override,
-    :proxy_scim_server_url
+    :proxy_scim_server_url,
+    :saml_mapper_url,
+    :scim_mapper_url
   ]
 
   @type t :: %__MODULE__{
+    :apple_mapper_url => String.t | nil,
+    :auth0_mapper_url => String.t | nil,
     :custom_hostname_id => String.t | nil,
     :enable_scim => boolean(),
     :enable_sso => boolean(),
     :expires_at => DateTime.t | nil,
+    :facebook_mapper_url => String.t | nil,
+    :generic_oidc_mapper_url => String.t | nil,
+    :github_mapper_url => String.t | nil,
+    :gitlab_mapper_url => String.t | nil,
+    :google_mapper_url => String.t | nil,
+    :microsoft_mapper_url => String.t | nil,
+    :netid_mapper_url => String.t | nil,
     :proxy_acs_url => String.t | nil,
     :proxy_oidc_redirect_url => String.t | nil,
     :proxy_saml_audience_override => String.t | nil,
-    :proxy_scim_server_url => String.t | nil
+    :proxy_scim_server_url => String.t | nil,
+    :saml_mapper_url => String.t | nil,
+    :scim_mapper_url => String.t | nil
   }
 
   alias Ory.Deserializer

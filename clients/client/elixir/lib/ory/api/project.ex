@@ -593,6 +593,7 @@ defmodule Ory.Api.Project do
       {401, Ory.Model.ErrorGeneric},
       {403, Ory.Model.ErrorGeneric},
       {404, Ory.Model.ErrorGeneric},
+      {409, Ory.Model.ErrorGeneric},
       {:default, Ory.Model.ErrorGeneric}
     ])
   end

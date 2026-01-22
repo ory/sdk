@@ -14,7 +14,7 @@ part 'update_recovery_flow_with_link_method.g.dart';
 ///
 /// Properties:
 /// * [csrfToken] - Sending the anti-csrf token is only required for browser login flows.
-/// * [email] - Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
+/// * [email] - Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, an email with details on what happened will be sent instead.  format: email
 /// * [method] - Method is the method that should be used for this recovery flow  Allowed values are `link` and `code` link RecoveryStrategyLink code RecoveryStrategyCode
 /// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
@@ -23,7 +23,7 @@ abstract class UpdateRecoveryFlowWithLinkMethod implements Built<UpdateRecoveryF
   @BuiltValueField(wireName: r'csrf_token')
   String? get csrfToken;
 
-  /// Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
+  /// Email to Recover  Needs to be set when initiating the flow. If the email is a registered recovery email, a recovery link will be sent. If the email is not known, an email with details on what happened will be sent instead.  format: email
   @BuiltValueField(wireName: r'email')
   String get email;
 

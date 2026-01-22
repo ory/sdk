@@ -1172,6 +1172,7 @@ public class Example {
 | **401** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
 | **404** | errorGeneric |  -  |
+| **409** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
 <a id="purgeProject"></a>

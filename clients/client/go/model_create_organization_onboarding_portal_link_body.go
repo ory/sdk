@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.16
+API version: v1.22.21
 Contact: support@ory.sh
 */
 
@@ -22,12 +22,30 @@ var _ MappedNullable = &CreateOrganizationOnboardingPortalLinkBody{}
 
 // CreateOrganizationOnboardingPortalLinkBody struct for CreateOrganizationOnboardingPortalLinkBody
 type CreateOrganizationOnboardingPortalLinkBody struct {
+	// AppleMapper specifies the JSONNet code snippet which uses Apple's profile information to hydrate the identity's data.
+	AppleMapperUrl *string `json:"apple_mapper_url,omitempty"`
+	// Auth0Mapper specifies the JSONNet code snippet which uses Auth0's profile information to hydrate the identity's data.
+	Auth0MapperUrl *string `json:"auth0_mapper_url,omitempty"`
 	CustomHostnameId NullableString `json:"custom_hostname_id,omitempty"`
 	// Feature flag to enable SCIM configuration
 	EnableScim bool `json:"enable_scim"`
 	// Feature flag to enable SSO configuration
 	EnableSso bool `json:"enable_sso"`
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
+	// FacebookMapper specifies the JSONNet code snippet which uses Facebook's profile information to hydrate the identity's data.
+	FacebookMapperUrl *string `json:"facebook_mapper_url,omitempty"`
+	// GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider's profile information to hydrate the identity's data.
+	GenericOidcMapperUrl *string `json:"generic_oidc_mapper_url,omitempty"`
+	// GithubMapper specifies the JSONNet code snippet which uses GitHub's profile information to hydrate the identity's data.
+	GithubMapperUrl *string `json:"github_mapper_url,omitempty"`
+	// GitLabMapper specifies the JSONNet code snippet which uses GitLab's profile information to hydrate the identity's data.
+	GitlabMapperUrl *string `json:"gitlab_mapper_url,omitempty"`
+	// GoogleMapper specifies the JSONNet code snippet which uses Google's profile information to hydrate the identity's data.
+	GoogleMapperUrl *string `json:"google_mapper_url,omitempty"`
+	// MicrosoftMapper specifies the JSONNet code snippet which uses Microsoft's profile information to hydrate the identity's data.
+	MicrosoftMapperUrl *string `json:"microsoft_mapper_url,omitempty"`
+	// NetIDMapper specifies the JSONNet code snippet which uses NetID's profile information to hydrate the identity's data.
+	NetidMapperUrl *string `json:"netid_mapper_url,omitempty"`
 	// Proxy ACS URL if overriding with a customer-controlled URL
 	ProxyAcsUrl *string `json:"proxy_acs_url,omitempty"`
 	// Proxy OIDC Redirect URL if overriding with a customer-controlled URL
@@ -36,6 +54,10 @@ type CreateOrganizationOnboardingPortalLinkBody struct {
 	ProxySamlAudienceOverride *string `json:"proxy_saml_audience_override,omitempty"`
 	// Proxy SCIM Server URL if overriding with a customer-controlled URL
 	ProxyScimServerUrl *string `json:"proxy_scim_server_url,omitempty"`
+	// SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider's profile information to hydrate the identity's data.
+	SamlMapperUrl *string `json:"saml_mapper_url,omitempty"`
+	// SCIMMapper specifies the JSONNet code snippet which uses the SCIM Provider's profile information to hydrate the identity's data.
+	ScimMapperUrl *string `json:"scim_mapper_url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,6 +80,70 @@ func NewCreateOrganizationOnboardingPortalLinkBody(enableScim bool, enableSso bo
 func NewCreateOrganizationOnboardingPortalLinkBodyWithDefaults() *CreateOrganizationOnboardingPortalLinkBody {
 	this := CreateOrganizationOnboardingPortalLinkBody{}
 	return &this
+}
+
+// GetAppleMapperUrl returns the AppleMapperUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetAppleMapperUrl() string {
+	if o == nil || IsNil(o.AppleMapperUrl) {
+		var ret string
+		return ret
+	}
+	return *o.AppleMapperUrl
+}
+
+// GetAppleMapperUrlOk returns a tuple with the AppleMapperUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetAppleMapperUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.AppleMapperUrl) {
+		return nil, false
+	}
+	return o.AppleMapperUrl, true
+}
+
+// HasAppleMapperUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasAppleMapperUrl() bool {
+	if o != nil && !IsNil(o.AppleMapperUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetAppleMapperUrl gets a reference to the given string and assigns it to the AppleMapperUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetAppleMapperUrl(v string) {
+	o.AppleMapperUrl = &v
+}
+
+// GetAuth0MapperUrl returns the Auth0MapperUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetAuth0MapperUrl() string {
+	if o == nil || IsNil(o.Auth0MapperUrl) {
+		var ret string
+		return ret
+	}
+	return *o.Auth0MapperUrl
+}
+
+// GetAuth0MapperUrlOk returns a tuple with the Auth0MapperUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetAuth0MapperUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.Auth0MapperUrl) {
+		return nil, false
+	}
+	return o.Auth0MapperUrl, true
+}
+
+// HasAuth0MapperUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasAuth0MapperUrl() bool {
+	if o != nil && !IsNil(o.Auth0MapperUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuth0MapperUrl gets a reference to the given string and assigns it to the Auth0MapperUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetAuth0MapperUrl(v string) {
+	o.Auth0MapperUrl = &v
 }
 
 // GetCustomHostnameId returns the CustomHostnameId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -180,6 +266,230 @@ func (o *CreateOrganizationOnboardingPortalLinkBody) HasExpiresAt() bool {
 // SetExpiresAt gets a reference to the given time.Time and assigns it to the ExpiresAt field.
 func (o *CreateOrganizationOnboardingPortalLinkBody) SetExpiresAt(v time.Time) {
 	o.ExpiresAt = &v
+}
+
+// GetFacebookMapperUrl returns the FacebookMapperUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetFacebookMapperUrl() string {
+	if o == nil || IsNil(o.FacebookMapperUrl) {
+		var ret string
+		return ret
+	}
+	return *o.FacebookMapperUrl
+}
+
+// GetFacebookMapperUrlOk returns a tuple with the FacebookMapperUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetFacebookMapperUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.FacebookMapperUrl) {
+		return nil, false
+	}
+	return o.FacebookMapperUrl, true
+}
+
+// HasFacebookMapperUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasFacebookMapperUrl() bool {
+	if o != nil && !IsNil(o.FacebookMapperUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetFacebookMapperUrl gets a reference to the given string and assigns it to the FacebookMapperUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetFacebookMapperUrl(v string) {
+	o.FacebookMapperUrl = &v
+}
+
+// GetGenericOidcMapperUrl returns the GenericOidcMapperUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetGenericOidcMapperUrl() string {
+	if o == nil || IsNil(o.GenericOidcMapperUrl) {
+		var ret string
+		return ret
+	}
+	return *o.GenericOidcMapperUrl
+}
+
+// GetGenericOidcMapperUrlOk returns a tuple with the GenericOidcMapperUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetGenericOidcMapperUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.GenericOidcMapperUrl) {
+		return nil, false
+	}
+	return o.GenericOidcMapperUrl, true
+}
+
+// HasGenericOidcMapperUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasGenericOidcMapperUrl() bool {
+	if o != nil && !IsNil(o.GenericOidcMapperUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetGenericOidcMapperUrl gets a reference to the given string and assigns it to the GenericOidcMapperUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetGenericOidcMapperUrl(v string) {
+	o.GenericOidcMapperUrl = &v
+}
+
+// GetGithubMapperUrl returns the GithubMapperUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetGithubMapperUrl() string {
+	if o == nil || IsNil(o.GithubMapperUrl) {
+		var ret string
+		return ret
+	}
+	return *o.GithubMapperUrl
+}
+
+// GetGithubMapperUrlOk returns a tuple with the GithubMapperUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetGithubMapperUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.GithubMapperUrl) {
+		return nil, false
+	}
+	return o.GithubMapperUrl, true
+}
+
+// HasGithubMapperUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasGithubMapperUrl() bool {
+	if o != nil && !IsNil(o.GithubMapperUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetGithubMapperUrl gets a reference to the given string and assigns it to the GithubMapperUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetGithubMapperUrl(v string) {
+	o.GithubMapperUrl = &v
+}
+
+// GetGitlabMapperUrl returns the GitlabMapperUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetGitlabMapperUrl() string {
+	if o == nil || IsNil(o.GitlabMapperUrl) {
+		var ret string
+		return ret
+	}
+	return *o.GitlabMapperUrl
+}
+
+// GetGitlabMapperUrlOk returns a tuple with the GitlabMapperUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetGitlabMapperUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.GitlabMapperUrl) {
+		return nil, false
+	}
+	return o.GitlabMapperUrl, true
+}
+
+// HasGitlabMapperUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasGitlabMapperUrl() bool {
+	if o != nil && !IsNil(o.GitlabMapperUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetGitlabMapperUrl gets a reference to the given string and assigns it to the GitlabMapperUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetGitlabMapperUrl(v string) {
+	o.GitlabMapperUrl = &v
+}
+
+// GetGoogleMapperUrl returns the GoogleMapperUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetGoogleMapperUrl() string {
+	if o == nil || IsNil(o.GoogleMapperUrl) {
+		var ret string
+		return ret
+	}
+	return *o.GoogleMapperUrl
+}
+
+// GetGoogleMapperUrlOk returns a tuple with the GoogleMapperUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetGoogleMapperUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.GoogleMapperUrl) {
+		return nil, false
+	}
+	return o.GoogleMapperUrl, true
+}
+
+// HasGoogleMapperUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasGoogleMapperUrl() bool {
+	if o != nil && !IsNil(o.GoogleMapperUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetGoogleMapperUrl gets a reference to the given string and assigns it to the GoogleMapperUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetGoogleMapperUrl(v string) {
+	o.GoogleMapperUrl = &v
+}
+
+// GetMicrosoftMapperUrl returns the MicrosoftMapperUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetMicrosoftMapperUrl() string {
+	if o == nil || IsNil(o.MicrosoftMapperUrl) {
+		var ret string
+		return ret
+	}
+	return *o.MicrosoftMapperUrl
+}
+
+// GetMicrosoftMapperUrlOk returns a tuple with the MicrosoftMapperUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetMicrosoftMapperUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.MicrosoftMapperUrl) {
+		return nil, false
+	}
+	return o.MicrosoftMapperUrl, true
+}
+
+// HasMicrosoftMapperUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasMicrosoftMapperUrl() bool {
+	if o != nil && !IsNil(o.MicrosoftMapperUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetMicrosoftMapperUrl gets a reference to the given string and assigns it to the MicrosoftMapperUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetMicrosoftMapperUrl(v string) {
+	o.MicrosoftMapperUrl = &v
+}
+
+// GetNetidMapperUrl returns the NetidMapperUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetNetidMapperUrl() string {
+	if o == nil || IsNil(o.NetidMapperUrl) {
+		var ret string
+		return ret
+	}
+	return *o.NetidMapperUrl
+}
+
+// GetNetidMapperUrlOk returns a tuple with the NetidMapperUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetNetidMapperUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.NetidMapperUrl) {
+		return nil, false
+	}
+	return o.NetidMapperUrl, true
+}
+
+// HasNetidMapperUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasNetidMapperUrl() bool {
+	if o != nil && !IsNil(o.NetidMapperUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetidMapperUrl gets a reference to the given string and assigns it to the NetidMapperUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetNetidMapperUrl(v string) {
+	o.NetidMapperUrl = &v
 }
 
 // GetProxyAcsUrl returns the ProxyAcsUrl field value if set, zero value otherwise.
@@ -310,6 +620,70 @@ func (o *CreateOrganizationOnboardingPortalLinkBody) SetProxyScimServerUrl(v str
 	o.ProxyScimServerUrl = &v
 }
 
+// GetSamlMapperUrl returns the SamlMapperUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetSamlMapperUrl() string {
+	if o == nil || IsNil(o.SamlMapperUrl) {
+		var ret string
+		return ret
+	}
+	return *o.SamlMapperUrl
+}
+
+// GetSamlMapperUrlOk returns a tuple with the SamlMapperUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetSamlMapperUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.SamlMapperUrl) {
+		return nil, false
+	}
+	return o.SamlMapperUrl, true
+}
+
+// HasSamlMapperUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasSamlMapperUrl() bool {
+	if o != nil && !IsNil(o.SamlMapperUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetSamlMapperUrl gets a reference to the given string and assigns it to the SamlMapperUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetSamlMapperUrl(v string) {
+	o.SamlMapperUrl = &v
+}
+
+// GetScimMapperUrl returns the ScimMapperUrl field value if set, zero value otherwise.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetScimMapperUrl() string {
+	if o == nil || IsNil(o.ScimMapperUrl) {
+		var ret string
+		return ret
+	}
+	return *o.ScimMapperUrl
+}
+
+// GetScimMapperUrlOk returns a tuple with the ScimMapperUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) GetScimMapperUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.ScimMapperUrl) {
+		return nil, false
+	}
+	return o.ScimMapperUrl, true
+}
+
+// HasScimMapperUrl returns a boolean if a field has been set.
+func (o *CreateOrganizationOnboardingPortalLinkBody) HasScimMapperUrl() bool {
+	if o != nil && !IsNil(o.ScimMapperUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetScimMapperUrl gets a reference to the given string and assigns it to the ScimMapperUrl field.
+func (o *CreateOrganizationOnboardingPortalLinkBody) SetScimMapperUrl(v string) {
+	o.ScimMapperUrl = &v
+}
+
 func (o CreateOrganizationOnboardingPortalLinkBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -320,6 +694,12 @@ func (o CreateOrganizationOnboardingPortalLinkBody) MarshalJSON() ([]byte, error
 
 func (o CreateOrganizationOnboardingPortalLinkBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AppleMapperUrl) {
+		toSerialize["apple_mapper_url"] = o.AppleMapperUrl
+	}
+	if !IsNil(o.Auth0MapperUrl) {
+		toSerialize["auth0_mapper_url"] = o.Auth0MapperUrl
+	}
 	if o.CustomHostnameId.IsSet() {
 		toSerialize["custom_hostname_id"] = o.CustomHostnameId.Get()
 	}
@@ -327,6 +707,27 @@ func (o CreateOrganizationOnboardingPortalLinkBody) ToMap() (map[string]interfac
 	toSerialize["enable_sso"] = o.EnableSso
 	if !IsNil(o.ExpiresAt) {
 		toSerialize["expires_at"] = o.ExpiresAt
+	}
+	if !IsNil(o.FacebookMapperUrl) {
+		toSerialize["facebook_mapper_url"] = o.FacebookMapperUrl
+	}
+	if !IsNil(o.GenericOidcMapperUrl) {
+		toSerialize["generic_oidc_mapper_url"] = o.GenericOidcMapperUrl
+	}
+	if !IsNil(o.GithubMapperUrl) {
+		toSerialize["github_mapper_url"] = o.GithubMapperUrl
+	}
+	if !IsNil(o.GitlabMapperUrl) {
+		toSerialize["gitlab_mapper_url"] = o.GitlabMapperUrl
+	}
+	if !IsNil(o.GoogleMapperUrl) {
+		toSerialize["google_mapper_url"] = o.GoogleMapperUrl
+	}
+	if !IsNil(o.MicrosoftMapperUrl) {
+		toSerialize["microsoft_mapper_url"] = o.MicrosoftMapperUrl
+	}
+	if !IsNil(o.NetidMapperUrl) {
+		toSerialize["netid_mapper_url"] = o.NetidMapperUrl
 	}
 	if !IsNil(o.ProxyAcsUrl) {
 		toSerialize["proxy_acs_url"] = o.ProxyAcsUrl
@@ -339,6 +740,12 @@ func (o CreateOrganizationOnboardingPortalLinkBody) ToMap() (map[string]interfac
 	}
 	if !IsNil(o.ProxyScimServerUrl) {
 		toSerialize["proxy_scim_server_url"] = o.ProxyScimServerUrl
+	}
+	if !IsNil(o.SamlMapperUrl) {
+		toSerialize["saml_mapper_url"] = o.SamlMapperUrl
+	}
+	if !IsNil(o.ScimMapperUrl) {
+		toSerialize["scim_mapper_url"] = o.ScimMapperUrl
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -384,14 +791,25 @@ func (o *CreateOrganizationOnboardingPortalLinkBody) UnmarshalJSON(data []byte) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "apple_mapper_url")
+		delete(additionalProperties, "auth0_mapper_url")
 		delete(additionalProperties, "custom_hostname_id")
 		delete(additionalProperties, "enable_scim")
 		delete(additionalProperties, "enable_sso")
 		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "facebook_mapper_url")
+		delete(additionalProperties, "generic_oidc_mapper_url")
+		delete(additionalProperties, "github_mapper_url")
+		delete(additionalProperties, "gitlab_mapper_url")
+		delete(additionalProperties, "google_mapper_url")
+		delete(additionalProperties, "microsoft_mapper_url")
+		delete(additionalProperties, "netid_mapper_url")
 		delete(additionalProperties, "proxy_acs_url")
 		delete(additionalProperties, "proxy_oidc_redirect_url")
 		delete(additionalProperties, "proxy_saml_audience_override")
 		delete(additionalProperties, "proxy_scim_server_url")
+		delete(additionalProperties, "saml_mapper_url")
+		delete(additionalProperties, "scim_mapper_url")
 		o.AdditionalProperties = additionalProperties
 	}
 

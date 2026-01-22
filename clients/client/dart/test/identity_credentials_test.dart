@@ -18,7 +18,7 @@ void main() {
       // TODO
     });
 
-    // Identifiers represents a list of unique identifiers this credential type matches.
+    // Identifiers represent a list of unique identifiers this credential type matches.
     // BuiltList<String> identifiers
     test('to test the property `identifiers`', () async {
       // TODO
