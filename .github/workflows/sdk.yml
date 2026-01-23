@@ -127,16 +127,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gettext-base fail2ban- gnupg
 
-      - name: Initialize Environment
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
-          MVN_CENTRAL_USERNAME: ${{ secrets.MVN_CENTRAL_USERNAME }}
-          MVN_CENTRAL_PASSWORD: ${{ secrets.MVN_CENTRAL_PASSWORD }}
-          MVN_PGP_KEY_ID: ${{ secrets.MVN_PGP_KEY_ID }}
-          MVN_PGP_PASSPHRASE: ${{ secrets.MVN_PGP_PASSPHRASE }}
-          MVN_GPG_ASC_BASE64: ${{ secrets.MVN_GPG_ASC_BASE64 }}
-        run: ./scripts/init.sh
 
       - name: Generate SDK
         env:
@@ -151,6 +141,18 @@ jobs:
           VERSION: ${{ needs.preflight.outputs.version }}
           LANGUAGE: ${{ matrix.language }}
         run: make test
+
+      - name: Initialize Environment
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
+          MVN_CENTRAL_USERNAME: ${{ secrets.MVN_CENTRAL_USERNAME }}
+          MVN_CENTRAL_PASSWORD: ${{ secrets.MVN_CENTRAL_PASSWORD }}
+          MVN_PGP_KEY_ID: ${{ secrets.MVN_PGP_KEY_ID }}
+          MVN_PGP_PASSPHRASE: ${{ secrets.MVN_PGP_PASSPHRASE }}
+          MVN_GPG_ASC_BASE64: ${{ secrets.MVN_GPG_ASC_BASE64 }}
+        run: ./scripts/init.sh
 
       - name: Release SDK
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
