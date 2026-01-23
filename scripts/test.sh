@@ -101,15 +101,25 @@ elixir () {
   (cd "${dir}"; mix test)
 }
 
-elixir
-typescript
-typescript_fetch
-rust
-golang
-java
-php
-python
-ruby
-dartpub
-# TODO: https://github.com/ory/sdk/issues/434
-# csharp
+if [ -z "$1" ]; then
+  elixir
+  typescript
+  typescript_fetch
+  rust
+  golang
+  java
+  php
+  python
+  ruby
+  dartpub
+  # TODO: https://github.com/ory/sdk/issues/434
+  # csharp
+else
+  if [ "$1" == "dart" ]; then
+    dartpub
+  elif [ "$1" == "dotnet" ]; then
+    csharp
+  else
+    $1
+  fi
+fi
