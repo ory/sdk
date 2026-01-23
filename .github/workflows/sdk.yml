@@ -51,8 +51,15 @@ jobs:
             echo "version=$VERSION" >> $GITHUB_OUTPUT
             echo "should_run=true" >> $GITHUB_OUTPUT
           else
-            echo "Commit message does not indicate spec update. Skipping."
-            echo "should_run=false" >> $GITHUB_OUTPUT
+            if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
+              PROJECT="client"
+              VERSION=$(cat spec/$PROJECT/latest)
+              echo "project=$PROJECT" >> $GITHUB_OUTPUT
+              echo "version=$VERSION" >> $GITHUB_OUTPUT
+              echo "should_run=true" >> $GITHUB_OUTPUT
+            else
+              echo "should_run=false" >> $GITHUB_OUTPUT
+            fi
           fi
 
   sdk:
