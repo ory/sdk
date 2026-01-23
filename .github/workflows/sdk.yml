@@ -69,7 +69,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [typescript, typescript-fetch, java, php, python, ruby, golang, dotnet, dart, rust, elixir]
+        # TODO: add dotnet (https://github.com/ory/sdk/issues/434)
+        language: [typescript, typescript_fetch, java, php, python, ruby, golang, dart, rust, elixir]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
