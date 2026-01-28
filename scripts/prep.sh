@@ -11,10 +11,10 @@ if [[ -f "$HOME/.cargo/env" ]]; then
 fi
 
 if [ -z "${FORCE_VERSION+x}" ]; then
-  if [ -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
-        echo "This commit does not appear to be related to a spec update, skipping chain."
-        exit 0
-  fi
+  # if [ -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
+  #       # echo "This commit does not appear to be related to a spec update, skipping chain."
+  #       # exit 0
+  # fi
   version=$(git log -1 --pretty=%B | head -n 1 | sed -E 's/Add spec for (.+):(.+)$/\2/')
 else
   version=${FORCE_VERSION}
@@ -28,10 +28,10 @@ source .venv/bin/activate
 ####################################
 
 if [ -z "${FORCE_PROJECT+x}" ]; then
-  if [ -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
-        echo "This commit does not appear to be related to a spec update, skipping chain."
-        exit 0
-  fi
+  # if [ -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
+  #       echo "This commit does not appear to be related to a spec update, skipping chain."
+  #       exit 0
+  # fi
   ## Extract project and version from git commit ##
   project=$(git log -1 --pretty=%B | head -n 1 | sed -E 's/Add spec for (.+):(.+)$/\1/')
 else
