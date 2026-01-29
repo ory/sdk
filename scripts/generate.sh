@@ -323,17 +323,21 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
-elixir
-typescript
-typescript_fetch
-rust
-golang
-java
-php
-python
-ruby
-# TODO: https://github.com/ory/sdk/issues/434
-# dotnet
-dart
+if [ -z "$1" ]; then
+  elixir
+  typescript
+  typescript_fetch
+  rust
+  golang
+  java
+  php
+  python
+  ruby
+  # TODO: https://github.com/ory/sdk/issues/434
+  # dotnet
+  dart
+else
+  $1
+fi
 
 cleanup

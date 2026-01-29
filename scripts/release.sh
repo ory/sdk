@@ -222,19 +222,27 @@ FAIL_REASON=""
 
 echo "starting"
 
-python || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} python,"; }
-ruby || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} ruby,"; }
-golang || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} golang,"; }
-php || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} php,"; }
-typescript || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} typescript,"; }
-typescript_fetch || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} typescript_fetch,"; }
-dart || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} dart,"; }
-rust || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} rust,"; }
-elixir || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} elixir,"; }
-java || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} java,"; }
-# TODO: https://github.com/ory/sdk/issues/434
-# dotnet || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} dotnet,"; }
-upstream || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} upstream,"; }
+run_all() {
+  python || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} python,"; }
+  ruby || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} ruby,"; }
+  golang || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} golang,"; }
+  php || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} php,"; }
+  typescript || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} typescript,"; }
+  typescript_fetch || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} typescript_fetch,"; }
+  dart || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} dart,"; }
+  rust || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} rust,"; }
+  elixir || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} elixir,"; }
+  java || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} java,"; }
+  # TODO: https://github.com/ory/sdk/issues/434
+  # dotnet || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} dotnet,"; }
+  upstream || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} upstream,"; }
+}
+
+if [ -z "$1" ]; then
+  run_all
+else
+  $1 || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} $1,"; }
+fi
 
 echo "$FAIL"
 

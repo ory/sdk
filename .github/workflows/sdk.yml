@@ -1,0 +1,161 @@
+name: SDK Generation and Release
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+    inputs:
+      project:
+        description: 'Project name (e.g. kratos)'
+        required: true
+      version:
+        description: 'Version (e.g. v0.0.1)'
+        required: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    outputs:
+      project: ${{ steps.extract.outputs.project }}
+      version: ${{ steps.extract.outputs.version }}
+      should_run: ${{ steps.extract.outputs.should_run }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract Project and Version
+        id: extract
+        env:
+          FORCE_PROJECT: ${{ github.event.inputs.project }}
+          FORCE_VERSION: ${{ github.event.inputs.version }}
+        run: |
+          if [ -n "$FORCE_PROJECT" ] && [ -n "$FORCE_VERSION" ]; then
+            echo "project=$FORCE_PROJECT" >> $GITHUB_OUTPUT
+            echo "version=$FORCE_VERSION" >> $GITHUB_OUTPUT
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          if echo "$COMMIT_MSG" | grep -q "Add spec for"; then
+            PROJECT=$(echo "$COMMIT_MSG" | head -n 1 | sed -E 's/Add spec for (.+):(.+)$/\1/')
+            VERSION=$(echo "$COMMIT_MSG" | head -n 1 | sed -E 's/Add spec for (.+):(.+)$/\2/')
+            
+            echo "project=$PROJECT" >> $GITHUB_OUTPUT
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          elif [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
+            PROJECT="client"
+            VERSION=$(cat spec/$PROJECT/latest)
+            echo "project=$PROJECT" >> $GITHUB_OUTPUT
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          fi
+
+  sdk:
+    needs: preflight
+    if: needs.preflight.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # TODO: add dotnet (https://github.com/ory/sdk/issues/434)
+        language: [typescript, typescript_fetch, java, php, python, ruby, golang, dart, rust, elixir]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+      
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+      
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+      
+      - name: Setup Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: '1.14'
+          otp-version: '25'
+
+      - name: Install Dependencies (System)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext-base fail2ban- gnupg
+
+
+      - name: Generate SDK
+        env:
+          PROJECT: ${{ needs.preflight.outputs.project }}
+          VERSION: ${{ needs.preflight.outputs.version }}
+          LANGUAGE: ${{ matrix.language }}
+        run: make generate
+
+      - name: Test SDK
+        env:
+          PROJECT: ${{ needs.preflight.outputs.project }}
+          VERSION: ${{ needs.preflight.outputs.version }}
+          LANGUAGE: ${{ matrix.language }}
+        run: make test
+
+      - name: Release SDK
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        env:
+          PROJECT: ${{ needs.preflight.outputs.project }}
+          VERSION: ${{ needs.preflight.outputs.version }}
+          LANGUAGE: ${{ matrix.language }}
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          CARGO_TOKEN: ${{ secrets.CARGO_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
+          MVN_CENTRAL_USERNAME: ${{ secrets.MVN_CENTRAL_USERNAME }}
+          MVN_CENTRAL_PASSWORD: ${{ secrets.MVN_CENTRAL_PASSWORD }}
+          MVN_PGP_KEY_ID: ${{ secrets.MVN_PGP_KEY_ID }}
+          MVN_PGP_PASSPHRASE: ${{ secrets.MVN_PGP_PASSPHRASE }}
+          MVN_GPG_ASC_BASE64: ${{ secrets.MVN_GPG_ASC_BASE64 }}
+        run: |
+          ./scripts/init.sh
+          make release
