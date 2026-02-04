@@ -1,20 +1,20 @@
-FROM openjdk:21-bookworm
+FROM eclipse-temurin:21-jdk
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates ssh bash
 
 COPY scripts/build ./scripts
 
-ENV GOLANG_VERSION 1.24.0
+ENV GOLANG_VERSION=1.24.0
 
-RUN set -eux; apt-get install -y --no-install-recommends bash build-essential openssl wget;
+RUN set -eux; apt-get install -y --no-install-recommends bash build-essential openssl wget unzip;
 
 
 RUN wget https://go.dev/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz \
     && rm -rf /usr/local/go && tar -C /usr/local -xzf go1.24.0.linux-amd64.tar.gz \
     && rm go1.24.0.linux-amd64.tar.gz
 
-ENV GOPATH /go
-ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+ENV GOPATH=/go
+ENV PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
 
 RUN go version
 
@@ -30,37 +30,25 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dear
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 RUN sudo apt-get update -y && sudo apt-get install -y --no-install-recommends google-cloud-cli
 
-# https://stackoverflow.com/questions/35736598/cannot-pip-install-cryptography-in-docker-alpine-linux-3-3-with-openssl-1-0-2g
-#RUN apk add --no-cache \
-#        libressl-dev \
-#        musl-dev \
-#        libffi-dev && \
-#    python3 -m pip install --no-cache-dir cryptography==2.1.4 && \
-#    apk del \
-#        libressl-dev \
-#        musl-dev \
-#        libffi-dev
-
-# RUN wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar -O openapi-generator-cli.jar
-
-RUN npm install -g npm@10.9.2
-RUN npm i -g @openapitools/openapi-generator-cli@2.17.0
-RUN npx @openapitools/openapi-generator-cli@2.17.0 version-manager set 7.4.0
+RUN npm install -g npm@11.7.0
+RUN npm i -g @openapitools/openapi-generator-cli@2.25.2
+RUN npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
 
 # dotnet
-ENV PATH "$PATH:/root/.dotnet"
+ENV PATH="$PATH:/root/.dotnet"
 
 RUN apt-get install -y --no-install-recommends \
 	liblttng-ust-dev \
 	libicu-dev \
 	zlib1g \
-	&& wget -O dotnet-install.sh https://dot.net/v1/dotnet-install.sh \
+	&& wget -O dotnet-install.sh https://builds.dotnet.microsoft.com/dotnet/scripts/v1/dotnet-install.sh \
 	&& chmod +x dotnet-install.sh \
 	&& ./dotnet-install.sh --channel 8.0 \
 	&& rm dotnet-install.sh
 
 # dart
 RUN ./scripts/install-dart.sh
+ENV PATH="$PATH:/usr/lib/dart/bin"
 
 # elixir
 RUN	apt-get -q update && apt-get install -y -q elixir && \
