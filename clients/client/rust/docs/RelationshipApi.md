@@ -75,7 +75,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_relationships
 
-> delete_relationships(namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation)
+> delete_relationships(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation)
 Delete Relationships
 
 Use this endpoint to delete relationships
@@ -89,9 +89,9 @@ Name | Type | Description  | Required | Notes
 **object** | Option<**String**> | Object of the Relationship |  |
 **relation** | Option<**String**> | Relation of the Relationship |  |
 **subject_id** | Option<**String**> | SubjectID of the Relationship |  |
-**subject_set_period_namespace** | Option<**String**> | Namespace of the Subject Set |  |
-**subject_set_period_object** | Option<**String**> | Object of the Subject Set |  |
-**subject_set_period_relation** | Option<**String**> | Relation of the Subject Set |  |
+**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
 
 ### Return type
 
@@ -111,7 +111,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_relationships
 
-> models::Relationships get_relationships(page_size, page_token, namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation)
+> models::Relationships get_relationships(page_size, page_token, namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation)
 Query relationships
 
 Get all relationships that match the query. Only the namespace field is required.
@@ -127,9 +127,9 @@ Name | Type | Description  | Required | Notes
 **object** | Option<**String**> | Object of the Relationship |  |
 **relation** | Option<**String**> | Relation of the Relationship |  |
 **subject_id** | Option<**String**> | SubjectID of the Relationship |  |
-**subject_set_period_namespace** | Option<**String**> | Namespace of the Subject Set |  |
-**subject_set_period_object** | Option<**String**> | Object of the Subject Set |  |
-**subject_set_period_relation** | Option<**String**> | Relation of the Subject Set |  |
+**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
 
 ### Return type
 

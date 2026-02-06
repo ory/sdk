@@ -1,5 +1,7 @@
 # Ory\Client\FrontendApi
 
+Endpoints used by frontend applications (e.g. Single-Page-App, Native Apps, Server Apps, ...) to manage a user&#39;s own profile.
+
 All URIs are relative to https://playground.projects.oryapis.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |

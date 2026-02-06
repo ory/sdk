@@ -1,6 +1,6 @@
 [package]
 name = "ory-client"
-version = "1.22.22"
+version = "1.22.23"
 authors = ["support@ory.sh"]
 description = "OpenAPI API client for Ory Network, Ory's web-scale API for identity and access control."
 license = "Apache-2.0"
@@ -14,3 +14,8 @@ serde_repr = "^0.1"
 url = "^2.5"
 uuid = { version = "^1.8", features = ["serde", "v4"] }
 reqwest = { version = "^0.12", default-features = false, features = ["json", "multipart"] }
+
+[features]
+default = ["native-tls"]
+native-tls = ["reqwest/native-tls"]
+rustls-tls = ["reqwest/rustls-tls"]

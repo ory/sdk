@@ -328,6 +328,7 @@ lib/Api/WellknownApi.php
 lib/Api/WorkspaceApi.php
 lib/ApiException.php
 lib/Configuration.php
+lib/FormDataProcessor.php
 lib/HeaderSelector.php
 lib/Model/AcceptDeviceUserCodeRequest.php
 lib/Model/AcceptOAuth2ConsentRequest.php

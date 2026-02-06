@@ -332,6 +332,7 @@ lib/ory-client/api/wellknown_api.rb
 lib/ory-client/api/workspace_api.rb
 lib/ory-client/api_client.rb
 lib/ory-client/api_error.rb
+lib/ory-client/api_model_base.rb
 lib/ory-client/configuration.rb
 lib/ory-client/models/accept_device_user_code_request.rb
 lib/ory-client/models/accept_o_auth2_consent_request.rb

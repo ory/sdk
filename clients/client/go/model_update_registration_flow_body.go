@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.22
+API version: v1.22.23
 Contact: support@ory.sh
 */
 
@@ -161,90 +161,6 @@ func (dst *UpdateRegistrationFlowBody) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'webauthn'
 	if jsonDict["method"] == "webauthn" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithWebAuthnMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithWebAuthnMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithWebAuthnMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithWebAuthnMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithWebAuthnMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithCodeMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithCodeMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithCodeMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithCodeMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithCodeMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithCodeMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithCodeMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithOidcMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithOidcMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithOidcMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithOidcMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithOidcMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithOidcMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithOidcMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithPasskeyMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithPasskeyMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithPasskeyMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithPasskeyMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithPasskeyMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithPasskeyMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithPasskeyMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithPasswordMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithPasswordMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithPasswordMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithPasswordMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithPasswordMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithPasswordMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithPasswordMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithProfileMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithProfileMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithProfileMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithProfileMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithProfileMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithProfileMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithProfileMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithSamlMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithSamlMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithSamlMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithSamlMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithSamlMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithSamlMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithSamlMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithWebAuthnMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithWebAuthnMethod" {
 		// try to unmarshal JSON data into UpdateRegistrationFlowWithWebAuthnMethod
 		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithWebAuthnMethod)
 		if err == nil {

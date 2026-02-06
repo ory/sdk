@@ -1,5 +1,7 @@
 # Ory\Client\CourierApi
 
+APIs for managing email and SMS message delivery.
+
 All URIs are relative to https://playground.projects.oryapis.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
