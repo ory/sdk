@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.23
+API version: v1.22.24
 Contact: support@ory.sh
 */
 
@@ -23,6 +23,8 @@ var _ MappedNullable = &InternalIsOwnerForProjectBySlugBody{}
 type InternalIsOwnerForProjectBySlugBody struct {
 	// Namespace is the namespace of the subject.
 	Namespace string `json:"namespace"`
+	// OrganizationID is the organization's ID.
+	OrganizationId *string `json:"organization_id,omitempty"`
 	// ProjectScope is the project_id resolved from the API key.
 	ProjectScope *string `json:"project_scope,omitempty"`
 	// ProjectSlug is the project's slug.
@@ -76,6 +78,38 @@ func (o *InternalIsOwnerForProjectBySlugBody) GetNamespaceOk() (*string, bool) {
 // SetNamespace sets field value
 func (o *InternalIsOwnerForProjectBySlugBody) SetNamespace(v string) {
 	o.Namespace = v
+}
+
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
+func (o *InternalIsOwnerForProjectBySlugBody) GetOrganizationId() string {
+	if o == nil || IsNil(o.OrganizationId) {
+		var ret string
+		return ret
+	}
+	return *o.OrganizationId
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InternalIsOwnerForProjectBySlugBody) GetOrganizationIdOk() (*string, bool) {
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
+	}
+	return o.OrganizationId, true
+}
+
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *InternalIsOwnerForProjectBySlugBody) HasOrganizationId() bool {
+	if o != nil && !IsNil(o.OrganizationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizationId gets a reference to the given string and assigns it to the OrganizationId field.
+func (o *InternalIsOwnerForProjectBySlugBody) SetOrganizationId(v string) {
+	o.OrganizationId = &v
 }
 
 // GetProjectScope returns the ProjectScope field value if set, zero value otherwise.
@@ -169,6 +203,9 @@ func (o InternalIsOwnerForProjectBySlugBody) MarshalJSON() ([]byte, error) {
 func (o InternalIsOwnerForProjectBySlugBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["namespace"] = o.Namespace
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
 	if !IsNil(o.ProjectScope) {
 		toSerialize["project_scope"] = o.ProjectScope
 	}
@@ -220,6 +257,7 @@ func (o *InternalIsOwnerForProjectBySlugBody) UnmarshalJSON(data []byte) (err er
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "namespace")
+		delete(additionalProperties, "organization_id")
 		delete(additionalProperties, "project_scope")
 		delete(additionalProperties, "project_slug")
 		delete(additionalProperties, "subject")

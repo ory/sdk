@@ -341,6 +341,7 @@ Deprecated: use getProject instead  Retrieves an Enterprise SSO Organization for
 | **200** | getOrganizationResponse |  -  |
 | **400** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
+| **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

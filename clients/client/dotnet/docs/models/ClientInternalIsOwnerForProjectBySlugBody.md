@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Namespace** | **string** | Namespace is the namespace of the subject. | 
 **ProjectSlug** | **string** | ProjectSlug is the project&#39;s slug. | 
 **Subject** | **string** | Subject is the subject acting (user or API key). | 
+**OrganizationId** | **string** | OrganizationID is the organization&#39;s ID. | [optional] 
 **ProjectScope** | **string** | ProjectScope is the project_id resolved from the API key. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Namespace** | **string** | Namespace is the namespace of the subject. | 
+**OrganizationId** | Pointer to **string** | OrganizationID is the organization&#39;s ID. | [optional] 
 **ProjectScope** | Pointer to **string** | ProjectScope is the project_id resolved from the API key. | [optional] 
 **ProjectSlug** | **string** | ProjectSlug is the project&#39;s slug. | 
 **Subject** | **string** | Subject is the subject acting (user or API key). | 
@@ -47,6 +48,31 @@ and a boolean to check if the value has been set.
 
 SetNamespace sets Namespace field to given value.
 
+
+### GetOrganizationId
+
+`func (o *InternalIsOwnerForProjectBySlugBody) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *InternalIsOwnerForProjectBySlugBody) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *InternalIsOwnerForProjectBySlugBody) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *InternalIsOwnerForProjectBySlugBody) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
 
 ### GetProjectScope
 

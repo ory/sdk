@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **email_verified** | **boolean** |  | [default to undefined]
 **id** | **string** |  | [default to undefined]
 **name** | **string** |  | [default to undefined]
+**organization_id** | **string** |  | [optional] [default to undefined]
 **role** | **string** |  | [default to undefined]
 
 ## Example
@@ -21,6 +22,7 @@ const instance: ProjectMember = {
     email_verified,
     id,
     name,
+    organization_id,
     role,
 };
 ```

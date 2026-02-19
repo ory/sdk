@@ -19,6 +19,7 @@ Name | Type
 `raw_idp_metadata_xml` | string
 `state` | string
 `updated_at` | Date
+`valid_to` | Array&lt;string&gt;
 
 ## Example
 
@@ -40,6 +41,7 @@ const example = {
   "raw_idp_metadata_xml": null,
   "state": null,
   "updated_at": null,
+  "valid_to": null,
 } satisfies NormalizedProjectRevisionSAMLProvider
 
 console.log(example)

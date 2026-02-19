@@ -300,6 +300,7 @@ defmodule Ory.Api.Project do
       {200, Ory.Model.GetOrganizationResponse},
       {400, Ory.Model.ErrorGeneric},
       {403, Ory.Model.ErrorGeneric},
+      {404, Ory.Model.ErrorGeneric},
       {:default, Ory.Model.ErrorGeneric}
     ])
   end

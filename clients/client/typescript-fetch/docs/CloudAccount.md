@@ -10,6 +10,7 @@ Name | Type
 `email_verified` | boolean
 `id` | string
 `name` | string
+`organization_id` | string
 
 ## Example
 
@@ -22,6 +23,7 @@ const example = {
   "email_verified": null,
   "id": null,
   "name": null,
+  "organization_id": null,
 } satisfies CloudAccount
 
 console.log(example)

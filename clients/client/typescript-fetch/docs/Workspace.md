@@ -6,9 +6,11 @@
 
 Name | Type
 ------------ | -------------
+`access_policy` | string
 `created_at` | Date
 `id` | string
 `name` | string
+`organization_id` | string
 `subscription_id` | string
 `subscription_plan` | string
 `updated_at` | Date
@@ -20,9 +22,11 @@ import type { Workspace } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "access_policy": null,
   "created_at": null,
   "id": null,
   "name": null,
+  "organization_id": null,
   "subscription_id": null,
   "subscription_plan": null,
   "updated_at": null,

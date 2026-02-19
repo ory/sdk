@@ -10,6 +10,7 @@ Name | Type
 `email_verified` | boolean
 `id` | string
 `name` | string
+`organization_id` | string
 `role` | string
 
 ## Example
@@ -23,6 +24,7 @@ const example = {
   "email_verified": null,
   "id": null,
   "name": null,
+  "organization_id": null,
   "role": null,
 } satisfies ProjectMember
 

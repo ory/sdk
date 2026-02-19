@@ -23,7 +23,6 @@ docs/Model/AcceptOAuth2ConsentRequestSession.md
 docs/Model/AcceptOAuth2LoginRequest.md
 docs/Model/AccountExperienceColors.md
 docs/Model/AccountExperienceConfiguration.md
-docs/Model/ActiveProjectInConsole.md
 docs/Model/AddProjectToWorkspaceBody.md
 docs/Model/Attribute.md
 docs/Model/AttributeFilter.md
@@ -56,6 +55,7 @@ docs/Model/CreateFedcmFlowResponse.md
 docs/Model/CreateIdentityBody.md
 docs/Model/CreateInviteResponse.md
 docs/Model/CreateJsonWebKeySet.md
+docs/Model/CreateOnboardingLinkResponse.md
 docs/Model/CreateOrganizationOnboardingPortalLinkBody.md
 docs/Model/CreateProjectApiKeyRequest.md
 docs/Model/CreateProjectBody.md
@@ -71,6 +71,7 @@ docs/Model/CreateVerifiableCredentialRequestBody.md
 docs/Model/CreateWorkspaceApiKeyBody.md
 docs/Model/CreateWorkspaceBody.md
 docs/Model/CreateWorkspaceMemberInviteBody.md
+docs/Model/CreateWorkspaceOrganizationBody.md
 docs/Model/CreateWorkspaceSubscriptionBody.md
 docs/Model/CredentialSupportedDraft00.md
 docs/Model/CustomDomain.md
@@ -89,6 +90,7 @@ docs/Model/ExpandedPermissionTree.md
 docs/Model/FlowError.md
 docs/Model/GenericError.md
 docs/Model/GenericErrorContent.md
+docs/Model/GenericOIDCProvider.md
 docs/Model/GenericUsage.md
 docs/Model/GetAttributesCount.md
 docs/Model/GetManagedIdentitySchemaLocation.md
@@ -227,7 +229,6 @@ docs/Model/Session.md
 docs/Model/SessionActivityDatapoint.md
 docs/Model/SessionAuthenticationMethod.md
 docs/Model/SessionDevice.md
-docs/Model/SetActiveProjectInConsoleBody.md
 docs/Model/SetCustomDomainBody.md
 docs/Model/SetEventStreamBody.md
 docs/Model/SetOrganizationFromOnboardingPortalLinkBody.md
@@ -312,6 +313,7 @@ docs/Model/Version.md
 docs/Model/Warning.md
 docs/Model/Workspace.md
 docs/Model/WorkspaceApiKey.md
+docs/Model/WorkspaceOrganization.md
 git_push.sh
 lib/Api/CourierApi.php
 lib/Api/EventsApi.php
@@ -336,7 +338,6 @@ lib/Model/AcceptOAuth2ConsentRequestSession.php
 lib/Model/AcceptOAuth2LoginRequest.php
 lib/Model/AccountExperienceColors.php
 lib/Model/AccountExperienceConfiguration.php
-lib/Model/ActiveProjectInConsole.php
 lib/Model/AddProjectToWorkspaceBody.php
 lib/Model/Attribute.php
 lib/Model/AttributeFilter.php
@@ -369,6 +370,7 @@ lib/Model/CreateFedcmFlowResponse.php
 lib/Model/CreateIdentityBody.php
 lib/Model/CreateInviteResponse.php
 lib/Model/CreateJsonWebKeySet.php
+lib/Model/CreateOnboardingLinkResponse.php
 lib/Model/CreateOrganizationOnboardingPortalLinkBody.php
 lib/Model/CreateProjectApiKeyRequest.php
 lib/Model/CreateProjectBody.php
@@ -384,6 +386,7 @@ lib/Model/CreateVerifiableCredentialRequestBody.php
 lib/Model/CreateWorkspaceApiKeyBody.php
 lib/Model/CreateWorkspaceBody.php
 lib/Model/CreateWorkspaceMemberInviteBody.php
+lib/Model/CreateWorkspaceOrganizationBody.php
 lib/Model/CreateWorkspaceSubscriptionBody.php
 lib/Model/CredentialSupportedDraft00.php
 lib/Model/CustomDomain.php
@@ -402,6 +405,7 @@ lib/Model/ExpandedPermissionTree.php
 lib/Model/FlowError.php
 lib/Model/GenericError.php
 lib/Model/GenericErrorContent.php
+lib/Model/GenericOIDCProvider.php
 lib/Model/GenericUsage.php
 lib/Model/GetAttributesCount.php
 lib/Model/GetManagedIdentitySchemaLocation.php
@@ -541,7 +545,6 @@ lib/Model/Session.php
 lib/Model/SessionActivityDatapoint.php
 lib/Model/SessionAuthenticationMethod.php
 lib/Model/SessionDevice.php
-lib/Model/SetActiveProjectInConsoleBody.php
 lib/Model/SetCustomDomainBody.php
 lib/Model/SetEventStreamBody.php
 lib/Model/SetOrganizationFromOnboardingPortalLinkBody.php
@@ -626,6 +629,7 @@ lib/Model/Version.php
 lib/Model/Warning.php
 lib/Model/Workspace.php
 lib/Model/WorkspaceApiKey.php
+lib/Model/WorkspaceOrganization.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/CourierApiTest.php
@@ -647,7 +651,6 @@ test/Model/AcceptOAuth2ConsentRequestTest.php
 test/Model/AcceptOAuth2LoginRequestTest.php
 test/Model/AccountExperienceColorsTest.php
 test/Model/AccountExperienceConfigurationTest.php
-test/Model/ActiveProjectInConsoleTest.php
 test/Model/AddProjectToWorkspaceBodyTest.php
 test/Model/AttributeFilterTest.php
 test/Model/AttributeTest.php
@@ -680,6 +683,7 @@ test/Model/CreateFedcmFlowResponseTest.php
 test/Model/CreateIdentityBodyTest.php
 test/Model/CreateInviteResponseTest.php
 test/Model/CreateJsonWebKeySetTest.php
+test/Model/CreateOnboardingLinkResponseTest.php
 test/Model/CreateOrganizationOnboardingPortalLinkBodyTest.php
 test/Model/CreateProjectApiKeyRequestTest.php
 test/Model/CreateProjectBodyTest.php
@@ -695,6 +699,7 @@ test/Model/CreateVerifiableCredentialRequestBodyTest.php
 test/Model/CreateWorkspaceApiKeyBodyTest.php
 test/Model/CreateWorkspaceBodyTest.php
 test/Model/CreateWorkspaceMemberInviteBodyTest.php
+test/Model/CreateWorkspaceOrganizationBodyTest.php
 test/Model/CreateWorkspaceSubscriptionBodyTest.php
 test/Model/CredentialSupportedDraft00Test.php
 test/Model/CustomDomainTest.php
@@ -713,6 +718,7 @@ test/Model/ExpandedPermissionTreeTest.php
 test/Model/FlowErrorTest.php
 test/Model/GenericErrorContentTest.php
 test/Model/GenericErrorTest.php
+test/Model/GenericOIDCProviderTest.php
 test/Model/GenericUsageTest.php
 test/Model/GetAttributesCountTest.php
 test/Model/GetManagedIdentitySchemaLocationTest.php
@@ -851,7 +857,6 @@ test/Model/SessionActivityDatapointTest.php
 test/Model/SessionAuthenticationMethodTest.php
 test/Model/SessionDeviceTest.php
 test/Model/SessionTest.php
-test/Model/SetActiveProjectInConsoleBodyTest.php
 test/Model/SetCustomDomainBodyTest.php
 test/Model/SetEventStreamBodyTest.php
 test/Model/SetOrganizationFromOnboardingPortalLinkBodyTest.php
@@ -935,4 +940,5 @@ test/Model/VerifyUserCodeRequestTest.php
 test/Model/VersionTest.php
 test/Model/WarningTest.php
 test/Model/WorkspaceApiKeyTest.php
+test/Model/WorkspaceOrganizationTest.php
 test/Model/WorkspaceTest.php

@@ -12,6 +12,7 @@ defmodule Ory.Model.ProjectMember do
     :email_verified,
     :id,
     :name,
+    :organization_id,
     :role
   ]
 
@@ -20,6 +21,7 @@ defmodule Ory.Model.ProjectMember do
     :email_verified => boolean(),
     :id => String.t,
     :name => String.t,
+    :organization_id => String.t | nil,
     :role => String.t
   }
 

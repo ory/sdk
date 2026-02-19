@@ -12,7 +12,6 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
-docs/ActiveProjectInConsole.md
 docs/AddProjectToWorkspaceBody.md
 docs/Attribute.md
 docs/AttributeFilter.md
@@ -46,6 +45,7 @@ docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
+docs/CreateOnboardingLinkResponse.md
 docs/CreateOrganizationOnboardingPortalLinkBody.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
@@ -61,6 +61,7 @@ docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
 docs/CreateWorkspaceMemberInviteBody.md
+docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
@@ -81,6 +82,7 @@ docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
 docs/GenericErrorContent.md
+docs/GenericOIDCProvider.md
 docs/GenericUsage.md
 docs/GetAttributesCount.md
 docs/GetManagedIdentitySchemaLocation.md
@@ -227,7 +229,6 @@ docs/Session.md
 docs/SessionActivityDatapoint.md
 docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
-docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetEventStreamBody.md
 docs/SetOrganizationFromOnboardingPortalLinkBody.md
@@ -314,6 +315,7 @@ docs/WellknownApi.md
 docs/Workspace.md
 docs/WorkspaceApi.md
 docs/WorkspaceApiKey.md
+docs/WorkspaceOrganization.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -364,7 +366,6 @@ src/main/java/sh/ory/model/AcceptOAuth2ConsentRequestSession.java
 src/main/java/sh/ory/model/AcceptOAuth2LoginRequest.java
 src/main/java/sh/ory/model/AccountExperienceColors.java
 src/main/java/sh/ory/model/AccountExperienceConfiguration.java
-src/main/java/sh/ory/model/ActiveProjectInConsole.java
 src/main/java/sh/ory/model/AddProjectToWorkspaceBody.java
 src/main/java/sh/ory/model/Attribute.java
 src/main/java/sh/ory/model/AttributeFilter.java
@@ -397,6 +398,7 @@ src/main/java/sh/ory/model/CreateFedcmFlowResponse.java
 src/main/java/sh/ory/model/CreateIdentityBody.java
 src/main/java/sh/ory/model/CreateInviteResponse.java
 src/main/java/sh/ory/model/CreateJsonWebKeySet.java
+src/main/java/sh/ory/model/CreateOnboardingLinkResponse.java
 src/main/java/sh/ory/model/CreateOrganizationOnboardingPortalLinkBody.java
 src/main/java/sh/ory/model/CreateProjectApiKeyRequest.java
 src/main/java/sh/ory/model/CreateProjectBody.java
@@ -412,6 +414,7 @@ src/main/java/sh/ory/model/CreateVerifiableCredentialRequestBody.java
 src/main/java/sh/ory/model/CreateWorkspaceApiKeyBody.java
 src/main/java/sh/ory/model/CreateWorkspaceBody.java
 src/main/java/sh/ory/model/CreateWorkspaceMemberInviteBody.java
+src/main/java/sh/ory/model/CreateWorkspaceOrganizationBody.java
 src/main/java/sh/ory/model/CreateWorkspaceSubscriptionBody.java
 src/main/java/sh/ory/model/CredentialSupportedDraft00.java
 src/main/java/sh/ory/model/CustomDomain.java
@@ -430,6 +433,7 @@ src/main/java/sh/ory/model/ExpandedPermissionTree.java
 src/main/java/sh/ory/model/FlowError.java
 src/main/java/sh/ory/model/GenericError.java
 src/main/java/sh/ory/model/GenericErrorContent.java
+src/main/java/sh/ory/model/GenericOIDCProvider.java
 src/main/java/sh/ory/model/GenericUsage.java
 src/main/java/sh/ory/model/GetAttributesCount.java
 src/main/java/sh/ory/model/GetManagedIdentitySchemaLocation.java
@@ -568,7 +572,6 @@ src/main/java/sh/ory/model/Session.java
 src/main/java/sh/ory/model/SessionActivityDatapoint.java
 src/main/java/sh/ory/model/SessionAuthenticationMethod.java
 src/main/java/sh/ory/model/SessionDevice.java
-src/main/java/sh/ory/model/SetActiveProjectInConsoleBody.java
 src/main/java/sh/ory/model/SetCustomDomainBody.java
 src/main/java/sh/ory/model/SetEventStreamBody.java
 src/main/java/sh/ory/model/SetOrganizationFromOnboardingPortalLinkBody.java
@@ -653,6 +656,7 @@ src/main/java/sh/ory/model/Version.java
 src/main/java/sh/ory/model/Warning.java
 src/main/java/sh/ory/model/Workspace.java
 src/main/java/sh/ory/model/WorkspaceApiKey.java
+src/main/java/sh/ory/model/WorkspaceOrganization.java
 src/test/java/sh/ory/api/CourierApiTest.java
 src/test/java/sh/ory/api/EventsApiTest.java
 src/test/java/sh/ory/api/FrontendApiTest.java
@@ -672,7 +676,6 @@ src/test/java/sh/ory/model/AcceptOAuth2ConsentRequestTest.java
 src/test/java/sh/ory/model/AcceptOAuth2LoginRequestTest.java
 src/test/java/sh/ory/model/AccountExperienceColorsTest.java
 src/test/java/sh/ory/model/AccountExperienceConfigurationTest.java
-src/test/java/sh/ory/model/ActiveProjectInConsoleTest.java
 src/test/java/sh/ory/model/AddProjectToWorkspaceBodyTest.java
 src/test/java/sh/ory/model/AttributeFilterTest.java
 src/test/java/sh/ory/model/AttributeTest.java
@@ -705,6 +708,7 @@ src/test/java/sh/ory/model/CreateFedcmFlowResponseTest.java
 src/test/java/sh/ory/model/CreateIdentityBodyTest.java
 src/test/java/sh/ory/model/CreateInviteResponseTest.java
 src/test/java/sh/ory/model/CreateJsonWebKeySetTest.java
+src/test/java/sh/ory/model/CreateOnboardingLinkResponseTest.java
 src/test/java/sh/ory/model/CreateOrganizationOnboardingPortalLinkBodyTest.java
 src/test/java/sh/ory/model/CreateProjectApiKeyRequestTest.java
 src/test/java/sh/ory/model/CreateProjectBodyTest.java
@@ -720,6 +724,7 @@ src/test/java/sh/ory/model/CreateVerifiableCredentialRequestBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceApiKeyBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceMemberInviteBodyTest.java
+src/test/java/sh/ory/model/CreateWorkspaceOrganizationBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceSubscriptionBodyTest.java
 src/test/java/sh/ory/model/CredentialSupportedDraft00Test.java
 src/test/java/sh/ory/model/CustomDomainTest.java
@@ -738,6 +743,7 @@ src/test/java/sh/ory/model/ExpandedPermissionTreeTest.java
 src/test/java/sh/ory/model/FlowErrorTest.java
 src/test/java/sh/ory/model/GenericErrorContentTest.java
 src/test/java/sh/ory/model/GenericErrorTest.java
+src/test/java/sh/ory/model/GenericOIDCProviderTest.java
 src/test/java/sh/ory/model/GenericUsageTest.java
 src/test/java/sh/ory/model/GetAttributesCountTest.java
 src/test/java/sh/ory/model/GetManagedIdentitySchemaLocationTest.java
@@ -876,7 +882,6 @@ src/test/java/sh/ory/model/SessionActivityDatapointTest.java
 src/test/java/sh/ory/model/SessionAuthenticationMethodTest.java
 src/test/java/sh/ory/model/SessionDeviceTest.java
 src/test/java/sh/ory/model/SessionTest.java
-src/test/java/sh/ory/model/SetActiveProjectInConsoleBodyTest.java
 src/test/java/sh/ory/model/SetCustomDomainBodyTest.java
 src/test/java/sh/ory/model/SetEventStreamBodyTest.java
 src/test/java/sh/ory/model/SetOrganizationFromOnboardingPortalLinkBodyTest.java
@@ -960,4 +965,5 @@ src/test/java/sh/ory/model/VerifyUserCodeRequestTest.java
 src/test/java/sh/ory/model/VersionTest.java
 src/test/java/sh/ory/model/WarningTest.java
 src/test/java/sh/ory/model/WorkspaceApiKeyTest.java
+src/test/java/sh/ory/model/WorkspaceOrganizationTest.java
 src/test/java/sh/ory/model/WorkspaceTest.java

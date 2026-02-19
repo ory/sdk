@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **email_verified** | **boolean** |  | [default to undefined]
 **id** | **string** |  | [default to undefined]
 **name** | **string** |  | [default to undefined]
+**organization_id** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -20,6 +21,7 @@ const instance: CloudAccount = {
     email_verified,
     id,
     name,
+    organization_id,
 };
 ```
 

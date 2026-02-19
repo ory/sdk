@@ -640,6 +640,7 @@ example().catch(console.error);
 | **200** | getOrganizationResponse |  -  |
 | **400** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
+| **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)

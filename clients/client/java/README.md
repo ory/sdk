@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.23
-  - Build date: 2026-02-06T08:24:11.723975169Z[Etc/UTC]
+- API version: v1.22.24
+  - Build date: 2026-02-19T15:12:39.885623201Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.23</version>
+  <version>v1.22.24</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.23"
+     implementation "sh.ory:client:v1.22.24"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.23.jar`
+* `target/client-v1.22.24.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -296,7 +296,6 @@ Class | Method | HTTP request | Description
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
  - [AccountExperienceColors](docs/AccountExperienceColors.md)
  - [AccountExperienceConfiguration](docs/AccountExperienceConfiguration.md)
- - [ActiveProjectInConsole](docs/ActiveProjectInConsole.md)
  - [AddProjectToWorkspaceBody](docs/AddProjectToWorkspaceBody.md)
  - [Attribute](docs/Attribute.md)
  - [AttributeFilter](docs/AttributeFilter.md)
@@ -329,6 +328,7 @@ Class | Method | HTTP request | Description
  - [CreateIdentityBody](docs/CreateIdentityBody.md)
  - [CreateInviteResponse](docs/CreateInviteResponse.md)
  - [CreateJsonWebKeySet](docs/CreateJsonWebKeySet.md)
+ - [CreateOnboardingLinkResponse](docs/CreateOnboardingLinkResponse.md)
  - [CreateOrganizationOnboardingPortalLinkBody](docs/CreateOrganizationOnboardingPortalLinkBody.md)
  - [CreateProjectApiKeyRequest](docs/CreateProjectApiKeyRequest.md)
  - [CreateProjectBody](docs/CreateProjectBody.md)
@@ -344,6 +344,7 @@ Class | Method | HTTP request | Description
  - [CreateWorkspaceApiKeyBody](docs/CreateWorkspaceApiKeyBody.md)
  - [CreateWorkspaceBody](docs/CreateWorkspaceBody.md)
  - [CreateWorkspaceMemberInviteBody](docs/CreateWorkspaceMemberInviteBody.md)
+ - [CreateWorkspaceOrganizationBody](docs/CreateWorkspaceOrganizationBody.md)
  - [CreateWorkspaceSubscriptionBody](docs/CreateWorkspaceSubscriptionBody.md)
  - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [CustomDomain](docs/CustomDomain.md)
@@ -362,6 +363,7 @@ Class | Method | HTTP request | Description
  - [FlowError](docs/FlowError.md)
  - [GenericError](docs/GenericError.md)
  - [GenericErrorContent](docs/GenericErrorContent.md)
+ - [GenericOIDCProvider](docs/GenericOIDCProvider.md)
  - [GenericUsage](docs/GenericUsage.md)
  - [GetAttributesCount](docs/GetAttributesCount.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
@@ -500,7 +502,6 @@ Class | Method | HTTP request | Description
  - [SessionActivityDatapoint](docs/SessionActivityDatapoint.md)
  - [SessionAuthenticationMethod](docs/SessionAuthenticationMethod.md)
  - [SessionDevice](docs/SessionDevice.md)
- - [SetActiveProjectInConsoleBody](docs/SetActiveProjectInConsoleBody.md)
  - [SetCustomDomainBody](docs/SetCustomDomainBody.md)
  - [SetEventStreamBody](docs/SetEventStreamBody.md)
  - [SetOrganizationFromOnboardingPortalLinkBody](docs/SetOrganizationFromOnboardingPortalLinkBody.md)
@@ -585,6 +586,7 @@ Class | Method | HTTP request | Description
  - [Warning](docs/Warning.md)
  - [Workspace](docs/Workspace.md)
  - [WorkspaceApiKey](docs/WorkspaceApiKey.md)
+ - [WorkspaceOrganization](docs/WorkspaceOrganization.md)
 
 
 <a id="documentation-for-authorization"></a>

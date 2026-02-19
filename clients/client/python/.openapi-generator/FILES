@@ -10,7 +10,6 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
-docs/ActiveProjectInConsole.md
 docs/AddProjectToWorkspaceBody.md
 docs/Attribute.md
 docs/AttributeFilter.md
@@ -44,6 +43,7 @@ docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
+docs/CreateOnboardingLinkResponse.md
 docs/CreateOrganizationOnboardingPortalLinkBody.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
@@ -59,6 +59,7 @@ docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
 docs/CreateWorkspaceMemberInviteBody.md
+docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
@@ -79,6 +80,7 @@ docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
 docs/GenericErrorContent.md
+docs/GenericOIDCProvider.md
 docs/GenericUsage.md
 docs/GetAttributesCount.md
 docs/GetManagedIdentitySchemaLocation.md
@@ -225,7 +227,6 @@ docs/Session.md
 docs/SessionActivityDatapoint.md
 docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
-docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetEventStreamBody.md
 docs/SetOrganizationFromOnboardingPortalLinkBody.md
@@ -312,6 +313,7 @@ docs/WellknownApi.md
 docs/Workspace.md
 docs/WorkspaceApi.md
 docs/WorkspaceApiKey.md
+docs/WorkspaceOrganization.md
 git_push.sh
 ory_client/__init__.py
 ory_client/api/__init__.py
@@ -339,7 +341,6 @@ ory_client/models/accept_o_auth2_consent_request_session.py
 ory_client/models/accept_o_auth2_login_request.py
 ory_client/models/account_experience_colors.py
 ory_client/models/account_experience_configuration.py
-ory_client/models/active_project_in_console.py
 ory_client/models/add_project_to_workspace_body.py
 ory_client/models/attribute.py
 ory_client/models/attribute_filter.py
@@ -372,6 +373,7 @@ ory_client/models/create_fedcm_flow_response.py
 ory_client/models/create_identity_body.py
 ory_client/models/create_invite_response.py
 ory_client/models/create_json_web_key_set.py
+ory_client/models/create_onboarding_link_response.py
 ory_client/models/create_organization_onboarding_portal_link_body.py
 ory_client/models/create_project_api_key_request.py
 ory_client/models/create_project_body.py
@@ -387,6 +389,7 @@ ory_client/models/create_verifiable_credential_request_body.py
 ory_client/models/create_workspace_api_key_body.py
 ory_client/models/create_workspace_body.py
 ory_client/models/create_workspace_member_invite_body.py
+ory_client/models/create_workspace_organization_body.py
 ory_client/models/create_workspace_subscription_body.py
 ory_client/models/credential_supported_draft00.py
 ory_client/models/custom_domain.py
@@ -405,6 +408,7 @@ ory_client/models/expanded_permission_tree.py
 ory_client/models/flow_error.py
 ory_client/models/generic_error.py
 ory_client/models/generic_error_content.py
+ory_client/models/generic_oidc_provider.py
 ory_client/models/generic_usage.py
 ory_client/models/get_attributes_count.py
 ory_client/models/get_managed_identity_schema_location.py
@@ -543,7 +547,6 @@ ory_client/models/session.py
 ory_client/models/session_activity_datapoint.py
 ory_client/models/session_authentication_method.py
 ory_client/models/session_device.py
-ory_client/models/set_active_project_in_console_body.py
 ory_client/models/set_custom_domain_body.py
 ory_client/models/set_event_stream_body.py
 ory_client/models/set_organization_from_onboarding_portal_link_body.py
@@ -628,6 +631,7 @@ ory_client/models/version.py
 ory_client/models/warning.py
 ory_client/models/workspace.py
 ory_client/models/workspace_api_key.py
+ory_client/models/workspace_organization.py
 ory_client/py.typed
 ory_client/rest.py
 pyproject.toml
@@ -642,7 +646,6 @@ test/test_accept_o_auth2_consent_request_session.py
 test/test_accept_o_auth2_login_request.py
 test/test_account_experience_colors.py
 test/test_account_experience_configuration.py
-test/test_active_project_in_console.py
 test/test_add_project_to_workspace_body.py
 test/test_attribute.py
 test/test_attribute_filter.py
@@ -676,6 +679,7 @@ test/test_create_fedcm_flow_response.py
 test/test_create_identity_body.py
 test/test_create_invite_response.py
 test/test_create_json_web_key_set.py
+test/test_create_onboarding_link_response.py
 test/test_create_organization_onboarding_portal_link_body.py
 test/test_create_project_api_key_request.py
 test/test_create_project_body.py
@@ -691,6 +695,7 @@ test/test_create_verifiable_credential_request_body.py
 test/test_create_workspace_api_key_body.py
 test/test_create_workspace_body.py
 test/test_create_workspace_member_invite_body.py
+test/test_create_workspace_organization_body.py
 test/test_create_workspace_subscription_body.py
 test/test_credential_supported_draft00.py
 test/test_custom_domain.py
@@ -711,6 +716,7 @@ test/test_flow_error.py
 test/test_frontend_api.py
 test/test_generic_error.py
 test/test_generic_error_content.py
+test/test_generic_oidc_provider.py
 test/test_generic_usage.py
 test/test_get_attributes_count.py
 test/test_get_managed_identity_schema_location.py
@@ -857,7 +863,6 @@ test/test_session.py
 test/test_session_activity_datapoint.py
 test/test_session_authentication_method.py
 test/test_session_device.py
-test/test_set_active_project_in_console_body.py
 test/test_set_custom_domain_body.py
 test/test_set_event_stream_body.py
 test/test_set_organization_from_onboarding_portal_link_body.py
@@ -944,4 +949,5 @@ test/test_wellknown_api.py
 test/test_workspace.py
 test/test_workspace_api.py
 test/test_workspace_api_key.py
+test/test_workspace_organization.py
 tox.ini

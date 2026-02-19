@@ -23,7 +23,6 @@ docs/models/ClientAcceptOAuth2ConsentRequestSession.md
 docs/models/ClientAcceptOAuth2LoginRequest.md
 docs/models/ClientAccountExperienceColors.md
 docs/models/ClientAccountExperienceConfiguration.md
-docs/models/ClientActiveProjectInConsole.md
 docs/models/ClientAddProjectToWorkspaceBody.md
 docs/models/ClientAttribute.md
 docs/models/ClientAttributeFilter.md
@@ -56,6 +55,7 @@ docs/models/ClientCreateFedcmFlowResponse.md
 docs/models/ClientCreateIdentityBody.md
 docs/models/ClientCreateInviteResponse.md
 docs/models/ClientCreateJsonWebKeySet.md
+docs/models/ClientCreateOnboardingLinkResponse.md
 docs/models/ClientCreateOrganizationOnboardingPortalLinkBody.md
 docs/models/ClientCreateProjectApiKeyRequest.md
 docs/models/ClientCreateProjectBody.md
@@ -71,6 +71,7 @@ docs/models/ClientCreateVerifiableCredentialRequestBody.md
 docs/models/ClientCreateWorkspaceApiKeyBody.md
 docs/models/ClientCreateWorkspaceBody.md
 docs/models/ClientCreateWorkspaceMemberInviteBody.md
+docs/models/ClientCreateWorkspaceOrganizationBody.md
 docs/models/ClientCreateWorkspaceSubscriptionBody.md
 docs/models/ClientCredentialSupportedDraft00.md
 docs/models/ClientCustomDomain.md
@@ -89,6 +90,7 @@ docs/models/ClientExpandedPermissionTree.md
 docs/models/ClientFlowError.md
 docs/models/ClientGenericError.md
 docs/models/ClientGenericErrorContent.md
+docs/models/ClientGenericOIDCProvider.md
 docs/models/ClientGenericUsage.md
 docs/models/ClientGetAttributesCount.md
 docs/models/ClientGetManagedIdentitySchemaLocation.md
@@ -227,7 +229,6 @@ docs/models/ClientSession.md
 docs/models/ClientSessionActivityDatapoint.md
 docs/models/ClientSessionAuthenticationMethod.md
 docs/models/ClientSessionDevice.md
-docs/models/ClientSetActiveProjectInConsoleBody.md
 docs/models/ClientSetCustomDomainBody.md
 docs/models/ClientSetEventStreamBody.md
 docs/models/ClientSetOrganizationFromOnboardingPortalLinkBody.md
@@ -312,6 +313,7 @@ docs/models/ClientVersion.md
 docs/models/ClientWarning.md
 docs/models/ClientWorkspace.md
 docs/models/ClientWorkspaceApiKey.md
+docs/models/ClientWorkspaceOrganization.md
 docs/scripts/git_push.ps1
 docs/scripts/git_push.sh
 src/Ory.Client.Test/Api/ApiTestsBase.cs
@@ -335,7 +337,6 @@ src/Ory.Client.Test/Model/ClientAcceptOAuth2ConsentRequestTests.cs
 src/Ory.Client.Test/Model/ClientAcceptOAuth2LoginRequestTests.cs
 src/Ory.Client.Test/Model/ClientAccountExperienceColorsTests.cs
 src/Ory.Client.Test/Model/ClientAccountExperienceConfigurationTests.cs
-src/Ory.Client.Test/Model/ClientActiveProjectInConsoleTests.cs
 src/Ory.Client.Test/Model/ClientAddProjectToWorkspaceBodyTests.cs
 src/Ory.Client.Test/Model/ClientAttributeFilterTests.cs
 src/Ory.Client.Test/Model/ClientAttributeTests.cs
@@ -368,6 +369,7 @@ src/Ory.Client.Test/Model/ClientCreateFedcmFlowResponseTests.cs
 src/Ory.Client.Test/Model/ClientCreateIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateInviteResponseTests.cs
 src/Ory.Client.Test/Model/ClientCreateJsonWebKeySetTests.cs
+src/Ory.Client.Test/Model/ClientCreateOnboardingLinkResponseTests.cs
 src/Ory.Client.Test/Model/ClientCreateOrganizationOnboardingPortalLinkBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectApiKeyRequestTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectBodyTests.cs
@@ -383,6 +385,7 @@ src/Ory.Client.Test/Model/ClientCreateVerifiableCredentialRequestBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceApiKeyBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceMemberInviteBodyTests.cs
+src/Ory.Client.Test/Model/ClientCreateWorkspaceOrganizationBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceSubscriptionBodyTests.cs
 src/Ory.Client.Test/Model/ClientCredentialSupportedDraft00Tests.cs
 src/Ory.Client.Test/Model/ClientCustomDomainTests.cs
@@ -401,6 +404,7 @@ src/Ory.Client.Test/Model/ClientExpandedPermissionTreeTests.cs
 src/Ory.Client.Test/Model/ClientFlowErrorTests.cs
 src/Ory.Client.Test/Model/ClientGenericErrorContentTests.cs
 src/Ory.Client.Test/Model/ClientGenericErrorTests.cs
+src/Ory.Client.Test/Model/ClientGenericOIDCProviderTests.cs
 src/Ory.Client.Test/Model/ClientGenericUsageTests.cs
 src/Ory.Client.Test/Model/ClientGetAttributesCountTests.cs
 src/Ory.Client.Test/Model/ClientGetManagedIdentitySchemaLocationTests.cs
@@ -539,7 +543,6 @@ src/Ory.Client.Test/Model/ClientSessionActivityDatapointTests.cs
 src/Ory.Client.Test/Model/ClientSessionAuthenticationMethodTests.cs
 src/Ory.Client.Test/Model/ClientSessionDeviceTests.cs
 src/Ory.Client.Test/Model/ClientSessionTests.cs
-src/Ory.Client.Test/Model/ClientSetActiveProjectInConsoleBodyTests.cs
 src/Ory.Client.Test/Model/ClientSetCustomDomainBodyTests.cs
 src/Ory.Client.Test/Model/ClientSetEventStreamBodyTests.cs
 src/Ory.Client.Test/Model/ClientSetOrganizationFromOnboardingPortalLinkBodyTests.cs
@@ -623,6 +626,7 @@ src/Ory.Client.Test/Model/ClientVerifyUserCodeRequestTests.cs
 src/Ory.Client.Test/Model/ClientVersionTests.cs
 src/Ory.Client.Test/Model/ClientWarningTests.cs
 src/Ory.Client.Test/Model/ClientWorkspaceApiKeyTests.cs
+src/Ory.Client.Test/Model/ClientWorkspaceOrganizationTests.cs
 src/Ory.Client.Test/Model/ClientWorkspaceTests.cs
 src/Ory.Client.Test/Ory.Client.Test.csproj
 src/Ory.Client.Test/README.md
@@ -670,7 +674,6 @@ src/Ory.Client/Model/ClientAcceptOAuth2ConsentRequestSession.cs
 src/Ory.Client/Model/ClientAcceptOAuth2LoginRequest.cs
 src/Ory.Client/Model/ClientAccountExperienceColors.cs
 src/Ory.Client/Model/ClientAccountExperienceConfiguration.cs
-src/Ory.Client/Model/ClientActiveProjectInConsole.cs
 src/Ory.Client/Model/ClientAddProjectToWorkspaceBody.cs
 src/Ory.Client/Model/ClientAttribute.cs
 src/Ory.Client/Model/ClientAttributeFilter.cs
@@ -703,6 +706,7 @@ src/Ory.Client/Model/ClientCreateFedcmFlowResponse.cs
 src/Ory.Client/Model/ClientCreateIdentityBody.cs
 src/Ory.Client/Model/ClientCreateInviteResponse.cs
 src/Ory.Client/Model/ClientCreateJsonWebKeySet.cs
+src/Ory.Client/Model/ClientCreateOnboardingLinkResponse.cs
 src/Ory.Client/Model/ClientCreateOrganizationOnboardingPortalLinkBody.cs
 src/Ory.Client/Model/ClientCreateProjectApiKeyRequest.cs
 src/Ory.Client/Model/ClientCreateProjectBody.cs
@@ -718,6 +722,7 @@ src/Ory.Client/Model/ClientCreateVerifiableCredentialRequestBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceApiKeyBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceMemberInviteBody.cs
+src/Ory.Client/Model/ClientCreateWorkspaceOrganizationBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceSubscriptionBody.cs
 src/Ory.Client/Model/ClientCredentialSupportedDraft00.cs
 src/Ory.Client/Model/ClientCustomDomain.cs
@@ -736,6 +741,7 @@ src/Ory.Client/Model/ClientExpandedPermissionTree.cs
 src/Ory.Client/Model/ClientFlowError.cs
 src/Ory.Client/Model/ClientGenericError.cs
 src/Ory.Client/Model/ClientGenericErrorContent.cs
+src/Ory.Client/Model/ClientGenericOIDCProvider.cs
 src/Ory.Client/Model/ClientGenericUsage.cs
 src/Ory.Client/Model/ClientGetAttributesCount.cs
 src/Ory.Client/Model/ClientGetManagedIdentitySchemaLocation.cs
@@ -874,7 +880,6 @@ src/Ory.Client/Model/ClientSession.cs
 src/Ory.Client/Model/ClientSessionActivityDatapoint.cs
 src/Ory.Client/Model/ClientSessionAuthenticationMethod.cs
 src/Ory.Client/Model/ClientSessionDevice.cs
-src/Ory.Client/Model/ClientSetActiveProjectInConsoleBody.cs
 src/Ory.Client/Model/ClientSetCustomDomainBody.cs
 src/Ory.Client/Model/ClientSetEventStreamBody.cs
 src/Ory.Client/Model/ClientSetOrganizationFromOnboardingPortalLinkBody.cs
@@ -959,5 +964,6 @@ src/Ory.Client/Model/ClientVersion.cs
 src/Ory.Client/Model/ClientWarning.cs
 src/Ory.Client/Model/ClientWorkspace.cs
 src/Ory.Client/Model/ClientWorkspaceApiKey.cs
+src/Ory.Client/Model/ClientWorkspaceOrganization.cs
 src/Ory.Client/Ory.Client.csproj
 src/Ory.Client/README.md

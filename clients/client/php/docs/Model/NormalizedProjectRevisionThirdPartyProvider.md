@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **netIdTokenOriginHeader** | **string** |  | [optional]
 **organizationId** | **string** |  | [optional]
 **pkce** | **string** |  | [optional]
-**projectRevisionId** | **string** | The Revision&#39;s ID this schema belongs to | [optional]
+**projectRevisionId** | **string** | The Revision&#39;s ID this provider belongs to | [optional]
 **provider** | **string** | Provider is either \&quot;generic\&quot; for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional]
 **providerId** | **string** | ID is the provider&#39;s ID | [optional]
 **proxyOidcRedirectUrl** | **string** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] [readonly]

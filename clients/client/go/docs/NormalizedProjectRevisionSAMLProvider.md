@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **RawIdpMetadataXml** | Pointer to **string** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] 
 **State** | Pointer to **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
+**ValidTo** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -401,6 +402,31 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *NormalizedProjectRevisionSAMLProvider) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetValidTo
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetValidTo() []string`
+
+GetValidTo returns the ValidTo field if non-nil, zero value otherwise.
+
+### GetValidToOk
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetValidToOk() (*[]string, bool)`
+
+GetValidToOk returns a tuple with the ValidTo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidTo
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetValidTo(v []string)`
+
+SetValidTo sets ValidTo field to given value.
+
+### HasValidTo
+
+`func (o *NormalizedProjectRevisionSAMLProvider) HasValidTo() bool`
+
+HasValidTo returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

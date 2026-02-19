@@ -8,6 +8,7 @@ Is Owner For Project By Slug Request Body
 Name | Type
 ------------ | -------------
 `namespace` | string
+`organization_id` | string
 `project_scope` | string
 `project_slug` | string
 `subject` | string
@@ -20,6 +21,7 @@ import type { InternalIsOwnerForProjectBySlugBody } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "namespace": null,
+  "organization_id": null,
   "project_scope": null,
   "project_slug": null,
   "subject": null,

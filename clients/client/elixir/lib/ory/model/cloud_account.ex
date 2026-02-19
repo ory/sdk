@@ -11,14 +11,16 @@ defmodule Ory.Model.CloudAccount do
     :email,
     :email_verified,
     :id,
-    :name
+    :name,
+    :organization_id
   ]
 
   @type t :: %__MODULE__{
     :email => String.t,
     :email_verified => boolean(),
     :id => String.t,
-    :name => String.t
+    :name => String.t,
+    :organization_id => String.t | nil
   }
 
   def decode(value) do

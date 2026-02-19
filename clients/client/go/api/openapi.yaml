@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.23
+  version: v1.22.24
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -85,6 +85,7 @@ paths:
       summary: Discover Well-Known JSON Web Keys
       tags:
       - wellknown
+      x-ory-ratelimit-bucket: hydra-public-low
   /.well-known/openid-configuration:
     get:
       description: |-
@@ -109,6 +110,7 @@ paths:
       summary: OpenID Connect Discovery
       tags:
       - oidc
+      x-ory-ratelimit-bucket: hydra-public-low
   /.well-known/ory/webauthn.js:
     get:
       description: |-
@@ -132,6 +134,7 @@ paths:
       summary: Get WebAuthn JavaScript
       tags:
       - frontend
+      x-ory-ratelimit-bucket: hydra-public-low
   /admin/clients:
     get:
       description: |-
@@ -203,6 +206,7 @@ paths:
       summary: List OAuth 2.0 Clients
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-medium
     post:
       description: |-
         Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret
@@ -240,6 +244,7 @@ paths:
       summary: Create OAuth 2.0 Client
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-high
   /admin/clients/{id}:
     delete:
       description: |-
@@ -275,6 +280,7 @@ paths:
       summary: Delete OAuth 2.0 Client
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-high
     get:
       description: |-
         Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.
@@ -309,6 +315,7 @@ paths:
       summary: Get an OAuth 2.0 Client
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
     patch:
       description: |-
         Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret`
@@ -359,6 +366,7 @@ paths:
       summary: Patch OAuth 2.0 Client
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-high
     put:
       description: |-
         Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used,
@@ -416,6 +424,7 @@ paths:
       summary: Set OAuth 2.0 Client
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-high
   /admin/clients/{id}/lifespans:
     put:
       description: Set lifespans of different token types issued for this OAuth 2.0
@@ -454,6 +463,7 @@ paths:
       summary: Set OAuth2 Client Token Lifespans
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-high
   /admin/courier/messages:
     get:
       description: Lists all messages by given status and recipient.
@@ -533,6 +543,7 @@ paths:
       summary: List Messages
       tags:
       - courier
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/courier/messages/{id}:
     get:
       description: Gets a specific messages by the given ID.
@@ -570,6 +581,7 @@ paths:
       summary: Get a Message
       tags:
       - courier
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /admin/identities:
     get:
       description: "Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
@@ -759,16 +771,17 @@ paths:
       summary: List Identities
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
     patch:
       description: |-
-        Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+        Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).
 
-        You can also use this endpoint to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities),
+        You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities),
         including passwords, social sign-in settings, and multi-factor authentication methods.
 
-        You can import:
-        Up to 1,000 identities per request
-        Up to 200 identities per request if including plaintext passwords
+        If the patch includes hashed passwords you can import up to 1,000 identities per request.
+
+        If the patch includes at least one plaintext password you can import up to 200 identities per request.
 
         Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
 
@@ -820,6 +833,7 @@ paths:
       summary: Create multiple identities
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
     post:
       description: |-
         Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
@@ -862,6 +876,7 @@ paths:
       summary: Create an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/identities/by/external/{externalID}:
     get:
       description: |-
@@ -927,6 +942,7 @@ paths:
       summary: Get an Identity by its External ID
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /admin/identities/{id}:
     delete:
       description: |-
@@ -964,6 +980,7 @@ paths:
       summary: Delete an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
     get:
       description: |-
         Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
@@ -1028,6 +1045,7 @@ paths:
       summary: Get an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
     patch:
       description: |-
         Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
@@ -1084,6 +1102,7 @@ paths:
       summary: Patch an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
     put:
       description: |-
         This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity
@@ -1143,6 +1162,7 @@ paths:
       summary: Update an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/identities/{id}/credentials/{type}:
     delete:
       description: |-
@@ -1234,6 +1254,7 @@ paths:
       summary: Delete a credential for a specific identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/identities/{id}/sessions:
     delete:
       description: Calling this endpoint irrecoverably and permanently deletes and
@@ -1282,6 +1303,7 @@ paths:
       summary: Delete & Invalidate an Identity's Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
     get:
       description: This endpoint returns all sessions that belong to the given Identity.
       operationId: listIdentitySessions
@@ -1401,6 +1423,7 @@ paths:
       summary: List an Identity's Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /admin/keys/{set}:
     delete:
       description: |-
@@ -1433,6 +1456,7 @@ paths:
       summary: Delete JSON Web Key Set
       tags:
       - jwk
+      x-ory-ratelimit-bucket: hydra-admin-high
     get:
       description: |-
         This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.
@@ -1466,6 +1490,7 @@ paths:
       summary: Retrieve a JSON Web Key Set
       tags:
       - jwk
+      x-ory-ratelimit-bucket: hydra-admin-medium
     post:
       description: |-
         This endpoint is capable of generating JSON Web Key Sets for you. There are different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymmetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.
@@ -1506,6 +1531,7 @@ paths:
       summary: Create JSON Web Key
       tags:
       - jwk
+      x-ory-ratelimit-bucket: hydra-admin-high
     put:
       description: |-
         Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.
@@ -1545,6 +1571,7 @@ paths:
       summary: Update a JSON Web Key Set
       tags:
       - jwk
+      x-ory-ratelimit-bucket: hydra-admin-high
   /admin/keys/{set}/{kid}:
     delete:
       description: |-
@@ -1588,6 +1615,7 @@ paths:
       summary: Delete JSON Web Key
       tags:
       - jwk
+      x-ory-ratelimit-bucket: hydra-admin-high
     get:
       description: This endpoint returns a singular JSON Web Key contained in a set.
         It is identified by the set and the specific key ID (kid).
@@ -1627,6 +1655,7 @@ paths:
       summary: Get JSON Web Key
       tags:
       - jwk
+      x-ory-ratelimit-bucket: hydra-admin-medium
     put:
       description: |-
         Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.
@@ -1674,6 +1703,7 @@ paths:
       summary: Set JSON Web Key
       tags:
       - jwk
+      x-ory-ratelimit-bucket: hydra-admin-high
   /admin/oauth2/auth/requests/consent:
     get:
       description: |-
@@ -1721,6 +1751,7 @@ paths:
       summary: Get OAuth 2.0 Consent Request
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/auth/requests/consent/accept:
     put:
       description: |-
@@ -1774,6 +1805,7 @@ paths:
       summary: Accept OAuth 2.0 Consent Request
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/auth/requests/consent/reject:
     put:
       description: |-
@@ -1826,6 +1858,7 @@ paths:
       summary: Reject OAuth 2.0 Consent Request
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/auth/requests/device/accept:
     put:
       description: Accepts a device grant user_code request
@@ -1862,6 +1895,7 @@ paths:
       summary: Accepts a device grant user_code request
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/auth/requests/login:
     get:
       description: |-
@@ -1908,6 +1942,7 @@ paths:
       summary: Get OAuth 2.0 Login Request
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/auth/requests/login/accept:
     put:
       description: |-
@@ -1956,6 +1991,7 @@ paths:
       summary: Accept OAuth 2.0 Login Request
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/auth/requests/login/reject:
     put:
       description: |-
@@ -2003,6 +2039,7 @@ paths:
       summary: Reject OAuth 2.0 Login Request
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/auth/requests/logout:
     get:
       description: Use this endpoint to fetch an Ory OAuth 2.0 logout request.
@@ -2039,6 +2076,7 @@ paths:
       summary: Get OAuth 2.0 Session Logout Request
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/auth/requests/logout/accept:
     put:
       description: |-
@@ -2073,6 +2111,7 @@ paths:
       summary: Accept OAuth 2.0 Session Logout Request
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/auth/requests/logout/reject:
     put:
       description: |-
@@ -2105,6 +2144,7 @@ paths:
       summary: Reject OAuth 2.0 Session Logout Request
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/auth/sessions/consent:
     delete:
       description: |-
@@ -2172,6 +2212,7 @@ paths:
       summary: Revoke OAuth 2.0 Consent Sessions of a Subject
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-high
     get:
       description: |-
         This endpoint lists all subject's granted consent sessions, including client and granted scope.
@@ -2243,6 +2284,7 @@ paths:
       summary: List OAuth 2.0 Consent Sessions of a Subject
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/auth/sessions/login:
     delete:
       description: |-
@@ -2296,6 +2338,7 @@ paths:
       summary: Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-high
   /admin/oauth2/introspect:
     post:
       description: |-
@@ -2326,6 +2369,7 @@ paths:
       summary: Introspect OAuth2 Access and Refresh Tokens
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/oauth2/tokens:
     delete:
       description: This endpoint deletes OAuth2 access tokens issued to an OAuth 2.0
@@ -2356,6 +2400,7 @@ paths:
       summary: Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-high
   /admin/recovery/code:
     post:
       description: |-
@@ -2398,6 +2443,7 @@ paths:
       summary: Create a Recovery Code
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/recovery/link:
     post:
       description: |-
@@ -2448,6 +2494,7 @@ paths:
       summary: Create a Recovery Link
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/relation-tuples:
     delete:
       description: Use this endpoint to delete relationships
@@ -2531,6 +2578,7 @@ paths:
       summary: Delete Relationships
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
     patch:
       description: Use this endpoint to patch one or more relationships.
       operationId: patchRelationships
@@ -2570,6 +2618,7 @@ paths:
       summary: Patch Multiple Relationships
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
     put:
       description: Use this endpoint to create a relationship.
       operationId: createRelationship
@@ -2603,6 +2652,7 @@ paths:
       summary: Create a Relationship
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
   /admin/sessions:
     get:
       description: Listing all sessions that exist.
@@ -2689,6 +2739,7 @@ paths:
       summary: List All Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /admin/sessions/{id}:
     delete:
       description: Calling this endpoint deactivates the specified session. Session
@@ -2731,6 +2782,7 @@ paths:
       summary: Deactivate a Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
     get:
       description: |-
         This endpoint is useful for:
@@ -2786,6 +2838,7 @@ paths:
       summary: Get Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
   /admin/sessions/{id}/extend:
     patch:
       description: |-
@@ -2844,6 +2897,7 @@ paths:
       summary: Extend a Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/trust/grants/jwt-bearer/issuers:
     get:
       description: Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
@@ -2904,6 +2958,7 @@ paths:
       summary: List Trusted OAuth2 JWT Bearer Grant Type Issuers
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-medium
     post:
       description: |-
         Use this endpoint to establish a trust relationship for a JWT issuer
@@ -2934,6 +2989,7 @@ paths:
       summary: Trust OAuth2 JWT Bearer Grant Type Issuer
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-high
   /admin/trust/grants/jwt-bearer/issuers/{id}:
     delete:
       description: |-
@@ -2968,6 +3024,7 @@ paths:
       summary: Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-high
     get:
       description: |-
         Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you
@@ -3000,6 +3057,7 @@ paths:
       summary: Get Trusted OAuth2 JWT Bearer Grant Type Issuer
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-medium
   /credentials:
     post:
       description: |-
@@ -3038,6 +3096,7 @@ paths:
       summary: Issues a Verifiable Credential
       tags:
       - oidc
+      x-ory-ratelimit-bucket: hydra-admin-medium
   /namespaces:
     get:
       description: Get all namespaces
@@ -3060,6 +3119,7 @@ paths:
       summary: Query namespaces
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
   /oauth2/auth:
     get:
       description: |-
@@ -3083,6 +3143,7 @@ paths:
       summary: OAuth 2.0 Authorize Endpoint
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-public-medium
   /oauth2/device/auth:
     post:
       description: |-
@@ -3107,6 +3168,7 @@ paths:
       summary: The OAuth 2.0 Device Authorize Endpoint
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-public-low
   /oauth2/device/verify:
     get:
       description: This is the device user verification endpoint. The user is redirected
@@ -3126,6 +3188,7 @@ paths:
       summary: OAuth 2.0 Device Verification Endpoint
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-admin-low
   /oauth2/register:
     post:
       description: |-
@@ -3171,6 +3234,7 @@ paths:
       summary: Register OAuth2 Client using OpenID Dynamic Client Registration
       tags:
       - oidc
+      x-ory-ratelimit-bucket: hydra-public-high
   /oauth2/register/{id}:
     delete:
       description: |-
@@ -3212,6 +3276,7 @@ paths:
         Management Protocol
       tags:
       - oidc
+      x-ory-ratelimit-bucket: hydra-public-high
     get:
       description: |-
         This endpoint behaves like the administrative counterpart (`getOAuth2Client`) but is capable of facing the
@@ -3249,6 +3314,7 @@ paths:
       summary: Get OAuth2 Client using OpenID Dynamic Client Registration
       tags:
       - oidc
+      x-ory-ratelimit-bucket: hydra-admin-low
     put:
       description: |-
         This endpoint behaves like the administrative counterpart (`setOAuth2Client`) but is capable of facing the
@@ -3308,6 +3374,7 @@ paths:
       summary: Set OAuth2 Client using OpenID Dynamic Client Registration
       tags:
       - oidc
+      x-ory-ratelimit-bucket: hydra-public-high
   /oauth2/revoke:
     post:
       description: |-
@@ -3338,6 +3405,7 @@ paths:
       summary: Revoke OAuth 2.0 Access or Refresh Token
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-public-medium
   /oauth2/sessions/logout:
     get:
       description: |-
@@ -3356,6 +3424,7 @@ paths:
       summary: OpenID Connect Front- and Back-channel Enabled Logout
       tags:
       - oidc
+      x-ory-ratelimit-bucket: hydra-public-medium
   /oauth2/token:
     post:
       description: |-
@@ -3389,6 +3458,7 @@ paths:
       summary: The OAuth 2.0 Token Endpoint
       tags:
       - oAuth2
+      x-ory-ratelimit-bucket: hydra-public-medium
   /opl/syntax/check:
     post:
       description: The OPL file is expected in the body of the request.
@@ -3423,6 +3493,7 @@ paths:
       summary: Check the syntax of an OPL file
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-medium
   /projects:
     get:
       description: Lists all projects you have access to.
@@ -3467,6 +3538,7 @@ paths:
       summary: List All Projects
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
     post:
       description: Creates a new project.
       operationId: createProject
@@ -3516,6 +3588,7 @@ paths:
       summary: Create a Project
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project_id}:
     delete:
       description: |-
@@ -3578,6 +3651,7 @@ paths:
       summary: Irrecoverably purge a project
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
     get:
       description: Get a project you have access to by its ID.
       operationId: getProject
@@ -3633,6 +3707,7 @@ paths:
       summary: Get a Project
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-medium
     patch:
       description: |-
         Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.
@@ -3719,6 +3794,7 @@ paths:
       summary: Patch an Ory Network Project Configuration
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
     put:
       description: |-
         This endpoints allows you to update the Ory Network project configuration for
@@ -3804,6 +3880,7 @@ paths:
       summary: Update an Ory Network Project Configuration
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project_id}/eventstreams:
     get:
       operationId: listEventStreams
@@ -3853,6 +3930,7 @@ paths:
       summary: List all event streams for the project. This endpoint is not paginated.
       tags:
       - events
+      x-ory-ratelimit-bucket: backoffice-admin-medium
     post:
       operationId: createEventStream
       parameters:
@@ -3914,6 +3992,7 @@ paths:
       summary: Create an event stream for your project.
       tags:
       - events
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project_id}/eventstreams/{event_stream_id}:
     delete:
       description: Remove an event stream from a project.
@@ -3979,6 +4058,7 @@ paths:
       summary: Remove an event stream from a project
       tags:
       - events
+      x-ory-ratelimit-bucket: backoffice-admin-high
     put:
       operationId: setEventStream
       parameters:
@@ -4050,6 +4130,7 @@ paths:
       summary: Update an event stream for a project.
       tags:
       - events
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project_id}/organizations:
     get:
       description: |-
@@ -4142,6 +4223,7 @@ paths:
       summary: List all Enterprise SSO organizations
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-medium
     post:
       description: |-
         Deprecated: use setProject or patchProjectWithRevision instead
@@ -4206,6 +4288,7 @@ paths:
       summary: Create an Enterprise SSO Organization
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project_id}/organizations/{organization_id}:
     delete:
       description: |-
@@ -4280,6 +4363,7 @@ paths:
       summary: Delete Enterprise SSO Organization
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
     get:
       description: |-
         Deprecated: use getProject instead
@@ -4328,6 +4412,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
         default:
           content:
             application/json:
@@ -4343,6 +4433,7 @@ paths:
       summary: Get Enterprise SSO Organization by ID
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-medium
     put:
       description: |-
         Deprecated: use setProject or patchProjectWithRevision instead
@@ -4424,6 +4515,7 @@ paths:
       summary: Update an Enterprise SSO Organization
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links:
     get:
       description: Retrieves the organization onboarding portal links.
@@ -4485,6 +4577,7 @@ paths:
       summary: Get the organization onboarding portal links
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-medium
     post:
       description: Create a onboarding portal link for an organization.
       operationId: createOrganizationOnboardingPortalLink
@@ -4539,6 +4632,7 @@ paths:
       summary: Create organization onboarding portal link
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id}:
     delete:
       description: Deletes a onboarding portal link for an organization.
@@ -4597,6 +4691,7 @@ paths:
       summary: Delete an organization onboarding portal link
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
     post:
       description: Update a onboarding portal link for an organization.
       operationId: updateOrganizationOnboardingPortalLink
@@ -4658,6 +4753,7 @@ paths:
       summary: Update organization onboarding portal link
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project_id}/revision/{revision_id}:
     patch:
       description: |-
@@ -4760,6 +4856,7 @@ paths:
       summary: Patch an Ory Network Project Configuration based on a revision ID
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project}/members:
     get:
       description: This endpoint requires the user to be a member of the project with
@@ -4807,6 +4904,7 @@ paths:
       summary: Get all members associated with this project
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project}/members/{member}:
     delete:
       description: |-
@@ -4860,6 +4958,7 @@ paths:
       summary: Remove a member associated with this project
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project}/tokens:
     get:
       description: A list of all the project's API keys.
@@ -4895,6 +4994,7 @@ paths:
       summary: List a project's API keys
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
     post:
       description: Create an API key for a project.
       operationId: createProjectApiKey
@@ -4935,6 +5035,7 @@ paths:
       summary: Create project API key
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /projects/{project}/tokens/{token_id}:
     delete:
       description: Deletes an API key and immediately removes it.
@@ -4976,6 +5077,7 @@ paths:
       summary: Delete project API key
       tags:
       - project
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /relation-tuples:
     get:
       description: Get all relationships that match the query. Only the namespace
@@ -5090,6 +5192,7 @@ paths:
       summary: Query relationships
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-medium
   /relation-tuples/batch/check:
     post:
       description: "To learn how relationship tuples and the check works, head over\
@@ -5134,6 +5237,7 @@ paths:
       summary: Batch check permissions
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
   /relation-tuples/check:
     get:
       description: "To learn how relationship tuples and the check works, head over\
@@ -5234,6 +5338,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
     post:
       description: "To learn how relationship tuples and the check works, head over\
         \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
@@ -5283,6 +5388,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
   /relation-tuples/check/openapi:
     get:
       description: "To learn how relationship tuples and the check works, head over\
@@ -5377,6 +5483,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
     post:
       description: "To learn how relationship tuples and the check works, head over\
         \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
@@ -5420,6 +5527,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
   /relation-tuples/expand:
     get:
       description: Use this endpoint to expand a relationship tuple into permissions.
@@ -5487,6 +5595,7 @@ paths:
       summary: Expand a Relationship into permissions.
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-admin-medium
   /schemas:
     get:
       description: Returns a list of all identity schemas currently in use.
@@ -5574,6 +5683,7 @@ paths:
       summary: Get all Identity Schemas
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /schemas/{id}:
     get:
       description: Return a specific identity schema.
@@ -5609,6 +5719,7 @@ paths:
       summary: Get Identity JSON Schema
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /self-service/errors:
     get:
       description: |-
@@ -5657,6 +5768,7 @@ paths:
       summary: Get User-Flow Errors
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/fed-cm/parameters:
     get:
       description: This endpoint returns a list of all available FedCM providers.
@@ -5684,6 +5796,7 @@ paths:
       summary: Get FedCM Parameters
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/fed-cm/token:
     post:
       description: |-
@@ -5740,6 +5853,7 @@ paths:
       summary: Submit a FedCM token
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/login:
     post:
       description: |-
@@ -5852,6 +5966,7 @@ paths:
       summary: Submit a Login Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/login/api:
     get:
       description: |-
@@ -5982,6 +6097,7 @@ paths:
       summary: Create Login Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/login/browser:
     get:
       description: |-
@@ -6126,6 +6242,7 @@ paths:
       summary: Create Login Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/login/flows:
     get:
       description: |-
@@ -6212,6 +6329,7 @@ paths:
       summary: Get Login Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/logout:
     get:
       description: |-
@@ -6280,6 +6398,7 @@ paths:
       summary: Update Logout Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/logout/api:
     delete:
       description: |-
@@ -6319,6 +6438,7 @@ paths:
       summary: Perform Logout for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/logout/browser:
     get:
       description: |-
@@ -6386,6 +6506,7 @@ paths:
       summary: Create a Logout URL for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/recovery:
     post:
       description: |-
@@ -6493,6 +6614,7 @@ paths:
       summary: Update Recovery Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/recovery/api:
     get:
       description: |-
@@ -6532,6 +6654,7 @@ paths:
       summary: Create Recovery Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/recovery/browser:
     get:
       description: |-
@@ -6581,6 +6704,7 @@ paths:
       summary: Create Recovery Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/recovery/flows:
     get:
       description: |-
@@ -6656,6 +6780,7 @@ paths:
       summary: Get Recovery Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/registration:
     post:
       description: |-
@@ -6761,6 +6886,7 @@ paths:
       summary: Update Registration Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/registration/api:
     get:
       description: |-
@@ -6843,6 +6969,7 @@ paths:
       summary: Create Registration Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/registration/browser:
     get:
       description: |-
@@ -6942,6 +7069,7 @@ paths:
       summary: Create Registration Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/registration/flows:
     get:
       description: |-
@@ -7028,6 +7156,7 @@ paths:
       summary: Get Registration Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/settings:
     post:
       description: |-
@@ -7170,6 +7299,7 @@ paths:
       summary: Complete Settings Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/settings/api:
     get:
       description: |-
@@ -7227,6 +7357,7 @@ paths:
       summary: Create Settings Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/settings/browser:
     get:
       description: |-
@@ -7316,6 +7447,7 @@ paths:
       summary: Create Settings Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/settings/flows:
     get:
       description: |-
@@ -7416,6 +7548,7 @@ paths:
       summary: Get Settings Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/verification:
     post:
       description: |-
@@ -7517,6 +7650,7 @@ paths:
       summary: Complete Verification Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/verification/api:
     get:
       description: |-
@@ -7565,6 +7699,7 @@ paths:
       summary: Create Verification Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/verification/browser:
     get:
       description: |-
@@ -7606,6 +7741,7 @@ paths:
       summary: Create Verification Flow for Browser Clients
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/verification/flows:
     get:
       description: |-
@@ -7681,6 +7817,7 @@ paths:
       summary: Get Verification Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /sessions:
     delete:
       description: |-
@@ -7738,6 +7875,7 @@ paths:
       summary: Disable my other sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
     get:
       description: |-
         This endpoints returns all other active sessions that belong to the logged-in user.
@@ -7862,6 +8000,7 @@ paths:
       summary: Get My Active Sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /sessions/token-exchange:
     get:
       operationId: exchangeSessionToken
@@ -7916,6 +8055,7 @@ paths:
       summary: Exchange Session Token
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /sessions/whoami:
     get:
       description: |-
@@ -8043,6 +8183,7 @@ paths:
       summary: Check Who the Current HTTP Session Belongs To
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /sessions/{id}:
     delete:
       description: |-
@@ -8106,6 +8247,7 @@ paths:
       summary: Disable one of my sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /userinfo:
     get:
       description: |-
@@ -8134,6 +8276,7 @@ paths:
       summary: OpenID Connect Userinfo
       tags:
       - oidc
+      x-ory-ratelimit-bucket: hydra-public-medium
   /version:
     get:
       description: |-
@@ -8235,6 +8378,7 @@ paths:
       summary: List workspaces the user is a member of
       tags:
       - workspace
+      x-ory-ratelimit-bucket: backoffice-admin-high
     post:
       operationId: createWorkspace
       requestBody:
@@ -8289,6 +8433,7 @@ paths:
       summary: Create a new workspace
       tags:
       - workspace
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /workspaces/{workspace}:
     get:
       description: Any workspace member can access this endpoint.
@@ -8347,6 +8492,7 @@ paths:
       summary: Get a workspace
       tags:
       - workspace
+      x-ory-ratelimit-bucket: backoffice-admin-medium
     put:
       description: Workspace members with the role `OWNER` can access this endpoint.
       operationId: updateWorkspace
@@ -8410,6 +8556,7 @@ paths:
       summary: Update an workspace
       tags:
       - workspace
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /workspaces/{workspace}/projects:
     get:
       description: Any workspace member can access this endpoint.
@@ -8468,6 +8615,7 @@ paths:
       summary: List all projects of a workspace
       tags:
       - workspace
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /workspaces/{workspace}/tokens:
     get:
       description: A list of all the workspace's API keys.
@@ -8503,6 +8651,7 @@ paths:
       summary: List a workspace's API keys
       tags:
       - workspace
+      x-ory-ratelimit-bucket: backoffice-admin-high
     post:
       description: Create an API key for a workspace.
       operationId: createWorkspaceApiKey
@@ -8543,6 +8692,7 @@ paths:
       summary: Create workspace API key
       tags:
       - workspace
+      x-ory-ratelimit-bucket: backoffice-admin-high
   /workspaces/{workspace}/tokens/{token_id}:
     delete:
       description: Deletes an API key and immediately removes it.
@@ -8584,6 +8734,7 @@ paths:
       summary: Delete workspace API key
       tags:
       - workspace
+      x-ory-ratelimit-bucket: backoffice-admin-high
 components:
   responses:
     emptyResponse:
@@ -10734,6 +10885,22 @@ components:
         largest representable duration to approximately 290 years.
       format: int64
       type: integer
+    GenericOIDCProvider:
+      properties:
+        client_id:
+          description: The client_id of the OIDC provider.
+          type: string
+        client_secret:
+          description: The client_secret of the OIDC provider.
+          type: string
+        issuer_url:
+          description: The issuer URL of the OIDC provider.
+          type: string
+      required:
+      - client_id
+      - client_secret
+      - issuer_url
+      type: object
     GenericUsage:
       properties:
         additional_price:
@@ -11512,16 +11679,6 @@ components:
       - verification_enabled
       - verification_ui_url
       type: object
-    activeProjectInConsole:
-      description: The Active Project ID
-      properties:
-        project_id:
-          description: |-
-            The Active Project ID
-
-            format: uuid
-          type: string
-      type: object
     addProjectToWorkspaceBody:
       properties:
         environment:
@@ -11715,6 +11872,10 @@ components:
           format: uuid
           type: string
         name:
+          type: string
+        organization_id:
+          format: uuid4
+          nullable: true
           type: string
       required:
       - email
@@ -12112,6 +12273,16 @@ components:
       type: object
     createMemberInviteResponse:
       $ref: "#/components/schemas/CreateInviteResponse"
+    createOnboardingLinkBody:
+      type: object
+    createOnboardingLinkResponse:
+      properties:
+        onboarding_portal_token:
+          description: The onboarding to redirect the user to for organization setup.
+          type: string
+      required:
+      - onboarding_portal_token
+      type: object
     createOrganizationOnboardingPortalLinkBody:
       properties:
         apple_mapper_url:
@@ -12384,6 +12555,11 @@ components:
           type: string
       required:
       - name
+      type: object
+    createWorkspaceOrganizationBody:
+      properties:
+        generic_oidc_provider:
+          $ref: "#/components/schemas/GenericOIDCProvider"
       type: object
     createWorkspaceSubscriptionBody:
       properties:
@@ -13625,6 +13801,9 @@ components:
           - User
           - ' ApiKey'
           type: string
+        organization_id:
+          description: OrganizationID is the organization's ID.
+          type: string
         project_scope:
           description: |-
             ProjectScope is the project_id resolved from the
@@ -14147,6 +14326,8 @@ components:
         - workspace:
             subscription_id: subscription_id
             updated_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            access_policy: CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -14168,6 +14349,8 @@ components:
         - workspace:
             subscription_id: subscription_id
             updated_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            access_policy: CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -14208,12 +14391,16 @@ components:
         workspaces:
         - subscription_id: subscription_id
           updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          access_policy: CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           subscription_plan: subscription_plan
         - subscription_id: subscription_id
           updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          access_policy: CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -16794,6 +16981,12 @@ components:
           format: date-time
           readOnly: true
           type: string
+        valid_to:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
       type: object
     normalizedProjectRevisionScimClient:
       description: |-
@@ -16946,7 +17139,7 @@ components:
           nullable: true
           type: string
         project_revision_id:
-          description: The Revision's ID this schema belongs to
+          description: The Revision's ID this provider belongs to
           format: uuid
           type: string
         provider:
@@ -19910,6 +20103,7 @@ components:
       example:
         email_verified: true
         role: role
+        organization_id: organization_id
         name: name
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         email: email
@@ -19922,6 +20116,10 @@ components:
           format: uuid
           type: string
         name:
+          type: string
+        organization_id:
+          format: uuid4
+          nullable: true
           type: string
         role:
           type: string
@@ -19941,6 +20139,8 @@ components:
         workspace:
           subscription_id: subscription_id
           updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          access_policy: CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -20191,6 +20391,7 @@ components:
             scim_clients SCIMClients
             default_smtp_email_customization DefaultSMTPEmailCustomization
             onboarding_portal OnboardingPortal
+            console_organization_sso ConsoleOrganizationSSO
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
             update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
             update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
@@ -20240,6 +20441,7 @@ components:
           - scim_clients
           - default_smtp_email_customization
           - onboarding_portal
+          - console_organization_sso
           - update_self_service_registration_rate_limit_tier
           - update_self_service_recovery_rate_limit_tier
           - update_self_service_settings_rate_limit_tier
@@ -20290,6 +20492,7 @@ components:
             scim_clients SCIMClients
             default_smtp_email_customization DefaultSMTPEmailCustomization
             onboarding_portal OnboardingPortal
+            console_organization_sso ConsoleOrganizationSSO
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
             update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
             update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
@@ -21351,20 +21554,6 @@ components:
           type: string
       required:
       - id
-      type: object
-    setActiveProjectInConsoleBody:
-      description: Set active project in the Ory Network Console Request Body
-      properties:
-        project_id:
-          description: |-
-            Project ID
-
-            The Project ID you want to set active.
-
-            format: uuid
-          type: string
-      required:
-      - project_id
       type: object
     setCustomDomainBody:
       description: Update Custom Hostname Body
@@ -24301,6 +24490,21 @@ components:
       type: object
     updateWorkspaceBody:
       properties:
+        access_policy:
+          description: |-
+            The access policy of the workspace.
+            If the workspace is not linked to an organization, this field is ignored and
+            the access policy is set to "INVITED_MEMBERS", which allows all invited members
+            to access the workspace.
+            CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP WorkspaceAccessPolicyOrganizationMembershipRequired  Only invited members that are part of the organization defined for the workspace can access it
+            CHECK_ACCESS_PERMISSION WorkspaceAccessPolicyMembershipRequired  All invited members can access the workspace, regardless of their organization membership  This is useful for migration scenarios where workspaces previously did not have an organization assigned  If a user is just a member of a project within the workspace, they'll still have access to the project, but not to the workspace itself (the default for existing workspaces)
+          enum:
+          - CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP
+          - CHECK_ACCESS_PERMISSION
+          type: string
+          x-go-enum-desc: |-
+            CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP WorkspaceAccessPolicyOrganizationMembershipRequired  Only invited members that are part of the organization defined for the workspace can access it
+            CHECK_ACCESS_PERMISSION WorkspaceAccessPolicyMembershipRequired  All invited members can access the workspace, regardless of their organization membership  This is useful for migration scenarios where workspaces previously did not have an organization assigned  If a user is just a member of a project within the workspace, they'll still have access to the project, but not to the workspace itself (the default for existing workspaces)
         name:
           description: The name of the workspace.
           type: string
@@ -24610,11 +24814,27 @@ components:
       example:
         subscription_id: subscription_id
         updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        access_policy: CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         subscription_plan: subscription_plan
       properties:
+        access_policy:
+          description: |-
+            Controls who can access the workspace and its projects
+
+            This does not control access level, only who can access it at all.
+            CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP WorkspaceAccessPolicyOrganizationMembershipRequired  Only invited members that are part of the organization defined for the workspace can access it
+            CHECK_ACCESS_PERMISSION WorkspaceAccessPolicyMembershipRequired  All invited members can access the workspace, regardless of their organization membership  This is useful for migration scenarios where workspaces previously did not have an organization assigned  If a user is just a member of a project within the workspace, they'll still have access to the project, but not to the workspace itself (the default for existing workspaces)
+          enum:
+          - CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP
+          - CHECK_ACCESS_PERMISSION
+          type: string
+          x-go-enum-desc: |-
+            CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP WorkspaceAccessPolicyOrganizationMembershipRequired  Only invited members that are part of the organization defined for the workspace can access it
+            CHECK_ACCESS_PERMISSION WorkspaceAccessPolicyMembershipRequired  All invited members can access the workspace, regardless of their organization membership  This is useful for migration scenarios where workspaces previously did not have an organization assigned  If a user is just a member of a project within the workspace, they'll still have access to the project, but not to the workspace itself (the default for existing workspaces)
         created_at:
           format: date-time
           type: string
@@ -24622,6 +24842,10 @@ components:
           format: uuid
           type: string
         name:
+          type: string
+        organization_id:
+          format: uuid4
+          nullable: true
           type: string
         subscription_id:
           format: uuid4
@@ -24697,6 +24921,37 @@ components:
       items:
         $ref: "#/components/schemas/workspaceApiKey"
       type: array
+    workspaceOrganization:
+      properties:
+        active_link:
+          $ref: "#/components/schemas/onboardingPortalLink"
+        created_at:
+          format: date-time
+          type: string
+        domains:
+          items:
+            type: string
+          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
+            \ JSON for SQL storage."
+          type: array
+        id:
+          description: The organization's ID.
+          format: uuid
+          type: string
+        label:
+          description: The organization's human-readable label.
+          type: string
+        providers:
+          items:
+            type: string
+          type: array
+      required:
+      - created_at
+      - domains
+      - id
+      - label
+      - providers
+      type: object
     workspaces:
       items:
         $ref: "#/components/schemas/workspace"

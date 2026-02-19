@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **raw_idp_metadata_xml** | **str** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] 
 **state** | **str** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **updated_at** | **datetime** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
+**valid_to** | **List[str]** |  | [optional] 
 
 ## Example
 

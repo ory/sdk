@@ -25,7 +25,6 @@ lib/ory/model/accept_o_auth2_consent_request_session.ex
 lib/ory/model/accept_o_auth2_login_request.ex
 lib/ory/model/account_experience_colors.ex
 lib/ory/model/account_experience_configuration.ex
-lib/ory/model/active_project_in_console.ex
 lib/ory/model/add_project_to_workspace_body.ex
 lib/ory/model/attribute.ex
 lib/ory/model/attribute_filter.ex
@@ -58,6 +57,7 @@ lib/ory/model/create_fedcm_flow_response.ex
 lib/ory/model/create_identity_body.ex
 lib/ory/model/create_invite_response.ex
 lib/ory/model/create_json_web_key_set.ex
+lib/ory/model/create_onboarding_link_response.ex
 lib/ory/model/create_organization_onboarding_portal_link_body.ex
 lib/ory/model/create_project_api_key_request.ex
 lib/ory/model/create_project_body.ex
@@ -73,6 +73,7 @@ lib/ory/model/create_verifiable_credential_request_body.ex
 lib/ory/model/create_workspace_api_key_body.ex
 lib/ory/model/create_workspace_body.ex
 lib/ory/model/create_workspace_member_invite_body.ex
+lib/ory/model/create_workspace_organization_body.ex
 lib/ory/model/create_workspace_subscription_body.ex
 lib/ory/model/credential_supported_draft00.ex
 lib/ory/model/custom_domain.ex
@@ -91,6 +92,7 @@ lib/ory/model/expanded_permission_tree.ex
 lib/ory/model/flow_error.ex
 lib/ory/model/generic_error.ex
 lib/ory/model/generic_error_content.ex
+lib/ory/model/generic_oidc_provider.ex
 lib/ory/model/generic_usage.ex
 lib/ory/model/get_attributes_count.ex
 lib/ory/model/get_managed_identity_schema_location.ex
@@ -229,7 +231,6 @@ lib/ory/model/session.ex
 lib/ory/model/session_activity_datapoint.ex
 lib/ory/model/session_authentication_method.ex
 lib/ory/model/session_device.ex
-lib/ory/model/set_active_project_in_console_body.ex
 lib/ory/model/set_custom_domain_body.ex
 lib/ory/model/set_event_stream_body.ex
 lib/ory/model/set_organization_from_onboarding_portal_link_body.ex
@@ -314,6 +315,7 @@ lib/ory/model/version.ex
 lib/ory/model/warning.ex
 lib/ory/model/workspace.ex
 lib/ory/model/workspace_api_key.ex
+lib/ory/model/workspace_organization.ex
 lib/ory/request_builder.ex
 mix.exs
 test/test_helper.exs

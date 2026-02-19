@@ -598,6 +598,7 @@ public class Example {
 | **200** | getOrganizationResponse |  -  |
 | **400** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
+| **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
 <a id="getOrganizationOnboardingPortalLinks"></a>

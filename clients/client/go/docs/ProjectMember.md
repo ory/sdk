@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **EmailVerified** | **bool** |  | 
 **Id** | **string** |  | 
 **Name** | **string** |  | 
+**OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **Role** | **string** |  | 
 
 ## Methods
@@ -109,6 +110,41 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetOrganizationId
+
+`func (o *ProjectMember) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *ProjectMember) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *ProjectMember) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *ProjectMember) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
+
+### SetOrganizationIdNil
+
+`func (o *ProjectMember) SetOrganizationIdNil(b bool)`
+
+ SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+
+### UnsetOrganizationId
+`func (o *ProjectMember) UnsetOrganizationId()`
+
+UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetRole
 
 `func (o *ProjectMember) GetRole() string`

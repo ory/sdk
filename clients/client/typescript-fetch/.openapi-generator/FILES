@@ -8,7 +8,6 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
-docs/ActiveProjectInConsole.md
 docs/AddProjectToWorkspaceBody.md
 docs/Attribute.md
 docs/AttributeFilter.md
@@ -42,6 +41,7 @@ docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
+docs/CreateOnboardingLinkResponse.md
 docs/CreateOrganizationOnboardingPortalLinkBody.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
@@ -57,6 +57,7 @@ docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
 docs/CreateWorkspaceMemberInviteBody.md
+docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
@@ -77,6 +78,7 @@ docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
 docs/GenericErrorContent.md
+docs/GenericOIDCProvider.md
 docs/GenericUsage.md
 docs/GetAttributesCount.md
 docs/GetManagedIdentitySchemaLocation.md
@@ -223,7 +225,6 @@ docs/Session.md
 docs/SessionActivityDatapoint.md
 docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
-docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetEventStreamBody.md
 docs/SetOrganizationFromOnboardingPortalLinkBody.md
@@ -310,6 +311,7 @@ docs/WellknownApi.md
 docs/Workspace.md
 docs/WorkspaceApi.md
 docs/WorkspaceApiKey.md
+docs/WorkspaceOrganization.md
 package.json
 src/apis/CourierApi.ts
 src/apis/EventsApi.ts
@@ -339,7 +341,6 @@ src/models/AcceptOAuth2ConsentRequestSession.ts
 src/models/AcceptOAuth2LoginRequest.ts
 src/models/AccountExperienceColors.ts
 src/models/AccountExperienceConfiguration.ts
-src/models/ActiveProjectInConsole.ts
 src/models/AddProjectToWorkspaceBody.ts
 src/models/Attribute.ts
 src/models/AttributeFilter.ts
@@ -372,6 +373,7 @@ src/models/CreateFedcmFlowResponse.ts
 src/models/CreateIdentityBody.ts
 src/models/CreateInviteResponse.ts
 src/models/CreateJsonWebKeySet.ts
+src/models/CreateOnboardingLinkResponse.ts
 src/models/CreateOrganizationOnboardingPortalLinkBody.ts
 src/models/CreateProjectApiKeyRequest.ts
 src/models/CreateProjectBody.ts
@@ -387,6 +389,7 @@ src/models/CreateVerifiableCredentialRequestBody.ts
 src/models/CreateWorkspaceApiKeyBody.ts
 src/models/CreateWorkspaceBody.ts
 src/models/CreateWorkspaceMemberInviteBody.ts
+src/models/CreateWorkspaceOrganizationBody.ts
 src/models/CreateWorkspaceSubscriptionBody.ts
 src/models/CredentialSupportedDraft00.ts
 src/models/CustomDomain.ts
@@ -405,6 +408,7 @@ src/models/ExpandedPermissionTree.ts
 src/models/FlowError.ts
 src/models/GenericError.ts
 src/models/GenericErrorContent.ts
+src/models/GenericOIDCProvider.ts
 src/models/GenericUsage.ts
 src/models/GetAttributesCount.ts
 src/models/GetManagedIdentitySchemaLocation.ts
@@ -543,7 +547,6 @@ src/models/Session.ts
 src/models/SessionActivityDatapoint.ts
 src/models/SessionAuthenticationMethod.ts
 src/models/SessionDevice.ts
-src/models/SetActiveProjectInConsoleBody.ts
 src/models/SetCustomDomainBody.ts
 src/models/SetEventStreamBody.ts
 src/models/SetOrganizationFromOnboardingPortalLinkBody.ts
@@ -628,6 +631,7 @@ src/models/Version.ts
 src/models/Warning.ts
 src/models/Workspace.ts
 src/models/WorkspaceApiKey.ts
+src/models/WorkspaceOrganization.ts
 src/models/index.ts
 src/runtime.ts
 tsconfig.esm.json

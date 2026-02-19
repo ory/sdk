@@ -9,7 +9,6 @@ docs/AcceptOAuth2ConsentRequestSession.md
 docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
-docs/ActiveProjectInConsole.md
 docs/AddProjectToWorkspaceBody.md
 docs/Attribute.md
 docs/AttributeFilter.md
@@ -43,6 +42,7 @@ docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
+docs/CreateOnboardingLinkResponse.md
 docs/CreateOrganizationOnboardingPortalLinkBody.md
 docs/CreateProjectApiKeyRequest.md
 docs/CreateProjectBody.md
@@ -58,6 +58,7 @@ docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
 docs/CreateWorkspaceMemberInviteBody.md
+docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
@@ -78,6 +79,7 @@ docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
 docs/GenericErrorContent.md
+docs/GenericOidcProvider.md
 docs/GenericUsage.md
 docs/GetAttributesCount.md
 docs/GetManagedIdentitySchemaLocation.md
@@ -224,7 +226,6 @@ docs/Session.md
 docs/SessionActivityDatapoint.md
 docs/SessionAuthenticationMethod.md
 docs/SessionDevice.md
-docs/SetActiveProjectInConsoleBody.md
 docs/SetCustomDomainBody.md
 docs/SetEventStreamBody.md
 docs/SetOrganizationFromOnboardingPortalLinkBody.md
@@ -311,6 +312,7 @@ docs/WellknownApi.md
 docs/Workspace.md
 docs/WorkspaceApi.md
 docs/WorkspaceApiKey.md
+docs/WorkspaceOrganization.md
 git_push.sh
 src/apis/configuration.rs
 src/apis/courier_api.rs
@@ -334,7 +336,6 @@ src/models/accept_o_auth2_consent_request_session.rs
 src/models/accept_o_auth2_login_request.rs
 src/models/account_experience_colors.rs
 src/models/account_experience_configuration.rs
-src/models/active_project_in_console.rs
 src/models/add_project_to_workspace_body.rs
 src/models/attribute.rs
 src/models/attribute_filter.rs
@@ -367,6 +368,7 @@ src/models/create_fedcm_flow_response.rs
 src/models/create_identity_body.rs
 src/models/create_invite_response.rs
 src/models/create_json_web_key_set.rs
+src/models/create_onboarding_link_response.rs
 src/models/create_organization_onboarding_portal_link_body.rs
 src/models/create_project_api_key_request.rs
 src/models/create_project_body.rs
@@ -382,6 +384,7 @@ src/models/create_verifiable_credential_request_body.rs
 src/models/create_workspace_api_key_body.rs
 src/models/create_workspace_body.rs
 src/models/create_workspace_member_invite_body.rs
+src/models/create_workspace_organization_body.rs
 src/models/create_workspace_subscription_body.rs
 src/models/credential_supported_draft00.rs
 src/models/custom_domain.rs
@@ -400,6 +403,7 @@ src/models/expanded_permission_tree.rs
 src/models/flow_error.rs
 src/models/generic_error.rs
 src/models/generic_error_content.rs
+src/models/generic_oidc_provider.rs
 src/models/generic_usage.rs
 src/models/get_attributes_count.rs
 src/models/get_managed_identity_schema_location.rs
@@ -539,7 +543,6 @@ src/models/session.rs
 src/models/session_activity_datapoint.rs
 src/models/session_authentication_method.rs
 src/models/session_device.rs
-src/models/set_active_project_in_console_body.rs
 src/models/set_custom_domain_body.rs
 src/models/set_event_stream_body.rs
 src/models/set_organization_from_onboarding_portal_link_body.rs
@@ -624,3 +627,4 @@ src/models/version.rs
 src/models/warning.rs
 src/models/workspace.rs
 src/models/workspace_api_key.rs
+src/models/workspace_organization.rs

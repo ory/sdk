@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`access_policy` | string
 `name` | string
 
 ## Example
@@ -15,6 +16,7 @@ import type { UpdateWorkspaceBody } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "access_policy": null,
   "name": null,
 } satisfies UpdateWorkspaceBody
 

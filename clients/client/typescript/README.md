@@ -1,4 +1,4 @@
-## @ory/client@v1.22.23
+## @ory/client@v1.22.24
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.23 --save
+npm install @ory/client@v1.22.24 --save
 ```
 
 _unPublished (not recommended):_
@@ -207,7 +207,6 @@ Class | Method | HTTP request | Description
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
  - [AccountExperienceColors](docs/AccountExperienceColors.md)
  - [AccountExperienceConfiguration](docs/AccountExperienceConfiguration.md)
- - [ActiveProjectInConsole](docs/ActiveProjectInConsole.md)
  - [AddProjectToWorkspaceBody](docs/AddProjectToWorkspaceBody.md)
  - [Attribute](docs/Attribute.md)
  - [AttributeFilter](docs/AttributeFilter.md)
@@ -240,6 +239,7 @@ Class | Method | HTTP request | Description
  - [CreateIdentityBody](docs/CreateIdentityBody.md)
  - [CreateInviteResponse](docs/CreateInviteResponse.md)
  - [CreateJsonWebKeySet](docs/CreateJsonWebKeySet.md)
+ - [CreateOnboardingLinkResponse](docs/CreateOnboardingLinkResponse.md)
  - [CreateOrganizationOnboardingPortalLinkBody](docs/CreateOrganizationOnboardingPortalLinkBody.md)
  - [CreateProjectApiKeyRequest](docs/CreateProjectApiKeyRequest.md)
  - [CreateProjectBody](docs/CreateProjectBody.md)
@@ -255,6 +255,7 @@ Class | Method | HTTP request | Description
  - [CreateWorkspaceApiKeyBody](docs/CreateWorkspaceApiKeyBody.md)
  - [CreateWorkspaceBody](docs/CreateWorkspaceBody.md)
  - [CreateWorkspaceMemberInviteBody](docs/CreateWorkspaceMemberInviteBody.md)
+ - [CreateWorkspaceOrganizationBody](docs/CreateWorkspaceOrganizationBody.md)
  - [CreateWorkspaceSubscriptionBody](docs/CreateWorkspaceSubscriptionBody.md)
  - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [CustomDomain](docs/CustomDomain.md)
@@ -273,6 +274,7 @@ Class | Method | HTTP request | Description
  - [FlowError](docs/FlowError.md)
  - [GenericError](docs/GenericError.md)
  - [GenericErrorContent](docs/GenericErrorContent.md)
+ - [GenericOIDCProvider](docs/GenericOIDCProvider.md)
  - [GenericUsage](docs/GenericUsage.md)
  - [GetAttributesCount](docs/GetAttributesCount.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
@@ -411,7 +413,6 @@ Class | Method | HTTP request | Description
  - [SessionActivityDatapoint](docs/SessionActivityDatapoint.md)
  - [SessionAuthenticationMethod](docs/SessionAuthenticationMethod.md)
  - [SessionDevice](docs/SessionDevice.md)
- - [SetActiveProjectInConsoleBody](docs/SetActiveProjectInConsoleBody.md)
  - [SetCustomDomainBody](docs/SetCustomDomainBody.md)
  - [SetEventStreamBody](docs/SetEventStreamBody.md)
  - [SetOrganizationFromOnboardingPortalLinkBody](docs/SetOrganizationFromOnboardingPortalLinkBody.md)
@@ -496,6 +497,7 @@ Class | Method | HTTP request | Description
  - [Warning](docs/Warning.md)
  - [Workspace](docs/Workspace.md)
  - [WorkspaceApiKey](docs/WorkspaceApiKey.md)
+ - [WorkspaceOrganization](docs/WorkspaceOrganization.md)
 
 
 <a id="documentation-for-authorization"></a>
