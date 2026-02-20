@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:ory_client, "~> 1.22.24"}]
+  [{:ory_client, "~> 1.22.25"}]
 end
 ```
 
