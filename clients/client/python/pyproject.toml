@@ -1,6 +1,6 @@
 [project]
 name = "ory_client"
-version = "v1.22.25"
+version = "v1.22.26"
 description = "Ory APIs"
 authors = [
   {name = "API Support",email = "support@ory.sh"},
