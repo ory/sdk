@@ -322,6 +322,27 @@ elixir () {
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
 
+swift () {
+  echo "Generating Swift..."
+
+  dir="clients/${PROJECT}/swift"
+  rm -rf "$dir" || true
+  mkdir -p "$dir"
+
+  npx @openapitools/openapi-generator-cli@2.17.0 generate \
+    -i "${SPEC_FILE}"  \
+    -g swift5 \
+    -o "$dir" \
+    --git-user-id ory \
+    --git-repo-id sdk \
+    --git-host github.com \
+    -c ./config/client/swift.yml
+
+
+  cp "LICENSE" "clients/${PROJECT}/swift"
+}
+
+swift
 elixir
 typescript
 typescript_fetch
