@@ -12,7 +12,6 @@ import AnyCodable
 
 public enum UpdateLoginFlowBody: Codable, JSONEncodable, Hashable {
     case typeUpdateLoginFlowWithCodeMethod(UpdateLoginFlowWithCodeMethod)
-    case typeUpdateLoginFlowWithDeviceAuthnMethod(UpdateLoginFlowWithDeviceAuthnMethod)
     case typeUpdateLoginFlowWithIdentifierFirstMethod(UpdateLoginFlowWithIdentifierFirstMethod)
     case typeUpdateLoginFlowWithLookupSecretMethod(UpdateLoginFlowWithLookupSecretMethod)
     case typeUpdateLoginFlowWithOidcMethod(UpdateLoginFlowWithOidcMethod)
@@ -26,8 +25,6 @@ public enum UpdateLoginFlowBody: Codable, JSONEncodable, Hashable {
         var container = encoder.singleValueContainer()
         switch self {
         case .typeUpdateLoginFlowWithCodeMethod(let value):
-            try container.encode(value)
-        case .typeUpdateLoginFlowWithDeviceAuthnMethod(let value):
             try container.encode(value)
         case .typeUpdateLoginFlowWithIdentifierFirstMethod(let value):
             try container.encode(value)
@@ -52,8 +49,6 @@ public enum UpdateLoginFlowBody: Codable, JSONEncodable, Hashable {
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(UpdateLoginFlowWithCodeMethod.self) {
             self = .typeUpdateLoginFlowWithCodeMethod(value)
-        } else if let value = try? container.decode(UpdateLoginFlowWithDeviceAuthnMethod.self) {
-            self = .typeUpdateLoginFlowWithDeviceAuthnMethod(value)
         } else if let value = try? container.decode(UpdateLoginFlowWithIdentifierFirstMethod.self) {
             self = .typeUpdateLoginFlowWithIdentifierFirstMethod(value)
         } else if let value = try? container.decode(UpdateLoginFlowWithLookupSecretMethod.self) {

@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**csrfToken** | **String** | CSRFToken is the anti-CSRF token It only is required to remove a key from the browser. | [optional] 
-**method** | **String** | Method  Should be set to \&quot;deviceauthn\&quot; when trying to add or remove a DeviceAuthn key. | 
+**csrfToken** | **String** | CSRFToken is the anti-CSRF token | [optional] 
+**method** | **String** | Method  Should be set to \&quot;passkey\&quot; when trying to add, update, or remove a webAuthn pairing. | 
 **password** | **String** | Password is the updated password | 
 **transientPayload** | **AnyCodable** | Transient data to pass along to any webhooks | [optional] 
 **traits** | **AnyCodable** | The identity&#39;s traits  in: body | 
@@ -23,8 +23,6 @@ Name | Type | Description | Notes
 **lookupSecretReveal** | **Bool** | If set to true will reveal the lookup secrets | [optional] 
 **passkeyRemove** | **String** | Remove a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 **passkeySettingsRegister** | **String** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. | [optional] 
-**add** | [**UpdateSettingsFlowWithDeviceAuthnMethodAdd**](UpdateSettingsFlowWithDeviceAuthnMethodAdd.md) |  | [optional] 
-**delete** | [**UpdateSettingsFlowWithDeviceAuthnMethodDelete**](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

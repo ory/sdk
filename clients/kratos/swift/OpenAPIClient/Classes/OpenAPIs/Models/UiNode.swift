@@ -27,7 +27,6 @@ public struct UiNode: Codable, JSONEncodable, Hashable {
         case identifierFirst = "identifier_first"
         case captcha = "captcha"
         case saml = "saml"
-        case deviceauthn = "deviceauthn"
     }
     public enum ModelType: String, Codable, CaseIterable {
         case text = "text"
@@ -38,7 +37,7 @@ public struct UiNode: Codable, JSONEncodable, Hashable {
         case div = "div"
     }
     public var attributes: UiNodeAttributes
-    /** Group specifies which group (e.g. password authenticator) this node belongs to. default DefaultGroup password PasswordGroup oidc OpenIDConnectGroup profile ProfileGroup link LinkGroup code CodeGroup totp TOTPGroup lookup_secret LookupGroup webauthn WebAuthnGroup passkey PasskeyGroup identifier_first IdentifierFirstGroup captcha CaptchaGroup saml SAMLGroup deviceauthn DeviceAuthnGroup */
+    /** Group specifies which group (e.g. password authenticator) this node belongs to. default DefaultGroup password PasswordGroup oidc OpenIDConnectGroup profile ProfileGroup link LinkGroup code CodeGroup totp TOTPGroup lookup_secret LookupGroup webauthn WebAuthnGroup passkey PasskeyGroup identifier_first IdentifierFirstGroup captcha CaptchaGroup saml SAMLGroup */
     public var group: Group
     public var messages: [UiText]
     public var meta: UiNodeMeta

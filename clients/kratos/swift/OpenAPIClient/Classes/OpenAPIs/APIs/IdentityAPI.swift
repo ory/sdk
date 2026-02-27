@@ -268,7 +268,6 @@ open class IdentityAPI {
         case passkey = "passkey"
         case profile = "profile"
         case saml = "saml"
-        case deviceauthn = "deviceauthn"
         case linkRecovery = "link_recovery"
         case codeRecovery = "code_recovery"
     }
@@ -277,7 +276,7 @@ open class IdentityAPI {
      Delete a credential for a specific identity
      
      - parameter id: (path) ID is the identity&#39;s ID. 
-     - parameter type: (path) Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode 
+     - parameter type: (path) Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode 
      - parameter identifier: (query) Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{oidc,saml}&#x60; endpoint. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
@@ -302,7 +301,7 @@ open class IdentityAPI {
        - type: apiKey Authorization (HEADER)
        - name: oryAccessToken
      - parameter id: (path) ID is the identity&#39;s ID. 
-     - parameter type: (path) Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode 
+     - parameter type: (path) Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode 
      - parameter identifier: (query) Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{oidc,saml}&#x60; endpoint. (optional)
      - returns: RequestBuilder<Void> 
      */
@@ -496,7 +495,6 @@ open class IdentityAPI {
         case passkey = "passkey"
         case profile = "profile"
         case saml = "saml"
-        case deviceauthn = "deviceauthn"
         case linkRecovery = "link_recovery"
         case codeRecovery = "code_recovery"
     }
@@ -569,7 +567,6 @@ open class IdentityAPI {
         case passkey = "passkey"
         case profile = "profile"
         case saml = "saml"
-        case deviceauthn = "deviceauthn"
         case linkRecovery = "link_recovery"
         case codeRecovery = "code_recovery"
     }

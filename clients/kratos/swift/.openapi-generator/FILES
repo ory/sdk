@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .swiftformat
 Cartfile
 OpenAPIClient.podspec
@@ -17,6 +16,7 @@ OpenAPIClient/Classes/OpenAPIs/JSONEncodingHelper.swift
 OpenAPIClient/Classes/OpenAPIs/Models.swift
 OpenAPIClient/Classes/OpenAPIs/Models/AuthenticatorAssuranceLevel.swift
 OpenAPIClient/Classes/OpenAPIs/Models/BatchPatchIdentitiesResponse.swift
+OpenAPIClient/Classes/OpenAPIs/Models/ConsistencyRequestParameters.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ContinueWith.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ContinueWithRecoveryUi.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ContinueWithRecoveryUiFlow.swift
@@ -33,7 +33,6 @@ OpenAPIClient/Classes/OpenAPIs/Models/CreateIdentityBody.swift
 OpenAPIClient/Classes/OpenAPIs/Models/CreateRecoveryCodeForIdentityBody.swift
 OpenAPIClient/Classes/OpenAPIs/Models/CreateRecoveryLinkForIdentityBody.swift
 OpenAPIClient/Classes/OpenAPIs/Models/DeleteMySessionsCount.swift
-OpenAPIClient/Classes/OpenAPIs/Models/DeviceAuthnKey.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ErrorAuthenticatorAssuranceLevelNotSatisfied.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ErrorBrowserLocationChangeRequired.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ErrorFlowReplaced.swift
@@ -110,7 +109,6 @@ OpenAPIClient/Classes/OpenAPIs/Models/UpdateFedcmFlowBody.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateIdentityBody.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateLoginFlowBody.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateLoginFlowWithCodeMethod.swift
-OpenAPIClient/Classes/OpenAPIs/Models/UpdateLoginFlowWithDeviceAuthnMethod.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateLoginFlowWithIdentifierFirstMethod.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateLoginFlowWithLookupSecretMethod.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateLoginFlowWithOidcMethod.swift
@@ -131,9 +129,6 @@ OpenAPIClient/Classes/OpenAPIs/Models/UpdateRegistrationFlowWithProfileMethod.sw
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateRegistrationFlowWithSamlMethod.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateRegistrationFlowWithWebAuthnMethod.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateSettingsFlowBody.swift
-OpenAPIClient/Classes/OpenAPIs/Models/UpdateSettingsFlowWithDeviceAuthnMethod.swift
-OpenAPIClient/Classes/OpenAPIs/Models/UpdateSettingsFlowWithDeviceAuthnMethodAdd.swift
-OpenAPIClient/Classes/OpenAPIs/Models/UpdateSettingsFlowWithDeviceAuthnMethodDelete.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateSettingsFlowWithLookupMethod.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateSettingsFlowWithOidcMethod.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateSettingsFlowWithPasskeyMethod.swift
@@ -157,6 +152,7 @@ Package.swift
 README.md
 docs/AuthenticatorAssuranceLevel.md
 docs/BatchPatchIdentitiesResponse.md
+docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
@@ -174,7 +170,6 @@ docs/CreateIdentityBody.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
 docs/DeleteMySessionsCount.md
-docs/DeviceAuthnKey.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
 docs/ErrorBrowserLocationChangeRequired.md
 docs/ErrorFlowReplaced.md
@@ -254,7 +249,6 @@ docs/UpdateFedcmFlowBody.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
-docs/UpdateLoginFlowWithDeviceAuthnMethod.md
 docs/UpdateLoginFlowWithIdentifierFirstMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
@@ -275,9 +269,6 @@ docs/UpdateRegistrationFlowWithProfileMethod.md
 docs/UpdateRegistrationFlowWithSamlMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
 docs/UpdateSettingsFlowWithPasskeyMethod.md

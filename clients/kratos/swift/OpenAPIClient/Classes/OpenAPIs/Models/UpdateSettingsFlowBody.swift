@@ -12,7 +12,6 @@ import AnyCodable
 
 /** Update Settings Flow Request Body */
 public enum UpdateSettingsFlowBody: Codable, JSONEncodable, Hashable {
-    case typeUpdateSettingsFlowWithDeviceAuthnMethod(UpdateSettingsFlowWithDeviceAuthnMethod)
     case typeUpdateSettingsFlowWithLookupMethod(UpdateSettingsFlowWithLookupMethod)
     case typeUpdateSettingsFlowWithOidcMethod(UpdateSettingsFlowWithOidcMethod)
     case typeUpdateSettingsFlowWithPasskeyMethod(UpdateSettingsFlowWithPasskeyMethod)
@@ -25,8 +24,6 @@ public enum UpdateSettingsFlowBody: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .typeUpdateSettingsFlowWithDeviceAuthnMethod(let value):
-            try container.encode(value)
         case .typeUpdateSettingsFlowWithLookupMethod(let value):
             try container.encode(value)
         case .typeUpdateSettingsFlowWithOidcMethod(let value):
@@ -48,9 +45,7 @@ public enum UpdateSettingsFlowBody: Codable, JSONEncodable, Hashable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = try? container.decode(UpdateSettingsFlowWithDeviceAuthnMethod.self) {
-            self = .typeUpdateSettingsFlowWithDeviceAuthnMethod(value)
-        } else if let value = try? container.decode(UpdateSettingsFlowWithLookupMethod.self) {
+        if let value = try? container.decode(UpdateSettingsFlowWithLookupMethod.self) {
             self = .typeUpdateSettingsFlowWithLookupMethod(value)
         } else if let value = try? container.decode(UpdateSettingsFlowWithOidcMethod.self) {
             self = .typeUpdateSettingsFlowWithOidcMethod(value)
