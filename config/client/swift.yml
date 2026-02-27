@@ -1,1 +1,3 @@
-{}
+additionalProperties:
+  swift5: "true"
+  useAsyncAwait: "true"
