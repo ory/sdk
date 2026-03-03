@@ -104,7 +104,7 @@ elixir () {
 run_swift () {
   echo "Testing Swift..."
 
-  dir="$(git rev-parse --show-toplevel)/clients/${PROJECT}/swift"
+  dir="clients/${PROJECT}/swift"
   (cd "$dir" && swift build)
 }
 
