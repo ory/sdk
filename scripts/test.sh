@@ -101,6 +101,14 @@ elixir () {
   (cd "${dir}"; mix test)
 }
 
+swift () {
+  echo "Testing Swift..."
+
+  dir="clients/${PROJECT}/swift"
+  (cd "$dir" && swift build)
+}
+
+swift
 elixir
 typescript
 typescript_fetch
