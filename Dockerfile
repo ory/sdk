@@ -58,6 +58,7 @@ RUN	apt-get -q update && apt-get install -y -q elixir && \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # swift
+# From: https://www.swift.org/install/linux/
 RUN curl -O https://download.swift.org/swiftly/linux/swiftly-$(uname -m).tar.gz && \
 tar zxf swiftly-$(uname -m).tar.gz && \
 ./swiftly init --quiet-shell-followup && \
