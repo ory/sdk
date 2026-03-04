@@ -58,12 +58,17 @@ RUN	apt-get -q update && apt-get install -y -q elixir && \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # swift
-# From: https://www.swift.org/install/linux/
+# Adapted from https://www.swift.org/install/linux/ to make it work with POSIX shell (non-bash).
+RUN apt-get -y --no-install-recommends install gnupg2 libcurl4-openssl-dev libxml2-dev libncurses-dev libz3-dev
 RUN curl -O https://download.swift.org/swiftly/linux/swiftly-$(uname -m).tar.gz && \
-tar zxf swiftly-$(uname -m).tar.gz && \
-./swiftly init --quiet-shell-followup && \
-. "${SWIFTLY_HOME_DIR:-$HOME/.local/share/swiftly}/env.sh" && \
-hash -r
+tar zxf swiftly-$(uname -m).tar.gz
+RUN ./swiftly init --quiet-shell-followup
+ENV SWIFTLY_HOME_DIR="/root/.local/share/swiftly"
+ENV SWIFTLY_BIN_DIR="/root/.local/share/swiftly/bin"
+ENV SWIFTLY_TOOLCHAINS_DIR="/root/.local/share/swiftly/toolchains"
+ENV PATH="$SWIFTLY_BIN_DIR:$PATH";
+RUN hash -r 
+RUN command -v swift
 
 RUN rm -rf /var/lib/apt/lists/*
 RUN download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | \
