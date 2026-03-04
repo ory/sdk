@@ -66,7 +66,7 @@ tar zxf swiftly-$(uname -m).tar.gz && \
 ENV SWIFTLY_HOME_DIR="/root/.local/share/swiftly"
 ENV SWIFTLY_BIN_DIR="/root/.local/share/swiftly/bin"
 ENV SWIFTLY_TOOLCHAINS_DIR="/root/.local/share/swiftly/toolchains"
-ENV PATH="$SWIFTLY_BIN_DIR:$PATH";
+ENV PATH="$SWIFTLY_BIN_DIR:$PATH"
 RUN hash -r && \
 command -v swift
 
