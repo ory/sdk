@@ -147,6 +147,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.totp.after.password.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \&quot;selfservice.flows.login.after.webauthn.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsLoginLifespan** | Pointer to **string** | Configures the Ory Kratos Login Lifespan  This governs the \&quot;selfservice.flows.login.lifespan\&quot; setting. | [optional] 
+**KratosSelfserviceFlowsLoginStyle** | Pointer to **string** | Configures the Ory Kratos Login Flow Style  This governs the \&quot;selfservice.flows.login.style\&quot; setting. Possible values are \&quot;unified\&quot; and \&quot;identifier_first\&quot;. | [optional] 
 **KratosSelfserviceFlowsLoginUiUrl** | Pointer to **string** | Configures the Ory Kratos Login UI URL  This governs the \&quot;selfservice.flows.login.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsLogoutAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Logout Default Return URL  This governs the \&quot;selfservice.flows.logout.after.default_browser_return_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsRecoveryAfterDefaultBrowserReturnUrl** | Pointer to **string** | Configures the Ory Kratos Recovery Default Return URL  This governs the \&quot;selfservice.flows.recovery.after.default_browser_return_url\&quot; setting. | [optional] 
@@ -3865,6 +3866,31 @@ SetKratosSelfserviceFlowsLoginLifespan sets KratosSelfserviceFlowsLoginLifespan 
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginLifespan() bool`
 
 HasKratosSelfserviceFlowsLoginLifespan returns a boolean if a field has been set.
+
+### GetKratosSelfserviceFlowsLoginStyle
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginStyle() string`
+
+GetKratosSelfserviceFlowsLoginStyle returns the KratosSelfserviceFlowsLoginStyle field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceFlowsLoginStyleOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginStyleOk() (*string, bool)`
+
+GetKratosSelfserviceFlowsLoginStyleOk returns a tuple with the KratosSelfserviceFlowsLoginStyle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceFlowsLoginStyle
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginStyle(v string)`
+
+SetKratosSelfserviceFlowsLoginStyle sets KratosSelfserviceFlowsLoginStyle field to given value.
+
+### HasKratosSelfserviceFlowsLoginStyle
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginStyle() bool`
+
+HasKratosSelfserviceFlowsLoginStyle returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceFlowsLoginUiUrl
 

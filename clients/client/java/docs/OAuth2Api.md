@@ -1102,7 +1102,7 @@ public class Example {
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String subject = "subject_example"; // String | The subject to list the consent sessions for.
     Long pageSize = 250L; // Long | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-    String pageToken = "1"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String pageToken = "pageToken_example"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     String loginSessionId = "loginSessionId_example"; // String | The login session id to list the consent sessions for.
     try {
       List<OAuth2ConsentSession> result = apiInstance.listOAuth2ConsentSessions(subject, pageSize, pageToken, loginSessionId);
@@ -1124,7 +1124,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **subject** | **String**| The subject to list the consent sessions for. | |
 | **pageSize** | **Long**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
-| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 1] |
+| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **loginSessionId** | **String**| The login session id to list the consent sessions for. | [optional] |
 
 ### Return type

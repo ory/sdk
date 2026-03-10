@@ -1198,7 +1198,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **subject** | `string` | The subject to list the consent sessions for. | [Defaults to `undefined`] |
 | **pageSize** | `number` | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `250`] |
-| **pageToken** | `string` | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `&#39;1&#39;`] |
+| **pageToken** | `string` | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `undefined`] |
 | **loginSessionId** | `string` | The login session id to list the consent sessions for. | [Optional] [Defaults to `undefined`] |
 
 ### Return type

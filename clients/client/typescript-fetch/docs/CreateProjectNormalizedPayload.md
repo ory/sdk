@@ -152,6 +152,7 @@ Name | Type
 `kratos_selfservice_flows_login_after_totp_default_browser_return_url` | string
 `kratos_selfservice_flows_login_after_webauthn_default_browser_return_url` | string
 `kratos_selfservice_flows_login_lifespan` | string
+`kratos_selfservice_flows_login_style` | string
 `kratos_selfservice_flows_login_ui_url` | string
 `kratos_selfservice_flows_logout_after_default_browser_return_url` | string
 `kratos_selfservice_flows_recovery_after_default_browser_return_url` | string
@@ -400,6 +401,7 @@ const example = {
   "kratos_selfservice_flows_login_after_totp_default_browser_return_url": null,
   "kratos_selfservice_flows_login_after_webauthn_default_browser_return_url": null,
   "kratos_selfservice_flows_login_lifespan": null,
+  "kratos_selfservice_flows_login_style": null,
   "kratos_selfservice_flows_login_ui_url": null,
   "kratos_selfservice_flows_logout_after_default_browser_return_url": null,
   "kratos_selfservice_flows_recovery_after_default_browser_return_url": null,

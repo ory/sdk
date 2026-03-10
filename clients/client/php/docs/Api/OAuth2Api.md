@@ -979,7 +979,7 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
 );
 $subject = 'subject_example'; // string | The subject to list the consent sessions for.
 $pageSize = 250; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-$pageToken = '1'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$pageToken = 'pageToken_example'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $loginSessionId = 'loginSessionId_example'; // string | The login session id to list the consent sessions for.
 
 try {
@@ -996,7 +996,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **subject** | **string**| The subject to list the consent sessions for. | |
 | **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
-| **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;] |
+| **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **loginSessionId** | **string**| The login session id to list the consent sessions for. | [optional] |
 
 ### Return type

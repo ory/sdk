@@ -617,7 +617,7 @@ This endpoint lists all subject's granted consent sessions, including client and
 |------|------|-------------|-------|
 | **subject** | **string** | The subject to list the consent sessions for. |  |
 | **pageSize** | **long** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
-| **pageToken** | **string** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &quot;1&quot;] |
+| **pageToken** | **string** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional]  |
 | **loginSessionId** | **string** | The login session id to list the consent sessions for. | [optional]  |
 
 ### Return type

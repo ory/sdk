@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.26
+API version: v1.22.27
 Contact: support@ory.sh
 */
 
@@ -293,6 +293,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_webauthn_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login Lifespan  This governs the \"selfservice.flows.login.lifespan\" setting.
 	KratosSelfserviceFlowsLoginLifespan *string `json:"kratos_selfservice_flows_login_lifespan,omitempty"`
+	// Configures the Ory Kratos Login Flow Style  This governs the \"selfservice.flows.login.style\" setting. Possible values are \"unified\" and \"identifier_first\".
+	KratosSelfserviceFlowsLoginStyle *string `json:"kratos_selfservice_flows_login_style,omitempty"`
 	// Configures the Ory Kratos Login UI URL  This governs the \"selfservice.flows.login.ui_url\" setting.
 	KratosSelfserviceFlowsLoginUiUrl *string `json:"kratos_selfservice_flows_login_ui_url,omitempty"`
 	// Configures the Ory Kratos Logout Default Return URL  This governs the \"selfservice.flows.logout.after.default_browser_return_url\" setting.
@@ -5177,6 +5179,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceFlowsLoginLifespan(
 	o.KratosSelfserviceFlowsLoginLifespan = &v
 }
 
+// GetKratosSelfserviceFlowsLoginStyle returns the KratosSelfserviceFlowsLoginStyle field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsLoginStyle() string {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginStyle) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginStyle
+}
+
+// GetKratosSelfserviceFlowsLoginStyleOk returns a tuple with the KratosSelfserviceFlowsLoginStyle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsLoginStyleOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginStyle) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginStyle, true
+}
+
+// HasKratosSelfserviceFlowsLoginStyle returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceFlowsLoginStyle() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsLoginStyle) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginStyle gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginStyle field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceFlowsLoginStyle(v string) {
+	o.KratosSelfserviceFlowsLoginStyle = &v
+}
+
 // GetKratosSelfserviceFlowsLoginUiUrl returns the KratosSelfserviceFlowsLoginUiUrl field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceFlowsLoginUiUrl() string {
 	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginUiUrl) {
@@ -8662,6 +8696,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSelfserviceFlowsLoginLifespan) {
 		toSerialize["kratos_selfservice_flows_login_lifespan"] = o.KratosSelfserviceFlowsLoginLifespan
 	}
+	if !IsNil(o.KratosSelfserviceFlowsLoginStyle) {
+		toSerialize["kratos_selfservice_flows_login_style"] = o.KratosSelfserviceFlowsLoginStyle
+	}
 	if !IsNil(o.KratosSelfserviceFlowsLoginUiUrl) {
 		toSerialize["kratos_selfservice_flows_login_ui_url"] = o.KratosSelfserviceFlowsLoginUiUrl
 	}
@@ -9134,6 +9171,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_totp_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_webauthn_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_lifespan")
+		delete(additionalProperties, "kratos_selfservice_flows_login_style")
 		delete(additionalProperties, "kratos_selfservice_flows_login_ui_url")
 		delete(additionalProperties, "kratos_selfservice_flows_logout_after_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_recovery_after_default_browser_return_url")

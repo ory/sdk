@@ -863,7 +863,7 @@ const apiInstance = new OAuth2Api(configuration);
 
 let subject: string; //The subject to list the consent sessions for. (default to undefined)
 let pageSize: number; //Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
-let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to '1')
+let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to undefined)
 let loginSessionId: string; //The login session id to list the consent sessions for. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.listOAuth2ConsentSessions(
@@ -880,7 +880,7 @@ const { status, data } = await apiInstance.listOAuth2ConsentSessions(
 |------------- | ------------- | ------------- | -------------|
 | **subject** | [**string**] | The subject to list the consent sessions for. | defaults to undefined|
 | **pageSize** | [**number**] | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to 250|
-| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to '1'|
+| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to undefined|
 | **loginSessionId** | [**string**] | The login session id to list the consent sessions for. | (optional) defaults to undefined|
 
 

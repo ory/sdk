@@ -1153,7 +1153,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **subject** | **String** | The subject to list the consent sessions for. |  |
 | **page_size** | **Integer** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to 250] |
-| **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to &#39;1&#39;] |
+| **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **login_session_id** | **String** | The login session id to list the consent sessions for. | [optional] |
 
 ### Return type

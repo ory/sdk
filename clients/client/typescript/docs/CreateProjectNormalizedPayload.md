@@ -151,6 +151,7 @@ Name | Type | Description | Notes
 **kratos_selfservice_flows_login_after_totp_default_browser_return_url** | **string** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.totp.after.password.default_browser_return_url\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_flows_login_after_webauthn_default_browser_return_url** | **string** | Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \&quot;selfservice.flows.login.after.webauthn.default_browser_return_url\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_flows_login_lifespan** | **string** | Configures the Ory Kratos Login Lifespan  This governs the \&quot;selfservice.flows.login.lifespan\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_flows_login_style** | **string** | Configures the Ory Kratos Login Flow Style  This governs the \&quot;selfservice.flows.login.style\&quot; setting. Possible values are \&quot;unified\&quot; and \&quot;identifier_first\&quot;. | [optional] [default to undefined]
 **kratos_selfservice_flows_login_ui_url** | **string** | Configures the Ory Kratos Login UI URL  This governs the \&quot;selfservice.flows.login.ui_url\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_flows_logout_after_default_browser_return_url** | **string** | Configures the Ory Kratos Logout Default Return URL  This governs the \&quot;selfservice.flows.logout.after.default_browser_return_url\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_flows_recovery_after_default_browser_return_url** | **string** | Configures the Ory Kratos Recovery Default Return URL  This governs the \&quot;selfservice.flows.recovery.after.default_browser_return_url\&quot; setting. | [optional] [default to undefined]
@@ -398,6 +399,7 @@ const instance: CreateProjectNormalizedPayload = {
     kratos_selfservice_flows_login_after_totp_default_browser_return_url,
     kratos_selfservice_flows_login_after_webauthn_default_browser_return_url,
     kratos_selfservice_flows_login_lifespan,
+    kratos_selfservice_flows_login_style,
     kratos_selfservice_flows_login_ui_url,
     kratos_selfservice_flows_logout_after_default_browser_return_url,
     kratos_selfservice_flows_recovery_after_default_browser_return_url,

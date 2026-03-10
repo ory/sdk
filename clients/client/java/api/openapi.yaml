@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.26
+  version: v1.22.27
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -678,8 +678,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: |-
@@ -1422,8 +1420,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: ID is the identity's ID.
@@ -2344,8 +2340,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: The subject to list the consent sessions for.
@@ -5911,8 +5905,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       responses:
@@ -8257,8 +8249,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: Set the Session Token when calling from non-browser clients.
@@ -10510,6 +10500,13 @@ components:
             Configures the Ory Kratos Login Lifespan
 
             This governs the "selfservice.flows.login.lifespan" setting.
+          type: string
+        kratos_selfservice_flows_login_style:
+          description: |-
+            Configures the Ory Kratos Login Flow Style
+
+            This governs the "selfservice.flows.login.style" setting.
+            Possible values are "unified" and "identifier_first".
           type: string
         kratos_selfservice_flows_login_ui_url:
           description: |-
@@ -16552,6 +16549,13 @@ components:
             Configures the Ory Kratos Login Lifespan
 
             This governs the "selfservice.flows.login.lifespan" setting.
+          type: string
+        kratos_selfservice_flows_login_style:
+          description: |-
+            Configures the Ory Kratos Login Flow Style
+
+            This governs the "selfservice.flows.login.style" setting.
+            Possible values are "unified" and "identifier_first".
           type: string
         kratos_selfservice_flows_login_ui_url:
           description: |-
@@ -22759,13 +22763,11 @@ components:
           minimum: 1
           type: integer
         page_token:
-          default: "1"
           description: |-
             Next Page Token
 
             The next page token.
             For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-          minimum: 1
           type: string
       type: object
     tokenPaginationHeaders:
@@ -22804,13 +22806,11 @@ components:
           minimum: 1
           type: integer
         page_token:
-          default: "1"
           description: |-
             Next Page Token
 
             The next page token.
             For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-          minimum: 1
           type: string
       title: Pagination Request Parameters
       type: object
