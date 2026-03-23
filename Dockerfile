@@ -60,7 +60,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN rm -rf /var/lib/apt/lists/*
 RUN download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | \
 	jq -r '.assets[] | select(.name == "swagger_linux_amd64") | .browser_download_url') \
-	&& curl -o /usr/local/bin/swagger -L "$download_url" \
+	&& curl -o /usr/local/bin/swagger -L'#' "$download_url" \
 	&& chmod +x /usr/local/bin/swagger
 
 RUN td=$(mktemp) \
