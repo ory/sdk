@@ -3,7 +3,12 @@
 set -Eexo pipefail
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
-source "$HOME/.bashrc"
+# Only source .bashrc in interactive shells. In non-interactive shells (like CI),
+# .bashrc references $PS1 (the prompt string) which is undefined, causing a
+# "PS1: unbound variable" error when the -u flag is set.
+if [[ $- == *i* ]]; then
+  source "$HOME/.bashrc"
+fi
 source "$HOME/.cargo/env"
 
 if [ -z "${FORCE_VERSION+x}" ]; then
