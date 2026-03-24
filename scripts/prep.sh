@@ -3,7 +3,7 @@
 set -Eexo pipefail
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
-set +e; source "$HOME/.bashrc"; set -e
+set +u; source "$HOME/.bashrc"
 source "$HOME/.cargo/env" || true
 
 if [ -z "${FORCE_VERSION+x}" ]; then
