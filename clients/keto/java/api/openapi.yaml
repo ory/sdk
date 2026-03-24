@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Keto API
-  version: v25.4.0
+  version: v26.2.0
 servers:
 - url: /
 paths:
@@ -91,6 +91,7 @@ paths:
       summary: Delete Relationships
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
       x-accepts:
       - application/json
     patch:
@@ -129,6 +130,7 @@ paths:
       summary: Patch Multiple Relationships
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -163,6 +165,7 @@ paths:
       summary: Create a Relationship
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -254,6 +257,7 @@ paths:
       summary: Query namespaces
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
       x-accepts:
       - application/json
   /opl/syntax/check:
@@ -288,6 +292,7 @@ paths:
       summary: Check the syntax of an OPL file
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-medium
       x-content-type: text/plain
       x-accepts:
       - application/json
@@ -403,6 +408,7 @@ paths:
       summary: Query relationships
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-medium
       x-accepts:
       - application/json
   /relation-tuples/batch/check:
@@ -447,6 +453,7 @@ paths:
       summary: Batch check permissions
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -548,6 +555,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
       x-accepts:
       - application/json
     post:
@@ -597,6 +605,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -692,6 +701,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
       x-accepts:
       - application/json
     post:
@@ -735,6 +745,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -803,6 +814,7 @@ paths:
       summary: Expand a Relationship into permissions.
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-admin-medium
       x-accepts:
       - application/json
   /version:

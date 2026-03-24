@@ -30,7 +30,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ory/keto-client-go"
+	openapiclient "github.com/ory/keto-client-go/v26"
 )
 
 func main() {
@@ -98,7 +98,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ory/keto-client-go"
+	openapiclient "github.com/ory/keto-client-go/v26"
 )
 
 func main() {
@@ -178,7 +178,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ory/keto-client-go"
+	openapiclient "github.com/ory/keto-client-go/v26"
 )
 
 func main() {
@@ -258,7 +258,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ory/keto-client-go"
+	openapiclient "github.com/ory/keto-client-go/v26"
 )
 
 func main() {
@@ -330,7 +330,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ory/keto-client-go"
+	openapiclient "github.com/ory/keto-client-go/v26"
 )
 
 func main() {
@@ -398,7 +398,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ory/keto-client-go"
+	openapiclient "github.com/ory/keto-client-go/v26"
 )
 
 func main() {

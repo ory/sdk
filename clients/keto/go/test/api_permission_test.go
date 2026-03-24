@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/ory/keto-client-go"
+	openapiclient "github.com/ory/keto-client-go/v26"
 )
 
 func Test_client_PermissionAPIService(t *testing.T) {

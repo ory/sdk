@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Keto API
-  version: v25.4.0
+  version: v26.2.0
 servers:
 - url: /
 paths:
@@ -80,17 +80,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Delete Relationships
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
     patch:
       description: Use this endpoint to patch one or more relationships.
       operationId: patchRelationships
@@ -99,7 +100,7 @@ paths:
           application/json:
             schema:
               items:
-                $ref: '#/components/schemas/relationshipPatch'
+                $ref: "#/components/schemas/relationshipPatch"
               type: array
         x-originalParamName: Body
       responses:
@@ -110,23 +111,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Patch Multiple Relationships
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
     put:
       description: Use this endpoint to create a relationship.
       operationId: createRelationship
@@ -134,30 +136,31 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createRelationshipBody'
+              $ref: "#/components/schemas/createRelationshipBody"
         x-originalParamName: Body
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/relationship'
+                $ref: "#/components/schemas/relationship"
           description: relationship
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create a Relationship
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
   /health/alive:
     get:
       description: |-
@@ -175,7 +178,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/isAlive_200_response'
+                $ref: "#/components/schemas/isAlive_200_response"
           description: Ory Keto is ready to accept connections.
         default:
           content:
@@ -203,13 +206,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/isAlive_200_response'
+                $ref: "#/components/schemas/isAlive_200_response"
           description: Ory Keto is ready to accept requests.
         "503":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/isReady_503_response'
+                $ref: "#/components/schemas/isReady_503_response"
           description: Ory Kratos is not yet ready to accept requests.
         default:
           content:
@@ -229,17 +232,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/relationshipNamespaces'
+                $ref: "#/components/schemas/relationshipNamespaces"
           description: relationshipNamespaces
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Query namespaces
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-high
   /opl/syntax/check:
     post:
       description: The OPL file is expected in the body of the request.
@@ -248,30 +252,31 @@ paths:
         content:
           text/plain:
             schema:
-              $ref: '#/components/schemas/checkOplSyntaxBody'
+              $ref: "#/components/schemas/checkOplSyntaxBody"
         x-originalParamName: Body
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/checkOplSyntaxResult'
+                $ref: "#/components/schemas/checkOplSyntaxResult"
           description: checkOplSyntaxResult
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Check the syntax of an OPL file
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-medium
   /relation-tuples:
     get:
       description: Get all relationships that match the query. Only the namespace
@@ -367,23 +372,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/relationships'
+                $ref: "#/components/schemas/relationships"
           description: relationships
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Query relationships
       tags:
       - relationship
+      x-ory-ratelimit-bucket: keto-admin-medium
   /relation-tuples/batch/check:
     post:
       description: "To learn how relationship tuples and the check works, head over\
@@ -402,30 +408,31 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/batchCheckPermissionBody'
+              $ref: "#/components/schemas/batchCheckPermissionBody"
         x-originalParamName: Body
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/batchCheckPermissionResult'
+                $ref: "#/components/schemas/batchCheckPermissionResult"
           description: batchCheckPermissionResult
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Batch check permissions
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
   /relation-tuples/check:
     get:
       description: "To learn how relationship tuples and the check works, head over\
@@ -501,29 +508,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/checkPermissionResult'
+                $ref: "#/components/schemas/checkPermissionResult"
           description: checkPermissionResult
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/checkPermissionResult'
+                $ref: "#/components/schemas/checkPermissionResult"
           description: checkPermissionResult
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
     post:
       description: "To learn how relationship tuples and the check works, head over\
         \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
@@ -541,36 +549,37 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/postCheckPermissionOrErrorBody'
+              $ref: "#/components/schemas/postCheckPermissionOrErrorBody"
         x-originalParamName: Body
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/checkPermissionResult'
+                $ref: "#/components/schemas/checkPermissionResult"
           description: checkPermissionResult
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/checkPermissionResult'
+                $ref: "#/components/schemas/checkPermissionResult"
           description: checkPermissionResult
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
   /relation-tuples/check/openapi:
     get:
       description: "To learn how relationship tuples and the check works, head over\
@@ -646,23 +655,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/checkPermissionResult'
+                $ref: "#/components/schemas/checkPermissionResult"
           description: checkPermissionResult
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
     post:
       description: "To learn how relationship tuples and the check works, head over\
         \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
@@ -680,30 +690,31 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/postCheckPermissionBody'
+              $ref: "#/components/schemas/postCheckPermissionBody"
         x-originalParamName: Payload
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/checkPermissionResult'
+                $ref: "#/components/schemas/checkPermissionResult"
           description: checkPermissionResult
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Check a permission
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-public-low
   /relation-tuples/expand:
     get:
       description: Use this endpoint to expand a relationship tuple into permissions.
@@ -746,29 +757,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/expandedPermissionTree'
+                $ref: "#/components/schemas/expandedPermissionTree"
           description: expandedPermissionTree
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Expand a Relationship into permissions.
       tags:
       - permission
+      x-ory-ratelimit-bucket: keto-admin-medium
   /version:
     get:
       description: |-
@@ -785,7 +797,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getVersion_200_response'
+                $ref: "#/components/schemas/getVersion_200_response"
           description: Returns the Ory Keto version.
       summary: Return Running Software Version.
       tags:
@@ -808,11 +820,11 @@ components:
         message: message
       properties:
         end:
-          $ref: '#/components/schemas/SourcePosition'
+          $ref: "#/components/schemas/SourcePosition"
         message:
           type: string
         start:
-          $ref: '#/components/schemas/SourcePosition'
+          $ref: "#/components/schemas/SourcePosition"
       type: object
     SourcePosition:
       example:
@@ -834,7 +846,7 @@ components:
       properties:
         tuples:
           items:
-            $ref: '#/components/schemas/relationship'
+            $ref: "#/components/schemas/relationship"
           type: array
       type: object
     batchCheckPermissionResult:
@@ -850,7 +862,7 @@ components:
           description: An array of check results. The order aligns with the input
             order.
           items:
-            $ref: '#/components/schemas/checkPermissionResultWithError'
+            $ref: "#/components/schemas/checkPermissionResultWithError"
           type: array
       required:
       - results
@@ -879,7 +891,7 @@ components:
         errors:
           description: The list of syntax errors
           items:
-            $ref: '#/components/schemas/ParseError'
+            $ref: "#/components/schemas/ParseError"
           type: array
       title: CheckOPLSyntaxResponse represents the response for an OPL syntax check
         request.
@@ -931,7 +943,7 @@ components:
             Either SubjectSet or SubjectID can be provided.
           type: string
         subject_set:
-          $ref: '#/components/schemas/subjectSet'
+          $ref: "#/components/schemas/subjectSet"
       type: object
     errorGeneric:
       description: The standard Ory JSON API error format.
@@ -948,7 +960,7 @@ components:
           status: Not Found
       properties:
         error:
-          $ref: '#/components/schemas/genericError'
+          $ref: "#/components/schemas/genericError"
       required:
       - error
       title: JSON API Error Response
@@ -972,10 +984,10 @@ components:
         children:
           description: "The children of the node, possibly none."
           items:
-            $ref: '#/components/schemas/expandedPermissionTree'
+            $ref: "#/components/schemas/expandedPermissionTree"
           type: array
         tuple:
-          $ref: '#/components/schemas/relationship'
+          $ref: "#/components/schemas/relationship"
         type:
           description: |-
             The type of the node.
@@ -1114,7 +1126,7 @@ components:
             Either SubjectSet or SubjectID can be provided.
           type: string
         subject_set:
-          $ref: '#/components/schemas/subjectSet'
+          $ref: "#/components/schemas/subjectSet"
       type: object
     postCheckPermissionOrErrorBody:
       description: Post Check Permission Or Error Body
@@ -1135,7 +1147,7 @@ components:
             Either SubjectSet or SubjectID can be provided.
           type: string
         subject_set:
-          $ref: '#/components/schemas/subjectSet'
+          $ref: "#/components/schemas/subjectSet"
       type: object
     relationQuery:
       description: Relation Query
@@ -1156,7 +1168,7 @@ components:
             Either SubjectSet or SubjectID can be provided.
           type: string
         subject_set:
-          $ref: '#/components/schemas/subjectSet'
+          $ref: "#/components/schemas/subjectSet"
       type: object
     relationship:
       description: Relationship
@@ -1186,7 +1198,7 @@ components:
             Either SubjectSet or SubjectID can be provided.
           type: string
         subject_set:
-          $ref: '#/components/schemas/subjectSet'
+          $ref: "#/components/schemas/subjectSet"
       required:
       - namespace
       - object
@@ -1201,7 +1213,7 @@ components:
       properties:
         namespaces:
           items:
-            $ref: '#/components/schemas/namespace'
+            $ref: "#/components/schemas/namespace"
           type: array
       type: object
     relationshipPatch:
@@ -1216,7 +1228,7 @@ components:
             insert ActionInsert
             delete ActionDelete
         relation_tuple:
-          $ref: '#/components/schemas/relationship'
+          $ref: "#/components/schemas/relationship"
       type: object
     relationships:
       description: Paginated Relationship List
@@ -1248,7 +1260,7 @@ components:
           type: string
         relation_tuples:
           items:
-            $ref: '#/components/schemas/relationship'
+            $ref: "#/components/schemas/relationship"
           type: array
       type: object
     subjectSet:
