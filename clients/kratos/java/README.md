@@ -1,8 +1,8 @@
 # kratos-client
 
 Ory Identities API
-- API version: v25.4.0
-  - Build date: 2025-11-07T16:03:41.138363748Z[Etc/UTC]
+- API version: v26.2.0
+  - Build date: 2026-03-24T17:07:35.596641284Z[Etc/UTC]
   - Generator version: 7.7.0
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.kratos</groupId>
   <artifactId>kratos-client</artifactId>
-  <version>v25.4.0</version>
+  <version>v26.2.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.kratos:kratos-client:v25.4.0"
+     implementation "sh.ory.kratos:kratos-client:v26.2.0"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/kratos-client-v25.4.0.jar`
+* `target/kratos-client-v26.2.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

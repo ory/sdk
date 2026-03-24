@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v25.4.0
+API version: v26.2.0
 Contact: office@ory.sh
 */
 
@@ -201,114 +201,6 @@ func (dst *UpdateLoginFlowBody) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'webauthn'
 	if jsonDict["method"] == "webauthn" {
-		// try to unmarshal JSON data into UpdateLoginFlowWithWebAuthnMethod
-		err = json.Unmarshal(data, &dst.UpdateLoginFlowWithWebAuthnMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateLoginFlowWithWebAuthnMethod, return on the first match
-		} else {
-			dst.UpdateLoginFlowWithWebAuthnMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateLoginFlowBody as UpdateLoginFlowWithWebAuthnMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateLoginFlowWithCodeMethod'
-	if jsonDict["method"] == "updateLoginFlowWithCodeMethod" {
-		// try to unmarshal JSON data into UpdateLoginFlowWithCodeMethod
-		err = json.Unmarshal(data, &dst.UpdateLoginFlowWithCodeMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateLoginFlowWithCodeMethod, return on the first match
-		} else {
-			dst.UpdateLoginFlowWithCodeMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateLoginFlowBody as UpdateLoginFlowWithCodeMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateLoginFlowWithIdentifierFirstMethod'
-	if jsonDict["method"] == "updateLoginFlowWithIdentifierFirstMethod" {
-		// try to unmarshal JSON data into UpdateLoginFlowWithIdentifierFirstMethod
-		err = json.Unmarshal(data, &dst.UpdateLoginFlowWithIdentifierFirstMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateLoginFlowWithIdentifierFirstMethod, return on the first match
-		} else {
-			dst.UpdateLoginFlowWithIdentifierFirstMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateLoginFlowBody as UpdateLoginFlowWithIdentifierFirstMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateLoginFlowWithLookupSecretMethod'
-	if jsonDict["method"] == "updateLoginFlowWithLookupSecretMethod" {
-		// try to unmarshal JSON data into UpdateLoginFlowWithLookupSecretMethod
-		err = json.Unmarshal(data, &dst.UpdateLoginFlowWithLookupSecretMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateLoginFlowWithLookupSecretMethod, return on the first match
-		} else {
-			dst.UpdateLoginFlowWithLookupSecretMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateLoginFlowBody as UpdateLoginFlowWithLookupSecretMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateLoginFlowWithOidcMethod'
-	if jsonDict["method"] == "updateLoginFlowWithOidcMethod" {
-		// try to unmarshal JSON data into UpdateLoginFlowWithOidcMethod
-		err = json.Unmarshal(data, &dst.UpdateLoginFlowWithOidcMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateLoginFlowWithOidcMethod, return on the first match
-		} else {
-			dst.UpdateLoginFlowWithOidcMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateLoginFlowBody as UpdateLoginFlowWithOidcMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateLoginFlowWithPasskeyMethod'
-	if jsonDict["method"] == "updateLoginFlowWithPasskeyMethod" {
-		// try to unmarshal JSON data into UpdateLoginFlowWithPasskeyMethod
-		err = json.Unmarshal(data, &dst.UpdateLoginFlowWithPasskeyMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateLoginFlowWithPasskeyMethod, return on the first match
-		} else {
-			dst.UpdateLoginFlowWithPasskeyMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateLoginFlowBody as UpdateLoginFlowWithPasskeyMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateLoginFlowWithPasswordMethod'
-	if jsonDict["method"] == "updateLoginFlowWithPasswordMethod" {
-		// try to unmarshal JSON data into UpdateLoginFlowWithPasswordMethod
-		err = json.Unmarshal(data, &dst.UpdateLoginFlowWithPasswordMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateLoginFlowWithPasswordMethod, return on the first match
-		} else {
-			dst.UpdateLoginFlowWithPasswordMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateLoginFlowBody as UpdateLoginFlowWithPasswordMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateLoginFlowWithSamlMethod'
-	if jsonDict["method"] == "updateLoginFlowWithSamlMethod" {
-		// try to unmarshal JSON data into UpdateLoginFlowWithSamlMethod
-		err = json.Unmarshal(data, &dst.UpdateLoginFlowWithSamlMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateLoginFlowWithSamlMethod, return on the first match
-		} else {
-			dst.UpdateLoginFlowWithSamlMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateLoginFlowBody as UpdateLoginFlowWithSamlMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateLoginFlowWithTotpMethod'
-	if jsonDict["method"] == "updateLoginFlowWithTotpMethod" {
-		// try to unmarshal JSON data into UpdateLoginFlowWithTotpMethod
-		err = json.Unmarshal(data, &dst.UpdateLoginFlowWithTotpMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateLoginFlowWithTotpMethod, return on the first match
-		} else {
-			dst.UpdateLoginFlowWithTotpMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateLoginFlowBody as UpdateLoginFlowWithTotpMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateLoginFlowWithWebAuthnMethod'
-	if jsonDict["method"] == "updateLoginFlowWithWebAuthnMethod" {
 		// try to unmarshal JSON data into UpdateLoginFlowWithWebAuthnMethod
 		err = json.Unmarshal(data, &dst.UpdateLoginFlowWithWebAuthnMethod)
 		if err == nil {

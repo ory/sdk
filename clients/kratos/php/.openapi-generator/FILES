@@ -145,6 +145,7 @@ lib/Api/IdentityApi.php
 lib/Api/MetadataApi.php
 lib/ApiException.php
 lib/Configuration.php
+lib/FormDataProcessor.php
 lib/HeaderSelector.php
 lib/Model/AuthenticatorAssuranceLevel.php
 lib/Model/BatchPatchIdentitiesResponse.php

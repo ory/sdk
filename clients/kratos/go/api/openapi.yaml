@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Identities API
-  version: v25.4.0
+  version: v26.2.0
 servers:
 - url: /
 tags:
@@ -40,11 +40,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/webAuthnJavaScript'
+                $ref: "#/components/schemas/webAuthnJavaScript"
           description: webAuthnJavaScript
       summary: Get WebAuthn JavaScript
       tags:
       - frontend
+      x-ory-ratelimit-bucket: hydra-public-low
   /admin/courier/messages:
     get:
       description: Lists all messages by given status and recipient.
@@ -86,7 +87,7 @@ paths:
         name: status
         required: false
         schema:
-          $ref: '#/components/schemas/courierMessageStatus'
+          $ref: "#/components/schemas/courierMessageStatus"
         style: form
       - description: |-
           Recipient filters out messages based on recipient.
@@ -104,26 +105,27 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/message'
+                  $ref: "#/components/schemas/message"
                 type: array
           description: Paginated Courier Message List Response
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: List Messages
       tags:
       - courier
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/courier/messages/{id}:
     get:
       description: Gets a specific messages by the given ID.
@@ -142,25 +144,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/message'
+                $ref: "#/components/schemas/message"
           description: message
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Get a Message
       tags:
       - courier
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /admin/identities:
     get:
       description: "Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
@@ -229,8 +232,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: |-
@@ -336,30 +337,31 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/identity'
+                  $ref: "#/components/schemas/identity"
                 type: array
           description: Paginated Identity List Response
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: List Identities
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
     patch:
       description: |-
-        Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+        Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).
 
-        You can also use this endpoint to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities),
+        You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities),
         including passwords, social sign-in settings, and multi-factor authentication methods.
 
-        You can import:
-        Up to 1,000 identities per request
-        Up to 200 identities per request if including plaintext passwords
+        If the patch includes hashed passwords you can import up to 1,000 identities per request.
+
+        If the patch includes at least one plaintext password you can import up to 200 identities per request.
 
         Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
 
@@ -379,38 +381,39 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/patchIdentitiesBody'
+              $ref: "#/components/schemas/patchIdentitiesBody"
         x-originalParamName: Body
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/batchPatchIdentitiesResponse'
+                $ref: "#/components/schemas/batchPatchIdentitiesResponse"
           description: batchPatchIdentitiesResponse
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Create multiple identities
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
     post:
       description: |-
         Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
@@ -421,38 +424,39 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createIdentityBody'
+              $ref: "#/components/schemas/createIdentityBody"
         x-originalParamName: Body
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/identity'
+                $ref: "#/components/schemas/identity"
           description: identity
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Create an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/identities/by/external/{externalID}:
     get:
       description: |-
@@ -499,25 +503,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/identity'
+                $ref: "#/components/schemas/identity"
           description: identity
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Get an Identity by its External ID
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /admin/identities/{id}:
     delete:
       description: |-
@@ -541,19 +546,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Delete an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
     get:
       description: |-
         Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
@@ -599,25 +605,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/identity'
+                $ref: "#/components/schemas/identity"
           description: identity
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Get an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
     patch:
       description: |-
         Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
@@ -636,44 +643,45 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/jsonPatchDocument'
+              $ref: "#/components/schemas/jsonPatchDocument"
         x-originalParamName: Body
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/identity'
+                $ref: "#/components/schemas/identity"
           description: identity
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Patch an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
     put:
       description: |-
         This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity
@@ -695,44 +703,45 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateIdentityBody'
+              $ref: "#/components/schemas/updateIdentityBody"
         x-originalParamName: Body
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/identity'
+                $ref: "#/components/schemas/identity"
           description: identity
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Update an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/identities/{id}/credentials/{type}:
     delete:
       description: |-
@@ -810,19 +819,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Delete a credential for a specific identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/identities/{id}/sessions:
     delete:
       description: Calling this endpoint irrecoverably and permanently deletes and
@@ -845,31 +855,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Delete & Invalidate an Identity's Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
     get:
       description: This endpoint returns all sessions that belong to the given Identity.
       operationId: listIdentitySessions
@@ -936,8 +947,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: ID is the identity's ID.
@@ -963,32 +972,33 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/session'
+                  $ref: "#/components/schemas/session"
                 type: array
           description: List Identity Sessions Response
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: List an Identity's Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /admin/recovery/code:
     post:
       description: |-
@@ -999,38 +1009,39 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createRecoveryCodeForIdentityBody'
+              $ref: "#/components/schemas/createRecoveryCodeForIdentityBody"
         x-originalParamName: Body
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/recoveryCodeForIdentity'
+                $ref: "#/components/schemas/recoveryCodeForIdentity"
           description: recoveryCodeForIdentity
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Create a Recovery Code
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/recovery/link:
     post:
       description: |-
@@ -1049,38 +1060,39 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createRecoveryLinkForIdentityBody'
+              $ref: "#/components/schemas/createRecoveryLinkForIdentityBody"
         x-originalParamName: Body
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/recoveryLinkForIdentity'
+                $ref: "#/components/schemas/recoveryLinkForIdentity"
           description: recoveryLinkForIdentity
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Create a Recovery Link
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /admin/sessions:
     get:
       description: Listing all sessions that exist.
@@ -1144,7 +1156,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/session'
+                  $ref: "#/components/schemas/session"
                 type: array
           description: |-
             Session List Response
@@ -1154,19 +1166,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: List All Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /admin/sessions/{id}:
     delete:
       description: Calling this endpoint deactivates the specified session. Session
@@ -1189,25 +1202,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Deactivate a Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
     get:
       description: |-
         This endpoint is useful for:
@@ -1244,25 +1258,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/session'
+                $ref: "#/components/schemas/session"
           description: session
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Get Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
   /admin/sessions/{id}/extend:
     patch:
       description: |-
@@ -1292,7 +1307,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/session'
+                $ref: "#/components/schemas/session"
           description: session
         "204":
           description: "Empty responses are sent when, for example, resources are\
@@ -1301,25 +1316,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - oryAccessToken: []
       summary: Extend a Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
   /health/alive:
     get:
       description: |-
@@ -1337,7 +1353,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/isAlive_200_response'
+                $ref: "#/components/schemas/isAlive_200_response"
           description: Ory Kratos is ready to accept connections.
         default:
           content:
@@ -1365,13 +1381,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/isAlive_200_response'
+                $ref: "#/components/schemas/isAlive_200_response"
           description: Ory Kratos is ready to accept requests.
         "503":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/isReady_503_response'
+                $ref: "#/components/schemas/isReady_503_response"
           description: Ory Kratos is not yet ready to accept requests.
         default:
           content:
@@ -1449,8 +1465,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       responses:
@@ -1458,17 +1472,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/identitySchemas'
+                $ref: "#/components/schemas/identitySchemas"
           description: List Identity JSON Schemas Response
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Get all Identity Schemas
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /schemas/{id}:
     get:
       description: Return a specific identity schema.
@@ -1487,23 +1502,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/identitySchema'
+                $ref: "#/components/schemas/identitySchema"
           description: identitySchema
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Get Identity JSON Schema
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
   /self-service/errors:
     get:
       description: |-
@@ -1529,29 +1545,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/flowError'
+                $ref: "#/components/schemas/flowError"
           description: flowError
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Get User-Flow Errors
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/fed-cm/parameters:
     get:
       description: This endpoint returns a list of all available FedCM providers.
@@ -1562,23 +1579,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createFedcmFlowResponse'
+                $ref: "#/components/schemas/createFedcmFlowResponse"
           description: createFedcmFlowResponse
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Get FedCM Parameters
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/fed-cm/token:
     post:
       description: |-
@@ -1591,10 +1609,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateFedcmFlowBody'
+              $ref: "#/components/schemas/UpdateFedcmFlowBody"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/UpdateFedcmFlowBody'
+              $ref: "#/components/schemas/UpdateFedcmFlowBody"
         required: true
         x-originalParamName: Body
       responses:
@@ -1602,7 +1620,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/successfulNativeLogin'
+                $ref: "#/components/schemas/successfulNativeLogin"
           description: successfulNativeLogin
         "303":
           description: "Empty responses are sent when, for example, resources are\
@@ -1611,29 +1629,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loginFlow'
+                $ref: "#/components/schemas/loginFlow"
           description: loginFlow
         "410":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorBrowserLocationChangeRequired'
+                $ref: "#/components/schemas/errorBrowserLocationChangeRequired"
           description: errorBrowserLocationChangeRequired
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Submit a FedCM token
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/login:
     post:
       description: |-
@@ -1702,10 +1721,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateLoginFlowBody'
+              $ref: "#/components/schemas/updateLoginFlowBody"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/updateLoginFlowBody'
+              $ref: "#/components/schemas/updateLoginFlowBody"
         required: true
         x-originalParamName: Body
       responses:
@@ -1713,7 +1732,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/successfulNativeLogin'
+                $ref: "#/components/schemas/successfulNativeLogin"
           description: successfulNativeLogin
         "303":
           description: "Empty responses are sent when, for example, resources are\
@@ -1722,29 +1741,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loginFlow'
+                $ref: "#/components/schemas/loginFlow"
           description: loginFlow
         "410":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorBrowserLocationChangeRequired'
+                $ref: "#/components/schemas/errorBrowserLocationChangeRequired"
           description: errorBrowserLocationChangeRequired
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Submit a Login Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/login/api:
     get:
       description: |-
@@ -1858,23 +1878,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loginFlow'
+                $ref: "#/components/schemas/loginFlow"
           description: loginFlow
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create Login Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/login/browser:
     get:
       description: |-
@@ -1998,7 +2019,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loginFlow'
+                $ref: "#/components/schemas/loginFlow"
           description: loginFlow
         "303":
           description: "Empty responses are sent when, for example, resources are\
@@ -2007,17 +2028,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create Login Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/login/flows:
     get:
       description: |-
@@ -2075,35 +2097,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/loginFlow'
+                $ref: "#/components/schemas/loginFlow"
           description: loginFlow
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "410":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Get Login Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/logout:
     get:
       description: |-
@@ -2165,11 +2188,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Update Logout Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/logout/api:
     delete:
       description: |-
@@ -2186,7 +2210,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/performNativeLogoutBody'
+              $ref: "#/components/schemas/performNativeLogoutBody"
         required: true
         x-originalParamName: Body
       responses:
@@ -2197,17 +2221,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Perform Logout for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/logout/browser:
     get:
       description: |-
@@ -2252,29 +2277,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/logoutFlow'
+                $ref: "#/components/schemas/logoutFlow"
           description: logoutFlow
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create a Logout URL for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/recovery:
     post:
       description: |-
@@ -2338,10 +2364,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateRecoveryFlowBody'
+              $ref: "#/components/schemas/updateRecoveryFlowBody"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/updateRecoveryFlowBody'
+              $ref: "#/components/schemas/updateRecoveryFlowBody"
         required: true
         x-originalParamName: Body
       responses:
@@ -2349,7 +2375,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/recoveryFlow'
+                $ref: "#/components/schemas/recoveryFlow"
           description: recoveryFlow
         "303":
           description: "Empty responses are sent when, for example, resources are\
@@ -2358,29 +2384,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/recoveryFlow'
+                $ref: "#/components/schemas/recoveryFlow"
           description: recoveryFlow
         "410":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorBrowserLocationChangeRequired'
+                $ref: "#/components/schemas/errorBrowserLocationChangeRequired"
           description: errorBrowserLocationChangeRequired
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Update Recovery Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/recovery/api:
     get:
       description: |-
@@ -2403,23 +2430,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/recoveryFlow'
+                $ref: "#/components/schemas/recoveryFlow"
           description: recoveryFlow
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create Recovery Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/recovery/browser:
     get:
       description: |-
@@ -2448,7 +2476,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/recoveryFlow'
+                $ref: "#/components/schemas/recoveryFlow"
           description: recoveryFlow
         "303":
           description: "Empty responses are sent when, for example, resources are\
@@ -2457,17 +2485,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create Recovery Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/recovery/flows:
     get:
       description: |-
@@ -2520,29 +2549,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/recoveryFlow'
+                $ref: "#/components/schemas/recoveryFlow"
           description: recoveryFlow
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "410":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Get Recovery Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/registration:
     post:
       description: |-
@@ -2604,10 +2634,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateRegistrationFlowBody'
+              $ref: "#/components/schemas/updateRegistrationFlowBody"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/updateRegistrationFlowBody'
+              $ref: "#/components/schemas/updateRegistrationFlowBody"
         required: true
         x-originalParamName: Body
       responses:
@@ -2615,7 +2645,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/successfulNativeRegistration'
+                $ref: "#/components/schemas/successfulNativeRegistration"
           description: successfulNativeRegistration
         "303":
           description: "Empty responses are sent when, for example, resources are\
@@ -2624,29 +2654,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/registrationFlow'
+                $ref: "#/components/schemas/registrationFlow"
           description: registrationFlow
         "410":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorBrowserLocationChangeRequired'
+                $ref: "#/components/schemas/errorBrowserLocationChangeRequired"
           description: errorBrowserLocationChangeRequired
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Update Registration Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/registration/api:
     get:
       description: |-
@@ -2712,23 +2743,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/registrationFlow'
+                $ref: "#/components/schemas/registrationFlow"
           description: registrationFlow
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create Registration Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/registration/browser:
     get:
       description: |-
@@ -2813,7 +2845,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/registrationFlow'
+                $ref: "#/components/schemas/registrationFlow"
           description: registrationFlow
         "303":
           description: "Empty responses are sent when, for example, resources are\
@@ -2822,11 +2854,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create Registration Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/registration/flows:
     get:
       description: |-
@@ -2884,35 +2917,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/registrationFlow'
+                $ref: "#/components/schemas/registrationFlow"
           description: registrationFlow
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "410":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Get Registration Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/settings:
     post:
       description: |-
@@ -2997,10 +3031,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateSettingsFlowBody'
+              $ref: "#/components/schemas/updateSettingsFlowBody"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/updateSettingsFlowBody'
+              $ref: "#/components/schemas/updateSettingsFlowBody"
         required: true
         x-originalParamName: Body
       responses:
@@ -3008,7 +3042,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/settingsFlow'
+                $ref: "#/components/schemas/settingsFlow"
           description: settingsFlow
         "303":
           description: "Empty responses are sent when, for example, resources are\
@@ -3017,43 +3051,44 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/settingsFlow'
+                $ref: "#/components/schemas/settingsFlow"
           description: settingsFlow
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "410":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorBrowserLocationChangeRequired'
+                $ref: "#/components/schemas/errorBrowserLocationChangeRequired"
           description: errorBrowserLocationChangeRequired
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       security:
       - sessionToken: []
       summary: Complete Settings Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/settings/api:
     get:
       description: |-
@@ -3094,23 +3129,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/settingsFlow'
+                $ref: "#/components/schemas/settingsFlow"
           description: settingsFlow
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create Settings Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/settings/browser:
     get:
       description: |-
@@ -3167,7 +3203,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/settingsFlow'
+                $ref: "#/components/schemas/settingsFlow"
           description: settingsFlow
         "303":
           description: "Empty responses are sent when, for example, resources are\
@@ -3176,29 +3212,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create Settings Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/settings/flows:
     get:
       description: |-
@@ -3264,41 +3301,42 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/settingsFlow'
+                $ref: "#/components/schemas/settingsFlow"
           description: settingsFlow
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "410":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Get Settings Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /self-service/verification:
     post:
       description: |-
@@ -3362,10 +3400,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateVerificationFlowBody'
+              $ref: "#/components/schemas/updateVerificationFlowBody"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/updateVerificationFlowBody'
+              $ref: "#/components/schemas/updateVerificationFlowBody"
         required: true
         x-originalParamName: Body
       responses:
@@ -3373,7 +3411,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/verificationFlow'
+                $ref: "#/components/schemas/verificationFlow"
           description: verificationFlow
         "303":
           description: "Empty responses are sent when, for example, resources are\
@@ -3382,23 +3420,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/verificationFlow'
+                $ref: "#/components/schemas/verificationFlow"
           description: verificationFlow
         "410":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Complete Verification Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/verification/api:
     get:
       description: |-
@@ -3430,23 +3469,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/verificationFlow'
+                $ref: "#/components/schemas/verificationFlow"
           description: verificationFlow
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create Verification Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/verification/browser:
     get:
       description: |-
@@ -3473,7 +3513,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/verificationFlow'
+                $ref: "#/components/schemas/verificationFlow"
           description: verificationFlow
         "303":
           description: "Empty responses are sent when, for example, resources are\
@@ -3482,11 +3522,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Create Verification Flow for Browser Clients
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/verification/flows:
     get:
       description: |-
@@ -3539,29 +3580,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/verificationFlow'
+                $ref: "#/components/schemas/verificationFlow"
           description: verificationFlow
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Get Verification Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /sessions:
     delete:
       description: |-
@@ -3596,29 +3638,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/deleteMySessionsCount'
+                $ref: "#/components/schemas/deleteMySessionsCount"
           description: deleteMySessionsCount
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Disable my other sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
     get:
       description: |-
         This endpoints returns all other active sessions that belong to the logged-in user.
@@ -3687,8 +3730,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: Set the Session Token when calling from non-browser clients.
@@ -3719,30 +3760,31 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/session'
+                  $ref: "#/components/schemas/session"
                 type: array
           description: List My Session Response
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Get My Active Sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /sessions/token-exchange:
     get:
       operationId: exchangeSessionToken
@@ -3768,35 +3810,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/successfulNativeLogin'
+                $ref: "#/components/schemas/successfulNativeLogin"
           description: successfulNativeLogin
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "410":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Exchange Session Token
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /sessions/whoami:
     get:
       description: |-
@@ -3901,29 +3944,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/session'
+                $ref: "#/components/schemas/session"
           description: session
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Check Who the Current HTTP Session Belongs To
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
   /sessions/{id}:
     delete:
       description: |-
@@ -3969,23 +4013,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorGeneric'
+                $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Disable one of my sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /version:
     get:
       description: |-
@@ -4002,7 +4047,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getVersion_200_response'
+                $ref: "#/components/schemas/getVersion_200_response"
           description: Returns the Ory Kratos version.
       summary: Return Running Software Version.
       tags:
@@ -4016,14 +4061,14 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/identitySchemas'
+            $ref: "#/components/schemas/identitySchemas"
       description: List Identity JSON Schemas Response
     listCourierMessages:
       content:
         application/json:
           schema:
             items:
-              $ref: '#/components/schemas/message'
+              $ref: "#/components/schemas/message"
             type: array
       description: Paginated Courier Message List Response
     listIdentities:
@@ -4031,7 +4076,7 @@ components:
         application/json:
           schema:
             items:
-              $ref: '#/components/schemas/identity'
+              $ref: "#/components/schemas/identity"
             type: array
       description: Paginated Identity List Response
     listIdentitySessions:
@@ -4039,7 +4084,7 @@ components:
         application/json:
           schema:
             items:
-              $ref: '#/components/schemas/session'
+              $ref: "#/components/schemas/session"
             type: array
       description: List Identity Sessions Response
     listMySessions:
@@ -4047,7 +4092,7 @@ components:
         application/json:
           schema:
             items:
-              $ref: '#/components/schemas/session'
+              $ref: "#/components/schemas/session"
             type: array
       description: List My Session Response
     listSessions:
@@ -4055,7 +4100,7 @@ components:
         application/json:
           schema:
             items:
-              $ref: '#/components/schemas/session'
+              $ref: "#/components/schemas/session"
             type: array
       description: |-
         Session List Response
@@ -4583,9 +4628,9 @@ components:
             It is used to identify the session.
           type: string
         client:
-          $ref: '#/components/schemas/OAuth2Client'
+          $ref: "#/components/schemas/OAuth2Client"
         oidc_context:
-          $ref: '#/components/schemas/OAuth2ConsentRequestOpenIDConnectContext'
+          $ref: "#/components/schemas/OAuth2ConsentRequestOpenIDConnectContext"
         request_url:
           description: "RequestURL is the original OAuth 2.0 Authorization URL requested\
             \ by the OAuth 2.0 client. It is the URL which initiates the OAuth 2.0\
@@ -4682,10 +4727,6 @@ components:
             Note: parameters is supported from Chrome 132.
           type: object
       type: object
-    RecoveryAddressType:
-      title: RecoveryAddressType must not exceed 16 characters as that is the limitation
-        in the SQL Schema.
-      type: string
     Time:
       format: date-time
       type: string
@@ -4749,7 +4790,7 @@ components:
         identities:
           description: The patch responses for the individual identities.
           items:
-            $ref: '#/components/schemas/identityPatchResponse'
+            $ref: "#/components/schemas/identityPatchResponse"
           type: array
       type: object
     consistencyRequestParameters:
@@ -4789,18 +4830,18 @@ components:
     continueWith:
       discriminator:
         mapping:
-          redirect_browser_to: '#/components/schemas/continueWithRedirectBrowserTo'
-          set_ory_session_token: '#/components/schemas/continueWithSetOrySessionToken'
-          show_recovery_ui: '#/components/schemas/continueWithRecoveryUi'
-          show_settings_ui: '#/components/schemas/continueWithSettingsUi'
-          show_verification_ui: '#/components/schemas/continueWithVerificationUi'
+          redirect_browser_to: "#/components/schemas/continueWithRedirectBrowserTo"
+          set_ory_session_token: "#/components/schemas/continueWithSetOrySessionToken"
+          show_recovery_ui: "#/components/schemas/continueWithRecoveryUi"
+          show_settings_ui: "#/components/schemas/continueWithSettingsUi"
+          show_verification_ui: "#/components/schemas/continueWithVerificationUi"
         propertyName: action
       oneOf:
-      - $ref: '#/components/schemas/continueWithVerificationUi'
-      - $ref: '#/components/schemas/continueWithSetOrySessionToken'
-      - $ref: '#/components/schemas/continueWithSettingsUi'
-      - $ref: '#/components/schemas/continueWithRecoveryUi'
-      - $ref: '#/components/schemas/continueWithRedirectBrowserTo'
+      - $ref: "#/components/schemas/continueWithVerificationUi"
+      - $ref: "#/components/schemas/continueWithSetOrySessionToken"
+      - $ref: "#/components/schemas/continueWithSettingsUi"
+      - $ref: "#/components/schemas/continueWithRecoveryUi"
+      - $ref: "#/components/schemas/continueWithRedirectBrowserTo"
       type: object
     continueWithRecoveryUi:
       description: "Indicates, that the UI flow could be continued by showing a recovery\
@@ -4815,7 +4856,7 @@ components:
           type: string
           x-go-enum-desc: show_recovery_ui ContinueWithActionShowRecoveryUIString
         flow:
-          $ref: '#/components/schemas/continueWithRecoveryUiFlow'
+          $ref: "#/components/schemas/continueWithRecoveryUiFlow"
       required:
       - action
       - flow
@@ -4886,7 +4927,7 @@ components:
           type: string
           x-go-enum-desc: show_settings_ui ContinueWithActionShowSettingsUIString
         flow:
-          $ref: '#/components/schemas/continueWithSettingsUiFlow'
+          $ref: "#/components/schemas/continueWithSettingsUiFlow"
       required:
       - action
       - flow
@@ -4925,7 +4966,7 @@ components:
           type: string
           x-go-enum-desc: show_verification_ui ContinueWithActionShowVerificationUIString
         flow:
-          $ref: '#/components/schemas/continueWithVerificationUiFlow'
+          $ref: "#/components/schemas/continueWithVerificationUiFlow"
       required:
       - action
       - flow
@@ -4998,7 +5039,7 @@ components:
           type: string
         providers:
           items:
-            $ref: '#/components/schemas/Provider'
+            $ref: "#/components/schemas/Provider"
           type: array
       title: CreateFedcmFlowResponse
       type: object
@@ -5006,7 +5047,7 @@ components:
       description: Create Identity Body
       properties:
         credentials:
-          $ref: '#/components/schemas/identityWithCredentials'
+          $ref: "#/components/schemas/identityWithCredentials"
         external_id:
           description: |-
             ExternalID is an optional external ID of the identity. This is used to link
@@ -5032,7 +5073,7 @@ components:
             that the address needs to be represented in the Identity Schema or this field will be overwritten
             on the next identity update.
           items:
-            $ref: '#/components/schemas/recoveryIdentityAddress'
+            $ref: "#/components/schemas/recoveryIdentityAddress"
           type: array
         schema_id:
           description: SchemaID is the ID of the JSON Schema to be used for validating
@@ -5064,7 +5105,7 @@ components:
             that the address needs to be represented in the Identity Schema or this field will be overwritten
             on the next identity update.
           items:
-            $ref: '#/components/schemas/verifiableIdentityAddress'
+            $ref: "#/components/schemas/verifiableIdentityAddress"
           type: array
       required:
       - schema_id
@@ -5129,7 +5170,7 @@ components:
     errorAuthenticatorAssuranceLevelNotSatisfied:
       properties:
         error:
-          $ref: '#/components/schemas/genericError'
+          $ref: "#/components/schemas/genericError"
         redirect_browser_to:
           description: Points to where to redirect the user to next.
           type: string
@@ -5151,7 +5192,7 @@ components:
         redirect_browser_to: redirect_browser_to
       properties:
         error:
-          $ref: '#/components/schemas/errorGeneric'
+          $ref: "#/components/schemas/errorGeneric"
         redirect_browser_to:
           description: Points to where to redirect the user to next.
           type: string
@@ -5162,7 +5203,7 @@ components:
         class
       properties:
         error:
-          $ref: '#/components/schemas/genericError'
+          $ref: "#/components/schemas/genericError"
         use_flow_id:
           description: The flow ID that should be used for the new flow as it contains
             the correct messages.
@@ -5183,7 +5224,7 @@ components:
           status: Not Found
       properties:
         error:
-          $ref: '#/components/schemas/genericError'
+          $ref: "#/components/schemas/genericError"
       required:
       - error
       title: JSON API Error Response
@@ -5350,7 +5391,7 @@ components:
           type: string
         credentials:
           additionalProperties:
-            $ref: '#/components/schemas/identityCredentials'
+            $ref: "#/components/schemas/identityCredentials"
           description: Credentials represents all credentials that can be used for
             authenticating this identity.
           type: object
@@ -5384,7 +5425,7 @@ components:
           description: RecoveryAddresses contains all the addresses that can be used
             to recover an identity.
           items:
-            $ref: '#/components/schemas/recoveryIdentityAddress'
+            $ref: "#/components/schemas/recoveryIdentityAddress"
           type: array
           x-omitempty: true
         schema_id:
@@ -5428,7 +5469,7 @@ components:
           description: VerifiableAddresses contains all the addresses that can be
             verified by the user.
           items:
-            $ref: '#/components/schemas/verifiableIdentityAddress'
+            $ref: "#/components/schemas/verifiableIdentityAddress"
           type: array
           x-omitempty: true
       required:
@@ -5459,7 +5500,7 @@ components:
           format: date-time
           type: string
         identifiers:
-          description: Identifiers represents a list of unique identifiers this credential
+          description: Identifiers represent a list of unique identifiers this credential
             type matches.
           items:
             type: string
@@ -5518,7 +5559,7 @@ components:
       properties:
         addresses:
           items:
-            $ref: '#/components/schemas/identityCredentialsCodeAddress'
+            $ref: "#/components/schemas/identityCredentialsCodeAddress"
           type: array
       type: object
     identityCredentialsCodeAddress:
@@ -5533,7 +5574,7 @@ components:
       properties:
         providers:
           items:
-            $ref: '#/components/schemas/identityCredentialsOidcProvider'
+            $ref: "#/components/schemas/identityCredentialsOidcProvider"
           type: array
       title: CredentialsOIDC is contains the configuration for credentials of the
         type oidc.
@@ -5575,7 +5616,7 @@ components:
       description: Payload for patching an identity
       properties:
         create:
-          $ref: '#/components/schemas/createIdentityBody'
+          $ref: "#/components/schemas/createIdentityBody"
         patch_id:
           description: |-
             The ID of this patch.
@@ -5639,7 +5680,7 @@ components:
     identitySchemas:
       description: List of Identity JSON Schemas
       items:
-        $ref: '#/components/schemas/identitySchemaContainer'
+        $ref: "#/components/schemas/identitySchemaContainer"
       type: array
     identityTraits:
       description: |-
@@ -5654,24 +5695,24 @@ components:
       description: Create Identity and Import Credentials
       properties:
         oidc:
-          $ref: '#/components/schemas/identityWithCredentialsOidc'
+          $ref: "#/components/schemas/identityWithCredentialsOidc"
         password:
-          $ref: '#/components/schemas/identityWithCredentialsPassword'
+          $ref: "#/components/schemas/identityWithCredentialsPassword"
         saml:
-          $ref: '#/components/schemas/identityWithCredentialsSaml'
+          $ref: "#/components/schemas/identityWithCredentialsSaml"
       type: object
     identityWithCredentialsOidc:
       description: Create Identity and Import Social Sign In Credentials
       properties:
         config:
-          $ref: '#/components/schemas/identityWithCredentialsOidcConfig'
+          $ref: "#/components/schemas/identityWithCredentialsOidcConfig"
       type: object
     identityWithCredentialsOidcConfig:
       properties:
         providers:
           description: A list of OpenID Connect Providers
           items:
-            $ref: '#/components/schemas/identityWithCredentialsOidcConfigProvider'
+            $ref: "#/components/schemas/identityWithCredentialsOidcConfigProvider"
           type: array
       type: object
     identityWithCredentialsOidcConfigProvider:
@@ -5701,7 +5742,7 @@ components:
       description: Create Identity and Import Password Credentials
       properties:
         config:
-          $ref: '#/components/schemas/identityWithCredentialsPasswordConfig'
+          $ref: "#/components/schemas/identityWithCredentialsPasswordConfig"
       type: object
     identityWithCredentialsPasswordConfig:
       description: Create Identity and Import Password Credentials Configuration
@@ -5721,7 +5762,7 @@ components:
       description: Payload to import SAML credentials
       properties:
         config:
-          $ref: '#/components/schemas/identityWithCredentialsSamlConfig'
+          $ref: "#/components/schemas/identityWithCredentialsSamlConfig"
       type: object
     identityWithCredentialsSamlConfig:
       description: Payload of SAML providers
@@ -5729,7 +5770,7 @@ components:
         providers:
           description: A list of SAML Providers
           items:
-            $ref: '#/components/schemas/identityWithCredentialsSamlConfigProvider'
+            $ref: "#/components/schemas/identityWithCredentialsSamlConfigProvider"
           type: array
       type: object
     identityWithCredentialsSamlConfigProvider:
@@ -5785,7 +5826,7 @@ components:
     jsonPatchDocument:
       description: A JSONPatchDocument request
       items:
-        $ref: '#/components/schemas/jsonPatch'
+        $ref: "#/components/schemas/jsonPatch"
       type: array
     loginFlow:
       description: |-
@@ -6060,7 +6101,7 @@ components:
             If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
           type: string
         oauth2_login_request:
-          $ref: '#/components/schemas/OAuth2LoginRequest'
+          $ref: "#/components/schemas/OAuth2LoginRequest"
         organization_id:
           format: uuid4
           nullable: true
@@ -6074,7 +6115,7 @@ components:
             to forward information contained in the URL's path or query for example.
           type: string
         requested_aal:
-          $ref: '#/components/schemas/authenticatorAssuranceLevel'
+          $ref: "#/components/schemas/authenticatorAssuranceLevel"
         return_to:
           description: ReturnTo contains the requested return_to URL.
           type: string
@@ -6100,7 +6141,7 @@ components:
           title: Type is the flow type.
           type: string
         ui:
-          $ref: '#/components/schemas/uiContainer'
+          $ref: "#/components/schemas/uiContainer"
         updated_at:
           description: UpdatedAt is a helper struct field for gobuffalo.pop.
           format: date-time
@@ -6183,7 +6224,7 @@ components:
             Dispatches store information about the attempts of delivering a message
             May contain an error if any happened, or just the `success` state.
           items:
-            $ref: '#/components/schemas/messageDispatch'
+            $ref: "#/components/schemas/messageDispatch"
           type: array
         id:
           format: uuid
@@ -6194,7 +6235,7 @@ components:
           format: int64
           type: integer
         status:
-          $ref: '#/components/schemas/courierMessageStatus'
+          $ref: "#/components/schemas/courierMessageStatus"
         subject:
           type: string
         template_type:
@@ -6237,7 +6278,7 @@ components:
             login_code_valid TypeLoginCodeValid
             registration_code_valid TypeRegistrationCodeValid
         type:
-          $ref: '#/components/schemas/courierMessageType'
+          $ref: "#/components/schemas/courierMessageType"
         updated_at:
           description: UpdatedAt is a helper struct field for gobuffalo.pop.
           format: date-time
@@ -6309,7 +6350,7 @@ components:
     needsPrivilegedSessionError:
       properties:
         error:
-          $ref: '#/components/schemas/genericError'
+          $ref: "#/components/schemas/genericError"
         redirect_browser_to:
           description: Points to where to redirect the user to next.
           type: string
@@ -6342,7 +6383,7 @@ components:
 
             required
           items:
-            $ref: '#/components/schemas/identityPatch'
+            $ref: "#/components/schemas/identityPatch"
           type: array
       type: object
     performNativeLogoutBody:
@@ -6505,7 +6546,7 @@ components:
         continue_with:
           description: Contains possible actions that could follow this flow
           items:
-            $ref: '#/components/schemas/continueWith'
+            $ref: "#/components/schemas/continueWith"
           type: array
         expires_at:
           description: |-
@@ -6547,7 +6588,7 @@ components:
           title: Type is the flow type.
           type: string
         ui:
-          $ref: '#/components/schemas/uiContainer'
+          $ref: "#/components/schemas/uiContainer"
       required:
       - expires_at
       - id
@@ -6589,8 +6630,6 @@ components:
         value:
           type: string
         via:
-          title: RecoveryAddressType must not exceed 16 characters as that is the
-            limitation in the SQL Schema.
           type: string
       required:
       - value
@@ -6878,7 +6917,7 @@ components:
             If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
           type: string
         oauth2_login_request:
-          $ref: '#/components/schemas/OAuth2LoginRequest'
+          $ref: "#/components/schemas/OAuth2LoginRequest"
         organization_id:
           format: uuid4
           nullable: true
@@ -6913,7 +6952,7 @@ components:
           title: Type is the flow type.
           type: string
         ui:
-          $ref: '#/components/schemas/uiContainer'
+          $ref: "#/components/schemas/uiContainer"
       required:
       - expires_at
       - id
@@ -6936,7 +6975,7 @@ components:
       description: Is sent when a flow is expired
       properties:
         error:
-          $ref: '#/components/schemas/genericError'
+          $ref: "#/components/schemas/genericError"
         expired_at:
           description: When the flow has expired
           format: date-time
@@ -7055,16 +7094,16 @@ components:
           description: A list of authenticators which were used to authenticate the
             session.
           items:
-            $ref: '#/components/schemas/sessionAuthenticationMethod'
+            $ref: "#/components/schemas/sessionAuthenticationMethod"
           title: List of (Used) AuthenticationMethods
           type: array
         authenticator_assurance_level:
-          $ref: '#/components/schemas/authenticatorAssuranceLevel'
+          $ref: "#/components/schemas/authenticatorAssuranceLevel"
         devices:
           description: Devices has history of all endpoints where the session was
             used
           items:
-            $ref: '#/components/schemas/sessionDevice'
+            $ref: "#/components/schemas/sessionDevice"
           type: array
         expires_at:
           description: |-
@@ -7078,7 +7117,7 @@ components:
           format: uuid
           type: string
         identity:
-          $ref: '#/components/schemas/identity'
+          $ref: "#/components/schemas/identity"
         issued_at:
           description: |-
             The Session Issuance Timestamp
@@ -7105,7 +7144,7 @@ components:
         aal: aal0
       properties:
         aal:
-          $ref: '#/components/schemas/authenticatorAssuranceLevel'
+          $ref: "#/components/schemas/authenticatorAssuranceLevel"
         completed_at:
           description: When the authentication challenge was completed.
           format: date-time
@@ -7160,7 +7199,7 @@ components:
     sessionAuthenticationMethods:
       description: A list of authenticators which were used to authenticate the session.
       items:
-        $ref: '#/components/schemas/sessionAuthenticationMethod'
+        $ref: "#/components/schemas/sessionAuthenticationMethod"
       title: List of (Used) AuthenticationMethods
       type: array
     sessionDevice:
@@ -7363,7 +7402,7 @@ components:
             It can, for example, contain a reference to the verification flow, created as part of the user's
             registration.
           items:
-            $ref: '#/components/schemas/continueWith'
+            $ref: "#/components/schemas/continueWith"
           type: array
         expires_at:
           description: |-
@@ -7378,7 +7417,7 @@ components:
           format: uuid
           type: string
         identity:
-          $ref: '#/components/schemas/identity'
+          $ref: "#/components/schemas/identity"
         issued_at:
           description: IssuedAt is the time (UTC) when the flow occurred.
           format: date-time
@@ -7408,7 +7447,7 @@ components:
           title: Type is the flow type.
           type: string
         ui:
-          $ref: '#/components/schemas/uiContainer'
+          $ref: "#/components/schemas/uiContainer"
       required:
       - expires_at
       - id
@@ -7432,7 +7471,7 @@ components:
       description: The Response for Registration Flows via API
       properties:
         session:
-          $ref: '#/components/schemas/session'
+          $ref: "#/components/schemas/session"
         session_token:
           description: |-
             The Session Token
@@ -7549,10 +7588,10 @@ components:
             It can, for example, this will contain a reference to the verification flow, created as part of the user's
             registration or the token of the session.
           items:
-            $ref: '#/components/schemas/continueWith'
+            $ref: "#/components/schemas/continueWith"
           type: array
         session:
-          $ref: '#/components/schemas/session'
+          $ref: "#/components/schemas/session"
         session_token:
           description: |-
             The Session Token
@@ -7720,12 +7759,12 @@ components:
             It can, for example, this will contain a reference to the verification flow, created as part of the user's
             registration or the token of the session.
           items:
-            $ref: '#/components/schemas/continueWith'
+            $ref: "#/components/schemas/continueWith"
           type: array
         identity:
-          $ref: '#/components/schemas/identity'
+          $ref: "#/components/schemas/identity"
         session:
-          $ref: '#/components/schemas/session'
+          $ref: "#/components/schemas/session"
         session_token:
           description: |-
             The Session Token
@@ -7756,13 +7795,11 @@ components:
           minimum: 1
           type: integer
         page_token:
-          default: "1"
           description: |-
             Next Page Token
 
             The next page token.
             For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-          minimum: 1
           type: string
       type: object
     tokenPaginationHeaders:
@@ -7877,14 +7914,14 @@ components:
           type: string
         messages:
           items:
-            $ref: '#/components/schemas/uiText'
+            $ref: "#/components/schemas/uiText"
           type: array
         method:
           description: Method is the form method (e.g. POST)
           type: string
         nodes:
           items:
-            $ref: '#/components/schemas/uiNode'
+            $ref: "#/components/schemas/uiNode"
           type: array
       required:
       - action
@@ -7934,7 +7971,7 @@ components:
         group: default
       properties:
         attributes:
-          $ref: '#/components/schemas/uiNodeAttributes'
+          $ref: "#/components/schemas/uiNodeAttributes"
         group:
           description: |-
             Group specifies which group (e.g. password authenticator) this node belongs to.
@@ -7982,10 +8019,10 @@ components:
             saml SAMLGroup
         messages:
           items:
-            $ref: '#/components/schemas/uiText'
+            $ref: "#/components/schemas/uiText"
           type: array
         meta:
-          $ref: '#/components/schemas/uiNodeMeta'
+          $ref: "#/components/schemas/uiNodeMeta"
         type:
           description: |-
             The node's type
@@ -8050,7 +8087,7 @@ components:
             script Script
             div Division
         title:
-          $ref: '#/components/schemas/uiText'
+          $ref: "#/components/schemas/uiText"
       required:
       - href
       - id
@@ -8061,20 +8098,20 @@ components:
     uiNodeAttributes:
       discriminator:
         mapping:
-          a: '#/components/schemas/uiNodeAnchorAttributes'
-          div: '#/components/schemas/uiNodeDivisionAttributes'
-          img: '#/components/schemas/uiNodeImageAttributes'
-          input: '#/components/schemas/uiNodeInputAttributes'
-          script: '#/components/schemas/uiNodeScriptAttributes'
-          text: '#/components/schemas/uiNodeTextAttributes'
+          a: "#/components/schemas/uiNodeAnchorAttributes"
+          div: "#/components/schemas/uiNodeDivisionAttributes"
+          img: "#/components/schemas/uiNodeImageAttributes"
+          input: "#/components/schemas/uiNodeInputAttributes"
+          script: "#/components/schemas/uiNodeScriptAttributes"
+          text: "#/components/schemas/uiNodeTextAttributes"
         propertyName: node_type
       oneOf:
-      - $ref: '#/components/schemas/uiNodeInputAttributes'
-      - $ref: '#/components/schemas/uiNodeTextAttributes'
-      - $ref: '#/components/schemas/uiNodeImageAttributes'
-      - $ref: '#/components/schemas/uiNodeAnchorAttributes'
-      - $ref: '#/components/schemas/uiNodeScriptAttributes'
-      - $ref: '#/components/schemas/uiNodeDivisionAttributes'
+      - $ref: "#/components/schemas/uiNodeInputAttributes"
+      - $ref: "#/components/schemas/uiNodeTextAttributes"
+      - $ref: "#/components/schemas/uiNodeImageAttributes"
+      - $ref: "#/components/schemas/uiNodeAnchorAttributes"
+      - $ref: "#/components/schemas/uiNodeScriptAttributes"
+      - $ref: "#/components/schemas/uiNodeDivisionAttributes"
       title: Attributes represents a list of attributes (e.g. `href="foo"` for links).
     uiNodeDivisionAttributes:
       description: Division sections are used for interactive widgets that require
@@ -8219,7 +8256,7 @@ components:
           description: Sets the input's disabled field to true or false.
           type: boolean
         label:
-          $ref: '#/components/schemas/uiText'
+          $ref: "#/components/schemas/uiText"
         maxlength:
           description: MaxLength may contain the input's maximum length.
           format: int64
@@ -8382,7 +8419,7 @@ components:
           type: info
       properties:
         label:
-          $ref: '#/components/schemas/uiText'
+          $ref: "#/components/schemas/uiText"
       title: A Node's Meta Information
       type: object
     uiNodeScriptAttributes:
@@ -8474,7 +8511,7 @@ components:
             script Script
             div Division
         text:
-          $ref: '#/components/schemas/uiText'
+          $ref: "#/components/schemas/uiText"
       required:
       - id
       - node_type
@@ -8483,7 +8520,7 @@ components:
       type: object
     uiNodes:
       items:
-        $ref: '#/components/schemas/uiNode'
+        $ref: "#/components/schemas/uiNode"
       type: array
     uiText:
       example:
@@ -8523,7 +8560,7 @@ components:
       type: object
     uiTexts:
       items:
-        $ref: '#/components/schemas/uiText'
+        $ref: "#/components/schemas/uiText"
       type: array
     unexpectedError:
       type: string
@@ -8531,7 +8568,7 @@ components:
       description: Update Identity Body
       properties:
         credentials:
-          $ref: '#/components/schemas/identityWithCredentials'
+          $ref: "#/components/schemas/identityWithCredentials"
         external_id:
           description: |-
             ExternalID is an optional external ID of the identity. This is used to link
@@ -8576,26 +8613,26 @@ components:
     updateLoginFlowBody:
       discriminator:
         mapping:
-          code: '#/components/schemas/updateLoginFlowWithCodeMethod'
-          identifier_first: '#/components/schemas/updateLoginFlowWithIdentifierFirstMethod'
-          lookup_secret: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
-          oidc: '#/components/schemas/updateLoginFlowWithOidcMethod'
-          passkey: '#/components/schemas/updateLoginFlowWithPasskeyMethod'
-          password: '#/components/schemas/updateLoginFlowWithPasswordMethod'
-          saml: '#/components/schemas/updateLoginFlowWithSamlMethod'
-          totp: '#/components/schemas/updateLoginFlowWithTotpMethod'
-          webauthn: '#/components/schemas/updateLoginFlowWithWebAuthnMethod'
+          code: "#/components/schemas/updateLoginFlowWithCodeMethod"
+          identifier_first: "#/components/schemas/updateLoginFlowWithIdentifierFirstMethod"
+          lookup_secret: "#/components/schemas/updateLoginFlowWithLookupSecretMethod"
+          oidc: "#/components/schemas/updateLoginFlowWithOidcMethod"
+          passkey: "#/components/schemas/updateLoginFlowWithPasskeyMethod"
+          password: "#/components/schemas/updateLoginFlowWithPasswordMethod"
+          saml: "#/components/schemas/updateLoginFlowWithSamlMethod"
+          totp: "#/components/schemas/updateLoginFlowWithTotpMethod"
+          webauthn: "#/components/schemas/updateLoginFlowWithWebAuthnMethod"
         propertyName: method
       oneOf:
-      - $ref: '#/components/schemas/updateLoginFlowWithPasswordMethod'
-      - $ref: '#/components/schemas/updateLoginFlowWithOidcMethod'
-      - $ref: '#/components/schemas/updateLoginFlowWithSamlMethod'
-      - $ref: '#/components/schemas/updateLoginFlowWithTotpMethod'
-      - $ref: '#/components/schemas/updateLoginFlowWithWebAuthnMethod'
-      - $ref: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
-      - $ref: '#/components/schemas/updateLoginFlowWithCodeMethod'
-      - $ref: '#/components/schemas/updateLoginFlowWithPasskeyMethod'
-      - $ref: '#/components/schemas/updateLoginFlowWithIdentifierFirstMethod'
+      - $ref: "#/components/schemas/updateLoginFlowWithPasswordMethod"
+      - $ref: "#/components/schemas/updateLoginFlowWithOidcMethod"
+      - $ref: "#/components/schemas/updateLoginFlowWithSamlMethod"
+      - $ref: "#/components/schemas/updateLoginFlowWithTotpMethod"
+      - $ref: "#/components/schemas/updateLoginFlowWithWebAuthnMethod"
+      - $ref: "#/components/schemas/updateLoginFlowWithLookupSecretMethod"
+      - $ref: "#/components/schemas/updateLoginFlowWithCodeMethod"
+      - $ref: "#/components/schemas/updateLoginFlowWithPasskeyMethod"
+      - $ref: "#/components/schemas/updateLoginFlowWithIdentifierFirstMethod"
     updateLoginFlowWithCodeMethod:
       description: Update Login flow using the code method
       properties:
@@ -8718,6 +8755,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -8849,12 +8887,12 @@ components:
       description: Update Recovery Flow Request Body
       discriminator:
         mapping:
-          code: '#/components/schemas/updateRecoveryFlowWithCodeMethod'
-          link: '#/components/schemas/updateRecoveryFlowWithLinkMethod'
+          code: "#/components/schemas/updateRecoveryFlowWithCodeMethod"
+          link: "#/components/schemas/updateRecoveryFlowWithLinkMethod"
         propertyName: method
       oneOf:
-      - $ref: '#/components/schemas/updateRecoveryFlowWithLinkMethod'
-      - $ref: '#/components/schemas/updateRecoveryFlowWithCodeMethod'
+      - $ref: "#/components/schemas/updateRecoveryFlowWithLinkMethod"
+      - $ref: "#/components/schemas/updateRecoveryFlowWithCodeMethod"
     updateRecoveryFlowWithCodeMethod:
       description: Update Recovery Flow with Code Method
       properties:
@@ -8942,7 +8980,7 @@ components:
 
             Needs to be set when initiating the flow. If the email is a registered
             recovery email, a recovery link will be sent. If the email is not known,
-            a email with details on what happened will be sent instead.
+            an email with details on what happened will be sent instead.
 
             format: email
           type: string
@@ -8971,22 +9009,22 @@ components:
       description: Update Registration Request Body
       discriminator:
         mapping:
-          code: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
-          oidc: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
-          passkey: '#/components/schemas/updateRegistrationFlowWithPasskeyMethod'
-          password: '#/components/schemas/updateRegistrationFlowWithPasswordMethod'
-          profile: '#/components/schemas/updateRegistrationFlowWithProfileMethod'
-          saml: '#/components/schemas/updateRegistrationFlowWithSamlMethod'
-          webauthn: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
+          code: "#/components/schemas/updateRegistrationFlowWithCodeMethod"
+          oidc: "#/components/schemas/updateRegistrationFlowWithOidcMethod"
+          passkey: "#/components/schemas/updateRegistrationFlowWithPasskeyMethod"
+          password: "#/components/schemas/updateRegistrationFlowWithPasswordMethod"
+          profile: "#/components/schemas/updateRegistrationFlowWithProfileMethod"
+          saml: "#/components/schemas/updateRegistrationFlowWithSamlMethod"
+          webauthn: "#/components/schemas/updateRegistrationFlowWithWebAuthnMethod"
         propertyName: method
       oneOf:
-      - $ref: '#/components/schemas/updateRegistrationFlowWithPasswordMethod'
-      - $ref: '#/components/schemas/updateRegistrationFlowWithOidcMethod'
-      - $ref: '#/components/schemas/updateRegistrationFlowWithSamlMethod'
-      - $ref: '#/components/schemas/updateRegistrationFlowWithWebAuthnMethod'
-      - $ref: '#/components/schemas/updateRegistrationFlowWithCodeMethod'
-      - $ref: '#/components/schemas/updateRegistrationFlowWithPasskeyMethod'
-      - $ref: '#/components/schemas/updateRegistrationFlowWithProfileMethod'
+      - $ref: "#/components/schemas/updateRegistrationFlowWithPasswordMethod"
+      - $ref: "#/components/schemas/updateRegistrationFlowWithOidcMethod"
+      - $ref: "#/components/schemas/updateRegistrationFlowWithSamlMethod"
+      - $ref: "#/components/schemas/updateRegistrationFlowWithWebAuthnMethod"
+      - $ref: "#/components/schemas/updateRegistrationFlowWithCodeMethod"
+      - $ref: "#/components/schemas/updateRegistrationFlowWithPasskeyMethod"
+      - $ref: "#/components/schemas/updateRegistrationFlowWithProfileMethod"
     updateRegistrationFlowWithCodeMethod:
       description: Update Registration Flow with Code Method
       properties:
@@ -9063,6 +9101,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -9230,24 +9269,24 @@ components:
       description: Update Settings Flow Request Body
       discriminator:
         mapping:
-          lookup_secret: '#/components/schemas/updateSettingsFlowWithLookupMethod'
-          oidc: '#/components/schemas/updateSettingsFlowWithOidcMethod'
-          passkey: '#/components/schemas/updateSettingsFlowWithPasskeyMethod'
-          password: '#/components/schemas/updateSettingsFlowWithPasswordMethod'
-          profile: '#/components/schemas/updateSettingsFlowWithProfileMethod'
-          saml: '#/components/schemas/updateSettingsFlowWithSamlMethod'
-          totp: '#/components/schemas/updateSettingsFlowWithTotpMethod'
-          webauthn: '#/components/schemas/updateSettingsFlowWithWebAuthnMethod'
+          lookup_secret: "#/components/schemas/updateSettingsFlowWithLookupMethod"
+          oidc: "#/components/schemas/updateSettingsFlowWithOidcMethod"
+          passkey: "#/components/schemas/updateSettingsFlowWithPasskeyMethod"
+          password: "#/components/schemas/updateSettingsFlowWithPasswordMethod"
+          profile: "#/components/schemas/updateSettingsFlowWithProfileMethod"
+          saml: "#/components/schemas/updateSettingsFlowWithSamlMethod"
+          totp: "#/components/schemas/updateSettingsFlowWithTotpMethod"
+          webauthn: "#/components/schemas/updateSettingsFlowWithWebAuthnMethod"
         propertyName: method
       oneOf:
-      - $ref: '#/components/schemas/updateSettingsFlowWithPasswordMethod'
-      - $ref: '#/components/schemas/updateSettingsFlowWithProfileMethod'
-      - $ref: '#/components/schemas/updateSettingsFlowWithOidcMethod'
-      - $ref: '#/components/schemas/updateSettingsFlowWithSamlMethod'
-      - $ref: '#/components/schemas/updateSettingsFlowWithTotpMethod'
-      - $ref: '#/components/schemas/updateSettingsFlowWithWebAuthnMethod'
-      - $ref: '#/components/schemas/updateSettingsFlowWithLookupMethod'
-      - $ref: '#/components/schemas/updateSettingsFlowWithPasskeyMethod'
+      - $ref: "#/components/schemas/updateSettingsFlowWithPasswordMethod"
+      - $ref: "#/components/schemas/updateSettingsFlowWithProfileMethod"
+      - $ref: "#/components/schemas/updateSettingsFlowWithOidcMethod"
+      - $ref: "#/components/schemas/updateSettingsFlowWithSamlMethod"
+      - $ref: "#/components/schemas/updateSettingsFlowWithTotpMethod"
+      - $ref: "#/components/schemas/updateSettingsFlowWithWebAuthnMethod"
+      - $ref: "#/components/schemas/updateSettingsFlowWithLookupMethod"
+      - $ref: "#/components/schemas/updateSettingsFlowWithPasskeyMethod"
     updateSettingsFlowWithLookupMethod:
       description: Update Settings Flow with Lookup Method
       properties:
@@ -9329,6 +9368,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -9527,12 +9567,12 @@ components:
       description: Update Verification Flow Request Body
       discriminator:
         mapping:
-          code: '#/components/schemas/updateVerificationFlowWithCodeMethod'
-          link: '#/components/schemas/updateVerificationFlowWithLinkMethod'
+          code: "#/components/schemas/updateVerificationFlowWithCodeMethod"
+          link: "#/components/schemas/updateVerificationFlowWithLinkMethod"
         propertyName: method
       oneOf:
-      - $ref: '#/components/schemas/updateVerificationFlowWithLinkMethod'
-      - $ref: '#/components/schemas/updateVerificationFlowWithCodeMethod'
+      - $ref: "#/components/schemas/updateVerificationFlowWithLinkMethod"
+      - $ref: "#/components/schemas/updateVerificationFlowWithCodeMethod"
     updateVerificationFlowWithCodeMethod:
       properties:
         code:
@@ -9823,7 +9863,7 @@ components:
           title: Type is the flow type.
           type: string
         ui:
-          $ref: '#/components/schemas/uiContainer'
+          $ref: "#/components/schemas/uiContainer"
       required:
       - id
       - state

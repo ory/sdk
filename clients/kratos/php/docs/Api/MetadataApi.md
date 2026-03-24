@@ -1,5 +1,7 @@
 # Ory\Kratos\Client\MetadataApi
 
+Server Metadata provides relevant information about the running server. Only available when self-hosting this service.
+
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
 | Method | HTTP request | Description |

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v25.4.0
+API version: v26.2.0
 Contact: office@ory.sh
 */
 
@@ -27,14 +27,14 @@ type IdentityAPI interface {
 	/*
 	BatchPatchIdentities Create multiple identities
 
-	Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+	Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).
 
-You can also use this endpoint to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities),
+You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities),
 including passwords, social sign-in settings, and multi-factor authentication methods.
 
-You can import:
-Up to 1,000 identities per request
-Up to 200 identities per request if including plaintext passwords
+If the patch includes hashed passwords you can import up to 1,000 identities per request.
+
+If the patch includes at least one plaintext password you can import up to 200 identities per request.
 
 Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
 
@@ -367,14 +367,14 @@ func (r IdentityAPIBatchPatchIdentitiesRequest) Execute() (*BatchPatchIdentities
 /*
 BatchPatchIdentities Create multiple identities
 
-Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).
 
-You can also use this endpoint to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities),
+You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities),
 including passwords, social sign-in settings, and multi-factor authentication methods.
 
-You can import:
-Up to 1,000 identities per request
-Up to 200 identities per request if including plaintext passwords
+If the patch includes hashed passwords you can import up to 1,000 identities per request.
+
+If the patch includes at least one plaintext password you can import up to 200 identities per request.
 
 Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
 
@@ -2399,8 +2399,9 @@ func (a *IdentityAPIService) ListIdentitiesExecute(r IdentityAPIListIdentitiesRe
 	if r.perPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.perPage = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", defaultValue, "form", "")
+        r.perPage = &defaultValue
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
@@ -2408,14 +2409,12 @@ func (a *IdentityAPIService) ListIdentitiesExecute(r IdentityAPIListIdentitiesRe
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
-	} else {
-		var defaultValue string = "1"
-		r.pageToken = &defaultValue
 	}
 	if r.consistency != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "consistency", r.consistency, "form", "")
@@ -2603,8 +2602,9 @@ func (a *IdentityAPIService) ListIdentitySchemasExecute(r IdentityAPIListIdentit
 	if r.perPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.perPage = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", defaultValue, "form", "")
+        r.perPage = &defaultValue
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
@@ -2612,14 +2612,12 @@ func (a *IdentityAPIService) ListIdentitySchemasExecute(r IdentityAPIListIdentit
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
-	} else {
-		var defaultValue string = "1"
-		r.pageToken = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2770,8 +2768,9 @@ func (a *IdentityAPIService) ListIdentitySessionsExecute(r IdentityAPIListIdenti
 	if r.perPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.perPage = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", defaultValue, "form", "")
+        r.perPage = &defaultValue
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
@@ -2779,14 +2778,12 @@ func (a *IdentityAPIService) ListIdentitySessionsExecute(r IdentityAPIListIdenti
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
-	} else {
-		var defaultValue string = "1"
-		r.pageToken = &defaultValue
 	}
 	if r.active != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
@@ -2965,8 +2962,9 @@ func (a *IdentityAPIService) ListSessionsExecute(r IdentityAPIListSessionsReques
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")

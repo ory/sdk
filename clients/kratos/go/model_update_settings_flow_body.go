@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v25.4.0
+API version: v26.2.0
 Contact: office@ory.sh
 */
 
@@ -181,102 +181,6 @@ func (dst *UpdateSettingsFlowBody) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'webauthn'
 	if jsonDict["method"] == "webauthn" {
-		// try to unmarshal JSON data into UpdateSettingsFlowWithWebAuthnMethod
-		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithWebAuthnMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateSettingsFlowWithWebAuthnMethod, return on the first match
-		} else {
-			dst.UpdateSettingsFlowWithWebAuthnMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateSettingsFlowBody as UpdateSettingsFlowWithWebAuthnMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateSettingsFlowWithLookupMethod'
-	if jsonDict["method"] == "updateSettingsFlowWithLookupMethod" {
-		// try to unmarshal JSON data into UpdateSettingsFlowWithLookupMethod
-		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithLookupMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateSettingsFlowWithLookupMethod, return on the first match
-		} else {
-			dst.UpdateSettingsFlowWithLookupMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateSettingsFlowBody as UpdateSettingsFlowWithLookupMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateSettingsFlowWithOidcMethod'
-	if jsonDict["method"] == "updateSettingsFlowWithOidcMethod" {
-		// try to unmarshal JSON data into UpdateSettingsFlowWithOidcMethod
-		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithOidcMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateSettingsFlowWithOidcMethod, return on the first match
-		} else {
-			dst.UpdateSettingsFlowWithOidcMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateSettingsFlowBody as UpdateSettingsFlowWithOidcMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateSettingsFlowWithPasskeyMethod'
-	if jsonDict["method"] == "updateSettingsFlowWithPasskeyMethod" {
-		// try to unmarshal JSON data into UpdateSettingsFlowWithPasskeyMethod
-		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithPasskeyMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateSettingsFlowWithPasskeyMethod, return on the first match
-		} else {
-			dst.UpdateSettingsFlowWithPasskeyMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateSettingsFlowBody as UpdateSettingsFlowWithPasskeyMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateSettingsFlowWithPasswordMethod'
-	if jsonDict["method"] == "updateSettingsFlowWithPasswordMethod" {
-		// try to unmarshal JSON data into UpdateSettingsFlowWithPasswordMethod
-		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithPasswordMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateSettingsFlowWithPasswordMethod, return on the first match
-		} else {
-			dst.UpdateSettingsFlowWithPasswordMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateSettingsFlowBody as UpdateSettingsFlowWithPasswordMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateSettingsFlowWithProfileMethod'
-	if jsonDict["method"] == "updateSettingsFlowWithProfileMethod" {
-		// try to unmarshal JSON data into UpdateSettingsFlowWithProfileMethod
-		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithProfileMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateSettingsFlowWithProfileMethod, return on the first match
-		} else {
-			dst.UpdateSettingsFlowWithProfileMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateSettingsFlowBody as UpdateSettingsFlowWithProfileMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateSettingsFlowWithSamlMethod'
-	if jsonDict["method"] == "updateSettingsFlowWithSamlMethod" {
-		// try to unmarshal JSON data into UpdateSettingsFlowWithSamlMethod
-		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithSamlMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateSettingsFlowWithSamlMethod, return on the first match
-		} else {
-			dst.UpdateSettingsFlowWithSamlMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateSettingsFlowBody as UpdateSettingsFlowWithSamlMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateSettingsFlowWithTotpMethod'
-	if jsonDict["method"] == "updateSettingsFlowWithTotpMethod" {
-		// try to unmarshal JSON data into UpdateSettingsFlowWithTotpMethod
-		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithTotpMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateSettingsFlowWithTotpMethod, return on the first match
-		} else {
-			dst.UpdateSettingsFlowWithTotpMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateSettingsFlowBody as UpdateSettingsFlowWithTotpMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateSettingsFlowWithWebAuthnMethod'
-	if jsonDict["method"] == "updateSettingsFlowWithWebAuthnMethod" {
 		// try to unmarshal JSON data into UpdateSettingsFlowWithWebAuthnMethod
 		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithWebAuthnMethod)
 		if err == nil {

@@ -1,6 +1,6 @@
 [package]
 name = "ory-kratos-client"
-version = "25.4.0"
+version = "26.2.0"
 authors = ["office@ory.sh"]
 description = "OpenAPI API client for Ory Kratos, Ory's central identity management solution with hardened authentication, MFA, FIDO2, TOTP, WebAuthn, SSO, profile management, and more."
 license = "Apache-2.0"
@@ -14,3 +14,8 @@ serde_repr = "^0.1"
 url = "^2.5"
 uuid = { version = "^1.8", features = ["serde", "v4"] }
 reqwest = { version = "^0.12", default-features = false, features = ["json", "multipart"] }
+
+[features]
+default = ["native-tls"]
+native-tls = ["reqwest/native-tls"]
+rustls-tls = ["reqwest/rustls-tls"]
