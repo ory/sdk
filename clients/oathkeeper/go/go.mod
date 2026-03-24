@@ -1,4 +1,4 @@
-module github.com/ory/oathkeeper-client-go
+module github.com/ory/oathkeeper-client-go/v26
 
 go 1.24.0
 

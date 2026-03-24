@@ -28,7 +28,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ory/oathkeeper-client-go"
+	openapiclient "github.com/ory/oathkeeper-client-go/v26"
 )
 
 func main() {
@@ -87,7 +87,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ory/oathkeeper-client-go"
+	openapiclient "github.com/ory/oathkeeper-client-go/v26"
 )
 
 func main() {
@@ -157,7 +157,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ory/oathkeeper-client-go"
+	openapiclient "github.com/ory/oathkeeper-client-go/v26"
 )
 
 func main() {
@@ -218,7 +218,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/ory/oathkeeper-client-go"
+	openapiclient "github.com/ory/oathkeeper-client-go/v26"
 )
 
 func main() {

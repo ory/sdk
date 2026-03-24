@@ -3,7 +3,7 @@ Ory Oathkeeper API
 
 Documentation for all of Ory Oathkeeper's APIs. 
 
-API version: v25.4.0
+API version: v26.2.0
 Contact: hi@ory.sh
 */
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the Ory Oathkeeper API API vv25.4.0
+// APIClient manages communication with the Ory Oathkeeper API API vv26.2.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration

@@ -1,8 +1,8 @@
 # oathkeeper-client
 
 Ory Oathkeeper API
-- API version: v25.4.0
-  - Build date: 2025-11-09T17:05:08.288095774Z[Etc/UTC]
+- API version: v26.2.0
+  - Build date: 2026-03-24T12:37:28.367720085Z[Etc/UTC]
   - Generator version: 7.7.0
 
 Documentation for all of Ory Oathkeeper's APIs.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.oathkeeper</groupId>
   <artifactId>oathkeeper-client</artifactId>
-  <version>v25.4.0</version>
+  <version>v26.2.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.oathkeeper:oathkeeper-client:v25.4.0"
+     implementation "sh.ory.oathkeeper:oathkeeper-client:v26.2.0"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/oathkeeper-client-v25.4.0.jar`
+* `target/oathkeeper-client-v26.2.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

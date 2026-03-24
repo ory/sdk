@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/ory/oathkeeper-client-go"
+	openapiclient "github.com/ory/oathkeeper-client-go/v26"
 )
 
 func Test_client_ApiAPIService(t *testing.T) {

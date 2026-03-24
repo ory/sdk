@@ -28,6 +28,7 @@ lib/ory-oathkeeper-client/api/api_api.rb
 lib/ory-oathkeeper-client/api/metadata_api.rb
 lib/ory-oathkeeper-client/api_client.rb
 lib/ory-oathkeeper-client/api_error.rb
+lib/ory-oathkeeper-client/api_model_base.rb
 lib/ory-oathkeeper-client/configuration.rb
 lib/ory-oathkeeper-client/models/generic_error.rb
 lib/ory-oathkeeper-client/models/get_version200_response.rb
