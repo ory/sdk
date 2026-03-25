@@ -31,7 +31,7 @@ import (
 
 func main() {
 	projectId := "projectId_example" // string | Project ID  The project's ID.
-	createEventStreamBody := *openapiclient.NewCreateEventStreamBody("RoleArn_example", "TopicArn_example", "Type_example") // CreateEventStreamBody | 
+	createEventStreamBody := *openapiclient.NewCreateEventStreamBody("Type_example") // CreateEventStreamBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -241,7 +241,7 @@ import (
 func main() {
 	projectId := "projectId_example" // string | Project ID  The project's ID.
 	eventStreamId := "eventStreamId_example" // string | Event Stream ID  The event stream's ID.
-	setEventStreamBody := *openapiclient.NewSetEventStreamBody("RoleArn_example", "TopicArn_example", "Type_example") // SetEventStreamBody |  (optional)
+	setEventStreamBody := *openapiclient.NewSetEventStreamBody("Type_example") // SetEventStreamBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

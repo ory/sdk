@@ -191,6 +191,9 @@ Name | Type
 `kratos_selfservice_flows_verification_ui_url` | string
 `kratos_selfservice_flows_verification_use` | string
 `kratos_selfservice_methods_captcha_config_allowed_domains` | Array&lt;string&gt;
+`kratos_selfservice_methods_captcha_config_byo` | boolean
+`kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret` | string
+`kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey` | string
 `kratos_selfservice_methods_captcha_config_cf_turnstile_secret` | string
 `kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey` | string
 `kratos_selfservice_methods_captcha_config_legacy_inject_node` | boolean
@@ -440,6 +443,9 @@ const example = {
   "kratos_selfservice_flows_verification_ui_url": null,
   "kratos_selfservice_flows_verification_use": null,
   "kratos_selfservice_methods_captcha_config_allowed_domains": null,
+  "kratos_selfservice_methods_captcha_config_byo": null,
+  "kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret": null,
+  "kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey": null,
   "kratos_selfservice_methods_captcha_config_cf_turnstile_secret": null,
   "kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey": null,
   "kratos_selfservice_methods_captcha_config_legacy_inject_node": null,

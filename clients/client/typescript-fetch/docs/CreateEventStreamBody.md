@@ -7,6 +7,7 @@ Create Event Stream Request Body
 
 Name | Type
 ------------ | -------------
+`https_endpoint` | string
 `role_arn` | string
 `topic_arn` | string
 `type` | string
@@ -18,6 +19,7 @@ import type { CreateEventStreamBody } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "https_endpoint": null,
   "role_arn": null,
   "topic_arn": null,
   "type": null,

@@ -187,8 +187,11 @@ Name | Type | Description | Notes
 **kratos_selfservice_flows_verification_ui_url** | **string** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_flows_verification_use** | **string** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] [default to undefined]
 **kratos_selfservice_methods_captcha_config_allowed_domains** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
-**kratos_selfservice_methods_captcha_config_cf_turnstile_secret** | **string** | Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature. | [optional] [default to undefined]
-**kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey** | **string** | Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] [default to undefined]
+**kratos_selfservice_methods_captcha_config_byo** | **boolean** | Configures whether to use BYO or managed widget  Reach out to your account manager to enable this feature. | [optional] [default to undefined]
+**kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret** | **string** | Configures the Cloudflare Turnstile site secret for Ory BYO CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature. | [optional] [default to undefined]
+**kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey** | **string** | Configures the Cloudflare Turnstile site key for Ory BYO CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] [default to undefined]
+**kratos_selfservice_methods_captcha_config_cf_turnstile_secret** | **string** | Configures the Cloudflare Turnstile site secret for managed CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature. | [optional] [default to undefined]
+**kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey** | **string** | Configures the Cloudflare Turnstile site key for managed CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] [default to undefined]
 **kratos_selfservice_methods_captcha_config_legacy_inject_node** | **boolean** | Configures the Ory Kratos Self-Service Methods\&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] [default to undefined]
 **kratos_selfservice_methods_captcha_enabled** | **boolean** | Configures the Ory Kratos Self-Service Methods\&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] [default to undefined]
 **kratos_selfservice_methods_code_config_lifespan** | **string** | Configures the Ory Kratos Code Method\&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] [default to undefined]
@@ -432,6 +435,9 @@ const instance: NormalizedProjectRevision = {
     kratos_selfservice_flows_verification_ui_url,
     kratos_selfservice_flows_verification_use,
     kratos_selfservice_methods_captcha_config_allowed_domains,
+    kratos_selfservice_methods_captcha_config_byo,
+    kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret,
+    kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey,
     kratos_selfservice_methods_captcha_config_cf_turnstile_secret,
     kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey,
     kratos_selfservice_methods_captcha_config_legacy_inject_node,

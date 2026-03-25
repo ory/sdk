@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.27
+  version: v1.22.32
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -85,7 +85,7 @@ paths:
       summary: Discover Well-Known JSON Web Keys
       tags:
       - wellknown
-      x-ory-ratelimit-bucket: hydra-public-low
+      x-ory-ratelimit-bucket: hydra-public-high
       x-accepts:
       - application/json
   /.well-known/openid-configuration:
@@ -112,7 +112,7 @@ paths:
       summary: OpenID Connect Discovery
       tags:
       - oidc
-      x-ory-ratelimit-bucket: hydra-public-low
+      x-ory-ratelimit-bucket: hydra-public-high
       x-accepts:
       - application/json
   /.well-known/ory/webauthn.js:
@@ -138,7 +138,7 @@ paths:
       summary: Get WebAuthn JavaScript
       tags:
       - frontend
-      x-ory-ratelimit-bucket: hydra-public-low
+      x-ory-ratelimit-bucket: hydra-public-high
       x-accepts:
       - application/json
   /admin/clients:
@@ -252,7 +252,7 @@ paths:
       summary: Create OAuth 2.0 Client
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -291,7 +291,7 @@ paths:
       summary: Delete OAuth 2.0 Client
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-accepts:
       - application/json
     get:
@@ -328,7 +328,7 @@ paths:
       summary: Get an OAuth 2.0 Client
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-accepts:
       - application/json
     patch:
@@ -381,7 +381,7 @@ paths:
       summary: Patch OAuth 2.0 Client
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -442,7 +442,7 @@ paths:
       summary: Set OAuth 2.0 Client
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -484,7 +484,7 @@ paths:
       summary: Set OAuth2 Client Token Lifespans
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -567,7 +567,7 @@ paths:
       summary: List Messages
       tags:
       - courier
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
   /admin/courier/messages/{id}:
@@ -861,7 +861,7 @@ paths:
       summary: Create multiple identities
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -907,7 +907,7 @@ paths:
       summary: Create an Identity
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1016,7 +1016,7 @@ paths:
       summary: Delete an Identity
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
     get:
@@ -1083,7 +1083,7 @@ paths:
       summary: Get an Identity
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-low
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-accepts:
       - application/json
     patch:
@@ -1142,7 +1142,7 @@ paths:
       summary: Patch an Identity
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1205,7 +1205,7 @@ paths:
       summary: Update an Identity
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1300,7 +1300,7 @@ paths:
       summary: Delete a credential for a specific identity
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
   /admin/identities/{id}/sessions:
@@ -1351,7 +1351,7 @@ paths:
       summary: Delete & Invalidate an Identity's Sessions
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
     get:
@@ -1506,7 +1506,7 @@ paths:
       summary: Delete JSON Web Key Set
       tags:
       - jwk
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-accepts:
       - application/json
     get:
@@ -1585,7 +1585,7 @@ paths:
       summary: Create JSON Web Key
       tags:
       - jwk
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1628,7 +1628,7 @@ paths:
       summary: Update a JSON Web Key Set
       tags:
       - jwk
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1675,7 +1675,7 @@ paths:
       summary: Delete JSON Web Key
       tags:
       - jwk
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-accepts:
       - application/json
     get:
@@ -1767,7 +1767,7 @@ paths:
       summary: Set JSON Web Key
       tags:
       - jwk
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1818,7 +1818,7 @@ paths:
       summary: Get OAuth 2.0 Consent Request
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-accepts:
       - application/json
   /admin/oauth2/auth/requests/consent/accept:
@@ -1874,7 +1874,7 @@ paths:
       summary: Accept OAuth 2.0 Consent Request
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1930,7 +1930,7 @@ paths:
       summary: Reject OAuth 2.0 Consent Request
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1970,7 +1970,7 @@ paths:
       summary: Accepts a device grant user_code request
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2020,7 +2020,7 @@ paths:
       summary: Get OAuth 2.0 Login Request
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-accepts:
       - application/json
   /admin/oauth2/auth/requests/login/accept:
@@ -2071,7 +2071,7 @@ paths:
       summary: Accept OAuth 2.0 Login Request
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2122,7 +2122,7 @@ paths:
       summary: Reject OAuth 2.0 Login Request
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2162,7 +2162,7 @@ paths:
       summary: Get OAuth 2.0 Session Logout Request
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-accepts:
       - application/json
   /admin/oauth2/auth/requests/logout/accept:
@@ -2199,7 +2199,7 @@ paths:
       summary: Accept OAuth 2.0 Session Logout Request
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-accepts:
       - application/json
   /admin/oauth2/auth/requests/logout/reject:
@@ -2234,7 +2234,7 @@ paths:
       summary: Reject OAuth 2.0 Session Logout Request
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-accepts:
       - application/json
   /admin/oauth2/auth/sessions/consent:
@@ -2304,7 +2304,7 @@ paths:
       summary: Revoke OAuth 2.0 Consent Sessions of a Subject
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-accepts:
       - application/json
     get:
@@ -2376,7 +2376,7 @@ paths:
       summary: List OAuth 2.0 Consent Sessions of a Subject
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-accepts:
       - application/json
   /admin/oauth2/auth/sessions/login:
@@ -2432,7 +2432,7 @@ paths:
       summary: Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-accepts:
       - application/json
   /admin/oauth2/introspect:
@@ -2465,7 +2465,7 @@ paths:
       summary: Introspect OAuth2 Access and Refresh Tokens
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-content-type: application/x-www-form-urlencoded
       x-accepts:
       - application/json
@@ -2499,7 +2499,7 @@ paths:
       summary: Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-accepts:
       - application/json
   /admin/recovery/code:
@@ -2544,7 +2544,7 @@ paths:
       summary: Create a Recovery Code
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2598,7 +2598,7 @@ paths:
       summary: Create a Recovery Link
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2685,7 +2685,7 @@ paths:
       summary: Delete Relationships
       tags:
       - relationship
-      x-ory-ratelimit-bucket: keto-admin-high
+      x-ory-ratelimit-bucket: keto-admin-low
       x-accepts:
       - application/json
     patch:
@@ -2727,7 +2727,7 @@ paths:
       summary: Patch Multiple Relationships
       tags:
       - relationship
-      x-ory-ratelimit-bucket: keto-admin-high
+      x-ory-ratelimit-bucket: keto-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2764,7 +2764,7 @@ paths:
       summary: Create a Relationship
       tags:
       - relationship
-      x-ory-ratelimit-bucket: keto-admin-high
+      x-ory-ratelimit-bucket: keto-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2899,7 +2899,7 @@ paths:
       summary: Deactivate a Session
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
     get:
@@ -2957,7 +2957,7 @@ paths:
       summary: Get Session
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-low
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-accepts:
       - application/json
   /admin/sessions/{id}/extend:
@@ -3018,7 +3018,7 @@ paths:
       summary: Extend a Session
       tags:
       - identity
-      x-ory-ratelimit-bucket: kratos-admin-high
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
   /admin/trust/grants/jwt-bearer/issuers:
@@ -3114,7 +3114,7 @@ paths:
       summary: Trust OAuth2 JWT Bearer Grant Type Issuer
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -3152,7 +3152,7 @@ paths:
       summary: Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
       x-accepts:
       - application/json
     get:
@@ -3254,7 +3254,7 @@ paths:
       summary: Query namespaces
       tags:
       - relationship
-      x-ory-ratelimit-bucket: keto-admin-high
+      x-ory-ratelimit-bucket: keto-admin-low
       x-accepts:
       - application/json
   /oauth2/auth:
@@ -3307,7 +3307,7 @@ paths:
       summary: The OAuth 2.0 Device Authorize Endpoint
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-public-low
+      x-ory-ratelimit-bucket: hydra-public-high
       x-accepts:
       - application/json
   /oauth2/device/verify:
@@ -3329,7 +3329,7 @@ paths:
       summary: OAuth 2.0 Device Verification Endpoint
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-accepts:
       - application/json
   /oauth2/register:
@@ -3377,7 +3377,7 @@ paths:
       summary: Register OAuth2 Client using OpenID Dynamic Client Registration
       tags:
       - oidc
-      x-ory-ratelimit-bucket: hydra-public-high
+      x-ory-ratelimit-bucket: hydra-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -3422,7 +3422,7 @@ paths:
         Management Protocol
       tags:
       - oidc
-      x-ory-ratelimit-bucket: hydra-public-high
+      x-ory-ratelimit-bucket: hydra-public-low
       x-accepts:
       - application/json
     get:
@@ -3462,7 +3462,7 @@ paths:
       summary: Get OAuth2 Client using OpenID Dynamic Client Registration
       tags:
       - oidc
-      x-ory-ratelimit-bucket: hydra-admin-low
+      x-ory-ratelimit-bucket: hydra-admin-high
       x-accepts:
       - application/json
     put:
@@ -3524,7 +3524,7 @@ paths:
       summary: Set OAuth2 Client using OpenID Dynamic Client Registration
       tags:
       - oidc
-      x-ory-ratelimit-bucket: hydra-public-high
+      x-ory-ratelimit-bucket: hydra-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -3702,7 +3702,7 @@ paths:
       summary: List All Projects
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
     post:
@@ -3754,7 +3754,7 @@ paths:
       summary: Create a Project
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -3820,7 +3820,7 @@ paths:
       summary: Irrecoverably purge a project
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
     get:
@@ -3967,7 +3967,7 @@ paths:
       summary: Patch an Ory Network Project Configuration
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4056,7 +4056,7 @@ paths:
       summary: Update an Ory Network Project Configuration
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4173,7 +4173,7 @@ paths:
       summary: Create an event stream for your project.
       tags:
       - events
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4242,7 +4242,7 @@ paths:
       summary: Remove an event stream from a project
       tags:
       - events
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
     put:
@@ -4316,7 +4316,7 @@ paths:
       summary: Update an event stream for a project.
       tags:
       - events
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4479,7 +4479,7 @@ paths:
       summary: Create an Enterprise SSO Organization
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4557,7 +4557,7 @@ paths:
       summary: Delete Enterprise SSO Organization
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
     get:
@@ -4713,7 +4713,7 @@ paths:
       summary: Update an Enterprise SSO Organization
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4835,7 +4835,7 @@ paths:
       summary: Create organization onboarding portal link
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4897,7 +4897,7 @@ paths:
       summary: Delete an organization onboarding portal link
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
     post:
@@ -4961,7 +4961,7 @@ paths:
       summary: Update organization onboarding portal link
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5067,7 +5067,7 @@ paths:
       summary: Patch an Ory Network Project Configuration based on a revision ID
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5118,7 +5118,7 @@ paths:
       summary: Get all members associated with this project
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
   /projects/{project}/members/{member}:
@@ -5174,7 +5174,7 @@ paths:
       summary: Remove a member associated with this project
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
   /projects/{project}/tokens:
@@ -5212,7 +5212,7 @@ paths:
       summary: List a project's API keys
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
     post:
@@ -5255,7 +5255,7 @@ paths:
       summary: Create project API key
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5300,7 +5300,7 @@ paths:
       summary: Delete project API key
       tags:
       - project
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
   /relation-tuples:
@@ -5464,7 +5464,7 @@ paths:
       summary: Batch check permissions
       tags:
       - permission
-      x-ory-ratelimit-bucket: keto-public-low
+      x-ory-ratelimit-bucket: keto-public-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5568,7 +5568,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
-      x-ory-ratelimit-bucket: keto-public-low
+      x-ory-ratelimit-bucket: keto-public-high
       x-accepts:
       - application/json
     post:
@@ -5620,7 +5620,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
-      x-ory-ratelimit-bucket: keto-public-low
+      x-ory-ratelimit-bucket: keto-public-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5718,7 +5718,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
-      x-ory-ratelimit-bucket: keto-public-low
+      x-ory-ratelimit-bucket: keto-public-high
       x-accepts:
       - application/json
     post:
@@ -5764,7 +5764,7 @@ paths:
       summary: Check a permission
       tags:
       - permission
-      x-ory-ratelimit-bucket: keto-public-low
+      x-ory-ratelimit-bucket: keto-public-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -6012,7 +6012,7 @@ paths:
       summary: Get User-Flow Errors
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-low
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/fed-cm/parameters:
@@ -6042,7 +6042,7 @@ paths:
       summary: Get FedCM Parameters
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-low
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/fed-cm/token:
@@ -6101,7 +6101,7 @@ paths:
       summary: Submit a FedCM token
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-high
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -6217,7 +6217,7 @@ paths:
       summary: Submit a Login Flow
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-high
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -6587,7 +6587,7 @@ paths:
       summary: Get Login Flow
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-low
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/logout:
@@ -6658,7 +6658,7 @@ paths:
       summary: Update Logout Flow
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-low
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/logout/api:
@@ -6881,7 +6881,7 @@ paths:
       summary: Update Recovery Flow
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-high
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -7054,7 +7054,7 @@ paths:
       summary: Get Recovery Flow
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-low
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/registration:
@@ -7162,7 +7162,7 @@ paths:
       summary: Update Registration Flow
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-high
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -7439,7 +7439,7 @@ paths:
       summary: Get Registration Flow
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-low
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/settings:
@@ -7584,7 +7584,7 @@ paths:
       summary: Complete Settings Flow
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-high
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -7840,7 +7840,7 @@ paths:
       summary: Get Settings Flow
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-low
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/verification:
@@ -7944,7 +7944,7 @@ paths:
       summary: Complete Verification Flow
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-high
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -8118,7 +8118,7 @@ paths:
       summary: Get Verification Flow
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-low
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /sessions:
@@ -8178,7 +8178,7 @@ paths:
       summary: Disable my other sessions
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-high
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
     get:
@@ -8490,7 +8490,7 @@ paths:
       summary: Check Who the Current HTTP Session Belongs To
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-low
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /sessions/{id}:
@@ -8556,7 +8556,7 @@ paths:
       summary: Disable one of my sessions
       tags:
       - frontend
-      x-ory-ratelimit-bucket: kratos-public-high
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
   /userinfo:
@@ -8693,7 +8693,7 @@ paths:
       summary: List workspaces the user is a member of
       tags:
       - workspace
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
     post:
@@ -8750,7 +8750,7 @@ paths:
       summary: Create a new workspace
       tags:
       - workspace
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -8878,7 +8878,7 @@ paths:
       summary: Update an workspace
       tags:
       - workspace
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -8940,7 +8940,7 @@ paths:
       summary: List all projects of a workspace
       tags:
       - workspace
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
   /workspaces/{workspace}/tokens:
@@ -8978,7 +8978,7 @@ paths:
       summary: List a workspace's API keys
       tags:
       - workspace
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
     post:
@@ -9021,7 +9021,7 @@ paths:
       summary: Create workspace API key
       tags:
       - workspace
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -9066,7 +9066,7 @@ paths:
       summary: Delete workspace API key
       tags:
       - workspace
-      x-ory-ratelimit-bucket: backoffice-admin-high
+      x-ory-ratelimit-bucket: backoffice-admin-low
       x-accepts:
       - application/json
 components:
@@ -10758,9 +10758,31 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        kratos_selfservice_methods_captcha_config_byo:
+          description: |-
+            Configures whether to use BYO or managed widget
+
+            Reach out to your account manager to enable this feature.
+          type: boolean
+        kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret:
+          description: |-
+            Configures the Cloudflare Turnstile site secret for Ory BYO CAPTCHA protection
+
+            The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
+
+            Reach out to your account manager to enable this feature.
+          type: string
+        kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey:
+          description: |-
+            Configures the Cloudflare Turnstile site key for Ory BYO CAPTCHA protection
+
+            The site key is public and will be shared with the client.
+
+            Reach out to your account manager to enable this feature.
+          type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_secret:
           description: |-
-            Configures the Cloudflare Turnstile site secret for CAPTCHA protection
+            Configures the Cloudflare Turnstile site secret for managed CAPTCHA protection
 
             The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
 
@@ -10768,7 +10790,7 @@ components:
           type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey:
           description: |-
-            Configures the Cloudflare Turnstile site key for CAPTCHA protection
+            Configures the Cloudflare Turnstile site key for managed CAPTCHA protection
 
             The site key is public and will be shared with the client.
 
@@ -11565,6 +11587,9 @@ components:
             must be unique.
           format: int64
           type: integer
+        yearly_only:
+          description: YearlyOnly is true if the plan only supports yearly billing.
+          type: boolean
       required:
       - base_fee_monthly
       - base_fee_yearly
@@ -11576,6 +11601,7 @@ components:
       - production_features
       - staging_features
       - version
+      - yearly_only
       type: object
     PlanFeatures:
       additionalProperties:
@@ -12465,20 +12491,24 @@ components:
     createEventStreamBody:
       description: Create Event Stream Request Body
       properties:
+        https_endpoint:
+          description: The HTTPS endpoint URL to send events to. Required if type
+            is https.
+          type: string
         role_arn:
           description: The AWS IAM role ARN to assume when publishing to the SNS topic.
+            Required if type is sns.
           type: string
         topic_arn:
-          description: The AWS SNS topic ARN.
+          description: The AWS SNS topic ARN. Required if type is sns.
           type: string
         type:
-          description: "The type of the event stream (AWS SNS, GCP Pub/Sub, etc)."
+          description: The type of the event stream (AWS SNS or HTTPS webhook).
           enum:
           - sns
+          - https
           type: string
       required:
-      - role_arn
-      - topic_arn
       - type
       type: object
     createFedcmFlowResponse:
@@ -13243,11 +13273,15 @@ components:
         updated_at: 2000-01-23T04:56:07.000+00:00
         topic_arn: topic_arn
         created_at: 2000-01-23T04:56:07.000+00:00
+        https_endpoint: https_endpoint
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         type: type
       properties:
         created_at:
           format: date-time
+          type: string
+        https_endpoint:
+          nullable: true
           type: string
         id:
           format: uuid
@@ -14598,12 +14632,14 @@ components:
           updated_at: 2000-01-23T04:56:07.000+00:00
           topic_arn: topic_arn
           created_at: 2000-01-23T04:56:07.000+00:00
+          https_endpoint: https_endpoint
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
         - role_arn: role_arn
           updated_at: 2000-01-23T04:56:07.000+00:00
           topic_arn: topic_arn
           created_at: 2000-01-23T04:56:07.000+00:00
+          https_endpoint: https_endpoint
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
       properties:
@@ -16807,9 +16843,31 @@ components:
           title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
             \ JSON for SQL storage."
           type: array
+        kratos_selfservice_methods_captcha_config_byo:
+          description: |-
+            Configures whether to use BYO or managed widget
+
+            Reach out to your account manager to enable this feature.
+          type: boolean
+        kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret:
+          description: |-
+            Configures the Cloudflare Turnstile site secret for Ory BYO CAPTCHA protection
+
+            The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
+
+            Reach out to your account manager to enable this feature.
+          type: string
+        kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey:
+          description: |-
+            Configures the Cloudflare Turnstile site key for Ory BYO CAPTCHA protection
+
+            The site key is public and will be shared with the client.
+
+            Reach out to your account manager to enable this feature.
+          type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_secret:
           description: |-
-            Configures the Cloudflare Turnstile site secret for CAPTCHA protection
+            Configures the Cloudflare Turnstile site secret for managed CAPTCHA protection
 
             The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
 
@@ -16817,7 +16875,7 @@ components:
           type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey:
           description: |-
-            Configures the Cloudflare Turnstile site key for CAPTCHA protection
+            Configures the Cloudflare Turnstile site key for managed CAPTCHA protection
 
             The site key is public and will be shared with the client.
 
@@ -17399,6 +17457,22 @@ components:
       type: object
     normalizedProjectRevisionThirdPartyProvider:
       properties:
+        account_linking_mode:
+          description: |-
+            AccountLinkingMode controls how account conflicts are resolved for this provider.
+
+            Possible values are `confirm_with_existing_credential` (default) and `automatic`.
+            `automatic` silently links accounts when the provider verifies email ownership.
+            Only supported for `apple` and `google` providers.
+            automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership.
+            confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential.
+          enum:
+          - automatic
+          - confirm_with_existing_credential
+          type: string
+          x-go-enum-desc: |-
+            automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership.
+            confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential.
         additional_id_token_audiences:
           items:
             type: string
@@ -20732,6 +20806,7 @@ components:
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
             captcha Captcha
+            captcha_byo CaptchaBYO
             identity_search_api IdentitySearchAPI
             saml_sp SAMLSP
             saml_idp SAMLIDP
@@ -20782,6 +20857,7 @@ components:
           - m2m_token_issuance
           - permission_checks
           - captcha
+          - captcha_byo
           - identity_search_api
           - saml_sp
           - saml_idp
@@ -20833,6 +20909,7 @@ components:
             m2m_token_issuance M2MTokenIssuance
             permission_checks PermissionChecks
             captcha Captcha
+            captcha_byo CaptchaBYO
             identity_search_api IdentitySearchAPI
             saml_sp SAMLSP
             saml_idp SAMLIDP
@@ -21928,20 +22005,24 @@ components:
     setEventStreamBody:
       description: Update Event Stream Body
       properties:
+        https_endpoint:
+          description: The HTTPS endpoint URL to send events to. Required if type
+            is https.
+          type: string
         role_arn:
           description: The AWS IAM role ARN to assume when publishing to the SNS topic.
+            Required if type is sns.
           type: string
         topic_arn:
-          description: The AWS SNS topic ARN.
+          description: The AWS SNS topic ARN. Required if type is sns.
           type: string
         type:
-          description: "The type of the event stream (AWS SNS, GCP Pub/Sub, etc)."
+          description: The type of the event stream (AWS SNS or HTTPS webhook).
           enum:
           - sns
+          - https
           type: string
       required:
-      - role_arn
-      - topic_arn
       - type
       type: object
     setOrganizationFromOnboardingPortalLinkBody:
@@ -23897,6 +23978,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -24257,6 +24339,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -24523,6 +24606,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method

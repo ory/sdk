@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.27
+API version: v1.22.32
 Contact: support@ory.sh
 */
 
@@ -39,6 +39,8 @@ type PlanDetails struct {
 	StagingFeatures map[string]GenericUsage `json:"staging_features"`
 	// Version is the version of the plan. The combination of `name@version` must be unique.
 	Version int64 `json:"version"`
+	// YearlyOnly is true if the plan only supports yearly billing.
+	YearlyOnly bool `json:"yearly_only"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,7 +50,7 @@ type _PlanDetails PlanDetails
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlanDetails(baseFeeMonthly int64, baseFeeYearly int64, custom bool, description string, developmentFeatures map[string]GenericUsage, features map[string]GenericUsage, name string, productionFeatures map[string]GenericUsage, stagingFeatures map[string]GenericUsage, version int64) *PlanDetails {
+func NewPlanDetails(baseFeeMonthly int64, baseFeeYearly int64, custom bool, description string, developmentFeatures map[string]GenericUsage, features map[string]GenericUsage, name string, productionFeatures map[string]GenericUsage, stagingFeatures map[string]GenericUsage, version int64, yearlyOnly bool) *PlanDetails {
 	this := PlanDetails{}
 	this.BaseFeeMonthly = baseFeeMonthly
 	this.BaseFeeYearly = baseFeeYearly
@@ -60,6 +62,7 @@ func NewPlanDetails(baseFeeMonthly int64, baseFeeYearly int64, custom bool, desc
 	this.ProductionFeatures = productionFeatures
 	this.StagingFeatures = stagingFeatures
 	this.Version = version
+	this.YearlyOnly = yearlyOnly
 	return &this
 }
 
@@ -343,6 +346,30 @@ func (o *PlanDetails) SetVersion(v int64) {
 	o.Version = v
 }
 
+// GetYearlyOnly returns the YearlyOnly field value
+func (o *PlanDetails) GetYearlyOnly() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.YearlyOnly
+}
+
+// GetYearlyOnlyOk returns a tuple with the YearlyOnly field value
+// and a boolean to check if the value has been set.
+func (o *PlanDetails) GetYearlyOnlyOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.YearlyOnly, true
+}
+
+// SetYearlyOnly sets field value
+func (o *PlanDetails) SetYearlyOnly(v bool) {
+	o.YearlyOnly = v
+}
+
 func (o PlanDetails) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -366,6 +393,7 @@ func (o PlanDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize["production_features"] = o.ProductionFeatures
 	toSerialize["staging_features"] = o.StagingFeatures
 	toSerialize["version"] = o.Version
+	toSerialize["yearly_only"] = o.YearlyOnly
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -389,6 +417,7 @@ func (o *PlanDetails) UnmarshalJSON(data []byte) (err error) {
 		"production_features",
 		"staging_features",
 		"version",
+		"yearly_only",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -429,6 +458,7 @@ func (o *PlanDetails) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "production_features")
 		delete(additionalProperties, "staging_features")
 		delete(additionalProperties, "version")
+		delete(additionalProperties, "yearly_only")
 		o.AdditionalProperties = additionalProperties
 	}
 

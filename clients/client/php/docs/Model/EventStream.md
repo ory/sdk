@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | **\DateTime** |  | [optional]
+**httpsEndpoint** | **string** |  | [optional]
 **id** | **string** |  | [optional]
 **roleArn** | **string** |  | [optional]
 **topicArn** | **string** |  | [optional]

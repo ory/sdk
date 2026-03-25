@@ -29,7 +29,7 @@ end
 
 api_instance = OryClient::EventsApi.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
-create_event_stream_body = OryClient::CreateEventStreamBody.new({role_arn: 'role_arn_example', topic_arn: 'topic_arn_example', type: 'sns'}) # CreateEventStreamBody | 
+create_event_stream_body = OryClient::CreateEventStreamBody.new({type: 'sns'}) # CreateEventStreamBody | 
 
 begin
   # Create an event stream for your project.
@@ -237,7 +237,7 @@ api_instance = OryClient::EventsApi.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
 event_stream_id = 'event_stream_id_example' # String | Event Stream ID  The event stream's ID.
 opts = {
-  set_event_stream_body: OryClient::SetEventStreamBody.new({role_arn: 'role_arn_example', topic_arn: 'topic_arn_example', type: 'sns'}) # SetEventStreamBody | 
+  set_event_stream_body: OryClient::SetEventStreamBody.new({type: 'sns'}) # SetEventStreamBody | 
 }
 
 begin

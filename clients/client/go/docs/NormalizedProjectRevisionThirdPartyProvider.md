@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AccountLinkingMode** | Pointer to **string** | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are &#x60;confirm_with_existing_credential&#x60; (default) and &#x60;automatic&#x60;. &#x60;automatic&#x60; silently links accounts when the provider verifies email ownership. Only supported for &#x60;apple&#x60; and &#x60;google&#x60; providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional] 
 **AdditionalIdTokenAudiences** | Pointer to **[]string** |  | [optional] 
 **ApplePrivateKey** | Pointer to **NullableString** |  | [optional] 
 **ApplePrivateKeyId** | Pointer to **string** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] 
@@ -51,6 +52,31 @@ will change when the set of required properties is changed
 NewNormalizedProjectRevisionThirdPartyProviderWithDefaults instantiates a new NormalizedProjectRevisionThirdPartyProvider object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAccountLinkingMode
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAccountLinkingMode() string`
+
+GetAccountLinkingMode returns the AccountLinkingMode field if non-nil, zero value otherwise.
+
+### GetAccountLinkingModeOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAccountLinkingModeOk() (*string, bool)`
+
+GetAccountLinkingModeOk returns a tuple with the AccountLinkingMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountLinkingMode
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetAccountLinkingMode(v string)`
+
+SetAccountLinkingMode sets AccountLinkingMode field to given value.
+
+### HasAccountLinkingMode
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasAccountLinkingMode() bool`
+
+HasAccountLinkingMode returns a boolean if a field has been set.
 
 ### GetAdditionalIdTokenAudiences
 

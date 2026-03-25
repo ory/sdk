@@ -18,7 +18,8 @@ defmodule Ory.Model.PlanDetails do
     :name,
     :production_features,
     :staging_features,
-    :version
+    :version,
+    :yearly_only
   ]
 
   @type t :: %__MODULE__{
@@ -32,7 +33,8 @@ defmodule Ory.Model.PlanDetails do
     :name => String.t,
     :production_features => %{optional(String.t) => Ory.Model.GenericUsage.t},
     :staging_features => %{optional(String.t) => Ory.Model.GenericUsage.t},
-    :version => integer()
+    :version => integer(),
+    :yearly_only => boolean()
   }
 
   alias Ory.Deserializer

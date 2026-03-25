@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**account_linking_mode** | Option<**String**> | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are `confirm_with_existing_credential` (default) and `automatic`. `automatic` silently links accounts when the provider verifies email ownership. Only supported for `apple` and `google` providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional]
 **additional_id_token_audiences** | Option<**Vec<String>**> |  | [optional]
 **apple_private_key** | Option<**String**> |  | [optional]
 **apple_private_key_id** | Option<**String**> | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional]

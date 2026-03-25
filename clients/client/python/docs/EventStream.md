@@ -7,6 +7,7 @@ Event Stream
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [optional] 
+**https_endpoint** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
 **role_arn** | **str** |  | [optional] 
 **topic_arn** | **str** |  | [optional] 

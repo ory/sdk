@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RoleArn** | **string** | The AWS IAM role ARN to assume when publishing to the SNS topic. | 
-**TopicArn** | **string** | The AWS SNS topic ARN. | 
-**Type** | **string** | The type of the event stream (AWS SNS, GCP Pub/Sub, etc). | 
+**HttpsEndpoint** | Pointer to **string** | The HTTPS endpoint URL to send events to. Required if type is https. | [optional] 
+**RoleArn** | Pointer to **string** | The AWS IAM role ARN to assume when publishing to the SNS topic. Required if type is sns. | [optional] 
+**TopicArn** | Pointer to **string** | The AWS SNS topic ARN. Required if type is sns. | [optional] 
+**Type** | **string** | The type of the event stream (AWS SNS or HTTPS webhook). | 
 
 ## Methods
 
 ### NewCreateEventStreamBody
 
-`func NewCreateEventStreamBody(roleArn string, topicArn string, type_ string, ) *CreateEventStreamBody`
+`func NewCreateEventStreamBody(type_ string, ) *CreateEventStreamBody`
 
 NewCreateEventStreamBody instantiates a new CreateEventStreamBody object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +27,31 @@ will change when the set of required properties is changed
 NewCreateEventStreamBodyWithDefaults instantiates a new CreateEventStreamBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetHttpsEndpoint
+
+`func (o *CreateEventStreamBody) GetHttpsEndpoint() string`
+
+GetHttpsEndpoint returns the HttpsEndpoint field if non-nil, zero value otherwise.
+
+### GetHttpsEndpointOk
+
+`func (o *CreateEventStreamBody) GetHttpsEndpointOk() (*string, bool)`
+
+GetHttpsEndpointOk returns a tuple with the HttpsEndpoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttpsEndpoint
+
+`func (o *CreateEventStreamBody) SetHttpsEndpoint(v string)`
+
+SetHttpsEndpoint sets HttpsEndpoint field to given value.
+
+### HasHttpsEndpoint
+
+`func (o *CreateEventStreamBody) HasHttpsEndpoint() bool`
+
+HasHttpsEndpoint returns a boolean if a field has been set.
 
 ### GetRoleArn
 
@@ -46,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetRoleArn sets RoleArn field to given value.
 
+### HasRoleArn
+
+`func (o *CreateEventStreamBody) HasRoleArn() bool`
+
+HasRoleArn returns a boolean if a field has been set.
 
 ### GetTopicArn
 
@@ -66,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetTopicArn sets TopicArn field to given value.
 
+### HasTopicArn
+
+`func (o *CreateEventStreamBody) HasTopicArn() bool`
+
+HasTopicArn returns a boolean if a field has been set.
 
 ### GetType
 

@@ -9,6 +9,7 @@ Event Stream
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
+|**httpsEndpoint** | **String** |  |  [optional] |
 |**id** | **String** |  |  [optional] |
 |**roleArn** | **String** |  |  [optional] |
 |**topicArn** | **String** |  |  [optional] |

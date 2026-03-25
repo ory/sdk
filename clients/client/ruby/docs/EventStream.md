@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **created_at** | **Time** |  | [optional] |
+| **https_endpoint** | **String** |  | [optional] |
 | **id** | **String** |  | [optional] |
 | **role_arn** | **String** |  | [optional] |
 | **topic_arn** | **String** |  | [optional] |
@@ -18,6 +19,7 @@ require 'ory-client'
 
 instance = OryClient::EventStream.new(
   created_at: null,
+  https_endpoint: null,
   id: null,
   role_arn: null,
   topic_arn: null,

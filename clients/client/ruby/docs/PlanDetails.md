@@ -15,6 +15,7 @@
 | **production_features** | [**Hash&lt;String, GenericUsage&gt;**](GenericUsage.md) |  |  |
 | **staging_features** | [**Hash&lt;String, GenericUsage&gt;**](GenericUsage.md) |  |  |
 | **version** | **Integer** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. |  |
+| **yearly_only** | **Boolean** | YearlyOnly is true if the plan only supports yearly billing. |  |
 
 ## Example
 
@@ -32,7 +33,8 @@ instance = OryClient::PlanDetails.new(
   name: null,
   production_features: null,
   staging_features: null,
-  version: null
+  version: null,
+  yearly_only: null
 )
 ```
 

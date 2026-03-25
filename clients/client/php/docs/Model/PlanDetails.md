@@ -15,5 +15,6 @@ Name | Type | Description | Notes
 **productionFeatures** | [**array<string,\Ory\Client\Model\GenericUsage>**](GenericUsage.md) |  |
 **stagingFeatures** | [**array<string,\Ory\Client\Model\GenericUsage>**](GenericUsage.md) |  |
 **version** | **int** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. |
+**yearlyOnly** | **bool** | YearlyOnly is true if the plan only supports yearly billing. |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**account_linking_mode** | **string** | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are &#x60;confirm_with_existing_credential&#x60; (default) and &#x60;automatic&#x60;. &#x60;automatic&#x60; silently links accounts when the provider verifies email ownership. Only supported for &#x60;apple&#x60; and &#x60;google&#x60; providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional] [default to undefined]
 **additional_id_token_audiences** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
 **apple_private_key** | **string** |  | [optional] [default to undefined]
 **apple_private_key_id** | **string** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] [default to undefined]
@@ -40,6 +41,7 @@ Name | Type | Description | Notes
 import { NormalizedProjectRevisionThirdPartyProvider } from '@ory/client';
 
 const instance: NormalizedProjectRevisionThirdPartyProvider = {
+    account_linking_mode,
     additional_id_token_audiences,
     apple_private_key,
     apple_private_key_id,

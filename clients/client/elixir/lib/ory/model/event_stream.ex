@@ -9,6 +9,7 @@ defmodule Ory.Model.EventStream do
   @derive Jason.Encoder
   defstruct [
     :created_at,
+    :https_endpoint,
     :id,
     :role_arn,
     :topic_arn,
@@ -18,6 +19,7 @@ defmodule Ory.Model.EventStream do
 
   @type t :: %__MODULE__{
     :created_at => DateTime.t | nil,
+    :https_endpoint => String.t | nil,
     :id => String.t | nil,
     :role_arn => String.t | nil,
     :topic_arn => String.t | nil,

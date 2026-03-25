@@ -6,9 +6,10 @@ Create Event Stream Request Body
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**role_arn** | **str** | The AWS IAM role ARN to assume when publishing to the SNS topic. | 
-**topic_arn** | **str** | The AWS SNS topic ARN. | 
-**type** | **str** | The type of the event stream (AWS SNS, GCP Pub/Sub, etc). | 
+**https_endpoint** | **str** | The HTTPS endpoint URL to send events to. Required if type is https. | [optional] 
+**role_arn** | **str** | The AWS IAM role ARN to assume when publishing to the SNS topic. Required if type is sns. | [optional] 
+**topic_arn** | **str** | The AWS SNS topic ARN. Required if type is sns. | [optional] 
+**type** | **str** | The type of the event stream (AWS SNS or HTTPS webhook). | 
 
 ## Example
 

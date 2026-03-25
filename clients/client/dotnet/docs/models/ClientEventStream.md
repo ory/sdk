@@ -6,6 +6,7 @@ Event Stream
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** |  | [optional] 
+**HttpsEndpoint** | **string** |  | [optional] 
 **Id** | **string** |  | [optional] 
 **RoleArn** | **string** |  | [optional] 
 **TopicArn** | **string** |  | [optional] 

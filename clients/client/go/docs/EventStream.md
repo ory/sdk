@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**HttpsEndpoint** | Pointer to **NullableString** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **RoleArn** | Pointer to **string** |  | [optional] 
 **TopicArn** | Pointer to **string** |  | [optional] 
@@ -55,6 +56,41 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
+### GetHttpsEndpoint
+
+`func (o *EventStream) GetHttpsEndpoint() string`
+
+GetHttpsEndpoint returns the HttpsEndpoint field if non-nil, zero value otherwise.
+
+### GetHttpsEndpointOk
+
+`func (o *EventStream) GetHttpsEndpointOk() (*string, bool)`
+
+GetHttpsEndpointOk returns a tuple with the HttpsEndpoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttpsEndpoint
+
+`func (o *EventStream) SetHttpsEndpoint(v string)`
+
+SetHttpsEndpoint sets HttpsEndpoint field to given value.
+
+### HasHttpsEndpoint
+
+`func (o *EventStream) HasHttpsEndpoint() bool`
+
+HasHttpsEndpoint returns a boolean if a field has been set.
+
+### SetHttpsEndpointNil
+
+`func (o *EventStream) SetHttpsEndpointNil(b bool)`
+
+ SetHttpsEndpointNil sets the value for HttpsEndpoint to be an explicit nil
+
+### UnsetHttpsEndpoint
+`func (o *EventStream) UnsetHttpsEndpoint()`
+
+UnsetHttpsEndpoint ensures that no value is present for HttpsEndpoint, not even an explicit nil
 ### GetId
 
 `func (o *EventStream) GetId() string`

@@ -186,8 +186,11 @@ Name | Type | Description | Notes
 **KratosSelfserviceFlowsVerificationUiUrl** | Pointer to **string** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] 
 **KratosSelfserviceFlowsVerificationUse** | Pointer to **string** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] 
 **KratosSelfserviceMethodsCaptchaConfigAllowedDomains** | Pointer to **[]string** |  | [optional] 
-**KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret** | Pointer to **string** | Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature. | [optional] 
-**KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey** | Pointer to **string** | Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] 
+**KratosSelfserviceMethodsCaptchaConfigByo** | Pointer to **bool** | Configures whether to use BYO or managed widget  Reach out to your account manager to enable this feature. | [optional] 
+**KratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret** | Pointer to **string** | Configures the Cloudflare Turnstile site secret for Ory BYO CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature. | [optional] 
+**KratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey** | Pointer to **string** | Configures the Cloudflare Turnstile site key for Ory BYO CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] 
+**KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret** | Pointer to **string** | Configures the Cloudflare Turnstile site secret for managed CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature. | [optional] 
+**KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey** | Pointer to **string** | Configures the Cloudflare Turnstile site key for managed CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] 
 **KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode** | Pointer to **bool** | Configures the Ory Kratos Self-Service Methods&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] 
 **KratosSelfserviceMethodsCaptchaEnabled** | Pointer to **bool** | Configures the Ory Kratos Self-Service Methods&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] 
 **KratosSelfserviceMethodsCodeConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] 
@@ -4841,6 +4844,81 @@ SetKratosSelfserviceMethodsCaptchaConfigAllowedDomains sets KratosSelfserviceMet
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCaptchaConfigAllowedDomains() bool`
 
 HasKratosSelfserviceMethodsCaptchaConfigAllowedDomains returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCaptchaConfigByo
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigByo() bool`
+
+GetKratosSelfserviceMethodsCaptchaConfigByo returns the KratosSelfserviceMethodsCaptchaConfigByo field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCaptchaConfigByoOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigByoOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsCaptchaConfigByoOk returns a tuple with the KratosSelfserviceMethodsCaptchaConfigByo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCaptchaConfigByo
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCaptchaConfigByo(v bool)`
+
+SetKratosSelfserviceMethodsCaptchaConfigByo sets KratosSelfserviceMethodsCaptchaConfigByo field to given value.
+
+### HasKratosSelfserviceMethodsCaptchaConfigByo
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCaptchaConfigByo() bool`
+
+HasKratosSelfserviceMethodsCaptchaConfigByo returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret() string`
+
+GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret returns the KratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecretOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecretOk() (*string, bool)`
+
+GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecretOk returns a tuple with the KratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret(v string)`
+
+SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret sets KratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret field to given value.
+
+### HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret() bool`
+
+HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey() string`
+
+GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey returns the KratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekeyOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekeyOk() (*string, bool)`
+
+GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekeyOk returns a tuple with the KratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey(v string)`
+
+SetKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey sets KratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey field to given value.
+
+### HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey() bool`
+
+HasKratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret
 
