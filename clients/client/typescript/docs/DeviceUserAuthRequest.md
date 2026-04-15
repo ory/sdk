@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **client** | [**OAuth2Client**](OAuth2Client.md) |  | [optional] [default to undefined]
 **handled_at** | **string** |  | [optional] [default to undefined]
 **request_url** | **string** | RequestURL is the original Device Authorization URL requested. | [optional] [default to undefined]
-**requested_access_token_audience** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
-**requested_scope** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**requested_access_token_audience** | **Array&lt;string&gt;** | RequestedAudience contains the access token audience as requested by the OAuth 2.0 Client. | [optional] [default to undefined]
+**requested_scope** | **Array&lt;string&gt;** | RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client. | [optional] [default to undefined]
 
 ## Example
 

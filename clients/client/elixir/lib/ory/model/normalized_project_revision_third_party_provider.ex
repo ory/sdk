@@ -36,6 +36,7 @@ defmodule Ory.Model.NormalizedProjectRevisionThirdPartyProvider do
     :state,
     :subject_source,
     :token_url,
+    :update_identity_on_login,
     :updated_at
   ]
 
@@ -68,6 +69,7 @@ defmodule Ory.Model.NormalizedProjectRevisionThirdPartyProvider do
     :state => String.t | nil,
     :subject_source => String.t | nil,
     :token_url => String.t | nil,
+    :update_identity_on_login => String.t | nil,
     :updated_at => DateTime.t | nil
   }
 

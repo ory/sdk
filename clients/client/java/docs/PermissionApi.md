@@ -18,7 +18,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Batch check permissions
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Example
 ```java
@@ -89,7 +89,7 @@ public class Example {
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Example
 ```java
@@ -172,7 +172,7 @@ public class Example {
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Example
 ```java
@@ -332,7 +332,7 @@ public class Example {
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Example
 ```java
@@ -403,7 +403,7 @@ public class Example {
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Example
 ```java

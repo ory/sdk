@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.VerificationFlow do
   @moduledoc """
-  Used to verify an out-of-band communication channel such as an email address or a phone number.  For more information head over to: https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation
+  Used to verify an out-of-band communication channel such as an email address or a phone number.  For more information head over to: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
   """
 
   @derive Jason.Encoder

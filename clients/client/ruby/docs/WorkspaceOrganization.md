@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **active_link** | [**OnboardingPortalLink**](OnboardingPortalLink.md) |  | [optional] |
 | **created_at** | **Time** |  |  |
-| **domains** | **Array&lt;String&gt;** |  |  |
+| **domains** | **Array&lt;String&gt;** | The list of organization&#39;s domains. |  |
 | **id** | **String** | The organization&#39;s ID. |  |
 | **label** | **String** | The organization&#39;s human-readable label. |  |
 | **providers** | **Array&lt;String&gt;** |  |  |

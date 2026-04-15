@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.32
+  version: v1.22.35
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -122,7 +122,7 @@ paths:
         <script src="https://public-kratos.example.org/.well-known/ory/webauthn.js" type="script" async />
         ```
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: getWebAuthnJavaScript
       responses:
         "200":
@@ -146,7 +146,7 @@ paths:
           Items per Page
 
           This is the number of items per page to return.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -162,7 +162,7 @@ paths:
           Next Page Token
 
           The next page token.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -473,7 +473,7 @@ paths:
           Items per Page
 
           This is the number of items per page to return.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -489,7 +489,7 @@ paths:
           Next Page Token
 
           The next page token.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -584,7 +584,7 @@ paths:
       x-ory-ratelimit-bucket: kratos-admin-medium
   /admin/identities:
     get:
-      description: "Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
+      description: "Lists all [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model)\
         \ in the system. Note: filters cannot be combined."
       operationId: listIdentities
       parameters:
@@ -628,7 +628,7 @@ paths:
           Page Size
 
           This is the number of items per page to return. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -644,7 +644,7 @@ paths:
           Next Page Token
 
           The next page token. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -731,7 +731,7 @@ paths:
           Include Credentials in Response
 
           Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return
-          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available.
         explode: true
         in: query
         name: include_credential
@@ -834,9 +834,9 @@ paths:
       x-ory-ratelimit-bucket: kratos-admin-low
     post:
       description: |-
-        Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
-        [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
-        for instance passwords, social sign in configurations or multifactor methods.
+        Create an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
+        [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities)
+        for instance passwords, social sign in configurations, or multifactor methods.
       operationId: createIdentity
       requestBody:
         content:
@@ -878,7 +878,7 @@ paths:
   /admin/identities/by/external/{externalID}:
     get:
       description: |-
-        Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
+        Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
         include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
       operationId: getIdentityByExternalID
       parameters:
@@ -894,7 +894,7 @@ paths:
           Include Credentials in Response
 
           Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return
-          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available.
         explode: true
         in: query
         name: include_credential
@@ -944,7 +944,7 @@ paths:
   /admin/identities/{id}:
     delete:
       description: |-
-        Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
+        Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
         This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
       operationId: deleteIdentity
       parameters:
@@ -981,7 +981,7 @@ paths:
       x-ory-ratelimit-bucket: kratos-admin-low
     get:
       description: |-
-        Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
+        Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
         include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
       operationId: getIdentity
       parameters:
@@ -997,7 +997,7 @@ paths:
           Include Credentials in Response
 
           Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return
-          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available.
         explode: true
         in: query
         name: include_credential
@@ -1046,7 +1046,7 @@ paths:
       x-ory-ratelimit-bucket: kratos-admin-high
     patch:
       description: |-
-        Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
+        Partially updates an [identity's](https://www.ory.com/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
         The fields `id`, `stateChangedAt` and `credentials` can not be updated using this method.
       operationId: patchIdentity
       parameters:
@@ -1103,11 +1103,20 @@ paths:
       x-ory-ratelimit-bucket: kratos-admin-low
     put:
       description: |-
-        This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity
-        payload, except credentials, is expected. For partial updates, use the [patchIdentity](https://www.ory.sh/docs/reference/api#tag/identity/operation/patchIdentity) operation.
+        This endpoint updates an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model). The full identity
+        payload (except credentials) is expected.
 
-        A credential can be provided via the `credentials` field in the request body.
-        If provided, the credentials will be imported and added to the existing credentials of the identity.
+        It is possible to update the identity's credentials as well. Using this operation, credentials will not be overwritten
+        but instead added to the list. For example, if a user has a social sign in connection set up, updating the credentials
+        will keep the social sign in connection and add the new credentials to the list. This prevents accidentally overwriting
+        credentials and locking out users. A complete view of all credential types is here:
+
+        `password`: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook.
+        `oidc`, `saml`: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list.
+        `totp`: The existing TOTP credentials will be replaced with the new configuration.
+        `lookup_secret`: The existing Lookup Secret codes will be kept and the new codes will be added to the list.
+        `webauthn`, `passkey`: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new `user_handle` is provided, it's added to the identity's identifiers list while preserving previous user handles.
+        `code`: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (`{"ory.sh/kratos":{"code":{"identifier":true", "via":"email"}}}`).
       operationId: updateIdentity
       parameters:
       - description: ID must be set to the ID of identity you want to update
@@ -1164,7 +1173,7 @@ paths:
   /admin/identities/{id}/credentials/{type}:
     delete:
       description: |-
-        Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
+        Delete an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) credential by its type.
         You cannot delete passkeys or code auth credentials through this API.
       operationId: deleteIdentityCredentials
       parameters:
@@ -1346,7 +1355,7 @@ paths:
           Page Size
 
           This is the number of items per page to return. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -1362,7 +1371,7 @@ paths:
           Next Page Token
 
           The next page token. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -2220,7 +2229,7 @@ paths:
           Items per Page
 
           This is the number of items per page to return.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -2236,7 +2245,7 @@ paths:
           Next Page Token
 
           The next page token.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -2656,7 +2665,7 @@ paths:
           Items per Page
 
           This is the number of items per page to return.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -2672,7 +2681,7 @@ paths:
           Next Page Token
 
           The next page token.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -2901,7 +2910,7 @@ paths:
           Items per Page
 
           This is the number of items per page to return.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -2917,7 +2926,7 @@ paths:
           Next Page Token
 
           The next page token.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -4137,7 +4146,7 @@ paths:
           Items per Page
 
           This is the number of items per page to return.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -4153,7 +4162,7 @@ paths:
           Next Page Token
 
           The next page token.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -5082,7 +5091,7 @@ paths:
           Items per Page
 
           This is the number of items per page to return.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -5098,7 +5107,7 @@ paths:
           Next Page Token
 
           The next page token.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -5190,7 +5199,7 @@ paths:
   /relation-tuples/batch/check:
     post:
       description: "To learn how relationship tuples and the check works, head over\
-        \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
+        \ to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview)."
       operationId: batchCheckPermission
       parameters:
       - explode: true
@@ -5235,7 +5244,7 @@ paths:
   /relation-tuples/check:
     get:
       description: "To learn how relationship tuples and the check works, head over\
-        \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
+        \ to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview)."
       operationId: checkPermissionOrError
       parameters:
       - description: Namespace of the Relationship
@@ -5335,7 +5344,7 @@ paths:
       x-ory-ratelimit-bucket: keto-public-high
     post:
       description: "To learn how relationship tuples and the check works, head over\
-        \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
+        \ to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview)."
       operationId: postCheckPermissionOrError
       parameters:
       - explode: true
@@ -5386,7 +5395,7 @@ paths:
   /relation-tuples/check/openapi:
     get:
       description: "To learn how relationship tuples and the check works, head over\
-        \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
+        \ to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview)."
       operationId: checkPermission
       parameters:
       - description: Namespace of the Relationship
@@ -5480,7 +5489,7 @@ paths:
       x-ory-ratelimit-bucket: keto-public-high
     post:
       description: "To learn how relationship tuples and the check works, head over\
-        \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
+        \ to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview)."
       operationId: postCheckPermission
       parameters:
       - explode: true
@@ -5635,7 +5644,7 @@ paths:
           Page Size
 
           This is the number of items per page to return. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -5651,7 +5660,7 @@ paths:
           Next Page Token
 
           The next page token. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -5721,7 +5730,7 @@ paths:
 
         `?id=stub:500` - returns a stub 500 (Internal Server Error) error.
 
-        More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+        More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-facing-errors).
       operationId: getFlowError
       parameters:
       - description: Error is the error's ID
@@ -5875,7 +5884,7 @@ paths:
         `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
         Most likely used in Social Sign In flows.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: updateLoginFlow
       parameters:
       - description: |-
@@ -5981,7 +5990,7 @@ paths:
 
         This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: createNativeLoginFlow
       parameters:
       - description: |-
@@ -6115,7 +6124,7 @@ paths:
 
         This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: createBrowserLoginFlow
       parameters:
       - description: |-
@@ -6260,7 +6269,7 @@ paths:
         `session_already_available`: The user is already signed in.
         `self_service_flow_expired`: The flow is expired and you should request a new one.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: getLoginFlow
       parameters:
       - description: |-
@@ -6337,7 +6346,7 @@ paths:
         with browsers (Chrome, Firefox, ...). For API clients you can
         call the `/self-service/logout/api` URL directly with the Ory Session Token.
 
-        More information can be found at [Ory Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
+        More information can be found at [Ory Kratos User Logout Documentation](https://www.ory.com/docs/next/kratos/self-service/flows/user-logout).
       operationId: updateLogoutFlow
       parameters:
       - description: |-
@@ -6670,6 +6679,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          Skip redirection to the settings UI after the recovery flow was
+          completed. Instead, the user will be redirected to the URL specified in
+          `return_to` query parameter or the default return URL if `return_to` is
+          not set.
+        explode: true
+        in: query
+        name: skip_settings
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -6803,7 +6824,7 @@ paths:
         `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
         Most likely used in Social Sign In flows.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: updateRegistrationFlow
       parameters:
       - description: |-
@@ -6900,7 +6921,7 @@ paths:
 
         This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: createNativeRegistrationFlow
       parameters:
       - description: |-
@@ -6983,7 +7004,7 @@ paths:
 
         This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: createBrowserRegistrationFlow
       parameters:
       - description: The URL to return the browser to after the flow was completed.
@@ -7087,7 +7108,7 @@ paths:
         `session_already_available`: The user is already signed in.
         `self_service_flow_expired`: The flow is expired and you should request a new one.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: getRegistrationFlow
       parameters:
       - description: |-
@@ -7559,7 +7580,7 @@ paths:
         (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with
         a new Verification Flow ID which contains an error message that the verification link was invalid.
 
-        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
+        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: updateVerificationFlow
       parameters:
       - description: |-
@@ -7656,7 +7677,7 @@ paths:
 
         This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
-        More information can be found at [Ory Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
+        More information can be found at [Ory Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: createNativeVerificationFlow
       parameters:
       - description: |-
@@ -7702,7 +7723,7 @@ paths:
 
         This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).
 
-        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
+        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: createBrowserVerificationFlow
       parameters:
       - description: The URL to return the browser to after the flow was completed.
@@ -7754,7 +7775,7 @@ paths:
         })
         ```
 
-        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
+        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: getVerificationFlow
       parameters:
       - description: |-
@@ -7914,7 +7935,7 @@ paths:
           Page Size
 
           This is the number of items per page to return. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -7930,7 +7951,7 @@ paths:
           Next Page Token
 
           The next page token. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -8031,6 +8052,12 @@ paths:
                 $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
         "410":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
+        "422":
           content:
             application/json:
               schema:
@@ -8298,7 +8325,7 @@ paths:
           Items per Page
 
           This is the number of items per page to return.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -8314,7 +8341,7 @@ paths:
           Next Page Token
 
           The next page token.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -9098,6 +9125,22 @@ components:
         ui_white:
           type: string
       type: object
+    AdminIdentityImportCredentialsLookupSecret:
+      description: Create Identity and Import Lookup Secret Credentials
+      properties:
+        config:
+          $ref: "#/components/schemas/AdminIdentityImportCredentialsLookupSecretConfig"
+      type: object
+    AdminIdentityImportCredentialsLookupSecretConfig:
+      description: Create Identity and Import Lookup Secret Credentials Configuration
+      properties:
+        codes:
+          description: Codes is a list of "lookup secret" codes configured for the
+            user.
+          items:
+            $ref: "#/components/schemas/identityCredentialsLookupSecretCode"
+          type: array
+      type: object
     AmountInCent:
       format: int64
       type: integer
@@ -9148,6 +9191,17 @@ components:
       - count
       - name
       type: object
+    AuthenticatorTransport:
+      description: |-
+        Authenticators may implement various transports for communicating with clients. This enumeration defines hints as to
+        how clients might communicate with a particular authenticator in order to obtain an assertion for a specific
+        credential. Note that these hints represent the WebAuthn Relying Party's best belief as to how an authenticator may
+        be reached. A Relying Party will typically learn of the supported transports for a public key credential via
+        getTransports().
+
+        Specification: §5.8.4. Authenticator Transport Enumeration (https://www.w3.org/TR/webauthn/#enumdef-authenticatortransport)
+      title: AuthenticatorTransport represents the IDL enum with the same name.
+      type: string
     BillingPeriodBucket:
       properties:
         base_invoices:
@@ -9193,20 +9247,28 @@ components:
             $ref: "#/components/schemas/RevisionAccountExperienceCustomTranslation"
           type: array
         account_experience_default_locale:
-          description: Holds the default locale for the account experience.
+          description: |-
+            Holds the default locale for the account experience.
+            This governs the "default_locale" setting.
           type: string
         account_experience_enabled_locales:
+          description: |-
+            The Account Experience's Enabled Locales
+
+            This governs the locales that are available in the account experience.
+            This governs the "enabled_locales" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         account_experience_favicon_dark:
-          description: Holds the URL to the account experience's dark theme favicon
-            (currently unused).
+          description: |-
+            Holds the URL to the account experience's dark theme favicon (currently unused).
+            This governs the "favicon_dark" setting.
           type: string
         account_experience_favicon_light:
-          description: Holds the URL to the account experience's favicon.
+          description: |-
+            Holds the URL to the account experience's favicon.
+            This governs the "favicon_light" setting.
           type: string
         account_experience_locale_behavior:
           description: |-
@@ -9215,19 +9277,27 @@ components:
             Can be one of:
             `respect_accept_language`: Respect the `Accept-Language` header.
             `force_default`: Force the default language.
+            This governs the "locale_behavior" setting.
           type: string
         account_experience_logo_dark:
-          description: Holds the URL to the account experience's dark theme logo (currently
-            unused).
+          description: |-
+            Holds the URL to the account experience's dark theme logo (currently unused).
+            This governs the "logo_dark" setting.
           type: string
         account_experience_logo_light:
-          description: Holds the URL to the account experience's logo.
+          description: |-
+            Holds the URL to the account experience's logo.
+            This governs the "logo_light" setting.
           type: string
         account_experience_theme_variables_dark:
-          description: Holds the URL to the account experience's dark theme variables.
+          description: |-
+            Holds the URL to the account experience's dark theme variables.
+            This governs the "theme_variables_dark" setting.
           type: string
         account_experience_theme_variables_light:
-          description: Holds the URL to the account experience's light theme variables.
+          description: |-
+            Holds the URL to the account experience's light theme variables.
+            This governs the "theme_variables_light" setting.
           type: string
         created_at:
           description: The Project's Revision Creation Date
@@ -9235,11 +9305,14 @@ components:
           readOnly: true
           type: string
         disable_account_experience_welcome_screen:
-          description: "Whether to disable the account experience welcome screen,\
-            \ which is hosted under `/ui/welcome`."
+          description: |-
+            Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
+            This governs the "disable_welcome_screen" setting.
           type: boolean
         enable_ax_v2:
-          description: Whether the new account experience is enabled and reachable.
+          description: |-
+            Whether the new account experience is enabled and reachable.
+            This governs the "enable_ax_v2" setting.
           type: boolean
         environment:
           description: |2-
@@ -9281,10 +9354,12 @@ components:
             us US
             global Global
         hydra_oauth2_allowed_top_level_claims:
+          description: |-
+            A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.
+
+            This governs the "oauth2.allowed_top_level_claims" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_oauth2_client_credentials_default_grant_allowed_scope:
           description: |-
@@ -9360,6 +9435,12 @@ components:
 
             This governs the "oauth2.pkce.enforced_for_public_clients" setting.
           type: boolean
+        hydra_oauth2_preserve_ext_claims:
+          description: |-
+            Set to true to keep custom claims that are not promoted to the top level in the 'ext' claim. Only applies when mirror_top_level_claims is false.
+
+            This governs the "oauth2.preserve_ext_claims" setting.
+          type: boolean
         hydra_oauth2_refresh_token_hook:
           description: |-
             Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.
@@ -9373,10 +9454,12 @@ components:
             This governs the "oauth2.token_hook.url" setting.
           type: string
         hydra_oidc_dynamic_client_registration_default_scope:
+          description: |-
+            The OpenID Connect Dynamic Client Registration specification has no concept of whitelisting OAuth 2.0 Scope. If you want to expose Dynamic Client Registration, you should set the default scope enabled for newly registered clients. Keep in mind that users can overwrite this default by setting the "scope" key in the registration payload, effectively disabling the concept of whitelisted scopes.
+
+            This governs the "oidc.dynamic_client_registration.default_scope" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_oidc_dynamic_client_registration_enabled:
           description: |-
@@ -9391,28 +9474,36 @@ components:
             This governs the "oidc.subject_identifiers.pairwise_salt" setting.
           type: string
         hydra_oidc_subject_identifiers_supported_types:
+          description: |-
+            Configures OpenID Connect Discovery and overwrites the list of Subject Identifier Algorithms to enable.
+
+            This governs the "oidc.subject_identifiers.supported_types" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_secrets_cookie:
+          description: |-
+            Configures the Ory Hydra Cookie Secret
+
+            This governs the "secrets.cookie" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_secrets_pagination:
+          description: |-
+            Configures the Ory Hydra Pagination Secret
+
+            This governs the "secrets.pagination" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_secrets_system:
+          description: |-
+            Configures the Ory Hydra System Secret
+
+            This governs the "secrets.system" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_serve_cookies_same_site_legacy_workaround:
           description: |-
@@ -9446,7 +9537,7 @@ components:
           description: |-
             Define the claim to use as the scope in the access token.
 
-            This governs the "strategies.jwt.scope_claim" setting:
+            This governs the "strategies.jwt.scope_claim" setting.
 
             list: The scope claim is an array of strings named `scope`: `{ "scope": ["read", "write"] }`
             string: The scope claim is a space delimited list of strings named `scp`: `{ "scp": "read write" }`
@@ -9578,52 +9669,58 @@ components:
             This governs the "urls.self.issuer" setting.
           type: string
         hydra_webfinger_jwks_broadcast_keys:
+          description: |-
+            A list of JSON Web Keys that should be exposed at that endpoint. This is usually the public key for verifying OpenID Connect ID Tokens. However, you might want to add additional keys here as well.
+
+            This governs the "webfinger.jwks.broadcast_keys" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_webfinger_oidc_discovery_auth_url:
           description: |-
             Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.
 
-            This governs the "webfinger.oidc.discovery.auth_url" setting.
+            This governs the "webfinger.oidc_discovery.auth_url" setting.
           type: string
         hydra_webfinger_oidc_discovery_client_registration_url:
           description: |-
             Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.
 
-            This governs the "webfinger.oidc.discovery.client_registration_url" setting.
+            This governs the "webfinger.oidc_discovery.client_registration_url" setting.
           type: string
         hydra_webfinger_oidc_discovery_jwks_url:
           description: |-
             Configures OpenID Connect Discovery and overwrites the JWKS URL.
 
-            This governs the "webfinger.oidc.discovery.jwks_url" setting.
+            This governs the "webfinger.oidc_discovery.jwks_url" setting.
           type: string
         hydra_webfinger_oidc_discovery_supported_claims:
+          description: |-
+            Configures OpenID Connect Discovery and overwrites a list of supported claims to be broadcasted. Claim "sub" is always included.
+
+            This governs the "webfinger.oidc_discovery.supported_claims" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_webfinger_oidc_discovery_supported_scope:
+          description: |-
+            Configures OpenID Connect Discovery and overwrites the scope OAuth 2.0 Clients may request. Scope `offline`, `offline_access`, and `openid` are always included.
+
+            This governs the "webfinger.oidc_discovery.supported_scope" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_webfinger_oidc_discovery_token_url:
           description: |-
             Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.
 
-            This governs the "webfinger.oidc.discovery.token_url" setting.
+            This governs the "webfinger.oidc_discovery.token_url" setting.
           type: string
         hydra_webfinger_oidc_discovery_userinfo_url:
           description: |-
             Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra's userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.
 
-            This governs the "webfinger.oidc.discovery.userinfo_url" setting.
+            This governs the "webfinger.oidc_discovery.userinfo_url" setting.
           type: string
         id:
           description: The revision ID.
@@ -9635,16 +9732,20 @@ components:
             The Revisions' Keto Namespace Configuration
 
             The string is a URL pointing to an OPL file with the configuration.
+
+            This governs the "namespaces.location" setting.
           type: string
         keto_namespaces:
           items:
             $ref: "#/components/schemas/KetoNamespace"
           type: array
         keto_secrets_pagination:
+          description: |-
+            Configures Keto's pagination secrets.
+
+            This governs the "secrets.pagination" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_cookies_same_site:
           description: |-
@@ -9661,6 +9762,8 @@ components:
           description: |-
             The delivery strategy to use when sending emails
 
+            This governs the "courier.delivery_strategy" setting.
+
             `smtp`: Use SMTP server
             `http`: Use the built in HTTP client to send the email to some remote service
           type: string
@@ -9670,36 +9773,38 @@ components:
 
             `header`: Send the key value pair as a header
             `cookie`: Send the key value pair as a cookie
-            This governs the "courier.http.auth.config.in" setting
+            This governs the "courier.http.request_config.auth.config.in" setting.
           type: string
         kratos_courier_http_request_config_auth_api_key_name:
           description: |-
             The name of the API key to use in the HTTP email sending service's authentication
 
-            This governs the "courier.http.auth.config.name" setting
+            This governs the "courier.http.request_config.auth.config.name" setting.
           type: string
         kratos_courier_http_request_config_auth_api_key_value:
           description: |-
             The value of the API key to use in the HTTP email sending service's authentication
 
-            This governs the "courier.http.auth.config.value" setting
+            This governs the "courier.http.request_config.auth.config.value" setting.
           type: string
         kratos_courier_http_request_config_auth_basic_auth_password:
           description: |-
             The password to use for basic auth in the HTTP email sending service's authentication
 
-            This governs the "courier.http.auth.config.password" setting
+            This governs the "courier.http.request_config.auth.config.password" setting.
           type: string
         kratos_courier_http_request_config_auth_basic_auth_user:
           description: |-
             The user to use for basic auth in the HTTP email sending service's authentication
 
-            This governs the "courier.http.auth.config.user" setting
+            This governs the "courier.http.request_config.auth.config.user" setting.
           type: string
         kratos_courier_http_request_config_auth_type:
           default: empty (no authentication)
           description: |-
             The authentication type to use while contacting the remote HTTP email sending service
+
+            This governs the "courier.http.request_config.auth.type" setting.
 
             `basic_auth`: Use Basic Authentication
             `api_key`: Use API Key Authentication in a header or cookie
@@ -9710,23 +9815,26 @@ components:
 
             Should be valid Jsonnet and base64 encoded
 
-            This governs the "courier.http.body" setting
+            This governs the "courier.http.request_config.body" setting.
           type: string
         kratos_courier_http_request_config_headers:
-          description: "NullJSONRawMessage represents a json.RawMessage that works\
-            \ well with JSON, SQL, and Swagger and is NULLable-"
-          nullable: true
+          description: |-
+            Any additional headers to send to the remote HTTP email sending service
+
+            This governs the "courier.http.request_config.headers" setting.
           type: object
         kratos_courier_http_request_config_method:
           default: POST
-          description: The http METHOD to use when calling the remote HTTP email sending
-            service
+          description: |-
+            The http METHOD to use when calling the remote HTTP email sending service
+
+            This governs the "courier.http.request_config.method" setting.
           type: string
         kratos_courier_http_request_config_url:
           description: |-
             The URL of the remote HTTP email sending service
 
-            This governs the "courier.http.url" setting
+            This governs the "courier.http.request_config.url" setting.
           type: string
         kratos_courier_smtp_connection_uri:
           description: |-
@@ -9747,9 +9855,10 @@ components:
             This governs the "courier.smtp.from_name" setting.
           type: string
         kratos_courier_smtp_headers:
-          description: "NullJSONRawMessage represents a json.RawMessage that works\
-            \ well with JSON, SQL, and Swagger and is NULLable-"
-          nullable: true
+          description: |-
+            Configures the Ory Kratos SMTP Connection Headers
+
+            This governs the "courier.smtp.headers" setting.
           type: object
         kratos_courier_smtp_local_name:
           description: |-
@@ -9761,199 +9870,199 @@ components:
           description: |-
             Configures the Ory Kratos Valid Login via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.login_code.valid.email.body.html" setting.
+            This governs the "courier.templates.login_code.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_login_code_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.login_code.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.login_code.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_login_code_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Login via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.login_code.valid.email.subject" setting.
+            This governs the "courier.templates.login_code.valid.email.subject" setting.
           type: string
         kratos_courier_templates_login_code_valid_sms_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Login via Code SMS plain text body
 
-            This governs the "courier.smtp.templates.login_code.valid.sms.plaintext" setting.
+            This governs the "courier.templates.login_code.valid.sms.body.plaintext" setting.
           type: string
         kratos_courier_templates_recovery_code_invalid_email_body_html:
           description: |-
             Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.recovery_code.invalid.email.body.html" setting.
+            This governs the "courier.templates.recovery_code.invalid.email.body.html" setting.
           type: string
         kratos_courier_templates_recovery_code_invalid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.recovery_code.invalid.email.body.plaintext" setting.
+            This governs the "courier.templates.recovery_code.invalid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_recovery_code_invalid_email_subject:
           description: |-
             Configures the Ory Kratos Invalid Recovery via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.recovery_code.invalid.email.body.html" setting.
+            This governs the "courier.templates.recovery_code.invalid.email.subject" setting.
           type: string
         kratos_courier_templates_recovery_code_valid_email_body_html:
           description: |-
             Configures the Ory Kratos Valid Recovery via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.recovery_code.valid.email.body.html" setting.
+            This governs the "courier.templates.recovery_code.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_recovery_code_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Recovery via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.recovery_code.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.recovery_code.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_recovery_code_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Recovery via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.recovery_code.valid.email.subject" setting.
+            This governs the "courier.templates.recovery_code.valid.email.subject" setting.
           type: string
         kratos_courier_templates_recovery_invalid_email_body_html:
           description: |-
             Configures the Ory Kratos Invalid Recovery Email Body HTML Template
 
-            This governs the "courier.smtp.templates.recovery.invalid.email.body.html" setting.
+            This governs the "courier.templates.recovery.invalid.email.body.html" setting.
           type: string
         kratos_courier_templates_recovery_invalid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Invalid Recovery Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.recovery.invalid.email.body.plaintext" setting.
+            This governs the "courier.templates.recovery.invalid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_recovery_invalid_email_subject:
           description: |-
             Configures the Ory Kratos Invalid Recovery Email Subject Template
 
-            This governs the "courier.smtp.templates.recovery.invalid.email.body.html" setting.
+            This governs the "courier.templates.recovery.invalid.email.subject" setting.
           type: string
         kratos_courier_templates_recovery_valid_email_body_html:
           description: |-
             Configures the Ory Kratos Valid Recovery Email Body HTML Template
 
-            This governs the "courier.smtp.templates.recovery.valid.email.body.html" setting.
+            This governs the "courier.templates.recovery.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_recovery_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Recovery Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.recovery.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.recovery.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_recovery_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Recovery Email Subject Template
 
-            This governs the "courier.smtp.templates.recovery.valid.email.subject" setting.
+            This governs the "courier.templates.recovery.valid.email.subject" setting.
           type: string
         kratos_courier_templates_registration_code_valid_email_body_html:
           description: |-
             Configures the Ory Kratos Valid Registration via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.registration_code.valid.email.body.html" setting.
+            This governs the "courier.templates.registration_code.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_registration_code_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.registration_code.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.registration_code.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_registration_code_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Registration via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.registration_code.valid.email.subject" setting.
+            This governs the "courier.templates.registration_code.valid.email.subject" setting.
           type: string
         kratos_courier_templates_registration_code_valid_sms_body_plaintext:
           description: |-
-            Configures the Ory Kratos Valid Registration via Code Email Subject Template
+            Configures the Ory Kratos Valid Registration via Code SMS Body Plaintext Template
 
-            This governs the "courier.smtp.templates.registration_code.valid.sms.body.plaintext" setting.
+            This governs the "courier.templates.registration_code.valid.sms.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_code_invalid_email_body_html:
           description: |-
             Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.verification_code.invalid.email.body.html" setting.
+            This governs the "courier.templates.verification_code.invalid.email.body.html" setting.
           type: string
         kratos_courier_templates_verification_code_invalid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.verification_code.invalid.email.body.plaintext" setting.
+            This governs the "courier.templates.verification_code.invalid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_code_invalid_email_subject:
           description: |-
             Configures the Ory Kratos Invalid Verification via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.verification_code.invalid.email.subject" setting.
+            This governs the "courier.templates.verification_code.invalid.email.subject" setting.
           type: string
         kratos_courier_templates_verification_code_valid_email_body_html:
           description: |-
             Configures the Ory Kratos Valid Verification via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.verification_code.valid.email.body.html" setting.
+            This governs the "courier.templates.verification_code.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_verification_code_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.verification_code.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.verification_code.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_code_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Verification via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.verification_code.valid.email.subject" setting.
+            This governs the "courier.templates.verification_code.valid.email.subject" setting.
           type: string
         kratos_courier_templates_verification_code_valid_sms_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext
 
-            This governs the "courier.smtp.templates.verification_code.valid.sms.body.plaintext" setting.
+            This governs the "courier.templates.verification_code.valid.sms.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_invalid_email_body_html:
           description: |-
             Configures the Ory Kratos Invalid Verification Email Body HTML Template
 
-            This governs the "courier.smtp.templates.verification.invalid.email.body.html" setting.
+            This governs the "courier.templates.verification.invalid.email.body.html" setting.
           type: string
         kratos_courier_templates_verification_invalid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Invalid Verification Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.verification.invalid.email.body.plaintext" setting.
+            This governs the "courier.templates.verification.invalid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_invalid_email_subject:
           description: |-
             Configures the Ory Kratos Invalid Verification Email Subject Template
 
-            This governs the "courier.smtp.templates.verification.invalid.email.subject" setting.
+            This governs the "courier.templates.verification.invalid.email.subject" setting.
           type: string
         kratos_courier_templates_verification_valid_email_body_html:
           description: |-
             Configures the Ory Kratos Valid Verification Email Body HTML Template
 
-            This governs the "courier.smtp.templates.verification.valid.email.body.html" setting.
+            This governs the "courier.templates.verification.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_verification_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Verification Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.verification.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.verification.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Verification Email Subject Template
 
-            This governs the "courier.smtp.templates.verification.valid.email.subject" setting.
+            This governs the "courier.templates.verification.valid.email.subject" setting.
           type: string
         kratos_feature_flags_cacheable_sessions:
           description: |-
@@ -10011,6 +10120,8 @@ components:
 
             If true, it sets the password method group value to "password" if it is the only method available. This is the legacy behavior.
             If false is, it sets the password method group value to "default".
+
+            This governs the "feature_flags.password_profile_registration_node_group" setting.
           type: boolean
         kratos_feature_flags_use_continue_with_transitions:
           description: |-
@@ -10023,15 +10134,18 @@ components:
             $ref: "#/components/schemas/normalizedProjectRevisionIdentitySchema"
           type: array
         kratos_oauth2_provider_headers:
-          description: "NullJSONRawMessage represents a json.RawMessage that works\
-            \ well with JSON, SQL, and Swagger and is NULLable-"
-          nullable: true
+          description: |-
+            Configures the OAuth2 Provider Integration HTTP Headers
+
+            This governs the "oauth2_provider.headers" setting.
           type: object
         kratos_oauth2_provider_override_return_to:
           description: |-
             Kratos OAuth2 Provider Override Return To
 
             Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.
+
+            This governs the "oauth2_provider.override_return_to" setting.
           type: boolean
         kratos_oauth2_provider_url:
           description: |-
@@ -10042,8 +10156,6 @@ components:
         kratos_preview_default_read_consistency_level:
           description: |-
             Configures the default read consistency level for identity APIs
-
-            This governs the `preview.default_read_consistency_level` setting.
 
             The read consistency level determines the consistency guarantee for reads:
 
@@ -10056,46 +10168,59 @@ components:
             `GET /admin/identities`
 
             Defaults to "strong" for new and existing projects. This feature is in preview. Use with caution.
+            This governs the "preview.default_read_consistency_level" setting.
           type: string
         kratos_secrets_cipher:
+          description: |-
+            Configures the Ory Kratos Cipher Secret
+
+            This governs the "secrets.cipher" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_secrets_cookie:
+          description: |-
+            Configures the Ory Kratos Cookie Secret
+
+            This governs the "secrets.cookie" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_secrets_default:
+          description: |-
+            Configures the Ory Kratos Default Secret
+
+            This governs the "secrets.default" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_secrets_pagination:
+          description: |-
+            Configures the Ory Kratos Pagination Secret
+
+            This governs the "secrets.pagination" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_security_account_enumeration_mitigate:
-          description: Configures if account enumeration should be mitigated when
-            using identifier first login.
+          description: |-
+            Configures if account enumeration should be mitigated when using identifier first login.
+
+            This governs the "security.account_enumeration.mitigate" setting.
           type: boolean
         kratos_selfservice_allowed_return_urls:
+          description: |-
+            Configures the Ory Kratos Allowed Return URLs
+
+            This governs the "selfservice.allowed_return_urls" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_selfservice_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Default Return URL
 
-            This governs the "selfservice.allowed_return_urls" setting.
+            This governs the "selfservice.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_error_ui_url:
           description: |-
@@ -10105,9 +10230,9 @@ components:
           type: string
         kratos_selfservice_flows_login_after_code_default_browser_return_url:
           description: |-
-            Configures the Ory Kratos Login After Password Default Return URL
+            Configures the Ory Kratos Login After Code Default Return URL
 
-            This governs the "selfservice.flows.code.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.login.after.code.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_login_after_default_browser_return_url:
           description: |-
@@ -10117,9 +10242,9 @@ components:
           type: string
         kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url:
           description: |-
-            Configures the Ory Kratos Login After Password Default Return URL
+            Configures the Ory Kratos Login After Lookup Secret Default Return URL
 
-            This governs the "selfservice.flows.lookup_secret.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.login.after.lookup_secret.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_login_after_oidc_default_browser_return_url:
           description: |-
@@ -10141,9 +10266,9 @@ components:
           type: string
         kratos_selfservice_flows_login_after_totp_default_browser_return_url:
           description: |-
-            Configures the Ory Kratos Login After Password Default Return URL
+            Configures the Ory Kratos Login After TOTP Default Return URL
 
-            This governs the "selfservice.flows.totp.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.login.after.totp.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_login_after_webauthn_default_browser_return_url:
           description: |-
@@ -10242,7 +10367,7 @@ components:
           description: |-
             Configures the Ory Kratos Registration After Passkey Default Return URL
 
-            This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.registration.after.passkey.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_registration_after_password_default_browser_return_url:
           description: |-
@@ -10409,16 +10534,20 @@ components:
             link SelfServiceMessageVerificationStrategyLink
             code SelfServiceMessageVerificationStrategyCode
         kratos_selfservice_methods_captcha_config_allowed_domains:
+          description: |-
+            Configures the CAPTCHA allowed domains list
+
+            This governs the "selfservice.methods.captcha.config.allowed_domains" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_selfservice_methods_captcha_config_byo:
           description: |-
             Configures whether to use BYO or managed widget
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.byo" setting.
           type: boolean
         kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret:
           description: |-
@@ -10427,6 +10556,8 @@ components:
             The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.cf_turnstile.secret" setting.
           type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey:
           description: |-
@@ -10435,6 +10566,8 @@ components:
             The site key is public and will be shared with the client.
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.cf_turnstile.sitekey" setting.
           type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_secret:
           description: |-
@@ -10443,6 +10576,8 @@ components:
             The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.cf_turnstile.secret" setting.
           type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey:
           description: |-
@@ -10451,18 +10586,24 @@ components:
             The site key is public and will be shared with the client.
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.cf_turnstile.sitekey" setting.
           type: string
         kratos_selfservice_methods_captcha_config_legacy_inject_node:
           description: |-
-            Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting
+            Configures legacy CAPTCHA node injection behavior
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.legacy_inject_node" setting.
           type: boolean
         kratos_selfservice_methods_captcha_enabled:
           description: |-
             Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.enabled" setting.
           type: boolean
         kratos_selfservice_methods_code_config_lifespan:
           description: |-
@@ -10471,7 +10612,11 @@ components:
             This governs the "selfservice.methods.code.config.lifespan" setting.
           type: string
         kratos_selfservice_methods_code_config_max_submissions:
-          nullable: true
+          description: |-
+            Configures the maximum number of attempts to submit a one-time code in kratos.
+
+            This governs the "selfservice.methods.code.max_submissions" setting.
+          format: int64
           type: integer
         kratos_selfservice_methods_code_config_missing_credential_fallback_enabled:
           description: |-
@@ -10565,10 +10710,12 @@ components:
             This governs the "selfservice.methods.passkey.config.rp.id" setting.
           type: string
         kratos_selfservice_methods_passkey_config_rp_origins:
+          description: |-
+            Configures the Ory Kratos Passkey RP Origins
+
+            This governs the "selfservice.methods.passkey.config.rp.origins" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_selfservice_methods_passkey_enabled:
           description: |-
@@ -10668,10 +10815,12 @@ components:
             This governs the "selfservice.methods.webauthn.config.rp.id" setting.
           type: string
         kratos_selfservice_methods_webauthn_config_rp_origins:
+          description: |-
+            Configures the Ory Kratos Webauthn RP Origins
+
+            This governs the "selfservice.methods.webauthn.config.rp.origins" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_selfservice_methods_webauthn_enabled:
           description: |-
@@ -10727,10 +10876,12 @@ components:
             $ref: "#/components/schemas/normalizedProjectRevisionScimClient"
           type: array
         serve_admin_cors_allowed_origins:
+          description: |-
+            Configures the CORS Allowed Origins on admin APIs
+
+            This governs the "serve.admin.cors.allowed_origins" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         serve_admin_cors_enabled:
           description: |-
@@ -10739,10 +10890,12 @@ components:
             This governs the "serve.admin.cors.enabled" setting.
           type: boolean
         serve_public_cors_allowed_origins:
+          description: |-
+            Configures the CORS Allowed Origins on public APIs
+
+            This governs the "serve.public.cors.allowed_origins" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         serve_public_cors_enabled:
           description: |-
@@ -10849,10 +11002,6 @@ components:
       - invitee_email
       - role
       type: object
-    CustomHostnameStatus:
-      title: CustomHostnameStatus is the enumeration of valid state values in the
-        CustomHostnameSSL.
-      type: string
     DefaultError: {}
     DeviceUserAuthRequest:
       properties:
@@ -10871,16 +11020,16 @@ components:
           description: RequestURL is the original Device Authorization URL requested.
           type: string
         requested_access_token_audience:
+          description: RequestedAudience contains the access token audience as requested
+            by the OAuth 2.0 Client.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         requested_scope:
+          description: RequestedScope contains the OAuth 2.0 Scope requested by the
+            OAuth 2.0 Client.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
       required:
       - challenge
@@ -11164,6 +11313,12 @@ components:
         start:
           $ref: "#/components/schemas/SourcePosition"
       type: object
+    PatchWorkspaceMemberBody:
+      properties:
+        break_glass:
+          description: Whether to enable break-glass recovery for this member.
+          type: boolean
+      type: object
     Plan:
       properties:
         name:
@@ -11388,12 +11543,6 @@ components:
       type: object
     String:
       $ref: "#/components/schemas/NullString"
-    StringSliceJSONFormat:
-      items:
-        type: string
-      title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-        \ JSON for SQL storage."
-      type: array
     SubscriptionStatus:
       description: |-
         For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this status can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` status. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal status, the open invoice will be voided and no further invoices will be generated.
@@ -11493,16 +11642,16 @@ components:
             \ JSON, SQL, and Swagger."
           type: object
         grant_access_token_audience:
+          description: GrantedAudience sets the audience the user authorized the client
+            to use. Should be a subset of `requested_access_token_audience`.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         grant_scope:
+          description: GrantScope sets the scope the user authorized the client to
+            use. Should be a subset of `requested_scope`.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         remember:
           description: |-
@@ -11544,10 +11693,13 @@ components:
             to express that, for example, a user authenticated using two-factor authentication.
           type: string
         amr:
+          description: |-
+            AMR sets the Authentication Methods References value for this
+            authentication session. You can use it to specify the method a user used to
+            authenticate. For example, if the acr indicates a user used two-factor
+            authentication, the amr can express they used a software-secured key.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         context:
           title: "JSONRawMessage represents a json.RawMessage that works well with\
@@ -11725,7 +11877,7 @@ components:
         Generally, "aal1" implies that one authentication factor was used while AAL2 implies that two factors (e.g.
         password + TOTP) have been used.
 
-        To learn more about these levels please head over to: https://www.ory.sh/kratos/docs/concepts/credentials
+        To learn more about these levels please head over to: https://www.ory.com/kratos/docs/concepts/credentials
       enum:
       - aal0
       - aal1
@@ -11742,10 +11894,9 @@ components:
         label: label
       properties:
         domains:
+          description: The list of organization's domains.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         id:
           description: The organization's ID.
@@ -11863,6 +12014,11 @@ components:
       type: object
     cloudAccount:
       properties:
+        break_glass:
+          description: |-
+            BreakGlass is true when the identity's recovery address has break-glass
+            recovery enabled for the identity's current organization.
+          type: boolean
         email:
           type: string
         email_verified:
@@ -12652,8 +12808,6 @@ components:
         cors_allowed_origins:
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         cors_enabled:
           type: boolean
@@ -12723,8 +12877,6 @@ components:
             type: string
           type: array
         verification_status:
-          title: CustomHostnameStatus is the enumeration of valid state values in
-            the CustomHostnameSSL.
           type: string
       type: object
     deleteMySessionsCount:
@@ -13291,7 +13443,7 @@ components:
       title: The health status of the service.
       type: object
     identity:
-      description: "An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
+      description: "An [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model)\
         \ represents a (human) user in Ory."
       example:
         traits: ""
@@ -13310,11 +13462,13 @@ components:
         external_id: external_id
         recovery_addresses:
         - updated_at: 2000-01-23T04:56:07.000+00:00
+          break_glass_for_organization: break_glass_for_organization
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           value: value
           via: via
         - updated_at: 2000-01-23T04:56:07.000+00:00
+          break_glass_for_organization: break_glass_for_organization
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           value: value
@@ -13532,6 +13686,19 @@ components:
         channel:
           type: string
       type: object
+    identityCredentialsLookupSecretCode:
+      description: Recovery codes can be used once and are invalidated after use.
+      properties:
+        code:
+          description: A recovery code
+          type: string
+        used_at:
+          format: date-time
+          title: NullTime implements sql.NullTime functionality.
+          type: string
+      title: RecoveryCode represents one recovery code associated with a lookup_secret
+        credential.
+      type: object
     identityCredentialsOidc:
       properties:
         providers:
@@ -13574,6 +13741,99 @@ components:
       title: CredentialsPassword is contains the configuration for credentials of
         the type password.
       type: object
+    identityCredentialsWebAuthn:
+      properties:
+        added_at:
+          format: date-time
+          type: string
+        attestation:
+          $ref: "#/components/schemas/identityCredentialsWebAuthnAttestation"
+        attestation_type:
+          type: string
+        authenticator:
+          $ref: "#/components/schemas/identityCredentialsWebAuthnAuthenticator"
+        display_name:
+          type: string
+        flags:
+          $ref: "#/components/schemas/identityCredentialsWebAuthnFlags"
+        id:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        is_passwordless:
+          type: boolean
+        public_key:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        transport:
+          items:
+            $ref: "#/components/schemas/AuthenticatorTransport"
+          type: array
+      title: CredentialWebAuthn contains information about a webauthn credential.
+      type: object
+    identityCredentialsWebAuthnAttestation:
+      properties:
+        authenticator_data:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        client_dataJSON:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        client_data_hash:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        object:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        public_key_algorithm:
+          format: int64
+          type: integer
+      title: CredentialWebAuthnAttestation contains information about attestation
+        of a webauthn credential.
+      type: object
+    identityCredentialsWebAuthnAuthenticator:
+      properties:
+        aaguid:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        clone_warning:
+          type: boolean
+        sign_count:
+          format: uint32
+          type: integer
+      title: AuthenticatorWebAuthn contains information about the authenticator of
+        a webauthn credential.
+      type: object
+    identityCredentialsWebAuthnFlags:
+      properties:
+        backup_eligible:
+          type: boolean
+        backup_state:
+          type: boolean
+        user_present:
+          type: boolean
+        user_verified:
+          type: boolean
+      title: CredentialWebAuthnFlags contains information about the flags of a webauthn
+        credential.
+      type: object
+    identityCredentialsWebAuthnList:
+      items:
+        $ref: "#/components/schemas/identityCredentialsWebAuthn"
+      type: array
     identityMetaSchema:
       description: Identity Meta Schema
       type: object
@@ -13675,12 +13935,20 @@ components:
     identityWithCredentials:
       description: Create Identity and Import Credentials
       properties:
+        lookup_secret:
+          $ref: "#/components/schemas/AdminIdentityImportCredentialsLookupSecret"
         oidc:
           $ref: "#/components/schemas/identityWithCredentialsOidc"
+        passkey:
+          $ref: "#/components/schemas/identityWithCredentialsPasskey"
         password:
           $ref: "#/components/schemas/identityWithCredentialsPassword"
         saml:
           $ref: "#/components/schemas/identityWithCredentialsSaml"
+        totp:
+          $ref: "#/components/schemas/identityWithCredentialsTotp"
+        webauthn:
+          $ref: "#/components/schemas/identityWithCredentialsWebAuthn"
       type: object
     identityWithCredentialsOidc:
       description: Create Identity and Import Social Sign In Credentials
@@ -13719,6 +13987,26 @@ components:
       - provider
       - subject
       type: object
+    identityWithCredentialsPasskey:
+      description: Create Identity and Import Passkey Credentials
+      properties:
+        config:
+          $ref: "#/components/schemas/identityWithCredentialsPasskeyConfig"
+      type: object
+    identityWithCredentialsPasskeyConfig:
+      description: Create Identity and Import Passkey Credentials Configuration
+      properties:
+        credentials:
+          items:
+            $ref: "#/components/schemas/identityCredentialsWebAuthn"
+          type: array
+        user_handle:
+          description: UserHandle is the user handle of the webauthn credential.
+          items:
+            format: uint8
+            type: integer
+          type: array
+      type: object
     identityWithCredentialsPassword:
       description: Create Identity and Import Password Credentials
       properties:
@@ -13729,7 +14017,7 @@ components:
       description: Create Identity and Import Password Credentials Configuration
       properties:
         hashed_password:
-          description: "The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)"
+          description: "The hashed password in [PHC format](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)"
           type: string
         password:
           description: The password in plain text if no hash is available.
@@ -13771,6 +14059,42 @@ components:
       required:
       - provider
       - subject
+      type: object
+    identityWithCredentialsTotp:
+      description: Create Identity and Import TOTP 2FA Credentials
+      properties:
+        config:
+          $ref: "#/components/schemas/identityWithCredentialsTotpConfig"
+      type: object
+    identityWithCredentialsTotpConfig:
+      description: Create Identity and Import TOTP 2FA Credentials Configuration
+      properties:
+        totp_url:
+          description: |-
+            TOTPURL is the TOTP URL
+
+            For more details see: https://github.com/google/google-authenticator/wiki/Key-Uri-Format
+          type: string
+      type: object
+    identityWithCredentialsWebAuthn:
+      description: Create Identity and Import WebAuthn Credentials
+      properties:
+        config:
+          $ref: "#/components/schemas/identityWithCredentialsWebAuthnConfig"
+      type: object
+    identityWithCredentialsWebAuthnConfig:
+      description: Create Identity and Import WebAuthn Credentials Configuration
+      properties:
+        credentials:
+          items:
+            $ref: "#/components/schemas/identityCredentialsWebAuthn"
+          type: array
+        user_handle:
+          description: UserHandle is the user handle of the webauthn credential.
+          items:
+            format: uint8
+            type: integer
+          type: array
       type: object
     internalGetProjectBrandingBody:
       description: Get Project Branding Request Body
@@ -14207,7 +14531,7 @@ components:
       type: object
     keysetPaginationRequestParameters:
       description: "For details on pagination please head over to the [pagination\
-        \ documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination)."
+        \ documentation](https://www.ory.com/docs/ecosystem/api-design#pagination)."
       properties:
         page_size:
           default: 250
@@ -14215,7 +14539,7 @@ components:
             Items per Page
 
             This is the number of items per page to return.
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+            For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
           format: int64
           maximum: 1000
           minimum: 1
@@ -14225,7 +14549,7 @@ components:
             Next Page Token
 
             The next page token.
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+            For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
           type: string
       title: Pagination Request Parameters
       type: object
@@ -14234,7 +14558,7 @@ components:
         The `Link` HTTP header contains multiple links (`first`, `next`) formatted as:
         `<https://{project-slug}.projects.oryapis.com/admin/sessions?page_size=250&page_token=>; rel="first"`
 
-        For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
       properties:
         link:
           description: |-
@@ -14479,18 +14803,14 @@ components:
             client_secret: client_secret
             backchannel_logout_session_required: true
             backchannel_logout_uri: backchannel_logout_uri
-            audience:
-            - audience
-            - audience
+            audience: "https://mydomain.com/api/users, https://mydomain.com/api/posts"
             post_logout_redirect_uris:
             - post_logout_redirect_uris
             - post_logout_redirect_uris
             device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
             device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
             refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
-            redirect_uris:
-            - redirect_uris
-            - redirect_uris
+            redirect_uris: http://mydomain/oauth/callback
             sector_identifier_uri: sector_identifier_uri
             frontchannel_logout_session_required: true
             frontchannel_logout_uri: frontchannel_logout_uri
@@ -14567,9 +14887,7 @@ components:
             client_secret_expires_at: 0
             implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
             jwks_uri: jwks_uri
-            contacts:
-            - contacts
-            - contacts
+            contacts: help@example.org
           session_id: session_id
           skip: true
           request_url: request_url
@@ -15222,10 +15540,10 @@ components:
             us US
             global Global
         hosts:
+          description: The FQDN hostnames this project listens on
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
+          minItems: 1
           type: array
         id:
           description: The project's ID.
@@ -15293,20 +15611,28 @@ components:
             $ref: "#/components/schemas/RevisionAccountExperienceCustomTranslation"
           type: array
         account_experience_default_locale:
-          description: Holds the default locale for the account experience.
+          description: |-
+            Holds the default locale for the account experience.
+            This governs the "default_locale" setting.
           type: string
         account_experience_enabled_locales:
+          description: |-
+            The Account Experience's Enabled Locales
+
+            This governs the locales that are available in the account experience.
+            This governs the "enabled_locales" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         account_experience_favicon_dark:
-          description: Holds the URL to the account experience's dark theme favicon
-            (currently unused).
+          description: |-
+            Holds the URL to the account experience's dark theme favicon (currently unused).
+            This governs the "favicon_dark" setting.
           type: string
         account_experience_favicon_light:
-          description: Holds the URL to the account experience's favicon.
+          description: |-
+            Holds the URL to the account experience's favicon.
+            This governs the "favicon_light" setting.
           type: string
         account_experience_locale_behavior:
           description: |-
@@ -15315,19 +15641,27 @@ components:
             Can be one of:
             `respect_accept_language`: Respect the `Accept-Language` header.
             `force_default`: Force the default language.
+            This governs the "locale_behavior" setting.
           type: string
         account_experience_logo_dark:
-          description: Holds the URL to the account experience's dark theme logo (currently
-            unused).
+          description: |-
+            Holds the URL to the account experience's dark theme logo (currently unused).
+            This governs the "logo_dark" setting.
           type: string
         account_experience_logo_light:
-          description: Holds the URL to the account experience's logo.
+          description: |-
+            Holds the URL to the account experience's logo.
+            This governs the "logo_light" setting.
           type: string
         account_experience_theme_variables_dark:
-          description: Holds the URL to the account experience's dark theme variables.
+          description: |-
+            Holds the URL to the account experience's dark theme variables.
+            This governs the "theme_variables_dark" setting.
           type: string
         account_experience_theme_variables_light:
-          description: Holds the URL to the account experience's light theme variables.
+          description: |-
+            Holds the URL to the account experience's light theme variables.
+            This governs the "theme_variables_light" setting.
           type: string
         created_at:
           description: The Project's Revision Creation Date
@@ -15335,17 +15669,22 @@ components:
           readOnly: true
           type: string
         disable_account_experience_welcome_screen:
-          description: "Whether to disable the account experience welcome screen,\
-            \ which is hosted under `/ui/welcome`."
+          description: |-
+            Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
+            This governs the "disable_welcome_screen" setting.
           type: boolean
         enable_ax_v2:
-          description: Whether the new account experience is enabled and reachable.
+          description: |-
+            Whether the new account experience is enabled and reachable.
+            This governs the "enable_ax_v2" setting.
           type: boolean
         hydra_oauth2_allowed_top_level_claims:
+          description: |-
+            A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.
+
+            This governs the "oauth2.allowed_top_level_claims" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_oauth2_client_credentials_default_grant_allowed_scope:
           description: |-
@@ -15421,6 +15760,12 @@ components:
 
             This governs the "oauth2.pkce.enforced_for_public_clients" setting.
           type: boolean
+        hydra_oauth2_preserve_ext_claims:
+          description: |-
+            Set to true to keep custom claims that are not promoted to the top level in the 'ext' claim. Only applies when mirror_top_level_claims is false.
+
+            This governs the "oauth2.preserve_ext_claims" setting.
+          type: boolean
         hydra_oauth2_refresh_token_hook:
           description: |-
             Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.
@@ -15434,10 +15779,12 @@ components:
             This governs the "oauth2.token_hook.url" setting.
           type: string
         hydra_oidc_dynamic_client_registration_default_scope:
+          description: |-
+            The OpenID Connect Dynamic Client Registration specification has no concept of whitelisting OAuth 2.0 Scope. If you want to expose Dynamic Client Registration, you should set the default scope enabled for newly registered clients. Keep in mind that users can overwrite this default by setting the "scope" key in the registration payload, effectively disabling the concept of whitelisted scopes.
+
+            This governs the "oidc.dynamic_client_registration.default_scope" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_oidc_dynamic_client_registration_enabled:
           description: |-
@@ -15452,28 +15799,36 @@ components:
             This governs the "oidc.subject_identifiers.pairwise_salt" setting.
           type: string
         hydra_oidc_subject_identifiers_supported_types:
+          description: |-
+            Configures OpenID Connect Discovery and overwrites the list of Subject Identifier Algorithms to enable.
+
+            This governs the "oidc.subject_identifiers.supported_types" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_secrets_cookie:
+          description: |-
+            Configures the Ory Hydra Cookie Secret
+
+            This governs the "secrets.cookie" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_secrets_pagination:
+          description: |-
+            Configures the Ory Hydra Pagination Secret
+
+            This governs the "secrets.pagination" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_secrets_system:
+          description: |-
+            Configures the Ory Hydra System Secret
+
+            This governs the "secrets.system" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_serve_cookies_same_site_legacy_workaround:
           description: |-
@@ -15507,7 +15862,7 @@ components:
           description: |-
             Define the claim to use as the scope in the access token.
 
-            This governs the "strategies.jwt.scope_claim" setting:
+            This governs the "strategies.jwt.scope_claim" setting.
 
             list: The scope claim is an array of strings named `scope`: `{ "scope": ["read", "write"] }`
             string: The scope claim is a space delimited list of strings named `scp`: `{ "scp": "read write" }`
@@ -15639,52 +15994,58 @@ components:
             This governs the "urls.self.issuer" setting.
           type: string
         hydra_webfinger_jwks_broadcast_keys:
+          description: |-
+            A list of JSON Web Keys that should be exposed at that endpoint. This is usually the public key for verifying OpenID Connect ID Tokens. However, you might want to add additional keys here as well.
+
+            This governs the "webfinger.jwks.broadcast_keys" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_webfinger_oidc_discovery_auth_url:
           description: |-
             Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.
 
-            This governs the "webfinger.oidc.discovery.auth_url" setting.
+            This governs the "webfinger.oidc_discovery.auth_url" setting.
           type: string
         hydra_webfinger_oidc_discovery_client_registration_url:
           description: |-
             Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.
 
-            This governs the "webfinger.oidc.discovery.client_registration_url" setting.
+            This governs the "webfinger.oidc_discovery.client_registration_url" setting.
           type: string
         hydra_webfinger_oidc_discovery_jwks_url:
           description: |-
             Configures OpenID Connect Discovery and overwrites the JWKS URL.
 
-            This governs the "webfinger.oidc.discovery.jwks_url" setting.
+            This governs the "webfinger.oidc_discovery.jwks_url" setting.
           type: string
         hydra_webfinger_oidc_discovery_supported_claims:
+          description: |-
+            Configures OpenID Connect Discovery and overwrites a list of supported claims to be broadcasted. Claim "sub" is always included.
+
+            This governs the "webfinger.oidc_discovery.supported_claims" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_webfinger_oidc_discovery_supported_scope:
+          description: |-
+            Configures OpenID Connect Discovery and overwrites the scope OAuth 2.0 Clients may request. Scope `offline`, `offline_access`, and `openid` are always included.
+
+            This governs the "webfinger.oidc_discovery.supported_scope" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         hydra_webfinger_oidc_discovery_token_url:
           description: |-
             Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.
 
-            This governs the "webfinger.oidc.discovery.token_url" setting.
+            This governs the "webfinger.oidc_discovery.token_url" setting.
           type: string
         hydra_webfinger_oidc_discovery_userinfo_url:
           description: |-
             Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra's userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.
 
-            This governs the "webfinger.oidc.discovery.userinfo_url" setting.
+            This governs the "webfinger.oidc_discovery.userinfo_url" setting.
           type: string
         id:
           description: The revision ID.
@@ -15696,16 +16057,20 @@ components:
             The Revisions' Keto Namespace Configuration
 
             The string is a URL pointing to an OPL file with the configuration.
+
+            This governs the "namespaces.location" setting.
           type: string
         keto_namespaces:
           items:
             $ref: "#/components/schemas/KetoNamespace"
           type: array
         keto_secrets_pagination:
+          description: |-
+            Configures Keto's pagination secrets.
+
+            This governs the "secrets.pagination" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_cookies_same_site:
           description: |-
@@ -15722,6 +16087,8 @@ components:
           description: |-
             The delivery strategy to use when sending emails
 
+            This governs the "courier.delivery_strategy" setting.
+
             `smtp`: Use SMTP server
             `http`: Use the built in HTTP client to send the email to some remote service
           type: string
@@ -15731,36 +16098,38 @@ components:
 
             `header`: Send the key value pair as a header
             `cookie`: Send the key value pair as a cookie
-            This governs the "courier.http.auth.config.in" setting
+            This governs the "courier.http.request_config.auth.config.in" setting.
           type: string
         kratos_courier_http_request_config_auth_api_key_name:
           description: |-
             The name of the API key to use in the HTTP email sending service's authentication
 
-            This governs the "courier.http.auth.config.name" setting
+            This governs the "courier.http.request_config.auth.config.name" setting.
           type: string
         kratos_courier_http_request_config_auth_api_key_value:
           description: |-
             The value of the API key to use in the HTTP email sending service's authentication
 
-            This governs the "courier.http.auth.config.value" setting
+            This governs the "courier.http.request_config.auth.config.value" setting.
           type: string
         kratos_courier_http_request_config_auth_basic_auth_password:
           description: |-
             The password to use for basic auth in the HTTP email sending service's authentication
 
-            This governs the "courier.http.auth.config.password" setting
+            This governs the "courier.http.request_config.auth.config.password" setting.
           type: string
         kratos_courier_http_request_config_auth_basic_auth_user:
           description: |-
             The user to use for basic auth in the HTTP email sending service's authentication
 
-            This governs the "courier.http.auth.config.user" setting
+            This governs the "courier.http.request_config.auth.config.user" setting.
           type: string
         kratos_courier_http_request_config_auth_type:
           default: empty (no authentication)
           description: |-
             The authentication type to use while contacting the remote HTTP email sending service
+
+            This governs the "courier.http.request_config.auth.type" setting.
 
             `basic_auth`: Use Basic Authentication
             `api_key`: Use API Key Authentication in a header or cookie
@@ -15771,23 +16140,26 @@ components:
 
             Should be valid Jsonnet and base64 encoded
 
-            This governs the "courier.http.body" setting
+            This governs the "courier.http.request_config.body" setting.
           type: string
         kratos_courier_http_request_config_headers:
-          description: "NullJSONRawMessage represents a json.RawMessage that works\
-            \ well with JSON, SQL, and Swagger and is NULLable-"
-          nullable: true
+          description: |-
+            Any additional headers to send to the remote HTTP email sending service
+
+            This governs the "courier.http.request_config.headers" setting.
           type: object
         kratos_courier_http_request_config_method:
           default: POST
-          description: The http METHOD to use when calling the remote HTTP email sending
-            service
+          description: |-
+            The http METHOD to use when calling the remote HTTP email sending service
+
+            This governs the "courier.http.request_config.method" setting.
           type: string
         kratos_courier_http_request_config_url:
           description: |-
             The URL of the remote HTTP email sending service
 
-            This governs the "courier.http.url" setting
+            This governs the "courier.http.request_config.url" setting.
           type: string
         kratos_courier_smtp_connection_uri:
           description: |-
@@ -15808,9 +16180,10 @@ components:
             This governs the "courier.smtp.from_name" setting.
           type: string
         kratos_courier_smtp_headers:
-          description: "NullJSONRawMessage represents a json.RawMessage that works\
-            \ well with JSON, SQL, and Swagger and is NULLable-"
-          nullable: true
+          description: |-
+            Configures the Ory Kratos SMTP Connection Headers
+
+            This governs the "courier.smtp.headers" setting.
           type: object
         kratos_courier_smtp_local_name:
           description: |-
@@ -15822,199 +16195,199 @@ components:
           description: |-
             Configures the Ory Kratos Valid Login via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.login_code.valid.email.body.html" setting.
+            This governs the "courier.templates.login_code.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_login_code_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.login_code.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.login_code.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_login_code_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Login via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.login_code.valid.email.subject" setting.
+            This governs the "courier.templates.login_code.valid.email.subject" setting.
           type: string
         kratos_courier_templates_login_code_valid_sms_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Login via Code SMS plain text body
 
-            This governs the "courier.smtp.templates.login_code.valid.sms.plaintext" setting.
+            This governs the "courier.templates.login_code.valid.sms.body.plaintext" setting.
           type: string
         kratos_courier_templates_recovery_code_invalid_email_body_html:
           description: |-
             Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.recovery_code.invalid.email.body.html" setting.
+            This governs the "courier.templates.recovery_code.invalid.email.body.html" setting.
           type: string
         kratos_courier_templates_recovery_code_invalid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.recovery_code.invalid.email.body.plaintext" setting.
+            This governs the "courier.templates.recovery_code.invalid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_recovery_code_invalid_email_subject:
           description: |-
             Configures the Ory Kratos Invalid Recovery via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.recovery_code.invalid.email.body.html" setting.
+            This governs the "courier.templates.recovery_code.invalid.email.subject" setting.
           type: string
         kratos_courier_templates_recovery_code_valid_email_body_html:
           description: |-
             Configures the Ory Kratos Valid Recovery via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.recovery_code.valid.email.body.html" setting.
+            This governs the "courier.templates.recovery_code.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_recovery_code_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Recovery via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.recovery_code.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.recovery_code.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_recovery_code_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Recovery via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.recovery_code.valid.email.subject" setting.
+            This governs the "courier.templates.recovery_code.valid.email.subject" setting.
           type: string
         kratos_courier_templates_recovery_invalid_email_body_html:
           description: |-
             Configures the Ory Kratos Invalid Recovery Email Body HTML Template
 
-            This governs the "courier.smtp.templates.recovery.invalid.email.body.html" setting.
+            This governs the "courier.templates.recovery.invalid.email.body.html" setting.
           type: string
         kratos_courier_templates_recovery_invalid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Invalid Recovery Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.recovery.invalid.email.body.plaintext" setting.
+            This governs the "courier.templates.recovery.invalid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_recovery_invalid_email_subject:
           description: |-
             Configures the Ory Kratos Invalid Recovery Email Subject Template
 
-            This governs the "courier.smtp.templates.recovery.invalid.email.body.html" setting.
+            This governs the "courier.templates.recovery.invalid.email.subject" setting.
           type: string
         kratos_courier_templates_recovery_valid_email_body_html:
           description: |-
             Configures the Ory Kratos Valid Recovery Email Body HTML Template
 
-            This governs the "courier.smtp.templates.recovery.valid.email.body.html" setting.
+            This governs the "courier.templates.recovery.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_recovery_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Recovery Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.recovery.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.recovery.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_recovery_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Recovery Email Subject Template
 
-            This governs the "courier.smtp.templates.recovery.valid.email.subject" setting.
+            This governs the "courier.templates.recovery.valid.email.subject" setting.
           type: string
         kratos_courier_templates_registration_code_valid_email_body_html:
           description: |-
             Configures the Ory Kratos Valid Registration via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.registration_code.valid.email.body.html" setting.
+            This governs the "courier.templates.registration_code.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_registration_code_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.registration_code.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.registration_code.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_registration_code_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Registration via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.registration_code.valid.email.subject" setting.
+            This governs the "courier.templates.registration_code.valid.email.subject" setting.
           type: string
         kratos_courier_templates_registration_code_valid_sms_body_plaintext:
           description: |-
-            Configures the Ory Kratos Valid Registration via Code Email Subject Template
+            Configures the Ory Kratos Valid Registration via Code SMS Body Plaintext Template
 
-            This governs the "courier.smtp.templates.registration_code.valid.sms.body.plaintext" setting.
+            This governs the "courier.templates.registration_code.valid.sms.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_code_invalid_email_body_html:
           description: |-
             Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.verification_code.invalid.email.body.html" setting.
+            This governs the "courier.templates.verification_code.invalid.email.body.html" setting.
           type: string
         kratos_courier_templates_verification_code_invalid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.verification_code.invalid.email.body.plaintext" setting.
+            This governs the "courier.templates.verification_code.invalid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_code_invalid_email_subject:
           description: |-
             Configures the Ory Kratos Invalid Verification via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.verification_code.invalid.email.subject" setting.
+            This governs the "courier.templates.verification_code.invalid.email.subject" setting.
           type: string
         kratos_courier_templates_verification_code_valid_email_body_html:
           description: |-
             Configures the Ory Kratos Valid Verification via Code Email Body HTML Template
 
-            This governs the "courier.smtp.templates.verification_code.valid.email.body.html" setting.
+            This governs the "courier.templates.verification_code.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_verification_code_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.verification_code.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.verification_code.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_code_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Verification via Code Email Subject Template
 
-            This governs the "courier.smtp.templates.verification_code.valid.email.subject" setting.
+            This governs the "courier.templates.verification_code.valid.email.subject" setting.
           type: string
         kratos_courier_templates_verification_code_valid_sms_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext
 
-            This governs the "courier.smtp.templates.verification_code.valid.sms.body.plaintext" setting.
+            This governs the "courier.templates.verification_code.valid.sms.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_invalid_email_body_html:
           description: |-
             Configures the Ory Kratos Invalid Verification Email Body HTML Template
 
-            This governs the "courier.smtp.templates.verification.invalid.email.body.html" setting.
+            This governs the "courier.templates.verification.invalid.email.body.html" setting.
           type: string
         kratos_courier_templates_verification_invalid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Invalid Verification Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.verification.invalid.email.body.plaintext" setting.
+            This governs the "courier.templates.verification.invalid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_invalid_email_subject:
           description: |-
             Configures the Ory Kratos Invalid Verification Email Subject Template
 
-            This governs the "courier.smtp.templates.verification.invalid.email.subject" setting.
+            This governs the "courier.templates.verification.invalid.email.subject" setting.
           type: string
         kratos_courier_templates_verification_valid_email_body_html:
           description: |-
             Configures the Ory Kratos Valid Verification Email Body HTML Template
 
-            This governs the "courier.smtp.templates.verification.valid.email.body.html" setting.
+            This governs the "courier.templates.verification.valid.email.body.html" setting.
           type: string
         kratos_courier_templates_verification_valid_email_body_plaintext:
           description: |-
             Configures the Ory Kratos Valid Verification Email Body Plaintext Template
 
-            This governs the "courier.smtp.templates.verification.valid.email.body.plaintext" setting.
+            This governs the "courier.templates.verification.valid.email.body.plaintext" setting.
           type: string
         kratos_courier_templates_verification_valid_email_subject:
           description: |-
             Configures the Ory Kratos Valid Verification Email Subject Template
 
-            This governs the "courier.smtp.templates.verification.valid.email.subject" setting.
+            This governs the "courier.templates.verification.valid.email.subject" setting.
           type: string
         kratos_feature_flags_cacheable_sessions:
           description: |-
@@ -16072,6 +16445,8 @@ components:
 
             If true, it sets the password method group value to "password" if it is the only method available. This is the legacy behavior.
             If false is, it sets the password method group value to "default".
+
+            This governs the "feature_flags.password_profile_registration_node_group" setting.
           type: boolean
         kratos_feature_flags_use_continue_with_transitions:
           description: |-
@@ -16084,15 +16459,18 @@ components:
             $ref: "#/components/schemas/normalizedProjectRevisionIdentitySchema"
           type: array
         kratos_oauth2_provider_headers:
-          description: "NullJSONRawMessage represents a json.RawMessage that works\
-            \ well with JSON, SQL, and Swagger and is NULLable-"
-          nullable: true
+          description: |-
+            Configures the OAuth2 Provider Integration HTTP Headers
+
+            This governs the "oauth2_provider.headers" setting.
           type: object
         kratos_oauth2_provider_override_return_to:
           description: |-
             Kratos OAuth2 Provider Override Return To
 
             Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.
+
+            This governs the "oauth2_provider.override_return_to" setting.
           type: boolean
         kratos_oauth2_provider_url:
           description: |-
@@ -16103,8 +16481,6 @@ components:
         kratos_preview_default_read_consistency_level:
           description: |-
             Configures the default read consistency level for identity APIs
-
-            This governs the `preview.default_read_consistency_level` setting.
 
             The read consistency level determines the consistency guarantee for reads:
 
@@ -16117,46 +16493,59 @@ components:
             `GET /admin/identities`
 
             Defaults to "strong" for new and existing projects. This feature is in preview. Use with caution.
+            This governs the "preview.default_read_consistency_level" setting.
           type: string
         kratos_secrets_cipher:
+          description: |-
+            Configures the Ory Kratos Cipher Secret
+
+            This governs the "secrets.cipher" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_secrets_cookie:
+          description: |-
+            Configures the Ory Kratos Cookie Secret
+
+            This governs the "secrets.cookie" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_secrets_default:
+          description: |-
+            Configures the Ory Kratos Default Secret
+
+            This governs the "secrets.default" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_secrets_pagination:
+          description: |-
+            Configures the Ory Kratos Pagination Secret
+
+            This governs the "secrets.pagination" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_security_account_enumeration_mitigate:
-          description: Configures if account enumeration should be mitigated when
-            using identifier first login.
+          description: |-
+            Configures if account enumeration should be mitigated when using identifier first login.
+
+            This governs the "security.account_enumeration.mitigate" setting.
           type: boolean
         kratos_selfservice_allowed_return_urls:
+          description: |-
+            Configures the Ory Kratos Allowed Return URLs
+
+            This governs the "selfservice.allowed_return_urls" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_selfservice_default_browser_return_url:
           description: |-
             Configures the Ory Kratos Default Return URL
 
-            This governs the "selfservice.allowed_return_urls" setting.
+            This governs the "selfservice.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_error_ui_url:
           description: |-
@@ -16166,9 +16555,9 @@ components:
           type: string
         kratos_selfservice_flows_login_after_code_default_browser_return_url:
           description: |-
-            Configures the Ory Kratos Login After Password Default Return URL
+            Configures the Ory Kratos Login After Code Default Return URL
 
-            This governs the "selfservice.flows.code.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.login.after.code.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_login_after_default_browser_return_url:
           description: |-
@@ -16178,9 +16567,9 @@ components:
           type: string
         kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url:
           description: |-
-            Configures the Ory Kratos Login After Password Default Return URL
+            Configures the Ory Kratos Login After Lookup Secret Default Return URL
 
-            This governs the "selfservice.flows.lookup_secret.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.login.after.lookup_secret.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_login_after_oidc_default_browser_return_url:
           description: |-
@@ -16202,9 +16591,9 @@ components:
           type: string
         kratos_selfservice_flows_login_after_totp_default_browser_return_url:
           description: |-
-            Configures the Ory Kratos Login After Password Default Return URL
+            Configures the Ory Kratos Login After TOTP Default Return URL
 
-            This governs the "selfservice.flows.totp.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.login.after.totp.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_login_after_webauthn_default_browser_return_url:
           description: |-
@@ -16303,7 +16692,7 @@ components:
           description: |-
             Configures the Ory Kratos Registration After Passkey Default Return URL
 
-            This governs the "selfservice.flows.registration.after.password.default_browser_return_url" setting.
+            This governs the "selfservice.flows.registration.after.passkey.default_browser_return_url" setting.
           type: string
         kratos_selfservice_flows_registration_after_password_default_browser_return_url:
           description: |-
@@ -16470,16 +16859,20 @@ components:
             link SelfServiceMessageVerificationStrategyLink
             code SelfServiceMessageVerificationStrategyCode
         kratos_selfservice_methods_captcha_config_allowed_domains:
+          description: |-
+            Configures the CAPTCHA allowed domains list
+
+            This governs the "selfservice.methods.captcha.config.allowed_domains" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_selfservice_methods_captcha_config_byo:
           description: |-
             Configures whether to use BYO or managed widget
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.byo" setting.
           type: boolean
         kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret:
           description: |-
@@ -16488,6 +16881,8 @@ components:
             The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.cf_turnstile.secret" setting.
           type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey:
           description: |-
@@ -16496,6 +16891,8 @@ components:
             The site key is public and will be shared with the client.
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.cf_turnstile.sitekey" setting.
           type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_secret:
           description: |-
@@ -16504,6 +16901,8 @@ components:
             The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.cf_turnstile.secret" setting.
           type: string
         kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey:
           description: |-
@@ -16512,18 +16911,24 @@ components:
             The site key is public and will be shared with the client.
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.cf_turnstile.sitekey" setting.
           type: string
         kratos_selfservice_methods_captcha_config_legacy_inject_node:
           description: |-
-            Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting
+            Configures legacy CAPTCHA node injection behavior
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.config.legacy_inject_node" setting.
           type: boolean
         kratos_selfservice_methods_captcha_enabled:
           description: |-
             Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting
 
             Reach out to your account manager to enable this feature.
+
+            This governs the "selfservice.methods.captcha.enabled" setting.
           type: boolean
         kratos_selfservice_methods_code_config_lifespan:
           description: |-
@@ -16532,7 +16937,11 @@ components:
             This governs the "selfservice.methods.code.config.lifespan" setting.
           type: string
         kratos_selfservice_methods_code_config_max_submissions:
-          nullable: true
+          description: |-
+            Configures the maximum number of attempts to submit a one-time code in kratos.
+
+            This governs the "selfservice.methods.code.max_submissions" setting.
+          format: int64
           type: integer
         kratos_selfservice_methods_code_config_missing_credential_fallback_enabled:
           description: |-
@@ -16626,10 +17035,12 @@ components:
             This governs the "selfservice.methods.passkey.config.rp.id" setting.
           type: string
         kratos_selfservice_methods_passkey_config_rp_origins:
+          description: |-
+            Configures the Ory Kratos Passkey RP Origins
+
+            This governs the "selfservice.methods.passkey.config.rp.origins" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_selfservice_methods_passkey_enabled:
           description: |-
@@ -16729,10 +17140,12 @@ components:
             This governs the "selfservice.methods.webauthn.config.rp.id" setting.
           type: string
         kratos_selfservice_methods_webauthn_config_rp_origins:
+          description: |-
+            Configures the Ory Kratos Webauthn RP Origins
+
+            This governs the "selfservice.methods.webauthn.config.rp.origins" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         kratos_selfservice_methods_webauthn_enabled:
           description: |-
@@ -16788,10 +17201,12 @@ components:
             $ref: "#/components/schemas/normalizedProjectRevisionScimClient"
           type: array
         serve_admin_cors_allowed_origins:
+          description: |-
+            Configures the CORS Allowed Origins on admin APIs
+
+            This governs the "serve.admin.cors.allowed_origins" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         serve_admin_cors_enabled:
           description: |-
@@ -16800,10 +17215,12 @@ components:
             This governs the "serve.admin.cors.enabled" setting.
           type: boolean
         serve_public_cors_allowed_origins:
+          description: |-
+            Configures the CORS Allowed Origins on public APIs
+
+            This governs the "serve.public.cors.allowed_origins" setting.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         serve_public_cors_enabled:
           description: |-
@@ -17020,10 +17437,11 @@ components:
           readOnly: true
           type: string
         valid_to:
+          description: Valid to dates of all signing certs associated with the SAML
+            connection
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
+          readOnly: true
           type: array
       type: object
     normalizedProjectRevisionScimClient:
@@ -17106,10 +17524,12 @@ components:
             automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership.
             confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential.
         additional_id_token_audiences:
+          description: |-
+            AdditionalIDTokenAudiences is a list of additional audiences allowed in the ID Token.
+
+            This is only relevant in OIDC flows that submit an IDToken instead of using the callback from the OIDC provider.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         apple_private_key:
           nullable: true
@@ -17225,10 +17645,9 @@ components:
             \ JSON, SQL, and Swagger."
           type: object
         scope:
+          description: Scope specifies optional requested permissions.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         state:
           description: |-
@@ -17255,6 +17674,21 @@ components:
             `provider` is set to `generic`.
           example: https://www.googleapis.com/oauth2/v4/token
           type: string
+        update_identity_on_login:
+          description: |-
+            UpdateIdentityOnLogin controls whether the identity is updated from OIDC
+            claims on each login.
+
+            Possible values are "never" (default) and "automatic".
+            never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default).
+            automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every  OIDC login and updates the identity's traits and metadata automatically.
+          enum:
+          - never
+          - automatic
+          type: string
+          x-go-enum-desc: |-
+            never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default).
+            automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every  OIDC login and updates the identity's traits and metadata automatically.
         updated_at:
           description: Last Time Project's Revision was Updated
           format: date-time
@@ -17357,18 +17791,14 @@ components:
         client_secret: client_secret
         backchannel_logout_session_required: true
         backchannel_logout_uri: backchannel_logout_uri
-        audience:
-        - audience
-        - audience
+        audience: "https://mydomain.com/api/users, https://mydomain.com/api/posts"
         post_logout_redirect_uris:
         - post_logout_redirect_uris
         - post_logout_redirect_uris
         device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
         device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
         refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
-        redirect_uris:
-        - redirect_uris
-        - redirect_uris
+        redirect_uris: http://mydomain/oauth/callback
         sector_identifier_uri: sector_identifier_uri
         frontchannel_logout_session_required: true
         frontchannel_logout_uri: frontchannel_logout_uri
@@ -17445,29 +17875,37 @@ components:
         client_secret_expires_at: 0
         implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
         jwks_uri: jwks_uri
-        contacts:
-        - contacts
-        - contacts
+        contacts: help@example.org
       properties:
         access_token_strategy:
           description: |-
             OAuth 2.0 Access Token Strategy
 
             AccessTokenStrategy is the strategy used to generate access tokens.
-            Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.sh/docs/oauth2-oidc/jwt-access-token
+            Valid options are `jwt` and `opaque`. `jwt` is a bad idea, see https://www.ory.com/docs/oauth2-oidc/jwt-access-token
             Setting the strategy here overrides the global setting in `strategies.access_token`.
           type: string
         allowed_cors_origins:
+          description: |-
+            OAuth 2.0 Client Allowed CORS Origins
+
+            One or more URLs (scheme://host[:port]) which are allowed to make CORS requests
+            to the /oauth/token endpoint. If this array is empty, the server's CORS origin configuration (`CORS_ALLOWED_ORIGINS`)
+            will be used instead. If this array is set, the allowed origins are appended to the server's CORS origin configuration.
+            Be aware that environment variable `CORS_ENABLED` MUST be set to `true` for this to work.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         audience:
+          description: |-
+            OAuth 2.0 Client Audience
+
+            An allow-list defining the audiences this client is allowed to request tokens for. An audience limits
+            the applicability of an OAuth 2.0 Access Token to, for example, certain API endpoints. The value is a list
+            of URLs. URLs MUST NOT contain whitespaces.
+          example: "https://mydomain.com/api/users, https://mydomain.com/api/posts"
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         authorization_code_grant_access_token_lifespan:
           nullable: true
@@ -17535,10 +17973,14 @@ components:
             a clickable fashion.
           type: string
         contacts:
+          description: |-
+            OAuth 2.0 Client Contact
+
+            An array of strings representing ways to contact people responsible
+            for this client, typically email addresses.
+          example: help@example.org
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         created_at:
           description: |-
@@ -17577,10 +18019,20 @@ components:
             included, both MUST be.
           type: string
         grant_types:
+          description: |-
+            OAuth 2.0 Client Grant Types
+
+            An array of OAuth 2.0 grant types the client is allowed to use. Can be one
+            of:
+
+            Client Credentials Grant: `client_credentials`
+            Authorization Code Grant: `authorization_code`
+            OpenID Connect Implicit Grant (deprecated!): `implicit`
+            Refresh Token Grant: `refresh_token`
+            OAuth 2.0 Token Exchange: `urn:ietf:params:oauth:grant-type:jwt-bearer`
+            OAuth 2.0 Device Code Grant: `urn:ietf:params:oauth:grant-type:device_code`
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         implicit_grant_access_token_lifespan:
           nullable: true
@@ -17634,16 +18086,22 @@ components:
             retains, and discloses personal data.
           type: string
         post_logout_redirect_uris:
+          description: |-
+            Allowed Post-Redirect Logout URIs
+
+            Array of URLs supplied by the RP to which it MAY request that the End-User's User Agent be redirected using the
+            post_logout_redirect_uri parameter after a logout has been performed.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         redirect_uris:
+          description: |-
+            OAuth 2.0 Client Redirect URIs
+
+            RedirectURIs is an array of allowed redirect urls for the client.
+          example: http://mydomain/oauth/callback
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         refresh_token_grant_access_token_lifespan:
           nullable: true
@@ -17678,16 +18136,29 @@ components:
             from this Client MUST be rejected, if not signed with this algorithm.
           type: string
         request_uris:
+          description: |-
+            OpenID Connect Request URIs
+
+            Array of request_uri values that are pre-registered by the RP for use at the OP. Servers MAY cache the
+            contents of the files referenced by these URIs and not retrieve them at the time they are used in a request.
+            OPs can require that request_uri values used be pre-registered with the require_request_uri_registration
+            discovery parameter.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         response_types:
+          description: |-
+            OAuth 2.0 Client Response Types
+
+            An array of the OAuth 2.0 response type strings that the client can
+            use at the authorization endpoint. Can be one of:
+
+            Needed for OpenID Connect Implicit Grant:
+            Returns ID Token to redirect URI: `id_token`
+            Returns Access token redirect URI: `token`
+            Needed for Authorization Code Grant: `code`
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         scope:
           description: |-
@@ -17866,18 +18337,14 @@ components:
           client_secret: client_secret
           backchannel_logout_session_required: true
           backchannel_logout_uri: backchannel_logout_uri
-          audience:
-          - audience
-          - audience
+          audience: "https://mydomain.com/api/users, https://mydomain.com/api/posts"
           post_logout_redirect_uris:
           - post_logout_redirect_uris
           - post_logout_redirect_uris
           device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
           device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
           refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
-          redirect_uris:
-          - redirect_uris
-          - redirect_uris
+          redirect_uris: http://mydomain/oauth/callback
           sector_identifier_uri: sector_identifier_uri
           frontchannel_logout_session_required: true
           frontchannel_logout_uri: frontchannel_logout_uri
@@ -17954,9 +18421,7 @@ components:
           client_secret_expires_at: 0
           implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
           jwks_uri: jwks_uri
-          contacts:
-          - contacts
-          - contacts
+          contacts: help@example.org
         login_session_id: login_session_id
         requested_scope:
         - requested_scope
@@ -17968,10 +18433,13 @@ components:
             to express that, for example, a user authenticated using two factor authentication.
           type: string
         amr:
+          description: |-
+            AMR is the Authentication Methods References value for this
+            authentication session. You can use it to specify the method a user used to
+            authenticate. For example, if the acr indicates a user used two factor
+            authentication, the amr can express they used a software-secured key.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         challenge:
           description: Challenge is used to retrieve/accept/deny the consent request.
@@ -18006,16 +18474,16 @@ components:
             might come in handy if you want to deal with additional request parameters.
           type: string
         requested_access_token_audience:
+          description: RequestedAudience contains the access token audience as requested
+            by the OAuth 2.0 Client.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         requested_scope:
+          description: RequestedScope contains the OAuth 2.0 Scope requested by the
+            OAuth 2.0 Client.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         skip:
           description: |-
@@ -18142,18 +18610,14 @@ components:
             client_secret: client_secret
             backchannel_logout_session_required: true
             backchannel_logout_uri: backchannel_logout_uri
-            audience:
-            - audience
-            - audience
+            audience: "https://mydomain.com/api/users, https://mydomain.com/api/posts"
             post_logout_redirect_uris:
             - post_logout_redirect_uris
             - post_logout_redirect_uris
             device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
             device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
             refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
-            redirect_uris:
-            - redirect_uris
-            - redirect_uris
+            redirect_uris: http://mydomain/oauth/callback
             sector_identifier_uri: sector_identifier_uri
             frontchannel_logout_session_required: true
             frontchannel_logout_uri: frontchannel_logout_uri
@@ -18230,9 +18694,7 @@ components:
             client_secret_expires_at: 0
             implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
             jwks_uri: jwks_uri
-            contacts:
-            - contacts
-            - contacts
+            contacts: help@example.org
           login_session_id: login_session_id
           requested_scope:
           - requested_scope
@@ -18261,16 +18723,20 @@ components:
             \ JSON, SQL, and Swagger."
           type: object
         grant_access_token_audience:
+          description: |-
+            Audience Granted
+
+            GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         grant_scope:
+          description: |-
+            Scope Granted
+
+            GrantScope sets the scope the user authorized the client to use. Should be a subset of `requested_scope`.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         handled_at:
           format: date-time
@@ -18334,18 +18800,14 @@ components:
           client_secret: client_secret
           backchannel_logout_session_required: true
           backchannel_logout_uri: backchannel_logout_uri
-          audience:
-          - audience
-          - audience
+          audience: "https://mydomain.com/api/users, https://mydomain.com/api/posts"
           post_logout_redirect_uris:
           - post_logout_redirect_uris
           - post_logout_redirect_uris
           device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
           device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
           refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
-          redirect_uris:
-          - redirect_uris
-          - redirect_uris
+          redirect_uris: http://mydomain/oauth/callback
           sector_identifier_uri: sector_identifier_uri
           frontchannel_logout_session_required: true
           frontchannel_logout_uri: frontchannel_logout_uri
@@ -18422,9 +18884,7 @@ components:
           client_secret_expires_at: 0
           implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
           jwks_uri: jwks_uri
-          contacts:
-          - contacts
-          - contacts
+          contacts: help@example.org
         session_id: session_id
         skip: true
         request_url: request_url
@@ -18446,16 +18906,16 @@ components:
             might come in handy if you want to deal with additional request parameters.
           type: string
         requested_access_token_audience:
+          description: RequestedAudience contains the access token audience as requested
+            by the OAuth 2.0 Client.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         requested_scope:
+          description: RequestedScope contains the OAuth 2.0 Scope requested by the
+            OAuth 2.0 Client.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         session_id:
           description: |-
@@ -18506,18 +18966,14 @@ components:
           client_secret: client_secret
           backchannel_logout_session_required: true
           backchannel_logout_uri: backchannel_logout_uri
-          audience:
-          - audience
-          - audience
+          audience: "https://mydomain.com/api/users, https://mydomain.com/api/posts"
           post_logout_redirect_uris:
           - post_logout_redirect_uris
           - post_logout_redirect_uris
           device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
           device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
           refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
-          redirect_uris:
-          - redirect_uris
-          - redirect_uris
+          redirect_uris: http://mydomain/oauth/callback
           sector_identifier_uri: sector_identifier_uri
           frontchannel_logout_session_required: true
           frontchannel_logout_uri: frontchannel_logout_uri
@@ -18594,9 +19050,7 @@ components:
           client_secret_expires_at: 0
           implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
           jwks_uri: jwks_uri
-          contacts:
-          - contacts
-          - contacts
+          contacts: help@example.org
         rp_initiated: true
         request_url: request_url
         requested_at: 2000-01-23T04:56:07.000+00:00
@@ -19421,10 +19875,9 @@ components:
           format: date-time
           type: string
         domains:
+          description: The list of organization's domains.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         id:
           description: The organization's ID.
@@ -20159,9 +20612,16 @@ components:
         role: role
         organization_id: organization_id
         name: name
+        break_glass: true
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        source: project
         email: email
       properties:
+        break_glass:
+          description: |-
+            BreakGlass is true when the identity's recovery address has break-glass
+            recovery enabled for the identity's current organization.
+          type: boolean
         email:
           type: string
         email_verified:
@@ -20176,6 +20636,14 @@ components:
           nullable: true
           type: string
         role:
+          type: string
+        source:
+          description: |-
+            Whether the member has access through the project directly or through
+            workspace membership.
+          enum:
+          - project
+          - workspace
           type: string
       required:
       - email
@@ -20258,10 +20726,9 @@ components:
             us US
             global Global
         hosts:
+          description: The FQDN hostnames this project listens on
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         id:
           description: The project's ID.
@@ -20797,11 +21264,16 @@ components:
     recoveryIdentityAddress:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
+        break_glass_for_organization: break_glass_for_organization
         created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         value: value
         via: via
       properties:
+        break_glass_for_organization:
+          format: uuid4
+          nullable: true
+          type: string
         created_at:
           description: CreatedAt is a helper struct field for gobuffalo.pop.
           format: date-time
@@ -20887,18 +21359,14 @@ components:
             client_secret: client_secret
             backchannel_logout_session_required: true
             backchannel_logout_uri: backchannel_logout_uri
-            audience:
-            - audience
-            - audience
+            audience: "https://mydomain.com/api/users, https://mydomain.com/api/posts"
             post_logout_redirect_uris:
             - post_logout_redirect_uris
             - post_logout_redirect_uris
             device_authorization_grant_id_token_lifespan: device_authorization_grant_id_token_lifespan
             device_authorization_grant_access_token_lifespan: device_authorization_grant_access_token_lifespan
             refresh_token_grant_refresh_token_lifespan: refresh_token_grant_refresh_token_lifespan
-            redirect_uris:
-            - redirect_uris
-            - redirect_uris
+            redirect_uris: http://mydomain/oauth/callback
             sector_identifier_uri: sector_identifier_uri
             frontchannel_logout_session_required: true
             frontchannel_logout_uri: frontchannel_logout_uri
@@ -20975,9 +21443,7 @@ components:
             client_secret_expires_at: 0
             implicit_grant_access_token_lifespan: implicit_grant_access_token_lifespan
             jwks_uri: jwks_uri
-            contacts:
-            - contacts
-            - contacts
+            contacts: help@example.org
           session_id: session_id
           skip: true
           request_url: request_url
@@ -21426,11 +21892,13 @@ components:
           external_id: external_id
           recovery_addresses:
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             via: via
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
@@ -21833,11 +22301,13 @@ components:
           external_id: external_id
           recovery_addresses:
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             via: via
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
@@ -22145,11 +22615,13 @@ components:
             external_id: external_id
             recovery_addresses:
             - updated_at: 2000-01-23T04:56:07.000+00:00
+              break_glass_for_organization: break_glass_for_organization
               created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               via: via
             - updated_at: 2000-01-23T04:56:07.000+00:00
+              break_glass_for_organization: break_glass_for_organization
               created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
@@ -22241,11 +22713,13 @@ components:
           external_id: external_id
           recovery_addresses:
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             via: via
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
@@ -22316,11 +22790,13 @@ components:
             external_id: external_id
             recovery_addresses:
             - updated_at: 2000-01-23T04:56:07.000+00:00
+              break_glass_for_organization: break_glass_for_organization
               created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               via: via
             - updated_at: 2000-01-23T04:56:07.000+00:00
+              break_glass_for_organization: break_glass_for_organization
               created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
@@ -22470,7 +22946,7 @@ components:
             Items per page
 
             This is the number of items per page to return.
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+            For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
           format: int64
           maximum: 1000
           minimum: 1
@@ -22480,7 +22956,7 @@ components:
             Next Page Token
 
             The next page token.
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+            For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
           type: string
       type: object
     tokenPaginationHeaders:
@@ -22489,7 +22965,7 @@ components:
           description: |-
             The link header contains pagination links.
 
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+            For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
 
             in: header
           type: string
@@ -22505,7 +22981,7 @@ components:
         The `Link` HTTP header contains multiple links (`first`, `next`, `last`, `previous`) formatted as:
         `<https://{project-slug}.projects.oryapis.com/admin/clients?page_size={limit}&page_token={offset}>; rel="{page}"`
 
-        For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
       properties:
         page_size:
           default: 250
@@ -22513,7 +22989,7 @@ components:
             Items per Page
 
             This is the number of items per page to return.
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+            For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
           format: int64
           maximum: 500
           minimum: 1
@@ -22523,7 +22999,7 @@ components:
             Next Page Token
 
             The next page token.
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+            For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
           type: string
       title: Pagination Request Parameters
       type: object
@@ -22532,7 +23008,7 @@ components:
         The `Link` HTTP header contains multiple links (`first`, `next`, `last`, `previous`) formatted as:
         `<https://{project-slug}.projects.oryapis.com/admin/clients?page_size={limit}&page_token={offset}>; rel="{page}"`
 
-        For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
       properties:
         link:
           description: |-
@@ -23783,7 +24259,7 @@ components:
             If the email belongs to a valid account, a recovery email will be sent.
 
             If you want to notify the email address if the account does not exist, see
-            the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/account-recovery-password-reset#attempted-recovery-notifications)
+            the [notify_unknown_recipients flag](https://www.ory.com/docs/kratos/self-service/flows/account-recovery-password-reset#attempted-recovery-notifications)
 
             If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.
 
@@ -24479,16 +24955,14 @@ components:
           type: string
         email:
           description: |-
-            The email address to verify
+            The email address or phone number to verify
 
-            If the email belongs to a valid account, a verifiation email will be sent.
+            If the provided address belongs to a valid account, a verification email or SMS will be sent.
 
             If you want to notify the email address if the account does not exist, see
-            the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation#attempted-verification-notifications)
+            the [notify_unknown_recipients flag](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation#attempted-verification-notifications)
 
             If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.
-
-            format: email
           type: string
         method:
           description: |-
@@ -24676,7 +25150,7 @@ components:
         Used to verify an out-of-band communication
         channel such as an email address or a phone number.
 
-        For more information head over to: https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation
+        For more information head over to: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
       example:
         expires_at: 2000-01-23T04:56:07.000+00:00
         transient_payload: "{}"
@@ -24848,16 +25322,16 @@ components:
           description: RequestURL is the original Device Authorization URL requested.
           type: string
         requested_access_token_audience:
+          description: RequestedAudience contains the access token audience as requested
+            by the OAuth 2.0 Client.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         requested_scope:
+          description: RequestedScope contains the OAuth 2.0 Scope requested by the
+            OAuth 2.0 Client.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
       title: HandledDeviceUserAuthRequest is the request payload used to accept a
         device user_code.
@@ -24989,10 +25463,9 @@ components:
           format: date-time
           type: string
         domains:
+          description: The list of organization's domains.
           items:
             type: string
-          title: "StringSliceJSONFormat represents []string{} which is encoded to/from\
-            \ JSON for SQL storage."
           type: array
         id:
           description: The organization's ID.
@@ -25119,12 +25592,12 @@ components:
           tokenUrl: https://hydra.demo.ory.sh/oauth2/token
       type: oauth2
     oryAccessToken:
-      description: "To use this endpoint you need an [Ory Network API key](https://www.ory.sh/docs/concepts/personal-access-token)."
+      description: "To use this endpoint you need an [Ory Network API key](https://www.ory.com/docs/concepts/personal-access-token)."
       scheme: bearer
       type: http
     oryWorkspaceApiKey:
       description: "To use this endpoint you need a workspace-level [Ory Network API\
-        \ key](https://www.ory.sh/docs/concepts/personal-access-token)."
+        \ key](https://www.ory.com/docs/concepts/personal-access-token)."
       scheme: bearer
       type: http
 x-forwarded-proto: string

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.32
+API version: v1.22.35
 Contact: support@ory.sh
 */
 
@@ -24,33 +24,35 @@ var _ MappedNullable = &CreateProjectNormalizedPayload{}
 type CreateProjectNormalizedPayload struct {
 	// The Account Experience's Custom Translations  Contains all Custom Translations for this project.
 	AccountExperienceCustomTranslations []RevisionAccountExperienceCustomTranslation `json:"account_experience_custom_translations,omitempty"`
-	// Holds the default locale for the account experience.
+	// Holds the default locale for the account experience. This governs the \"default_locale\" setting.
 	AccountExperienceDefaultLocale *string `json:"account_experience_default_locale,omitempty"`
+	// The Account Experience's Enabled Locales  This governs the locales that are available in the account experience. This governs the \"enabled_locales\" setting.
 	AccountExperienceEnabledLocales []string `json:"account_experience_enabled_locales,omitempty"`
-	// Holds the URL to the account experience's dark theme favicon (currently unused).
+	// Holds the URL to the account experience's dark theme favicon (currently unused). This governs the \"favicon_dark\" setting.
 	AccountExperienceFaviconDark *string `json:"account_experience_favicon_dark,omitempty"`
-	// Holds the URL to the account experience's favicon.
+	// Holds the URL to the account experience's favicon. This governs the \"favicon_light\" setting.
 	AccountExperienceFaviconLight *string `json:"account_experience_favicon_light,omitempty"`
-	// Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language.
+	// Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language. This governs the \"locale_behavior\" setting.
 	AccountExperienceLocaleBehavior *string `json:"account_experience_locale_behavior,omitempty"`
-	// Holds the URL to the account experience's dark theme logo (currently unused).
+	// Holds the URL to the account experience's dark theme logo (currently unused). This governs the \"logo_dark\" setting.
 	AccountExperienceLogoDark *string `json:"account_experience_logo_dark,omitempty"`
-	// Holds the URL to the account experience's logo.
+	// Holds the URL to the account experience's logo. This governs the \"logo_light\" setting.
 	AccountExperienceLogoLight *string `json:"account_experience_logo_light,omitempty"`
-	// Holds the URL to the account experience's dark theme variables.
+	// Holds the URL to the account experience's dark theme variables. This governs the \"theme_variables_dark\" setting.
 	AccountExperienceThemeVariablesDark *string `json:"account_experience_theme_variables_dark,omitempty"`
-	// Holds the URL to the account experience's light theme variables.
+	// Holds the URL to the account experience's light theme variables. This governs the \"theme_variables_light\" setting.
 	AccountExperienceThemeVariablesLight *string `json:"account_experience_theme_variables_light,omitempty"`
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`.
+	// Whether to disable the account experience welcome screen, which is hosted under `/ui/welcome`. This governs the \"disable_welcome_screen\" setting.
 	DisableAccountExperienceWelcomeScreen *bool `json:"disable_account_experience_welcome_screen,omitempty"`
-	// Whether the new account experience is enabled and reachable.
+	// Whether the new account experience is enabled and reachable. This governs the \"enable_ax_v2\" setting.
 	EnableAxV2 *bool `json:"enable_ax_v2,omitempty"`
 	//  prod Production stage Staging dev Development
 	Environment string `json:"environment"`
 	//  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
 	HomeRegion *string `json:"home_region,omitempty"`
+	// A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.  This governs the \"oauth2.allowed_top_level_claims\" setting.
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
 	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 	HydraOauth2ClientCredentialsDefaultGrantAllowedScope *bool `json:"hydra_oauth2_client_credentials_default_grant_allowed_scope,omitempty"`
@@ -70,18 +72,25 @@ type CreateProjectNormalizedPayload struct {
 	HydraOauth2PkceEnforced *bool `json:"hydra_oauth2_pkce_enforced,omitempty"`
 	// Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \"oauth2.pkce.enforced_for_public_clients\" setting.
 	HydraOauth2PkceEnforcedForPublicClients *bool `json:"hydra_oauth2_pkce_enforced_for_public_clients,omitempty"`
+	// Set to true to keep custom claims that are not promoted to the top level in the 'ext' claim. Only applies when mirror_top_level_claims is false.  This governs the \"oauth2.preserve_ext_claims\" setting.
+	HydraOauth2PreserveExtClaims *bool `json:"hydra_oauth2_preserve_ext_claims,omitempty"`
 	// Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \"oauth2.refresh_token_hook\" setting.
 	HydraOauth2RefreshTokenHook *string `json:"hydra_oauth2_refresh_token_hook,omitempty"`
 	// Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook.url\" setting.
 	HydraOauth2TokenHook *string `json:"hydra_oauth2_token_hook,omitempty"`
+	// The OpenID Connect Dynamic Client Registration specification has no concept of whitelisting OAuth 2.0 Scope. If you want to expose Dynamic Client Registration, you should set the default scope enabled for newly registered clients. Keep in mind that users can overwrite this default by setting the \"scope\" key in the registration payload, effectively disabling the concept of whitelisted scopes.  This governs the \"oidc.dynamic_client_registration.default_scope\" setting.
 	HydraOidcDynamicClientRegistrationDefaultScope []string `json:"hydra_oidc_dynamic_client_registration_default_scope,omitempty"`
 	// Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
 	HydraOidcDynamicClientRegistrationEnabled *bool `json:"hydra_oidc_dynamic_client_registration_enabled,omitempty"`
 	// Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \"oidc.subject_identifiers.pairwise_salt\" setting.
 	HydraOidcSubjectIdentifiersPairwiseSalt *string `json:"hydra_oidc_subject_identifiers_pairwise_salt,omitempty"`
+	// Configures OpenID Connect Discovery and overwrites the list of Subject Identifier Algorithms to enable.  This governs the \"oidc.subject_identifiers.supported_types\" setting.
 	HydraOidcSubjectIdentifiersSupportedTypes []string `json:"hydra_oidc_subject_identifiers_supported_types,omitempty"`
+	// Configures the Ory Hydra Cookie Secret  This governs the \"secrets.cookie\" setting.
 	HydraSecretsCookie []string `json:"hydra_secrets_cookie,omitempty"`
+	// Configures the Ory Hydra Pagination Secret  This governs the \"secrets.pagination\" setting.
 	HydraSecretsPagination []string `json:"hydra_secrets_pagination,omitempty"`
+	// Configures the Ory Hydra System Secret  This governs the \"secrets.system\" setting.
 	HydraSecretsSystem []string `json:"hydra_secrets_system,omitempty"`
 	// Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \"serve.cookies.same_site_legacy_workaround\" setting.
 	HydraServeCookiesSameSiteLegacyWorkaround *bool `json:"hydra_serve_cookies_same_site_legacy_workaround,omitempty"`
@@ -89,7 +98,7 @@ type CreateProjectNormalizedPayload struct {
 	HydraServeCookiesSameSiteMode *string `json:"hydra_serve_cookies_same_site_mode,omitempty"`
 	// Defines access token type  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
 	HydraStrategiesAccessToken *string `json:"hydra_strategies_access_token,omitempty"`
-	// Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting:  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
+	// Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting.  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
 	HydraStrategiesJwtScopeClaim *string `json:"hydra_strategies_jwt_scope_claim,omitempty"`
 	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
 	HydraStrategiesScope *string `json:"hydra_strategies_scope,omitempty"`
@@ -117,49 +126,53 @@ type CreateProjectNormalizedPayload struct {
 	HydraUrlsRegistration *string `json:"hydra_urls_registration,omitempty"`
 	// This value will be used as the issuer in access and ID tokens. It must be specified and using HTTPS protocol, unless the development mode is enabled.  On the Ory Network it will be very rare that you want to modify this value. If left empty, it will default to the correct value for the Ory Network.  This governs the \"urls.self.issuer\" setting.
 	HydraUrlsSelfIssuer *string `json:"hydra_urls_self_issuer,omitempty"`
+	// A list of JSON Web Keys that should be exposed at that endpoint. This is usually the public key for verifying OpenID Connect ID Tokens. However, you might want to add additional keys here as well.  This governs the \"webfinger.jwks.broadcast_keys\" setting.
 	HydraWebfingerJwksBroadcastKeys []string `json:"hydra_webfinger_jwks_broadcast_keys,omitempty"`
-	// Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \"webfinger.oidc.discovery.auth_url\" setting.
+	// Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \"webfinger.oidc_discovery.auth_url\" setting.
 	HydraWebfingerOidcDiscoveryAuthUrl *string `json:"hydra_webfinger_oidc_discovery_auth_url,omitempty"`
-	// Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \"webfinger.oidc.discovery.client_registration_url\" setting.
+	// Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \"webfinger.oidc_discovery.client_registration_url\" setting.
 	HydraWebfingerOidcDiscoveryClientRegistrationUrl *string `json:"hydra_webfinger_oidc_discovery_client_registration_url,omitempty"`
-	// Configures OpenID Connect Discovery and overwrites the JWKS URL.  This governs the \"webfinger.oidc.discovery.jwks_url\" setting.
+	// Configures OpenID Connect Discovery and overwrites the JWKS URL.  This governs the \"webfinger.oidc_discovery.jwks_url\" setting.
 	HydraWebfingerOidcDiscoveryJwksUrl *string `json:"hydra_webfinger_oidc_discovery_jwks_url,omitempty"`
+	// Configures OpenID Connect Discovery and overwrites a list of supported claims to be broadcasted. Claim \"sub\" is always included.  This governs the \"webfinger.oidc_discovery.supported_claims\" setting.
 	HydraWebfingerOidcDiscoverySupportedClaims []string `json:"hydra_webfinger_oidc_discovery_supported_claims,omitempty"`
+	// Configures OpenID Connect Discovery and overwrites the scope OAuth 2.0 Clients may request. Scope `offline`, `offline_access`, and `openid` are always included.  This governs the \"webfinger.oidc_discovery.supported_scope\" setting.
 	HydraWebfingerOidcDiscoverySupportedScope []string `json:"hydra_webfinger_oidc_discovery_supported_scope,omitempty"`
-	// Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \"webfinger.oidc.discovery.token_url\" setting.
+	// Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \"webfinger.oidc_discovery.token_url\" setting.
 	HydraWebfingerOidcDiscoveryTokenUrl *string `json:"hydra_webfinger_oidc_discovery_token_url,omitempty"`
-	// Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra's userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \"webfinger.oidc.discovery.userinfo_url\" setting.
+	// Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra's userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \"webfinger.oidc_discovery.userinfo_url\" setting.
 	HydraWebfingerOidcDiscoveryUserinfoUrl *string `json:"hydra_webfinger_oidc_discovery_userinfo_url,omitempty"`
 	// The revision ID.
 	Id *string `json:"id,omitempty"`
-	// The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.
+	// The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.  This governs the \"namespaces.location\" setting.
 	KetoNamespaceConfiguration *string `json:"keto_namespace_configuration,omitempty"`
 	KetoNamespaces []KetoNamespace `json:"keto_namespaces,omitempty"`
+	// Configures Keto's pagination secrets.  This governs the \"secrets.pagination\" setting.
 	KetoSecretsPagination []string `json:"keto_secrets_pagination,omitempty"`
 	// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
 	KratosCookiesSameSite *string `json:"kratos_cookies_same_site,omitempty"`
 	KratosCourierChannels []NormalizedProjectRevisionCourierChannel `json:"kratos_courier_channels,omitempty"`
-	// The delivery strategy to use when sending emails  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
+	// The delivery strategy to use when sending emails  This governs the \"courier.delivery_strategy\" setting.  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
 	KratosCourierDeliveryStrategy *string `json:"kratos_courier_delivery_strategy,omitempty"`
-	// The location of the API key to use in the HTTP email sending service's authentication  `header`: Send the key value pair as a header `cookie`: Send the key value pair as a cookie This governs the \"courier.http.auth.config.in\" setting
+	// The location of the API key to use in the HTTP email sending service's authentication  `header`: Send the key value pair as a header `cookie`: Send the key value pair as a cookie This governs the \"courier.http.request_config.auth.config.in\" setting.
 	KratosCourierHttpRequestConfigAuthApiKeyIn *string `json:"kratos_courier_http_request_config_auth_api_key_in,omitempty"`
-	// The name of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.name\" setting
+	// The name of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.request_config.auth.config.name\" setting.
 	KratosCourierHttpRequestConfigAuthApiKeyName *string `json:"kratos_courier_http_request_config_auth_api_key_name,omitempty"`
-	// The value of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.value\" setting
+	// The value of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.request_config.auth.config.value\" setting.
 	KratosCourierHttpRequestConfigAuthApiKeyValue *string `json:"kratos_courier_http_request_config_auth_api_key_value,omitempty"`
-	// The password to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.password\" setting
+	// The password to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.request_config.auth.config.password\" setting.
 	KratosCourierHttpRequestConfigAuthBasicAuthPassword *string `json:"kratos_courier_http_request_config_auth_basic_auth_password,omitempty"`
-	// The user to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.auth.config.user\" setting
+	// The user to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.request_config.auth.config.user\" setting.
 	KratosCourierHttpRequestConfigAuthBasicAuthUser *string `json:"kratos_courier_http_request_config_auth_basic_auth_user,omitempty"`
-	// The authentication type to use while contacting the remote HTTP email sending service  `basic_auth`: Use Basic Authentication `api_key`: Use API Key Authentication in a header or cookie
+	// The authentication type to use while contacting the remote HTTP email sending service  This governs the \"courier.http.request_config.auth.type\" setting.  `basic_auth`: Use Basic Authentication `api_key`: Use API Key Authentication in a header or cookie
 	KratosCourierHttpRequestConfigAuthType *string `json:"kratos_courier_http_request_config_auth_type,omitempty"`
-	// The Jsonnet template to generate the body to send to the remote HTTP email sending service  Should be valid Jsonnet and base64 encoded  This governs the \"courier.http.body\" setting
+	// The Jsonnet template to generate the body to send to the remote HTTP email sending service  Should be valid Jsonnet and base64 encoded  This governs the \"courier.http.request_config.body\" setting.
 	KratosCourierHttpRequestConfigBody *string `json:"kratos_courier_http_request_config_body,omitempty"`
-	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+	// Any additional headers to send to the remote HTTP email sending service  This governs the \"courier.http.request_config.headers\" setting.
 	KratosCourierHttpRequestConfigHeaders map[string]interface{} `json:"kratos_courier_http_request_config_headers,omitempty"`
-	// The http METHOD to use when calling the remote HTTP email sending service
+	// The http METHOD to use when calling the remote HTTP email sending service  This governs the \"courier.http.request_config.method\" setting.
 	KratosCourierHttpRequestConfigMethod *string `json:"kratos_courier_http_request_config_method,omitempty"`
-	// The URL of the remote HTTP email sending service  This governs the \"courier.http.url\" setting
+	// The URL of the remote HTTP email sending service  This governs the \"courier.http.request_config.url\" setting.
 	KratosCourierHttpRequestConfigUrl *string `json:"kratos_courier_http_request_config_url,omitempty"`
 	// Configures the Ory Kratos SMTP Connection URI  This governs the \"courier.smtp.connection_uri\" setting.
 	KratosCourierSmtpConnectionUri *string `json:"kratos_courier_smtp_connection_uri,omitempty"`
@@ -167,75 +180,75 @@ type CreateProjectNormalizedPayload struct {
 	KratosCourierSmtpFromAddress *string `json:"kratos_courier_smtp_from_address,omitempty"`
 	// Configures the Ory Kratos SMTP From Name  This governs the \"courier.smtp.from_name\" setting.
 	KratosCourierSmtpFromName *string `json:"kratos_courier_smtp_from_name,omitempty"`
-	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+	// Configures the Ory Kratos SMTP Connection Headers  This governs the \"courier.smtp.headers\" setting.
 	KratosCourierSmtpHeaders map[string]interface{} `json:"kratos_courier_smtp_headers,omitempty"`
 	// Configures the local_name to use in SMTP connections  This governs the \"courier.smtp.local_name\" setting.
 	KratosCourierSmtpLocalName *string `json:"kratos_courier_smtp_local_name,omitempty"`
-	// Configures the Ory Kratos Valid Login via Code Email Body HTML Template  This governs the \"courier.smtp.templates.login_code.valid.email.body.html\" setting.
+	// Configures the Ory Kratos Valid Login via Code Email Body HTML Template  This governs the \"courier.templates.login_code.valid.email.body.html\" setting.
 	KratosCourierTemplatesLoginCodeValidEmailBodyHtml *string `json:"kratos_courier_templates_login_code_valid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.login_code.valid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Valid Login via Code Email Body Plaintext Template  This governs the \"courier.templates.login_code.valid.email.body.plaintext\" setting.
 	KratosCourierTemplatesLoginCodeValidEmailBodyPlaintext *string `json:"kratos_courier_templates_login_code_valid_email_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \"courier.smtp.templates.login_code.valid.email.subject\" setting.
+	// Configures the Ory Kratos Valid Login via Code Email Subject Template  This governs the \"courier.templates.login_code.valid.email.subject\" setting.
 	KratosCourierTemplatesLoginCodeValidEmailSubject *string `json:"kratos_courier_templates_login_code_valid_email_subject,omitempty"`
-	// Configures the Ory Kratos Valid Login via Code SMS plain text body  This governs the \"courier.smtp.templates.login_code.valid.sms.plaintext\" setting.
+	// Configures the Ory Kratos Valid Login via Code SMS plain text body  This governs the \"courier.templates.login_code.valid.sms.body.plaintext\" setting.
 	KratosCourierTemplatesLoginCodeValidSmsBodyPlaintext *string `json:"kratos_courier_templates_login_code_valid_sms_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
+	// Configures the Ory Kratos Invalid Recovery via Code Email Body HTML Template  This governs the \"courier.templates.recovery_code.invalid.email.body.html\" setting.
 	KratosCourierTemplatesRecoveryCodeInvalidEmailBodyHtml *string `json:"kratos_courier_templates_recovery_code_invalid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Invalid Recovery via Code Email Body Plaintext Template  This governs the \"courier.templates.recovery_code.invalid.email.body.plaintext\" setting.
 	KratosCourierTemplatesRecoveryCodeInvalidEmailBodyPlaintext *string `json:"kratos_courier_templates_recovery_code_invalid_email_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \"courier.smtp.templates.recovery_code.invalid.email.body.html\" setting.
+	// Configures the Ory Kratos Invalid Recovery via Code Email Subject Template  This governs the \"courier.templates.recovery_code.invalid.email.subject\" setting.
 	KratosCourierTemplatesRecoveryCodeInvalidEmailSubject *string `json:"kratos_courier_templates_recovery_code_invalid_email_subject,omitempty"`
-	// Configures the Ory Kratos Valid Recovery via Code Email Body HTML Template  This governs the \"courier.smtp.templates.recovery_code.valid.email.body.html\" setting.
+	// Configures the Ory Kratos Valid Recovery via Code Email Body HTML Template  This governs the \"courier.templates.recovery_code.valid.email.body.html\" setting.
 	KratosCourierTemplatesRecoveryCodeValidEmailBodyHtml *string `json:"kratos_courier_templates_recovery_code_valid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Valid Recovery via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery_code.valid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Valid Recovery via Code Email Body Plaintext Template  This governs the \"courier.templates.recovery_code.valid.email.body.plaintext\" setting.
 	KratosCourierTemplatesRecoveryCodeValidEmailBodyPlaintext *string `json:"kratos_courier_templates_recovery_code_valid_email_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Valid Recovery via Code Email Subject Template  This governs the \"courier.smtp.templates.recovery_code.valid.email.subject\" setting.
+	// Configures the Ory Kratos Valid Recovery via Code Email Subject Template  This governs the \"courier.templates.recovery_code.valid.email.subject\" setting.
 	KratosCourierTemplatesRecoveryCodeValidEmailSubject *string `json:"kratos_courier_templates_recovery_code_valid_email_subject,omitempty"`
-	// Configures the Ory Kratos Invalid Recovery Email Body HTML Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.html\" setting.
+	// Configures the Ory Kratos Invalid Recovery Email Body HTML Template  This governs the \"courier.templates.recovery.invalid.email.body.html\" setting.
 	KratosCourierTemplatesRecoveryInvalidEmailBodyHtml *string `json:"kratos_courier_templates_recovery_invalid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Invalid Recovery Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Invalid Recovery Email Body Plaintext Template  This governs the \"courier.templates.recovery.invalid.email.body.plaintext\" setting.
 	KratosCourierTemplatesRecoveryInvalidEmailBodyPlaintext *string `json:"kratos_courier_templates_recovery_invalid_email_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Invalid Recovery Email Subject Template  This governs the \"courier.smtp.templates.recovery.invalid.email.body.html\" setting.
+	// Configures the Ory Kratos Invalid Recovery Email Subject Template  This governs the \"courier.templates.recovery.invalid.email.subject\" setting.
 	KratosCourierTemplatesRecoveryInvalidEmailSubject *string `json:"kratos_courier_templates_recovery_invalid_email_subject,omitempty"`
-	// Configures the Ory Kratos Valid Recovery Email Body HTML Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.html\" setting.
+	// Configures the Ory Kratos Valid Recovery Email Body HTML Template  This governs the \"courier.templates.recovery.valid.email.body.html\" setting.
 	KratosCourierTemplatesRecoveryValidEmailBodyHtml *string `json:"kratos_courier_templates_recovery_valid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Valid Recovery Email Body Plaintext Template  This governs the \"courier.smtp.templates.recovery.valid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Valid Recovery Email Body Plaintext Template  This governs the \"courier.templates.recovery.valid.email.body.plaintext\" setting.
 	KratosCourierTemplatesRecoveryValidEmailBodyPlaintext *string `json:"kratos_courier_templates_recovery_valid_email_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Valid Recovery Email Subject Template  This governs the \"courier.smtp.templates.recovery.valid.email.subject\" setting.
+	// Configures the Ory Kratos Valid Recovery Email Subject Template  This governs the \"courier.templates.recovery.valid.email.subject\" setting.
 	KratosCourierTemplatesRecoveryValidEmailSubject *string `json:"kratos_courier_templates_recovery_valid_email_subject,omitempty"`
-	// Configures the Ory Kratos Valid Registration via Code Email Body HTML Template  This governs the \"courier.smtp.templates.registration_code.valid.email.body.html\" setting.
+	// Configures the Ory Kratos Valid Registration via Code Email Body HTML Template  This governs the \"courier.templates.registration_code.valid.email.body.html\" setting.
 	KratosCourierTemplatesRegistrationCodeValidEmailBodyHtml *string `json:"kratos_courier_templates_registration_code_valid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.registration_code.valid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template  This governs the \"courier.templates.registration_code.valid.email.body.plaintext\" setting.
 	KratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext *string `json:"kratos_courier_templates_registration_code_valid_email_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.smtp.templates.registration_code.valid.email.subject\" setting.
+	// Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.templates.registration_code.valid.email.subject\" setting.
 	KratosCourierTemplatesRegistrationCodeValidEmailSubject *string `json:"kratos_courier_templates_registration_code_valid_email_subject,omitempty"`
-	// Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \"courier.smtp.templates.registration_code.valid.sms.body.plaintext\" setting.
+	// Configures the Ory Kratos Valid Registration via Code SMS Body Plaintext Template  This governs the \"courier.templates.registration_code.valid.sms.body.plaintext\" setting.
 	KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext *string `json:"kratos_courier_templates_registration_code_valid_sms_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.html\" setting.
+	// Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.templates.verification_code.invalid.email.body.html\" setting.
 	KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml *string `json:"kratos_courier_templates_verification_code_invalid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \"courier.templates.verification_code.invalid.email.body.plaintext\" setting.
 	KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_code_invalid_email_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.invalid.email.subject\" setting.
+	// Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \"courier.templates.verification_code.invalid.email.subject\" setting.
 	KratosCourierTemplatesVerificationCodeInvalidEmailSubject *string `json:"kratos_courier_templates_verification_code_invalid_email_subject,omitempty"`
-	// Configures the Ory Kratos Valid Verification via Code Email Body HTML Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.html\" setting.
+	// Configures the Ory Kratos Valid Verification via Code Email Body HTML Template  This governs the \"courier.templates.verification_code.valid.email.body.html\" setting.
 	KratosCourierTemplatesVerificationCodeValidEmailBodyHtml *string `json:"kratos_courier_templates_verification_code_valid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification_code.valid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Valid Verification via Code Email Body Plaintext Template  This governs the \"courier.templates.verification_code.valid.email.body.plaintext\" setting.
 	KratosCourierTemplatesVerificationCodeValidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_code_valid_email_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.smtp.templates.verification_code.valid.email.subject\" setting.
+	// Configures the Ory Kratos Valid Verification via Code Email Subject Template  This governs the \"courier.templates.verification_code.valid.email.subject\" setting.
 	KratosCourierTemplatesVerificationCodeValidEmailSubject *string `json:"kratos_courier_templates_verification_code_valid_email_subject,omitempty"`
-	// Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext  This governs the \"courier.smtp.templates.verification_code.valid.sms.body.plaintext\" setting.
+	// Configures the Ory Kratos Valid Verification via Code SMS Body Plaintext  This governs the \"courier.templates.verification_code.valid.sms.body.plaintext\" setting.
 	KratosCourierTemplatesVerificationCodeValidSmsBodyPlaintext *string `json:"kratos_courier_templates_verification_code_valid_sms_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.html\" setting.
+	// Configures the Ory Kratos Invalid Verification Email Body HTML Template  This governs the \"courier.templates.verification.invalid.email.body.html\" setting.
 	KratosCourierTemplatesVerificationInvalidEmailBodyHtml *string `json:"kratos_courier_templates_verification_invalid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.invalid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Invalid Verification Email Body Plaintext Template  This governs the \"courier.templates.verification.invalid.email.body.plaintext\" setting.
 	KratosCourierTemplatesVerificationInvalidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_invalid_email_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Invalid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.invalid.email.subject\" setting.
+	// Configures the Ory Kratos Invalid Verification Email Subject Template  This governs the \"courier.templates.verification.invalid.email.subject\" setting.
 	KratosCourierTemplatesVerificationInvalidEmailSubject *string `json:"kratos_courier_templates_verification_invalid_email_subject,omitempty"`
-	// Configures the Ory Kratos Valid Verification Email Body HTML Template  This governs the \"courier.smtp.templates.verification.valid.email.body.html\" setting.
+	// Configures the Ory Kratos Valid Verification Email Body HTML Template  This governs the \"courier.templates.verification.valid.email.body.html\" setting.
 	KratosCourierTemplatesVerificationValidEmailBodyHtml *string `json:"kratos_courier_templates_verification_valid_email_body_html,omitempty"`
-	// Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.smtp.templates.verification.valid.email.body.plaintext\" setting.
+	// Configures the Ory Kratos Valid Verification Email Body Plaintext Template  This governs the \"courier.templates.verification.valid.email.body.plaintext\" setting.
 	KratosCourierTemplatesVerificationValidEmailBodyPlaintext *string `json:"kratos_courier_templates_verification_valid_email_body_plaintext,omitempty"`
-	// Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.smtp.templates.verification.valid.email.subject\" setting.
+	// Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \"courier.templates.verification.valid.email.subject\" setting.
 	KratosCourierTemplatesVerificationValidEmailSubject *string `json:"kratos_courier_templates_verification_valid_email_subject,omitempty"`
 	// Configures the Ory Kratos Session caching feature flag  This governs the \"feature_flags.cacheable_sessions\" setting.
 	KratosFeatureFlagsCacheableSessions *bool `json:"kratos_feature_flags_cacheable_sessions,omitempty"`
@@ -251,35 +264,40 @@ type CreateProjectNormalizedPayload struct {
 	KratosFeatureFlagsLegacyOidcRegistrationNodeGroup *bool `json:"kratos_feature_flags_legacy_oidc_registration_node_group,omitempty"`
 	// Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.  This flag is deprecated and will be removed in the future.  This governs the \"feature_flags.legacy_require_verified_login_error\" setting.
 	KratosFeatureFlagsLegacyRequireVerifiedLoginError *bool `json:"kratos_feature_flags_legacy_require_verified_login_error,omitempty"`
-	// Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \"password\" if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \"default\".
+	// Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \"password\" if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \"default\".  This governs the \"feature_flags.password_profile_registration_node_group\" setting.
 	KratosFeatureFlagsPasswordProfileRegistrationNodeGroup *bool `json:"kratos_feature_flags_password_profile_registration_node_group,omitempty"`
 	// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
 	KratosFeatureFlagsUseContinueWithTransitions *bool `json:"kratos_feature_flags_use_continue_with_transitions,omitempty"`
 	KratosIdentitySchemas []NormalizedProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
-	// NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable-
+	// Configures the OAuth2 Provider Integration HTTP Headers  This governs the \"oauth2_provider.headers\" setting.
 	KratosOauth2ProviderHeaders map[string]interface{} `json:"kratos_oauth2_provider_headers,omitempty"`
-	// Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.
+	// Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.  This governs the \"oauth2_provider.override_return_to\" setting.
 	KratosOauth2ProviderOverrideReturnTo *bool `json:"kratos_oauth2_provider_override_return_to,omitempty"`
 	// The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
 	KratosOauth2ProviderUrl *string `json:"kratos_oauth2_provider_url,omitempty"`
-	// Configures the default read consistency level for identity APIs  This governs the `preview.default_read_consistency_level` setting.  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  Defaults to \"strong\" for new and existing projects. This feature is in preview. Use with caution.
+	// Configures the default read consistency level for identity APIs  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  Defaults to \"strong\" for new and existing projects. This feature is in preview. Use with caution. This governs the \"preview.default_read_consistency_level\" setting.
 	KratosPreviewDefaultReadConsistencyLevel *string `json:"kratos_preview_default_read_consistency_level,omitempty"`
+	// Configures the Ory Kratos Cipher Secret  This governs the \"secrets.cipher\" setting.
 	KratosSecretsCipher []string `json:"kratos_secrets_cipher,omitempty"`
+	// Configures the Ory Kratos Cookie Secret  This governs the \"secrets.cookie\" setting.
 	KratosSecretsCookie []string `json:"kratos_secrets_cookie,omitempty"`
+	// Configures the Ory Kratos Default Secret  This governs the \"secrets.default\" setting.
 	KratosSecretsDefault []string `json:"kratos_secrets_default,omitempty"`
+	// Configures the Ory Kratos Pagination Secret  This governs the \"secrets.pagination\" setting.
 	KratosSecretsPagination []string `json:"kratos_secrets_pagination,omitempty"`
-	// Configures if account enumeration should be mitigated when using identifier first login.
+	// Configures if account enumeration should be mitigated when using identifier first login.  This governs the \"security.account_enumeration.mitigate\" setting.
 	KratosSecurityAccountEnumerationMitigate *bool `json:"kratos_security_account_enumeration_mitigate,omitempty"`
+	// Configures the Ory Kratos Allowed Return URLs  This governs the \"selfservice.allowed_return_urls\" setting.
 	KratosSelfserviceAllowedReturnUrls []string `json:"kratos_selfservice_allowed_return_urls,omitempty"`
-	// Configures the Ory Kratos Default Return URL  This governs the \"selfservice.allowed_return_urls\" setting.
+	// Configures the Ory Kratos Default Return URL  This governs the \"selfservice.default_browser_return_url\" setting.
 	KratosSelfserviceDefaultBrowserReturnUrl *string `json:"kratos_selfservice_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Error UI URL  This governs the \"selfservice.flows.error.ui_url\" setting.
 	KratosSelfserviceFlowsErrorUiUrl *string `json:"kratos_selfservice_flows_error_ui_url,omitempty"`
-	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.code.after.password.default_browser_return_url\" setting.
+	// Configures the Ory Kratos Login After Code Default Return URL  This governs the \"selfservice.flows.login.after.code.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterCodeDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_code_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login Default Return URL  This governs the \"selfservice.flows.login.after.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_default_browser_return_url,omitempty"`
-	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.lookup_secret.after.password.default_browser_return_url\" setting.
+	// Configures the Ory Kratos Login After Lookup Secret Default Return URL  This governs the \"selfservice.flows.login.after.lookup_secret.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterLookupSecretDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_lookup_secret_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After OIDC Default Return URL  This governs the \"selfservice.flows.login.after.oidc.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterOidcDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_oidc_default_browser_return_url,omitempty"`
@@ -287,7 +305,7 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceFlowsLoginAfterPasskeyDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_passkey_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.login.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_password_default_browser_return_url,omitempty"`
-	// Configures the Ory Kratos Login After Password Default Return URL  This governs the \"selfservice.flows.totp.after.password.default_browser_return_url\" setting.
+	// Configures the Ory Kratos Login After TOTP Default Return URL  This governs the \"selfservice.flows.login.after.totp.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_totp_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \"selfservice.flows.login.after.webauthn.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_webauthn_default_browser_return_url,omitempty"`
@@ -317,7 +335,7 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceFlowsRegistrationAfterDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Registration After OIDC Default Return URL  This governs the \"selfservice.flows.registration.after.oidc.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterOidcDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_oidc_default_browser_return_url,omitempty"`
-	// Configures the Ory Kratos Registration After Passkey Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
+	// Configures the Ory Kratos Registration After Passkey Default Return URL  This governs the \"selfservice.flows.registration.after.passkey.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterPasskeyDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_passkey_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Registration After Password Default Return URL  This governs the \"selfservice.flows.registration.after.password.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsRegistrationAfterPasswordDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_registration_after_password_default_browser_return_url,omitempty"`
@@ -369,24 +387,26 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceFlowsVerificationUiUrl *string `json:"kratos_selfservice_flows_verification_ui_url,omitempty"`
 	// Configures the Ory Kratos Strategy to use for Verification  This governs the \"selfservice.flows.verification.use\" setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode
 	KratosSelfserviceFlowsVerificationUse *string `json:"kratos_selfservice_flows_verification_use,omitempty"`
+	// Configures the CAPTCHA allowed domains list  This governs the \"selfservice.methods.captcha.config.allowed_domains\" setting.
 	KratosSelfserviceMethodsCaptchaConfigAllowedDomains []string `json:"kratos_selfservice_methods_captcha_config_allowed_domains,omitempty"`
-	// Configures whether to use BYO or managed widget  Reach out to your account manager to enable this feature.
+	// Configures whether to use BYO or managed widget  Reach out to your account manager to enable this feature.  This governs the \"selfservice.methods.captcha.config.byo\" setting.
 	KratosSelfserviceMethodsCaptchaConfigByo *bool `json:"kratos_selfservice_methods_captcha_config_byo,omitempty"`
-	// Configures the Cloudflare Turnstile site secret for Ory BYO CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.
+	// Configures the Cloudflare Turnstile site secret for Ory BYO CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.  This governs the \"selfservice.methods.captcha.config.cf_turnstile.secret\" setting.
 	KratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSecret *string `json:"kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret,omitempty"`
-	// Configures the Cloudflare Turnstile site key for Ory BYO CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
+	// Configures the Cloudflare Turnstile site key for Ory BYO CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.  This governs the \"selfservice.methods.captcha.config.cf_turnstile.sitekey\" setting.
 	KratosSelfserviceMethodsCaptchaConfigCfTurnstileByoSitekey *string `json:"kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey,omitempty"`
-	// Configures the Cloudflare Turnstile site secret for managed CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.
+	// Configures the Cloudflare Turnstile site secret for managed CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.  This governs the \"selfservice.methods.captcha.config.cf_turnstile.secret\" setting.
 	KratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret *string `json:"kratos_selfservice_methods_captcha_config_cf_turnstile_secret,omitempty"`
-	// Configures the Cloudflare Turnstile site key for managed CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
+	// Configures the Cloudflare Turnstile site key for managed CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.  This governs the \"selfservice.methods.captcha.config.cf_turnstile.sitekey\" setting.
 	KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey *string `json:"kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey,omitempty"`
-	// Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
+	// Configures legacy CAPTCHA node injection behavior  Reach out to your account manager to enable this feature.  This governs the \"selfservice.methods.captcha.config.legacy_inject_node\" setting.
 	KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode *bool `json:"kratos_selfservice_methods_captcha_config_legacy_inject_node,omitempty"`
-	// Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
+	// Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.  This governs the \"selfservice.methods.captcha.enabled\" setting.
 	KratosSelfserviceMethodsCaptchaEnabled *bool `json:"kratos_selfservice_methods_captcha_enabled,omitempty"`
 	// Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
 	KratosSelfserviceMethodsCodeConfigLifespan *string `json:"kratos_selfservice_methods_code_config_lifespan,omitempty"`
-	KratosSelfserviceMethodsCodeConfigMaxSubmissions NullableInt32 `json:"kratos_selfservice_methods_code_config_max_submissions,omitempty"`
+	// Configures the maximum number of attempts to submit a one-time code in kratos.  This governs the \"selfservice.methods.code.max_submissions\" setting.
+	KratosSelfserviceMethodsCodeConfigMaxSubmissions *int64 `json:"kratos_selfservice_methods_code_config_max_submissions,omitempty"`
 	// Enables a fallback method required in certain legacy use cases.  This governs the \"selfservice.methods.code.config.missing_credential_fallback_enabled\" setting.
 	KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled *bool `json:"kratos_selfservice_methods_code_config_missing_credential_fallback_enabled,omitempty"`
 	// Configures whether Ory Kratos Code Method is enabled  This governs the \"selfservice.methods.code.enabled\" setting.
@@ -416,6 +436,7 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceMethodsPasskeyConfigRpDisplayName *string `json:"kratos_selfservice_methods_passkey_config_rp_display_name,omitempty"`
 	// Configures the Ory Kratos Passkey RP ID  This governs the \"selfservice.methods.passkey.config.rp.id\" setting.
 	KratosSelfserviceMethodsPasskeyConfigRpId *string `json:"kratos_selfservice_methods_passkey_config_rp_id,omitempty"`
+	// Configures the Ory Kratos Passkey RP Origins  This governs the \"selfservice.methods.passkey.config.rp.origins\" setting.
 	KratosSelfserviceMethodsPasskeyConfigRpOrigins []string `json:"kratos_selfservice_methods_passkey_config_rp_origins,omitempty"`
 	// Configures whether Ory Kratos Passkey authentication is enabled  This governs the \"selfservice.methods.passkey.enabled\" setting.
 	KratosSelfserviceMethodsPasskeyEnabled *bool `json:"kratos_selfservice_methods_passkey_enabled,omitempty"`
@@ -448,6 +469,7 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceMethodsWebauthnConfigRpIcon *string `json:"kratos_selfservice_methods_webauthn_config_rp_icon,omitempty"`
 	// Configures the Ory Kratos Webauthn RP ID  This governs the \"selfservice.methods.webauthn.config.rp.id\" setting.
 	KratosSelfserviceMethodsWebauthnConfigRpId *string `json:"kratos_selfservice_methods_webauthn_config_rp_id,omitempty"`
+	// Configures the Ory Kratos Webauthn RP Origins  This governs the \"selfservice.methods.webauthn.config.rp.origins\" setting.
 	KratosSelfserviceMethodsWebauthnConfigRpOrigins []string `json:"kratos_selfservice_methods_webauthn_config_rp_origins,omitempty"`
 	// Configures whether Ory Kratos Webauthn is enabled  This governs the \"selfservice.methods.webauthn.enabled\" setting.
 	KratosSelfserviceMethodsWebauthnEnabled *bool `json:"kratos_selfservice_methods_webauthn_enabled,omitempty"`
@@ -467,9 +489,11 @@ type CreateProjectNormalizedPayload struct {
 	ProjectId *string `json:"project_id,omitempty"`
 	ProjectRevisionHooks []NormalizedProjectRevisionHook `json:"project_revision_hooks,omitempty"`
 	ScimClients []NormalizedProjectRevisionScimClient `json:"scim_clients,omitempty"`
+	// Configures the CORS Allowed Origins on admin APIs  This governs the \"serve.admin.cors.allowed_origins\" setting.
 	ServeAdminCorsAllowedOrigins []string `json:"serve_admin_cors_allowed_origins,omitempty"`
 	// Enable CORS headers on all admin APIs  This governs the \"serve.admin.cors.enabled\" setting.
 	ServeAdminCorsEnabled *bool `json:"serve_admin_cors_enabled,omitempty"`
+	// Configures the CORS Allowed Origins on public APIs  This governs the \"serve.public.cors.allowed_origins\" setting.
 	ServePublicCorsAllowedOrigins []string `json:"serve_public_cors_allowed_origins,omitempty"`
 	// Enable CORS headers on all public APIs  This governs the \"serve.public.cors.enabled\" setting.
 	ServePublicCorsEnabled *bool `json:"serve_public_cors_enabled,omitempty"`
@@ -1340,6 +1364,38 @@ func (o *CreateProjectNormalizedPayload) HasHydraOauth2PkceEnforcedForPublicClie
 // SetHydraOauth2PkceEnforcedForPublicClients gets a reference to the given bool and assigns it to the HydraOauth2PkceEnforcedForPublicClients field.
 func (o *CreateProjectNormalizedPayload) SetHydraOauth2PkceEnforcedForPublicClients(v bool) {
 	o.HydraOauth2PkceEnforcedForPublicClients = &v
+}
+
+// GetHydraOauth2PreserveExtClaims returns the HydraOauth2PreserveExtClaims field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2PreserveExtClaims() bool {
+	if o == nil || IsNil(o.HydraOauth2PreserveExtClaims) {
+		var ret bool
+		return ret
+	}
+	return *o.HydraOauth2PreserveExtClaims
+}
+
+// GetHydraOauth2PreserveExtClaimsOk returns a tuple with the HydraOauth2PreserveExtClaims field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2PreserveExtClaimsOk() (*bool, bool) {
+	if o == nil || IsNil(o.HydraOauth2PreserveExtClaims) {
+		return nil, false
+	}
+	return o.HydraOauth2PreserveExtClaims, true
+}
+
+// HasHydraOauth2PreserveExtClaims returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasHydraOauth2PreserveExtClaims() bool {
+	if o != nil && !IsNil(o.HydraOauth2PreserveExtClaims) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2PreserveExtClaims gets a reference to the given bool and assigns it to the HydraOauth2PreserveExtClaims field.
+func (o *CreateProjectNormalizedPayload) SetHydraOauth2PreserveExtClaims(v bool) {
+	o.HydraOauth2PreserveExtClaims = &v
 }
 
 // GetHydraOauth2RefreshTokenHook returns the HydraOauth2RefreshTokenHook field value if set, zero value otherwise.
@@ -2878,9 +2934,9 @@ func (o *CreateProjectNormalizedPayload) SetKratosCourierHttpRequestConfigBody(v
 	o.KratosCourierHttpRequestConfigBody = &v
 }
 
-// GetKratosCourierHttpRequestConfigHeaders returns the KratosCourierHttpRequestConfigHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosCourierHttpRequestConfigHeaders returns the KratosCourierHttpRequestConfigHeaders field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosCourierHttpRequestConfigHeaders() map[string]interface{} {
-	if o == nil {
+	if o == nil || IsNil(o.KratosCourierHttpRequestConfigHeaders) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -2889,7 +2945,6 @@ func (o *CreateProjectNormalizedPayload) GetKratosCourierHttpRequestConfigHeader
 
 // GetKratosCourierHttpRequestConfigHeadersOk returns a tuple with the KratosCourierHttpRequestConfigHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateProjectNormalizedPayload) GetKratosCourierHttpRequestConfigHeadersOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.KratosCourierHttpRequestConfigHeaders) {
 		return map[string]interface{}{}, false
@@ -3071,9 +3126,9 @@ func (o *CreateProjectNormalizedPayload) SetKratosCourierSmtpFromName(v string) 
 	o.KratosCourierSmtpFromName = &v
 }
 
-// GetKratosCourierSmtpHeaders returns the KratosCourierSmtpHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosCourierSmtpHeaders returns the KratosCourierSmtpHeaders field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosCourierSmtpHeaders() map[string]interface{} {
-	if o == nil {
+	if o == nil || IsNil(o.KratosCourierSmtpHeaders) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -3082,7 +3137,6 @@ func (o *CreateProjectNormalizedPayload) GetKratosCourierSmtpHeaders() map[strin
 
 // GetKratosCourierSmtpHeadersOk returns a tuple with the KratosCourierSmtpHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateProjectNormalizedPayload) GetKratosCourierSmtpHeadersOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.KratosCourierSmtpHeaders) {
 		return map[string]interface{}{}, false
@@ -4512,9 +4566,9 @@ func (o *CreateProjectNormalizedPayload) SetKratosIdentitySchemas(v []Normalized
 	o.KratosIdentitySchemas = v
 }
 
-// GetKratosOauth2ProviderHeaders returns the KratosOauth2ProviderHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetKratosOauth2ProviderHeaders returns the KratosOauth2ProviderHeaders field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosOauth2ProviderHeaders() map[string]interface{} {
-	if o == nil {
+	if o == nil || IsNil(o.KratosOauth2ProviderHeaders) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -4523,7 +4577,6 @@ func (o *CreateProjectNormalizedPayload) GetKratosOauth2ProviderHeaders() map[st
 
 // GetKratosOauth2ProviderHeadersOk returns a tuple with the KratosOauth2ProviderHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateProjectNormalizedPayload) GetKratosOauth2ProviderHeadersOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.KratosOauth2ProviderHeaders) {
 		return map[string]interface{}{}, false
@@ -6689,46 +6742,36 @@ func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCodeConfigLi
 	o.KratosSelfserviceMethodsCodeConfigLifespan = &v
 }
 
-// GetKratosSelfserviceMethodsCodeConfigMaxSubmissions returns the KratosSelfserviceMethodsCodeConfigMaxSubmissions field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsCodeConfigMaxSubmissions() int32 {
-	if o == nil || IsNil(o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Get()) {
-		var ret int32
+// GetKratosSelfserviceMethodsCodeConfigMaxSubmissions returns the KratosSelfserviceMethodsCodeConfigMaxSubmissions field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsCodeConfigMaxSubmissions() int64 {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCodeConfigMaxSubmissions) {
+		var ret int64
 		return ret
 	}
-	return *o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Get()
+	return *o.KratosSelfserviceMethodsCodeConfigMaxSubmissions
 }
 
 // GetKratosSelfserviceMethodsCodeConfigMaxSubmissionsOk returns a tuple with the KratosSelfserviceMethodsCodeConfigMaxSubmissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsCodeConfigMaxSubmissionsOk() (*int32, bool) {
-	if o == nil {
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsCodeConfigMaxSubmissionsOk() (*int64, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsCodeConfigMaxSubmissions) {
 		return nil, false
 	}
-	return o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Get(), o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.IsSet()
+	return o.KratosSelfserviceMethodsCodeConfigMaxSubmissions, true
 }
 
 // HasKratosSelfserviceMethodsCodeConfigMaxSubmissions returns a boolean if a field has been set.
 func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsCodeConfigMaxSubmissions() bool {
-	if o != nil && o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.IsSet() {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsCodeConfigMaxSubmissions) {
 		return true
 	}
 
 	return false
 }
 
-// SetKratosSelfserviceMethodsCodeConfigMaxSubmissions gets a reference to the given NullableInt32 and assigns it to the KratosSelfserviceMethodsCodeConfigMaxSubmissions field.
-func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCodeConfigMaxSubmissions(v int32) {
-	o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Set(&v)
-}
-// SetKratosSelfserviceMethodsCodeConfigMaxSubmissionsNil sets the value for KratosSelfserviceMethodsCodeConfigMaxSubmissions to be an explicit nil
-func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCodeConfigMaxSubmissionsNil() {
-	o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Set(nil)
-}
-
-// UnsetKratosSelfserviceMethodsCodeConfigMaxSubmissions ensures that no value is present for KratosSelfserviceMethodsCodeConfigMaxSubmissions, not even an explicit nil
-func (o *CreateProjectNormalizedPayload) UnsetKratosSelfserviceMethodsCodeConfigMaxSubmissions() {
-	o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Unset()
+// SetKratosSelfserviceMethodsCodeConfigMaxSubmissions gets a reference to the given int64 and assigns it to the KratosSelfserviceMethodsCodeConfigMaxSubmissions field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCodeConfigMaxSubmissions(v int64) {
+	o.KratosSelfserviceMethodsCodeConfigMaxSubmissions = &v
 }
 
 // GetKratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled returns the KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled field value if set, zero value otherwise.
@@ -8438,6 +8481,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.HydraOauth2PkceEnforcedForPublicClients) {
 		toSerialize["hydra_oauth2_pkce_enforced_for_public_clients"] = o.HydraOauth2PkceEnforcedForPublicClients
 	}
+	if !IsNil(o.HydraOauth2PreserveExtClaims) {
+		toSerialize["hydra_oauth2_preserve_ext_claims"] = o.HydraOauth2PreserveExtClaims
+	}
 	if !IsNil(o.HydraOauth2RefreshTokenHook) {
 		toSerialize["hydra_oauth2_refresh_token_hook"] = o.HydraOauth2RefreshTokenHook
 	}
@@ -8582,7 +8628,7 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosCourierHttpRequestConfigBody) {
 		toSerialize["kratos_courier_http_request_config_body"] = o.KratosCourierHttpRequestConfigBody
 	}
-	if o.KratosCourierHttpRequestConfigHeaders != nil {
+	if !IsNil(o.KratosCourierHttpRequestConfigHeaders) {
 		toSerialize["kratos_courier_http_request_config_headers"] = o.KratosCourierHttpRequestConfigHeaders
 	}
 	if !IsNil(o.KratosCourierHttpRequestConfigMethod) {
@@ -8600,7 +8646,7 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosCourierSmtpFromName) {
 		toSerialize["kratos_courier_smtp_from_name"] = o.KratosCourierSmtpFromName
 	}
-	if o.KratosCourierSmtpHeaders != nil {
+	if !IsNil(o.KratosCourierSmtpHeaders) {
 		toSerialize["kratos_courier_smtp_headers"] = o.KratosCourierSmtpHeaders
 	}
 	if !IsNil(o.KratosCourierSmtpLocalName) {
@@ -8735,7 +8781,7 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosIdentitySchemas) {
 		toSerialize["kratos_identity_schemas"] = o.KratosIdentitySchemas
 	}
-	if o.KratosOauth2ProviderHeaders != nil {
+	if !IsNil(o.KratosOauth2ProviderHeaders) {
 		toSerialize["kratos_oauth2_provider_headers"] = o.KratosOauth2ProviderHeaders
 	}
 	if !IsNil(o.KratosOauth2ProviderOverrideReturnTo) {
@@ -8939,8 +8985,8 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSelfserviceMethodsCodeConfigLifespan) {
 		toSerialize["kratos_selfservice_methods_code_config_lifespan"] = o.KratosSelfserviceMethodsCodeConfigLifespan
 	}
-	if o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.IsSet() {
-		toSerialize["kratos_selfservice_methods_code_config_max_submissions"] = o.KratosSelfserviceMethodsCodeConfigMaxSubmissions.Get()
+	if !IsNil(o.KratosSelfserviceMethodsCodeConfigMaxSubmissions) {
+		toSerialize["kratos_selfservice_methods_code_config_max_submissions"] = o.KratosSelfserviceMethodsCodeConfigMaxSubmissions
 	}
 	if !IsNil(o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled) {
 		toSerialize["kratos_selfservice_methods_code_config_missing_credential_fallback_enabled"] = o.KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled
@@ -9162,6 +9208,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "hydra_oauth2_mirror_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_pkce_enforced")
 		delete(additionalProperties, "hydra_oauth2_pkce_enforced_for_public_clients")
+		delete(additionalProperties, "hydra_oauth2_preserve_ext_claims")
 		delete(additionalProperties, "hydra_oauth2_refresh_token_hook")
 		delete(additionalProperties, "hydra_oauth2_token_hook")
 		delete(additionalProperties, "hydra_oidc_dynamic_client_registration_default_scope")

@@ -76,8 +76,8 @@ import {
 const configuration = new Configuration();
 const apiInstance = new CourierApi(configuration);
 
-let pageSize: number; //Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
-let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to undefined)
+let pageSize: number; //Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional) (default to undefined)
 let status: CourierMessageStatus; //Status filters out messages based on status. If no value is provided, it doesn\'t take effect on filter. (optional) (default to undefined)
 let recipient: string; //Recipient filters out messages based on recipient. If no value is provided, it doesn\'t take effect on filter. (optional) (default to undefined)
 
@@ -93,8 +93,8 @@ const { status, data } = await apiInstance.listCourierMessages(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **pageSize** | [**number**] | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to 250|
-| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to undefined|
+| **pageSize** | [**number**] | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | (optional) defaults to 250|
+| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | (optional) defaults to undefined|
 | **status** | **CourierMessageStatus** | Status filters out messages based on status. If no value is provided, it doesn\&#39;t take effect on filter. | (optional) defaults to undefined|
 | **recipient** | [**string**] | Recipient filters out messages based on recipient. If no value is provided, it doesn\&#39;t take effect on filter. | (optional) defaults to undefined|
 

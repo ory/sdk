@@ -2,7 +2,7 @@
 
 # Identity
 
-An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) represents a (human) user in Ory.
+An [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) represents a (human) user in Ory.
 
 ## Properties
 

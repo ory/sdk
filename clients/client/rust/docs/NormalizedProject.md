@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **current_revision** | [**models::NormalizedProjectRevision**](normalizedProjectRevision.md) |  | 
 **environment** | **String** | The environment of the project. prod Production stage Staging dev Development | 
 **home_region** | **String** | The project's data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | [readonly]
-**hosts** | **Vec<String>** |  | 
+**hosts** | **Vec<String>** | The FQDN hostnames this project listens on | 
 **id** | **String** | The project's ID. | [readonly]
 **slug** | **String** | The project's slug | [readonly]
 **state** | **String** | The state of the project. running Running halted Halted deleted Deleted | [readonly]

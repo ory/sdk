@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **created_at** | **string** | The Project\&#39;s Creation Date | [default to undefined]
 **environment** | **string** | The environment of the project. prod Production stage Staging dev Development | [default to undefined]
 **home_region** | **string** | The project\&#39;s data home region eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | [default to undefined]
-**hosts** | **Array&lt;string&gt;** |  | [default to undefined]
+**hosts** | **Array&lt;string&gt;** | The FQDN hostnames this project listens on | [default to undefined]
 **id** | **string** | The project\&#39;s ID. | [readonly] [default to undefined]
 **name** | **string** | The project\&#39;s name if set | [default to undefined]
 **slug** | **string** | The project\&#39;s slug | [readonly] [default to undefined]

@@ -6,7 +6,7 @@ Create Identity and Import Password Credentials Configuration
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hashed_password** | **string** | The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords) | [optional] [default to undefined]
+**hashed_password** | **string** | The hashed password in [PHC format](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords) | [optional] [default to undefined]
 **password** | **string** | The password in plain text if no hash is available. | [optional] [default to undefined]
 **use_password_migration_hook** | **boolean** | If set to true, the password will be migrated using the password migration hook. | [optional] [default to undefined]
 

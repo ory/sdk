@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**break_glass** | **bool** | BreakGlass is true when the identity&#39;s recovery address has break-glass recovery enabled for the identity&#39;s current organization. | [optional] 
 **email** | **str** |  | 
 **email_verified** | **bool** |  | 
 **id** | **str** |  | 

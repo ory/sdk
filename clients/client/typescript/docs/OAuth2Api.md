@@ -800,8 +800,8 @@ import {
 const configuration = new Configuration();
 const apiInstance = new OAuth2Api(configuration);
 
-let pageSize: number; //Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
-let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to undefined)
+let pageSize: number; //Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional) (default to undefined)
 let clientName: string; //The name of the clients to filter by. (optional) (default to undefined)
 let owner: string; //The owner of the clients to filter by. (optional) (default to undefined)
 
@@ -817,8 +817,8 @@ const { status, data } = await apiInstance.listOAuth2Clients(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **pageSize** | [**number**] | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to 250|
-| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to undefined|
+| **pageSize** | [**number**] | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | (optional) defaults to 250|
+| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | (optional) defaults to undefined|
 | **clientName** | [**string**] | The name of the clients to filter by. | (optional) defaults to undefined|
 | **owner** | [**string**] | The owner of the clients to filter by. | (optional) defaults to undefined|
 
@@ -862,8 +862,8 @@ const configuration = new Configuration();
 const apiInstance = new OAuth2Api(configuration);
 
 let subject: string; //The subject to list the consent sessions for. (default to undefined)
-let pageSize: number; //Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
-let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to undefined)
+let pageSize: number; //Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional) (default to undefined)
 let loginSessionId: string; //The login session id to list the consent sessions for. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.listOAuth2ConsentSessions(
@@ -879,8 +879,8 @@ const { status, data } = await apiInstance.listOAuth2ConsentSessions(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **subject** | [**string**] | The subject to list the consent sessions for. | defaults to undefined|
-| **pageSize** | [**number**] | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to 250|
-| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to undefined|
+| **pageSize** | [**number**] | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | (optional) defaults to 250|
+| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | (optional) defaults to undefined|
 | **loginSessionId** | [**string**] | The login session id to list the consent sessions for. | (optional) defaults to undefined|
 
 
@@ -922,8 +922,8 @@ import {
 const configuration = new Configuration();
 const apiInstance = new OAuth2Api(configuration);
 
-let pageSize: number; //Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
-let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to undefined)
+let pageSize: number; //Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional) (default to undefined)
 let issuer: string; //If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.listTrustedOAuth2JwtGrantIssuers(
@@ -937,8 +937,8 @@ const { status, data } = await apiInstance.listTrustedOAuth2JwtGrantIssuers(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **pageSize** | [**number**] | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to 250|
-| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to undefined|
+| **pageSize** | [**number**] | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | (optional) defaults to 250|
+| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | (optional) defaults to undefined|
 | **issuer** | [**string**] | If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | (optional) defaults to undefined|
 
 

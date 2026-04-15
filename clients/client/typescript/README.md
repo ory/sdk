@@ -1,4 +1,4 @@
-## @ory/client@v1.22.32
+## @ory/client@v1.22.35
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.32 --save
+npm install @ory/client@v1.22.35 --save
 ```
 
 _unPublished (not recommended):_
@@ -208,6 +208,8 @@ Class | Method | HTTP request | Description
  - [AccountExperienceColors](docs/AccountExperienceColors.md)
  - [AccountExperienceConfiguration](docs/AccountExperienceConfiguration.md)
  - [AddProjectToWorkspaceBody](docs/AddProjectToWorkspaceBody.md)
+ - [AdminIdentityImportCredentialsLookupSecret](docs/AdminIdentityImportCredentialsLookupSecret.md)
+ - [AdminIdentityImportCredentialsLookupSecretConfig](docs/AdminIdentityImportCredentialsLookupSecretConfig.md)
  - [Attribute](docs/Attribute.md)
  - [AttributeFilter](docs/AttributeFilter.md)
  - [AttributesCountDatapoint](docs/AttributesCountDatapoint.md)
@@ -293,9 +295,14 @@ Class | Method | HTTP request | Description
  - [IdentityCredentials](docs/IdentityCredentials.md)
  - [IdentityCredentialsCode](docs/IdentityCredentialsCode.md)
  - [IdentityCredentialsCodeAddress](docs/IdentityCredentialsCodeAddress.md)
+ - [IdentityCredentialsLookupSecretCode](docs/IdentityCredentialsLookupSecretCode.md)
  - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
  - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
+ - [IdentityCredentialsWebAuthn](docs/IdentityCredentialsWebAuthn.md)
+ - [IdentityCredentialsWebAuthnAttestation](docs/IdentityCredentialsWebAuthnAttestation.md)
+ - [IdentityCredentialsWebAuthnAuthenticator](docs/IdentityCredentialsWebAuthnAuthenticator.md)
+ - [IdentityCredentialsWebAuthnFlags](docs/IdentityCredentialsWebAuthnFlags.md)
  - [IdentityPatch](docs/IdentityPatch.md)
  - [IdentityPatchResponse](docs/IdentityPatchResponse.md)
  - [IdentitySchemaContainer](docs/IdentitySchemaContainer.md)
@@ -304,11 +311,17 @@ Class | Method | HTTP request | Description
  - [IdentityWithCredentialsOidc](docs/IdentityWithCredentialsOidc.md)
  - [IdentityWithCredentialsOidcConfig](docs/IdentityWithCredentialsOidcConfig.md)
  - [IdentityWithCredentialsOidcConfigProvider](docs/IdentityWithCredentialsOidcConfigProvider.md)
+ - [IdentityWithCredentialsPasskey](docs/IdentityWithCredentialsPasskey.md)
+ - [IdentityWithCredentialsPasskeyConfig](docs/IdentityWithCredentialsPasskeyConfig.md)
  - [IdentityWithCredentialsPassword](docs/IdentityWithCredentialsPassword.md)
  - [IdentityWithCredentialsPasswordConfig](docs/IdentityWithCredentialsPasswordConfig.md)
  - [IdentityWithCredentialsSaml](docs/IdentityWithCredentialsSaml.md)
  - [IdentityWithCredentialsSamlConfig](docs/IdentityWithCredentialsSamlConfig.md)
  - [IdentityWithCredentialsSamlConfigProvider](docs/IdentityWithCredentialsSamlConfigProvider.md)
+ - [IdentityWithCredentialsTotp](docs/IdentityWithCredentialsTotp.md)
+ - [IdentityWithCredentialsTotpConfig](docs/IdentityWithCredentialsTotpConfig.md)
+ - [IdentityWithCredentialsWebAuthn](docs/IdentityWithCredentialsWebAuthn.md)
+ - [IdentityWithCredentialsWebAuthnConfig](docs/IdentityWithCredentialsWebAuthnConfig.md)
  - [InternalGetProjectBrandingBody](docs/InternalGetProjectBrandingBody.md)
  - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
  - [InternalIsOwnerForProjectBySlug](docs/InternalIsOwnerForProjectBySlug.md)
@@ -369,6 +382,7 @@ Class | Method | HTTP request | Description
  - [OrganizationOnboardingPortalLinksResponse](docs/OrganizationOnboardingPortalLinksResponse.md)
  - [ParseError](docs/ParseError.md)
  - [PatchIdentitiesBody](docs/PatchIdentitiesBody.md)
+ - [PatchWorkspaceMemberBody](docs/PatchWorkspaceMemberBody.md)
  - [PerformNativeLogoutBody](docs/PerformNativeLogoutBody.md)
  - [PermissionsOnWorkspace](docs/PermissionsOnWorkspace.md)
  - [Plan](docs/Plan.md)

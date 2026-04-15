@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **String** |  | 
-**domains** | **Vec<String>** |  | 
+**domains** | **Vec<String>** | The list of organization's domains. | 
 **id** | **String** | The organization's ID. | 
 **label** | **String** | The organization's human-readable label. | 
 

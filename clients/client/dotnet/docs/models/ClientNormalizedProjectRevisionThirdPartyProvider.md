@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountLinkingMode** | **string** | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are &#x60;confirm_with_existing_credential&#x60; (default) and &#x60;automatic&#x60;. &#x60;automatic&#x60; silently links accounts when the provider verifies email ownership. Only supported for &#x60;apple&#x60; and &#x60;google&#x60; providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional] 
-**AdditionalIdTokenAudiences** | **List&lt;string&gt;** |  | [optional] 
+**AdditionalIdTokenAudiences** | **List&lt;string&gt;** | AdditionalIDTokenAudiences is a list of additional audiences allowed in the ID Token.  This is only relevant in OIDC flows that submit an IDToken instead of using the callback from the OIDC provider. | [optional] 
 **ApplePrivateKey** | **string** |  | [optional] 
 **ApplePrivateKeyId** | **string** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] 
 **AppleTeamId** | **string** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] 
@@ -28,10 +28,11 @@ Name | Type | Description | Notes
 **ProviderId** | **string** | ID is the provider&#39;s ID | [optional] 
 **ProxyOidcRedirectUrl** | **string** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] [readonly] 
 **RequestedClaims** | **Object** |  | [optional] 
-**Scope** | **List&lt;string&gt;** |  | [optional] 
+**Scope** | **List&lt;string&gt;** | Scope specifies optional requested permissions. | [optional] 
 **State** | **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **SubjectSource** | **string** |  | [optional] 
 **TokenUrl** | **string** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] 
+**UpdateIdentityOnLogin** | **string** | UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every  OIDC login and updates the identity&#39;s traits and metadata automatically. | [optional] 
 **UpdatedAt** | **DateTime** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

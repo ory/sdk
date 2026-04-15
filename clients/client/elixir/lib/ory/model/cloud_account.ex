@@ -8,6 +8,7 @@ defmodule Ory.Model.CloudAccount do
 
   @derive Jason.Encoder
   defstruct [
+    :break_glass,
     :email,
     :email_verified,
     :id,
@@ -16,6 +17,7 @@ defmodule Ory.Model.CloudAccount do
   ]
 
   @type t :: %__MODULE__{
+    :break_glass => boolean() | nil,
     :email => String.t,
     :email_verified => boolean(),
     :id => String.t,

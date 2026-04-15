@@ -205,8 +205,8 @@ import {
 const configuration = new Configuration();
 const apiInstance = new RelationshipApi(configuration);
 
-let pageSize: number; //Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to 250)
-let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional) (default to undefined)
+let pageSize: number; //Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional) (default to 250)
+let pageToken: string; //Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional) (default to undefined)
 let namespace: string; //Namespace of the Relationship (optional) (default to undefined)
 let object: string; //Object of the Relationship (optional) (default to undefined)
 let relation: string; //Relation of the Relationship (optional) (default to undefined)
@@ -232,8 +232,8 @@ const { status, data } = await apiInstance.getRelationships(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **pageSize** | [**number**] | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to 250|
-| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | (optional) defaults to undefined|
+| **pageSize** | [**number**] | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | (optional) defaults to 250|
+| **pageToken** | [**string**] | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | (optional) defaults to undefined|
 | **namespace** | [**string**] | Namespace of the Relationship | (optional) defaults to undefined|
 | **object** | [**string**] | Object of the Relationship | (optional) defaults to undefined|
 | **relation** | [**string**] | Relation of the Relationship | (optional) defaults to undefined|

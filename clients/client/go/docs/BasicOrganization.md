@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Domains** | **[]string** |  | 
+**Domains** | **[]string** | The list of organization&#39;s domains. | 
 **Id** | **string** | The organization&#39;s ID. | 
 **Label** | **string** | The organization&#39;s human-readable label. | 
 

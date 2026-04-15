@@ -29,6 +29,7 @@ Name | Type
 `hydra_oauth2_mirror_top_level_claims` | boolean
 `hydra_oauth2_pkce_enforced` | boolean
 `hydra_oauth2_pkce_enforced_for_public_clients` | boolean
+`hydra_oauth2_preserve_ext_claims` | boolean
 `hydra_oauth2_refresh_token_hook` | string
 `hydra_oauth2_token_hook` | string
 `hydra_oidc_dynamic_client_registration_default_scope` | Array&lt;string&gt;
@@ -278,6 +279,7 @@ const example = {
   "hydra_oauth2_mirror_top_level_claims": null,
   "hydra_oauth2_pkce_enforced": null,
   "hydra_oauth2_pkce_enforced_for_public_clients": null,
+  "hydra_oauth2_preserve_ext_claims": null,
   "hydra_oauth2_refresh_token_hook": null,
   "hydra_oauth2_token_hook": null,
   "hydra_oidc_dynamic_client_registration_default_scope": null,

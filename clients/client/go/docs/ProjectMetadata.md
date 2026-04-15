@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | **time.Time** | The Project&#39;s Creation Date | 
 **Environment** | **string** | The environment of the project. prod Production stage Staging dev Development | 
 **HomeRegion** | **string** | The project&#39;s data home region eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | 
-**Hosts** | **[]string** |  | 
+**Hosts** | **[]string** | The FQDN hostnames this project listens on | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The project&#39;s name if set | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 

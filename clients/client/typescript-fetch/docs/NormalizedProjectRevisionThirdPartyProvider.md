@@ -34,6 +34,7 @@ Name | Type
 `state` | string
 `subject_source` | string
 `token_url` | string
+`update_identity_on_login` | string
 `updated_at` | Date
 
 ## Example
@@ -71,6 +72,7 @@ const example = {
   "state": null,
   "subject_source": null,
   "token_url": https://www.googleapis.com/oauth2/v4/token,
+  "update_identity_on_login": null,
   "updated_at": null,
 } satisfies NormalizedProjectRevisionThirdPartyProvider
 

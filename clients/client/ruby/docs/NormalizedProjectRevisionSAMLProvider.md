@@ -17,7 +17,7 @@
 | **raw_idp_metadata_xml** | **String** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] |
 | **state** | **String** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
-| **valid_to** | **Array&lt;String&gt;** |  | [optional] |
+| **valid_to** | **Array&lt;String&gt;** | Valid to dates of all signing certs associated with the SAML connection | [optional][readonly] |
 
 ## Example
 

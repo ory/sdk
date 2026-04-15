@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.32
+API version: v1.22.35
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,7 @@ var _ MappedNullable = &RecoveryIdentityAddress{}
 
 // RecoveryIdentityAddress struct for RecoveryIdentityAddress
 type RecoveryIdentityAddress struct {
+	BreakGlassForOrganization NullableString `json:"break_glass_for_organization,omitempty"`
 	// CreatedAt is a helper struct field for gobuffalo.pop.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -51,6 +52,48 @@ func NewRecoveryIdentityAddress(value string, via string) *RecoveryIdentityAddre
 func NewRecoveryIdentityAddressWithDefaults() *RecoveryIdentityAddress {
 	this := RecoveryIdentityAddress{}
 	return &this
+}
+
+// GetBreakGlassForOrganization returns the BreakGlassForOrganization field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RecoveryIdentityAddress) GetBreakGlassForOrganization() string {
+	if o == nil || IsNil(o.BreakGlassForOrganization.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.BreakGlassForOrganization.Get()
+}
+
+// GetBreakGlassForOrganizationOk returns a tuple with the BreakGlassForOrganization field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RecoveryIdentityAddress) GetBreakGlassForOrganizationOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.BreakGlassForOrganization.Get(), o.BreakGlassForOrganization.IsSet()
+}
+
+// HasBreakGlassForOrganization returns a boolean if a field has been set.
+func (o *RecoveryIdentityAddress) HasBreakGlassForOrganization() bool {
+	if o != nil && o.BreakGlassForOrganization.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBreakGlassForOrganization gets a reference to the given NullableString and assigns it to the BreakGlassForOrganization field.
+func (o *RecoveryIdentityAddress) SetBreakGlassForOrganization(v string) {
+	o.BreakGlassForOrganization.Set(&v)
+}
+// SetBreakGlassForOrganizationNil sets the value for BreakGlassForOrganization to be an explicit nil
+func (o *RecoveryIdentityAddress) SetBreakGlassForOrganizationNil() {
+	o.BreakGlassForOrganization.Set(nil)
+}
+
+// UnsetBreakGlassForOrganization ensures that no value is present for BreakGlassForOrganization, not even an explicit nil
+func (o *RecoveryIdentityAddress) UnsetBreakGlassForOrganization() {
+	o.BreakGlassForOrganization.Unset()
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -207,6 +250,9 @@ func (o RecoveryIdentityAddress) MarshalJSON() ([]byte, error) {
 
 func (o RecoveryIdentityAddress) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.BreakGlassForOrganization.IsSet() {
+		toSerialize["break_glass_for_organization"] = o.BreakGlassForOrganization.Get()
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -262,6 +308,7 @@ func (o *RecoveryIdentityAddress) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "break_glass_for_organization")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "updated_at")

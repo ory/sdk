@@ -106,7 +106,7 @@ example().catch(console.error);
 
 Create an Identity
 
-Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Create an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations, or multifactor methods.
 
 ### Example
 
@@ -331,7 +331,7 @@ example().catch(console.error);
 
 Delete an Identity
 
-Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
+Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
 
 ### Example
 
@@ -404,7 +404,7 @@ example().catch(console.error);
 
 Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete passkeys or code auth credentials through this API.
+Delete an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete passkeys or code auth credentials through this API.
 
 ### Example
 
@@ -707,7 +707,7 @@ example().catch(console.error);
 
 Get an Identity
 
-Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the &#x60;include_credential&#x60; query parameter.
+Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the &#x60;include_credential&#x60; query parameter.
 
 ### Example
 
@@ -729,7 +729,7 @@ async function example() {
   const body = {
     // string | ID must be set to the ID of identity you want to get
     id: id_example,
-    // Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'link_recovery' | 'code_recovery'> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. (optional)
+    // Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'link_recovery' | 'code_recovery'> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional)
     includeCredential: ...,
   } satisfies GetIdentityRequest;
 
@@ -751,7 +751,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | `string` | ID must be set to the ID of identity you want to get | [Defaults to `undefined`] |
-| **includeCredential** | `password`, `oidc`, `totp`, `lookup_secret`, `webauthn`, `code`, `passkey`, `profile`, `saml`, `link_recovery`, `code_recovery` | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [Optional] [Enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, link_recovery, code_recovery] |
+| **includeCredential** | `password`, `oidc`, `totp`, `lookup_secret`, `webauthn`, `code`, `passkey`, `profile`, `saml`, `link_recovery`, `code_recovery` | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | [Optional] [Enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, link_recovery, code_recovery] |
 
 ### Return type
 
@@ -783,7 +783,7 @@ example().catch(console.error);
 
 Get an Identity by its External ID
 
-Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the &#x60;include_credential&#x60; query parameter.
+Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the &#x60;include_credential&#x60; query parameter.
 
 ### Example
 
@@ -805,7 +805,7 @@ async function example() {
   const body = {
     // string | ExternalID must be set to the ID of identity you want to get
     externalID: externalID_example,
-    // Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'link_recovery' | 'code_recovery'> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. (optional)
+    // Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'link_recovery' | 'code_recovery'> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional)
     includeCredential: ...,
   } satisfies GetIdentityByExternalIDRequest;
 
@@ -827,7 +827,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **externalID** | `string` | ExternalID must be set to the ID of identity you want to get | [Defaults to `undefined`] |
-| **includeCredential** | `password`, `oidc`, `totp`, `lookup_secret`, `webauthn`, `code`, `passkey`, `profile`, `saml`, `link_recovery`, `code_recovery` | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [Optional] [Enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, link_recovery, code_recovery] |
+| **includeCredential** | `password`, `oidc`, `totp`, `lookup_secret`, `webauthn`, `code`, `passkey`, `profile`, `saml`, `link_recovery`, `code_recovery` | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | [Optional] [Enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, link_recovery, code_recovery] |
 
 ### Return type
 
@@ -1004,7 +1004,7 @@ example().catch(console.error);
 
 List Identities
 
-Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
+Lists all [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
 
 ### Example
 
@@ -1028,9 +1028,9 @@ async function example() {
     perPage: 789,
     // number | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
     page: 789,
-    // number | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
+    // number | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
     pageSize: 789,
-    // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
+    // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
     pageToken: pageToken_example,
     // '' | 'strong' | 'eventual' | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace \'/previews/default_read_consistency_level=\"strong\"\'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. (optional)
     consistency: consistency_example,
@@ -1040,7 +1040,7 @@ async function example() {
     credentialsIdentifier: credentialsIdentifier_example,
     // string | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
     previewCredentialsIdentifierSimilar: previewCredentialsIdentifierSimilar_example,
-    // Array<string> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. (optional)
+    // Array<string> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional)
     includeCredential: ...,
     // string | List identities that belong to a specific organization. (optional)
     organizationId: organizationId_example,
@@ -1065,13 +1065,13 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **perPage** | `number` | Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [Optional] [Defaults to `250`] |
 | **page** | `number` | Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [Optional] [Defaults to `undefined`] |
-| **pageSize** | `number` | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `250`] |
-| **pageToken** | `string` | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `undefined`] |
+| **pageSize** | `number` | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `250`] |
+| **pageToken** | `string` | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `undefined`] |
 | **consistency** | ``, `strong`, `eventual` | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace \&#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;\&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [Optional] [Defaults to `undefined`] [Enum: , strong, eventual] |
 | **ids** | `Array<string>` | Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). | [Optional] |
 | **credentialsIdentifier** | `string` | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [Optional] [Defaults to `undefined`] |
 | **previewCredentialsIdentifierSimilar** | `string` | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [Optional] [Defaults to `undefined`] |
-| **includeCredential** | `Array<string>` | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [Optional] |
+| **includeCredential** | `Array<string>` | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | [Optional] |
 | **organizationId** | `string` | List identities that belong to a specific organization. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -1123,9 +1123,9 @@ async function example() {
     perPage: 789,
     // number | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
     page: 789,
-    // number | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
+    // number | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
     pageSize: 789,
-    // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
+    // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
     pageToken: pageToken_example,
   } satisfies ListIdentitySchemasRequest;
 
@@ -1148,8 +1148,8 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **perPage** | `number` | Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [Optional] [Defaults to `250`] |
 | **page** | `number` | Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [Optional] [Defaults to `undefined`] |
-| **pageSize** | `number` | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `250`] |
-| **pageToken** | `string` | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `undefined`] |
+| **pageSize** | `number` | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `250`] |
+| **pageToken** | `string` | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1206,9 +1206,9 @@ async function example() {
     perPage: 789,
     // number | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
     page: 789,
-    // number | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
+    // number | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
     pageSize: 789,
-    // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
+    // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
     pageToken: pageToken_example,
     // boolean | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
     active: true,
@@ -1234,8 +1234,8 @@ example().catch(console.error);
 | **id** | `string` | ID is the identity\&#39;s ID. | [Defaults to `undefined`] |
 | **perPage** | `number` | Deprecated Items per Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This is the number of items per page. | [Optional] [Defaults to `250`] |
 | **page** | `number` | Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [Optional] [Defaults to `undefined`] |
-| **pageSize** | `number` | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `250`] |
-| **pageToken** | `string` | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `undefined`] |
+| **pageSize** | `number` | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `250`] |
+| **pageToken** | `string` | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `undefined`] |
 | **active** | `boolean` | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -1289,9 +1289,9 @@ async function example() {
   const api = new IdentityApi(config);
 
   const body = {
-    // number | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
+    // number | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
     pageSize: 789,
-    // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). (optional)
+    // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
     pageToken: pageToken_example,
     // boolean | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
     active: true,
@@ -1316,8 +1316,8 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **pageSize** | `number` | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `250`] |
-| **pageToken** | `string` | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `undefined`] |
+| **pageSize** | `number` | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `250`] |
+| **pageToken** | `string` | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `undefined`] |
 | **active** | `boolean` | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. | [Optional] [Defaults to `undefined`] |
 | **expand** | `identity`, `devices` | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. | [Optional] [Enum: identity, devices] |
 
@@ -1351,7 +1351,7 @@ example().catch(console.error);
 
 Patch an Identity
 
-Partially updates an [identity\&#39;s](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/). The fields &#x60;id&#x60;, &#x60;stateChangedAt&#x60; and &#x60;credentials&#x60; can not be updated using this method.
+Partially updates an [identity\&#39;s](https://www.ory.com/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/). The fields &#x60;id&#x60;, &#x60;stateChangedAt&#x60; and &#x60;credentials&#x60; can not be updated using this method.
 
 ### Example
 
@@ -1429,7 +1429,7 @@ example().catch(console.error);
 
 Update an Identity
 
-This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity payload, except credentials, is expected. For partial updates, use the [patchIdentity](https://www.ory.sh/docs/reference/api#tag/identity/operation/patchIdentity) operation.  A credential can be provided via the &#x60;credentials&#x60; field in the request body. If provided, the credentials will be imported and added to the existing credentials of the identity.
+This endpoint updates an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model). The full identity payload (except credentials) is expected.  It is possible to update the identity\&#39;s credentials as well. Using this operation, credentials will not be overwritten but instead added to the list. For example, if a user has a social sign in connection set up, updating the credentials will keep the social sign in connection and add the new credentials to the list. This prevents accidentally overwriting credentials and locking out users. A complete view of all credential types is here:  &#x60;password&#x60;: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook. &#x60;oidc&#x60;, &#x60;saml&#x60;: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list. &#x60;totp&#x60;: The existing TOTP credentials will be replaced with the new configuration. &#x60;lookup_secret&#x60;: The existing Lookup Secret codes will be kept and the new codes will be added to the list. &#x60;webauthn&#x60;, &#x60;passkey&#x60;: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new &#x60;user_handle&#x60; is provided, it\&#39;s added to the identity\&#39;s identifiers list while preserving previous user handles. &#x60;code&#x60;: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (&#x60;{\&quot;ory.sh/kratos\&quot;:{\&quot;code\&quot;:{\&quot;identifier\&quot;:true\&quot;, \&quot;via\&quot;:\&quot;email\&quot;}}}&#x60;).
 
 ### Example
 

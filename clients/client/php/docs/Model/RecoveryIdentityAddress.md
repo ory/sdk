@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**breakGlassForOrganization** | **string** |  | [optional]
 **createdAt** | **\DateTime** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional]
 **id** | **string** |  | [optional]
 **updatedAt** | **\DateTime** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional]

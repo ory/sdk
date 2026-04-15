@@ -11,7 +11,7 @@
 |**currentRevision** | [**NormalizedProjectRevision**](NormalizedProjectRevision.md) |  |  |
 |**environment** | [**EnvironmentEnum**](#EnvironmentEnum) | The environment of the project. prod Production stage Staging dev Development |  |
 |**homeRegion** | [**HomeRegionEnum**](#HomeRegionEnum) | The project&#39;s data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global |  [readonly] |
-|**hosts** | **List&lt;String&gt;** |  |  |
+|**hosts** | **List&lt;String&gt;** | The FQDN hostnames this project listens on |  |
 |**id** | **String** | The project&#39;s ID. |  [readonly] |
 |**slug** | **String** | The project&#39;s slug |  [readonly] |
 |**state** | [**StateEnum**](#StateEnum) | The state of the project. running Running halted Halted deleted Deleted |  [readonly] |

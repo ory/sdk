@@ -1,7 +1,7 @@
 
 # KeysetPaginationRequestParameters
 
-For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
 
 ## Properties
 

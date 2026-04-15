@@ -11,7 +11,7 @@ defmodule Ory.Api.Permission do
 
   @doc """
   Batch check permissions
-  To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+  To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
   ### Parameters
 
@@ -51,7 +51,7 @@ defmodule Ory.Api.Permission do
 
   @doc """
   Check a permission
-  To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+  To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
   ### Parameters
 
@@ -102,7 +102,7 @@ defmodule Ory.Api.Permission do
 
   @doc """
   Check a permission
-  To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+  To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
   ### Parameters
 
@@ -198,7 +198,7 @@ defmodule Ory.Api.Permission do
 
   @doc """
   Check a permission
-  To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+  To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
   ### Parameters
 
@@ -238,7 +238,7 @@ defmodule Ory.Api.Permission do
 
   @doc """
   Check a permission
-  To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+  To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
   ### Parameters
 

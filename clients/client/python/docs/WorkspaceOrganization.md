@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active_link** | [**OnboardingPortalLink**](OnboardingPortalLink.md) |  | [optional] 
 **created_at** | **datetime** |  | 
-**domains** | **List[str]** |  | 
+**domains** | **List[str]** | The list of organization&#39;s domains. | 
 **id** | **str** | The organization&#39;s ID. | 
 **label** | **str** | The organization&#39;s human-readable label. | 
 **providers** | **List[str]** |  | 

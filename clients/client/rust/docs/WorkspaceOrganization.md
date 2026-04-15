@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active_link** | Option<[**models::OnboardingPortalLink**](onboardingPortalLink.md)> |  | [optional]
 **created_at** | **String** |  | 
-**domains** | **Vec<String>** |  | 
+**domains** | **Vec<String>** | The list of organization's domains. | 
 **id** | **String** | The organization's ID. | 
 **label** | **String** | The organization's human-readable label. | 
 **providers** | **Vec<String>** |  | 

@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_linking_mode** | **string** | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are &#x60;confirm_with_existing_credential&#x60; (default) and &#x60;automatic&#x60;. &#x60;automatic&#x60; silently links accounts when the provider verifies email ownership. Only supported for &#x60;apple&#x60; and &#x60;google&#x60; providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional] [default to undefined]
-**additional_id_token_audiences** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**additional_id_token_audiences** | **Array&lt;string&gt;** | AdditionalIDTokenAudiences is a list of additional audiences allowed in the ID Token.  This is only relevant in OIDC flows that submit an IDToken instead of using the callback from the OIDC provider. | [optional] [default to undefined]
 **apple_private_key** | **string** |  | [optional] [default to undefined]
 **apple_private_key_id** | **string** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] [default to undefined]
 **apple_team_id** | **string** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] [default to undefined]
@@ -29,10 +29,11 @@ Name | Type | Description | Notes
 **provider_id** | **string** | ID is the provider\&#39;s ID | [optional] [default to undefined]
 **proxy_oidc_redirect_url** | **string** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] [readonly] [default to undefined]
 **requested_claims** | **object** |  | [optional] [default to undefined]
-**scope** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**scope** | **Array&lt;string&gt;** | Scope specifies optional requested permissions. | [optional] [default to undefined]
 **state** | **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] [default to undefined]
 **subject_source** | **string** |  | [optional] [default to undefined]
 **token_url** | **string** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] [default to undefined]
+**update_identity_on_login** | **string** | UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every  OIDC login and updates the identity\&#39;s traits and metadata automatically. | [optional] [default to undefined]
 **updated_at** | **string** | Last Time Project\&#39;s Revision was Updated | [optional] [readonly] [default to undefined]
 
 ## Example
@@ -69,6 +70,7 @@ const instance: NormalizedProjectRevisionThirdPartyProvider = {
     state,
     subject_source,
     token_url,
+    update_identity_on_login,
     updated_at,
 };
 ```

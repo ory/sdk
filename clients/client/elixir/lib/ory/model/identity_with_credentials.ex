@@ -8,24 +8,36 @@ defmodule Ory.Model.IdentityWithCredentials do
 
   @derive Jason.Encoder
   defstruct [
+    :lookup_secret,
     :oidc,
+    :passkey,
     :password,
-    :saml
+    :saml,
+    :totp,
+    :webauthn
   ]
 
   @type t :: %__MODULE__{
+    :lookup_secret => Ory.Model.AdminIdentityImportCredentialsLookupSecret.t | nil,
     :oidc => Ory.Model.IdentityWithCredentialsOidc.t | nil,
+    :passkey => Ory.Model.IdentityWithCredentialsPasskey.t | nil,
     :password => Ory.Model.IdentityWithCredentialsPassword.t | nil,
-    :saml => Ory.Model.IdentityWithCredentialsSaml.t | nil
+    :saml => Ory.Model.IdentityWithCredentialsSaml.t | nil,
+    :totp => Ory.Model.IdentityWithCredentialsTotp.t | nil,
+    :webauthn => Ory.Model.IdentityWithCredentialsWebAuthn.t | nil
   }
 
   alias Ory.Deserializer
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:lookup_secret, :struct, Ory.Model.AdminIdentityImportCredentialsLookupSecret)
      |> Deserializer.deserialize(:oidc, :struct, Ory.Model.IdentityWithCredentialsOidc)
+     |> Deserializer.deserialize(:passkey, :struct, Ory.Model.IdentityWithCredentialsPasskey)
      |> Deserializer.deserialize(:password, :struct, Ory.Model.IdentityWithCredentialsPassword)
      |> Deserializer.deserialize(:saml, :struct, Ory.Model.IdentityWithCredentialsSaml)
+     |> Deserializer.deserialize(:totp, :struct, Ory.Model.IdentityWithCredentialsTotp)
+     |> Deserializer.deserialize(:webauthn, :struct, Ory.Model.IdentityWithCredentialsWebAuthn)
   end
 end
 

@@ -6,9 +6,13 @@ Create Identity and Import Credentials
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**lookup_secret** | [**AdminIdentityImportCredentialsLookupSecret**](AdminIdentityImportCredentialsLookupSecret.md) |  | [optional] [default to undefined]
 **oidc** | [**IdentityWithCredentialsOidc**](IdentityWithCredentialsOidc.md) |  | [optional] [default to undefined]
+**passkey** | [**IdentityWithCredentialsPasskey**](IdentityWithCredentialsPasskey.md) |  | [optional] [default to undefined]
 **password** | [**IdentityWithCredentialsPassword**](IdentityWithCredentialsPassword.md) |  | [optional] [default to undefined]
 **saml** | [**IdentityWithCredentialsSaml**](IdentityWithCredentialsSaml.md) |  | [optional] [default to undefined]
+**totp** | [**IdentityWithCredentialsTotp**](IdentityWithCredentialsTotp.md) |  | [optional] [default to undefined]
+**webauthn** | [**IdentityWithCredentialsWebAuthn**](IdentityWithCredentialsWebAuthn.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -16,9 +20,13 @@ Name | Type | Description | Notes
 import { IdentityWithCredentials } from '@ory/client';
 
 const instance: IdentityWithCredentials = {
+    lookup_secret,
     oidc,
+    passkey,
     password,
     saml,
+    totp,
+    webauthn,
 };
 ```
 
