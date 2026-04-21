@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **OnclickTrigger** | Pointer to **string** | OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration | [optional] 
 **Onload** | Pointer to **string** | OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.  Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead. | [optional] 
 **OnloadTrigger** | Pointer to **string** | OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration | [optional] 
+**Options** | Pointer to [**[]UiNodeInputAttributesOption**](UiNodeInputAttributesOption.md) | The allowed values for the input when the underlying JSON schema defines an &#x60;enum&#x60;. When present, clients should render the field as a select/dropdown rather than a free-form text input. When absent, clients continue to render a plain text input, so this field is backward compatible with UIs that do not look at it. | [optional] 
 **Pattern** | Pointer to **string** | The input&#39;s pattern. | [optional] 
 **Required** | Pointer to **bool** | Mark this input field as required. | [optional] 
 **Type** | **string** | The input&#39;s element type. text InputAttributeTypeText password InputAttributeTypePassword number InputAttributeTypeNumber checkbox InputAttributeTypeCheckbox hidden InputAttributeTypeHidden email InputAttributeTypeEmail tel InputAttributeTypeTel submit InputAttributeTypeSubmit button InputAttributeTypeButton datetime-local InputAttributeTypeDateTimeLocal date InputAttributeTypeDate url InputAttributeTypeURI | 
@@ -272,6 +273,31 @@ SetOnloadTrigger sets OnloadTrigger field to given value.
 `func (o *UiNodeInputAttributes) HasOnloadTrigger() bool`
 
 HasOnloadTrigger returns a boolean if a field has been set.
+
+### GetOptions
+
+`func (o *UiNodeInputAttributes) GetOptions() []UiNodeInputAttributesOption`
+
+GetOptions returns the Options field if non-nil, zero value otherwise.
+
+### GetOptionsOk
+
+`func (o *UiNodeInputAttributes) GetOptionsOk() (*[]UiNodeInputAttributesOption, bool)`
+
+GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOptions
+
+`func (o *UiNodeInputAttributes) SetOptions(v []UiNodeInputAttributesOption)`
+
+SetOptions sets Options field to given value.
+
+### HasOptions
+
+`func (o *UiNodeInputAttributes) HasOptions() bool`
+
+HasOptions returns a boolean if a field has been set.
 
 ### GetPattern
 

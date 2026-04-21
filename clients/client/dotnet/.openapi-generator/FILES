@@ -273,6 +273,7 @@ docs/models/ClientUiNodeAttributes.md
 docs/models/ClientUiNodeDivisionAttributes.md
 docs/models/ClientUiNodeImageAttributes.md
 docs/models/ClientUiNodeInputAttributes.md
+docs/models/ClientUiNodeInputAttributesOption.md
 docs/models/ClientUiNodeMeta.md
 docs/models/ClientUiNodeScriptAttributes.md
 docs/models/ClientUiNodeTextAttributes.md
@@ -599,6 +600,7 @@ src/Ory.Client.Test/Model/ClientUiNodeAnchorAttributesTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeAttributesTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeDivisionAttributesTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeImageAttributesTests.cs
+src/Ory.Client.Test/Model/ClientUiNodeInputAttributesOptionTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeInputAttributesTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeMetaTests.cs
 src/Ory.Client.Test/Model/ClientUiNodeScriptAttributesTests.cs
@@ -952,6 +954,7 @@ src/Ory.Client/Model/ClientUiNodeAttributes.cs
 src/Ory.Client/Model/ClientUiNodeDivisionAttributes.cs
 src/Ory.Client/Model/ClientUiNodeImageAttributes.cs
 src/Ory.Client/Model/ClientUiNodeInputAttributes.cs
+src/Ory.Client/Model/ClientUiNodeInputAttributesOption.cs
 src/Ory.Client/Model/ClientUiNodeMeta.cs
 src/Ory.Client/Model/ClientUiNodeScriptAttributes.cs
 src/Ory.Client/Model/ClientUiNodeTextAttributes.cs

@@ -274,6 +274,7 @@ docs/UiNodeAttributes.md
 docs/UiNodeDivisionAttributes.md
 docs/UiNodeImageAttributes.md
 docs/UiNodeInputAttributes.md
+docs/UiNodeInputAttributesOption.md
 docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
@@ -606,6 +607,7 @@ lib/ory-client/models/ui_node_attributes.rb
 lib/ory-client/models/ui_node_division_attributes.rb
 lib/ory-client/models/ui_node_image_attributes.rb
 lib/ory-client/models/ui_node_input_attributes.rb
+lib/ory-client/models/ui_node_input_attributes_option.rb
 lib/ory-client/models/ui_node_meta.rb
 lib/ory-client/models/ui_node_script_attributes.rb
 lib/ory-client/models/ui_node_text_attributes.rb
@@ -930,6 +932,7 @@ spec/models/ui_node_anchor_attributes_spec.rb
 spec/models/ui_node_attributes_spec.rb
 spec/models/ui_node_division_attributes_spec.rb
 spec/models/ui_node_image_attributes_spec.rb
+spec/models/ui_node_input_attributes_option_spec.rb
 spec/models/ui_node_input_attributes_spec.rb
 spec/models/ui_node_meta_spec.rb
 spec/models/ui_node_script_attributes_spec.rb

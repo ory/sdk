@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **onclickTrigger** | **string** | OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration | [optional] [default to undefined]
 **onload** | **string** | OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.  Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead. | [optional] [default to undefined]
 **onloadTrigger** | **string** | OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration | [optional] [default to undefined]
+**_options** | [**Array&lt;UiNodeInputAttributesOption&gt;**](UiNodeInputAttributesOption.md) | The allowed values for the input when the underlying JSON schema defines an &#x60;enum&#x60;. When present, clients should render the field as a select/dropdown rather than a free-form text input. When absent, clients continue to render a plain text input, so this field is backward compatible with UIs that do not look at it. | [optional] [default to undefined]
 **pattern** | **string** | The input\&#39;s pattern. | [optional] [default to undefined]
 **required** | **boolean** | Mark this input field as required. | [optional] [default to undefined]
 **type** | **string** | The input\&#39;s element type. text InputAttributeTypeText password InputAttributeTypePassword number InputAttributeTypeNumber checkbox InputAttributeTypeCheckbox hidden InputAttributeTypeHidden email InputAttributeTypeEmail tel InputAttributeTypeTel submit InputAttributeTypeSubmit button InputAttributeTypeButton datetime-local InputAttributeTypeDateTimeLocal date InputAttributeTypeDate url InputAttributeTypeURI | [default to undefined]
@@ -37,6 +38,7 @@ const instance: UiNodeInputAttributes = {
     onclickTrigger,
     onload,
     onloadTrigger,
+    _options,
     pattern,
     required,
     type,

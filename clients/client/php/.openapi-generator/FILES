@@ -273,6 +273,7 @@ docs/Model/UiNodeAttributes.md
 docs/Model/UiNodeDivisionAttributes.md
 docs/Model/UiNodeImageAttributes.md
 docs/Model/UiNodeInputAttributes.md
+docs/Model/UiNodeInputAttributesOption.md
 docs/Model/UiNodeMeta.md
 docs/Model/UiNodeScriptAttributes.md
 docs/Model/UiNodeTextAttributes.md
@@ -603,6 +604,7 @@ lib/Model/UiNodeAttributes.php
 lib/Model/UiNodeDivisionAttributes.php
 lib/Model/UiNodeImageAttributes.php
 lib/Model/UiNodeInputAttributes.php
+lib/Model/UiNodeInputAttributesOption.php
 lib/Model/UiNodeMeta.php
 lib/Model/UiNodeScriptAttributes.php
 lib/Model/UiNodeTextAttributes.php
@@ -927,6 +929,7 @@ test/Model/UiNodeAnchorAttributesTest.php
 test/Model/UiNodeAttributesTest.php
 test/Model/UiNodeDivisionAttributesTest.php
 test/Model/UiNodeImageAttributesTest.php
+test/Model/UiNodeInputAttributesOptionTest.php
 test/Model/UiNodeInputAttributesTest.php
 test/Model/UiNodeMetaTest.php
 test/Model/UiNodeScriptAttributesTest.php

@@ -14,6 +14,7 @@
 | **onclick_trigger** | **String** | OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration | [optional] |
 | **onload** | **String** | OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.  Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead. | [optional] |
 | **onload_trigger** | **String** | OnLoadTrigger may contain a WebAuthn trigger which should be executed on load.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration | [optional] |
+| **options** | [**Array&lt;UiNodeInputAttributesOption&gt;**](UiNodeInputAttributesOption.md) | The allowed values for the input when the underlying JSON schema defines an &#x60;enum&#x60;. When present, clients should render the field as a select/dropdown rather than a free-form text input. When absent, clients continue to render a plain text input, so this field is backward compatible with UIs that do not look at it. | [optional] |
 | **pattern** | **String** | The input&#39;s pattern. | [optional] |
 | **required** | **Boolean** | Mark this input field as required. | [optional] |
 | **type** | **String** | The input&#39;s element type. text InputAttributeTypeText password InputAttributeTypePassword number InputAttributeTypeNumber checkbox InputAttributeTypeCheckbox hidden InputAttributeTypeHidden email InputAttributeTypeEmail tel InputAttributeTypeTel submit InputAttributeTypeSubmit button InputAttributeTypeButton datetime-local InputAttributeTypeDateTimeLocal date InputAttributeTypeDate url InputAttributeTypeURI |  |
@@ -35,6 +36,7 @@ instance = OryClient::UiNodeInputAttributes.new(
   onclick_trigger: null,
   onload: null,
   onload_trigger: null,
+  options: null,
   pattern: null,
   required: null,
   type: null,

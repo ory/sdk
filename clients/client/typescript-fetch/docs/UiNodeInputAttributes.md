@@ -17,6 +17,7 @@ Name | Type
 `onclickTrigger` | string
 `onload` | string
 `onloadTrigger` | string
+`options` | [Array&lt;UiNodeInputAttributesOption&gt;](UiNodeInputAttributesOption.md)
 `pattern` | string
 `required` | boolean
 `type` | string
@@ -39,6 +40,7 @@ const example = {
   "onclickTrigger": null,
   "onload": null,
   "onloadTrigger": null,
+  "options": null,
   "pattern": null,
   "required": null,
   "type": null,

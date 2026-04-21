@@ -510,6 +510,8 @@ pub mod ui_node_image_attributes;
 pub use self::ui_node_image_attributes::UiNodeImageAttributes;
 pub mod ui_node_input_attributes;
 pub use self::ui_node_input_attributes::UiNodeInputAttributes;
+pub mod ui_node_input_attributes_option;
+pub use self::ui_node_input_attributes_option::UiNodeInputAttributesOption;
 pub mod ui_node_meta;
 pub use self::ui_node_meta::UiNodeMeta;
 pub mod ui_node_script_attributes;

@@ -269,6 +269,7 @@ docs/UiNodeAttributes.md
 docs/UiNodeDivisionAttributes.md
 docs/UiNodeImageAttributes.md
 docs/UiNodeInputAttributes.md
+docs/UiNodeInputAttributesOption.md
 docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
@@ -605,6 +606,7 @@ src/models/UiNodeAttributes.ts
 src/models/UiNodeDivisionAttributes.ts
 src/models/UiNodeImageAttributes.ts
 src/models/UiNodeInputAttributes.ts
+src/models/UiNodeInputAttributesOption.ts
 src/models/UiNodeMeta.ts
 src/models/UiNodeScriptAttributes.ts
 src/models/UiNodeTextAttributes.ts

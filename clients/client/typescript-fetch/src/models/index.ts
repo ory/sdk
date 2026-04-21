@@ -256,6 +256,7 @@ export * from './UiNodeAttributes';
 export * from './UiNodeDivisionAttributes';
 export * from './UiNodeImageAttributes';
 export * from './UiNodeInputAttributes';
+export * from './UiNodeInputAttributesOption';
 export * from './UiNodeMeta';
 export * from './UiNodeScriptAttributes';
 export * from './UiNodeTextAttributes';

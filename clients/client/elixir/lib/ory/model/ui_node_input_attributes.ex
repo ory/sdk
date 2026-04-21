@@ -18,6 +18,7 @@ defmodule Ory.Model.UiNodeInputAttributes do
     :onclickTrigger,
     :onload,
     :onloadTrigger,
+    :options,
     :pattern,
     :required,
     :type,
@@ -35,6 +36,7 @@ defmodule Ory.Model.UiNodeInputAttributes do
     :onclickTrigger => String.t | nil,
     :onload => String.t | nil,
     :onloadTrigger => String.t | nil,
+    :options => [Ory.Model.UiNodeInputAttributesOption.t] | nil,
     :pattern => String.t | nil,
     :required => boolean() | nil,
     :type => String.t,
@@ -46,6 +48,7 @@ defmodule Ory.Model.UiNodeInputAttributes do
   def decode(value) do
     value
      |> Deserializer.deserialize(:label, :struct, Ory.Model.UiText)
+     |> Deserializer.deserialize(:options, :list, Ory.Model.UiNodeInputAttributesOption)
   end
 end
 

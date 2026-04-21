@@ -273,6 +273,7 @@ docs/UiNodeAttributes.md
 docs/UiNodeDivisionAttributes.md
 docs/UiNodeImageAttributes.md
 docs/UiNodeInputAttributes.md
+docs/UiNodeInputAttributesOption.md
 docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
@@ -630,6 +631,7 @@ src/main/java/sh/ory/model/UiNodeAttributes.java
 src/main/java/sh/ory/model/UiNodeDivisionAttributes.java
 src/main/java/sh/ory/model/UiNodeImageAttributes.java
 src/main/java/sh/ory/model/UiNodeInputAttributes.java
+src/main/java/sh/ory/model/UiNodeInputAttributesOption.java
 src/main/java/sh/ory/model/UiNodeMeta.java
 src/main/java/sh/ory/model/UiNodeScriptAttributes.java
 src/main/java/sh/ory/model/UiNodeTextAttributes.java
@@ -952,6 +954,7 @@ src/test/java/sh/ory/model/UiNodeAnchorAttributesTest.java
 src/test/java/sh/ory/model/UiNodeAttributesTest.java
 src/test/java/sh/ory/model/UiNodeDivisionAttributesTest.java
 src/test/java/sh/ory/model/UiNodeImageAttributesTest.java
+src/test/java/sh/ory/model/UiNodeInputAttributesOptionTest.java
 src/test/java/sh/ory/model/UiNodeInputAttributesTest.java
 src/test/java/sh/ory/model/UiNodeMetaTest.java
 src/test/java/sh/ory/model/UiNodeScriptAttributesTest.java
