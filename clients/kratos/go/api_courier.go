@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v25.4.0
+API version: v26.2.0
 Contact: office@ory.sh
 */
 
@@ -268,8 +268,9 @@ func (a *CourierAPIService) ListCourierMessagesExecute(r CourierAPIListCourierMe
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")

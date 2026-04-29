@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v25.4.0
+API version: v26.2.0
 Contact: office@ory.sh
 */
 
@@ -141,78 +141,6 @@ func (dst *UiNodeAttributes) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'text'
 	if jsonDict["node_type"] == "text" {
-		// try to unmarshal JSON data into UiNodeTextAttributes
-		err = json.Unmarshal(data, &dst.UiNodeTextAttributes)
-		if err == nil {
-			return nil // data stored in dst.UiNodeTextAttributes, return on the first match
-		} else {
-			dst.UiNodeTextAttributes = nil
-			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeTextAttributes: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'uiNodeAnchorAttributes'
-	if jsonDict["node_type"] == "uiNodeAnchorAttributes" {
-		// try to unmarshal JSON data into UiNodeAnchorAttributes
-		err = json.Unmarshal(data, &dst.UiNodeAnchorAttributes)
-		if err == nil {
-			return nil // data stored in dst.UiNodeAnchorAttributes, return on the first match
-		} else {
-			dst.UiNodeAnchorAttributes = nil
-			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeAnchorAttributes: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'uiNodeDivisionAttributes'
-	if jsonDict["node_type"] == "uiNodeDivisionAttributes" {
-		// try to unmarshal JSON data into UiNodeDivisionAttributes
-		err = json.Unmarshal(data, &dst.UiNodeDivisionAttributes)
-		if err == nil {
-			return nil // data stored in dst.UiNodeDivisionAttributes, return on the first match
-		} else {
-			dst.UiNodeDivisionAttributes = nil
-			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeDivisionAttributes: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'uiNodeImageAttributes'
-	if jsonDict["node_type"] == "uiNodeImageAttributes" {
-		// try to unmarshal JSON data into UiNodeImageAttributes
-		err = json.Unmarshal(data, &dst.UiNodeImageAttributes)
-		if err == nil {
-			return nil // data stored in dst.UiNodeImageAttributes, return on the first match
-		} else {
-			dst.UiNodeImageAttributes = nil
-			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeImageAttributes: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'uiNodeInputAttributes'
-	if jsonDict["node_type"] == "uiNodeInputAttributes" {
-		// try to unmarshal JSON data into UiNodeInputAttributes
-		err = json.Unmarshal(data, &dst.UiNodeInputAttributes)
-		if err == nil {
-			return nil // data stored in dst.UiNodeInputAttributes, return on the first match
-		} else {
-			dst.UiNodeInputAttributes = nil
-			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeInputAttributes: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'uiNodeScriptAttributes'
-	if jsonDict["node_type"] == "uiNodeScriptAttributes" {
-		// try to unmarshal JSON data into UiNodeScriptAttributes
-		err = json.Unmarshal(data, &dst.UiNodeScriptAttributes)
-		if err == nil {
-			return nil // data stored in dst.UiNodeScriptAttributes, return on the first match
-		} else {
-			dst.UiNodeScriptAttributes = nil
-			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeScriptAttributes: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'uiNodeTextAttributes'
-	if jsonDict["node_type"] == "uiNodeTextAttributes" {
 		// try to unmarshal JSON data into UiNodeTextAttributes
 		err = json.Unmarshal(data, &dst.UiNodeTextAttributes)
 		if err == nil {

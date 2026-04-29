@@ -1,5 +1,7 @@
 # Ory\Kratos\Client\CourierApi
 
+APIs for managing email and SMS message delivery.
+
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
 | Method | HTTP request | Description |

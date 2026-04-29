@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v25.4.0
+API version: v26.2.0
 Contact: office@ory.sh
 */
 
@@ -121,66 +121,6 @@ func (dst *ContinueWith) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'show_verification_ui'
 	if jsonDict["action"] == "show_verification_ui" {
-		// try to unmarshal JSON data into ContinueWithVerificationUi
-		err = json.Unmarshal(data, &dst.ContinueWithVerificationUi)
-		if err == nil {
-			return nil // data stored in dst.ContinueWithVerificationUi, return on the first match
-		} else {
-			dst.ContinueWithVerificationUi = nil
-			return fmt.Errorf("failed to unmarshal ContinueWith as ContinueWithVerificationUi: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'continueWithRecoveryUi'
-	if jsonDict["action"] == "continueWithRecoveryUi" {
-		// try to unmarshal JSON data into ContinueWithRecoveryUi
-		err = json.Unmarshal(data, &dst.ContinueWithRecoveryUi)
-		if err == nil {
-			return nil // data stored in dst.ContinueWithRecoveryUi, return on the first match
-		} else {
-			dst.ContinueWithRecoveryUi = nil
-			return fmt.Errorf("failed to unmarshal ContinueWith as ContinueWithRecoveryUi: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'continueWithRedirectBrowserTo'
-	if jsonDict["action"] == "continueWithRedirectBrowserTo" {
-		// try to unmarshal JSON data into ContinueWithRedirectBrowserTo
-		err = json.Unmarshal(data, &dst.ContinueWithRedirectBrowserTo)
-		if err == nil {
-			return nil // data stored in dst.ContinueWithRedirectBrowserTo, return on the first match
-		} else {
-			dst.ContinueWithRedirectBrowserTo = nil
-			return fmt.Errorf("failed to unmarshal ContinueWith as ContinueWithRedirectBrowserTo: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'continueWithSetOrySessionToken'
-	if jsonDict["action"] == "continueWithSetOrySessionToken" {
-		// try to unmarshal JSON data into ContinueWithSetOrySessionToken
-		err = json.Unmarshal(data, &dst.ContinueWithSetOrySessionToken)
-		if err == nil {
-			return nil // data stored in dst.ContinueWithSetOrySessionToken, return on the first match
-		} else {
-			dst.ContinueWithSetOrySessionToken = nil
-			return fmt.Errorf("failed to unmarshal ContinueWith as ContinueWithSetOrySessionToken: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'continueWithSettingsUi'
-	if jsonDict["action"] == "continueWithSettingsUi" {
-		// try to unmarshal JSON data into ContinueWithSettingsUi
-		err = json.Unmarshal(data, &dst.ContinueWithSettingsUi)
-		if err == nil {
-			return nil // data stored in dst.ContinueWithSettingsUi, return on the first match
-		} else {
-			dst.ContinueWithSettingsUi = nil
-			return fmt.Errorf("failed to unmarshal ContinueWith as ContinueWithSettingsUi: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'continueWithVerificationUi'
-	if jsonDict["action"] == "continueWithVerificationUi" {
 		// try to unmarshal JSON data into ContinueWithVerificationUi
 		err = json.Unmarshal(data, &dst.ContinueWithVerificationUi)
 		if err == nil {

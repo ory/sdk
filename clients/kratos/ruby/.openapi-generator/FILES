@@ -149,6 +149,7 @@ lib/ory-kratos-client/api/identity_api.rb
 lib/ory-kratos-client/api/metadata_api.rb
 lib/ory-kratos-client/api_client.rb
 lib/ory-kratos-client/api_error.rb
+lib/ory-kratos-client/api_model_base.rb
 lib/ory-kratos-client/configuration.rb
 lib/ory-kratos-client/models/authenticator_assurance_level.rb
 lib/ory-kratos-client/models/batch_patch_identities_response.rb

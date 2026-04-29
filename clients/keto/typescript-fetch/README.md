@@ -1,46 +1,146 @@
-## @ory/keto-client-fetch@v25.4.0
+# @ory/keto-client-fetch@v26.2.0
 
-This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
+A TypeScript SDK client for the localhost API.
 
-Environment
-* Node.js
-* Webpack
-* Browserify
+## Usage
 
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
+First, install the SDK from npm.
 
-Module system
-* CommonJS
-* ES6 module system
+```bash
+npm install @ory/keto-client-fetch --save
+```
 
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition will be automatically resolved via `package.json`. ([Reference](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html))
+Next, try it out.
+
+
+```ts
+import {
+  Configuration,
+  MetadataApi,
+} from '@ory/keto-client-fetch';
+import type { GetVersionRequest } from '@ory/keto-client-fetch';
+
+async function example() {
+  console.log("🚀 Testing @ory/keto-client-fetch SDK...");
+  const api = new MetadataApi();
+
+  try {
+    const data = await api.getVersion();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+
+## Documentation
+
+### API Endpoints
+
+All URIs are relative to *http://localhost*
+
+| Class | Method | HTTP request | Description
+| ----- | ------ | ------------ | -------------
+*MetadataApi* | [**getVersion**](docs/MetadataApi.md#getversion) | **GET** /version | Return Running Software Version.
+*MetadataApi* | [**isAlive**](docs/MetadataApi.md#isalive) | **GET** /health/alive | Check HTTP Server Status
+*MetadataApi* | [**isReady**](docs/MetadataApi.md#isready) | **GET** /health/ready | Check HTTP Server and Database Status
+*PermissionApi* | [**batchCheckPermission**](docs/PermissionApi.md#batchcheckpermission) | **POST** /relation-tuples/batch/check | Batch check permissions
+*PermissionApi* | [**checkPermission**](docs/PermissionApi.md#checkpermission) | **GET** /relation-tuples/check/openapi | Check a permission
+*PermissionApi* | [**checkPermissionOrError**](docs/PermissionApi.md#checkpermissionorerror) | **GET** /relation-tuples/check | Check a permission
+*PermissionApi* | [**expandPermissions**](docs/PermissionApi.md#expandpermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions.
+*PermissionApi* | [**postCheckPermission**](docs/PermissionApi.md#postcheckpermission) | **POST** /relation-tuples/check/openapi | Check a permission
+*PermissionApi* | [**postCheckPermissionOrError**](docs/PermissionApi.md#postcheckpermissionorerror) | **POST** /relation-tuples/check | Check a permission
+*RelationshipApi* | [**checkOplSyntax**](docs/RelationshipApi.md#checkoplsyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
+*RelationshipApi* | [**createRelationship**](docs/RelationshipApi.md#createrelationship) | **PUT** /admin/relation-tuples | Create a Relationship
+*RelationshipApi* | [**deleteRelationships**](docs/RelationshipApi.md#deleterelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
+*RelationshipApi* | [**getRelationships**](docs/RelationshipApi.md#getrelationships) | **GET** /relation-tuples | Query relationships
+*RelationshipApi* | [**listRelationshipNamespaces**](docs/RelationshipApi.md#listrelationshipnamespaces) | **GET** /namespaces | Query namespaces
+*RelationshipApi* | [**patchRelationships**](docs/RelationshipApi.md#patchrelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships
+
+
+### Models
+
+- [BatchCheckPermissionBody](docs/BatchCheckPermissionBody.md)
+- [BatchCheckPermissionResult](docs/BatchCheckPermissionResult.md)
+- [CheckOplSyntaxResult](docs/CheckOplSyntaxResult.md)
+- [CheckPermissionResult](docs/CheckPermissionResult.md)
+- [CheckPermissionResultWithError](docs/CheckPermissionResultWithError.md)
+- [CreateRelationshipBody](docs/CreateRelationshipBody.md)
+- [ErrorGeneric](docs/ErrorGeneric.md)
+- [ExpandedPermissionTree](docs/ExpandedPermissionTree.md)
+- [GenericError](docs/GenericError.md)
+- [GetVersion200Response](docs/GetVersion200Response.md)
+- [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
+- [HealthStatus](docs/HealthStatus.md)
+- [IsAlive200Response](docs/IsAlive200Response.md)
+- [IsReady503Response](docs/IsReady503Response.md)
+- [Namespace](docs/Namespace.md)
+- [ParseError](docs/ParseError.md)
+- [PostCheckPermissionBody](docs/PostCheckPermissionBody.md)
+- [PostCheckPermissionOrErrorBody](docs/PostCheckPermissionOrErrorBody.md)
+- [RelationQuery](docs/RelationQuery.md)
+- [Relationship](docs/Relationship.md)
+- [RelationshipNamespaces](docs/RelationshipNamespaces.md)
+- [RelationshipPatch](docs/RelationshipPatch.md)
+- [Relationships](docs/Relationships.md)
+- [SourcePosition](docs/SourcePosition.md)
+- [SubjectSet](docs/SubjectSet.md)
+- [Version](docs/Version.md)
+
+### Authorization
+
+Endpoints do not require authorization.
+
+
+## About
+
+This TypeScript SDK client supports the [Fetch API](https://fetch.spec.whatwg.org/)
+and is automatically generated by the
+[OpenAPI Generator](https://openapi-generator.tech) project:
+
+- API version: `v26.2.0`
+- Package version: `v26.2.0`
+- Generator version: `7.17.0`
+- Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
+
+The generated npm module supports the following:
+
+- Environments
+  * Node.js
+  * Webpack
+  * Browserify
+- Language levels
+  * ES5 - you must have a Promises/A+ library installed
+  * ES6
+- Module systems
+  * CommonJS
+  * ES6 module system
+
+
+## Development
 
 ### Building
 
-To build and compile the typescript sources to javascript use:
-```
+To build the TypeScript source code, you need to have Node.js and npm installed.
+After cloning the repository, navigate to the project directory and run:
+
+```bash
 npm install
 npm run build
 ```
 
 ### Publishing
 
-First build the package then run `npm publish`
+Once you've built the package, you can publish it to npm:
 
-### Consuming
-
-navigate to the folder of your consuming project and run one of the following commands.
-
-_published:_
-
-```
-npm install @ory/keto-client-fetch@v25.4.0 --save
+```bash
+npm publish
 ```
 
-_unPublished (not recommended):_
+## License
 
-```
-npm install PATH_TO_GENERATED_PACKAGE --save
-```
+[Apache 2.0]()

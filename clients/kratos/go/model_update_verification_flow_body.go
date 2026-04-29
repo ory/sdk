@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v25.4.0
+API version: v26.2.0
 Contact: office@ory.sh
 */
 
@@ -61,30 +61,6 @@ func (dst *UpdateVerificationFlowBody) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'link'
 	if jsonDict["method"] == "link" {
-		// try to unmarshal JSON data into UpdateVerificationFlowWithLinkMethod
-		err = json.Unmarshal(data, &dst.UpdateVerificationFlowWithLinkMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateVerificationFlowWithLinkMethod, return on the first match
-		} else {
-			dst.UpdateVerificationFlowWithLinkMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateVerificationFlowBody as UpdateVerificationFlowWithLinkMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateVerificationFlowWithCodeMethod'
-	if jsonDict["method"] == "updateVerificationFlowWithCodeMethod" {
-		// try to unmarshal JSON data into UpdateVerificationFlowWithCodeMethod
-		err = json.Unmarshal(data, &dst.UpdateVerificationFlowWithCodeMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateVerificationFlowWithCodeMethod, return on the first match
-		} else {
-			dst.UpdateVerificationFlowWithCodeMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateVerificationFlowBody as UpdateVerificationFlowWithCodeMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateVerificationFlowWithLinkMethod'
-	if jsonDict["method"] == "updateVerificationFlowWithLinkMethod" {
 		// try to unmarshal JSON data into UpdateVerificationFlowWithLinkMethod
 		err = json.Unmarshal(data, &dst.UpdateVerificationFlowWithLinkMethod)
 		if err == nil {

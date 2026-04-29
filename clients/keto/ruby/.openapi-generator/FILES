@@ -43,6 +43,7 @@ lib/ory-keto-client/api/permission_api.rb
 lib/ory-keto-client/api/relationship_api.rb
 lib/ory-keto-client/api_client.rb
 lib/ory-keto-client/api_error.rb
+lib/ory-keto-client/api_model_base.rb
 lib/ory-keto-client/configuration.rb
 lib/ory-keto-client/models/batch_check_permission_body.rb
 lib/ory-keto-client/models/batch_check_permission_result.rb

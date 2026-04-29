@@ -39,6 +39,7 @@ lib/Api/PermissionApi.php
 lib/Api/RelationshipApi.php
 lib/ApiException.php
 lib/Configuration.php
+lib/FormDataProcessor.php
 lib/HeaderSelector.php
 lib/Model/BatchCheckPermissionBody.php
 lib/Model/BatchCheckPermissionResult.php

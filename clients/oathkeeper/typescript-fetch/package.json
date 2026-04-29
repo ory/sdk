@@ -1,6 +1,6 @@
 {
   "name": "@ory/oathkeeper-client-fetch",
-  "version": "v25.4.0",
+  "version": "v26.2.0",
   "description": "OpenAPI client for @ory/oathkeeper-client-fetch",
   "author": "Ory Corp",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/ory/sdk.git"
   },
   "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "module": "./dist/esm/index.js",
   "sideEffects": false,
   "scripts": {

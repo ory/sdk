@@ -24,6 +24,7 @@ lib/Api/ApiApi.php
 lib/Api/MetadataApi.php
 lib/ApiException.php
 lib/Configuration.php
+lib/FormDataProcessor.php
 lib/HeaderSelector.php
 lib/Model/GenericError.php
 lib/Model/GetVersion200Response.php

@@ -1,8 +1,8 @@
 # keto-client
 
 Ory Keto API
-- API version: v25.4.0
-  - Build date: 2025-11-09T17:31:55.351267584Z[Etc/UTC]
+- API version: v26.2.0
+  - Build date: 2026-03-24T16:46:38.658164321Z[Etc/UTC]
   - Generator version: 7.7.0
 
 Documentation for all of Ory Keto's REST APIs. gRPC is documented separately.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.keto</groupId>
   <artifactId>keto-client</artifactId>
-  <version>v25.4.0</version>
+  <version>v26.2.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.keto:keto-client:v25.4.0"
+     implementation "sh.ory.keto:keto-client:v26.2.0"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/keto-client-v25.4.0.jar`
+* `target/keto-client-v26.2.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

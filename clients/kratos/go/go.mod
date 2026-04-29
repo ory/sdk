@@ -1,4 +1,4 @@
-module github.com/ory/kratos-client-go
+module github.com/ory/kratos-client-go/v26
 
 go 1.24.0
 

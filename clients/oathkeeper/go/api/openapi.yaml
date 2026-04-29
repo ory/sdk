@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Oathkeeper API
-  version: v25.4.0
+  version: v26.2.0
 servers:
 - url: /
 paths:
@@ -21,13 +21,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/jsonWebKeySet'
+                $ref: "#/components/schemas/jsonWebKeySet"
           description: jsonWebKeySet
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericError'
+                $ref: "#/components/schemas/genericError"
           description: genericError
       summary: Lists Cryptographic Keys
       tags:
@@ -48,25 +48,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericError'
+                $ref: "#/components/schemas/genericError"
           description: genericError
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericError'
+                $ref: "#/components/schemas/genericError"
           description: genericError
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericError'
+                $ref: "#/components/schemas/genericError"
           description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericError'
+                $ref: "#/components/schemas/genericError"
           description: genericError
       summary: Access Control Decision API
       tags:
@@ -88,7 +88,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/isAlive_200_response'
+                $ref: "#/components/schemas/isAlive_200_response"
           description: Ory Oathkeeper is ready to accept connections.
         default:
           content:
@@ -116,13 +116,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/isAlive_200_response'
+                $ref: "#/components/schemas/isAlive_200_response"
           description: Ory Oathkeeper is ready to accept requests.
         "503":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/isReady_503_response'
+                $ref: "#/components/schemas/isReady_503_response"
           description: Ory Kratos is not yet ready to accept requests.
         default:
           content:
@@ -164,14 +164,14 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/rule'
+                  $ref: "#/components/schemas/rule"
                 type: array
           description: A list of rules
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericError'
+                $ref: "#/components/schemas/genericError"
           description: genericError
       summary: List All Rules
       tags:
@@ -194,19 +194,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/rule'
+                $ref: "#/components/schemas/rule"
           description: A rule
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericError'
+                $ref: "#/components/schemas/genericError"
           description: genericError
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericError'
+                $ref: "#/components/schemas/genericError"
           description: genericError
       summary: Retrieve a Rule
       tags:
@@ -227,7 +227,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getVersion_200_response'
+                $ref: "#/components/schemas/getVersion_200_response"
           description: Returns the Ory Oathkeeper version.
       summary: Return Running Software Version.
       tags:
@@ -240,14 +240,14 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/rule'
+            $ref: "#/components/schemas/rule"
       description: A rule
     rules:
       content:
         application/json:
           schema:
             items:
-              $ref: '#/components/schemas/rule'
+              $ref: "#/components/schemas/rule"
             type: array
       description: A list of rules
   schemas:
@@ -463,7 +463,7 @@ components:
             can choose to assign a meaning to the order for their purposes, if
             desired.
           items:
-            $ref: '#/components/schemas/jsonWebKey'
+            $ref: "#/components/schemas/jsonWebKey"
           type: array
       type: object
     rule:
@@ -502,10 +502,10 @@ components:
             If you want the rule to first check a specific authenticator  before "falling back" to others, have that authenticator
             as the first item in the array.
           items:
-            $ref: '#/components/schemas/ruleHandler'
+            $ref: "#/components/schemas/ruleHandler"
           type: array
         authorizer:
-          $ref: '#/components/schemas/ruleHandler'
+          $ref: "#/components/schemas/ruleHandler"
         description:
           description: Description is a human readable description of this rule.
           type: string
@@ -515,7 +515,7 @@ components:
             You will need this ID later on to update or delete the rule.
           type: string
         match:
-          $ref: '#/components/schemas/ruleMatch'
+          $ref: "#/components/schemas/ruleMatch"
         mutators:
           description: |-
             Mutators is a list of mutation handlers that transform the HTTP request. A common use case is generating a new set
@@ -523,10 +523,10 @@ components:
 
             Mutations are performed iteratively from index 0 to n and should all succeed in order for the HTTP request to be forwarded.
           items:
-            $ref: '#/components/schemas/ruleHandler'
+            $ref: "#/components/schemas/ruleHandler"
           type: array
         upstream:
-          $ref: '#/components/schemas/Upstream'
+          $ref: "#/components/schemas/Upstream"
       title: swaggerRule is a single rule that will get checked on every HTTP request.
       type: object
     ruleHandler:

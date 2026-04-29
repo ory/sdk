@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Identities API
-  version: v25.4.0
+  version: v26.2.0
 servers:
 - url: /
 tags:
@@ -45,6 +45,7 @@ paths:
       summary: Get WebAuthn JavaScript
       tags:
       - frontend
+      x-ory-ratelimit-bucket: hydra-public-low
       x-accepts:
       - application/json
   /admin/courier/messages:
@@ -126,6 +127,7 @@ paths:
       summary: List Messages
       tags:
       - courier
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-accepts:
       - application/json
   /admin/courier/messages/{id}:
@@ -165,6 +167,7 @@ paths:
       summary: Get a Message
       tags:
       - courier
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /admin/identities:
@@ -235,8 +238,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: |-
@@ -356,18 +357,19 @@ paths:
       summary: List Identities
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
     patch:
       description: |-
-        Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+        Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).
 
-        You can also use this endpoint to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities),
+        You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities),
         including passwords, social sign-in settings, and multi-factor authentication methods.
 
-        You can import:
-        Up to 1,000 identities per request
-        Up to 200 identities per request if including plaintext passwords
+        If the patch includes hashed passwords you can import up to 1,000 identities per request.
+
+        If the patch includes at least one plaintext password you can import up to 200 identities per request.
 
         Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
 
@@ -419,6 +421,7 @@ paths:
       summary: Create multiple identities
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -464,6 +467,7 @@ paths:
       summary: Create an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -532,6 +536,7 @@ paths:
       summary: Get an Identity by its External ID
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /admin/identities/{id}:
@@ -570,6 +575,7 @@ paths:
       summary: Delete an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-accepts:
       - application/json
     get:
@@ -636,6 +642,7 @@ paths:
       summary: Get an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
     patch:
@@ -694,6 +701,7 @@ paths:
       summary: Patch an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -756,6 +764,7 @@ paths:
       summary: Update an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -849,6 +858,7 @@ paths:
       summary: Delete a credential for a specific identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-accepts:
       - application/json
   /admin/identities/{id}/sessions:
@@ -898,6 +908,7 @@ paths:
       summary: Delete & Invalidate an Identity's Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-accepts:
       - application/json
     get:
@@ -966,8 +977,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: ID is the identity's ID.
@@ -1019,6 +1028,7 @@ paths:
       summary: List an Identity's Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /admin/recovery/code:
@@ -1063,6 +1073,7 @@ paths:
       summary: Create a Recovery Code
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1116,6 +1127,7 @@ paths:
       summary: Create a Recovery Link
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1205,6 +1217,7 @@ paths:
       summary: List All Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /admin/sessions/{id}:
@@ -1248,6 +1261,7 @@ paths:
       summary: Deactivate a Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-accepts:
       - application/json
     get:
@@ -1305,6 +1319,7 @@ paths:
       summary: Get Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
   /admin/sessions/{id}/extend:
@@ -1364,6 +1379,7 @@ paths:
       summary: Extend a Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-accepts:
       - application/json
   /health/alive:
@@ -1501,8 +1517,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       responses:
@@ -1521,6 +1535,7 @@ paths:
       summary: Get all Identity Schemas
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /schemas/{id}:
@@ -1558,6 +1573,7 @@ paths:
       summary: Get Identity JSON Schema
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /self-service/errors:
@@ -1608,6 +1624,7 @@ paths:
       summary: Get User-Flow Errors
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
   /self-service/fed-cm/parameters:
@@ -1637,6 +1654,7 @@ paths:
       summary: Get FedCM Parameters
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
   /self-service/fed-cm/token:
@@ -1694,6 +1712,7 @@ paths:
       summary: Submit a FedCM token
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1808,6 +1827,7 @@ paths:
       summary: Submit a Login Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1941,6 +1961,7 @@ paths:
       summary: Create Login Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/login/browser:
@@ -2086,6 +2107,7 @@ paths:
       summary: Create Login Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/login/flows:
@@ -2174,6 +2196,7 @@ paths:
       summary: Get Login Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
   /self-service/logout:
@@ -2242,6 +2265,7 @@ paths:
       summary: Update Logout Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
   /self-service/logout/api:
@@ -2282,6 +2306,7 @@ paths:
       summary: Perform Logout for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2352,6 +2377,7 @@ paths:
       summary: Create a Logout URL for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/recovery:
@@ -2460,6 +2486,7 @@ paths:
       summary: Update Recovery Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2502,6 +2529,7 @@ paths:
       summary: Create Recovery Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/recovery/browser:
@@ -2552,6 +2580,7 @@ paths:
       summary: Create Recovery Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/recovery/flows:
@@ -2629,6 +2658,7 @@ paths:
       summary: Get Recovery Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
   /self-service/registration:
@@ -2735,6 +2765,7 @@ paths:
       summary: Update Registration Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2820,6 +2851,7 @@ paths:
       summary: Create Registration Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/registration/browser:
@@ -2920,6 +2952,7 @@ paths:
       summary: Create Registration Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/registration/flows:
@@ -3008,6 +3041,7 @@ paths:
       summary: Get Registration Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
   /self-service/settings:
@@ -3151,6 +3185,7 @@ paths:
       summary: Complete Settings Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -3211,6 +3246,7 @@ paths:
       summary: Create Settings Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/settings/browser:
@@ -3301,6 +3337,7 @@ paths:
       summary: Create Settings Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/settings/flows:
@@ -3403,6 +3440,7 @@ paths:
       summary: Get Settings Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
   /self-service/verification:
@@ -3505,6 +3543,7 @@ paths:
       summary: Complete Verification Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -3556,6 +3595,7 @@ paths:
       summary: Create Verification Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/verification/browser:
@@ -3598,6 +3638,7 @@ paths:
       summary: Create Verification Flow for Browser Clients
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/verification/flows:
@@ -3675,6 +3716,7 @@ paths:
       summary: Get Verification Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
   /sessions:
@@ -3734,6 +3776,7 @@ paths:
       summary: Disable my other sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
     get:
@@ -3804,8 +3847,6 @@ paths:
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: Set the Session Token when calling from non-browser clients.
@@ -3860,6 +3901,7 @@ paths:
       summary: Get My Active Sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /sessions/token-exchange:
@@ -3916,6 +3958,7 @@ paths:
       summary: Exchange Session Token
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /sessions/whoami:
@@ -4045,6 +4088,7 @@ paths:
       summary: Check Who the Current HTTP Session Belongs To
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
   /sessions/{id}:
@@ -4109,6 +4153,7 @@ paths:
       summary: Disable one of my sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /version:
@@ -4809,10 +4854,6 @@ components:
             Note: parameters is supported from Chrome 132.
           type: object
       type: object
-    RecoveryAddressType:
-      title: RecoveryAddressType must not exceed 16 characters as that is the limitation
-        in the SQL Schema.
-      type: string
     Time:
       format: date-time
       type: string
@@ -5586,7 +5627,7 @@ components:
           format: date-time
           type: string
         identifiers:
-          description: Identifiers represents a list of unique identifiers this credential
+          description: Identifiers represent a list of unique identifiers this credential
             type matches.
           items:
             type: string
@@ -6716,8 +6757,6 @@ components:
         value:
           type: string
         via:
-          title: RecoveryAddressType must not exceed 16 characters as that is the
-            limitation in the SQL Schema.
           type: string
       required:
       - value
@@ -7883,13 +7922,11 @@ components:
           minimum: 1
           type: integer
         page_token:
-          default: "1"
           description: |-
             Next Page Token
 
             The next page token.
             For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-          minimum: 1
           type: string
       type: object
     tokenPaginationHeaders:
@@ -8845,6 +8882,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -9069,7 +9107,7 @@ components:
 
             Needs to be set when initiating the flow. If the email is a registered
             recovery email, a recovery link will be sent. If the email is not known,
-            a email with details on what happened will be sent instead.
+            an email with details on what happened will be sent instead.
 
             format: email
           type: string
@@ -9190,6 +9228,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -9456,6 +9495,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method

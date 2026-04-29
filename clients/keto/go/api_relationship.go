@@ -3,7 +3,7 @@ Ory Keto API
 
 Documentation for all of Ory Keto's REST APIs. gRPC is documented separately. 
 
-API version: v25.4.0
+API version: v26.2.0
 Contact: hi@ory.sh
 */
 
@@ -648,8 +648,9 @@ func (a *RelationshipAPIService) GetRelationshipsExecute(r RelationshipAPIGetRel
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v25.4.0
+API version: v26.2.0
 Contact: office@ory.sh
 */
 
@@ -37,8 +37,6 @@ func NewTokenPagination() *TokenPagination {
 	this := TokenPagination{}
 	var pageSize int64 = 250
 	this.PageSize = &pageSize
-	var pageToken string = "1"
-	this.PageToken = &pageToken
 	return &this
 }
 
@@ -49,8 +47,6 @@ func NewTokenPaginationWithDefaults() *TokenPagination {
 	this := TokenPagination{}
 	var pageSize int64 = 250
 	this.PageSize = &pageSize
-	var pageToken string = "1"
-	this.PageToken = &pageToken
 	return &this
 }
 

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v25.4.0
+API version: v26.2.0
 Contact: office@ory.sh
 */
 
@@ -161,90 +161,6 @@ func (dst *UpdateRegistrationFlowBody) UnmarshalJSON(data []byte) error {
 
 	// check if the discriminator value is 'webauthn'
 	if jsonDict["method"] == "webauthn" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithWebAuthnMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithWebAuthnMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithWebAuthnMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithWebAuthnMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithWebAuthnMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithCodeMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithCodeMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithCodeMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithCodeMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithCodeMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithCodeMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithCodeMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithOidcMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithOidcMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithOidcMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithOidcMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithOidcMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithOidcMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithOidcMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithPasskeyMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithPasskeyMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithPasskeyMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithPasskeyMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithPasskeyMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithPasskeyMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithPasskeyMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithPasswordMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithPasswordMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithPasswordMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithPasswordMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithPasswordMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithPasswordMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithPasswordMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithProfileMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithProfileMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithProfileMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithProfileMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithProfileMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithProfileMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithProfileMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithSamlMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithSamlMethod" {
-		// try to unmarshal JSON data into UpdateRegistrationFlowWithSamlMethod
-		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithSamlMethod)
-		if err == nil {
-			return nil // data stored in dst.UpdateRegistrationFlowWithSamlMethod, return on the first match
-		} else {
-			dst.UpdateRegistrationFlowWithSamlMethod = nil
-			return fmt.Errorf("failed to unmarshal UpdateRegistrationFlowBody as UpdateRegistrationFlowWithSamlMethod: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'updateRegistrationFlowWithWebAuthnMethod'
-	if jsonDict["method"] == "updateRegistrationFlowWithWebAuthnMethod" {
 		// try to unmarshal JSON data into UpdateRegistrationFlowWithWebAuthnMethod
 		err = json.Unmarshal(data, &dst.UpdateRegistrationFlowWithWebAuthnMethod)
 		if err == nil {
