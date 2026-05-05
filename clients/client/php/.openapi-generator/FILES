@@ -77,7 +77,9 @@ docs/Model/CreateWorkspaceOrganizationBody.md
 docs/Model/CreateWorkspaceSubscriptionBody.md
 docs/Model/CredentialSupportedDraft00.md
 docs/Model/CustomDomain.md
+docs/Model/CustomerPortalAvailability.md
 docs/Model/DeleteMySessionsCount.md
+docs/Model/DeviceAuthnKey.md
 docs/Model/DeviceAuthorization.md
 docs/Model/DeviceUserAuthRequest.md
 docs/Model/EmailTemplateData.md
@@ -407,7 +409,9 @@ lib/Model/CreateWorkspaceOrganizationBody.php
 lib/Model/CreateWorkspaceSubscriptionBody.php
 lib/Model/CredentialSupportedDraft00.php
 lib/Model/CustomDomain.php
+lib/Model/CustomerPortalAvailability.php
 lib/Model/DeleteMySessionsCount.php
+lib/Model/DeviceAuthnKey.php
 lib/Model/DeviceAuthorization.php
 lib/Model/DeviceUserAuthRequest.php
 lib/Model/EmailTemplateData.php
@@ -735,7 +739,9 @@ test/Model/CreateWorkspaceOrganizationBodyTest.php
 test/Model/CreateWorkspaceSubscriptionBodyTest.php
 test/Model/CredentialSupportedDraft00Test.php
 test/Model/CustomDomainTest.php
+test/Model/CustomerPortalAvailabilityTest.php
 test/Model/DeleteMySessionsCountTest.php
+test/Model/DeviceAuthnKeyTest.php
 test/Model/DeviceAuthorizationTest.php
 test/Model/DeviceUserAuthRequestTest.php
 test/Model/EmailTemplateDataBodyTest.php

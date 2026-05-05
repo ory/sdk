@@ -8,11 +8,13 @@ defmodule Ory.Model.OrganizationBody do
 
   @derive Jason.Encoder
   defstruct [
+    :default_region,
     :domains,
     :label
   ]
 
   @type t :: %__MODULE__{
+    :default_region => String.t | nil,
     :domains => [String.t] | nil,
     :label => String.t | nil
   }

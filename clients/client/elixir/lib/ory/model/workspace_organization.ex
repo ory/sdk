@@ -10,6 +10,7 @@ defmodule Ory.Model.WorkspaceOrganization do
   defstruct [
     :active_link,
     :created_at,
+    :default_region,
     :domains,
     :id,
     :label,
@@ -19,6 +20,7 @@ defmodule Ory.Model.WorkspaceOrganization do
   @type t :: %__MODULE__{
     :active_link => Ory.Model.OnboardingPortalLink.t | nil,
     :created_at => DateTime.t,
+    :default_region => String.t | nil,
     :domains => [String.t],
     :id => String.t,
     :label => String.t,

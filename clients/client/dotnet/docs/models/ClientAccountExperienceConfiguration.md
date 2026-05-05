@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **DefaultRedirectUrl** | **string** |  | 
 **EnabledLocales** | **List&lt;string&gt;** |  | 
 **ErrorUiUrl** | **string** |  | 
+**HideOryBranding** | **bool** |  | 
+**HideRegistrationLink** | **bool** |  | 
 **LocaleBehavior** | **string** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
 **LoginUiUrl** | **string** |  | 
 **Name** | **string** |  | 

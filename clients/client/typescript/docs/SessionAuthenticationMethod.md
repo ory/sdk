@@ -8,9 +8,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **aal** | [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] [default to undefined]
 **completed_at** | **string** | When the authentication challenge was completed. | [optional] [default to undefined]
-**method** | **string** | The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [optional] [default to undefined]
+**method** | **string** | The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [optional] [default to undefined]
 **organization** | **string** | The Organization id used for authentication | [optional] [default to undefined]
 **provider** | **string** | OIDC or SAML provider id used for authentication | [optional] [default to undefined]
+**upstream_acr** | **string** | UpstreamACR is the &#x60;acr&#x60; claim reported by the upstream OIDC provider, if any. Populated only for OIDC login methods when the upstream ID token contained an &#x60;acr&#x60; claim. | [optional] [default to undefined]
+**upstream_amr** | **Array&lt;string&gt;** | UpstreamAMR is the &#x60;amr&#x60; claim reported by the upstream OIDC provider, if any. Populated only for OIDC login methods when the upstream ID token contained an &#x60;amr&#x60; claim. | [optional] [default to undefined]
 
 ## Example
 
@@ -23,6 +25,8 @@ const instance: SessionAuthenticationMethod = {
     method,
     organization,
     provider,
+    upstream_acr,
+    upstream_amr,
 };
 ```
 

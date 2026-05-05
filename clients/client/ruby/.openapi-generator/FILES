@@ -68,7 +68,9 @@ docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
+docs/CustomerPortalAvailability.md
 docs/DeleteMySessionsCount.md
+docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceUserAuthRequest.md
 docs/EmailTemplateData.md
@@ -411,7 +413,9 @@ lib/ory-client/models/create_workspace_organization_body.rb
 lib/ory-client/models/create_workspace_subscription_body.rb
 lib/ory-client/models/credential_supported_draft00.rb
 lib/ory-client/models/custom_domain.rb
+lib/ory-client/models/customer_portal_availability.rb
 lib/ory-client/models/delete_my_sessions_count.rb
+lib/ory-client/models/device_authn_key.rb
 lib/ory-client/models/device_authorization.rb
 lib/ory-client/models/device_user_auth_request.rb
 lib/ory-client/models/email_template_data.rb
@@ -738,7 +742,9 @@ spec/models/create_workspace_organization_body_spec.rb
 spec/models/create_workspace_subscription_body_spec.rb
 spec/models/credential_supported_draft00_spec.rb
 spec/models/custom_domain_spec.rb
+spec/models/customer_portal_availability_spec.rb
 spec/models/delete_my_sessions_count_spec.rb
+spec/models/device_authn_key_spec.rb
 spec/models/device_authorization_spec.rb
 spec/models/device_user_auth_request_spec.rb
 spec/models/email_template_data_body_spec.rb

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ActiveLink** | Pointer to [**OnboardingPortalLink**](OnboardingPortalLink.md) |  | [optional] 
 **CreatedAt** | **time.Time** |  | 
+**DefaultRegion** | Pointer to **string** | DefaultRegion sets the default region for identities provisioned into this organization, when the identity does not specify a region explictly. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] 
 **Domains** | **[]string** | The list of organization&#39;s domains. | 
 **Id** | **string** | The organization&#39;s ID. | 
 **Label** | **string** | The organization&#39;s human-readable label. | 
@@ -74,6 +75,31 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+
+### GetDefaultRegion
+
+`func (o *WorkspaceOrganization) GetDefaultRegion() string`
+
+GetDefaultRegion returns the DefaultRegion field if non-nil, zero value otherwise.
+
+### GetDefaultRegionOk
+
+`func (o *WorkspaceOrganization) GetDefaultRegionOk() (*string, bool)`
+
+GetDefaultRegionOk returns a tuple with the DefaultRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultRegion
+
+`func (o *WorkspaceOrganization) SetDefaultRegion(v string)`
+
+SetDefaultRegion sets DefaultRegion field to given value.
+
+### HasDefaultRegion
+
+`func (o *WorkspaceOrganization) HasDefaultRegion() bool`
+
+HasDefaultRegion returns a boolean if a field has been set.
 
 ### GetDomains
 

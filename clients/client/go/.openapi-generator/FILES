@@ -79,7 +79,9 @@ docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
+docs/CustomerPortalAvailability.md
 docs/DeleteMySessionsCount.md
+docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceUserAuthRequest.md
 docs/EmailTemplateData.md
@@ -406,7 +408,9 @@ model_create_workspace_organization_body.go
 model_create_workspace_subscription_body.go
 model_credential_supported_draft00.go
 model_custom_domain.go
+model_customer_portal_availability.go
 model_delete_my_sessions_count.go
+model_device_authn_key.go
 model_device_authorization.go
 model_device_user_auth_request.go
 model_email_template_data.go

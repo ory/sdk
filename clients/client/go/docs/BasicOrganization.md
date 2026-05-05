@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DefaultRegion** | Pointer to **string** | DefaultRegion sets the default region for identities provisioned into this organization, when the identity does not specify a region explictly. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] 
 **Domains** | **[]string** | The list of organization&#39;s domains. | 
 **Id** | **string** | The organization&#39;s ID. | 
 **Label** | **string** | The organization&#39;s human-readable label. | 
@@ -26,6 +27,31 @@ will change when the set of required properties is changed
 NewBasicOrganizationWithDefaults instantiates a new BasicOrganization object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDefaultRegion
+
+`func (o *BasicOrganization) GetDefaultRegion() string`
+
+GetDefaultRegion returns the DefaultRegion field if non-nil, zero value otherwise.
+
+### GetDefaultRegionOk
+
+`func (o *BasicOrganization) GetDefaultRegionOk() (*string, bool)`
+
+GetDefaultRegionOk returns a tuple with the DefaultRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultRegion
+
+`func (o *BasicOrganization) SetDefaultRegion(v string)`
+
+SetDefaultRegion sets DefaultRegion field to given value.
+
+### HasDefaultRegion
+
+`func (o *BasicOrganization) HasDefaultRegion() bool`
+
+HasDefaultRegion returns a boolean if a field has been set.
 
 ### GetDomains
 

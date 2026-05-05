@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.36
+API version: v1.22.38
 Contact: support@ory.sh
 */
 
@@ -32,6 +32,10 @@ type CreateProjectNormalizedPayload struct {
 	AccountExperienceFaviconDark *string `json:"account_experience_favicon_dark,omitempty"`
 	// Holds the URL to the account experience's favicon. This governs the \"favicon_light\" setting.
 	AccountExperienceFaviconLight *string `json:"account_experience_favicon_light,omitempty"`
+	// Whether to hide the Ory branding badge on the account experience. This governs the \"hide_ory_branding\" setting.
+	AccountExperienceHideOryBranding *bool `json:"account_experience_hide_ory_branding,omitempty"`
+	// Whether to hide the registration link on the account experience login card. This governs the \"hide_registration_link\" setting.
+	AccountExperienceHideRegistrationLink *bool `json:"account_experience_hide_registration_link,omitempty"`
 	// Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language. This governs the \"locale_behavior\" setting.
 	AccountExperienceLocaleBehavior *string `json:"account_experience_locale_behavior,omitempty"`
 	// Holds the URL to the account experience's dark theme logo (currently unused). This governs the \"logo_dark\" setting.
@@ -50,7 +54,7 @@ type CreateProjectNormalizedPayload struct {
 	EnableAxV2 *bool `json:"enable_ax_v2,omitempty"`
 	//  prod Production stage Staging dev Development
 	Environment string `json:"environment"`
-	//  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
+	//  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global
 	HomeRegion *string `json:"home_region,omitempty"`
 	// A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.  This governs the \"oauth2.allowed_top_level_claims\" setting.
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
@@ -732,6 +736,70 @@ func (o *CreateProjectNormalizedPayload) HasAccountExperienceFaviconLight() bool
 // SetAccountExperienceFaviconLight gets a reference to the given string and assigns it to the AccountExperienceFaviconLight field.
 func (o *CreateProjectNormalizedPayload) SetAccountExperienceFaviconLight(v string) {
 	o.AccountExperienceFaviconLight = &v
+}
+
+// GetAccountExperienceHideOryBranding returns the AccountExperienceHideOryBranding field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceHideOryBranding() bool {
+	if o == nil || IsNil(o.AccountExperienceHideOryBranding) {
+		var ret bool
+		return ret
+	}
+	return *o.AccountExperienceHideOryBranding
+}
+
+// GetAccountExperienceHideOryBrandingOk returns a tuple with the AccountExperienceHideOryBranding field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceHideOryBrandingOk() (*bool, bool) {
+	if o == nil || IsNil(o.AccountExperienceHideOryBranding) {
+		return nil, false
+	}
+	return o.AccountExperienceHideOryBranding, true
+}
+
+// HasAccountExperienceHideOryBranding returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasAccountExperienceHideOryBranding() bool {
+	if o != nil && !IsNil(o.AccountExperienceHideOryBranding) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceHideOryBranding gets a reference to the given bool and assigns it to the AccountExperienceHideOryBranding field.
+func (o *CreateProjectNormalizedPayload) SetAccountExperienceHideOryBranding(v bool) {
+	o.AccountExperienceHideOryBranding = &v
+}
+
+// GetAccountExperienceHideRegistrationLink returns the AccountExperienceHideRegistrationLink field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceHideRegistrationLink() bool {
+	if o == nil || IsNil(o.AccountExperienceHideRegistrationLink) {
+		var ret bool
+		return ret
+	}
+	return *o.AccountExperienceHideRegistrationLink
+}
+
+// GetAccountExperienceHideRegistrationLinkOk returns a tuple with the AccountExperienceHideRegistrationLink field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceHideRegistrationLinkOk() (*bool, bool) {
+	if o == nil || IsNil(o.AccountExperienceHideRegistrationLink) {
+		return nil, false
+	}
+	return o.AccountExperienceHideRegistrationLink, true
+}
+
+// HasAccountExperienceHideRegistrationLink returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasAccountExperienceHideRegistrationLink() bool {
+	if o != nil && !IsNil(o.AccountExperienceHideRegistrationLink) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceHideRegistrationLink gets a reference to the given bool and assigns it to the AccountExperienceHideRegistrationLink field.
+func (o *CreateProjectNormalizedPayload) SetAccountExperienceHideRegistrationLink(v bool) {
+	o.AccountExperienceHideRegistrationLink = &v
 }
 
 // GetAccountExperienceLocaleBehavior returns the AccountExperienceLocaleBehavior field value if set, zero value otherwise.
@@ -8423,6 +8491,12 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.AccountExperienceFaviconLight) {
 		toSerialize["account_experience_favicon_light"] = o.AccountExperienceFaviconLight
 	}
+	if !IsNil(o.AccountExperienceHideOryBranding) {
+		toSerialize["account_experience_hide_ory_branding"] = o.AccountExperienceHideOryBranding
+	}
+	if !IsNil(o.AccountExperienceHideRegistrationLink) {
+		toSerialize["account_experience_hide_registration_link"] = o.AccountExperienceHideRegistrationLink
+	}
 	if !IsNil(o.AccountExperienceLocaleBehavior) {
 		toSerialize["account_experience_locale_behavior"] = o.AccountExperienceLocaleBehavior
 	}
@@ -9188,6 +9262,8 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "account_experience_enabled_locales")
 		delete(additionalProperties, "account_experience_favicon_dark")
 		delete(additionalProperties, "account_experience_favicon_light")
+		delete(additionalProperties, "account_experience_hide_ory_branding")
+		delete(additionalProperties, "account_experience_hide_registration_link")
 		delete(additionalProperties, "account_experience_locale_behavior")
 		delete(additionalProperties, "account_experience_logo_dark")
 		delete(additionalProperties, "account_experience_logo_light")

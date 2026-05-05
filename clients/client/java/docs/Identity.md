@@ -16,6 +16,7 @@ An [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) repr
 |**metadataPublic** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- |  [optional] |
 |**organizationId** | **String** |  |  [optional] |
 |**recoveryAddresses** | [**List&lt;RecoveryIdentityAddress&gt;**](RecoveryIdentityAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity. |  [optional] |
+|**region** | [**RegionEnum**](#RegionEnum) | Region is the Ory Network region this identity is homed in. Set by the multi-region persister; empty on OSS and single-region deployments. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global |  [optional] |
 |**schemaId** | **String** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. |  |
 |**schemaUrl** | **String** | SchemaURL is the URL of the endpoint where the identity&#39;s traits schema can be fetched from.  format: url |  |
 |**state** | [**StateEnum**](#StateEnum) | State is the identity&#39;s state.  This value has currently no effect. active StateActive inactive StateInactive |  [optional] |
@@ -23,6 +24,21 @@ An [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) repr
 |**traits** | **Object** | Traits represent an identity&#39;s traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in &#x60;schema_url&#x60;. |  |
 |**updatedAt** | **OffsetDateTime** | UpdatedAt is a helper struct field for gobuffalo.pop. |  [optional] |
 |**verifiableAddresses** | [**List&lt;VerifiableIdentityAddress&gt;**](VerifiableIdentityAddress.md) | VerifiableAddresses contains all the addresses that can be verified by the user. |  [optional] |
+
+
+
+## Enum: RegionEnum
+
+| Name | Value |
+|---- | -----|
+| EU_CENTRAL | &quot;eu-central&quot; |
+| ASIA_NORTHEAST | &quot;asia-northeast&quot; |
+| US_EAST | &quot;us-east&quot; |
+| US_WEST | &quot;us-west&quot; |
+| EU | &quot;eu&quot; |
+| ASIA | &quot;asia&quot; |
+| US | &quot;us&quot; |
+| GLOBAL | &quot;global&quot; |
 
 
 

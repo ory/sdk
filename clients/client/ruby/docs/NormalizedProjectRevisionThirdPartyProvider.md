@@ -4,6 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **aal2_acr_values** | **Array&lt;String&gt;** | AAL2ACRValues lists upstream OIDC &#x60;acr&#x60; claim values that should elevate the resulting Kratos session to AAL2. Empty means the upstream &#x60;acr&#x60; claim is ignored when deciding session AAL. | [optional] |
+| **aal2_amr_values** | **Array&lt;String&gt;** | AAL2AMRValues lists upstream OIDC &#x60;amr&#x60; claim values that should elevate the resulting Kratos session to AAL2 when any of them appears in the upstream &#x60;amr&#x60; array. Empty means the upstream &#x60;amr&#x60; claim is ignored when deciding session AAL. | [optional] |
 | **account_linking_mode** | **String** | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are &#x60;confirm_with_existing_credential&#x60; (default) and &#x60;automatic&#x60;. &#x60;automatic&#x60; silently links accounts when the provider verifies email ownership. Only supported for &#x60;apple&#x60; and &#x60;google&#x60; providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional] |
 | **additional_id_token_audiences** | **Array&lt;String&gt;** | AdditionalIDTokenAudiences is a list of additional audiences allowed in the ID Token.  This is only relevant in OIDC flows that submit an IDToken instead of using the callback from the OIDC provider. | [optional] |
 | **apple_private_key** | **String** |  | [optional] |
@@ -41,6 +43,8 @@
 require 'ory-client'
 
 instance = OryClient::NormalizedProjectRevisionThirdPartyProvider.new(
+  aal2_acr_values: null,
+  aal2_amr_values: null,
   account_linking_mode: null,
   additional_id_token_audiences: null,
   apple_private_key: null,

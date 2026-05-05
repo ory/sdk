@@ -9,6 +9,8 @@
 | **account_experience_enabled_locales** | **Array&lt;String&gt;** | The Account Experience&#39;s Enabled Locales  This governs the locales that are available in the account experience. This governs the \&quot;enabled_locales\&quot; setting. | [optional] |
 | **account_experience_favicon_dark** | **String** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). This governs the \&quot;favicon_dark\&quot; setting. | [optional] |
 | **account_experience_favicon_light** | **String** | Holds the URL to the account experience&#39;s favicon. This governs the \&quot;favicon_light\&quot; setting. | [optional] |
+| **account_experience_hide_ory_branding** | **Boolean** | Whether to hide the Ory branding badge on the account experience. This governs the \&quot;hide_ory_branding\&quot; setting. | [optional] |
+| **account_experience_hide_registration_link** | **Boolean** | Whether to hide the registration link on the account experience login card. This governs the \&quot;hide_registration_link\&quot; setting. | [optional] |
 | **account_experience_locale_behavior** | **String** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. This governs the \&quot;locale_behavior\&quot; setting. | [optional] |
 | **account_experience_logo_dark** | **String** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). This governs the \&quot;logo_dark\&quot; setting. | [optional] |
 | **account_experience_logo_light** | **String** | Holds the URL to the account experience&#39;s logo. This governs the \&quot;logo_light\&quot; setting. | [optional] |
@@ -18,7 +20,7 @@
 | **disable_account_experience_welcome_screen** | **Boolean** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. This governs the \&quot;disable_welcome_screen\&quot; setting. | [optional] |
 | **enable_ax_v2** | **Boolean** | Whether the new account experience is enabled and reachable. This governs the \&quot;enable_ax_v2\&quot; setting. | [optional] |
 | **environment** | **String** |  prod Production stage Staging dev Development |  |
-| **home_region** | **String** |  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | [optional] |
+| **home_region** | **String** |  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] |
 | **hydra_oauth2_allowed_top_level_claims** | **Array&lt;String&gt;** | A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.  This governs the \&quot;oauth2.allowed_top_level_claims\&quot; setting. | [optional] |
 | **hydra_oauth2_client_credentials_default_grant_allowed_scope** | **Boolean** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] |
 | **hydra_oauth2_exclude_not_before_claim** | **Boolean** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] |
@@ -261,6 +263,8 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   account_experience_enabled_locales: null,
   account_experience_favicon_dark: null,
   account_experience_favicon_light: null,
+  account_experience_hide_ory_branding: null,
+  account_experience_hide_registration_link: null,
   account_experience_locale_behavior: null,
   account_experience_logo_dark: null,
   account_experience_logo_light: null,

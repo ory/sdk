@@ -79,7 +79,9 @@ lib/ory/model/create_workspace_organization_body.ex
 lib/ory/model/create_workspace_subscription_body.ex
 lib/ory/model/credential_supported_draft00.ex
 lib/ory/model/custom_domain.ex
+lib/ory/model/customer_portal_availability.ex
 lib/ory/model/delete_my_sessions_count.ex
+lib/ory/model/device_authn_key.ex
 lib/ory/model/device_authorization.ex
 lib/ory/model/device_user_auth_request.ex
 lib/ory/model/email_template_data.ex

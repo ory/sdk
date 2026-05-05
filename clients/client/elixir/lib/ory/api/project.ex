@@ -122,6 +122,7 @@ defmodule Ory.Api.Project do
     |> Connection.request(request)
     |> evaluate_response([
       {201, Ory.Model.Project},
+      {400, Ory.Model.ErrorGeneric},
       {401, Ory.Model.ErrorGeneric},
       {403, Ory.Model.ErrorGeneric},
       {404, Ory.Model.ErrorGeneric},

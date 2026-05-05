@@ -6,6 +6,8 @@
 
 Name | Type
 ------------ | -------------
+`aal2_acr_values` | Array&lt;string&gt;
+`aal2_amr_values` | Array&lt;string&gt;
 `account_linking_mode` | string
 `additional_id_token_audiences` | Array&lt;string&gt;
 `apple_private_key` | string
@@ -44,6 +46,8 @@ import type { NormalizedProjectRevisionThirdPartyProvider } from '@ory/client-fe
 
 // TODO: Update the object below with actual values
 const example = {
+  "aal2_acr_values": null,
+  "aal2_amr_values": null,
   "account_linking_mode": null,
   "additional_id_token_audiences": null,
   "apple_private_key": null,

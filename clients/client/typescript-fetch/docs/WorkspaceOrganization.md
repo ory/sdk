@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `active_link` | [OnboardingPortalLink](OnboardingPortalLink.md)
 `created_at` | Date
+`default_region` | string
 `domains` | Array&lt;string&gt;
 `id` | string
 `label` | string
@@ -22,6 +23,7 @@ import type { WorkspaceOrganization } from '@ory/client-fetch'
 const example = {
   "active_link": null,
   "created_at": null,
+  "default_region": null,
   "domains": null,
   "id": null,
   "label": null,

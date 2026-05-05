@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Aal2AcrValues** | Pointer to **[]string** | AAL2ACRValues lists upstream OIDC &#x60;acr&#x60; claim values that should elevate the resulting Kratos session to AAL2. Empty means the upstream &#x60;acr&#x60; claim is ignored when deciding session AAL. | [optional] 
+**Aal2AmrValues** | Pointer to **[]string** | AAL2AMRValues lists upstream OIDC &#x60;amr&#x60; claim values that should elevate the resulting Kratos session to AAL2 when any of them appears in the upstream &#x60;amr&#x60; array. Empty means the upstream &#x60;amr&#x60; claim is ignored when deciding session AAL. | [optional] 
 **AccountLinkingMode** | Pointer to **string** | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are &#x60;confirm_with_existing_credential&#x60; (default) and &#x60;automatic&#x60;. &#x60;automatic&#x60; silently links accounts when the provider verifies email ownership. Only supported for &#x60;apple&#x60; and &#x60;google&#x60; providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional] 
 **AdditionalIdTokenAudiences** | Pointer to **[]string** | AdditionalIDTokenAudiences is a list of additional audiences allowed in the ID Token.  This is only relevant in OIDC flows that submit an IDToken instead of using the callback from the OIDC provider. | [optional] 
 **ApplePrivateKey** | Pointer to **NullableString** |  | [optional] 
@@ -53,6 +55,56 @@ will change when the set of required properties is changed
 NewNormalizedProjectRevisionThirdPartyProviderWithDefaults instantiates a new NormalizedProjectRevisionThirdPartyProvider object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAal2AcrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAal2AcrValues() []string`
+
+GetAal2AcrValues returns the Aal2AcrValues field if non-nil, zero value otherwise.
+
+### GetAal2AcrValuesOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAal2AcrValuesOk() (*[]string, bool)`
+
+GetAal2AcrValuesOk returns a tuple with the Aal2AcrValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAal2AcrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetAal2AcrValues(v []string)`
+
+SetAal2AcrValues sets Aal2AcrValues field to given value.
+
+### HasAal2AcrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasAal2AcrValues() bool`
+
+HasAal2AcrValues returns a boolean if a field has been set.
+
+### GetAal2AmrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAal2AmrValues() []string`
+
+GetAal2AmrValues returns the Aal2AmrValues field if non-nil, zero value otherwise.
+
+### GetAal2AmrValuesOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAal2AmrValuesOk() (*[]string, bool)`
+
+GetAal2AmrValuesOk returns a tuple with the Aal2AmrValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAal2AmrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetAal2AmrValues(v []string)`
+
+SetAal2AmrValues sets Aal2AmrValues field to given value.
+
+### HasAal2AmrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasAal2AmrValues() bool`
+
+HasAal2AmrValues returns a boolean if a field has been set.
 
 ### GetAccountLinkingMode
 

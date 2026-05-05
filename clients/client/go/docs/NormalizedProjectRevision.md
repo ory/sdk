@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **AccountExperienceEnabledLocales** | Pointer to **[]string** | The Account Experience&#39;s Enabled Locales  This governs the locales that are available in the account experience. This governs the \&quot;enabled_locales\&quot; setting. | [optional] 
 **AccountExperienceFaviconDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). This governs the \&quot;favicon_dark\&quot; setting. | [optional] 
 **AccountExperienceFaviconLight** | Pointer to **string** | Holds the URL to the account experience&#39;s favicon. This governs the \&quot;favicon_light\&quot; setting. | [optional] 
+**AccountExperienceHideOryBranding** | Pointer to **bool** | Whether to hide the Ory branding badge on the account experience. This governs the \&quot;hide_ory_branding\&quot; setting. | [optional] 
+**AccountExperienceHideRegistrationLink** | Pointer to **bool** | Whether to hide the registration link on the account experience login card. This governs the \&quot;hide_registration_link\&quot; setting. | [optional] 
 **AccountExperienceLocaleBehavior** | Pointer to **string** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. This governs the \&quot;locale_behavior\&quot; setting. | [optional] 
 **AccountExperienceLogoDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). This governs the \&quot;logo_dark\&quot; setting. | [optional] 
 **AccountExperienceLogoLight** | Pointer to **string** | Holds the URL to the account experience&#39;s logo. This governs the \&quot;logo_light\&quot; setting. | [optional] 
@@ -390,6 +392,56 @@ SetAccountExperienceFaviconLight sets AccountExperienceFaviconLight field to giv
 `func (o *NormalizedProjectRevision) HasAccountExperienceFaviconLight() bool`
 
 HasAccountExperienceFaviconLight returns a boolean if a field has been set.
+
+### GetAccountExperienceHideOryBranding
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceHideOryBranding() bool`
+
+GetAccountExperienceHideOryBranding returns the AccountExperienceHideOryBranding field if non-nil, zero value otherwise.
+
+### GetAccountExperienceHideOryBrandingOk
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceHideOryBrandingOk() (*bool, bool)`
+
+GetAccountExperienceHideOryBrandingOk returns a tuple with the AccountExperienceHideOryBranding field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceHideOryBranding
+
+`func (o *NormalizedProjectRevision) SetAccountExperienceHideOryBranding(v bool)`
+
+SetAccountExperienceHideOryBranding sets AccountExperienceHideOryBranding field to given value.
+
+### HasAccountExperienceHideOryBranding
+
+`func (o *NormalizedProjectRevision) HasAccountExperienceHideOryBranding() bool`
+
+HasAccountExperienceHideOryBranding returns a boolean if a field has been set.
+
+### GetAccountExperienceHideRegistrationLink
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceHideRegistrationLink() bool`
+
+GetAccountExperienceHideRegistrationLink returns the AccountExperienceHideRegistrationLink field if non-nil, zero value otherwise.
+
+### GetAccountExperienceHideRegistrationLinkOk
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceHideRegistrationLinkOk() (*bool, bool)`
+
+GetAccountExperienceHideRegistrationLinkOk returns a tuple with the AccountExperienceHideRegistrationLink field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceHideRegistrationLink
+
+`func (o *NormalizedProjectRevision) SetAccountExperienceHideRegistrationLink(v bool)`
+
+SetAccountExperienceHideRegistrationLink sets AccountExperienceHideRegistrationLink field to given value.
+
+### HasAccountExperienceHideRegistrationLink
+
+`func (o *NormalizedProjectRevision) HasAccountExperienceHideRegistrationLink() bool`
+
+HasAccountExperienceHideRegistrationLink returns a boolean if a field has been set.
 
 ### GetAccountExperienceLocaleBehavior
 

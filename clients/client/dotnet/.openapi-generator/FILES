@@ -77,7 +77,9 @@ docs/models/ClientCreateWorkspaceOrganizationBody.md
 docs/models/ClientCreateWorkspaceSubscriptionBody.md
 docs/models/ClientCredentialSupportedDraft00.md
 docs/models/ClientCustomDomain.md
+docs/models/ClientCustomerPortalAvailability.md
 docs/models/ClientDeleteMySessionsCount.md
+docs/models/ClientDeviceAuthnKey.md
 docs/models/ClientDeviceAuthorization.md
 docs/models/ClientDeviceUserAuthRequest.md
 docs/models/ClientEmailTemplateData.md
@@ -406,7 +408,9 @@ src/Ory.Client.Test/Model/ClientCreateWorkspaceOrganizationBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceSubscriptionBodyTests.cs
 src/Ory.Client.Test/Model/ClientCredentialSupportedDraft00Tests.cs
 src/Ory.Client.Test/Model/ClientCustomDomainTests.cs
+src/Ory.Client.Test/Model/ClientCustomerPortalAvailabilityTests.cs
 src/Ory.Client.Test/Model/ClientDeleteMySessionsCountTests.cs
+src/Ory.Client.Test/Model/ClientDeviceAuthnKeyTests.cs
 src/Ory.Client.Test/Model/ClientDeviceAuthorizationTests.cs
 src/Ory.Client.Test/Model/ClientDeviceUserAuthRequestTests.cs
 src/Ory.Client.Test/Model/ClientEmailTemplateDataBodyTests.cs
@@ -758,7 +762,9 @@ src/Ory.Client/Model/ClientCreateWorkspaceOrganizationBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceSubscriptionBody.cs
 src/Ory.Client/Model/ClientCredentialSupportedDraft00.cs
 src/Ory.Client/Model/ClientCustomDomain.cs
+src/Ory.Client/Model/ClientCustomerPortalAvailability.cs
 src/Ory.Client/Model/ClientDeleteMySessionsCount.cs
+src/Ory.Client/Model/ClientDeviceAuthnKey.cs
 src/Ory.Client/Model/ClientDeviceAuthorization.cs
 src/Ory.Client/Model/ClientDeviceUserAuthRequest.cs
 src/Ory.Client/Model/ClientEmailTemplateData.cs

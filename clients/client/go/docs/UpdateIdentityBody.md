@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ExternalId** | Pointer to **string** | ExternalID is an optional external ID of the identity. This is used to link the identity to an external system. If set, the external ID must be unique across all identities. | [optional] 
 **MetadataAdmin** | Pointer to **interface{}** | Store metadata about the user which is only accessible through admin APIs such as &#x60;GET /admin/identities/&lt;id&gt;&#x60;. | [optional] 
 **MetadataPublic** | Pointer to **interface{}** | Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field. | [optional] 
+**Region** | Pointer to **string** | Region is the Ory Network region this identity is homed in. Optional; omit to leave the current region unchanged. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] 
 **SchemaId** | **string** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. If set will update the Identity&#39;s SchemaID. | 
 **State** | **string** | State is the identity&#39;s state. active StateActive inactive StateInactive | 
 **Traits** | **map[string]interface{}** | Traits represent an identity&#39;s traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in &#x60;schema_id&#x60;. | 
@@ -151,6 +152,31 @@ HasMetadataPublic returns a boolean if a field has been set.
 `func (o *UpdateIdentityBody) UnsetMetadataPublic()`
 
 UnsetMetadataPublic ensures that no value is present for MetadataPublic, not even an explicit nil
+### GetRegion
+
+`func (o *UpdateIdentityBody) GetRegion() string`
+
+GetRegion returns the Region field if non-nil, zero value otherwise.
+
+### GetRegionOk
+
+`func (o *UpdateIdentityBody) GetRegionOk() (*string, bool)`
+
+GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegion
+
+`func (o *UpdateIdentityBody) SetRegion(v string)`
+
+SetRegion sets Region field to given value.
+
+### HasRegion
+
+`func (o *UpdateIdentityBody) HasRegion() bool`
+
+HasRegion returns a boolean if a field has been set.
+
 ### GetSchemaId
 
 `func (o *UpdateIdentityBody) GetSchemaId() string`

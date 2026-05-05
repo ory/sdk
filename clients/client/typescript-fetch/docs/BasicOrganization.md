@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`default_region` | string
 `domains` | Array&lt;string&gt;
 `id` | string
 `label` | string
@@ -17,6 +18,7 @@ import type { BasicOrganization } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "default_region": null,
   "domains": null,
   "id": null,
   "label": null,

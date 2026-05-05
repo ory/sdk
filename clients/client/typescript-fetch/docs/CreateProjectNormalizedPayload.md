@@ -12,6 +12,8 @@ Name | Type
 `account_experience_enabled_locales` | Array&lt;string&gt;
 `account_experience_favicon_dark` | string
 `account_experience_favicon_light` | string
+`account_experience_hide_ory_branding` | boolean
+`account_experience_hide_registration_link` | boolean
 `account_experience_locale_behavior` | string
 `account_experience_logo_dark` | string
 `account_experience_logo_light` | string
@@ -265,6 +267,8 @@ const example = {
   "account_experience_enabled_locales": null,
   "account_experience_favicon_dark": null,
   "account_experience_favicon_light": null,
+  "account_experience_hide_ory_branding": null,
+  "account_experience_hide_registration_link": null,
   "account_experience_locale_behavior": null,
   "account_experience_logo_dark": null,
   "account_experience_logo_light": null,

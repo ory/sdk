@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **AccountExperienceEnabledLocales** | Pointer to **[]string** | The Account Experience&#39;s Enabled Locales  This governs the locales that are available in the account experience. This governs the \&quot;enabled_locales\&quot; setting. | [optional] 
 **AccountExperienceFaviconDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). This governs the \&quot;favicon_dark\&quot; setting. | [optional] 
 **AccountExperienceFaviconLight** | Pointer to **string** | Holds the URL to the account experience&#39;s favicon. This governs the \&quot;favicon_light\&quot; setting. | [optional] 
+**AccountExperienceHideOryBranding** | Pointer to **bool** | Whether to hide the Ory branding badge on the account experience. This governs the \&quot;hide_ory_branding\&quot; setting. | [optional] 
+**AccountExperienceHideRegistrationLink** | Pointer to **bool** | Whether to hide the registration link on the account experience login card. This governs the \&quot;hide_registration_link\&quot; setting. | [optional] 
 **AccountExperienceLocaleBehavior** | Pointer to **string** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. This governs the \&quot;locale_behavior\&quot; setting. | [optional] 
 **AccountExperienceLogoDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). This governs the \&quot;logo_dark\&quot; setting. | [optional] 
 **AccountExperienceLogoLight** | Pointer to **string** | Holds the URL to the account experience&#39;s logo. This governs the \&quot;logo_light\&quot; setting. | [optional] 
@@ -18,7 +20,7 @@ Name | Type | Description | Notes
 **DisableAccountExperienceWelcomeScreen** | Pointer to **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. This governs the \&quot;disable_welcome_screen\&quot; setting. | [optional] 
 **EnableAxV2** | Pointer to **bool** | Whether the new account experience is enabled and reachable. This governs the \&quot;enable_ax_v2\&quot; setting. | [optional] 
 **Environment** | **string** |  prod Production stage Staging dev Development | 
-**HomeRegion** | Pointer to **string** |  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | [optional] 
+**HomeRegion** | Pointer to **string** |  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] 
 **HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** | A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.  This governs the \&quot;oauth2.allowed_top_level_claims\&quot; setting. | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
 **HydraOauth2ExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
@@ -393,6 +395,56 @@ SetAccountExperienceFaviconLight sets AccountExperienceFaviconLight field to giv
 `func (o *CreateProjectNormalizedPayload) HasAccountExperienceFaviconLight() bool`
 
 HasAccountExperienceFaviconLight returns a boolean if a field has been set.
+
+### GetAccountExperienceHideOryBranding
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceHideOryBranding() bool`
+
+GetAccountExperienceHideOryBranding returns the AccountExperienceHideOryBranding field if non-nil, zero value otherwise.
+
+### GetAccountExperienceHideOryBrandingOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceHideOryBrandingOk() (*bool, bool)`
+
+GetAccountExperienceHideOryBrandingOk returns a tuple with the AccountExperienceHideOryBranding field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceHideOryBranding
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceHideOryBranding(v bool)`
+
+SetAccountExperienceHideOryBranding sets AccountExperienceHideOryBranding field to given value.
+
+### HasAccountExperienceHideOryBranding
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceHideOryBranding() bool`
+
+HasAccountExperienceHideOryBranding returns a boolean if a field has been set.
+
+### GetAccountExperienceHideRegistrationLink
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceHideRegistrationLink() bool`
+
+GetAccountExperienceHideRegistrationLink returns the AccountExperienceHideRegistrationLink field if non-nil, zero value otherwise.
+
+### GetAccountExperienceHideRegistrationLinkOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceHideRegistrationLinkOk() (*bool, bool)`
+
+GetAccountExperienceHideRegistrationLinkOk returns a tuple with the AccountExperienceHideRegistrationLink field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceHideRegistrationLink
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceHideRegistrationLink(v bool)`
+
+SetAccountExperienceHideRegistrationLink sets AccountExperienceHideRegistrationLink field to given value.
+
+### HasAccountExperienceHideRegistrationLink
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceHideRegistrationLink() bool`
+
+HasAccountExperienceHideRegistrationLink returns a boolean if a field has been set.
 
 ### GetAccountExperienceLocaleBehavior
 

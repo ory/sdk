@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **account_experience_enabled_locales** | Option<**Vec<String>**> | The Account Experience's Enabled Locales  This governs the locales that are available in the account experience. This governs the \"enabled_locales\" setting. | [optional]
 **account_experience_favicon_dark** | Option<**String**> | Holds the URL to the account experience's dark theme favicon (currently unused). This governs the \"favicon_dark\" setting. | [optional]
 **account_experience_favicon_light** | Option<**String**> | Holds the URL to the account experience's favicon. This governs the \"favicon_light\" setting. | [optional]
+**account_experience_hide_ory_branding** | Option<**bool**> | Whether to hide the Ory branding badge on the account experience. This governs the \"hide_ory_branding\" setting. | [optional]
+**account_experience_hide_registration_link** | Option<**bool**> | Whether to hide the registration link on the account experience login card. This governs the \"hide_registration_link\" setting. | [optional]
 **account_experience_locale_behavior** | Option<**String**> | Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language. This governs the \"locale_behavior\" setting. | [optional]
 **account_experience_logo_dark** | Option<**String**> | Holds the URL to the account experience's dark theme logo (currently unused). This governs the \"logo_dark\" setting. | [optional]
 **account_experience_logo_light** | Option<**String**> | Holds the URL to the account experience's logo. This governs the \"logo_light\" setting. | [optional]

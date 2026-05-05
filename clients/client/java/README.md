@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.36
-  - Build date: 2026-04-21T04:43:55.124585105Z[Etc/UTC]
+- API version: v1.22.38
+  - Build date: 2026-05-05T09:41:59.080951071Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.36</version>
+  <version>v1.22.38</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.36"
+     implementation "sh.ory:client:v1.22.38"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.36.jar`
+* `target/client-v1.22.38.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -350,7 +350,9 @@ Class | Method | HTTP request | Description
  - [CreateWorkspaceSubscriptionBody](docs/CreateWorkspaceSubscriptionBody.md)
  - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [CustomDomain](docs/CustomDomain.md)
+ - [CustomerPortalAvailability](docs/CustomerPortalAvailability.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
+ - [DeviceAuthnKey](docs/DeviceAuthnKey.md)
  - [DeviceAuthorization](docs/DeviceAuthorization.md)
  - [DeviceUserAuthRequest](docs/DeviceUserAuthRequest.md)
  - [EmailTemplateData](docs/EmailTemplateData.md)

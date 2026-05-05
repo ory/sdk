@@ -65,7 +65,9 @@ docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
+docs/CustomerPortalAvailability.md
 docs/DeleteMySessionsCount.md
+docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceUserAuthRequest.md
 docs/EmailTemplateData.md
@@ -410,7 +412,9 @@ ory_client/models/create_workspace_organization_body.py
 ory_client/models/create_workspace_subscription_body.py
 ory_client/models/credential_supported_draft00.py
 ory_client/models/custom_domain.py
+ory_client/models/customer_portal_availability.py
 ory_client/models/delete_my_sessions_count.py
+ory_client/models/device_authn_key.py
 ory_client/models/device_authorization.py
 ory_client/models/device_user_auth_request.py
 ory_client/models/email_template_data.py
@@ -731,7 +735,9 @@ test/test_create_workspace_organization_body.py
 test/test_create_workspace_subscription_body.py
 test/test_credential_supported_draft00.py
 test/test_custom_domain.py
+test/test_customer_portal_availability.py
 test/test_delete_my_sessions_count.py
+test/test_device_authn_key.py
 test/test_device_authorization.py
 test/test_device_user_auth_request.py
 test/test_email_template_data.py

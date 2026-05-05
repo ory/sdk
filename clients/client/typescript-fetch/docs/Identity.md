@@ -15,6 +15,7 @@ Name | Type
 `metadata_public` | object
 `organization_id` | string
 `recovery_addresses` | [Array&lt;RecoveryIdentityAddress&gt;](RecoveryIdentityAddress.md)
+`region` | string
 `schema_id` | string
 `schema_url` | string
 `state` | string
@@ -38,6 +39,7 @@ const example = {
   "metadata_public": null,
   "organization_id": null,
   "recovery_addresses": null,
+  "region": null,
   "schema_id": null,
   "schema_url": null,
   "state": null,

@@ -63,7 +63,9 @@ docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
+docs/CustomerPortalAvailability.md
 docs/DeleteMySessionsCount.md
+docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceUserAuthRequest.md
 docs/EmailTemplateData.md
@@ -410,7 +412,9 @@ src/models/CreateWorkspaceOrganizationBody.ts
 src/models/CreateWorkspaceSubscriptionBody.ts
 src/models/CredentialSupportedDraft00.ts
 src/models/CustomDomain.ts
+src/models/CustomerPortalAvailability.ts
 src/models/DeleteMySessionsCount.ts
+src/models/DeviceAuthnKey.ts
 src/models/DeviceAuthorization.ts
 src/models/DeviceUserAuthRequest.ts
 src/models/EmailTemplateData.ts

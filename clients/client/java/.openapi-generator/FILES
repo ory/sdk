@@ -67,7 +67,9 @@ docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
 docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
+docs/CustomerPortalAvailability.md
 docs/DeleteMySessionsCount.md
+docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceUserAuthRequest.md
 docs/EmailTemplateData.md
@@ -435,7 +437,9 @@ src/main/java/sh/ory/model/CreateWorkspaceOrganizationBody.java
 src/main/java/sh/ory/model/CreateWorkspaceSubscriptionBody.java
 src/main/java/sh/ory/model/CredentialSupportedDraft00.java
 src/main/java/sh/ory/model/CustomDomain.java
+src/main/java/sh/ory/model/CustomerPortalAvailability.java
 src/main/java/sh/ory/model/DeleteMySessionsCount.java
+src/main/java/sh/ory/model/DeviceAuthnKey.java
 src/main/java/sh/ory/model/DeviceAuthorization.java
 src/main/java/sh/ory/model/DeviceUserAuthRequest.java
 src/main/java/sh/ory/model/EmailTemplateData.java
@@ -760,7 +764,9 @@ src/test/java/sh/ory/model/CreateWorkspaceOrganizationBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceSubscriptionBodyTest.java
 src/test/java/sh/ory/model/CredentialSupportedDraft00Test.java
 src/test/java/sh/ory/model/CustomDomainTest.java
+src/test/java/sh/ory/model/CustomerPortalAvailabilityTest.java
 src/test/java/sh/ory/model/DeleteMySessionsCountTest.java
+src/test/java/sh/ory/model/DeviceAuthnKeyTest.java
 src/test/java/sh/ory/model/DeviceAuthorizationTest.java
 src/test/java/sh/ory/model/DeviceUserAuthRequestTest.java
 src/test/java/sh/ory/model/EmailTemplateDataBodyTest.java

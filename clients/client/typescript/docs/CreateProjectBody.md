@@ -7,7 +7,7 @@ Create Project Request Body
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **environment** | **string** | The environment of the project. prod Production stage Staging dev Development | [default to undefined]
-**home_region** | **string** | Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | [optional] [default to undefined]
+**home_region** | **string** | Home Region  The home region of the project. This is the region where the project will be created. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] [default to undefined]
 **name** | **string** | The name of the project to be created | [default to undefined]
 **workspace_id** | **string** | The workspace to create the project in. | [optional] [default to undefined]
 

@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**aal2_acr_values** | Option<**Vec<String>**> | AAL2ACRValues lists upstream OIDC `acr` claim values that should elevate the resulting Kratos session to AAL2. Empty means the upstream `acr` claim is ignored when deciding session AAL. | [optional]
+**aal2_amr_values** | Option<**Vec<String>**> | AAL2AMRValues lists upstream OIDC `amr` claim values that should elevate the resulting Kratos session to AAL2 when any of them appears in the upstream `amr` array. Empty means the upstream `amr` claim is ignored when deciding session AAL. | [optional]
 **account_linking_mode** | Option<**String**> | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are `confirm_with_existing_credential` (default) and `automatic`. `automatic` silently links accounts when the provider verifies email ownership. Only supported for `apple` and `google` providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional]
 **additional_id_token_audiences** | Option<**Vec<String>**> | AdditionalIDTokenAudiences is a list of additional audiences allowed in the ID Token.  This is only relevant in OIDC flows that submit an IDToken instead of using the callback from the OIDC provider. | [optional]
 **apple_private_key** | Option<**String**> |  | [optional]

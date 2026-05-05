@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.36
+  version: v1.22.38
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -911,6 +911,7 @@ paths:
             - passkey
             - profile
             - saml
+            - deviceauthn
             - link_recovery
             - code_recovery
             type: string
@@ -1014,6 +1015,7 @@ paths:
             - passkey
             - profile
             - saml
+            - deviceauthn
             - link_recovery
             - code_recovery
             type: string
@@ -1196,6 +1198,7 @@ paths:
           passkey CredentialsTypePasskey
           profile CredentialsTypeProfile
           saml CredentialsTypeSAML
+          deviceauthn CredentialsTypeDeviceAuthn
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
         explode: false
@@ -1213,6 +1216,7 @@ paths:
           - passkey
           - profile
           - saml
+          - deviceauthn
           - link_recovery
           - code_recovery
           type: string
@@ -1227,6 +1231,7 @@ paths:
           passkey CredentialsTypePasskey
           profile CredentialsTypeProfile
           saml CredentialsTypeSAML
+          deviceauthn CredentialsTypeDeviceAuthn
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
       - description: |-
@@ -3558,6 +3563,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/project"
           description: project
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
         "401":
           content:
             application/json:
@@ -9270,6 +9281,16 @@ components:
             Holds the URL to the account experience's favicon.
             This governs the "favicon_light" setting.
           type: string
+        account_experience_hide_ory_branding:
+          description: |-
+            Whether to hide the Ory branding badge on the account experience.
+            This governs the "hide_ory_branding" setting.
+          type: boolean
+        account_experience_hide_registration_link:
+          description: |-
+            Whether to hide the registration link on the account experience login card.
+            This governs the "hide_registration_link" setting.
+          type: boolean
         account_experience_locale_behavior:
           description: |-
             Holds the URL to the account experience's language behavior.
@@ -9336,6 +9357,8 @@ components:
             asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
+            eu EU
+            asia Asia
             us US
             global Global
           enum:
@@ -9343,6 +9366,8 @@ components:
           - asia-northeast
           - us-east
           - us-west
+          - eu
+          - asia
           - us
           - global
           type: string
@@ -9351,6 +9376,8 @@ components:
             asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
+            eu EU
+            asia Asia
             us US
             global Global
         hydra_oauth2_allowed_top_level_claims:
@@ -11015,6 +11042,48 @@ components:
         A shallow copy would inadvertently share these underlying fields,
         leading to incorrect behavior and data races in a concurrent context.
         Consequently, all methods take the type by pointer and not by value.
+    DeviceAuthnKey:
+      properties:
+        client_key_id:
+          description: ClientKeyID is a client-chosen id for the key and is unique
+            per identity.
+          type: string
+        created_at:
+          description: |-
+            CreatedAt is the timestamp of when the key was created.
+            Only used for troubleshooting/UI.
+          format: date-time
+          type: string
+        device_name:
+          description: "DeviceName is a human readable name for the device, helping\
+            \ the user to distinguish it from others."
+          type: string
+        device_type:
+          type: string
+        public_key:
+          description: |-
+            PublicKey is an EC (in v1) public key, used to verify signatures, stored as uncompressed bytes.
+            The private key resides inside the device and does not exist on the server.
+          items:
+            format: uint8
+            type: integer
+          type: array
+        state:
+          type: string
+        version:
+          description: |-
+            v1 uses SHA256 + EC256.
+            v2 (in the future) may use ML-DSA which is post-quantum resistant.
+            This requires Android/iOS support so we have to wait.
+            We intentionally avoid storing the cryptographic algorithm here a la JWT/TLS
+            to avoid security issues and algorithm negotiation.
+          format: int64
+          type: integer
+      title: Key represents an enrolled hardware security key used for device authentication
+        (DeviceAuthn).
+      type: object
+    DeviceType:
+      type: string
     DeviceUserAuthRequest:
       properties:
         challenge:
@@ -11163,6 +11232,8 @@ components:
       items:
         $ref: "#/components/schemas/KetoNamespace"
       type: array
+    KeyState:
+      type: string
     LineItemV1:
       properties:
         amount_in_cent:
@@ -11299,6 +11370,43 @@ components:
     OrganizationBody:
       description: Create B2B SSO Organization Request Body
       properties:
+        default_region:
+          description: |-
+            DefaultRegion is the default Ory region for identities provisioned
+            into this organization via JIT. Must be inside the project's home
+            region.
+
+            Empty (or omitted) means the organization has no default region:
+            each identity provisioned via JIT is then homed in the gateway
+            region of the request that created it, constrained by the project's
+            home region. On update, an empty string clears the value.
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
+          enum:
+          - eu-central
+          - asia-northeast
+          - us-east
+          - us-west
+          - eu
+          - asia
+          - us
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
         domains:
           description: Domains contains the list of organization's domains.
           items:
@@ -11785,6 +11893,10 @@ components:
           type: string
         favicon_light_url:
           type: string
+        hide_ory_branding:
+          type: boolean
+        hide_registration_link:
+          type: boolean
         locale_behavior:
           description: |2-
 
@@ -11830,6 +11942,8 @@ components:
       - default_redirect_url
       - enabled_locales
       - error_ui_url
+      - hide_ory_branding
+      - hide_registration_link
       - locale_behavior
       - login_ui_url
       - name
@@ -11899,12 +12013,44 @@ components:
       type: string
     basicOrganization:
       example:
+        default_region: eu-central
         domains:
         - domains
         - domains
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         label: label
       properties:
+        default_region:
+          description: |-
+            DefaultRegion sets the default region for identities provisioned into
+            this organization, when the identity does not specify a region explictly.
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
+          enum:
+          - eu-central
+          - asia-northeast
+          - us-east
+          - us-west
+          - eu
+          - asia
+          - us
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
         domains:
           description: The list of organization's domains.
           items:
@@ -12377,6 +12523,38 @@ components:
           items:
             $ref: "#/components/schemas/recoveryIdentityAddress"
           type: array
+        region:
+          description: |-
+            Region is the Ory Network region this identity will be created in.
+            Optional; defaults to the project home region if omitted. Only effective
+            on the Ory Network.
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
+          enum:
+          - eu-central
+          - asia-northeast
+          - us-east
+          - us-west
+          - eu
+          - asia
+          - us
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
         schema_id:
           description: SchemaID is the ID of the JSON Schema to be used for validating
             the identity's traits.
@@ -12570,6 +12748,8 @@ components:
             asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
+            eu EU
+            asia Asia
             us US
             global Global
           enum:
@@ -12577,6 +12757,8 @@ components:
           - asia-northeast
           - us-east
           - us-west
+          - eu
+          - asia
           - us
           - global
           type: string
@@ -12585,6 +12767,8 @@ components:
             asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
+            eu EU
+            asia Asia
             us US
             global Global
         name:
@@ -12890,6 +13074,31 @@ components:
           type: array
         verification_status:
           type: string
+      type: object
+    customerPortalAvailability:
+      description: |-
+        CustomerPortalAvailability describes whether the Stripe customer portal is
+        available for the logged-in user (or a workspace they access).
+      properties:
+        available:
+          description: Whether the customer portal is available.
+          type: boolean
+        reason:
+          description: |-
+            Optional reason why the portal is unavailable. Populated only when
+            `available` is false. For debugging and support purposes — frontend
+            consumers should not parse or depend on specific values.
+            no_stripe_customer CustomerPortalReasonNoStripeCustomer
+            no_subscription CustomerPortalReasonNoSubscription
+          enum:
+          - no_stripe_customer
+          - no_subscription
+          type: string
+          x-go-enum-desc: |-
+            no_stripe_customer CustomerPortalReasonNoStripeCustomer
+            no_subscription CustomerPortalReasonNoSubscription
+      required:
+      - available
       type: object
     deleteMySessionsCount:
       description: Deleted Session Count
@@ -13352,6 +13561,7 @@ components:
     getOrganizationResponse:
       example:
         organization:
+          default_region: eu-central
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
@@ -13509,6 +13719,7 @@ components:
         schema_url: schema_url
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: active
+        region: eu-central
         metadata_public: "{}"
       properties:
         created_at:
@@ -13556,6 +13767,37 @@ components:
             $ref: "#/components/schemas/recoveryIdentityAddress"
           type: array
           x-omitempty: true
+        region:
+          description: |-
+            Region is the Ory Network region this identity is homed in. Set by
+            the multi-region persister; empty on OSS and single-region deployments.
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
+          enum:
+          - eu-central
+          - asia-northeast
+          - us-east
+          - us-west
+          - eu
+          - asia
+          - us
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
         schema_id:
           description: SchemaID is the ID of the JSON Schema to be used for validating
             the identity's traits.
@@ -13645,6 +13887,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -13657,6 +13900,7 @@ components:
           - passkey
           - profile
           - saml
+          - deviceauthn
           - link_recovery
           - code_recovery
           type: string
@@ -13670,6 +13914,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         updated_at:
@@ -14649,13 +14894,15 @@ components:
         next_page_token: next_page_token
         has_next_page: true
         organizations:
-        - created_at: 2000-01-23T04:56:07.000+00:00
+        - default_region: eu-central
+          created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
           - domains
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
-        - created_at: 2000-01-23T04:56:07.000+00:00
+        - default_region: eu-central
+          created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
           - domains
@@ -15030,6 +15277,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -15042,6 +15290,7 @@ components:
           - passkey
           - profile
           - saml
+          - deviceauthn
           - link_recovery
           - code_recovery
           type: string
@@ -15055,6 +15304,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         created_at:
@@ -15551,6 +15801,8 @@ components:
             asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
+            eu EU
+            asia Asia
             us US
             global Global
           enum:
@@ -15558,6 +15810,8 @@ components:
           - asia-northeast
           - us-east
           - us-west
+          - eu
+          - asia
           - us
           - global
           readOnly: true
@@ -15567,6 +15821,8 @@ components:
             asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
+            eu EU
+            asia Asia
             us US
             global Global
         hosts:
@@ -15664,6 +15920,16 @@ components:
             Holds the URL to the account experience's favicon.
             This governs the "favicon_light" setting.
           type: string
+        account_experience_hide_ory_branding:
+          description: |-
+            Whether to hide the Ory branding badge on the account experience.
+            This governs the "hide_ory_branding" setting.
+          type: boolean
+        account_experience_hide_registration_link:
+          description: |-
+            Whether to hide the registration link on the account experience login card.
+            This governs the "hide_registration_link" setting.
+          type: boolean
         account_experience_locale_behavior:
           description: |-
             Holds the URL to the account experience's language behavior.
@@ -17537,6 +17803,23 @@ components:
       type: object
     normalizedProjectRevisionThirdPartyProvider:
       properties:
+        aal2_acr_values:
+          description: |-
+            AAL2ACRValues lists upstream OIDC `acr` claim values that should
+            elevate the resulting Kratos session to AAL2. Empty means the
+            upstream `acr` claim is ignored when deciding session AAL.
+          items:
+            type: string
+          type: array
+        aal2_amr_values:
+          description: |-
+            AAL2AMRValues lists upstream OIDC `amr` claim values that should
+            elevate the resulting Kratos session to AAL2 when any of them
+            appears in the upstream `amr` array. Empty means the upstream
+            `amr` claim is ignored when deciding session AAL.
+          items:
+            type: string
+          type: array
         account_linking_mode:
           description: |-
             AccountLinkingMode controls how account conflicts are resolved for this provider.
@@ -19894,6 +20177,7 @@ components:
     organization:
       description: B2B SSO Organization
       example:
+        default_region: eu-central
         created_at: 2000-01-23T04:56:07.000+00:00
         domains:
         - domains
@@ -19904,6 +20188,37 @@ components:
         created_at:
           format: date-time
           type: string
+        default_region:
+          description: |-
+            DefaultRegion sets the default region for identities provisioned into
+            this organization, when the identity does not specify a region explictly.
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
+          enum:
+          - eu-central
+          - asia-northeast
+          - us-east
+          - us-west
+          - eu
+          - asia
+          - us
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
         domains:
           description: The list of organization's domains.
           items:
@@ -20073,12 +20388,14 @@ components:
         home_region: eu-central
         name: name
         organizations:
-        - domains:
+        - default_region: eu-central
+          domains:
           - domains
           - domains
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
-        - domains:
+        - default_region: eu-central
+          domains:
           - domains
           - domains
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -20135,6 +20452,8 @@ components:
             asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
+            eu EU
+            asia Asia
             us US
             global Global
           enum:
@@ -20142,6 +20461,8 @@ components:
           - asia-northeast
           - us-east
           - us-west
+          - eu
+          - asia
           - us
           - global
           type: string
@@ -20150,6 +20471,8 @@ components:
             asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
+            eu EU
+            asia Asia
             us US
             global Global
         id:
@@ -20738,6 +21061,8 @@ components:
             asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
+            eu EU
+            asia Asia
             us US
             global Global
           enum:
@@ -20745,6 +21070,8 @@ components:
           - asia-northeast
           - us-east
           - us-west
+          - eu
+          - asia
           - us
           - global
           type: string
@@ -20753,6 +21080,8 @@ components:
             asia-northeast AsiaNorthEast
             us-east USEast
             us-west USWest
+            eu EU
+            asia Asia
             us US
             global Global
         hosts:
@@ -20936,6 +21265,7 @@ components:
             permission_checks PermissionChecks
             captcha Captcha
             captcha_byo CaptchaBYO
+            hide_ory_branding HideOryBranding
             identity_search_api IdentitySearchAPI
             saml_sp SAMLSP
             saml_idp SAMLIDP
@@ -21005,6 +21335,7 @@ components:
           - permission_checks
           - captcha
           - captcha_byo
+          - hide_ory_branding
           - identity_search_api
           - saml_sp
           - saml_idp
@@ -21075,6 +21406,7 @@ components:
             permission_checks PermissionChecks
             captcha Captcha
             captcha_byo CaptchaBYO
+            hide_ory_branding HideOryBranding
             identity_search_api IdentitySearchAPI
             saml_sp SAMLSP
             saml_idp SAMLIDP
@@ -21650,6 +21982,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -21662,6 +21995,7 @@ components:
           - passkey
           - profile
           - saml
+          - deviceauthn
           - link_recovery
           - code_recovery
           type: string
@@ -21675,6 +22009,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         expires_at:
@@ -21961,15 +22296,23 @@ components:
           user_agent: user_agent
         authentication_methods:
         - completed_at: 2000-01-23T04:56:07.000+00:00
+          upstream_acr: upstream_acr
           method: password
           provider: provider
           organization: organization
           aal: aal0
+          upstream_amr:
+          - upstream_amr
+          - upstream_amr
         - completed_at: 2000-01-23T04:56:07.000+00:00
+          upstream_acr: upstream_acr
           method: password
           provider: provider
           organization: organization
           aal: aal0
+          upstream_amr:
+          - upstream_amr
+          - upstream_amr
         authenticator_assurance_level: null
         identity:
           traits: ""
@@ -22023,6 +22366,7 @@ components:
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: active
+          region: eu-central
           metadata_public: "{}"
         authenticated_at: 2000-01-23T04:56:07.000+00:00
         active: true
@@ -22088,10 +22432,14 @@ components:
       description: A singular authenticator used during authentication / login.
       example:
         completed_at: 2000-01-23T04:56:07.000+00:00
+        upstream_acr: upstream_acr
         method: password
         provider: provider
         organization: organization
         aal: aal0
+        upstream_amr:
+        - upstream_amr
+        - upstream_amr
       properties:
         aal:
           $ref: "#/components/schemas/authenticatorAssuranceLevel"
@@ -22111,6 +22459,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -22123,6 +22472,7 @@ components:
           - passkey
           - profile
           - saml
+          - deviceauthn
           - link_recovery
           - code_recovery
           type: string
@@ -22136,6 +22486,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         organization:
@@ -22144,6 +22495,20 @@ components:
         provider:
           description: OIDC or SAML provider id used for authentication
           type: string
+        upstream_acr:
+          description: |-
+            UpstreamACR is the `acr` claim reported by the upstream OIDC
+            provider, if any. Populated only for OIDC login methods when the
+            upstream ID token contained an `acr` claim.
+          type: string
+        upstream_amr:
+          description: |-
+            UpstreamAMR is the `amr` claim reported by the upstream OIDC
+            provider, if any. Populated only for OIDC login methods when the
+            upstream ID token contained an `amr` claim.
+          items:
+            type: string
+          type: array
       title: AuthenticationMethod identifies an authentication method
       type: object
     sessionAuthenticationMethods:
@@ -22438,6 +22803,7 @@ components:
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: active
+          region: eu-central
           metadata_public: "{}"
         continue_with:
         - action: show_verification_ui
@@ -22690,15 +23056,23 @@ components:
             user_agent: user_agent
           authentication_methods:
           - completed_at: 2000-01-23T04:56:07.000+00:00
+            upstream_acr: upstream_acr
             method: password
             provider: provider
             organization: organization
             aal: aal0
+            upstream_amr:
+            - upstream_amr
+            - upstream_amr
           - completed_at: 2000-01-23T04:56:07.000+00:00
+            upstream_acr: upstream_acr
             method: password
             provider: provider
             organization: organization
             aal: aal0
+            upstream_amr:
+            - upstream_amr
+            - upstream_amr
           authenticator_assurance_level: null
           identity:
             traits: ""
@@ -22752,6 +23126,7 @@ components:
             schema_url: schema_url
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: active
+            region: eu-central
             metadata_public: "{}"
           authenticated_at: 2000-01-23T04:56:07.000+00:00
           active: true
@@ -22850,6 +23225,7 @@ components:
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: active
+          region: eu-central
           metadata_public: "{}"
         session:
           tokenized: tokenized
@@ -22865,15 +23241,23 @@ components:
             user_agent: user_agent
           authentication_methods:
           - completed_at: 2000-01-23T04:56:07.000+00:00
+            upstream_acr: upstream_acr
             method: password
             provider: provider
             organization: organization
             aal: aal0
+            upstream_amr:
+            - upstream_amr
+            - upstream_amr
           - completed_at: 2000-01-23T04:56:07.000+00:00
+            upstream_acr: upstream_acr
             method: password
             provider: provider
             organization: organization
             aal: aal0
+            upstream_amr:
+            - upstream_amr
+            - upstream_amr
           authenticator_assurance_level: null
           identity:
             traits: ""
@@ -22927,6 +23311,7 @@ components:
             schema_url: schema_url
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: active
+            region: eu-central
             metadata_public: "{}"
           authenticated_at: 2000-01-23T04:56:07.000+00:00
           active: true
@@ -22986,12 +23371,14 @@ components:
           home_region: eu-central
           name: name
           organizations:
-          - domains:
+          - default_region: eu-central
+            domains:
             - domains
             - domains
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             label: label
-          - domains:
+          - default_region: eu-central
+            domains:
             - domains
             - domains
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -23429,6 +23816,7 @@ components:
             identifier_first IdentifierFirstGroup
             captcha CaptchaGroup
             saml SAMLGroup
+            deviceauthn DeviceAuthnGroup
           enum:
           - default
           - password
@@ -23443,6 +23831,7 @@ components:
           - identifier_first
           - captcha
           - saml
+          - deviceauthn
           - oauth2_consent
           type: string
           x-go-enum-desc: |-
@@ -23459,6 +23848,7 @@ components:
             identifier_first IdentifierFirstGroup
             captcha CaptchaGroup
             saml SAMLGroup
+            deviceauthn DeviceAuthnGroup
         messages:
           items:
             $ref: "#/components/schemas/uiText"
@@ -24054,6 +24444,37 @@ components:
           description: |-
             Store metadata about the identity which the identity itself can see when calling for example the
             session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
+        region:
+          description: |-
+            Region is the Ory Network region this identity is homed in. Optional;
+            omit to leave the current region unchanged.
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
+          enum:
+          - eu-central
+          - asia-northeast
+          - us-east
+          - us-west
+          - eu
+          - asia
+          - us
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
         schema_id:
           description: |-
             SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. If set
@@ -25609,6 +26030,37 @@ components:
         created_at:
           format: date-time
           type: string
+        default_region:
+          description: |-
+            DefaultRegion sets the default region for identities provisioned into
+            this organization, when the identity does not specify a region explictly.
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
+          enum:
+          - eu-central
+          - asia-northeast
+          - us-east
+          - us-west
+          - eu
+          - asia
+          - us
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
         domains:
           description: The list of organization's domains.
           items:

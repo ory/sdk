@@ -317,7 +317,7 @@ const configuration = new Configuration();
 const apiInstance = new IdentityApi(configuration);
 
 let id: string; //ID is the identity\'s ID. (default to undefined)
-let type: 'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'link_recovery' | 'code_recovery'; //Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode (default to undefined)
+let type: 'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'deviceauthn' | 'link_recovery' | 'code_recovery'; //Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode (default to undefined)
 let identifier: string; //Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.deleteIdentityCredentials(
@@ -332,7 +332,7 @@ const { status, data } = await apiInstance.deleteIdentityCredentials(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] | ID is the identity\&#39;s ID. | defaults to undefined|
-| **type** | [**&#39;password&#39; | &#39;oidc&#39; | &#39;totp&#39; | &#39;lookup_secret&#39; | &#39;webauthn&#39; | &#39;code&#39; | &#39;passkey&#39; | &#39;profile&#39; | &#39;saml&#39; | &#39;link_recovery&#39; | &#39;code_recovery&#39;**]**Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | defaults to undefined|
+| **type** | [**&#39;password&#39; | &#39;oidc&#39; | &#39;totp&#39; | &#39;lookup_secret&#39; | &#39;webauthn&#39; | &#39;code&#39; | &#39;passkey&#39; | &#39;profile&#39; | &#39;saml&#39; | &#39;deviceauthn&#39; | &#39;link_recovery&#39; | &#39;code_recovery&#39;**]**Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;deviceauthn&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | defaults to undefined|
 | **identifier** | [**string**] | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{oidc,saml}&#x60; endpoint. | (optional) defaults to undefined|
 
 
@@ -540,7 +540,7 @@ const configuration = new Configuration();
 const apiInstance = new IdentityApi(configuration);
 
 let id: string; //ID must be set to the ID of identity you want to get (default to undefined)
-let includeCredential: Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'link_recovery' | 'code_recovery'>; //Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional) (default to undefined)
+let includeCredential: Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'deviceauthn' | 'link_recovery' | 'code_recovery'>; //Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getIdentity(
     id,
@@ -553,7 +553,7 @@ const { status, data } = await apiInstance.getIdentity(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] | ID must be set to the ID of identity you want to get | defaults to undefined|
-| **includeCredential** | **Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | (optional) defaults to undefined|
+| **includeCredential** | **Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;deviceauthn&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -596,7 +596,7 @@ const configuration = new Configuration();
 const apiInstance = new IdentityApi(configuration);
 
 let externalID: string; //ExternalID must be set to the ID of identity you want to get (default to undefined)
-let includeCredential: Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'link_recovery' | 'code_recovery'>; //Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional) (default to undefined)
+let includeCredential: Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'deviceauthn' | 'link_recovery' | 'code_recovery'>; //Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getIdentityByExternalID(
     externalID,
@@ -609,7 +609,7 @@ const { status, data } = await apiInstance.getIdentityByExternalID(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **externalID** | [**string**] | ExternalID must be set to the ID of identity you want to get | defaults to undefined|
-| **includeCredential** | **Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | (optional) defaults to undefined|
+| **includeCredential** | **Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;deviceauthn&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | (optional) defaults to undefined|
 
 
 ### Return type

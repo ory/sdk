@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**default_region** | Option<**String**> | DefaultRegion sets the default region for identities provisioned into this organization, when the identity does not specify a region explictly. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional]
 **domains** | **Vec<String>** | The list of organization's domains. | 
 **id** | **String** | The organization's ID. | 
 **label** | **String** | The organization's human-readable label. | 

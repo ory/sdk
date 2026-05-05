@@ -12,6 +12,8 @@ Name | Type
 `method` | string
 `organization` | string
 `provider` | string
+`upstream_acr` | string
+`upstream_amr` | Array&lt;string&gt;
 
 ## Example
 
@@ -25,6 +27,8 @@ const example = {
   "method": null,
   "organization": null,
   "provider": null,
+  "upstream_acr": null,
+  "upstream_amr": null,
 } satisfies SessionAuthenticationMethod
 
 console.log(example)

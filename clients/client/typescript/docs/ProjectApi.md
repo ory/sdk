@@ -193,6 +193,7 @@ const { status, data } = await apiInstance.createProject(
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**201** | project |  -  |
+|**400** | errorGeneric |  -  |
 |**401** | errorGeneric |  -  |
 |**403** | errorGeneric |  -  |
 |**404** | errorGeneric |  -  |
