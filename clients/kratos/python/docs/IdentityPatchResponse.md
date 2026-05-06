@@ -6,7 +6,8 @@ Response for a single identity patch
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **str** | The action for this specific patch create ActionCreate  Create this identity. | [optional] 
+**action** | **str** | The action for this specific patch create ActionCreate  Create this identity. error ActionError  Error indicates that the patch failed. | [optional] 
+**error** | **object** |  | [optional] 
 **identity** | **str** | The identity ID payload of this patch | [optional] 
 **patch_id** | **str** | The ID of this patch response, if an ID was specified in the patch. | [optional] 
 

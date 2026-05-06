@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Debug** | Pointer to **string** | Debug contains debug information. This is usually not available and has to be enabled. | [optional] 
 **Error** | Pointer to **string** | Name is the error name. | [optional] 
 **ErrorDescription** | Pointer to **string** | Description contains further information on the nature of the error. | [optional] 
+**Id** | Pointer to **string** | ID is a unique error ID. feature_not_available ErrFeatureNotAvailable quota_exceeded ErrQuotaExceeded | [optional] 
 **Message** | Pointer to **string** | Message contains the error message. | [optional] 
 **StatusCode** | Pointer to **int64** | Code represents the error status code (404, 403, 401, ...). | [optional] 
 
@@ -103,6 +104,31 @@ SetErrorDescription sets ErrorDescription field to given value.
 `func (o *GenericErrorContent) HasErrorDescription() bool`
 
 HasErrorDescription returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *GenericErrorContent) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *GenericErrorContent) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *GenericErrorContent) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *GenericErrorContent) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetMessage
 

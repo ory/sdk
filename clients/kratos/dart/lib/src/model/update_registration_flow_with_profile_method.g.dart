@@ -6,6 +6,70 @@ part of 'update_registration_flow_with_profile_method.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const UpdateRegistrationFlowWithProfileMethodScreenEnum
+    _$updateRegistrationFlowWithProfileMethodScreenEnum_credentialSelection =
+    const UpdateRegistrationFlowWithProfileMethodScreenEnum._(
+        'credentialSelection');
+const UpdateRegistrationFlowWithProfileMethodScreenEnum
+    _$updateRegistrationFlowWithProfileMethodScreenEnum_previous =
+    const UpdateRegistrationFlowWithProfileMethodScreenEnum._('previous');
+
+UpdateRegistrationFlowWithProfileMethodScreenEnum
+    _$updateRegistrationFlowWithProfileMethodScreenEnumValueOf(String name) {
+  switch (name) {
+    case 'credentialSelection':
+      return _$updateRegistrationFlowWithProfileMethodScreenEnum_credentialSelection;
+    case 'previous':
+      return _$updateRegistrationFlowWithProfileMethodScreenEnum_previous;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<UpdateRegistrationFlowWithProfileMethodScreenEnum>
+    _$updateRegistrationFlowWithProfileMethodScreenEnumValues = new BuiltSet<
+        UpdateRegistrationFlowWithProfileMethodScreenEnum>(const <UpdateRegistrationFlowWithProfileMethodScreenEnum>[
+  _$updateRegistrationFlowWithProfileMethodScreenEnum_credentialSelection,
+  _$updateRegistrationFlowWithProfileMethodScreenEnum_previous,
+]);
+
+Serializer<UpdateRegistrationFlowWithProfileMethodScreenEnum>
+    _$updateRegistrationFlowWithProfileMethodScreenEnumSerializer =
+    new _$UpdateRegistrationFlowWithProfileMethodScreenEnumSerializer();
+
+class _$UpdateRegistrationFlowWithProfileMethodScreenEnumSerializer
+    implements
+        PrimitiveSerializer<UpdateRegistrationFlowWithProfileMethodScreenEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'credentialSelection': 'credential-selection',
+    'previous': 'previous',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'credential-selection': 'credentialSelection',
+    'previous': 'previous',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[
+    UpdateRegistrationFlowWithProfileMethodScreenEnum
+  ];
+  @override
+  final String wireName = 'UpdateRegistrationFlowWithProfileMethodScreenEnum';
+
+  @override
+  Object serialize(Serializers serializers,
+          UpdateRegistrationFlowWithProfileMethodScreenEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      _toWire[object.name] ?? object.name;
+
+  @override
+  UpdateRegistrationFlowWithProfileMethodScreenEnum deserialize(
+          Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      UpdateRegistrationFlowWithProfileMethodScreenEnum.valueOf(
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+}
+
 class _$UpdateRegistrationFlowWithProfileMethod
     extends UpdateRegistrationFlowWithProfileMethod {
   @override
@@ -13,7 +77,7 @@ class _$UpdateRegistrationFlowWithProfileMethod
   @override
   final String method;
   @override
-  final String? screen;
+  final UpdateRegistrationFlowWithProfileMethodScreenEnum? screen;
   @override
   final JsonObject traits;
   @override
@@ -98,9 +162,11 @@ class UpdateRegistrationFlowWithProfileMethodBuilder
   String? get method => _$this._method;
   set method(String? method) => _$this._method = method;
 
-  String? _screen;
-  String? get screen => _$this._screen;
-  set screen(String? screen) => _$this._screen = screen;
+  UpdateRegistrationFlowWithProfileMethodScreenEnum? _screen;
+  UpdateRegistrationFlowWithProfileMethodScreenEnum? get screen =>
+      _$this._screen;
+  set screen(UpdateRegistrationFlowWithProfileMethodScreenEnum? screen) =>
+      _$this._screen = screen;
 
   JsonObject? _traits;
   JsonObject? get traits => _$this._traits;

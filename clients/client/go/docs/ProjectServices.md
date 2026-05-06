@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AccountExperience** | Pointer to [**ProjectServiceAccountExperience**](ProjectServiceAccountExperience.md) |  | [optional] 
 **Identity** | Pointer to [**ProjectServiceIdentity**](ProjectServiceIdentity.md) |  | [optional] 
 **Oauth2** | Pointer to [**ProjectServiceOAuth2**](ProjectServiceOAuth2.md) |  | [optional] 
 **Permission** | Pointer to [**ProjectServicePermission**](ProjectServicePermission.md) |  | [optional] 
@@ -26,6 +27,31 @@ will change when the set of required properties is changed
 NewProjectServicesWithDefaults instantiates a new ProjectServices object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAccountExperience
+
+`func (o *ProjectServices) GetAccountExperience() ProjectServiceAccountExperience`
+
+GetAccountExperience returns the AccountExperience field if non-nil, zero value otherwise.
+
+### GetAccountExperienceOk
+
+`func (o *ProjectServices) GetAccountExperienceOk() (*ProjectServiceAccountExperience, bool)`
+
+GetAccountExperienceOk returns a tuple with the AccountExperience field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperience
+
+`func (o *ProjectServices) SetAccountExperience(v ProjectServiceAccountExperience)`
+
+SetAccountExperience sets AccountExperience field to given value.
+
+### HasAccountExperience
+
+`func (o *ProjectServices) HasAccountExperience() bool`
+
+HasAccountExperience returns a boolean if a field has been set.
 
 ### GetIdentity
 

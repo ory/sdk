@@ -20,6 +20,7 @@ OryClient::UpdateLoginFlowBody.openapi_one_of
 #   :'UpdateLoginFlowWithOidcMethod',
 #   :'UpdateLoginFlowWithPasskeyMethod',
 #   :'UpdateLoginFlowWithPasswordMethod',
+#   :'UpdateLoginFlowWithSamlMethod',
 #   :'UpdateLoginFlowWithTotpMethod',
 #   :'UpdateLoginFlowWithWebAuthnMethod'
 # ]
@@ -56,6 +57,7 @@ OryClient::UpdateLoginFlowBody.openapi_discriminator_mapping
 #   :'oidc' => :'UpdateLoginFlowWithOidcMethod',
 #   :'passkey' => :'UpdateLoginFlowWithPasskeyMethod',
 #   :'password' => :'UpdateLoginFlowWithPasswordMethod',
+#   :'saml' => :'UpdateLoginFlowWithSamlMethod',
 #   :'totp' => :'UpdateLoginFlowWithTotpMethod',
 #   :'webauthn' => :'UpdateLoginFlowWithWebAuthnMethod'
 # }
@@ -91,6 +93,7 @@ OryClient::UpdateLoginFlowBody.build(data_that_doesnt_match)
 - `UpdateLoginFlowWithOidcMethod`
 - `UpdateLoginFlowWithPasskeyMethod`
 - `UpdateLoginFlowWithPasswordMethod`
+- `UpdateLoginFlowWithSamlMethod`
 - `UpdateLoginFlowWithTotpMethod`
 - `UpdateLoginFlowWithWebAuthnMethod`
 - `nil` (if no type matches)

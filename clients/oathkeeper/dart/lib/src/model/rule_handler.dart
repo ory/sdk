@@ -51,7 +51,7 @@ class _$RuleHandlerSerializer implements PrimitiveSerializer<RuleHandler> {
       yield r'config';
       yield serializers.serialize(
         object.config,
-        specifiedType: const FullType(JsonObject),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.handler != null) {
@@ -87,8 +87,9 @@ class _$RuleHandlerSerializer implements PrimitiveSerializer<RuleHandler> {
         case r'config':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.config = valueDes;
           break;
         case r'handler':

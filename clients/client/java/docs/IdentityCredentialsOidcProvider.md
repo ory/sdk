@@ -13,6 +13,7 @@
 |**organization** | **String** |  |  [optional] |
 |**provider** | **String** |  |  [optional] |
 |**subject** | **String** |  |  [optional] |
+|**useAutoLink** | **Boolean** |  |  [optional] |
 
 
 

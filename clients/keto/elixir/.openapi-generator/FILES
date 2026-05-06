@@ -9,8 +9,11 @@ lib/ory/api/permission.ex
 lib/ory/api/relationship.ex
 lib/ory/connection.ex
 lib/ory/deserializer.ex
+lib/ory/model/batch_check_permission_body.ex
+lib/ory/model/batch_check_permission_result.ex
 lib/ory/model/check_opl_syntax_result.ex
 lib/ory/model/check_permission_result.ex
+lib/ory/model/check_permission_result_with_error.ex
 lib/ory/model/create_relationship_body.ex
 lib/ory/model/error_generic.ex
 lib/ory/model/expanded_permission_tree.ex

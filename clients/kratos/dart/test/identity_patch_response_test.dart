@@ -7,9 +7,14 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(IdentityPatchResponse, () {
-    // The action for this specific patch create ActionCreate  Create this identity.
+    // The action for this specific patch create ActionCreate  Create this identity. error ActionError  Error indicates that the patch failed.
     // String action
     test('to test the property `action`', () async {
+      // TODO
+    });
+
+    // JsonObject error
+    test('to test the property `error`', () async {
       // TODO
     });
 

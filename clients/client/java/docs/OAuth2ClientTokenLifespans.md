@@ -12,6 +12,9 @@ Lifespans of different token types issued for this OAuth 2.0 Client.
 |**authorizationCodeGrantIdTokenLifespan** | **String** |  |  [optional] |
 |**authorizationCodeGrantRefreshTokenLifespan** | **String** |  |  [optional] |
 |**clientCredentialsGrantAccessTokenLifespan** | **String** |  |  [optional] |
+|**deviceAuthorizationGrantAccessTokenLifespan** | **String** |  |  [optional] |
+|**deviceAuthorizationGrantIdTokenLifespan** | **String** |  |  [optional] |
+|**deviceAuthorizationGrantRefreshTokenLifespan** | **String** |  |  [optional] |
 |**implicitGrantAccessTokenLifespan** | **String** |  |  [optional] |
 |**implicitGrantIdTokenLifespan** | **String** |  |  [optional] |
 |**jwtBearerGrantAccessTokenLifespan** | **String** |  |  [optional] |

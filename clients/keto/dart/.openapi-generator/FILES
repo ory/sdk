@@ -2,8 +2,11 @@
 .openapi-generator-ignore
 README.md
 analysis_options.yaml
+doc/BatchCheckPermissionBody.md
+doc/BatchCheckPermissionResult.md
 doc/CheckOplSyntaxResult.md
 doc/CheckPermissionResult.md
+doc/CheckPermissionResultWithError.md
 doc/CreateRelationshipBody.md
 doc/ErrorGeneric.md
 doc/ExpandedPermissionTree.md
@@ -40,8 +43,11 @@ lib/src/auth/basic_auth.dart
 lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
+lib/src/model/batch_check_permission_body.dart
+lib/src/model/batch_check_permission_result.dart
 lib/src/model/check_opl_syntax_result.dart
 lib/src/model/check_permission_result.dart
+lib/src/model/check_permission_result_with_error.dart
 lib/src/model/create_relationship_body.dart
 lib/src/model/date.dart
 lib/src/model/error_generic.dart
@@ -66,8 +72,11 @@ lib/src/model/subject_set.dart
 lib/src/model/version.dart
 lib/src/serializers.dart
 pubspec.yaml
+test/batch_check_permission_body_test.dart
+test/batch_check_permission_result_test.dart
 test/check_opl_syntax_result_test.dart
 test/check_permission_result_test.dart
+test/check_permission_result_with_error_test.dart
 test/create_relationship_body_test.dart
 test/error_generic_test.dart
 test/expanded_permission_tree_test.dart

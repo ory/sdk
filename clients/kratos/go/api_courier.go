@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v25.4.0
 Contact: office@ory.sh
 */
 
@@ -266,19 +266,19 @@ func (a *CourierAPIService) ListCourierMessagesExecute(r CourierAPIListCourierMe
 	localVarFormParams := url.Values{}
 
 	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
 		var defaultValue int64 = 250
 		r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
 	}
 	if r.status != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "form", "")
 	}
 	if r.recipient != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "recipient", r.recipient, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "recipient", r.recipient, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

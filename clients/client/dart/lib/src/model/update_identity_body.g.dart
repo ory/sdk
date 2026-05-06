@@ -66,6 +66,8 @@ class _$UpdateIdentityBody extends UpdateIdentityBody {
   @override
   final IdentityWithCredentials? credentials;
   @override
+  final String? externalId;
+  @override
   final JsonObject? metadataAdmin;
   @override
   final JsonObject? metadataPublic;
@@ -82,6 +84,7 @@ class _$UpdateIdentityBody extends UpdateIdentityBody {
 
   _$UpdateIdentityBody._(
       {this.credentials,
+      this.externalId,
       this.metadataAdmin,
       this.metadataPublic,
       required this.schemaId,
@@ -110,6 +113,7 @@ class _$UpdateIdentityBody extends UpdateIdentityBody {
     if (identical(other, this)) return true;
     return other is UpdateIdentityBody &&
         credentials == other.credentials &&
+        externalId == other.externalId &&
         metadataAdmin == other.metadataAdmin &&
         metadataPublic == other.metadataPublic &&
         schemaId == other.schemaId &&
@@ -121,6 +125,7 @@ class _$UpdateIdentityBody extends UpdateIdentityBody {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, credentials.hashCode);
+    _$hash = $jc(_$hash, externalId.hashCode);
     _$hash = $jc(_$hash, metadataAdmin.hashCode);
     _$hash = $jc(_$hash, metadataPublic.hashCode);
     _$hash = $jc(_$hash, schemaId.hashCode);
@@ -134,6 +139,7 @@ class _$UpdateIdentityBody extends UpdateIdentityBody {
   String toString() {
     return (newBuiltValueToStringHelper(r'UpdateIdentityBody')
           ..add('credentials', credentials)
+          ..add('externalId', externalId)
           ..add('metadataAdmin', metadataAdmin)
           ..add('metadataPublic', metadataPublic)
           ..add('schemaId', schemaId)
@@ -152,6 +158,10 @@ class UpdateIdentityBodyBuilder
       _$this._credentials ??= new IdentityWithCredentialsBuilder();
   set credentials(IdentityWithCredentialsBuilder? credentials) =>
       _$this._credentials = credentials;
+
+  String? _externalId;
+  String? get externalId => _$this._externalId;
+  set externalId(String? externalId) => _$this._externalId = externalId;
 
   JsonObject? _metadataAdmin;
   JsonObject? get metadataAdmin => _$this._metadataAdmin;
@@ -183,6 +193,7 @@ class UpdateIdentityBodyBuilder
     final $v = _$v;
     if ($v != null) {
       _credentials = $v.credentials?.toBuilder();
+      _externalId = $v.externalId;
       _metadataAdmin = $v.metadataAdmin;
       _metadataPublic = $v.metadataPublic;
       _schemaId = $v.schemaId;
@@ -213,6 +224,7 @@ class UpdateIdentityBodyBuilder
       _$result = _$v ??
           new _$UpdateIdentityBody._(
               credentials: _credentials?.build(),
+              externalId: externalId,
               metadataAdmin: metadataAdmin,
               metadataPublic: metadataPublic,
               schemaId: BuiltValueNullFieldError.checkNotNull(

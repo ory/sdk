@@ -19,6 +19,7 @@ OryClient::UpdateSettingsFlowBody.openapi_one_of
 #   :'UpdateSettingsFlowWithPasskeyMethod',
 #   :'UpdateSettingsFlowWithPasswordMethod',
 #   :'UpdateSettingsFlowWithProfileMethod',
+#   :'UpdateSettingsFlowWithSamlMethod',
 #   :'UpdateSettingsFlowWithTotpMethod',
 #   :'UpdateSettingsFlowWithWebAuthnMethod'
 # ]
@@ -54,6 +55,7 @@ OryClient::UpdateSettingsFlowBody.openapi_discriminator_mapping
 #   :'passkey' => :'UpdateSettingsFlowWithPasskeyMethod',
 #   :'password' => :'UpdateSettingsFlowWithPasswordMethod',
 #   :'profile' => :'UpdateSettingsFlowWithProfileMethod',
+#   :'saml' => :'UpdateSettingsFlowWithSamlMethod',
 #   :'totp' => :'UpdateSettingsFlowWithTotpMethod',
 #   :'webauthn' => :'UpdateSettingsFlowWithWebAuthnMethod'
 # }
@@ -88,6 +90,7 @@ OryClient::UpdateSettingsFlowBody.build(data_that_doesnt_match)
 - `UpdateSettingsFlowWithPasskeyMethod`
 - `UpdateSettingsFlowWithPasswordMethod`
 - `UpdateSettingsFlowWithProfileMethod`
+- `UpdateSettingsFlowWithSamlMethod`
 - `UpdateSettingsFlowWithTotpMethod`
 - `UpdateSettingsFlowWithWebAuthnMethod`
 - `nil` (if no type matches)

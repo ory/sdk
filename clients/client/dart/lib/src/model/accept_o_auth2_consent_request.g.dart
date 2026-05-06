@@ -14,8 +14,6 @@ class _$AcceptOAuth2ConsentRequest extends AcceptOAuth2ConsentRequest {
   @override
   final BuiltList<String>? grantScope;
   @override
-  final DateTime? handledAt;
-  @override
   final bool? remember;
   @override
   final int? rememberFor;
@@ -30,7 +28,6 @@ class _$AcceptOAuth2ConsentRequest extends AcceptOAuth2ConsentRequest {
       {this.context,
       this.grantAccessTokenAudience,
       this.grantScope,
-      this.handledAt,
       this.remember,
       this.rememberFor,
       this.session})
@@ -52,7 +49,6 @@ class _$AcceptOAuth2ConsentRequest extends AcceptOAuth2ConsentRequest {
         context == other.context &&
         grantAccessTokenAudience == other.grantAccessTokenAudience &&
         grantScope == other.grantScope &&
-        handledAt == other.handledAt &&
         remember == other.remember &&
         rememberFor == other.rememberFor &&
         session == other.session;
@@ -64,7 +60,6 @@ class _$AcceptOAuth2ConsentRequest extends AcceptOAuth2ConsentRequest {
     _$hash = $jc(_$hash, context.hashCode);
     _$hash = $jc(_$hash, grantAccessTokenAudience.hashCode);
     _$hash = $jc(_$hash, grantScope.hashCode);
-    _$hash = $jc(_$hash, handledAt.hashCode);
     _$hash = $jc(_$hash, remember.hashCode);
     _$hash = $jc(_$hash, rememberFor.hashCode);
     _$hash = $jc(_$hash, session.hashCode);
@@ -78,7 +73,6 @@ class _$AcceptOAuth2ConsentRequest extends AcceptOAuth2ConsentRequest {
           ..add('context', context)
           ..add('grantAccessTokenAudience', grantAccessTokenAudience)
           ..add('grantScope', grantScope)
-          ..add('handledAt', handledAt)
           ..add('remember', remember)
           ..add('rememberFor', rememberFor)
           ..add('session', session))
@@ -107,10 +101,6 @@ class AcceptOAuth2ConsentRequestBuilder
   set grantScope(ListBuilder<String>? grantScope) =>
       _$this._grantScope = grantScope;
 
-  DateTime? _handledAt;
-  DateTime? get handledAt => _$this._handledAt;
-  set handledAt(DateTime? handledAt) => _$this._handledAt = handledAt;
-
   bool? _remember;
   bool? get remember => _$this._remember;
   set remember(bool? remember) => _$this._remember = remember;
@@ -135,7 +125,6 @@ class AcceptOAuth2ConsentRequestBuilder
       _context = $v.context;
       _grantAccessTokenAudience = $v.grantAccessTokenAudience?.toBuilder();
       _grantScope = $v.grantScope?.toBuilder();
-      _handledAt = $v.handledAt;
       _remember = $v.remember;
       _rememberFor = $v.rememberFor;
       _session = $v.session?.toBuilder();
@@ -166,7 +155,6 @@ class AcceptOAuth2ConsentRequestBuilder
               context: context,
               grantAccessTokenAudience: _grantAccessTokenAudience?.build(),
               grantScope: _grantScope?.build(),
-              handledAt: handledAt,
               remember: remember,
               rememberFor: rememberFor,
               session: _session?.build());

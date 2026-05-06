@@ -7,8 +7,11 @@
 Gemfile
 README.md
 Rakefile
+docs/BatchCheckPermissionBody.md
+docs/BatchCheckPermissionResult.md
 docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
+docs/CheckPermissionResultWithError.md
 docs/CreateRelationshipBody.md
 docs/ErrorGeneric.md
 docs/ExpandedPermissionTree.md
@@ -41,8 +44,11 @@ lib/ory-keto-client/api/relationship_api.rb
 lib/ory-keto-client/api_client.rb
 lib/ory-keto-client/api_error.rb
 lib/ory-keto-client/configuration.rb
+lib/ory-keto-client/models/batch_check_permission_body.rb
+lib/ory-keto-client/models/batch_check_permission_result.rb
 lib/ory-keto-client/models/check_opl_syntax_result.rb
 lib/ory-keto-client/models/check_permission_result.rb
+lib/ory-keto-client/models/check_permission_result_with_error.rb
 lib/ory-keto-client/models/create_relationship_body.rb
 lib/ory-keto-client/models/error_generic.rb
 lib/ory-keto-client/models/expanded_permission_tree.rb
@@ -69,10 +75,11 @@ ory-keto-client.gemspec
 spec/api/metadata_api_spec.rb
 spec/api/permission_api_spec.rb
 spec/api/relationship_api_spec.rb
-spec/api_client_spec.rb
-spec/configuration_spec.rb
+spec/models/batch_check_permission_body_spec.rb
+spec/models/batch_check_permission_result_spec.rb
 spec/models/check_opl_syntax_result_spec.rb
 spec/models/check_permission_result_spec.rb
+spec/models/check_permission_result_with_error_spec.rb
 spec/models/create_relationship_body_spec.rb
 spec/models/error_generic_spec.rb
 spec/models/expanded_permission_tree_spec.rb

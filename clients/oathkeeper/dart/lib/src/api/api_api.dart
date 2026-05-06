@@ -4,6 +4,7 @@
 
 import 'dart:async';
 
+import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
@@ -33,7 +34,7 @@ class ApiApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<void>> decisions({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -79,7 +80,7 @@ class ApiApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [Rule] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<Rule>> getRule({ 
     required String id,
     CancelToken? cancelToken,
@@ -89,7 +90,7 @@ class ApiApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/rules/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/rules/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -120,10 +121,10 @@ class ApiApi {
       ) as Rule;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -153,7 +154,7 @@ class ApiApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [JsonWebKeySet] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<JsonWebKeySet>> getWellKnownJSONWebKeys({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -193,10 +194,10 @@ class ApiApi {
       ) as JsonWebKeySet;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -228,7 +229,7 @@ class ApiApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<Rule>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<Rule>>> listRules({ 
     int? limit,
     int? offset,
@@ -276,10 +277,10 @@ class ApiApi {
       ) as BuiltList<Rule>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

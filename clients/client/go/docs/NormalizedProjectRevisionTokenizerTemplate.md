@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **JwksUrl** | Pointer to **string** | JSON Web Key URL | [optional] 
 **Key** | Pointer to **string** | The unique key of the template | [optional] 
 **ProjectRevisionId** | Pointer to **string** | The Revision&#39;s ID this schema belongs to | [optional] 
+**SubjectSource** | Pointer to **string** | Subject source for the tokenizer  Can be either id or external_id or empty | [optional] [default to "id"]
 **Ttl** | Pointer to **string** | Token time to live | [optional] [default to "1m"]
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 
@@ -181,6 +182,31 @@ SetProjectRevisionId sets ProjectRevisionId field to given value.
 `func (o *NormalizedProjectRevisionTokenizerTemplate) HasProjectRevisionId() bool`
 
 HasProjectRevisionId returns a boolean if a field has been set.
+
+### GetSubjectSource
+
+`func (o *NormalizedProjectRevisionTokenizerTemplate) GetSubjectSource() string`
+
+GetSubjectSource returns the SubjectSource field if non-nil, zero value otherwise.
+
+### GetSubjectSourceOk
+
+`func (o *NormalizedProjectRevisionTokenizerTemplate) GetSubjectSourceOk() (*string, bool)`
+
+GetSubjectSourceOk returns a tuple with the SubjectSource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubjectSource
+
+`func (o *NormalizedProjectRevisionTokenizerTemplate) SetSubjectSource(v string)`
+
+SetSubjectSource sets SubjectSource field to given value.
+
+### HasSubjectSource
+
+`func (o *NormalizedProjectRevisionTokenizerTemplate) HasSubjectSource() bool`
+
+HasSubjectSource returns a boolean if a field has been set.
 
 ### GetTtl
 

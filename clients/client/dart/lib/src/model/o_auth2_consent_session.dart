@@ -7,7 +7,6 @@ import 'package:ory_client/src/model/accept_o_auth2_consent_request_session.dart
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/o_auth2_consent_request.dart';
 import 'package:built_value/json_object.dart';
-import 'package:ory_client/src/model/o_auth2_consent_session_expires_at.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -17,8 +16,8 @@ part 'o_auth2_consent_session.g.dart';
 ///
 /// Properties:
 /// * [consentRequest] 
+/// * [consentRequestId] - ConsentRequestID is the identifier of the consent request that initiated this consent session.
 /// * [context] 
-/// * [expiresAt] 
 /// * [grantAccessTokenAudience] 
 /// * [grantScope] 
 /// * [handledAt] 
@@ -30,11 +29,12 @@ abstract class OAuth2ConsentSession implements Built<OAuth2ConsentSession, OAuth
   @BuiltValueField(wireName: r'consent_request')
   OAuth2ConsentRequest? get consentRequest;
 
+  /// ConsentRequestID is the identifier of the consent request that initiated this consent session.
+  @BuiltValueField(wireName: r'consent_request_id')
+  String? get consentRequestId;
+
   @BuiltValueField(wireName: r'context')
   JsonObject? get context;
-
-  @BuiltValueField(wireName: r'expires_at')
-  OAuth2ConsentSessionExpiresAt? get expiresAt;
 
   @BuiltValueField(wireName: r'grant_access_token_audience')
   BuiltList<String>? get grantAccessTokenAudience;
@@ -86,18 +86,18 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
         specifiedType: const FullType(OAuth2ConsentRequest),
       );
     }
+    if (object.consentRequestId != null) {
+      yield r'consent_request_id';
+      yield serializers.serialize(
+        object.consentRequestId,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.context != null) {
       yield r'context';
       yield serializers.serialize(
         object.context,
         specifiedType: const FullType(JsonObject),
-      );
-    }
-    if (object.expiresAt != null) {
-      yield r'expires_at';
-      yield serializers.serialize(
-        object.expiresAt,
-        specifiedType: const FullType(OAuth2ConsentSessionExpiresAt),
       );
     }
     if (object.grantAccessTokenAudience != null) {
@@ -172,19 +172,19 @@ class _$OAuth2ConsentSessionSerializer implements PrimitiveSerializer<OAuth2Cons
           ) as OAuth2ConsentRequest;
           result.consentRequest.replace(valueDes);
           break;
+        case r'consent_request_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.consentRequestId = valueDes;
+          break;
         case r'context':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(JsonObject),
           ) as JsonObject;
           result.context = valueDes;
-          break;
-        case r'expires_at':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(OAuth2ConsentSessionExpiresAt),
-          ) as OAuth2ConsentSessionExpiresAt;
-          result.expiresAt.replace(valueDes);
           break;
         case r'grant_access_token_audience':
           final valueDes = serializers.deserialize(

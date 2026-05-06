@@ -30,7 +30,7 @@ final api = OryOathkeeperClient().getApiApi();
 
 try {
     api.decisions();
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ApiApi->decisions: $e\n');
 }
 ```
@@ -70,7 +70,7 @@ final String id = id_example; // String |
 try {
     final response = api.getRule(id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ApiApi->getRule: $e\n');
 }
 ```
@@ -112,7 +112,7 @@ final api = OryOathkeeperClient().getApiApi();
 try {
     final response = api.getWellKnownJSONWebKeys();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ApiApi->getWellKnownJSONWebKeys: $e\n');
 }
 ```
@@ -153,7 +153,7 @@ final int offset = 789; // int | The offset from where to start looking.
 try {
     final response = api.listRules(limit, offset);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling ApiApi->listRules: $e\n');
 }
 ```

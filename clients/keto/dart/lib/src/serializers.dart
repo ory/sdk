@@ -14,8 +14,11 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:ory_keto_client/src/date_serializer.dart';
 import 'package:ory_keto_client/src/model/date.dart';
 
+import 'package:ory_keto_client/src/model/batch_check_permission_body.dart';
+import 'package:ory_keto_client/src/model/batch_check_permission_result.dart';
 import 'package:ory_keto_client/src/model/check_opl_syntax_result.dart';
 import 'package:ory_keto_client/src/model/check_permission_result.dart';
+import 'package:ory_keto_client/src/model/check_permission_result_with_error.dart';
 import 'package:ory_keto_client/src/model/create_relationship_body.dart';
 import 'package:ory_keto_client/src/model/error_generic.dart';
 import 'package:ory_keto_client/src/model/expanded_permission_tree.dart';
@@ -41,8 +44,11 @@ import 'package:ory_keto_client/src/model/version.dart';
 part 'serializers.g.dart';
 
 @SerializersFor([
+  BatchCheckPermissionBody,
+  BatchCheckPermissionResult,
   CheckOplSyntaxResult,
   CheckPermissionResult,
+  CheckPermissionResultWithError,
   CreateRelationshipBody,
   ErrorGeneric,
   ExpandedPermissionTree,

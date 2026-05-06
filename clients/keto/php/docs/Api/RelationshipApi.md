@@ -1,15 +1,15 @@
 # Ory\Keto\Client\RelationshipApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**checkOplSyntax()**](RelationshipApi.md#checkOplSyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
-[**createRelationship()**](RelationshipApi.md#createRelationship) | **PUT** /admin/relation-tuples | Create a Relationship
-[**deleteRelationships()**](RelationshipApi.md#deleteRelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
-[**getRelationships()**](RelationshipApi.md#getRelationships) | **GET** /relation-tuples | Query relationships
-[**listRelationshipNamespaces()**](RelationshipApi.md#listRelationshipNamespaces) | **GET** /namespaces | Query namespaces
-[**patchRelationships()**](RelationshipApi.md#patchRelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**checkOplSyntax()**](RelationshipApi.md#checkOplSyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file |
+| [**createRelationship()**](RelationshipApi.md#createRelationship) | **PUT** /admin/relation-tuples | Create a Relationship |
+| [**deleteRelationships()**](RelationshipApi.md#deleteRelationships) | **DELETE** /admin/relation-tuples | Delete Relationships |
+| [**getRelationships()**](RelationshipApi.md#getRelationships) | **GET** /relation-tuples | Query relationships |
+| [**listRelationshipNamespaces()**](RelationshipApi.md#listRelationshipNamespaces) | **GET** /namespaces | Query namespaces |
+| [**patchRelationships()**](RelationshipApi.md#patchRelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships |
 
 
 ## `checkOplSyntax()`
@@ -47,9 +47,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | **string**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | **string**|  | [optional] |
 
 ### Return type
 
@@ -103,9 +103,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createRelationshipBody** | [**\Ory\Keto\Client\Model\CreateRelationshipBody**](../Model/CreateRelationshipBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **createRelationshipBody** | [**\Ory\Keto\Client\Model\CreateRelationshipBody**](../Model/CreateRelationshipBody.md)|  | [optional] |
 
 ### Return type
 
@@ -164,15 +164,15 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Relationship | [optional]
- **object** | **string**| Object of the Relationship | [optional]
- **relation** | **string**| Relation of the Relationship | [optional]
- **subjectId** | **string**| SubjectID of the Relationship | [optional]
- **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
- **subjectSetObject** | **string**| Object of the Subject Set | [optional]
- **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **namespace** | **string**| Namespace of the Relationship | [optional] |
+| **object** | **string**| Object of the Relationship | [optional] |
+| **relation** | **string**| Relation of the Relationship | [optional] |
+| **subjectId** | **string**| SubjectID of the Relationship | [optional] |
+| **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] |
+| **subjectSetObject** | **string**| Object of the Subject Set | [optional] |
+| **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] |
 
 ### Return type
 
@@ -194,7 +194,7 @@ No authorization required
 ## `getRelationships()`
 
 ```php
-getRelationships($pageToken, $pageSize, $namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation): \Ory\Keto\Client\Model\Relationships
+getRelationships($pageSize, $pageToken, $namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation): \Ory\Keto\Client\Model\Relationships
 ```
 
 Query relationships
@@ -214,8 +214,8 @@ $apiInstance = new Ory\Keto\Client\Api\RelationshipApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$pageToken = 'pageToken_example'; // string
-$pageSize = 56; // int
+$pageSize = 250; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$pageToken = 'pageToken_example'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $namespace = 'namespace_example'; // string | Namespace of the Relationship
 $object = 'object_example'; // string | Object of the Relationship
 $relation = 'relation_example'; // string | Relation of the Relationship
@@ -225,7 +225,7 @@ $subjectSetObject = 'subjectSetObject_example'; // string | Object of the Subjec
 $subjectSetRelation = 'subjectSetRelation_example'; // string | Relation of the Subject Set
 
 try {
-    $result = $apiInstance->getRelationships($pageToken, $pageSize, $namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation);
+    $result = $apiInstance->getRelationships($pageSize, $pageToken, $namespace, $object, $relation, $subjectId, $subjectSetNamespace, $subjectSetObject, $subjectSetRelation);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RelationshipApi->getRelationships: ', $e->getMessage(), PHP_EOL;
@@ -234,17 +234,17 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageToken** | **string**|  | [optional]
- **pageSize** | **int**|  | [optional]
- **namespace** | **string**| Namespace of the Relationship | [optional]
- **object** | **string**| Object of the Relationship | [optional]
- **relation** | **string**| Relation of the Relationship | [optional]
- **subjectId** | **string**| SubjectID of the Relationship | [optional]
- **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
- **subjectSetObject** | **string**| Object of the Subject Set | [optional]
- **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
+| **namespace** | **string**| Namespace of the Relationship | [optional] |
+| **object** | **string**| Object of the Relationship | [optional] |
+| **relation** | **string**| Relation of the Relationship | [optional] |
+| **subjectId** | **string**| SubjectID of the Relationship | [optional] |
+| **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] |
+| **subjectSetObject** | **string**| Object of the Subject Set | [optional] |
+| **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] |
 
 ### Return type
 
@@ -350,9 +350,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **relationshipPatch** | [**\Ory\Keto\Client\Model\RelationshipPatch[]**](../Model/RelationshipPatch.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **relationshipPatch** | [**\Ory\Keto\Client\Model\RelationshipPatch[]**](../Model/RelationshipPatch.md)|  | [optional] |
 
 ### Return type
 

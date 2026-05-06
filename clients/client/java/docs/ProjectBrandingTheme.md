@@ -12,8 +12,6 @@
 |**accentEmphasisColor** | **String** | AccentEmphasisColor is a hex color code used by the Ory Account Experience theme. |  [optional] |
 |**accentMutedColor** | **String** | AccentMutedColor is a hex color code used by the Ory Account Experience theme. |  [optional] |
 |**accentSubtleColor** | **String** | AccentSubtleColor is a hex color code used by the Ory Account Experience theme. |  [optional] |
-|**accountExperienceVariables** | [**List&lt;AccountExperienceThemeVariables&gt;**](AccountExperienceThemeVariables.md) | The Account Experience Theme Variables. |  [optional] |
-|**accountExperienceVariablesStylesheet** | **String** | AccountExperienceVariableStylesheet holds a reference to the current stylesheet that can be used in the AX |  [optional] |
 |**backgroundCanvasColor** | **String** | BackgroundCanvasColor is a hex color code used by the Ory Account Experience theme. |  [optional] |
 |**backgroundSubtleColor** | **String** | BackgroundSubtleColor is a hex color code used by the Ory Account Experience theme. |  [optional] |
 |**backgroundSurfaceColor** | **String** | BackgroundSurfaceColor is a hex color code used by the Ory Account Experience theme. |  [optional] |

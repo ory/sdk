@@ -9,3 +9,4 @@ repos/
 openapitools.json
 .venv
 venv
+.bin

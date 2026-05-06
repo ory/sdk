@@ -19,6 +19,7 @@ OryClient::UpdateRegistrationFlowBody.openapi_one_of
 #   :'UpdateRegistrationFlowWithPasskeyMethod',
 #   :'UpdateRegistrationFlowWithPasswordMethod',
 #   :'UpdateRegistrationFlowWithProfileMethod',
+#   :'UpdateRegistrationFlowWithSamlMethod',
 #   :'UpdateRegistrationFlowWithWebAuthnMethod'
 # ]
 ```
@@ -53,6 +54,7 @@ OryClient::UpdateRegistrationFlowBody.openapi_discriminator_mapping
 #   :'passkey' => :'UpdateRegistrationFlowWithPasskeyMethod',
 #   :'password' => :'UpdateRegistrationFlowWithPasswordMethod',
 #   :'profile' => :'UpdateRegistrationFlowWithProfileMethod',
+#   :'saml' => :'UpdateRegistrationFlowWithSamlMethod',
 #   :'webauthn' => :'UpdateRegistrationFlowWithWebAuthnMethod'
 # }
 ```
@@ -86,6 +88,7 @@ OryClient::UpdateRegistrationFlowBody.build(data_that_doesnt_match)
 - `UpdateRegistrationFlowWithPasskeyMethod`
 - `UpdateRegistrationFlowWithPasswordMethod`
 - `UpdateRegistrationFlowWithProfileMethod`
+- `UpdateRegistrationFlowWithSamlMethod`
 - `UpdateRegistrationFlowWithWebAuthnMethod`
 - `nil` (if no type matches)
 

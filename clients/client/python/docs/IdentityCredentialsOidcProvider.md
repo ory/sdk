@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **organization** | **str** |  | [optional] 
 **provider** | **str** |  | [optional] 
 **subject** | **str** |  | [optional] 
+**use_auto_link** | **bool** |  | [optional] 
 
 ## Example
 

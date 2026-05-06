@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Keto API
-  version: v0.11.0-alpha.0
+  version: v25.4.0
 servers:
 - url: /
 paths:
@@ -91,7 +91,8 @@ paths:
       summary: Delete Relationships
       tags:
       - relationship
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     patch:
       description: Use this endpoint to patch one or more relationships.
       operationId: patchRelationships
@@ -129,7 +130,8 @@ paths:
       tags:
       - relationship
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     put:
       description: Use this endpoint to create a relationship.
       operationId: createRelationship
@@ -162,7 +164,8 @@ paths:
       tags:
       - relationship
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /health/alive:
     get:
       description: |-
@@ -182,16 +185,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/isAlive_200_response'
           description: Ory Keto is ready to accept connections.
-        "500":
+        default:
           content:
-            application/json:
+            text/plain:
               schema:
-                $ref: '#/components/schemas/genericError'
-          description: genericError
+                type: string
+          description: Unexpected error
       summary: Check HTTP Server Status
       tags:
       - metadata
-      x-accepts: application/json
+      x-accepts:
+      - application/json
+      - text/plain
   /health/ready:
     get:
       description: |-
@@ -217,10 +222,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/isReady_503_response'
           description: Ory Kratos is not yet ready to accept requests.
+        default:
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Unexpected error
       summary: Check HTTP Server and Database Status
       tags:
       - metadata
-      x-accepts: application/json
+      x-accepts:
+      - application/json
+      - text/plain
   /namespaces:
     get:
       description: Get all namespaces
@@ -241,7 +254,8 @@ paths:
       summary: Query namespaces
       tags:
       - relationship
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /opl/syntax/check:
     post:
       description: The OPL file is expected in the body of the request.
@@ -275,27 +289,41 @@ paths:
       tags:
       - relationship
       x-content-type: text/plain
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /relation-tuples:
     get:
       description: Get all relationships that match the query. Only the namespace
         field is required.
       operationId: getRelationships
       parameters:
-      - explode: true
+      - description: |-
+          Items per Page
+
+          This is the number of items per page to return.
+          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          default: 250
+          format: int64
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      - description: |-
+          Next Page Token
+
+          The next page token.
+          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+        explode: true
         in: query
         name: page_token
         required: false
         schema:
           type: string
-        style: form
-      - explode: true
-        in: query
-        name: page_size
-        required: false
-        schema:
-          format: int64
-          type: integer
         style: form
       - description: Namespace of the Relationship
         explode: true
@@ -375,7 +403,53 @@ paths:
       summary: Query relationships
       tags:
       - relationship
-      x-accepts: application/json
+      x-accepts:
+      - application/json
+  /relation-tuples/batch/check:
+    post:
+      description: "To learn how relationship tuples and the check works, head over\
+        \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
+      operationId: batchCheckPermission
+      parameters:
+      - explode: true
+        in: query
+        name: max-depth
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/batchCheckPermissionBody'
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchCheckPermissionResult'
+          description: batchCheckPermissionResult
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      summary: Batch check permissions
+      tags:
+      - permission
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /relation-tuples/check:
     get:
       description: "To learn how relationship tuples and the check works, head over\
@@ -474,14 +548,14 @@ paths:
       summary: Check a permission
       tags:
       - permission
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: "To learn how relationship tuples and the check works, head over\
         \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
       operationId: postCheckPermissionOrError
       parameters:
-      - description: "nolint:deadcode,unused"
-        explode: true
+      - explode: true
         in: query
         name: max-depth
         required: false
@@ -524,7 +598,8 @@ paths:
       tags:
       - permission
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /relation-tuples/check/openapi:
     get:
       description: "To learn how relationship tuples and the check works, head over\
@@ -617,7 +692,8 @@ paths:
       summary: Check a permission
       tags:
       - permission
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: "To learn how relationship tuples and the check works, head over\
         \ to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview)."
@@ -660,7 +736,8 @@ paths:
       tags:
       - permission
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /relation-tuples/expand:
     get:
       description: Use this endpoint to expand a relationship tuple into permissions.
@@ -726,7 +803,8 @@ paths:
       summary: Expand a Relationship into permissions.
       tags:
       - permission
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /version:
     get:
       description: |-
@@ -748,13 +826,15 @@ paths:
       summary: Return Running Software Version.
       tags:
       - metadata
-      x-accepts: application/json
+      x-accepts:
+      - application/json
 components:
   responses:
     emptyResponse:
       description: "Empty responses are sent when, for example, resources are deleted.\
         \ The HTTP status code for empty responses is typically 204."
   schemas:
+    DefaultError: {}
     ParseError:
       example:
         start:
@@ -787,6 +867,32 @@ components:
     UUID:
       format: uuid4
       type: string
+    batchCheckPermissionBody:
+      description: Batch Check Permission Body
+      properties:
+        tuples:
+          items:
+            $ref: '#/components/schemas/relationship'
+          type: array
+      type: object
+    batchCheckPermissionResult:
+      description: Batch Check Permission Result
+      example:
+        results:
+        - allowed: true
+          error: error
+        - allowed: true
+          error: error
+      properties:
+        results:
+          description: An array of check results. The order aligns with the input
+            order.
+          items:
+            $ref: '#/components/schemas/checkPermissionResultWithError'
+          type: array
+      required:
+      - results
+      type: object
     checkOplSyntaxBody:
       description: Ory Permission Language Document
       type: string
@@ -829,6 +935,21 @@ components:
       - allowed
       title: Check Permission Result
       type: object
+    checkPermissionResultWithError:
+      description: Check Permission Result With Error
+      example:
+        allowed: true
+        error: error
+      properties:
+        allowed:
+          description: whether the relation tuple is allowed
+          type: boolean
+        error:
+          description: any error generated while checking the relation tuple
+          type: string
+      required:
+      - allowed
+      type: object
     createRelationshipBody:
       description: Create Relationship Request Body
       properties:
@@ -852,6 +973,17 @@ components:
       type: object
     errorGeneric:
       description: The standard Ory JSON API error format.
+      example:
+        error:
+          reason: User with ID 1234 does not exist.
+          request: d7ef54b1-ec15-46e6-bccb-524b82c035e6
+          code: 404
+          debug: SQL field "foo" is not a bool.
+          details:
+            key: ""
+          id: id
+          message: The resource could not be found
+          status: Not Found
       properties:
         error:
           $ref: '#/components/schemas/genericError'
@@ -916,6 +1048,16 @@ components:
       - type
       type: object
     genericError:
+      example:
+        reason: User with ID 1234 does not exist.
+        request: d7ef54b1-ec15-46e6-bccb-524b82c035e6
+        code: 404
+        debug: SQL field "foo" is not a bool.
+        details:
+          key: ""
+        id: id
+        message: The resource could not be found
+        status: Not Found
       properties:
         code:
           description: The status code
@@ -974,12 +1116,14 @@ components:
           description: Errors contains a list of errors that caused the not ready
             status.
           type: object
+      title: The not ready status of the service.
       type: object
     healthStatus:
       properties:
         status:
           description: Status always contains "ok".
           type: string
+      title: The health status of the service.
       type: object
     namespace:
       example:
@@ -1165,6 +1309,8 @@ components:
       - object
       - relation
       type: object
+    unexpectedError:
+      type: string
     version:
       properties:
         version:
@@ -1182,6 +1328,9 @@ components:
       - status
       type: object
     isReady_503_response:
+      example:
+        errors:
+          key: errors
       properties:
         errors:
           additionalProperties:

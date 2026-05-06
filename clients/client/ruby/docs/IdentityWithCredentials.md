@@ -6,6 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **oidc** | [**IdentityWithCredentialsOidc**](IdentityWithCredentialsOidc.md) |  | [optional] |
 | **password** | [**IdentityWithCredentialsPassword**](IdentityWithCredentialsPassword.md) |  | [optional] |
+| **saml** | [**IdentityWithCredentialsSaml**](IdentityWithCredentialsSaml.md) |  | [optional] |
 
 ## Example
 
@@ -14,7 +15,8 @@ require 'ory-client'
 
 instance = OryClient::IdentityWithCredentials.new(
   oidc: null,
-  password: null
+  password: null,
+  saml: null
 )
 ```
 

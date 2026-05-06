@@ -21,6 +21,7 @@ part 'oidc_configuration.g.dart';
 /// * [codeChallengeMethodsSupported] - OAuth 2.0 PKCE Supported Code Challenge Methods  JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server.
 /// * [credentialsEndpointDraft00] - OpenID Connect Verifiable Credentials Endpoint  Contains the URL of the Verifiable Credentials Endpoint.
 /// * [credentialsSupportedDraft00] - OpenID Connect Verifiable Credentials Supported  JSON array containing a list of the Verifiable Credentials supported by this authorization server.
+/// * [deviceAuthorizationEndpoint] - OAuth 2.0 Device Authorization Endpoint URL
 /// * [endSessionEndpoint] - OpenID Connect End-Session Endpoint  URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
 /// * [frontchannelLogoutSessionSupported] - OpenID Connect Front-Channel Logout Session Required  Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also included in ID Tokens issued by the OP.
 /// * [frontchannelLogoutSupported] - OpenID Connect Front-Channel Logout Supported  Boolean value specifying whether the OP supports HTTP-based logout, with true indicating support.
@@ -77,6 +78,10 @@ abstract class OidcConfiguration implements Built<OidcConfiguration, OidcConfigu
   /// OpenID Connect Verifiable Credentials Supported  JSON array containing a list of the Verifiable Credentials supported by this authorization server.
   @BuiltValueField(wireName: r'credentials_supported_draft_00')
   BuiltList<CredentialSupportedDraft00>? get credentialsSupportedDraft00;
+
+  /// OAuth 2.0 Device Authorization Endpoint URL
+  @BuiltValueField(wireName: r'device_authorization_endpoint')
+  String get deviceAuthorizationEndpoint;
 
   /// OpenID Connect End-Session Endpoint  URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
   @BuiltValueField(wireName: r'end_session_endpoint')
@@ -247,6 +252,11 @@ class _$OidcConfigurationSerializer implements PrimitiveSerializer<OidcConfigura
         specifiedType: const FullType(BuiltList, [FullType(CredentialSupportedDraft00)]),
       );
     }
+    yield r'device_authorization_endpoint';
+    yield serializers.serialize(
+      object.deviceAuthorizationEndpoint,
+      specifiedType: const FullType(String),
+    );
     if (object.endSessionEndpoint != null) {
       yield r'end_session_endpoint';
       yield serializers.serialize(
@@ -470,6 +480,13 @@ class _$OidcConfigurationSerializer implements PrimitiveSerializer<OidcConfigura
             specifiedType: const FullType(BuiltList, [FullType(CredentialSupportedDraft00)]),
           ) as BuiltList<CredentialSupportedDraft00>;
           result.credentialsSupportedDraft00.replace(valueDes);
+          break;
+        case r'device_authorization_endpoint':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.deviceAuthorizationEndpoint = valueDes;
           break;
         case r'end_session_endpoint':
           final valueDes = serializers.deserialize(

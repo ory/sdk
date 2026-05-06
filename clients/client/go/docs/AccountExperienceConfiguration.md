@@ -4,22 +4,32 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountExperienceThemeStylesheet** | Pointer to **string** |  | [optional] 
-**FaviconType** | Pointer to **string** |  | [optional] 
-**FaviconUrl** | Pointer to **string** |  | [optional] 
-**KratosSelfserviceDefaultBrowserReturnUrl** | Pointer to **string** |  | [optional] 
-**KratosSelfserviceFlowsRecoveryEnabled** | Pointer to **bool** |  | [optional] 
-**KratosSelfserviceFlowsRegistrationEnabled** | Pointer to **bool** |  | [optional] 
-**KratosSelfserviceFlowsVerificationEnabled** | Pointer to **bool** |  | [optional] 
-**LogoUrl** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**OrganizationMap** | Pointer to **map[string]string** |  | [optional] 
+**DefaultLocale** | **string** |  | 
+**DefaultRedirectUrl** | **string** |  | 
+**EnabledLocales** | **[]string** |  | 
+**ErrorUiUrl** | **string** |  | 
+**FaviconDarkUrl** | Pointer to **string** |  | [optional] 
+**FaviconLightUrl** | Pointer to **string** |  | [optional] 
+**LocaleBehavior** | **string** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
+**LoginUiUrl** | **string** |  | 
+**LogoDarkUrl** | Pointer to **string** |  | [optional] 
+**LogoLightUrl** | Pointer to **string** |  | [optional] 
+**Name** | **string** |  | 
+**RecoveryEnabled** | **bool** |  | 
+**RecoveryUiUrl** | **string** |  | 
+**RegistrationEnabled** | **bool** |  | 
+**RegistrationUiUrl** | **string** |  | 
+**SettingsUiUrl** | **string** |  | 
+**Stylesheet** | Pointer to **string** |  | [optional] 
+**Translations** | [**[]RevisionAccountExperienceCustomTranslation**](RevisionAccountExperienceCustomTranslation.md) |  | 
+**VerificationEnabled** | **bool** |  | 
+**VerificationUiUrl** | **string** |  | 
 
 ## Methods
 
 ### NewAccountExperienceConfiguration
 
-`func NewAccountExperienceConfiguration() *AccountExperienceConfiguration`
+`func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, enabledLocales []string, errorUiUrl string, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, translations []RevisionAccountExperienceCustomTranslation, verificationEnabled bool, verificationUiUrl string, ) *AccountExperienceConfiguration`
 
 NewAccountExperienceConfiguration instantiates a new AccountExperienceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -34,205 +44,225 @@ NewAccountExperienceConfigurationWithDefaults instantiates a new AccountExperien
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAccountExperienceThemeStylesheet
+### GetDefaultLocale
 
-`func (o *AccountExperienceConfiguration) GetAccountExperienceThemeStylesheet() string`
+`func (o *AccountExperienceConfiguration) GetDefaultLocale() string`
 
-GetAccountExperienceThemeStylesheet returns the AccountExperienceThemeStylesheet field if non-nil, zero value otherwise.
+GetDefaultLocale returns the DefaultLocale field if non-nil, zero value otherwise.
 
-### GetAccountExperienceThemeStylesheetOk
+### GetDefaultLocaleOk
 
-`func (o *AccountExperienceConfiguration) GetAccountExperienceThemeStylesheetOk() (*string, bool)`
+`func (o *AccountExperienceConfiguration) GetDefaultLocaleOk() (*string, bool)`
 
-GetAccountExperienceThemeStylesheetOk returns a tuple with the AccountExperienceThemeStylesheet field if it's non-nil, zero value otherwise
+GetDefaultLocaleOk returns a tuple with the DefaultLocale field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountExperienceThemeStylesheet
+### SetDefaultLocale
 
-`func (o *AccountExperienceConfiguration) SetAccountExperienceThemeStylesheet(v string)`
+`func (o *AccountExperienceConfiguration) SetDefaultLocale(v string)`
 
-SetAccountExperienceThemeStylesheet sets AccountExperienceThemeStylesheet field to given value.
+SetDefaultLocale sets DefaultLocale field to given value.
 
-### HasAccountExperienceThemeStylesheet
 
-`func (o *AccountExperienceConfiguration) HasAccountExperienceThemeStylesheet() bool`
+### GetDefaultRedirectUrl
 
-HasAccountExperienceThemeStylesheet returns a boolean if a field has been set.
+`func (o *AccountExperienceConfiguration) GetDefaultRedirectUrl() string`
 
-### GetFaviconType
+GetDefaultRedirectUrl returns the DefaultRedirectUrl field if non-nil, zero value otherwise.
 
-`func (o *AccountExperienceConfiguration) GetFaviconType() string`
+### GetDefaultRedirectUrlOk
 
-GetFaviconType returns the FaviconType field if non-nil, zero value otherwise.
+`func (o *AccountExperienceConfiguration) GetDefaultRedirectUrlOk() (*string, bool)`
 
-### GetFaviconTypeOk
-
-`func (o *AccountExperienceConfiguration) GetFaviconTypeOk() (*string, bool)`
-
-GetFaviconTypeOk returns a tuple with the FaviconType field if it's non-nil, zero value otherwise
+GetDefaultRedirectUrlOk returns a tuple with the DefaultRedirectUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFaviconType
+### SetDefaultRedirectUrl
 
-`func (o *AccountExperienceConfiguration) SetFaviconType(v string)`
+`func (o *AccountExperienceConfiguration) SetDefaultRedirectUrl(v string)`
 
-SetFaviconType sets FaviconType field to given value.
+SetDefaultRedirectUrl sets DefaultRedirectUrl field to given value.
 
-### HasFaviconType
 
-`func (o *AccountExperienceConfiguration) HasFaviconType() bool`
+### GetEnabledLocales
 
-HasFaviconType returns a boolean if a field has been set.
+`func (o *AccountExperienceConfiguration) GetEnabledLocales() []string`
 
-### GetFaviconUrl
+GetEnabledLocales returns the EnabledLocales field if non-nil, zero value otherwise.
 
-`func (o *AccountExperienceConfiguration) GetFaviconUrl() string`
+### GetEnabledLocalesOk
 
-GetFaviconUrl returns the FaviconUrl field if non-nil, zero value otherwise.
+`func (o *AccountExperienceConfiguration) GetEnabledLocalesOk() (*[]string, bool)`
 
-### GetFaviconUrlOk
-
-`func (o *AccountExperienceConfiguration) GetFaviconUrlOk() (*string, bool)`
-
-GetFaviconUrlOk returns a tuple with the FaviconUrl field if it's non-nil, zero value otherwise
+GetEnabledLocalesOk returns a tuple with the EnabledLocales field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFaviconUrl
+### SetEnabledLocales
 
-`func (o *AccountExperienceConfiguration) SetFaviconUrl(v string)`
+`func (o *AccountExperienceConfiguration) SetEnabledLocales(v []string)`
 
-SetFaviconUrl sets FaviconUrl field to given value.
+SetEnabledLocales sets EnabledLocales field to given value.
 
-### HasFaviconUrl
 
-`func (o *AccountExperienceConfiguration) HasFaviconUrl() bool`
+### GetErrorUiUrl
 
-HasFaviconUrl returns a boolean if a field has been set.
+`func (o *AccountExperienceConfiguration) GetErrorUiUrl() string`
 
-### GetKratosSelfserviceDefaultBrowserReturnUrl
+GetErrorUiUrl returns the ErrorUiUrl field if non-nil, zero value otherwise.
 
-`func (o *AccountExperienceConfiguration) GetKratosSelfserviceDefaultBrowserReturnUrl() string`
+### GetErrorUiUrlOk
 
-GetKratosSelfserviceDefaultBrowserReturnUrl returns the KratosSelfserviceDefaultBrowserReturnUrl field if non-nil, zero value otherwise.
+`func (o *AccountExperienceConfiguration) GetErrorUiUrlOk() (*string, bool)`
 
-### GetKratosSelfserviceDefaultBrowserReturnUrlOk
-
-`func (o *AccountExperienceConfiguration) GetKratosSelfserviceDefaultBrowserReturnUrlOk() (*string, bool)`
-
-GetKratosSelfserviceDefaultBrowserReturnUrlOk returns a tuple with the KratosSelfserviceDefaultBrowserReturnUrl field if it's non-nil, zero value otherwise
+GetErrorUiUrlOk returns a tuple with the ErrorUiUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetKratosSelfserviceDefaultBrowserReturnUrl
+### SetErrorUiUrl
 
-`func (o *AccountExperienceConfiguration) SetKratosSelfserviceDefaultBrowserReturnUrl(v string)`
+`func (o *AccountExperienceConfiguration) SetErrorUiUrl(v string)`
 
-SetKratosSelfserviceDefaultBrowserReturnUrl sets KratosSelfserviceDefaultBrowserReturnUrl field to given value.
+SetErrorUiUrl sets ErrorUiUrl field to given value.
 
-### HasKratosSelfserviceDefaultBrowserReturnUrl
 
-`func (o *AccountExperienceConfiguration) HasKratosSelfserviceDefaultBrowserReturnUrl() bool`
+### GetFaviconDarkUrl
 
-HasKratosSelfserviceDefaultBrowserReturnUrl returns a boolean if a field has been set.
+`func (o *AccountExperienceConfiguration) GetFaviconDarkUrl() string`
 
-### GetKratosSelfserviceFlowsRecoveryEnabled
+GetFaviconDarkUrl returns the FaviconDarkUrl field if non-nil, zero value otherwise.
 
-`func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsRecoveryEnabled() bool`
+### GetFaviconDarkUrlOk
 
-GetKratosSelfserviceFlowsRecoveryEnabled returns the KratosSelfserviceFlowsRecoveryEnabled field if non-nil, zero value otherwise.
+`func (o *AccountExperienceConfiguration) GetFaviconDarkUrlOk() (*string, bool)`
 
-### GetKratosSelfserviceFlowsRecoveryEnabledOk
-
-`func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsRecoveryEnabledOk() (*bool, bool)`
-
-GetKratosSelfserviceFlowsRecoveryEnabledOk returns a tuple with the KratosSelfserviceFlowsRecoveryEnabled field if it's non-nil, zero value otherwise
+GetFaviconDarkUrlOk returns a tuple with the FaviconDarkUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetKratosSelfserviceFlowsRecoveryEnabled
+### SetFaviconDarkUrl
 
-`func (o *AccountExperienceConfiguration) SetKratosSelfserviceFlowsRecoveryEnabled(v bool)`
+`func (o *AccountExperienceConfiguration) SetFaviconDarkUrl(v string)`
 
-SetKratosSelfserviceFlowsRecoveryEnabled sets KratosSelfserviceFlowsRecoveryEnabled field to given value.
+SetFaviconDarkUrl sets FaviconDarkUrl field to given value.
 
-### HasKratosSelfserviceFlowsRecoveryEnabled
+### HasFaviconDarkUrl
 
-`func (o *AccountExperienceConfiguration) HasKratosSelfserviceFlowsRecoveryEnabled() bool`
+`func (o *AccountExperienceConfiguration) HasFaviconDarkUrl() bool`
 
-HasKratosSelfserviceFlowsRecoveryEnabled returns a boolean if a field has been set.
+HasFaviconDarkUrl returns a boolean if a field has been set.
 
-### GetKratosSelfserviceFlowsRegistrationEnabled
+### GetFaviconLightUrl
 
-`func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsRegistrationEnabled() bool`
+`func (o *AccountExperienceConfiguration) GetFaviconLightUrl() string`
 
-GetKratosSelfserviceFlowsRegistrationEnabled returns the KratosSelfserviceFlowsRegistrationEnabled field if non-nil, zero value otherwise.
+GetFaviconLightUrl returns the FaviconLightUrl field if non-nil, zero value otherwise.
 
-### GetKratosSelfserviceFlowsRegistrationEnabledOk
+### GetFaviconLightUrlOk
 
-`func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsRegistrationEnabledOk() (*bool, bool)`
+`func (o *AccountExperienceConfiguration) GetFaviconLightUrlOk() (*string, bool)`
 
-GetKratosSelfserviceFlowsRegistrationEnabledOk returns a tuple with the KratosSelfserviceFlowsRegistrationEnabled field if it's non-nil, zero value otherwise
+GetFaviconLightUrlOk returns a tuple with the FaviconLightUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetKratosSelfserviceFlowsRegistrationEnabled
+### SetFaviconLightUrl
 
-`func (o *AccountExperienceConfiguration) SetKratosSelfserviceFlowsRegistrationEnabled(v bool)`
+`func (o *AccountExperienceConfiguration) SetFaviconLightUrl(v string)`
 
-SetKratosSelfserviceFlowsRegistrationEnabled sets KratosSelfserviceFlowsRegistrationEnabled field to given value.
+SetFaviconLightUrl sets FaviconLightUrl field to given value.
 
-### HasKratosSelfserviceFlowsRegistrationEnabled
+### HasFaviconLightUrl
 
-`func (o *AccountExperienceConfiguration) HasKratosSelfserviceFlowsRegistrationEnabled() bool`
+`func (o *AccountExperienceConfiguration) HasFaviconLightUrl() bool`
 
-HasKratosSelfserviceFlowsRegistrationEnabled returns a boolean if a field has been set.
+HasFaviconLightUrl returns a boolean if a field has been set.
 
-### GetKratosSelfserviceFlowsVerificationEnabled
+### GetLocaleBehavior
 
-`func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsVerificationEnabled() bool`
+`func (o *AccountExperienceConfiguration) GetLocaleBehavior() string`
 
-GetKratosSelfserviceFlowsVerificationEnabled returns the KratosSelfserviceFlowsVerificationEnabled field if non-nil, zero value otherwise.
+GetLocaleBehavior returns the LocaleBehavior field if non-nil, zero value otherwise.
 
-### GetKratosSelfserviceFlowsVerificationEnabledOk
+### GetLocaleBehaviorOk
 
-`func (o *AccountExperienceConfiguration) GetKratosSelfserviceFlowsVerificationEnabledOk() (*bool, bool)`
+`func (o *AccountExperienceConfiguration) GetLocaleBehaviorOk() (*string, bool)`
 
-GetKratosSelfserviceFlowsVerificationEnabledOk returns a tuple with the KratosSelfserviceFlowsVerificationEnabled field if it's non-nil, zero value otherwise
+GetLocaleBehaviorOk returns a tuple with the LocaleBehavior field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetKratosSelfserviceFlowsVerificationEnabled
+### SetLocaleBehavior
 
-`func (o *AccountExperienceConfiguration) SetKratosSelfserviceFlowsVerificationEnabled(v bool)`
+`func (o *AccountExperienceConfiguration) SetLocaleBehavior(v string)`
 
-SetKratosSelfserviceFlowsVerificationEnabled sets KratosSelfserviceFlowsVerificationEnabled field to given value.
+SetLocaleBehavior sets LocaleBehavior field to given value.
 
-### HasKratosSelfserviceFlowsVerificationEnabled
 
-`func (o *AccountExperienceConfiguration) HasKratosSelfserviceFlowsVerificationEnabled() bool`
+### GetLoginUiUrl
 
-HasKratosSelfserviceFlowsVerificationEnabled returns a boolean if a field has been set.
+`func (o *AccountExperienceConfiguration) GetLoginUiUrl() string`
 
-### GetLogoUrl
+GetLoginUiUrl returns the LoginUiUrl field if non-nil, zero value otherwise.
 
-`func (o *AccountExperienceConfiguration) GetLogoUrl() string`
+### GetLoginUiUrlOk
 
-GetLogoUrl returns the LogoUrl field if non-nil, zero value otherwise.
+`func (o *AccountExperienceConfiguration) GetLoginUiUrlOk() (*string, bool)`
 
-### GetLogoUrlOk
-
-`func (o *AccountExperienceConfiguration) GetLogoUrlOk() (*string, bool)`
-
-GetLogoUrlOk returns a tuple with the LogoUrl field if it's non-nil, zero value otherwise
+GetLoginUiUrlOk returns a tuple with the LoginUiUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLogoUrl
+### SetLoginUiUrl
 
-`func (o *AccountExperienceConfiguration) SetLogoUrl(v string)`
+`func (o *AccountExperienceConfiguration) SetLoginUiUrl(v string)`
 
-SetLogoUrl sets LogoUrl field to given value.
+SetLoginUiUrl sets LoginUiUrl field to given value.
 
-### HasLogoUrl
 
-`func (o *AccountExperienceConfiguration) HasLogoUrl() bool`
+### GetLogoDarkUrl
 
-HasLogoUrl returns a boolean if a field has been set.
+`func (o *AccountExperienceConfiguration) GetLogoDarkUrl() string`
+
+GetLogoDarkUrl returns the LogoDarkUrl field if non-nil, zero value otherwise.
+
+### GetLogoDarkUrlOk
+
+`func (o *AccountExperienceConfiguration) GetLogoDarkUrlOk() (*string, bool)`
+
+GetLogoDarkUrlOk returns a tuple with the LogoDarkUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogoDarkUrl
+
+`func (o *AccountExperienceConfiguration) SetLogoDarkUrl(v string)`
+
+SetLogoDarkUrl sets LogoDarkUrl field to given value.
+
+### HasLogoDarkUrl
+
+`func (o *AccountExperienceConfiguration) HasLogoDarkUrl() bool`
+
+HasLogoDarkUrl returns a boolean if a field has been set.
+
+### GetLogoLightUrl
+
+`func (o *AccountExperienceConfiguration) GetLogoLightUrl() string`
+
+GetLogoLightUrl returns the LogoLightUrl field if non-nil, zero value otherwise.
+
+### GetLogoLightUrlOk
+
+`func (o *AccountExperienceConfiguration) GetLogoLightUrlOk() (*string, bool)`
+
+GetLogoLightUrlOk returns a tuple with the LogoLightUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogoLightUrl
+
+`func (o *AccountExperienceConfiguration) SetLogoLightUrl(v string)`
+
+SetLogoLightUrl sets LogoLightUrl field to given value.
+
+### HasLogoLightUrl
+
+`func (o *AccountExperienceConfiguration) HasLogoLightUrl() bool`
+
+HasLogoLightUrl returns a boolean if a field has been set.
 
 ### GetName
 
@@ -253,36 +283,191 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
 
-`func (o *AccountExperienceConfiguration) HasName() bool`
+### GetRecoveryEnabled
 
-HasName returns a boolean if a field has been set.
+`func (o *AccountExperienceConfiguration) GetRecoveryEnabled() bool`
 
-### GetOrganizationMap
+GetRecoveryEnabled returns the RecoveryEnabled field if non-nil, zero value otherwise.
 
-`func (o *AccountExperienceConfiguration) GetOrganizationMap() map[string]string`
+### GetRecoveryEnabledOk
 
-GetOrganizationMap returns the OrganizationMap field if non-nil, zero value otherwise.
+`func (o *AccountExperienceConfiguration) GetRecoveryEnabledOk() (*bool, bool)`
 
-### GetOrganizationMapOk
-
-`func (o *AccountExperienceConfiguration) GetOrganizationMapOk() (*map[string]string, bool)`
-
-GetOrganizationMapOk returns a tuple with the OrganizationMap field if it's non-nil, zero value otherwise
+GetRecoveryEnabledOk returns a tuple with the RecoveryEnabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOrganizationMap
+### SetRecoveryEnabled
 
-`func (o *AccountExperienceConfiguration) SetOrganizationMap(v map[string]string)`
+`func (o *AccountExperienceConfiguration) SetRecoveryEnabled(v bool)`
 
-SetOrganizationMap sets OrganizationMap field to given value.
+SetRecoveryEnabled sets RecoveryEnabled field to given value.
 
-### HasOrganizationMap
 
-`func (o *AccountExperienceConfiguration) HasOrganizationMap() bool`
+### GetRecoveryUiUrl
 
-HasOrganizationMap returns a boolean if a field has been set.
+`func (o *AccountExperienceConfiguration) GetRecoveryUiUrl() string`
+
+GetRecoveryUiUrl returns the RecoveryUiUrl field if non-nil, zero value otherwise.
+
+### GetRecoveryUiUrlOk
+
+`func (o *AccountExperienceConfiguration) GetRecoveryUiUrlOk() (*string, bool)`
+
+GetRecoveryUiUrlOk returns a tuple with the RecoveryUiUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRecoveryUiUrl
+
+`func (o *AccountExperienceConfiguration) SetRecoveryUiUrl(v string)`
+
+SetRecoveryUiUrl sets RecoveryUiUrl field to given value.
+
+
+### GetRegistrationEnabled
+
+`func (o *AccountExperienceConfiguration) GetRegistrationEnabled() bool`
+
+GetRegistrationEnabled returns the RegistrationEnabled field if non-nil, zero value otherwise.
+
+### GetRegistrationEnabledOk
+
+`func (o *AccountExperienceConfiguration) GetRegistrationEnabledOk() (*bool, bool)`
+
+GetRegistrationEnabledOk returns a tuple with the RegistrationEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationEnabled
+
+`func (o *AccountExperienceConfiguration) SetRegistrationEnabled(v bool)`
+
+SetRegistrationEnabled sets RegistrationEnabled field to given value.
+
+
+### GetRegistrationUiUrl
+
+`func (o *AccountExperienceConfiguration) GetRegistrationUiUrl() string`
+
+GetRegistrationUiUrl returns the RegistrationUiUrl field if non-nil, zero value otherwise.
+
+### GetRegistrationUiUrlOk
+
+`func (o *AccountExperienceConfiguration) GetRegistrationUiUrlOk() (*string, bool)`
+
+GetRegistrationUiUrlOk returns a tuple with the RegistrationUiUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationUiUrl
+
+`func (o *AccountExperienceConfiguration) SetRegistrationUiUrl(v string)`
+
+SetRegistrationUiUrl sets RegistrationUiUrl field to given value.
+
+
+### GetSettingsUiUrl
+
+`func (o *AccountExperienceConfiguration) GetSettingsUiUrl() string`
+
+GetSettingsUiUrl returns the SettingsUiUrl field if non-nil, zero value otherwise.
+
+### GetSettingsUiUrlOk
+
+`func (o *AccountExperienceConfiguration) GetSettingsUiUrlOk() (*string, bool)`
+
+GetSettingsUiUrlOk returns a tuple with the SettingsUiUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSettingsUiUrl
+
+`func (o *AccountExperienceConfiguration) SetSettingsUiUrl(v string)`
+
+SetSettingsUiUrl sets SettingsUiUrl field to given value.
+
+
+### GetStylesheet
+
+`func (o *AccountExperienceConfiguration) GetStylesheet() string`
+
+GetStylesheet returns the Stylesheet field if non-nil, zero value otherwise.
+
+### GetStylesheetOk
+
+`func (o *AccountExperienceConfiguration) GetStylesheetOk() (*string, bool)`
+
+GetStylesheetOk returns a tuple with the Stylesheet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStylesheet
+
+`func (o *AccountExperienceConfiguration) SetStylesheet(v string)`
+
+SetStylesheet sets Stylesheet field to given value.
+
+### HasStylesheet
+
+`func (o *AccountExperienceConfiguration) HasStylesheet() bool`
+
+HasStylesheet returns a boolean if a field has been set.
+
+### GetTranslations
+
+`func (o *AccountExperienceConfiguration) GetTranslations() []RevisionAccountExperienceCustomTranslation`
+
+GetTranslations returns the Translations field if non-nil, zero value otherwise.
+
+### GetTranslationsOk
+
+`func (o *AccountExperienceConfiguration) GetTranslationsOk() (*[]RevisionAccountExperienceCustomTranslation, bool)`
+
+GetTranslationsOk returns a tuple with the Translations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTranslations
+
+`func (o *AccountExperienceConfiguration) SetTranslations(v []RevisionAccountExperienceCustomTranslation)`
+
+SetTranslations sets Translations field to given value.
+
+
+### GetVerificationEnabled
+
+`func (o *AccountExperienceConfiguration) GetVerificationEnabled() bool`
+
+GetVerificationEnabled returns the VerificationEnabled field if non-nil, zero value otherwise.
+
+### GetVerificationEnabledOk
+
+`func (o *AccountExperienceConfiguration) GetVerificationEnabledOk() (*bool, bool)`
+
+GetVerificationEnabledOk returns a tuple with the VerificationEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVerificationEnabled
+
+`func (o *AccountExperienceConfiguration) SetVerificationEnabled(v bool)`
+
+SetVerificationEnabled sets VerificationEnabled field to given value.
+
+
+### GetVerificationUiUrl
+
+`func (o *AccountExperienceConfiguration) GetVerificationUiUrl() string`
+
+GetVerificationUiUrl returns the VerificationUiUrl field if non-nil, zero value otherwise.
+
+### GetVerificationUiUrlOk
+
+`func (o *AccountExperienceConfiguration) GetVerificationUiUrlOk() (*string, bool)`
+
+GetVerificationUiUrlOk returns a tuple with the VerificationUiUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVerificationUiUrl
+
+`func (o *AccountExperienceConfiguration) SetVerificationUiUrl(v string)`
+
+SetVerificationUiUrl sets VerificationUiUrl field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

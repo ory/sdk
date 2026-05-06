@@ -10,7 +10,7 @@ class _$GenericError extends GenericError {
   @override
   final int? code;
   @override
-  final BuiltList<BuiltMap<String, JsonObject>>? details;
+  final BuiltList<BuiltMap<String, JsonObject?>>? details;
   @override
   final String? message;
   @override
@@ -85,10 +85,10 @@ class GenericErrorBuilder
   int? get code => _$this._code;
   set code(int? code) => _$this._code = code;
 
-  ListBuilder<BuiltMap<String, JsonObject>>? _details;
-  ListBuilder<BuiltMap<String, JsonObject>> get details =>
-      _$this._details ??= new ListBuilder<BuiltMap<String, JsonObject>>();
-  set details(ListBuilder<BuiltMap<String, JsonObject>>? details) =>
+  ListBuilder<BuiltMap<String, JsonObject?>>? _details;
+  ListBuilder<BuiltMap<String, JsonObject?>> get details =>
+      _$this._details ??= new ListBuilder<BuiltMap<String, JsonObject?>>();
+  set details(ListBuilder<BuiltMap<String, JsonObject?>>? details) =>
       _$this._details = details;
 
   String? _message;

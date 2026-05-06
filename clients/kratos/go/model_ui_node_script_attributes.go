@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v25.4.0
 Contact: office@ory.sh
 */
 
@@ -29,7 +29,7 @@ type UiNodeScriptAttributes struct {
 	Id string `json:"id"`
 	// The script's integrity hash
 	Integrity string `json:"integrity"`
-	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script
+	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
 	NodeType string `json:"node_type"`
 	// Nonce for CSP  A nonce you may want to use to improve your Content Security Policy. You do not have to use this value but if you want to improve your CSP policies you may use it. You can also choose to use your own nonce value!
 	Nonce string `json:"nonce"`

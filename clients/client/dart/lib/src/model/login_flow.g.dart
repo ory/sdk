@@ -22,6 +22,8 @@ const LoginFlowActiveEnum _$loginFlowActiveEnum_passkey =
     const LoginFlowActiveEnum._('passkey');
 const LoginFlowActiveEnum _$loginFlowActiveEnum_profile =
     const LoginFlowActiveEnum._('profile');
+const LoginFlowActiveEnum _$loginFlowActiveEnum_saml =
+    const LoginFlowActiveEnum._('saml');
 const LoginFlowActiveEnum _$loginFlowActiveEnum_linkRecovery =
     const LoginFlowActiveEnum._('linkRecovery');
 const LoginFlowActiveEnum _$loginFlowActiveEnum_codeRecovery =
@@ -45,6 +47,8 @@ LoginFlowActiveEnum _$loginFlowActiveEnumValueOf(String name) {
       return _$loginFlowActiveEnum_passkey;
     case 'profile':
       return _$loginFlowActiveEnum_profile;
+    case 'saml':
+      return _$loginFlowActiveEnum_saml;
     case 'linkRecovery':
       return _$loginFlowActiveEnum_linkRecovery;
     case 'codeRecovery':
@@ -64,6 +68,7 @@ final BuiltSet<LoginFlowActiveEnum> _$loginFlowActiveEnumValues =
   _$loginFlowActiveEnum_code,
   _$loginFlowActiveEnum_passkey,
   _$loginFlowActiveEnum_profile,
+  _$loginFlowActiveEnum_saml,
   _$loginFlowActiveEnum_linkRecovery,
   _$loginFlowActiveEnum_codeRecovery,
 ]);
@@ -82,6 +87,7 @@ class _$LoginFlowActiveEnumSerializer
     'code': 'code',
     'passkey': 'passkey',
     'profile': 'profile',
+    'saml': 'saml',
     'linkRecovery': 'link_recovery',
     'codeRecovery': 'code_recovery',
   };
@@ -94,6 +100,7 @@ class _$LoginFlowActiveEnumSerializer
     'code': 'code',
     'passkey': 'passkey',
     'profile': 'profile',
+    'saml': 'saml',
     'link_recovery': 'linkRecovery',
     'code_recovery': 'codeRecovery',
   };
@@ -124,6 +131,8 @@ class _$LoginFlow extends LoginFlow {
   final DateTime expiresAt;
   @override
   final String id;
+  @override
+  final String? identitySchema;
   @override
   final DateTime issuedAt;
   @override
@@ -161,6 +170,7 @@ class _$LoginFlow extends LoginFlow {
       this.createdAt,
       required this.expiresAt,
       required this.id,
+      this.identitySchema,
       required this.issuedAt,
       this.oauth2LoginChallenge,
       this.oauth2LoginRequest,
@@ -200,6 +210,7 @@ class _$LoginFlow extends LoginFlow {
         createdAt == other.createdAt &&
         expiresAt == other.expiresAt &&
         id == other.id &&
+        identitySchema == other.identitySchema &&
         issuedAt == other.issuedAt &&
         oauth2LoginChallenge == other.oauth2LoginChallenge &&
         oauth2LoginRequest == other.oauth2LoginRequest &&
@@ -223,6 +234,7 @@ class _$LoginFlow extends LoginFlow {
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, identitySchema.hashCode);
     _$hash = $jc(_$hash, issuedAt.hashCode);
     _$hash = $jc(_$hash, oauth2LoginChallenge.hashCode);
     _$hash = $jc(_$hash, oauth2LoginRequest.hashCode);
@@ -248,6 +260,7 @@ class _$LoginFlow extends LoginFlow {
           ..add('createdAt', createdAt)
           ..add('expiresAt', expiresAt)
           ..add('id', id)
+          ..add('identitySchema', identitySchema)
           ..add('issuedAt', issuedAt)
           ..add('oauth2LoginChallenge', oauth2LoginChallenge)
           ..add('oauth2LoginRequest', oauth2LoginRequest)
@@ -284,6 +297,11 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
   String? _id;
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
+
+  String? _identitySchema;
+  String? get identitySchema => _$this._identitySchema;
+  set identitySchema(String? identitySchema) =>
+      _$this._identitySchema = identitySchema;
 
   DateTime? _issuedAt;
   DateTime? get issuedAt => _$this._issuedAt;
@@ -359,6 +377,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
       _createdAt = $v.createdAt;
       _expiresAt = $v.expiresAt;
       _id = $v.id;
+      _identitySchema = $v.identitySchema;
       _issuedAt = $v.issuedAt;
       _oauth2LoginChallenge = $v.oauth2LoginChallenge;
       _oauth2LoginRequest = $v.oauth2LoginRequest?.toBuilder();
@@ -402,6 +421,7 @@ class LoginFlowBuilder implements Builder<LoginFlow, LoginFlowBuilder> {
               expiresAt: BuiltValueNullFieldError.checkNotNull(
                   expiresAt, r'LoginFlow', 'expiresAt'),
               id: BuiltValueNullFieldError.checkNotNull(id, r'LoginFlow', 'id'),
+              identitySchema: identitySchema,
               issuedAt: BuiltValueNullFieldError.checkNotNull(
                   issuedAt, r'LoginFlow', 'issuedAt'),
               oauth2LoginChallenge: oauth2LoginChallenge,

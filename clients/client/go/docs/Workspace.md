@@ -4,9 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AccessPolicy** | Pointer to **string** | Controls who can access the workspace and its projects  This does not control access level, only who can access it at all. CHECK_ORGANIZATION_AND_WORKSPACE_MEMBERSHIP WorkspaceAccessPolicyOrganizationMembershipRequired  Only invited members that are part of the organization defined for the workspace can access it CHECK_ACCESS_PERMISSION WorkspaceAccessPolicyMembershipRequired  All invited members can access the workspace, regardless of their organization membership  This is useful for migration scenarios where workspaces previously did not have an organization assigned  If a user is just a member of a project within the workspace, they&#39;ll still have access to the project, but not to the workspace itself (the default for existing workspaces) | [optional] 
 **CreatedAt** | **time.Time** |  | 
 **Id** | **string** |  | 
 **Name** | **string** |  | 
+**OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **SubscriptionPlan** | Pointer to **NullableString** |  | [optional] 
 **UpdatedAt** | **time.Time** |  | 
@@ -29,6 +31,31 @@ will change when the set of required properties is changed
 NewWorkspaceWithDefaults instantiates a new Workspace object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAccessPolicy
+
+`func (o *Workspace) GetAccessPolicy() string`
+
+GetAccessPolicy returns the AccessPolicy field if non-nil, zero value otherwise.
+
+### GetAccessPolicyOk
+
+`func (o *Workspace) GetAccessPolicyOk() (*string, bool)`
+
+GetAccessPolicyOk returns a tuple with the AccessPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccessPolicy
+
+`func (o *Workspace) SetAccessPolicy(v string)`
+
+SetAccessPolicy sets AccessPolicy field to given value.
+
+### HasAccessPolicy
+
+`func (o *Workspace) HasAccessPolicy() bool`
+
+HasAccessPolicy returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -90,6 +117,41 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetOrganizationId
+
+`func (o *Workspace) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *Workspace) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *Workspace) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *Workspace) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
+
+### SetOrganizationIdNil
+
+`func (o *Workspace) SetOrganizationIdNil(b bool)`
+
+ SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+
+### UnsetOrganizationId
+`func (o *Workspace) UnsetOrganizationId()`
+
+UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetSubscriptionId
 
 `func (o *Workspace) GetSubscriptionId() string`

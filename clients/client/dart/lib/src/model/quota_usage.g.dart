@@ -30,6 +30,8 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_brandingThemes =
     const QuotaUsageFeatureEnum._('brandingThemes');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_zendeskSupport =
     const QuotaUsageFeatureEnum._('zendeskSupport');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_zendeskSupportOnCall =
+    const QuotaUsageFeatureEnum._('zendeskSupportOnCall');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_projectMetrics =
     const QuotaUsageFeatureEnum._('projectMetrics');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_projectMetricsTimeWindow =
@@ -57,6 +59,42 @@ const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_permissionChecks =
     const QuotaUsageFeatureEnum._('permissionChecks');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_captcha =
     const QuotaUsageFeatureEnum._('captcha');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_identitySearchApi =
+    const QuotaUsageFeatureEnum._('identitySearchApi');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_samlSp =
+    const QuotaUsageFeatureEnum._('samlSp');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_samlIdp =
+    const QuotaUsageFeatureEnum._('samlIdp');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_autoLinkPolicy =
+    const QuotaUsageFeatureEnum._('autoLinkPolicy');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_scimClients =
+    const QuotaUsageFeatureEnum._('scimClients');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_defaultSmtpEmailCustomization =
+    const QuotaUsageFeatureEnum._('defaultSmtpEmailCustomization');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_onboardingPortal =
+    const QuotaUsageFeatureEnum._('onboardingPortal');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_updateSelfServiceRegistrationRateLimitTier =
+    const QuotaUsageFeatureEnum._('updateSelfServiceRegistrationRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_updateSelfServiceRecoveryRateLimitTier =
+    const QuotaUsageFeatureEnum._('updateSelfServiceRecoveryRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_updateSelfServiceSettingsRateLimitTier =
+    const QuotaUsageFeatureEnum._('updateSelfServiceSettingsRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_updateSelfServiceVerificationRateLimitTier =
+    const QuotaUsageFeatureEnum._('updateSelfServiceVerificationRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_identitiesCreateRateLimitTier =
+    const QuotaUsageFeatureEnum._('identitiesCreateRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_identitiesImportRateLimitTier =
+    const QuotaUsageFeatureEnum._('identitiesImportRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_fedCmParametersRateLimitTier =
+    const QuotaUsageFeatureEnum._('fedCmParametersRateLimitTier');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_dataLocationRegional =
     const QuotaUsageFeatureEnum._('dataLocationRegional');
 const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_rateLimitTier =
@@ -72,6 +110,11 @@ const QuotaUsageFeatureEnum
 const QuotaUsageFeatureEnum
     _$quotaUsageFeatureEnum_oauth2IntrospectRateLimitTier =
     const QuotaUsageFeatureEnum._('oauth2IntrospectRateLimitTier');
+const QuotaUsageFeatureEnum
+    _$quotaUsageFeatureEnum_createRecoveryAdminRateLimitTier =
+    const QuotaUsageFeatureEnum._('createRecoveryAdminRateLimitTier');
+const QuotaUsageFeatureEnum _$quotaUsageFeatureEnum_scimRateLimitTier =
+    const QuotaUsageFeatureEnum._('scimRateLimitTier');
 
 QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
   switch (name) {
@@ -99,6 +142,8 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_brandingThemes;
     case 'zendeskSupport':
       return _$quotaUsageFeatureEnum_zendeskSupport;
+    case 'zendeskSupportOnCall':
+      return _$quotaUsageFeatureEnum_zendeskSupportOnCall;
     case 'projectMetrics':
       return _$quotaUsageFeatureEnum_projectMetrics;
     case 'projectMetricsTimeWindow':
@@ -125,6 +170,34 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_permissionChecks;
     case 'captcha':
       return _$quotaUsageFeatureEnum_captcha;
+    case 'identitySearchApi':
+      return _$quotaUsageFeatureEnum_identitySearchApi;
+    case 'samlSp':
+      return _$quotaUsageFeatureEnum_samlSp;
+    case 'samlIdp':
+      return _$quotaUsageFeatureEnum_samlIdp;
+    case 'autoLinkPolicy':
+      return _$quotaUsageFeatureEnum_autoLinkPolicy;
+    case 'scimClients':
+      return _$quotaUsageFeatureEnum_scimClients;
+    case 'defaultSmtpEmailCustomization':
+      return _$quotaUsageFeatureEnum_defaultSmtpEmailCustomization;
+    case 'onboardingPortal':
+      return _$quotaUsageFeatureEnum_onboardingPortal;
+    case 'updateSelfServiceRegistrationRateLimitTier':
+      return _$quotaUsageFeatureEnum_updateSelfServiceRegistrationRateLimitTier;
+    case 'updateSelfServiceRecoveryRateLimitTier':
+      return _$quotaUsageFeatureEnum_updateSelfServiceRecoveryRateLimitTier;
+    case 'updateSelfServiceSettingsRateLimitTier':
+      return _$quotaUsageFeatureEnum_updateSelfServiceSettingsRateLimitTier;
+    case 'updateSelfServiceVerificationRateLimitTier':
+      return _$quotaUsageFeatureEnum_updateSelfServiceVerificationRateLimitTier;
+    case 'identitiesCreateRateLimitTier':
+      return _$quotaUsageFeatureEnum_identitiesCreateRateLimitTier;
+    case 'identitiesImportRateLimitTier':
+      return _$quotaUsageFeatureEnum_identitiesImportRateLimitTier;
+    case 'fedCmParametersRateLimitTier':
+      return _$quotaUsageFeatureEnum_fedCmParametersRateLimitTier;
     case 'dataLocationRegional':
       return _$quotaUsageFeatureEnum_dataLocationRegional;
     case 'rateLimitTier':
@@ -137,6 +210,10 @@ QuotaUsageFeatureEnum _$quotaUsageFeatureEnumValueOf(String name) {
       return _$quotaUsageFeatureEnum_permissionChecksRateLimitTier;
     case 'oauth2IntrospectRateLimitTier':
       return _$quotaUsageFeatureEnum_oauth2IntrospectRateLimitTier;
+    case 'createRecoveryAdminRateLimitTier':
+      return _$quotaUsageFeatureEnum_createRecoveryAdminRateLimitTier;
+    case 'scimRateLimitTier':
+      return _$quotaUsageFeatureEnum_scimRateLimitTier;
     default:
       throw new ArgumentError(name);
   }
@@ -156,6 +233,7 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_edgeCache,
   _$quotaUsageFeatureEnum_brandingThemes,
   _$quotaUsageFeatureEnum_zendeskSupport,
+  _$quotaUsageFeatureEnum_zendeskSupportOnCall,
   _$quotaUsageFeatureEnum_projectMetrics,
   _$quotaUsageFeatureEnum_projectMetricsTimeWindow,
   _$quotaUsageFeatureEnum_projectMetricsEventsHistory,
@@ -169,12 +247,28 @@ final BuiltSet<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumValues =
   _$quotaUsageFeatureEnum_m2mTokenIssuance,
   _$quotaUsageFeatureEnum_permissionChecks,
   _$quotaUsageFeatureEnum_captcha,
+  _$quotaUsageFeatureEnum_identitySearchApi,
+  _$quotaUsageFeatureEnum_samlSp,
+  _$quotaUsageFeatureEnum_samlIdp,
+  _$quotaUsageFeatureEnum_autoLinkPolicy,
+  _$quotaUsageFeatureEnum_scimClients,
+  _$quotaUsageFeatureEnum_defaultSmtpEmailCustomization,
+  _$quotaUsageFeatureEnum_onboardingPortal,
+  _$quotaUsageFeatureEnum_updateSelfServiceRegistrationRateLimitTier,
+  _$quotaUsageFeatureEnum_updateSelfServiceRecoveryRateLimitTier,
+  _$quotaUsageFeatureEnum_updateSelfServiceSettingsRateLimitTier,
+  _$quotaUsageFeatureEnum_updateSelfServiceVerificationRateLimitTier,
+  _$quotaUsageFeatureEnum_identitiesCreateRateLimitTier,
+  _$quotaUsageFeatureEnum_identitiesImportRateLimitTier,
+  _$quotaUsageFeatureEnum_fedCmParametersRateLimitTier,
   _$quotaUsageFeatureEnum_dataLocationRegional,
   _$quotaUsageFeatureEnum_rateLimitTier,
   _$quotaUsageFeatureEnum_sessionRateLimitTier,
   _$quotaUsageFeatureEnum_identitiesListRateLimitTier,
   _$quotaUsageFeatureEnum_permissionChecksRateLimitTier,
   _$quotaUsageFeatureEnum_oauth2IntrospectRateLimitTier,
+  _$quotaUsageFeatureEnum_createRecoveryAdminRateLimitTier,
+  _$quotaUsageFeatureEnum_scimRateLimitTier,
 ]);
 
 Serializer<QuotaUsageFeatureEnum> _$quotaUsageFeatureEnumSerializer =
@@ -195,6 +289,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'edgeCache': 'edge_cache',
     'brandingThemes': 'branding_themes',
     'zendeskSupport': 'zendesk_support',
+    'zendeskSupportOnCall': 'zendesk_support_on_call',
     'projectMetrics': 'project_metrics',
     'projectMetricsTimeWindow': 'project_metrics_time_window',
     'projectMetricsEventsHistory': 'project_metrics_events_history',
@@ -208,12 +303,32 @@ class _$QuotaUsageFeatureEnumSerializer
     'm2mTokenIssuance': 'm2m_token_issuance',
     'permissionChecks': 'permission_checks',
     'captcha': 'captcha',
+    'identitySearchApi': 'identity_search_api',
+    'samlSp': 'saml_sp',
+    'samlIdp': 'saml_idp',
+    'autoLinkPolicy': 'auto_link_policy',
+    'scimClients': 'scim_clients',
+    'defaultSmtpEmailCustomization': 'default_smtp_email_customization',
+    'onboardingPortal': 'onboarding_portal',
+    'updateSelfServiceRegistrationRateLimitTier':
+        'update_self_service_registration_rate_limit_tier',
+    'updateSelfServiceRecoveryRateLimitTier':
+        'update_self_service_recovery_rate_limit_tier',
+    'updateSelfServiceSettingsRateLimitTier':
+        'update_self_service_settings_rate_limit_tier',
+    'updateSelfServiceVerificationRateLimitTier':
+        'update_self_service_verification_rate_limit_tier',
+    'identitiesCreateRateLimitTier': 'identities_create_rate_limit_tier',
+    'identitiesImportRateLimitTier': 'identities_import_rate_limit_tier',
+    'fedCmParametersRateLimitTier': 'fed_cm_parameters_rate_limit_tier',
     'dataLocationRegional': 'data_location_regional',
     'rateLimitTier': 'rate_limit_tier',
     'sessionRateLimitTier': 'session_rate_limit_tier',
     'identitiesListRateLimitTier': 'identities_list_rate_limit_tier',
     'permissionChecksRateLimitTier': 'permission_checks_rate_limit_tier',
     'oauth2IntrospectRateLimitTier': 'oauth2_introspect_rate_limit_tier',
+    'createRecoveryAdminRateLimitTier': 'create_recovery_admin_rate_limit_tier',
+    'scimRateLimitTier': 'scim_rate_limit_tier',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'production_projects': 'productionProjects',
@@ -228,6 +343,7 @@ class _$QuotaUsageFeatureEnumSerializer
     'edge_cache': 'edgeCache',
     'branding_themes': 'brandingThemes',
     'zendesk_support': 'zendeskSupport',
+    'zendesk_support_on_call': 'zendeskSupportOnCall',
     'project_metrics': 'projectMetrics',
     'project_metrics_time_window': 'projectMetricsTimeWindow',
     'project_metrics_events_history': 'projectMetricsEventsHistory',
@@ -241,12 +357,32 @@ class _$QuotaUsageFeatureEnumSerializer
     'm2m_token_issuance': 'm2mTokenIssuance',
     'permission_checks': 'permissionChecks',
     'captcha': 'captcha',
+    'identity_search_api': 'identitySearchApi',
+    'saml_sp': 'samlSp',
+    'saml_idp': 'samlIdp',
+    'auto_link_policy': 'autoLinkPolicy',
+    'scim_clients': 'scimClients',
+    'default_smtp_email_customization': 'defaultSmtpEmailCustomization',
+    'onboarding_portal': 'onboardingPortal',
+    'update_self_service_registration_rate_limit_tier':
+        'updateSelfServiceRegistrationRateLimitTier',
+    'update_self_service_recovery_rate_limit_tier':
+        'updateSelfServiceRecoveryRateLimitTier',
+    'update_self_service_settings_rate_limit_tier':
+        'updateSelfServiceSettingsRateLimitTier',
+    'update_self_service_verification_rate_limit_tier':
+        'updateSelfServiceVerificationRateLimitTier',
+    'identities_create_rate_limit_tier': 'identitiesCreateRateLimitTier',
+    'identities_import_rate_limit_tier': 'identitiesImportRateLimitTier',
+    'fed_cm_parameters_rate_limit_tier': 'fedCmParametersRateLimitTier',
     'data_location_regional': 'dataLocationRegional',
     'rate_limit_tier': 'rateLimitTier',
     'session_rate_limit_tier': 'sessionRateLimitTier',
     'identities_list_rate_limit_tier': 'identitiesListRateLimitTier',
     'permission_checks_rate_limit_tier': 'permissionChecksRateLimitTier',
     'oauth2_introspect_rate_limit_tier': 'oauth2IntrospectRateLimitTier',
+    'create_recovery_admin_rate_limit_tier': 'createRecoveryAdminRateLimitTier',
+    'scim_rate_limit_tier': 'scimRateLimitTier',
   };
 
   @override

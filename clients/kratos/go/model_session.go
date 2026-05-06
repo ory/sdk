@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v25.4.0
 Contact: office@ory.sh
 */
 
@@ -38,7 +38,7 @@ type Session struct {
 	Identity *Identity `json:"identity,omitempty"`
 	// The Session Issuance Timestamp  When this session was issued at. Usually equal or close to `authenticated_at`.
 	IssuedAt *time.Time `json:"issued_at,omitempty"`
-	// Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the `tokenize` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
+	// Tokenized is the tokenized (e.g. JWT) version of the session.  It is only set when the `tokenize_as` query parameter was set to a valid tokenize template during calls to `/session/whoami`.
 	Tokenized *string `json:"tokenized,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

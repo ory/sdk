@@ -3,7 +3,7 @@ Ory Keto API
 
 Documentation for all of Ory Keto's REST APIs. gRPC is documented separately. 
 
-API version: v0.11.0-alpha.0
+API version: v25.4.0
 Contact: hi@ory.sh
 */
 
@@ -13,13 +13,20 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the IsReady503Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IsReady503Response{}
 
 // IsReady503Response struct for IsReady503Response
 type IsReady503Response struct {
 	// Errors contains a list of errors that caused the not ready status.
 	Errors map[string]string `json:"errors"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IsReady503Response IsReady503Response
 
 // NewIsReady503Response instantiates a new IsReady503Response object
 // This constructor will assign default values to properties that have it defined,
@@ -64,11 +71,64 @@ func (o *IsReady503Response) SetErrors(v map[string]string) {
 }
 
 func (o IsReady503Response) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["errors"] = o.Errors
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o IsReady503Response) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["errors"] = o.Errors
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *IsReady503Response) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"errors",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varIsReady503Response := _IsReady503Response{}
+
+	err = json.Unmarshal(data, &varIsReady503Response)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IsReady503Response(varIsReady503Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "errors")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIsReady503Response struct {

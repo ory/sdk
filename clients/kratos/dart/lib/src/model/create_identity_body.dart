@@ -17,8 +17,10 @@ part 'create_identity_body.g.dart';
 ///
 /// Properties:
 /// * [credentials] 
+/// * [externalId] - ExternalID is an optional external ID of the identity. This is used to link the identity to an external system. If set, the external ID must be unique across all identities.
 /// * [metadataAdmin] - Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
 /// * [metadataPublic] - Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
+/// * [organizationId] 
 /// * [recoveryAddresses] - RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
 /// * [schemaId] - SchemaID is the ID of the JSON Schema to be used for validating the identity's traits.
 /// * [state] - State is the identity's state. active StateActive inactive StateInactive
@@ -29,6 +31,10 @@ abstract class CreateIdentityBody implements Built<CreateIdentityBody, CreateIde
   @BuiltValueField(wireName: r'credentials')
   IdentityWithCredentials? get credentials;
 
+  /// ExternalID is an optional external ID of the identity. This is used to link the identity to an external system. If set, the external ID must be unique across all identities.
+  @BuiltValueField(wireName: r'external_id')
+  String? get externalId;
+
   /// Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
   @BuiltValueField(wireName: r'metadata_admin')
   JsonObject? get metadataAdmin;
@@ -36,6 +42,9 @@ abstract class CreateIdentityBody implements Built<CreateIdentityBody, CreateIde
   /// Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
   @BuiltValueField(wireName: r'metadata_public')
   JsonObject? get metadataPublic;
+
+  @BuiltValueField(wireName: r'organization_id')
+  String? get organizationId;
 
   /// RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update.
   @BuiltValueField(wireName: r'recovery_addresses')
@@ -88,6 +97,13 @@ class _$CreateIdentityBodySerializer implements PrimitiveSerializer<CreateIdenti
         specifiedType: const FullType(IdentityWithCredentials),
       );
     }
+    if (object.externalId != null) {
+      yield r'external_id';
+      yield serializers.serialize(
+        object.externalId,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.metadataAdmin != null) {
       yield r'metadata_admin';
       yield serializers.serialize(
@@ -100,6 +116,13 @@ class _$CreateIdentityBodySerializer implements PrimitiveSerializer<CreateIdenti
       yield serializers.serialize(
         object.metadataPublic,
         specifiedType: const FullType.nullable(JsonObject),
+      );
+    }
+    if (object.organizationId != null) {
+      yield r'organization_id';
+      yield serializers.serialize(
+        object.organizationId,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.recoveryAddresses != null) {
@@ -163,6 +186,13 @@ class _$CreateIdentityBodySerializer implements PrimitiveSerializer<CreateIdenti
           ) as IdentityWithCredentials;
           result.credentials.replace(valueDes);
           break;
+        case r'external_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.externalId = valueDes;
+          break;
         case r'metadata_admin':
           final valueDes = serializers.deserialize(
             value,
@@ -178,6 +208,14 @@ class _$CreateIdentityBodySerializer implements PrimitiveSerializer<CreateIdenti
           ) as JsonObject?;
           if (valueDes == null) continue;
           result.metadataPublic = valueDes;
+          break;
+        case r'organization_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.organizationId = valueDes;
           break;
         case r'recovery_addresses':
           final valueDes = serializers.deserialize(

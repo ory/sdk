@@ -3,8 +3,11 @@
 .travis.yml
 Cargo.toml
 README.md
+docs/BatchCheckPermissionBody.md
+docs/BatchCheckPermissionResult.md
 docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
+docs/CheckPermissionResultWithError.md
 docs/CreateRelationshipBody.md
 docs/ErrorGeneric.md
 docs/ExpandedPermissionTree.md
@@ -36,8 +39,11 @@ src/apis/mod.rs
 src/apis/permission_api.rs
 src/apis/relationship_api.rs
 src/lib.rs
+src/models/batch_check_permission_body.rs
+src/models/batch_check_permission_result.rs
 src/models/check_opl_syntax_result.rs
 src/models/check_permission_result.rs
+src/models/check_permission_result_with_error.rs
 src/models/create_relationship_body.rs
 src/models/error_generic.rs
 src/models/expanded_permission_tree.rs

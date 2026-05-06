@@ -7,11 +7,13 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(AcceptDeviceUserCodeRequest.serializer)
       ..add(AcceptOAuth2ConsentRequest.serializer)
       ..add(AcceptOAuth2ConsentRequestSession.serializer)
       ..add(AcceptOAuth2LoginRequest.serializer)
+      ..add(AccountExperienceColors.serializer)
       ..add(AccountExperienceConfiguration.serializer)
-      ..add(AccountExperienceThemeVariables.serializer)
+      ..add(AccountExperienceConfigurationLocaleBehaviorEnum.serializer)
       ..add(ActiveProjectInConsole.serializer)
       ..add(AddProjectToWorkspaceBody.serializer)
       ..add(AddProjectToWorkspaceBodyEnvironmentEnum.serializer)
@@ -21,6 +23,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AttributeFilterConditionEnum.serializer)
       ..add(AttributesCountDatapoint.serializer)
       ..add(AuthenticatorAssuranceLevel.serializer)
+      ..add(BasicOrganization.serializer)
       ..add(BatchCheckPermissionBody.serializer)
       ..add(BatchCheckPermissionResult.serializer)
       ..add(BatchPatchIdentitiesResponse.serializer)
@@ -50,10 +53,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CreateCustomDomainBody.serializer)
       ..add(CreateEventStreamBody.serializer)
       ..add(CreateEventStreamBodyTypeEnum.serializer)
+      ..add(CreateFedcmFlowResponse.serializer)
       ..add(CreateIdentityBody.serializer)
       ..add(CreateIdentityBodyStateEnum.serializer)
       ..add(CreateInviteResponse.serializer)
       ..add(CreateJsonWebKeySet.serializer)
+      ..add(CreateOrganizationOnboardingPortalLinkBody.serializer)
       ..add(CreateProjectApiKeyRequest.serializer)
       ..add(CreateProjectBody.serializer)
       ..add(CreateProjectBodyEnvironmentEnum.serializer)
@@ -94,6 +99,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CustomDomain.serializer)
       ..add(CustomDomainSslStatusEnum.serializer)
       ..add(DeleteMySessionsCount.serializer)
+      ..add(DeviceAuthorization.serializer)
+      ..add(DeviceUserAuthRequest.serializer)
       ..add(EmailTemplateData.serializer)
       ..add(EmailTemplateDataBody.serializer)
       ..add(ErrorAuthenticatorAssuranceLevelNotSatisfied.serializer)
@@ -107,16 +114,18 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(FlowError.serializer)
       ..add(GenericError.serializer)
       ..add(GenericErrorContent.serializer)
+      ..add(GenericErrorContentIdEnum.serializer)
       ..add(GenericUsage.serializer)
-      ..add(GetAttributesCountResponse.serializer)
+      ..add(GetAttributesCount.serializer)
       ..add(GetManagedIdentitySchemaLocation.serializer)
-      ..add(GetMetricsEventAttributesResponse.serializer)
-      ..add(GetMetricsEventTypesResponse.serializer)
+      ..add(GetMetricsCount.serializer)
+      ..add(GetMetricsEventAttributes.serializer)
+      ..add(GetMetricsEventTypes.serializer)
       ..add(GetOrganizationResponse.serializer)
+      ..add(GetProjectEvents.serializer)
       ..add(GetProjectEventsBody.serializer)
-      ..add(GetProjectEventsResponse.serializer)
-      ..add(GetProjectMetricsResponse.serializer)
-      ..add(GetSessionActivityResponse.serializer)
+      ..add(GetProjectMetrics.serializer)
+      ..add(GetSessionActivity.serializer)
       ..add(GetVersion200Response.serializer)
       ..add(HealthNotReadyStatus.serializer)
       ..add(HealthStatus.serializer)
@@ -140,12 +149,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(IdentityWithCredentialsOidcConfigProvider.serializer)
       ..add(IdentityWithCredentialsPassword.serializer)
       ..add(IdentityWithCredentialsPasswordConfig.serializer)
+      ..add(IdentityWithCredentialsSaml.serializer)
+      ..add(IdentityWithCredentialsSamlConfig.serializer)
+      ..add(IdentityWithCredentialsSamlConfigProvider.serializer)
       ..add(InternalGetProjectBrandingBody.serializer)
       ..add(InternalIsAXWelcomeScreenEnabledForProjectBody.serializer)
+      ..add(InternalIsOwnerForProjectBySlug.serializer)
       ..add(InternalIsOwnerForProjectBySlugBody.serializer)
       ..add(InternalIsOwnerForProjectBySlugBodyNamespaceEnum.serializer)
-      ..add(InternalIsOwnerForProjectBySlugResponse.serializer)
       ..add(IntrospectedOAuth2Token.serializer)
+      ..add(InviteTokenBody.serializer)
       ..add(Invoice.serializer)
       ..add(InvoiceDataV1.serializer)
       ..add(InvoiceTypeEnum.serializer)
@@ -155,6 +168,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(JsonWebKey.serializer)
       ..add(JsonWebKeySet.serializer)
       ..add(KetoNamespace.serializer)
+      ..add(KeysetPaginationRequestParameters.serializer)
+      ..add(KeysetPaginationResponseHeaders.serializer)
       ..add(LineItemV1.serializer)
       ..add(ListEventStreams.serializer)
       ..add(ListInvoicesResponse.serializer)
@@ -194,27 +209,33 @@ Serializers _$serializers = (new Serializers().toBuilder()
           .serializer)
       ..add(NormalizedProjectRevisionKratosSelfserviceFlowsVerificationUseEnum
           .serializer)
+      ..add(NormalizedProjectRevisionSAMLProvider.serializer)
+      ..add(NormalizedProjectRevisionSAMLProviderStateEnum.serializer)
+      ..add(NormalizedProjectRevisionScimClient.serializer)
+      ..add(NormalizedProjectRevisionScimClientStateEnum.serializer)
       ..add(NormalizedProjectRevisionThirdPartyProvider.serializer)
       ..add(NormalizedProjectRevisionThirdPartyProviderPkceEnum.serializer)
       ..add(NormalizedProjectRevisionThirdPartyProviderStateEnum.serializer)
       ..add(NormalizedProjectRevisionTokenizerTemplate.serializer)
+      ..add(NormalizedProjectRevisionTokenizerTemplateSubjectSourceEnum
+          .serializer)
       ..add(NormalizedProjectStateEnum.serializer)
       ..add(OAuth2Client.serializer)
       ..add(OAuth2ClientTokenLifespans.serializer)
       ..add(OAuth2ConsentRequest.serializer)
       ..add(OAuth2ConsentRequestOpenIDConnectContext.serializer)
       ..add(OAuth2ConsentSession.serializer)
-      ..add(OAuth2ConsentSessionExpiresAt.serializer)
       ..add(OAuth2LoginRequest.serializer)
       ..add(OAuth2LogoutRequest.serializer)
       ..add(OAuth2RedirectTo.serializer)
       ..add(OAuth2TokenExchange.serializer)
       ..add(OidcConfiguration.serializer)
       ..add(OidcUserInfo.serializer)
+      ..add(OnboardingPortalLink.serializer)
+      ..add(OnboardingPortalOrganization.serializer)
       ..add(Organization.serializer)
       ..add(OrganizationBody.serializer)
-      ..add(Pagination.serializer)
-      ..add(PaginationHeaders.serializer)
+      ..add(OrganizationOnboardingPortalLinksResponse.serializer)
       ..add(ParseError.serializer)
       ..add(PatchIdentitiesBody.serializer)
       ..add(PerformNativeLogoutBody.serializer)
@@ -238,11 +259,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ProjectMetadataEnvironmentEnum.serializer)
       ..add(ProjectMetadataHomeRegionEnum.serializer)
       ..add(ProjectMetadataStateEnum.serializer)
+      ..add(ProjectServiceAccountExperience.serializer)
       ..add(ProjectServiceIdentity.serializer)
       ..add(ProjectServiceOAuth2.serializer)
       ..add(ProjectServicePermission.serializer)
       ..add(ProjectServices.serializer)
       ..add(ProjectStateEnum.serializer)
+      ..add(Provider.serializer)
       ..add(QuotaUsage.serializer)
       ..add(QuotaUsageFeatureEnum.serializer)
       ..add(RFC6749ErrorJson.serializer)
@@ -261,6 +284,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(RelationshipPatch.serializer)
       ..add(RelationshipPatchActionEnum.serializer)
       ..add(Relationships.serializer)
+      ..add(RevisionAccountExperienceCustomTranslation.serializer)
       ..add(SchemaPatch.serializer)
       ..add(SelfServiceFlowExpiredError.serializer)
       ..add(Session.serializer)
@@ -272,6 +296,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SetCustomDomainBody.serializer)
       ..add(SetEventStreamBody.serializer)
       ..add(SetEventStreamBodyTypeEnum.serializer)
+      ..add(SetOrganizationFromOnboardingPortalLinkBody.serializer)
       ..add(SetProject.serializer)
       ..add(SetProjectBrandingThemeBody.serializer)
       ..add(SettingsFlow.serializer)
@@ -299,6 +324,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UiNodeAnchorAttributes.serializer)
       ..add(UiNodeAnchorAttributesNodeTypeEnum.serializer)
       ..add(UiNodeAttributes.serializer)
+      ..add(UiNodeDivisionAttributes.serializer)
+      ..add(UiNodeDivisionAttributesNodeTypeEnum.serializer)
       ..add(UiNodeGroupEnum.serializer)
       ..add(UiNodeImageAttributes.serializer)
       ..add(UiNodeImageAttributesNodeTypeEnum.serializer)
@@ -316,6 +343,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UiNodeTypeEnum.serializer)
       ..add(UiText.serializer)
       ..add(UiTextTypeEnum.serializer)
+      ..add(UpdateFedcmFlowBody.serializer)
       ..add(UpdateIdentityBody.serializer)
       ..add(UpdateIdentityBodyStateEnum.serializer)
       ..add(UpdateLoginFlowBody.serializer)
@@ -325,8 +353,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UpdateLoginFlowWithOidcMethod.serializer)
       ..add(UpdateLoginFlowWithPasskeyMethod.serializer)
       ..add(UpdateLoginFlowWithPasswordMethod.serializer)
+      ..add(UpdateLoginFlowWithSamlMethod.serializer)
       ..add(UpdateLoginFlowWithTotpMethod.serializer)
       ..add(UpdateLoginFlowWithWebAuthnMethod.serializer)
+      ..add(UpdateOrganizationOnboardingPortalLinkBody.serializer)
       ..add(UpdateRecoveryFlowBody.serializer)
       ..add(UpdateRecoveryFlowWithCodeMethod.serializer)
       ..add(UpdateRecoveryFlowWithCodeMethodMethodEnum.serializer)
@@ -339,6 +369,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UpdateRegistrationFlowWithPasswordMethod.serializer)
       ..add(UpdateRegistrationFlowWithProfileMethod.serializer)
       ..add(UpdateRegistrationFlowWithProfileMethodScreenEnum.serializer)
+      ..add(UpdateRegistrationFlowWithSamlMethod.serializer)
       ..add(UpdateRegistrationFlowWithWebAuthnMethod.serializer)
       ..add(UpdateSettingsFlowBody.serializer)
       ..add(UpdateSettingsFlowWithLookupMethod.serializer)
@@ -346,6 +377,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UpdateSettingsFlowWithPasskeyMethod.serializer)
       ..add(UpdateSettingsFlowWithPasswordMethod.serializer)
       ..add(UpdateSettingsFlowWithProfileMethod.serializer)
+      ..add(UpdateSettingsFlowWithSamlMethod.serializer)
       ..add(UpdateSettingsFlowWithTotpMethod.serializer)
       ..add(UpdateSettingsFlowWithWebAuthnMethod.serializer)
       ..add(UpdateSubscriptionBody.serializer)
@@ -364,14 +396,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(VerifiableIdentityAddressViaEnum.serializer)
       ..add(VerificationFlow.serializer)
       ..add(VerificationFlowState.serializer)
+      ..add(VerifyUserCodeRequest.serializer)
       ..add(Version.serializer)
       ..add(Warning.serializer)
       ..add(Workspace.serializer)
       ..add(WorkspaceApiKey.serializer)
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(AccountExperienceThemeVariables)]),
-          () => new ListBuilder<AccountExperienceThemeVariables>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Attribute)]),
           () => new ListBuilder<Attribute>())
@@ -382,6 +411,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(AttributesCountDatapoint)]),
           () => new ListBuilder<AttributesCountDatapoint>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(BasicOrganization)]),
+          () => new ListBuilder<BasicOrganization>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(BasicOrganization)]),
+          () => new ListBuilder<BasicOrganization>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(BillingPeriodBucket)]),
@@ -430,6 +465,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
           ]),
           () => new ListBuilder<IdentityWithCredentialsOidcConfigProvider>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(IdentityWithCredentialsSamlConfigProvider)
+          ]),
+          () => new ListBuilder<IdentityWithCredentialsSamlConfigProvider>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Invoice)]),
           () => new ListBuilder<Invoice>())
       ..addBuilderFactory(
@@ -454,6 +494,36 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(Namespace)]),
           () => new ListBuilder<Namespace>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionThirdPartyProvider)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
+          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionScimClient)]),
+          () => new ListBuilder<NormalizedProjectRevisionScimClient>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionThirdPartyProvider)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
+          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionScimClient)]),
+          () => new ListBuilder<NormalizedProjectRevisionScimClient>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(OnboardingPortalLink)]),
+          () => new ListBuilder<OnboardingPortalLink>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Organization)]),
           () => new ListBuilder<Organization>())
       ..addBuilderFactory(
@@ -471,6 +541,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(ProjectMetadata)]),
           () => new ListBuilder<ProjectMetadata>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Provider)]),
+          () => new ListBuilder<Provider>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(RecoveryIdentityAddress)]),
           () => new ListBuilder<RecoveryIdentityAddress>())
@@ -484,6 +557,214 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Relationship)]),
           () => new ListBuilder<Relationship>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(RevisionAccountExperienceCustomTranslation)
+          ]),
+          () => new ListBuilder<RevisionAccountExperienceCustomTranslation>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(KetoNamespace)]),
+          () => new ListBuilder<KetoNamespace>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionCourierChannel)]),
+          () => new ListBuilder<NormalizedProjectRevisionCourierChannel>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionIdentitySchema)]),
+          () => new ListBuilder<NormalizedProjectRevisionIdentitySchema>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionThirdPartyProvider)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
+          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionTokenizerTemplate)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Organization)]),
+          () => new ListBuilder<Organization>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
+          () => new ListBuilder<NormalizedProjectRevisionHook>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionScimClient)]),
+          () => new ListBuilder<NormalizedProjectRevisionScimClient>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(RevisionAccountExperienceCustomTranslation)
+          ]),
+          () => new ListBuilder<RevisionAccountExperienceCustomTranslation>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(KetoNamespace)]),
+          () => new ListBuilder<KetoNamespace>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionCourierChannel)]),
+          () => new ListBuilder<NormalizedProjectRevisionCourierChannel>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionIdentitySchema)]),
+          () => new ListBuilder<NormalizedProjectRevisionIdentitySchema>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionThirdPartyProvider)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionSAMLProvider)]),
+          () => new ListBuilder<NormalizedProjectRevisionSAMLProvider>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(NormalizedProjectRevisionTokenizerTemplate)
+          ]),
+          () => new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Organization)]),
+          () => new ListBuilder<Organization>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
+          () => new ListBuilder<NormalizedProjectRevisionHook>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(NormalizedProjectRevisionScimClient)]),
+          () => new ListBuilder<NormalizedProjectRevisionScimClient>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(SessionActivityDatapoint)]),
@@ -528,6 +809,29 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(RevisionAccountExperienceCustomTranslation)
+          ]),
+          () => new ListBuilder<RevisionAccountExperienceCustomTranslation>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
@@ -659,148 +963,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(KetoNamespace)]),
-          () => new ListBuilder<KetoNamespace>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionCourierChannel)]),
-          () => new ListBuilder<NormalizedProjectRevisionCourierChannel>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionIdentitySchema)]),
-          () => new ListBuilder<NormalizedProjectRevisionIdentitySchema>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(NormalizedProjectRevisionThirdPartyProvider)
-          ]),
-          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(NormalizedProjectRevisionTokenizerTemplate)
-          ]),
-          () => new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>())
-      ..addBuilderFactory(
           const FullType(
-              BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
-          () => new ListBuilder<NormalizedProjectRevisionHook>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(KetoNamespace)]),
-          () => new ListBuilder<KetoNamespace>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionCourierChannel)]),
-          () => new ListBuilder<NormalizedProjectRevisionCourierChannel>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(NormalizedProjectRevisionIdentitySchema)]),
-          () => new ListBuilder<NormalizedProjectRevisionIdentitySchema>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(NormalizedProjectRevisionThirdPartyProvider)
-          ]),
-          () => new ListBuilder<NormalizedProjectRevisionThirdPartyProvider>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(NormalizedProjectRevisionTokenizerTemplate)
-          ]),
-          () => new ListBuilder<NormalizedProjectRevisionTokenizerTemplate>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(NormalizedProjectRevisionHook)]),
-          () => new ListBuilder<NormalizedProjectRevisionHook>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
+              BuiltMap, const [const FullType(String), const FullType(String)]),
+          () => new MapBuilder<String, String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
@@ -837,6 +1002,18 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Workspace)]),
           () => new ListBuilder<Workspace>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(GenericUsage)]),
+          () => new MapBuilder<String, GenericUsage>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(GenericUsage)]),
+          () => new MapBuilder<String, GenericUsage>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(GenericUsage)]),
+          () => new MapBuilder<String, GenericUsage>())
       ..addBuilderFactory(
           const FullType(BuiltMap,
               const [const FullType(String), const FullType(GenericUsage)]),

@@ -9,9 +9,12 @@ Name | Type | Description | Notes
 **base_fee_yearly** | **int** | BaseFeeYearly is the yearly base fee for the plan. | 
 **custom** | **bool** | Custom is true if the plan is custom. This means it will be hidden from the pricing page. | 
 **description** | **str** | Description is the description of the plan. | 
+**development_features** | [**Dict[str, GenericUsage]**](GenericUsage.md) |  | 
 **features** | [**Dict[str, GenericUsage]**](GenericUsage.md) |  | 
 **latest** | **bool** | Latest is true if the plan is the latest version of a plan and should be available for self-service usage. | [optional] 
 **name** | **str** | Name is the name of the plan. | 
+**production_features** | [**Dict[str, GenericUsage]**](GenericUsage.md) |  | 
+**staging_features** | [**Dict[str, GenericUsage]**](GenericUsage.md) |  | 
 **version** | **int** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. | 
 
 ## Example

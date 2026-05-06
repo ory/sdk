@@ -4,10 +4,10 @@
 
 import 'dart:async';
 
+import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:ory_keto_client/src/model/generic_error.dart';
 import 'package:ory_keto_client/src/model/get_version200_response.dart';
 import 'package:ory_keto_client/src/model/is_alive200_response.dart';
 import 'package:ory_keto_client/src/model/is_ready503_response.dart';
@@ -32,7 +32,7 @@ class MetadataApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [GetVersion200Response] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<GetVersion200Response>> getVersion({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -62,22 +62,23 @@ class MetadataApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    GetVersion200Response _responseData;
+    GetVersion200Response? _responseData;
 
     try {
-      const _responseType = FullType(GetVersion200Response);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetVersion200Response),
       ) as GetVersion200Response;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<GetVersion200Response>(
@@ -104,7 +105,7 @@ class MetadataApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [IsAlive200Response] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<IsAlive200Response>> isAlive({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -134,22 +135,23 @@ class MetadataApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    IsAlive200Response _responseData;
+    IsAlive200Response? _responseData;
 
     try {
-      const _responseType = FullType(IsAlive200Response);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(IsAlive200Response),
       ) as IsAlive200Response;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<IsAlive200Response>(
@@ -176,7 +178,7 @@ class MetadataApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [IsAlive200Response] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<IsAlive200Response>> isReady({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -206,22 +208,23 @@ class MetadataApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    IsAlive200Response _responseData;
+    IsAlive200Response? _responseData;
 
     try {
-      const _responseType = FullType(IsAlive200Response);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(IsAlive200Response),
       ) as IsAlive200Response;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.other,
+        type: DioExceptionType.unknown,
         error: error,
-      )..stackTrace = stackTrace;
+        stackTrace: stackTrace,
+      );
     }
 
     return Response<IsAlive200Response>(

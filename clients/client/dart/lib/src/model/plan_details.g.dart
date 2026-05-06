@@ -16,11 +16,17 @@ class _$PlanDetails extends PlanDetails {
   @override
   final String description;
   @override
+  final BuiltMap<String, GenericUsage> developmentFeatures;
+  @override
   final BuiltMap<String, GenericUsage> features;
   @override
   final bool? latest;
   @override
   final String name;
+  @override
+  final BuiltMap<String, GenericUsage> productionFeatures;
+  @override
+  final BuiltMap<String, GenericUsage> stagingFeatures;
   @override
   final int version;
 
@@ -32,9 +38,12 @@ class _$PlanDetails extends PlanDetails {
       required this.baseFeeYearly,
       required this.custom,
       required this.description,
+      required this.developmentFeatures,
       required this.features,
       this.latest,
       required this.name,
+      required this.productionFeatures,
+      required this.stagingFeatures,
       required this.version})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -44,8 +53,14 @@ class _$PlanDetails extends PlanDetails {
     BuiltValueNullFieldError.checkNotNull(custom, r'PlanDetails', 'custom');
     BuiltValueNullFieldError.checkNotNull(
         description, r'PlanDetails', 'description');
+    BuiltValueNullFieldError.checkNotNull(
+        developmentFeatures, r'PlanDetails', 'developmentFeatures');
     BuiltValueNullFieldError.checkNotNull(features, r'PlanDetails', 'features');
     BuiltValueNullFieldError.checkNotNull(name, r'PlanDetails', 'name');
+    BuiltValueNullFieldError.checkNotNull(
+        productionFeatures, r'PlanDetails', 'productionFeatures');
+    BuiltValueNullFieldError.checkNotNull(
+        stagingFeatures, r'PlanDetails', 'stagingFeatures');
     BuiltValueNullFieldError.checkNotNull(version, r'PlanDetails', 'version');
   }
 
@@ -64,9 +79,12 @@ class _$PlanDetails extends PlanDetails {
         baseFeeYearly == other.baseFeeYearly &&
         custom == other.custom &&
         description == other.description &&
+        developmentFeatures == other.developmentFeatures &&
         features == other.features &&
         latest == other.latest &&
         name == other.name &&
+        productionFeatures == other.productionFeatures &&
+        stagingFeatures == other.stagingFeatures &&
         version == other.version;
   }
 
@@ -77,9 +95,12 @@ class _$PlanDetails extends PlanDetails {
     _$hash = $jc(_$hash, baseFeeYearly.hashCode);
     _$hash = $jc(_$hash, custom.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
+    _$hash = $jc(_$hash, developmentFeatures.hashCode);
     _$hash = $jc(_$hash, features.hashCode);
     _$hash = $jc(_$hash, latest.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, productionFeatures.hashCode);
+    _$hash = $jc(_$hash, stagingFeatures.hashCode);
     _$hash = $jc(_$hash, version.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -92,9 +113,12 @@ class _$PlanDetails extends PlanDetails {
           ..add('baseFeeYearly', baseFeeYearly)
           ..add('custom', custom)
           ..add('description', description)
+          ..add('developmentFeatures', developmentFeatures)
           ..add('features', features)
           ..add('latest', latest)
           ..add('name', name)
+          ..add('productionFeatures', productionFeatures)
+          ..add('stagingFeatures', stagingFeatures)
           ..add('version', version))
         .toString();
   }
@@ -121,6 +145,13 @@ class PlanDetailsBuilder implements Builder<PlanDetails, PlanDetailsBuilder> {
   String? get description => _$this._description;
   set description(String? description) => _$this._description = description;
 
+  MapBuilder<String, GenericUsage>? _developmentFeatures;
+  MapBuilder<String, GenericUsage> get developmentFeatures =>
+      _$this._developmentFeatures ??= new MapBuilder<String, GenericUsage>();
+  set developmentFeatures(
+          MapBuilder<String, GenericUsage>? developmentFeatures) =>
+      _$this._developmentFeatures = developmentFeatures;
+
   MapBuilder<String, GenericUsage>? _features;
   MapBuilder<String, GenericUsage> get features =>
       _$this._features ??= new MapBuilder<String, GenericUsage>();
@@ -134,6 +165,19 @@ class PlanDetailsBuilder implements Builder<PlanDetails, PlanDetailsBuilder> {
   String? _name;
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
+
+  MapBuilder<String, GenericUsage>? _productionFeatures;
+  MapBuilder<String, GenericUsage> get productionFeatures =>
+      _$this._productionFeatures ??= new MapBuilder<String, GenericUsage>();
+  set productionFeatures(
+          MapBuilder<String, GenericUsage>? productionFeatures) =>
+      _$this._productionFeatures = productionFeatures;
+
+  MapBuilder<String, GenericUsage>? _stagingFeatures;
+  MapBuilder<String, GenericUsage> get stagingFeatures =>
+      _$this._stagingFeatures ??= new MapBuilder<String, GenericUsage>();
+  set stagingFeatures(MapBuilder<String, GenericUsage>? stagingFeatures) =>
+      _$this._stagingFeatures = stagingFeatures;
 
   int? _version;
   int? get version => _$this._version;
@@ -150,9 +194,12 @@ class PlanDetailsBuilder implements Builder<PlanDetails, PlanDetailsBuilder> {
       _baseFeeYearly = $v.baseFeeYearly;
       _custom = $v.custom;
       _description = $v.description;
+      _developmentFeatures = $v.developmentFeatures.toBuilder();
       _features = $v.features.toBuilder();
       _latest = $v.latest;
       _name = $v.name;
+      _productionFeatures = $v.productionFeatures.toBuilder();
+      _stagingFeatures = $v.stagingFeatures.toBuilder();
       _version = $v.version;
       _$v = null;
     }
@@ -186,17 +233,27 @@ class PlanDetailsBuilder implements Builder<PlanDetails, PlanDetailsBuilder> {
                   custom, r'PlanDetails', 'custom'),
               description: BuiltValueNullFieldError.checkNotNull(
                   description, r'PlanDetails', 'description'),
+              developmentFeatures: developmentFeatures.build(),
               features: features.build(),
               latest: latest,
               name: BuiltValueNullFieldError.checkNotNull(
                   name, r'PlanDetails', 'name'),
+              productionFeatures: productionFeatures.build(),
+              stagingFeatures: stagingFeatures.build(),
               version: BuiltValueNullFieldError.checkNotNull(
                   version, r'PlanDetails', 'version'));
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'developmentFeatures';
+        developmentFeatures.build();
         _$failedField = 'features';
         features.build();
+
+        _$failedField = 'productionFeatures';
+        productionFeatures.build();
+        _$failedField = 'stagingFeatures';
+        stagingFeatures.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'PlanDetails', _$failedField, e.toString());

@@ -8,8 +8,11 @@ part of 'serializers.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GenericError.serializer)
+      ..add(GetVersion200Response.serializer)
       ..add(HealthNotReadyStatus.serializer)
       ..add(HealthStatus.serializer)
+      ..add(IsAlive200Response.serializer)
+      ..add(IsReady503Response.serializer)
       ..add(JsonWebKey.serializer)
       ..add(JsonWebKeySet.serializer)
       ..add(Rule.serializer)
@@ -19,10 +22,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Version.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [
-            const FullType(BuiltMap,
-                const [const FullType(String), const FullType(JsonObject)])
+            const FullType(BuiltMap, const [
+              const FullType(String),
+              const FullType.nullable(JsonObject)
+            ])
           ]),
-          () => new ListBuilder<BuiltMap<String, JsonObject>>())
+          () => new ListBuilder<BuiltMap<String, JsonObject?>>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(JsonWebKey)]),
           () => new ListBuilder<JsonWebKey>())
@@ -38,6 +43,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(String)]),
+          () => new MapBuilder<String, String>())
       ..addBuilderFactory(
           const FullType(
               BuiltMap, const [const FullType(String), const FullType(String)]),

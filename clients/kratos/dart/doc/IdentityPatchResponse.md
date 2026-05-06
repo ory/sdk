@@ -8,7 +8,8 @@ import 'package:ory_kratos_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** | The action for this specific patch create ActionCreate  Create this identity. | [optional] 
+**action** | **String** | The action for this specific patch create ActionCreate  Create this identity. error ActionError  Error indicates that the patch failed. | [optional] 
+**error** | [**JsonObject**](.md) |  | [optional] 
 **identity** | **String** | The identity ID payload of this patch | [optional] 
 **patchId** | **String** | The ID of this patch response, if an ID was specified in the patch. | [optional] 
 

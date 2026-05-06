@@ -3,7 +3,7 @@ Ory Keto API
 
 Documentation for all of Ory Keto's REST APIs. gRPC is documented separately. 
 
-API version: v0.11.0-alpha.0
+API version: v25.4.0
 Contact: hi@ory.sh
 */
 
@@ -14,13 +14,13 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
 
 
-type MetadataApi interface {
+type MetadataAPI interface {
 
 	/*
 	GetVersion Return Running Software Version.
@@ -34,13 +34,13 @@ Be aware that if you are running multiple nodes of this service, the version wil
 refer to the cluster state, only to a single instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return MetadataApiGetVersionRequest
+	@return MetadataAPIGetVersionRequest
 	*/
-	GetVersion(ctx context.Context) MetadataApiGetVersionRequest
+	GetVersion(ctx context.Context) MetadataAPIGetVersionRequest
 
 	// GetVersionExecute executes the request
 	//  @return GetVersion200Response
-	GetVersionExecute(r MetadataApiGetVersionRequest) (*GetVersion200Response, *http.Response, error)
+	GetVersionExecute(r MetadataAPIGetVersionRequest) (*GetVersion200Response, *http.Response, error)
 
 	/*
 	IsAlive Check HTTP Server Status
@@ -55,13 +55,13 @@ Be aware that if you are running multiple nodes of this service, the health stat
 refer to the cluster state, only to a single instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return MetadataApiIsAliveRequest
+	@return MetadataAPIIsAliveRequest
 	*/
-	IsAlive(ctx context.Context) MetadataApiIsAliveRequest
+	IsAlive(ctx context.Context) MetadataAPIIsAliveRequest
 
 	// IsAliveExecute executes the request
 	//  @return IsAlive200Response
-	IsAliveExecute(r MetadataApiIsAliveRequest) (*IsAlive200Response, *http.Response, error)
+	IsAliveExecute(r MetadataAPIIsAliveRequest) (*IsAlive200Response, *http.Response, error)
 
 	/*
 	IsReady Check HTTP Server and Database Status
@@ -76,24 +76,24 @@ Be aware that if you are running multiple nodes of Ory Keto, the health status w
 refer to the cluster state, only to a single instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return MetadataApiIsReadyRequest
+	@return MetadataAPIIsReadyRequest
 	*/
-	IsReady(ctx context.Context) MetadataApiIsReadyRequest
+	IsReady(ctx context.Context) MetadataAPIIsReadyRequest
 
 	// IsReadyExecute executes the request
 	//  @return IsAlive200Response
-	IsReadyExecute(r MetadataApiIsReadyRequest) (*IsAlive200Response, *http.Response, error)
+	IsReadyExecute(r MetadataAPIIsReadyRequest) (*IsAlive200Response, *http.Response, error)
 }
 
-// MetadataApiService MetadataApi service
-type MetadataApiService service
+// MetadataAPIService MetadataAPI service
+type MetadataAPIService service
 
-type MetadataApiGetVersionRequest struct {
+type MetadataAPIGetVersionRequest struct {
 	ctx context.Context
-	ApiService MetadataApi
+	ApiService MetadataAPI
 }
 
-func (r MetadataApiGetVersionRequest) Execute() (*GetVersion200Response, *http.Response, error) {
+func (r MetadataAPIGetVersionRequest) Execute() (*GetVersion200Response, *http.Response, error) {
 	return r.ApiService.GetVersionExecute(r)
 }
 
@@ -109,10 +109,10 @@ Be aware that if you are running multiple nodes of this service, the version wil
 refer to the cluster state, only to a single instance.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return MetadataApiGetVersionRequest
+ @return MetadataAPIGetVersionRequest
 */
-func (a *MetadataApiService) GetVersion(ctx context.Context) MetadataApiGetVersionRequest {
-	return MetadataApiGetVersionRequest{
+func (a *MetadataAPIService) GetVersion(ctx context.Context) MetadataAPIGetVersionRequest {
+	return MetadataAPIGetVersionRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -120,7 +120,7 @@ func (a *MetadataApiService) GetVersion(ctx context.Context) MetadataApiGetVersi
 
 // Execute executes the request
 //  @return GetVersion200Response
-func (a *MetadataApiService) GetVersionExecute(r MetadataApiGetVersionRequest) (*GetVersion200Response, *http.Response, error) {
+func (a *MetadataAPIService) GetVersionExecute(r MetadataAPIGetVersionRequest) (*GetVersion200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -128,7 +128,7 @@ func (a *MetadataApiService) GetVersionExecute(r MetadataApiGetVersionRequest) (
 		localVarReturnValue  *GetVersion200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.GetVersion")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataAPIService.GetVersion")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -166,9 +166,9 @@ func (a *MetadataApiService) GetVersionExecute(r MetadataApiGetVersionRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -193,12 +193,12 @@ func (a *MetadataApiService) GetVersionExecute(r MetadataApiGetVersionRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type MetadataApiIsAliveRequest struct {
+type MetadataAPIIsAliveRequest struct {
 	ctx context.Context
-	ApiService MetadataApi
+	ApiService MetadataAPI
 }
 
-func (r MetadataApiIsAliveRequest) Execute() (*IsAlive200Response, *http.Response, error) {
+func (r MetadataAPIIsAliveRequest) Execute() (*IsAlive200Response, *http.Response, error) {
 	return r.ApiService.IsAliveExecute(r)
 }
 
@@ -215,10 +215,10 @@ Be aware that if you are running multiple nodes of this service, the health stat
 refer to the cluster state, only to a single instance.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return MetadataApiIsAliveRequest
+ @return MetadataAPIIsAliveRequest
 */
-func (a *MetadataApiService) IsAlive(ctx context.Context) MetadataApiIsAliveRequest {
-	return MetadataApiIsAliveRequest{
+func (a *MetadataAPIService) IsAlive(ctx context.Context) MetadataAPIIsAliveRequest {
+	return MetadataAPIIsAliveRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -226,7 +226,7 @@ func (a *MetadataApiService) IsAlive(ctx context.Context) MetadataApiIsAliveRequ
 
 // Execute executes the request
 //  @return IsAlive200Response
-func (a *MetadataApiService) IsAliveExecute(r MetadataApiIsAliveRequest) (*IsAlive200Response, *http.Response, error) {
+func (a *MetadataAPIService) IsAliveExecute(r MetadataAPIIsAliveRequest) (*IsAlive200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -234,7 +234,7 @@ func (a *MetadataApiService) IsAliveExecute(r MetadataApiIsAliveRequest) (*IsAli
 		localVarReturnValue  *IsAlive200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.IsAlive")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataAPIService.IsAlive")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -255,7 +255,7 @@ func (a *MetadataApiService) IsAliveExecute(r MetadataApiIsAliveRequest) (*IsAli
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -272,9 +272,9 @@ func (a *MetadataApiService) IsAliveExecute(r MetadataApiIsAliveRequest) (*IsAli
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -284,15 +284,14 @@ func (a *MetadataApiService) IsAliveExecute(r MetadataApiIsAliveRequest) (*IsAli
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericError
+			var v string
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
-		}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -308,12 +307,12 @@ func (a *MetadataApiService) IsAliveExecute(r MetadataApiIsAliveRequest) (*IsAli
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type MetadataApiIsReadyRequest struct {
+type MetadataAPIIsReadyRequest struct {
 	ctx context.Context
-	ApiService MetadataApi
+	ApiService MetadataAPI
 }
 
-func (r MetadataApiIsReadyRequest) Execute() (*IsAlive200Response, *http.Response, error) {
+func (r MetadataAPIIsReadyRequest) Execute() (*IsAlive200Response, *http.Response, error) {
 	return r.ApiService.IsReadyExecute(r)
 }
 
@@ -330,10 +329,10 @@ Be aware that if you are running multiple nodes of Ory Keto, the health status w
 refer to the cluster state, only to a single instance.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return MetadataApiIsReadyRequest
+ @return MetadataAPIIsReadyRequest
 */
-func (a *MetadataApiService) IsReady(ctx context.Context) MetadataApiIsReadyRequest {
-	return MetadataApiIsReadyRequest{
+func (a *MetadataAPIService) IsReady(ctx context.Context) MetadataAPIIsReadyRequest {
+	return MetadataAPIIsReadyRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -341,7 +340,7 @@ func (a *MetadataApiService) IsReady(ctx context.Context) MetadataApiIsReadyRequ
 
 // Execute executes the request
 //  @return IsAlive200Response
-func (a *MetadataApiService) IsReadyExecute(r MetadataApiIsReadyRequest) (*IsAlive200Response, *http.Response, error) {
+func (a *MetadataAPIService) IsReadyExecute(r MetadataAPIIsReadyRequest) (*IsAlive200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -349,7 +348,7 @@ func (a *MetadataApiService) IsReadyExecute(r MetadataApiIsReadyRequest) (*IsAli
 		localVarReturnValue  *IsAlive200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.IsReady")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataAPIService.IsReady")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -370,7 +369,7 @@ func (a *MetadataApiService) IsReadyExecute(r MetadataApiIsReadyRequest) (*IsAli
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -387,9 +386,9 @@ func (a *MetadataApiService) IsReadyExecute(r MetadataApiIsReadyRequest) (*IsAli
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -406,8 +405,18 @@ func (a *MetadataApiService) IsReadyExecute(r MetadataApiIsReadyRequest) (*IsAli
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

@@ -1,6 +1,6 @@
 # Ory
 
-ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.
+Documentation for all of Ory Oathkeeper&#39;s APIs. 
 
 ## Building
 
@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:ory_oathkeeper, "~> v0.40.6"}]
+  [{:ory_oathkeeper, "~> 25.4.0"}]
 end
 ```
 

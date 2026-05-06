@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The ID of the settings flow | 
+**Url** | Pointer to **string** | The URL of the settings flow  If this value is set, redirect the user&#39;s browser to this URL. This value is typically unset for native clients / API flows. | [optional] 
 
 ## Methods
 
@@ -44,6 +45,31 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetUrl
+
+`func (o *ContinueWithSettingsUiFlow) GetUrl() string`
+
+GetUrl returns the Url field if non-nil, zero value otherwise.
+
+### GetUrlOk
+
+`func (o *ContinueWithSettingsUiFlow) GetUrlOk() (*string, bool)`
+
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUrl
+
+`func (o *ContinueWithSettingsUiFlow) SetUrl(v string)`
+
+SetUrl sets Url field to given value.
+
+### HasUrl
+
+`func (o *ContinueWithSettingsUiFlow) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

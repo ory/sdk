@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -Eeuxo pipefail
+set -Eexo pipefail
 
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
@@ -78,7 +78,6 @@ dartpub () {
   dir="clients/${PROJECT}/dart"
   (cd "$dir" && command dart pub get)
   (cd "$dir" && command dart test .)
-  (cd "$dir" && VERSION=${RAW_VERSION} command dart pub publish --dry-run --skip-validation)
 }
 
 rust () {
@@ -119,5 +118,5 @@ php
 python
 ruby
 dartpub
-csharp
-kotlin
+# TODO: https://github.com/ory/sdk/issues/434
+# csharp

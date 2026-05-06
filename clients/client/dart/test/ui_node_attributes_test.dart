@@ -7,7 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UiNodeAttributes, () {
-    // The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
+    // The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn
     // String autocomplete
     test('to test the property `autocomplete`', () async {
       // TODO
@@ -36,7 +36,7 @@ void main() {
       // TODO
     });
 
-    // NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script
+    // NodeType represents this node's type. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0. In this struct it technically always is \"script\". text Text input Input img Image a Anchor script Script div Division
     // String nodeType
     test('to test the property `nodeType`', () async {
       // TODO
@@ -157,6 +157,18 @@ void main() {
     // The script referrer policy
     // String referrerpolicy
     test('to test the property `referrerpolicy`', () async {
+      // TODO
+    });
+
+    // A classname that should be rendered into the DOM.
+    // String class_
+    test('to test the property `class_`', () async {
+      // TODO
+    });
+
+    // Data is a map of key-value pairs that are passed to the division.  They may be used for `data-...` attributes.
+    // BuiltMap<String, String> data
+    test('to test the property `data`', () async {
       // TODO
     });
 

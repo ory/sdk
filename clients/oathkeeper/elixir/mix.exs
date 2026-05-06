@@ -4,12 +4,14 @@ defmodule Ory.Mixfile do
   def project do
     [
       app: :ory_oathkeeper,
-      version: "0.40.6",
+      version: "25.4.0",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       package: package(),
-      description: "ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization for validity against a set of rules. This service uses Hydra to validate access tokens and policies.",
+      description: """
+      OpenAPI API client for Ory Oathkeeper, a cloud native Identity & Access Proxy and Access Control Decision API that authenticates, authorizes, and mutates incoming HTTP(s) requests.
+      """,
       deps: deps()
     ]
   end
@@ -33,9 +35,10 @@ defmodule Ory.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:tesla, "~> 1.4"},
-      {:poison, "~> 3.0"},
-      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
+      {:tesla, "~> 1.7"},
+      {:jason, "~> 1.4"},
+      {:ex_doc, "~> 0.30", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false}
     ]
   end
 

@@ -1,15 +1,20 @@
 # Ory\Client\ProjectApi
 
+
+
 All URIs are relative to https://playground.projects.oryapis.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**createOrganization()**](ProjectApi.md#createOrganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization |
+| [**createOrganizationOnboardingPortalLink()**](ProjectApi.md#createOrganizationOnboardingPortalLink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Create organization onboarding portal link |
 | [**createProject()**](ProjectApi.md#createProject) | **POST** /projects | Create a Project |
 | [**createProjectApiKey()**](ProjectApi.md#createProjectApiKey) | **POST** /projects/{project}/tokens | Create project API key |
 | [**deleteOrganization()**](ProjectApi.md#deleteOrganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization |
+| [**deleteOrganizationOnboardingPortalLink()**](ProjectApi.md#deleteOrganizationOnboardingPortalLink) | **DELETE** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Delete an organization onboarding portal link |
 | [**deleteProjectApiKey()**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key |
 | [**getOrganization()**](ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
+| [**getOrganizationOnboardingPortalLinks()**](ProjectApi.md#getOrganizationOnboardingPortalLinks) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links |
 | [**getProject()**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
 | [**getProjectMembers()**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**listOrganizations()**](ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
@@ -21,6 +26,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**removeProjectMember()**](ProjectApi.md#removeProjectMember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project |
 | [**setProject()**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
 | [**updateOrganization()**](ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization |
+| [**updateOrganizationOnboardingPortalLink()**](ProjectApi.md#updateOrganizationOnboardingPortalLink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link |
 
 
 ## `createOrganization()`
@@ -32,7 +38,7 @@ createOrganization($projectId, $organizationBody): \Ory\Client\Model\Organizatio
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 Create an Enterprise SSO Organization
 
-Creates an Enterprise SSO Organization in a project.
+Deprecated: use setProject or patchProjectWithRevision instead  Creates an Enterprise SSO Organization in a project.
 
 ### Example
 
@@ -78,6 +84,77 @@ try {
 ### Return type
 
 [**\Ory\Client\Model\Organization**](../Model/Organization.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createOrganizationOnboardingPortalLink()`
+
+```php
+createOrganizationOnboardingPortalLink($projectId, $organizationId, $createOrganizationOnboardingPortalLinkBody): \Ory\Client\Model\OnboardingPortalLink
+```
+### URI(s):
+- https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
+Create organization onboarding portal link
+
+Create a onboarding portal link for an organization.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryWorkspaceApiKey
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\ProjectApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$projectId = 'projectId_example'; // string | Project ID  The project's ID.
+$organizationId = 'organizationId_example'; // string | Organization ID  The Organization's ID.
+$createOrganizationOnboardingPortalLinkBody = new \Ory\Client\Model\CreateOrganizationOnboardingPortalLinkBody(); // \Ory\Client\Model\CreateOrganizationOnboardingPortalLinkBody
+
+$hostIndex = 0;
+$variables = [
+];
+
+try {
+    $result = $apiInstance->createOrganizationOnboardingPortalLink($projectId, $organizationId, $createOrganizationOnboardingPortalLinkBody, $hostIndex, $variables);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectApi->createOrganizationOnboardingPortalLink: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| Project ID  The project&#39;s ID. | |
+| **organizationId** | **string**| Organization ID  The Organization&#39;s ID. | |
+| **createOrganizationOnboardingPortalLinkBody** | [**\Ory\Client\Model\CreateOrganizationOnboardingPortalLinkBody**](../Model/CreateOrganizationOnboardingPortalLinkBody.md)|  | [optional] |
+| hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
+| variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
+
+### Return type
+
+[**\Ory\Client\Model\OnboardingPortalLink**](../Model/OnboardingPortalLink.md)
 
 ### Authorization
 
@@ -237,7 +314,7 @@ deleteOrganization($projectId, $organizationId)
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 Delete Enterprise SSO Organization
 
-Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
+Deprecated: use setProject or patchProjectWithRevision instead  Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 
@@ -276,6 +353,76 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **projectId** | **string**| Project ID  The project&#39;s ID. | |
 | **organizationId** | **string**| Organization ID  The Organization&#39;s ID. | |
+| hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
+| variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteOrganizationOnboardingPortalLink()`
+
+```php
+deleteOrganizationOnboardingPortalLink($projectId, $organizationId, $onboardingPortalLinkId)
+```
+### URI(s):
+- https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
+Delete an organization onboarding portal link
+
+Deletes a onboarding portal link for an organization.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryWorkspaceApiKey
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\ProjectApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$projectId = 'projectId_example'; // string
+$organizationId = 'organizationId_example'; // string
+$onboardingPortalLinkId = 'onboardingPortalLinkId_example'; // string
+
+$hostIndex = 0;
+$variables = [
+];
+
+try {
+    $apiInstance->deleteOrganizationOnboardingPortalLink($projectId, $organizationId, $onboardingPortalLinkId, $hostIndex, $variables);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectApi->deleteOrganizationOnboardingPortalLink: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **organizationId** | **string**|  | |
+| **onboardingPortalLinkId** | **string**|  | |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 
@@ -373,7 +520,7 @@ getOrganization($projectId, $organizationId): \Ory\Client\Model\GetOrganizationR
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 Get Enterprise SSO Organization by ID
 
-Retrieves an Enterprise SSO Organization for a project by its ID
+Deprecated: use getProject instead  Retrieves an Enterprise SSO Organization for a project by its ID
 
 ### Example
 
@@ -433,6 +580,75 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getOrganizationOnboardingPortalLinks()`
+
+```php
+getOrganizationOnboardingPortalLinks($projectId, $organizationId): \Ory\Client\Model\OrganizationOnboardingPortalLinksResponse
+```
+### URI(s):
+- https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
+Get the organization onboarding portal links
+
+Retrieves the organization onboarding portal links.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryWorkspaceApiKey
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\ProjectApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$projectId = 'projectId_example'; // string | Project ID  The project's ID.
+$organizationId = 'organizationId_example'; // string | Organization ID  The Organization's ID.
+
+$hostIndex = 0;
+$variables = [
+];
+
+try {
+    $result = $apiInstance->getOrganizationOnboardingPortalLinks($projectId, $organizationId, $hostIndex, $variables);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectApi->getOrganizationOnboardingPortalLinks: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| Project ID  The project&#39;s ID. | |
+| **organizationId** | **string**| Organization ID  The Organization&#39;s ID. | |
+| hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
+| variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
+
+### Return type
+
+[**\Ory\Client\Model\OrganizationOnboardingPortalLinksResponse**](../Model/OrganizationOnboardingPortalLinksResponse.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getProject()`
 
 ```php
@@ -442,7 +658,7 @@ getProject($projectId): \Ory\Client\Model\Project
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 Get a Project
 
-Get a projects you have access to by its ID.
+Get a project you have access to by its ID.
 
 ### Example
 
@@ -576,7 +792,7 @@ listOrganizations($projectId, $pageSize, $pageToken, $domain): \Ory\Client\Model
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 List all Enterprise SSO organizations
 
-Lists all Enterprise SSO organizations in a project.
+Deprecated: use getProject instead  Lists all Enterprise SSO organizations in a project.
 
 ### Example
 
@@ -1123,7 +1339,7 @@ updateOrganization($projectId, $organizationId, $organizationBody): \Ory\Client\
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
 Update an Enterprise SSO Organization
 
-Updates an Enterprise SSO Organization in a project by its ID.
+Deprecated: use setProject or patchProjectWithRevision instead  Updates an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 
@@ -1171,6 +1387,79 @@ try {
 ### Return type
 
 [**\Ory\Client\Model\Organization**](../Model/Organization.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateOrganizationOnboardingPortalLink()`
+
+```php
+updateOrganizationOnboardingPortalLink($projectId, $organizationId, $onboardingPortalLinkId, $updateOrganizationOnboardingPortalLinkBody): \Ory\Client\Model\OnboardingPortalLink
+```
+### URI(s):
+- https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
+Update organization onboarding portal link
+
+Update a onboarding portal link for an organization.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryWorkspaceApiKey
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\ProjectApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$projectId = 'projectId_example'; // string | Project ID  The project's ID.
+$organizationId = 'organizationId_example'; // string | Organization ID  The Organization's ID.
+$onboardingPortalLinkId = 'onboardingPortalLinkId_example'; // string
+$updateOrganizationOnboardingPortalLinkBody = new \Ory\Client\Model\UpdateOrganizationOnboardingPortalLinkBody(); // \Ory\Client\Model\UpdateOrganizationOnboardingPortalLinkBody
+
+$hostIndex = 0;
+$variables = [
+];
+
+try {
+    $result = $apiInstance->updateOrganizationOnboardingPortalLink($projectId, $organizationId, $onboardingPortalLinkId, $updateOrganizationOnboardingPortalLinkBody, $hostIndex, $variables);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectApi->updateOrganizationOnboardingPortalLink: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| Project ID  The project&#39;s ID. | |
+| **organizationId** | **string**| Organization ID  The Organization&#39;s ID. | |
+| **onboardingPortalLinkId** | **string**|  | |
+| **updateOrganizationOnboardingPortalLinkBody** | [**\Ory\Client\Model\UpdateOrganizationOnboardingPortalLinkBody**](../Model/UpdateOrganizationOnboardingPortalLinkBody.md)|  | [optional] |
+| hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
+| variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
+
+### Return type
+
+[**\Ory\Client\Model\OnboardingPortalLink**](../Model/OnboardingPortalLink.md)
 
 ### Authorization
 

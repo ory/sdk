@@ -12,6 +12,12 @@ void main() {
       // TODO
     });
 
+    // ExternalID is an optional external ID of the identity. This is used to link the identity to an external system. If set, the external ID must be unique across all identities.
+    // String externalId
+    test('to test the property `externalId`', () async {
+      // TODO
+    });
+
     // Store metadata about the user which is only accessible through admin APIs such as `GET /admin/identities/<id>`.
     // JsonObject metadataAdmin
     test('to test the property `metadataAdmin`', () async {

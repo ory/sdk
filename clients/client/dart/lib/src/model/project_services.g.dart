@@ -8,6 +8,8 @@ part of 'project_services.dart';
 
 class _$ProjectServices extends ProjectServices {
   @override
+  final ProjectServiceAccountExperience? accountExperience;
+  @override
   final ProjectServiceIdentity? identity;
   @override
   final ProjectServiceOAuth2? oauth2;
@@ -17,7 +19,8 @@ class _$ProjectServices extends ProjectServices {
   factory _$ProjectServices([void Function(ProjectServicesBuilder)? updates]) =>
       (new ProjectServicesBuilder()..update(updates))._build();
 
-  _$ProjectServices._({this.identity, this.oauth2, this.permission})
+  _$ProjectServices._(
+      {this.accountExperience, this.identity, this.oauth2, this.permission})
       : super._();
 
   @override
@@ -32,6 +35,7 @@ class _$ProjectServices extends ProjectServices {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ProjectServices &&
+        accountExperience == other.accountExperience &&
         identity == other.identity &&
         oauth2 == other.oauth2 &&
         permission == other.permission;
@@ -40,6 +44,7 @@ class _$ProjectServices extends ProjectServices {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, accountExperience.hashCode);
     _$hash = $jc(_$hash, identity.hashCode);
     _$hash = $jc(_$hash, oauth2.hashCode);
     _$hash = $jc(_$hash, permission.hashCode);
@@ -50,6 +55,7 @@ class _$ProjectServices extends ProjectServices {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'ProjectServices')
+          ..add('accountExperience', accountExperience)
           ..add('identity', identity)
           ..add('oauth2', oauth2)
           ..add('permission', permission))
@@ -60,6 +66,14 @@ class _$ProjectServices extends ProjectServices {
 class ProjectServicesBuilder
     implements Builder<ProjectServices, ProjectServicesBuilder> {
   _$ProjectServices? _$v;
+
+  ProjectServiceAccountExperienceBuilder? _accountExperience;
+  ProjectServiceAccountExperienceBuilder get accountExperience =>
+      _$this._accountExperience ??=
+          new ProjectServiceAccountExperienceBuilder();
+  set accountExperience(
+          ProjectServiceAccountExperienceBuilder? accountExperience) =>
+      _$this._accountExperience = accountExperience;
 
   ProjectServiceIdentityBuilder? _identity;
   ProjectServiceIdentityBuilder get identity =>
@@ -85,6 +99,7 @@ class ProjectServicesBuilder
   ProjectServicesBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _accountExperience = $v.accountExperience?.toBuilder();
       _identity = $v.identity?.toBuilder();
       _oauth2 = $v.oauth2?.toBuilder();
       _permission = $v.permission?.toBuilder();
@@ -112,12 +127,15 @@ class ProjectServicesBuilder
     try {
       _$result = _$v ??
           new _$ProjectServices._(
+              accountExperience: _accountExperience?.build(),
               identity: _identity?.build(),
               oauth2: _oauth2?.build(),
               permission: _permission?.build());
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'accountExperience';
+        _accountExperience?.build();
         _$failedField = 'identity';
         _identity?.build();
         _$failedField = 'oauth2';

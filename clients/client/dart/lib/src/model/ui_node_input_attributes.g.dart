@@ -24,6 +24,9 @@ const UiNodeInputAttributesAutocompleteEnum
 const UiNodeInputAttributesAutocompleteEnum
     _$uiNodeInputAttributesAutocompleteEnum_oneTimeCode =
     const UiNodeInputAttributesAutocompleteEnum._('oneTimeCode');
+const UiNodeInputAttributesAutocompleteEnum
+    _$uiNodeInputAttributesAutocompleteEnum_usernameWebauthn =
+    const UiNodeInputAttributesAutocompleteEnum._('usernameWebauthn');
 
 UiNodeInputAttributesAutocompleteEnum
     _$uiNodeInputAttributesAutocompleteEnumValueOf(String name) {
@@ -40,6 +43,8 @@ UiNodeInputAttributesAutocompleteEnum
       return _$uiNodeInputAttributesAutocompleteEnum_newPassword;
     case 'oneTimeCode':
       return _$uiNodeInputAttributesAutocompleteEnum_oneTimeCode;
+    case 'usernameWebauthn':
+      return _$uiNodeInputAttributesAutocompleteEnum_usernameWebauthn;
     default:
       throw new ArgumentError(name);
   }
@@ -54,36 +59,18 @@ final BuiltSet<UiNodeInputAttributesAutocompleteEnum>
   _$uiNodeInputAttributesAutocompleteEnum_currentPassword,
   _$uiNodeInputAttributesAutocompleteEnum_newPassword,
   _$uiNodeInputAttributesAutocompleteEnum_oneTimeCode,
+  _$uiNodeInputAttributesAutocompleteEnum_usernameWebauthn,
 ]);
 
 const UiNodeInputAttributesNodeTypeEnum
-    _$uiNodeInputAttributesNodeTypeEnum_text =
-    const UiNodeInputAttributesNodeTypeEnum._('text');
-const UiNodeInputAttributesNodeTypeEnum
     _$uiNodeInputAttributesNodeTypeEnum_input =
     const UiNodeInputAttributesNodeTypeEnum._('input');
-const UiNodeInputAttributesNodeTypeEnum
-    _$uiNodeInputAttributesNodeTypeEnum_img =
-    const UiNodeInputAttributesNodeTypeEnum._('img');
-const UiNodeInputAttributesNodeTypeEnum _$uiNodeInputAttributesNodeTypeEnum_a =
-    const UiNodeInputAttributesNodeTypeEnum._('a');
-const UiNodeInputAttributesNodeTypeEnum
-    _$uiNodeInputAttributesNodeTypeEnum_script =
-    const UiNodeInputAttributesNodeTypeEnum._('script');
 
 UiNodeInputAttributesNodeTypeEnum _$uiNodeInputAttributesNodeTypeEnumValueOf(
     String name) {
   switch (name) {
-    case 'text':
-      return _$uiNodeInputAttributesNodeTypeEnum_text;
     case 'input':
       return _$uiNodeInputAttributesNodeTypeEnum_input;
-    case 'img':
-      return _$uiNodeInputAttributesNodeTypeEnum_img;
-    case 'a':
-      return _$uiNodeInputAttributesNodeTypeEnum_a;
-    case 'script':
-      return _$uiNodeInputAttributesNodeTypeEnum_script;
     default:
       throw new ArgumentError(name);
   }
@@ -92,11 +79,7 @@ UiNodeInputAttributesNodeTypeEnum _$uiNodeInputAttributesNodeTypeEnumValueOf(
 final BuiltSet<UiNodeInputAttributesNodeTypeEnum>
     _$uiNodeInputAttributesNodeTypeEnumValues = new BuiltSet<
         UiNodeInputAttributesNodeTypeEnum>(const <UiNodeInputAttributesNodeTypeEnum>[
-  _$uiNodeInputAttributesNodeTypeEnum_text,
   _$uiNodeInputAttributesNodeTypeEnum_input,
-  _$uiNodeInputAttributesNodeTypeEnum_img,
-  _$uiNodeInputAttributesNodeTypeEnum_a,
-  _$uiNodeInputAttributesNodeTypeEnum_script,
 ]);
 
 const UiNodeInputAttributesOnclickTriggerEnum
@@ -303,6 +286,7 @@ class _$UiNodeInputAttributesAutocompleteEnumSerializer
     'currentPassword': 'current-password',
     'newPassword': 'new-password',
     'oneTimeCode': 'one-time-code',
+    'usernameWebauthn': 'username webauthn',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'email': 'email',
@@ -311,6 +295,7 @@ class _$UiNodeInputAttributesAutocompleteEnumSerializer
     'current-password': 'currentPassword',
     'new-password': 'newPassword',
     'one-time-code': 'oneTimeCode',
+    'username webauthn': 'usernameWebauthn',
   };
 
   @override
@@ -337,18 +322,10 @@ class _$UiNodeInputAttributesAutocompleteEnumSerializer
 class _$UiNodeInputAttributesNodeTypeEnumSerializer
     implements PrimitiveSerializer<UiNodeInputAttributesNodeTypeEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'text': 'text',
     'input': 'input',
-    'img': 'img',
-    'a': 'a',
-    'script': 'script',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'text': 'text',
     'input': 'input',
-    'img': 'img',
-    'a': 'a',
-    'script': 'script',
   };
 
   @override

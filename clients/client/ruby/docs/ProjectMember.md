@@ -8,6 +8,7 @@
 | **email_verified** | **Boolean** |  |  |
 | **id** | **String** |  |  |
 | **name** | **String** |  |  |
+| **organization_id** | **String** |  | [optional] |
 | **role** | **String** |  |  |
 
 ## Example
@@ -20,6 +21,7 @@ instance = OryClient::ProjectMember.new(
   email_verified: null,
   id: null,
   name: null,
+  organization_id: null,
   role: null
 )
 ```

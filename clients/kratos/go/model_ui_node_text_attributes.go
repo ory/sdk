@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v25.4.0
 Contact: office@ory.sh
 */
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &UiNodeTextAttributes{}
 type UiNodeTextAttributes struct {
 	// A unique identifier
 	Id string `json:"id"`
-	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script
+	// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"text\". text Text input Input img Image a Anchor script Script div Division
 	NodeType string `json:"node_type"`
 	Text UiText `json:"text"`
 	AdditionalProperties map[string]interface{}

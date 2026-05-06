@@ -12,7 +12,11 @@ class _$OAuth2LogoutRequest extends OAuth2LogoutRequest {
   @override
   final OAuth2Client? client;
   @override
+  final DateTime? expiresAt;
+  @override
   final String? requestUrl;
+  @override
+  final DateTime? requestedAt;
   @override
   final bool? rpInitiated;
   @override
@@ -27,7 +31,9 @@ class _$OAuth2LogoutRequest extends OAuth2LogoutRequest {
   _$OAuth2LogoutRequest._(
       {this.challenge,
       this.client,
+      this.expiresAt,
       this.requestUrl,
+      this.requestedAt,
       this.rpInitiated,
       this.sid,
       this.subject})
@@ -48,7 +54,9 @@ class _$OAuth2LogoutRequest extends OAuth2LogoutRequest {
     return other is OAuth2LogoutRequest &&
         challenge == other.challenge &&
         client == other.client &&
+        expiresAt == other.expiresAt &&
         requestUrl == other.requestUrl &&
+        requestedAt == other.requestedAt &&
         rpInitiated == other.rpInitiated &&
         sid == other.sid &&
         subject == other.subject;
@@ -59,7 +67,9 @@ class _$OAuth2LogoutRequest extends OAuth2LogoutRequest {
     var _$hash = 0;
     _$hash = $jc(_$hash, challenge.hashCode);
     _$hash = $jc(_$hash, client.hashCode);
+    _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, requestUrl.hashCode);
+    _$hash = $jc(_$hash, requestedAt.hashCode);
     _$hash = $jc(_$hash, rpInitiated.hashCode);
     _$hash = $jc(_$hash, sid.hashCode);
     _$hash = $jc(_$hash, subject.hashCode);
@@ -72,7 +82,9 @@ class _$OAuth2LogoutRequest extends OAuth2LogoutRequest {
     return (newBuiltValueToStringHelper(r'OAuth2LogoutRequest')
           ..add('challenge', challenge)
           ..add('client', client)
+          ..add('expiresAt', expiresAt)
           ..add('requestUrl', requestUrl)
+          ..add('requestedAt', requestedAt)
           ..add('rpInitiated', rpInitiated)
           ..add('sid', sid)
           ..add('subject', subject))
@@ -93,9 +105,17 @@ class OAuth2LogoutRequestBuilder
       _$this._client ??= new OAuth2ClientBuilder();
   set client(OAuth2ClientBuilder? client) => _$this._client = client;
 
+  DateTime? _expiresAt;
+  DateTime? get expiresAt => _$this._expiresAt;
+  set expiresAt(DateTime? expiresAt) => _$this._expiresAt = expiresAt;
+
   String? _requestUrl;
   String? get requestUrl => _$this._requestUrl;
   set requestUrl(String? requestUrl) => _$this._requestUrl = requestUrl;
+
+  DateTime? _requestedAt;
+  DateTime? get requestedAt => _$this._requestedAt;
+  set requestedAt(DateTime? requestedAt) => _$this._requestedAt = requestedAt;
 
   bool? _rpInitiated;
   bool? get rpInitiated => _$this._rpInitiated;
@@ -118,7 +138,9 @@ class OAuth2LogoutRequestBuilder
     if ($v != null) {
       _challenge = $v.challenge;
       _client = $v.client?.toBuilder();
+      _expiresAt = $v.expiresAt;
       _requestUrl = $v.requestUrl;
+      _requestedAt = $v.requestedAt;
       _rpInitiated = $v.rpInitiated;
       _sid = $v.sid;
       _subject = $v.subject;
@@ -148,7 +170,9 @@ class OAuth2LogoutRequestBuilder
           new _$OAuth2LogoutRequest._(
               challenge: challenge,
               client: _client?.build(),
+              expiresAt: expiresAt,
               requestUrl: requestUrl,
+              requestedAt: requestedAt,
               rpInitiated: rpInitiated,
               sid: sid,
               subject: subject);

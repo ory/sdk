@@ -3,8 +3,6 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:ory_client/src/model/account_experience_theme_variables.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -18,8 +16,6 @@ part 'project_branding_theme.g.dart';
 /// * [accentEmphasisColor] - AccentEmphasisColor is a hex color code used by the Ory Account Experience theme.
 /// * [accentMutedColor] - AccentMutedColor is a hex color code used by the Ory Account Experience theme.
 /// * [accentSubtleColor] - AccentSubtleColor is a hex color code used by the Ory Account Experience theme.
-/// * [accountExperienceVariables] - The Account Experience Theme Variables.
-/// * [accountExperienceVariablesStylesheet] - AccountExperienceVariableStylesheet holds a reference to the current stylesheet that can be used in the AX
 /// * [backgroundCanvasColor] - BackgroundCanvasColor is a hex color code used by the Ory Account Experience theme.
 /// * [backgroundSubtleColor] - BackgroundSubtleColor is a hex color code used by the Ory Account Experience theme.
 /// * [backgroundSurfaceColor] - BackgroundSurfaceColor is a hex color code used by the Ory Account Experience theme.
@@ -74,14 +70,6 @@ abstract class ProjectBrandingTheme implements Built<ProjectBrandingTheme, Proje
   /// AccentSubtleColor is a hex color code used by the Ory Account Experience theme.
   @BuiltValueField(wireName: r'accent_subtle_color')
   String? get accentSubtleColor;
-
-  /// The Account Experience Theme Variables.
-  @BuiltValueField(wireName: r'account_experience_variables')
-  BuiltList<AccountExperienceThemeVariables>? get accountExperienceVariables;
-
-  /// AccountExperienceVariableStylesheet holds a reference to the current stylesheet that can be used in the AX
-  @BuiltValueField(wireName: r'account_experience_variables_stylesheet')
-  String? get accountExperienceVariablesStylesheet;
 
   /// BackgroundCanvasColor is a hex color code used by the Ory Account Experience theme.
   @BuiltValueField(wireName: r'background_canvas_color')
@@ -270,20 +258,6 @@ class _$ProjectBrandingThemeSerializer implements PrimitiveSerializer<ProjectBra
       yield r'accent_subtle_color';
       yield serializers.serialize(
         object.accentSubtleColor,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.accountExperienceVariables != null) {
-      yield r'account_experience_variables';
-      yield serializers.serialize(
-        object.accountExperienceVariables,
-        specifiedType: const FullType(BuiltList, [FullType(AccountExperienceThemeVariables)]),
-      );
-    }
-    if (object.accountExperienceVariablesStylesheet != null) {
-      yield r'account_experience_variables_stylesheet';
-      yield serializers.serialize(
-        object.accountExperienceVariablesStylesheet,
         specifiedType: const FullType(String),
       );
     }
@@ -565,20 +539,6 @@ class _$ProjectBrandingThemeSerializer implements PrimitiveSerializer<ProjectBra
             specifiedType: const FullType(String),
           ) as String;
           result.accentSubtleColor = valueDes;
-          break;
-        case r'account_experience_variables':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(AccountExperienceThemeVariables)]),
-          ) as BuiltList<AccountExperienceThemeVariables>;
-          result.accountExperienceVariables.replace(valueDes);
-          break;
-        case r'account_experience_variables_stylesheet':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.accountExperienceVariablesStylesheet = valueDes;
           break;
         case r'background_canvas_color':
           final valueDes = serializers.deserialize(

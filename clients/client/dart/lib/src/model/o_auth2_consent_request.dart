@@ -17,8 +17,9 @@ part 'o_auth2_consent_request.g.dart';
 /// Properties:
 /// * [acr] - ACR represents the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it to express that, for example, a user authenticated using two factor authentication.
 /// * [amr] 
-/// * [challenge] - ID is the identifier (\"authorization challenge\") of the consent authorization request. It is used to identify the session.
+/// * [challenge] - Challenge is used to retrieve/accept/deny the consent request.
 /// * [client] 
+/// * [consentRequestId] - ConsentRequestID is the ID of the consent request.
 /// * [context] 
 /// * [loginChallenge] - LoginChallenge is the login challenge this consent challenge belongs to. It can be used to associate a login and consent request in the login & consent app.
 /// * [loginSessionId] - LoginSessionID is the login session ID. If the user-agent reuses a login session (via cookie / remember flag) this ID will remain the same. If the user-agent did not have an existing authentication session (e.g. remember is false) this will be a new random value. This value is used as the \"sid\" parameter in the ID Token and in OIDC Front-/Back- channel logout. It's value can generally be used to associate consecutive login requests by a certain user.
@@ -37,12 +38,16 @@ abstract class OAuth2ConsentRequest implements Built<OAuth2ConsentRequest, OAuth
   @BuiltValueField(wireName: r'amr')
   BuiltList<String>? get amr;
 
-  /// ID is the identifier (\"authorization challenge\") of the consent authorization request. It is used to identify the session.
+  /// Challenge is used to retrieve/accept/deny the consent request.
   @BuiltValueField(wireName: r'challenge')
   String get challenge;
 
   @BuiltValueField(wireName: r'client')
   OAuth2Client? get client;
+
+  /// ConsentRequestID is the ID of the consent request.
+  @BuiltValueField(wireName: r'consent_request_id')
+  String? get consentRequestId;
 
   @BuiltValueField(wireName: r'context')
   JsonObject? get context;
@@ -123,6 +128,13 @@ class _$OAuth2ConsentRequestSerializer implements PrimitiveSerializer<OAuth2Cons
       yield serializers.serialize(
         object.client,
         specifiedType: const FullType(OAuth2Client),
+      );
+    }
+    if (object.consentRequestId != null) {
+      yield r'consent_request_id';
+      yield serializers.serialize(
+        object.consentRequestId,
+        specifiedType: const FullType(String),
       );
     }
     if (object.context != null) {
@@ -238,6 +250,13 @@ class _$OAuth2ConsentRequestSerializer implements PrimitiveSerializer<OAuth2Cons
             specifiedType: const FullType(OAuth2Client),
           ) as OAuth2Client;
           result.client.replace(valueDes);
+          break;
+        case r'consent_request_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.consentRequestId = valueDes;
           break;
         case r'context':
           final valueDes = serializers.deserialize(

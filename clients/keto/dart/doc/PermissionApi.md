@@ -9,12 +9,58 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**batchCheckPermission**](PermissionApi.md#batchcheckpermission) | **POST** /relation-tuples/batch/check | Batch check permissions
 [**checkPermission**](PermissionApi.md#checkpermission) | **GET** /relation-tuples/check/openapi | Check a permission
 [**checkPermissionOrError**](PermissionApi.md#checkpermissionorerror) | **GET** /relation-tuples/check | Check a permission
 [**expandPermissions**](PermissionApi.md#expandpermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions.
 [**postCheckPermission**](PermissionApi.md#postcheckpermission) | **POST** /relation-tuples/check/openapi | Check a permission
 [**postCheckPermissionOrError**](PermissionApi.md#postcheckpermissionorerror) | **POST** /relation-tuples/check | Check a permission
 
+
+# **batchCheckPermission**
+> BatchCheckPermissionResult batchCheckPermission(maxDepth, batchCheckPermissionBody)
+
+Batch check permissions
+
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+
+### Example
+```dart
+import 'package:ory_keto_client/api.dart';
+
+final api = OryKetoClient().getPermissionApi();
+final int maxDepth = 789; // int | 
+final BatchCheckPermissionBody batchCheckPermissionBody = ; // BatchCheckPermissionBody | 
+
+try {
+    final response = api.batchCheckPermission(maxDepth, batchCheckPermissionBody);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling PermissionApi->batchCheckPermission: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **maxDepth** | **int**|  | [optional] 
+ **batchCheckPermissionBody** | [**BatchCheckPermissionBody**](BatchCheckPermissionBody.md)|  | [optional] 
+
+### Return type
+
+[**BatchCheckPermissionResult**](BatchCheckPermissionResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **checkPermission**
 > CheckPermissionResult checkPermission(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, maxDepth)
@@ -40,7 +86,7 @@ final int maxDepth = 789; // int |
 try {
     final response = api.checkPermission(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, maxDepth);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PermissionApi->checkPermission: $e\n');
 }
 ```
@@ -97,7 +143,7 @@ final int maxDepth = 789; // int |
 try {
     final response = api.checkPermissionOrError(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation, maxDepth);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PermissionApi->checkPermissionOrError: $e\n');
 }
 ```
@@ -150,7 +196,7 @@ final int maxDepth = 789; // int |
 try {
     final response = api.expandPermissions(namespace, object, relation, maxDepth);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PermissionApi->expandPermissions: $e\n');
 }
 ```
@@ -197,7 +243,7 @@ final PostCheckPermissionBody postCheckPermissionBody = ; // PostCheckPermission
 try {
     final response = api.postCheckPermission(maxDepth, postCheckPermissionBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PermissionApi->postCheckPermission: $e\n');
 }
 ```
@@ -236,13 +282,13 @@ To learn how relationship tuples and the check works, head over to [the document
 import 'package:ory_keto_client/api.dart';
 
 final api = OryKetoClient().getPermissionApi();
-final int maxDepth = 789; // int | nolint:deadcode,unused
+final int maxDepth = 789; // int | 
 final PostCheckPermissionOrErrorBody postCheckPermissionOrErrorBody = ; // PostCheckPermissionOrErrorBody | 
 
 try {
     final response = api.postCheckPermissionOrError(maxDepth, postCheckPermissionOrErrorBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling PermissionApi->postCheckPermissionOrError: $e\n');
 }
 ```
@@ -251,7 +297,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **maxDepth** | **int**| nolint:deadcode,unused | [optional] 
+ **maxDepth** | **int**|  | [optional] 
  **postCheckPermissionOrErrorBody** | [**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md)|  | [optional] 
 
 ### Return type

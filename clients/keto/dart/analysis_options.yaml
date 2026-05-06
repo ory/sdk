@@ -1,9 +1,8 @@
 analyzer:
-  language:
-    strict-inference: true
-    strict-raw-types: true
-  strong-mode:
-    implicit-dynamic: false
-    implicit-casts: false
-  exclude:
-    - test/*.dart
+  errors:
+    unused_import: ignore
+    duplicate_import: ignore
+    unused_local_variable: ignore
+linter:
+  rules:
+    avoid_unused_constructor_parameters: false

@@ -6,8 +6,11 @@ README.md
 api/openapi.yaml
 build.gradle
 build.sbt
+docs/BatchCheckPermissionBody.md
+docs/BatchCheckPermissionResult.md
 docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
+docs/CheckPermissionResultWithError.md
 docs/CreateRelationshipBody.md
 docs/ErrorGeneric.md
 docs/ExpandedPermissionTree.md
@@ -62,8 +65,11 @@ src/main/java/sh/ory/keto/auth/Authentication.java
 src/main/java/sh/ory/keto/auth/HttpBasicAuth.java
 src/main/java/sh/ory/keto/auth/HttpBearerAuth.java
 src/main/java/sh/ory/keto/model/AbstractOpenApiSchema.java
+src/main/java/sh/ory/keto/model/BatchCheckPermissionBody.java
+src/main/java/sh/ory/keto/model/BatchCheckPermissionResult.java
 src/main/java/sh/ory/keto/model/CheckOplSyntaxResult.java
 src/main/java/sh/ory/keto/model/CheckPermissionResult.java
+src/main/java/sh/ory/keto/model/CheckPermissionResultWithError.java
 src/main/java/sh/ory/keto/model/CreateRelationshipBody.java
 src/main/java/sh/ory/keto/model/ErrorGeneric.java
 src/main/java/sh/ory/keto/model/ExpandedPermissionTree.java
@@ -88,8 +94,11 @@ src/main/java/sh/ory/keto/model/Version.java
 src/test/java/sh/ory/keto/api/MetadataApiTest.java
 src/test/java/sh/ory/keto/api/PermissionApiTest.java
 src/test/java/sh/ory/keto/api/RelationshipApiTest.java
+src/test/java/sh/ory/keto/model/BatchCheckPermissionBodyTest.java
+src/test/java/sh/ory/keto/model/BatchCheckPermissionResultTest.java
 src/test/java/sh/ory/keto/model/CheckOplSyntaxResultTest.java
 src/test/java/sh/ory/keto/model/CheckPermissionResultTest.java
+src/test/java/sh/ory/keto/model/CheckPermissionResultWithErrorTest.java
 src/test/java/sh/ory/keto/model/CreateRelationshipBodyTest.java
 src/test/java/sh/ory/keto/model/ErrorGenericTest.java
 src/test/java/sh/ory/keto/model/ExpandedPermissionTreeTest.java

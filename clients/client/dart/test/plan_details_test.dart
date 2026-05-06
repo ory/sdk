@@ -31,6 +31,11 @@ void main() {
       // TODO
     });
 
+    // BuiltMap<String, GenericUsage> developmentFeatures
+    test('to test the property `developmentFeatures`', () async {
+      // TODO
+    });
+
     // BuiltMap<String, GenericUsage> features
     test('to test the property `features`', () async {
       // TODO
@@ -45,6 +50,16 @@ void main() {
     // Name is the name of the plan.
     // String name
     test('to test the property `name`', () async {
+      // TODO
+    });
+
+    // BuiltMap<String, GenericUsage> productionFeatures
+    test('to test the property `productionFeatures`', () async {
+      // TODO
+    });
+
+    // BuiltMap<String, GenericUsage> stagingFeatures
+    test('to test the property `stagingFeatures`', () async {
       // TODO
     });
 

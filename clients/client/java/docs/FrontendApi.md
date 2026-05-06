@@ -10,6 +10,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**createBrowserRegistrationFlow**](FrontendApi.md#createBrowserRegistrationFlow) | **GET** /self-service/registration/browser | Create Registration Flow for Browsers |
 | [**createBrowserSettingsFlow**](FrontendApi.md#createBrowserSettingsFlow) | **GET** /self-service/settings/browser | Create Settings Flow for Browsers |
 | [**createBrowserVerificationFlow**](FrontendApi.md#createBrowserVerificationFlow) | **GET** /self-service/verification/browser | Create Verification Flow for Browser Clients |
+| [**createFedcmFlow**](FrontendApi.md#createFedcmFlow) | **GET** /self-service/fed-cm/parameters | Get FedCM Parameters |
 | [**createNativeLoginFlow**](FrontendApi.md#createNativeLoginFlow) | **GET** /self-service/login/api | Create Login Flow for Native Apps |
 | [**createNativeRecoveryFlow**](FrontendApi.md#createNativeRecoveryFlow) | **GET** /self-service/recovery/api | Create Recovery Flow for Native Apps |
 | [**createNativeRegistrationFlow**](FrontendApi.md#createNativeRegistrationFlow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps |
@@ -28,6 +29,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**listMySessions**](FrontendApi.md#listMySessions) | **GET** /sessions | Get My Active Sessions |
 | [**performNativeLogout**](FrontendApi.md#performNativeLogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps |
 | [**toSession**](FrontendApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To |
+| [**updateFedcmFlow**](FrontendApi.md#updateFedcmFlow) | **POST** /self-service/fed-cm/token | Submit a FedCM token |
 | [**updateLoginFlow**](FrontendApi.md#updateLoginFlow) | **POST** /self-service/login | Submit a Login Flow |
 | [**updateLogoutFlow**](FrontendApi.md#updateLogoutFlow) | **GET** /self-service/logout | Update Logout Flow |
 | [**updateRecoveryFlow**](FrontendApi.md#updateRecoveryFlow) | **POST** /self-service/recovery | Update Recovery Flow |
@@ -38,7 +40,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 <a id="createBrowserLoginFlow"></a>
 # **createBrowserLoginFlow**
-> LoginFlow createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via)
+> LoginFlow createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via, identitySchema)
 
 Create Login Flow for Browsers
 
@@ -66,8 +68,9 @@ public class Example {
     String loginChallenge = "loginChallenge_example"; // String | An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`).
     String organization = "organization_example"; // String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
     String via = "via_example"; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
+    String identitySchema = "identitySchema_example"; // String | An optional identity schema to use for the login flow.
     try {
-      LoginFlow result = apiInstance.createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via);
+      LoginFlow result = apiInstance.createBrowserLoginFlow(refresh, aal, returnTo, cookie, loginChallenge, organization, via, identitySchema);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createBrowserLoginFlow");
@@ -91,6 +94,7 @@ public class Example {
 | **loginChallenge** | **String**| An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?login_challenge&#x3D;abcde&#x60;). | [optional] |
 | **organization** | **String**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
 | **via** | **String**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] |
+| **identitySchema** | **String**| An optional identity schema to use for the login flow. | [optional] |
 
 ### Return type
 
@@ -247,7 +251,7 @@ No authorization required
 
 <a id="createBrowserRegistrationFlow"></a>
 # **createBrowserRegistrationFlow**
-> RegistrationFlow createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization)
+> RegistrationFlow createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization, identitySchema)
 
 Create Registration Flow for Browsers
 
@@ -272,8 +276,9 @@ public class Example {
     String loginChallenge = "loginChallenge_example"; // String | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network.
     String afterVerificationReturnTo = "afterVerificationReturnTo_example"; // String | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value.
     String organization = "organization_example"; // String | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
+    String identitySchema = "identitySchema_example"; // String | An optional identity schema to use for the registration flow.
     try {
-      RegistrationFlow result = apiInstance.createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization);
+      RegistrationFlow result = apiInstance.createBrowserRegistrationFlow(returnTo, loginChallenge, afterVerificationReturnTo, organization, identitySchema);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createBrowserRegistrationFlow");
@@ -294,6 +299,7 @@ public class Example {
 | **loginChallenge** | **String**| Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from &#x60;login_challenge&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?login_challenge&#x3D;abcde&#x60;).  This feature is compatible with Ory Hydra when not running on the Ory Network. | [optional] |
 | **afterVerificationReturnTo** | **String**| The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default &#x60;selfservice.flows.verification.after.default_redirect_to&#x60; value. | [optional] |
 | **organization** | **String**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] |
+| **identitySchema** | **String**| An optional identity schema to use for the registration flow. | [optional] |
 
 ### Return type
 
@@ -448,9 +454,69 @@ No authorization required
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | errorGeneric |  -  |
 
+<a id="createFedcmFlow"></a>
+# **createFedcmFlow**
+> CreateFedcmFlowResponse createFedcmFlow()
+
+Get FedCM Parameters
+
+This endpoint returns a list of all available FedCM providers. It is only supported on the Ory Network.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    try {
+      CreateFedcmFlowResponse result = apiInstance.createFedcmFlow();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#createFedcmFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CreateFedcmFlowResponse**](CreateFedcmFlowResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | createFedcmFlowResponse |  -  |
+| **400** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
 <a id="createNativeLoginFlow"></a>
 # **createNativeLoginFlow**
-> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via)
+> LoginFlow createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via, identitySchema)
 
 Create Login Flow for Native Apps
 
@@ -478,8 +544,9 @@ public class Example {
     String returnTo = "returnTo_example"; // String | The URL to return the browser to after the flow was completed.
     String organization = "organization_example"; // String | An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network.
     String via = "via_example"; // String | Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead.
+    String identitySchema = "identitySchema_example"; // String | An optional identity schema to use for the login flow.
     try {
-      LoginFlow result = apiInstance.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via);
+      LoginFlow result = apiInstance.createNativeLoginFlow(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via, identitySchema);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createNativeLoginFlow");
@@ -503,6 +570,7 @@ public class Example {
 | **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
 | **organization** | **String**| An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. | [optional] |
 | **via** | **String**| Via should contain the identity&#39;s credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. | [optional] |
+| **identitySchema** | **String**| An optional identity schema to use for the login flow. | [optional] |
 
 ### Return type
 
@@ -586,7 +654,7 @@ No authorization required
 
 <a id="createNativeRegistrationFlow"></a>
 # **createNativeRegistrationFlow**
-> RegistrationFlow createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization)
+> RegistrationFlow createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization, identitySchema)
 
 Create Registration Flow for Native Apps
 
@@ -610,8 +678,9 @@ public class Example {
     Boolean returnSessionTokenExchangeCode = true; // Boolean | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed.
     String returnTo = "returnTo_example"; // String | The URL to return the browser to after the flow was completed.
     String organization = "organization_example"; // String | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network.
+    String identitySchema = "identitySchema_example"; // String | An optional identity schema to use for the registration flow.
     try {
-      RegistrationFlow result = apiInstance.createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization);
+      RegistrationFlow result = apiInstance.createNativeRegistrationFlow(returnSessionTokenExchangeCode, returnTo, organization, identitySchema);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createNativeRegistrationFlow");
@@ -631,6 +700,7 @@ public class Example {
 | **returnSessionTokenExchangeCode** | **Boolean**| EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. | [optional] |
 | **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
 | **organization** | **String**| An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. | [optional] |
+| **identitySchema** | **String**| An optional identity schema to use for the registration flow. | [optional] |
 
 ### Return type
 
@@ -1650,6 +1720,73 @@ No authorization required
 | **200** | session |  -  |
 | **401** | errorGeneric |  -  |
 | **403** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+<a id="updateFedcmFlow"></a>
+# **updateFedcmFlow**
+> SuccessfulNativeLogin updateFedcmFlow(updateFedcmFlowBody)
+
+Submit a FedCM token
+
+Use this endpoint to submit a token from a FedCM provider through &#x60;navigator.credentials.get&#x60; and log the user in. The parameters from &#x60;navigator.credentials.get&#x60; must have come from &#x60;GET self-service/fed-cm/parameters&#x60;.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    UpdateFedcmFlowBody updateFedcmFlowBody = new UpdateFedcmFlowBody(); // UpdateFedcmFlowBody | 
+    try {
+      SuccessfulNativeLogin result = apiInstance.updateFedcmFlow(updateFedcmFlowBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#updateFedcmFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateFedcmFlowBody** | [**UpdateFedcmFlowBody**](UpdateFedcmFlowBody.md)|  | |
+
+### Return type
+
+[**SuccessfulNativeLogin**](SuccessfulNativeLogin.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successfulNativeLogin |  -  |
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | loginFlow |  -  |
+| **410** | errorGeneric |  -  |
+| **422** | errorBrowserLocationChangeRequired |  -  |
 | **0** | errorGeneric |  -  |
 
 <a id="updateLoginFlow"></a>

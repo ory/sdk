@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:ory_client/src/model/update_settings_flow_with_saml_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_profile_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_totp_method.dart';
 import 'package:ory_client/src/model/update_settings_flow_with_password_method.dart';
@@ -42,7 +43,7 @@ part 'update_settings_flow_body.g.dart';
 /// * [passkeySettingsRegister] - Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
 @BuiltValue()
 abstract class UpdateSettingsFlowBody implements Built<UpdateSettingsFlowBody, UpdateSettingsFlowBodyBuilder> {
-  /// One Of [UpdateSettingsFlowWithLookupMethod], [UpdateSettingsFlowWithOidcMethod], [UpdateSettingsFlowWithPasskeyMethod], [UpdateSettingsFlowWithPasswordMethod], [UpdateSettingsFlowWithProfileMethod], [UpdateSettingsFlowWithTotpMethod], [UpdateSettingsFlowWithWebAuthnMethod]
+  /// One Of [UpdateSettingsFlowWithLookupMethod], [UpdateSettingsFlowWithOidcMethod], [UpdateSettingsFlowWithPasskeyMethod], [UpdateSettingsFlowWithPasswordMethod], [UpdateSettingsFlowWithProfileMethod], [UpdateSettingsFlowWithSamlMethod], [UpdateSettingsFlowWithTotpMethod], [UpdateSettingsFlowWithWebAuthnMethod]
   OneOf get oneOf;
 
   static const String discriminatorFieldName = r'method';
@@ -53,6 +54,7 @@ abstract class UpdateSettingsFlowBody implements Built<UpdateSettingsFlowBody, U
     r'passkey': UpdateSettingsFlowWithPasskeyMethod,
     r'password': UpdateSettingsFlowWithPasswordMethod,
     r'profile': UpdateSettingsFlowWithProfileMethod,
+    r'saml': UpdateSettingsFlowWithSamlMethod,
     r'totp': UpdateSettingsFlowWithTotpMethod,
     r'webauthn': UpdateSettingsFlowWithWebAuthnMethod,
   };
@@ -85,6 +87,9 @@ extension UpdateSettingsFlowBodyDiscriminatorExt on UpdateSettingsFlowBody {
         if (this is UpdateSettingsFlowWithProfileMethod) {
             return r'profile';
         }
+        if (this is UpdateSettingsFlowWithSamlMethod) {
+            return r'saml';
+        }
         if (this is UpdateSettingsFlowWithTotpMethod) {
             return r'totp';
         }
@@ -110,6 +115,9 @@ extension UpdateSettingsFlowBodyBuilderDiscriminatorExt on UpdateSettingsFlowBod
         }
         if (this is UpdateSettingsFlowWithProfileMethodBuilder) {
             return r'profile';
+        }
+        if (this is UpdateSettingsFlowWithSamlMethodBuilder) {
+            return r'saml';
         }
         if (this is UpdateSettingsFlowWithTotpMethodBuilder) {
             return r'totp';
@@ -157,7 +165,7 @@ class _$UpdateSettingsFlowBodySerializer implements PrimitiveSerializer<UpdateSe
     final discIndex = serializedList.indexOf(UpdateSettingsFlowBody.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UpdateSettingsFlowWithLookupMethod, UpdateSettingsFlowWithOidcMethod, UpdateSettingsFlowWithPasskeyMethod, UpdateSettingsFlowWithPasswordMethod, UpdateSettingsFlowWithProfileMethod, UpdateSettingsFlowWithTotpMethod, UpdateSettingsFlowWithWebAuthnMethod, ];
+    final oneOfTypes = [UpdateSettingsFlowWithLookupMethod, UpdateSettingsFlowWithOidcMethod, UpdateSettingsFlowWithPasskeyMethod, UpdateSettingsFlowWithPasswordMethod, UpdateSettingsFlowWithProfileMethod, UpdateSettingsFlowWithSamlMethod, UpdateSettingsFlowWithTotpMethod, UpdateSettingsFlowWithWebAuthnMethod, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
@@ -195,6 +203,13 @@ class _$UpdateSettingsFlowBodySerializer implements PrimitiveSerializer<UpdateSe
           specifiedType: FullType(UpdateSettingsFlowWithProfileMethod),
         ) as UpdateSettingsFlowWithProfileMethod;
         oneOfType = UpdateSettingsFlowWithProfileMethod;
+        break;
+      case r'saml':
+        oneOfResult = serializers.deserialize(
+          oneOfDataSrc,
+          specifiedType: FullType(UpdateSettingsFlowWithSamlMethod),
+        ) as UpdateSettingsFlowWithSamlMethod;
+        oneOfType = UpdateSettingsFlowWithSamlMethod;
         break;
       case r'totp':
         oneOfResult = serializers.deserialize(

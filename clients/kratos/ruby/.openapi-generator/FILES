@@ -13,6 +13,7 @@ docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
+docs/ContinueWithRedirectBrowserTo.md
 docs/ContinueWithSetOrySessionToken.md
 docs/ContinueWithSettingsUi.md
 docs/ContinueWithSettingsUiFlow.md
@@ -21,6 +22,7 @@ docs/ContinueWithVerificationUiFlow.md
 docs/CourierApi.md
 docs/CourierMessageStatus.md
 docs/CourierMessageType.md
+docs/CreateFedcmFlowResponse.md
 docs/CreateIdentityBody.md
 docs/CreateRecoveryCodeForIdentityBody.md
 docs/CreateRecoveryLinkForIdentityBody.md
@@ -39,6 +41,7 @@ docs/Identity.md
 docs/IdentityApi.md
 docs/IdentityCredentials.md
 docs/IdentityCredentialsCode.md
+docs/IdentityCredentialsCodeAddress.md
 docs/IdentityCredentialsOidc.md
 docs/IdentityCredentialsOidcProvider.md
 docs/IdentityCredentialsPassword.md
@@ -51,6 +54,9 @@ docs/IdentityWithCredentialsOidcConfig.md
 docs/IdentityWithCredentialsOidcConfigProvider.md
 docs/IdentityWithCredentialsPassword.md
 docs/IdentityWithCredentialsPasswordConfig.md
+docs/IdentityWithCredentialsSaml.md
+docs/IdentityWithCredentialsSamlConfig.md
+docs/IdentityWithCredentialsSamlConfigProvider.md
 docs/IsAlive200Response.md
 docs/IsReady503Response.md
 docs/JsonPatch.md
@@ -66,6 +72,7 @@ docs/OAuth2ConsentRequestOpenIDConnectContext.md
 docs/OAuth2LoginRequest.md
 docs/PatchIdentitiesBody.md
 docs/PerformNativeLogoutBody.md
+docs/Provider.md
 docs/RecoveryCodeForIdentity.md
 docs/RecoveryFlow.md
 docs/RecoveryFlowState.md
@@ -88,19 +95,23 @@ docs/UiContainer.md
 docs/UiNode.md
 docs/UiNodeAnchorAttributes.md
 docs/UiNodeAttributes.md
+docs/UiNodeDivisionAttributes.md
 docs/UiNodeImageAttributes.md
 docs/UiNodeInputAttributes.md
 docs/UiNodeMeta.md
 docs/UiNodeScriptAttributes.md
 docs/UiNodeTextAttributes.md
 docs/UiText.md
+docs/UpdateFedcmFlowBody.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
+docs/UpdateLoginFlowWithIdentifierFirstMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
 docs/UpdateLoginFlowWithPasskeyMethod.md
 docs/UpdateLoginFlowWithPasswordMethod.md
+docs/UpdateLoginFlowWithSamlMethod.md
 docs/UpdateLoginFlowWithTotpMethod.md
 docs/UpdateLoginFlowWithWebAuthnMethod.md
 docs/UpdateRecoveryFlowBody.md
@@ -112,6 +123,7 @@ docs/UpdateRegistrationFlowWithOidcMethod.md
 docs/UpdateRegistrationFlowWithPasskeyMethod.md
 docs/UpdateRegistrationFlowWithPasswordMethod.md
 docs/UpdateRegistrationFlowWithProfileMethod.md
+docs/UpdateRegistrationFlowWithSamlMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithLookupMethod.md
@@ -119,6 +131,7 @@ docs/UpdateSettingsFlowWithOidcMethod.md
 docs/UpdateSettingsFlowWithPasskeyMethod.md
 docs/UpdateSettingsFlowWithPasswordMethod.md
 docs/UpdateSettingsFlowWithProfileMethod.md
+docs/UpdateSettingsFlowWithSamlMethod.md
 docs/UpdateSettingsFlowWithTotpMethod.md
 docs/UpdateSettingsFlowWithWebAuthnMethod.md
 docs/UpdateVerificationFlowBody.md
@@ -143,6 +156,7 @@ lib/ory-kratos-client/models/consistency_request_parameters.rb
 lib/ory-kratos-client/models/continue_with.rb
 lib/ory-kratos-client/models/continue_with_recovery_ui.rb
 lib/ory-kratos-client/models/continue_with_recovery_ui_flow.rb
+lib/ory-kratos-client/models/continue_with_redirect_browser_to.rb
 lib/ory-kratos-client/models/continue_with_set_ory_session_token.rb
 lib/ory-kratos-client/models/continue_with_settings_ui.rb
 lib/ory-kratos-client/models/continue_with_settings_ui_flow.rb
@@ -150,6 +164,7 @@ lib/ory-kratos-client/models/continue_with_verification_ui.rb
 lib/ory-kratos-client/models/continue_with_verification_ui_flow.rb
 lib/ory-kratos-client/models/courier_message_status.rb
 lib/ory-kratos-client/models/courier_message_type.rb
+lib/ory-kratos-client/models/create_fedcm_flow_response.rb
 lib/ory-kratos-client/models/create_identity_body.rb
 lib/ory-kratos-client/models/create_recovery_code_for_identity_body.rb
 lib/ory-kratos-client/models/create_recovery_link_for_identity_body.rb
@@ -166,6 +181,7 @@ lib/ory-kratos-client/models/health_status.rb
 lib/ory-kratos-client/models/identity.rb
 lib/ory-kratos-client/models/identity_credentials.rb
 lib/ory-kratos-client/models/identity_credentials_code.rb
+lib/ory-kratos-client/models/identity_credentials_code_address.rb
 lib/ory-kratos-client/models/identity_credentials_oidc.rb
 lib/ory-kratos-client/models/identity_credentials_oidc_provider.rb
 lib/ory-kratos-client/models/identity_credentials_password.rb
@@ -178,6 +194,9 @@ lib/ory-kratos-client/models/identity_with_credentials_oidc_config.rb
 lib/ory-kratos-client/models/identity_with_credentials_oidc_config_provider.rb
 lib/ory-kratos-client/models/identity_with_credentials_password.rb
 lib/ory-kratos-client/models/identity_with_credentials_password_config.rb
+lib/ory-kratos-client/models/identity_with_credentials_saml.rb
+lib/ory-kratos-client/models/identity_with_credentials_saml_config.rb
+lib/ory-kratos-client/models/identity_with_credentials_saml_config_provider.rb
 lib/ory-kratos-client/models/is_alive200_response.rb
 lib/ory-kratos-client/models/is_ready503_response.rb
 lib/ory-kratos-client/models/json_patch.rb
@@ -192,6 +211,7 @@ lib/ory-kratos-client/models/o_auth2_consent_request_open_id_connect_context.rb
 lib/ory-kratos-client/models/o_auth2_login_request.rb
 lib/ory-kratos-client/models/patch_identities_body.rb
 lib/ory-kratos-client/models/perform_native_logout_body.rb
+lib/ory-kratos-client/models/provider.rb
 lib/ory-kratos-client/models/recovery_code_for_identity.rb
 lib/ory-kratos-client/models/recovery_flow.rb
 lib/ory-kratos-client/models/recovery_flow_state.rb
@@ -214,19 +234,23 @@ lib/ory-kratos-client/models/ui_container.rb
 lib/ory-kratos-client/models/ui_node.rb
 lib/ory-kratos-client/models/ui_node_anchor_attributes.rb
 lib/ory-kratos-client/models/ui_node_attributes.rb
+lib/ory-kratos-client/models/ui_node_division_attributes.rb
 lib/ory-kratos-client/models/ui_node_image_attributes.rb
 lib/ory-kratos-client/models/ui_node_input_attributes.rb
 lib/ory-kratos-client/models/ui_node_meta.rb
 lib/ory-kratos-client/models/ui_node_script_attributes.rb
 lib/ory-kratos-client/models/ui_node_text_attributes.rb
 lib/ory-kratos-client/models/ui_text.rb
+lib/ory-kratos-client/models/update_fedcm_flow_body.rb
 lib/ory-kratos-client/models/update_identity_body.rb
 lib/ory-kratos-client/models/update_login_flow_body.rb
 lib/ory-kratos-client/models/update_login_flow_with_code_method.rb
+lib/ory-kratos-client/models/update_login_flow_with_identifier_first_method.rb
 lib/ory-kratos-client/models/update_login_flow_with_lookup_secret_method.rb
 lib/ory-kratos-client/models/update_login_flow_with_oidc_method.rb
 lib/ory-kratos-client/models/update_login_flow_with_passkey_method.rb
 lib/ory-kratos-client/models/update_login_flow_with_password_method.rb
+lib/ory-kratos-client/models/update_login_flow_with_saml_method.rb
 lib/ory-kratos-client/models/update_login_flow_with_totp_method.rb
 lib/ory-kratos-client/models/update_login_flow_with_web_authn_method.rb
 lib/ory-kratos-client/models/update_recovery_flow_body.rb
@@ -238,6 +262,7 @@ lib/ory-kratos-client/models/update_registration_flow_with_oidc_method.rb
 lib/ory-kratos-client/models/update_registration_flow_with_passkey_method.rb
 lib/ory-kratos-client/models/update_registration_flow_with_password_method.rb
 lib/ory-kratos-client/models/update_registration_flow_with_profile_method.rb
+lib/ory-kratos-client/models/update_registration_flow_with_saml_method.rb
 lib/ory-kratos-client/models/update_registration_flow_with_web_authn_method.rb
 lib/ory-kratos-client/models/update_settings_flow_body.rb
 lib/ory-kratos-client/models/update_settings_flow_with_lookup_method.rb
@@ -245,6 +270,7 @@ lib/ory-kratos-client/models/update_settings_flow_with_oidc_method.rb
 lib/ory-kratos-client/models/update_settings_flow_with_passkey_method.rb
 lib/ory-kratos-client/models/update_settings_flow_with_password_method.rb
 lib/ory-kratos-client/models/update_settings_flow_with_profile_method.rb
+lib/ory-kratos-client/models/update_settings_flow_with_saml_method.rb
 lib/ory-kratos-client/models/update_settings_flow_with_totp_method.rb
 lib/ory-kratos-client/models/update_settings_flow_with_web_authn_method.rb
 lib/ory-kratos-client/models/update_verification_flow_body.rb
@@ -265,6 +291,7 @@ spec/models/batch_patch_identities_response_spec.rb
 spec/models/consistency_request_parameters_spec.rb
 spec/models/continue_with_recovery_ui_flow_spec.rb
 spec/models/continue_with_recovery_ui_spec.rb
+spec/models/continue_with_redirect_browser_to_spec.rb
 spec/models/continue_with_set_ory_session_token_spec.rb
 spec/models/continue_with_settings_ui_flow_spec.rb
 spec/models/continue_with_settings_ui_spec.rb
@@ -273,6 +300,7 @@ spec/models/continue_with_verification_ui_flow_spec.rb
 spec/models/continue_with_verification_ui_spec.rb
 spec/models/courier_message_status_spec.rb
 spec/models/courier_message_type_spec.rb
+spec/models/create_fedcm_flow_response_spec.rb
 spec/models/create_identity_body_spec.rb
 spec/models/create_recovery_code_for_identity_body_spec.rb
 spec/models/create_recovery_link_for_identity_body_spec.rb
@@ -286,6 +314,7 @@ spec/models/generic_error_spec.rb
 spec/models/get_version200_response_spec.rb
 spec/models/health_not_ready_status_spec.rb
 spec/models/health_status_spec.rb
+spec/models/identity_credentials_code_address_spec.rb
 spec/models/identity_credentials_code_spec.rb
 spec/models/identity_credentials_oidc_provider_spec.rb
 spec/models/identity_credentials_oidc_spec.rb
@@ -300,6 +329,9 @@ spec/models/identity_with_credentials_oidc_config_spec.rb
 spec/models/identity_with_credentials_oidc_spec.rb
 spec/models/identity_with_credentials_password_config_spec.rb
 spec/models/identity_with_credentials_password_spec.rb
+spec/models/identity_with_credentials_saml_config_provider_spec.rb
+spec/models/identity_with_credentials_saml_config_spec.rb
+spec/models/identity_with_credentials_saml_spec.rb
 spec/models/identity_with_credentials_spec.rb
 spec/models/is_alive200_response_spec.rb
 spec/models/is_ready503_response_spec.rb
@@ -315,6 +347,7 @@ spec/models/o_auth2_consent_request_open_id_connect_context_spec.rb
 spec/models/o_auth2_login_request_spec.rb
 spec/models/patch_identities_body_spec.rb
 spec/models/perform_native_logout_body_spec.rb
+spec/models/provider_spec.rb
 spec/models/recovery_code_for_identity_spec.rb
 spec/models/recovery_flow_spec.rb
 spec/models/recovery_flow_state_spec.rb
@@ -336,6 +369,7 @@ spec/models/token_pagination_spec.rb
 spec/models/ui_container_spec.rb
 spec/models/ui_node_anchor_attributes_spec.rb
 spec/models/ui_node_attributes_spec.rb
+spec/models/ui_node_division_attributes_spec.rb
 spec/models/ui_node_image_attributes_spec.rb
 spec/models/ui_node_input_attributes_spec.rb
 spec/models/ui_node_meta_spec.rb
@@ -343,13 +377,16 @@ spec/models/ui_node_script_attributes_spec.rb
 spec/models/ui_node_spec.rb
 spec/models/ui_node_text_attributes_spec.rb
 spec/models/ui_text_spec.rb
+spec/models/update_fedcm_flow_body_spec.rb
 spec/models/update_identity_body_spec.rb
 spec/models/update_login_flow_body_spec.rb
 spec/models/update_login_flow_with_code_method_spec.rb
+spec/models/update_login_flow_with_identifier_first_method_spec.rb
 spec/models/update_login_flow_with_lookup_secret_method_spec.rb
 spec/models/update_login_flow_with_oidc_method_spec.rb
 spec/models/update_login_flow_with_passkey_method_spec.rb
 spec/models/update_login_flow_with_password_method_spec.rb
+spec/models/update_login_flow_with_saml_method_spec.rb
 spec/models/update_login_flow_with_totp_method_spec.rb
 spec/models/update_login_flow_with_web_authn_method_spec.rb
 spec/models/update_recovery_flow_body_spec.rb
@@ -361,6 +398,7 @@ spec/models/update_registration_flow_with_oidc_method_spec.rb
 spec/models/update_registration_flow_with_passkey_method_spec.rb
 spec/models/update_registration_flow_with_password_method_spec.rb
 spec/models/update_registration_flow_with_profile_method_spec.rb
+spec/models/update_registration_flow_with_saml_method_spec.rb
 spec/models/update_registration_flow_with_web_authn_method_spec.rb
 spec/models/update_settings_flow_body_spec.rb
 spec/models/update_settings_flow_with_lookup_method_spec.rb
@@ -368,6 +406,7 @@ spec/models/update_settings_flow_with_oidc_method_spec.rb
 spec/models/update_settings_flow_with_passkey_method_spec.rb
 spec/models/update_settings_flow_with_password_method_spec.rb
 spec/models/update_settings_flow_with_profile_method_spec.rb
+spec/models/update_settings_flow_with_saml_method_spec.rb
 spec/models/update_settings_flow_with_totp_method_spec.rb
 spec/models/update_settings_flow_with_web_authn_method_spec.rb
 spec/models/update_verification_flow_body_spec.rb

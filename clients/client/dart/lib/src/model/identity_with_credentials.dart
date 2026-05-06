@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/identity_with_credentials_password.dart';
+import 'package:ory_client/src/model/identity_with_credentials_saml.dart';
 import 'package:ory_client/src/model/identity_with_credentials_oidc.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -15,6 +16,7 @@ part 'identity_with_credentials.g.dart';
 /// Properties:
 /// * [oidc] 
 /// * [password] 
+/// * [saml] 
 @BuiltValue()
 abstract class IdentityWithCredentials implements Built<IdentityWithCredentials, IdentityWithCredentialsBuilder> {
   @BuiltValueField(wireName: r'oidc')
@@ -22,6 +24,9 @@ abstract class IdentityWithCredentials implements Built<IdentityWithCredentials,
 
   @BuiltValueField(wireName: r'password')
   IdentityWithCredentialsPassword? get password;
+
+  @BuiltValueField(wireName: r'saml')
+  IdentityWithCredentialsSaml? get saml;
 
   IdentityWithCredentials._();
 
@@ -60,6 +65,13 @@ class _$IdentityWithCredentialsSerializer implements PrimitiveSerializer<Identit
         specifiedType: const FullType(IdentityWithCredentialsPassword),
       );
     }
+    if (object.saml != null) {
+      yield r'saml';
+      yield serializers.serialize(
+        object.saml,
+        specifiedType: const FullType(IdentityWithCredentialsSaml),
+      );
+    }
   }
 
   @override
@@ -96,6 +108,13 @@ class _$IdentityWithCredentialsSerializer implements PrimitiveSerializer<Identit
             specifiedType: const FullType(IdentityWithCredentialsPassword),
           ) as IdentityWithCredentialsPassword;
           result.password.replace(valueDes);
+          break;
+        case r'saml':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(IdentityWithCredentialsSaml),
+          ) as IdentityWithCredentialsSaml;
+          result.saml.replace(valueDes);
           break;
         default:
           unhandled.add(key);

@@ -17,9 +17,12 @@ part 'plan_details.g.dart';
 /// * [baseFeeYearly] - BaseFeeYearly is the yearly base fee for the plan.
 /// * [custom] - Custom is true if the plan is custom. This means it will be hidden from the pricing page.
 /// * [description] - Description is the description of the plan.
+/// * [developmentFeatures] 
 /// * [features] 
 /// * [latest] - Latest is true if the plan is the latest version of a plan and should be available for self-service usage.
 /// * [name] - Name is the name of the plan.
+/// * [productionFeatures] 
+/// * [stagingFeatures] 
 /// * [version] - Version is the version of the plan. The combination of `name@version` must be unique.
 @BuiltValue()
 abstract class PlanDetails implements Built<PlanDetails, PlanDetailsBuilder> {
@@ -39,6 +42,9 @@ abstract class PlanDetails implements Built<PlanDetails, PlanDetailsBuilder> {
   @BuiltValueField(wireName: r'description')
   String get description;
 
+  @BuiltValueField(wireName: r'development_features')
+  BuiltMap<String, GenericUsage> get developmentFeatures;
+
   @BuiltValueField(wireName: r'features')
   BuiltMap<String, GenericUsage> get features;
 
@@ -49,6 +55,12 @@ abstract class PlanDetails implements Built<PlanDetails, PlanDetailsBuilder> {
   /// Name is the name of the plan.
   @BuiltValueField(wireName: r'name')
   String get name;
+
+  @BuiltValueField(wireName: r'production_features')
+  BuiltMap<String, GenericUsage> get productionFeatures;
+
+  @BuiltValueField(wireName: r'staging_features')
+  BuiltMap<String, GenericUsage> get stagingFeatures;
 
   /// Version is the version of the plan. The combination of `name@version` must be unique.
   @BuiltValueField(wireName: r'version')
@@ -97,6 +109,11 @@ class _$PlanDetailsSerializer implements PrimitiveSerializer<PlanDetails> {
       object.description,
       specifiedType: const FullType(String),
     );
+    yield r'development_features';
+    yield serializers.serialize(
+      object.developmentFeatures,
+      specifiedType: const FullType(BuiltMap, [FullType(String), FullType(GenericUsage)]),
+    );
     yield r'features';
     yield serializers.serialize(
       object.features,
@@ -113,6 +130,16 @@ class _$PlanDetailsSerializer implements PrimitiveSerializer<PlanDetails> {
     yield serializers.serialize(
       object.name,
       specifiedType: const FullType(String),
+    );
+    yield r'production_features';
+    yield serializers.serialize(
+      object.productionFeatures,
+      specifiedType: const FullType(BuiltMap, [FullType(String), FullType(GenericUsage)]),
+    );
+    yield r'staging_features';
+    yield serializers.serialize(
+      object.stagingFeatures,
+      specifiedType: const FullType(BuiltMap, [FullType(String), FullType(GenericUsage)]),
     );
     yield r'version';
     yield serializers.serialize(
@@ -170,6 +197,13 @@ class _$PlanDetailsSerializer implements PrimitiveSerializer<PlanDetails> {
           ) as String;
           result.description = valueDes;
           break;
+        case r'development_features':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(GenericUsage)]),
+          ) as BuiltMap<String, GenericUsage>;
+          result.developmentFeatures.replace(valueDes);
+          break;
         case r'features':
           final valueDes = serializers.deserialize(
             value,
@@ -190,6 +224,20 @@ class _$PlanDetailsSerializer implements PrimitiveSerializer<PlanDetails> {
             specifiedType: const FullType(String),
           ) as String;
           result.name = valueDes;
+          break;
+        case r'production_features':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(GenericUsage)]),
+          ) as BuiltMap<String, GenericUsage>;
+          result.productionFeatures.replace(valueDes);
+          break;
+        case r'staging_features':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(GenericUsage)]),
+          ) as BuiltMap<String, GenericUsage>;
+          result.stagingFeatures.replace(valueDes);
           break;
         case r'version':
           final valueDes = serializers.deserialize(

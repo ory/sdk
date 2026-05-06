@@ -10,7 +10,7 @@ All URIs are relative to *http://localhost*
 | [**listRules**](ApiApi.md#listRules) | **GET** /rules | List All Rules |
 
 
-<a name="decisions"></a>
+<a id="decisions"></a>
 # **decisions**
 > decisions()
 
@@ -71,7 +71,7 @@ No authorization required
 | **404** | genericError |  -  |
 | **500** | genericError |  -  |
 
-<a name="getRule"></a>
+<a id="getRule"></a>
 # **getRule**
 > Rule getRule(id)
 
@@ -135,7 +135,7 @@ No authorization required
 | **404** | genericError |  -  |
 | **500** | genericError |  -  |
 
-<a name="getWellKnownJSONWebKeys"></a>
+<a id="getWellKnownJSONWebKeys"></a>
 # **getWellKnownJSONWebKeys**
 > JsonWebKeySet getWellKnownJSONWebKeys()
 
@@ -194,7 +194,7 @@ No authorization required
 | **200** | jsonWebKeySet |  -  |
 | **500** | genericError |  -  |
 
-<a name="listRules"></a>
+<a id="listRules"></a>
 # **listRules**
 > List&lt;Rule&gt; listRules(limit, offset)
 

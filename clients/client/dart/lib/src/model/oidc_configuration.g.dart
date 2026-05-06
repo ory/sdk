@@ -24,6 +24,8 @@ class _$OidcConfiguration extends OidcConfiguration {
   @override
   final BuiltList<CredentialSupportedDraft00>? credentialsSupportedDraft00;
   @override
+  final String deviceAuthorizationEndpoint;
+  @override
   final String? endSessionEndpoint;
   @override
   final bool? frontchannelLogoutSessionSupported;
@@ -83,6 +85,7 @@ class _$OidcConfiguration extends OidcConfiguration {
       this.codeChallengeMethodsSupported,
       this.credentialsEndpointDraft00,
       this.credentialsSupportedDraft00,
+      required this.deviceAuthorizationEndpoint,
       this.endSessionEndpoint,
       this.frontchannelLogoutSessionSupported,
       this.frontchannelLogoutSupported,
@@ -109,6 +112,8 @@ class _$OidcConfiguration extends OidcConfiguration {
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         authorizationEndpoint, r'OidcConfiguration', 'authorizationEndpoint');
+    BuiltValueNullFieldError.checkNotNull(deviceAuthorizationEndpoint,
+        r'OidcConfiguration', 'deviceAuthorizationEndpoint');
     BuiltValueNullFieldError.checkNotNull(idTokenSignedResponseAlg,
         r'OidcConfiguration', 'idTokenSignedResponseAlg');
     BuiltValueNullFieldError.checkNotNull(idTokenSigningAlgValuesSupported,
@@ -148,6 +153,7 @@ class _$OidcConfiguration extends OidcConfiguration {
         codeChallengeMethodsSupported == other.codeChallengeMethodsSupported &&
         credentialsEndpointDraft00 == other.credentialsEndpointDraft00 &&
         credentialsSupportedDraft00 == other.credentialsSupportedDraft00 &&
+        deviceAuthorizationEndpoint == other.deviceAuthorizationEndpoint &&
         endSessionEndpoint == other.endSessionEndpoint &&
         frontchannelLogoutSessionSupported ==
             other.frontchannelLogoutSessionSupported &&
@@ -189,6 +195,7 @@ class _$OidcConfiguration extends OidcConfiguration {
     _$hash = $jc(_$hash, codeChallengeMethodsSupported.hashCode);
     _$hash = $jc(_$hash, credentialsEndpointDraft00.hashCode);
     _$hash = $jc(_$hash, credentialsSupportedDraft00.hashCode);
+    _$hash = $jc(_$hash, deviceAuthorizationEndpoint.hashCode);
     _$hash = $jc(_$hash, endSessionEndpoint.hashCode);
     _$hash = $jc(_$hash, frontchannelLogoutSessionSupported.hashCode);
     _$hash = $jc(_$hash, frontchannelLogoutSupported.hashCode);
@@ -228,6 +235,7 @@ class _$OidcConfiguration extends OidcConfiguration {
           ..add('codeChallengeMethodsSupported', codeChallengeMethodsSupported)
           ..add('credentialsEndpointDraft00', credentialsEndpointDraft00)
           ..add('credentialsSupportedDraft00', credentialsSupportedDraft00)
+          ..add('deviceAuthorizationEndpoint', deviceAuthorizationEndpoint)
           ..add('endSessionEndpoint', endSessionEndpoint)
           ..add('frontchannelLogoutSessionSupported',
               frontchannelLogoutSessionSupported)
@@ -313,6 +321,12 @@ class OidcConfigurationBuilder
           ListBuilder<CredentialSupportedDraft00>?
               credentialsSupportedDraft00) =>
       _$this._credentialsSupportedDraft00 = credentialsSupportedDraft00;
+
+  String? _deviceAuthorizationEndpoint;
+  String? get deviceAuthorizationEndpoint =>
+      _$this._deviceAuthorizationEndpoint;
+  set deviceAuthorizationEndpoint(String? deviceAuthorizationEndpoint) =>
+      _$this._deviceAuthorizationEndpoint = deviceAuthorizationEndpoint;
 
   String? _endSessionEndpoint;
   String? get endSessionEndpoint => _$this._endSessionEndpoint;
@@ -470,6 +484,7 @@ class OidcConfigurationBuilder
       _credentialsEndpointDraft00 = $v.credentialsEndpointDraft00;
       _credentialsSupportedDraft00 =
           $v.credentialsSupportedDraft00?.toBuilder();
+      _deviceAuthorizationEndpoint = $v.deviceAuthorizationEndpoint;
       _endSessionEndpoint = $v.endSessionEndpoint;
       _frontchannelLogoutSessionSupported =
           $v.frontchannelLogoutSessionSupported;
@@ -523,9 +538,7 @@ class OidcConfigurationBuilder
       _$result = _$v ??
           new _$OidcConfiguration._(
               authorizationEndpoint: BuiltValueNullFieldError.checkNotNull(
-                  authorizationEndpoint,
-                  r'OidcConfiguration',
-                  'authorizationEndpoint'),
+                  authorizationEndpoint, r'OidcConfiguration', 'authorizationEndpoint'),
               backchannelLogoutSessionSupported:
                   backchannelLogoutSessionSupported,
               backchannelLogoutSupported: backchannelLogoutSupported,
@@ -536,6 +549,10 @@ class OidcConfigurationBuilder
               credentialsEndpointDraft00: credentialsEndpointDraft00,
               credentialsSupportedDraft00:
                   _credentialsSupportedDraft00?.build(),
+              deviceAuthorizationEndpoint: BuiltValueNullFieldError.checkNotNull(
+                  deviceAuthorizationEndpoint,
+                  r'OidcConfiguration',
+                  'deviceAuthorizationEndpoint'),
               endSessionEndpoint: endSessionEndpoint,
               frontchannelLogoutSessionSupported:
                   frontchannelLogoutSessionSupported,
@@ -565,8 +582,7 @@ class OidcConfigurationBuilder
                   _tokenEndpointAuthMethodsSupported?.build(),
               userinfoEndpoint: userinfoEndpoint,
               userinfoSignedResponseAlg: userinfoSignedResponseAlg.build(),
-              userinfoSigningAlgValuesSupported:
-                  _userinfoSigningAlgValuesSupported?.build());
+              userinfoSigningAlgValuesSupported: _userinfoSigningAlgValuesSupported?.build());
     } catch (_) {
       late String _$failedField;
       try {

@@ -6,13 +6,13 @@ part of 'continue_with.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-const ContinueWithActionEnum _$continueWithActionEnum_showRecoveryUi =
-    const ContinueWithActionEnum._('showRecoveryUi');
+const ContinueWithActionEnum _$continueWithActionEnum_redirectBrowserTo =
+    const ContinueWithActionEnum._('redirectBrowserTo');
 
 ContinueWithActionEnum _$continueWithActionEnumValueOf(String name) {
   switch (name) {
-    case 'showRecoveryUi':
-      return _$continueWithActionEnum_showRecoveryUi;
+    case 'redirectBrowserTo':
+      return _$continueWithActionEnum_redirectBrowserTo;
     default:
       throw new ArgumentError(name);
   }
@@ -20,7 +20,7 @@ ContinueWithActionEnum _$continueWithActionEnumValueOf(String name) {
 
 final BuiltSet<ContinueWithActionEnum> _$continueWithActionEnumValues =
     new BuiltSet<ContinueWithActionEnum>(const <ContinueWithActionEnum>[
-  _$continueWithActionEnum_showRecoveryUi,
+  _$continueWithActionEnum_redirectBrowserTo,
 ]);
 
 Serializer<ContinueWithActionEnum> _$continueWithActionEnumSerializer =
@@ -29,10 +29,10 @@ Serializer<ContinueWithActionEnum> _$continueWithActionEnumSerializer =
 class _$ContinueWithActionEnumSerializer
     implements PrimitiveSerializer<ContinueWithActionEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'showRecoveryUi': 'show_recovery_ui',
+    'redirectBrowserTo': 'redirect_browser_to',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'show_recovery_ui': 'showRecoveryUi',
+    'redirect_browser_to': 'redirectBrowserTo',
   };
 
   @override

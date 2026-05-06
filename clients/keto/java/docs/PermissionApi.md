@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**batchCheckPermission**](PermissionApi.md#batchCheckPermission) | **POST** /relation-tuples/batch/check | Batch check permissions |
 | [**checkPermission**](PermissionApi.md#checkPermission) | **GET** /relation-tuples/check/openapi | Check a permission |
 | [**checkPermissionOrError**](PermissionApi.md#checkPermissionOrError) | **GET** /relation-tuples/check | Check a permission |
 | [**expandPermissions**](PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions. |
@@ -11,7 +12,73 @@ All URIs are relative to *http://localhost*
 | [**postCheckPermissionOrError**](PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission |
 
 
-<a name="checkPermission"></a>
+<a id="batchCheckPermission"></a>
+# **batchCheckPermission**
+> BatchCheckPermissionResult batchCheckPermission(maxDepth, batchCheckPermissionBody)
+
+Batch check permissions
+
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+
+### Example
+```java
+// Import classes:
+import sh.ory.keto.ApiClient;
+import sh.ory.keto.ApiException;
+import sh.ory.keto.Configuration;
+import sh.ory.keto.models.*;
+import sh.ory.keto.api.PermissionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+
+    PermissionApi apiInstance = new PermissionApi(defaultClient);
+    Long maxDepth = 56L; // Long | 
+    BatchCheckPermissionBody batchCheckPermissionBody = new BatchCheckPermissionBody(); // BatchCheckPermissionBody | 
+    try {
+      BatchCheckPermissionResult result = apiInstance.batchCheckPermission(maxDepth, batchCheckPermissionBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PermissionApi#batchCheckPermission");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **maxDepth** | **Long**|  | [optional] |
+| **batchCheckPermissionBody** | [**BatchCheckPermissionBody**](BatchCheckPermissionBody.md)|  | [optional] |
+
+### Return type
+
+[**BatchCheckPermissionResult**](BatchCheckPermissionResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | batchCheckPermissionResult |  -  |
+| **400** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+<a id="checkPermission"></a>
 # **checkPermission**
 > CheckPermissionResult checkPermission(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, maxDepth)
 
@@ -89,7 +156,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="checkPermissionOrError"></a>
+<a id="checkPermissionOrError"></a>
 # **checkPermissionOrError**
 > CheckPermissionResult checkPermissionOrError(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, maxDepth)
 
@@ -168,7 +235,7 @@ No authorization required
 | **403** | checkPermissionResult |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="expandPermissions"></a>
+<a id="expandPermissions"></a>
 # **expandPermissions**
 > ExpandedPermissionTree expandPermissions(namespace, _object, relation, maxDepth)
 
@@ -239,7 +306,7 @@ No authorization required
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="postCheckPermission"></a>
+<a id="postCheckPermission"></a>
 # **postCheckPermission**
 > CheckPermissionResult postCheckPermission(maxDepth, postCheckPermissionBody)
 
@@ -305,7 +372,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="postCheckPermissionOrError"></a>
+<a id="postCheckPermissionOrError"></a>
 # **postCheckPermissionOrError**
 > CheckPermissionResult postCheckPermissionOrError(maxDepth, postCheckPermissionOrErrorBody)
 
@@ -328,7 +395,7 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     PermissionApi apiInstance = new PermissionApi(defaultClient);
-    Long maxDepth = 56L; // Long | nolint:deadcode,unused
+    Long maxDepth = 56L; // Long | 
     PostCheckPermissionOrErrorBody postCheckPermissionOrErrorBody = new PostCheckPermissionOrErrorBody(); // PostCheckPermissionOrErrorBody | 
     try {
       CheckPermissionResult result = apiInstance.postCheckPermissionOrError(maxDepth, postCheckPermissionOrErrorBody);
@@ -348,7 +415,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **maxDepth** | **Long**| nolint:deadcode,unused | [optional] |
+| **maxDepth** | **Long**|  | [optional] |
 | **postCheckPermissionOrErrorBody** | [**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md)|  | [optional] |
 
 ### Return type

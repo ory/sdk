@@ -25,7 +25,7 @@ abstract class GenericError implements Built<GenericError, GenericErrorBuilder> 
   int? get code;
 
   @BuiltValueField(wireName: r'details')
-  BuiltList<BuiltMap<String, JsonObject>>? get details;
+  BuiltList<BuiltMap<String, JsonObject?>>? get details;
 
   @BuiltValueField(wireName: r'message')
   String? get message;
@@ -73,7 +73,7 @@ class _$GenericErrorSerializer implements PrimitiveSerializer<GenericError> {
       yield r'details';
       yield serializers.serialize(
         object.details,
-        specifiedType: const FullType(BuiltList, [FullType(BuiltMap, [FullType(String), FullType(JsonObject)])]),
+        specifiedType: const FullType(BuiltList, [FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)])]),
       );
     }
     if (object.message != null) {
@@ -137,8 +137,8 @@ class _$GenericErrorSerializer implements PrimitiveSerializer<GenericError> {
         case r'details':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(BuiltMap, [FullType(String), FullType(JsonObject)])]),
-          ) as BuiltList<BuiltMap<String, JsonObject>>;
+            specifiedType: const FullType(BuiltList, [FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)])]),
+          ) as BuiltList<BuiltMap<String, JsonObject?>>;
           result.details.replace(valueDes);
           break;
         case r'message':

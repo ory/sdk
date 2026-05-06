@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **EmailVerified** | **bool** |  | 
 **Id** | **string** |  | 
 **Name** | **string** |  | 
+**OrganizationId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -108,6 +109,41 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetOrganizationId
+
+`func (o *CloudAccount) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *CloudAccount) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *CloudAccount) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *CloudAccount) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
+
+### SetOrganizationIdNil
+
+`func (o *CloudAccount) SetOrganizationIdNil(b bool)`
+
+ SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+
+### UnsetOrganizationId
+`func (o *CloudAccount) UnsetOrganizationId()`
+
+UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

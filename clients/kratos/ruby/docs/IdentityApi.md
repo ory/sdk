@@ -14,6 +14,7 @@ All URIs are relative to *http://localhost*
 | [**disable_session**](IdentityApi.md#disable_session) | **DELETE** /admin/sessions/{id} | Deactivate a Session |
 | [**extend_session**](IdentityApi.md#extend_session) | **PATCH** /admin/sessions/{id}/extend | Extend a Session |
 | [**get_identity**](IdentityApi.md#get_identity) | **GET** /admin/identities/{id} | Get an Identity |
+| [**get_identity_by_external_id**](IdentityApi.md#get_identity_by_external_id) | **GET** /admin/identities/by/external/{externalID} | Get an Identity by its External ID |
 | [**get_identity_schema**](IdentityApi.md#get_identity_schema) | **GET** /schemas/{id} | Get Identity JSON Schema |
 | [**get_session**](IdentityApi.md#get_session) | **GET** /admin/sessions/{id} | Get Session |
 | [**list_identities**](IdentityApi.md#list_identities) | **GET** /admin/identities | List Identities |
@@ -30,7 +31,7 @@ All URIs are relative to *http://localhost*
 
 Create multiple identities
 
-Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model). This endpoint can also be used to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations or multifactor methods.
+Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  You can also use this endpoint to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities), including passwords, social sign-in settings, and multi-factor authentication methods.  You can import: Up to 1,000 identities per request Up to 200 identities per request if including plaintext passwords  Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.  If at least one identity is imported successfully, the response status is 200 OK. If all imports fail, the response is one of the following 4xx errors: 400 Bad Request: The request payload is invalid or improperly formatted. 409 Conflict: Duplicate identities or conflicting data were detected.  If you get a 504 Gateway Timeout: Reduce the batch size Avoid duplicate identities Pre-hash passwords with BCrypt  If the issue persists, contact support.
 
 ### Examples
 
@@ -40,9 +41,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -113,9 +114,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -186,9 +187,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -259,9 +260,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -324,7 +325,7 @@ end
 
 Delete an Identity
 
-Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is assumed that is has been deleted already.
+Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
 
 ### Examples
 
@@ -334,9 +335,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -390,11 +391,11 @@ nil (empty response body)
 
 ## delete_identity_credentials
 
-> delete_identity_credentials(id, type)
+> delete_identity_credentials(id, type, opts)
 
 Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type You can only delete second factor (aal2) credentials.
+Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete passkeys or code auth credentials through this API.
 
 ### Examples
 
@@ -404,18 +405,21 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
 id = 'id_example' # String | ID is the identity's ID.
-type = 'password' # String | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+type = 'password' # String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+opts = {
+  identifier: 'identifier_example' # String | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint.
+}
 
 begin
   # Delete a credential for a specific identity
-  api_instance.delete_identity_credentials(id, type)
+  api_instance.delete_identity_credentials(id, type, opts)
 rescue OryKratosClient::ApiError => e
   puts "Error when calling IdentityApi->delete_identity_credentials: #{e}"
 end
@@ -425,12 +429,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> delete_identity_credentials_with_http_info(id, type)
+> <Array(nil, Integer, Hash)> delete_identity_credentials_with_http_info(id, type, opts)
 
 ```ruby
 begin
   # Delete a credential for a specific identity
-  data, status_code, headers = api_instance.delete_identity_credentials_with_http_info(id, type)
+  data, status_code, headers = api_instance.delete_identity_credentials_with_http_info(id, type, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -444,7 +448,8 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID is the identity&#39;s ID. |  |
-| **type** | **String** | Type is the type of credentials to be deleted. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode |  |
+| **type** | **String** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode |  |
+| **identifier** | **String** | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{oidc,saml}&#x60; endpoint. | [optional] |
 
 ### Return type
 
@@ -476,9 +481,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -546,9 +551,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -606,7 +611,7 @@ nil (empty response body)
 
 Extend a Session
 
-Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
+Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
 ### Examples
 
@@ -616,9 +621,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -687,9 +692,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -730,6 +735,81 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID must be set to the ID of identity you want to get |  |
+| **include_credential** | [**Array&lt;String&gt;**](String.md) | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
+
+### Return type
+
+[**Identity**](Identity.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_identity_by_external_id
+
+> <Identity> get_identity_by_external_id(external_id, opts)
+
+Get an Identity by its External ID
+
+Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-kratos-client'
+# setup authorization
+OryKratosClient.configure do |config|
+  # Configure API key authorization: oryAccessToken
+  config.api_key['Authorization'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['Authorization'] = 'Bearer'
+end
+
+api_instance = OryKratosClient::IdentityApi.new
+external_id = 'external_id_example' # String | ExternalID must be set to the ID of identity you want to get
+opts = {
+  include_credential: ['password'] # Array<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+}
+
+begin
+  # Get an Identity by its External ID
+  result = api_instance.get_identity_by_external_id(external_id, opts)
+  p result
+rescue OryKratosClient::ApiError => e
+  puts "Error when calling IdentityApi->get_identity_by_external_id: #{e}"
+end
+```
+
+#### Using the get_identity_by_external_id_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Identity>, Integer, Hash)> get_identity_by_external_id_with_http_info(external_id, opts)
+
+```ruby
+begin
+  # Get an Identity by its External ID
+  data, status_code, headers = api_instance.get_identity_by_external_id_with_http_info(external_id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Identity>
+rescue OryKratosClient::ApiError => e
+  puts "Error when calling IdentityApi->get_identity_by_external_id_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **external_id** | **String** | ExternalID must be set to the ID of identity you want to get |  |
 | **include_credential** | [**Array&lt;String&gt;**](String.md) | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
 
 ### Return type
@@ -826,9 +906,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -891,7 +971,7 @@ end
 
 List Identities
 
-Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
+Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
 
 ### Examples
 
@@ -901,9 +981,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -913,10 +993,11 @@ opts = {
   page_size: 789, # Integer | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   page_token: 'page_token_example', # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   consistency: 'consistency_example', # String | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
-  ids: ['inner_example'], # Array<String> | List of ids used to filter identities. If this list is empty, then no filter will be applied.
+  ids: ['inner_example'], # Array<String> | Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
   credentials_identifier: 'credentials_identifier_example', # String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
   preview_credentials_identifier_similar: 'preview_credentials_identifier_similar_example', # String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
-  include_credential: ['inner_example'] # Array<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+  include_credential: ['inner_example'], # Array<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+  organization_id: 'organization_id_example' # String | List identities that belong to a specific organization.
 }
 
 begin
@@ -955,10 +1036,11 @@ end
 | **page_size** | **Integer** | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to 250] |
 | **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to &#39;1&#39;] |
 | **consistency** | **String** | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional] |
-| **ids** | [**Array&lt;String&gt;**](String.md) | List of ids used to filter identities. If this list is empty, then no filter will be applied. | [optional] |
+| **ids** | [**Array&lt;String&gt;**](String.md) | Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). | [optional] |
 | **credentials_identifier** | **String** | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **preview_credentials_identifier_similar** | **String** | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **include_credential** | [**Array&lt;String&gt;**](String.md) | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available. | [optional] |
+| **organization_id** | **String** | List identities that belong to a specific organization. | [optional] |
 
 ### Return type
 
@@ -1062,9 +1144,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -1145,9 +1227,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -1224,9 +1306,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new
@@ -1289,7 +1371,7 @@ end
 
 Update an Identity
 
-This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity payload (except credentials) is expected. It is possible to update the identity's credentials as well.
+This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity payload, except credentials, is expected. For partial updates, use the [patchIdentity](https://www.ory.sh/docs/reference/api#tag/identity/operation/patchIdentity) operation.  A credential can be provided via the `credentials` field in the request body. If provided, the credentials will be imported and added to the existing credentials of the identity.
 
 ### Examples
 
@@ -1299,9 +1381,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::IdentityApi.new

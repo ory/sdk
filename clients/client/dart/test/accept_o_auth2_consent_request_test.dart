@@ -22,11 +22,6 @@ void main() {
       // TODO
     });
 
-    // DateTime handledAt
-    test('to test the property `handledAt`', () async {
-      // TODO
-    });
-
     // Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.
     // bool remember
     test('to test the property `remember`', () async {

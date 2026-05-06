@@ -15,7 +15,7 @@ part 'session_authentication_method.g.dart';
 /// Properties:
 /// * [aal] 
 /// * [completedAt] - When the authentication challenge was completed.
-/// * [method] 
+/// * [method] - The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 /// * [organization] - The Organization id used for authentication
 /// * [provider] - OIDC or SAML provider id used for authentication
 @BuiltValue()
@@ -28,9 +28,10 @@ abstract class SessionAuthenticationMethod implements Built<SessionAuthenticatio
   @BuiltValueField(wireName: r'completed_at')
   DateTime? get completedAt;
 
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   @BuiltValueField(wireName: r'method')
   SessionAuthenticationMethodMethodEnum? get method;
-  // enum methodEnum {  link_recovery,  code_recovery,  password,  code,  totp,  oidc,  webauthn,  lookup_secret,  v0.6_legacy_session,  };
+  // enum methodEnum {  password,  oidc,  totp,  lookup_secret,  webauthn,  code,  passkey,  profile,  saml,  link_recovery,  code_recovery,  };
 
   /// The Organization id used for authentication
   @BuiltValueField(wireName: r'organization')
@@ -187,24 +188,39 @@ class _$SessionAuthenticationMethodSerializer implements PrimitiveSerializer<Ses
 
 class SessionAuthenticationMethodMethodEnum extends EnumClass {
 
-  @BuiltValueEnumConst(wireName: r'link_recovery')
-  static const SessionAuthenticationMethodMethodEnum linkRecovery = _$sessionAuthenticationMethodMethodEnum_linkRecovery;
-  @BuiltValueEnumConst(wireName: r'code_recovery')
-  static const SessionAuthenticationMethodMethodEnum codeRecovery = _$sessionAuthenticationMethodMethodEnum_codeRecovery;
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   @BuiltValueEnumConst(wireName: r'password')
   static const SessionAuthenticationMethodMethodEnum password = _$sessionAuthenticationMethodMethodEnum_password;
-  @BuiltValueEnumConst(wireName: r'code')
-  static const SessionAuthenticationMethodMethodEnum code = _$sessionAuthenticationMethodMethodEnum_code;
-  @BuiltValueEnumConst(wireName: r'totp')
-  static const SessionAuthenticationMethodMethodEnum totp = _$sessionAuthenticationMethodMethodEnum_totp;
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   @BuiltValueEnumConst(wireName: r'oidc')
   static const SessionAuthenticationMethodMethodEnum oidc = _$sessionAuthenticationMethodMethodEnum_oidc;
-  @BuiltValueEnumConst(wireName: r'webauthn')
-  static const SessionAuthenticationMethodMethodEnum webauthn = _$sessionAuthenticationMethodMethodEnum_webauthn;
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'totp')
+  static const SessionAuthenticationMethodMethodEnum totp = _$sessionAuthenticationMethodMethodEnum_totp;
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   @BuiltValueEnumConst(wireName: r'lookup_secret')
   static const SessionAuthenticationMethodMethodEnum lookupSecret = _$sessionAuthenticationMethodMethodEnum_lookupSecret;
-  @BuiltValueEnumConst(wireName: r'v0.6_legacy_session')
-  static const SessionAuthenticationMethodMethodEnum v0Period6LegacySession = _$sessionAuthenticationMethodMethodEnum_v0Period6LegacySession;
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'webauthn')
+  static const SessionAuthenticationMethodMethodEnum webauthn = _$sessionAuthenticationMethodMethodEnum_webauthn;
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'code')
+  static const SessionAuthenticationMethodMethodEnum code = _$sessionAuthenticationMethodMethodEnum_code;
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'passkey')
+  static const SessionAuthenticationMethodMethodEnum passkey = _$sessionAuthenticationMethodMethodEnum_passkey;
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'profile')
+  static const SessionAuthenticationMethodMethodEnum profile = _$sessionAuthenticationMethodMethodEnum_profile;
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'saml')
+  static const SessionAuthenticationMethodMethodEnum saml = _$sessionAuthenticationMethodMethodEnum_saml;
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'link_recovery')
+  static const SessionAuthenticationMethodMethodEnum linkRecovery = _$sessionAuthenticationMethodMethodEnum_linkRecovery;
+  /// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  @BuiltValueEnumConst(wireName: r'code_recovery')
+  static const SessionAuthenticationMethodMethodEnum codeRecovery = _$sessionAuthenticationMethodMethodEnum_codeRecovery;
 
   static Serializer<SessionAuthenticationMethodMethodEnum> get serializer => _$sessionAuthenticationMethodMethodEnumSerializer;
 

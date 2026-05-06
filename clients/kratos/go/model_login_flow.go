@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v25.4.0
 Contact: office@ory.sh
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &LoginFlow{}
 
 // LoginFlow This object represents a login flow. A login flow is initiated at the \"Initiate Login API / Browser Flow\" endpoint by a client.  Once a login flow is completed successfully, a session cookie or session token will be issued.
 type LoginFlow struct {
-	// The active login method  If set contains the login method used. If the flow is new, it is unset. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+	// The active login method  If set contains the login method used. If the flow is new, it is unset. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 	Active *string `json:"active,omitempty"`
 	// CreatedAt is a helper struct field for gobuffalo.pop.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -30,6 +30,8 @@ type LoginFlow struct {
 	ExpiresAt time.Time `json:"expires_at"`
 	// ID represents the flow's unique ID. When performing the login flow, this represents the id in the login UI's query parameter: http://<selfservice.flows.login.ui_url>/?flow=<flow_id>
 	Id string `json:"id"`
+	// IdentitySchema optionally holds the ID of the identity schema that is used for this flow. This value can be set by the user when creating the flow and should be retained when the flow is saved or converted to another flow.
+	IdentitySchema *string `json:"identity_schema,omitempty"`
 	// IssuedAt is the time (UTC) when the flow started.
 	IssuedAt time.Time `json:"issued_at"`
 	// Ory OAuth 2.0 Login Challenge.  This value is set using the `login_challenge` query parameter of the registration and login endpoints. If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.
@@ -193,6 +195,38 @@ func (o *LoginFlow) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *LoginFlow) SetId(v string) {
 	o.Id = v
+}
+
+// GetIdentitySchema returns the IdentitySchema field value if set, zero value otherwise.
+func (o *LoginFlow) GetIdentitySchema() string {
+	if o == nil || IsNil(o.IdentitySchema) {
+		var ret string
+		return ret
+	}
+	return *o.IdentitySchema
+}
+
+// GetIdentitySchemaOk returns a tuple with the IdentitySchema field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LoginFlow) GetIdentitySchemaOk() (*string, bool) {
+	if o == nil || IsNil(o.IdentitySchema) {
+		return nil, false
+	}
+	return o.IdentitySchema, true
+}
+
+// HasIdentitySchema returns a boolean if a field has been set.
+func (o *LoginFlow) HasIdentitySchema() bool {
+	if o != nil && !IsNil(o.IdentitySchema) {
+		return true
+	}
+
+	return false
+}
+
+// SetIdentitySchema gets a reference to the given string and assigns it to the IdentitySchema field.
+func (o *LoginFlow) SetIdentitySchema(v string) {
+	o.IdentitySchema = &v
 }
 
 // GetIssuedAt returns the IssuedAt field value
@@ -633,6 +667,9 @@ func (o LoginFlow) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["expires_at"] = o.ExpiresAt
 	toSerialize["id"] = o.Id
+	if !IsNil(o.IdentitySchema) {
+		toSerialize["identity_schema"] = o.IdentitySchema
+	}
 	toSerialize["issued_at"] = o.IssuedAt
 	if !IsNil(o.Oauth2LoginChallenge) {
 		toSerialize["oauth2_login_challenge"] = o.Oauth2LoginChallenge
@@ -720,6 +757,7 @@ func (o *LoginFlow) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "identity_schema")
 		delete(additionalProperties, "issued_at")
 		delete(additionalProperties, "oauth2_login_challenge")
 		delete(additionalProperties, "oauth2_login_request")

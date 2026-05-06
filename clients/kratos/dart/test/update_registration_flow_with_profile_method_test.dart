@@ -19,7 +19,7 @@ void main() {
       // TODO
     });
 
-    // Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen.
+    // Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
     // String screen
     test('to test the property `screen`', () async {
       // TODO

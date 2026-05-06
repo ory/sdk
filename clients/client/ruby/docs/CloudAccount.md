@@ -8,6 +8,7 @@
 | **email_verified** | **Boolean** |  |  |
 | **id** | **String** |  |  |
 | **name** | **String** |  |  |
+| **organization_id** | **String** |  | [optional] |
 
 ## Example
 
@@ -18,7 +19,8 @@ instance = OryClient::CloudAccount.new(
   email: null,
   email_verified: null,
   id: null,
-  name: null
+  name: null,
+  organization_id: null
 )
 ```
 

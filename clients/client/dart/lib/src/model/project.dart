@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/project_cors.dart';
+import 'package:ory_client/src/model/basic_organization.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/project_services.dart';
 import 'package:built_value/built_value.dart';
@@ -20,6 +21,7 @@ part 'project.g.dart';
 /// * [homeRegion] - The project home region.  This is used to set where the project data is stored and where the project's endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global
 /// * [id] - The project's ID.
 /// * [name] - The name of the project.
+/// * [organizations] - The organizations of the project.  Organizations are used to group users and enforce certain restrictions like usage of SSO.
 /// * [revisionId] - The configuration revision ID.
 /// * [services] 
 /// * [slug] - The project's slug
@@ -50,6 +52,10 @@ abstract class Project implements Built<Project, ProjectBuilder> {
   /// The name of the project.
   @BuiltValueField(wireName: r'name')
   String get name;
+
+  /// The organizations of the project.  Organizations are used to group users and enforce certain restrictions like usage of SSO.
+  @BuiltValueField(wireName: r'organizations')
+  BuiltList<BasicOrganization> get organizations;
 
   /// The configuration revision ID.
   @BuiltValueField(wireName: r'revision_id')
@@ -126,6 +132,11 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
     yield serializers.serialize(
       object.name,
       specifiedType: const FullType(String),
+    );
+    yield r'organizations';
+    yield serializers.serialize(
+      object.organizations,
+      specifiedType: const FullType(BuiltList, [FullType(BasicOrganization)]),
     );
     yield r'revision_id';
     yield serializers.serialize(
@@ -218,6 +229,13 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
             specifiedType: const FullType(String),
           ) as String;
           result.name = valueDes;
+          break;
+        case r'organizations':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(BasicOrganization)]),
+          ) as BuiltList<BasicOrganization>;
+          result.organizations.replace(valueDes);
           break;
         case r'revision_id':
           final valueDes = serializers.deserialize(

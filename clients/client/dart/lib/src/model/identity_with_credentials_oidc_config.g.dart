@@ -9,8 +9,6 @@ part of 'identity_with_credentials_oidc_config.dart';
 class _$IdentityWithCredentialsOidcConfig
     extends IdentityWithCredentialsOidcConfig {
   @override
-  final IdentityWithCredentialsPasswordConfig? config;
-  @override
   final BuiltList<IdentityWithCredentialsOidcConfigProvider>? providers;
 
   factory _$IdentityWithCredentialsOidcConfig(
@@ -18,8 +16,7 @@ class _$IdentityWithCredentialsOidcConfig
       (new IdentityWithCredentialsOidcConfigBuilder()..update(updates))
           ._build();
 
-  _$IdentityWithCredentialsOidcConfig._({this.config, this.providers})
-      : super._();
+  _$IdentityWithCredentialsOidcConfig._({this.providers}) : super._();
 
   @override
   IdentityWithCredentialsOidcConfig rebuild(
@@ -34,14 +31,12 @@ class _$IdentityWithCredentialsOidcConfig
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is IdentityWithCredentialsOidcConfig &&
-        config == other.config &&
         providers == other.providers;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, config.hashCode);
     _$hash = $jc(_$hash, providers.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -50,7 +45,6 @@ class _$IdentityWithCredentialsOidcConfig
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'IdentityWithCredentialsOidcConfig')
-          ..add('config', config)
           ..add('providers', providers))
         .toString();
   }
@@ -61,12 +55,6 @@ class IdentityWithCredentialsOidcConfigBuilder
         Builder<IdentityWithCredentialsOidcConfig,
             IdentityWithCredentialsOidcConfigBuilder> {
   _$IdentityWithCredentialsOidcConfig? _$v;
-
-  IdentityWithCredentialsPasswordConfigBuilder? _config;
-  IdentityWithCredentialsPasswordConfigBuilder get config =>
-      _$this._config ??= new IdentityWithCredentialsPasswordConfigBuilder();
-  set config(IdentityWithCredentialsPasswordConfigBuilder? config) =>
-      _$this._config = config;
 
   ListBuilder<IdentityWithCredentialsOidcConfigProvider>? _providers;
   ListBuilder<IdentityWithCredentialsOidcConfigProvider> get providers =>
@@ -83,7 +71,6 @@ class IdentityWithCredentialsOidcConfigBuilder
   IdentityWithCredentialsOidcConfigBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _config = $v.config?.toBuilder();
       _providers = $v.providers?.toBuilder();
       _$v = null;
     }
@@ -110,12 +97,10 @@ class IdentityWithCredentialsOidcConfigBuilder
     try {
       _$result = _$v ??
           new _$IdentityWithCredentialsOidcConfig._(
-              config: _config?.build(), providers: _providers?.build());
+              providers: _providers?.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'config';
-        _config?.build();
         _$failedField = 'providers';
         _providers?.build();
       } catch (e) {

@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/update_registration_flow_with_code_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_oidc_method.dart';
+import 'package:ory_client/src/model/update_registration_flow_with_saml_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_web_authn_method.dart';
 import 'package:ory_client/src/model/update_registration_flow_with_password_method.dart';
 import 'package:built_collection/built_collection.dart';
@@ -37,7 +38,7 @@ part 'update_registration_flow_body.g.dart';
 /// * [screen] - Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
 @BuiltValue()
 abstract class UpdateRegistrationFlowBody implements Built<UpdateRegistrationFlowBody, UpdateRegistrationFlowBodyBuilder> {
-  /// One Of [UpdateRegistrationFlowWithCodeMethod], [UpdateRegistrationFlowWithOidcMethod], [UpdateRegistrationFlowWithPasskeyMethod], [UpdateRegistrationFlowWithPasswordMethod], [UpdateRegistrationFlowWithProfileMethod], [UpdateRegistrationFlowWithWebAuthnMethod]
+  /// One Of [UpdateRegistrationFlowWithCodeMethod], [UpdateRegistrationFlowWithOidcMethod], [UpdateRegistrationFlowWithPasskeyMethod], [UpdateRegistrationFlowWithPasswordMethod], [UpdateRegistrationFlowWithProfileMethod], [UpdateRegistrationFlowWithSamlMethod], [UpdateRegistrationFlowWithWebAuthnMethod]
   OneOf get oneOf;
 
   static const String discriminatorFieldName = r'method';
@@ -48,6 +49,7 @@ abstract class UpdateRegistrationFlowBody implements Built<UpdateRegistrationFlo
     r'passkey': UpdateRegistrationFlowWithPasskeyMethod,
     r'password': UpdateRegistrationFlowWithPasswordMethod,
     r'profile': UpdateRegistrationFlowWithProfileMethod,
+    r'saml': UpdateRegistrationFlowWithSamlMethod,
     r'webauthn': UpdateRegistrationFlowWithWebAuthnMethod,
   };
 
@@ -79,6 +81,9 @@ extension UpdateRegistrationFlowBodyDiscriminatorExt on UpdateRegistrationFlowBo
         if (this is UpdateRegistrationFlowWithProfileMethod) {
             return r'profile';
         }
+        if (this is UpdateRegistrationFlowWithSamlMethod) {
+            return r'saml';
+        }
         if (this is UpdateRegistrationFlowWithWebAuthnMethod) {
             return r'webauthn';
         }
@@ -101,6 +106,9 @@ extension UpdateRegistrationFlowBodyBuilderDiscriminatorExt on UpdateRegistratio
         }
         if (this is UpdateRegistrationFlowWithProfileMethodBuilder) {
             return r'profile';
+        }
+        if (this is UpdateRegistrationFlowWithSamlMethodBuilder) {
+            return r'saml';
         }
         if (this is UpdateRegistrationFlowWithWebAuthnMethodBuilder) {
             return r'webauthn';
@@ -145,7 +153,7 @@ class _$UpdateRegistrationFlowBodySerializer implements PrimitiveSerializer<Upda
     final discIndex = serializedList.indexOf(UpdateRegistrationFlowBody.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UpdateRegistrationFlowWithCodeMethod, UpdateRegistrationFlowWithOidcMethod, UpdateRegistrationFlowWithPasskeyMethod, UpdateRegistrationFlowWithPasswordMethod, UpdateRegistrationFlowWithProfileMethod, UpdateRegistrationFlowWithWebAuthnMethod, ];
+    final oneOfTypes = [UpdateRegistrationFlowWithCodeMethod, UpdateRegistrationFlowWithOidcMethod, UpdateRegistrationFlowWithPasskeyMethod, UpdateRegistrationFlowWithPasswordMethod, UpdateRegistrationFlowWithProfileMethod, UpdateRegistrationFlowWithSamlMethod, UpdateRegistrationFlowWithWebAuthnMethod, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
@@ -183,6 +191,13 @@ class _$UpdateRegistrationFlowBodySerializer implements PrimitiveSerializer<Upda
           specifiedType: FullType(UpdateRegistrationFlowWithProfileMethod),
         ) as UpdateRegistrationFlowWithProfileMethod;
         oneOfType = UpdateRegistrationFlowWithProfileMethod;
+        break;
+      case r'saml':
+        oneOfResult = serializers.deserialize(
+          oneOfDataSrc,
+          specifiedType: FullType(UpdateRegistrationFlowWithSamlMethod),
+        ) as UpdateRegistrationFlowWithSamlMethod;
+        oneOfType = UpdateRegistrationFlowWithSamlMethod;
         break;
       case r'webauthn':
         oneOfResult = serializers.deserialize(

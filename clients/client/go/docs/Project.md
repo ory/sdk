@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **HomeRegion** | **string** | The project home region.  This is used to set where the project data is stored and where the project&#39;s endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | 
 **Id** | **string** | The project&#39;s ID. | [readonly] 
 **Name** | **string** | The name of the project. | 
+**Organizations** | [**[]BasicOrganization**](BasicOrganization.md) | The organizations of the project.  Organizations are used to group users and enforce certain restrictions like usage of SSO. | 
 **RevisionId** | **string** | The configuration revision ID. | [readonly] 
 **Services** | [**ProjectServices**](ProjectServices.md) |  | 
 **Slug** | **string** | The project&#39;s slug | [readonly] 
@@ -20,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewProject
 
-`func NewProject(environment string, homeRegion string, id string, name string, revisionId string, services ProjectServices, slug string, state string, ) *Project`
+`func NewProject(environment string, homeRegion string, id string, name string, organizations []BasicOrganization, revisionId string, services ProjectServices, slug string, state string, ) *Project`
 
 NewProject instantiates a new Project object
 This constructor will assign default values to properties that have it defined,
@@ -163,6 +164,26 @@ and a boolean to check if the value has been set.
 `func (o *Project) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetOrganizations
+
+`func (o *Project) GetOrganizations() []BasicOrganization`
+
+GetOrganizations returns the Organizations field if non-nil, zero value otherwise.
+
+### GetOrganizationsOk
+
+`func (o *Project) GetOrganizationsOk() (*[]BasicOrganization, bool)`
+
+GetOrganizationsOk returns a tuple with the Organizations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizations
+
+`func (o *Project) SetOrganizations(v []BasicOrganization)`
+
+SetOrganizations sets Organizations field to given value.
 
 
 ### GetRevisionId

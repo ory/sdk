@@ -5,7 +5,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config** | [**IdentityWithCredentialsPasswordConfig**](IdentityWithCredentialsPasswordConfig.md) |  | [optional] 
 **providers** | [**List[IdentityWithCredentialsOidcConfigProvider]**](IdentityWithCredentialsOidcConfigProvider.md) | A list of OpenID Connect Providers | [optional] 
 
 ## Example

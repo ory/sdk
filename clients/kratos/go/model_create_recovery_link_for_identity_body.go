@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v25.4.0
 Contact: office@ory.sh
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &CreateRecoveryLinkForIdentityBody{}
 // CreateRecoveryLinkForIdentityBody Create Recovery Link for Identity Request Body
 type CreateRecoveryLinkForIdentityBody struct {
 	// Link Expires In  The recovery link will expire after that amount of time has passed. Defaults to the configuration value of `selfservice.methods.code.config.lifespan`.
-	ExpiresIn *string `json:"expires_in,omitempty"`
+	ExpiresIn *string `json:"expires_in,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
 	// Identity to Recover  The identity's ID you wish to recover.
 	IdentityId string `json:"identity_id"`
 	AdditionalProperties map[string]interface{}

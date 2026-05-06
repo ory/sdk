@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | Option<**String**> | CreatedAt is a helper struct field for gobuffalo.pop. | [optional]
-**id** | **String** |  | 
+**id** | Option<**String**> |  | [optional]
 **updated_at** | Option<**String**> | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional]
 **value** | **String** |  | 
 **via** | **String** |  | 

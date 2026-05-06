@@ -5,6 +5,7 @@
 export 'package:ory_keto_client/src/api.dart';
 export 'package:ory_keto_client/src/auth/api_key_auth.dart';
 export 'package:ory_keto_client/src/auth/basic_auth.dart';
+export 'package:ory_keto_client/src/auth/bearer_auth.dart';
 export 'package:ory_keto_client/src/auth/oauth.dart';
 export 'package:ory_keto_client/src/serializers.dart';
 export 'package:ory_keto_client/src/model/date.dart';
@@ -13,8 +14,11 @@ export 'package:ory_keto_client/src/api/metadata_api.dart';
 export 'package:ory_keto_client/src/api/permission_api.dart';
 export 'package:ory_keto_client/src/api/relationship_api.dart';
 
+export 'package:ory_keto_client/src/model/batch_check_permission_body.dart';
+export 'package:ory_keto_client/src/model/batch_check_permission_result.dart';
 export 'package:ory_keto_client/src/model/check_opl_syntax_result.dart';
 export 'package:ory_keto_client/src/model/check_permission_result.dart';
+export 'package:ory_keto_client/src/model/check_permission_result_with_error.dart';
 export 'package:ory_keto_client/src/model/create_relationship_body.dart';
 export 'package:ory_keto_client/src/model/error_generic.dart';
 export 'package:ory_keto_client/src/model/expanded_permission_tree.dart';
@@ -36,3 +40,4 @@ export 'package:ory_keto_client/src/model/relationships.dart';
 export 'package:ory_keto_client/src/model/source_position.dart';
 export 'package:ory_keto_client/src/model/subject_set.dart';
 export 'package:ory_keto_client/src/model/version.dart';
+

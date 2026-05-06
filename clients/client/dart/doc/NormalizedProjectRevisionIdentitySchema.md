@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **isDefault** | **bool** | If true sets the default schema for identities  Only one schema can ever be the default schema. If you try to add two schemas with default to true, the request will fail. | [optional] 
 **preset** | **String** | Use a preset instead of a custom identity schema. | [optional] 
 **projectRevisionId** | **String** | The Revision's ID this schema belongs to | [optional] 
+**selfserviceSelectable** | **bool** |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) | Last Time Project's Revision was Updated | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

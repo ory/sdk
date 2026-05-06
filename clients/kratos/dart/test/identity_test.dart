@@ -19,6 +19,12 @@ void main() {
       // TODO
     });
 
+    // ExternalID is an optional external ID of the identity. This is used to link the identity to an external system. If set, the external ID must be unique across all identities.
+    // String externalId
+    test('to test the property `externalId`', () async {
+      // TODO
+    });
+
     // ID is the identity's unique identifier.  The Identity ID can not be changed and can not be chosen. This ensures future compatibility and optimization for distributed stores such as CockroachDB.
     // String id
     test('to test the property `id`', () async {

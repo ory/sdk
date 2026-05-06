@@ -37,5 +37,10 @@ void main() {
       // TODO
     });
 
+    // bool useAutoLink
+    test('to test the property `useAutoLink`', () async {
+      // TODO
+    });
+
   });
 }

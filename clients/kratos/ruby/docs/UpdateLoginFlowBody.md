@@ -15,10 +15,12 @@ OryKratosClient::UpdateLoginFlowBody.openapi_one_of
 # =>
 # [
 #   :'UpdateLoginFlowWithCodeMethod',
+#   :'UpdateLoginFlowWithIdentifierFirstMethod',
 #   :'UpdateLoginFlowWithLookupSecretMethod',
 #   :'UpdateLoginFlowWithOidcMethod',
 #   :'UpdateLoginFlowWithPasskeyMethod',
 #   :'UpdateLoginFlowWithPasswordMethod',
+#   :'UpdateLoginFlowWithSamlMethod',
 #   :'UpdateLoginFlowWithTotpMethod',
 #   :'UpdateLoginFlowWithWebAuthnMethod'
 # ]
@@ -50,10 +52,12 @@ OryKratosClient::UpdateLoginFlowBody.openapi_discriminator_mapping
 # =>
 # {
 #   :'code' => :'UpdateLoginFlowWithCodeMethod',
+#   :'identifier_first' => :'UpdateLoginFlowWithIdentifierFirstMethod',
 #   :'lookup_secret' => :'UpdateLoginFlowWithLookupSecretMethod',
 #   :'oidc' => :'UpdateLoginFlowWithOidcMethod',
 #   :'passkey' => :'UpdateLoginFlowWithPasskeyMethod',
 #   :'password' => :'UpdateLoginFlowWithPasswordMethod',
+#   :'saml' => :'UpdateLoginFlowWithSamlMethod',
 #   :'totp' => :'UpdateLoginFlowWithTotpMethod',
 #   :'webauthn' => :'UpdateLoginFlowWithWebAuthnMethod'
 # }
@@ -84,10 +88,12 @@ OryKratosClient::UpdateLoginFlowBody.build(data_that_doesnt_match)
 #### Return type
 
 - `UpdateLoginFlowWithCodeMethod`
+- `UpdateLoginFlowWithIdentifierFirstMethod`
 - `UpdateLoginFlowWithLookupSecretMethod`
 - `UpdateLoginFlowWithOidcMethod`
 - `UpdateLoginFlowWithPasskeyMethod`
 - `UpdateLoginFlowWithPasswordMethod`
+- `UpdateLoginFlowWithSamlMethod`
 - `UpdateLoginFlowWithTotpMethod`
 - `UpdateLoginFlowWithWebAuthnMethod`
 - `nil` (if no type matches)

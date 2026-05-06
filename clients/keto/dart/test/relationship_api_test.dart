@@ -38,7 +38,7 @@ void main() {
     //
     // Get all relationships that match the query. Only the namespace field is required.
     //
-    //Future<Relationships> getRelationships({ String pageToken, int pageSize, String namespace, String object, String relation, String subjectId, String subjectSetPeriodNamespace, String subjectSetPeriodObject, String subjectSetPeriodRelation }) async
+    //Future<Relationships> getRelationships({ int pageSize, String pageToken, String namespace, String object, String relation, String subjectId, String subjectSetPeriodNamespace, String subjectSetPeriodObject, String subjectSetPeriodRelation }) async
     test('test getRelationships', () async {
       // TODO
     });

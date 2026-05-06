@@ -4,6 +4,16 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **account_experience_custom_translations** | [**Array&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) | The Account Experience&#39;s Custom Translations  Contains all Custom Translations for this project. | [optional] |
+| **account_experience_default_locale** | **String** | Holds the default locale for the account experience. | [optional] |
+| **account_experience_enabled_locales** | **Array&lt;String&gt;** |  | [optional] |
+| **account_experience_favicon_dark** | **String** | Holds the URL to the account experience&#39;s dark theme favicon (currently unused). | [optional] |
+| **account_experience_favicon_light** | **String** | Holds the URL to the account experience&#39;s favicon. | [optional] |
+| **account_experience_locale_behavior** | **String** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. | [optional] |
+| **account_experience_logo_dark** | **String** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). | [optional] |
+| **account_experience_logo_light** | **String** | Holds the URL to the account experience&#39;s logo. | [optional] |
+| **account_experience_theme_variables_dark** | **String** | Holds the URL to the account experience&#39;s dark theme variables. | [optional] |
+| **account_experience_theme_variables_light** | **String** | Holds the URL to the account experience&#39;s light theme variables. | [optional] |
 | **created_at** | **Time** | The Project&#39;s Revision Creation Date | [optional][readonly] |
 | **disable_account_experience_welcome_screen** | **Boolean** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. | [optional] |
 | **enable_ax_v2** | **Boolean** | Whether the new account experience is enabled and reachable. | [optional] |
@@ -15,6 +25,7 @@
 | **hydra_oauth2_grant_jwt_iat_optional** | **Boolean** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] |
 | **hydra_oauth2_grant_jwt_jti_optional** | **Boolean** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] |
 | **hydra_oauth2_grant_jwt_max_ttl** | **String** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional][default to &#39;720h&#39;] |
+| **hydra_oauth2_grant_refresh_token_rotation_grace_period** | **String** | Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to &#x60;null&#x60; or &#x60;\&quot;0s\&quot;&#x60;, the graceful refresh token rotation is disabled.  This governs the \&quot;oauth2.grant.refresh_token_rotation_grace_period\&quot; setting. | [optional] |
 | **hydra_oauth2_mirror_top_level_claims** | **Boolean** | Set to false if you don&#39;t want to mirror custom claims under &#39;ext&#39;.  This governs the \&quot;oauth2.mirror_top_level_claims\&quot; setting. | [optional] |
 | **hydra_oauth2_pkce_enforced** | **Boolean** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] |
 | **hydra_oauth2_pkce_enforced_for_public_clients** | **Boolean** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] |
@@ -25,6 +36,7 @@
 | **hydra_oidc_subject_identifiers_pairwise_salt** | **String** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] |
 | **hydra_oidc_subject_identifiers_supported_types** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_secrets_cookie** | **Array&lt;String&gt;** |  | [optional] |
+| **hydra_secrets_pagination** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_secrets_system** | **Array&lt;String&gt;** |  | [optional] |
 | **hydra_serve_cookies_same_site_legacy_workaround** | **Boolean** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. | [optional] |
 | **hydra_serve_cookies_same_site_mode** | **String** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] |
@@ -54,6 +66,7 @@
 | **id** | **String** | The revision ID. | [optional][readonly] |
 | **keto_namespace_configuration** | **String** | The Revisions&#39; Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration. | [optional] |
 | **keto_namespaces** | [**Array&lt;KetoNamespace&gt;**](KetoNamespace.md) |  | [optional] |
+| **keto_secrets_pagination** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_cookies_same_site** | **String** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] |
 | **kratos_courier_channels** | [**Array&lt;NormalizedProjectRevisionCourierChannel&gt;**](NormalizedProjectRevisionCourierChannel.md) |  | [optional] |
 | **kratos_courier_delivery_strategy** | **String** | The delivery strategy to use when sending emails  &#x60;smtp&#x60;: Use SMTP server &#x60;http&#x60;: Use the built in HTTP client to send the email to some remote service | [optional][default to &#39;smtp&#39;] |
@@ -107,7 +120,12 @@
 | **kratos_courier_templates_verification_valid_email_subject** | **String** | Configures the Ory Kratos Valid Verification Email Subject Template  This governs the \&quot;courier.smtp.templates.verification.valid.email.subject\&quot; setting. | [optional] |
 | **kratos_feature_flags_cacheable_sessions** | **Boolean** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] |
 | **kratos_feature_flags_cacheable_sessions_max_age** | **String** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional] |
+| **kratos_feature_flags_choose_recovery_address** | **Boolean** | This governs the \&quot;feature_flags.choose_recovery_address\&quot; setting. | [optional] |
 | **kratos_feature_flags_faster_session_extend** | **Boolean** | Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \&quot;feature_flags.faster_session_extend\&quot; setting. | [optional] |
+| **kratos_feature_flags_legacy_continue_with_verification_ui** | **Boolean** | Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including &#x60;show_verification_ui&#x60; in the registration flow&#39;s &#x60;continue_with&#x60; when verification is enabled. If set to false, &#x60;show_verification_ui&#x60; is only set in &#x60;continue_with&#x60; if the &#x60;show_verification_ui&#x60; hook is used. This flag will be removed in the future.  This governs the \&quot;feature_flags.legacy_continue_with_verification_ui\&quot; setting. | [optional] |
+| **kratos_feature_flags_legacy_oidc_registration_node_group** | **Boolean** | Controls whether the UI nodes in an OIDC registration flow have group \&quot;oidc\&quot; in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \&quot;oidc\&quot; and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \&quot;feature_flags.legacy_oidc_registration_node_group\&quot; setting. | [optional] |
+| **kratos_feature_flags_legacy_require_verified_login_error** | **Boolean** | Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the &#x60;continue_with&#x60; array will contain a &#x60;show_verification_ui&#x60; hook instead.  This flag is deprecated and will be removed in the future.  This governs the \&quot;feature_flags.legacy_require_verified_login_error\&quot; setting. | [optional] |
+| **kratos_feature_flags_password_profile_registration_node_group** | **Boolean** | Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \&quot;password\&quot; if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \&quot;default\&quot;. | [optional] |
 | **kratos_feature_flags_use_continue_with_transitions** | **Boolean** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional] |
 | **kratos_identity_schemas** | [**Array&lt;NormalizedProjectRevisionIdentitySchema&gt;**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] |
 | **kratos_oauth2_provider_headers** | **Object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] |
@@ -117,6 +135,8 @@
 | **kratos_secrets_cipher** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_secrets_cookie** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_secrets_default** | **Array&lt;String&gt;** |  | [optional] |
+| **kratos_secrets_pagination** | **Array&lt;String&gt;** |  | [optional] |
+| **kratos_security_account_enumeration_mitigate** | **Boolean** | Configures if account enumeration should be mitigated when using identifier first login. | [optional] |
 | **kratos_selfservice_allowed_return_urls** | **Array&lt;String&gt;** |  | [optional] |
 | **kratos_selfservice_default_browser_return_url** | **String** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_error_ui_url** | **String** | Configures the Ory Kratos Error UI URL  This governs the \&quot;selfservice.flows.error.ui_url\&quot; setting. | [optional] |
@@ -166,7 +186,13 @@
 | **kratos_selfservice_flows_verification_notify_unknown_recipients** | **Boolean** | Configures whether to notify unknown recipients of a Ory Kratos verification flow  This governs the \&quot;selfservice.flows.verification.notify_unknown_recipients\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_verification_ui_url** | **String** | Configures the Ory Kratos Verification UI URL  This governs the \&quot;selfservice.flows.verification.ui_url\&quot; setting. | [optional] |
 | **kratos_selfservice_flows_verification_use** | **String** | Configures the Ory Kratos Strategy to use for Verification  This governs the \&quot;selfservice.flows.verification.use\&quot; setting. link SelfServiceMessageVerificationStrategyLink code SelfServiceMessageVerificationStrategyCode | [optional] |
+| **kratos_selfservice_methods_captcha_config_allowed_domains** | **Array&lt;String&gt;** |  | [optional] |
+| **kratos_selfservice_methods_captcha_config_cf_turnstile_secret** | **String** | Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature. | [optional] |
+| **kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey** | **String** | Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature. | [optional] |
+| **kratos_selfservice_methods_captcha_config_legacy_inject_node** | **Boolean** | Configures the Ory Kratos Self-Service Methods&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] |
+| **kratos_selfservice_methods_captcha_enabled** | **Boolean** | Configures the Ory Kratos Self-Service Methods&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature. | [optional] |
 | **kratos_selfservice_methods_code_config_lifespan** | **String** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_code_config_max_submissions** | **Integer** |  | [optional] |
 | **kratos_selfservice_methods_code_config_missing_credential_fallback_enabled** | **Boolean** | Enables a fallback method required in certain legacy use cases.  This governs the \&quot;selfservice.methods.code.config.missing_credential_fallback_enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_enabled** | **Boolean** | Configures whether Ory Kratos Code Method is enabled  This governs the \&quot;selfservice.methods.code.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_mfa_enabled** | **Boolean** | Configures whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] |
@@ -178,6 +204,7 @@
 | **kratos_selfservice_methods_lookup_secret_enabled** | **Boolean** | Configures whether Ory Kratos TOTP Lookup Secret is enabled  This governs the \&quot;selfservice.methods.lookup_secret.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_oidc_config_base_redirect_uri** | **String** | Configures the Ory Kratos Third Party / OpenID Connect base redirect URI  This governs the \&quot;selfservice.methods.oidc.config.base_redirect_uri\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_oidc_config_providers** | [**Array&lt;NormalizedProjectRevisionThirdPartyProvider&gt;**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] |
+| **kratos_selfservice_methods_oidc_enable_auto_link_policy** | **Boolean** | Configures whether Ory Kratos allows auto-linking of OIDC credentials without a subject  This governs the \&quot;selfservice.methods.oidc.enable_auto_link_policy\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_oidc_enabled** | **Boolean** | Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \&quot;selfservice.methods.oidc.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_passkey_config_rp_display_name** | **String** | Configures the Ory Kratos Passkey RP Display Name  This governs the \&quot;selfservice.methods.passkey.config.rp.display_name\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_passkey_config_rp_id** | **String** | Configures the Ory Kratos Passkey RP ID  This governs the \&quot;selfservice.methods.passkey.config.rp.id\&quot; setting. | [optional] |
@@ -190,6 +217,8 @@
 | **kratos_selfservice_methods_password_config_min_password_length** | **Integer** | Configures the minimum length of passwords.  This governs the \&quot;selfservice.methods.password.config.min_password_length\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_password_enabled** | **Boolean** | Configures whether Ory Kratos Password Method is enabled  This governs the \&quot;selfservice.methods.password.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_profile_enabled** | **Boolean** | Configures whether Ory Kratos Profile Method is enabled  This governs the \&quot;selfservice.methods.profile.enabled\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_saml_config_providers** | [**Array&lt;NormalizedProjectRevisionSAMLProvider&gt;**](NormalizedProjectRevisionSAMLProvider.md) |  | [optional] |
+| **kratos_selfservice_methods_saml_enabled** | **Boolean** | Configures whether Ory Kratos SAML Login is enabled  This governs the \&quot;selfservice.methods.saml.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_totp_config_issuer** | **String** | Configures Ory Kratos TOTP Issuer  This governs the \&quot;selfservice.methods.totp.config.issuer\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_totp_enabled** | **Boolean** | Configures whether Ory Kratos TOTP Method is enabled  This governs the \&quot;selfservice.methods.totp.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_webauthn_config_passwordless** | **Boolean** | Configures whether Ory Kratos Webauthn is used for passwordless flows  This governs the \&quot;selfservice.methods.webauthn.config.passwordless\&quot; setting. | [optional] |
@@ -204,8 +233,10 @@
 | **kratos_session_whoami_required_aal** | **String** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] |
 | **kratos_session_whoami_tokenizer_templates** | [**Array&lt;NormalizedProjectRevisionTokenizerTemplate&gt;**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional] |
 | **name** | **String** | The project&#39;s name. |  |
+| **organizations** | [**Array&lt;Organization&gt;**](Organization.md) |  | [optional] |
 | **project_id** | **String** | The Revision&#39;s Project ID | [optional] |
 | **project_revision_hooks** | [**Array&lt;NormalizedProjectRevisionHook&gt;**](NormalizedProjectRevisionHook.md) |  | [optional] |
+| **scim_clients** | [**Array&lt;NormalizedProjectRevisionScimClient&gt;**](NormalizedProjectRevisionScimClient.md) |  | [optional] |
 | **serve_admin_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
 | **serve_admin_cors_enabled** | **Boolean** | Enable CORS headers on all admin APIs  This governs the \&quot;serve.admin.cors.enabled\&quot; setting. | [optional] |
 | **serve_public_cors_allowed_origins** | **Array&lt;String&gt;** |  | [optional] |
@@ -220,6 +251,16 @@
 require 'ory-client'
 
 instance = OryClient::CreateProjectNormalizedPayload.new(
+  account_experience_custom_translations: null,
+  account_experience_default_locale: null,
+  account_experience_enabled_locales: null,
+  account_experience_favicon_dark: null,
+  account_experience_favicon_light: null,
+  account_experience_locale_behavior: null,
+  account_experience_logo_dark: null,
+  account_experience_logo_light: null,
+  account_experience_theme_variables_dark: null,
+  account_experience_theme_variables_light: null,
   created_at: null,
   disable_account_experience_welcome_screen: null,
   enable_ax_v2: null,
@@ -231,6 +272,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   hydra_oauth2_grant_jwt_iat_optional: null,
   hydra_oauth2_grant_jwt_jti_optional: null,
   hydra_oauth2_grant_jwt_max_ttl: 30m,
+  hydra_oauth2_grant_refresh_token_rotation_grace_period: null,
   hydra_oauth2_mirror_top_level_claims: null,
   hydra_oauth2_pkce_enforced: null,
   hydra_oauth2_pkce_enforced_for_public_clients: null,
@@ -241,6 +283,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   hydra_oidc_subject_identifiers_pairwise_salt: null,
   hydra_oidc_subject_identifiers_supported_types: null,
   hydra_secrets_cookie: null,
+  hydra_secrets_pagination: null,
   hydra_secrets_system: null,
   hydra_serve_cookies_same_site_legacy_workaround: null,
   hydra_serve_cookies_same_site_mode: null,
@@ -270,6 +313,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   id: null,
   keto_namespace_configuration: null,
   keto_namespaces: null,
+  keto_secrets_pagination: null,
   kratos_cookies_same_site: null,
   kratos_courier_channels: null,
   kratos_courier_delivery_strategy: null,
@@ -323,7 +367,12 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_courier_templates_verification_valid_email_subject: null,
   kratos_feature_flags_cacheable_sessions: null,
   kratos_feature_flags_cacheable_sessions_max_age: null,
+  kratos_feature_flags_choose_recovery_address: null,
   kratos_feature_flags_faster_session_extend: null,
+  kratos_feature_flags_legacy_continue_with_verification_ui: null,
+  kratos_feature_flags_legacy_oidc_registration_node_group: null,
+  kratos_feature_flags_legacy_require_verified_login_error: null,
+  kratos_feature_flags_password_profile_registration_node_group: null,
   kratos_feature_flags_use_continue_with_transitions: null,
   kratos_identity_schemas: null,
   kratos_oauth2_provider_headers: null,
@@ -333,6 +382,8 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_secrets_cipher: null,
   kratos_secrets_cookie: null,
   kratos_secrets_default: null,
+  kratos_secrets_pagination: null,
+  kratos_security_account_enumeration_mitigate: null,
   kratos_selfservice_allowed_return_urls: null,
   kratos_selfservice_default_browser_return_url: null,
   kratos_selfservice_flows_error_ui_url: null,
@@ -382,7 +433,13 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_selfservice_flows_verification_notify_unknown_recipients: null,
   kratos_selfservice_flows_verification_ui_url: null,
   kratos_selfservice_flows_verification_use: null,
+  kratos_selfservice_methods_captcha_config_allowed_domains: null,
+  kratos_selfservice_methods_captcha_config_cf_turnstile_secret: null,
+  kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey: null,
+  kratos_selfservice_methods_captcha_config_legacy_inject_node: null,
+  kratos_selfservice_methods_captcha_enabled: null,
   kratos_selfservice_methods_code_config_lifespan: null,
+  kratos_selfservice_methods_code_config_max_submissions: null,
   kratos_selfservice_methods_code_config_missing_credential_fallback_enabled: null,
   kratos_selfservice_methods_code_enabled: null,
   kratos_selfservice_methods_code_mfa_enabled: null,
@@ -394,6 +451,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_selfservice_methods_lookup_secret_enabled: null,
   kratos_selfservice_methods_oidc_config_base_redirect_uri: null,
   kratos_selfservice_methods_oidc_config_providers: null,
+  kratos_selfservice_methods_oidc_enable_auto_link_policy: null,
   kratos_selfservice_methods_oidc_enabled: null,
   kratos_selfservice_methods_passkey_config_rp_display_name: null,
   kratos_selfservice_methods_passkey_config_rp_id: null,
@@ -406,6 +464,8 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_selfservice_methods_password_config_min_password_length: null,
   kratos_selfservice_methods_password_enabled: null,
   kratos_selfservice_methods_profile_enabled: null,
+  kratos_selfservice_methods_saml_config_providers: null,
+  kratos_selfservice_methods_saml_enabled: null,
   kratos_selfservice_methods_totp_config_issuer: null,
   kratos_selfservice_methods_totp_enabled: null,
   kratos_selfservice_methods_webauthn_config_passwordless: null,
@@ -420,8 +480,10 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_session_whoami_required_aal: null,
   kratos_session_whoami_tokenizer_templates: null,
   name: null,
+  organizations: null,
   project_id: null,
   project_revision_hooks: null,
+  scim_clients: null,
   serve_admin_cors_allowed_origins: null,
   serve_admin_cors_enabled: null,
   serve_public_cors_allowed_origins: null,

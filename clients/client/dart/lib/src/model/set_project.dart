@@ -4,6 +4,8 @@
 
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/project_cors.dart';
+import 'package:ory_client/src/model/basic_organization.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/project_services.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -16,6 +18,7 @@ part 'set_project.g.dart';
 /// * [corsAdmin] 
 /// * [corsPublic] 
 /// * [name] - The name of the project.
+/// * [organizations] - The organizations that are part of this project.
 /// * [services] 
 @BuiltValue()
 abstract class SetProject implements Built<SetProject, SetProjectBuilder> {
@@ -28,6 +31,10 @@ abstract class SetProject implements Built<SetProject, SetProjectBuilder> {
   /// The name of the project.
   @BuiltValueField(wireName: r'name')
   String get name;
+
+  /// The organizations that are part of this project.
+  @BuiltValueField(wireName: r'organizations')
+  BuiltList<BasicOrganization> get organizations;
 
   @BuiltValueField(wireName: r'services')
   ProjectServices get services;
@@ -69,6 +76,11 @@ class _$SetProjectSerializer implements PrimitiveSerializer<SetProject> {
     yield serializers.serialize(
       object.name,
       specifiedType: const FullType(String),
+    );
+    yield r'organizations';
+    yield serializers.serialize(
+      object.organizations,
+      specifiedType: const FullType(BuiltList, [FullType(BasicOrganization)]),
     );
     yield r'services';
     yield serializers.serialize(
@@ -118,6 +130,13 @@ class _$SetProjectSerializer implements PrimitiveSerializer<SetProject> {
             specifiedType: const FullType(String),
           ) as String;
           result.name = valueDes;
+          break;
+        case r'organizations':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(BasicOrganization)]),
+          ) as BuiltList<BasicOrganization>;
+          result.organizations.replace(valueDes);
           break;
         case r'services':
           final valueDes = serializers.deserialize(

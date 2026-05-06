@@ -1,13 +1,13 @@
 # Ory\Oathkeeper\Client\ApiApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**decisions()**](ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API
-[**getRule()**](ApiApi.md#getRule) | **GET** /rules/{id} | Retrieve a Rule
-[**getWellKnownJSONWebKeys()**](ApiApi.md#getWellKnownJSONWebKeys) | **GET** /.well-known/jwks.json | Lists Cryptographic Keys
-[**listRules()**](ApiApi.md#listRules) | **GET** /rules | List All Rules
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**decisions()**](ApiApi.md#decisions) | **GET** /decisions | Access Control Decision API |
+| [**getRule()**](ApiApi.md#getRule) | **GET** /rules/{id} | Retrieve a Rule |
+| [**getWellKnownJSONWebKeys()**](ApiApi.md#getWellKnownJSONWebKeys) | **GET** /.well-known/jwks.json | Lists Cryptographic Keys |
+| [**listRules()**](ApiApi.md#listRules) | **GET** /rules | List All Rules |
 
 
 ## `decisions()`
@@ -97,9 +97,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**|  | |
 
 ### Return type
 
@@ -207,10 +207,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **limit** | **int**| The maximum amount of rules returned. | [optional]
- **offset** | **int**| The offset from where to start looking. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **limit** | **int**| The maximum amount of rules returned. | [optional] |
+| **offset** | **int**| The offset from where to start looking. | [optional] |
 
 ### Return type
 

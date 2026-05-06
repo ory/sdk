@@ -5,11 +5,14 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_organization**](ProjectApi.md#create_organization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
+[**create_organization_onboarding_portal_link**](ProjectApi.md#create_organization_onboarding_portal_link) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Create organization onboarding portal link
 [**create_project**](ProjectApi.md#create_project) | **POST** /projects | Create a Project
 [**create_project_api_key**](ProjectApi.md#create_project_api_key) | **POST** /projects/{project}/tokens | Create project API key
 [**delete_organization**](ProjectApi.md#delete_organization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
+[**delete_organization_onboarding_portal_link**](ProjectApi.md#delete_organization_onboarding_portal_link) | **DELETE** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Delete an organization onboarding portal link
 [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key
 [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
+[**get_organization_onboarding_portal_links**](ProjectApi.md#get_organization_onboarding_portal_links) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links
 [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
 [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project
 [**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
@@ -21,12 +24,15 @@ Method | HTTP request | Description
 [**remove_project_member**](ProjectApi.md#remove_project_member) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 [**update_organization**](ProjectApi.md#update_organization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
+[**update_organization_onboarding_portal_link**](ProjectApi.md#update_organization_onboarding_portal_link) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link
 
 
 # **create_organization**
 > Organization create_organization(project_id, organization_body=organization_body)
 
 Create an Enterprise SSO Organization
+
+Deprecated: use setProject or patchProjectWithRevision instead
 
 Creates an Enterprise SSO Organization in a project.
 
@@ -104,6 +110,90 @@ Name | Type | Description  | Notes
 **400** | errorGeneric |  -  |
 **403** | errorGeneric |  -  |
 **409** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_organization_onboarding_portal_link**
+> OnboardingPortalLink create_organization_onboarding_portal_link(project_id, organization_id, create_organization_onboarding_portal_link_body=create_organization_onboarding_portal_link_body)
+
+Create organization onboarding portal link
+
+Create a onboarding portal link for an organization.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.models.create_organization_onboarding_portal_link_body import CreateOrganizationOnboardingPortalLinkBody
+from ory_client.models.onboarding_portal_link import OnboardingPortalLink
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.ProjectApi(api_client)
+    project_id = 'project_id_example' # str | Project ID  The project's ID.
+    organization_id = 'organization_id_example' # str | Organization ID  The Organization's ID.
+    create_organization_onboarding_portal_link_body = ory_client.CreateOrganizationOnboardingPortalLinkBody() # CreateOrganizationOnboardingPortalLinkBody |  (optional)
+
+    try:
+        # Create organization onboarding portal link
+        api_response = api_instance.create_organization_onboarding_portal_link(project_id, organization_id, create_organization_onboarding_portal_link_body=create_organization_onboarding_portal_link_body)
+        print("The response of ProjectApi->create_organization_onboarding_portal_link:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectApi->create_organization_onboarding_portal_link: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**| Project ID  The project&#39;s ID. | 
+ **organization_id** | **str**| Organization ID  The Organization&#39;s ID. | 
+ **create_organization_onboarding_portal_link_body** | [**CreateOrganizationOnboardingPortalLinkBody**](CreateOrganizationOnboardingPortalLinkBody.md)|  | [optional] 
+
+### Return type
+
+[**OnboardingPortalLink**](OnboardingPortalLink.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | onboardingPortalLink |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -278,6 +368,8 @@ Name | Type | Description  | Notes
 
 Delete Enterprise SSO Organization
 
+Deprecated: use setProject or patchProjectWithRevision instead
+
 Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
 ### Example
@@ -351,6 +443,88 @@ void (empty response body)
 **403** | errorGeneric |  -  |
 **404** | errorGeneric |  -  |
 **409** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_organization_onboarding_portal_link**
+> delete_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id)
+
+Delete an organization onboarding portal link
+
+Deletes a onboarding portal link for an organization.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.ProjectApi(api_client)
+    project_id = 'project_id_example' # str | 
+    organization_id = 'organization_id_example' # str | 
+    onboarding_portal_link_id = 'onboarding_portal_link_id_example' # str | 
+
+    try:
+        # Delete an organization onboarding portal link
+        api_instance.delete_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id)
+    except Exception as e:
+        print("Exception when calling ProjectApi->delete_organization_onboarding_portal_link: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  | 
+ **organization_id** | **str**|  | 
+ **onboarding_portal_link_id** | **str**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**400** | errorGeneric |  -  |
+**403** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -438,6 +612,8 @@ void (empty response body)
 
 Get Enterprise SSO Organization by ID
 
+Deprecated: use getProject instead
+
 Retrieves an Enterprise SSO Organization for a project by its ID
 
 ### Example
@@ -512,6 +688,90 @@ Name | Type | Description  | Notes
 **200** | getOrganizationResponse |  -  |
 **400** | errorGeneric |  -  |
 **403** | errorGeneric |  -  |
+**404** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_organization_onboarding_portal_links**
+> OrganizationOnboardingPortalLinksResponse get_organization_onboarding_portal_links(project_id, organization_id)
+
+Get the organization onboarding portal links
+
+Retrieves the organization onboarding portal links.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.models.organization_onboarding_portal_links_response import OrganizationOnboardingPortalLinksResponse
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.ProjectApi(api_client)
+    project_id = 'project_id_example' # str | Project ID  The project's ID.
+    organization_id = 'organization_id_example' # str | Organization ID  The Organization's ID.
+
+    try:
+        # Get the organization onboarding portal links
+        api_response = api_instance.get_organization_onboarding_portal_links(project_id, organization_id)
+        print("The response of ProjectApi->get_organization_onboarding_portal_links:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectApi->get_organization_onboarding_portal_links: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**| Project ID  The project&#39;s ID. | 
+ **organization_id** | **str**| Organization ID  The Organization&#39;s ID. | 
+
+### Return type
+
+[**OrganizationOnboardingPortalLinksResponse**](OrganizationOnboardingPortalLinksResponse.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | organizationOnboardingPortalLinksResponse |  -  |
+**400** | errorGeneric |  -  |
+**403** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -521,7 +781,7 @@ Name | Type | Description  | Notes
 
 Get a Project
 
-Get a projects you have access to by its ID.
+Get a project you have access to by its ID.
 
 ### Example
 
@@ -683,6 +943,8 @@ Name | Type | Description  | Notes
 > ListOrganizationsResponse list_organizations(project_id, page_size=page_size, page_token=page_token, domain=domain)
 
 List all Enterprise SSO organizations
+
+Deprecated: use getProject instead
 
 Lists all Enterprise SSO organizations in a project.
 
@@ -928,7 +1190,23 @@ This endpoint does not need any parameter.
 
 Patch an Ory Network Project Configuration
 
-Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.  This endpoints allows you to patch individual Ory Network project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.
+
+This endpoints allows you to patch individual Ory Network project configuration keys for
+Ory's services (identity, permission, ...). The configuration format is fully compatible
+with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+This endpoint expects the `version` key to be set in the payload. If it is unset, it
+will try to import the config as if it is from the most recent version.
+
+If you have an older version of a configuration, you should set the version key in the payload!
+
+While this endpoint is able to process all configuration items related to features (e.g. password reset),
+it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+open source.
+
+For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings
+to help you understand which parts of your config could not be processed.
 
 ### Example
 
@@ -1014,7 +1292,21 @@ Name | Type | Description  | Notes
 
 Patch an Ory Network Project Configuration based on a revision ID
 
-This endpoints allows you to patch individual Ory Network Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+This endpoints allows you to patch individual Ory Network Project configuration keys for
+Ory's services (identity, permission, ...). The configuration format is fully compatible
+with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+This endpoint expects the `version` key to be set in the payload. If it is unset, it
+will try to import the config as if it is from the most recent version.
+
+If you have an older version of a configuration, you should set the version key in the payload!
+
+While this endpoint is able to process all configuration items related to features (e.g. password reset),
+it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+open source.
+
+For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings
+to help you understand which parts of your config could not be processed.
 
 ### Example
 
@@ -1093,6 +1385,7 @@ Name | Type | Description  | Notes
 **401** | errorGeneric |  -  |
 **403** | errorGeneric |  -  |
 **404** | errorGeneric |  -  |
+**409** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1102,7 +1395,14 @@ Name | Type | Description  | Notes
 
 Irrecoverably purge a project
 
-!! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  Calling this endpoint will additionally delete custom domains and other related data.  If the project is linked to a subscription, the subscription needs to be unlinked first.
+!! Use with extreme caution !!
+
+Using this API endpoint you can purge (completely delete) a project and its data.
+This action can not be undone and will delete ALL your data.
+
+Calling this endpoint will additionally delete custom domains and other related data.
+
+If the project is linked to a subscription, the subscription needs to be unlinked first.
 
 ### Example
 
@@ -1181,7 +1481,8 @@ void (empty response body)
 
 Remove a member associated with this project
 
-This also sets their invite status to `REMOVED`. This endpoint requires the user to be a member of the project with the role `OWNER`.
+This also sets their invite status to `REMOVED`.
+This endpoint requires the user to be a member of the project with the role `OWNER`.
 
 ### Example
 
@@ -1261,7 +1562,24 @@ void (empty response body)
 
 Update an Ory Network Project Configuration
 
-This endpoints allows you to update the Ory Network project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
+This endpoints allows you to update the Ory Network project configuration for
+individual services (identity, permission, ...). The configuration is fully compatible
+with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).
+
+This endpoint expects the `version` key to be set in the payload. If it is unset, it
+will try to import the config as if it is from the most recent version.
+
+If you have an older version of a configuration, you should set the version key in the payload!
+
+While this endpoint is able to process all configuration items related to features (e.g. password reset),
+it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the
+open source.
+
+For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings
+to help you understand which parts of your config could not be processed.
+
+Be aware that updating any service's configuration will completely override your current configuration for that
+service!
 
 ### Example
 
@@ -1347,6 +1665,8 @@ Name | Type | Description  | Notes
 
 Update an Enterprise SSO Organization
 
+Deprecated: use setProject or patchProjectWithRevision instead
+
 Updates an Enterprise SSO Organization in a project by its ID.
 
 ### Example
@@ -1426,6 +1746,92 @@ Name | Type | Description  | Notes
 **403** | errorGeneric |  -  |
 **404** | errorGeneric |  -  |
 **409** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_organization_onboarding_portal_link**
+> OnboardingPortalLink update_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id, update_organization_onboarding_portal_link_body=update_organization_onboarding_portal_link_body)
+
+Update organization onboarding portal link
+
+Update a onboarding portal link for an organization.
+
+### Example
+
+* Bearer Authentication (oryWorkspaceApiKey):
+
+```python
+import ory_client
+from ory_client.models.onboarding_portal_link import OnboardingPortalLink
+from ory_client.models.update_organization_onboarding_portal_link_body import UpdateOrganizationOnboardingPortalLinkBody
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryWorkspaceApiKey
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.ProjectApi(api_client)
+    project_id = 'project_id_example' # str | Project ID  The project's ID.
+    organization_id = 'organization_id_example' # str | Organization ID  The Organization's ID.
+    onboarding_portal_link_id = 'onboarding_portal_link_id_example' # str | 
+    update_organization_onboarding_portal_link_body = ory_client.UpdateOrganizationOnboardingPortalLinkBody() # UpdateOrganizationOnboardingPortalLinkBody |  (optional)
+
+    try:
+        # Update organization onboarding portal link
+        api_response = api_instance.update_organization_onboarding_portal_link(project_id, organization_id, onboarding_portal_link_id, update_organization_onboarding_portal_link_body=update_organization_onboarding_portal_link_body)
+        print("The response of ProjectApi->update_organization_onboarding_portal_link:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectApi->update_organization_onboarding_portal_link: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**| Project ID  The project&#39;s ID. | 
+ **organization_id** | **str**| Organization ID  The Organization&#39;s ID. | 
+ **onboarding_portal_link_id** | **str**|  | 
+ **update_organization_onboarding_portal_link_body** | [**UpdateOrganizationOnboardingPortalLinkBody**](UpdateOrganizationOnboardingPortalLinkBody.md)|  | [optional] 
+
+### Return type
+
+[**OnboardingPortalLink**](OnboardingPortalLink.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | onboardingPortalLink |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

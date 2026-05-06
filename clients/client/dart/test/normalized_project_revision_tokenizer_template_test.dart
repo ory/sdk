@@ -43,6 +43,12 @@ void main() {
       // TODO
     });
 
+    // Subject source for the tokenizer  Can be either id or external_id or empty
+    // String subjectSource (default value: 'id')
+    test('to test the property `subjectSource`', () async {
+      // TODO
+    });
+
     // Token time to live
     // String ttl (default value: '1m')
     test('to test the property `ttl`', () async {

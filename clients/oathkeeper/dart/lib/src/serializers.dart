@@ -15,8 +15,11 @@ import 'package:ory_oathkeeper_client/src/date_serializer.dart';
 import 'package:ory_oathkeeper_client/src/model/date.dart';
 
 import 'package:ory_oathkeeper_client/src/model/generic_error.dart';
+import 'package:ory_oathkeeper_client/src/model/get_version200_response.dart';
 import 'package:ory_oathkeeper_client/src/model/health_not_ready_status.dart';
 import 'package:ory_oathkeeper_client/src/model/health_status.dart';
+import 'package:ory_oathkeeper_client/src/model/is_alive200_response.dart';
+import 'package:ory_oathkeeper_client/src/model/is_ready503_response.dart';
 import 'package:ory_oathkeeper_client/src/model/json_web_key.dart';
 import 'package:ory_oathkeeper_client/src/model/json_web_key_set.dart';
 import 'package:ory_oathkeeper_client/src/model/rule.dart';
@@ -29,8 +32,11 @@ part 'serializers.g.dart';
 
 @SerializersFor([
   GenericError,
+  GetVersion200Response,
   HealthNotReadyStatus,
   HealthStatus,
+  IsAlive200Response,
+  IsReady503Response,
   JsonWebKey,
   JsonWebKeySet,
   Rule,
@@ -45,7 +51,7 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<Rule>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType(JsonObject)]),
+        const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
         () => MapBuilder<String, JsonObject>(),
       )
       ..add(const OneOfSerializer())

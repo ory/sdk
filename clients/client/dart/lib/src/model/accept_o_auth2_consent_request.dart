@@ -17,7 +17,6 @@ part 'accept_o_auth2_consent_request.g.dart';
 /// * [context] 
 /// * [grantAccessTokenAudience] 
 /// * [grantScope] 
-/// * [handledAt] 
 /// * [remember] - Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.
 /// * [rememberFor] - RememberFor sets how long the consent authorization should be remembered for in seconds. If set to `0`, the authorization will be remembered indefinitely.
 /// * [session] 
@@ -31,9 +30,6 @@ abstract class AcceptOAuth2ConsentRequest implements Built<AcceptOAuth2ConsentRe
 
   @BuiltValueField(wireName: r'grant_scope')
   BuiltList<String>? get grantScope;
-
-  @BuiltValueField(wireName: r'handled_at')
-  DateTime? get handledAt;
 
   /// Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope.
   @BuiltValueField(wireName: r'remember')
@@ -88,13 +84,6 @@ class _$AcceptOAuth2ConsentRequestSerializer implements PrimitiveSerializer<Acce
       yield serializers.serialize(
         object.grantScope,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.handledAt != null) {
-      yield r'handled_at';
-      yield serializers.serialize(
-        object.handledAt,
-        specifiedType: const FullType(DateTime),
       );
     }
     if (object.remember != null) {
@@ -161,13 +150,6 @@ class _$AcceptOAuth2ConsentRequestSerializer implements PrimitiveSerializer<Acce
             specifiedType: const FullType(BuiltList, [FullType(String)]),
           ) as BuiltList<String>;
           result.grantScope.replace(valueDes);
-          break;
-        case r'handled_at':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.handledAt = valueDes;
           break;
         case r'remember':
           final valueDes = serializers.deserialize(

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The ID of the Identity JSON Schema | [optional] 
-**Schema** | Pointer to **map[string]interface{}** | The actual Identity JSON Schema | [optional] 
+**Id** | **string** | The ID of the Identity JSON Schema | 
+**Schema** | **map[string]interface{}** | The actual Identity JSON Schema | 
 
 ## Methods
 
 ### NewIdentitySchemaContainer
 
-`func NewIdentitySchemaContainer() *IdentitySchemaContainer`
+`func NewIdentitySchemaContainer(id string, schema map[string]interface{}, ) *IdentitySchemaContainer`
 
 NewIdentitySchemaContainer instantiates a new IdentitySchemaContainer object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *IdentitySchemaContainer) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetSchema
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetSchema sets Schema field to given value.
 
-### HasSchema
-
-`func (o *IdentitySchemaContainer) HasSchema() bool`
-
-HasSchema returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

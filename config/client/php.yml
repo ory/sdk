@@ -2,3 +2,5 @@ packageName: ${PHP_PACKAGE_NAME}-php
 variableNamingConvention: camelCase
 invokerPackage: ${PHP_INVOKER_PACKAGE}
 disallowAdditionalPropertiesIfNotPresent: false
+enumUnknownDefaultCase: true
+legacyDiscriminatorBehavior: true

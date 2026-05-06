@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:ory_client/src/model/project_service_permission.dart';
 import 'package:ory_client/src/model/project_service_o_auth2.dart';
+import 'package:ory_client/src/model/project_service_account_experience.dart';
 import 'package:ory_client/src/model/project_service_identity.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -14,11 +15,15 @@ part 'project_services.g.dart';
 /// ProjectServices
 ///
 /// Properties:
+/// * [accountExperience] 
 /// * [identity] 
 /// * [oauth2] 
 /// * [permission] 
 @BuiltValue()
 abstract class ProjectServices implements Built<ProjectServices, ProjectServicesBuilder> {
+  @BuiltValueField(wireName: r'account_experience')
+  ProjectServiceAccountExperience? get accountExperience;
+
   @BuiltValueField(wireName: r'identity')
   ProjectServiceIdentity? get identity;
 
@@ -51,6 +56,13 @@ class _$ProjectServicesSerializer implements PrimitiveSerializer<ProjectServices
     ProjectServices object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.accountExperience != null) {
+      yield r'account_experience';
+      yield serializers.serialize(
+        object.accountExperience,
+        specifiedType: const FullType(ProjectServiceAccountExperience),
+      );
+    }
     if (object.identity != null) {
       yield r'identity';
       yield serializers.serialize(
@@ -95,6 +107,13 @@ class _$ProjectServicesSerializer implements PrimitiveSerializer<ProjectServices
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'account_experience':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ProjectServiceAccountExperience),
+          ) as ProjectServiceAccountExperience;
+          result.accountExperience.replace(valueDes);
+          break;
         case r'identity':
           final valueDes = serializers.deserialize(
             value,

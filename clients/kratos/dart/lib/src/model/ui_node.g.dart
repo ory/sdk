@@ -22,6 +22,11 @@ const UiNodeGroupEnum _$uiNodeGroupEnum_webauthn =
     const UiNodeGroupEnum._('webauthn');
 const UiNodeGroupEnum _$uiNodeGroupEnum_passkey =
     const UiNodeGroupEnum._('passkey');
+const UiNodeGroupEnum _$uiNodeGroupEnum_identifierFirst =
+    const UiNodeGroupEnum._('identifierFirst');
+const UiNodeGroupEnum _$uiNodeGroupEnum_captcha =
+    const UiNodeGroupEnum._('captcha');
+const UiNodeGroupEnum _$uiNodeGroupEnum_saml = const UiNodeGroupEnum._('saml');
 
 UiNodeGroupEnum _$uiNodeGroupEnumValueOf(String name) {
   switch (name) {
@@ -45,6 +50,12 @@ UiNodeGroupEnum _$uiNodeGroupEnumValueOf(String name) {
       return _$uiNodeGroupEnum_webauthn;
     case 'passkey':
       return _$uiNodeGroupEnum_passkey;
+    case 'identifierFirst':
+      return _$uiNodeGroupEnum_identifierFirst;
+    case 'captcha':
+      return _$uiNodeGroupEnum_captcha;
+    case 'saml':
+      return _$uiNodeGroupEnum_saml;
     default:
       throw new ArgumentError(name);
   }
@@ -62,6 +73,9 @@ final BuiltSet<UiNodeGroupEnum> _$uiNodeGroupEnumValues =
   _$uiNodeGroupEnum_lookupSecret,
   _$uiNodeGroupEnum_webauthn,
   _$uiNodeGroupEnum_passkey,
+  _$uiNodeGroupEnum_identifierFirst,
+  _$uiNodeGroupEnum_captcha,
+  _$uiNodeGroupEnum_saml,
 ]);
 
 const UiNodeTypeEnum _$uiNodeTypeEnum_text = const UiNodeTypeEnum._('text');
@@ -69,6 +83,7 @@ const UiNodeTypeEnum _$uiNodeTypeEnum_input = const UiNodeTypeEnum._('input');
 const UiNodeTypeEnum _$uiNodeTypeEnum_img = const UiNodeTypeEnum._('img');
 const UiNodeTypeEnum _$uiNodeTypeEnum_a = const UiNodeTypeEnum._('a');
 const UiNodeTypeEnum _$uiNodeTypeEnum_script = const UiNodeTypeEnum._('script');
+const UiNodeTypeEnum _$uiNodeTypeEnum_div = const UiNodeTypeEnum._('div');
 
 UiNodeTypeEnum _$uiNodeTypeEnumValueOf(String name) {
   switch (name) {
@@ -82,6 +97,8 @@ UiNodeTypeEnum _$uiNodeTypeEnumValueOf(String name) {
       return _$uiNodeTypeEnum_a;
     case 'script':
       return _$uiNodeTypeEnum_script;
+    case 'div':
+      return _$uiNodeTypeEnum_div;
     default:
       throw new ArgumentError(name);
   }
@@ -94,6 +111,7 @@ final BuiltSet<UiNodeTypeEnum> _$uiNodeTypeEnumValues =
   _$uiNodeTypeEnum_img,
   _$uiNodeTypeEnum_a,
   _$uiNodeTypeEnum_script,
+  _$uiNodeTypeEnum_div,
 ]);
 
 Serializer<UiNodeGroupEnum> _$uiNodeGroupEnumSerializer =
@@ -114,6 +132,9 @@ class _$UiNodeGroupEnumSerializer
     'lookupSecret': 'lookup_secret',
     'webauthn': 'webauthn',
     'passkey': 'passkey',
+    'identifierFirst': 'identifier_first',
+    'captcha': 'captcha',
+    'saml': 'saml',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'default': 'default_',
@@ -126,6 +147,9 @@ class _$UiNodeGroupEnumSerializer
     'lookup_secret': 'lookupSecret',
     'webauthn': 'webauthn',
     'passkey': 'passkey',
+    'identifier_first': 'identifierFirst',
+    'captcha': 'captcha',
+    'saml': 'saml',
   };
 
   @override
@@ -153,6 +177,7 @@ class _$UiNodeTypeEnumSerializer
     'img': 'img',
     'a': 'a',
     'script': 'script',
+    'div': 'div',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'text': 'text',
@@ -160,6 +185,7 @@ class _$UiNodeTypeEnumSerializer
     'img': 'img',
     'a': 'a',
     'script': 'script',
+    'div': 'div',
   };
 
   @override

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | Pointer to **map[string]interface{}** | Config contains the configuration for the handler. Please read the user guide for a complete list of each handler&#39;s available settings. | [optional] 
+**Config** | Pointer to **interface{}** | Config contains the configuration for the handler. Please read the user guide for a complete list of each handler&#39;s available settings. | [optional] 
 **Handler** | Pointer to **string** | Handler identifies the implementation which will be used to handle this specific request. Please read the user guide for a complete list of available handlers. | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetConfig
 
-`func (o *RuleHandler) GetConfig() map[string]interface{}`
+`func (o *RuleHandler) GetConfig() interface{}`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *RuleHandler) GetConfigOk() (*map[string]interface{}, bool)`
+`func (o *RuleHandler) GetConfigOk() (*interface{}, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *RuleHandler) SetConfig(v map[string]interface{})`
+`func (o *RuleHandler) SetConfig(v interface{})`
 
 SetConfig sets Config field to given value.
 
@@ -51,6 +51,16 @@ SetConfig sets Config field to given value.
 
 HasConfig returns a boolean if a field has been set.
 
+### SetConfigNil
+
+`func (o *RuleHandler) SetConfigNil(b bool)`
+
+ SetConfigNil sets the value for Config to be an explicit nil
+
+### UnsetConfig
+`func (o *RuleHandler) UnsetConfig()`
+
+UnsetConfig ensures that no value is present for Config, not even an explicit nil
 ### GetHandler
 
 `func (o *RuleHandler) GetHandler() string`

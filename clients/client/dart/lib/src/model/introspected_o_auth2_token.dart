@@ -15,7 +15,7 @@ part 'introspected_o_auth2_token.g.dart';
 /// Properties:
 /// * [active] - Active is a boolean indicator of whether or not the presented token is currently active.  The specifics of a token's \"active\" state will vary depending on the implementation of the authorization server and the information it keeps about its tokens, but a \"true\" value return for the \"active\" property will generally indicate that a given token has been issued by this authorization server, has not been revoked by the resource owner, and is within its given time window of validity (e.g., after its issuance time and before its expiration time).
 /// * [aud] - Audience contains a list of the token's intended audiences.
-/// * [clientId] - ID is aclient identifier for the OAuth 2.0 client that requested this token.
+/// * [clientId] - ID is a client identifier for the OAuth 2.0 client that requested this token.
 /// * [exp] - Expires at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire.
 /// * [ext] - Extra is arbitrary data set by the session.
 /// * [iat] - Issued at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued.
@@ -37,7 +37,7 @@ abstract class IntrospectedOAuth2Token implements Built<IntrospectedOAuth2Token,
   @BuiltValueField(wireName: r'aud')
   BuiltList<String>? get aud;
 
-  /// ID is aclient identifier for the OAuth 2.0 client that requested this token.
+  /// ID is a client identifier for the OAuth 2.0 client that requested this token.
   @BuiltValueField(wireName: r'client_id')
   String? get clientId;
 

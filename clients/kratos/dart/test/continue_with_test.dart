@@ -7,7 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ContinueWith, () {
-    // Action will always be `show_recovery_ui` show_recovery_ui ContinueWithActionShowRecoveryUIString
+    // Action will always be `redirect_browser_to` redirect_browser_to ContinueWithActionRedirectBrowserToString
     // String action
     test('to test the property `action`', () async {
       // TODO
@@ -21,6 +21,12 @@ void main() {
     // Token is the token of the session
     // String orySessionToken
     test('to test the property `orySessionToken`', () async {
+      // TODO
+    });
+
+    // The URL to redirect the browser to
+    // String redirectBrowserTo
+    test('to test the property `redirectBrowserTo`', () async {
       // TODO
     });
 

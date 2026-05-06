@@ -165,6 +165,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   @override
   final DateTime? createdAt;
   @override
+  final String? fedcmConfigUrl;
+  @override
   final String? id;
   @override
   final String? issuerUrl;
@@ -172,6 +174,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   final String? label;
   @override
   final String? mapperUrl;
+  @override
+  final String? netIdTokenOriginHeader;
   @override
   final String? organizationId;
   @override
@@ -182,6 +186,8 @@ class _$NormalizedProjectRevisionThirdPartyProvider
   final String? provider;
   @override
   final String? providerId;
+  @override
+  final String? proxyOidcRedirectUrl;
   @override
   final JsonObject? requestedClaims;
   @override
@@ -213,15 +219,18 @@ class _$NormalizedProjectRevisionThirdPartyProvider
       this.clientId,
       this.clientSecret,
       this.createdAt,
+      this.fedcmConfigUrl,
       this.id,
       this.issuerUrl,
       this.label,
       this.mapperUrl,
+      this.netIdTokenOriginHeader,
       this.organizationId,
       this.pkce,
       this.projectRevisionId,
       this.provider,
       this.providerId,
+      this.proxyOidcRedirectUrl,
       this.requestedClaims,
       this.scope,
       this.state,
@@ -254,15 +263,18 @@ class _$NormalizedProjectRevisionThirdPartyProvider
         clientId == other.clientId &&
         clientSecret == other.clientSecret &&
         createdAt == other.createdAt &&
+        fedcmConfigUrl == other.fedcmConfigUrl &&
         id == other.id &&
         issuerUrl == other.issuerUrl &&
         label == other.label &&
         mapperUrl == other.mapperUrl &&
+        netIdTokenOriginHeader == other.netIdTokenOriginHeader &&
         organizationId == other.organizationId &&
         pkce == other.pkce &&
         projectRevisionId == other.projectRevisionId &&
         provider == other.provider &&
         providerId == other.providerId &&
+        proxyOidcRedirectUrl == other.proxyOidcRedirectUrl &&
         requestedClaims == other.requestedClaims &&
         scope == other.scope &&
         state == other.state &&
@@ -284,15 +296,18 @@ class _$NormalizedProjectRevisionThirdPartyProvider
     _$hash = $jc(_$hash, clientId.hashCode);
     _$hash = $jc(_$hash, clientSecret.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, fedcmConfigUrl.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, issuerUrl.hashCode);
     _$hash = $jc(_$hash, label.hashCode);
     _$hash = $jc(_$hash, mapperUrl.hashCode);
+    _$hash = $jc(_$hash, netIdTokenOriginHeader.hashCode);
     _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, pkce.hashCode);
     _$hash = $jc(_$hash, projectRevisionId.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, providerId.hashCode);
+    _$hash = $jc(_$hash, proxyOidcRedirectUrl.hashCode);
     _$hash = $jc(_$hash, requestedClaims.hashCode);
     _$hash = $jc(_$hash, scope.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
@@ -317,15 +332,18 @@ class _$NormalizedProjectRevisionThirdPartyProvider
           ..add('clientId', clientId)
           ..add('clientSecret', clientSecret)
           ..add('createdAt', createdAt)
+          ..add('fedcmConfigUrl', fedcmConfigUrl)
           ..add('id', id)
           ..add('issuerUrl', issuerUrl)
           ..add('label', label)
           ..add('mapperUrl', mapperUrl)
+          ..add('netIdTokenOriginHeader', netIdTokenOriginHeader)
           ..add('organizationId', organizationId)
           ..add('pkce', pkce)
           ..add('projectRevisionId', projectRevisionId)
           ..add('provider', provider)
           ..add('providerId', providerId)
+          ..add('proxyOidcRedirectUrl', proxyOidcRedirectUrl)
           ..add('requestedClaims', requestedClaims)
           ..add('scope', scope)
           ..add('state', state)
@@ -387,6 +405,11 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
 
+  String? _fedcmConfigUrl;
+  String? get fedcmConfigUrl => _$this._fedcmConfigUrl;
+  set fedcmConfigUrl(String? fedcmConfigUrl) =>
+      _$this._fedcmConfigUrl = fedcmConfigUrl;
+
   String? _id;
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
@@ -402,6 +425,11 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   String? _mapperUrl;
   String? get mapperUrl => _$this._mapperUrl;
   set mapperUrl(String? mapperUrl) => _$this._mapperUrl = mapperUrl;
+
+  String? _netIdTokenOriginHeader;
+  String? get netIdTokenOriginHeader => _$this._netIdTokenOriginHeader;
+  set netIdTokenOriginHeader(String? netIdTokenOriginHeader) =>
+      _$this._netIdTokenOriginHeader = netIdTokenOriginHeader;
 
   String? _organizationId;
   String? get organizationId => _$this._organizationId;
@@ -425,6 +453,11 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
   String? _providerId;
   String? get providerId => _$this._providerId;
   set providerId(String? providerId) => _$this._providerId = providerId;
+
+  String? _proxyOidcRedirectUrl;
+  String? get proxyOidcRedirectUrl => _$this._proxyOidcRedirectUrl;
+  set proxyOidcRedirectUrl(String? proxyOidcRedirectUrl) =>
+      _$this._proxyOidcRedirectUrl = proxyOidcRedirectUrl;
 
   JsonObject? _requestedClaims;
   JsonObject? get requestedClaims => _$this._requestedClaims;
@@ -471,15 +504,18 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
       _clientId = $v.clientId;
       _clientSecret = $v.clientSecret;
       _createdAt = $v.createdAt;
+      _fedcmConfigUrl = $v.fedcmConfigUrl;
       _id = $v.id;
       _issuerUrl = $v.issuerUrl;
       _label = $v.label;
       _mapperUrl = $v.mapperUrl;
+      _netIdTokenOriginHeader = $v.netIdTokenOriginHeader;
       _organizationId = $v.organizationId;
       _pkce = $v.pkce;
       _projectRevisionId = $v.projectRevisionId;
       _provider = $v.provider;
       _providerId = $v.providerId;
+      _proxyOidcRedirectUrl = $v.proxyOidcRedirectUrl;
       _requestedClaims = $v.requestedClaims;
       _scope = $v.scope?.toBuilder();
       _state = $v.state;
@@ -522,15 +558,18 @@ class NormalizedProjectRevisionThirdPartyProviderBuilder
               clientId: clientId,
               clientSecret: clientSecret,
               createdAt: createdAt,
+              fedcmConfigUrl: fedcmConfigUrl,
               id: id,
               issuerUrl: issuerUrl,
               label: label,
               mapperUrl: mapperUrl,
+              netIdTokenOriginHeader: netIdTokenOriginHeader,
               organizationId: organizationId,
               pkce: pkce,
               projectRevisionId: projectRevisionId,
               provider: provider,
               providerId: providerId,
+              proxyOidcRedirectUrl: proxyOidcRedirectUrl,
               requestedClaims: requestedClaims,
               scope: _scope?.build(),
               state: state,

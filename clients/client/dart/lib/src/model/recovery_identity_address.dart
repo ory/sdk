@@ -23,7 +23,7 @@ abstract class RecoveryIdentityAddress implements Built<RecoveryIdentityAddress,
   DateTime? get createdAt;
 
   @BuiltValueField(wireName: r'id')
-  String get id;
+  String? get id;
 
   /// UpdatedAt is a helper struct field for gobuffalo.pop.
   @BuiltValueField(wireName: r'updated_at')
@@ -65,11 +65,13 @@ class _$RecoveryIdentityAddressSerializer implements PrimitiveSerializer<Recover
         specifiedType: const FullType(DateTime),
       );
     }
-    yield r'id';
-    yield serializers.serialize(
-      object.id,
-      specifiedType: const FullType(String),
-    );
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.updatedAt != null) {
       yield r'updated_at';
       yield serializers.serialize(

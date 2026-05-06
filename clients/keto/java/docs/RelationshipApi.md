@@ -12,7 +12,7 @@ All URIs are relative to *http://localhost*
 | [**patchRelationships**](RelationshipApi.md#patchRelationships) | **PATCH** /admin/relation-tuples | Patch Multiple Relationships |
 
 
-<a name="checkOplSyntax"></a>
+<a id="checkOplSyntax"></a>
 # **checkOplSyntax**
 > CheckOplSyntaxResult checkOplSyntax(body)
 
@@ -76,7 +76,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="createRelationship"></a>
+<a id="createRelationship"></a>
 # **createRelationship**
 > Relationship createRelationship(createRelationshipBody)
 
@@ -140,7 +140,7 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="deleteRelationships"></a>
+<a id="deleteRelationships"></a>
 # **deleteRelationships**
 > deleteRelationships(namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
 
@@ -215,9 +215,9 @@ No authorization required
 | **400** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="getRelationships"></a>
+<a id="getRelationships"></a>
 # **getRelationships**
-> Relationships getRelationships(pageToken, pageSize, namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
+> Relationships getRelationships(pageSize, pageToken, namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation)
 
 Query relationships
 
@@ -238,8 +238,8 @@ public class Example {
     defaultClient.setBasePath("http://localhost");
 
     RelationshipApi apiInstance = new RelationshipApi(defaultClient);
-    String pageToken = "pageToken_example"; // String | 
-    Long pageSize = 56L; // Long | 
+    Long pageSize = 250L; // Long | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    String pageToken = "pageToken_example"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
     String namespace = "namespace_example"; // String | Namespace of the Relationship
     String _object = "_object_example"; // String | Object of the Relationship
     String relation = "relation_example"; // String | Relation of the Relationship
@@ -248,7 +248,7 @@ public class Example {
     String subjectSetObject = "subjectSetObject_example"; // String | Object of the Subject Set
     String subjectSetRelation = "subjectSetRelation_example"; // String | Relation of the Subject Set
     try {
-      Relationships result = apiInstance.getRelationships(pageToken, pageSize, namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+      Relationships result = apiInstance.getRelationships(pageSize, pageToken, namespace, _object, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RelationshipApi#getRelationships");
@@ -265,8 +265,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **pageToken** | **String**|  | [optional] |
-| **pageSize** | **Long**|  | [optional] |
+| **pageSize** | **Long**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **namespace** | **String**| Namespace of the Relationship | [optional] |
 | **_object** | **String**| Object of the Relationship | [optional] |
 | **relation** | **String**| Relation of the Relationship | [optional] |
@@ -295,7 +295,7 @@ No authorization required
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="listRelationshipNamespaces"></a>
+<a id="listRelationshipNamespaces"></a>
 # **listRelationshipNamespaces**
 > RelationshipNamespaces listRelationshipNamespaces()
 
@@ -354,7 +354,7 @@ No authorization required
 | **200** | relationshipNamespaces |  -  |
 | **0** | errorGeneric |  -  |
 
-<a name="patchRelationships"></a>
+<a id="patchRelationships"></a>
 # **patchRelationships**
 > patchRelationships(relationshipPatch)
 

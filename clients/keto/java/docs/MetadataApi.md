@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 | [**isReady**](MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status |
 
 
-<a name="getVersion"></a>
+<a id="getVersion"></a>
 # **getVersion**
 > GetVersion200Response getVersion()
 
@@ -67,7 +67,7 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Returns the Ory Keto version. |  -  |
 
-<a name="isAlive"></a>
+<a id="isAlive"></a>
 # **isAlive**
 > IsAlive200Response isAlive()
 
@@ -118,15 +118,15 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ory Keto is ready to accept connections. |  -  |
-| **500** | genericError |  -  |
+| **0** | Unexpected error |  -  |
 
-<a name="isReady"></a>
+<a id="isReady"></a>
 # **isReady**
 > IsAlive200Response isReady()
 
@@ -177,11 +177,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ory Keto is ready to accept requests. |  -  |
 | **503** | Ory Kratos is not yet ready to accept requests. |  -  |
+| **0** | Unexpected error |  -  |
 

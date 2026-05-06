@@ -7,7 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(OAuth2LoginRequest, () {
-    // ID is the identifier (\"login challenge\") of the login request. It is used to identify the session.
+    // ID is the identifier of the login request.
     // String challenge
     test('to test the property `challenge`', () async {
       // TODO

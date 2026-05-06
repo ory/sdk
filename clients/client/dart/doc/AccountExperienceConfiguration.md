@@ -8,16 +8,26 @@ import 'package:ory_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accountExperienceThemeStylesheet** | **String** |  | [optional] 
-**faviconType** | **String** |  | [optional] 
-**faviconUrl** | **String** |  | [optional] 
-**kratosSelfserviceDefaultBrowserReturnUrl** | **String** |  | [optional] 
-**kratosSelfserviceFlowsRecoveryEnabled** | **bool** |  | [optional] 
-**kratosSelfserviceFlowsRegistrationEnabled** | **bool** |  | [optional] 
-**kratosSelfserviceFlowsVerificationEnabled** | **bool** |  | [optional] 
-**logoUrl** | **String** |  | [optional] 
-**name** | **String** |  | [optional] 
-**organizationMap** | **BuiltMap&lt;String, String&gt;** |  | [optional] 
+**defaultLocale** | **String** |  | 
+**defaultRedirectUrl** | **String** |  | 
+**enabledLocales** | **BuiltList&lt;String&gt;** |  | 
+**errorUiUrl** | **String** |  | 
+**faviconDarkUrl** | **String** |  | [optional] 
+**faviconLightUrl** | **String** |  | [optional] 
+**localeBehavior** | **String** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
+**loginUiUrl** | **String** |  | 
+**logoDarkUrl** | **String** |  | [optional] 
+**logoLightUrl** | **String** |  | [optional] 
+**name** | **String** |  | 
+**recoveryEnabled** | **bool** |  | 
+**recoveryUiUrl** | **String** |  | 
+**registrationEnabled** | **bool** |  | 
+**registrationUiUrl** | **String** |  | 
+**settingsUiUrl** | **String** |  | 
+**stylesheet** | **String** |  | [optional] 
+**translations** | [**BuiltList&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) |  | 
+**verificationEnabled** | **bool** |  | 
+**verificationUiUrl** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

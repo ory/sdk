@@ -5,7 +5,6 @@
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
 import 'package:ory_client/src/model/identity_with_credentials_oidc_config_provider.dart';
-import 'package:ory_client/src/model/identity_with_credentials_password_config.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,13 +13,9 @@ part 'identity_with_credentials_oidc_config.g.dart';
 /// IdentityWithCredentialsOidcConfig
 ///
 /// Properties:
-/// * [config] 
 /// * [providers] - A list of OpenID Connect Providers
 @BuiltValue()
 abstract class IdentityWithCredentialsOidcConfig implements Built<IdentityWithCredentialsOidcConfig, IdentityWithCredentialsOidcConfigBuilder> {
-  @BuiltValueField(wireName: r'config')
-  IdentityWithCredentialsPasswordConfig? get config;
-
   /// A list of OpenID Connect Providers
   @BuiltValueField(wireName: r'providers')
   BuiltList<IdentityWithCredentialsOidcConfigProvider>? get providers;
@@ -48,13 +43,6 @@ class _$IdentityWithCredentialsOidcConfigSerializer implements PrimitiveSerializ
     IdentityWithCredentialsOidcConfig object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.config != null) {
-      yield r'config';
-      yield serializers.serialize(
-        object.config,
-        specifiedType: const FullType(IdentityWithCredentialsPasswordConfig),
-      );
-    }
     if (object.providers != null) {
       yield r'providers';
       yield serializers.serialize(
@@ -85,13 +73,6 @@ class _$IdentityWithCredentialsOidcConfigSerializer implements PrimitiveSerializ
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'config':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(IdentityWithCredentialsPasswordConfig),
-          ) as IdentityWithCredentialsPasswordConfig;
-          result.config.replace(valueDes);
-          break;
         case r'providers':
           final valueDes = serializers.deserialize(
             value,

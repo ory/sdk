@@ -34,7 +34,7 @@ final String body = body_example; // String |
 try {
     final response = api.checkOplSyntax(body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->checkOplSyntax: $e\n');
 }
 ```
@@ -77,7 +77,7 @@ final CreateRelationshipBody createRelationshipBody = ; // CreateRelationshipBod
 try {
     final response = api.createRelationship(createRelationshipBody);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->createRelationship: $e\n');
 }
 ```
@@ -125,7 +125,7 @@ final String subjectSetPeriodRelation = subjectSetPeriodRelation_example; // Str
 
 try {
     api.deleteRelationships(namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->deleteRelationships: $e\n');
 }
 ```
@@ -158,7 +158,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getRelationships**
-> Relationships getRelationships(pageToken, pageSize, namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation)
+> Relationships getRelationships(pageSize, pageToken, namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation)
 
 Query relationships
 
@@ -169,8 +169,8 @@ Get all relationships that match the query. Only the namespace field is required
 import 'package:ory_keto_client/api.dart';
 
 final api = OryKetoClient().getRelationshipApi();
-final String pageToken = pageToken_example; // String | 
-final int pageSize = 789; // int | 
+final int pageSize = 789; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+final String pageToken = pageToken_example; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 final String namespace = namespace_example; // String | Namespace of the Relationship
 final String object = object_example; // String | Object of the Relationship
 final String relation = relation_example; // String | Relation of the Relationship
@@ -180,9 +180,9 @@ final String subjectSetPeriodObject = subjectSetPeriodObject_example; // String 
 final String subjectSetPeriodRelation = subjectSetPeriodRelation_example; // String | Relation of the Subject Set
 
 try {
-    final response = api.getRelationships(pageToken, pageSize, namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
+    final response = api.getRelationships(pageSize, pageToken, namespace, object, relation, subjectId, subjectSetPeriodNamespace, subjectSetPeriodObject, subjectSetPeriodRelation);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->getRelationships: $e\n');
 }
 ```
@@ -191,8 +191,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageToken** | **String**|  | [optional] 
- **pageSize** | **int**|  | [optional] 
+ **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
+ **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] 
  **namespace** | **String**| Namespace of the Relationship | [optional] 
  **object** | **String**| Object of the Relationship | [optional] 
  **relation** | **String**| Relation of the Relationship | [optional] 
@@ -232,7 +232,7 @@ final api = OryKetoClient().getRelationshipApi();
 try {
     final response = api.listRelationshipNamespaces();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->listRelationshipNamespaces: $e\n');
 }
 ```
@@ -271,7 +271,7 @@ final BuiltList<RelationshipPatch> relationshipPatch = ; // BuiltList<Relationsh
 
 try {
     api.patchRelationships(relationshipPatch);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RelationshipApi->patchRelationships: $e\n');
 }
 ```

@@ -4,16 +4,26 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_experience_theme_stylesheet** | **String** |  | [optional] |
-| **favicon_type** | **String** |  | [optional] |
-| **favicon_url** | **String** |  | [optional] |
-| **kratos_selfservice_default_browser_return_url** | **String** |  | [optional] |
-| **kratos_selfservice_flows_recovery_enabled** | **Boolean** |  | [optional] |
-| **kratos_selfservice_flows_registration_enabled** | **Boolean** |  | [optional] |
-| **kratos_selfservice_flows_verification_enabled** | **Boolean** |  | [optional] |
-| **logo_url** | **String** |  | [optional] |
-| **name** | **String** |  | [optional] |
-| **organization_map** | **Hash&lt;String, String&gt;** |  | [optional] |
+| **default_locale** | **String** |  |  |
+| **default_redirect_url** | **String** |  |  |
+| **enabled_locales** | **Array&lt;String&gt;** |  |  |
+| **error_ui_url** | **String** |  |  |
+| **favicon_dark_url** | **String** |  | [optional] |
+| **favicon_light_url** | **String** |  | [optional] |
+| **locale_behavior** | **String** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage |  |
+| **login_ui_url** | **String** |  |  |
+| **logo_dark_url** | **String** |  | [optional] |
+| **logo_light_url** | **String** |  | [optional] |
+| **name** | **String** |  |  |
+| **recovery_enabled** | **Boolean** |  |  |
+| **recovery_ui_url** | **String** |  |  |
+| **registration_enabled** | **Boolean** |  |  |
+| **registration_ui_url** | **String** |  |  |
+| **settings_ui_url** | **String** |  |  |
+| **stylesheet** | **String** |  | [optional] |
+| **translations** | [**Array&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) |  |  |
+| **verification_enabled** | **Boolean** |  |  |
+| **verification_ui_url** | **String** |  |  |
 
 ## Example
 
@@ -21,16 +31,26 @@
 require 'ory-client'
 
 instance = OryClient::AccountExperienceConfiguration.new(
-  account_experience_theme_stylesheet: null,
-  favicon_type: null,
-  favicon_url: null,
-  kratos_selfservice_default_browser_return_url: null,
-  kratos_selfservice_flows_recovery_enabled: null,
-  kratos_selfservice_flows_registration_enabled: null,
-  kratos_selfservice_flows_verification_enabled: null,
-  logo_url: null,
+  default_locale: null,
+  default_redirect_url: null,
+  enabled_locales: null,
+  error_ui_url: null,
+  favicon_dark_url: null,
+  favicon_light_url: null,
+  locale_behavior: null,
+  login_ui_url: null,
+  logo_dark_url: null,
+  logo_light_url: null,
   name: null,
-  organization_map: null
+  recovery_enabled: null,
+  recovery_ui_url: null,
+  registration_enabled: null,
+  registration_ui_url: null,
+  settings_ui_url: null,
+  stylesheet: null,
+  translations: null,
+  verification_enabled: null,
+  verification_ui_url: null
 )
 ```
 

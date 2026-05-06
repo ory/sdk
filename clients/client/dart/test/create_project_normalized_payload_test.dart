@@ -7,6 +7,65 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(CreateProjectNormalizedPayload, () {
+    // The Account Experience's Custom Translations  Contains all Custom Translations for this project.
+    // BuiltList<RevisionAccountExperienceCustomTranslation> accountExperienceCustomTranslations
+    test('to test the property `accountExperienceCustomTranslations`', () async {
+      // TODO
+    });
+
+    // Holds the default locale for the account experience.
+    // String accountExperienceDefaultLocale
+    test('to test the property `accountExperienceDefaultLocale`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> accountExperienceEnabledLocales
+    test('to test the property `accountExperienceEnabledLocales`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's dark theme favicon (currently unused).
+    // String accountExperienceFaviconDark
+    test('to test the property `accountExperienceFaviconDark`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's favicon.
+    // String accountExperienceFaviconLight
+    test('to test the property `accountExperienceFaviconLight`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language.
+    // String accountExperienceLocaleBehavior
+    test('to test the property `accountExperienceLocaleBehavior`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's dark theme logo (currently unused).
+    // String accountExperienceLogoDark
+    test('to test the property `accountExperienceLogoDark`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's logo.
+    // String accountExperienceLogoLight
+    test('to test the property `accountExperienceLogoLight`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's dark theme variables.
+    // String accountExperienceThemeVariablesDark
+    test('to test the property `accountExperienceThemeVariablesDark`', () async {
+      // TODO
+    });
+
+    // Holds the URL to the account experience's light theme variables.
+    // String accountExperienceThemeVariablesLight
+    test('to test the property `accountExperienceThemeVariablesLight`', () async {
+      // TODO
+    });
+
     // The Project's Revision Creation Date
     // DateTime createdAt
     test('to test the property `createdAt`', () async {
@@ -72,6 +131,12 @@ void main() {
       // TODO
     });
 
+    // Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to `null` or `\"0s\"`, the graceful refresh token rotation is disabled.  This governs the \"oauth2.grant.refresh_token_rotation_grace_period\" setting.
+    // String hydraOauth2GrantRefreshTokenRotationGracePeriod
+    test('to test the property `hydraOauth2GrantRefreshTokenRotationGracePeriod`', () async {
+      // TODO
+    });
+
     // Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
     // bool hydraOauth2MirrorTopLevelClaims
     test('to test the property `hydraOauth2MirrorTopLevelClaims`', () async {
@@ -126,6 +191,11 @@ void main() {
 
     // BuiltList<String> hydraSecretsCookie
     test('to test the property `hydraSecretsCookie`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> hydraSecretsPagination
+    test('to test the property `hydraSecretsPagination`', () async {
       // TODO
     });
 
@@ -295,6 +365,11 @@ void main() {
 
     // BuiltList<KetoNamespace> ketoNamespaces
     test('to test the property `ketoNamespaces`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> ketoSecretsPagination
+    test('to test the property `ketoSecretsPagination`', () async {
       // TODO
     });
 
@@ -615,9 +690,39 @@ void main() {
       // TODO
     });
 
+    // This governs the \"feature_flags.choose_recovery_address\" setting.
+    // bool kratosFeatureFlagsChooseRecoveryAddress
+    test('to test the property `kratosFeatureFlagsChooseRecoveryAddress`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
     // bool kratosFeatureFlagsFasterSessionExtend
     test('to test the property `kratosFeatureFlagsFasterSessionExtend`', () async {
+      // TODO
+    });
+
+    // Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.  This governs the \"feature_flags.legacy_continue_with_verification_ui\" setting.
+    // bool kratosFeatureFlagsLegacyContinueWithVerificationUi
+    test('to test the property `kratosFeatureFlagsLegacyContinueWithVerificationUi`', () async {
+      // TODO
+    });
+
+    // Controls whether the UI nodes in an OIDC registration flow have group \"oidc\" in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \"oidc\" and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \"feature_flags.legacy_oidc_registration_node_group\" setting.
+    // bool kratosFeatureFlagsLegacyOidcRegistrationNodeGroup
+    test('to test the property `kratosFeatureFlagsLegacyOidcRegistrationNodeGroup`', () async {
+      // TODO
+    });
+
+    // Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.  This flag is deprecated and will be removed in the future.  This governs the \"feature_flags.legacy_require_verified_login_error\" setting.
+    // bool kratosFeatureFlagsLegacyRequireVerifiedLoginError
+    test('to test the property `kratosFeatureFlagsLegacyRequireVerifiedLoginError`', () async {
+      // TODO
+    });
+
+    // Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \"password\" if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \"default\".
+    // bool kratosFeatureFlagsPasswordProfileRegistrationNodeGroup
+    test('to test the property `kratosFeatureFlagsPasswordProfileRegistrationNodeGroup`', () async {
       // TODO
     });
 
@@ -668,6 +773,17 @@ void main() {
 
     // BuiltList<String> kratosSecretsDefault
     test('to test the property `kratosSecretsDefault`', () async {
+      // TODO
+    });
+
+    // BuiltList<String> kratosSecretsPagination
+    test('to test the property `kratosSecretsPagination`', () async {
+      // TODO
+    });
+
+    // Configures if account enumeration should be mitigated when using identifier first login.
+    // bool kratosSecurityAccountEnumerationMitigate
+    test('to test the property `kratosSecurityAccountEnumerationMitigate`', () async {
       // TODO
     });
 
@@ -964,9 +1080,43 @@ void main() {
       // TODO
     });
 
+    // BuiltList<String> kratosSelfserviceMethodsCaptchaConfigAllowedDomains
+    test('to test the property `kratosSelfserviceMethodsCaptchaConfigAllowedDomains`', () async {
+      // TODO
+    });
+
+    // Configures the Cloudflare Turnstile site secret for CAPTCHA protection  The site secret is private and will be never be shared with the client. This key is write only and the value will not be returned in response to a read request.  Reach out to your account manager to enable this feature.
+    // String kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret
+    test('to test the property `kratosSelfserviceMethodsCaptchaConfigCfTurnstileSecret`', () async {
+      // TODO
+    });
+
+    // Configures the Cloudflare Turnstile site key for CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.
+    // String kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey
+    test('to test the property `kratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
+    // bool kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode
+    test('to test the property `kratosSelfserviceMethodsCaptchaConfigLegacyInjectNode`', () async {
+      // TODO
+    });
+
+    // Configures the Ory Kratos Self-Service Methods' Captcha Enabled Setting  Reach out to your account manager to enable this feature.
+    // bool kratosSelfserviceMethodsCaptchaEnabled
+    test('to test the property `kratosSelfserviceMethodsCaptchaEnabled`', () async {
+      // TODO
+    });
+
     // Configures the Ory Kratos Code Method's lifespan  This governs the \"selfservice.methods.code.config.lifespan\" setting.
     // String kratosSelfserviceMethodsCodeConfigLifespan
     test('to test the property `kratosSelfserviceMethodsCodeConfigLifespan`', () async {
+      // TODO
+    });
+
+    // int kratosSelfserviceMethodsCodeConfigMaxSubmissions
+    test('to test the property `kratosSelfserviceMethodsCodeConfigMaxSubmissions`', () async {
       // TODO
     });
 
@@ -1032,6 +1182,12 @@ void main() {
 
     // BuiltList<NormalizedProjectRevisionThirdPartyProvider> kratosSelfserviceMethodsOidcConfigProviders
     test('to test the property `kratosSelfserviceMethodsOidcConfigProviders`', () async {
+      // TODO
+    });
+
+    // Configures whether Ory Kratos allows auto-linking of OIDC credentials without a subject  This governs the \"selfservice.methods.oidc.enable_auto_link_policy\" setting.
+    // bool kratosSelfserviceMethodsOidcEnableAutoLinkPolicy
+    test('to test the property `kratosSelfserviceMethodsOidcEnableAutoLinkPolicy`', () async {
       // TODO
     });
 
@@ -1103,6 +1259,17 @@ void main() {
     // Configures whether Ory Kratos Profile Method is enabled  This governs the \"selfservice.methods.profile.enabled\" setting.
     // bool kratosSelfserviceMethodsProfileEnabled
     test('to test the property `kratosSelfserviceMethodsProfileEnabled`', () async {
+      // TODO
+    });
+
+    // BuiltList<NormalizedProjectRevisionSAMLProvider> kratosSelfserviceMethodsSamlConfigProviders
+    test('to test the property `kratosSelfserviceMethodsSamlConfigProviders`', () async {
+      // TODO
+    });
+
+    // Configures whether Ory Kratos SAML Login is enabled  This governs the \"selfservice.methods.saml.enabled\" setting.
+    // bool kratosSelfserviceMethodsSamlEnabled
+    test('to test the property `kratosSelfserviceMethodsSamlEnabled`', () async {
       // TODO
     });
 
@@ -1188,6 +1355,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<Organization> organizations
+    test('to test the property `organizations`', () async {
+      // TODO
+    });
+
     // The Revision's Project ID
     // String projectId
     test('to test the property `projectId`', () async {
@@ -1196,6 +1368,11 @@ void main() {
 
     // BuiltList<NormalizedProjectRevisionHook> projectRevisionHooks
     test('to test the property `projectRevisionHooks`', () async {
+      // TODO
+    });
+
+    // BuiltList<NormalizedProjectRevisionScimClient> scimClients
+    test('to test the property `scimClients`', () async {
       // TODO
     });
 

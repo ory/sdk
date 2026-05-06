@@ -27,6 +27,8 @@ class _$NormalizedProjectRevisionIdentitySchema
   @override
   final String? projectRevisionId;
   @override
+  final bool? selfserviceSelectable;
+  @override
   final DateTime? updatedAt;
 
   factory _$NormalizedProjectRevisionIdentitySchema(
@@ -45,6 +47,7 @@ class _$NormalizedProjectRevisionIdentitySchema
       this.isDefault,
       this.preset,
       this.projectRevisionId,
+      this.selfserviceSelectable,
       this.updatedAt})
       : super._();
 
@@ -71,6 +74,7 @@ class _$NormalizedProjectRevisionIdentitySchema
         isDefault == other.isDefault &&
         preset == other.preset &&
         projectRevisionId == other.projectRevisionId &&
+        selfserviceSelectable == other.selfserviceSelectable &&
         updatedAt == other.updatedAt;
   }
 
@@ -86,6 +90,7 @@ class _$NormalizedProjectRevisionIdentitySchema
     _$hash = $jc(_$hash, isDefault.hashCode);
     _$hash = $jc(_$hash, preset.hashCode);
     _$hash = $jc(_$hash, projectRevisionId.hashCode);
+    _$hash = $jc(_$hash, selfserviceSelectable.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -104,6 +109,7 @@ class _$NormalizedProjectRevisionIdentitySchema
           ..add('isDefault', isDefault)
           ..add('preset', preset)
           ..add('projectRevisionId', projectRevisionId)
+          ..add('selfserviceSelectable', selfserviceSelectable)
           ..add('updatedAt', updatedAt))
         .toString();
   }
@@ -155,6 +161,11 @@ class NormalizedProjectRevisionIdentitySchemaBuilder
   set projectRevisionId(String? projectRevisionId) =>
       _$this._projectRevisionId = projectRevisionId;
 
+  bool? _selfserviceSelectable;
+  bool? get selfserviceSelectable => _$this._selfserviceSelectable;
+  set selfserviceSelectable(bool? selfserviceSelectable) =>
+      _$this._selfserviceSelectable = selfserviceSelectable;
+
   DateTime? _updatedAt;
   DateTime? get updatedAt => _$this._updatedAt;
   set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
@@ -175,6 +186,7 @@ class NormalizedProjectRevisionIdentitySchemaBuilder
       _isDefault = $v.isDefault;
       _preset = $v.preset;
       _projectRevisionId = $v.projectRevisionId;
+      _selfserviceSelectable = $v.selfserviceSelectable;
       _updatedAt = $v.updatedAt;
       _$v = null;
     }
@@ -210,6 +222,7 @@ class NormalizedProjectRevisionIdentitySchemaBuilder
               isDefault: isDefault,
               preset: preset,
               projectRevisionId: projectRevisionId,
+              selfserviceSelectable: selfserviceSelectable,
               updatedAt: updatedAt);
     } catch (_) {
       late String _$failedField;

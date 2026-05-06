@@ -7,34 +7,14 @@ part of 'ui_node_anchor_attributes.dart';
 // **************************************************************************
 
 const UiNodeAnchorAttributesNodeTypeEnum
-    _$uiNodeAnchorAttributesNodeTypeEnum_text =
-    const UiNodeAnchorAttributesNodeTypeEnum._('text');
-const UiNodeAnchorAttributesNodeTypeEnum
-    _$uiNodeAnchorAttributesNodeTypeEnum_input =
-    const UiNodeAnchorAttributesNodeTypeEnum._('input');
-const UiNodeAnchorAttributesNodeTypeEnum
-    _$uiNodeAnchorAttributesNodeTypeEnum_img =
-    const UiNodeAnchorAttributesNodeTypeEnum._('img');
-const UiNodeAnchorAttributesNodeTypeEnum
     _$uiNodeAnchorAttributesNodeTypeEnum_a =
     const UiNodeAnchorAttributesNodeTypeEnum._('a');
-const UiNodeAnchorAttributesNodeTypeEnum
-    _$uiNodeAnchorAttributesNodeTypeEnum_script =
-    const UiNodeAnchorAttributesNodeTypeEnum._('script');
 
 UiNodeAnchorAttributesNodeTypeEnum _$uiNodeAnchorAttributesNodeTypeEnumValueOf(
     String name) {
   switch (name) {
-    case 'text':
-      return _$uiNodeAnchorAttributesNodeTypeEnum_text;
-    case 'input':
-      return _$uiNodeAnchorAttributesNodeTypeEnum_input;
-    case 'img':
-      return _$uiNodeAnchorAttributesNodeTypeEnum_img;
     case 'a':
       return _$uiNodeAnchorAttributesNodeTypeEnum_a;
-    case 'script':
-      return _$uiNodeAnchorAttributesNodeTypeEnum_script;
     default:
       throw new ArgumentError(name);
   }
@@ -43,11 +23,7 @@ UiNodeAnchorAttributesNodeTypeEnum _$uiNodeAnchorAttributesNodeTypeEnumValueOf(
 final BuiltSet<UiNodeAnchorAttributesNodeTypeEnum>
     _$uiNodeAnchorAttributesNodeTypeEnumValues = new BuiltSet<
         UiNodeAnchorAttributesNodeTypeEnum>(const <UiNodeAnchorAttributesNodeTypeEnum>[
-  _$uiNodeAnchorAttributesNodeTypeEnum_text,
-  _$uiNodeAnchorAttributesNodeTypeEnum_input,
-  _$uiNodeAnchorAttributesNodeTypeEnum_img,
   _$uiNodeAnchorAttributesNodeTypeEnum_a,
-  _$uiNodeAnchorAttributesNodeTypeEnum_script,
 ]);
 
 Serializer<UiNodeAnchorAttributesNodeTypeEnum>
@@ -57,18 +33,10 @@ Serializer<UiNodeAnchorAttributesNodeTypeEnum>
 class _$UiNodeAnchorAttributesNodeTypeEnumSerializer
     implements PrimitiveSerializer<UiNodeAnchorAttributesNodeTypeEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'text': 'text',
-    'input': 'input',
-    'img': 'img',
     'a': 'a',
-    'script': 'script',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'text': 'text',
-    'input': 'input',
-    'img': 'img',
     'a': 'a',
-    'script': 'script',
   };
 
   @override

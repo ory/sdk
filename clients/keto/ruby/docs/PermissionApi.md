@@ -4,11 +4,80 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**batch_check_permission**](PermissionApi.md#batch_check_permission) | **POST** /relation-tuples/batch/check | Batch check permissions |
 | [**check_permission**](PermissionApi.md#check_permission) | **GET** /relation-tuples/check/openapi | Check a permission |
 | [**check_permission_or_error**](PermissionApi.md#check_permission_or_error) | **GET** /relation-tuples/check | Check a permission |
 | [**expand_permissions**](PermissionApi.md#expand_permissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions. |
 | [**post_check_permission**](PermissionApi.md#post_check_permission) | **POST** /relation-tuples/check/openapi | Check a permission |
 | [**post_check_permission_or_error**](PermissionApi.md#post_check_permission_or_error) | **POST** /relation-tuples/check | Check a permission |
+
+
+## batch_check_permission
+
+> <BatchCheckPermissionResult> batch_check_permission(opts)
+
+Batch check permissions
+
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-keto-client'
+
+api_instance = OryKetoClient::PermissionApi.new
+opts = {
+  max_depth: 789, # Integer | 
+  batch_check_permission_body: OryKetoClient::BatchCheckPermissionBody.new # BatchCheckPermissionBody | 
+}
+
+begin
+  # Batch check permissions
+  result = api_instance.batch_check_permission(opts)
+  p result
+rescue OryKetoClient::ApiError => e
+  puts "Error when calling PermissionApi->batch_check_permission: #{e}"
+end
+```
+
+#### Using the batch_check_permission_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<BatchCheckPermissionResult>, Integer, Hash)> batch_check_permission_with_http_info(opts)
+
+```ruby
+begin
+  # Batch check permissions
+  data, status_code, headers = api_instance.batch_check_permission_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <BatchCheckPermissionResult>
+rescue OryKetoClient::ApiError => e
+  puts "Error when calling PermissionApi->batch_check_permission_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **max_depth** | **Integer** |  | [optional] |
+| **batch_check_permission_body** | [**BatchCheckPermissionBody**](BatchCheckPermissionBody.md) |  | [optional] |
+
+### Return type
+
+[**BatchCheckPermissionResult**](BatchCheckPermissionResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ## check_permission
@@ -327,7 +396,7 @@ require 'ory-keto-client'
 
 api_instance = OryKetoClient::PermissionApi.new
 opts = {
-  max_depth: 789, # Integer | nolint:deadcode,unused
+  max_depth: 789, # Integer | 
   post_check_permission_or_error_body: OryKetoClient::PostCheckPermissionOrErrorBody.new # PostCheckPermissionOrErrorBody | 
 }
 
@@ -362,7 +431,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **max_depth** | **Integer** | nolint:deadcode,unused | [optional] |
+| **max_depth** | **Integer** |  | [optional] |
 | **post_check_permission_or_error_body** | [**PostCheckPermissionOrErrorBody**](PostCheckPermissionOrErrorBody.md) |  | [optional] |
 
 ### Return type

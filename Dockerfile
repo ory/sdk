@@ -1,99 +1,54 @@
-# can't use bookworm (latest LTS as of June23) yet, as elixir/erlang does not provide packages for it yet. Check if https://binaries.erlang-solutions.com/debian/dists/bookworm/ is available to change this
-FROM openjdk:21-bookworm
+FROM eclipse-temurin:21-jdk
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates ssh bash
 
 COPY scripts/build ./scripts
 
-ENV GOLANG_VERSION 1.17
+ENV GOLANG_VERSION=1.24.0
 
-RUN set -eux; \
-	apt-get install -y --no-install-recommends bash build-essential openssl golang-go curl wget; \
-	rm -rf /var/lib/apt/lists/*; \
-	export \
-	# set GOROOT_BOOTSTRAP such that we can actually build Go
-	GOROOT_BOOTSTRAP="$(go env GOROOT)" \
-	# ... and set "cross-building" related vars to the installed system's values so that we create a build targeting the proper arch
-	# (for example, if our build host is GOARCH=amd64, but our build env/image is GOARCH=386, our build needs GOARCH=386)
-	GOOS="$(go env GOOS)" \
-	GOARCH="$(go env GOARCH)" \
-	GOHOSTOS="$(go env GOHOSTOS)" \
-	GOHOSTARCH="$(go env GOHOSTARCH)" \
-	; \
-	# also explicitly set GO386 and GOARM if appropriate
-	# https://github.com/docker-library/golang/issues/184
-	dpkgArch="$(dpkg --print-architecture)"; \
-	case "$dpkgArch" in \
-	armhf) export GOARM='6' ;; \
-	armv7) export GOARM='7' ;; \
-	x86) export GO386='387' ;; \
-	esac; \
-	\
-	wget -O go.tgz "https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz"; \
-	tar -C /usr/local -xzf go.tgz; \
-	rm go.tgz; \
-	\
-	cd /usr/local/go/src; \
-	./make.bash; \
-	\
-	rm -rf \
-	# https://github.com/golang/go/blob/0b30cf534a03618162d3015c8705dd2231e34703/src/cmd/dist/buildtool.go#L121-L125
-	/usr/local/go/pkg/bootstrap \
-	# https://golang.org/cl/82095
-	# https://github.com/golang/build/blob/e3fe1605c30f6a3fd136b561569933312ede8782/cmd/release/releaselet.go#L56
-	/usr/local/go/pkg/obj \
-	; \
-	\
-	export PATH="/usr/local/go/bin:$PATH"; \
-	go version
+RUN set -eux; apt-get install -y --no-install-recommends bash build-essential openssl wget unzip;
 
-ENV GOPATH /go
-ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
-ENV GO111MODULE=on
+
+RUN wget https://go.dev/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz \
+    && rm -rf /usr/local/go && tar -C /usr/local -xzf go1.24.0.linux-amd64.tar.gz \
+    && rm go1.24.0.linux-amd64.tar.gz
+
+ENV GOPATH=/go
+ENV PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
+
+RUN go version
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs
 # the following is a workaround for openjdk-11-jre-headless erroring due to not having a man path in slim-debian
 RUN apt-get update -y
-RUN apt-get install -y --no-install-recommends python3 python3-dev python3-full python3-pip python3-venv ruby jq gnupg git gettext libffi-dev libssl-dev php composer php-curl php-dom php-xml php-simplexml php-xmlwriter maven pkg-config twine sudo apt-transport-https
+RUN apt-get install -y --no-install-recommends erlang-base erlang-dev python3 python3-dev python3-full python3-pip python3-venv ruby jq gnupg git gettext libffi-dev libssl-dev php composer php-curl php-dom php-xml php-simplexml php-xmlwriter maven pkg-config twine sudo apt-transport-https
 # RUN apk add -U --no-cache ca-certificates bash nodejs npm python3 python3-dev py-pip ruby jq build-base gnupg git openssh curl gettext libffi libffi-dev openssl-dev php composer php-curl php7-tokenizer wget php-dom php-xml php-simplexml php-xmlwriter maven
 
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 RUN sudo apt-get update -y && sudo apt-get install -y --no-install-recommends google-cloud-cli
 
-# https://stackoverflow.com/questions/35736598/cannot-pip-install-cryptography-in-docker-alpine-linux-3-3-with-openssl-1-0-2g
-#RUN apk add --no-cache \
-#        libressl-dev \
-#        musl-dev \
-#        libffi-dev && \
-#    python3 -m pip install --no-cache-dir cryptography==2.1.4 && \
-#    apk del \
-#        libressl-dev \
-#        musl-dev \
-#        libffi-dev
-
-# RUN wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar -O openapi-generator-cli.jar
-
-RUN npm install -g npm@10.8.1
-RUN npm i -g @openapitools/openapi-generator-cli
-RUN openapi-generator-cli version-manager set 7.4.0
+RUN npm install -g npm@11.7.0
+RUN npm i -g @openapitools/openapi-generator-cli@2.25.2
+RUN npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
 
 # dotnet
-ENV PATH "$PATH:/root/.dotnet"
+ENV PATH="$PATH:/root/.dotnet"
 
 RUN apt-get install -y --no-install-recommends \
 	liblttng-ust-dev \
 	libicu-dev \
 	zlib1g \
-	&& wget -O dotnet-install.sh https://dot.net/v1/dotnet-install.sh \
+	&& wget -O dotnet-install.sh https://builds.dotnet.microsoft.com/dotnet/scripts/v1/dotnet-install.sh \
 	&& chmod +x dotnet-install.sh \
-	&& ./dotnet-install.sh --channel 6.0 \
+	&& ./dotnet-install.sh --channel 8.0 \
 	&& rm dotnet-install.sh
 
 # dart
 RUN ./scripts/install-dart.sh
+ENV PATH="$PATH:/usr/lib/dart/bin"
 
 # elixir
 RUN	apt-get -q update && apt-get install -y -q elixir && \
@@ -122,9 +77,17 @@ RUN gem install bundler -v 2.3.26 && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends ruby-dev
 
-ADD go.mod go.mod
-ADD go.sum go.sum
-RUN go build -o /usr/local/bin/ory github.com/ory/cli
+ARG ORY_CLI_VERSION=1.1.0
+
+RUN wget https://github.com/ory/cli/releases/download/v${ORY_CLI_VERSION}/ory_${ORY_CLI_VERSION}-linux_64bit.tar.gz \
+    && tar xf ory_${ORY_CLI_VERSION}-linux_64bit.tar.gz \
+    && mv ory /usr/local/bin/ory \
+    && chmod +x /usr/local/bin/ory \
+    && rm ory_${ORY_CLI_VERSION}-linux_64bit.tar.gz
 
 RUN swagger version
 RUN ory version
+
+RUN echo kern.maxfiles=65536 | sudo tee -a /etc/sysctl.conf
+RUN echo kern.maxfilesperproc=65536 | sudo tee -a /etc/sysctl.conf
+RUN ulimit -n 65536

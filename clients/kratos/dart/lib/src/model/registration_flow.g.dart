@@ -22,6 +22,8 @@ const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_passkey =
     const RegistrationFlowActiveEnum._('passkey');
 const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_profile =
     const RegistrationFlowActiveEnum._('profile');
+const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_saml =
+    const RegistrationFlowActiveEnum._('saml');
 const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_linkRecovery =
     const RegistrationFlowActiveEnum._('linkRecovery');
 const RegistrationFlowActiveEnum _$registrationFlowActiveEnum_codeRecovery =
@@ -45,6 +47,8 @@ RegistrationFlowActiveEnum _$registrationFlowActiveEnumValueOf(String name) {
       return _$registrationFlowActiveEnum_passkey;
     case 'profile':
       return _$registrationFlowActiveEnum_profile;
+    case 'saml':
+      return _$registrationFlowActiveEnum_saml;
     case 'linkRecovery':
       return _$registrationFlowActiveEnum_linkRecovery;
     case 'codeRecovery':
@@ -64,6 +68,7 @@ final BuiltSet<RegistrationFlowActiveEnum> _$registrationFlowActiveEnumValues =
   _$registrationFlowActiveEnum_code,
   _$registrationFlowActiveEnum_passkey,
   _$registrationFlowActiveEnum_profile,
+  _$registrationFlowActiveEnum_saml,
   _$registrationFlowActiveEnum_linkRecovery,
   _$registrationFlowActiveEnum_codeRecovery,
 ]);
@@ -82,6 +87,7 @@ class _$RegistrationFlowActiveEnumSerializer
     'code': 'code',
     'passkey': 'passkey',
     'profile': 'profile',
+    'saml': 'saml',
     'linkRecovery': 'link_recovery',
     'codeRecovery': 'code_recovery',
   };
@@ -94,6 +100,7 @@ class _$RegistrationFlowActiveEnumSerializer
     'code': 'code',
     'passkey': 'passkey',
     'profile': 'profile',
+    'saml': 'saml',
     'link_recovery': 'linkRecovery',
     'code_recovery': 'codeRecovery',
   };
@@ -123,6 +130,8 @@ class _$RegistrationFlow extends RegistrationFlow {
   final DateTime expiresAt;
   @override
   final String id;
+  @override
+  final String? identitySchema;
   @override
   final DateTime issuedAt;
   @override
@@ -154,6 +163,7 @@ class _$RegistrationFlow extends RegistrationFlow {
       {this.active,
       required this.expiresAt,
       required this.id,
+      this.identitySchema,
       required this.issuedAt,
       this.oauth2LoginChallenge,
       this.oauth2LoginRequest,
@@ -192,6 +202,7 @@ class _$RegistrationFlow extends RegistrationFlow {
         active == other.active &&
         expiresAt == other.expiresAt &&
         id == other.id &&
+        identitySchema == other.identitySchema &&
         issuedAt == other.issuedAt &&
         oauth2LoginChallenge == other.oauth2LoginChallenge &&
         oauth2LoginRequest == other.oauth2LoginRequest &&
@@ -211,6 +222,7 @@ class _$RegistrationFlow extends RegistrationFlow {
     _$hash = $jc(_$hash, active.hashCode);
     _$hash = $jc(_$hash, expiresAt.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, identitySchema.hashCode);
     _$hash = $jc(_$hash, issuedAt.hashCode);
     _$hash = $jc(_$hash, oauth2LoginChallenge.hashCode);
     _$hash = $jc(_$hash, oauth2LoginRequest.hashCode);
@@ -232,6 +244,7 @@ class _$RegistrationFlow extends RegistrationFlow {
           ..add('active', active)
           ..add('expiresAt', expiresAt)
           ..add('id', id)
+          ..add('identitySchema', identitySchema)
           ..add('issuedAt', issuedAt)
           ..add('oauth2LoginChallenge', oauth2LoginChallenge)
           ..add('oauth2LoginRequest', oauth2LoginRequest)
@@ -262,6 +275,11 @@ class RegistrationFlowBuilder
   String? _id;
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
+
+  String? _identitySchema;
+  String? get identitySchema => _$this._identitySchema;
+  set identitySchema(String? identitySchema) =>
+      _$this._identitySchema = identitySchema;
 
   DateTime? _issuedAt;
   DateTime? get issuedAt => _$this._issuedAt;
@@ -323,6 +341,7 @@ class RegistrationFlowBuilder
       _active = $v.active;
       _expiresAt = $v.expiresAt;
       _id = $v.id;
+      _identitySchema = $v.identitySchema;
       _issuedAt = $v.issuedAt;
       _oauth2LoginChallenge = $v.oauth2LoginChallenge;
       _oauth2LoginRequest = $v.oauth2LoginRequest?.toBuilder();
@@ -363,6 +382,7 @@ class RegistrationFlowBuilder
                   expiresAt, r'RegistrationFlow', 'expiresAt'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'RegistrationFlow', 'id'),
+              identitySchema: identitySchema,
               issuedAt: BuiltValueNullFieldError.checkNotNull(
                   issuedAt, r'RegistrationFlow', 'issuedAt'),
               oauth2LoginChallenge: oauth2LoginChallenge,

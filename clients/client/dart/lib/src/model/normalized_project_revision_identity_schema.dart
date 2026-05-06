@@ -21,6 +21,7 @@ part 'normalized_project_revision_identity_schema.g.dart';
 /// * [isDefault] - If true sets the default schema for identities  Only one schema can ever be the default schema. If you try to add two schemas with default to true, the request will fail.
 /// * [preset] - Use a preset instead of a custom identity schema.
 /// * [projectRevisionId] - The Revision's ID this schema belongs to
+/// * [selfserviceSelectable] 
 /// * [updatedAt] - Last Time Project's Revision was Updated
 @BuiltValue()
 abstract class NormalizedProjectRevisionIdentitySchema implements Built<NormalizedProjectRevisionIdentitySchema, NormalizedProjectRevisionIdentitySchemaBuilder> {
@@ -57,6 +58,9 @@ abstract class NormalizedProjectRevisionIdentitySchema implements Built<Normaliz
   /// The Revision's ID this schema belongs to
   @BuiltValueField(wireName: r'project_revision_id')
   String? get projectRevisionId;
+
+  @BuiltValueField(wireName: r'selfservice_selectable')
+  bool? get selfserviceSelectable;
 
   /// Last Time Project's Revision was Updated
   @BuiltValueField(wireName: r'updated_at')
@@ -146,6 +150,13 @@ class _$NormalizedProjectRevisionIdentitySchemaSerializer implements PrimitiveSe
       yield serializers.serialize(
         object.projectRevisionId,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.selfserviceSelectable != null) {
+      yield r'selfservice_selectable';
+      yield serializers.serialize(
+        object.selfserviceSelectable,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.updatedAt != null) {
@@ -241,6 +252,13 @@ class _$NormalizedProjectRevisionIdentitySchemaSerializer implements PrimitiveSe
             specifiedType: const FullType(String),
           ) as String;
           result.projectRevisionId = valueDes;
+          break;
+        case r'selfservice_selectable':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.selfserviceSelectable = valueDes;
           break;
         case r'updated_at':
           final valueDes = serializers.deserialize(

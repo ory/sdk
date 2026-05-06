@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -14,7 +15,7 @@ part 'update_registration_flow_with_profile_method.g.dart';
 /// Properties:
 /// * [csrfToken] - The Anti-CSRF Token  This token is only required when performing browser flows.
 /// * [method] - Method  Should be set to profile when trying to update a profile.
-/// * [screen] - Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen.
+/// * [screen] - Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
 /// * [traits] - Traits  The identity's traits.
 /// * [transientPayload] - Transient data to pass along to any webhooks
 @BuiltValue()
@@ -27,9 +28,10 @@ abstract class UpdateRegistrationFlowWithProfileMethod implements Built<UpdateRe
   @BuiltValueField(wireName: r'method')
   String get method;
 
-  /// Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen.
+  /// Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
   @BuiltValueField(wireName: r'screen')
-  String? get screen;
+  UpdateRegistrationFlowWithProfileMethodScreenEnum? get screen;
+  // enum screenEnum {  credential-selection,  previous,  };
 
   /// Traits  The identity's traits.
   @BuiltValueField(wireName: r'traits')
@@ -78,7 +80,7 @@ class _$UpdateRegistrationFlowWithProfileMethodSerializer implements PrimitiveSe
       yield r'screen';
       yield serializers.serialize(
         object.screen,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(UpdateRegistrationFlowWithProfileMethodScreenEnum),
       );
     }
     yield r'traits';
@@ -133,8 +135,8 @@ class _$UpdateRegistrationFlowWithProfileMethodSerializer implements PrimitiveSe
         case r'screen':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(UpdateRegistrationFlowWithProfileMethodScreenEnum),
+          ) as UpdateRegistrationFlowWithProfileMethodScreenEnum;
           result.screen = valueDes;
           break;
         case r'traits':
@@ -178,5 +180,22 @@ class _$UpdateRegistrationFlowWithProfileMethodSerializer implements PrimitiveSe
     );
     return result.build();
   }
+}
+
+class UpdateRegistrationFlowWithProfileMethodScreenEnum extends EnumClass {
+
+  /// Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
+  @BuiltValueEnumConst(wireName: r'credential-selection')
+  static const UpdateRegistrationFlowWithProfileMethodScreenEnum credentialSelection = _$updateRegistrationFlowWithProfileMethodScreenEnum_credentialSelection;
+  /// Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
+  @BuiltValueEnumConst(wireName: r'previous')
+  static const UpdateRegistrationFlowWithProfileMethodScreenEnum previous = _$updateRegistrationFlowWithProfileMethodScreenEnum_previous;
+
+  static Serializer<UpdateRegistrationFlowWithProfileMethodScreenEnum> get serializer => _$updateRegistrationFlowWithProfileMethodScreenEnumSerializer;
+
+  const UpdateRegistrationFlowWithProfileMethodScreenEnum._(String name): super(name);
+
+  static BuiltSet<UpdateRegistrationFlowWithProfileMethodScreenEnum> get values => _$updateRegistrationFlowWithProfileMethodScreenEnumValues;
+  static UpdateRegistrationFlowWithProfileMethodScreenEnum valueOf(String name) => _$updateRegistrationFlowWithProfileMethodScreenEnumValueOf(name);
 }
 

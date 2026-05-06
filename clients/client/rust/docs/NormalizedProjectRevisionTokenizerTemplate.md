@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **jwks_url** | Option<**String**> | JSON Web Key URL | [optional]
 **key** | Option<**String**> | The unique key of the template | [optional]
 **project_revision_id** | Option<**String**> | The Revision's ID this schema belongs to | [optional]
+**subject_source** | Option<**String**> | Subject source for the tokenizer  Can be either id or external_id or empty | [optional][default to Id]
 **ttl** | Option<**String**> | Token time to live | [optional][default to 1m]
 **updated_at** | Option<**String**> | Last Time Project's Revision was Updated | [optional][readonly]
 

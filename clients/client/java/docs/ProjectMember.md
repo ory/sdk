@@ -11,6 +11,7 @@
 |**emailVerified** | **Boolean** |  |  |
 |**id** | **String** |  |  |
 |**name** | **String** |  |  |
+|**organizationId** | **String** |  |  [optional] |
 |**role** | **String** |  |  |
 
 

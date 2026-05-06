@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **int** |  | [optional]
-**details** | **array<string,object>[]** |  | [optional]
+**details** | **array<string,mixed>[]** |  | [optional]
 **message** | **string** |  | [optional]
 **reason** | **string** |  | [optional]
 **request** | **string** |  | [optional]

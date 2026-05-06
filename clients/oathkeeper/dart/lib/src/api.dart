@@ -10,8 +10,7 @@ import 'package:ory_oathkeeper_client/src/auth/basic_auth.dart';
 import 'package:ory_oathkeeper_client/src/auth/bearer_auth.dart';
 import 'package:ory_oathkeeper_client/src/auth/oauth.dart';
 import 'package:ory_oathkeeper_client/src/api/api_api.dart';
-import 'package:ory_oathkeeper_client/src/api/health_api.dart';
-import 'package:ory_oathkeeper_client/src/api/version_api.dart';
+import 'package:ory_oathkeeper_client/src/api/metadata_api.dart';
 
 class OryOathkeeperClient {
   static const String basePath = r'http://localhost';
@@ -73,15 +72,9 @@ class OryOathkeeperClient {
     return ApiApi(dio, serializers);
   }
 
-  /// Get HealthApi instance, base route and serializer can be overridden by a given but be careful,
+  /// Get MetadataApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
-  HealthApi getHealthApi() {
-    return HealthApi(dio, serializers);
-  }
-
-  /// Get VersionApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  VersionApi getVersionApi() {
-    return VersionApi(dio, serializers);
+  MetadataApi getMetadataApi() {
+    return MetadataApi(dio, serializers);
   }
 }

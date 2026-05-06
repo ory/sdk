@@ -6,8 +6,8 @@ All SDKs provided in this repository are generated using openapi-generator.
 
 When developing against [Ory Network](https://www.ory.sh/docs/sdk), use the
 latest `client` or `ory-client` SDK for your preferred language. It bundles the
-individual SDKs (Identities, OAuth2, Permissions) and works with [Ory API
-keys](https://www.ory.sh/docs/concepts/personal-access-token).
+individual SDKs (Identities, OAuth2, Permissions) and works with
+[Ory API keys](https://www.ory.sh/docs/concepts/personal-access-token).
 
 ## Ory self-hosted SDKs
 
@@ -30,7 +30,8 @@ docker push oryd/sdk:v0.0.53
 
 ## Running the Image Locally
 
-If you wish to debug some generators or build steps, you can run the image locally:
+If you wish to debug some generators or build steps, you can run the image
+locally:
 
 ```shell script
 docker build -t oryd/sdk:latest .
@@ -39,11 +40,12 @@ docker run --mount type=bind,source="$(pwd)",target=/project --name sdk -it oryd
 
 ### Debugging Failing Tests on CI
 
-If a test fails in CI, you may run the following code snippet to reproduce the failure locally:
+If a test fails in CI, you may run the following code snippet to reproduce the
+failure locally:
 
 ```shell script
 docker build -t oryd/sdk:latest .
-docker run --mount type=bind,source="$(pwd)",target=/project --name sdk -it oryd/sdk:latest /bin/bash
+docker run --rm --mount type=bind,source="$(pwd)",target=/project --name sdk -it oryd/sdk:latest /bin/bash
 
 export FORCE_PROJECT=client # or hydra or something else
 export FORCE_VERSION=$(cat /project/spec/$FORCE_PROJECT/latest) # or a specific version, e.g. v1.2.17
@@ -150,6 +152,29 @@ You will also need a PGP keypair that is associated with one of the owners of
 the `sh.ory` group and that is published on one of the public key servers. For
 more details, see:
 [https://dzone.com/articles/publish-your-artifacts-to-maven-central](https://web.archive.org/web/20230324135530/https://dzone.com/articles/publish-your-artifacts-to-maven-central)
+
+or execute these steps:
+
+```sh
+gpg --full-gen-key
+> Select RSA and RSA
+> 4096
+> 0 (does not expire)
+
+# The key ID is the pub key ID
+> gpg –keyserver keys.pgp.net –send-key [KEY_ID]
+```
+
+On macOS, use GPG Keychain as gpg `--full-gen-key` may run into issues.
+
+1. Use this value for `MVN_GPG_ASC_BASE64`:
+   `gpg --pinentry-mode loopback --export-secret-keys --armor $MVN_PGP_KEY_ID | base64 -w0 | pbcopy`
+2. Set `MVN_PGP_KEY_ID` to the value of the key ID (on MacOS you can find it in
+   the info section of GPG Keychain).
+3. Set `MVN_PGP_KEYNAME` to the value of the public key fingerprint.
+4. Set `MVN_PGP_PASSPHRASE` to the passphrase of the private key.
+
+Then, run the following commands:
 
 ```shell script
 mvn clean

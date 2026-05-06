@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.15.11
+API version: v1.22.26
 Contact: support@ory.sh
 */
 
@@ -27,11 +27,28 @@ type IdentityAPI interface {
 	/*
 	BatchPatchIdentities Create multiple identities
 
-	Creates multiple
-[identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
-This endpoint can also be used to [import
-credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
-for instance passwords, social sign in configurations or multifactor methods.
+	Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).
+
+You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities),
+including passwords, social sign-in settings, and multi-factor authentication methods.
+
+If the patch includes hashed passwords you can import up to 1,000 identities per request.
+
+If the patch includes at least one plaintext password you can import up to 200 identities per request.
+
+Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
+
+If at least one identity is imported successfully, the response status is 200 OK.
+If all imports fail, the response is one of the following 4xx errors:
+400 Bad Request: The request payload is invalid or improperly formatted.
+409 Conflict: Duplicate identities or conflicting data were detected.
+
+If you get a 504 Gateway Timeout:
+Reduce the batch size
+Avoid duplicate identities
+Pre-hash passwords with BCrypt
+
+If the issue persists, contact support.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return IdentityAPIBatchPatchIdentitiesRequest
@@ -92,8 +109,7 @@ for instance passwords, social sign in configurations or multifactor methods.
 	DeleteIdentity Delete an Identity
 
 	Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
-This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is
-assumed that is has been deleted already.
+This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID is the identity's ID.
@@ -108,11 +124,11 @@ assumed that is has been deleted already.
 	DeleteIdentityCredentials Delete a credential for a specific identity
 
 	Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
-You cannot delete password or code auth credentials through this API.
+You cannot delete passkeys or code auth credentials through this API.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID is the identity's ID.
-	@param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+	@param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 	@return IdentityAPIDeleteIdentityCredentialsRequest
 	*/
 	DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest
@@ -190,6 +206,22 @@ include credentials (e.g. social sign in connections) in the response by using t
 	GetIdentityExecute(r IdentityAPIGetIdentityRequest) (*Identity, *http.Response, error)
 
 	/*
+	GetIdentityByExternalID Get an Identity by its External ID
+
+	Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
+include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param externalID ExternalID must be set to the ID of identity you want to get
+	@return IdentityAPIGetIdentityByExternalIDRequest
+	*/
+	GetIdentityByExternalID(ctx context.Context, externalID string) IdentityAPIGetIdentityByExternalIDRequest
+
+	// GetIdentityByExternalIDExecute executes the request
+	//  @return Identity
+	GetIdentityByExternalIDExecute(r IdentityAPIGetIdentityByExternalIDRequest) (*Identity, *http.Response, error)
+
+	/*
 	GetIdentitySchema Get Identity JSON Schema
 
 	Return a specific identity schema.
@@ -224,7 +256,7 @@ Getting a session object with all specified expandables that exist in an adminis
 	/*
 	ListIdentities List Identities
 
-	Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
+	Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return IdentityAPIListIdentitiesRequest
@@ -298,7 +330,10 @@ The fields `id`, `stateChangedAt` and `credentials` can not be updated using thi
 	UpdateIdentity Update an Identity
 
 	This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity
-payload (except credentials) is expected. It is possible to update the identity's credentials as well.
+payload, except credentials, is expected. For partial updates, use the [patchIdentity](https://www.ory.sh/docs/reference/api#tag/identity/operation/patchIdentity) operation.
+
+A credential can be provided via the `credentials` field in the request body.
+If provided, the credentials will be imported and added to the existing credentials of the identity.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID must be set to the ID of identity you want to update
@@ -332,11 +367,28 @@ func (r IdentityAPIBatchPatchIdentitiesRequest) Execute() (*BatchPatchIdentities
 /*
 BatchPatchIdentities Create multiple identities
 
-Creates multiple
-[identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
-This endpoint can also be used to [import
-credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
-for instance passwords, social sign in configurations or multifactor methods.
+Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).
+
+You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities),
+including passwords, social sign-in settings, and multi-factor authentication methods.
+
+If the patch includes hashed passwords you can import up to 1,000 identities per request.
+
+If the patch includes at least one plaintext password you can import up to 200 identities per request.
+
+Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
+
+If at least one identity is imported successfully, the response status is 200 OK.
+If all imports fail, the response is one of the following 4xx errors:
+400 Bad Request: The request payload is invalid or improperly formatted.
+409 Conflict: Duplicate identities or conflicting data were detected.
+
+If you get a 504 Gateway Timeout:
+Reduce the batch size
+Avoid duplicate identities
+Pre-hash passwords with BCrypt
+
+If the issue persists, contact support.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return IdentityAPIBatchPatchIdentitiesRequest
@@ -791,7 +843,7 @@ func (a *IdentityAPIService) CreateRecoveryLinkForIdentityExecute(r IdentityAPIC
 	localVarFormParams := url.Values{}
 
 	if r.returnTo != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "return_to", r.returnTo, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "return_to", r.returnTo, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -893,8 +945,7 @@ func (r IdentityAPIDeleteIdentityRequest) Execute() (*http.Response, error) {
 DeleteIdentity Delete an Identity
 
 Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
-This endpoint returns 204 when the identity was deleted or when the identity was not found, in which case it is
-assumed that is has been deleted already.
+This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID is the identity's ID.
@@ -1000,7 +1051,7 @@ type IdentityAPIDeleteIdentityCredentialsRequest struct {
 	identifier *string
 }
 
-// Identifier is the identifier of the OIDC credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;oidc&#x60; endpoint.
+// Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{oidc,saml}&#x60; endpoint.
 func (r IdentityAPIDeleteIdentityCredentialsRequest) Identifier(identifier string) IdentityAPIDeleteIdentityCredentialsRequest {
 	r.identifier = &identifier
 	return r
@@ -1014,11 +1065,11 @@ func (r IdentityAPIDeleteIdentityCredentialsRequest) Execute() (*http.Response, 
 DeleteIdentityCredentials Delete a credential for a specific identity
 
 Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
-You cannot delete password or code auth credentials through this API.
+You cannot delete passkeys or code auth credentials through this API.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID is the identity's ID.
- @param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+ @param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
  @return IdentityAPIDeleteIdentityCredentialsRequest
 */
 func (a *IdentityAPIService) DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest {
@@ -1052,7 +1103,7 @@ func (a *IdentityAPIService) DeleteIdentityCredentialsExecute(r IdentityAPIDelet
 	localVarFormParams := url.Values{}
 
 	if r.identifier != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "identifier", r.identifier, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifier", r.identifier, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1578,10 +1629,151 @@ func (a *IdentityAPIService) GetIdentityExecute(r IdentityAPIGetIdentityRequest)
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type IdentityAPIGetIdentityByExternalIDRequest struct {
+	ctx context.Context
+	ApiService IdentityAPI
+	externalID string
+	includeCredential *[]string
+}
+
+// Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+func (r IdentityAPIGetIdentityByExternalIDRequest) IncludeCredential(includeCredential []string) IdentityAPIGetIdentityByExternalIDRequest {
+	r.includeCredential = &includeCredential
+	return r
+}
+
+func (r IdentityAPIGetIdentityByExternalIDRequest) Execute() (*Identity, *http.Response, error) {
+	return r.ApiService.GetIdentityByExternalIDExecute(r)
+}
+
+/*
+GetIdentityByExternalID Get an Identity by its External ID
+
+Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
+include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param externalID ExternalID must be set to the ID of identity you want to get
+ @return IdentityAPIGetIdentityByExternalIDRequest
+*/
+func (a *IdentityAPIService) GetIdentityByExternalID(ctx context.Context, externalID string) IdentityAPIGetIdentityByExternalIDRequest {
+	return IdentityAPIGetIdentityByExternalIDRequest{
+		ApiService: a,
+		ctx: ctx,
+		externalID: externalID,
+	}
+}
+
+// Execute executes the request
+//  @return Identity
+func (a *IdentityAPIService) GetIdentityByExternalIDExecute(r IdentityAPIGetIdentityByExternalIDRequest) (*Identity, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Identity
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentityAPIService.GetIdentityByExternalID")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/identities/by/external/{externalID}"
+	localVarPath = strings.Replace(localVarPath, "{"+"externalID"+"}", url.PathEscape(parameterValueToString(r.externalID, "externalID")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.includeCredential != nil {
+		t := *r.includeCredential
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -1842,10 +2034,10 @@ func (a *IdentityAPIService) GetSessionExecute(r IdentityAPIGetSessionRequest) (
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "expand", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "expand", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "expand", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "expand", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -1966,7 +2158,7 @@ func (r IdentityAPIListIdentitiesRequest) Consistency(consistency string) Identi
 	return r
 }
 
-// List of ids used to filter identities. If this list is empty, then no filter will be applied.
+// Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
 func (r IdentityAPIListIdentitiesRequest) Ids(ids []string) IdentityAPIListIdentitiesRequest {
 	r.ids = &ids
 	return r
@@ -1990,7 +2182,7 @@ func (r IdentityAPIListIdentitiesRequest) IncludeCredential(includeCredential []
 	return r
 }
 
-// OrganizationID is the organization id to filter identities by.  If &#x60;ids&#x60; is set, this parameter is ignored.
+// List identities that belong to a specific organization.
 func (r IdentityAPIListIdentitiesRequest) OrganizationId(organizationId string) IdentityAPIListIdentitiesRequest {
 	r.organizationId = &organizationId
 	return r
@@ -2003,7 +2195,7 @@ func (r IdentityAPIListIdentitiesRequest) Execute() ([]Identity, *http.Response,
 /*
 ListIdentities List Identities
 
-Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system.
+Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return IdentityAPIListIdentitiesRequest
@@ -2037,59 +2229,62 @@ func (a *IdentityAPIService) ListIdentitiesExecute(r IdentityAPIListIdentitiesRe
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.perPage = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", defaultValue, "form", "")
+        r.perPage = &defaultValue
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	}
 	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
 	} else {
-		var defaultValue string = "1"
-		r.pageToken = &defaultValue
+        var defaultValue string = "1"
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", defaultValue, "form", "")
+        r.pageToken = &defaultValue
 	}
 	if r.consistency != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "consistency", r.consistency, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "consistency", r.consistency, "form", "")
 	}
 	if r.ids != nil {
 		t := *r.ids
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "ids", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "ids", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "ids", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "ids", t, "form", "multi")
 		}
 	}
 	if r.credentialsIdentifier != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "credentials_identifier", r.credentialsIdentifier, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "credentials_identifier", r.credentialsIdentifier, "form", "")
 	}
 	if r.previewCredentialsIdentifierSimilar != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "preview_credentials_identifier_similar", r.previewCredentialsIdentifierSimilar, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "preview_credentials_identifier_similar", r.previewCredentialsIdentifierSimilar, "form", "")
 	}
 	if r.includeCredential != nil {
 		t := *r.includeCredential
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "include_credential", t, "form", "multi")
 		}
 	}
 	if r.organizationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "organization_id", r.organizationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "organization_id", r.organizationId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2227,25 +2422,28 @@ func (a *IdentityAPIService) ListIdentitySchemasExecute(r IdentityAPIListIdentit
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.perPage = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", defaultValue, "form", "")
+        r.perPage = &defaultValue
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	}
 	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
 	} else {
-		var defaultValue string = "1"
-		r.pageToken = &defaultValue
+        var defaultValue string = "1"
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", defaultValue, "form", "")
+        r.pageToken = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2394,28 +2592,31 @@ func (a *IdentityAPIService) ListIdentitySessionsExecute(r IdentityAPIListIdenti
 	localVarFormParams := url.Values{}
 
 	if r.perPage != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.perPage = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", defaultValue, "form", "")
+        r.perPage = &defaultValue
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	}
 	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
 	} else {
-		var defaultValue string = "1"
-		r.pageToken = &defaultValue
+        var defaultValue string = "1"
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", defaultValue, "form", "")
+        r.pageToken = &defaultValue
 	}
 	if r.active != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2575,26 +2776,27 @@ func (a *IdentityAPIService) ListSessionsExecute(r IdentityAPIListSessionsReques
 	localVarFormParams := url.Values{}
 
 	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
 	}
 	if r.active != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
 	}
 	if r.expand != nil {
 		t := *r.expand
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "expand", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "expand", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "expand", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "expand", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -2843,7 +3045,10 @@ func (r IdentityAPIUpdateIdentityRequest) Execute() (*Identity, *http.Response, 
 UpdateIdentity Update an Identity
 
 This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity
-payload (except credentials) is expected. It is possible to update the identity's credentials as well.
+payload, except credentials, is expected. For partial updates, use the [patchIdentity](https://www.ory.sh/docs/reference/api#tag/identity/operation/patchIdentity) operation.
+
+A credential can be provided via the `credentials` field in the request body.
+If provided, the credentials will be imported and added to the existing credentials of the identity.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID must be set to the ID of identity you want to update

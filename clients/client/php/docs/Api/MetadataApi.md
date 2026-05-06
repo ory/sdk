@@ -1,5 +1,7 @@
 # Ory\Client\MetadataApi
 
+Server Metadata provides relevant information about the running server. Only available when self-hosting this service.
+
 All URIs are relative to https://playground.projects.oryapis.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |

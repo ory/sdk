@@ -1,5 +1,7 @@
 # Ory\Client\OAuth2Api
 
+
+
 All URIs are relative to https://playground.projects.oryapis.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
@@ -7,6 +9,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**acceptOAuth2ConsentRequest()**](OAuth2Api.md#acceptOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/accept | Accept OAuth 2.0 Consent Request |
 | [**acceptOAuth2LoginRequest()**](OAuth2Api.md#acceptOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/accept | Accept OAuth 2.0 Login Request |
 | [**acceptOAuth2LogoutRequest()**](OAuth2Api.md#acceptOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/accept | Accept OAuth 2.0 Session Logout Request |
+| [**acceptUserCodeRequest()**](OAuth2Api.md#acceptUserCodeRequest) | **PUT** /admin/oauth2/auth/requests/device/accept | Accepts a device grant user_code request |
 | [**createOAuth2Client()**](OAuth2Api.md#createOAuth2Client) | **POST** /admin/clients | Create OAuth 2.0 Client |
 | [**deleteOAuth2Client()**](OAuth2Api.md#deleteOAuth2Client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client |
 | [**deleteOAuth2Token()**](OAuth2Api.md#deleteOAuth2Token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client |
@@ -21,8 +24,10 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**listOAuth2ConsentSessions()**](OAuth2Api.md#listOAuth2ConsentSessions) | **GET** /admin/oauth2/auth/sessions/consent | List OAuth 2.0 Consent Sessions of a Subject |
 | [**listTrustedOAuth2JwtGrantIssuers()**](OAuth2Api.md#listTrustedOAuth2JwtGrantIssuers) | **GET** /admin/trust/grants/jwt-bearer/issuers | List Trusted OAuth2 JWT Bearer Grant Type Issuers |
 | [**oAuth2Authorize()**](OAuth2Api.md#oAuth2Authorize) | **GET** /oauth2/auth | OAuth 2.0 Authorize Endpoint |
+| [**oAuth2DeviceFlow()**](OAuth2Api.md#oAuth2DeviceFlow) | **POST** /oauth2/device/auth | The OAuth 2.0 Device Authorize Endpoint |
 | [**oauth2TokenExchange()**](OAuth2Api.md#oauth2TokenExchange) | **POST** /oauth2/token | The OAuth 2.0 Token Endpoint |
 | [**patchOAuth2Client()**](OAuth2Api.md#patchOAuth2Client) | **PATCH** /admin/clients/{id} | Patch OAuth 2.0 Client |
+| [**performOAuth2DeviceVerificationFlow()**](OAuth2Api.md#performOAuth2DeviceVerificationFlow) | **GET** /oauth2/device/verify | OAuth 2.0 Device Verification Endpoint |
 | [**rejectOAuth2ConsentRequest()**](OAuth2Api.md#rejectOAuth2ConsentRequest) | **PUT** /admin/oauth2/auth/requests/consent/reject | Reject OAuth 2.0 Consent Request |
 | [**rejectOAuth2LoginRequest()**](OAuth2Api.md#rejectOAuth2LoginRequest) | **PUT** /admin/oauth2/auth/requests/login/reject | Reject OAuth 2.0 Login Request |
 | [**rejectOAuth2LogoutRequest()**](OAuth2Api.md#rejectOAuth2LogoutRequest) | **PUT** /admin/oauth2/auth/requests/logout/reject | Reject OAuth 2.0 Session Logout Request |
@@ -212,6 +217,68 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `acceptUserCodeRequest()`
+
+```php
+acceptUserCodeRequest($deviceChallenge, $acceptDeviceUserCodeRequest): \Ory\Client\Model\OAuth2RedirectTo
+```
+
+Accepts a device grant user_code request
+
+Accepts a device grant user_code request
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\OAuth2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$deviceChallenge = 'deviceChallenge_example'; // string
+$acceptDeviceUserCodeRequest = new \Ory\Client\Model\AcceptDeviceUserCodeRequest(); // \Ory\Client\Model\AcceptDeviceUserCodeRequest
+
+try {
+    $result = $apiInstance->acceptUserCodeRequest($deviceChallenge, $acceptDeviceUserCodeRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OAuth2Api->acceptUserCodeRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **deviceChallenge** | **string**|  | |
+| **acceptDeviceUserCodeRequest** | [**\Ory\Client\Model\AcceptDeviceUserCodeRequest**](../Model/AcceptDeviceUserCodeRequest.md)|  | [optional] |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2RedirectTo**](../Model/OAuth2RedirectTo.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -845,7 +912,7 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
     $config
 );
 $pageSize = 250; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-$pageToken = '1'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$pageToken = 'pageToken_example'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $clientName = 'clientName_example'; // string | The name of the clients to filter by.
 $owner = 'owner_example'; // string | The owner of the clients to filter by.
 
@@ -862,7 +929,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
-| **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to &#39;1&#39;] |
+| **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **clientName** | **string**| The name of the clients to filter by. | [optional] |
 | **owner** | **string**| The owner of the clients to filter by. | [optional] |
 
@@ -952,7 +1019,7 @@ try {
 ## `listTrustedOAuth2JwtGrantIssuers()`
 
 ```php
-listTrustedOAuth2JwtGrantIssuers($maxItems, $defaultItems, $issuer): \Ory\Client\Model\TrustedOAuth2JwtGrantIssuer[]
+listTrustedOAuth2JwtGrantIssuers($pageSize, $pageToken, $issuer): \Ory\Client\Model\TrustedOAuth2JwtGrantIssuer[]
 ```
 
 List Trusted OAuth2 JWT Bearer Grant Type Issuers
@@ -976,12 +1043,12 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
     new GuzzleHttp\Client(),
     $config
 );
-$maxItems = 56; // int
-$defaultItems = 56; // int
+$pageSize = 250; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+$pageToken = 'pageToken_example'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $issuer = 'issuer_example'; // string | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned.
 
 try {
-    $result = $apiInstance->listTrustedOAuth2JwtGrantIssuers($maxItems, $defaultItems, $issuer);
+    $result = $apiInstance->listTrustedOAuth2JwtGrantIssuers($pageSize, $pageToken, $issuer);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->listTrustedOAuth2JwtGrantIssuers: ', $e->getMessage(), PHP_EOL;
@@ -992,8 +1059,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **maxItems** | **int**|  | [optional] |
-| **defaultItems** | **int**|  | [optional] |
+| **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **issuer** | **string**| If optional \&quot;issuer\&quot; is supplied, only jwt-bearer grants with this issuer will be returned. | [optional] |
 
 ### Return type
@@ -1052,6 +1119,59 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\Ory\Client\Model\ErrorOAuth2**](../Model/ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `oAuth2DeviceFlow()`
+
+```php
+oAuth2DeviceFlow(): \Ory\Client\Model\DeviceAuthorization
+```
+
+The OAuth 2.0 Device Authorize Endpoint
+
+This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exist.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\OAuth2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->oAuth2DeviceFlow();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OAuth2Api->oAuth2DeviceFlow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Client\Model\DeviceAuthorization**](../Model/DeviceAuthorization.md)
 
 ### Authorization
 
@@ -1195,6 +1315,59 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `performOAuth2DeviceVerificationFlow()`
+
+```php
+performOAuth2DeviceVerificationFlow(): \Ory\Client\Model\ErrorOAuth2
+```
+
+OAuth 2.0 Device Verification Endpoint
+
+This is the device user verification endpoint. The user is redirected here when trying to log in using the device flow.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\OAuth2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->performOAuth2DeviceVerificationFlow();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OAuth2Api->performOAuth2DeviceVerificationFlow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Client\Model\ErrorOAuth2**](../Model/ErrorOAuth2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -1387,7 +1560,7 @@ void (empty response body)
 ## `revokeOAuth2ConsentSessions()`
 
 ```php
-revokeOAuth2ConsentSessions($subject, $client, $all)
+revokeOAuth2ConsentSessions($subject, $client, $consentRequestId, $all)
 ```
 
 Revoke OAuth 2.0 Consent Sessions of a Subject
@@ -1413,10 +1586,11 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
 );
 $subject = 'subject_example'; // string | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted.
 $client = 'client_example'; // string | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID.
+$consentRequestId = 'consentRequestId_example'; // string | Consent Request ID  If set, revoke all token chains derived from this particular consent request ID.
 $all = True; // bool | Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted.
 
 try {
-    $apiInstance->revokeOAuth2ConsentSessions($subject, $client, $all);
+    $apiInstance->revokeOAuth2ConsentSessions($subject, $client, $consentRequestId, $all);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->revokeOAuth2ConsentSessions: ', $e->getMessage(), PHP_EOL;
 }
@@ -1426,8 +1600,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **subject** | **string**| OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | |
+| **subject** | **string**| OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. | [optional] |
 | **client** | **string**| OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. | [optional] |
+| **consentRequestId** | **string**| Consent Request ID  If set, revoke all token chains derived from this particular consent request ID. | [optional] |
 | **all** | **bool**| Revoke All Consent Sessions  If set to &#x60;true&#x60; deletes all consent sessions by the Subject that have been granted. | [optional] |
 
 ### Return type
@@ -1455,7 +1630,7 @@ revokeOAuth2LoginSessions($subject, $sid)
 
 Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
-This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.
+This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
 ### Example
 

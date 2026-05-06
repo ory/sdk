@@ -1,8 +1,9 @@
 # keto-client
 
 Ory Keto API
-- API version: v0.11.0-alpha.0
-  - Build date: 2023-02-23T17:15:19.489516255Z[Etc/UTC]
+- API version: v25.4.0
+  - Build date: 2025-11-09T17:31:55.351267584Z[Etc/UTC]
+  - Generator version: 7.7.0
 
 Documentation for all of Ory Keto's REST APIs. gRPC is documented separately.
 
@@ -41,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory.keto</groupId>
   <artifactId>keto-client</artifactId>
-  <version>v0.11.0-alpha.0</version>
+  <version>v25.4.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory.keto:keto-client:v0.11.0-alpha.0"
+     implementation "sh.ory.keto:keto-client:v25.4.0"
   }
 ```
 
@@ -71,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/keto-client-v0.11.0-alpha.0.jar`
+* `target/keto-client-v25.4.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -117,6 +118,7 @@ Class | Method | HTTP request | Description
 *MetadataApi* | [**getVersion**](docs/MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
 *MetadataApi* | [**isAlive**](docs/MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
 *MetadataApi* | [**isReady**](docs/MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
+*PermissionApi* | [**batchCheckPermission**](docs/PermissionApi.md#batchCheckPermission) | **POST** /relation-tuples/batch/check | Batch check permissions
 *PermissionApi* | [**checkPermission**](docs/PermissionApi.md#checkPermission) | **GET** /relation-tuples/check/openapi | Check a permission
 *PermissionApi* | [**checkPermissionOrError**](docs/PermissionApi.md#checkPermissionOrError) | **GET** /relation-tuples/check | Check a permission
 *PermissionApi* | [**expandPermissions**](docs/PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions.
@@ -132,8 +134,11 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [BatchCheckPermissionBody](docs/BatchCheckPermissionBody.md)
+ - [BatchCheckPermissionResult](docs/BatchCheckPermissionResult.md)
  - [CheckOplSyntaxResult](docs/CheckOplSyntaxResult.md)
  - [CheckPermissionResult](docs/CheckPermissionResult.md)
+ - [CheckPermissionResultWithError](docs/CheckPermissionResultWithError.md)
  - [CreateRelationshipBody](docs/CreateRelationshipBody.md)
  - [ErrorGeneric](docs/ErrorGeneric.md)
  - [ExpandedPermissionTree](docs/ExpandedPermissionTree.md)
@@ -157,10 +162,11 @@ Class | Method | HTTP request | Description
  - [Version](docs/Version.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
-All endpoints do not require authorization.
-Authentication schemes defined for the API:
+Endpoints do not require authorization.
+
 
 ## Recommendation
 

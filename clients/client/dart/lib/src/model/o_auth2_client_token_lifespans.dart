@@ -15,6 +15,9 @@ part 'o_auth2_client_token_lifespans.g.dart';
 /// * [authorizationCodeGrantIdTokenLifespan] 
 /// * [authorizationCodeGrantRefreshTokenLifespan] 
 /// * [clientCredentialsGrantAccessTokenLifespan] 
+/// * [deviceAuthorizationGrantAccessTokenLifespan] 
+/// * [deviceAuthorizationGrantIdTokenLifespan] 
+/// * [deviceAuthorizationGrantRefreshTokenLifespan] 
 /// * [implicitGrantAccessTokenLifespan] 
 /// * [implicitGrantIdTokenLifespan] 
 /// * [jwtBearerGrantAccessTokenLifespan] 
@@ -34,6 +37,15 @@ abstract class OAuth2ClientTokenLifespans implements Built<OAuth2ClientTokenLife
 
   @BuiltValueField(wireName: r'client_credentials_grant_access_token_lifespan')
   String? get clientCredentialsGrantAccessTokenLifespan;
+
+  @BuiltValueField(wireName: r'device_authorization_grant_access_token_lifespan')
+  String? get deviceAuthorizationGrantAccessTokenLifespan;
+
+  @BuiltValueField(wireName: r'device_authorization_grant_id_token_lifespan')
+  String? get deviceAuthorizationGrantIdTokenLifespan;
+
+  @BuiltValueField(wireName: r'device_authorization_grant_refresh_token_lifespan')
+  String? get deviceAuthorizationGrantRefreshTokenLifespan;
 
   @BuiltValueField(wireName: r'implicit_grant_access_token_lifespan')
   String? get implicitGrantAccessTokenLifespan;
@@ -101,6 +113,27 @@ class _$OAuth2ClientTokenLifespansSerializer implements PrimitiveSerializer<OAut
       yield r'client_credentials_grant_access_token_lifespan';
       yield serializers.serialize(
         object.clientCredentialsGrantAccessTokenLifespan,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.deviceAuthorizationGrantAccessTokenLifespan != null) {
+      yield r'device_authorization_grant_access_token_lifespan';
+      yield serializers.serialize(
+        object.deviceAuthorizationGrantAccessTokenLifespan,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.deviceAuthorizationGrantIdTokenLifespan != null) {
+      yield r'device_authorization_grant_id_token_lifespan';
+      yield serializers.serialize(
+        object.deviceAuthorizationGrantIdTokenLifespan,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.deviceAuthorizationGrantRefreshTokenLifespan != null) {
+      yield r'device_authorization_grant_refresh_token_lifespan';
+      yield serializers.serialize(
+        object.deviceAuthorizationGrantRefreshTokenLifespan,
         specifiedType: const FullType.nullable(String),
       );
     }
@@ -200,6 +233,30 @@ class _$OAuth2ClientTokenLifespansSerializer implements PrimitiveSerializer<OAut
           ) as String?;
           if (valueDes == null) continue;
           result.clientCredentialsGrantAccessTokenLifespan = valueDes;
+          break;
+        case r'device_authorization_grant_access_token_lifespan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.deviceAuthorizationGrantAccessTokenLifespan = valueDes;
+          break;
+        case r'device_authorization_grant_id_token_lifespan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.deviceAuthorizationGrantIdTokenLifespan = valueDes;
+          break;
+        case r'device_authorization_grant_refresh_token_lifespan':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.deviceAuthorizationGrantRefreshTokenLifespan = valueDes;
           break;
         case r'implicit_grant_access_token_lifespan':
           final valueDes = serializers.deserialize(

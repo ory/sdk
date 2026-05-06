@@ -1,14 +1,13 @@
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   contact:
-    email: hi@ory.am
-    name: ORY
-    url: https://www.ory.am
-  description: ORY Oathkeeper is a reverse proxy that checks the HTTP Authorization
-    for validity against a set of rules. This service uses Hydra to validate access
-    tokens and policies.
-  title: ORY Oathkeeper
-  version: v0.40.6
+    email: hi@ory.sh
+  description: |
+    Documentation for all of Ory Oathkeeper's APIs.
+  license:
+    name: Apache 2.0
+  title: Ory Oathkeeper API
+  version: v25.4.0
 servers:
 - url: /
 paths:
@@ -33,7 +32,8 @@ paths:
       summary: Lists Cryptographic Keys
       tags:
       - api
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /decisions:
     get:
       description: |-
@@ -45,7 +45,6 @@ paths:
       operationId: decisions
       responses:
         "200":
-          content: {}
           description: An empty response
         "401":
           content:
@@ -74,86 +73,76 @@ paths:
       summary: Access Control Decision API
       tags:
       - api
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /health/alive:
     get:
       description: |-
-        This endpoint returns a 200 status code when the HTTP server is up running.
-        This status does currently not include checks whether the database connection is working.
+        This endpoint returns a HTTP 200 status code when Ory Oathkeeper is accepting incoming
+        HTTP requests. This status does currently not include checks whether the database connection is working.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
         Be aware that if you are running multiple nodes of this service, the health status will never
         refer to the cluster state, only to a single instance.
-      operationId: isInstanceAlive
+      operationId: isAlive
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthStatus'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/healthStatus'
-          description: healthStatus
+                $ref: '#/components/schemas/isAlive_200_response'
+          description: Ory Oathkeeper is ready to accept connections.
         default:
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/unexpectedError'
             text/plain:
               schema:
-                $ref: '#/components/schemas/unexpectedError'
-          description: unexpectedError
-      summary: Check alive status
+                type: string
+          description: Unexpected error
+      summary: Check HTTP Server Status
       tags:
-      - health
-      x-accepts: application/json
+      - metadata
+      x-accepts:
+      - application/json
+      - text/plain
   /health/ready:
     get:
       description: |-
-        This endpoint returns a 200 status code when the HTTP server is up running and the environment dependencies (e.g.
+        This endpoint returns a HTTP 200 status code when Ory Oathkeeper is up running and the environment dependencies (e.g.
         the database) are responsive as well.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
-        Be aware that if you are running multiple nodes of this service, the health status will never
+        Be aware that if you are running multiple nodes of Ory Oathkeeper, the health status will never
         refer to the cluster state, only to a single instance.
-      operationId: isInstanceReady
+      operationId: isReady
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthStatus'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/healthStatus'
-          description: healthStatus
+                $ref: '#/components/schemas/isAlive_200_response'
+          description: Ory Oathkeeper is ready to accept requests.
         "503":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/healthNotReadyStatus'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/healthNotReadyStatus'
-          description: healthNotReadyStatus
+                $ref: '#/components/schemas/isReady_503_response'
+          description: Ory Kratos is not yet ready to accept requests.
         default:
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/unexpectedError'
             text/plain:
               schema:
-                $ref: '#/components/schemas/unexpectedError'
-          description: unexpectedError
-      summary: Check readiness status
+                type: string
+          description: Unexpected error
+      summary: Check HTTP Server and Database Status
       tags:
-      - health
-      x-accepts: application/json
+      - metadata
+      x-accepts:
+      - application/json
+      - text/plain
   /rules:
     get:
       description: |-
@@ -162,17 +151,23 @@ paths:
       operationId: listRules
       parameters:
       - description: The maximum amount of rules returned.
+        explode: true
         in: query
         name: limit
+        required: false
         schema:
           format: int64
           type: integer
+        style: form
       - description: The offset from where to start looking.
+        explode: true
         in: query
         name: offset
+        required: false
         schema:
           format: int64
           type: integer
+        style: form
       responses:
         "200":
           content:
@@ -191,18 +186,21 @@ paths:
       summary: List All Rules
       tags:
       - api
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /rules/{id}:
     get:
       description: Use this method to retrieve a rule from the storage. If it does
         not exist you will receive a 404 error.
       operationId: getRule
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -225,16 +223,17 @@ paths:
       summary: Retrieve a Rule
       tags:
       - api
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /version:
     get:
       description: |-
-        This endpoint returns the service version typically notated using semantic versioning.
+        This endpoint returns the version of Ory Oathkeeper.
 
         If the service supports TLS Edge Termination, this endpoint does not require the
         `X-Forwarded-Proto` header to be set.
 
-        Be aware that if you are running multiple nodes of this service, the health status will never
+        Be aware that if you are running multiple nodes of this service, the version will never
         refer to the cluster state, only to a single instance.
       operationId: getVersion
       responses:
@@ -242,16 +241,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/version'
-          description: version
-      summary: Get service version
+                $ref: '#/components/schemas/getVersion_200_response'
+          description: Returns the Ory Oathkeeper version.
+      summary: Return Running Software Version.
       tags:
-      - version
-      x-accepts: application/json
+      - metadata
+      x-accepts:
+      - application/json
 components:
   responses:
     emptyResponse:
-      content: {}
       description: An empty response
     rule:
       content:
@@ -268,6 +267,9 @@ components:
             type: array
       description: A list of rules
   schemas:
+    UUID:
+      format: uuid4
+      type: string
     Upstream:
       example:
         preserve_host: true
@@ -289,14 +291,22 @@ components:
       type: object
     genericError:
       description: The standard error format
+      example:
+        reason: reason
+        request: request
+        code: 0
+        details:
+        - key: ""
+        - key: ""
+        message: message
+        status: status
       properties:
         code:
           format: int64
           type: integer
         details:
           items:
-            additionalProperties:
-              type: object
+            additionalProperties: {}
             type: object
           type: array
         message:
@@ -316,14 +326,14 @@ components:
           description: Errors contains a list of errors that caused the not ready
             status.
           type: object
+      title: The not ready status of the service.
       type: object
     healthStatus:
-      example:
-        status: status
       properties:
         status:
           description: Status always contains "ok".
           type: string
+      title: The health status of the service.
       type: object
     jsonWebKey:
       example:
@@ -480,12 +490,12 @@ components:
           url: url
         authorizer:
           handler: handler
-          config: "{}"
+          config: ""
         authenticators:
         - handler: handler
-          config: "{}"
+          config: ""
         - handler: handler
-          config: "{}"
+          config: ""
         match:
           methods:
           - methods
@@ -494,9 +504,9 @@ components:
         description: description
         mutators:
         - handler: handler
-          config: "{}"
+          config: ""
         - handler: handler
-          config: "{}"
+          config: ""
         id: id
       properties:
         authenticators:
@@ -538,13 +548,12 @@ components:
     ruleHandler:
       example:
         handler: handler
-        config: "{}"
+        config: ""
       properties:
         config:
           description: |-
             Config contains the configuration for the handler. Please read the user
             guide for a complete list of each handler's available settings.
-          type: object
         handler:
           description: |-
             Handler identifies the implementation which will be used to handle this specific request. Please read the user
@@ -582,17 +591,45 @@ components:
     unexpectedError:
       type: string
     version:
-      example:
-        version: version
       properties:
         version:
           description: Version is the service's version.
           type: string
       type: object
-    UUID:
-      format: uuid4
-      type: string
+    isAlive_200_response:
+      example:
+        status: status
+      properties:
+        status:
+          description: Always "ok".
+          type: string
+      required:
+      - status
+      type: object
+    isReady_503_response:
+      example:
+        errors:
+          key: errors
+      properties:
+        errors:
+          additionalProperties:
+            type: string
+          description: Errors contains a list of errors that caused the not ready
+            status.
+          type: object
+      required:
+      - errors
+      type: object
+    getVersion_200_response:
+      example:
+        version: version
+      properties:
+        version:
+          description: The version of Ory Oathkeeper.
+          type: string
+      required:
+      - version
+      type: object
 x-forwarded-proto: string
 x-request-id: string
-x-original-swagger-version: "2.0"
 

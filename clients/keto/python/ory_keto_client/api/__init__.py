@@ -1,3 +1,7 @@
-# do not import all apis into this module because that uses a lot of memory and stack frames
-# if you need the ability to import all apis from one package, import them with
-# from ory_keto_client.apis import MetadataApi
+# flake8: noqa
+
+# import apis into api package
+from ory_keto_client.api.metadata_api import MetadataApi
+from ory_keto_client.api.permission_api import PermissionApi
+from ory_keto_client.api.relationship_api import RelationshipApi
+

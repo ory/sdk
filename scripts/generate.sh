@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -Eeuxo pipefail
+set -Eexo pipefail
 
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
@@ -41,8 +41,8 @@ typescript () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
+  npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g typescript-axios \
     -o "$dir" \
     --git-user-id ory \
@@ -65,17 +65,25 @@ typescript_fetch () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
+
+  config_file=./config/client/typescript-fetch.yml.proc.yml
+  if [ $project == "client" ]; then
+    config_file=./config/client/typescript-client-fetch.yml.proc.yml
+  fi
+
+  npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g typescript-fetch \
     -o "$dir" \
     --git-user-id ory \
     --git-repo-id sdk \
     --git-host github.com \
-    -c ./config/client/typescript-fetch.yml.proc.yml
+    -c $config_file
 
-  echo "Adding contrib files to barrel export..."
-  echo "export * from './contrib';" >> "${dir}/src/index.ts"
+  if [ $project == "client" ]; then
+    echo "Adding contrib files"
+    echo "export * from './contrib';" >> "${dir}/src/index.ts"
+  fi
 
   file="${dir}/package.json"
   jq -r ".author = "'"'"Ory Corp"'"'" | .license = "'"'"Apache-2.0"'"' "${file}" \
@@ -96,8 +104,8 @@ java () {
   # new versions of the generator introduce changes to the pom dependencies.
   #
   # Read contrib/poms/README.md for upgrade instructions.
-  openapi-generator-cli version-manager set 7.7.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.7.0
+  npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g java \
     -o "$dir" \
     --git-user-id ory \
@@ -118,8 +126,8 @@ php() {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
+  npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g php \
     -o "$dir" \
     --git-user-id ory \
@@ -143,8 +151,8 @@ python () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
+  npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g python \
     -o "$dir" \
     --git-user-id ory \
@@ -163,8 +171,8 @@ ruby () {
 
   rm "${dir}/lib/${RUBY_PROJECT_NAME}/version.rb" || true
 
-  openapi-generator-cli version-manager set 7.7.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
+  npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g ruby \
     -o "$dir" \
     --git-user-id ory \
@@ -190,23 +198,25 @@ golang () {
   mkdir -p "$dir"
 
   mkdir -p "${dir}"
+  name="${GIT_REPO}-go/v${RAW_VERSION%%.*}"
+  if [ "${PROJECT}" == "client" ]; then
+    name="${GIT_REPO}-go"
+  fi
 
-  openapi-generator-cli version-manager set 7.6.0 # 7.7.0 has an issue with an unused import. We can upgrade once this is fixed.
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
+  npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g go \
     -o "$dir" \
     --git-user-id ory \
-    --git-repo-id "${GIT_REPO}-go" \
+    --git-repo-id "${name}" \
     --git-host github.com \
     -c ./config/client/go.yml.proc.yml
   cp "LICENSE" "clients/${PROJECT}/go"
 
-  if [ "${PROJECT}" == "hydra" ]; then
-    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go/v2"; go mod tidy -compat=1.17)
-  elif [ "${PROJECT}" == "client" ]; then
-    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/client-go"; go mod tidy -compat=1.17)
+  if [ "${PROJECT}" == "client" ]; then
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/client-go"; go mod tidy)
   else
-    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go"; go mod tidy -compat=1.17)
+    (cd "${dir}"; rm go.mod go.sum || true; go mod init "github.com/ory/${PROJECT}-client-go/v${RAW_VERSION%%.*}"; go mod tidy)
   fi
 }
 
@@ -217,8 +227,8 @@ dotnet () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.8.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
+  npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g csharp \
     -o "$dir" \
     --model-name-prefix "${PROJECT_UCF}" \
@@ -236,8 +246,8 @@ dart () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
+  npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g dart-dio \
     -o "$dir" \
     --git-user-id ory \
@@ -249,6 +259,9 @@ dart () {
 
   # Generate the `*.g.dart` files
   (cd $dir; command dart run build_runner build)
+
+  cp -r contrib/dart/. ${dir}/
+  envsubst < "${dir}/CHANGELOG.md" | tee "${dir}/CHANGELOG.md"
 }
 
 kotlin () {
@@ -277,11 +290,8 @@ rust () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  openapi-generator-cli version-manager set 7.7.0
-  # We use a custom rust template to fix some of the compilation issues:
-  # - https://github.com/OpenAPITools/openapi-generator/issues/13257
-  # - https://github.com/OpenAPITools/openapi-generator/issues/10845
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
+  npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g rust \
     -o "$dir" \
     --git-user-id ory \
@@ -291,11 +301,12 @@ rust () {
 
   file="${dir}/Cargo.toml"
 
-  if [ $project != "client" ]; then
-    (sed "s/${VERSION}/${RAW_VERSION}"'"\ndescription = "SDK Client for Ory '"${PROJECT_UCF}"'"\ndocumentation = "https:\/\/www.ory.sh\/'"${PROJECT}"'\/docs\/sdk"\nhomepage = "https:\/\/www.ory.sh"\nlicense = "Apache-2.0/g' < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
-  else
-    (sed "s/${VERSION}/${RAW_VERSION}"'"\ndescription = "SDK Client for Ory"\ndocumentation = "https:\/\/www.ory.sh\/docs\/sdk"\nhomepage = "https:\/\/www.ory.sh"\nlicense = "Apache-2.0/g' < "${file}") > tmp.$$.rb && mv tmp.$$.rb "${file}"
-  fi
+  sed -i "s/${VERSION}/${RAW_VERSION}/g" "${file}"
+  sed -i "s/Apache 2.0/Apache-2.0/g" "${file}"
+  safe_desc=$(printf '%s' "$PACKAGE_DESCRIPTION" | sed -e 's/[&\\]/\\&/g' -e 's/"/\\"/g')
+  sed -i "s/description = \"[^\"]*\"/description = \"${safe_desc}\"/g" "${file}"
+
+
   cp "LICENSE" "clients/${PROJECT}/rust"
 }
 
@@ -309,9 +320,8 @@ elixir () {
 
   file="${dir}/mix.exs"
 
-  # 7.7.0
-  openapi-generator-cli version-manager set 7.7.0
-  openapi-generator-cli generate -i "${SPEC_FILE}" \
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.12.0
+  npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     	-g elixir \
 	    -o "$dir" \
 	    --git-user-id ory \
@@ -320,7 +330,13 @@ elixir () {
 	    -c ./config/client/elixir.yml.proc.yml
 
   (sed "s/licenses:.*$/licenses: [\"Apache-2.0\"],\n      links: %{\n        \"GitHub\" => \"https:\/\/github.com\/ory\/sdk\",\n        \"Website\" => \"https:\/\/www.ory.sh\",\n        \"Documentation\" => \"https:\/\/www.ory.sh\/docs\",\n        \"Product\" => \"https:\/\/console.ory.sh\"\n      }/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
-  (sed "s/${VERSION}/${RAW_VERSION}/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
+#  (sed "s/${VERSION}/${RAW_VERSION}/g" < "${file}") > tmp.$$.exs && mv tmp.$$.exs "${file}"
+  sed -i '/^\s*description: """$/,/^\s*""",$/c\
+      description: """\
+      '"${PACKAGE_DESCRIPTION}"'\
+      """,
+  ' "${file}"
+  sed -i "s/${VERSION}/${RAW_VERSION}/g" "${file}"
 
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }
@@ -335,9 +351,8 @@ golang
 java
 php
 python
-
 ruby
 dotnet
-dart
+# dart
 
 cleanup

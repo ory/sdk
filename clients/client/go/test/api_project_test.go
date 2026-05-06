@@ -36,6 +36,21 @@ func Test_client_ProjectAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ProjectAPIService CreateOrganizationOnboardingPortalLink", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId string
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ProjectAPI.CreateOrganizationOnboardingPortalLink(context.Background(), projectId, organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ProjectAPIService CreateProject", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -76,6 +91,21 @@ func Test_client_ProjectAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ProjectAPIService DeleteOrganizationOnboardingPortalLink", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId string
+		var organizationId string
+		var onboardingPortalLinkId string
+
+		httpRes, err := apiClient.ProjectAPI.DeleteOrganizationOnboardingPortalLink(context.Background(), projectId, organizationId, onboardingPortalLinkId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ProjectAPIService DeleteProjectApiKey", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -98,6 +128,21 @@ func Test_client_ProjectAPIService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.ProjectAPI.GetOrganization(context.Background(), projectId, organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ProjectAPIService GetOrganizationOnboardingPortalLinks", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId string
+		var organizationId string
+
+		resp, httpRes, err := apiClient.ProjectAPI.GetOrganizationOnboardingPortalLinks(context.Background(), projectId, organizationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -251,6 +296,22 @@ func Test_client_ProjectAPIService(t *testing.T) {
 		var organizationId string
 
 		resp, httpRes, err := apiClient.ProjectAPI.UpdateOrganization(context.Background(), projectId, organizationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ProjectAPIService UpdateOrganizationOnboardingPortalLink", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId string
+		var organizationId string
+		var onboardingPortalLinkId string
+
+		resp, httpRes, err := apiClient.ProjectAPI.UpdateOrganizationOnboardingPortalLink(context.Background(), projectId, organizationId, onboardingPortalLinkId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

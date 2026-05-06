@@ -14,15 +14,18 @@
 | **client_id** | **String** | ClientID is the application&#39;s Client ID. | [optional] |
 | **client_secret** | **String** |  | [optional] |
 | **created_at** | **Time** | The Project&#39;s Revision Creation Date | [optional][readonly] |
+| **fedcm_config_url** | **String** |  | [optional] |
 | **id** | **String** |  | [optional] |
 | **issuer_url** | **String** | IssuerURL is the OpenID Connect Server URL. You can leave this empty if &#x60;provider&#x60; is not set to &#x60;generic&#x60;. If set, neither &#x60;auth_url&#x60; nor &#x60;token_url&#x60; are required. | [optional] |
 | **label** | **String** | Label represents an optional label which can be used in the UI generation. | [optional] |
 | **mapper_url** | **String** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider&#39;s data (e.g. GitHub or Google profile information) to hydrate the identity&#39;s data. | [optional] |
+| **net_id_token_origin_header** | **String** |  | [optional] |
 | **organization_id** | **String** |  | [optional] |
-| **pkce** | **String** | PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange). Possible values are: &#x60;auto&#x60; (default), &#x60;never&#x60;, &#x60;force&#x60;. &#x60;auto&#x60;: PKCE is used if the provider supports it. Requires setting &#x60;issuer_url&#x60;. &#x60;never&#x60;: Disable PKCE entirely for this provider, even if the provider advertises support for it. &#x60;force&#x60;: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE. IMPORTANT: If you set this to &#x60;force&#x60;, you must whitelist a different return URL for your OAuth2 client in the provider&#39;s configuration. Instead of &lt;base-url&gt;/self-service/methods/oidc/callback/&lt;provider&gt;, you must use &lt;base-url&gt;/self-service/methods/oidc/callback (Note the missing &lt;provider&gt; path segment and no trailing slash). | [optional] |
-| **project_revision_id** | **String** | The Revision&#39;s ID this schema belongs to | [optional] |
+| **pkce** | **String** |  | [optional] |
+| **project_revision_id** | **String** | The Revision&#39;s ID this provider belongs to | [optional] |
 | **provider** | **String** | Provider is either \&quot;generic\&quot; for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] |
 | **provider_id** | **String** | ID is the provider&#39;s ID | [optional] |
+| **proxy_oidc_redirect_url** | **String** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional][readonly] |
 | **requested_claims** | **Object** |  | [optional] |
 | **scope** | **Array&lt;String&gt;** |  | [optional] |
 | **state** | **String** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] |
@@ -46,15 +49,18 @@ instance = OryClient::NormalizedProjectRevisionThirdPartyProvider.new(
   client_id: null,
   client_secret: null,
   created_at: null,
+  fedcm_config_url: null,
   id: null,
   issuer_url: https://accounts.google.com,
   label: null,
   mapper_url: null,
+  net_id_token_origin_header: null,
   organization_id: null,
   pkce: null,
   project_revision_id: null,
   provider: google,
   provider_id: null,
+  proxy_oidc_redirect_url: null,
   requested_claims: null,
   scope: null,
   state: null,

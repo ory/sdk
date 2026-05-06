@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **email_verified** | **bool** |  | 
 **id** | **str** |  | 
 **name** | **str** |  | 
+**organization_id** | **str** |  | [optional] 
 **role** | **str** |  | 
 
 ## Example

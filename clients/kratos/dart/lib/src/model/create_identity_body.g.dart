@@ -66,9 +66,13 @@ class _$CreateIdentityBody extends CreateIdentityBody {
   @override
   final IdentityWithCredentials? credentials;
   @override
+  final String? externalId;
+  @override
   final JsonObject? metadataAdmin;
   @override
   final JsonObject? metadataPublic;
+  @override
+  final String? organizationId;
   @override
   final BuiltList<RecoveryIdentityAddress>? recoveryAddresses;
   @override
@@ -86,8 +90,10 @@ class _$CreateIdentityBody extends CreateIdentityBody {
 
   _$CreateIdentityBody._(
       {this.credentials,
+      this.externalId,
       this.metadataAdmin,
       this.metadataPublic,
+      this.organizationId,
       this.recoveryAddresses,
       required this.schemaId,
       this.state,
@@ -114,8 +120,10 @@ class _$CreateIdentityBody extends CreateIdentityBody {
     if (identical(other, this)) return true;
     return other is CreateIdentityBody &&
         credentials == other.credentials &&
+        externalId == other.externalId &&
         metadataAdmin == other.metadataAdmin &&
         metadataPublic == other.metadataPublic &&
+        organizationId == other.organizationId &&
         recoveryAddresses == other.recoveryAddresses &&
         schemaId == other.schemaId &&
         state == other.state &&
@@ -127,8 +135,10 @@ class _$CreateIdentityBody extends CreateIdentityBody {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, credentials.hashCode);
+    _$hash = $jc(_$hash, externalId.hashCode);
     _$hash = $jc(_$hash, metadataAdmin.hashCode);
     _$hash = $jc(_$hash, metadataPublic.hashCode);
+    _$hash = $jc(_$hash, organizationId.hashCode);
     _$hash = $jc(_$hash, recoveryAddresses.hashCode);
     _$hash = $jc(_$hash, schemaId.hashCode);
     _$hash = $jc(_$hash, state.hashCode);
@@ -142,8 +152,10 @@ class _$CreateIdentityBody extends CreateIdentityBody {
   String toString() {
     return (newBuiltValueToStringHelper(r'CreateIdentityBody')
           ..add('credentials', credentials)
+          ..add('externalId', externalId)
           ..add('metadataAdmin', metadataAdmin)
           ..add('metadataPublic', metadataPublic)
+          ..add('organizationId', organizationId)
           ..add('recoveryAddresses', recoveryAddresses)
           ..add('schemaId', schemaId)
           ..add('state', state)
@@ -163,6 +175,10 @@ class CreateIdentityBodyBuilder
   set credentials(IdentityWithCredentialsBuilder? credentials) =>
       _$this._credentials = credentials;
 
+  String? _externalId;
+  String? get externalId => _$this._externalId;
+  set externalId(String? externalId) => _$this._externalId = externalId;
+
   JsonObject? _metadataAdmin;
   JsonObject? get metadataAdmin => _$this._metadataAdmin;
   set metadataAdmin(JsonObject? metadataAdmin) =>
@@ -172,6 +188,11 @@ class CreateIdentityBodyBuilder
   JsonObject? get metadataPublic => _$this._metadataPublic;
   set metadataPublic(JsonObject? metadataPublic) =>
       _$this._metadataPublic = metadataPublic;
+
+  String? _organizationId;
+  String? get organizationId => _$this._organizationId;
+  set organizationId(String? organizationId) =>
+      _$this._organizationId = organizationId;
 
   ListBuilder<RecoveryIdentityAddress>? _recoveryAddresses;
   ListBuilder<RecoveryIdentityAddress> get recoveryAddresses =>
@@ -208,8 +229,10 @@ class CreateIdentityBodyBuilder
     final $v = _$v;
     if ($v != null) {
       _credentials = $v.credentials?.toBuilder();
+      _externalId = $v.externalId;
       _metadataAdmin = $v.metadataAdmin;
       _metadataPublic = $v.metadataPublic;
+      _organizationId = $v.organizationId;
       _recoveryAddresses = $v.recoveryAddresses?.toBuilder();
       _schemaId = $v.schemaId;
       _state = $v.state;
@@ -240,8 +263,10 @@ class CreateIdentityBodyBuilder
       _$result = _$v ??
           new _$CreateIdentityBody._(
               credentials: _credentials?.build(),
+              externalId: externalId,
               metadataAdmin: metadataAdmin,
               metadataPublic: metadataPublic,
+              organizationId: organizationId,
               recoveryAddresses: _recoveryAddresses?.build(),
               schemaId: BuiltValueNullFieldError.checkNotNull(
                   schemaId, r'CreateIdentityBody', 'schemaId'),

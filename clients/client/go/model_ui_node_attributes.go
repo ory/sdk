@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.15.11
+API version: v1.22.26
 Contact: support@ory.sh
 */
 
@@ -19,6 +19,7 @@ import (
 // UiNodeAttributes - struct for UiNodeAttributes
 type UiNodeAttributes struct {
 	UiNodeAnchorAttributes *UiNodeAnchorAttributes
+	UiNodeDivisionAttributes *UiNodeDivisionAttributes
 	UiNodeImageAttributes *UiNodeImageAttributes
 	UiNodeInputAttributes *UiNodeInputAttributes
 	UiNodeScriptAttributes *UiNodeScriptAttributes
@@ -29,6 +30,13 @@ type UiNodeAttributes struct {
 func UiNodeAnchorAttributesAsUiNodeAttributes(v *UiNodeAnchorAttributes) UiNodeAttributes {
 	return UiNodeAttributes{
 		UiNodeAnchorAttributes: v,
+	}
+}
+
+// UiNodeDivisionAttributesAsUiNodeAttributes is a convenience function that returns UiNodeDivisionAttributes wrapped in UiNodeAttributes
+func UiNodeDivisionAttributesAsUiNodeAttributes(v *UiNodeDivisionAttributes) UiNodeAttributes {
+	return UiNodeAttributes{
+		UiNodeDivisionAttributes: v,
 	}
 }
 
@@ -83,6 +91,18 @@ func (dst *UiNodeAttributes) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'div'
+	if jsonDict["node_type"] == "div" {
+		// try to unmarshal JSON data into UiNodeDivisionAttributes
+		err = json.Unmarshal(data, &dst.UiNodeDivisionAttributes)
+		if err == nil {
+			return nil // data stored in dst.UiNodeDivisionAttributes, return on the first match
+		} else {
+			dst.UiNodeDivisionAttributes = nil
+			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeDivisionAttributes: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'img'
 	if jsonDict["node_type"] == "img" {
 		// try to unmarshal JSON data into UiNodeImageAttributes
@@ -131,66 +151,6 @@ func (dst *UiNodeAttributes) UnmarshalJSON(data []byte) error {
 		}
 	}
 
-	// check if the discriminator value is 'uiNodeAnchorAttributes'
-	if jsonDict["node_type"] == "uiNodeAnchorAttributes" {
-		// try to unmarshal JSON data into UiNodeAnchorAttributes
-		err = json.Unmarshal(data, &dst.UiNodeAnchorAttributes)
-		if err == nil {
-			return nil // data stored in dst.UiNodeAnchorAttributes, return on the first match
-		} else {
-			dst.UiNodeAnchorAttributes = nil
-			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeAnchorAttributes: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'uiNodeImageAttributes'
-	if jsonDict["node_type"] == "uiNodeImageAttributes" {
-		// try to unmarshal JSON data into UiNodeImageAttributes
-		err = json.Unmarshal(data, &dst.UiNodeImageAttributes)
-		if err == nil {
-			return nil // data stored in dst.UiNodeImageAttributes, return on the first match
-		} else {
-			dst.UiNodeImageAttributes = nil
-			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeImageAttributes: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'uiNodeInputAttributes'
-	if jsonDict["node_type"] == "uiNodeInputAttributes" {
-		// try to unmarshal JSON data into UiNodeInputAttributes
-		err = json.Unmarshal(data, &dst.UiNodeInputAttributes)
-		if err == nil {
-			return nil // data stored in dst.UiNodeInputAttributes, return on the first match
-		} else {
-			dst.UiNodeInputAttributes = nil
-			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeInputAttributes: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'uiNodeScriptAttributes'
-	if jsonDict["node_type"] == "uiNodeScriptAttributes" {
-		// try to unmarshal JSON data into UiNodeScriptAttributes
-		err = json.Unmarshal(data, &dst.UiNodeScriptAttributes)
-		if err == nil {
-			return nil // data stored in dst.UiNodeScriptAttributes, return on the first match
-		} else {
-			dst.UiNodeScriptAttributes = nil
-			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeScriptAttributes: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'uiNodeTextAttributes'
-	if jsonDict["node_type"] == "uiNodeTextAttributes" {
-		// try to unmarshal JSON data into UiNodeTextAttributes
-		err = json.Unmarshal(data, &dst.UiNodeTextAttributes)
-		if err == nil {
-			return nil // data stored in dst.UiNodeTextAttributes, return on the first match
-		} else {
-			dst.UiNodeTextAttributes = nil
-			return fmt.Errorf("failed to unmarshal UiNodeAttributes as UiNodeTextAttributes: %s", err.Error())
-		}
-	}
-
 	return nil
 }
 
@@ -198,6 +158,10 @@ func (dst *UiNodeAttributes) UnmarshalJSON(data []byte) error {
 func (src UiNodeAttributes) MarshalJSON() ([]byte, error) {
 	if src.UiNodeAnchorAttributes != nil {
 		return json.Marshal(&src.UiNodeAnchorAttributes)
+	}
+
+	if src.UiNodeDivisionAttributes != nil {
+		return json.Marshal(&src.UiNodeDivisionAttributes)
 	}
 
 	if src.UiNodeImageAttributes != nil {
@@ -228,6 +192,10 @@ func (obj *UiNodeAttributes) GetActualInstance() (interface{}) {
 		return obj.UiNodeAnchorAttributes
 	}
 
+	if obj.UiNodeDivisionAttributes != nil {
+		return obj.UiNodeDivisionAttributes
+	}
+
 	if obj.UiNodeImageAttributes != nil {
 		return obj.UiNodeImageAttributes
 	}
@@ -242,6 +210,36 @@ func (obj *UiNodeAttributes) GetActualInstance() (interface{}) {
 
 	if obj.UiNodeTextAttributes != nil {
 		return obj.UiNodeTextAttributes
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj UiNodeAttributes) GetActualInstanceValue() (interface{}) {
+	if obj.UiNodeAnchorAttributes != nil {
+		return *obj.UiNodeAnchorAttributes
+	}
+
+	if obj.UiNodeDivisionAttributes != nil {
+		return *obj.UiNodeDivisionAttributes
+	}
+
+	if obj.UiNodeImageAttributes != nil {
+		return *obj.UiNodeImageAttributes
+	}
+
+	if obj.UiNodeInputAttributes != nil {
+		return *obj.UiNodeInputAttributes
+	}
+
+	if obj.UiNodeScriptAttributes != nil {
+		return *obj.UiNodeScriptAttributes
+	}
+
+	if obj.UiNodeTextAttributes != nil {
+		return *obj.UiNodeTextAttributes
 	}
 
 	// all schemas are nil

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**account_experience** | Option<[**models::ProjectServiceAccountExperience**](projectServiceAccountExperience.md)> |  | [optional]
 **identity** | Option<[**models::ProjectServiceIdentity**](projectServiceIdentity.md)> |  | [optional]
 **oauth2** | Option<[**models::ProjectServiceOAuth2**](projectServiceOAuth2.md)> |  | [optional]
 **permission** | Option<[**models::ProjectServicePermission**](projectServicePermission.md)> |  | [optional]

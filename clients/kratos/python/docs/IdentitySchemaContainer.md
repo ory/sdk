@@ -6,8 +6,8 @@ An Identity JSON Schema Container
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The ID of the Identity JSON Schema | [optional] 
-**var_schema** | **object** | The actual Identity JSON Schema | [optional] 
+**id** | **str** | The ID of the Identity JSON Schema | 
+**var_schema** | **object** | The actual Identity JSON Schema | 
 
 ## Example
 

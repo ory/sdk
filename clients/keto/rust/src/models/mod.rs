@@ -1,7 +1,13 @@
+pub mod batch_check_permission_body;
+pub use self::batch_check_permission_body::BatchCheckPermissionBody;
+pub mod batch_check_permission_result;
+pub use self::batch_check_permission_result::BatchCheckPermissionResult;
 pub mod check_opl_syntax_result;
 pub use self::check_opl_syntax_result::CheckOplSyntaxResult;
 pub mod check_permission_result;
 pub use self::check_permission_result::CheckPermissionResult;
+pub mod check_permission_result_with_error;
+pub use self::check_permission_result_with_error::CheckPermissionResultWithError;
 pub mod create_relationship_body;
 pub use self::create_relationship_body::CreateRelationshipBody;
 pub mod error_generic;

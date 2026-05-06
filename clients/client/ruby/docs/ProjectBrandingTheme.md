@@ -9,8 +9,6 @@
 | **accent_emphasis_color** | **String** | AccentEmphasisColor is a hex color code used by the Ory Account Experience theme. | [optional] |
 | **accent_muted_color** | **String** | AccentMutedColor is a hex color code used by the Ory Account Experience theme. | [optional] |
 | **accent_subtle_color** | **String** | AccentSubtleColor is a hex color code used by the Ory Account Experience theme. | [optional] |
-| **account_experience_variables** | [**Array&lt;AccountExperienceThemeVariables&gt;**](AccountExperienceThemeVariables.md) | The Account Experience Theme Variables. | [optional] |
-| **account_experience_variables_stylesheet** | **String** | AccountExperienceVariableStylesheet holds a reference to the current stylesheet that can be used in the AX | [optional] |
 | **background_canvas_color** | **String** | BackgroundCanvasColor is a hex color code used by the Ory Account Experience theme. | [optional] |
 | **background_subtle_color** | **String** | BackgroundSubtleColor is a hex color code used by the Ory Account Experience theme. | [optional] |
 | **background_surface_color** | **String** | BackgroundSurfaceColor is a hex color code used by the Ory Account Experience theme. | [optional] |
@@ -56,8 +54,6 @@ instance = OryClient::ProjectBrandingTheme.new(
   accent_emphasis_color: null,
   accent_muted_color: null,
   accent_subtle_color: null,
-  account_experience_variables: null,
-  account_experience_variables_stylesheet: null,
   background_canvas_color: null,
   background_subtle_color: null,
   background_surface_color: null,

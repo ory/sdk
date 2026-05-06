@@ -9,12 +9,12 @@ import 'package:ory_kratos_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **csrfToken** | **String** | Sending the anti-csrf token is only required for browser login flows. | 
-**identifier** | **String** | Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow. | 
-**method** | **String** | Method should be set to \"passkey\" when logging in using the Passkey strategy. | 
+**identifier** | **String** | Identifier is the email or username of the user trying to log in. | 
+**method** | **String** | Method should be set to \"password\" when logging in using the identifier and password strategy. | 
 **password** | **String** | The user's password. | 
 **passwordIdentifier** | **String** | Identifier is the email or username of the user trying to log in. This field is deprecated! | [optional] 
 **transientPayload** | [**JsonObject**](.md) | Transient data to pass along to any webhooks | [optional] 
-**idToken** | **String** | IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple | [optional] 
+**idToken** | **String** | IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple Google | [optional] 
 **idTokenNonce** | **String** | IDTokenNonce is the nonce, used when generating the IDToken. If the provider supports nonce validation, the nonce will be validated against this value and required. | [optional] 
 **provider** | **String** | The provider to register with | 
 **traits** | [**JsonObject**](.md) | The identity traits. This is a placeholder for the registration flow. | [optional] 
@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **totpCode** | **String** | The TOTP code. | 
 **webauthnLogin** | **String** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 **lookupSecret** | **String** | The lookup secret. | 
+**address** | **String** | Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows. | [optional] 
 **code** | **String** | Code is the 6 digits code sent to the user | [optional] 
 **resend** | **String** | Resend is set when the user wants to resend the code | [optional] 
 **passkeyLogin** | **String** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 

@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:ory_client/src/model/update_login_flow_with_saml_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_code_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_oidc_method.dart';
 import 'package:ory_client/src/model/update_login_flow_with_totp_method.dart';
@@ -41,7 +42,7 @@ part 'update_login_flow_body.g.dart';
 /// * [passkeyLogin] - Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection.
 @BuiltValue()
 abstract class UpdateLoginFlowBody implements Built<UpdateLoginFlowBody, UpdateLoginFlowBodyBuilder> {
-  /// One Of [UpdateLoginFlowWithCodeMethod], [UpdateLoginFlowWithIdentifierFirstMethod], [UpdateLoginFlowWithLookupSecretMethod], [UpdateLoginFlowWithOidcMethod], [UpdateLoginFlowWithPasskeyMethod], [UpdateLoginFlowWithPasswordMethod], [UpdateLoginFlowWithTotpMethod], [UpdateLoginFlowWithWebAuthnMethod]
+  /// One Of [UpdateLoginFlowWithCodeMethod], [UpdateLoginFlowWithIdentifierFirstMethod], [UpdateLoginFlowWithLookupSecretMethod], [UpdateLoginFlowWithOidcMethod], [UpdateLoginFlowWithPasskeyMethod], [UpdateLoginFlowWithPasswordMethod], [UpdateLoginFlowWithSamlMethod], [UpdateLoginFlowWithTotpMethod], [UpdateLoginFlowWithWebAuthnMethod]
   OneOf get oneOf;
 
   static const String discriminatorFieldName = r'method';
@@ -53,6 +54,7 @@ abstract class UpdateLoginFlowBody implements Built<UpdateLoginFlowBody, UpdateL
     r'oidc': UpdateLoginFlowWithOidcMethod,
     r'passkey': UpdateLoginFlowWithPasskeyMethod,
     r'password': UpdateLoginFlowWithPasswordMethod,
+    r'saml': UpdateLoginFlowWithSamlMethod,
     r'totp': UpdateLoginFlowWithTotpMethod,
     r'webauthn': UpdateLoginFlowWithWebAuthnMethod,
   };
@@ -88,6 +90,9 @@ extension UpdateLoginFlowBodyDiscriminatorExt on UpdateLoginFlowBody {
         if (this is UpdateLoginFlowWithPasswordMethod) {
             return r'password';
         }
+        if (this is UpdateLoginFlowWithSamlMethod) {
+            return r'saml';
+        }
         if (this is UpdateLoginFlowWithTotpMethod) {
             return r'totp';
         }
@@ -116,6 +121,9 @@ extension UpdateLoginFlowBodyBuilderDiscriminatorExt on UpdateLoginFlowBodyBuild
         }
         if (this is UpdateLoginFlowWithPasswordMethodBuilder) {
             return r'password';
+        }
+        if (this is UpdateLoginFlowWithSamlMethodBuilder) {
+            return r'saml';
         }
         if (this is UpdateLoginFlowWithTotpMethodBuilder) {
             return r'totp';
@@ -163,7 +171,7 @@ class _$UpdateLoginFlowBodySerializer implements PrimitiveSerializer<UpdateLogin
     final discIndex = serializedList.indexOf(UpdateLoginFlowBody.discriminatorFieldName) + 1;
     final discValue = serializers.deserialize(serializedList[discIndex], specifiedType: FullType(String)) as String;
     oneOfDataSrc = serialized;
-    final oneOfTypes = [UpdateLoginFlowWithCodeMethod, UpdateLoginFlowWithIdentifierFirstMethod, UpdateLoginFlowWithLookupSecretMethod, UpdateLoginFlowWithOidcMethod, UpdateLoginFlowWithPasskeyMethod, UpdateLoginFlowWithPasswordMethod, UpdateLoginFlowWithTotpMethod, UpdateLoginFlowWithWebAuthnMethod, ];
+    final oneOfTypes = [UpdateLoginFlowWithCodeMethod, UpdateLoginFlowWithIdentifierFirstMethod, UpdateLoginFlowWithLookupSecretMethod, UpdateLoginFlowWithOidcMethod, UpdateLoginFlowWithPasskeyMethod, UpdateLoginFlowWithPasswordMethod, UpdateLoginFlowWithSamlMethod, UpdateLoginFlowWithTotpMethod, UpdateLoginFlowWithWebAuthnMethod, ];
     Object oneOfResult;
     Type oneOfType;
     switch (discValue) {
@@ -208,6 +216,13 @@ class _$UpdateLoginFlowBodySerializer implements PrimitiveSerializer<UpdateLogin
           specifiedType: FullType(UpdateLoginFlowWithPasswordMethod),
         ) as UpdateLoginFlowWithPasswordMethod;
         oneOfType = UpdateLoginFlowWithPasswordMethod;
+        break;
+      case r'saml':
+        oneOfResult = serializers.deserialize(
+          oneOfDataSrc,
+          specifiedType: FullType(UpdateLoginFlowWithSamlMethod),
+        ) as UpdateLoginFlowWithSamlMethod;
+        oneOfType = UpdateLoginFlowWithSamlMethod;
         break;
       case r'totp':
         oneOfResult = serializers.deserialize(

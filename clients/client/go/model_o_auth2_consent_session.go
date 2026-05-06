@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.15.11
+API version: v1.22.26
 Contact: support@ory.sh
 */
 
@@ -22,8 +22,9 @@ var _ MappedNullable = &OAuth2ConsentSession{}
 // OAuth2ConsentSession A completed OAuth 2.0 Consent Session.
 type OAuth2ConsentSession struct {
 	ConsentRequest *OAuth2ConsentRequest `json:"consent_request,omitempty"`
+	// ConsentRequestID is the identifier of the consent request that initiated this consent session.
+	ConsentRequestId *string `json:"consent_request_id,omitempty"`
 	Context map[string]interface{} `json:"context,omitempty"`
-	ExpiresAt *OAuth2ConsentSessionExpiresAt `json:"expires_at,omitempty"`
 	GrantAccessTokenAudience []string `json:"grant_access_token_audience,omitempty"`
 	GrantScope []string `json:"grant_scope,omitempty"`
 	HandledAt *time.Time `json:"handled_at,omitempty"`
@@ -86,6 +87,38 @@ func (o *OAuth2ConsentSession) SetConsentRequest(v OAuth2ConsentRequest) {
 	o.ConsentRequest = &v
 }
 
+// GetConsentRequestId returns the ConsentRequestId field value if set, zero value otherwise.
+func (o *OAuth2ConsentSession) GetConsentRequestId() string {
+	if o == nil || IsNil(o.ConsentRequestId) {
+		var ret string
+		return ret
+	}
+	return *o.ConsentRequestId
+}
+
+// GetConsentRequestIdOk returns a tuple with the ConsentRequestId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OAuth2ConsentSession) GetConsentRequestIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ConsentRequestId) {
+		return nil, false
+	}
+	return o.ConsentRequestId, true
+}
+
+// HasConsentRequestId returns a boolean if a field has been set.
+func (o *OAuth2ConsentSession) HasConsentRequestId() bool {
+	if o != nil && !IsNil(o.ConsentRequestId) {
+		return true
+	}
+
+	return false
+}
+
+// SetConsentRequestId gets a reference to the given string and assigns it to the ConsentRequestId field.
+func (o *OAuth2ConsentSession) SetConsentRequestId(v string) {
+	o.ConsentRequestId = &v
+}
+
 // GetContext returns the Context field value if set, zero value otherwise.
 func (o *OAuth2ConsentSession) GetContext() map[string]interface{} {
 	if o == nil || IsNil(o.Context) {
@@ -116,38 +149,6 @@ func (o *OAuth2ConsentSession) HasContext() bool {
 // SetContext gets a reference to the given map[string]interface{} and assigns it to the Context field.
 func (o *OAuth2ConsentSession) SetContext(v map[string]interface{}) {
 	o.Context = v
-}
-
-// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
-func (o *OAuth2ConsentSession) GetExpiresAt() OAuth2ConsentSessionExpiresAt {
-	if o == nil || IsNil(o.ExpiresAt) {
-		var ret OAuth2ConsentSessionExpiresAt
-		return ret
-	}
-	return *o.ExpiresAt
-}
-
-// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OAuth2ConsentSession) GetExpiresAtOk() (*OAuth2ConsentSessionExpiresAt, bool) {
-	if o == nil || IsNil(o.ExpiresAt) {
-		return nil, false
-	}
-	return o.ExpiresAt, true
-}
-
-// HasExpiresAt returns a boolean if a field has been set.
-func (o *OAuth2ConsentSession) HasExpiresAt() bool {
-	if o != nil && !IsNil(o.ExpiresAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetExpiresAt gets a reference to the given OAuth2ConsentSessionExpiresAt and assigns it to the ExpiresAt field.
-func (o *OAuth2ConsentSession) SetExpiresAt(v OAuth2ConsentSessionExpiresAt) {
-	o.ExpiresAt = &v
 }
 
 // GetGrantAccessTokenAudience returns the GrantAccessTokenAudience field value if set, zero value otherwise.
@@ -355,11 +356,11 @@ func (o OAuth2ConsentSession) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ConsentRequest) {
 		toSerialize["consent_request"] = o.ConsentRequest
 	}
+	if !IsNil(o.ConsentRequestId) {
+		toSerialize["consent_request_id"] = o.ConsentRequestId
+	}
 	if !IsNil(o.Context) {
 		toSerialize["context"] = o.Context
-	}
-	if !IsNil(o.ExpiresAt) {
-		toSerialize["expires_at"] = o.ExpiresAt
 	}
 	if !IsNil(o.GrantAccessTokenAudience) {
 		toSerialize["grant_access_token_audience"] = o.GrantAccessTokenAudience
@@ -402,8 +403,8 @@ func (o *OAuth2ConsentSession) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "consent_request")
+		delete(additionalProperties, "consent_request_id")
 		delete(additionalProperties, "context")
-		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "grant_access_token_audience")
 		delete(additionalProperties, "grant_scope")
 		delete(additionalProperties, "handled_at")

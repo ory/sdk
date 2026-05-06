@@ -7,6 +7,15 @@ void main() {
   final instance = OryKetoClient().getPermissionApi();
 
   group(PermissionApi, () {
+    // Batch check permissions
+    //
+    // To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+    //
+    //Future<BatchCheckPermissionResult> batchCheckPermission({ int maxDepth, BatchCheckPermissionBody batchCheckPermissionBody }) async
+    test('test batchCheckPermission', () async {
+      // TODO
+    });
+
     // Check a permission
     //
     // To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).

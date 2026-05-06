@@ -7,3 +7,4 @@ modelPropertyNaming: original
 disallowAdditionalPropertiesIfNotPresent: false
 withInterfaces: false
 useSingleRequestParameter: true
+enumUnknownDefaultCase: true

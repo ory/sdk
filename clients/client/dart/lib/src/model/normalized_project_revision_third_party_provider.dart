@@ -23,15 +23,18 @@ part 'normalized_project_revision_third_party_provider.g.dart';
 /// * [clientId] - ClientID is the application's Client ID.
 /// * [clientSecret] 
 /// * [createdAt] - The Project's Revision Creation Date
+/// * [fedcmConfigUrl] 
 /// * [id] 
 /// * [issuerUrl] - IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required.
 /// * [label] - Label represents an optional label which can be used in the UI generation.
 /// * [mapperUrl] - Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
+/// * [netIdTokenOriginHeader] 
 /// * [organizationId] 
-/// * [pkce] - PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange). Possible values are: `auto` (default), `never`, `force`. `auto`: PKCE is used if the provider supports it. Requires setting `issuer_url`. `never`: Disable PKCE entirely for this provider, even if the provider advertises support for it. `force`: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE. IMPORTANT: If you set this to `force`, you must whitelist a different return URL for your OAuth2 client in the provider's configuration. Instead of <base-url>/self-service/methods/oidc/callback/<provider>, you must use <base-url>/self-service/methods/oidc/callback (Note the missing <provider> path segment and no trailing slash).
+/// * [pkce] 
 /// * [projectRevisionId] - The Revision's ID this schema belongs to
 /// * [provider] - Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple
 /// * [providerId] - ID is the provider's ID
+/// * [proxyOidcRedirectUrl] - Proxy OIDC Redirect URL if overriding with a customer-controlled URL
 /// * [requestedClaims] 
 /// * [scope] 
 /// * [state] - State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
@@ -76,6 +79,9 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
 
+  @BuiltValueField(wireName: r'fedcm_config_url')
+  String? get fedcmConfigUrl;
+
   @BuiltValueField(wireName: r'id')
   String? get id;
 
@@ -91,10 +97,12 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
   @BuiltValueField(wireName: r'mapper_url')
   String? get mapperUrl;
 
+  @BuiltValueField(wireName: r'net_id_token_origin_header')
+  String? get netIdTokenOriginHeader;
+
   @BuiltValueField(wireName: r'organization_id')
   String? get organizationId;
 
-  /// PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange). Possible values are: `auto` (default), `never`, `force`. `auto`: PKCE is used if the provider supports it. Requires setting `issuer_url`. `never`: Disable PKCE entirely for this provider, even if the provider advertises support for it. `force`: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE. IMPORTANT: If you set this to `force`, you must whitelist a different return URL for your OAuth2 client in the provider's configuration. Instead of <base-url>/self-service/methods/oidc/callback/<provider>, you must use <base-url>/self-service/methods/oidc/callback (Note the missing <provider> path segment and no trailing slash).
   @BuiltValueField(wireName: r'pkce')
   NormalizedProjectRevisionThirdPartyProviderPkceEnum? get pkce;
   // enum pkceEnum {  auto,  never,  force,  };
@@ -110,6 +118,10 @@ abstract class NormalizedProjectRevisionThirdPartyProvider implements Built<Norm
   /// ID is the provider's ID
   @BuiltValueField(wireName: r'provider_id')
   String? get providerId;
+
+  /// Proxy OIDC Redirect URL if overriding with a customer-controlled URL
+  @BuiltValueField(wireName: r'proxy_oidc_redirect_url')
+  String? get proxyOidcRedirectUrl;
 
   @BuiltValueField(wireName: r'requested_claims')
   JsonObject? get requestedClaims;
@@ -226,6 +238,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
         specifiedType: const FullType(DateTime),
       );
     }
+    if (object.fedcmConfigUrl != null) {
+      yield r'fedcm_config_url';
+      yield serializers.serialize(
+        object.fedcmConfigUrl,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.id != null) {
       yield r'id';
       yield serializers.serialize(
@@ -252,6 +271,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
       yield serializers.serialize(
         object.mapperUrl,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.netIdTokenOriginHeader != null) {
+      yield r'net_id_token_origin_header';
+      yield serializers.serialize(
+        object.netIdTokenOriginHeader,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.organizationId != null) {
@@ -286,6 +312,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
       yield r'provider_id';
       yield serializers.serialize(
         object.providerId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.proxyOidcRedirectUrl != null) {
+      yield r'proxy_oidc_redirect_url';
+      yield serializers.serialize(
+        object.proxyOidcRedirectUrl,
         specifiedType: const FullType(String),
       );
     }
@@ -427,6 +460,14 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
           ) as DateTime;
           result.createdAt = valueDes;
           break;
+        case r'fedcm_config_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.fedcmConfigUrl = valueDes;
+          break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
@@ -454,6 +495,14 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
             specifiedType: const FullType(String),
           ) as String;
           result.mapperUrl = valueDes;
+          break;
+        case r'net_id_token_origin_header':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.netIdTokenOriginHeader = valueDes;
           break;
         case r'organization_id':
           final valueDes = serializers.deserialize(
@@ -491,6 +540,13 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
             specifiedType: const FullType(String),
           ) as String;
           result.providerId = valueDes;
+          break;
+        case r'proxy_oidc_redirect_url':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.proxyOidcRedirectUrl = valueDes;
           break;
         case r'requested_claims':
           final valueDes = serializers.deserialize(
@@ -566,13 +622,10 @@ class _$NormalizedProjectRevisionThirdPartyProviderSerializer implements Primiti
 
 class NormalizedProjectRevisionThirdPartyProviderPkceEnum extends EnumClass {
 
-  /// PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange). Possible values are: `auto` (default), `never`, `force`. `auto`: PKCE is used if the provider supports it. Requires setting `issuer_url`. `never`: Disable PKCE entirely for this provider, even if the provider advertises support for it. `force`: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE. IMPORTANT: If you set this to `force`, you must whitelist a different return URL for your OAuth2 client in the provider's configuration. Instead of <base-url>/self-service/methods/oidc/callback/<provider>, you must use <base-url>/self-service/methods/oidc/callback (Note the missing <provider> path segment and no trailing slash).
   @BuiltValueEnumConst(wireName: r'auto')
   static const NormalizedProjectRevisionThirdPartyProviderPkceEnum auto = _$normalizedProjectRevisionThirdPartyProviderPkceEnum_auto;
-  /// PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange). Possible values are: `auto` (default), `never`, `force`. `auto`: PKCE is used if the provider supports it. Requires setting `issuer_url`. `never`: Disable PKCE entirely for this provider, even if the provider advertises support for it. `force`: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE. IMPORTANT: If you set this to `force`, you must whitelist a different return URL for your OAuth2 client in the provider's configuration. Instead of <base-url>/self-service/methods/oidc/callback/<provider>, you must use <base-url>/self-service/methods/oidc/callback (Note the missing <provider> path segment and no trailing slash).
   @BuiltValueEnumConst(wireName: r'never')
   static const NormalizedProjectRevisionThirdPartyProviderPkceEnum never = _$normalizedProjectRevisionThirdPartyProviderPkceEnum_never;
-  /// PKCE controls if the OpenID Connect OAuth2 flow should use PKCE (Proof Key for Code Exchange). Possible values are: `auto` (default), `never`, `force`. `auto`: PKCE is used if the provider supports it. Requires setting `issuer_url`. `never`: Disable PKCE entirely for this provider, even if the provider advertises support for it. `force`: Always use PKCE, even if the provider does not advertise support for it. OAuth2 flows will fail if the provider does not support PKCE. IMPORTANT: If you set this to `force`, you must whitelist a different return URL for your OAuth2 client in the provider's configuration. Instead of <base-url>/self-service/methods/oidc/callback/<provider>, you must use <base-url>/self-service/methods/oidc/callback (Note the missing <provider> path segment and no trailing slash).
   @BuiltValueEnumConst(wireName: r'force')
   static const NormalizedProjectRevisionThirdPartyProviderPkceEnum force = _$normalizedProjectRevisionThirdPartyProviderPkceEnum_force;
 

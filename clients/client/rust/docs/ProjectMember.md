@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **email_verified** | **bool** |  | 
 **id** | **String** |  | 
 **name** | **String** |  | 
+**organization_id** | Option<**String**> |  | [optional]
 **role** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

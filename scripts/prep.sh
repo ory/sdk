@@ -1,10 +1,10 @@
 #!/bin/bash
 
-set -Eeuxo pipefail
+set -Eexo pipefail
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
-source "$HOME/.bashrc" || true
-source "$HOME/.cargo/env" || true
+source "$HOME/.bashrc"
+source "$HOME/.cargo/env"
 
 if [ -z "${FORCE_VERSION+x}" ]; then
   if [ -z "$(git log -1 --pretty=%B | grep "Add spec for")" ]; then
@@ -67,16 +67,17 @@ export SPEC_FILE=${spec_file}
 # shellcheck disable=SC2155
 export PROJECT_UCF="$(tr '[:lower:]' '[:upper:]' <<< "${project:0:1}")${project:1}"
 export GPG_OPTS='--pinentry-mode loopback'
+export PACKAGE_DESCRIPTION=$(cat "config/descriptions/${PROJECT}.txt")
 
 export DOTNET_PACKAGE_NAME="Ory.$PROJECT_UCF.Client"
 export DART_PUB_NAME="ory_${PROJECT}_client"
-export DART_PUB_DESCRIPTION=$(cat "config/descriptions/${PROJECT}.txt")
 export DART_PUB_REPOSITORY="https://github.com/ory/sdk/tree/master/clients/${PROJECT}/dart"
 
 export JAVA_GROUP_ID=sh.ory.$PROJECT
 export JAVA_ARTIFACT_ID=$PROJECT-client
 export KOTLIN_MULTIPLATFORM_ARTIFACT_ID=$PROJECT-client-kotlin-multiplatform
 
+export COMPOSER_ALLOW_SUPERUSER=1
 export PHP_PACKAGE_NAME="ory/${PROJECT}-client"
 export PHP_INVOKER_PACKAGE="Ory\\${PROJECT_UCF}\\Client"
 
@@ -129,7 +130,7 @@ if [ $project == "client" ]; then
   export NETWORK_OR_SELFHOSTED="## Ory Network
 
 This SDK is for use with [Ory Network](https://www.ory.sh/docs/sdk).
-If you are developing aginst a self-hosted Ory instance, please use the individual ${PROJECT_UCF} SDK
+If you are developing against a self-hosted Ory instance, please use the individual ${PROJECT_UCF} SDK
 and refer to the [self-hosted documentation](https://www.ory.sh/docs/ecosystem/projects).
 
 "

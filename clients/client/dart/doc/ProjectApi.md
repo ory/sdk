@@ -10,11 +10,14 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createOrganization**](ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization
+[**createOrganizationOnboardingPortalLink**](ProjectApi.md#createorganizationonboardingportallink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Create organization onboarding portal link
 [**createProject**](ProjectApi.md#createproject) | **POST** /projects | Create a Project
 [**createProjectApiKey**](ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API key
 [**deleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization
+[**deleteOrganizationOnboardingPortalLink**](ProjectApi.md#deleteorganizationonboardingportallink) | **DELETE** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Delete an organization onboarding portal link
 [**deleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key
 [**getOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
+[**getOrganizationOnboardingPortalLinks**](ProjectApi.md#getorganizationonboardingportallinks) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links
 [**getProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
 [**getProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
 [**listOrganizations**](ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
@@ -26,6 +29,7 @@ Method | HTTP request | Description
 [**removeProjectMember**](ProjectApi.md#removeprojectmember) | **DELETE** /projects/{project}/members/{member} | Remove a member associated with this project
 [**setProject**](ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 [**updateOrganization**](ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
+[**updateOrganizationOnboardingPortalLink**](ProjectApi.md#updateorganizationonboardingportallink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link
 
 
 # **createOrganization**
@@ -33,7 +37,7 @@ Method | HTTP request | Description
 
 Create an Enterprise SSO Organization
 
-Creates an Enterprise SSO Organization in a project.
+Deprecated: use setProject or patchProjectWithRevision instead  Creates an Enterprise SSO Organization in a project.
 
 ### Example
 ```dart
@@ -61,6 +65,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Organization**](Organization.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createOrganizationOnboardingPortalLink**
+> OnboardingPortalLink createOrganizationOnboardingPortalLink(projectId, organizationId, createOrganizationOnboardingPortalLinkBody)
+
+Create organization onboarding portal link
+
+Create a onboarding portal link for an organization.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getProjectApi();
+final String projectId = projectId_example; // String | Project ID  The project's ID.
+final String organizationId = organizationId_example; // String | Organization ID  The Organization's ID.
+final CreateOrganizationOnboardingPortalLinkBody createOrganizationOnboardingPortalLinkBody = ; // CreateOrganizationOnboardingPortalLinkBody | 
+
+try {
+    final response = api.createOrganizationOnboardingPortalLink(projectId, organizationId, createOrganizationOnboardingPortalLinkBody);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling ProjectApi->createOrganizationOnboardingPortalLink: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+ **organizationId** | **String**| Organization ID  The Organization's ID. | 
+ **createOrganizationOnboardingPortalLinkBody** | [**CreateOrganizationOnboardingPortalLinkBody**](CreateOrganizationOnboardingPortalLinkBody.md)|  | [optional] 
+
+### Return type
+
+[**OnboardingPortalLink**](OnboardingPortalLink.md)
 
 ### Authorization
 
@@ -166,7 +217,7 @@ Name | Type | Description  | Notes
 
 Delete Enterprise SSO Organization
 
-Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
+Deprecated: use setProject or patchProjectWithRevision instead  Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 ```dart
@@ -189,6 +240,52 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **String**| Project ID  The project's ID. | 
  **organizationId** | **String**| Organization ID  The Organization's ID. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteOrganizationOnboardingPortalLink**
+> deleteOrganizationOnboardingPortalLink(projectId, organizationId, onboardingPortalLinkId)
+
+Delete an organization onboarding portal link
+
+Deletes a onboarding portal link for an organization.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getProjectApi();
+final String projectId = projectId_example; // String | 
+final String organizationId = organizationId_example; // String | 
+final String onboardingPortalLinkId = onboardingPortalLinkId_example; // String | 
+
+try {
+    api.deleteOrganizationOnboardingPortalLink(projectId, organizationId, onboardingPortalLinkId);
+} catch on DioException (e) {
+    print('Exception when calling ProjectApi->deleteOrganizationOnboardingPortalLink: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**|  | 
+ **organizationId** | **String**|  | 
+ **onboardingPortalLinkId** | **String**|  | 
 
 ### Return type
 
@@ -254,7 +351,7 @@ void (empty response body)
 
 Get Enterprise SSO Organization by ID
 
-Retrieves an Enterprise SSO Organization for a project by its ID
+Deprecated: use getProject instead  Retrieves an Enterprise SSO Organization for a project by its ID
 
 ### Example
 ```dart
@@ -294,12 +391,57 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getOrganizationOnboardingPortalLinks**
+> OrganizationOnboardingPortalLinksResponse getOrganizationOnboardingPortalLinks(projectId, organizationId)
+
+Get the organization onboarding portal links
+
+Retrieves the organization onboarding portal links.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getProjectApi();
+final String projectId = projectId_example; // String | Project ID  The project's ID.
+final String organizationId = organizationId_example; // String | Organization ID  The Organization's ID.
+
+try {
+    final response = api.getOrganizationOnboardingPortalLinks(projectId, organizationId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling ProjectApi->getOrganizationOnboardingPortalLinks: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+ **organizationId** | **String**| Organization ID  The Organization's ID. | 
+
+### Return type
+
+[**OrganizationOnboardingPortalLinksResponse**](OrganizationOnboardingPortalLinksResponse.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getProject**
 > Project getProject(projectId)
 
 Get a Project
 
-Get a projects you have access to by its ID.
+Get a project you have access to by its ID.
 
 ### Example
 ```dart
@@ -385,7 +527,7 @@ Name | Type | Description  | Notes
 
 List all Enterprise SSO organizations
 
-Lists all Enterprise SSO organizations in a project.
+Deprecated: use getProject instead  Lists all Enterprise SSO organizations in a project.
 
 ### Example
 ```dart
@@ -739,7 +881,7 @@ Name | Type | Description  | Notes
 
 Update an Enterprise SSO Organization
 
-Updates an Enterprise SSO Organization in a project by its ID.
+Deprecated: use setProject or patchProjectWithRevision instead  Updates an Enterprise SSO Organization in a project by its ID.
 
 ### Example
 ```dart
@@ -769,6 +911,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Organization**](Organization.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateOrganizationOnboardingPortalLink**
+> OnboardingPortalLink updateOrganizationOnboardingPortalLink(projectId, organizationId, onboardingPortalLinkId, updateOrganizationOnboardingPortalLinkBody)
+
+Update organization onboarding portal link
+
+Update a onboarding portal link for an organization.
+
+### Example
+```dart
+import 'package:ory_client/api.dart';
+
+final api = OryClient().getProjectApi();
+final String projectId = projectId_example; // String | Project ID  The project's ID.
+final String organizationId = organizationId_example; // String | Organization ID  The Organization's ID.
+final String onboardingPortalLinkId = onboardingPortalLinkId_example; // String | 
+final UpdateOrganizationOnboardingPortalLinkBody updateOrganizationOnboardingPortalLinkBody = ; // UpdateOrganizationOnboardingPortalLinkBody | 
+
+try {
+    final response = api.updateOrganizationOnboardingPortalLink(projectId, organizationId, onboardingPortalLinkId, updateOrganizationOnboardingPortalLinkBody);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling ProjectApi->updateOrganizationOnboardingPortalLink: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**| Project ID  The project's ID. | 
+ **organizationId** | **String**| Organization ID  The Organization's ID. | 
+ **onboardingPortalLinkId** | **String**|  | 
+ **updateOrganizationOnboardingPortalLinkBody** | [**UpdateOrganizationOnboardingPortalLinkBody**](UpdateOrganizationOnboardingPortalLinkBody.md)|  | [optional] 
+
+### Return type
+
+[**OnboardingPortalLink**](OnboardingPortalLink.md)
 
 ### Authorization
 

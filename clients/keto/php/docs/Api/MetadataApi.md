@@ -1,18 +1,18 @@
 # Ory\Keto\Client\MetadataApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getVersion()**](MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version.
-[**isAlive()**](MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status
-[**isReady()**](MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getVersion()**](MetadataApi.md#getVersion) | **GET** /version | Return Running Software Version. |
+| [**isAlive()**](MetadataApi.md#isAlive) | **GET** /health/alive | Check HTTP Server Status |
+| [**isReady()**](MetadataApi.md#isReady) | **GET** /health/ready | Check HTTP Server and Database Status |
 
 
 ## `getVersion()`
 
 ```php
-getVersion(): \Ory\Keto\Client\Model\InlineResponse2001
+getVersion(): \Ory\Keto\Client\Model\GetVersion200Response
 ```
 
 Return Running Software Version.
@@ -47,7 +47,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Keto\Client\Model\InlineResponse2001**](../Model/InlineResponse2001.md)
+[**\Ory\Keto\Client\Model\GetVersion200Response**](../Model/GetVersion200Response.md)
 
 ### Authorization
 
@@ -65,7 +65,7 @@ No authorization required
 ## `isAlive()`
 
 ```php
-isAlive(): \Ory\Keto\Client\Model\InlineResponse200
+isAlive(): \Ory\Keto\Client\Model\IsAlive200Response
 ```
 
 Check HTTP Server Status
@@ -100,7 +100,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Keto\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
+[**\Ory\Keto\Client\Model\IsAlive200Response**](../Model/IsAlive200Response.md)
 
 ### Authorization
 
@@ -109,7 +109,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
+- **Accept**: `application/json`, `text/plain`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -118,7 +118,7 @@ No authorization required
 ## `isReady()`
 
 ```php
-isReady(): \Ory\Keto\Client\Model\InlineResponse200
+isReady(): \Ory\Keto\Client\Model\IsAlive200Response
 ```
 
 Check HTTP Server and Database Status
@@ -153,7 +153,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Ory\Keto\Client\Model\InlineResponse200**](../Model/InlineResponse200.md)
+[**\Ory\Keto\Client\Model\IsAlive200Response**](../Model/IsAlive200Response.md)
 
 ### Authorization
 
@@ -162,7 +162,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
+- **Accept**: `application/json`, `text/plain`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

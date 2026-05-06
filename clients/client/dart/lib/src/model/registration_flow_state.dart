@@ -11,13 +11,13 @@ part 'registration_flow_state.g.dart';
 
 class RegistrationFlowState extends EnumClass {
 
-  /// choose_method: ask the user to choose a method (e.g. registration with email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the registration challenge was passed.
+  /// The experimental state represents the state of a registration flow. This field is EXPERIMENTAL and subject to change!
   @BuiltValueEnumConst(wireName: r'choose_method')
   static const RegistrationFlowState chooseMethod = _$chooseMethod;
-  /// choose_method: ask the user to choose a method (e.g. registration with email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the registration challenge was passed.
+  /// The experimental state represents the state of a registration flow. This field is EXPERIMENTAL and subject to change!
   @BuiltValueEnumConst(wireName: r'sent_email')
   static const RegistrationFlowState sentEmail = _$sentEmail;
-  /// choose_method: ask the user to choose a method (e.g. registration with email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the registration challenge was passed.
+  /// The experimental state represents the state of a registration flow. This field is EXPERIMENTAL and subject to change!
   @BuiltValueEnumConst(wireName: r'passed_challenge')
   static const RegistrationFlowState passedChallenge = _$passedChallenge;
 

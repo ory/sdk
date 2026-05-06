@@ -101,7 +101,7 @@ $apiInstance = new Ory\Kratos\Client\Api\CourierApi(
 );
 $pageSize = 250; // int | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
 $pageToken = 'pageToken_example'; // string | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-$status = new \Ory\Kratos\Client\Model\CourierMessageStatus(); // CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter.
+$status = new \Ory\Kratos\Client\Model\\Ory\Kratos\Client\Model\CourierMessageStatus(); // \Ory\Kratos\Client\Model\CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter.
 $recipient = 'recipient_example'; // string | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter.
 
 try {
@@ -118,7 +118,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **pageSize** | **int**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
 | **pageToken** | **string**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
-| **status** | [**CourierMessageStatus**](../Model/.md)| Status filters out messages based on status. If no value is provided, it doesn&#39;t take effect on filter. | [optional] |
+| **status** | [**\Ory\Kratos\Client\Model\CourierMessageStatus**](../Model/.md)| Status filters out messages based on status. If no value is provided, it doesn&#39;t take effect on filter. | [optional] |
 | **recipient** | **string**| Recipient filters out messages based on recipient. If no value is provided, it doesn&#39;t take effect on filter. | [optional] |
 
 ### Return type

@@ -139,7 +139,6 @@ java() {
     -Darguments="-Dgpg.passphrase=${MVN_PGP_PASSPHRASE} -Dgpg.keyname=${MVN_PGP_KEYNAME}")
 
   (cd "${gitdir}"; mvn release:perform)
-  (cd "${gitdir}"; git push origin --tags HEAD:master)
 }
 
 php() {
@@ -172,7 +171,7 @@ golang() {
 
 python() {
   dir="clients/${PROJECT}/python"
-  (cd "${dir}"; rm -rf "dist" || true; pip install wheel; python3 setup.py sdist bdist_wheel; python3 -m twine upload "dist/*")
+  (cd "${dir}"; rm -rf "dist" || true; pip install wheel; python3 setup.py sdist bdist_wheel; twine upload "dist/*")
   to_git "python" "yes"
 }
 
@@ -195,30 +194,6 @@ dotnet() {
 
 dart() {
   dir="clients/${PROJECT}/dart"
-  mkdir -p "$HOME/.pub-cache" || true
-  set +x
-
-  if [ -z ${DART_SERVICE_ACCOUNT+x} ]; then echo "Variable DART_SERVICE_ACCOUNT MUST be set."; fi
-
-  echo "$DART_SERVICE_ACCOUNT" | base64 -d > "$HOME/.pub-cache/key-file.json"
-
-  # To generate this key run:
-  #
-  #  gcloud iam service-accounts keys create key-file.json \
-  #    --project=ory-web \
-  #    --iam-account=pub-dev@ory-web.iam.gserviceaccount.com
-  #  base64 key-file.json | pbcopy
-  #
-  # And copy it into the DART_SERVICE_ACCOUNT secret.
-
-  gcloud auth activate-service-account --key-file="$HOME/.pub-cache/key-file.json"
-  export DART_PUB_TOKEN=$(gcloud auth print-identity-token --audiences=https://pub.dev)
-  gcloud auth print-identity-token \
-    --audiences=https://pub.dev \
-    | command dart pub token add https://pub.dev
-  set -x
-
-  (cd "${dir}"; VERSION=${RAW_VERSION} command dart pub publish --force)
   to_git "dart" "yes"
 }
 
@@ -247,18 +222,19 @@ FAIL_REASON=""
 
 echo "starting"
 
-python || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} python,")
-ruby || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} ruby,")
-golang || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} golang,")
-php || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} php,")
-typescript || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} typescript,")
-typescript_fetch || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} typescript_fetch,")
-dart || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} dart,")
-rust || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} rust,")
-elixir || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} elixir,")
-java || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} java,")
-dotnet || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} dotnet,")
-upstream || (let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} upstream,")
+python || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} python,"; }
+ruby || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} ruby,"; }
+golang || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} golang,"; }
+php || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} php,"; }
+typescript || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} typescript,"; }
+typescript_fetch || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} typescript_fetch,"; }
+dart || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} dart,"; }
+rust || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} rust,"; }
+elixir || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} elixir,"; }
+java || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} java,"; }
+# TODO: https://github.com/ory/sdk/issues/434
+# dotnet || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} dotnet,"; }
+upstream || { let "FAIL+=1" && FAIL_REASON="${FAIL_REASON} upstream,"; }
 
 echo "$FAIL"
 

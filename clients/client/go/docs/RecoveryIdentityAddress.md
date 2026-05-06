@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
-**Id** | **string** |  | 
+**Id** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **Value** | **string** |  | 
 **Via** | **string** |  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewRecoveryIdentityAddress
 
-`func NewRecoveryIdentityAddress(id string, value string, via string, ) *RecoveryIdentityAddress`
+`func NewRecoveryIdentityAddress(value string, via string, ) *RecoveryIdentityAddress`
 
 NewRecoveryIdentityAddress instantiates a new RecoveryIdentityAddress object
 This constructor will assign default values to properties that have it defined,
@@ -73,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *RecoveryIdentityAddress) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

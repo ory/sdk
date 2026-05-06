@@ -257,8 +257,8 @@ end
 
 api_instance = OryClient::RelationshipApi.new
 opts = {
-  page_token: 'page_token_example', # String | 
-  page_size: 789, # Integer | 
+  page_size: 789, # Integer | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+  page_token: 'page_token_example', # String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
   namespace: 'namespace_example', # String | Namespace of the Relationship
   object: 'object_example', # String | Object of the Relationship
   relation: 'relation_example', # String | Relation of the Relationship
@@ -299,8 +299,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **page_token** | **String** |  | [optional] |
-| **page_size** | **Integer** |  | [optional] |
+| **page_size** | **Integer** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional][default to 250] |
+| **page_token** | **String** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
 | **namespace** | **String** | Namespace of the Relationship | [optional] |
 | **object** | **String** | Object of the Relationship | [optional] |
 | **relation** | **String** | Relation of the Relationship | [optional] |

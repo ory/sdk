@@ -17,6 +17,7 @@ part 'identity_credentials_oidc_provider.g.dart';
 /// * [organization] 
 /// * [provider] 
 /// * [subject] 
+/// * [useAutoLink] 
 @BuiltValue()
 abstract class IdentityCredentialsOidcProvider implements Built<IdentityCredentialsOidcProvider, IdentityCredentialsOidcProviderBuilder> {
   @BuiltValueField(wireName: r'initial_access_token')
@@ -36,6 +37,9 @@ abstract class IdentityCredentialsOidcProvider implements Built<IdentityCredenti
 
   @BuiltValueField(wireName: r'subject')
   String? get subject;
+
+  @BuiltValueField(wireName: r'use_auto_link')
+  bool? get useAutoLink;
 
   IdentityCredentialsOidcProvider._();
 
@@ -102,6 +106,13 @@ class _$IdentityCredentialsOidcProviderSerializer implements PrimitiveSerializer
         specifiedType: const FullType(String),
       );
     }
+    if (object.useAutoLink != null) {
+      yield r'use_auto_link';
+      yield serializers.serialize(
+        object.useAutoLink,
+        specifiedType: const FullType(bool),
+      );
+    }
   }
 
   @override
@@ -166,6 +177,13 @@ class _$IdentityCredentialsOidcProviderSerializer implements PrimitiveSerializer
             specifiedType: const FullType(String),
           ) as String;
           result.subject = valueDes;
+          break;
+        case r'use_auto_link':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.useAutoLink = valueDes;
           break;
         default:
           unhandled.add(key);

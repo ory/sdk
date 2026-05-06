@@ -14,12 +14,12 @@ part 'ui_node_input_attributes.g.dart';
 /// InputAttributes represents the attributes of an input node
 ///
 /// Properties:
-/// * [autocomplete] - The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
+/// * [autocomplete] - The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn
 /// * [disabled] - Sets the input's disabled field to true or false.
 /// * [label] 
 /// * [maxlength] - MaxLength may contain the input's maximum length.
 /// * [name] - The input's element name.
-/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
+/// * [nodeType] - NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script div Division
 /// * [onclick] - OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.  Deprecated: Using OnClick requires the use of eval() which is a security risk. Use OnClickTrigger instead.
 /// * [onclickTrigger] - OnClickTrigger may contain a WebAuthn trigger which should be executed on click.  The trigger maps to a JavaScript function provided by Ory, which triggers actions such as PassKey registration or login. oryWebAuthnRegistration WebAuthnTriggersWebAuthnRegistration oryWebAuthnLogin WebAuthnTriggersWebAuthnLogin oryPasskeyLogin WebAuthnTriggersPasskeyLogin oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
 /// * [onload] - OnLoad may contain javascript which should be executed on load. This is primarily used for WebAuthn.  Deprecated: Using OnLoad requires the use of eval() which is a security risk. Use OnLoadTrigger instead.
@@ -30,10 +30,10 @@ part 'ui_node_input_attributes.g.dart';
 /// * [value] - The input's value.
 @BuiltValue()
 abstract class UiNodeInputAttributes implements Built<UiNodeInputAttributes, UiNodeInputAttributesBuilder> {
-  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
+  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn
   @BuiltValueField(wireName: r'autocomplete')
   UiNodeInputAttributesAutocompleteEnum? get autocomplete;
-  // enum autocompleteEnum {  email,  tel,  url,  current-password,  new-password,  one-time-code,  };
+  // enum autocompleteEnum {  email,  tel,  url,  current-password,  new-password,  one-time-code,  username webauthn,  };
 
   /// Sets the input's disabled field to true or false.
   @BuiltValueField(wireName: r'disabled')
@@ -50,10 +50,10 @@ abstract class UiNodeInputAttributes implements Built<UiNodeInputAttributes, UiN
   @BuiltValueField(wireName: r'name')
   String get name;
 
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueField(wireName: r'node_type')
   UiNodeInputAttributesNodeTypeEnum get nodeType;
-  // enum nodeTypeEnum {  text,  input,  img,  a,  script,  };
+  // enum nodeTypeEnum {  input,  };
 
   /// OnClick may contain javascript which should be executed on click. This is primarily used for WebAuthn.  Deprecated: Using OnClick requires the use of eval() which is a security risk. Use OnClickTrigger instead.
   @BuiltValueField(wireName: r'onclick')
@@ -356,24 +356,27 @@ class _$UiNodeInputAttributesSerializer implements PrimitiveSerializer<UiNodeInp
 
 class UiNodeInputAttributesAutocompleteEnum extends EnumClass {
 
-  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
+  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn
   @BuiltValueEnumConst(wireName: r'email')
   static const UiNodeInputAttributesAutocompleteEnum email = _$uiNodeInputAttributesAutocompleteEnum_email;
-  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
+  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn
   @BuiltValueEnumConst(wireName: r'tel')
   static const UiNodeInputAttributesAutocompleteEnum tel = _$uiNodeInputAttributesAutocompleteEnum_tel;
-  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
+  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn
   @BuiltValueEnumConst(wireName: r'url')
   static const UiNodeInputAttributesAutocompleteEnum url = _$uiNodeInputAttributesAutocompleteEnum_url;
-  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
+  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn
   @BuiltValueEnumConst(wireName: r'current-password')
   static const UiNodeInputAttributesAutocompleteEnum currentPassword = _$uiNodeInputAttributesAutocompleteEnum_currentPassword;
-  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
+  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn
   @BuiltValueEnumConst(wireName: r'new-password')
   static const UiNodeInputAttributesAutocompleteEnum newPassword = _$uiNodeInputAttributesAutocompleteEnum_newPassword;
-  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode
+  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn
   @BuiltValueEnumConst(wireName: r'one-time-code')
   static const UiNodeInputAttributesAutocompleteEnum oneTimeCode = _$uiNodeInputAttributesAutocompleteEnum_oneTimeCode;
+  /// The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn
+  @BuiltValueEnumConst(wireName: r'username webauthn')
+  static const UiNodeInputAttributesAutocompleteEnum usernameWebauthn = _$uiNodeInputAttributesAutocompleteEnum_usernameWebauthn;
 
   static Serializer<UiNodeInputAttributesAutocompleteEnum> get serializer => _$uiNodeInputAttributesAutocompleteEnumSerializer;
 
@@ -385,21 +388,9 @@ class UiNodeInputAttributesAutocompleteEnum extends EnumClass {
 
 class UiNodeInputAttributesNodeTypeEnum extends EnumClass {
 
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
-  @BuiltValueEnumConst(wireName: r'text')
-  static const UiNodeInputAttributesNodeTypeEnum text = _$uiNodeInputAttributesNodeTypeEnum_text;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
+  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script div Division
   @BuiltValueEnumConst(wireName: r'input')
   static const UiNodeInputAttributesNodeTypeEnum input = _$uiNodeInputAttributesNodeTypeEnum_input;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
-  @BuiltValueEnumConst(wireName: r'img')
-  static const UiNodeInputAttributesNodeTypeEnum img = _$uiNodeInputAttributesNodeTypeEnum_img;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
-  @BuiltValueEnumConst(wireName: r'a')
-  static const UiNodeInputAttributesNodeTypeEnum a = _$uiNodeInputAttributesNodeTypeEnum_a;
-  /// NodeType represents this node's types. It is a mirror of `node.type` and is primarily used to allow compatibility with OpenAPI 3.0.  In this struct it technically always is \"input\". text Text input Input img Image a Anchor script Script
-  @BuiltValueEnumConst(wireName: r'script')
-  static const UiNodeInputAttributesNodeTypeEnum script = _$uiNodeInputAttributesNodeTypeEnum_script;
 
   static Serializer<UiNodeInputAttributesNodeTypeEnum> get serializer => _$uiNodeInputAttributesNodeTypeEnumSerializer;
 

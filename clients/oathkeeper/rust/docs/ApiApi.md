@@ -40,7 +40,7 @@ No authorization required
 
 ## get_rule
 
-> crate::models::Rule get_rule(id)
+> models::Rule get_rule(id)
 Retrieve a Rule
 
 Use this method to retrieve a rule from the storage. If it does not exist you will receive a 404 error.
@@ -54,7 +54,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Rule**](rule.md)
+[**models::Rule**](rule.md)
 
 ### Authorization
 
@@ -70,7 +70,7 @@ No authorization required
 
 ## get_well_known_json_web_keys
 
-> crate::models::JsonWebKeySet get_well_known_json_web_keys()
+> models::JsonWebKeySet get_well_known_json_web_keys()
 Lists Cryptographic Keys
 
 This endpoint returns cryptographic keys that are required to, for example, verify signatures of ID Tokens.
@@ -81,7 +81,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::JsonWebKeySet**](jsonWebKeySet.md)
+[**models::JsonWebKeySet**](jsonWebKeySet.md)
 
 ### Authorization
 
@@ -97,7 +97,7 @@ No authorization required
 
 ## list_rules
 
-> Vec<crate::models::Rule> list_rules(limit, offset)
+> Vec<models::Rule> list_rules(limit, offset)
 List All Rules
 
 This method returns an array of all rules that are stored in the backend. This is useful if you want to get a full view of what rules you have currently in place.
@@ -112,7 +112,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Rule>**](rule.md)
+[**Vec<models::Rule>**](rule.md)
 
 ### Authorization
 

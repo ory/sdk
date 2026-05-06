@@ -1,15 +1,74 @@
 # Ory\Keto\Client\PermissionApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**checkPermission()**](PermissionApi.md#checkPermission) | **GET** /relation-tuples/check/openapi | Check a permission
-[**checkPermissionOrError()**](PermissionApi.md#checkPermissionOrError) | **GET** /relation-tuples/check | Check a permission
-[**expandPermissions()**](PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions.
-[**postCheckPermission()**](PermissionApi.md#postCheckPermission) | **POST** /relation-tuples/check/openapi | Check a permission
-[**postCheckPermissionOrError()**](PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**batchCheckPermission()**](PermissionApi.md#batchCheckPermission) | **POST** /relation-tuples/batch/check | Batch check permissions |
+| [**checkPermission()**](PermissionApi.md#checkPermission) | **GET** /relation-tuples/check/openapi | Check a permission |
+| [**checkPermissionOrError()**](PermissionApi.md#checkPermissionOrError) | **GET** /relation-tuples/check | Check a permission |
+| [**expandPermissions()**](PermissionApi.md#expandPermissions) | **GET** /relation-tuples/expand | Expand a Relationship into permissions. |
+| [**postCheckPermission()**](PermissionApi.md#postCheckPermission) | **POST** /relation-tuples/check/openapi | Check a permission |
+| [**postCheckPermissionOrError()**](PermissionApi.md#postCheckPermissionOrError) | **POST** /relation-tuples/check | Check a permission |
 
+
+## `batchCheckPermission()`
+
+```php
+batchCheckPermission($maxDepth, $batchCheckPermissionBody): \Ory\Keto\Client\Model\BatchCheckPermissionResult
+```
+
+Batch check permissions
+
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Keto\Client\Api\PermissionApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$maxDepth = 56; // int
+$batchCheckPermissionBody = new \Ory\Keto\Client\Model\BatchCheckPermissionBody(); // \Ory\Keto\Client\Model\BatchCheckPermissionBody
+
+try {
+    $result = $apiInstance->batchCheckPermission($maxDepth, $batchCheckPermissionBody);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PermissionApi->batchCheckPermission: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **maxDepth** | **int**|  | [optional] |
+| **batchCheckPermissionBody** | [**\Ory\Keto\Client\Model\BatchCheckPermissionBody**](../Model/BatchCheckPermissionBody.md)|  | [optional] |
+
+### Return type
+
+[**\Ory\Keto\Client\Model\BatchCheckPermissionResult**](../Model/BatchCheckPermissionResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `checkPermission()`
 
@@ -53,16 +112,16 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Relationship | [optional]
- **object** | **string**| Object of the Relationship | [optional]
- **relation** | **string**| Relation of the Relationship | [optional]
- **subjectId** | **string**| SubjectID of the Relationship | [optional]
- **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
- **subjectSetObject** | **string**| Object of the Subject Set | [optional]
- **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
- **maxDepth** | **int**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **namespace** | **string**| Namespace of the Relationship | [optional] |
+| **object** | **string**| Object of the Relationship | [optional] |
+| **relation** | **string**| Relation of the Relationship | [optional] |
+| **subjectId** | **string**| SubjectID of the Relationship | [optional] |
+| **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] |
+| **subjectSetObject** | **string**| Object of the Subject Set | [optional] |
+| **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] |
+| **maxDepth** | **int**|  | [optional] |
 
 ### Return type
 
@@ -123,16 +182,16 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Relationship | [optional]
- **object** | **string**| Object of the Relationship | [optional]
- **relation** | **string**| Relation of the Relationship | [optional]
- **subjectId** | **string**| SubjectID of the Relationship | [optional]
- **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional]
- **subjectSetObject** | **string**| Object of the Subject Set | [optional]
- **subjectSetRelation** | **string**| Relation of the Subject Set | [optional]
- **maxDepth** | **int**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **namespace** | **string**| Namespace of the Relationship | [optional] |
+| **object** | **string**| Object of the Relationship | [optional] |
+| **relation** | **string**| Relation of the Relationship | [optional] |
+| **subjectId** | **string**| SubjectID of the Relationship | [optional] |
+| **subjectSetNamespace** | **string**| Namespace of the Subject Set | [optional] |
+| **subjectSetObject** | **string**| Object of the Subject Set | [optional] |
+| **subjectSetRelation** | **string**| Relation of the Subject Set | [optional] |
+| **maxDepth** | **int**|  | [optional] |
 
 ### Return type
 
@@ -189,12 +248,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **namespace** | **string**| Namespace of the Subject Set |
- **object** | **string**| Object of the Subject Set |
- **relation** | **string**| Relation of the Subject Set |
- **maxDepth** | **int**|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **namespace** | **string**| Namespace of the Subject Set | |
+| **object** | **string**| Object of the Subject Set | |
+| **relation** | **string**| Relation of the Subject Set | |
+| **maxDepth** | **int**|  | [optional] |
 
 ### Return type
 
@@ -249,10 +308,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **maxDepth** | **int**|  | [optional]
- **postCheckPermissionBody** | [**\Ory\Keto\Client\Model\PostCheckPermissionBody**](../Model/PostCheckPermissionBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **maxDepth** | **int**|  | [optional] |
+| **postCheckPermissionBody** | [**\Ory\Keto\Client\Model\PostCheckPermissionBody**](../Model/PostCheckPermissionBody.md)|  | [optional] |
 
 ### Return type
 
@@ -294,7 +353,7 @@ $apiInstance = new Ory\Keto\Client\Api\PermissionApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$maxDepth = 56; // int | nolint:deadcode,unused
+$maxDepth = 56; // int
 $postCheckPermissionOrErrorBody = new \Ory\Keto\Client\Model\PostCheckPermissionOrErrorBody(); // \Ory\Keto\Client\Model\PostCheckPermissionOrErrorBody
 
 try {
@@ -307,10 +366,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **maxDepth** | **int**| nolint:deadcode,unused | [optional]
- **postCheckPermissionOrErrorBody** | [**\Ory\Keto\Client\Model\PostCheckPermissionOrErrorBody**](../Model/PostCheckPermissionOrErrorBody.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **maxDepth** | **int**|  | [optional] |
+| **postCheckPermissionOrErrorBody** | [**\Ory\Keto\Client\Model\PostCheckPermissionOrErrorBody**](../Model/PostCheckPermissionOrErrorBody.md)|  | [optional] |
 
 ### Return type
 

@@ -3,7 +3,7 @@ Ory Identities API
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more. 
 
-API version: v1.2.1
+API version: v25.4.0
 Contact: office@ory.sh
 */
 
@@ -24,6 +24,7 @@ type SessionAuthenticationMethod struct {
 	Aal *AuthenticatorAssuranceLevel `json:"aal,omitempty"`
 	// When the authentication challenge was completed.
 	CompletedAt *time.Time `json:"completed_at,omitempty"`
+	// The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 	Method *string `json:"method,omitempty"`
 	// The Organization id used for authentication
 	Organization *string `json:"organization,omitempty"`

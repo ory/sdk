@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,15 +13,19 @@ part 'identity_patch_response.g.dart';
 /// Response for a single identity patch
 ///
 /// Properties:
-/// * [action] - The action for this specific patch create ActionCreate  Create this identity.
+/// * [action] - The action for this specific patch create ActionCreate  Create this identity. error ActionError  Error indicates that the patch failed.
+/// * [error] 
 /// * [identity] - The identity ID payload of this patch
 /// * [patchId] - The ID of this patch response, if an ID was specified in the patch.
 @BuiltValue()
 abstract class IdentityPatchResponse implements Built<IdentityPatchResponse, IdentityPatchResponseBuilder> {
-  /// The action for this specific patch create ActionCreate  Create this identity.
+  /// The action for this specific patch create ActionCreate  Create this identity. error ActionError  Error indicates that the patch failed.
   @BuiltValueField(wireName: r'action')
   IdentityPatchResponseActionEnum? get action;
-  // enum actionEnum {  create,  };
+  // enum actionEnum {  create,  error,  };
+
+  @BuiltValueField(wireName: r'error')
+  JsonObject? get error;
 
   /// The identity ID payload of this patch
   @BuiltValueField(wireName: r'identity')
@@ -58,6 +63,13 @@ class _$IdentityPatchResponseSerializer implements PrimitiveSerializer<IdentityP
       yield serializers.serialize(
         object.action,
         specifiedType: const FullType(IdentityPatchResponseActionEnum),
+      );
+    }
+    if (object.error != null) {
+      yield r'error';
+      yield serializers.serialize(
+        object.error,
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.identity != null) {
@@ -104,6 +116,14 @@ class _$IdentityPatchResponseSerializer implements PrimitiveSerializer<IdentityP
           ) as IdentityPatchResponseActionEnum;
           result.action = valueDes;
           break;
+        case r'error':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
+          result.error = valueDes;
+          break;
         case r'identity':
           final valueDes = serializers.deserialize(
             value,
@@ -149,9 +169,12 @@ class _$IdentityPatchResponseSerializer implements PrimitiveSerializer<IdentityP
 
 class IdentityPatchResponseActionEnum extends EnumClass {
 
-  /// The action for this specific patch create ActionCreate  Create this identity.
+  /// The action for this specific patch create ActionCreate  Create this identity. error ActionError  Error indicates that the patch failed.
   @BuiltValueEnumConst(wireName: r'create')
   static const IdentityPatchResponseActionEnum create = _$identityPatchResponseActionEnum_create;
+  /// The action for this specific patch create ActionCreate  Create this identity. error ActionError  Error indicates that the patch failed.
+  @BuiltValueEnumConst(wireName: r'error')
+  static const IdentityPatchResponseActionEnum error = _$identityPatchResponseActionEnum_error;
 
   static Serializer<IdentityPatchResponseActionEnum> get serializer => _$identityPatchResponseActionEnumSerializer;
 

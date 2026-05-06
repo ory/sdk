@@ -27,6 +27,21 @@ void main() {
       // TODO
     });
 
+    // String deviceAuthorizationGrantAccessTokenLifespan
+    test('to test the property `deviceAuthorizationGrantAccessTokenLifespan`', () async {
+      // TODO
+    });
+
+    // String deviceAuthorizationGrantIdTokenLifespan
+    test('to test the property `deviceAuthorizationGrantIdTokenLifespan`', () async {
+      // TODO
+    });
+
+    // String deviceAuthorizationGrantRefreshTokenLifespan
+    test('to test the property `deviceAuthorizationGrantRefreshTokenLifespan`', () async {
+      // TODO
+    });
+
     // String implicitGrantAccessTokenLifespan
     test('to test the property `implicitGrantAccessTokenLifespan`', () async {
       // TODO

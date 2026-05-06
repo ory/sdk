@@ -4,12 +4,14 @@ defmodule Ory.Mixfile do
   def project do
     [
       app: :ory_keto,
-      version: "0.11.1-alpha.0",
+      version: "25.4.0",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       package: package(),
-      description: "Documentation for all of Ory Keto&#39;s REST APIs. gRPC is documented separately. ",
+      description: """
+      OpenAPI API client for Ory Keto, Ory's open source 'Zanzibar - Google's Consistent, Global Authorization System' implementation.
+      """,
       deps: deps()
     ]
   end
@@ -33,9 +35,10 @@ defmodule Ory.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:tesla, "~> 1.4"},
-      {:poison, "~> 3.0"},
-      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
+      {:tesla, "~> 1.7"},
+      {:jason, "~> 1.4"},
+      {:ex_doc, "~> 0.30", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false}
     ]
   end
 

@@ -24,9 +24,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::CourierApi.new
@@ -95,9 +95,9 @@ require 'ory-kratos-client'
 # setup authorization
 OryKratosClient.configure do |config|
   # Configure API key authorization: oryAccessToken
-  config.api_key['oryAccessToken'] = 'YOUR API KEY'
+  config.api_key['Authorization'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['oryAccessToken'] = 'Bearer'
+  # config.api_key_prefix['Authorization'] = 'Bearer'
 end
 
 api_instance = OryKratosClient::CourierApi.new

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **cors_admin** | [**ProjectCors**](ProjectCors.md) |  | 
 **cors_public** | [**ProjectCors**](ProjectCors.md) |  | 
 **name** | **str** | The name of the project. | 
+**organizations** | [**List[BasicOrganization]**](BasicOrganization.md) | The organizations that are part of this project. | 
 **services** | [**ProjectServices**](ProjectServices.md) |  | 
 
 ## Example

@@ -19,7 +19,7 @@ void main() {
       // TODO
     });
 
-    // ID is aclient identifier for the OAuth 2.0 client that requested this token.
+    // ID is a client identifier for the OAuth 2.0 client that requested this token.
     // String clientId
     test('to test the property `clientId`', () async {
       // TODO

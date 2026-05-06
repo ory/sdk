@@ -7,13 +7,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UpdateRegistrationFlowBody, () {
-    // CSRFToken is the anti-CSRF token
+    // The Anti-CSRF Token  This token is only required when performing browser flows.
     // String csrfToken
     test('to test the property `csrfToken`', () async {
       // TODO
     });
 
-    // Method  Should be set to \"passkey\" when trying to add, update, or remove a Passkey.
+    // Method  Should be set to profile when trying to update a profile.
     // String method
     test('to test the property `method`', () async {
       // TODO
@@ -25,7 +25,7 @@ void main() {
       // TODO
     });
 
-    // The identity's traits
+    // Traits  The identity's traits.
     // JsonObject traits
     test('to test the property `traits`', () async {
       // TODO
@@ -37,7 +37,7 @@ void main() {
       // TODO
     });
 
-    // IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple
+    // IDToken is an optional id token provided by an OIDC provider  If submitted, it is verified using the OIDC provider's public key set and the claims are used to populate the OIDC credentials of the identity. If the OIDC provider does not store additional claims (such as name, etc.) in the IDToken itself, you can use the `traits` field to populate the identity's traits. Note, that Apple only includes the users email in the IDToken.  Supported providers are Apple Google
     // String idToken
     test('to test the property `idToken`', () async {
       // TODO
@@ -88,6 +88,12 @@ void main() {
     // Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here.
     // String passkeyRegister
     test('to test the property `passkeyRegister`', () async {
+      // TODO
+    });
+
+    // Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
+    // String screen
+    test('to test the property `screen`', () async {
       // TODO
     });
 

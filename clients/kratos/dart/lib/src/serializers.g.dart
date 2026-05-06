@@ -15,6 +15,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ContinueWithRecoveryUi.serializer)
       ..add(ContinueWithRecoveryUiActionEnum.serializer)
       ..add(ContinueWithRecoveryUiFlow.serializer)
+      ..add(ContinueWithRedirectBrowserTo.serializer)
+      ..add(ContinueWithRedirectBrowserToActionEnum.serializer)
       ..add(ContinueWithSetOrySessionToken.serializer)
       ..add(ContinueWithSetOrySessionTokenActionEnum.serializer)
       ..add(ContinueWithSettingsUi.serializer)
@@ -25,6 +27,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ContinueWithVerificationUiFlow.serializer)
       ..add(CourierMessageStatus.serializer)
       ..add(CourierMessageType.serializer)
+      ..add(CreateFedcmFlowResponse.serializer)
       ..add(CreateIdentityBody.serializer)
       ..add(CreateIdentityBodyStateEnum.serializer)
       ..add(CreateRecoveryCodeForIdentityBody.serializer)
@@ -42,6 +45,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Identity.serializer)
       ..add(IdentityCredentials.serializer)
       ..add(IdentityCredentialsCode.serializer)
+      ..add(IdentityCredentialsCodeAddress.serializer)
       ..add(IdentityCredentialsOidc.serializer)
       ..add(IdentityCredentialsOidcProvider.serializer)
       ..add(IdentityCredentialsPassword.serializer)
@@ -57,6 +61,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(IdentityWithCredentialsOidcConfigProvider.serializer)
       ..add(IdentityWithCredentialsPassword.serializer)
       ..add(IdentityWithCredentialsPasswordConfig.serializer)
+      ..add(IdentityWithCredentialsSaml.serializer)
+      ..add(IdentityWithCredentialsSamlConfig.serializer)
+      ..add(IdentityWithCredentialsSamlConfigProvider.serializer)
       ..add(IsAlive200Response.serializer)
       ..add(IsReady503Response.serializer)
       ..add(JsonPatch.serializer)
@@ -74,6 +81,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(OAuth2LoginRequest.serializer)
       ..add(PatchIdentitiesBody.serializer)
       ..add(PerformNativeLogoutBody.serializer)
+      ..add(Provider.serializer)
       ..add(RecoveryCodeForIdentity.serializer)
       ..add(RecoveryFlow.serializer)
       ..add(RecoveryFlowState.serializer)
@@ -99,12 +107,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UiNodeAnchorAttributes.serializer)
       ..add(UiNodeAnchorAttributesNodeTypeEnum.serializer)
       ..add(UiNodeAttributes.serializer)
+      ..add(UiNodeDivisionAttributes.serializer)
+      ..add(UiNodeDivisionAttributesNodeTypeEnum.serializer)
       ..add(UiNodeGroupEnum.serializer)
       ..add(UiNodeImageAttributes.serializer)
       ..add(UiNodeImageAttributesNodeTypeEnum.serializer)
       ..add(UiNodeInputAttributes.serializer)
       ..add(UiNodeInputAttributesAutocompleteEnum.serializer)
       ..add(UiNodeInputAttributesNodeTypeEnum.serializer)
+      ..add(UiNodeInputAttributesOnclickTriggerEnum.serializer)
+      ..add(UiNodeInputAttributesOnloadTriggerEnum.serializer)
       ..add(UiNodeInputAttributesTypeEnum.serializer)
       ..add(UiNodeMeta.serializer)
       ..add(UiNodeScriptAttributes.serializer)
@@ -114,14 +126,17 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UiNodeTypeEnum.serializer)
       ..add(UiText.serializer)
       ..add(UiTextTypeEnum.serializer)
+      ..add(UpdateFedcmFlowBody.serializer)
       ..add(UpdateIdentityBody.serializer)
       ..add(UpdateIdentityBodyStateEnum.serializer)
       ..add(UpdateLoginFlowBody.serializer)
       ..add(UpdateLoginFlowWithCodeMethod.serializer)
+      ..add(UpdateLoginFlowWithIdentifierFirstMethod.serializer)
       ..add(UpdateLoginFlowWithLookupSecretMethod.serializer)
       ..add(UpdateLoginFlowWithOidcMethod.serializer)
       ..add(UpdateLoginFlowWithPasskeyMethod.serializer)
       ..add(UpdateLoginFlowWithPasswordMethod.serializer)
+      ..add(UpdateLoginFlowWithSamlMethod.serializer)
       ..add(UpdateLoginFlowWithTotpMethod.serializer)
       ..add(UpdateLoginFlowWithWebAuthnMethod.serializer)
       ..add(UpdateRecoveryFlowBody.serializer)
@@ -135,6 +150,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UpdateRegistrationFlowWithPasskeyMethod.serializer)
       ..add(UpdateRegistrationFlowWithPasswordMethod.serializer)
       ..add(UpdateRegistrationFlowWithProfileMethod.serializer)
+      ..add(UpdateRegistrationFlowWithProfileMethodScreenEnum.serializer)
+      ..add(UpdateRegistrationFlowWithSamlMethod.serializer)
       ..add(UpdateRegistrationFlowWithWebAuthnMethod.serializer)
       ..add(UpdateSettingsFlowBody.serializer)
       ..add(UpdateSettingsFlowWithLookupMethod.serializer)
@@ -142,6 +159,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UpdateSettingsFlowWithPasskeyMethod.serializer)
       ..add(UpdateSettingsFlowWithPasswordMethod.serializer)
       ..add(UpdateSettingsFlowWithProfileMethod.serializer)
+      ..add(UpdateSettingsFlowWithSamlMethod.serializer)
       ..add(UpdateSettingsFlowWithTotpMethod.serializer)
       ..add(UpdateSettingsFlowWithWebAuthnMethod.serializer)
       ..add(UpdateVerificationFlowBody.serializer)
@@ -168,6 +186,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<ContinueWith>())
       ..addBuilderFactory(
           const FullType(BuiltList,
+              const [const FullType(IdentityCredentialsCodeAddress)]),
+          () => new ListBuilder<IdentityCredentialsCodeAddress>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
               const [const FullType(IdentityCredentialsOidcProvider)]),
           () => new ListBuilder<IdentityCredentialsOidcProvider>())
       ..addBuilderFactory(
@@ -183,8 +205,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
           ]),
           () => new ListBuilder<IdentityWithCredentialsOidcConfigProvider>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(IdentityWithCredentialsSamlConfigProvider)
+          ]),
+          () => new ListBuilder<IdentityWithCredentialsSamlConfigProvider>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(MessageDispatch)]),
           () => new ListBuilder<MessageDispatch>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Provider)]),
+          () => new ListBuilder<Provider>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(RecoveryIdentityAddress)]),
@@ -237,6 +267,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(String)]),
+          () => new MapBuilder<String, String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(BuiltMap, const [
             const FullType(String),
             const FullType.nullable(JsonObject)
@@ -268,6 +305,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(VerifiableIdentityAddress)]),
           () => new ListBuilder<VerifiableIdentityAddress>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltMap, const [const FullType(String), const FullType(String)]),
+          () => new MapBuilder<String, String>())
       ..addBuilderFactory(
           const FullType(
               BuiltMap, const [const FullType(String), const FullType(String)]),

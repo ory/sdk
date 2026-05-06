@@ -7,7 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(AcceptOAuth2LoginRequest, () {
-    // ACR sets the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it to express that, for example, a user authenticated using two factor authentication.
+    // ACR sets the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it to express that, for example, a user authenticated using two-factor authentication.
     // String acr
     test('to test the property `acr`', () async {
       // TODO
@@ -41,7 +41,7 @@ void main() {
       // TODO
     });
 
-    // Remember, if set to true, tells ORY Hydra to remember this user by telling the user agent (browser) to store a cookie with authentication data. If the same user performs another OAuth 2.0 Authorization Request, he/she will not be asked to log in again.
+    // Remember, if set to true, tells Ory Hydra to remember this user by telling the user agent (browser) to store a cookie with authentication data. If the same user performs another OAuth 2.0 Authorization Request, they will not be asked to log in again.
     // bool remember
     test('to test the property `remember`', () async {
       // TODO

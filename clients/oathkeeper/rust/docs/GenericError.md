@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | Option<**i64**> |  | [optional]
-**details** | Option<[**Vec<::std::collections::HashMap<String, serde_json::Value>>**](map.md)> |  | [optional]
+**details** | Option<[**Vec<std::collections::HashMap<String, serde_json::Value>>**](std::collections::HashMap.md)> |  | [optional]
 **message** | Option<**String**> |  | [optional]
 **reason** | Option<**String**> |  | [optional]
 **request** | Option<**String**> |  | [optional]

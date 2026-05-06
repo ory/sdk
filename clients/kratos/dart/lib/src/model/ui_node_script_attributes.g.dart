@@ -7,32 +7,12 @@ part of 'ui_node_script_attributes.dart';
 // **************************************************************************
 
 const UiNodeScriptAttributesNodeTypeEnum
-    _$uiNodeScriptAttributesNodeTypeEnum_text =
-    const UiNodeScriptAttributesNodeTypeEnum._('text');
-const UiNodeScriptAttributesNodeTypeEnum
-    _$uiNodeScriptAttributesNodeTypeEnum_input =
-    const UiNodeScriptAttributesNodeTypeEnum._('input');
-const UiNodeScriptAttributesNodeTypeEnum
-    _$uiNodeScriptAttributesNodeTypeEnum_img =
-    const UiNodeScriptAttributesNodeTypeEnum._('img');
-const UiNodeScriptAttributesNodeTypeEnum
-    _$uiNodeScriptAttributesNodeTypeEnum_a =
-    const UiNodeScriptAttributesNodeTypeEnum._('a');
-const UiNodeScriptAttributesNodeTypeEnum
     _$uiNodeScriptAttributesNodeTypeEnum_script =
     const UiNodeScriptAttributesNodeTypeEnum._('script');
 
 UiNodeScriptAttributesNodeTypeEnum _$uiNodeScriptAttributesNodeTypeEnumValueOf(
     String name) {
   switch (name) {
-    case 'text':
-      return _$uiNodeScriptAttributesNodeTypeEnum_text;
-    case 'input':
-      return _$uiNodeScriptAttributesNodeTypeEnum_input;
-    case 'img':
-      return _$uiNodeScriptAttributesNodeTypeEnum_img;
-    case 'a':
-      return _$uiNodeScriptAttributesNodeTypeEnum_a;
     case 'script':
       return _$uiNodeScriptAttributesNodeTypeEnum_script;
     default:
@@ -43,10 +23,6 @@ UiNodeScriptAttributesNodeTypeEnum _$uiNodeScriptAttributesNodeTypeEnumValueOf(
 final BuiltSet<UiNodeScriptAttributesNodeTypeEnum>
     _$uiNodeScriptAttributesNodeTypeEnumValues = new BuiltSet<
         UiNodeScriptAttributesNodeTypeEnum>(const <UiNodeScriptAttributesNodeTypeEnum>[
-  _$uiNodeScriptAttributesNodeTypeEnum_text,
-  _$uiNodeScriptAttributesNodeTypeEnum_input,
-  _$uiNodeScriptAttributesNodeTypeEnum_img,
-  _$uiNodeScriptAttributesNodeTypeEnum_a,
   _$uiNodeScriptAttributesNodeTypeEnum_script,
 ]);
 
@@ -57,17 +33,9 @@ Serializer<UiNodeScriptAttributesNodeTypeEnum>
 class _$UiNodeScriptAttributesNodeTypeEnumSerializer
     implements PrimitiveSerializer<UiNodeScriptAttributesNodeTypeEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'text': 'text',
-    'input': 'input',
-    'img': 'img',
-    'a': 'a',
     'script': 'script',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'text': 'text',
-    'input': 'input',
-    'img': 'img',
-    'a': 'a',
     'script': 'script',
   };
 
