@@ -1,9 +1,9 @@
-# kratos-client
+# client
 
 Ory Identities API
-- API version: v25.4.0
-  - Build date: 2025-11-07T16:03:41.138363748Z[Etc/UTC]
-  - Generator version: 7.7.0
+- API version: 
+  - Build date: 2026-05-07T09:41:40.704940+02:00[Europe/Berlin]
+  - Generator version: 7.12.0
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more.
 
@@ -40,9 +40,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>sh.ory.kratos</groupId>
-  <artifactId>kratos-client</artifactId>
-  <version>v25.4.0</version>
+  <groupId>sh.ory</groupId>
+  <artifactId>client</artifactId>
+  <version>0.0.1-TEST</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -53,12 +53,12 @@ Add this dependency to your project's build file:
 
 ```groovy
   repositories {
-    mavenCentral()     // Needed if the 'kratos-client' jar has been published to maven central.
-    mavenLocal()       // Needed if the 'kratos-client' jar has been published to the local maven repo.
+    mavenCentral()     // Needed if the 'client' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'client' jar has been published to the local maven repo.
   }
 
   dependencies {
-     implementation "sh.ory.kratos:kratos-client:v25.4.0"
+     implementation "sh.ory:client:0.0.1-TEST"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/kratos-client-v25.4.0.jar`
+* `target/client-0.0.1-TEST.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -82,12 +82,12 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```java
 
 // Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.auth.*;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.CourierApi;
+import sh.ory.client.ApiClient;
+import sh.ory.client.ApiException;
+import sh.ory.client.Configuration;
+import sh.ory.client.auth.*;
+import sh.ory.client.model.*;
+import sh.ory.client.api.CourierApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -137,6 +137,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**createNativeRegistrationFlow**](docs/FrontendApi.md#createNativeRegistrationFlow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps
 *FrontendApi* | [**createNativeSettingsFlow**](docs/FrontendApi.md#createNativeSettingsFlow) | **GET** /self-service/settings/api | Create Settings Flow for Native Apps
 *FrontendApi* | [**createNativeVerificationFlow**](docs/FrontendApi.md#createNativeVerificationFlow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
+*FrontendApi* | [**deleteTestLoginFlow**](docs/FrontendApi.md#deleteTestLoginFlow) | **DELETE** /self-service/login/test | Delete a test OIDC login flow
 *FrontendApi* | [**disableMyOtherSessions**](docs/FrontendApi.md#disableMyOtherSessions) | **DELETE** /sessions | Disable my other sessions
 *FrontendApi* | [**disableMySession**](docs/FrontendApi.md#disableMySession) | **DELETE** /sessions/{id} | Disable one of my sessions
 *FrontendApi* | [**exchangeSessionToken**](docs/FrontendApi.md#exchangeSessionToken) | **GET** /sessions/token-exchange | Exchange Session Token
@@ -161,6 +162,7 @@ Class | Method | HTTP request | Description
 *IdentityApi* | [**createIdentity**](docs/IdentityApi.md#createIdentity) | **POST** /admin/identities | Create an Identity
 *IdentityApi* | [**createRecoveryCodeForIdentity**](docs/IdentityApi.md#createRecoveryCodeForIdentity) | **POST** /admin/recovery/code | Create a Recovery Code
 *IdentityApi* | [**createRecoveryLinkForIdentity**](docs/IdentityApi.md#createRecoveryLinkForIdentity) | **POST** /admin/recovery/link | Create a Recovery Link
+*IdentityApi* | [**createTestLoginFlow**](docs/IdentityApi.md#createTestLoginFlow) | **POST** /admin/test-login-flows | Create a test OIDC login flow
 *IdentityApi* | [**deleteIdentity**](docs/IdentityApi.md#deleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity
 *IdentityApi* | [**deleteIdentityCredentials**](docs/IdentityApi.md#deleteIdentityCredentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 *IdentityApi* | [**deleteIdentitySessions**](docs/IdentityApi.md#deleteIdentitySessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
@@ -183,9 +185,10 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AdminIdentityImportCredentialsLookupSecret](docs/AdminIdentityImportCredentialsLookupSecret.md)
+ - [AdminIdentityImportCredentialsLookupSecretConfig](docs/AdminIdentityImportCredentialsLookupSecretConfig.md)
  - [AuthenticatorAssuranceLevel](docs/AuthenticatorAssuranceLevel.md)
  - [BatchPatchIdentitiesResponse](docs/BatchPatchIdentitiesResponse.md)
- - [ConsistencyRequestParameters](docs/ConsistencyRequestParameters.md)
  - [ContinueWith](docs/ContinueWith.md)
  - [ContinueWithRecoveryUi](docs/ContinueWithRecoveryUi.md)
  - [ContinueWithRecoveryUiFlow](docs/ContinueWithRecoveryUiFlow.md)
@@ -201,7 +204,15 @@ Class | Method | HTTP request | Description
  - [CreateIdentityBody](docs/CreateIdentityBody.md)
  - [CreateRecoveryCodeForIdentityBody](docs/CreateRecoveryCodeForIdentityBody.md)
  - [CreateRecoveryLinkForIdentityBody](docs/CreateRecoveryLinkForIdentityBody.md)
+ - [CreateTestLoginFlowBody](docs/CreateTestLoginFlowBody.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
+ - [DeviceAuthnAndroidAuthorizationList](docs/DeviceAuthnAndroidAuthorizationList.md)
+ - [DeviceAuthnAndroidKeyDescription](docs/DeviceAuthnAndroidKeyDescription.md)
+ - [DeviceAuthnAndroidRootOfTrust](docs/DeviceAuthnAndroidRootOfTrust.md)
+ - [DeviceAuthnAttestation](docs/DeviceAuthnAttestation.md)
+ - [DeviceAuthnIOSAttStmt](docs/DeviceAuthnIOSAttStmt.md)
+ - [DeviceAuthnIOSAttestation](docs/DeviceAuthnIOSAttestation.md)
+ - [DeviceAuthnKey](docs/DeviceAuthnKey.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)
  - [ErrorBrowserLocationChangeRequired](docs/ErrorBrowserLocationChangeRequired.md)
  - [ErrorFlowReplaced](docs/ErrorFlowReplaced.md)
@@ -215,9 +226,14 @@ Class | Method | HTTP request | Description
  - [IdentityCredentials](docs/IdentityCredentials.md)
  - [IdentityCredentialsCode](docs/IdentityCredentialsCode.md)
  - [IdentityCredentialsCodeAddress](docs/IdentityCredentialsCodeAddress.md)
+ - [IdentityCredentialsLookupSecretCode](docs/IdentityCredentialsLookupSecretCode.md)
  - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
  - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
+ - [IdentityCredentialsWebAuthn](docs/IdentityCredentialsWebAuthn.md)
+ - [IdentityCredentialsWebAuthnAttestation](docs/IdentityCredentialsWebAuthnAttestation.md)
+ - [IdentityCredentialsWebAuthnAuthenticator](docs/IdentityCredentialsWebAuthnAuthenticator.md)
+ - [IdentityCredentialsWebAuthnFlags](docs/IdentityCredentialsWebAuthnFlags.md)
  - [IdentityPatch](docs/IdentityPatch.md)
  - [IdentityPatchResponse](docs/IdentityPatchResponse.md)
  - [IdentitySchemaContainer](docs/IdentitySchemaContainer.md)
@@ -225,16 +241,26 @@ Class | Method | HTTP request | Description
  - [IdentityWithCredentialsOidc](docs/IdentityWithCredentialsOidc.md)
  - [IdentityWithCredentialsOidcConfig](docs/IdentityWithCredentialsOidcConfig.md)
  - [IdentityWithCredentialsOidcConfigProvider](docs/IdentityWithCredentialsOidcConfigProvider.md)
+ - [IdentityWithCredentialsPasskey](docs/IdentityWithCredentialsPasskey.md)
+ - [IdentityWithCredentialsPasskeyConfig](docs/IdentityWithCredentialsPasskeyConfig.md)
  - [IdentityWithCredentialsPassword](docs/IdentityWithCredentialsPassword.md)
  - [IdentityWithCredentialsPasswordConfig](docs/IdentityWithCredentialsPasswordConfig.md)
  - [IdentityWithCredentialsSaml](docs/IdentityWithCredentialsSaml.md)
  - [IdentityWithCredentialsSamlConfig](docs/IdentityWithCredentialsSamlConfig.md)
  - [IdentityWithCredentialsSamlConfigProvider](docs/IdentityWithCredentialsSamlConfigProvider.md)
+ - [IdentityWithCredentialsTotp](docs/IdentityWithCredentialsTotp.md)
+ - [IdentityWithCredentialsTotpConfig](docs/IdentityWithCredentialsTotpConfig.md)
+ - [IdentityWithCredentialsWebAuthn](docs/IdentityWithCredentialsWebAuthn.md)
+ - [IdentityWithCredentialsWebAuthnConfig](docs/IdentityWithCredentialsWebAuthnConfig.md)
  - [IsAlive200Response](docs/IsAlive200Response.md)
  - [IsReady503Response](docs/IsReady503Response.md)
  - [JsonPatch](docs/JsonPatch.md)
  - [LoginFlow](docs/LoginFlow.md)
  - [LoginFlowState](docs/LoginFlowState.md)
+ - [LoginFlowTestContext](docs/LoginFlowTestContext.md)
+ - [LoginFlowTestDebugPayload](docs/LoginFlowTestDebugPayload.md)
+ - [LoginFlowTestSchemaValidationError](docs/LoginFlowTestSchemaValidationError.md)
+ - [LoginFlowTestStepError](docs/LoginFlowTestStepError.md)
  - [LogoutFlow](docs/LogoutFlow.md)
  - [Message](docs/Message.md)
  - [MessageDispatch](docs/MessageDispatch.md)
@@ -270,6 +296,7 @@ Class | Method | HTTP request | Description
  - [UiNodeDivisionAttributes](docs/UiNodeDivisionAttributes.md)
  - [UiNodeImageAttributes](docs/UiNodeImageAttributes.md)
  - [UiNodeInputAttributes](docs/UiNodeInputAttributes.md)
+ - [UiNodeInputAttributesOption](docs/UiNodeInputAttributesOption.md)
  - [UiNodeMeta](docs/UiNodeMeta.md)
  - [UiNodeScriptAttributes](docs/UiNodeScriptAttributes.md)
  - [UiNodeTextAttributes](docs/UiNodeTextAttributes.md)
@@ -278,6 +305,7 @@ Class | Method | HTTP request | Description
  - [UpdateIdentityBody](docs/UpdateIdentityBody.md)
  - [UpdateLoginFlowBody](docs/UpdateLoginFlowBody.md)
  - [UpdateLoginFlowWithCodeMethod](docs/UpdateLoginFlowWithCodeMethod.md)
+ - [UpdateLoginFlowWithDeviceAuthnMethod](docs/UpdateLoginFlowWithDeviceAuthnMethod.md)
  - [UpdateLoginFlowWithIdentifierFirstMethod](docs/UpdateLoginFlowWithIdentifierFirstMethod.md)
  - [UpdateLoginFlowWithLookupSecretMethod](docs/UpdateLoginFlowWithLookupSecretMethod.md)
  - [UpdateLoginFlowWithOidcMethod](docs/UpdateLoginFlowWithOidcMethod.md)
@@ -298,6 +326,9 @@ Class | Method | HTTP request | Description
  - [UpdateRegistrationFlowWithSamlMethod](docs/UpdateRegistrationFlowWithSamlMethod.md)
  - [UpdateRegistrationFlowWithWebAuthnMethod](docs/UpdateRegistrationFlowWithWebAuthnMethod.md)
  - [UpdateSettingsFlowBody](docs/UpdateSettingsFlowBody.md)
+ - [UpdateSettingsFlowWithDeviceAuthnMethod](docs/UpdateSettingsFlowWithDeviceAuthnMethod.md)
+ - [UpdateSettingsFlowWithDeviceAuthnMethodAdd](docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md)
+ - [UpdateSettingsFlowWithDeviceAuthnMethodDelete](docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md)
  - [UpdateSettingsFlowWithLookupMethod](docs/UpdateSettingsFlowWithLookupMethod.md)
  - [UpdateSettingsFlowWithOidcMethod](docs/UpdateSettingsFlowWithOidcMethod.md)
  - [UpdateSettingsFlowWithPasskeyMethod](docs/UpdateSettingsFlowWithPasskeyMethod.md)

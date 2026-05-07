@@ -19,12 +19,12 @@ Gets a specific messages by the given ID.
 ### Example
 ```java
 // Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.auth.*;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.CourierApi;
+import sh.ory.client.ApiClient;
+import sh.ory.client.ApiException;
+import sh.ory.client.Configuration;
+import sh.ory.client.auth.*;
+import sh.ory.client.models.*;
+import sh.ory.client.api.CourierApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -90,12 +90,12 @@ Lists all messages by given status and recipient.
 ### Example
 ```java
 // Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.auth.*;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.CourierApi;
+import sh.ory.client.ApiClient;
+import sh.ory.client.ApiException;
+import sh.ory.client.Configuration;
+import sh.ory.client.auth.*;
+import sh.ory.client.models.*;
+import sh.ory.client.api.CourierApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -109,8 +109,8 @@ public class Example {
     //oryAccessToken.setApiKeyPrefix("Token");
 
     CourierApi apiInstance = new CourierApi(defaultClient);
-    Long pageSize = 250L; // Long | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-    String pageToken = "pageToken_example"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    Long pageSize = 250L; // Long | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
+    String pageToken = "pageToken_example"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
     CourierMessageStatus status = CourierMessageStatus.fromValue("queued"); // CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter.
     String recipient = "recipient_example"; // String | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter.
     try {
@@ -131,8 +131,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **pageSize** | **Long**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
-| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] |
+| **pageSize** | **Long**| Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [optional] |
 | **status** | [**CourierMessageStatus**](.md)| Status filters out messages based on status. If no value is provided, it doesn&#39;t take effect on filter. | [optional] [enum: queued, sent, processing, abandoned] |
 | **recipient** | **String**| Recipient filters out messages based on recipient. If no value is provided, it doesn&#39;t take effect on filter. | [optional] |
 
