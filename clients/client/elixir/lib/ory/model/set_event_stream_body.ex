@@ -8,14 +8,16 @@ defmodule Ory.Model.SetEventStreamBody do
 
   @derive Jason.Encoder
   defstruct [
+    :https_endpoint,
     :role_arn,
     :topic_arn,
     :type
   ]
 
   @type t :: %__MODULE__{
-    :role_arn => String.t,
-    :topic_arn => String.t,
+    :https_endpoint => String.t | nil,
+    :role_arn => String.t | nil,
+    :topic_arn => String.t | nil,
     :type => String.t
   }
 

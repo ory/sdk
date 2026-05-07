@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.21
+API version: v1.22.38
 Contact: support@ory.sh
 */
 
@@ -21,11 +21,16 @@ var _ MappedNullable = &ProjectMember{}
 
 // ProjectMember struct for ProjectMember
 type ProjectMember struct {
+	// BreakGlass is true when the identity's recovery address has break-glass recovery enabled for the identity's current organization.
+	BreakGlass *bool `json:"break_glass,omitempty"`
 	Email string `json:"email"`
 	EmailVerified bool `json:"email_verified"`
 	Id string `json:"id"`
 	Name string `json:"name"`
+	OrganizationId NullableString `json:"organization_id,omitempty"`
 	Role string `json:"role"`
+	// Whether the member has access through the project directly or through workspace membership.
+	Source *string `json:"source,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,6 +56,38 @@ func NewProjectMember(email string, emailVerified bool, id string, name string, 
 func NewProjectMemberWithDefaults() *ProjectMember {
 	this := ProjectMember{}
 	return &this
+}
+
+// GetBreakGlass returns the BreakGlass field value if set, zero value otherwise.
+func (o *ProjectMember) GetBreakGlass() bool {
+	if o == nil || IsNil(o.BreakGlass) {
+		var ret bool
+		return ret
+	}
+	return *o.BreakGlass
+}
+
+// GetBreakGlassOk returns a tuple with the BreakGlass field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectMember) GetBreakGlassOk() (*bool, bool) {
+	if o == nil || IsNil(o.BreakGlass) {
+		return nil, false
+	}
+	return o.BreakGlass, true
+}
+
+// HasBreakGlass returns a boolean if a field has been set.
+func (o *ProjectMember) HasBreakGlass() bool {
+	if o != nil && !IsNil(o.BreakGlass) {
+		return true
+	}
+
+	return false
+}
+
+// SetBreakGlass gets a reference to the given bool and assigns it to the BreakGlass field.
+func (o *ProjectMember) SetBreakGlass(v bool) {
+	o.BreakGlass = &v
 }
 
 // GetEmail returns the Email field value
@@ -149,6 +186,48 @@ func (o *ProjectMember) SetName(v string) {
 	o.Name = v
 }
 
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProjectMember) GetOrganizationId() string {
+	if o == nil || IsNil(o.OrganizationId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.OrganizationId.Get()
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectMember) GetOrganizationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OrganizationId.Get(), o.OrganizationId.IsSet()
+}
+
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *ProjectMember) HasOrganizationId() bool {
+	if o != nil && o.OrganizationId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizationId gets a reference to the given NullableString and assigns it to the OrganizationId field.
+func (o *ProjectMember) SetOrganizationId(v string) {
+	o.OrganizationId.Set(&v)
+}
+// SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+func (o *ProjectMember) SetOrganizationIdNil() {
+	o.OrganizationId.Set(nil)
+}
+
+// UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
+func (o *ProjectMember) UnsetOrganizationId() {
+	o.OrganizationId.Unset()
+}
+
 // GetRole returns the Role field value
 func (o *ProjectMember) GetRole() string {
 	if o == nil {
@@ -173,6 +252,38 @@ func (o *ProjectMember) SetRole(v string) {
 	o.Role = v
 }
 
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *ProjectMember) GetSource() string {
+	if o == nil || IsNil(o.Source) {
+		var ret string
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectMember) GetSourceOk() (*string, bool) {
+	if o == nil || IsNil(o.Source) {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *ProjectMember) HasSource() bool {
+	if o != nil && !IsNil(o.Source) {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *ProjectMember) SetSource(v string) {
+	o.Source = &v
+}
+
 func (o ProjectMember) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -183,11 +294,20 @@ func (o ProjectMember) MarshalJSON() ([]byte, error) {
 
 func (o ProjectMember) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BreakGlass) {
+		toSerialize["break_glass"] = o.BreakGlass
+	}
 	toSerialize["email"] = o.Email
 	toSerialize["email_verified"] = o.EmailVerified
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
+	if o.OrganizationId.IsSet() {
+		toSerialize["organization_id"] = o.OrganizationId.Get()
+	}
 	toSerialize["role"] = o.Role
+	if !IsNil(o.Source) {
+		toSerialize["source"] = o.Source
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -235,11 +355,14 @@ func (o *ProjectMember) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "break_glass")
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "email_verified")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "organization_id")
 		delete(additionalProperties, "role")
+		delete(additionalProperties, "source")
 		o.AdditionalProperties = additionalProperties
 	}
 

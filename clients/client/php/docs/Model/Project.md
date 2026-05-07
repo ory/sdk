@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **corsAdmin** | [**\Ory\Client\Model\ProjectCors**](ProjectCors.md) |  | [optional]
 **corsPublic** | [**\Ory\Client\Model\ProjectCors**](ProjectCors.md) |  | [optional]
 **environment** | **string** | The environment of the project. prod Production stage Staging dev Development |
-**homeRegion** | **string** | The project home region.  This is used to set where the project data is stored and where the project&#39;s endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global |
+**homeRegion** | **string** | The project home region.  This is used to set where the project data is stored and where the project&#39;s endpoints are located. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global |
 **id** | **string** | The project&#39;s ID. | [readonly]
 **name** | **string** | The name of the project. |
 **organizations** | [**\Ory\Client\Model\BasicOrganization[]**](BasicOrganization.md) | The organizations of the project.  Organizations are used to group users and enforce certain restrictions like usage of SSO. |

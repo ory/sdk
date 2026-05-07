@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **acr** | Option<**String**> | ACR represents the Authentication AuthorizationContext Class Reference value for this authentication session. You can use it to express that, for example, a user authenticated using two factor authentication. | [optional]
-**amr** | Option<**Vec<String>**> |  | [optional]
+**amr** | Option<**Vec<String>**> | AMR is the Authentication Methods References value for this authentication session. You can use it to specify the method a user used to authenticate. For example, if the acr indicates a user used two factor authentication, the amr can express they used a software-secured key. | [optional]
 **challenge** | **String** | Challenge is used to retrieve/accept/deny the consent request. | 
 **client** | Option<[**models::OAuth2Client**](oAuth2Client.md)> |  | [optional]
 **consent_request_id** | Option<**String**> | ConsentRequestID is the ID of the consent request. | [optional]
@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 **login_session_id** | Option<**String**> | LoginSessionID is the login session ID. If the user-agent reuses a login session (via cookie / remember flag) this ID will remain the same. If the user-agent did not have an existing authentication session (e.g. remember is false) this will be a new random value. This value is used as the \"sid\" parameter in the ID Token and in OIDC Front-/Back- channel logout. It's value can generally be used to associate consecutive login requests by a certain user. | [optional]
 **oidc_context** | Option<[**models::OAuth2ConsentRequestOpenIdConnectContext**](oAuth2ConsentRequestOpenIDConnectContext.md)> |  | [optional]
 **request_url** | Option<**String**> | RequestURL is the original OAuth 2.0 Authorization URL requested by the OAuth 2.0 client. It is the URL which initiates the OAuth 2.0 Authorization Code or OAuth 2.0 Implicit flow. This URL is typically not needed, but might come in handy if you want to deal with additional request parameters. | [optional]
-**requested_access_token_audience** | Option<**Vec<String>**> |  | [optional]
-**requested_scope** | Option<**Vec<String>**> |  | [optional]
+**requested_access_token_audience** | Option<**Vec<String>**> | RequestedAudience contains the access token audience as requested by the OAuth 2.0 Client. | [optional]
+**requested_scope** | Option<**Vec<String>**> | RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client. | [optional]
 **skip** | Option<**bool**> | Skip, if true, implies that the client has requested the same scopes from the same user previously. If true, you must not ask the user to grant the requested scopes. You must however either allow or deny the consent request using the usual API call. | [optional]
 **subject** | Option<**String**> | Subject is the user ID of the end-user that authenticated. Now, that end user needs to grant or deny the scope requested by the OAuth 2.0 client. | [optional]
 

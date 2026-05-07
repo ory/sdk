@@ -4,7 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**additional_id_token_audiences** | Option<**Vec<String>**> |  | [optional]
+**aal2_acr_values** | Option<**Vec<String>**> | AAL2ACRValues lists upstream OIDC `acr` claim values that should elevate the resulting Kratos session to AAL2. Empty means the upstream `acr` claim is ignored when deciding session AAL. | [optional]
+**aal2_amr_values** | Option<**Vec<String>**> | AAL2AMRValues lists upstream OIDC `amr` claim values that should elevate the resulting Kratos session to AAL2 when any of them appears in the upstream `amr` array. Empty means the upstream `amr` claim is ignored when deciding session AAL. | [optional]
+**account_linking_mode** | Option<**String**> | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are `confirm_with_existing_credential` (default) and `automatic`. `automatic` silently links accounts when the provider verifies email ownership. Only supported for `apple` and `google` providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional]
+**additional_id_token_audiences** | Option<**Vec<String>**> | AdditionalIDTokenAudiences is a list of additional audiences allowed in the ID Token.  This is only relevant in OIDC flows that submit an IDToken instead of using the callback from the OIDC provider. | [optional]
 **apple_private_key** | Option<**String**> |  | [optional]
 **apple_private_key_id** | Option<**String**> | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional]
 **apple_team_id** | Option<**String**> | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional]
@@ -22,15 +25,16 @@ Name | Type | Description | Notes
 **net_id_token_origin_header** | Option<**String**> |  | [optional]
 **organization_id** | Option<**String**> |  | [optional]
 **pkce** | Option<**String**> |  | [optional]
-**project_revision_id** | Option<**String**> | The Revision's ID this schema belongs to | [optional]
+**project_revision_id** | Option<**String**> | The Revision's ID this provider belongs to | [optional]
 **provider** | Option<**String**> | Provider is either \"generic\" for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional]
 **provider_id** | Option<**String**> | ID is the provider's ID | [optional]
 **proxy_oidc_redirect_url** | Option<**String**> | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional][readonly]
 **requested_claims** | Option<[**serde_json::Value**](.md)> |  | [optional]
-**scope** | Option<**Vec<String>**> |  | [optional]
+**scope** | Option<**Vec<String>**> | Scope specifies optional requested permissions. | [optional]
 **state** | Option<**String**> | State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional]
 **subject_source** | Option<**String**> |  | [optional]
 **token_url** | Option<**String**> | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`. | [optional]
+**update_identity_on_login** | Option<**String**> | UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \"never\" (default) and \"automatic\". never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every  OIDC login and updates the identity's traits and metadata automatically. | [optional]
 **updated_at** | Option<**String**> | Last Time Project's Revision was Updated | [optional][readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

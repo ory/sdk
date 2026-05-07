@@ -9,6 +9,7 @@ defmodule Ory.Model.Organization do
   @derive Jason.Encoder
   defstruct [
     :created_at,
+    :default_region,
     :domains,
     :id,
     :label
@@ -16,6 +17,7 @@ defmodule Ory.Model.Organization do
 
   @type t :: %__MODULE__{
     :created_at => DateTime.t,
+    :default_region => String.t | nil,
     :domains => [String.t],
     :id => String.t,
     :label => String.t

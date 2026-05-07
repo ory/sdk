@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
   title: Ory Identities API
-  version: v25.4.0
+  version: ""
 servers:
 - url: /
 tags:
@@ -33,7 +33,7 @@ paths:
         <script src="https://public-kratos.example.org/.well-known/ory/webauthn.js" type="script" async />
         ```
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: getWebAuthnJavaScript
       responses:
         "200":
@@ -45,6 +45,7 @@ paths:
       summary: Get WebAuthn JavaScript
       tags:
       - frontend
+      x-ory-ratelimit-bucket: hydra-public-high
       x-accepts:
       - application/json
   /admin/courier/messages:
@@ -56,7 +57,7 @@ paths:
           Items per Page
 
           This is the number of items per page to return.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -72,7 +73,7 @@ paths:
           Next Page Token
 
           The next page token.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -126,6 +127,7 @@ paths:
       summary: List Messages
       tags:
       - courier
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
   /admin/courier/messages/{id}:
@@ -165,11 +167,12 @@ paths:
       summary: Get a Message
       tags:
       - courier
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /admin/identities:
     get:
-      description: "Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
+      description: "Lists all [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model)\
         \ in the system. Note: filters cannot be combined."
       operationId: listIdentities
       parameters:
@@ -213,7 +216,7 @@ paths:
           Page Size
 
           This is the number of items per page to return. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -229,14 +232,12 @@ paths:
           Next Page Token
 
           The next page token. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: |-
@@ -318,7 +319,7 @@ paths:
           Include Credentials in Response
 
           Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return
-          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available.
         explode: true
         in: query
         name: include_credential
@@ -356,18 +357,19 @@ paths:
       summary: List Identities
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
     patch:
       description: |-
-        Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+        Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).
 
-        You can also use this endpoint to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities),
+        You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities),
         including passwords, social sign-in settings, and multi-factor authentication methods.
 
-        You can import:
-        Up to 1,000 identities per request
-        Up to 200 identities per request if including plaintext passwords
+        If the patch includes hashed passwords you can import up to 1,000 identities per request.
+
+        If the patch includes at least one plaintext password you can import up to 200 identities per request.
 
         Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
 
@@ -419,14 +421,15 @@ paths:
       summary: Create multiple identities
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
     post:
       description: |-
-        Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
-        [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
-        for instance passwords, social sign in configurations or multifactor methods.
+        Create an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
+        [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities)
+        for instance passwords, social sign in configurations, or multifactor methods.
       operationId: createIdentity
       requestBody:
         content:
@@ -464,13 +467,14 @@ paths:
       summary: Create an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
   /admin/identities/by/external/{externalID}:
     get:
       description: |-
-        Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
+        Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
         include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
       operationId: getIdentityByExternalID
       parameters:
@@ -486,7 +490,7 @@ paths:
           Include Credentials in Response
 
           Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return
-          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available.
         explode: true
         in: query
         name: include_credential
@@ -503,6 +507,7 @@ paths:
             - passkey
             - profile
             - saml
+            - deviceauthn
             - link_recovery
             - code_recovery
             type: string
@@ -532,12 +537,13 @@ paths:
       summary: Get an Identity by its External ID
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /admin/identities/{id}:
     delete:
       description: |-
-        Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
+        Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
         This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
       operationId: deleteIdentity
       parameters:
@@ -570,11 +576,12 @@ paths:
       summary: Delete an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
     get:
       description: |-
-        Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
+        Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
         include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
       operationId: getIdentity
       parameters:
@@ -590,7 +597,7 @@ paths:
           Include Credentials in Response
 
           Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return
-          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+          the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available.
         explode: true
         in: query
         name: include_credential
@@ -607,6 +614,7 @@ paths:
             - passkey
             - profile
             - saml
+            - deviceauthn
             - link_recovery
             - code_recovery
             type: string
@@ -636,11 +644,12 @@ paths:
       summary: Get an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-accepts:
       - application/json
     patch:
       description: |-
-        Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
+        Partially updates an [identity's](https://www.ory.com/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
         The fields `id`, `stateChangedAt` and `credentials` can not be updated using this method.
       operationId: patchIdentity
       parameters:
@@ -694,16 +703,26 @@ paths:
       summary: Patch an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
     put:
       description: |-
-        This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity
-        payload, except credentials, is expected. For partial updates, use the [patchIdentity](https://www.ory.sh/docs/reference/api#tag/identity/operation/patchIdentity) operation.
+        This endpoint updates an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model). The full identity
+        payload (except credentials) is expected.
 
-        A credential can be provided via the `credentials` field in the request body.
-        If provided, the credentials will be imported and added to the existing credentials of the identity.
+        It is possible to update the identity's credentials as well. Using this operation, credentials will not be overwritten
+        but instead added to the list. For example, if a user has a social sign in connection set up, updating the credentials
+        will keep the social sign in connection and add the new credentials to the list. This prevents accidentally overwriting
+        credentials and locking out users. A complete view of all credential types is here:
+
+        `password`: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook.
+        `oidc`, `saml`: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list.
+        `totp`: The existing TOTP credentials will be replaced with the new configuration.
+        `lookup_secret`: The existing Lookup Secret codes will be kept and the new codes will be added to the list.
+        `webauthn`, `passkey`: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new `user_handle` is provided, it's added to the identity's identifiers list while preserving previous user handles.
+        `code`: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (`{"ory.sh/kratos":{"code":{"identifier":true", "via":"email"}}}`).
       operationId: updateIdentity
       parameters:
       - description: ID must be set to the ID of identity you want to update
@@ -756,13 +775,14 @@ paths:
       summary: Update an Identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
   /admin/identities/{id}/credentials/{type}:
     delete:
       description: |-
-        Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
+        Delete an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) credential by its type.
         You cannot delete passkeys or code auth credentials through this API.
       operationId: deleteIdentityCredentials
       parameters:
@@ -785,6 +805,7 @@ paths:
           passkey CredentialsTypePasskey
           profile CredentialsTypeProfile
           saml CredentialsTypeSAML
+          deviceauthn CredentialsTypeDeviceAuthn
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
         explode: false
@@ -802,6 +823,7 @@ paths:
           - passkey
           - profile
           - saml
+          - deviceauthn
           - link_recovery
           - code_recovery
           type: string
@@ -816,6 +838,7 @@ paths:
           passkey CredentialsTypePasskey
           profile CredentialsTypeProfile
           saml CredentialsTypeSAML
+          deviceauthn CredentialsTypeDeviceAuthn
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
       - description: |-
@@ -849,6 +872,7 @@ paths:
       summary: Delete a credential for a specific identity
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
   /admin/identities/{id}/sessions:
@@ -898,6 +922,7 @@ paths:
       summary: Delete & Invalidate an Identity's Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
     get:
@@ -944,7 +969,7 @@ paths:
           Page Size
 
           This is the number of items per page to return. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -960,14 +985,12 @@ paths:
           Next Page Token
 
           The next page token. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: ID is the identity's ID.
@@ -1019,6 +1042,7 @@ paths:
       summary: List an Identity's Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /admin/recovery/code:
@@ -1063,6 +1087,7 @@ paths:
       summary: Create a Recovery Code
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1116,6 +1141,7 @@ paths:
       summary: Create a Recovery Link
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1128,7 +1154,7 @@ paths:
           Items per Page
 
           This is the number of items per page to return.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -1144,7 +1170,7 @@ paths:
           Next Page Token
 
           The next page token.
-          For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
@@ -1205,6 +1231,7 @@ paths:
       summary: List All Sessions
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /admin/sessions/{id}:
@@ -1248,6 +1275,7 @@ paths:
       summary: Deactivate a Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
       x-accepts:
       - application/json
     get:
@@ -1305,6 +1333,7 @@ paths:
       summary: Get Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-high
       x-accepts:
       - application/json
   /admin/sessions/{id}/extend:
@@ -1364,6 +1393,54 @@ paths:
       summary: Extend a Session
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
+      x-accepts:
+      - application/json
+  /admin/test-login-flows:
+    post:
+      description: |-
+        Creates a dry-run OIDC test login flow pre-scoped to one provider. The
+        returned flow carries a single-submit UI and a CSRF bearer token. No
+        identity is persisted and no session is issued when the flow completes;
+        the captured debug data is returned in the flow's test_context.
+      operationId: createTestLoginFlow
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createTestLoginFlowBody'
+        required: true
+        x-originalParamName: Body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loginFlow'
+          description: loginFlow
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      summary: Create a test OIDC login flow
+      tags:
+      - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
+      x-content-type: application/json
       x-accepts:
       - application/json
   /health/alive:
@@ -1479,7 +1556,7 @@ paths:
           Page Size
 
           This is the number of items per page to return. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -1495,14 +1572,12 @@ paths:
           Next Page Token
 
           The next page token. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       responses:
@@ -1521,6 +1596,7 @@ paths:
       summary: Get all Identity Schemas
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /schemas/{id}:
@@ -1558,6 +1634,7 @@ paths:
       summary: Get Identity JSON Schema
       tags:
       - identity
+      x-ory-ratelimit-bucket: kratos-admin-medium
       x-accepts:
       - application/json
   /self-service/errors:
@@ -1569,7 +1646,7 @@ paths:
 
         `?id=stub:500` - returns a stub 500 (Internal Server Error) error.
 
-        More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-facing-errors).
+        More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-facing-errors).
       operationId: getFlowError
       parameters:
       - description: Error is the error's ID
@@ -1608,6 +1685,7 @@ paths:
       summary: Get User-Flow Errors
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/fed-cm/parameters:
@@ -1637,6 +1715,7 @@ paths:
       summary: Get FedCM Parameters
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/fed-cm/token:
@@ -1694,6 +1773,7 @@ paths:
       summary: Submit a FedCM token
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1726,7 +1806,7 @@ paths:
         `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
         Most likely used in Social Sign In flows.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: updateLoginFlow
       parameters:
       - description: |-
@@ -1808,6 +1888,7 @@ paths:
       summary: Submit a Login Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1833,7 +1914,7 @@ paths:
 
         This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: createNativeLoginFlow
       parameters:
       - description: |-
@@ -1941,6 +2022,7 @@ paths:
       summary: Create Login Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/login/browser:
@@ -1968,7 +2050,7 @@ paths:
 
         This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: createBrowserLoginFlow
       parameters:
       - description: |-
@@ -2086,6 +2168,7 @@ paths:
       summary: Create Login Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/login/flows:
@@ -2113,7 +2196,7 @@ paths:
         `session_already_available`: The user is already signed in.
         `self_service_flow_expired`: The flow is expired and you should request a new one.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: getLoginFlow
       parameters:
       - description: |-
@@ -2174,6 +2257,69 @@ paths:
       summary: Get Login Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
+      x-accepts:
+      - application/json
+  /self-service/login/test:
+    delete:
+      description: |-
+        Deletes a dry-run OIDC test login flow. A flow whose debug payload has
+        been captured requires the HMAC cookie set by the OIDC callback; a flow
+        still in the initial choose-method state is deletable with just the flow
+        ID (it carries no PII, and the admin may want to abandon it).
+      operationId: deleteTestLoginFlow
+      parameters:
+      - description: ID of the test login flow to delete.
+        explode: true
+        in: query
+        name: id
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: |-
+          HTTP Cookies. A captured test flow requires the ory_kratos_test_flow
+          cookie set by the OIDC callback; a flow still in the initial
+          choose-method state does not.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: "Empty responses are sent when, for example, resources are\
+            \ deleted. The HTTP status code for empty responses is typically 204."
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
+      summary: Delete a test OIDC login flow
+      tags:
+      - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/logout:
@@ -2191,7 +2337,7 @@ paths:
         with browsers (Chrome, Firefox, ...). For API clients you can
         call the `/self-service/logout/api` URL directly with the Ory Session Token.
 
-        More information can be found at [Ory Kratos User Logout Documentation](https://www.ory.sh/docs/next/kratos/self-service/flows/user-logout).
+        More information can be found at [Ory Kratos User Logout Documentation](https://www.ory.com/docs/next/kratos/self-service/flows/user-logout).
       operationId: updateLogoutFlow
       parameters:
       - description: |-
@@ -2242,6 +2388,7 @@ paths:
       summary: Update Logout Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/logout/api:
@@ -2282,6 +2429,7 @@ paths:
       summary: Perform Logout for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2352,6 +2500,7 @@ paths:
       summary: Create a Logout URL for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/recovery:
@@ -2460,6 +2609,7 @@ paths:
       summary: Update Recovery Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2502,6 +2652,7 @@ paths:
       summary: Create Recovery Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/recovery/browser:
@@ -2523,6 +2674,18 @@ paths:
         explode: true
         in: query
         name: return_to
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          Skip redirection to the settings UI after the recovery flow was
+          completed. Instead, the user will be redirected to the URL specified in
+          `return_to` query parameter or the default return URL if `return_to` is
+          not set.
+        explode: true
+        in: query
+        name: skip_settings
         required: false
         schema:
           type: string
@@ -2552,6 +2715,7 @@ paths:
       summary: Create Recovery Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/recovery/flows:
@@ -2629,6 +2793,7 @@ paths:
       summary: Get Recovery Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/registration:
@@ -2661,7 +2826,7 @@ paths:
         `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
         Most likely used in Social Sign In flows.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: updateRegistrationFlow
       parameters:
       - description: |-
@@ -2735,6 +2900,7 @@ paths:
       summary: Update Registration Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2759,7 +2925,7 @@ paths:
 
         This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: createNativeRegistrationFlow
       parameters:
       - description: |-
@@ -2820,6 +2986,7 @@ paths:
       summary: Create Registration Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/registration/browser:
@@ -2843,7 +3010,7 @@ paths:
 
         This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: createBrowserRegistrationFlow
       parameters:
       - description: The URL to return the browser to after the flow was completed.
@@ -2920,6 +3087,7 @@ paths:
       summary: Create Registration Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/registration/flows:
@@ -2947,7 +3115,7 @@ paths:
         `session_already_available`: The user is already signed in.
         `self_service_flow_expired`: The flow is expired and you should request a new one.
 
-        More information can be found at [Ory Kratos User Login](https://www.ory.sh/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.sh/docs/kratos/self-service/flows/user-registration).
+        More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
       operationId: getRegistrationFlow
       parameters:
       - description: |-
@@ -3008,6 +3176,7 @@ paths:
       summary: Get Registration Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/settings:
@@ -3151,6 +3320,7 @@ paths:
       summary: Complete Settings Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -3211,6 +3381,7 @@ paths:
       summary: Create Settings Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/settings/browser:
@@ -3301,6 +3472,7 @@ paths:
       summary: Create Settings Flow for Browsers
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/settings/flows:
@@ -3403,6 +3575,7 @@ paths:
       summary: Get Settings Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /self-service/verification:
@@ -3423,7 +3596,7 @@ paths:
         (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with
         a new Verification Flow ID which contains an error message that the verification link was invalid.
 
-        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
+        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: updateVerificationFlow
       parameters:
       - description: |-
@@ -3505,6 +3678,7 @@ paths:
       summary: Complete Verification Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -3521,7 +3695,7 @@ paths:
 
         This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
-        More information can be found at [Ory Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
+        More information can be found at [Ory Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: createNativeVerificationFlow
       parameters:
       - description: |-
@@ -3556,6 +3730,7 @@ paths:
       summary: Create Verification Flow for Native Apps
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/verification/browser:
@@ -3568,7 +3743,7 @@ paths:
 
         This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).
 
-        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
+        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: createBrowserVerificationFlow
       parameters:
       - description: The URL to return the browser to after the flow was completed.
@@ -3598,6 +3773,7 @@ paths:
       summary: Create Verification Flow for Browser Clients
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /self-service/verification/flows:
@@ -3620,7 +3796,7 @@ paths:
         })
         ```
 
-        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation).
+        More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
       operationId: getVerificationFlow
       parameters:
       - description: |-
@@ -3675,6 +3851,7 @@ paths:
       summary: Get Verification Flow
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /sessions:
@@ -3734,6 +3911,7 @@ paths:
       summary: Disable my other sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
     get:
@@ -3782,7 +3960,7 @@ paths:
           Page Size
 
           This is the number of items per page to return. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_size
@@ -3798,14 +3976,12 @@ paths:
           Next Page Token
 
           The next page token. For details on pagination please head over to the
-          [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+          [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
         explode: true
         in: query
         name: page_token
         required: false
         schema:
-          default: "1"
-          minimum: 1
           type: string
         style: form
       - description: Set the Session Token when calling from non-browser clients.
@@ -3860,6 +4036,7 @@ paths:
       summary: Get My Active Sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /sessions/token-exchange:
@@ -3907,6 +4084,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorGeneric'
           description: errorGeneric
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorGeneric'
+          description: errorGeneric
         default:
           content:
             application/json:
@@ -3916,6 +4099,7 @@ paths:
       summary: Exchange Session Token
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
       x-accepts:
       - application/json
   /sessions/whoami:
@@ -4045,6 +4229,7 @@ paths:
       summary: Check Who the Current HTTP Session Belongs To
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
       x-accepts:
       - application/json
   /sessions/{id}:
@@ -4109,6 +4294,7 @@ paths:
       summary: Disable one of my sessions
       tags:
       - frontend
+      x-ory-ratelimit-bucket: kratos-public-low
       x-accepts:
       - application/json
   /version:
@@ -4189,15 +4375,102 @@ components:
 
         The response given when listing sessions in an administrative context.
   schemas:
+    AdminIdentityImportCredentialsLookupSecret:
+      description: Create Identity and Import Lookup Secret Credentials
+      properties:
+        config:
+          $ref: '#/components/schemas/AdminIdentityImportCredentialsLookupSecretConfig'
+      type: object
+    AdminIdentityImportCredentialsLookupSecretConfig:
+      description: Create Identity and Import Lookup Secret Credentials Configuration
+      properties:
+        codes:
+          description: Codes is a list of "lookup secret" codes configured for the
+            user.
+          items:
+            $ref: '#/components/schemas/identityCredentialsLookupSecretCode'
+          type: array
+      type: object
+    AuthenticatorTransport:
+      description: |-
+        Authenticators may implement various transports for communicating with clients. This enumeration defines hints as to
+        how clients might communicate with a particular authenticator in order to obtain an assertion for a specific
+        credential. Note that these hints represent the WebAuthn Relying Party's best belief as to how an authenticator may
+        be reached. A Relying Party will typically learn of the supported transports for a public key credential via
+        getTransports().
+
+        Specification: §5.8.4. Authenticator Transport Enumeration (https://www.w3.org/TR/webauthn/#enumdef-authenticatortransport)
+      title: AuthenticatorTransport represents the IDL enum with the same name.
+      type: string
     CodeChannel:
       type: string
-    DefaultError: {}
+    DefaultError:
+      description: |-
+        From https://go.dev/wiki/CodeReviewComments#receiver-type:
+        > Can function or methods, either concurrently or when called from this method, be mutating the receiver? A value type creates a copy of the receiver when the method is invoked, so outside updates will not be applied to this receiver. If changes must be visible in the original receiver, the receiver must be a pointer.
+        > If the receiver is a struct, array or slice and any of its elements is a pointer to something that might be mutating,
+        > prefer a pointer receiver, as it will make the intention clearer to the reader.
+        > Don’t mix receiver types. Choose either pointers or struct types for all available methods.
+      title: |-
+        DefaultError is not safe to shallow copy because it contains
+        fields which are not value types, e.g. maps.
+        A shallow copy would inadvertently share these underlying fields,
+        leading to incorrect behavior and data races in a concurrent context.
+        Consequently, all methods take the type by pointer and not by value.
+    DeviceAuthnKey:
+      properties:
+        attestation:
+          $ref: '#/components/schemas/deviceAuthnAttestation'
+        client_key_id:
+          description: ClientKeyID is a client-chosen id for the key and is unique
+            per identity.
+          type: string
+        created_at:
+          description: |-
+            CreatedAt is the timestamp of when the key was created.
+            Only used for troubleshooting/UI.
+          format: date-time
+          type: string
+        device_name:
+          description: "DeviceName is a human readable name for the device, helping\
+            \ the user to distinguish it from others."
+          type: string
+        device_type:
+          type: string
+        public_key:
+          description: |-
+            PublicKey is an EC (in v1) public key, used to verify signatures, stored as uncompressed bytes.
+            The private key resides inside the device and does not exist on the server.
+          items:
+            format: uint8
+            type: integer
+          type: array
+        state:
+          type: string
+        version:
+          description: |-
+            v1 uses SHA256 + EC256.
+            v2 (in the future) may use ML-DSA which is post-quantum resistant.
+            This requires Android/iOS support so we have to wait.
+            We intentionally avoid storing the cryptographic algorithm here a la JWT/TLS
+            to avoid security issues and algorithm negotiation.
+          format: int64
+          type: integer
+      title: Key represents an enrolled hardware security key used for device authentication
+        (DeviceAuthn).
+      type: object
+    DeviceType:
+      type: string
     Duration:
       description: |-
         A Duration represents the elapsed time between two instants
         as an int64 nanosecond count. The representation limits the
         largest representable duration to approximately 290 years.
       format: int64
+      type: integer
+    Enumerated:
+      format: int64
+      title: An Enumerated is represented as a plain int.
       type: integer
     ID:
       format: int64
@@ -4206,6 +4479,8 @@ components:
       title: "JSONRawMessage represents a json.RawMessage that works well with JSON,\
         \ SQL, and Swagger."
       type: object
+    KeyState:
+      type: string
     NullBool:
       nullable: true
       type: boolean
@@ -4809,10 +5084,6 @@ components:
             Note: parameters is supported from Chrome 132.
           type: object
       type: object
-    RecoveryAddressType:
-      title: RecoveryAddressType must not exceed 16 characters as that is the limitation
-        in the SQL Schema.
-      type: string
     Time:
       format: date-time
       type: string
@@ -4852,7 +5123,7 @@ components:
         Generally, "aal1" implies that one authentication factor was used while AAL2 implies that two factors (e.g.
         password + TOTP) have been used.
 
-        To learn more about these levels please head over to: https://www.ory.sh/kratos/docs/concepts/credentials
+        To learn more about these levels please head over to: https://www.ory.com/kratos/docs/concepts/credentials
       enum:
       - aal0
       - aal1
@@ -4878,40 +5149,6 @@ components:
           items:
             $ref: '#/components/schemas/identityPatchResponse'
           type: array
-      type: object
-    consistencyRequestParameters:
-      description: Control API consistency guarantees
-      properties:
-        consistency:
-          description: |-
-            Read Consistency Level (preview)
-
-            The read consistency level determines the consistency guarantee for reads:
-
-            strong (slow): The read is guaranteed to return the most recent data committed at the start of the read.
-            eventual (very fast): The result will return data that is about 4.8 seconds old.
-
-            The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with
-            `ory patch project --replace '/previews/default_read_consistency_level="strong"'`.
-
-            Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency
-            controls to more APIs. Currently, the following APIs will be affected by this setting:
-
-            `GET /admin/identities`
-
-            This feature is in preview and only available in Ory Network.
-             ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level.
-            strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level.
-            eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
-          enum:
-          - ""
-          - strong
-          - eventual
-          type: string
-          x-go-enum-desc: |2-
-             ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level.
-            strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level.
-            eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
       type: object
     continueWith:
       discriminator:
@@ -5161,6 +5398,38 @@ components:
           items:
             $ref: '#/components/schemas/recoveryIdentityAddress'
           type: array
+        region:
+          description: |-
+            Region is the Ory Network region this identity will be created in.
+            Optional; defaults to the project home region if omitted. Only effective
+            on the Ory Network.
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
+          enum:
+          - eu-central
+          - asia-northeast
+          - us-east
+          - us-west
+          - eu
+          - asia
+          - us
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
         schema_id:
           description: SchemaID is the ID of the JSON Schema to be used for validating
             the identity's traits.
@@ -5243,6 +5512,18 @@ components:
       required:
       - identity_id
       type: object
+    createTestLoginFlowBody:
+      properties:
+        provider_id:
+          description: |-
+            ID of the OIDC provider to test. Must match a provider configured on
+            the project that serves this request.
+          maxLength: 255
+          type: string
+      required:
+      - provider_id
+      title: Request body for creating a test OIDC login flow.
+      type: object
     deleteMySessionsCount:
       description: Deleted Session Count
       example:
@@ -5252,6 +5533,197 @@ components:
           description: The number of sessions that were revoked.
           format: int64
           type: integer
+      type: object
+    deviceAuthnAndroidAuthorizationList:
+      description: "Schema: https://source.android.com/docs/security/features/keystore/attestation#schema"
+      properties:
+        active_date_time:
+          format: int64
+          type: integer
+        algorithm:
+          format: int64
+          type: integer
+        application_id:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_application_id:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_brand:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_device:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_imei:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_manufacturer:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_meid:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_model:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_product:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_serial:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        auth_timeout:
+          format: int64
+          type: integer
+        boot_patch_level:
+          format: int64
+          type: integer
+        creation_date_time:
+          format: int64
+          type: integer
+        digest:
+          items:
+            format: int64
+            type: integer
+          type: array
+        ec_curve:
+          format: int64
+          type: integer
+        key_size:
+          format: int64
+          type: integer
+        origin:
+          format: int64
+          type: integer
+        origination_expire_date_time:
+          format: int64
+          type: integer
+        os_patch_level:
+          format: int64
+          type: integer
+        os_version:
+          format: int64
+          type: integer
+        purpose:
+          items:
+            format: int64
+            type: integer
+          type: array
+        root_of_trust:
+          $ref: '#/components/schemas/deviceAuthnAndroidRootOfTrust'
+        usage_expire_date_time:
+          format: int64
+          type: integer
+        user_auth_type:
+          format: int64
+          type: integer
+        vendor_patch_level:
+          format: int64
+          type: integer
+      title: AndroidAuthorizationList maps the ASN.1 tags to the fields defined in
+        KeyMint 4.
+      type: object
+    deviceAuthnAndroidKeyDescription:
+      description: "Schema: https://source.android.com/docs/security/features/keystore/attestation#schema"
+      properties:
+        attestation_security_level:
+          format: int64
+          title: An Enumerated is represented as a plain int.
+          type: integer
+        attestation_version:
+          format: int64
+          type: integer
+        keymaster_security_level:
+          format: int64
+          title: An Enumerated is represented as a plain int.
+          type: integer
+        keymaster_version:
+          format: int64
+          type: integer
+        software_enforced:
+          $ref: '#/components/schemas/deviceAuthnAndroidAuthorizationList'
+        tee_enforced:
+          $ref: '#/components/schemas/deviceAuthnAndroidAuthorizationList'
+      title: |-
+        AndroidKeyDescription matches the ASN.1 sequence defined by Android.
+        It is stored in the leaf certificate's x509 extension.
+      type: object
+    deviceAuthnAndroidRootOfTrust:
+      properties:
+        device_locked:
+          type: boolean
+        verified_boot_hash:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        verified_boot_key:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        verified_boot_state:
+          format: int64
+          title: An Enumerated is represented as a plain int.
+          type: integer
+      type: object
+    deviceAuthnAttestation:
+      description: "Exactly one of Android / IOS is set, matching the key's DeviceType."
+      properties:
+        android:
+          $ref: '#/components/schemas/deviceAuthnAndroidKeyDescription'
+        ios:
+          $ref: '#/components/schemas/deviceAuthnIOSAttestation'
+      title: Attestation holds the platform-specific attestation parsed at enrollment.
+      type: object
+    deviceAuthnIOSAttStmt:
+      description: Defined in https://developer.apple.com/documentation/devicecheck/validating-apps-that-connect-to-your-server#Verify-the-attestation
+        .
+      properties:
+        x5c:
+          items:
+            items:
+              format: uint8
+              type: integer
+            type: array
+          type: array
+      title: IOSAttStmt is the attestation statement of an Apple App Attest attestation.
+      type: object
+    deviceAuthnIOSAttestation:
+      description: Defined in https://developer.apple.com/documentation/devicecheck/validating-apps-that-connect-to-your-server#Verify-the-attestation
+        .
+      properties:
+        att_stmt:
+          $ref: '#/components/schemas/deviceAuthnIOSAttStmt'
+        auth_data:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        fmt:
+          type: string
+      title: IOSAttestation is an Apple App Attest attestation.
       type: object
     errorAuthenticatorAssuranceLevelNotSatisfied:
       properties:
@@ -5315,6 +5787,10 @@ components:
       - error
       title: JSON API Error Response
       type: object
+    falsyNullBool:
+      description: It JSON decodes to false if null.
+      title: FalsyNullBool represents a bool that may be null.
+      type: boolean
     flowError:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5417,7 +5893,7 @@ components:
       title: The health status of the service.
       type: object
     identity:
-      description: "An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model)\
+      description: "An [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model)\
         \ represents a (human) user in Ory."
       example:
         traits: ""
@@ -5436,11 +5912,13 @@ components:
         external_id: external_id
         recovery_addresses:
         - updated_at: 2000-01-23T04:56:07.000+00:00
+          break_glass_for_organization: break_glass_for_organization
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           value: value
           via: via
         - updated_at: 2000-01-23T04:56:07.000+00:00
+          break_glass_for_organization: break_glass_for_organization
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           value: value
@@ -5469,6 +5947,7 @@ components:
         schema_url: schema_url
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: active
+        region: eu-central
         metadata_public: ""
       properties:
         created_at:
@@ -5514,6 +5993,37 @@ components:
             $ref: '#/components/schemas/recoveryIdentityAddress'
           type: array
           x-omitempty: true
+        region:
+          description: |-
+            Region is the Ory Network region this identity is homed in. Set by
+            the multi-region persister; empty on OSS and single-region deployments.
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
+          enum:
+          - eu-central
+          - asia-northeast
+          - us-east
+          - us-west
+          - eu
+          - asia
+          - us
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
         schema_id:
           description: SchemaID is the ID of the JSON Schema to be used for validating
             the identity's traits.
@@ -5586,7 +6096,7 @@ components:
           format: date-time
           type: string
         identifiers:
-          description: Identifiers represents a list of unique identifiers this credential
+          description: Identifiers represent a list of unique identifiers this credential
             type matches.
           items:
             type: string
@@ -5603,6 +6113,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -5615,6 +6126,7 @@ components:
           - passkey
           - profile
           - saml
+          - deviceauthn
           - link_recovery
           - code_recovery
           type: string
@@ -5628,6 +6140,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         updated_at:
@@ -5655,6 +6168,19 @@ components:
           type: string
         channel:
           type: string
+      type: object
+    identityCredentialsLookupSecretCode:
+      description: Recovery codes can be used once and are invalidated after use.
+      properties:
+        code:
+          description: A recovery code
+          type: string
+        used_at:
+          format: date-time
+          title: NullTime implements sql.NullTime functionality.
+          type: string
+      title: RecoveryCode represents one recovery code associated with a lookup_secret
+        credential.
       type: object
     identityCredentialsOidc:
       properties:
@@ -5698,6 +6224,99 @@ components:
       title: CredentialsPassword is contains the configuration for credentials of
         the type password.
       type: object
+    identityCredentialsWebAuthn:
+      properties:
+        added_at:
+          format: date-time
+          type: string
+        attestation:
+          $ref: '#/components/schemas/identityCredentialsWebAuthnAttestation'
+        attestation_type:
+          type: string
+        authenticator:
+          $ref: '#/components/schemas/identityCredentialsWebAuthnAuthenticator'
+        display_name:
+          type: string
+        flags:
+          $ref: '#/components/schemas/identityCredentialsWebAuthnFlags'
+        id:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        is_passwordless:
+          type: boolean
+        public_key:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        transport:
+          items:
+            $ref: '#/components/schemas/AuthenticatorTransport'
+          type: array
+      title: CredentialWebAuthn contains information about a webauthn credential.
+      type: object
+    identityCredentialsWebAuthnAttestation:
+      properties:
+        authenticator_data:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        client_dataJSON:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        client_data_hash:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        object:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        public_key_algorithm:
+          format: int64
+          type: integer
+      title: CredentialWebAuthnAttestation contains information about attestation
+        of a webauthn credential.
+      type: object
+    identityCredentialsWebAuthnAuthenticator:
+      properties:
+        aaguid:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        clone_warning:
+          type: boolean
+        sign_count:
+          format: uint32
+          type: integer
+      title: AuthenticatorWebAuthn contains information about the authenticator of
+        a webauthn credential.
+      type: object
+    identityCredentialsWebAuthnFlags:
+      properties:
+        backup_eligible:
+          type: boolean
+        backup_state:
+          type: boolean
+        user_present:
+          type: boolean
+        user_verified:
+          type: boolean
+      title: CredentialWebAuthnFlags contains information about the flags of a webauthn
+        credential.
+      type: object
+    identityCredentialsWebAuthnList:
+      items:
+        $ref: '#/components/schemas/identityCredentialsWebAuthn'
+      type: array
     identityPatch:
       description: Payload for patching an identity
       properties:
@@ -5733,7 +6352,19 @@ components:
           x-go-enum-desc: |-
             create ActionCreate  Create this identity.
             error ActionError  Error indicates that the patch failed.
-        error: {}
+        error:
+          description: |-
+            From https://go.dev/wiki/CodeReviewComments#receiver-type:
+            > Can function or methods, either concurrently or when called from this method, be mutating the receiver? A value type creates a copy of the receiver when the method is invoked, so outside updates will not be applied to this receiver. If changes must be visible in the original receiver, the receiver must be a pointer.
+            > If the receiver is a struct, array or slice and any of its elements is a pointer to something that might be mutating,
+            > prefer a pointer receiver, as it will make the intention clearer to the reader.
+            > Don’t mix receiver types. Choose either pointers or struct types for all available methods.
+          title: |-
+            DefaultError is not safe to shallow copy because it contains
+            fields which are not value types, e.g. maps.
+            A shallow copy would inadvertently share these underlying fields,
+            leading to incorrect behavior and data races in a concurrent context.
+            Consequently, all methods take the type by pointer and not by value.
         identity:
           description: The identity ID payload of this patch
           format: uuid
@@ -5780,12 +6411,20 @@ components:
     identityWithCredentials:
       description: Create Identity and Import Credentials
       properties:
+        lookup_secret:
+          $ref: '#/components/schemas/AdminIdentityImportCredentialsLookupSecret'
         oidc:
           $ref: '#/components/schemas/identityWithCredentialsOidc'
+        passkey:
+          $ref: '#/components/schemas/identityWithCredentialsPasskey'
         password:
           $ref: '#/components/schemas/identityWithCredentialsPassword'
         saml:
           $ref: '#/components/schemas/identityWithCredentialsSaml'
+        totp:
+          $ref: '#/components/schemas/identityWithCredentialsTotp'
+        webauthn:
+          $ref: '#/components/schemas/identityWithCredentialsWebAuthn'
       type: object
     identityWithCredentialsOidc:
       description: Create Identity and Import Social Sign In Credentials
@@ -5824,6 +6463,26 @@ components:
       - provider
       - subject
       type: object
+    identityWithCredentialsPasskey:
+      description: Create Identity and Import Passkey Credentials
+      properties:
+        config:
+          $ref: '#/components/schemas/identityWithCredentialsPasskeyConfig'
+      type: object
+    identityWithCredentialsPasskeyConfig:
+      description: Create Identity and Import Passkey Credentials Configuration
+      properties:
+        credentials:
+          items:
+            $ref: '#/components/schemas/identityCredentialsWebAuthn'
+          type: array
+        user_handle:
+          description: UserHandle is the user handle of the webauthn credential.
+          items:
+            format: uint8
+            type: integer
+          type: array
+      type: object
     identityWithCredentialsPassword:
       description: Create Identity and Import Password Credentials
       properties:
@@ -5834,7 +6493,7 @@ components:
       description: Create Identity and Import Password Credentials Configuration
       properties:
         hashed_password:
-          description: "The hashed password in [PHC format](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)"
+          description: "The hashed password in [PHC format](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities#hashed-passwords)"
           type: string
         password:
           description: The password in plain text if no hash is available.
@@ -5876,6 +6535,42 @@ components:
       required:
       - provider
       - subject
+      type: object
+    identityWithCredentialsTotp:
+      description: Create Identity and Import TOTP 2FA Credentials
+      properties:
+        config:
+          $ref: '#/components/schemas/identityWithCredentialsTotpConfig'
+      type: object
+    identityWithCredentialsTotpConfig:
+      description: Create Identity and Import TOTP 2FA Credentials Configuration
+      properties:
+        totp_url:
+          description: |-
+            TOTPURL is the TOTP URL
+
+            For more details see: https://github.com/google/google-authenticator/wiki/Key-Uri-Format
+          type: string
+      type: object
+    identityWithCredentialsWebAuthn:
+      description: Create Identity and Import WebAuthn Credentials
+      properties:
+        config:
+          $ref: '#/components/schemas/identityWithCredentialsWebAuthnConfig'
+      type: object
+    identityWithCredentialsWebAuthnConfig:
+      description: Create Identity and Import WebAuthn Credentials Configuration
+      properties:
+        credentials:
+          items:
+            $ref: '#/components/schemas/identityCredentialsWebAuthn'
+          type: array
+        user_handle:
+          description: UserHandle is the user handle of the webauthn credential.
+          items:
+            format: uint8
+            type: integer
+          type: array
       type: object
     jsonPatch:
       description: A JSONPatch document as defined by RFC 6902
@@ -5921,6 +6616,28 @@ components:
 
         Once a login flow is completed successfully, a session cookie or session token will be issued.
       example:
+        test_context:
+          debug_payload:
+            schema_validation_errors:
+            - path: path
+              message: message
+            - path: path
+              message: message
+            id_token_claims:
+              key: ""
+            error:
+              reason: reason
+              step: step
+              message: message
+            jsonnet_mapper_url: jsonnet_mapper_url
+            jsonnet_stderr: jsonnet_stderr
+            userinfo:
+              key: ""
+            jsonnet_input:
+              key: ""
+            jsonnet_output:
+              key: ""
+          provider_id: provider_id
         identity_schema: identity_schema
         requested_aal: aal0
         active: password
@@ -6055,6 +6772,9 @@ components:
               node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
+              options:
+              - value: ""
+              - value: ""
               disabled: true
               value: ""
             type: text
@@ -6091,6 +6811,9 @@ components:
               node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
+              options:
+              - value: ""
+              - value: ""
               disabled: true
               value: ""
             type: text
@@ -6126,6 +6849,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -6138,6 +6862,7 @@ components:
           - passkey
           - profile
           - saml
+          - deviceauthn
           - link_recovery
           - code_recovery
           type: string
@@ -6151,6 +6876,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         created_at:
@@ -6218,6 +6944,8 @@ components:
             choose_method: ask the user to choose a method to sign in with
             sent_email: the email has been sent to the user
             passed_challenge: the request was successful and the login challenge was passed.
+        test_context:
+          $ref: '#/components/schemas/loginFlowTestContext'
         transient_payload:
           description: TransientPayload is used to pass data from the login to hooks
             and email templates
@@ -6251,6 +6979,142 @@ components:
       - passed_challenge
       title: Login flow state (experimental)
       type: string
+    loginFlowTestContext:
+      description: |-
+        Admin-test extension of a login flow. Populated only for flows created by
+        the admin test endpoint; included in the flow's API response so the admin
+        UI can render the pre-scoped provider and (once captured) the debug
+        round-trip result.
+      example:
+        debug_payload:
+          schema_validation_errors:
+          - path: path
+            message: message
+          - path: path
+            message: message
+          id_token_claims:
+            key: ""
+          error:
+            reason: reason
+            step: step
+            message: message
+          jsonnet_mapper_url: jsonnet_mapper_url
+          jsonnet_stderr: jsonnet_stderr
+          userinfo:
+            key: ""
+          jsonnet_input:
+            key: ""
+          jsonnet_output:
+            key: ""
+        provider_id: provider_id
+      properties:
+        debug_payload:
+          $ref: '#/components/schemas/loginFlowTestDebugPayload'
+        provider_id:
+          description: The ID of the OIDC provider this test flow targets.
+          type: string
+      required:
+      - provider_id
+      type: object
+    loginFlowTestDebugPayload:
+      description: |-
+        Contains the parsed claims, the Jsonnet mapper input and output, and any
+        schema validation errors. Bearer tokens (id_token, access_token,
+        refresh_token) are intentionally excluded to limit the blast radius of
+        the debug payload leaking through audit logs or admin browsers.
+      example:
+        schema_validation_errors:
+        - path: path
+          message: message
+        - path: path
+          message: message
+        id_token_claims:
+          key: ""
+        error:
+          reason: reason
+          step: step
+          message: message
+        jsonnet_mapper_url: jsonnet_mapper_url
+        jsonnet_stderr: jsonnet_stderr
+        userinfo:
+          key: ""
+        jsonnet_input:
+          key: ""
+        jsonnet_output:
+          key: ""
+      properties:
+        error:
+          $ref: '#/components/schemas/loginFlowTestStepError'
+        id_token_claims:
+          additionalProperties: {}
+          description: Claims extracted from the ID token.
+          type: object
+        jsonnet_input:
+          additionalProperties: {}
+          description: Input JSON that was fed into the Jsonnet mapper.
+          type: object
+        jsonnet_mapper_url:
+          description: URL of the Jsonnet mapper that was executed on the claims.
+          type: string
+        jsonnet_output:
+          additionalProperties: {}
+          description: Output JSON returned by the Jsonnet mapper.
+          type: object
+        jsonnet_stderr:
+          description: Anything the Jsonnet mapper wrote to standard error.
+          type: string
+        schema_validation_errors:
+          description: Identity-schema validation errors produced from the mapped
+            traits.
+          items:
+            $ref: '#/components/schemas/loginFlowTestSchemaValidationError'
+          type: array
+        userinfo:
+          additionalProperties: {}
+          description: "Claims returned from the provider's userinfo endpoint, if\
+            \ any."
+          type: object
+      title: Diagnostic payload captured during a test-mode OIDC round-trip.
+      type: object
+    loginFlowTestSchemaValidationError:
+      description: |-
+        One identity-schema validation failure recorded while evaluating the
+        traits produced by the Jsonnet mapper.
+      example:
+        path: path
+        message: message
+      properties:
+        message:
+          description: Human-readable description of the validation failure.
+          type: string
+        path:
+          description: JSON pointer to the field that failed validation.
+          type: string
+      type: object
+    loginFlowTestStepError:
+      description: |-
+        Populated when any step (token exchange, claims decode, Jsonnet
+        evaluation, schema validation) cannot complete.
+      example:
+        reason: reason
+        step: step
+        message: message
+      properties:
+        message:
+          description: Human-readable message describing the failure.
+          type: string
+        reason:
+          description: |-
+            Short classification of the failure cause (for example,
+            "access_denied" or "traits_invalid").
+          type: string
+        step:
+          description: |-
+            Machine-readable identifier of the failed step (for example,
+            "token_exchange" or "schema_validate").
+          type: string
+      title: Classified failure of a step in an OIDC test round-trip.
+      type: object
     logoutFlow:
       description: Logout Flow
       example:
@@ -6445,6 +7309,10 @@ components:
       title: Is sent when a privileged session is required to perform the settings
         update.
       type: object
+    nullBool:
+      description: NullBool implements the Scanner interface so
+      title: NullBool represents a bool that may be null.
+      type: boolean
     nullDuration:
       nullable: true
       pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
@@ -6456,6 +7324,8 @@ components:
       description: "NullJSONRawMessage represents a json.RawMessage that works well\
         \ with JSON, SQL, and Swagger and is NULLable-"
       nullable: true
+    nullString:
+      type: string
     nullTime:
       format: date-time
       title: NullTime implements sql.NullTime functionality.
@@ -6554,6 +7424,9 @@ components:
               node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
+              options:
+              - value: ""
+              - value: ""
               disabled: true
               value: ""
             type: text
@@ -6590,6 +7463,9 @@ components:
               node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
+              options:
+              - value: ""
+              - value: ""
               disabled: true
               value: ""
             type: text
@@ -6697,11 +7573,16 @@ components:
     recoveryIdentityAddress:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
+        break_glass_for_organization: break_glass_for_organization
         created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         value: value
         via: via
       properties:
+        break_glass_for_organization:
+          format: uuid4
+          nullable: true
+          type: string
         created_at:
           description: CreatedAt is a helper struct field for gobuffalo.pop.
           format: date-time
@@ -6716,8 +7597,6 @@ components:
         value:
           type: string
         via:
-          title: RecoveryAddressType must not exceed 16 characters as that is the
-            limitation in the SQL Schema.
           type: string
       required:
       - value
@@ -6879,6 +7758,9 @@ components:
               node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
+              options:
+              - value: ""
+              - value: ""
               disabled: true
               value: ""
             type: text
@@ -6915,6 +7797,9 @@ components:
               node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
+              options:
+              - value: ""
+              - value: ""
               disabled: true
               value: ""
             type: text
@@ -6948,6 +7833,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -6960,6 +7846,7 @@ components:
           - passkey
           - profile
           - saml
+          - deviceauthn
           - link_recovery
           - code_recovery
           type: string
@@ -6973,6 +7860,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         expires_at:
@@ -7101,15 +7989,23 @@ components:
           user_agent: user_agent
         authentication_methods:
         - completed_at: 2000-01-23T04:56:07.000+00:00
+          upstream_acr: upstream_acr
           method: password
           provider: provider
           organization: organization
           aal: aal0
+          upstream_amr:
+          - upstream_amr
+          - upstream_amr
         - completed_at: 2000-01-23T04:56:07.000+00:00
+          upstream_acr: upstream_acr
           method: password
           provider: provider
           organization: organization
           aal: aal0
+          upstream_amr:
+          - upstream_amr
+          - upstream_amr
         authenticator_assurance_level: null
         identity:
           traits: ""
@@ -7128,11 +8024,13 @@ components:
           external_id: external_id
           recovery_addresses:
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             via: via
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
@@ -7161,6 +8059,7 @@ components:
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: active
+          region: eu-central
           metadata_public: ""
         authenticated_at: 2000-01-23T04:56:07.000+00:00
         active: true
@@ -7226,10 +8125,14 @@ components:
       description: A singular authenticator used during authentication / login.
       example:
         completed_at: 2000-01-23T04:56:07.000+00:00
+        upstream_acr: upstream_acr
         method: password
         provider: provider
         organization: organization
         aal: aal0
+        upstream_amr:
+        - upstream_amr
+        - upstream_amr
       properties:
         aal:
           $ref: '#/components/schemas/authenticatorAssuranceLevel'
@@ -7249,6 +8152,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -7261,6 +8165,7 @@ components:
           - passkey
           - profile
           - saml
+          - deviceauthn
           - link_recovery
           - code_recovery
           type: string
@@ -7274,6 +8179,7 @@ components:
             passkey CredentialsTypePasskey
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
+            deviceauthn CredentialsTypeDeviceAuthn
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         organization:
@@ -7282,6 +8188,20 @@ components:
         provider:
           description: OIDC or SAML provider id used for authentication
           type: string
+        upstream_acr:
+          description: |-
+            UpstreamACR is the `acr` claim reported by the upstream OIDC
+            provider, if any. Populated only for OIDC login methods when the
+            upstream ID token contained an `acr` claim.
+          type: string
+        upstream_amr:
+          description: |-
+            UpstreamAMR is the `amr` claim reported by the upstream OIDC
+            provider, if any. Populated only for OIDC login methods when the
+            upstream ID token contained an `amr` claim.
+          items:
+            type: string
+          type: array
       title: AuthenticationMethod identifies an authentication method
       type: object
     sessionAuthenticationMethods:
@@ -7357,6 +8277,9 @@ components:
               node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
+              options:
+              - value: ""
+              - value: ""
               disabled: true
               value: ""
             type: text
@@ -7393,6 +8316,9 @@ components:
               node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
+              options:
+              - value: ""
+              - value: ""
               disabled: true
               value: ""
             type: text
@@ -7425,11 +8351,13 @@ components:
           external_id: external_id
           recovery_addresses:
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             via: via
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
@@ -7458,6 +8386,7 @@ components:
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: active
+          region: eu-central
           metadata_public: ""
         continue_with:
         - action: show_verification_ui
@@ -7592,15 +8521,23 @@ components:
             user_agent: user_agent
           authentication_methods:
           - completed_at: 2000-01-23T04:56:07.000+00:00
+            upstream_acr: upstream_acr
             method: password
             provider: provider
             organization: organization
             aal: aal0
+            upstream_amr:
+            - upstream_amr
+            - upstream_amr
           - completed_at: 2000-01-23T04:56:07.000+00:00
+            upstream_acr: upstream_acr
             method: password
             provider: provider
             organization: organization
             aal: aal0
+            upstream_amr:
+            - upstream_amr
+            - upstream_amr
           authenticator_assurance_level: null
           identity:
             traits: ""
@@ -7619,11 +8556,13 @@ components:
             external_id: external_id
             recovery_addresses:
             - updated_at: 2000-01-23T04:56:07.000+00:00
+              break_glass_for_organization: break_glass_for_organization
               created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               via: via
             - updated_at: 2000-01-23T04:56:07.000+00:00
+              break_glass_for_organization: break_glass_for_organization
               created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
@@ -7652,6 +8591,7 @@ components:
             schema_url: schema_url
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: active
+            region: eu-central
             metadata_public: ""
           authenticated_at: 2000-01-23T04:56:07.000+00:00
           active: true
@@ -7715,11 +8655,13 @@ components:
           external_id: external_id
           recovery_addresses:
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
             via: via
           - updated_at: 2000-01-23T04:56:07.000+00:00
+            break_glass_for_organization: break_glass_for_organization
             created_at: 2000-01-23T04:56:07.000+00:00
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             value: value
@@ -7748,6 +8690,7 @@ components:
           schema_url: schema_url
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           state: active
+          region: eu-central
           metadata_public: ""
         session:
           tokenized: tokenized
@@ -7763,15 +8706,23 @@ components:
             user_agent: user_agent
           authentication_methods:
           - completed_at: 2000-01-23T04:56:07.000+00:00
+            upstream_acr: upstream_acr
             method: password
             provider: provider
             organization: organization
             aal: aal0
+            upstream_amr:
+            - upstream_amr
+            - upstream_amr
           - completed_at: 2000-01-23T04:56:07.000+00:00
+            upstream_acr: upstream_acr
             method: password
             provider: provider
             organization: organization
             aal: aal0
+            upstream_amr:
+            - upstream_amr
+            - upstream_amr
           authenticator_assurance_level: null
           identity:
             traits: ""
@@ -7790,11 +8741,13 @@ components:
             external_id: external_id
             recovery_addresses:
             - updated_at: 2000-01-23T04:56:07.000+00:00
+              break_glass_for_organization: break_glass_for_organization
               created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
               via: via
             - updated_at: 2000-01-23T04:56:07.000+00:00
+              break_glass_for_organization: break_glass_for_organization
               created_at: 2000-01-23T04:56:07.000+00:00
               id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
               value: value
@@ -7823,6 +8776,7 @@ components:
             schema_url: schema_url
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             state: active
+            region: eu-central
             metadata_public: ""
           authenticated_at: 2000-01-23T04:56:07.000+00:00
           active: true
@@ -7877,19 +8831,17 @@ components:
             Items per page
 
             This is the number of items per page to return.
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+            For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
           format: int64
           maximum: 1000
           minimum: 1
           type: integer
         page_token:
-          default: "1"
           description: |-
             Next Page Token
 
             The next page token.
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-          minimum: 1
+            For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
           type: string
       type: object
     tokenPaginationHeaders:
@@ -7898,7 +8850,7 @@ components:
           description: |-
             The link header contains pagination links.
 
-            For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+            For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
 
             in: header
           type: string
@@ -7946,6 +8898,9 @@ components:
             node_type: input
             onloadTrigger: oryWebAuthnRegistration
             name: name
+            options:
+            - value: ""
+            - value: ""
             disabled: true
             value: ""
           type: text
@@ -7982,6 +8937,9 @@ components:
             node_type: input
             onloadTrigger: oryWebAuthnRegistration
             name: name
+            options:
+            - value: ""
+            - value: ""
             disabled: true
             value: ""
           type: text
@@ -8055,6 +9013,9 @@ components:
           node_type: input
           onloadTrigger: oryWebAuthnRegistration
           name: name
+          options:
+          - value: ""
+          - value: ""
           disabled: true
           value: ""
         type: text
@@ -8078,6 +9039,7 @@ components:
             identifier_first IdentifierFirstGroup
             captcha CaptchaGroup
             saml SAMLGroup
+            deviceauthn DeviceAuthnGroup
           enum:
           - default
           - password
@@ -8092,6 +9054,7 @@ components:
           - identifier_first
           - captcha
           - saml
+          - deviceauthn
           type: string
           x-go-enum-desc: |-
             default DefaultGroup
@@ -8107,6 +9070,7 @@ components:
             identifier_first IdentifierFirstGroup
             captcha CaptchaGroup
             saml SAMLGroup
+            deviceauthn DeviceAuthnGroup
         messages:
           items:
             $ref: '#/components/schemas/uiText'
@@ -8312,6 +9276,9 @@ components:
         node_type: input
         onloadTrigger: oryWebAuthnRegistration
         name: name
+        options:
+        - value: ""
+        - value: ""
         disabled: true
         value: ""
       properties:
@@ -8440,6 +9407,16 @@ components:
             oryPasskeyLoginAutocompleteInit WebAuthnTriggersPasskeyLoginAutocompleteInit
             oryPasskeyRegistration WebAuthnTriggersPasskeyRegistration
             oryPasskeySettingsRegistration WebAuthnTriggersPasskeySettingsRegistration
+        options:
+          description: |-
+            The allowed values for the input when the underlying JSON schema
+            defines an `enum`. When present, clients should render the field as a
+            select/dropdown rather than a free-form text input. When absent,
+            clients continue to render a plain text input, so this field is
+            backward compatible with UIs that do not look at it.
+          items:
+            $ref: '#/components/schemas/uiNodeInputAttributesOption'
+          type: array
         pattern:
           description: The input's pattern.
           type: string
@@ -8496,6 +9473,23 @@ components:
       - name
       - node_type
       - type
+      type: object
+    uiNodeInputAttributesOption:
+      description: |-
+        Represents a single selectable value for an input whose JSON schema
+        defined an `enum`. The value is always a scalar JSON type (string, number,
+        or boolean) serialized verbatim from the schema. When present, clients
+        should render the parent input as a select/dropdown.
+      example:
+        value: ""
+      properties:
+        value:
+          description: |-
+            The value that will be submitted when this option is picked.
+            It is serialized verbatim from the JSON schema `enum` entry, so it is
+            always a scalar JSON value (string, number, or boolean).
+      required:
+      - value
       type: object
     uiNodeMeta:
       description: |-
@@ -8672,6 +9666,37 @@ components:
           description: |-
             Store metadata about the identity which the identity itself can see when calling for example the
             session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field.
+        region:
+          description: |-
+            Region is the Ory Network region this identity is homed in. Optional;
+            omit to leave the current region unchanged.
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
+          enum:
+          - eu-central
+          - asia-northeast
+          - us-east
+          - us-west
+          - eu
+          - asia
+          - us
+          - global
+          type: string
+          x-go-enum-desc: |-
+            eu-central EUCentral
+            asia-northeast AsiaNorthEast
+            us-east USEast
+            us-west USWest
+            eu EU
+            asia Asia
+            us US
+            global Global
         schema_id:
           description: |-
             SchemaID is the ID of the JSON Schema to be used for validating the identity's traits. If set
@@ -8704,6 +9729,7 @@ components:
       discriminator:
         mapping:
           code: '#/components/schemas/updateLoginFlowWithCodeMethod'
+          deviceauthn: '#/components/schemas/updateLoginFlowWithDeviceAuthnMethod'
           identifier_first: '#/components/schemas/updateLoginFlowWithIdentifierFirstMethod'
           lookup_secret: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
           oidc: '#/components/schemas/updateLoginFlowWithOidcMethod'
@@ -8719,6 +9745,7 @@ components:
       - $ref: '#/components/schemas/updateLoginFlowWithSamlMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithTotpMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithWebAuthnMethod'
+      - $ref: '#/components/schemas/updateLoginFlowWithDeviceAuthnMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithLookupSecretMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithCodeMethod'
       - $ref: '#/components/schemas/updateLoginFlowWithPasskeyMethod'
@@ -8755,6 +9782,31 @@ components:
       required:
       - csrf_token
       - method
+      type: object
+    updateLoginFlowWithDeviceAuthnMethod:
+      description: No CSRF token since this method may not be used from the browser.
+      properties:
+        client_key_id:
+          description: |-
+            Login with a DeviceAuthn Security Key.
+
+            This must contain the client ID of the DeviceAuthN key,
+            a.k.a 'key alias' on Android and 'key id' on iOS.
+          type: string
+        method:
+          description: Method should be set to "deviceauthn" when logging in using
+            the DeviceAuthn strategy.
+          type: string
+        signature:
+          description: Signature is a ES256 signature of the server-provided challenge.
+          format: byte
+          type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
+      title: Update Login Flow with DeviceAuthn Method
       type: object
     updateLoginFlowWithIdentifierFirstMethod:
       description: Update Login Flow with Multi-Step Method
@@ -8845,6 +9897,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -9002,7 +10055,7 @@ components:
             If the email belongs to a valid account, a recovery email will be sent.
 
             If you want to notify the email address if the account does not exist, see
-            the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/account-recovery-password-reset#attempted-recovery-notifications)
+            the [notify_unknown_recipients flag](https://www.ory.com/docs/kratos/self-service/flows/account-recovery-password-reset#attempted-recovery-notifications)
 
             If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.
 
@@ -9069,7 +10122,7 @@ components:
 
             Needs to be set when initiating the flow. If the email is a registered
             recovery email, a recovery link will be sent. If the email is not known,
-            a email with details on what happened will be sent instead.
+            an email with details on what happened will be sent instead.
 
             format: email
           type: string
@@ -9190,6 +10243,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -9357,6 +10411,7 @@ components:
       description: Update Settings Flow Request Body
       discriminator:
         mapping:
+          deviceauthn: '#/components/schemas/updateSettingsFlowWithDeviceAuthnMethod'
           lookup_secret: '#/components/schemas/updateSettingsFlowWithLookupMethod'
           oidc: '#/components/schemas/updateSettingsFlowWithOidcMethod'
           passkey: '#/components/schemas/updateSettingsFlowWithPasskeyMethod'
@@ -9375,6 +10430,70 @@ components:
       - $ref: '#/components/schemas/updateSettingsFlowWithWebAuthnMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithLookupMethod'
       - $ref: '#/components/schemas/updateSettingsFlowWithPasskeyMethod'
+      - $ref: '#/components/schemas/updateSettingsFlowWithDeviceAuthnMethod'
+    updateSettingsFlowWithDeviceAuthnMethod:
+      description: Update Settings Flow with DeviceAuthn Method
+      properties:
+        add:
+          $ref: '#/components/schemas/updateSettingsFlowWithDeviceAuthnMethodAdd'
+        csrf_token:
+          description: |-
+            CSRFToken is the anti-CSRF token
+            It only is required to remove a key from the browser.
+          type: string
+        delete:
+          $ref: '#/components/schemas/updateSettingsFlowWithDeviceAuthnMethodDelete'
+        method:
+          description: |-
+            Method
+
+            Should be set to "deviceauthn" when trying to add or remove a DeviceAuthn key.
+          type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
+      type: object
+    updateSettingsFlowWithDeviceAuthnMethodAdd:
+      properties:
+        attestation_ios:
+          format: byte
+          type: string
+        certificate_chain_android:
+          description: |-
+            CertificateChainAndroid is a list of base64 strings for creating a key on Android.
+            Each element is a certificate.
+            The first element is the leaf, corresponding to the on-device key, the last is the root (Google CA).
+          items:
+            format: byte
+            type: string
+          type: array
+        client_key_id:
+          description: ClientKeyID is the key id/alias on the device.
+          type: string
+        device_name:
+          description: DeviceName is a human-readable name for the device e.g. 'My
+            work phone'.
+          type: string
+        version:
+          description: |-
+            Version is the version number for the cryptography.
+            For now only `1` is supported which corresponds to SHA256 + EC.
+          format: int64
+          type: integer
+      required:
+      - client_key_id
+      - device_name
+      type: object
+    updateSettingsFlowWithDeviceAuthnMethodDelete:
+      properties:
+        client_key_id:
+          description: ClientKeyID is the key id/alias on the device.
+          type: string
+      required:
+      - client_key_id
+      type: object
     updateSettingsFlowWithLookupMethod:
       description: Update Settings Flow with Lookup Method
       properties:
@@ -9456,6 +10575,7 @@ components:
             `login_hint` (string): The `login_hint` parameter suppresses the account chooser and either pre-fills the email box on the sign-in form, or selects the proper session.
             `hd` (string): The `hd` parameter limits the login/registration process to a Google Organization, e.g. `mycollege.edu`.
             `prompt` (string): The `prompt` specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. `select_account`.
+            `acr_values` (string): The `acr_values` specifies the Authentication Context Class Reference values for the authorization request.
           type: object
       required:
       - method
@@ -9674,16 +10794,14 @@ components:
           type: string
         email:
           description: |-
-            The email address to verify
+            The email address or phone number to verify
 
-            If the email belongs to a valid account, a verifiation email will be sent.
+            If the provided address belongs to a valid account, a verification email or SMS will be sent.
 
             If you want to notify the email address if the account does not exist, see
-            the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation#attempted-verification-notifications)
+            the [notify_unknown_recipients flag](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation#attempted-verification-notifications)
 
             If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.
-
-            format: email
           type: string
         method:
           description: |-
@@ -9805,7 +10923,7 @@ components:
         Used to verify an out-of-band communication
         channel such as an email address or a phone number.
 
-        For more information head over to: https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation
+        For more information head over to: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
       example:
         expires_at: 2000-01-23T04:56:07.000+00:00
         transient_payload: "{}"
@@ -9843,6 +10961,9 @@ components:
               node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
+              options:
+              - value: ""
+              - value: ""
               disabled: true
               value: ""
             type: text
@@ -9879,6 +11000,9 @@ components:
               node_type: input
               onloadTrigger: oryWebAuthnRegistration
               name: name
+              options:
+              - value: ""
+              - value: ""
               disabled: true
               value: ""
             type: text

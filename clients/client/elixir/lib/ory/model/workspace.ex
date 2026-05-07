@@ -8,18 +8,22 @@ defmodule Ory.Model.Workspace do
 
   @derive Jason.Encoder
   defstruct [
+    :access_policy,
     :created_at,
     :id,
     :name,
+    :organization_id,
     :subscription_id,
     :subscription_plan,
     :updated_at
   ]
 
   @type t :: %__MODULE__{
+    :access_policy => String.t | nil,
     :created_at => DateTime.t,
     :id => String.t,
     :name => String.t,
+    :organization_id => String.t | nil,
     :subscription_id => String.t | nil,
     :subscription_plan => String.t | nil,
     :updated_at => DateTime.t

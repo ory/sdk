@@ -13,6 +13,8 @@
 |**errorUiUrl** | **String** |  |  |
 |**faviconDarkUrl** | **String** |  |  [optional] |
 |**faviconLightUrl** | **String** |  |  [optional] |
+|**hideOryBranding** | **Boolean** |  |  |
+|**hideRegistrationLink** | **Boolean** |  |  |
 |**localeBehavior** | [**LocaleBehaviorEnum**](#LocaleBehaviorEnum) |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage |  |
 |**loginUiUrl** | **String** |  |  |
 |**logoDarkUrl** | **String** |  |  [optional] |

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **MetadataPublic** | Pointer to **interface{}** | Store metadata about the identity which the identity itself can see when calling for example the session endpoint. Do not store sensitive information (e.g. credit score) about the identity in this field. | [optional] 
 **OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **RecoveryAddresses** | Pointer to [**[]RecoveryIdentityAddress**](RecoveryIdentityAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity.  Use this structure to import recovery addresses for an identity. Please keep in mind that the address needs to be represented in the Identity Schema or this field will be overwritten on the next identity update. | [optional] 
+**Region** | Pointer to **string** | Region is the Ory Network region this identity will be created in. Optional; defaults to the project home region if omitted. Only effective on the Ory Network. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] 
 **SchemaId** | **string** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. | 
 **State** | Pointer to **string** | State is the identity&#39;s state. active StateActive inactive StateInactive | [optional] 
 **Traits** | **map[string]interface{}** | Traits represent an identity&#39;s traits. The identity is able to create, modify, and delete traits in a self-service manner. The input will always be validated against the JSON Schema defined in &#x60;schema_url&#x60;. | 
@@ -213,6 +214,31 @@ SetRecoveryAddresses sets RecoveryAddresses field to given value.
 `func (o *CreateIdentityBody) HasRecoveryAddresses() bool`
 
 HasRecoveryAddresses returns a boolean if a field has been set.
+
+### GetRegion
+
+`func (o *CreateIdentityBody) GetRegion() string`
+
+GetRegion returns the Region field if non-nil, zero value otherwise.
+
+### GetRegionOk
+
+`func (o *CreateIdentityBody) GetRegionOk() (*string, bool)`
+
+GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegion
+
+`func (o *CreateIdentityBody) SetRegion(v string)`
+
+SetRegion sets Region field to given value.
+
+### HasRegion
+
+`func (o *CreateIdentityBody) HasRegion() bool`
+
+HasRegion returns a boolean if a field has been set.
 
 ### GetSchemaId
 

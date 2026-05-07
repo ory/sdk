@@ -122,6 +122,7 @@ defmodule Ory.Api.Project do
     |> Connection.request(request)
     |> evaluate_response([
       {201, Ory.Model.Project},
+      {400, Ory.Model.ErrorGeneric},
       {401, Ory.Model.ErrorGeneric},
       {403, Ory.Model.ErrorGeneric},
       {404, Ory.Model.ErrorGeneric},
@@ -300,6 +301,7 @@ defmodule Ory.Api.Project do
       {200, Ory.Model.GetOrganizationResponse},
       {400, Ory.Model.ErrorGeneric},
       {403, Ory.Model.ErrorGeneric},
+      {404, Ory.Model.ErrorGeneric},
       {:default, Ory.Model.ErrorGeneric}
     ])
   end
@@ -414,8 +416,8 @@ defmodule Ory.Api.Project do
   - `connection` (Ory.Connection): Connection to server
   - `project_id` (String.t): Project ID  The project's ID.
   - `opts` (keyword): Optional parameters
-    - `:page_size` (integer()): Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
-    - `:page_token` (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+    - `:page_size` (integer()): Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
+    - `:page_token` (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
     - `:domain` (String.t): Domain  If set, only organizations with that domain will be returned.
 
   ### Returns

@@ -9,6 +9,7 @@ defmodule Ory.Model.InternalIsOwnerForProjectBySlugBody do
   @derive Jason.Encoder
   defstruct [
     :namespace,
+    :organization_id,
     :project_scope,
     :project_slug,
     :subject
@@ -16,6 +17,7 @@ defmodule Ory.Model.InternalIsOwnerForProjectBySlugBody do
 
   @type t :: %__MODULE__{
     :namespace => String.t,
+    :organization_id => String.t | nil,
     :project_scope => String.t | nil,
     :project_slug => String.t,
     :subject => String.t

@@ -1,0 +1,22 @@
+# ContinueWithSettingsUiFlow
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **string** | The ID of the settings flow | [default to undefined]
+**url** | **string** | The URL of the settings flow  If this value is set, redirect the user\&#39;s browser to this URL. This value is typically unset for native clients / API flows. | [optional] [default to undefined]
+
+## Example
+
+```typescript
+import { ContinueWithSettingsUiFlow } from '@ory/client';
+
+const instance: ContinueWithSettingsUiFlow = {
+    id,
+    url,
+};
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

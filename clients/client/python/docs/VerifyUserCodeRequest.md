@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **client** | [**OAuth2Client**](OAuth2Client.md) |  | [optional] 
 **device_code_request_id** | **str** |  | [optional] 
 **request_url** | **str** | RequestURL is the original Device Authorization URL requested. | [optional] 
-**requested_access_token_audience** | **List[str]** |  | [optional] 
-**requested_scope** | **List[str]** |  | [optional] 
+**requested_access_token_audience** | **List[str]** | RequestedAudience contains the access token audience as requested by the OAuth 2.0 Client. | [optional] 
+**requested_scope** | **List[str]** | RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client. | [optional] 
 
 ## Example
 

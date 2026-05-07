@@ -75,7 +75,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_relationships
 
-> delete_relationships(namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation)
+> delete_relationships(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation)
 Delete Relationships
 
 Use this endpoint to delete relationships
@@ -89,9 +89,9 @@ Name | Type | Description  | Required | Notes
 **object** | Option<**String**> | Object of the Relationship |  |
 **relation** | Option<**String**> | Relation of the Relationship |  |
 **subject_id** | Option<**String**> | SubjectID of the Relationship |  |
-**subject_set_period_namespace** | Option<**String**> | Namespace of the Subject Set |  |
-**subject_set_period_object** | Option<**String**> | Object of the Subject Set |  |
-**subject_set_period_relation** | Option<**String**> | Relation of the Subject Set |  |
+**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
 
 ### Return type
 
@@ -111,7 +111,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_relationships
 
-> models::Relationships get_relationships(page_size, page_token, namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation)
+> models::Relationships get_relationships(page_size, page_token, namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation)
 Query relationships
 
 Get all relationships that match the query. Only the namespace field is required.
@@ -121,15 +121,15 @@ Get all relationships that match the query. Only the namespace field is required
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**page_size** | Option<**i64**> | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |[default to 250]
-**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). |  |
+**page_size** | Option<**i64**> | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). |  |[default to 250]
+**page_token** | Option<**String**> | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). |  |
 **namespace** | Option<**String**> | Namespace of the Relationship |  |
 **object** | Option<**String**> | Object of the Relationship |  |
 **relation** | Option<**String**> | Relation of the Relationship |  |
 **subject_id** | Option<**String**> | SubjectID of the Relationship |  |
-**subject_set_period_namespace** | Option<**String**> | Namespace of the Subject Set |  |
-**subject_set_period_object** | Option<**String**> | Object of the Subject Set |  |
-**subject_set_period_relation** | Option<**String**> | Relation of the Subject Set |  |
+**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
 
 ### Return type
 

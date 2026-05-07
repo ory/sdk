@@ -20,7 +20,8 @@ defmodule Ory.Model.NormalizedProjectRevisionSamlProvider do
     :proxy_saml_audience_override,
     :raw_idp_metadata_xml,
     :state,
-    :updated_at
+    :updated_at,
+    :valid_to
   ]
 
   @type t :: %__MODULE__{
@@ -36,7 +37,8 @@ defmodule Ory.Model.NormalizedProjectRevisionSamlProvider do
     :proxy_saml_audience_override => String.t | nil,
     :raw_idp_metadata_xml => String.t | nil,
     :state => String.t | nil,
-    :updated_at => DateTime.t | nil
+    :updated_at => DateTime.t | nil,
+    :valid_to => [String.t] | nil
   }
 
   alias Ory.Deserializer

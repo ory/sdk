@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.21
-  - Build date: 2026-01-22T17:26:07.124393360Z[Etc/UTC]
+- API version: v1.22.38
+  - Build date: 2026-05-05T09:41:59.080951071Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.21</version>
+  <version>v1.22.38</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.21"
+     implementation "sh.ory:client:v1.22.38"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.21.jar`
+* `target/client-v1.22.38.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -296,8 +296,9 @@ Class | Method | HTTP request | Description
  - [AcceptOAuth2LoginRequest](docs/AcceptOAuth2LoginRequest.md)
  - [AccountExperienceColors](docs/AccountExperienceColors.md)
  - [AccountExperienceConfiguration](docs/AccountExperienceConfiguration.md)
- - [ActiveProjectInConsole](docs/ActiveProjectInConsole.md)
  - [AddProjectToWorkspaceBody](docs/AddProjectToWorkspaceBody.md)
+ - [AdminIdentityImportCredentialsLookupSecret](docs/AdminIdentityImportCredentialsLookupSecret.md)
+ - [AdminIdentityImportCredentialsLookupSecretConfig](docs/AdminIdentityImportCredentialsLookupSecretConfig.md)
  - [Attribute](docs/Attribute.md)
  - [AttributeFilter](docs/AttributeFilter.md)
  - [AttributesCountDatapoint](docs/AttributesCountDatapoint.md)
@@ -329,6 +330,7 @@ Class | Method | HTTP request | Description
  - [CreateIdentityBody](docs/CreateIdentityBody.md)
  - [CreateInviteResponse](docs/CreateInviteResponse.md)
  - [CreateJsonWebKeySet](docs/CreateJsonWebKeySet.md)
+ - [CreateOnboardingLinkResponse](docs/CreateOnboardingLinkResponse.md)
  - [CreateOrganizationOnboardingPortalLinkBody](docs/CreateOrganizationOnboardingPortalLinkBody.md)
  - [CreateProjectApiKeyRequest](docs/CreateProjectApiKeyRequest.md)
  - [CreateProjectBody](docs/CreateProjectBody.md)
@@ -344,10 +346,13 @@ Class | Method | HTTP request | Description
  - [CreateWorkspaceApiKeyBody](docs/CreateWorkspaceApiKeyBody.md)
  - [CreateWorkspaceBody](docs/CreateWorkspaceBody.md)
  - [CreateWorkspaceMemberInviteBody](docs/CreateWorkspaceMemberInviteBody.md)
+ - [CreateWorkspaceOrganizationBody](docs/CreateWorkspaceOrganizationBody.md)
  - [CreateWorkspaceSubscriptionBody](docs/CreateWorkspaceSubscriptionBody.md)
  - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
  - [CustomDomain](docs/CustomDomain.md)
+ - [CustomerPortalAvailability](docs/CustomerPortalAvailability.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
+ - [DeviceAuthnKey](docs/DeviceAuthnKey.md)
  - [DeviceAuthorization](docs/DeviceAuthorization.md)
  - [DeviceUserAuthRequest](docs/DeviceUserAuthRequest.md)
  - [EmailTemplateData](docs/EmailTemplateData.md)
@@ -362,6 +367,7 @@ Class | Method | HTTP request | Description
  - [FlowError](docs/FlowError.md)
  - [GenericError](docs/GenericError.md)
  - [GenericErrorContent](docs/GenericErrorContent.md)
+ - [GenericOIDCProvider](docs/GenericOIDCProvider.md)
  - [GenericUsage](docs/GenericUsage.md)
  - [GetAttributesCount](docs/GetAttributesCount.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
@@ -380,9 +386,14 @@ Class | Method | HTTP request | Description
  - [IdentityCredentials](docs/IdentityCredentials.md)
  - [IdentityCredentialsCode](docs/IdentityCredentialsCode.md)
  - [IdentityCredentialsCodeAddress](docs/IdentityCredentialsCodeAddress.md)
+ - [IdentityCredentialsLookupSecretCode](docs/IdentityCredentialsLookupSecretCode.md)
  - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
  - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
  - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
+ - [IdentityCredentialsWebAuthn](docs/IdentityCredentialsWebAuthn.md)
+ - [IdentityCredentialsWebAuthnAttestation](docs/IdentityCredentialsWebAuthnAttestation.md)
+ - [IdentityCredentialsWebAuthnAuthenticator](docs/IdentityCredentialsWebAuthnAuthenticator.md)
+ - [IdentityCredentialsWebAuthnFlags](docs/IdentityCredentialsWebAuthnFlags.md)
  - [IdentityPatch](docs/IdentityPatch.md)
  - [IdentityPatchResponse](docs/IdentityPatchResponse.md)
  - [IdentitySchemaContainer](docs/IdentitySchemaContainer.md)
@@ -391,11 +402,17 @@ Class | Method | HTTP request | Description
  - [IdentityWithCredentialsOidc](docs/IdentityWithCredentialsOidc.md)
  - [IdentityWithCredentialsOidcConfig](docs/IdentityWithCredentialsOidcConfig.md)
  - [IdentityWithCredentialsOidcConfigProvider](docs/IdentityWithCredentialsOidcConfigProvider.md)
+ - [IdentityWithCredentialsPasskey](docs/IdentityWithCredentialsPasskey.md)
+ - [IdentityWithCredentialsPasskeyConfig](docs/IdentityWithCredentialsPasskeyConfig.md)
  - [IdentityWithCredentialsPassword](docs/IdentityWithCredentialsPassword.md)
  - [IdentityWithCredentialsPasswordConfig](docs/IdentityWithCredentialsPasswordConfig.md)
  - [IdentityWithCredentialsSaml](docs/IdentityWithCredentialsSaml.md)
  - [IdentityWithCredentialsSamlConfig](docs/IdentityWithCredentialsSamlConfig.md)
  - [IdentityWithCredentialsSamlConfigProvider](docs/IdentityWithCredentialsSamlConfigProvider.md)
+ - [IdentityWithCredentialsTotp](docs/IdentityWithCredentialsTotp.md)
+ - [IdentityWithCredentialsTotpConfig](docs/IdentityWithCredentialsTotpConfig.md)
+ - [IdentityWithCredentialsWebAuthn](docs/IdentityWithCredentialsWebAuthn.md)
+ - [IdentityWithCredentialsWebAuthnConfig](docs/IdentityWithCredentialsWebAuthnConfig.md)
  - [InternalGetProjectBrandingBody](docs/InternalGetProjectBrandingBody.md)
  - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
  - [InternalIsOwnerForProjectBySlug](docs/InternalIsOwnerForProjectBySlug.md)
@@ -456,6 +473,7 @@ Class | Method | HTTP request | Description
  - [OrganizationOnboardingPortalLinksResponse](docs/OrganizationOnboardingPortalLinksResponse.md)
  - [ParseError](docs/ParseError.md)
  - [PatchIdentitiesBody](docs/PatchIdentitiesBody.md)
+ - [PatchWorkspaceMemberBody](docs/PatchWorkspaceMemberBody.md)
  - [PerformNativeLogoutBody](docs/PerformNativeLogoutBody.md)
  - [PermissionsOnWorkspace](docs/PermissionsOnWorkspace.md)
  - [Plan](docs/Plan.md)
@@ -500,7 +518,6 @@ Class | Method | HTTP request | Description
  - [SessionActivityDatapoint](docs/SessionActivityDatapoint.md)
  - [SessionAuthenticationMethod](docs/SessionAuthenticationMethod.md)
  - [SessionDevice](docs/SessionDevice.md)
- - [SetActiveProjectInConsoleBody](docs/SetActiveProjectInConsoleBody.md)
  - [SetCustomDomainBody](docs/SetCustomDomainBody.md)
  - [SetEventStreamBody](docs/SetEventStreamBody.md)
  - [SetOrganizationFromOnboardingPortalLinkBody](docs/SetOrganizationFromOnboardingPortalLinkBody.md)
@@ -531,6 +548,7 @@ Class | Method | HTTP request | Description
  - [UiNodeDivisionAttributes](docs/UiNodeDivisionAttributes.md)
  - [UiNodeImageAttributes](docs/UiNodeImageAttributes.md)
  - [UiNodeInputAttributes](docs/UiNodeInputAttributes.md)
+ - [UiNodeInputAttributesOption](docs/UiNodeInputAttributesOption.md)
  - [UiNodeMeta](docs/UiNodeMeta.md)
  - [UiNodeScriptAttributes](docs/UiNodeScriptAttributes.md)
  - [UiNodeTextAttributes](docs/UiNodeTextAttributes.md)
@@ -585,6 +603,7 @@ Class | Method | HTTP request | Description
  - [Warning](docs/Warning.md)
  - [Workspace](docs/Workspace.md)
  - [WorkspaceApiKey](docs/WorkspaceApiKey.md)
+ - [WorkspaceOrganization](docs/WorkspaceOrganization.md)
 
 
 <a id="documentation-for-authorization"></a>

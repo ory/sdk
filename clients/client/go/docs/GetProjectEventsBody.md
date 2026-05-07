@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EventName** | Pointer to **string** | The event name to query for | [optional] 
-**Filters** | Pointer to [**[]AttributeFilter**](AttributeFilter.md) | Event attribute filters | [optional] [default to []]
+**Filters** | Pointer to [**[]AttributeFilter**](AttributeFilter.md) | Event attribute filters | [optional] [default to {}]
 **From** | **time.Time** | The start RFC3339 date of the time window | 
 **PageSize** | Pointer to **int64** | Maximum number of events to return | [optional] [default to 25]
 **PageToken** | Pointer to **string** | Pagination token to fetch next page, empty if first page | [optional] 

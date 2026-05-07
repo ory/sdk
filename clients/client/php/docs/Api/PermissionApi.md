@@ -1,5 +1,7 @@
 # Ory\Client\PermissionApi
 
+
+
 All URIs are relative to https://playground.projects.oryapis.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
@@ -20,7 +22,7 @@ batchCheckPermission($maxDepth, $batchCheckPermissionBody): \Ory\Client\Model\Ba
 
 Batch check permissions
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Example
 
@@ -82,7 +84,7 @@ checkPermission($namespace, $object, $relation, $subjectId, $subjectSetNamespace
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Example
 
@@ -156,7 +158,7 @@ checkPermissionOrError($namespace, $object, $relation, $subjectId, $subjectSetNa
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Example
 
@@ -296,7 +298,7 @@ postCheckPermission($maxDepth, $postCheckPermissionBody): \Ory\Client\Model\Chec
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Example
 
@@ -358,7 +360,7 @@ postCheckPermissionOrError($maxDepth, $postCheckPermissionOrErrorBody): \Ory\Cli
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Example
 

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.21
+API version: v1.22.38
 Contact: support@ory.sh
 */
 
@@ -27,14 +27,14 @@ type IdentityAPI interface {
 	/*
 	BatchPatchIdentities Create multiple identities
 
-	Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+	Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).
 
-You can also use this endpoint to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities),
+You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities),
 including passwords, social sign-in settings, and multi-factor authentication methods.
 
-You can import:
-Up to 1,000 identities per request
-Up to 200 identities per request if including plaintext passwords
+If the patch includes hashed passwords you can import up to 1,000 identities per request.
+
+If the patch includes at least one plaintext password you can import up to 200 identities per request.
 
 Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
 
@@ -62,9 +62,9 @@ If the issue persists, contact support.
 	/*
 	CreateIdentity Create an Identity
 
-	Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
-[import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
-for instance passwords, social sign in configurations or multifactor methods.
+	Create an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
+[import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities)
+for instance passwords, social sign in configurations, or multifactor methods.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return IdentityAPICreateIdentityRequest
@@ -108,7 +108,7 @@ for instance passwords, social sign in configurations or multifactor methods.
 	/*
 	DeleteIdentity Delete an Identity
 
-	Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
+	Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
 This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -123,12 +123,12 @@ This endpoint returns 204 when the identity was deleted or 404 if the identity w
 	/*
 	DeleteIdentityCredentials Delete a credential for a specific identity
 
-	Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
+	Delete an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) credential by its type.
 You cannot delete passkeys or code auth credentials through this API.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID is the identity's ID.
-	@param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+	@param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 	@return IdentityAPIDeleteIdentityCredentialsRequest
 	*/
 	DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest
@@ -192,7 +192,7 @@ Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK m
 	/*
 	GetIdentity Get an Identity
 
-	Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
+	Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
 include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -208,7 +208,7 @@ include credentials (e.g. social sign in connections) in the response by using t
 	/*
 	GetIdentityByExternalID Get an Identity by its External ID
 
-	Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
+	Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
 include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -256,7 +256,7 @@ Getting a session object with all specified expandables that exist in an adminis
 	/*
 	ListIdentities List Identities
 
-	Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
+	Lists all [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return IdentityAPIListIdentitiesRequest
@@ -313,7 +313,7 @@ Getting a session object with all specified expandables that exist in an adminis
 	/*
 	PatchIdentity Patch an Identity
 
-	Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
+	Partially updates an [identity's](https://www.ory.com/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
 The fields `id`, `stateChangedAt` and `credentials` can not be updated using this method.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -329,11 +329,20 @@ The fields `id`, `stateChangedAt` and `credentials` can not be updated using thi
 	/*
 	UpdateIdentity Update an Identity
 
-	This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity
-payload, except credentials, is expected. For partial updates, use the [patchIdentity](https://www.ory.sh/docs/reference/api#tag/identity/operation/patchIdentity) operation.
+	This endpoint updates an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model). The full identity
+payload (except credentials) is expected.
 
-A credential can be provided via the `credentials` field in the request body.
-If provided, the credentials will be imported and added to the existing credentials of the identity.
+It is possible to update the identity's credentials as well. Using this operation, credentials will not be overwritten
+but instead added to the list. For example, if a user has a social sign in connection set up, updating the credentials
+will keep the social sign in connection and add the new credentials to the list. This prevents accidentally overwriting
+credentials and locking out users. A complete view of all credential types is here:
+
+`password`: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook.
+`oidc`, `saml`: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list.
+`totp`: The existing TOTP credentials will be replaced with the new configuration.
+`lookup_secret`: The existing Lookup Secret codes will be kept and the new codes will be added to the list.
+`webauthn`, `passkey`: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new `user_handle` is provided, it's added to the identity's identifiers list while preserving previous user handles.
+`code`: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (`{"ory.sh/kratos":{"code":{"identifier":true", "via":"email"}}}`).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID must be set to the ID of identity you want to update
@@ -367,14 +376,14 @@ func (r IdentityAPIBatchPatchIdentitiesRequest) Execute() (*BatchPatchIdentities
 /*
 BatchPatchIdentities Create multiple identities
 
-Creates multiple [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model).
+Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).
 
-You can also use this endpoint to [import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities),
+You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities),
 including passwords, social sign-in settings, and multi-factor authentication methods.
 
-You can import:
-Up to 1,000 identities per request
-Up to 200 identities per request if including plaintext passwords
+If the patch includes hashed passwords you can import up to 1,000 identities per request.
+
+If the patch includes at least one plaintext password you can import up to 200 identities per request.
 
 Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
 
@@ -525,9 +534,9 @@ func (r IdentityAPICreateIdentityRequest) Execute() (*Identity, *http.Response, 
 /*
 CreateIdentity Create an Identity
 
-Create an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
-[import credentials](https://www.ory.sh/docs/kratos/manage-identities/import-user-accounts-identities)
-for instance passwords, social sign in configurations or multifactor methods.
+Create an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to
+[import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities)
+for instance passwords, social sign in configurations, or multifactor methods.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return IdentityAPICreateIdentityRequest
@@ -944,7 +953,7 @@ func (r IdentityAPIDeleteIdentityRequest) Execute() (*http.Response, error) {
 /*
 DeleteIdentity Delete an Identity
 
-Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
+Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
 This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1064,12 +1073,12 @@ func (r IdentityAPIDeleteIdentityCredentialsRequest) Execute() (*http.Response, 
 /*
 DeleteIdentityCredentials Delete a credential for a specific identity
 
-Delete an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) credential by its type.
+Delete an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) credential by its type.
 You cannot delete passkeys or code auth credentials through this API.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID is the identity's ID.
- @param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+ @param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
  @return IdentityAPIDeleteIdentityCredentialsRequest
 */
 func (a *IdentityAPIService) DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest {
@@ -1574,7 +1583,7 @@ type IdentityAPIGetIdentityRequest struct {
 	includeCredential *[]string
 }
 
-// Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+// Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available.
 func (r IdentityAPIGetIdentityRequest) IncludeCredential(includeCredential []string) IdentityAPIGetIdentityRequest {
 	r.includeCredential = &includeCredential
 	return r
@@ -1587,7 +1596,7 @@ func (r IdentityAPIGetIdentityRequest) Execute() (*Identity, *http.Response, err
 /*
 GetIdentity Get an Identity
 
-Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
+Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its ID. You can optionally
 include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1715,7 +1724,7 @@ type IdentityAPIGetIdentityByExternalIDRequest struct {
 	includeCredential *[]string
 }
 
-// Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+// Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available.
 func (r IdentityAPIGetIdentityByExternalIDRequest) IncludeCredential(includeCredential []string) IdentityAPIGetIdentityByExternalIDRequest {
 	r.includeCredential = &includeCredential
 	return r
@@ -1728,7 +1737,7 @@ func (r IdentityAPIGetIdentityByExternalIDRequest) Execute() (*Identity, *http.R
 /*
 GetIdentityByExternalID Get an Identity by its External ID
 
-Return an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
+Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
 include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -2140,13 +2149,13 @@ func (r IdentityAPIListIdentitiesRequest) Page(page int64) IdentityAPIListIdenti
 	return r
 }
 
-// Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+// Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
 func (r IdentityAPIListIdentitiesRequest) PageSize(pageSize int64) IdentityAPIListIdentitiesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
 func (r IdentityAPIListIdentitiesRequest) PageToken(pageToken string) IdentityAPIListIdentitiesRequest {
 	r.pageToken = &pageToken
 	return r
@@ -2176,7 +2185,7 @@ func (r IdentityAPIListIdentitiesRequest) PreviewCredentialsIdentifierSimilar(pr
 	return r
 }
 
-// Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token and the OpenID Connect ID Token if available.
+// Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available.
 func (r IdentityAPIListIdentitiesRequest) IncludeCredential(includeCredential []string) IdentityAPIListIdentitiesRequest {
 	r.includeCredential = &includeCredential
 	return r
@@ -2195,7 +2204,7 @@ func (r IdentityAPIListIdentitiesRequest) Execute() ([]Identity, *http.Response,
 /*
 ListIdentities List Identities
 
-Lists all [identities](https://www.ory.sh/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
+Lists all [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return IdentityAPIListIdentitiesRequest
@@ -2231,8 +2240,9 @@ func (a *IdentityAPIService) ListIdentitiesExecute(r IdentityAPIListIdentitiesRe
 	if r.perPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.perPage = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", defaultValue, "form", "")
+        r.perPage = &defaultValue
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
@@ -2240,14 +2250,12 @@ func (a *IdentityAPIService) ListIdentitiesExecute(r IdentityAPIListIdentitiesRe
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
-	} else {
-		var defaultValue string = "1"
-		r.pageToken = &defaultValue
 	}
 	if r.consistency != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "consistency", r.consistency, "form", "")
@@ -2366,13 +2374,13 @@ func (r IdentityAPIListIdentitySchemasRequest) Page(page int64) IdentityAPIListI
 	return r
 }
 
-// Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+// Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
 func (r IdentityAPIListIdentitySchemasRequest) PageSize(pageSize int64) IdentityAPIListIdentitySchemasRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
 func (r IdentityAPIListIdentitySchemasRequest) PageToken(pageToken string) IdentityAPIListIdentitySchemasRequest {
 	r.pageToken = &pageToken
 	return r
@@ -2421,8 +2429,9 @@ func (a *IdentityAPIService) ListIdentitySchemasExecute(r IdentityAPIListIdentit
 	if r.perPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.perPage = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", defaultValue, "form", "")
+        r.perPage = &defaultValue
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
@@ -2430,14 +2439,12 @@ func (a *IdentityAPIService) ListIdentitySchemasExecute(r IdentityAPIListIdentit
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
-	} else {
-		var defaultValue string = "1"
-		r.pageToken = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2524,13 +2531,13 @@ func (r IdentityAPIListIdentitySessionsRequest) Page(page int64) IdentityAPIList
 	return r
 }
 
-// Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+// Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
 func (r IdentityAPIListIdentitySessionsRequest) PageSize(pageSize int64) IdentityAPIListIdentitySessionsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
 func (r IdentityAPIListIdentitySessionsRequest) PageToken(pageToken string) IdentityAPIListIdentitySessionsRequest {
 	r.pageToken = &pageToken
 	return r
@@ -2588,8 +2595,9 @@ func (a *IdentityAPIService) ListIdentitySessionsExecute(r IdentityAPIListIdenti
 	if r.perPage != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.perPage = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", defaultValue, "form", "")
+        r.perPage = &defaultValue
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
@@ -2597,14 +2605,12 @@ func (a *IdentityAPIService) ListIdentitySessionsExecute(r IdentityAPIListIdenti
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
-	} else {
-		var defaultValue string = "1"
-		r.pageToken = &defaultValue
 	}
 	if r.active != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
@@ -2702,13 +2708,13 @@ type IdentityAPIListSessionsRequest struct {
 	expand *[]string
 }
 
-// Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+// Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
 func (r IdentityAPIListSessionsRequest) PageSize(pageSize int64) IdentityAPIListSessionsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination).
+// Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
 func (r IdentityAPIListSessionsRequest) PageToken(pageToken string) IdentityAPIListSessionsRequest {
 	r.pageToken = &pageToken
 	return r
@@ -2769,8 +2775,9 @@ func (a *IdentityAPIService) ListSessionsExecute(r IdentityAPIListSessionsReques
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	} else {
-		var defaultValue int64 = 250
-		r.pageSize = &defaultValue
+        var defaultValue int64 = 250
+        parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", defaultValue, "form", "")
+        r.pageSize = &defaultValue
 	}
 	if r.pageToken != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_token", r.pageToken, "form", "")
@@ -2881,7 +2888,7 @@ func (r IdentityAPIPatchIdentityRequest) Execute() (*Identity, *http.Response, e
 /*
 PatchIdentity Patch an Identity
 
-Partially updates an [identity's](https://www.ory.sh/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
+Partially updates an [identity's](https://www.ory.com/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/).
 The fields `id`, `stateChangedAt` and `credentials` can not be updated using this method.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -3034,11 +3041,20 @@ func (r IdentityAPIUpdateIdentityRequest) Execute() (*Identity, *http.Response, 
 /*
 UpdateIdentity Update an Identity
 
-This endpoint updates an [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model). The full identity
-payload, except credentials, is expected. For partial updates, use the [patchIdentity](https://www.ory.sh/docs/reference/api#tag/identity/operation/patchIdentity) operation.
+This endpoint updates an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model). The full identity
+payload (except credentials) is expected.
 
-A credential can be provided via the `credentials` field in the request body.
-If provided, the credentials will be imported and added to the existing credentials of the identity.
+It is possible to update the identity's credentials as well. Using this operation, credentials will not be overwritten
+but instead added to the list. For example, if a user has a social sign in connection set up, updating the credentials
+will keep the social sign in connection and add the new credentials to the list. This prevents accidentally overwriting
+credentials and locking out users. A complete view of all credential types is here:
+
+`password`: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook.
+`oidc`, `saml`: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list.
+`totp`: The existing TOTP credentials will be replaced with the new configuration.
+`lookup_secret`: The existing Lookup Secret codes will be kept and the new codes will be added to the list.
+`webauthn`, `passkey`: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new `user_handle` is provided, it's added to the identity's identifiers list while preserving previous user handles.
+`code`: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (`{"ory.sh/kratos":{"code":{"identifier":true", "via":"email"}}}`).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID must be set to the ID of identity you want to update

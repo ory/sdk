@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**additionalPrice** | **String** | The additional price per unit in cents. |  |
 |**canUseMore** | **Boolean** |  |  |
-|**feature** | [**FeatureEnum**](#FeatureEnum) |  production_projects ProductionProjects staging_projects StagingProjects development_projects DevelopmentProjects daily_active_users DailyActiveUsers custom_domains CustomDomains event_streams EventStreams event_stream_events EventStreamEvents sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport zendesk_support_on_call ZendeskSupportOnCall project_metrics ProjectMetrics project_metrics_time_window ProjectMetricsTimeWindow project_metrics_events_history ProjectMetricsEventsHistory organizations Organizations rop_grant ResourceOwnerPasswordGrant concierge_onboarding ConciergeOnboarding credit Credit data_location_global DataLocationGlobal data_location_us DataLocationUS data_location_asiane DataLocationAsiaNorthEast m2m_token_issuance M2MTokenIssuance permission_checks PermissionChecks captcha Captcha identity_search_api IdentitySearchAPI saml_sp SAMLSP saml_idp SAMLIDP auto_link_policy AutoLinkPolicy scim_clients SCIMClients default_smtp_email_customization DefaultSMTPEmailCustomization onboarding_portal OnboardingPortal update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings update_self_service_verification_rate_limit_tier RateLimitTierUpdateSelfServiceVerification identities_create_rate_limit_tier RateLimitTierIdentitiesCreate identities_import_rate_limit_tier RateLimitTierIdentitiesImport fed_cm_parameters_rate_limit_tier RateLimitTierFedCMParameters data_location_regional DataLocationRegional  Required Features rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions identities_list_rate_limit_tier RateLimitTierIdentitiesList permission_checks_rate_limit_tier RateLimitTierPermissionChecks oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect create_recovery_admin_rate_limit_tier RateLimitTierCreateAdminRecovery scim_rate_limit_tier RateLimitTierSCIM |  |
+|**feature** | [**FeatureEnum**](#FeatureEnum) |  production_projects ProductionProjects staging_projects StagingProjects development_projects DevelopmentProjects daily_active_users DailyActiveUsers custom_domains CustomDomains event_streams EventStreams event_stream_events EventStreamEvents sla SLA collaborator_seats CollaboratorSeats edge_cache EdgeCache branding_themes BrandingThemes zendesk_support ZendeskSupport zendesk_support_on_call ZendeskSupportOnCall project_metrics ProjectMetrics project_metrics_time_window ProjectMetricsTimeWindow project_metrics_events_history ProjectMetricsEventsHistory organizations Organizations rop_grant ResourceOwnerPasswordGrant concierge_onboarding ConciergeOnboarding credit Credit data_location_global DataLocationGlobal data_location_us DataLocationUS data_location_asiane DataLocationAsiaNorthEast m2m_token_issuance M2MTokenIssuance permission_checks PermissionChecks captcha Captcha captcha_byo CaptchaBYO hide_ory_branding HideOryBranding identity_search_api IdentitySearchAPI saml_sp SAMLSP saml_idp SAMLIDP auto_link_policy AutoLinkPolicy scim_clients SCIMClients default_smtp_email_customization DefaultSMTPEmailCustomization onboarding_portal OnboardingPortal console_organization_sso ConsoleOrganizationSSO update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings update_self_service_verification_rate_limit_tier RateLimitTierUpdateSelfServiceVerification identities_create_rate_limit_tier RateLimitTierIdentitiesCreate identities_import_rate_limit_tier RateLimitTierIdentitiesImport fed_cm_parameters_rate_limit_tier RateLimitTierFedCMParameters data_location_regional DataLocationRegional  Required Features rate_limit_tier RateLimitTier session_rate_limit_tier RateLimitTierSessions identities_list_rate_limit_tier RateLimitTierIdentitiesList permission_checks_rate_limit_tier RateLimitTierPermissionChecks oauth2_introspect_rate_limit_tier RateLimitTierOAuth2Introspect create_recovery_admin_rate_limit_tier RateLimitTierCreateAdminRecovery scim_rate_limit_tier RateLimitTierSCIM hydra_admin_high_rate_limit_tier RateLimitTierHydraAdminHigh  Bucket-specific rate limit tiers hydra_admin_medium_rate_limit_tier RateLimitTierHydraAdminMedium hydra_admin_low_rate_limit_tier RateLimitTierHydraAdminLow hydra_public_high_rate_limit_tier RateLimitTierHydraPublicHigh hydra_public_medium_rate_limit_tier RateLimitTierHydraPublicMedium hydra_public_low_rate_limit_tier RateLimitTierHydraPublicLow keto_admin_low_rate_limit_tier RateLimitTierKetoAdminLow keto_admin_medium_rate_limit_tier RateLimitTierKetoAdminMedium keto_public_high_rate_limit_tier RateLimitTierKetoPublicHigh kratos_admin_high_rate_limit_tier RateLimitTierKratosAdminHigh kratos_admin_medium_rate_limit_tier RateLimitTierKratosAdminMedium kratos_admin_low_rate_limit_tier RateLimitTierKratosAdminLow kratos_public_high_rate_limit_tier RateLimitTierKratosPublicHigh kratos_public_medium_rate_limit_tier RateLimitTierKratosPublicMedium kratos_public_low_rate_limit_tier RateLimitTierKratosPublicLow polis_public_high_rate_limit_tier RateLimitTierPolisPublicHigh polis_public_medium_rate_limit_tier RateLimitTierPolisPublicMedium unassigned_rate_limit_tier RateLimitTierUnassigned |  |
 |**featureAvailable** | **Boolean** |  |  |
 |**included** | **Long** |  |  |
 |**isUnlimited** | **Boolean** |  |  |
@@ -47,6 +47,8 @@
 | M2M_TOKEN_ISSUANCE | &quot;m2m_token_issuance&quot; |
 | PERMISSION_CHECKS | &quot;permission_checks&quot; |
 | CAPTCHA | &quot;captcha&quot; |
+| CAPTCHA_BYO | &quot;captcha_byo&quot; |
+| HIDE_ORY_BRANDING | &quot;hide_ory_branding&quot; |
 | IDENTITY_SEARCH_API | &quot;identity_search_api&quot; |
 | SAML_SP | &quot;saml_sp&quot; |
 | SAML_IDP | &quot;saml_idp&quot; |
@@ -54,6 +56,7 @@
 | SCIM_CLIENTS | &quot;scim_clients&quot; |
 | DEFAULT_SMTP_EMAIL_CUSTOMIZATION | &quot;default_smtp_email_customization&quot; |
 | ONBOARDING_PORTAL | &quot;onboarding_portal&quot; |
+| CONSOLE_ORGANIZATION_SSO | &quot;console_organization_sso&quot; |
 | UPDATE_SELF_SERVICE_REGISTRATION_RATE_LIMIT_TIER | &quot;update_self_service_registration_rate_limit_tier&quot; |
 | UPDATE_SELF_SERVICE_RECOVERY_RATE_LIMIT_TIER | &quot;update_self_service_recovery_rate_limit_tier&quot; |
 | UPDATE_SELF_SERVICE_SETTINGS_RATE_LIMIT_TIER | &quot;update_self_service_settings_rate_limit_tier&quot; |
@@ -69,6 +72,24 @@
 | OAUTH2_INTROSPECT_RATE_LIMIT_TIER | &quot;oauth2_introspect_rate_limit_tier&quot; |
 | CREATE_RECOVERY_ADMIN_RATE_LIMIT_TIER | &quot;create_recovery_admin_rate_limit_tier&quot; |
 | SCIM_RATE_LIMIT_TIER | &quot;scim_rate_limit_tier&quot; |
+| HYDRA_ADMIN_HIGH_RATE_LIMIT_TIER | &quot;hydra_admin_high_rate_limit_tier&quot; |
+| HYDRA_ADMIN_MEDIUM_RATE_LIMIT_TIER | &quot;hydra_admin_medium_rate_limit_tier&quot; |
+| HYDRA_ADMIN_LOW_RATE_LIMIT_TIER | &quot;hydra_admin_low_rate_limit_tier&quot; |
+| HYDRA_PUBLIC_HIGH_RATE_LIMIT_TIER | &quot;hydra_public_high_rate_limit_tier&quot; |
+| HYDRA_PUBLIC_MEDIUM_RATE_LIMIT_TIER | &quot;hydra_public_medium_rate_limit_tier&quot; |
+| HYDRA_PUBLIC_LOW_RATE_LIMIT_TIER | &quot;hydra_public_low_rate_limit_tier&quot; |
+| KETO_ADMIN_LOW_RATE_LIMIT_TIER | &quot;keto_admin_low_rate_limit_tier&quot; |
+| KETO_ADMIN_MEDIUM_RATE_LIMIT_TIER | &quot;keto_admin_medium_rate_limit_tier&quot; |
+| KETO_PUBLIC_HIGH_RATE_LIMIT_TIER | &quot;keto_public_high_rate_limit_tier&quot; |
+| KRATOS_ADMIN_HIGH_RATE_LIMIT_TIER | &quot;kratos_admin_high_rate_limit_tier&quot; |
+| KRATOS_ADMIN_MEDIUM_RATE_LIMIT_TIER | &quot;kratos_admin_medium_rate_limit_tier&quot; |
+| KRATOS_ADMIN_LOW_RATE_LIMIT_TIER | &quot;kratos_admin_low_rate_limit_tier&quot; |
+| KRATOS_PUBLIC_HIGH_RATE_LIMIT_TIER | &quot;kratos_public_high_rate_limit_tier&quot; |
+| KRATOS_PUBLIC_MEDIUM_RATE_LIMIT_TIER | &quot;kratos_public_medium_rate_limit_tier&quot; |
+| KRATOS_PUBLIC_LOW_RATE_LIMIT_TIER | &quot;kratos_public_low_rate_limit_tier&quot; |
+| POLIS_PUBLIC_HIGH_RATE_LIMIT_TIER | &quot;polis_public_high_rate_limit_tier&quot; |
+| POLIS_PUBLIC_MEDIUM_RATE_LIMIT_TIER | &quot;polis_public_medium_rate_limit_tier&quot; |
+| UNASSIGNED_RATE_LIMIT_TIER | &quot;unassigned_rate_limit_tier&quot; |
 
 
 

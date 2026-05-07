@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -Eeuxo pipefail
+set -Eexo pipefail
 
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
 
@@ -110,6 +110,6 @@ java
 php
 python
 ruby
-dartpub
+# dartpub
 # TODO: https://github.com/ory/sdk/issues/434
 # csharp

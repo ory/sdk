@@ -8,19 +8,25 @@ defmodule Ory.Model.ProjectMember do
 
   @derive Jason.Encoder
   defstruct [
+    :break_glass,
     :email,
     :email_verified,
     :id,
     :name,
-    :role
+    :organization_id,
+    :role,
+    :source
   ]
 
   @type t :: %__MODULE__{
+    :break_glass => boolean() | nil,
     :email => String.t,
     :email_verified => boolean(),
     :id => String.t,
     :name => String.t,
-    :role => String.t
+    :organization_id => String.t | nil,
+    :role => String.t,
+    :source => String.t | nil
   }
 
   def decode(value) do

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.21
+API version: v1.22.38
 Contact: support@ory.sh
 */
 
@@ -27,6 +27,8 @@ type AccountExperienceConfiguration struct {
 	ErrorUiUrl string `json:"error_ui_url"`
 	FaviconDarkUrl *string `json:"favicon_dark_url,omitempty"`
 	FaviconLightUrl *string `json:"favicon_light_url,omitempty"`
+	HideOryBranding bool `json:"hide_ory_branding"`
+	HideRegistrationLink bool `json:"hide_registration_link"`
 	//  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage
 	LocaleBehavior string `json:"locale_behavior"`
 	LoginUiUrl string `json:"login_ui_url"`
@@ -51,12 +53,14 @@ type _AccountExperienceConfiguration AccountExperienceConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, enabledLocales []string, errorUiUrl string, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, translations []RevisionAccountExperienceCustomTranslation, verificationEnabled bool, verificationUiUrl string) *AccountExperienceConfiguration {
+func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, enabledLocales []string, errorUiUrl string, hideOryBranding bool, hideRegistrationLink bool, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, translations []RevisionAccountExperienceCustomTranslation, verificationEnabled bool, verificationUiUrl string) *AccountExperienceConfiguration {
 	this := AccountExperienceConfiguration{}
 	this.DefaultLocale = defaultLocale
 	this.DefaultRedirectUrl = defaultRedirectUrl
 	this.EnabledLocales = enabledLocales
 	this.ErrorUiUrl = errorUiUrl
+	this.HideOryBranding = hideOryBranding
+	this.HideRegistrationLink = hideRegistrationLink
 	this.LocaleBehavior = localeBehavior
 	this.LoginUiUrl = loginUiUrl
 	this.Name = name
@@ -237,6 +241,54 @@ func (o *AccountExperienceConfiguration) HasFaviconLightUrl() bool {
 // SetFaviconLightUrl gets a reference to the given string and assigns it to the FaviconLightUrl field.
 func (o *AccountExperienceConfiguration) SetFaviconLightUrl(v string) {
 	o.FaviconLightUrl = &v
+}
+
+// GetHideOryBranding returns the HideOryBranding field value
+func (o *AccountExperienceConfiguration) GetHideOryBranding() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.HideOryBranding
+}
+
+// GetHideOryBrandingOk returns a tuple with the HideOryBranding field value
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetHideOryBrandingOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HideOryBranding, true
+}
+
+// SetHideOryBranding sets field value
+func (o *AccountExperienceConfiguration) SetHideOryBranding(v bool) {
+	o.HideOryBranding = v
+}
+
+// GetHideRegistrationLink returns the HideRegistrationLink field value
+func (o *AccountExperienceConfiguration) GetHideRegistrationLink() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.HideRegistrationLink
+}
+
+// GetHideRegistrationLinkOk returns a tuple with the HideRegistrationLink field value
+// and a boolean to check if the value has been set.
+func (o *AccountExperienceConfiguration) GetHideRegistrationLinkOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HideRegistrationLink, true
+}
+
+// SetHideRegistrationLink sets field value
+func (o *AccountExperienceConfiguration) SetHideRegistrationLink(v bool) {
+	o.HideRegistrationLink = v
 }
 
 // GetLocaleBehavior returns the LocaleBehavior field value
@@ -619,6 +671,8 @@ func (o AccountExperienceConfiguration) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.FaviconLightUrl) {
 		toSerialize["favicon_light_url"] = o.FaviconLightUrl
 	}
+	toSerialize["hide_ory_branding"] = o.HideOryBranding
+	toSerialize["hide_registration_link"] = o.HideRegistrationLink
 	toSerialize["locale_behavior"] = o.LocaleBehavior
 	toSerialize["login_ui_url"] = o.LoginUiUrl
 	if !IsNil(o.LogoDarkUrl) {
@@ -656,6 +710,8 @@ func (o *AccountExperienceConfiguration) UnmarshalJSON(data []byte) (err error) 
 		"default_redirect_url",
 		"enabled_locales",
 		"error_ui_url",
+		"hide_ory_branding",
+		"hide_registration_link",
 		"locale_behavior",
 		"login_ui_url",
 		"name",
@@ -702,6 +758,8 @@ func (o *AccountExperienceConfiguration) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "error_ui_url")
 		delete(additionalProperties, "favicon_dark_url")
 		delete(additionalProperties, "favicon_light_url")
+		delete(additionalProperties, "hide_ory_branding")
+		delete(additionalProperties, "hide_registration_link")
 		delete(additionalProperties, "locale_behavior")
 		delete(additionalProperties, "login_ui_url")
 		delete(additionalProperties, "logo_dark_url")

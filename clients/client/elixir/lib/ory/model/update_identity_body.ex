@@ -12,6 +12,7 @@ defmodule Ory.Model.UpdateIdentityBody do
     :external_id,
     :metadata_admin,
     :metadata_public,
+    :region,
     :schema_id,
     :state,
     :traits
@@ -22,6 +23,7 @@ defmodule Ory.Model.UpdateIdentityBody do
     :external_id => String.t | nil,
     :metadata_admin => any() | nil,
     :metadata_public => any() | nil,
+    :region => String.t | nil,
     :schema_id => String.t,
     :state => String.t,
     :traits => map()

@@ -27,8 +27,7 @@ This document describes the APIs available in the Ory Network. The APIs are avai
 
 ### Requirements
 
-PHP 7.4 and later.
-Should also work with PHP 8.0.
+PHP 8.1 and later.
 
 ### Composer
 
@@ -251,8 +250,9 @@ Class | Method | HTTP request | Description
 - [AcceptOAuth2LoginRequest](docs/Model/AcceptOAuth2LoginRequest.md)
 - [AccountExperienceColors](docs/Model/AccountExperienceColors.md)
 - [AccountExperienceConfiguration](docs/Model/AccountExperienceConfiguration.md)
-- [ActiveProjectInConsole](docs/Model/ActiveProjectInConsole.md)
 - [AddProjectToWorkspaceBody](docs/Model/AddProjectToWorkspaceBody.md)
+- [AdminIdentityImportCredentialsLookupSecret](docs/Model/AdminIdentityImportCredentialsLookupSecret.md)
+- [AdminIdentityImportCredentialsLookupSecretConfig](docs/Model/AdminIdentityImportCredentialsLookupSecretConfig.md)
 - [Attribute](docs/Model/Attribute.md)
 - [AttributeFilter](docs/Model/AttributeFilter.md)
 - [AttributesCountDatapoint](docs/Model/AttributesCountDatapoint.md)
@@ -284,6 +284,7 @@ Class | Method | HTTP request | Description
 - [CreateIdentityBody](docs/Model/CreateIdentityBody.md)
 - [CreateInviteResponse](docs/Model/CreateInviteResponse.md)
 - [CreateJsonWebKeySet](docs/Model/CreateJsonWebKeySet.md)
+- [CreateOnboardingLinkResponse](docs/Model/CreateOnboardingLinkResponse.md)
 - [CreateOrganizationOnboardingPortalLinkBody](docs/Model/CreateOrganizationOnboardingPortalLinkBody.md)
 - [CreateProjectApiKeyRequest](docs/Model/CreateProjectApiKeyRequest.md)
 - [CreateProjectBody](docs/Model/CreateProjectBody.md)
@@ -299,10 +300,13 @@ Class | Method | HTTP request | Description
 - [CreateWorkspaceApiKeyBody](docs/Model/CreateWorkspaceApiKeyBody.md)
 - [CreateWorkspaceBody](docs/Model/CreateWorkspaceBody.md)
 - [CreateWorkspaceMemberInviteBody](docs/Model/CreateWorkspaceMemberInviteBody.md)
+- [CreateWorkspaceOrganizationBody](docs/Model/CreateWorkspaceOrganizationBody.md)
 - [CreateWorkspaceSubscriptionBody](docs/Model/CreateWorkspaceSubscriptionBody.md)
 - [CredentialSupportedDraft00](docs/Model/CredentialSupportedDraft00.md)
 - [CustomDomain](docs/Model/CustomDomain.md)
+- [CustomerPortalAvailability](docs/Model/CustomerPortalAvailability.md)
 - [DeleteMySessionsCount](docs/Model/DeleteMySessionsCount.md)
+- [DeviceAuthnKey](docs/Model/DeviceAuthnKey.md)
 - [DeviceAuthorization](docs/Model/DeviceAuthorization.md)
 - [DeviceUserAuthRequest](docs/Model/DeviceUserAuthRequest.md)
 - [EmailTemplateData](docs/Model/EmailTemplateData.md)
@@ -317,6 +321,7 @@ Class | Method | HTTP request | Description
 - [FlowError](docs/Model/FlowError.md)
 - [GenericError](docs/Model/GenericError.md)
 - [GenericErrorContent](docs/Model/GenericErrorContent.md)
+- [GenericOIDCProvider](docs/Model/GenericOIDCProvider.md)
 - [GenericUsage](docs/Model/GenericUsage.md)
 - [GetAttributesCount](docs/Model/GetAttributesCount.md)
 - [GetManagedIdentitySchemaLocation](docs/Model/GetManagedIdentitySchemaLocation.md)
@@ -335,9 +340,14 @@ Class | Method | HTTP request | Description
 - [IdentityCredentials](docs/Model/IdentityCredentials.md)
 - [IdentityCredentialsCode](docs/Model/IdentityCredentialsCode.md)
 - [IdentityCredentialsCodeAddress](docs/Model/IdentityCredentialsCodeAddress.md)
+- [IdentityCredentialsLookupSecretCode](docs/Model/IdentityCredentialsLookupSecretCode.md)
 - [IdentityCredentialsOidc](docs/Model/IdentityCredentialsOidc.md)
 - [IdentityCredentialsOidcProvider](docs/Model/IdentityCredentialsOidcProvider.md)
 - [IdentityCredentialsPassword](docs/Model/IdentityCredentialsPassword.md)
+- [IdentityCredentialsWebAuthn](docs/Model/IdentityCredentialsWebAuthn.md)
+- [IdentityCredentialsWebAuthnAttestation](docs/Model/IdentityCredentialsWebAuthnAttestation.md)
+- [IdentityCredentialsWebAuthnAuthenticator](docs/Model/IdentityCredentialsWebAuthnAuthenticator.md)
+- [IdentityCredentialsWebAuthnFlags](docs/Model/IdentityCredentialsWebAuthnFlags.md)
 - [IdentityPatch](docs/Model/IdentityPatch.md)
 - [IdentityPatchResponse](docs/Model/IdentityPatchResponse.md)
 - [IdentitySchemaContainer](docs/Model/IdentitySchemaContainer.md)
@@ -346,11 +356,17 @@ Class | Method | HTTP request | Description
 - [IdentityWithCredentialsOidc](docs/Model/IdentityWithCredentialsOidc.md)
 - [IdentityWithCredentialsOidcConfig](docs/Model/IdentityWithCredentialsOidcConfig.md)
 - [IdentityWithCredentialsOidcConfigProvider](docs/Model/IdentityWithCredentialsOidcConfigProvider.md)
+- [IdentityWithCredentialsPasskey](docs/Model/IdentityWithCredentialsPasskey.md)
+- [IdentityWithCredentialsPasskeyConfig](docs/Model/IdentityWithCredentialsPasskeyConfig.md)
 - [IdentityWithCredentialsPassword](docs/Model/IdentityWithCredentialsPassword.md)
 - [IdentityWithCredentialsPasswordConfig](docs/Model/IdentityWithCredentialsPasswordConfig.md)
 - [IdentityWithCredentialsSaml](docs/Model/IdentityWithCredentialsSaml.md)
 - [IdentityWithCredentialsSamlConfig](docs/Model/IdentityWithCredentialsSamlConfig.md)
 - [IdentityWithCredentialsSamlConfigProvider](docs/Model/IdentityWithCredentialsSamlConfigProvider.md)
+- [IdentityWithCredentialsTotp](docs/Model/IdentityWithCredentialsTotp.md)
+- [IdentityWithCredentialsTotpConfig](docs/Model/IdentityWithCredentialsTotpConfig.md)
+- [IdentityWithCredentialsWebAuthn](docs/Model/IdentityWithCredentialsWebAuthn.md)
+- [IdentityWithCredentialsWebAuthnConfig](docs/Model/IdentityWithCredentialsWebAuthnConfig.md)
 - [InternalGetProjectBrandingBody](docs/Model/InternalGetProjectBrandingBody.md)
 - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
 - [InternalIsOwnerForProjectBySlug](docs/Model/InternalIsOwnerForProjectBySlug.md)
@@ -411,6 +427,7 @@ Class | Method | HTTP request | Description
 - [OrganizationOnboardingPortalLinksResponse](docs/Model/OrganizationOnboardingPortalLinksResponse.md)
 - [ParseError](docs/Model/ParseError.md)
 - [PatchIdentitiesBody](docs/Model/PatchIdentitiesBody.md)
+- [PatchWorkspaceMemberBody](docs/Model/PatchWorkspaceMemberBody.md)
 - [PerformNativeLogoutBody](docs/Model/PerformNativeLogoutBody.md)
 - [PermissionsOnWorkspace](docs/Model/PermissionsOnWorkspace.md)
 - [Plan](docs/Model/Plan.md)
@@ -455,7 +472,6 @@ Class | Method | HTTP request | Description
 - [SessionActivityDatapoint](docs/Model/SessionActivityDatapoint.md)
 - [SessionAuthenticationMethod](docs/Model/SessionAuthenticationMethod.md)
 - [SessionDevice](docs/Model/SessionDevice.md)
-- [SetActiveProjectInConsoleBody](docs/Model/SetActiveProjectInConsoleBody.md)
 - [SetCustomDomainBody](docs/Model/SetCustomDomainBody.md)
 - [SetEventStreamBody](docs/Model/SetEventStreamBody.md)
 - [SetOrganizationFromOnboardingPortalLinkBody](docs/Model/SetOrganizationFromOnboardingPortalLinkBody.md)
@@ -486,6 +502,7 @@ Class | Method | HTTP request | Description
 - [UiNodeDivisionAttributes](docs/Model/UiNodeDivisionAttributes.md)
 - [UiNodeImageAttributes](docs/Model/UiNodeImageAttributes.md)
 - [UiNodeInputAttributes](docs/Model/UiNodeInputAttributes.md)
+- [UiNodeInputAttributesOption](docs/Model/UiNodeInputAttributesOption.md)
 - [UiNodeMeta](docs/Model/UiNodeMeta.md)
 - [UiNodeScriptAttributes](docs/Model/UiNodeScriptAttributes.md)
 - [UiNodeTextAttributes](docs/Model/UiNodeTextAttributes.md)
@@ -540,6 +557,7 @@ Class | Method | HTTP request | Description
 - [Warning](docs/Model/Warning.md)
 - [Workspace](docs/Model/Workspace.md)
 - [WorkspaceApiKey](docs/Model/WorkspaceApiKey.md)
+- [WorkspaceOrganization](docs/Model/WorkspaceOrganization.md)
 
 ## Authorization
 
@@ -587,6 +605,6 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.22.21`
-    - Generator version: `7.12.0`
+- API version: `v1.22.38`
+    - Generator version: `7.17.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

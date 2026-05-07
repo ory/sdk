@@ -8,10 +8,12 @@ defmodule Ory.Model.UpdateWorkspaceBody do
 
   @derive Jason.Encoder
   defstruct [
+    :access_policy,
     :name
   ]
 
   @type t :: %__MODULE__{
+    :access_policy => String.t | nil,
     :name => String.t
   }
 

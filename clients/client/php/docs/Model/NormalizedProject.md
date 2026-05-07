@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **createdAt** | **\DateTime** | The Project&#39;s Creation Date | [readonly]
 **currentRevision** | [**\Ory\Client\Model\NormalizedProjectRevision**](NormalizedProjectRevision.md) |  |
 **environment** | **string** | The environment of the project. prod Production stage Staging dev Development |
-**homeRegion** | **string** | The project&#39;s data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest us US global Global | [readonly]
-**hosts** | **string[]** |  |
+**homeRegion** | **string** | The project&#39;s data home region. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [readonly]
+**hosts** | **string[]** | The FQDN hostnames this project listens on |
 **id** | **string** | The project&#39;s ID. | [readonly]
 **slug** | **string** | The project&#39;s slug | [readonly]
 **state** | **string** | The state of the project. running Running halted Halted deleted Deleted | [readonly]

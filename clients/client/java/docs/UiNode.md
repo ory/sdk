@@ -9,7 +9,7 @@ Nodes are represented as HTML elements or their native UI equivalents. For examp
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**attributes** | [**UiNodeAttributes**](UiNodeAttributes.md) |  |  |
-|**group** | [**GroupEnum**](#GroupEnum) | Group specifies which group (e.g. password authenticator) this node belongs to. default DefaultGroup password PasswordGroup oidc OpenIDConnectGroup profile ProfileGroup link LinkGroup code CodeGroup totp TOTPGroup lookup_secret LookupGroup webauthn WebAuthnGroup passkey PasskeyGroup identifier_first IdentifierFirstGroup captcha CaptchaGroup saml SAMLGroup |  |
+|**group** | [**GroupEnum**](#GroupEnum) | Group specifies which group (e.g. password authenticator) this node belongs to. default DefaultGroup password PasswordGroup oidc OpenIDConnectGroup profile ProfileGroup link LinkGroup code CodeGroup totp TOTPGroup lookup_secret LookupGroup webauthn WebAuthnGroup passkey PasskeyGroup identifier_first IdentifierFirstGroup captcha CaptchaGroup saml SAMLGroup deviceauthn DeviceAuthnGroup |  |
 |**messages** | [**List&lt;UiText&gt;**](UiText.md) |  |  |
 |**meta** | [**UiNodeMeta**](UiNodeMeta.md) |  |  |
 |**type** | [**TypeEnum**](#TypeEnum) | The node&#39;s type text Text input Input img Image a Anchor script Script div Division |  |
@@ -33,6 +33,7 @@ Nodes are represented as HTML elements or their native UI equivalents. For examp
 | IDENTIFIER_FIRST | &quot;identifier_first&quot; |
 | CAPTCHA | &quot;captcha&quot; |
 | SAML | &quot;saml&quot; |
+| DEVICEAUTHN | &quot;deviceauthn&quot; |
 | OAUTH2_CONSENT | &quot;oauth2_consent&quot; |
 
 

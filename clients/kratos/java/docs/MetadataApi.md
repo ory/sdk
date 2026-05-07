@@ -20,11 +20,11 @@ This endpoint returns the version of Ory Kratos.  If the service supports TLS Ed
 ### Example
 ```java
 // Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.MetadataApi;
+import sh.ory.client.ApiClient;
+import sh.ory.client.ApiException;
+import sh.ory.client.Configuration;
+import sh.ory.client.models.*;
+import sh.ory.client.api.MetadataApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -78,11 +78,11 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is accepting incomi
 ### Example
 ```java
 // Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.MetadataApi;
+import sh.ory.client.ApiClient;
+import sh.ory.client.ApiException;
+import sh.ory.client.Configuration;
+import sh.ory.client.models.*;
+import sh.ory.client.api.MetadataApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -137,11 +137,11 @@ This endpoint returns a HTTP 200 status code when Ory Kratos is up running and t
 ### Example
 ```java
 // Import classes:
-import sh.ory.kratos.ApiClient;
-import sh.ory.kratos.ApiException;
-import sh.ory.kratos.Configuration;
-import sh.ory.kratos.models.*;
-import sh.ory.kratos.api.MetadataApi;
+import sh.ory.client.ApiClient;
+import sh.ory.client.ApiException;
+import sh.ory.client.Configuration;
+import sh.ory.client.models.*;
+import sh.ory.client.api.MetadataApi;
 
 public class Example {
   public static void main(String[] args) {

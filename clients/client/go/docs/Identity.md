@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **MetadataPublic** | Pointer to **map[string]interface{}** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] 
 **OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **RecoveryAddresses** | Pointer to [**[]RecoveryIdentityAddress**](RecoveryIdentityAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional] 
+**Region** | Pointer to **string** | Region is the Ory Network region this identity is homed in. Set by the multi-region persister; empty on OSS and single-region deployments. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] 
 **SchemaId** | **string** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. | 
 **SchemaUrl** | **string** | SchemaURL is the URL of the endpoint where the identity&#39;s traits schema can be fetched from.  format: url | 
 **State** | Pointer to **string** | State is the identity&#39;s state.  This value has currently no effect. active StateActive inactive StateInactive | [optional] 
@@ -263,6 +264,31 @@ SetRecoveryAddresses sets RecoveryAddresses field to given value.
 `func (o *Identity) HasRecoveryAddresses() bool`
 
 HasRecoveryAddresses returns a boolean if a field has been set.
+
+### GetRegion
+
+`func (o *Identity) GetRegion() string`
+
+GetRegion returns the Region field if non-nil, zero value otherwise.
+
+### GetRegionOk
+
+`func (o *Identity) GetRegionOk() (*string, bool)`
+
+GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegion
+
+`func (o *Identity) SetRegion(v string)`
+
+SetRegion sets Region field to given value.
+
+### HasRegion
+
+`func (o *Identity) HasRegion() bool`
+
+HasRegion returns a boolean if a field has been set.
 
 ### GetSchemaId
 

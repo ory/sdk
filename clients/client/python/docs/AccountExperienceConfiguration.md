@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **error_ui_url** | **str** |  | 
 **favicon_dark_url** | **str** |  | [optional] 
 **favicon_light_url** | **str** |  | [optional] 
+**hide_ory_branding** | **bool** |  | 
+**hide_registration_link** | **bool** |  | 
 **locale_behavior** | **str** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
 **login_ui_url** | **str** |  | 
 **logo_dark_url** | **str** |  | [optional] 

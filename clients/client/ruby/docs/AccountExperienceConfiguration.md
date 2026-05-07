@@ -10,6 +10,8 @@
 | **error_ui_url** | **String** |  |  |
 | **favicon_dark_url** | **String** |  | [optional] |
 | **favicon_light_url** | **String** |  | [optional] |
+| **hide_ory_branding** | **Boolean** |  |  |
+| **hide_registration_link** | **Boolean** |  |  |
 | **locale_behavior** | **String** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage |  |
 | **login_ui_url** | **String** |  |  |
 | **logo_dark_url** | **String** |  | [optional] |
@@ -37,6 +39,8 @@ instance = OryClient::AccountExperienceConfiguration.new(
   error_ui_url: null,
   favicon_dark_url: null,
   favicon_light_url: null,
+  hide_ory_branding: null,
+  hide_registration_link: null,
   locale_behavior: null,
   login_ui_url: null,
   logo_dark_url: null,

@@ -18,7 +18,7 @@ Method | HTTP request | Description
 > models::BatchCheckPermissionResult batch_check_permission(max_depth, batch_check_permission_body)
 Batch check permissions
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Parameters
 
@@ -46,10 +46,10 @@ Name | Type | Description  | Required | Notes
 
 ## check_permission
 
-> models::CheckPermissionResult check_permission(namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation, max_depth)
+> models::CheckPermissionResult check_permission(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation, max_depth)
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Parameters
 
@@ -60,9 +60,9 @@ Name | Type | Description  | Required | Notes
 **object** | Option<**String**> | Object of the Relationship |  |
 **relation** | Option<**String**> | Relation of the Relationship |  |
 **subject_id** | Option<**String**> | SubjectID of the Relationship |  |
-**subject_set_period_namespace** | Option<**String**> | Namespace of the Subject Set |  |
-**subject_set_period_object** | Option<**String**> | Object of the Subject Set |  |
-**subject_set_period_relation** | Option<**String**> | Relation of the Subject Set |  |
+**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
 **max_depth** | Option<**i64**> |  |  |
 
 ### Return type
@@ -83,10 +83,10 @@ Name | Type | Description  | Required | Notes
 
 ## check_permission_or_error
 
-> models::CheckPermissionResult check_permission_or_error(namespace, object, relation, subject_id, subject_set_period_namespace, subject_set_period_object, subject_set_period_relation, max_depth)
+> models::CheckPermissionResult check_permission_or_error(namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation, max_depth)
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Parameters
 
@@ -97,9 +97,9 @@ Name | Type | Description  | Required | Notes
 **object** | Option<**String**> | Object of the Relationship |  |
 **relation** | Option<**String**> | Relation of the Relationship |  |
 **subject_id** | Option<**String**> | SubjectID of the Relationship |  |
-**subject_set_period_namespace** | Option<**String**> | Namespace of the Subject Set |  |
-**subject_set_period_object** | Option<**String**> | Object of the Subject Set |  |
-**subject_set_period_relation** | Option<**String**> | Relation of the Subject Set |  |
+**subject_set_namespace** | Option<**String**> | Namespace of the Subject Set |  |
+**subject_set_object** | Option<**String**> | Object of the Subject Set |  |
+**subject_set_relation** | Option<**String**> | Relation of the Subject Set |  |
 **max_depth** | Option<**i64**> |  |  |
 
 ### Return type
@@ -156,7 +156,7 @@ Name | Type | Description  | Required | Notes
 > models::CheckPermissionResult post_check_permission(max_depth, post_check_permission_body)
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Parameters
 
@@ -187,7 +187,7 @@ Name | Type | Description  | Required | Notes
 > models::CheckPermissionResult post_check_permission_or_error(max_depth, post_check_permission_or_error_body)
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 ### Parameters
 
