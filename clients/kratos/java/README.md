@@ -2,7 +2,7 @@
 
 Ory Identities API
 - API version: 
-  - Build date: 2026-05-07T09:41:40.704940+02:00[Europe/Berlin]
+  - Build date: 2026-05-07T09:44:46.644317+02:00[Europe/Berlin]
   - Generator version: 7.12.0
 
 This is the API specification for Ory Identities with features such as registration, login, recovery, account verification, profile settings, password reset, identity management, session management, email and sms delivery, and more.
@@ -86,7 +86,7 @@ import sh.ory.client.ApiClient;
 import sh.ory.client.ApiException;
 import sh.ory.client.Configuration;
 import sh.ory.client.auth.*;
-import sh.ory.client.model.*;
+import sh.ory.model.*;
 import sh.ory.client.api.CourierApi;
 
 public class Example {

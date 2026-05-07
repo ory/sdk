@@ -27,9 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import sh.ory.client.model.CourierMessageStatus;
-import sh.ory.client.model.ErrorGeneric;
-import sh.ory.client.model.Message;
+import sh.ory.model.CourierMessageStatus;
+import sh.ory.model.ErrorGeneric;
+import sh.ory.model.Message;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

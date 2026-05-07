@@ -14,9 +14,9 @@
 package sh.ory.client.api;
 
 import sh.ory.client.ApiException;
-import sh.ory.client.model.CourierMessageStatus;
-import sh.ory.client.model.ErrorGeneric;
-import sh.ory.client.model.Message;
+import sh.ory.model.CourierMessageStatus;
+import sh.ory.model.ErrorGeneric;
+import sh.ory.model.Message;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

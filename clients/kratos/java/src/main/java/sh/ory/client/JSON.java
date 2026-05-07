@@ -58,147 +58,147 @@ public class JSON {
     @SuppressWarnings("unchecked")
     public static GsonBuilder createGson() {
         GsonFireBuilder fireBuilder = new GsonFireBuilder()
-                .registerTypeSelector(sh.ory.client.model.ContinueWith.class, new TypeSelector<sh.ory.client.model.ContinueWith>() {
+                .registerTypeSelector(sh.ory.model.ContinueWith.class, new TypeSelector<sh.ory.model.ContinueWith>() {
                     @Override
-                    public Class<? extends sh.ory.client.model.ContinueWith> getClassForElement(JsonElement readElement) {
+                    public Class<? extends sh.ory.model.ContinueWith> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("redirect_browser_to", sh.ory.client.model.ContinueWithRedirectBrowserTo.class);
-                        classByDiscriminatorValue.put("set_ory_session_token", sh.ory.client.model.ContinueWithSetOrySessionToken.class);
-                        classByDiscriminatorValue.put("show_recovery_ui", sh.ory.client.model.ContinueWithRecoveryUi.class);
-                        classByDiscriminatorValue.put("show_settings_ui", sh.ory.client.model.ContinueWithSettingsUi.class);
-                        classByDiscriminatorValue.put("show_verification_ui", sh.ory.client.model.ContinueWithVerificationUi.class);
-                        classByDiscriminatorValue.put("continueWithRecoveryUi", sh.ory.client.model.ContinueWithRecoveryUi.class);
-                        classByDiscriminatorValue.put("continueWithRedirectBrowserTo", sh.ory.client.model.ContinueWithRedirectBrowserTo.class);
-                        classByDiscriminatorValue.put("continueWithSetOrySessionToken", sh.ory.client.model.ContinueWithSetOrySessionToken.class);
-                        classByDiscriminatorValue.put("continueWithSettingsUi", sh.ory.client.model.ContinueWithSettingsUi.class);
-                        classByDiscriminatorValue.put("continueWithVerificationUi", sh.ory.client.model.ContinueWithVerificationUi.class);
-                        classByDiscriminatorValue.put("continueWith", sh.ory.client.model.ContinueWith.class);
+                        classByDiscriminatorValue.put("redirect_browser_to", sh.ory.model.ContinueWithRedirectBrowserTo.class);
+                        classByDiscriminatorValue.put("set_ory_session_token", sh.ory.model.ContinueWithSetOrySessionToken.class);
+                        classByDiscriminatorValue.put("show_recovery_ui", sh.ory.model.ContinueWithRecoveryUi.class);
+                        classByDiscriminatorValue.put("show_settings_ui", sh.ory.model.ContinueWithSettingsUi.class);
+                        classByDiscriminatorValue.put("show_verification_ui", sh.ory.model.ContinueWithVerificationUi.class);
+                        classByDiscriminatorValue.put("continueWithRecoveryUi", sh.ory.model.ContinueWithRecoveryUi.class);
+                        classByDiscriminatorValue.put("continueWithRedirectBrowserTo", sh.ory.model.ContinueWithRedirectBrowserTo.class);
+                        classByDiscriminatorValue.put("continueWithSetOrySessionToken", sh.ory.model.ContinueWithSetOrySessionToken.class);
+                        classByDiscriminatorValue.put("continueWithSettingsUi", sh.ory.model.ContinueWithSettingsUi.class);
+                        classByDiscriminatorValue.put("continueWithVerificationUi", sh.ory.model.ContinueWithVerificationUi.class);
+                        classByDiscriminatorValue.put("continueWith", sh.ory.model.ContinueWith.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "action"));
                     }
           })
-                .registerTypeSelector(sh.ory.client.model.UiNodeAttributes.class, new TypeSelector<sh.ory.client.model.UiNodeAttributes>() {
+                .registerTypeSelector(sh.ory.model.UiNodeAttributes.class, new TypeSelector<sh.ory.model.UiNodeAttributes>() {
                     @Override
-                    public Class<? extends sh.ory.client.model.UiNodeAttributes> getClassForElement(JsonElement readElement) {
+                    public Class<? extends sh.ory.model.UiNodeAttributes> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("a", sh.ory.client.model.UiNodeAnchorAttributes.class);
-                        classByDiscriminatorValue.put("div", sh.ory.client.model.UiNodeDivisionAttributes.class);
-                        classByDiscriminatorValue.put("img", sh.ory.client.model.UiNodeImageAttributes.class);
-                        classByDiscriminatorValue.put("input", sh.ory.client.model.UiNodeInputAttributes.class);
-                        classByDiscriminatorValue.put("script", sh.ory.client.model.UiNodeScriptAttributes.class);
-                        classByDiscriminatorValue.put("text", sh.ory.client.model.UiNodeTextAttributes.class);
-                        classByDiscriminatorValue.put("uiNodeAnchorAttributes", sh.ory.client.model.UiNodeAnchorAttributes.class);
-                        classByDiscriminatorValue.put("uiNodeDivisionAttributes", sh.ory.client.model.UiNodeDivisionAttributes.class);
-                        classByDiscriminatorValue.put("uiNodeImageAttributes", sh.ory.client.model.UiNodeImageAttributes.class);
-                        classByDiscriminatorValue.put("uiNodeInputAttributes", sh.ory.client.model.UiNodeInputAttributes.class);
-                        classByDiscriminatorValue.put("uiNodeScriptAttributes", sh.ory.client.model.UiNodeScriptAttributes.class);
-                        classByDiscriminatorValue.put("uiNodeTextAttributes", sh.ory.client.model.UiNodeTextAttributes.class);
-                        classByDiscriminatorValue.put("uiNodeAttributes", sh.ory.client.model.UiNodeAttributes.class);
+                        classByDiscriminatorValue.put("a", sh.ory.model.UiNodeAnchorAttributes.class);
+                        classByDiscriminatorValue.put("div", sh.ory.model.UiNodeDivisionAttributes.class);
+                        classByDiscriminatorValue.put("img", sh.ory.model.UiNodeImageAttributes.class);
+                        classByDiscriminatorValue.put("input", sh.ory.model.UiNodeInputAttributes.class);
+                        classByDiscriminatorValue.put("script", sh.ory.model.UiNodeScriptAttributes.class);
+                        classByDiscriminatorValue.put("text", sh.ory.model.UiNodeTextAttributes.class);
+                        classByDiscriminatorValue.put("uiNodeAnchorAttributes", sh.ory.model.UiNodeAnchorAttributes.class);
+                        classByDiscriminatorValue.put("uiNodeDivisionAttributes", sh.ory.model.UiNodeDivisionAttributes.class);
+                        classByDiscriminatorValue.put("uiNodeImageAttributes", sh.ory.model.UiNodeImageAttributes.class);
+                        classByDiscriminatorValue.put("uiNodeInputAttributes", sh.ory.model.UiNodeInputAttributes.class);
+                        classByDiscriminatorValue.put("uiNodeScriptAttributes", sh.ory.model.UiNodeScriptAttributes.class);
+                        classByDiscriminatorValue.put("uiNodeTextAttributes", sh.ory.model.UiNodeTextAttributes.class);
+                        classByDiscriminatorValue.put("uiNodeAttributes", sh.ory.model.UiNodeAttributes.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "node_type"));
                     }
           })
-                .registerTypeSelector(sh.ory.client.model.UpdateLoginFlowBody.class, new TypeSelector<sh.ory.client.model.UpdateLoginFlowBody>() {
+                .registerTypeSelector(sh.ory.model.UpdateLoginFlowBody.class, new TypeSelector<sh.ory.model.UpdateLoginFlowBody>() {
                     @Override
-                    public Class<? extends sh.ory.client.model.UpdateLoginFlowBody> getClassForElement(JsonElement readElement) {
+                    public Class<? extends sh.ory.model.UpdateLoginFlowBody> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("code", sh.ory.client.model.UpdateLoginFlowWithCodeMethod.class);
-                        classByDiscriminatorValue.put("deviceauthn", sh.ory.client.model.UpdateLoginFlowWithDeviceAuthnMethod.class);
-                        classByDiscriminatorValue.put("identifier_first", sh.ory.client.model.UpdateLoginFlowWithIdentifierFirstMethod.class);
-                        classByDiscriminatorValue.put("lookup_secret", sh.ory.client.model.UpdateLoginFlowWithLookupSecretMethod.class);
-                        classByDiscriminatorValue.put("oidc", sh.ory.client.model.UpdateLoginFlowWithOidcMethod.class);
-                        classByDiscriminatorValue.put("passkey", sh.ory.client.model.UpdateLoginFlowWithPasskeyMethod.class);
-                        classByDiscriminatorValue.put("password", sh.ory.client.model.UpdateLoginFlowWithPasswordMethod.class);
-                        classByDiscriminatorValue.put("saml", sh.ory.client.model.UpdateLoginFlowWithSamlMethod.class);
-                        classByDiscriminatorValue.put("totp", sh.ory.client.model.UpdateLoginFlowWithTotpMethod.class);
-                        classByDiscriminatorValue.put("webauthn", sh.ory.client.model.UpdateLoginFlowWithWebAuthnMethod.class);
-                        classByDiscriminatorValue.put("updateLoginFlowWithCodeMethod", sh.ory.client.model.UpdateLoginFlowWithCodeMethod.class);
-                        classByDiscriminatorValue.put("updateLoginFlowWithDeviceAuthnMethod", sh.ory.client.model.UpdateLoginFlowWithDeviceAuthnMethod.class);
-                        classByDiscriminatorValue.put("updateLoginFlowWithIdentifierFirstMethod", sh.ory.client.model.UpdateLoginFlowWithIdentifierFirstMethod.class);
-                        classByDiscriminatorValue.put("updateLoginFlowWithLookupSecretMethod", sh.ory.client.model.UpdateLoginFlowWithLookupSecretMethod.class);
-                        classByDiscriminatorValue.put("updateLoginFlowWithOidcMethod", sh.ory.client.model.UpdateLoginFlowWithOidcMethod.class);
-                        classByDiscriminatorValue.put("updateLoginFlowWithPasskeyMethod", sh.ory.client.model.UpdateLoginFlowWithPasskeyMethod.class);
-                        classByDiscriminatorValue.put("updateLoginFlowWithPasswordMethod", sh.ory.client.model.UpdateLoginFlowWithPasswordMethod.class);
-                        classByDiscriminatorValue.put("updateLoginFlowWithSamlMethod", sh.ory.client.model.UpdateLoginFlowWithSamlMethod.class);
-                        classByDiscriminatorValue.put("updateLoginFlowWithTotpMethod", sh.ory.client.model.UpdateLoginFlowWithTotpMethod.class);
-                        classByDiscriminatorValue.put("updateLoginFlowWithWebAuthnMethod", sh.ory.client.model.UpdateLoginFlowWithWebAuthnMethod.class);
-                        classByDiscriminatorValue.put("updateLoginFlowBody", sh.ory.client.model.UpdateLoginFlowBody.class);
+                        classByDiscriminatorValue.put("code", sh.ory.model.UpdateLoginFlowWithCodeMethod.class);
+                        classByDiscriminatorValue.put("deviceauthn", sh.ory.model.UpdateLoginFlowWithDeviceAuthnMethod.class);
+                        classByDiscriminatorValue.put("identifier_first", sh.ory.model.UpdateLoginFlowWithIdentifierFirstMethod.class);
+                        classByDiscriminatorValue.put("lookup_secret", sh.ory.model.UpdateLoginFlowWithLookupSecretMethod.class);
+                        classByDiscriminatorValue.put("oidc", sh.ory.model.UpdateLoginFlowWithOidcMethod.class);
+                        classByDiscriminatorValue.put("passkey", sh.ory.model.UpdateLoginFlowWithPasskeyMethod.class);
+                        classByDiscriminatorValue.put("password", sh.ory.model.UpdateLoginFlowWithPasswordMethod.class);
+                        classByDiscriminatorValue.put("saml", sh.ory.model.UpdateLoginFlowWithSamlMethod.class);
+                        classByDiscriminatorValue.put("totp", sh.ory.model.UpdateLoginFlowWithTotpMethod.class);
+                        classByDiscriminatorValue.put("webauthn", sh.ory.model.UpdateLoginFlowWithWebAuthnMethod.class);
+                        classByDiscriminatorValue.put("updateLoginFlowWithCodeMethod", sh.ory.model.UpdateLoginFlowWithCodeMethod.class);
+                        classByDiscriminatorValue.put("updateLoginFlowWithDeviceAuthnMethod", sh.ory.model.UpdateLoginFlowWithDeviceAuthnMethod.class);
+                        classByDiscriminatorValue.put("updateLoginFlowWithIdentifierFirstMethod", sh.ory.model.UpdateLoginFlowWithIdentifierFirstMethod.class);
+                        classByDiscriminatorValue.put("updateLoginFlowWithLookupSecretMethod", sh.ory.model.UpdateLoginFlowWithLookupSecretMethod.class);
+                        classByDiscriminatorValue.put("updateLoginFlowWithOidcMethod", sh.ory.model.UpdateLoginFlowWithOidcMethod.class);
+                        classByDiscriminatorValue.put("updateLoginFlowWithPasskeyMethod", sh.ory.model.UpdateLoginFlowWithPasskeyMethod.class);
+                        classByDiscriminatorValue.put("updateLoginFlowWithPasswordMethod", sh.ory.model.UpdateLoginFlowWithPasswordMethod.class);
+                        classByDiscriminatorValue.put("updateLoginFlowWithSamlMethod", sh.ory.model.UpdateLoginFlowWithSamlMethod.class);
+                        classByDiscriminatorValue.put("updateLoginFlowWithTotpMethod", sh.ory.model.UpdateLoginFlowWithTotpMethod.class);
+                        classByDiscriminatorValue.put("updateLoginFlowWithWebAuthnMethod", sh.ory.model.UpdateLoginFlowWithWebAuthnMethod.class);
+                        classByDiscriminatorValue.put("updateLoginFlowBody", sh.ory.model.UpdateLoginFlowBody.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "method"));
                     }
           })
-                .registerTypeSelector(sh.ory.client.model.UpdateRecoveryFlowBody.class, new TypeSelector<sh.ory.client.model.UpdateRecoveryFlowBody>() {
+                .registerTypeSelector(sh.ory.model.UpdateRecoveryFlowBody.class, new TypeSelector<sh.ory.model.UpdateRecoveryFlowBody>() {
                     @Override
-                    public Class<? extends sh.ory.client.model.UpdateRecoveryFlowBody> getClassForElement(JsonElement readElement) {
+                    public Class<? extends sh.ory.model.UpdateRecoveryFlowBody> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("code", sh.ory.client.model.UpdateRecoveryFlowWithCodeMethod.class);
-                        classByDiscriminatorValue.put("link", sh.ory.client.model.UpdateRecoveryFlowWithLinkMethod.class);
-                        classByDiscriminatorValue.put("updateRecoveryFlowWithCodeMethod", sh.ory.client.model.UpdateRecoveryFlowWithCodeMethod.class);
-                        classByDiscriminatorValue.put("updateRecoveryFlowWithLinkMethod", sh.ory.client.model.UpdateRecoveryFlowWithLinkMethod.class);
-                        classByDiscriminatorValue.put("updateRecoveryFlowBody", sh.ory.client.model.UpdateRecoveryFlowBody.class);
+                        classByDiscriminatorValue.put("code", sh.ory.model.UpdateRecoveryFlowWithCodeMethod.class);
+                        classByDiscriminatorValue.put("link", sh.ory.model.UpdateRecoveryFlowWithLinkMethod.class);
+                        classByDiscriminatorValue.put("updateRecoveryFlowWithCodeMethod", sh.ory.model.UpdateRecoveryFlowWithCodeMethod.class);
+                        classByDiscriminatorValue.put("updateRecoveryFlowWithLinkMethod", sh.ory.model.UpdateRecoveryFlowWithLinkMethod.class);
+                        classByDiscriminatorValue.put("updateRecoveryFlowBody", sh.ory.model.UpdateRecoveryFlowBody.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "method"));
                     }
           })
-                .registerTypeSelector(sh.ory.client.model.UpdateRegistrationFlowBody.class, new TypeSelector<sh.ory.client.model.UpdateRegistrationFlowBody>() {
+                .registerTypeSelector(sh.ory.model.UpdateRegistrationFlowBody.class, new TypeSelector<sh.ory.model.UpdateRegistrationFlowBody>() {
                     @Override
-                    public Class<? extends sh.ory.client.model.UpdateRegistrationFlowBody> getClassForElement(JsonElement readElement) {
+                    public Class<? extends sh.ory.model.UpdateRegistrationFlowBody> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("code", sh.ory.client.model.UpdateRegistrationFlowWithCodeMethod.class);
-                        classByDiscriminatorValue.put("oidc", sh.ory.client.model.UpdateRegistrationFlowWithOidcMethod.class);
-                        classByDiscriminatorValue.put("passkey", sh.ory.client.model.UpdateRegistrationFlowWithPasskeyMethod.class);
-                        classByDiscriminatorValue.put("password", sh.ory.client.model.UpdateRegistrationFlowWithPasswordMethod.class);
-                        classByDiscriminatorValue.put("profile", sh.ory.client.model.UpdateRegistrationFlowWithProfileMethod.class);
-                        classByDiscriminatorValue.put("saml", sh.ory.client.model.UpdateRegistrationFlowWithSamlMethod.class);
-                        classByDiscriminatorValue.put("webauthn", sh.ory.client.model.UpdateRegistrationFlowWithWebAuthnMethod.class);
-                        classByDiscriminatorValue.put("updateRegistrationFlowWithCodeMethod", sh.ory.client.model.UpdateRegistrationFlowWithCodeMethod.class);
-                        classByDiscriminatorValue.put("updateRegistrationFlowWithOidcMethod", sh.ory.client.model.UpdateRegistrationFlowWithOidcMethod.class);
-                        classByDiscriminatorValue.put("updateRegistrationFlowWithPasskeyMethod", sh.ory.client.model.UpdateRegistrationFlowWithPasskeyMethod.class);
-                        classByDiscriminatorValue.put("updateRegistrationFlowWithPasswordMethod", sh.ory.client.model.UpdateRegistrationFlowWithPasswordMethod.class);
-                        classByDiscriminatorValue.put("updateRegistrationFlowWithProfileMethod", sh.ory.client.model.UpdateRegistrationFlowWithProfileMethod.class);
-                        classByDiscriminatorValue.put("updateRegistrationFlowWithSamlMethod", sh.ory.client.model.UpdateRegistrationFlowWithSamlMethod.class);
-                        classByDiscriminatorValue.put("updateRegistrationFlowWithWebAuthnMethod", sh.ory.client.model.UpdateRegistrationFlowWithWebAuthnMethod.class);
-                        classByDiscriminatorValue.put("updateRegistrationFlowBody", sh.ory.client.model.UpdateRegistrationFlowBody.class);
+                        classByDiscriminatorValue.put("code", sh.ory.model.UpdateRegistrationFlowWithCodeMethod.class);
+                        classByDiscriminatorValue.put("oidc", sh.ory.model.UpdateRegistrationFlowWithOidcMethod.class);
+                        classByDiscriminatorValue.put("passkey", sh.ory.model.UpdateRegistrationFlowWithPasskeyMethod.class);
+                        classByDiscriminatorValue.put("password", sh.ory.model.UpdateRegistrationFlowWithPasswordMethod.class);
+                        classByDiscriminatorValue.put("profile", sh.ory.model.UpdateRegistrationFlowWithProfileMethod.class);
+                        classByDiscriminatorValue.put("saml", sh.ory.model.UpdateRegistrationFlowWithSamlMethod.class);
+                        classByDiscriminatorValue.put("webauthn", sh.ory.model.UpdateRegistrationFlowWithWebAuthnMethod.class);
+                        classByDiscriminatorValue.put("updateRegistrationFlowWithCodeMethod", sh.ory.model.UpdateRegistrationFlowWithCodeMethod.class);
+                        classByDiscriminatorValue.put("updateRegistrationFlowWithOidcMethod", sh.ory.model.UpdateRegistrationFlowWithOidcMethod.class);
+                        classByDiscriminatorValue.put("updateRegistrationFlowWithPasskeyMethod", sh.ory.model.UpdateRegistrationFlowWithPasskeyMethod.class);
+                        classByDiscriminatorValue.put("updateRegistrationFlowWithPasswordMethod", sh.ory.model.UpdateRegistrationFlowWithPasswordMethod.class);
+                        classByDiscriminatorValue.put("updateRegistrationFlowWithProfileMethod", sh.ory.model.UpdateRegistrationFlowWithProfileMethod.class);
+                        classByDiscriminatorValue.put("updateRegistrationFlowWithSamlMethod", sh.ory.model.UpdateRegistrationFlowWithSamlMethod.class);
+                        classByDiscriminatorValue.put("updateRegistrationFlowWithWebAuthnMethod", sh.ory.model.UpdateRegistrationFlowWithWebAuthnMethod.class);
+                        classByDiscriminatorValue.put("updateRegistrationFlowBody", sh.ory.model.UpdateRegistrationFlowBody.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "method"));
                     }
           })
-                .registerTypeSelector(sh.ory.client.model.UpdateSettingsFlowBody.class, new TypeSelector<sh.ory.client.model.UpdateSettingsFlowBody>() {
+                .registerTypeSelector(sh.ory.model.UpdateSettingsFlowBody.class, new TypeSelector<sh.ory.model.UpdateSettingsFlowBody>() {
                     @Override
-                    public Class<? extends sh.ory.client.model.UpdateSettingsFlowBody> getClassForElement(JsonElement readElement) {
+                    public Class<? extends sh.ory.model.UpdateSettingsFlowBody> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("deviceauthn", sh.ory.client.model.UpdateSettingsFlowWithDeviceAuthnMethod.class);
-                        classByDiscriminatorValue.put("lookup_secret", sh.ory.client.model.UpdateSettingsFlowWithLookupMethod.class);
-                        classByDiscriminatorValue.put("oidc", sh.ory.client.model.UpdateSettingsFlowWithOidcMethod.class);
-                        classByDiscriminatorValue.put("passkey", sh.ory.client.model.UpdateSettingsFlowWithPasskeyMethod.class);
-                        classByDiscriminatorValue.put("password", sh.ory.client.model.UpdateSettingsFlowWithPasswordMethod.class);
-                        classByDiscriminatorValue.put("profile", sh.ory.client.model.UpdateSettingsFlowWithProfileMethod.class);
-                        classByDiscriminatorValue.put("saml", sh.ory.client.model.UpdateSettingsFlowWithSamlMethod.class);
-                        classByDiscriminatorValue.put("totp", sh.ory.client.model.UpdateSettingsFlowWithTotpMethod.class);
-                        classByDiscriminatorValue.put("webauthn", sh.ory.client.model.UpdateSettingsFlowWithWebAuthnMethod.class);
-                        classByDiscriminatorValue.put("updateSettingsFlowWithDeviceAuthnMethod", sh.ory.client.model.UpdateSettingsFlowWithDeviceAuthnMethod.class);
-                        classByDiscriminatorValue.put("updateSettingsFlowWithLookupMethod", sh.ory.client.model.UpdateSettingsFlowWithLookupMethod.class);
-                        classByDiscriminatorValue.put("updateSettingsFlowWithOidcMethod", sh.ory.client.model.UpdateSettingsFlowWithOidcMethod.class);
-                        classByDiscriminatorValue.put("updateSettingsFlowWithPasskeyMethod", sh.ory.client.model.UpdateSettingsFlowWithPasskeyMethod.class);
-                        classByDiscriminatorValue.put("updateSettingsFlowWithPasswordMethod", sh.ory.client.model.UpdateSettingsFlowWithPasswordMethod.class);
-                        classByDiscriminatorValue.put("updateSettingsFlowWithProfileMethod", sh.ory.client.model.UpdateSettingsFlowWithProfileMethod.class);
-                        classByDiscriminatorValue.put("updateSettingsFlowWithSamlMethod", sh.ory.client.model.UpdateSettingsFlowWithSamlMethod.class);
-                        classByDiscriminatorValue.put("updateSettingsFlowWithTotpMethod", sh.ory.client.model.UpdateSettingsFlowWithTotpMethod.class);
-                        classByDiscriminatorValue.put("updateSettingsFlowWithWebAuthnMethod", sh.ory.client.model.UpdateSettingsFlowWithWebAuthnMethod.class);
-                        classByDiscriminatorValue.put("updateSettingsFlowBody", sh.ory.client.model.UpdateSettingsFlowBody.class);
+                        classByDiscriminatorValue.put("deviceauthn", sh.ory.model.UpdateSettingsFlowWithDeviceAuthnMethod.class);
+                        classByDiscriminatorValue.put("lookup_secret", sh.ory.model.UpdateSettingsFlowWithLookupMethod.class);
+                        classByDiscriminatorValue.put("oidc", sh.ory.model.UpdateSettingsFlowWithOidcMethod.class);
+                        classByDiscriminatorValue.put("passkey", sh.ory.model.UpdateSettingsFlowWithPasskeyMethod.class);
+                        classByDiscriminatorValue.put("password", sh.ory.model.UpdateSettingsFlowWithPasswordMethod.class);
+                        classByDiscriminatorValue.put("profile", sh.ory.model.UpdateSettingsFlowWithProfileMethod.class);
+                        classByDiscriminatorValue.put("saml", sh.ory.model.UpdateSettingsFlowWithSamlMethod.class);
+                        classByDiscriminatorValue.put("totp", sh.ory.model.UpdateSettingsFlowWithTotpMethod.class);
+                        classByDiscriminatorValue.put("webauthn", sh.ory.model.UpdateSettingsFlowWithWebAuthnMethod.class);
+                        classByDiscriminatorValue.put("updateSettingsFlowWithDeviceAuthnMethod", sh.ory.model.UpdateSettingsFlowWithDeviceAuthnMethod.class);
+                        classByDiscriminatorValue.put("updateSettingsFlowWithLookupMethod", sh.ory.model.UpdateSettingsFlowWithLookupMethod.class);
+                        classByDiscriminatorValue.put("updateSettingsFlowWithOidcMethod", sh.ory.model.UpdateSettingsFlowWithOidcMethod.class);
+                        classByDiscriminatorValue.put("updateSettingsFlowWithPasskeyMethod", sh.ory.model.UpdateSettingsFlowWithPasskeyMethod.class);
+                        classByDiscriminatorValue.put("updateSettingsFlowWithPasswordMethod", sh.ory.model.UpdateSettingsFlowWithPasswordMethod.class);
+                        classByDiscriminatorValue.put("updateSettingsFlowWithProfileMethod", sh.ory.model.UpdateSettingsFlowWithProfileMethod.class);
+                        classByDiscriminatorValue.put("updateSettingsFlowWithSamlMethod", sh.ory.model.UpdateSettingsFlowWithSamlMethod.class);
+                        classByDiscriminatorValue.put("updateSettingsFlowWithTotpMethod", sh.ory.model.UpdateSettingsFlowWithTotpMethod.class);
+                        classByDiscriminatorValue.put("updateSettingsFlowWithWebAuthnMethod", sh.ory.model.UpdateSettingsFlowWithWebAuthnMethod.class);
+                        classByDiscriminatorValue.put("updateSettingsFlowBody", sh.ory.model.UpdateSettingsFlowBody.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "method"));
                     }
           })
-                .registerTypeSelector(sh.ory.client.model.UpdateVerificationFlowBody.class, new TypeSelector<sh.ory.client.model.UpdateVerificationFlowBody>() {
+                .registerTypeSelector(sh.ory.model.UpdateVerificationFlowBody.class, new TypeSelector<sh.ory.model.UpdateVerificationFlowBody>() {
                     @Override
-                    public Class<? extends sh.ory.client.model.UpdateVerificationFlowBody> getClassForElement(JsonElement readElement) {
+                    public Class<? extends sh.ory.model.UpdateVerificationFlowBody> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("code", sh.ory.client.model.UpdateVerificationFlowWithCodeMethod.class);
-                        classByDiscriminatorValue.put("link", sh.ory.client.model.UpdateVerificationFlowWithLinkMethod.class);
-                        classByDiscriminatorValue.put("updateVerificationFlowWithCodeMethod", sh.ory.client.model.UpdateVerificationFlowWithCodeMethod.class);
-                        classByDiscriminatorValue.put("updateVerificationFlowWithLinkMethod", sh.ory.client.model.UpdateVerificationFlowWithLinkMethod.class);
-                        classByDiscriminatorValue.put("updateVerificationFlowBody", sh.ory.client.model.UpdateVerificationFlowBody.class);
+                        classByDiscriminatorValue.put("code", sh.ory.model.UpdateVerificationFlowWithCodeMethod.class);
+                        classByDiscriminatorValue.put("link", sh.ory.model.UpdateVerificationFlowWithLinkMethod.class);
+                        classByDiscriminatorValue.put("updateVerificationFlowWithCodeMethod", sh.ory.model.UpdateVerificationFlowWithCodeMethod.class);
+                        classByDiscriminatorValue.put("updateVerificationFlowWithLinkMethod", sh.ory.model.UpdateVerificationFlowWithLinkMethod.class);
+                        classByDiscriminatorValue.put("updateVerificationFlowBody", sh.ory.model.UpdateVerificationFlowBody.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "method"));
                     }
@@ -238,157 +238,157 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter);
         gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.AdminIdentityImportCredentialsLookupSecret.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.AdminIdentityImportCredentialsLookupSecretConfig.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.BatchPatchIdentitiesResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ContinueWith.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ContinueWithRecoveryUi.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ContinueWithRecoveryUiFlow.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ContinueWithRedirectBrowserTo.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ContinueWithSetOrySessionToken.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ContinueWithSettingsUi.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ContinueWithSettingsUiFlow.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ContinueWithVerificationUi.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ContinueWithVerificationUiFlow.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.CreateFedcmFlowResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.CreateIdentityBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.CreateRecoveryCodeForIdentityBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.CreateRecoveryLinkForIdentityBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.CreateTestLoginFlowBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.DeleteMySessionsCount.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.DeviceAuthnAndroidAuthorizationList.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.DeviceAuthnAndroidKeyDescription.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.DeviceAuthnAndroidRootOfTrust.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.DeviceAuthnAttestation.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.DeviceAuthnIOSAttStmt.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.DeviceAuthnIOSAttestation.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.DeviceAuthnKey.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ErrorAuthenticatorAssuranceLevelNotSatisfied.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ErrorBrowserLocationChangeRequired.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ErrorFlowReplaced.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.ErrorGeneric.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.FlowError.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.GenericError.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.GetVersion200Response.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.HealthNotReadyStatus.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.HealthStatus.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.Identity.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityCredentials.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityCredentialsCode.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityCredentialsCodeAddress.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityCredentialsLookupSecretCode.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityCredentialsOidc.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityCredentialsOidcProvider.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityCredentialsPassword.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityCredentialsWebAuthn.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityCredentialsWebAuthnAttestation.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityCredentialsWebAuthnAuthenticator.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityCredentialsWebAuthnFlags.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityPatch.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityPatchResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentitySchemaContainer.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentials.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsOidc.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsOidcConfig.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsOidcConfigProvider.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsPasskey.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsPasskeyConfig.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsPassword.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsPasswordConfig.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsSaml.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsSamlConfig.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsSamlConfigProvider.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsTotp.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsTotpConfig.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsWebAuthn.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IdentityWithCredentialsWebAuthnConfig.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IsAlive200Response.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.IsReady503Response.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.JsonPatch.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.LoginFlow.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.LoginFlowTestContext.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.LoginFlowTestDebugPayload.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.LoginFlowTestSchemaValidationError.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.LoginFlowTestStepError.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.LogoutFlow.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.Message.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.MessageDispatch.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.NeedsPrivilegedSessionError.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.OAuth2Client.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.OAuth2ConsentRequestOpenIDConnectContext.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.OAuth2LoginRequest.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.PatchIdentitiesBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.PerformNativeLogoutBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.Provider.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.RecoveryCodeForIdentity.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.RecoveryFlow.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.RecoveryIdentityAddress.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.RecoveryLinkForIdentity.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.RegistrationFlow.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.SelfServiceFlowExpiredError.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.Session.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.SessionAuthenticationMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.SessionDevice.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.SettingsFlow.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.SuccessfulCodeExchangeResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.SuccessfulNativeLogin.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.SuccessfulNativeRegistration.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.TokenPagination.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.TokenPaginationHeaders.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiContainer.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiNode.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiNodeAnchorAttributes.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiNodeAttributes.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiNodeDivisionAttributes.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiNodeImageAttributes.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiNodeInputAttributes.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiNodeInputAttributesOption.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiNodeMeta.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiNodeScriptAttributes.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiNodeTextAttributes.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UiText.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateFedcmFlowBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateIdentityBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateLoginFlowBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateLoginFlowWithCodeMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateLoginFlowWithDeviceAuthnMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateLoginFlowWithIdentifierFirstMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateLoginFlowWithLookupSecretMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateLoginFlowWithOidcMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateLoginFlowWithPasskeyMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateLoginFlowWithPasswordMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateLoginFlowWithSamlMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateLoginFlowWithTotpMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateLoginFlowWithWebAuthnMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateRecoveryFlowBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateRecoveryFlowWithCodeMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateRecoveryFlowWithLinkMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateRegistrationFlowBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateRegistrationFlowWithCodeMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateRegistrationFlowWithOidcMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateRegistrationFlowWithPasskeyMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateRegistrationFlowWithPasswordMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateRegistrationFlowWithProfileMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateRegistrationFlowWithSamlMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateRegistrationFlowWithWebAuthnMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowWithDeviceAuthnMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowWithDeviceAuthnMethodAdd.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowWithDeviceAuthnMethodDelete.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowWithLookupMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowWithOidcMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowWithPasskeyMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowWithPasswordMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowWithProfileMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowWithSamlMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowWithTotpMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateSettingsFlowWithWebAuthnMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateVerificationFlowBody.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateVerificationFlowWithCodeMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.UpdateVerificationFlowWithLinkMethod.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.VerifiableIdentityAddress.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.VerificationFlow.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new sh.ory.client.model.Version.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.AdminIdentityImportCredentialsLookupSecret.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.AdminIdentityImportCredentialsLookupSecretConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.BatchPatchIdentitiesResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ContinueWith.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ContinueWithRecoveryUi.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ContinueWithRecoveryUiFlow.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ContinueWithRedirectBrowserTo.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ContinueWithSetOrySessionToken.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ContinueWithSettingsUi.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ContinueWithSettingsUiFlow.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ContinueWithVerificationUi.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ContinueWithVerificationUiFlow.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.CreateFedcmFlowResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.CreateIdentityBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.CreateRecoveryCodeForIdentityBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.CreateRecoveryLinkForIdentityBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.CreateTestLoginFlowBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.DeleteMySessionsCount.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.DeviceAuthnAndroidAuthorizationList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.DeviceAuthnAndroidKeyDescription.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.DeviceAuthnAndroidRootOfTrust.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.DeviceAuthnAttestation.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.DeviceAuthnIOSAttStmt.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.DeviceAuthnIOSAttestation.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.DeviceAuthnKey.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ErrorAuthenticatorAssuranceLevelNotSatisfied.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ErrorBrowserLocationChangeRequired.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ErrorFlowReplaced.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.ErrorGeneric.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.FlowError.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.GenericError.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.GetVersion200Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.HealthNotReadyStatus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.HealthStatus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.Identity.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityCredentials.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityCredentialsCode.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityCredentialsCodeAddress.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityCredentialsLookupSecretCode.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityCredentialsOidc.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityCredentialsOidcProvider.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityCredentialsPassword.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityCredentialsWebAuthn.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityCredentialsWebAuthnAttestation.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityCredentialsWebAuthnAuthenticator.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityCredentialsWebAuthnFlags.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityPatch.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityPatchResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentitySchemaContainer.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentials.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsOidc.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsOidcConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsOidcConfigProvider.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsPasskey.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsPasskeyConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsPassword.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsPasswordConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsSaml.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsSamlConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsSamlConfigProvider.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsTotp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsTotpConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsWebAuthn.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IdentityWithCredentialsWebAuthnConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IsAlive200Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.IsReady503Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.JsonPatch.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.LoginFlow.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.LoginFlowTestContext.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.LoginFlowTestDebugPayload.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.LoginFlowTestSchemaValidationError.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.LoginFlowTestStepError.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.LogoutFlow.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.Message.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.MessageDispatch.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.NeedsPrivilegedSessionError.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.OAuth2Client.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.OAuth2ConsentRequestOpenIDConnectContext.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.OAuth2LoginRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.PatchIdentitiesBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.PerformNativeLogoutBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.Provider.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.RecoveryCodeForIdentity.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.RecoveryFlow.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.RecoveryIdentityAddress.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.RecoveryLinkForIdentity.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.RegistrationFlow.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.SelfServiceFlowExpiredError.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.Session.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.SessionAuthenticationMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.SessionDevice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.SettingsFlow.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.SuccessfulCodeExchangeResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.SuccessfulNativeLogin.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.SuccessfulNativeRegistration.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.TokenPagination.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.TokenPaginationHeaders.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiContainer.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiNode.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiNodeAnchorAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiNodeAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiNodeDivisionAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiNodeImageAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiNodeInputAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiNodeInputAttributesOption.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiNodeMeta.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiNodeScriptAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiNodeTextAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UiText.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateFedcmFlowBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateIdentityBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateLoginFlowBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateLoginFlowWithCodeMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateLoginFlowWithDeviceAuthnMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateLoginFlowWithIdentifierFirstMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateLoginFlowWithLookupSecretMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateLoginFlowWithOidcMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateLoginFlowWithPasskeyMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateLoginFlowWithPasswordMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateLoginFlowWithSamlMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateLoginFlowWithTotpMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateLoginFlowWithWebAuthnMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateRecoveryFlowBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateRecoveryFlowWithCodeMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateRecoveryFlowWithLinkMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateRegistrationFlowBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateRegistrationFlowWithCodeMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateRegistrationFlowWithOidcMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateRegistrationFlowWithPasskeyMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateRegistrationFlowWithPasswordMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateRegistrationFlowWithProfileMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateRegistrationFlowWithSamlMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateRegistrationFlowWithWebAuthnMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowWithDeviceAuthnMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowWithDeviceAuthnMethodAdd.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowWithDeviceAuthnMethodDelete.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowWithLookupMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowWithOidcMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowWithPasskeyMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowWithPasswordMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowWithProfileMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowWithSamlMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowWithTotpMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateSettingsFlowWithWebAuthnMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateVerificationFlowBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateVerificationFlowWithCodeMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.UpdateVerificationFlowWithLinkMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.VerifiableIdentityAddress.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.VerificationFlow.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new sh.ory.model.Version.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 

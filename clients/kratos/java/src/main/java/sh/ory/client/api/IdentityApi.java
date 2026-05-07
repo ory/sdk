@@ -27,21 +27,21 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import sh.ory.client.model.BatchPatchIdentitiesResponse;
-import sh.ory.client.model.CreateIdentityBody;
-import sh.ory.client.model.CreateRecoveryCodeForIdentityBody;
-import sh.ory.client.model.CreateRecoveryLinkForIdentityBody;
-import sh.ory.client.model.CreateTestLoginFlowBody;
-import sh.ory.client.model.ErrorGeneric;
-import sh.ory.client.model.Identity;
-import sh.ory.client.model.IdentitySchemaContainer;
-import sh.ory.client.model.JsonPatch;
-import sh.ory.client.model.LoginFlow;
-import sh.ory.client.model.PatchIdentitiesBody;
-import sh.ory.client.model.RecoveryCodeForIdentity;
-import sh.ory.client.model.RecoveryLinkForIdentity;
-import sh.ory.client.model.Session;
-import sh.ory.client.model.UpdateIdentityBody;
+import sh.ory.model.BatchPatchIdentitiesResponse;
+import sh.ory.model.CreateIdentityBody;
+import sh.ory.model.CreateRecoveryCodeForIdentityBody;
+import sh.ory.model.CreateRecoveryLinkForIdentityBody;
+import sh.ory.model.CreateTestLoginFlowBody;
+import sh.ory.model.ErrorGeneric;
+import sh.ory.model.Identity;
+import sh.ory.model.IdentitySchemaContainer;
+import sh.ory.model.JsonPatch;
+import sh.ory.model.LoginFlow;
+import sh.ory.model.PatchIdentitiesBody;
+import sh.ory.model.RecoveryCodeForIdentity;
+import sh.ory.model.RecoveryLinkForIdentity;
+import sh.ory.model.Session;
+import sh.ory.model.UpdateIdentityBody;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

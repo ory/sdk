@@ -27,9 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import sh.ory.client.model.GetVersion200Response;
-import sh.ory.client.model.IsAlive200Response;
-import sh.ory.client.model.IsReady503Response;
+import sh.ory.model.GetVersion200Response;
+import sh.ory.model.IsAlive200Response;
+import sh.ory.model.IsReady503Response;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

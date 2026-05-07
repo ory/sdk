@@ -14,9 +14,9 @@
 package sh.ory.client.api;
 
 import sh.ory.client.ApiException;
-import sh.ory.client.model.GetVersion200Response;
-import sh.ory.client.model.IsAlive200Response;
-import sh.ory.client.model.IsReady503Response;
+import sh.ory.model.GetVersion200Response;
+import sh.ory.model.IsAlive200Response;
+import sh.ory.model.IsReady503Response;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
