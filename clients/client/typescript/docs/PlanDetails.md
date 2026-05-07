@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **production_features** | [**{ [key: string]: GenericUsage; }**](GenericUsage.md) |  | [default to undefined]
 **staging_features** | [**{ [key: string]: GenericUsage; }**](GenericUsage.md) |  | [default to undefined]
 **version** | **number** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. | [default to undefined]
+**yearly_only** | **boolean** | YearlyOnly is true if the plan only supports yearly billing. | [default to undefined]
 
 ## Example
 
@@ -34,6 +35,7 @@ const instance: PlanDetails = {
     production_features,
     staging_features,
     version,
+    yearly_only,
 };
 ```
 

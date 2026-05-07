@@ -17,6 +17,7 @@ Name | Type
 `production_features` | [{ [key: string]: GenericUsage; }](GenericUsage.md)
 `staging_features` | [{ [key: string]: GenericUsage; }](GenericUsage.md)
 `version` | number
+`yearly_only` | boolean
 
 ## Example
 
@@ -36,6 +37,7 @@ const example = {
   "production_features": null,
   "staging_features": null,
   "version": null,
+  "yearly_only": null,
 } satisfies PlanDetails
 
 console.log(example)

@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **ErrorUiUrl** | **string** |  | 
 **FaviconDarkUrl** | Pointer to **string** |  | [optional] 
 **FaviconLightUrl** | Pointer to **string** |  | [optional] 
+**HideOryBranding** | **bool** |  | 
+**HideRegistrationLink** | **bool** |  | 
 **LocaleBehavior** | **string** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
 **LoginUiUrl** | **string** |  | 
 **LogoDarkUrl** | Pointer to **string** |  | [optional] 
@@ -29,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewAccountExperienceConfiguration
 
-`func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, enabledLocales []string, errorUiUrl string, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, translations []RevisionAccountExperienceCustomTranslation, verificationEnabled bool, verificationUiUrl string, ) *AccountExperienceConfiguration`
+`func NewAccountExperienceConfiguration(defaultLocale string, defaultRedirectUrl string, enabledLocales []string, errorUiUrl string, hideOryBranding bool, hideRegistrationLink bool, localeBehavior string, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, translations []RevisionAccountExperienceCustomTranslation, verificationEnabled bool, verificationUiUrl string, ) *AccountExperienceConfiguration`
 
 NewAccountExperienceConfiguration instantiates a new AccountExperienceConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -173,6 +175,46 @@ SetFaviconLightUrl sets FaviconLightUrl field to given value.
 `func (o *AccountExperienceConfiguration) HasFaviconLightUrl() bool`
 
 HasFaviconLightUrl returns a boolean if a field has been set.
+
+### GetHideOryBranding
+
+`func (o *AccountExperienceConfiguration) GetHideOryBranding() bool`
+
+GetHideOryBranding returns the HideOryBranding field if non-nil, zero value otherwise.
+
+### GetHideOryBrandingOk
+
+`func (o *AccountExperienceConfiguration) GetHideOryBrandingOk() (*bool, bool)`
+
+GetHideOryBrandingOk returns a tuple with the HideOryBranding field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHideOryBranding
+
+`func (o *AccountExperienceConfiguration) SetHideOryBranding(v bool)`
+
+SetHideOryBranding sets HideOryBranding field to given value.
+
+
+### GetHideRegistrationLink
+
+`func (o *AccountExperienceConfiguration) GetHideRegistrationLink() bool`
+
+GetHideRegistrationLink returns the HideRegistrationLink field if non-nil, zero value otherwise.
+
+### GetHideRegistrationLinkOk
+
+`func (o *AccountExperienceConfiguration) GetHideRegistrationLinkOk() (*bool, bool)`
+
+GetHideRegistrationLinkOk returns a tuple with the HideRegistrationLink field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHideRegistrationLink
+
+`func (o *AccountExperienceConfiguration) SetHideRegistrationLink(v bool)`
+
+SetHideRegistrationLink sets HideRegistrationLink field to given value.
+
 
 ### GetLocaleBehavior
 

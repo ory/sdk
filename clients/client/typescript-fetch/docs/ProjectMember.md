@@ -6,12 +6,14 @@
 
 Name | Type
 ------------ | -------------
+`break_glass` | boolean
 `email` | string
 `email_verified` | boolean
 `id` | string
 `name` | string
 `organization_id` | string
 `role` | string
+`source` | string
 
 ## Example
 
@@ -20,12 +22,14 @@ import type { ProjectMember } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "break_glass": null,
   "email": null,
   "email_verified": null,
   "id": null,
   "name": null,
   "organization_id": null,
   "role": null,
+  "source": null,
 } satisfies ProjectMember
 
 console.log(example)

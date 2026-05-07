@@ -18,6 +18,7 @@
 |**productionFeatures** | [**Map&lt;String, GenericUsage&gt;**](GenericUsage.md) |  |  |
 |**stagingFeatures** | [**Map&lt;String, GenericUsage&gt;**](GenericUsage.md) |  |  |
 |**version** | **Long** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. |  |
+|**yearlyOnly** | **Boolean** | YearlyOnly is true if the plan only supports yearly billing. |  |
 
 
 

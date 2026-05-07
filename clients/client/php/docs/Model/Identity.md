@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **metadataPublic** | **object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional]
 **organizationId** | **string** |  | [optional]
 **recoveryAddresses** | [**\Ory\Client\Model\RecoveryIdentityAddress[]**](RecoveryIdentityAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional]
+**region** | **string** | Region is the Ory Network region this identity is homed in. Set by the multi-region persister; empty on OSS and single-region deployments. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional]
 **schemaId** | **string** | SchemaID is the ID of the JSON Schema to be used for validating the identity&#39;s traits. |
 **schemaUrl** | **string** | SchemaURL is the URL of the endpoint where the identity&#39;s traits schema can be fetched from.  format: url |
 **state** | **string** | State is the identity&#39;s state.  This value has currently no effect. active StateActive inactive StateInactive | [optional]

@@ -4,7 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdditionalIdTokenAudiences** | Pointer to **[]string** |  | [optional] 
+**Aal2AcrValues** | Pointer to **[]string** | AAL2ACRValues lists upstream OIDC &#x60;acr&#x60; claim values that should elevate the resulting Kratos session to AAL2. Empty means the upstream &#x60;acr&#x60; claim is ignored when deciding session AAL. | [optional] 
+**Aal2AmrValues** | Pointer to **[]string** | AAL2AMRValues lists upstream OIDC &#x60;amr&#x60; claim values that should elevate the resulting Kratos session to AAL2 when any of them appears in the upstream &#x60;amr&#x60; array. Empty means the upstream &#x60;amr&#x60; claim is ignored when deciding session AAL. | [optional] 
+**AccountLinkingMode** | Pointer to **string** | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are &#x60;confirm_with_existing_credential&#x60; (default) and &#x60;automatic&#x60;. &#x60;automatic&#x60; silently links accounts when the provider verifies email ownership. Only supported for &#x60;apple&#x60; and &#x60;google&#x60; providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional] 
+**AdditionalIdTokenAudiences** | Pointer to **[]string** | AdditionalIDTokenAudiences is a list of additional audiences allowed in the ID Token.  This is only relevant in OIDC flows that submit an IDToken instead of using the callback from the OIDC provider. | [optional] 
 **ApplePrivateKey** | Pointer to **NullableString** |  | [optional] 
 **ApplePrivateKeyId** | Pointer to **string** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] 
 **AppleTeamId** | Pointer to **string** | Apple Developer Team ID  Apple Developer Team ID needed for generating a JWT token for client secret | [optional] 
@@ -27,10 +30,11 @@ Name | Type | Description | Notes
 **ProviderId** | Pointer to **string** | ID is the provider&#39;s ID | [optional] 
 **ProxyOidcRedirectUrl** | Pointer to **string** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional] [readonly] 
 **RequestedClaims** | Pointer to **map[string]interface{}** |  | [optional] 
-**Scope** | Pointer to **[]string** |  | [optional] 
+**Scope** | Pointer to **[]string** | Scope specifies optional requested permissions. | [optional] 
 **State** | Pointer to **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **SubjectSource** | Pointer to **NullableString** |  | [optional] 
 **TokenUrl** | Pointer to **string** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] 
+**UpdateIdentityOnLogin** | Pointer to **string** | UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every  OIDC login and updates the identity&#39;s traits and metadata automatically. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 
 ## Methods
@@ -51,6 +55,81 @@ will change when the set of required properties is changed
 NewNormalizedProjectRevisionThirdPartyProviderWithDefaults instantiates a new NormalizedProjectRevisionThirdPartyProvider object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAal2AcrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAal2AcrValues() []string`
+
+GetAal2AcrValues returns the Aal2AcrValues field if non-nil, zero value otherwise.
+
+### GetAal2AcrValuesOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAal2AcrValuesOk() (*[]string, bool)`
+
+GetAal2AcrValuesOk returns a tuple with the Aal2AcrValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAal2AcrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetAal2AcrValues(v []string)`
+
+SetAal2AcrValues sets Aal2AcrValues field to given value.
+
+### HasAal2AcrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasAal2AcrValues() bool`
+
+HasAal2AcrValues returns a boolean if a field has been set.
+
+### GetAal2AmrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAal2AmrValues() []string`
+
+GetAal2AmrValues returns the Aal2AmrValues field if non-nil, zero value otherwise.
+
+### GetAal2AmrValuesOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAal2AmrValuesOk() (*[]string, bool)`
+
+GetAal2AmrValuesOk returns a tuple with the Aal2AmrValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAal2AmrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetAal2AmrValues(v []string)`
+
+SetAal2AmrValues sets Aal2AmrValues field to given value.
+
+### HasAal2AmrValues
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasAal2AmrValues() bool`
+
+HasAal2AmrValues returns a boolean if a field has been set.
+
+### GetAccountLinkingMode
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAccountLinkingMode() string`
+
+GetAccountLinkingMode returns the AccountLinkingMode field if non-nil, zero value otherwise.
+
+### GetAccountLinkingModeOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetAccountLinkingModeOk() (*string, bool)`
+
+GetAccountLinkingModeOk returns a tuple with the AccountLinkingMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountLinkingMode
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetAccountLinkingMode(v string)`
+
+SetAccountLinkingMode sets AccountLinkingMode field to given value.
+
+### HasAccountLinkingMode
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasAccountLinkingMode() bool`
+
+HasAccountLinkingMode returns a boolean if a field has been set.
 
 ### GetAdditionalIdTokenAudiences
 
@@ -806,6 +885,31 @@ SetTokenUrl sets TokenUrl field to given value.
 `func (o *NormalizedProjectRevisionThirdPartyProvider) HasTokenUrl() bool`
 
 HasTokenUrl returns a boolean if a field has been set.
+
+### GetUpdateIdentityOnLogin
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdateIdentityOnLogin() string`
+
+GetUpdateIdentityOnLogin returns the UpdateIdentityOnLogin field if non-nil, zero value otherwise.
+
+### GetUpdateIdentityOnLoginOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdateIdentityOnLoginOk() (*string, bool)`
+
+GetUpdateIdentityOnLoginOk returns a tuple with the UpdateIdentityOnLogin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdateIdentityOnLogin
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetUpdateIdentityOnLogin(v string)`
+
+SetUpdateIdentityOnLogin sets UpdateIdentityOnLogin field to given value.
+
+### HasUpdateIdentityOnLogin
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasUpdateIdentityOnLogin() bool`
+
+HasUpdateIdentityOnLogin returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

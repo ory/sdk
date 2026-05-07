@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BreakGlass** | Pointer to **bool** | BreakGlass is true when the identity&#39;s recovery address has break-glass recovery enabled for the identity&#39;s current organization. | [optional] 
 **Email** | **string** |  | 
 **EmailVerified** | **bool** |  | 
 **Id** | **string** |  | 
@@ -28,6 +29,31 @@ will change when the set of required properties is changed
 NewCloudAccountWithDefaults instantiates a new CloudAccount object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBreakGlass
+
+`func (o *CloudAccount) GetBreakGlass() bool`
+
+GetBreakGlass returns the BreakGlass field if non-nil, zero value otherwise.
+
+### GetBreakGlassOk
+
+`func (o *CloudAccount) GetBreakGlassOk() (*bool, bool)`
+
+GetBreakGlassOk returns a tuple with the BreakGlass field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBreakGlass
+
+`func (o *CloudAccount) SetBreakGlass(v bool)`
+
+SetBreakGlass sets BreakGlass field to given value.
+
+### HasBreakGlass
+
+`func (o *CloudAccount) HasBreakGlass() bool`
+
+HasBreakGlass returns a boolean if a field has been set.
 
 ### GetEmail
 

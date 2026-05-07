@@ -11,6 +11,7 @@ Name | Type
 `external_id` | string
 `metadata_admin` | any
 `metadata_public` | any
+`region` | string
 `schema_id` | string
 `state` | string
 `traits` | object
@@ -26,6 +27,7 @@ const example = {
   "external_id": null,
   "metadata_admin": null,
   "metadata_public": null,
+  "region": null,
   "schema_id": null,
   "state": null,
   "traits": null,

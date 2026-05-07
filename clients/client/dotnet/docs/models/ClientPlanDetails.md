@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ProductionFeatures** | [**Dictionary&lt;string, ClientGenericUsage&gt;**](ClientGenericUsage.md) |  | 
 **StagingFeatures** | [**Dictionary&lt;string, ClientGenericUsage&gt;**](ClientGenericUsage.md) |  | 
 **VarVersion** | **long** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. | 
+**YearlyOnly** | **bool** | YearlyOnly is true if the plan only supports yearly billing. | 
 **Latest** | **bool** | Latest is true if the plan is the latest version of a plan and should be available for self-service usage. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

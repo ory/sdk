@@ -118,6 +118,6 @@ java
 php
 python
 ruby
-dartpub
+# dartpub
 # TODO: https://github.com/ory/sdk/issues/434
 # csharp

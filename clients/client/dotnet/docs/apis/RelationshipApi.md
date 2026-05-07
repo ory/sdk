@@ -144,8 +144,8 @@ Get all relationships that match the query. Only the namespace field is required
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **pageSize** | **long** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
-| **pageToken** | **string** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.sh/docs/ecosystem/api-design#pagination). | [optional]  |
+| **pageSize** | **long** | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
+| **pageToken** | **string** | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [optional]  |
 | **varNamespace** | **string** | Namespace of the Relationship | [optional]  |
 | **varObject** | **string** | Object of the Relationship | [optional]  |
 | **relation** | **string** | Relation of the Relationship | [optional]  |

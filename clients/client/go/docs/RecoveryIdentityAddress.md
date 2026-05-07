@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BreakGlassForOrganization** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] 
@@ -29,6 +30,41 @@ NewRecoveryIdentityAddressWithDefaults instantiates a new RecoveryIdentityAddres
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetBreakGlassForOrganization
+
+`func (o *RecoveryIdentityAddress) GetBreakGlassForOrganization() string`
+
+GetBreakGlassForOrganization returns the BreakGlassForOrganization field if non-nil, zero value otherwise.
+
+### GetBreakGlassForOrganizationOk
+
+`func (o *RecoveryIdentityAddress) GetBreakGlassForOrganizationOk() (*string, bool)`
+
+GetBreakGlassForOrganizationOk returns a tuple with the BreakGlassForOrganization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBreakGlassForOrganization
+
+`func (o *RecoveryIdentityAddress) SetBreakGlassForOrganization(v string)`
+
+SetBreakGlassForOrganization sets BreakGlassForOrganization field to given value.
+
+### HasBreakGlassForOrganization
+
+`func (o *RecoveryIdentityAddress) HasBreakGlassForOrganization() bool`
+
+HasBreakGlassForOrganization returns a boolean if a field has been set.
+
+### SetBreakGlassForOrganizationNil
+
+`func (o *RecoveryIdentityAddress) SetBreakGlassForOrganizationNil(b bool)`
+
+ SetBreakGlassForOrganizationNil sets the value for BreakGlassForOrganization to be an explicit nil
+
+### UnsetBreakGlassForOrganization
+`func (o *RecoveryIdentityAddress) UnsetBreakGlassForOrganization()`
+
+UnsetBreakGlassForOrganization ensures that no value is present for BreakGlassForOrganization, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *RecoveryIdentityAddress) GetCreatedAt() time.Time`

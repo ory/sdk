@@ -17,7 +17,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Batch check permissions
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 
 ### Parameters
@@ -56,7 +56,7 @@ To learn how relationship tuples and the check works, head over to [the document
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 
 ### Parameters
@@ -101,7 +101,7 @@ To learn how relationship tuples and the check works, head over to [the document
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 
 ### Parameters
@@ -189,7 +189,7 @@ Use this endpoint to expand a relationship tuple into permissions.
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 
 ### Parameters
@@ -228,7 +228,7 @@ To learn how relationship tuples and the check works, head over to [the document
 
 Check a permission
 
-To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.sh/docs/keto/concepts/api-overview).
+To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
 
 ### Parameters

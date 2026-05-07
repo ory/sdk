@@ -7,6 +7,7 @@ Create B2B SSO Organization Request Body
 
 Name | Type
 ------------ | -------------
+`default_region` | string
 `domains` | Array&lt;string&gt;
 `label` | string
 
@@ -17,6 +18,7 @@ import type { OrganizationBody } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "default_region": null,
   "domains": null,
   "label": null,
 } satisfies OrganizationBody

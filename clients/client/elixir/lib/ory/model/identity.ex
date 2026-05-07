@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.Identity do
   @moduledoc """
-  An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) represents a (human) user in Ory.
+  An [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) represents a (human) user in Ory.
   """
 
   @derive Jason.Encoder
@@ -16,6 +16,7 @@ defmodule Ory.Model.Identity do
     :metadata_public,
     :organization_id,
     :recovery_addresses,
+    :region,
     :schema_id,
     :schema_url,
     :state,
@@ -34,6 +35,7 @@ defmodule Ory.Model.Identity do
     :metadata_public => map() | nil,
     :organization_id => String.t | nil,
     :recovery_addresses => [Ory.Model.RecoveryIdentityAddress.t] | nil,
+    :region => String.t | nil,
     :schema_id => String.t,
     :schema_url => String.t,
     :state => String.t | nil,

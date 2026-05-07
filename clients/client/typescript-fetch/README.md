@@ -1,4 +1,4 @@
-# @ory/client-fetch@v1.22.26
+# @ory/client-fetch@v1.22.38
 
 A TypeScript SDK client for the playground.projects.oryapis.com API.
 
@@ -211,6 +211,8 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [AccountExperienceColors](docs/AccountExperienceColors.md)
 - [AccountExperienceConfiguration](docs/AccountExperienceConfiguration.md)
 - [AddProjectToWorkspaceBody](docs/AddProjectToWorkspaceBody.md)
+- [AdminIdentityImportCredentialsLookupSecret](docs/AdminIdentityImportCredentialsLookupSecret.md)
+- [AdminIdentityImportCredentialsLookupSecretConfig](docs/AdminIdentityImportCredentialsLookupSecretConfig.md)
 - [Attribute](docs/Attribute.md)
 - [AttributeFilter](docs/AttributeFilter.md)
 - [AttributesCountDatapoint](docs/AttributesCountDatapoint.md)
@@ -262,7 +264,9 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [CreateWorkspaceSubscriptionBody](docs/CreateWorkspaceSubscriptionBody.md)
 - [CredentialSupportedDraft00](docs/CredentialSupportedDraft00.md)
 - [CustomDomain](docs/CustomDomain.md)
+- [CustomerPortalAvailability](docs/CustomerPortalAvailability.md)
 - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
+- [DeviceAuthnKey](docs/DeviceAuthnKey.md)
 - [DeviceAuthorization](docs/DeviceAuthorization.md)
 - [DeviceUserAuthRequest](docs/DeviceUserAuthRequest.md)
 - [EmailTemplateData](docs/EmailTemplateData.md)
@@ -296,9 +300,14 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [IdentityCredentials](docs/IdentityCredentials.md)
 - [IdentityCredentialsCode](docs/IdentityCredentialsCode.md)
 - [IdentityCredentialsCodeAddress](docs/IdentityCredentialsCodeAddress.md)
+- [IdentityCredentialsLookupSecretCode](docs/IdentityCredentialsLookupSecretCode.md)
 - [IdentityCredentialsOidc](docs/IdentityCredentialsOidc.md)
 - [IdentityCredentialsOidcProvider](docs/IdentityCredentialsOidcProvider.md)
 - [IdentityCredentialsPassword](docs/IdentityCredentialsPassword.md)
+- [IdentityCredentialsWebAuthn](docs/IdentityCredentialsWebAuthn.md)
+- [IdentityCredentialsWebAuthnAttestation](docs/IdentityCredentialsWebAuthnAttestation.md)
+- [IdentityCredentialsWebAuthnAuthenticator](docs/IdentityCredentialsWebAuthnAuthenticator.md)
+- [IdentityCredentialsWebAuthnFlags](docs/IdentityCredentialsWebAuthnFlags.md)
 - [IdentityPatch](docs/IdentityPatch.md)
 - [IdentityPatchResponse](docs/IdentityPatchResponse.md)
 - [IdentitySchemaContainer](docs/IdentitySchemaContainer.md)
@@ -307,11 +316,17 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [IdentityWithCredentialsOidc](docs/IdentityWithCredentialsOidc.md)
 - [IdentityWithCredentialsOidcConfig](docs/IdentityWithCredentialsOidcConfig.md)
 - [IdentityWithCredentialsOidcConfigProvider](docs/IdentityWithCredentialsOidcConfigProvider.md)
+- [IdentityWithCredentialsPasskey](docs/IdentityWithCredentialsPasskey.md)
+- [IdentityWithCredentialsPasskeyConfig](docs/IdentityWithCredentialsPasskeyConfig.md)
 - [IdentityWithCredentialsPassword](docs/IdentityWithCredentialsPassword.md)
 - [IdentityWithCredentialsPasswordConfig](docs/IdentityWithCredentialsPasswordConfig.md)
 - [IdentityWithCredentialsSaml](docs/IdentityWithCredentialsSaml.md)
 - [IdentityWithCredentialsSamlConfig](docs/IdentityWithCredentialsSamlConfig.md)
 - [IdentityWithCredentialsSamlConfigProvider](docs/IdentityWithCredentialsSamlConfigProvider.md)
+- [IdentityWithCredentialsTotp](docs/IdentityWithCredentialsTotp.md)
+- [IdentityWithCredentialsTotpConfig](docs/IdentityWithCredentialsTotpConfig.md)
+- [IdentityWithCredentialsWebAuthn](docs/IdentityWithCredentialsWebAuthn.md)
+- [IdentityWithCredentialsWebAuthnConfig](docs/IdentityWithCredentialsWebAuthnConfig.md)
 - [InternalGetProjectBrandingBody](docs/InternalGetProjectBrandingBody.md)
 - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
 - [InternalIsOwnerForProjectBySlug](docs/InternalIsOwnerForProjectBySlug.md)
@@ -372,6 +387,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [OrganizationOnboardingPortalLinksResponse](docs/OrganizationOnboardingPortalLinksResponse.md)
 - [ParseError](docs/ParseError.md)
 - [PatchIdentitiesBody](docs/PatchIdentitiesBody.md)
+- [PatchWorkspaceMemberBody](docs/PatchWorkspaceMemberBody.md)
 - [PerformNativeLogoutBody](docs/PerformNativeLogoutBody.md)
 - [PermissionsOnWorkspace](docs/PermissionsOnWorkspace.md)
 - [Plan](docs/Plan.md)
@@ -446,6 +462,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [UiNodeDivisionAttributes](docs/UiNodeDivisionAttributes.md)
 - [UiNodeImageAttributes](docs/UiNodeImageAttributes.md)
 - [UiNodeInputAttributes](docs/UiNodeInputAttributes.md)
+- [UiNodeInputAttributesOption](docs/UiNodeInputAttributesOption.md)
 - [UiNodeMeta](docs/UiNodeMeta.md)
 - [UiNodeScriptAttributes](docs/UiNodeScriptAttributes.md)
 - [UiNodeTextAttributes](docs/UiNodeTextAttributes.md)
@@ -544,8 +561,8 @@ This TypeScript SDK client supports the [Fetch API](https://fetch.spec.whatwg.or
 and is automatically generated by the
 [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.22.26`
-- Package version: `v1.22.26`
+- API version: `v1.22.38`
+- Package version: `v1.22.38`
 - Generator version: `7.17.0`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
 

@@ -12,6 +12,8 @@ Name | Type
 `account_experience_enabled_locales` | Array&lt;string&gt;
 `account_experience_favicon_dark` | string
 `account_experience_favicon_light` | string
+`account_experience_hide_ory_branding` | boolean
+`account_experience_hide_registration_link` | boolean
 `account_experience_locale_behavior` | string
 `account_experience_logo_dark` | string
 `account_experience_logo_light` | string
@@ -32,6 +34,7 @@ Name | Type
 `hydra_oauth2_mirror_top_level_claims` | boolean
 `hydra_oauth2_pkce_enforced` | boolean
 `hydra_oauth2_pkce_enforced_for_public_clients` | boolean
+`hydra_oauth2_preserve_ext_claims` | boolean
 `hydra_oauth2_refresh_token_hook` | string
 `hydra_oauth2_token_hook` | string
 `hydra_oidc_dynamic_client_registration_default_scope` | Array&lt;string&gt;
@@ -152,6 +155,7 @@ Name | Type
 `kratos_selfservice_flows_login_after_totp_default_browser_return_url` | string
 `kratos_selfservice_flows_login_after_webauthn_default_browser_return_url` | string
 `kratos_selfservice_flows_login_lifespan` | string
+`kratos_selfservice_flows_login_style` | string
 `kratos_selfservice_flows_login_ui_url` | string
 `kratos_selfservice_flows_logout_after_default_browser_return_url` | string
 `kratos_selfservice_flows_recovery_after_default_browser_return_url` | string
@@ -190,6 +194,9 @@ Name | Type
 `kratos_selfservice_flows_verification_ui_url` | string
 `kratos_selfservice_flows_verification_use` | string
 `kratos_selfservice_methods_captcha_config_allowed_domains` | Array&lt;string&gt;
+`kratos_selfservice_methods_captcha_config_byo` | boolean
+`kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret` | string
+`kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey` | string
 `kratos_selfservice_methods_captcha_config_cf_turnstile_secret` | string
 `kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey` | string
 `kratos_selfservice_methods_captcha_config_legacy_inject_node` | boolean
@@ -260,6 +267,8 @@ const example = {
   "account_experience_enabled_locales": null,
   "account_experience_favicon_dark": null,
   "account_experience_favicon_light": null,
+  "account_experience_hide_ory_branding": null,
+  "account_experience_hide_registration_link": null,
   "account_experience_locale_behavior": null,
   "account_experience_logo_dark": null,
   "account_experience_logo_light": null,
@@ -280,6 +289,7 @@ const example = {
   "hydra_oauth2_mirror_top_level_claims": null,
   "hydra_oauth2_pkce_enforced": null,
   "hydra_oauth2_pkce_enforced_for_public_clients": null,
+  "hydra_oauth2_preserve_ext_claims": null,
   "hydra_oauth2_refresh_token_hook": null,
   "hydra_oauth2_token_hook": null,
   "hydra_oidc_dynamic_client_registration_default_scope": null,
@@ -400,6 +410,7 @@ const example = {
   "kratos_selfservice_flows_login_after_totp_default_browser_return_url": null,
   "kratos_selfservice_flows_login_after_webauthn_default_browser_return_url": null,
   "kratos_selfservice_flows_login_lifespan": null,
+  "kratos_selfservice_flows_login_style": null,
   "kratos_selfservice_flows_login_ui_url": null,
   "kratos_selfservice_flows_logout_after_default_browser_return_url": null,
   "kratos_selfservice_flows_recovery_after_default_browser_return_url": null,
@@ -438,6 +449,9 @@ const example = {
   "kratos_selfservice_flows_verification_ui_url": null,
   "kratos_selfservice_flows_verification_use": null,
   "kratos_selfservice_methods_captcha_config_allowed_domains": null,
+  "kratos_selfservice_methods_captcha_config_byo": null,
+  "kratos_selfservice_methods_captcha_config_cf_turnstile_byo_secret": null,
+  "kratos_selfservice_methods_captcha_config_cf_turnstile_byo_sitekey": null,
   "kratos_selfservice_methods_captcha_config_cf_turnstile_secret": null,
   "kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey": null,
   "kratos_selfservice_methods_captcha_config_legacy_inject_node": null,

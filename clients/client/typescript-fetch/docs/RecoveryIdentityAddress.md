@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`break_glass_for_organization` | string
 `created_at` | Date
 `id` | string
 `updated_at` | Date
@@ -19,6 +20,7 @@ import type { RecoveryIdentityAddress } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "break_glass_for_organization": null,
   "created_at": null,
   "id": null,
   "updated_at": null,

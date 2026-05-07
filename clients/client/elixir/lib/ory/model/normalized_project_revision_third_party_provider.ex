@@ -8,6 +8,9 @@ defmodule Ory.Model.NormalizedProjectRevisionThirdPartyProvider do
 
   @derive Jason.Encoder
   defstruct [
+    :aal2_acr_values,
+    :aal2_amr_values,
+    :account_linking_mode,
     :additional_id_token_audiences,
     :apple_private_key,
     :apple_private_key_id,
@@ -35,10 +38,14 @@ defmodule Ory.Model.NormalizedProjectRevisionThirdPartyProvider do
     :state,
     :subject_source,
     :token_url,
+    :update_identity_on_login,
     :updated_at
   ]
 
   @type t :: %__MODULE__{
+    :aal2_acr_values => [String.t] | nil,
+    :aal2_amr_values => [String.t] | nil,
+    :account_linking_mode => String.t | nil,
     :additional_id_token_audiences => [String.t] | nil,
     :apple_private_key => String.t | nil,
     :apple_private_key_id => String.t | nil,
@@ -66,6 +73,7 @@ defmodule Ory.Model.NormalizedProjectRevisionThirdPartyProvider do
     :state => String.t | nil,
     :subject_source => String.t | nil,
     :token_url => String.t | nil,
+    :update_identity_on_login => String.t | nil,
     :updated_at => DateTime.t | nil
   }
 

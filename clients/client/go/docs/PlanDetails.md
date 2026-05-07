@@ -15,12 +15,13 @@ Name | Type | Description | Notes
 **ProductionFeatures** | [**map[string]GenericUsage**](GenericUsage.md) |  | 
 **StagingFeatures** | [**map[string]GenericUsage**](GenericUsage.md) |  | 
 **Version** | **int64** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. | 
+**YearlyOnly** | **bool** | YearlyOnly is true if the plan only supports yearly billing. | 
 
 ## Methods
 
 ### NewPlanDetails
 
-`func NewPlanDetails(baseFeeMonthly int64, baseFeeYearly int64, custom bool, description string, developmentFeatures map[string]GenericUsage, features map[string]GenericUsage, name string, productionFeatures map[string]GenericUsage, stagingFeatures map[string]GenericUsage, version int64, ) *PlanDetails`
+`func NewPlanDetails(baseFeeMonthly int64, baseFeeYearly int64, custom bool, description string, developmentFeatures map[string]GenericUsage, features map[string]GenericUsage, name string, productionFeatures map[string]GenericUsage, stagingFeatures map[string]GenericUsage, version int64, yearlyOnly bool, ) *PlanDetails`
 
 NewPlanDetails instantiates a new PlanDetails object
 This constructor will assign default values to properties that have it defined,
@@ -258,6 +259,26 @@ and a boolean to check if the value has been set.
 `func (o *PlanDetails) SetVersion(v int64)`
 
 SetVersion sets Version field to given value.
+
+
+### GetYearlyOnly
+
+`func (o *PlanDetails) GetYearlyOnly() bool`
+
+GetYearlyOnly returns the YearlyOnly field if non-nil, zero value otherwise.
+
+### GetYearlyOnlyOk
+
+`func (o *PlanDetails) GetYearlyOnlyOk() (*bool, bool)`
+
+GetYearlyOnlyOk returns a tuple with the YearlyOnly field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetYearlyOnly
+
+`func (o *PlanDetails) SetYearlyOnly(v bool)`
+
+SetYearlyOnly sets YearlyOnly field to given value.
 
 
 

@@ -1,0 +1,32 @@
+# DeviceAuthnKey
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**client_key_id** | **string** | ClientKeyID is a client-chosen id for the key and is unique per identity. | [optional] [default to undefined]
+**created_at** | **string** | CreatedAt is the timestamp of when the key was created. Only used for troubleshooting/UI. | [optional] [default to undefined]
+**device_name** | **string** | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional] [default to undefined]
+**device_type** | **string** |  | [optional] [default to undefined]
+**public_key** | **Array&lt;number&gt;** | PublicKey is an EC (in v1) public key, used to verify signatures, stored as uncompressed bytes. The private key resides inside the device and does not exist on the server. | [optional] [default to undefined]
+**state** | **string** |  | [optional] [default to undefined]
+**version** | **number** | v1 uses SHA256 + EC256. v2 (in the future) may use ML-DSA which is post-quantum resistant. This requires Android/iOS support so we have to wait. We intentionally avoid storing the cryptographic algorithm here a la JWT/TLS to avoid security issues and algorithm negotiation. | [optional] [default to undefined]
+
+## Example
+
+```typescript
+import { DeviceAuthnKey } from '@ory/client';
+
+const instance: DeviceAuthnKey = {
+    client_key_id,
+    created_at,
+    device_name,
+    device_type,
+    public_key,
+    state,
+    version,
+};
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

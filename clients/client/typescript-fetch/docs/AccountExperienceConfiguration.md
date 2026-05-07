@@ -12,6 +12,8 @@ Name | Type
 `error_ui_url` | string
 `favicon_dark_url` | string
 `favicon_light_url` | string
+`hide_ory_branding` | boolean
+`hide_registration_link` | boolean
 `locale_behavior` | string
 `login_ui_url` | string
 `logo_dark_url` | string
@@ -40,6 +42,8 @@ const example = {
   "error_ui_url": null,
   "favicon_dark_url": null,
   "favicon_light_url": null,
+  "hide_ory_branding": null,
+  "hide_registration_link": null,
   "locale_behavior": null,
   "login_ui_url": null,
   "logo_dark_url": null,

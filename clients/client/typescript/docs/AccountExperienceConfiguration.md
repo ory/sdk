@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **error_ui_url** | **string** |  | [default to undefined]
 **favicon_dark_url** | **string** |  | [optional] [default to undefined]
 **favicon_light_url** | **string** |  | [optional] [default to undefined]
+**hide_ory_branding** | **boolean** |  | [default to undefined]
+**hide_registration_link** | **boolean** |  | [default to undefined]
 **locale_behavior** | **string** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | [default to undefined]
 **login_ui_url** | **string** |  | [default to undefined]
 **logo_dark_url** | **string** |  | [optional] [default to undefined]
@@ -38,6 +40,8 @@ const instance: AccountExperienceConfiguration = {
     error_ui_url,
     favicon_dark_url,
     favicon_light_url,
+    hide_ory_branding,
+    hide_registration_link,
     locale_behavior,
     login_ui_url,
     logo_dark_url,

@@ -8,6 +8,7 @@ B2B SSO Organization
 Name | Type
 ------------ | -------------
 `created_at` | Date
+`default_region` | string
 `domains` | Array&lt;string&gt;
 `id` | string
 `label` | string
@@ -20,6 +21,7 @@ import type { Organization } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "created_at": null,
+  "default_region": null,
   "domains": null,
   "id": null,
   "label": null,

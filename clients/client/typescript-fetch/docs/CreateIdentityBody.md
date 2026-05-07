@@ -13,6 +13,7 @@ Name | Type
 `metadata_public` | any
 `organization_id` | string
 `recovery_addresses` | [Array&lt;RecoveryIdentityAddress&gt;](RecoveryIdentityAddress.md)
+`region` | string
 `schema_id` | string
 `state` | string
 `traits` | object
@@ -31,6 +32,7 @@ const example = {
   "metadata_public": null,
   "organization_id": null,
   "recovery_addresses": null,
+  "region": null,
   "schema_id": null,
   "state": null,
   "traits": null,

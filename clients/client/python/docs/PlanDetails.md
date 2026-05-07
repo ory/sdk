@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **production_features** | [**Dict[str, GenericUsage]**](GenericUsage.md) |  | 
 **staging_features** | [**Dict[str, GenericUsage]**](GenericUsage.md) |  | 
 **version** | **int** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. | 
+**yearly_only** | **bool** | YearlyOnly is true if the plan only supports yearly billing. | 
 
 ## Example
 

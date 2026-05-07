@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.26
+API version: v1.22.38
 Contact: support@ory.sh
 */
 
@@ -20,6 +20,8 @@ var _ MappedNullable = &OrganizationBody{}
 
 // OrganizationBody Create B2B SSO Organization Request Body
 type OrganizationBody struct {
+	// DefaultRegion is the default Ory region for identities provisioned into this organization via JIT. Must be inside the project's home region.  Empty (or omitted) means the organization has no default region: each identity provisioned via JIT is then homed in the gateway region of the request that created it, constrained by the project's home region. On update, an empty string clears the value. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global
+	DefaultRegion *string `json:"default_region,omitempty"`
 	// Domains contains the list of organization's domains.
 	Domains []string `json:"domains,omitempty"`
 	// Label contains the organization's label.
@@ -44,6 +46,38 @@ func NewOrganizationBody() *OrganizationBody {
 func NewOrganizationBodyWithDefaults() *OrganizationBody {
 	this := OrganizationBody{}
 	return &this
+}
+
+// GetDefaultRegion returns the DefaultRegion field value if set, zero value otherwise.
+func (o *OrganizationBody) GetDefaultRegion() string {
+	if o == nil || IsNil(o.DefaultRegion) {
+		var ret string
+		return ret
+	}
+	return *o.DefaultRegion
+}
+
+// GetDefaultRegionOk returns a tuple with the DefaultRegion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationBody) GetDefaultRegionOk() (*string, bool) {
+	if o == nil || IsNil(o.DefaultRegion) {
+		return nil, false
+	}
+	return o.DefaultRegion, true
+}
+
+// HasDefaultRegion returns a boolean if a field has been set.
+func (o *OrganizationBody) HasDefaultRegion() bool {
+	if o != nil && !IsNil(o.DefaultRegion) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultRegion gets a reference to the given string and assigns it to the DefaultRegion field.
+func (o *OrganizationBody) SetDefaultRegion(v string) {
+	o.DefaultRegion = &v
 }
 
 // GetDomains returns the Domains field value if set, zero value otherwise.
@@ -120,6 +154,9 @@ func (o OrganizationBody) MarshalJSON() ([]byte, error) {
 
 func (o OrganizationBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DefaultRegion) {
+		toSerialize["default_region"] = o.DefaultRegion
+	}
 	if !IsNil(o.Domains) {
 		toSerialize["domains"] = o.Domains
 	}
@@ -148,6 +185,7 @@ func (o *OrganizationBody) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "default_region")
 		delete(additionalProperties, "domains")
 		delete(additionalProperties, "label")
 		o.AdditionalProperties = additionalProperties

@@ -1,6 +1,6 @@
 # Identity
 
-An [identity](https://www.ory.sh/docs/kratos/concepts/identity-user-model) represents a (human) user in Ory.
+An [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) represents a (human) user in Ory.
 
 ## Properties
 
@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **metadata_public** | **object** | NullJSONRawMessage represents a json.RawMessage that works well with JSON, SQL, and Swagger and is NULLable- | [optional] [default to undefined]
 **organization_id** | **string** |  | [optional] [default to undefined]
 **recovery_addresses** | [**Array&lt;RecoveryIdentityAddress&gt;**](RecoveryIdentityAddress.md) | RecoveryAddresses contains all the addresses that can be used to recover an identity. | [optional] [default to undefined]
+**region** | **string** | Region is the Ory Network region this identity is homed in. Set by the multi-region persister; empty on OSS and single-region deployments. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] [default to undefined]
 **schema_id** | **string** | SchemaID is the ID of the JSON Schema to be used for validating the identity\&#39;s traits. | [default to undefined]
 **schema_url** | **string** | SchemaURL is the URL of the endpoint where the identity\&#39;s traits schema can be fetched from.  format: url | [default to undefined]
 **state** | **string** | State is the identity\&#39;s state.  This value has currently no effect. active StateActive inactive StateInactive | [optional] [default to undefined]
@@ -36,6 +37,7 @@ const instance: Identity = {
     metadata_public,
     organization_id,
     recovery_addresses,
+    region,
     schema_id,
     schema_url,
     state,

@@ -6,9 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Aal** | Pointer to [**AuthenticatorAssuranceLevel**](AuthenticatorAssuranceLevel.md) |  | [optional] 
 **CompletedAt** | Pointer to **time.Time** | When the authentication challenge was completed. | [optional] 
-**Method** | Pointer to **string** | The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [optional] 
+**Method** | Pointer to **string** | The method used in this authenticator. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [optional] 
 **Organization** | Pointer to **string** | The Organization id used for authentication | [optional] 
 **Provider** | Pointer to **string** | OIDC or SAML provider id used for authentication | [optional] 
+**UpstreamAcr** | Pointer to **string** | UpstreamACR is the &#x60;acr&#x60; claim reported by the upstream OIDC provider, if any. Populated only for OIDC login methods when the upstream ID token contained an &#x60;acr&#x60; claim. | [optional] 
+**UpstreamAmr** | Pointer to **[]string** | UpstreamAMR is the &#x60;amr&#x60; claim reported by the upstream OIDC provider, if any. Populated only for OIDC login methods when the upstream ID token contained an &#x60;amr&#x60; claim. | [optional] 
 
 ## Methods
 
@@ -153,6 +155,56 @@ SetProvider sets Provider field to given value.
 `func (o *SessionAuthenticationMethod) HasProvider() bool`
 
 HasProvider returns a boolean if a field has been set.
+
+### GetUpstreamAcr
+
+`func (o *SessionAuthenticationMethod) GetUpstreamAcr() string`
+
+GetUpstreamAcr returns the UpstreamAcr field if non-nil, zero value otherwise.
+
+### GetUpstreamAcrOk
+
+`func (o *SessionAuthenticationMethod) GetUpstreamAcrOk() (*string, bool)`
+
+GetUpstreamAcrOk returns a tuple with the UpstreamAcr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpstreamAcr
+
+`func (o *SessionAuthenticationMethod) SetUpstreamAcr(v string)`
+
+SetUpstreamAcr sets UpstreamAcr field to given value.
+
+### HasUpstreamAcr
+
+`func (o *SessionAuthenticationMethod) HasUpstreamAcr() bool`
+
+HasUpstreamAcr returns a boolean if a field has been set.
+
+### GetUpstreamAmr
+
+`func (o *SessionAuthenticationMethod) GetUpstreamAmr() []string`
+
+GetUpstreamAmr returns the UpstreamAmr field if non-nil, zero value otherwise.
+
+### GetUpstreamAmrOk
+
+`func (o *SessionAuthenticationMethod) GetUpstreamAmrOk() (*[]string, bool)`
+
+GetUpstreamAmrOk returns a tuple with the UpstreamAmr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpstreamAmr
+
+`func (o *SessionAuthenticationMethod) SetUpstreamAmr(v []string)`
+
+SetUpstreamAmr sets UpstreamAmr field to given value.
+
+### HasUpstreamAmr
+
+`func (o *SessionAuthenticationMethod) HasUpstreamAmr() bool`
+
+HasUpstreamAmr returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

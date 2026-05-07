@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **errorUiUrl** | **string** |  |
 **faviconDarkUrl** | **string** |  | [optional]
 **faviconLightUrl** | **string** |  | [optional]
+**hideOryBranding** | **bool** |  |
+**hideRegistrationLink** | **bool** |  |
 **localeBehavior** | **string** | force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage |
 **loginUiUrl** | **string** |  |
 **logoDarkUrl** | **string** |  | [optional]

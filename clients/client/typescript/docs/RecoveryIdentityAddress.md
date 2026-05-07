@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**break_glass_for_organization** | **string** |  | [optional] [default to undefined]
 **created_at** | **string** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] [default to undefined]
 **id** | **string** |  | [optional] [default to undefined]
 **updated_at** | **string** | UpdatedAt is a helper struct field for gobuffalo.pop. | [optional] [default to undefined]
@@ -17,6 +18,7 @@ Name | Type | Description | Notes
 import { RecoveryIdentityAddress } from '@ory/client';
 
 const instance: RecoveryIdentityAddress = {
+    break_glass_for_organization,
     created_at,
     id,
     updated_at,

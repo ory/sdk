@@ -12,7 +12,9 @@ defmodule Ory.Model.SessionAuthenticationMethod do
     :completed_at,
     :method,
     :organization,
-    :provider
+    :provider,
+    :upstream_acr,
+    :upstream_amr
   ]
 
   @type t :: %__MODULE__{
@@ -20,7 +22,9 @@ defmodule Ory.Model.SessionAuthenticationMethod do
     :completed_at => DateTime.t | nil,
     :method => String.t | nil,
     :organization => String.t | nil,
-    :provider => String.t | nil
+    :provider => String.t | nil,
+    :upstream_acr => String.t | nil,
+    :upstream_amr => [String.t] | nil
   }
 
   alias Ory.Deserializer

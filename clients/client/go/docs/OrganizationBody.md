@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DefaultRegion** | Pointer to **string** | DefaultRegion is the default Ory region for identities provisioned into this organization via JIT. Must be inside the project&#39;s home region.  Empty (or omitted) means the organization has no default region: each identity provisioned via JIT is then homed in the gateway region of the request that created it, constrained by the project&#39;s home region. On update, an empty string clears the value. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] 
 **Domains** | Pointer to **[]string** | Domains contains the list of organization&#39;s domains. | [optional] 
 **Label** | Pointer to **string** | Label contains the organization&#39;s label. | [optional] 
 
@@ -25,6 +26,31 @@ will change when the set of required properties is changed
 NewOrganizationBodyWithDefaults instantiates a new OrganizationBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDefaultRegion
+
+`func (o *OrganizationBody) GetDefaultRegion() string`
+
+GetDefaultRegion returns the DefaultRegion field if non-nil, zero value otherwise.
+
+### GetDefaultRegionOk
+
+`func (o *OrganizationBody) GetDefaultRegionOk() (*string, bool)`
+
+GetDefaultRegionOk returns a tuple with the DefaultRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultRegion
+
+`func (o *OrganizationBody) SetDefaultRegion(v string)`
+
+SetDefaultRegion sets DefaultRegion field to given value.
+
+### HasDefaultRegion
+
+`func (o *OrganizationBody) HasDefaultRegion() bool`
+
+HasDefaultRegion returns a boolean if a field has been set.
 
 ### GetDomains
 

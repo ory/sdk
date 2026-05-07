@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**break_glass** | **boolean** | BreakGlass is true when the identity\&#39;s recovery address has break-glass recovery enabled for the identity\&#39;s current organization. | [optional] [default to undefined]
 **email** | **string** |  | [default to undefined]
 **email_verified** | **boolean** |  | [default to undefined]
 **id** | **string** |  | [default to undefined]
@@ -17,6 +18,7 @@ Name | Type | Description | Notes
 import { CloudAccount } from '@ory/client';
 
 const instance: CloudAccount = {
+    break_glass,
     email,
     email_verified,
     id,

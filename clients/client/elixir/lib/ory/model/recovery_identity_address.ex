@@ -8,6 +8,7 @@ defmodule Ory.Model.RecoveryIdentityAddress do
 
   @derive Jason.Encoder
   defstruct [
+    :break_glass_for_organization,
     :created_at,
     :id,
     :updated_at,
@@ -16,6 +17,7 @@ defmodule Ory.Model.RecoveryIdentityAddress do
   ]
 
   @type t :: %__MODULE__{
+    :break_glass_for_organization => String.t | nil,
     :created_at => DateTime.t | nil,
     :id => String.t | nil,
     :updated_at => DateTime.t | nil,

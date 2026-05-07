@@ -7,9 +7,13 @@ Create Identity and Import Credentials
 
 Name | Type
 ------------ | -------------
+`lookup_secret` | [AdminIdentityImportCredentialsLookupSecret](AdminIdentityImportCredentialsLookupSecret.md)
 `oidc` | [IdentityWithCredentialsOidc](IdentityWithCredentialsOidc.md)
+`passkey` | [IdentityWithCredentialsPasskey](IdentityWithCredentialsPasskey.md)
 `password` | [IdentityWithCredentialsPassword](IdentityWithCredentialsPassword.md)
 `saml` | [IdentityWithCredentialsSaml](IdentityWithCredentialsSaml.md)
+`totp` | [IdentityWithCredentialsTotp](IdentityWithCredentialsTotp.md)
+`webauthn` | [IdentityWithCredentialsWebAuthn](IdentityWithCredentialsWebAuthn.md)
 
 ## Example
 
@@ -18,9 +22,13 @@ import type { IdentityWithCredentials } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "lookup_secret": null,
   "oidc": null,
+  "passkey": null,
   "password": null,
   "saml": null,
+  "totp": null,
+  "webauthn": null,
 } satisfies IdentityWithCredentials
 
 console.log(example)

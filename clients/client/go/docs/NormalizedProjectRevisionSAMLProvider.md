@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **RawIdpMetadataXml** | Pointer to **string** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] 
 **State** | Pointer to **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
-**ValidTo** | Pointer to **[]string** |  | [optional] 
+**ValidTo** | Pointer to **[]string** | Valid to dates of all signing certs associated with the SAML connection | [optional] [readonly] 
 
 ## Methods
 

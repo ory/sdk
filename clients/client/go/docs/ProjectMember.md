@@ -4,12 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BreakGlass** | Pointer to **bool** | BreakGlass is true when the identity&#39;s recovery address has break-glass recovery enabled for the identity&#39;s current organization. | [optional] 
 **Email** | **string** |  | 
 **EmailVerified** | **bool** |  | 
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **Role** | **string** |  | 
+**Source** | Pointer to **string** | Whether the member has access through the project directly or through workspace membership. | [optional] 
 
 ## Methods
 
@@ -29,6 +31,31 @@ will change when the set of required properties is changed
 NewProjectMemberWithDefaults instantiates a new ProjectMember object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBreakGlass
+
+`func (o *ProjectMember) GetBreakGlass() bool`
+
+GetBreakGlass returns the BreakGlass field if non-nil, zero value otherwise.
+
+### GetBreakGlassOk
+
+`func (o *ProjectMember) GetBreakGlassOk() (*bool, bool)`
+
+GetBreakGlassOk returns a tuple with the BreakGlass field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBreakGlass
+
+`func (o *ProjectMember) SetBreakGlass(v bool)`
+
+SetBreakGlass sets BreakGlass field to given value.
+
+### HasBreakGlass
+
+`func (o *ProjectMember) HasBreakGlass() bool`
+
+HasBreakGlass returns a boolean if a field has been set.
 
 ### GetEmail
 
@@ -164,6 +191,31 @@ and a boolean to check if the value has been set.
 
 SetRole sets Role field to given value.
 
+
+### GetSource
+
+`func (o *ProjectMember) GetSource() string`
+
+GetSource returns the Source field if non-nil, zero value otherwise.
+
+### GetSourceOk
+
+`func (o *ProjectMember) GetSourceOk() (*string, bool)`
+
+GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSource
+
+`func (o *ProjectMember) SetSource(v string)`
+
+SetSource sets Source field to given value.
+
+### HasSource
+
+`func (o *ProjectMember) HasSource() bool`
+
+HasSource returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`break_glass` | boolean
 `email` | string
 `email_verified` | boolean
 `id` | string
@@ -19,6 +20,7 @@ import type { CloudAccount } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "break_glass": null,
   "email": null,
   "email_verified": null,
   "id": null,

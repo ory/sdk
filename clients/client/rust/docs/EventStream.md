@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | Option<**String**> |  | [optional]
+**https_endpoint** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
 **role_arn** | Option<**String**> |  | [optional]
 **topic_arn** | Option<**String**> |  | [optional]
