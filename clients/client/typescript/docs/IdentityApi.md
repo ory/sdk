@@ -8,6 +8,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 |[**createIdentity**](#createidentity) | **POST** /admin/identities | Create an Identity|
 |[**createRecoveryCodeForIdentity**](#createrecoverycodeforidentity) | **POST** /admin/recovery/code | Create a Recovery Code|
 |[**createRecoveryLinkForIdentity**](#createrecoverylinkforidentity) | **POST** /admin/recovery/link | Create a Recovery Link|
+|[**createTestLoginFlow**](#createtestloginflow) | **POST** /admin/test-login-flows | Create a test OIDC login flow|
 |[**deleteIdentity**](#deleteidentity) | **DELETE** /admin/identities/{id} | Delete an Identity|
 |[**deleteIdentityCredentials**](#deleteidentitycredentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity|
 |[**deleteIdentitySessions**](#deleteidentitysessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity\&#39;s Sessions|
@@ -21,6 +22,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 |[**listIdentitySchemas**](#listidentityschemas) | **GET** /schemas | Get all Identity Schemas|
 |[**listIdentitySessions**](#listidentitysessions) | **GET** /admin/identities/{id}/sessions | List an Identity\&#39;s Sessions|
 |[**listSessions**](#listsessions) | **GET** /admin/sessions | List All Sessions|
+|[**manageSessions**](#managesessions) | **POST** /admin/sessions | Manage sessions in bulk|
 |[**patchIdentity**](#patchidentity) | **PATCH** /admin/identities/{id} | Patch an Identity|
 |[**updateIdentity**](#updateidentity) | **PUT** /admin/identities/{id} | Update an Identity|
 
@@ -247,6 +249,61 @@ const { status, data } = await apiInstance.createRecoveryLinkForIdentity(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **createTestLoginFlow**
+> LoginFlow createTestLoginFlow(createTestLoginFlowBody)
+
+Creates a dry-run OIDC test login flow pre-scoped to one provider. The returned flow carries a single-submit UI and a CSRF bearer token. No identity is persisted and no session is issued when the flow completes; the captured debug data is returned in the flow\'s test_context.
+
+### Example
+
+```typescript
+import {
+    IdentityApi,
+    Configuration,
+    CreateTestLoginFlowBody
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new IdentityApi(configuration);
+
+let createTestLoginFlowBody: CreateTestLoginFlowBody; //
+
+const { status, data } = await apiInstance.createTestLoginFlow(
+    createTestLoginFlowBody
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **createTestLoginFlowBody** | **CreateTestLoginFlowBody**|  | |
+
+
+### Return type
+
+**LoginFlow**
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**201** | loginFlow |  -  |
+|**400** | errorGeneric |  -  |
+|**404** | errorGeneric |  -  |
+|**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **deleteIdentity**
 > deleteIdentity()
 
@@ -317,7 +374,7 @@ const configuration = new Configuration();
 const apiInstance = new IdentityApi(configuration);
 
 let id: string; //ID is the identity\'s ID. (default to undefined)
-let type: 'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'deviceauthn' | 'link_recovery' | 'code_recovery'; //Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode (default to undefined)
+let type: 'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'deviceauthn' | 'identifier_first' | 'link_recovery' | 'code_recovery'; //Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode (default to undefined)
 let identifier: string; //Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.deleteIdentityCredentials(
@@ -332,7 +389,7 @@ const { status, data } = await apiInstance.deleteIdentityCredentials(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] | ID is the identity\&#39;s ID. | defaults to undefined|
-| **type** | [**&#39;password&#39; | &#39;oidc&#39; | &#39;totp&#39; | &#39;lookup_secret&#39; | &#39;webauthn&#39; | &#39;code&#39; | &#39;passkey&#39; | &#39;profile&#39; | &#39;saml&#39; | &#39;deviceauthn&#39; | &#39;link_recovery&#39; | &#39;code_recovery&#39;**]**Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;deviceauthn&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | defaults to undefined|
+| **type** | [**&#39;password&#39; | &#39;oidc&#39; | &#39;totp&#39; | &#39;lookup_secret&#39; | &#39;webauthn&#39; | &#39;code&#39; | &#39;passkey&#39; | &#39;profile&#39; | &#39;saml&#39; | &#39;deviceauthn&#39; | &#39;identifier_first&#39; | &#39;link_recovery&#39; | &#39;code_recovery&#39;**]**Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;deviceauthn&#39; &#124; &#39;identifier_first&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | defaults to undefined|
 | **identifier** | [**string**] | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{oidc,saml}&#x60; endpoint. | (optional) defaults to undefined|
 
 
@@ -540,7 +597,7 @@ const configuration = new Configuration();
 const apiInstance = new IdentityApi(configuration);
 
 let id: string; //ID must be set to the ID of identity you want to get (default to undefined)
-let includeCredential: Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'deviceauthn' | 'link_recovery' | 'code_recovery'>; //Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional) (default to undefined)
+let includeCredential: Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'deviceauthn' | 'identifier_first' | 'link_recovery' | 'code_recovery'>; //Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getIdentity(
     id,
@@ -553,7 +610,7 @@ const { status, data } = await apiInstance.getIdentity(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] | ID must be set to the ID of identity you want to get | defaults to undefined|
-| **includeCredential** | **Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;deviceauthn&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | (optional) defaults to undefined|
+| **includeCredential** | **Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;deviceauthn&#39; &#124; &#39;identifier_first&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -596,7 +653,7 @@ const configuration = new Configuration();
 const apiInstance = new IdentityApi(configuration);
 
 let externalID: string; //ExternalID must be set to the ID of identity you want to get (default to undefined)
-let includeCredential: Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'deviceauthn' | 'link_recovery' | 'code_recovery'>; //Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional) (default to undefined)
+let includeCredential: Array<'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'deviceauthn' | 'identifier_first' | 'link_recovery' | 'code_recovery'>; //Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getIdentityByExternalID(
     externalID,
@@ -609,7 +666,7 @@ const { status, data } = await apiInstance.getIdentityByExternalID(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **externalID** | [**string**] | ExternalID must be set to the ID of identity you want to get | defaults to undefined|
-| **includeCredential** | **Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;deviceauthn&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | (optional) defaults to undefined|
+| **includeCredential** | **Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;deviceauthn&#39; &#124; &#39;identifier_first&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -1011,6 +1068,61 @@ const { status, data } = await apiInstance.listSessions(
 |-------------|-------------|------------------|
 |**200** | Session List Response  The response given when listing sessions in an administrative context. |  -  |
 |**400** | errorGeneric |  -  |
+|**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **manageSessions**
+> ManageSessionsResponse manageSessions(manageSessionsBody)
+
+Disable or delete sessions for a list of identities or a list of sessions in a single call. The `action` field selects the operation:  `disable` — deactivate matching sessions (sets `active = false`, preserves audit data). `delete` — permanently delete matching sessions.  Exactly one of `identities` or `sessions` must be provided. To scope the operation to every session in the network, pass `identities: [\"*\"]`; the wildcard is not accepted in the `sessions` field. Up to 500 explicit IDs are accepted per call.  All requests return `200 OK` with `{processed, more}`. `processed` reports how many rows the call affected; for `disable` it counts only sessions that were active before the call. `more` is `true` only when a wildcard request reached the per-call batch limit and additional rows may remain; callers drain the network by re-issuing the same request while `more` is `true`. Explicit-IDs requests always return `more: false`.
+
+### Example
+
+```typescript
+import {
+    IdentityApi,
+    Configuration,
+    ManageSessionsBody
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new IdentityApi(configuration);
+
+let manageSessionsBody: ManageSessionsBody; //
+
+const { status, data } = await apiInstance.manageSessions(
+    manageSessionsBody
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **manageSessionsBody** | **ManageSessionsBody**|  | |
+
+
+### Return type
+
+**ManageSessionsResponse**
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | manageSessionsResponse |  -  |
+|**400** | errorGeneric |  -  |
+|**401** | errorGeneric |  -  |
 |**0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -166,6 +166,17 @@ func Test_client_FrontendAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test FrontendAPIService DeleteTestLoginFlow", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		httpRes, err := apiClient.FrontendAPI.DeleteTestLoginFlow(context.Background()).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test FrontendAPIService DisableMyOtherSessions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

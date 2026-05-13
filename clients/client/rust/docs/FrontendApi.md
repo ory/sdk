@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**create_native_registration_flow**](FrontendApi.md#create_native_registration_flow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps
 [**create_native_settings_flow**](FrontendApi.md#create_native_settings_flow) | **GET** /self-service/settings/api | Create Settings Flow for Native Apps
 [**create_native_verification_flow**](FrontendApi.md#create_native_verification_flow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
+[**delete_test_login_flow**](FrontendApi.md#delete_test_login_flow) | **DELETE** /self-service/login/test | Delete a test OIDC login flow
 [**disable_my_other_sessions**](FrontendApi.md#disable_my_other_sessions) | **DELETE** /sessions | Disable my other sessions
 [**disable_my_session**](FrontendApi.md#disable_my_session) | **DELETE** /sessions/{id} | Disable one of my sessions
 [**exchange_session_token**](FrontendApi.md#exchange_session_token) | **GET** /sessions/token-exchange | Exchange Session Token
@@ -404,6 +405,37 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::VerificationFlow**](verificationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_test_login_flow
+
+> delete_test_login_flow(id, cookie)
+Delete a test OIDC login flow
+
+Deletes a dry-run OIDC test login flow. A flow whose debug payload has been captured requires the HMAC cookie set by the OIDC callback; a flow still in the initial choose-method state is deletable with just the flow ID (it carries no PII, and the admin may want to abandon it).
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **String** | ID of the test login flow to delete. | [required] |
+**cookie** | Option<**String**> | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. |  |
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

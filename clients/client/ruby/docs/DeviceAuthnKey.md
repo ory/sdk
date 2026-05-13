@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **attestation** | [**DeviceAuthnAttestation**](DeviceAuthnAttestation.md) |  | [optional] |
 | **client_key_id** | **String** | ClientKeyID is a client-chosen id for the key and is unique per identity. | [optional] |
 | **created_at** | **Time** | CreatedAt is the timestamp of when the key was created. Only used for troubleshooting/UI. | [optional] |
 | **device_name** | **String** | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional] |
@@ -18,6 +19,7 @@
 require 'ory-client'
 
 instance = OryClient::DeviceAuthnKey.new(
+  attestation: null,
   client_key_id: null,
   created_at: null,
   device_name: null,

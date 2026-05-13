@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**CreateNativeRegistrationFlow**](FrontendAPI.md#CreateNativeRegistrationFlow) | **Get** /self-service/registration/api | Create Registration Flow for Native Apps
 [**CreateNativeSettingsFlow**](FrontendAPI.md#CreateNativeSettingsFlow) | **Get** /self-service/settings/api | Create Settings Flow for Native Apps
 [**CreateNativeVerificationFlow**](FrontendAPI.md#CreateNativeVerificationFlow) | **Get** /self-service/verification/api | Create Verification Flow for Native Apps
+[**DeleteTestLoginFlow**](FrontendAPI.md#DeleteTestLoginFlow) | **Delete** /self-service/login/test | Delete a test OIDC login flow
 [**DisableMyOtherSessions**](FrontendAPI.md#DisableMyOtherSessions) | **Delete** /sessions | Disable my other sessions
 [**DisableMySession**](FrontendAPI.md#DisableMySession) | **Delete** /sessions/{id} | Disable one of my sessions
 [**ExchangeSessionToken**](FrontendAPI.md#ExchangeSessionToken) | **Get** /sessions/token-exchange | Exchange Session Token
@@ -854,6 +855,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**VerificationFlow**](VerificationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteTestLoginFlow
+
+> DeleteTestLoginFlow(ctx).Id(id).Cookie(cookie).Execute()
+
+Delete a test OIDC login flow
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	id := "id_example" // string | ID of the test login flow to delete.
+	cookie := "cookie_example" // string | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.FrontendAPI.DeleteTestLoginFlow(context.Background()).Id(id).Cookie(cookie).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.DeleteTestLoginFlow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteTestLoginFlowRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string** | ID of the test login flow to delete. | 
+ **cookie** | **string** | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

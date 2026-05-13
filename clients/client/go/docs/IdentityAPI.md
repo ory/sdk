@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**CreateIdentity**](IdentityAPI.md#CreateIdentity) | **Post** /admin/identities | Create an Identity
 [**CreateRecoveryCodeForIdentity**](IdentityAPI.md#CreateRecoveryCodeForIdentity) | **Post** /admin/recovery/code | Create a Recovery Code
 [**CreateRecoveryLinkForIdentity**](IdentityAPI.md#CreateRecoveryLinkForIdentity) | **Post** /admin/recovery/link | Create a Recovery Link
+[**CreateTestLoginFlow**](IdentityAPI.md#CreateTestLoginFlow) | **Post** /admin/test-login-flows | Create a test OIDC login flow
 [**DeleteIdentity**](IdentityAPI.md#DeleteIdentity) | **Delete** /admin/identities/{id} | Delete an Identity
 [**DeleteIdentityCredentials**](IdentityAPI.md#DeleteIdentityCredentials) | **Delete** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 [**DeleteIdentitySessions**](IdentityAPI.md#DeleteIdentitySessions) | **Delete** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
@@ -21,6 +22,7 @@ Method | HTTP request | Description
 [**ListIdentitySchemas**](IdentityAPI.md#ListIdentitySchemas) | **Get** /schemas | Get all Identity Schemas
 [**ListIdentitySessions**](IdentityAPI.md#ListIdentitySessions) | **Get** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
 [**ListSessions**](IdentityAPI.md#ListSessions) | **Get** /admin/sessions | List All Sessions
+[**ManageSessions**](IdentityAPI.md#ManageSessions) | **Post** /admin/sessions | Manage sessions in bulk
 [**PatchIdentity**](IdentityAPI.md#PatchIdentity) | **Patch** /admin/identities/{id} | Patch an Identity
 [**UpdateIdentity**](IdentityAPI.md#UpdateIdentity) | **Put** /admin/identities/{id} | Update an Identity
 
@@ -292,6 +294,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateTestLoginFlow
+
+> LoginFlow CreateTestLoginFlow(ctx).CreateTestLoginFlowBody(createTestLoginFlowBody).Execute()
+
+Create a test OIDC login flow
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	createTestLoginFlowBody := *openapiclient.NewCreateTestLoginFlowBody("ProviderId_example") // CreateTestLoginFlowBody | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IdentityAPI.CreateTestLoginFlow(context.Background()).CreateTestLoginFlowBody(createTestLoginFlowBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.CreateTestLoginFlow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateTestLoginFlow`: LoginFlow
+	fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.CreateTestLoginFlow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateTestLoginFlowRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createTestLoginFlowBody** | [**CreateTestLoginFlowBody**](CreateTestLoginFlowBody.md) |  | 
+
+### Return type
+
+[**LoginFlow**](LoginFlow.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteIdentity
 
 > DeleteIdentity(ctx, id).Execute()
@@ -382,7 +450,7 @@ import (
 
 func main() {
 	id := "id_example" // string | ID is the identity's ID.
-	type_ := "type__example" // string | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+	type_ := "type__example" // string | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 	identifier := "identifier_example" // string | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -402,7 +470,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | ID is the identity&#39;s ID. | 
-**type_** | **string** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
+**type_** | **string** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
 
 ### Other Parameters
 
@@ -1226,6 +1294,72 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ManageSessions
+
+> ManageSessionsResponse ManageSessions(ctx).ManageSessionsBody(manageSessionsBody).Execute()
+
+Manage sessions in bulk
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	manageSessionsBody := *openapiclient.NewManageSessionsBody("Action_example") // ManageSessionsBody | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IdentityAPI.ManageSessions(context.Background()).ManageSessionsBody(manageSessionsBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IdentityAPI.ManageSessions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ManageSessions`: ManageSessionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `IdentityAPI.ManageSessions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiManageSessionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **manageSessionsBody** | [**ManageSessionsBody**](ManageSessionsBody.md) |  | 
+
+### Return type
+
+[**ManageSessionsResponse**](ManageSessionsResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

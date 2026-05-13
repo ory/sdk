@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.38
-  - Build date: 2026-05-05T09:41:59.080951071Z[Etc/UTC]
+- API version: v1.22.39
+  - Build date: 2026-05-13T10:12:49.059638454Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.38</version>
+  <version>v1.22.39</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.38"
+     implementation "sh.ory:client:v1.22.39"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.38.jar`
+* `target/client-v1.22.39.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -158,6 +158,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**createNativeRegistrationFlow**](docs/FrontendApi.md#createNativeRegistrationFlow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps
 *FrontendApi* | [**createNativeSettingsFlow**](docs/FrontendApi.md#createNativeSettingsFlow) | **GET** /self-service/settings/api | Create Settings Flow for Native Apps
 *FrontendApi* | [**createNativeVerificationFlow**](docs/FrontendApi.md#createNativeVerificationFlow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
+*FrontendApi* | [**deleteTestLoginFlow**](docs/FrontendApi.md#deleteTestLoginFlow) | **DELETE** /self-service/login/test | Delete a test OIDC login flow
 *FrontendApi* | [**disableMyOtherSessions**](docs/FrontendApi.md#disableMyOtherSessions) | **DELETE** /sessions | Disable my other sessions
 *FrontendApi* | [**disableMySession**](docs/FrontendApi.md#disableMySession) | **DELETE** /sessions/{id} | Disable one of my sessions
 *FrontendApi* | [**exchangeSessionToken**](docs/FrontendApi.md#exchangeSessionToken) | **GET** /sessions/token-exchange | Exchange Session Token
@@ -182,6 +183,7 @@ Class | Method | HTTP request | Description
 *IdentityApi* | [**createIdentity**](docs/IdentityApi.md#createIdentity) | **POST** /admin/identities | Create an Identity
 *IdentityApi* | [**createRecoveryCodeForIdentity**](docs/IdentityApi.md#createRecoveryCodeForIdentity) | **POST** /admin/recovery/code | Create a Recovery Code
 *IdentityApi* | [**createRecoveryLinkForIdentity**](docs/IdentityApi.md#createRecoveryLinkForIdentity) | **POST** /admin/recovery/link | Create a Recovery Link
+*IdentityApi* | [**createTestLoginFlow**](docs/IdentityApi.md#createTestLoginFlow) | **POST** /admin/test-login-flows | Create a test OIDC login flow
 *IdentityApi* | [**deleteIdentity**](docs/IdentityApi.md#deleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity
 *IdentityApi* | [**deleteIdentityCredentials**](docs/IdentityApi.md#deleteIdentityCredentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 *IdentityApi* | [**deleteIdentitySessions**](docs/IdentityApi.md#deleteIdentitySessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
@@ -195,6 +197,7 @@ Class | Method | HTTP request | Description
 *IdentityApi* | [**listIdentitySchemas**](docs/IdentityApi.md#listIdentitySchemas) | **GET** /schemas | Get all Identity Schemas
 *IdentityApi* | [**listIdentitySessions**](docs/IdentityApi.md#listIdentitySessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
 *IdentityApi* | [**listSessions**](docs/IdentityApi.md#listSessions) | **GET** /admin/sessions | List All Sessions
+*IdentityApi* | [**manageSessions**](docs/IdentityApi.md#manageSessions) | **POST** /admin/sessions | Manage sessions in bulk
 *IdentityApi* | [**patchIdentity**](docs/IdentityApi.md#patchIdentity) | **PATCH** /admin/identities/{id} | Patch an Identity
 *IdentityApi* | [**updateIdentity**](docs/IdentityApi.md#updateIdentity) | **PUT** /admin/identities/{id} | Update an Identity
 *JwkApi* | [**createJsonWebKeySet**](docs/JwkApi.md#createJsonWebKeySet) | **POST** /admin/keys/{set} | Create JSON Web Key
@@ -342,6 +345,7 @@ Class | Method | HTTP request | Description
  - [CreateRelationshipBody](docs/CreateRelationshipBody.md)
  - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
  - [CreateSubscriptionCommon](docs/CreateSubscriptionCommon.md)
+ - [CreateTestLoginFlowBody](docs/CreateTestLoginFlowBody.md)
  - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
  - [CreateWorkspaceApiKeyBody](docs/CreateWorkspaceApiKeyBody.md)
  - [CreateWorkspaceBody](docs/CreateWorkspaceBody.md)
@@ -352,6 +356,12 @@ Class | Method | HTTP request | Description
  - [CustomDomain](docs/CustomDomain.md)
  - [CustomerPortalAvailability](docs/CustomerPortalAvailability.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
+ - [DeviceAuthnAndroidAuthorizationList](docs/DeviceAuthnAndroidAuthorizationList.md)
+ - [DeviceAuthnAndroidKeyDescription](docs/DeviceAuthnAndroidKeyDescription.md)
+ - [DeviceAuthnAndroidRootOfTrust](docs/DeviceAuthnAndroidRootOfTrust.md)
+ - [DeviceAuthnAttestation](docs/DeviceAuthnAttestation.md)
+ - [DeviceAuthnIOSAttStmt](docs/DeviceAuthnIOSAttStmt.md)
+ - [DeviceAuthnIOSAttestation](docs/DeviceAuthnIOSAttestation.md)
  - [DeviceAuthnKey](docs/DeviceAuthnKey.md)
  - [DeviceAuthorization](docs/DeviceAuthorization.md)
  - [DeviceUserAuthRequest](docs/DeviceUserAuthRequest.md)
@@ -436,7 +446,13 @@ Class | Method | HTTP request | Description
  - [ListWorkspaces](docs/ListWorkspaces.md)
  - [LoginFlow](docs/LoginFlow.md)
  - [LoginFlowState](docs/LoginFlowState.md)
+ - [LoginFlowTestContext](docs/LoginFlowTestContext.md)
+ - [LoginFlowTestDebugPayload](docs/LoginFlowTestDebugPayload.md)
+ - [LoginFlowTestSchemaValidationError](docs/LoginFlowTestSchemaValidationError.md)
+ - [LoginFlowTestStepError](docs/LoginFlowTestStepError.md)
  - [LogoutFlow](docs/LogoutFlow.md)
+ - [ManageSessionsBody](docs/ManageSessionsBody.md)
+ - [ManageSessionsResponse](docs/ManageSessionsResponse.md)
  - [ManagedIdentitySchema](docs/ManagedIdentitySchema.md)
  - [ManagedIdentitySchemaValidationResult](docs/ManagedIdentitySchemaValidationResult.md)
  - [MemberInvite](docs/MemberInvite.md)

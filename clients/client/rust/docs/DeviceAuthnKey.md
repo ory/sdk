@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**attestation** | Option<[**models::DeviceAuthnAttestation**](deviceAuthnAttestation.md)> |  | [optional]
 **client_key_id** | Option<**String**> | ClientKeyID is a client-chosen id for the key and is unique per identity. | [optional]
 **created_at** | Option<**String**> | CreatedAt is the timestamp of when the key was created. Only used for troubleshooting/UI. | [optional]
 **device_name** | Option<**String**> | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional]

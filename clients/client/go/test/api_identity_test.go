@@ -70,6 +70,18 @@ func Test_client_IdentityAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test IdentityAPIService CreateTestLoginFlow", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.IdentityAPI.CreateTestLoginFlow(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test IdentityAPIService DeleteIdentity", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -236,6 +248,18 @@ func Test_client_IdentityAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.IdentityAPI.ListSessions(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test IdentityAPIService ManageSessions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.IdentityAPI.ManageSessions(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

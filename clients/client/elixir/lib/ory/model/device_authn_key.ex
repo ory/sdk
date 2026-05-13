@@ -8,6 +8,7 @@ defmodule Ory.Model.DeviceAuthnKey do
 
   @derive Jason.Encoder
   defstruct [
+    :attestation,
     :client_key_id,
     :created_at,
     :device_name,
@@ -18,6 +19,7 @@ defmodule Ory.Model.DeviceAuthnKey do
   ]
 
   @type t :: %__MODULE__{
+    :attestation => Ory.Model.DeviceAuthnAttestation.t | nil,
     :client_key_id => String.t | nil,
     :created_at => DateTime.t | nil,
     :device_name => String.t | nil,
@@ -31,6 +33,7 @@ defmodule Ory.Model.DeviceAuthnKey do
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:attestation, :struct, Ory.Model.DeviceAuthnAttestation)
      |> Deserializer.deserialize(:created_at, :datetime, nil)
   end
 end

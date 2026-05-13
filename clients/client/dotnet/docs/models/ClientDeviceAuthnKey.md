@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Attestation** | [**ClientDeviceAuthnAttestation**](ClientDeviceAuthnAttestation.md) |  | [optional] 
 **ClientKeyId** | **string** | ClientKeyID is a client-chosen id for the key and is unique per identity. | [optional] 
 **CreatedAt** | **DateTime** | CreatedAt is the timestamp of when the key was created. Only used for troubleshooting/UI. | [optional] 
 **DeviceName** | **string** | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional] 

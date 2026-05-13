@@ -18,6 +18,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**createNativeRegistrationFlow()**](FrontendApi.md#createNativeRegistrationFlow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps |
 | [**createNativeSettingsFlow()**](FrontendApi.md#createNativeSettingsFlow) | **GET** /self-service/settings/api | Create Settings Flow for Native Apps |
 | [**createNativeVerificationFlow()**](FrontendApi.md#createNativeVerificationFlow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps |
+| [**deleteTestLoginFlow()**](FrontendApi.md#deleteTestLoginFlow) | **DELETE** /self-service/login/test | Delete a test OIDC login flow |
 | [**disableMyOtherSessions()**](FrontendApi.md#disableMyOtherSessions) | **DELETE** /sessions | Disable my other sessions |
 | [**disableMySession()**](FrontendApi.md#disableMySession) | **DELETE** /sessions/{id} | Disable one of my sessions |
 | [**exchangeSessionToken()**](FrontendApi.md#exchangeSessionToken) | **GET** /sessions/token-exchange | Exchange Session Token |
@@ -740,6 +741,63 @@ try {
 ### Return type
 
 [**\Ory\Client\Model\VerificationFlow**](../Model/VerificationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteTestLoginFlow()`
+
+```php
+deleteTestLoginFlow($id, $cookie)
+```
+
+Delete a test OIDC login flow
+
+Deletes a dry-run OIDC test login flow. A flow whose debug payload has been captured requires the HMAC cookie set by the OIDC callback; a flow still in the initial choose-method state is deletable with just the flow ID (it carries no PII, and the admin may want to abandon it).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\FrontendApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 'id_example'; // string | ID of the test login flow to delete.
+$cookie = 'cookie_example'; // string | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not.
+
+try {
+    $apiInstance->deleteTestLoginFlow($id, $cookie);
+} catch (Exception $e) {
+    echo 'Exception when calling FrontendApi->deleteTestLoginFlow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID of the test login flow to delete. | |
+| **cookie** | **string**| HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. | [optional] |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

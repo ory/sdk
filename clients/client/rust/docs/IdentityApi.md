@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**create_identity**](IdentityApi.md#create_identity) | **POST** /admin/identities | Create an Identity
 [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link
+[**create_test_login_flow**](IdentityApi.md#create_test_login_flow) | **POST** /admin/test-login-flows | Create a test OIDC login flow
 [**delete_identity**](IdentityApi.md#delete_identity) | **DELETE** /admin/identities/{id} | Delete an Identity
 [**delete_identity_credentials**](IdentityApi.md#delete_identity_credentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 [**delete_identity_sessions**](IdentityApi.md#delete_identity_sessions) | **DELETE** /admin/identities/{id}/sessions | Delete & Invalidate an Identity's Sessions
@@ -21,6 +22,7 @@ Method | HTTP request | Description
 [**list_identity_schemas**](IdentityApi.md#list_identity_schemas) | **GET** /schemas | Get all Identity Schemas
 [**list_identity_sessions**](IdentityApi.md#list_identity_sessions) | **GET** /admin/identities/{id}/sessions | List an Identity's Sessions
 [**list_sessions**](IdentityApi.md#list_sessions) | **GET** /admin/sessions | List All Sessions
+[**manage_sessions**](IdentityApi.md#manage_sessions) | **POST** /admin/sessions | Manage sessions in bulk
 [**patch_identity**](IdentityApi.md#patch_identity) | **PATCH** /admin/identities/{id} | Patch an Identity
 [**update_identity**](IdentityApi.md#update_identity) | **PUT** /admin/identities/{id} | Update an Identity
 
@@ -147,6 +149,36 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## create_test_login_flow
+
+> models::LoginFlow create_test_login_flow(create_test_login_flow_body)
+Create a test OIDC login flow
+
+Creates a dry-run OIDC test login flow pre-scoped to one provider. The returned flow carries a single-submit UI and a CSRF bearer token. No identity is persisted and no session is issued when the flow completes; the captured debug data is returned in the flow's test_context.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**create_test_login_flow_body** | [**CreateTestLoginFlowBody**](CreateTestLoginFlowBody.md) |  | [required] |
+
+### Return type
+
+[**models::LoginFlow**](loginFlow.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## delete_identity
 
 > delete_identity(id)
@@ -190,7 +222,7 @@ Delete an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-mode
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | ID is the identity's ID. | [required] |
-**r#type** | **String** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [required] |
+**r#type** | **String** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [required] |
 **identifier** | Option<**String**> | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint. |  |
 
 ### Return type
@@ -557,6 +589,36 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## manage_sessions
+
+> models::ManageSessionsResponse manage_sessions(manage_sessions_body)
+Manage sessions in bulk
+
+Disable or delete sessions for a list of identities or a list of sessions in a single call. The `action` field selects the operation:  `disable` — deactivate matching sessions (sets `active = false`, preserves audit data). `delete` — permanently delete matching sessions.  Exactly one of `identities` or `sessions` must be provided. To scope the operation to every session in the network, pass `identities: [\"*\"]`; the wildcard is not accepted in the `sessions` field. Up to 500 explicit IDs are accepted per call.  All requests return `200 OK` with `{processed, more}`. `processed` reports how many rows the call affected; for `disable` it counts only sessions that were active before the call. `more` is `true` only when a wildcard request reached the per-call batch limit and additional rows may remain; callers drain the network by re-issuing the same request while `more` is `true`. Explicit-IDs requests always return `more: false`.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**manage_sessions_body** | [**ManageSessionsBody**](ManageSessionsBody.md) |  | [required] |
+
+### Return type
+
+[**models::ManageSessionsResponse**](manageSessionsResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

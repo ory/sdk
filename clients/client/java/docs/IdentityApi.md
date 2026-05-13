@@ -8,6 +8,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**createIdentity**](IdentityApi.md#createIdentity) | **POST** /admin/identities | Create an Identity |
 | [**createRecoveryCodeForIdentity**](IdentityApi.md#createRecoveryCodeForIdentity) | **POST** /admin/recovery/code | Create a Recovery Code |
 | [**createRecoveryLinkForIdentity**](IdentityApi.md#createRecoveryLinkForIdentity) | **POST** /admin/recovery/link | Create a Recovery Link |
+| [**createTestLoginFlow**](IdentityApi.md#createTestLoginFlow) | **POST** /admin/test-login-flows | Create a test OIDC login flow |
 | [**deleteIdentity**](IdentityApi.md#deleteIdentity) | **DELETE** /admin/identities/{id} | Delete an Identity |
 | [**deleteIdentityCredentials**](IdentityApi.md#deleteIdentityCredentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity |
 | [**deleteIdentitySessions**](IdentityApi.md#deleteIdentitySessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions |
@@ -21,6 +22,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**listIdentitySchemas**](IdentityApi.md#listIdentitySchemas) | **GET** /schemas | Get all Identity Schemas |
 | [**listIdentitySessions**](IdentityApi.md#listIdentitySessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions |
 | [**listSessions**](IdentityApi.md#listSessions) | **GET** /admin/sessions | List All Sessions |
+| [**manageSessions**](IdentityApi.md#manageSessions) | **POST** /admin/sessions | Manage sessions in bulk |
 | [**patchIdentity**](IdentityApi.md#patchIdentity) | **PATCH** /admin/identities/{id} | Patch an Identity |
 | [**updateIdentity**](IdentityApi.md#updateIdentity) | **PUT** /admin/identities/{id} | Update an Identity |
 
@@ -307,6 +309,76 @@ public class Example {
 | **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
+<a id="createTestLoginFlow"></a>
+# **createTestLoginFlow**
+> LoginFlow createTestLoginFlow(createTestLoginFlowBody)
+
+Create a test OIDC login flow
+
+Creates a dry-run OIDC test login flow pre-scoped to one provider. The returned flow carries a single-submit UI and a CSRF bearer token. No identity is persisted and no session is issued when the flow completes; the captured debug data is returned in the flow&#39;s test_context.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.IdentityApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    IdentityApi apiInstance = new IdentityApi(defaultClient);
+    CreateTestLoginFlowBody createTestLoginFlowBody = new CreateTestLoginFlowBody(); // CreateTestLoginFlowBody | 
+    try {
+      LoginFlow result = apiInstance.createTestLoginFlow(createTestLoginFlowBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling IdentityApi#createTestLoginFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createTestLoginFlowBody** | [**CreateTestLoginFlowBody**](CreateTestLoginFlowBody.md)|  | |
+
+### Return type
+
+[**LoginFlow**](LoginFlow.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | loginFlow |  -  |
+| **400** | errorGeneric |  -  |
+| **404** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
 <a id="deleteIdentity"></a>
 # **deleteIdentity**
 > deleteIdentity(id)
@@ -404,7 +476,7 @@ public class Example {
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID is the identity's ID.
-    String type = "password"; // String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+    String type = "password"; // String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
     String identifier = "identifier_example"; // String | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint.
     try {
       apiInstance.deleteIdentityCredentials(id, type, identifier);
@@ -424,7 +496,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID is the identity&#39;s ID. | |
-| **type** | **String**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, deviceauthn, link_recovery, code_recovery] |
+| **type** | **String**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, deviceauthn, identifier_first, link_recovery, code_recovery] |
 | **identifier** | **String**| Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{oidc,saml}&#x60; endpoint. | [optional] |
 
 ### Return type
@@ -706,7 +778,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID must be set to the ID of identity you want to get | |
-| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | [optional] [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, deviceauthn, link_recovery, code_recovery] |
+| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | [optional] [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, deviceauthn, identifier_first, link_recovery, code_recovery] |
 
 ### Return type
 
@@ -777,7 +849,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **externalID** | **String**| ExternalID must be set to the ID of identity you want to get | |
-| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | [optional] [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, deviceauthn, link_recovery, code_recovery] |
+| **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | [optional] [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, deviceauthn, identifier_first, link_recovery, code_recovery] |
 
 ### Return type
 
@@ -1242,6 +1314,76 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Session List Response  The response given when listing sessions in an administrative context. |  -  |
 | **400** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+<a id="manageSessions"></a>
+# **manageSessions**
+> ManageSessionsResponse manageSessions(manageSessionsBody)
+
+Manage sessions in bulk
+
+Disable or delete sessions for a list of identities or a list of sessions in a single call. The &#x60;action&#x60; field selects the operation:  &#x60;disable&#x60; — deactivate matching sessions (sets &#x60;active &#x3D; false&#x60;, preserves audit data). &#x60;delete&#x60; — permanently delete matching sessions.  Exactly one of &#x60;identities&#x60; or &#x60;sessions&#x60; must be provided. To scope the operation to every session in the network, pass &#x60;identities: [\&quot;*\&quot;]&#x60;; the wildcard is not accepted in the &#x60;sessions&#x60; field. Up to 500 explicit IDs are accepted per call.  All requests return &#x60;200 OK&#x60; with &#x60;{processed, more}&#x60;. &#x60;processed&#x60; reports how many rows the call affected; for &#x60;disable&#x60; it counts only sessions that were active before the call. &#x60;more&#x60; is &#x60;true&#x60; only when a wildcard request reached the per-call batch limit and additional rows may remain; callers drain the network by re-issuing the same request while &#x60;more&#x60; is &#x60;true&#x60;. Explicit-IDs requests always return &#x60;more: false&#x60;.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.IdentityApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    IdentityApi apiInstance = new IdentityApi(defaultClient);
+    ManageSessionsBody manageSessionsBody = new ManageSessionsBody(); // ManageSessionsBody | 
+    try {
+      ManageSessionsResponse result = apiInstance.manageSessions(manageSessionsBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling IdentityApi#manageSessions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **manageSessionsBody** | [**ManageSessionsBody**](ManageSessionsBody.md)|  | |
+
+### Return type
+
+[**ManageSessionsResponse**](ManageSessionsResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | manageSessionsResponse |  -  |
+| **400** | errorGeneric |  -  |
+| **401** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
 <a id="patchIdentity"></a>

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Attestation** | Pointer to [**DeviceAuthnAttestation**](DeviceAuthnAttestation.md) |  | [optional] 
 **ClientKeyId** | Pointer to **string** | ClientKeyID is a client-chosen id for the key and is unique per identity. | [optional] 
 **CreatedAt** | Pointer to **time.Time** | CreatedAt is the timestamp of when the key was created. Only used for troubleshooting/UI. | [optional] 
 **DeviceName** | Pointer to **string** | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional] 
@@ -30,6 +31,31 @@ will change when the set of required properties is changed
 NewDeviceAuthnKeyWithDefaults instantiates a new DeviceAuthnKey object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAttestation
+
+`func (o *DeviceAuthnKey) GetAttestation() DeviceAuthnAttestation`
+
+GetAttestation returns the Attestation field if non-nil, zero value otherwise.
+
+### GetAttestationOk
+
+`func (o *DeviceAuthnKey) GetAttestationOk() (*DeviceAuthnAttestation, bool)`
+
+GetAttestationOk returns a tuple with the Attestation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttestation
+
+`func (o *DeviceAuthnKey) SetAttestation(v DeviceAuthnAttestation)`
+
+SetAttestation sets Attestation field to given value.
+
+### HasAttestation
+
+`func (o *DeviceAuthnKey) HasAttestation() bool`
+
+HasAttestation returns a boolean if a field has been set.
 
 ### GetClientKeyId
 

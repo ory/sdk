@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**create_native_registration_flow**](FrontendApi.md#create_native_registration_flow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps
 [**create_native_settings_flow**](FrontendApi.md#create_native_settings_flow) | **GET** /self-service/settings/api | Create Settings Flow for Native Apps
 [**create_native_verification_flow**](FrontendApi.md#create_native_verification_flow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
+[**delete_test_login_flow**](FrontendApi.md#delete_test_login_flow) | **DELETE** /self-service/login/test | Delete a test OIDC login flow
 [**disable_my_other_sessions**](FrontendApi.md#disable_my_other_sessions) | **DELETE** /sessions | Disable my other sessions
 [**disable_my_session**](FrontendApi.md#disable_my_session) | **DELETE** /sessions/{id} | Disable one of my sessions
 [**exchange_session_token**](FrontendApi.md#exchange_session_token) | **GET** /sessions/token-exchange | Exchange Session Token
@@ -1090,6 +1091,80 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | verificationFlow |  -  |
 **400** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_test_login_flow**
+> delete_test_login_flow(id, cookie=cookie)
+
+Delete a test OIDC login flow
+
+Deletes a dry-run OIDC test login flow. A flow whose debug payload has
+been captured requires the HMAC cookie set by the OIDC callback; a flow
+still in the initial choose-method state is deletable with just the flow
+ID (it carries no PII, and the admin may want to abandon it).
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.FrontendApi(api_client)
+    id = 'id_example' # str | ID of the test login flow to delete.
+    cookie = 'cookie_example' # str | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. (optional)
+
+    try:
+        # Delete a test OIDC login flow
+        api_instance.delete_test_login_flow(id, cookie=cookie)
+    except Exception as e:
+        print("Exception when calling FrontendApi->delete_test_login_flow: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| ID of the test login flow to delete. | 
+ **cookie** | **str**| HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**400** | errorGeneric |  -  |
+**403** | errorGeneric |  -  |
+**404** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

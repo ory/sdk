@@ -16,6 +16,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 |[**createNativeRegistrationFlow**](#createnativeregistrationflow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps|
 |[**createNativeSettingsFlow**](#createnativesettingsflow) | **GET** /self-service/settings/api | Create Settings Flow for Native Apps|
 |[**createNativeVerificationFlow**](#createnativeverificationflow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps|
+|[**deleteTestLoginFlow**](#deletetestloginflow) | **DELETE** /self-service/login/test | Delete a test OIDC login flow|
 |[**disableMyOtherSessions**](#disablemyothersessions) | **DELETE** /sessions | Disable my other sessions|
 |[**disableMySession**](#disablemysession) | **DELETE** /sessions/{id} | Disable one of my sessions|
 |[**exchangeSessionToken**](#exchangesessiontoken) | **GET** /sessions/token-exchange | Exchange Session Token|
@@ -733,6 +734,64 @@ No authorization required
 |-------------|-------------|------------------|
 |**200** | verificationFlow |  -  |
 |**400** | errorGeneric |  -  |
+|**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteTestLoginFlow**
+> deleteTestLoginFlow()
+
+Deletes a dry-run OIDC test login flow. A flow whose debug payload has been captured requires the HMAC cookie set by the OIDC callback; a flow still in the initial choose-method state is deletable with just the flow ID (it carries no PII, and the admin may want to abandon it).
+
+### Example
+
+```typescript
+import {
+    FrontendApi,
+    Configuration
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new FrontendApi(configuration);
+
+let id: string; //ID of the test login flow to delete. (default to undefined)
+let cookie: string; //HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. (optional) (default to undefined)
+
+const { status, data } = await apiInstance.deleteTestLoginFlow(
+    id,
+    cookie
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] | ID of the test login flow to delete. | defaults to undefined|
+| **cookie** | [**string**] | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. | (optional) defaults to undefined|
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+|**400** | errorGeneric |  -  |
+|**403** | errorGeneric |  -  |
+|**404** | errorGeneric |  -  |
 |**0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

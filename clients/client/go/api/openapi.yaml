@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.38
+  version: v1.22.39
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -912,6 +912,7 @@ paths:
             - profile
             - saml
             - deviceauthn
+            - identifier_first
             - link_recovery
             - code_recovery
             type: string
@@ -1016,6 +1017,7 @@ paths:
             - profile
             - saml
             - deviceauthn
+            - identifier_first
             - link_recovery
             - code_recovery
             type: string
@@ -1199,6 +1201,7 @@ paths:
           profile CredentialsTypeProfile
           saml CredentialsTypeSAML
           deviceauthn CredentialsTypeDeviceAuthn
+          identifier_first CredentialsTypeIdentifierFirst
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
         explode: false
@@ -1217,6 +1220,7 @@ paths:
           - profile
           - saml
           - deviceauthn
+          - identifier_first
           - link_recovery
           - code_recovery
           type: string
@@ -1232,6 +1236,7 @@ paths:
           profile CredentialsTypeProfile
           saml CredentialsTypeSAML
           deviceauthn CredentialsTypeDeviceAuthn
+          identifier_first CredentialsTypeIdentifierFirst
           link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
           code_recovery CredentialsTypeRecoveryCode
       - description: |-
@@ -2748,6 +2753,65 @@ paths:
       tags:
       - identity
       x-ory-ratelimit-bucket: kratos-admin-medium
+    post:
+      description: |-
+        Disable or delete sessions for a list of identities or a list of sessions in
+        a single call. The `action` field selects the operation:
+
+        `disable` — deactivate matching sessions (sets `active = false`, preserves
+        audit data).
+        `delete` — permanently delete matching sessions.
+
+        Exactly one of `identities` or `sessions` must be provided. To scope the
+        operation to every session in the network, pass `identities: ["*"]`; the
+        wildcard is not accepted in the `sessions` field. Up to 500 explicit IDs
+        are accepted per call.
+
+        All requests return `200 OK` with `{processed, more}`. `processed` reports
+        how many rows the call affected; for `disable` it counts only sessions
+        that were active before the call. `more` is `true` only when a wildcard
+        request reached the per-call batch limit and additional rows may remain;
+        callers drain the network by re-issuing the same request while `more` is
+        `true`. Explicit-IDs requests always return `more: false`.
+      operationId: manageSessions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/manageSessionsBody"
+        required: true
+        x-originalParamName: Body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/manageSessionsResponse"
+          description: manageSessionsResponse
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Manage sessions in bulk
+      tags:
+      - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
   /admin/sessions/{id}:
     delete:
       description: Calling this endpoint deactivates the specified session. Session
@@ -2903,6 +2967,52 @@ paths:
       security:
       - oryAccessToken: []
       summary: Extend a Session
+      tags:
+      - identity
+      x-ory-ratelimit-bucket: kratos-admin-low
+  /admin/test-login-flows:
+    post:
+      description: |-
+        Creates a dry-run OIDC test login flow pre-scoped to one provider. The
+        returned flow carries a single-submit UI and a CSRF bearer token. No
+        identity is persisted and no session is issued when the flow completes;
+        the captured debug data is returned in the flow's test_context.
+      operationId: createTestLoginFlow
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createTestLoginFlowBody"
+        required: true
+        x-originalParamName: Body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/loginFlow"
+          description: loginFlow
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
+      security:
+      - oryAccessToken: []
+      summary: Create a test OIDC login flow
       tags:
       - identity
       x-ory-ratelimit-bucket: kratos-admin-low
@@ -6339,6 +6449,67 @@ paths:
                 $ref: "#/components/schemas/errorGeneric"
           description: errorGeneric
       summary: Get Login Flow
+      tags:
+      - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
+  /self-service/login/test:
+    delete:
+      description: |-
+        Deletes a dry-run OIDC test login flow. A flow whose debug payload has
+        been captured requires the HMAC cookie set by the OIDC callback; a flow
+        still in the initial choose-method state is deletable with just the flow
+        ID (it carries no PII, and the admin may want to abandon it).
+      operationId: deleteTestLoginFlow
+      parameters:
+      - description: ID of the test login flow to delete.
+        explode: true
+        in: query
+        name: id
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: |-
+          HTTP Cookies. A captured test flow requires the ory_kratos_test_flow
+          cookie set by the OIDC callback; a flow still in the initial
+          choose-method state does not.
+        explode: false
+        in: header
+        name: Cookie
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: errorGeneric
+      summary: Delete a test OIDC login flow
       tags:
       - frontend
       x-ory-ratelimit-bucket: kratos-public-high
@@ -11055,6 +11226,8 @@ components:
         Consequently, all methods take the type by pointer and not by value.
     DeviceAuthnKey:
       properties:
+        attestation:
+          $ref: "#/components/schemas/deviceAuthnAttestation"
         client_key_id:
           description: ClientKeyID is a client-chosen id for the key and is unique
             per identity.
@@ -11133,6 +11306,10 @@ components:
         as an int64 nanosecond count. The representation limits the
         largest representable duration to approximately 290 years.
       format: int64
+      type: integer
+    Enumerated:
+      format: int64
+      title: An Enumerated is represented as a plain int.
       type: integer
     GenericOIDCProvider:
       properties:
@@ -12928,6 +13105,18 @@ components:
       - plan
       - provision_first_project
       type: object
+    createTestLoginFlowBody:
+      properties:
+        provider_id:
+          description: |-
+            ID of the OIDC provider to test. Must match a provider configured on
+            the project that serves this request.
+          maxLength: 255
+          type: string
+      required:
+      - provider_id
+      title: Request body for creating a test OIDC login flow.
+      type: object
     createWorkspaceBody:
       properties:
         name:
@@ -13134,6 +13323,200 @@ components:
           description: The number of sessions that were revoked.
           format: int64
           type: integer
+      type: object
+    deviceAuthnAndroidAuthorizationList:
+      description: "Schema: https://source.android.com/docs/security/features/keystore/attestation#schema"
+      properties:
+        active_date_time:
+          format: int64
+          type: integer
+        algorithm:
+          format: int64
+          type: integer
+        application_id:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_application_id:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_brand:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_device:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_imei:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_manufacturer:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_meid:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_model:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_product:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        attestation_id_serial:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        auth_timeout:
+          format: int64
+          type: integer
+        boot_patch_level:
+          format: int64
+          type: integer
+        creation_date_time:
+          format: int64
+          type: integer
+        digest:
+          items:
+            format: int64
+            type: integer
+          type: array
+        ec_curve:
+          format: int64
+          type: integer
+        key_size:
+          format: int64
+          type: integer
+        origin:
+          format: int64
+          type: integer
+        origination_expire_date_time:
+          format: int64
+          type: integer
+        os_patch_level:
+          format: int64
+          type: integer
+        os_version:
+          format: int64
+          type: integer
+        purpose:
+          items:
+            format: int64
+            type: integer
+          type: array
+        root_of_trust:
+          $ref: "#/components/schemas/deviceAuthnAndroidRootOfTrust"
+        usage_expire_date_time:
+          format: int64
+          type: integer
+        user_auth_type:
+          format: int64
+          type: integer
+        vendor_patch_level:
+          format: int64
+          type: integer
+      title: AndroidAuthorizationList maps the ASN.1 tags to the fields defined in
+        KeyMint 4.
+      type: object
+    deviceAuthnAndroidKeyDescription:
+      description: "Schema: https://source.android.com/docs/security/features/keystore/attestation#schema"
+      properties:
+        attestation_security_level:
+          format: int64
+          title: An Enumerated is represented as a plain int.
+          type: integer
+        attestation_version:
+          format: int64
+          type: integer
+        keymaster_security_level:
+          format: int64
+          title: An Enumerated is represented as a plain int.
+          type: integer
+        keymaster_version:
+          format: int64
+          type: integer
+        software_enforced:
+          $ref: "#/components/schemas/deviceAuthnAndroidAuthorizationList"
+        tee_enforced:
+          $ref: "#/components/schemas/deviceAuthnAndroidAuthorizationList"
+      title: |-
+        AndroidKeyDescription matches the ASN.1 sequence defined by Android.
+        It is stored in the leaf certificate's x509 extension.
+      type: object
+    deviceAuthnAndroidRootOfTrust:
+      properties:
+        device_locked:
+          type: boolean
+        verified_boot_hash:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        verified_boot_key:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        verified_boot_state:
+          format: int64
+          title: An Enumerated is represented as a plain int.
+          type: integer
+      type: object
+    deviceAuthnAttestation:
+      description: "Exactly one of Android / IOS is set, matching the key's DeviceType."
+      properties:
+        android:
+          $ref: "#/components/schemas/deviceAuthnAndroidKeyDescription"
+        ios:
+          $ref: "#/components/schemas/deviceAuthnIOSAttestation"
+      title: Attestation holds the platform-specific attestation parsed at enrollment.
+      type: object
+    deviceAuthnIOSAttStmt:
+      description: Defined in https://developer.apple.com/documentation/devicecheck/validating-apps-that-connect-to-your-server#Verify-the-attestation
+        .
+      properties:
+        x5c:
+          description: |-
+            X5c is the leaf-first certificate chain encoded as base64(DER), per
+            the JOSE convention defined in RFC 7515 §4.1.6.
+          items:
+            items:
+              format: uint8
+              type: integer
+            type: array
+          type: array
+      title: IOSAttStmt is the attestation statement of an Apple App Attest attestation.
+      type: object
+    deviceAuthnIOSAttestation:
+      description: Defined in https://developer.apple.com/documentation/devicecheck/validating-apps-that-connect-to-your-server#Verify-the-attestation
+        .
+      properties:
+        att_stmt:
+          $ref: "#/components/schemas/deviceAuthnIOSAttStmt"
+        auth_data:
+          items:
+            format: uint8
+            type: integer
+          type: array
+        fmt:
+          type: string
+      title: IOSAttestation is an Apple App Attest attestation.
       type: object
     deviceAuthorization:
       description: "# Ory's OAuth 2.0 Device Authorization API"
@@ -13913,6 +14296,7 @@ components:
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
             deviceauthn CredentialsTypeDeviceAuthn
+            identifier_first CredentialsTypeIdentifierFirst
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -13926,6 +14310,7 @@ components:
           - profile
           - saml
           - deviceauthn
+          - identifier_first
           - link_recovery
           - code_recovery
           type: string
@@ -13940,6 +14325,7 @@ components:
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
             deviceauthn CredentialsTypeDeviceAuthn
+            identifier_first CredentialsTypeIdentifierFirst
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         updated_at:
@@ -15055,6 +15441,28 @@ components:
 
         Once a login flow is completed successfully, a session cookie or session token will be issued.
       example:
+        test_context:
+          debug_payload:
+            schema_validation_errors:
+            - path: path
+              message: message
+            - path: path
+              message: message
+            id_token_claims:
+              key: ""
+            error:
+              reason: reason
+              step: step
+              message: message
+            jsonnet_mapper_url: jsonnet_mapper_url
+            jsonnet_stderr: jsonnet_stderr
+            userinfo:
+              key: ""
+            jsonnet_input:
+              key: ""
+            jsonnet_output:
+              key: ""
+          provider_id: provider_id
         identity_schema: identity_schema
         requested_aal: aal0
         active: password
@@ -15303,6 +15711,7 @@ components:
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
             deviceauthn CredentialsTypeDeviceAuthn
+            identifier_first CredentialsTypeIdentifierFirst
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -15316,6 +15725,7 @@ components:
           - profile
           - saml
           - deviceauthn
+          - identifier_first
           - link_recovery
           - code_recovery
           type: string
@@ -15330,6 +15740,7 @@ components:
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
             deviceauthn CredentialsTypeDeviceAuthn
+            identifier_first CredentialsTypeIdentifierFirst
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         created_at:
@@ -15397,6 +15808,8 @@ components:
             choose_method: ask the user to choose a method to sign in with
             sent_email: the email has been sent to the user
             passed_challenge: the request was successful and the login challenge was passed.
+        test_context:
+          $ref: "#/components/schemas/loginFlowTestContext"
         transient_payload:
           description: TransientPayload is used to pass data from the login to hooks
             and email templates
@@ -15430,6 +15843,142 @@ components:
       - passed_challenge
       title: Login flow state (experimental)
       type: string
+    loginFlowTestContext:
+      description: |-
+        Admin-test extension of a login flow. Populated only for flows created by
+        the admin test endpoint; included in the flow's API response so the admin
+        UI can render the pre-scoped provider and (once captured) the debug
+        round-trip result.
+      example:
+        debug_payload:
+          schema_validation_errors:
+          - path: path
+            message: message
+          - path: path
+            message: message
+          id_token_claims:
+            key: ""
+          error:
+            reason: reason
+            step: step
+            message: message
+          jsonnet_mapper_url: jsonnet_mapper_url
+          jsonnet_stderr: jsonnet_stderr
+          userinfo:
+            key: ""
+          jsonnet_input:
+            key: ""
+          jsonnet_output:
+            key: ""
+        provider_id: provider_id
+      properties:
+        debug_payload:
+          $ref: "#/components/schemas/loginFlowTestDebugPayload"
+        provider_id:
+          description: The ID of the OIDC provider this test flow targets.
+          type: string
+      required:
+      - provider_id
+      type: object
+    loginFlowTestDebugPayload:
+      description: |-
+        Contains the parsed claims, the Jsonnet mapper input and output, and any
+        schema validation errors. Bearer tokens (id_token, access_token,
+        refresh_token) are intentionally excluded to limit the blast radius of
+        the debug payload leaking through audit logs or admin browsers.
+      example:
+        schema_validation_errors:
+        - path: path
+          message: message
+        - path: path
+          message: message
+        id_token_claims:
+          key: ""
+        error:
+          reason: reason
+          step: step
+          message: message
+        jsonnet_mapper_url: jsonnet_mapper_url
+        jsonnet_stderr: jsonnet_stderr
+        userinfo:
+          key: ""
+        jsonnet_input:
+          key: ""
+        jsonnet_output:
+          key: ""
+      properties:
+        error:
+          $ref: "#/components/schemas/loginFlowTestStepError"
+        id_token_claims:
+          additionalProperties: {}
+          description: Claims extracted from the ID token.
+          type: object
+        jsonnet_input:
+          additionalProperties: {}
+          description: Input JSON that was fed into the Jsonnet mapper.
+          type: object
+        jsonnet_mapper_url:
+          description: URL of the Jsonnet mapper that was executed on the claims.
+          type: string
+        jsonnet_output:
+          additionalProperties: {}
+          description: Output JSON returned by the Jsonnet mapper.
+          type: object
+        jsonnet_stderr:
+          description: Anything the Jsonnet mapper wrote to standard error.
+          type: string
+        schema_validation_errors:
+          description: Identity-schema validation errors produced from the mapped
+            traits.
+          items:
+            $ref: "#/components/schemas/loginFlowTestSchemaValidationError"
+          type: array
+        userinfo:
+          additionalProperties: {}
+          description: "Claims returned from the provider's userinfo endpoint, if\
+            \ any."
+          type: object
+      title: Diagnostic payload captured during a test-mode OIDC round-trip.
+      type: object
+    loginFlowTestSchemaValidationError:
+      description: |-
+        One identity-schema validation failure recorded while evaluating the
+        traits produced by the Jsonnet mapper.
+      example:
+        path: path
+        message: message
+      properties:
+        message:
+          description: Human-readable description of the validation failure.
+          type: string
+        path:
+          description: JSON pointer to the field that failed validation.
+          type: string
+      type: object
+    loginFlowTestStepError:
+      description: |-
+        Populated when any step (token exchange, claims decode, Jsonnet
+        evaluation, schema validation) cannot complete.
+      example:
+        reason: reason
+        step: step
+        message: message
+      properties:
+        message:
+          description: Human-readable message describing the failure.
+          type: string
+        reason:
+          description: |-
+            Short classification of the failure cause (for example,
+            "access_denied" or "traits_invalid").
+          type: string
+        step:
+          description: |-
+            Machine-readable identifier of the failed step (for example,
+            "token_exchange" or "schema_validate").
+          type: string
+      title: Classified failure of a step in an OIDC test round-trip.
+      type: object
     logoutFlow:
       description: Logout Flow
       example:
@@ -15448,6 +15997,71 @@ components:
       required:
       - logout_token
       - logout_url
+      type: object
+    manageSessionsBody:
+      description: |-
+        Body for the bulk session management endpoint. Exactly one of `identities`
+        or `sessions` must be provided. To operate on every session in the network,
+        pass `identities: ["*"]` — the wildcard must appear alone, never mixed with
+        explicit IDs.
+      properties:
+        action:
+          description: |-
+            Action to perform on the matching sessions.
+            disable ManageSessionsActionDisable
+            delete ManageSessionsActionDelete
+          enum:
+          - disable
+          - delete
+          type: string
+          x-go-enum-desc: |-
+            disable ManageSessionsActionDisable
+            delete ManageSessionsActionDelete
+        identities:
+          description: |-
+            Identity IDs whose sessions should be disabled or deleted, or `["*"]`
+            to operate on every session in the network. Mutually exclusive with
+            `sessions`.
+          items:
+            type: string
+          type: array
+        sessions:
+          description: |-
+            Session IDs to disable or delete. Mutually exclusive with `identities`.
+            The wildcard `["*"]` is not accepted in this field — pass
+            `identities: ["*"]` to scope the operation to every session in the
+            network.
+          items:
+            type: string
+          type: array
+      required:
+      - action
+      title: Manage Sessions Body
+      type: object
+    manageSessionsResponse:
+      description: |-
+        Response body for the bulk session management endpoint. Reports how many
+        rows the call processed and, for the wildcard variant, whether the network
+        still has matching rows left. Explicit-IDs requests always return
+        `more: false`. Wildcard callers drain the network by re-issuing the same
+        request while `more` is `true`.
+      example:
+        processed: 0
+        more: true
+      properties:
+        more:
+          description: |-
+            True when the call reached the per-call batch limit and additional
+            matching rows may remain. Always false for explicit-IDs requests.
+          type: boolean
+        processed:
+          description: |-
+            Number of sessions processed in this call. For `disable`, counts only
+            sessions that were active before the call (already-inactive sessions
+            are skipped). For `delete`, counts every matching row removed.
+          format: int64
+          type: integer
+      title: Manage Sessions Response
       type: object
     managedIdentitySchema:
       description: |-
@@ -15665,6 +16279,7 @@ components:
             stub TypeTestStub
             login_code_valid TypeLoginCodeValid
             registration_code_valid TypeRegistrationCodeValid
+            verifiable_address_changed TypeVerifiableAddressChanged
           enum:
           - recovery_invalid
           - recovery_valid
@@ -15677,6 +16292,7 @@ components:
           - stub
           - login_code_valid
           - registration_code_valid
+          - verifiable_address_changed
           type: string
           x-go-enum-desc: |-
             recovery_invalid TypeRecoveryInvalid
@@ -15690,6 +16306,7 @@ components:
             stub TypeTestStub
             login_code_valid TypeLoginCodeValid
             registration_code_valid TypeRegistrationCodeValid
+            verifiable_address_changed TypeVerifiableAddressChanged
         type:
           $ref: "#/components/schemas/courierMessageType"
         updated_at:
@@ -22008,6 +22625,7 @@ components:
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
             deviceauthn CredentialsTypeDeviceAuthn
+            identifier_first CredentialsTypeIdentifierFirst
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -22021,6 +22639,7 @@ components:
           - profile
           - saml
           - deviceauthn
+          - identifier_first
           - link_recovery
           - code_recovery
           type: string
@@ -22035,6 +22654,7 @@ components:
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
             deviceauthn CredentialsTypeDeviceAuthn
+            identifier_first CredentialsTypeIdentifierFirst
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         expires_at:
@@ -22485,6 +23105,7 @@ components:
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
             deviceauthn CredentialsTypeDeviceAuthn
+            identifier_first CredentialsTypeIdentifierFirst
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
           enum:
@@ -22498,6 +23119,7 @@ components:
           - profile
           - saml
           - deviceauthn
+          - identifier_first
           - link_recovery
           - code_recovery
           type: string
@@ -22512,6 +23134,7 @@ components:
             profile CredentialsTypeProfile
             saml CredentialsTypeSAML
             deviceauthn CredentialsTypeDeviceAuthn
+            identifier_first CredentialsTypeIdentifierFirst
             link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself.
             code_recovery CredentialsTypeRecoveryCode
         organization:

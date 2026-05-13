@@ -8,6 +8,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**create_identity**](IdentityApi.md#create_identity) | **POST** /admin/identities | Create an Identity |
 | [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code |
 | [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link |
+| [**create_test_login_flow**](IdentityApi.md#create_test_login_flow) | **POST** /admin/test-login-flows | Create a test OIDC login flow |
 | [**delete_identity**](IdentityApi.md#delete_identity) | **DELETE** /admin/identities/{id} | Delete an Identity |
 | [**delete_identity_credentials**](IdentityApi.md#delete_identity_credentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity |
 | [**delete_identity_sessions**](IdentityApi.md#delete_identity_sessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions |
@@ -21,6 +22,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**list_identity_schemas**](IdentityApi.md#list_identity_schemas) | **GET** /schemas | Get all Identity Schemas |
 | [**list_identity_sessions**](IdentityApi.md#list_identity_sessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions |
 | [**list_sessions**](IdentityApi.md#list_sessions) | **GET** /admin/sessions | List All Sessions |
+| [**manage_sessions**](IdentityApi.md#manage_sessions) | **POST** /admin/sessions | Manage sessions in bulk |
 | [**patch_identity**](IdentityApi.md#patch_identity) | **PATCH** /admin/identities/{id} | Patch an Identity |
 | [**update_identity**](IdentityApi.md#update_identity) | **PUT** /admin/identities/{id} | Update an Identity |
 
@@ -311,6 +313,75 @@ end
 - **Accept**: application/json
 
 
+## create_test_login_flow
+
+> <LoginFlow> create_test_login_flow(create_test_login_flow_body)
+
+Create a test OIDC login flow
+
+Creates a dry-run OIDC test login flow pre-scoped to one provider. The returned flow carries a single-submit UI and a CSRF bearer token. No identity is persisted and no session is issued when the flow completes; the captured debug data is returned in the flow's test_context.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::IdentityApi.new
+create_test_login_flow_body = OryClient::CreateTestLoginFlowBody.new({provider_id: 'provider_id_example'}) # CreateTestLoginFlowBody | 
+
+begin
+  # Create a test OIDC login flow
+  result = api_instance.create_test_login_flow(create_test_login_flow_body)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling IdentityApi->create_test_login_flow: #{e}"
+end
+```
+
+#### Using the create_test_login_flow_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<LoginFlow>, Integer, Hash)> create_test_login_flow_with_http_info(create_test_login_flow_body)
+
+```ruby
+begin
+  # Create a test OIDC login flow
+  data, status_code, headers = api_instance.create_test_login_flow_with_http_info(create_test_login_flow_body)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <LoginFlow>
+rescue OryClient::ApiError => e
+  puts "Error when calling IdentityApi->create_test_login_flow_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **create_test_login_flow_body** | [**CreateTestLoginFlowBody**](CreateTestLoginFlowBody.md) |  |  |
+
+### Return type
+
+[**LoginFlow**](LoginFlow.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
 ## delete_identity
 
 > delete_identity(id)
@@ -400,7 +471,7 @@ end
 
 api_instance = OryClient::IdentityApi.new
 id = 'id_example' # String | ID is the identity's ID.
-type = 'password' # String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+type = 'password' # String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 opts = {
   identifier: 'identifier_example' # String | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint.
 }
@@ -436,7 +507,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID is the identity&#39;s ID. |  |
-| **type** | **String** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode |  |
+| **type** | **String** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode |  |
 | **identifier** | **String** | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{oidc,saml}&#x60; endpoint. | [optional] |
 
 ### Return type
@@ -1257,6 +1328,75 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## manage_sessions
+
+> <ManageSessionsResponse> manage_sessions(manage_sessions_body)
+
+Manage sessions in bulk
+
+Disable or delete sessions for a list of identities or a list of sessions in a single call. The `action` field selects the operation:  `disable` — deactivate matching sessions (sets `active = false`, preserves audit data). `delete` — permanently delete matching sessions.  Exactly one of `identities` or `sessions` must be provided. To scope the operation to every session in the network, pass `identities: [\"*\"]`; the wildcard is not accepted in the `sessions` field. Up to 500 explicit IDs are accepted per call.  All requests return `200 OK` with `{processed, more}`. `processed` reports how many rows the call affected; for `disable` it counts only sessions that were active before the call. `more` is `true` only when a wildcard request reached the per-call batch limit and additional rows may remain; callers drain the network by re-issuing the same request while `more` is `true`. Explicit-IDs requests always return `more: false`.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::IdentityApi.new
+manage_sessions_body = OryClient::ManageSessionsBody.new({action: 'disable'}) # ManageSessionsBody | 
+
+begin
+  # Manage sessions in bulk
+  result = api_instance.manage_sessions(manage_sessions_body)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling IdentityApi->manage_sessions: #{e}"
+end
+```
+
+#### Using the manage_sessions_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ManageSessionsResponse>, Integer, Hash)> manage_sessions_with_http_info(manage_sessions_body)
+
+```ruby
+begin
+  # Manage sessions in bulk
+  data, status_code, headers = api_instance.manage_sessions_with_http_info(manage_sessions_body)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ManageSessionsResponse>
+rescue OryClient::ApiError => e
+  puts "Error when calling IdentityApi->manage_sessions_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **manage_sessions_body** | [**ManageSessionsBody**](ManageSessionsBody.md) |  |  |
+
+### Return type
+
+[**ManageSessionsResponse**](ManageSessionsResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 

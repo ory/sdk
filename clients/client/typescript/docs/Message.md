@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **send_count** | **number** |  | [default to undefined]
 **status** | [**CourierMessageStatus**](CourierMessageStatus.md) |  | [default to undefined]
 **subject** | **string** |  | [default to undefined]
-**template_type** | **string** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid | [default to undefined]
+**template_type** | **string** |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid verifiable_address_changed TypeVerifiableAddressChanged | [default to undefined]
 **type** | [**CourierMessageType**](CourierMessageType.md) |  | [default to undefined]
 **updated_at** | **string** | UpdatedAt is a helper struct field for gobuffalo.pop. | [default to undefined]
 

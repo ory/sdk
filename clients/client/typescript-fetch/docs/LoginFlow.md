@@ -22,6 +22,7 @@ Name | Type
 `return_to` | string
 `session_token_exchange_code` | string
 `state` | any
+`test_context` | [LoginFlowTestContext](LoginFlowTestContext.md)
 `transient_payload` | object
 `type` | string
 `ui` | [UiContainer](UiContainer.md)
@@ -49,6 +50,7 @@ const example = {
   "return_to": null,
   "session_token_exchange_code": null,
   "state": null,
+  "test_context": null,
   "transient_payload": null,
   "type": null,
   "ui": null,

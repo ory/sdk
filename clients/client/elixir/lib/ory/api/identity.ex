@@ -168,6 +168,40 @@ defmodule Ory.Api.Identity do
   end
 
   @doc """
+  Create a test OIDC login flow
+  Creates a dry-run OIDC test login flow pre-scoped to one provider. The returned flow carries a single-submit UI and a CSRF bearer token. No identity is persisted and no session is issued when the flow completes; the captured debug data is returned in the flow's test_context.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `create_test_login_flow_body` (CreateTestLoginFlowBody): 
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.LoginFlow.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec create_test_login_flow(Tesla.Env.client, Ory.Model.CreateTestLoginFlowBody.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.LoginFlow.t} | {:error, Tesla.Env.t}
+  def create_test_login_flow(connection, create_test_login_flow_body, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/admin/test-login-flows")
+      |> add_param(:body, :body, create_test_login_flow_body)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, Ory.Model.LoginFlow},
+      {400, Ory.Model.ErrorGeneric},
+      {404, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
   Delete an Identity
   Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
 
@@ -207,7 +241,7 @@ defmodule Ory.Api.Identity do
 
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): ID is the identity's ID.
-  - `type` (String.t): Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+  - `type` (String.t): Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   - `opts` (keyword): Optional parameters
     - `:identifier` (String.t): Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint.
 
@@ -668,6 +702,40 @@ defmodule Ory.Api.Identity do
     |> evaluate_response([
       {200, Ory.Model.Session},
       {400, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
+  Manage sessions in bulk
+  Disable or delete sessions for a list of identities or a list of sessions in a single call. The `action` field selects the operation:  `disable` — deactivate matching sessions (sets `active = false`, preserves audit data). `delete` — permanently delete matching sessions.  Exactly one of `identities` or `sessions` must be provided. To scope the operation to every session in the network, pass `identities: [\"*\"]`; the wildcard is not accepted in the `sessions` field. Up to 500 explicit IDs are accepted per call.  All requests return `200 OK` with `{processed, more}`. `processed` reports how many rows the call affected; for `disable` it counts only sessions that were active before the call. `more` is `true` only when a wildcard request reached the per-call batch limit and additional rows may remain; callers drain the network by re-issuing the same request while `more` is `true`. Explicit-IDs requests always return `more: false`.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `manage_sessions_body` (ManageSessionsBody): 
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.ManageSessionsResponse.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec manage_sessions(Tesla.Env.client, Ory.Model.ManageSessionsBody.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.ManageSessionsResponse.t} | {:error, Tesla.Env.t}
+  def manage_sessions(connection, manage_sessions_body, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/admin/sessions")
+      |> add_param(:body, :body, manage_sessions_body)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.ManageSessionsResponse},
+      {400, Ory.Model.ErrorGeneric},
+      {401, Ory.Model.ErrorGeneric},
       {:default, Ory.Model.ErrorGeneric}
     ])
   end

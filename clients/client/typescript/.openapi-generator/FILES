@@ -59,6 +59,7 @@ docs/CreateRecoveryLinkForIdentityBody.md
 docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateSubscriptionCommon.md
+docs/CreateTestLoginFlowBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
@@ -69,6 +70,12 @@ docs/CredentialSupportedDraft00.md
 docs/CustomDomain.md
 docs/CustomerPortalAvailability.md
 docs/DeleteMySessionsCount.md
+docs/DeviceAuthnAndroidAuthorizationList.md
+docs/DeviceAuthnAndroidKeyDescription.md
+docs/DeviceAuthnAndroidRootOfTrust.md
+docs/DeviceAuthnAttestation.md
+docs/DeviceAuthnIOSAttStmt.md
+docs/DeviceAuthnIOSAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceUserAuthRequest.md
@@ -157,7 +164,13 @@ docs/ListWorkspaceProjects.md
 docs/ListWorkspaces.md
 docs/LoginFlow.md
 docs/LoginFlowState.md
+docs/LoginFlowTestContext.md
+docs/LoginFlowTestDebugPayload.md
+docs/LoginFlowTestSchemaValidationError.md
+docs/LoginFlowTestStepError.md
 docs/LogoutFlow.md
+docs/ManageSessionsBody.md
+docs/ManageSessionsResponse.md
 docs/ManagedIdentitySchema.md
 docs/ManagedIdentitySchemaValidationResult.md
 docs/MemberInvite.md

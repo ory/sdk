@@ -1,4 +1,4 @@
-# @ory/client-fetch@v1.22.38
+# @ory/client-fetch@v1.22.39
 
 A TypeScript SDK client for the playground.projects.oryapis.com API.
 
@@ -72,6 +72,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 *FrontendApi* | [**createNativeRegistrationFlow**](docs/FrontendApi.md#createnativeregistrationflow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps
 *FrontendApi* | [**createNativeSettingsFlow**](docs/FrontendApi.md#createnativesettingsflow) | **GET** /self-service/settings/api | Create Settings Flow for Native Apps
 *FrontendApi* | [**createNativeVerificationFlow**](docs/FrontendApi.md#createnativeverificationflow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
+*FrontendApi* | [**deleteTestLoginFlow**](docs/FrontendApi.md#deletetestloginflow) | **DELETE** /self-service/login/test | Delete a test OIDC login flow
 *FrontendApi* | [**disableMyOtherSessions**](docs/FrontendApi.md#disablemyothersessions) | **DELETE** /sessions | Disable my other sessions
 *FrontendApi* | [**disableMySession**](docs/FrontendApi.md#disablemysession) | **DELETE** /sessions/{id} | Disable one of my sessions
 *FrontendApi* | [**exchangeSessionToken**](docs/FrontendApi.md#exchangesessiontoken) | **GET** /sessions/token-exchange | Exchange Session Token
@@ -96,6 +97,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 *IdentityApi* | [**createIdentity**](docs/IdentityApi.md#createidentity) | **POST** /admin/identities | Create an Identity
 *IdentityApi* | [**createRecoveryCodeForIdentity**](docs/IdentityApi.md#createrecoverycodeforidentity) | **POST** /admin/recovery/code | Create a Recovery Code
 *IdentityApi* | [**createRecoveryLinkForIdentity**](docs/IdentityApi.md#createrecoverylinkforidentity) | **POST** /admin/recovery/link | Create a Recovery Link
+*IdentityApi* | [**createTestLoginFlow**](docs/IdentityApi.md#createtestloginflow) | **POST** /admin/test-login-flows | Create a test OIDC login flow
 *IdentityApi* | [**deleteIdentity**](docs/IdentityApi.md#deleteidentity) | **DELETE** /admin/identities/{id} | Delete an Identity
 *IdentityApi* | [**deleteIdentityCredentials**](docs/IdentityApi.md#deleteidentitycredentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 *IdentityApi* | [**deleteIdentitySessions**](docs/IdentityApi.md#deleteidentitysessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity\&#39;s Sessions
@@ -109,6 +111,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 *IdentityApi* | [**listIdentitySchemas**](docs/IdentityApi.md#listidentityschemas) | **GET** /schemas | Get all Identity Schemas
 *IdentityApi* | [**listIdentitySessions**](docs/IdentityApi.md#listidentitysessions) | **GET** /admin/identities/{id}/sessions | List an Identity\&#39;s Sessions
 *IdentityApi* | [**listSessions**](docs/IdentityApi.md#listsessions) | **GET** /admin/sessions | List All Sessions
+*IdentityApi* | [**manageSessions**](docs/IdentityApi.md#managesessions) | **POST** /admin/sessions | Manage sessions in bulk
 *IdentityApi* | [**patchIdentity**](docs/IdentityApi.md#patchidentity) | **PATCH** /admin/identities/{id} | Patch an Identity
 *IdentityApi* | [**updateIdentity**](docs/IdentityApi.md#updateidentity) | **PUT** /admin/identities/{id} | Update an Identity
 *JwkApi* | [**createJsonWebKeySet**](docs/JwkApi.md#createjsonwebkeyset) | **POST** /admin/keys/{set} | Create JSON Web Key
@@ -256,6 +259,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [CreateRelationshipBody](docs/CreateRelationshipBody.md)
 - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
 - [CreateSubscriptionCommon](docs/CreateSubscriptionCommon.md)
+- [CreateTestLoginFlowBody](docs/CreateTestLoginFlowBody.md)
 - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
 - [CreateWorkspaceApiKeyBody](docs/CreateWorkspaceApiKeyBody.md)
 - [CreateWorkspaceBody](docs/CreateWorkspaceBody.md)
@@ -266,6 +270,12 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [CustomDomain](docs/CustomDomain.md)
 - [CustomerPortalAvailability](docs/CustomerPortalAvailability.md)
 - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
+- [DeviceAuthnAndroidAuthorizationList](docs/DeviceAuthnAndroidAuthorizationList.md)
+- [DeviceAuthnAndroidKeyDescription](docs/DeviceAuthnAndroidKeyDescription.md)
+- [DeviceAuthnAndroidRootOfTrust](docs/DeviceAuthnAndroidRootOfTrust.md)
+- [DeviceAuthnAttestation](docs/DeviceAuthnAttestation.md)
+- [DeviceAuthnIOSAttStmt](docs/DeviceAuthnIOSAttStmt.md)
+- [DeviceAuthnIOSAttestation](docs/DeviceAuthnIOSAttestation.md)
 - [DeviceAuthnKey](docs/DeviceAuthnKey.md)
 - [DeviceAuthorization](docs/DeviceAuthorization.md)
 - [DeviceUserAuthRequest](docs/DeviceUserAuthRequest.md)
@@ -350,7 +360,13 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [ListWorkspaces](docs/ListWorkspaces.md)
 - [LoginFlow](docs/LoginFlow.md)
 - [LoginFlowState](docs/LoginFlowState.md)
+- [LoginFlowTestContext](docs/LoginFlowTestContext.md)
+- [LoginFlowTestDebugPayload](docs/LoginFlowTestDebugPayload.md)
+- [LoginFlowTestSchemaValidationError](docs/LoginFlowTestSchemaValidationError.md)
+- [LoginFlowTestStepError](docs/LoginFlowTestStepError.md)
 - [LogoutFlow](docs/LogoutFlow.md)
+- [ManageSessionsBody](docs/ManageSessionsBody.md)
+- [ManageSessionsResponse](docs/ManageSessionsResponse.md)
 - [ManagedIdentitySchema](docs/ManagedIdentitySchema.md)
 - [ManagedIdentitySchemaValidationResult](docs/ManagedIdentitySchemaValidationResult.md)
 - [MemberInvite](docs/MemberInvite.md)
@@ -561,8 +577,8 @@ This TypeScript SDK client supports the [Fetch API](https://fetch.spec.whatwg.or
 and is automatically generated by the
 [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.22.38`
-- Package version: `v1.22.38`
+- API version: `v1.22.39`
+- Package version: `v1.22.39`
 - Generator version: `7.17.0`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
 

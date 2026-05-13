@@ -6,7 +6,7 @@ This object represents a login flow. A login flow is initiated at the \"Initiate
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **string** | The active login method  If set contains the login method used. If the flow is new, it is unset. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [optional] [default to undefined]
+**active** | **string** | The active login method  If set contains the login method used. If the flow is new, it is unset. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [optional] [default to undefined]
 **created_at** | **string** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] [default to undefined]
 **expires_at** | **string** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. | [default to undefined]
 **id** | **string** | ID represents the flow\&#39;s unique ID. When performing the login flow, this represents the id in the login UI\&#39;s query parameter: http://&lt;selfservice.flows.login.ui_url&gt;/?flow&#x3D;&lt;flow_id&gt; | [default to undefined]
@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **return_to** | **string** | ReturnTo contains the requested return_to URL. | [optional] [default to undefined]
 **session_token_exchange_code** | **string** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the login flow. | [optional] [default to undefined]
 **state** | **any** | State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed. | [default to undefined]
+**test_context** | [**LoginFlowTestContext**](LoginFlowTestContext.md) |  | [optional] [default to undefined]
 **transient_payload** | **object** | TransientPayload is used to pass data from the login to hooks and email templates | [optional] [default to undefined]
 **type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | [default to undefined]
 **ui** | [**UiContainer**](UiContainer.md) |  | [default to undefined]
@@ -47,6 +48,7 @@ const instance: LoginFlow = {
     return_to,
     session_token_exchange_code,
     state,
+    test_context,
     transient_payload,
     type,
     ui,

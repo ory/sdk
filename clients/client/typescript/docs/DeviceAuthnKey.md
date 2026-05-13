@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**attestation** | [**DeviceAuthnAttestation**](DeviceAuthnAttestation.md) |  | [optional] [default to undefined]
 **client_key_id** | **string** | ClientKeyID is a client-chosen id for the key and is unique per identity. | [optional] [default to undefined]
 **created_at** | **string** | CreatedAt is the timestamp of when the key was created. Only used for troubleshooting/UI. | [optional] [default to undefined]
 **device_name** | **string** | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional] [default to undefined]
@@ -19,6 +20,7 @@ Name | Type | Description | Notes
 import { DeviceAuthnKey } from '@ory/client';
 
 const instance: DeviceAuthnKey = {
+    attestation,
     client_key_id,
     created_at,
     device_name,

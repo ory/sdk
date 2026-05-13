@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.38
+API version: v1.22.39
 Contact: support@ory.sh
 */
 
@@ -106,6 +106,23 @@ for instance passwords, social sign in configurations, or multifactor methods.
 	CreateRecoveryLinkForIdentityExecute(r IdentityAPICreateRecoveryLinkForIdentityRequest) (*RecoveryLinkForIdentity, *http.Response, error)
 
 	/*
+	CreateTestLoginFlow Create a test OIDC login flow
+
+	Creates a dry-run OIDC test login flow pre-scoped to one provider. The
+returned flow carries a single-submit UI and a CSRF bearer token. No
+identity is persisted and no session is issued when the flow completes;
+the captured debug data is returned in the flow's test_context.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return IdentityAPICreateTestLoginFlowRequest
+	*/
+	CreateTestLoginFlow(ctx context.Context) IdentityAPICreateTestLoginFlowRequest
+
+	// CreateTestLoginFlowExecute executes the request
+	//  @return LoginFlow
+	CreateTestLoginFlowExecute(r IdentityAPICreateTestLoginFlowRequest) (*LoginFlow, *http.Response, error)
+
+	/*
 	DeleteIdentity Delete an Identity
 
 	Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone.
@@ -128,7 +145,7 @@ You cannot delete passkeys or code auth credentials through this API.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID is the identity's ID.
-	@param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+	@param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 	@return IdentityAPIDeleteIdentityCredentialsRequest
 	*/
 	DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest
@@ -309,6 +326,37 @@ Getting a session object with all specified expandables that exist in an adminis
 	// ListSessionsExecute executes the request
 	//  @return []Session
 	ListSessionsExecute(r IdentityAPIListSessionsRequest) ([]Session, *http.Response, error)
+
+	/*
+	ManageSessions Manage sessions in bulk
+
+	Disable or delete sessions for a list of identities or a list of sessions in
+a single call. The `action` field selects the operation:
+
+`disable` — deactivate matching sessions (sets `active = false`, preserves
+audit data).
+`delete` — permanently delete matching sessions.
+
+Exactly one of `identities` or `sessions` must be provided. To scope the
+operation to every session in the network, pass `identities: ["*"]`; the
+wildcard is not accepted in the `sessions` field. Up to 500 explicit IDs
+are accepted per call.
+
+All requests return `200 OK` with `{processed, more}`. `processed` reports
+how many rows the call affected; for `disable` it counts only sessions
+that were active before the call. `more` is `true` only when a wildcard
+request reached the per-call batch limit and additional rows may remain;
+callers drain the network by re-issuing the same request while `more` is
+`true`. Explicit-IDs requests always return `more: false`.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return IdentityAPIManageSessionsRequest
+	*/
+	ManageSessions(ctx context.Context) IdentityAPIManageSessionsRequest
+
+	// ManageSessionsExecute executes the request
+	//  @return ManageSessionsResponse
+	ManageSessionsExecute(r IdentityAPIManageSessionsRequest) (*ManageSessionsResponse, *http.Response, error)
 
 	/*
 	PatchIdentity Patch an Identity
@@ -940,6 +988,149 @@ func (a *IdentityAPIService) CreateRecoveryLinkForIdentityExecute(r IdentityAPIC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type IdentityAPICreateTestLoginFlowRequest struct {
+	ctx context.Context
+	ApiService IdentityAPI
+	createTestLoginFlowBody *CreateTestLoginFlowBody
+}
+
+func (r IdentityAPICreateTestLoginFlowRequest) CreateTestLoginFlowBody(createTestLoginFlowBody CreateTestLoginFlowBody) IdentityAPICreateTestLoginFlowRequest {
+	r.createTestLoginFlowBody = &createTestLoginFlowBody
+	return r
+}
+
+func (r IdentityAPICreateTestLoginFlowRequest) Execute() (*LoginFlow, *http.Response, error) {
+	return r.ApiService.CreateTestLoginFlowExecute(r)
+}
+
+/*
+CreateTestLoginFlow Create a test OIDC login flow
+
+Creates a dry-run OIDC test login flow pre-scoped to one provider. The
+returned flow carries a single-submit UI and a CSRF bearer token. No
+identity is persisted and no session is issued when the flow completes;
+the captured debug data is returned in the flow's test_context.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return IdentityAPICreateTestLoginFlowRequest
+*/
+func (a *IdentityAPIService) CreateTestLoginFlow(ctx context.Context) IdentityAPICreateTestLoginFlowRequest {
+	return IdentityAPICreateTestLoginFlowRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return LoginFlow
+func (a *IdentityAPIService) CreateTestLoginFlowExecute(r IdentityAPICreateTestLoginFlowRequest) (*LoginFlow, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *LoginFlow
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentityAPIService.CreateTestLoginFlow")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/test-login-flows"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createTestLoginFlowBody == nil {
+		return localVarReturnValue, nil, reportError("createTestLoginFlowBody is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createTestLoginFlowBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type IdentityAPIDeleteIdentityRequest struct {
 	ctx context.Context
 	ApiService IdentityAPI
@@ -1078,7 +1269,7 @@ You cannot delete passkeys or code auth credentials through this API.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID is the identity's ID.
- @param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+ @param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
  @return IdentityAPIDeleteIdentityCredentialsRequest
 */
 func (a *IdentityAPIService) DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest {
@@ -2836,6 +3027,163 @@ func (a *IdentityAPIService) ListSessionsExecute(r IdentityAPIListSessionsReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type IdentityAPIManageSessionsRequest struct {
+	ctx context.Context
+	ApiService IdentityAPI
+	manageSessionsBody *ManageSessionsBody
+}
+
+func (r IdentityAPIManageSessionsRequest) ManageSessionsBody(manageSessionsBody ManageSessionsBody) IdentityAPIManageSessionsRequest {
+	r.manageSessionsBody = &manageSessionsBody
+	return r
+}
+
+func (r IdentityAPIManageSessionsRequest) Execute() (*ManageSessionsResponse, *http.Response, error) {
+	return r.ApiService.ManageSessionsExecute(r)
+}
+
+/*
+ManageSessions Manage sessions in bulk
+
+Disable or delete sessions for a list of identities or a list of sessions in
+a single call. The `action` field selects the operation:
+
+`disable` — deactivate matching sessions (sets `active = false`, preserves
+audit data).
+`delete` — permanently delete matching sessions.
+
+Exactly one of `identities` or `sessions` must be provided. To scope the
+operation to every session in the network, pass `identities: ["*"]`; the
+wildcard is not accepted in the `sessions` field. Up to 500 explicit IDs
+are accepted per call.
+
+All requests return `200 OK` with `{processed, more}`. `processed` reports
+how many rows the call affected; for `disable` it counts only sessions
+that were active before the call. `more` is `true` only when a wildcard
+request reached the per-call batch limit and additional rows may remain;
+callers drain the network by re-issuing the same request while `more` is
+`true`. Explicit-IDs requests always return `more: false`.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return IdentityAPIManageSessionsRequest
+*/
+func (a *IdentityAPIService) ManageSessions(ctx context.Context) IdentityAPIManageSessionsRequest {
+	return IdentityAPIManageSessionsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ManageSessionsResponse
+func (a *IdentityAPIService) ManageSessionsExecute(r IdentityAPIManageSessionsRequest) (*ManageSessionsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ManageSessionsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentityAPIService.ManageSessions")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/sessions"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.manageSessionsBody == nil {
+		return localVarReturnValue, nil, reportError("manageSessionsBody is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.manageSessionsBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorGeneric
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

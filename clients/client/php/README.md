@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**createNativeRegistrationFlow**](docs/Api/FrontendApi.md#createnativeregistrationflow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps
 *FrontendApi* | [**createNativeSettingsFlow**](docs/Api/FrontendApi.md#createnativesettingsflow) | **GET** /self-service/settings/api | Create Settings Flow for Native Apps
 *FrontendApi* | [**createNativeVerificationFlow**](docs/Api/FrontendApi.md#createnativeverificationflow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps
+*FrontendApi* | [**deleteTestLoginFlow**](docs/Api/FrontendApi.md#deletetestloginflow) | **DELETE** /self-service/login/test | Delete a test OIDC login flow
 *FrontendApi* | [**disableMyOtherSessions**](docs/Api/FrontendApi.md#disablemyothersessions) | **DELETE** /sessions | Disable my other sessions
 *FrontendApi* | [**disableMySession**](docs/Api/FrontendApi.md#disablemysession) | **DELETE** /sessions/{id} | Disable one of my sessions
 *FrontendApi* | [**exchangeSessionToken**](docs/Api/FrontendApi.md#exchangesessiontoken) | **GET** /sessions/token-exchange | Exchange Session Token
@@ -137,6 +138,7 @@ Class | Method | HTTP request | Description
 *IdentityApi* | [**createIdentity**](docs/Api/IdentityApi.md#createidentity) | **POST** /admin/identities | Create an Identity
 *IdentityApi* | [**createRecoveryCodeForIdentity**](docs/Api/IdentityApi.md#createrecoverycodeforidentity) | **POST** /admin/recovery/code | Create a Recovery Code
 *IdentityApi* | [**createRecoveryLinkForIdentity**](docs/Api/IdentityApi.md#createrecoverylinkforidentity) | **POST** /admin/recovery/link | Create a Recovery Link
+*IdentityApi* | [**createTestLoginFlow**](docs/Api/IdentityApi.md#createtestloginflow) | **POST** /admin/test-login-flows | Create a test OIDC login flow
 *IdentityApi* | [**deleteIdentity**](docs/Api/IdentityApi.md#deleteidentity) | **DELETE** /admin/identities/{id} | Delete an Identity
 *IdentityApi* | [**deleteIdentityCredentials**](docs/Api/IdentityApi.md#deleteidentitycredentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 *IdentityApi* | [**deleteIdentitySessions**](docs/Api/IdentityApi.md#deleteidentitysessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
@@ -150,6 +152,7 @@ Class | Method | HTTP request | Description
 *IdentityApi* | [**listIdentitySchemas**](docs/Api/IdentityApi.md#listidentityschemas) | **GET** /schemas | Get all Identity Schemas
 *IdentityApi* | [**listIdentitySessions**](docs/Api/IdentityApi.md#listidentitysessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
 *IdentityApi* | [**listSessions**](docs/Api/IdentityApi.md#listsessions) | **GET** /admin/sessions | List All Sessions
+*IdentityApi* | [**manageSessions**](docs/Api/IdentityApi.md#managesessions) | **POST** /admin/sessions | Manage sessions in bulk
 *IdentityApi* | [**patchIdentity**](docs/Api/IdentityApi.md#patchidentity) | **PATCH** /admin/identities/{id} | Patch an Identity
 *IdentityApi* | [**updateIdentity**](docs/Api/IdentityApi.md#updateidentity) | **PUT** /admin/identities/{id} | Update an Identity
 *JwkApi* | [**createJsonWebKeySet**](docs/Api/JwkApi.md#createjsonwebkeyset) | **POST** /admin/keys/{set} | Create JSON Web Key
@@ -296,6 +299,7 @@ Class | Method | HTTP request | Description
 - [CreateRelationshipBody](docs/Model/CreateRelationshipBody.md)
 - [CreateSubscriptionBody](docs/Model/CreateSubscriptionBody.md)
 - [CreateSubscriptionCommon](docs/Model/CreateSubscriptionCommon.md)
+- [CreateTestLoginFlowBody](docs/Model/CreateTestLoginFlowBody.md)
 - [CreateVerifiableCredentialRequestBody](docs/Model/CreateVerifiableCredentialRequestBody.md)
 - [CreateWorkspaceApiKeyBody](docs/Model/CreateWorkspaceApiKeyBody.md)
 - [CreateWorkspaceBody](docs/Model/CreateWorkspaceBody.md)
@@ -306,6 +310,12 @@ Class | Method | HTTP request | Description
 - [CustomDomain](docs/Model/CustomDomain.md)
 - [CustomerPortalAvailability](docs/Model/CustomerPortalAvailability.md)
 - [DeleteMySessionsCount](docs/Model/DeleteMySessionsCount.md)
+- [DeviceAuthnAndroidAuthorizationList](docs/Model/DeviceAuthnAndroidAuthorizationList.md)
+- [DeviceAuthnAndroidKeyDescription](docs/Model/DeviceAuthnAndroidKeyDescription.md)
+- [DeviceAuthnAndroidRootOfTrust](docs/Model/DeviceAuthnAndroidRootOfTrust.md)
+- [DeviceAuthnAttestation](docs/Model/DeviceAuthnAttestation.md)
+- [DeviceAuthnIOSAttStmt](docs/Model/DeviceAuthnIOSAttStmt.md)
+- [DeviceAuthnIOSAttestation](docs/Model/DeviceAuthnIOSAttestation.md)
 - [DeviceAuthnKey](docs/Model/DeviceAuthnKey.md)
 - [DeviceAuthorization](docs/Model/DeviceAuthorization.md)
 - [DeviceUserAuthRequest](docs/Model/DeviceUserAuthRequest.md)
@@ -390,7 +400,13 @@ Class | Method | HTTP request | Description
 - [ListWorkspaces](docs/Model/ListWorkspaces.md)
 - [LoginFlow](docs/Model/LoginFlow.md)
 - [LoginFlowState](docs/Model/LoginFlowState.md)
+- [LoginFlowTestContext](docs/Model/LoginFlowTestContext.md)
+- [LoginFlowTestDebugPayload](docs/Model/LoginFlowTestDebugPayload.md)
+- [LoginFlowTestSchemaValidationError](docs/Model/LoginFlowTestSchemaValidationError.md)
+- [LoginFlowTestStepError](docs/Model/LoginFlowTestStepError.md)
 - [LogoutFlow](docs/Model/LogoutFlow.md)
+- [ManageSessionsBody](docs/Model/ManageSessionsBody.md)
+- [ManageSessionsResponse](docs/Model/ManageSessionsResponse.md)
 - [ManagedIdentitySchema](docs/Model/ManagedIdentitySchema.md)
 - [ManagedIdentitySchemaValidationResult](docs/Model/ManagedIdentitySchemaValidationResult.md)
 - [MemberInvite](docs/Model/MemberInvite.md)
@@ -605,6 +621,6 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.22.38`
+- API version: `v1.22.39`
     - Generator version: `7.17.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

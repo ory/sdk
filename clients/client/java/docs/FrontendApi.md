@@ -16,6 +16,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**createNativeRegistrationFlow**](FrontendApi.md#createNativeRegistrationFlow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps |
 | [**createNativeSettingsFlow**](FrontendApi.md#createNativeSettingsFlow) | **GET** /self-service/settings/api | Create Settings Flow for Native Apps |
 | [**createNativeVerificationFlow**](FrontendApi.md#createNativeVerificationFlow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps |
+| [**deleteTestLoginFlow**](FrontendApi.md#deleteTestLoginFlow) | **DELETE** /self-service/login/test | Delete a test OIDC login flow |
 | [**disableMyOtherSessions**](FrontendApi.md#disableMyOtherSessions) | **DELETE** /sessions | Disable my other sessions |
 | [**disableMySession**](FrontendApi.md#disableMySession) | **DELETE** /sessions/{id} | Disable one of my sessions |
 | [**exchangeSessionToken**](FrontendApi.md#exchangeSessionToken) | **GET** /sessions/token-exchange | Exchange Session Token |
@@ -850,6 +851,73 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | verificationFlow |  -  |
 | **400** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+<a id="deleteTestLoginFlow"></a>
+# **deleteTestLoginFlow**
+> deleteTestLoginFlow(id, cookie)
+
+Delete a test OIDC login flow
+
+Deletes a dry-run OIDC test login flow. A flow whose debug payload has been captured requires the HMAC cookie set by the OIDC callback; a flow still in the initial choose-method state is deletable with just the flow ID (it carries no PII, and the admin may want to abandon it).
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    String id = "id_example"; // String | ID of the test login flow to delete.
+    String cookie = "cookie_example"; // String | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not.
+    try {
+      apiInstance.deleteTestLoginFlow(id, cookie);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#deleteTestLoginFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ID of the test login flow to delete. | |
+| **cookie** | **String**| HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. | [optional] |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
 <a id="disableMyOtherSessions"></a>

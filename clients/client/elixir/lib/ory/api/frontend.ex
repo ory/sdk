@@ -496,6 +496,47 @@ defmodule Ory.Api.Frontend do
   end
 
   @doc """
+  Delete a test OIDC login flow
+  Deletes a dry-run OIDC test login flow. A flow whose debug payload has been captured requires the HMAC cookie set by the OIDC callback; a flow still in the initial choose-method state is deletable with just the flow ID (it carries no PII, and the admin may want to abandon it).
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `id` (String.t): ID of the test login flow to delete.
+  - `opts` (keyword): Optional parameters
+    - `:Cookie` (String.t): HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not.
+
+  ### Returns
+
+  - `{:ok, nil}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec delete_test_login_flow(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:error, Tesla.Env.t}
+  def delete_test_login_flow(connection, id, opts \\ []) do
+    optional_params = %{
+      :Cookie => :headers
+    }
+
+    request =
+      %{}
+      |> method(:delete)
+      |> url("/self-service/login/test")
+      |> add_param(:query, :id, id)
+      |> add_optional_params(optional_params, opts)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {204, false},
+      {400, Ory.Model.ErrorGeneric},
+      {403, Ory.Model.ErrorGeneric},
+      {404, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
   Disable my other sessions
   Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
 

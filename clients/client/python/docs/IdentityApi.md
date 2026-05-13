@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**create_identity**](IdentityApi.md#create_identity) | **POST** /admin/identities | Create an Identity
 [**create_recovery_code_for_identity**](IdentityApi.md#create_recovery_code_for_identity) | **POST** /admin/recovery/code | Create a Recovery Code
 [**create_recovery_link_for_identity**](IdentityApi.md#create_recovery_link_for_identity) | **POST** /admin/recovery/link | Create a Recovery Link
+[**create_test_login_flow**](IdentityApi.md#create_test_login_flow) | **POST** /admin/test-login-flows | Create a test OIDC login flow
 [**delete_identity**](IdentityApi.md#delete_identity) | **DELETE** /admin/identities/{id} | Delete an Identity
 [**delete_identity_credentials**](IdentityApi.md#delete_identity_credentials) | **DELETE** /admin/identities/{id}/credentials/{type} | Delete a credential for a specific identity
 [**delete_identity_sessions**](IdentityApi.md#delete_identity_sessions) | **DELETE** /admin/identities/{id}/sessions | Delete &amp; Invalidate an Identity&#39;s Sessions
@@ -21,6 +22,7 @@ Method | HTTP request | Description
 [**list_identity_schemas**](IdentityApi.md#list_identity_schemas) | **GET** /schemas | Get all Identity Schemas
 [**list_identity_sessions**](IdentityApi.md#list_identity_sessions) | **GET** /admin/identities/{id}/sessions | List an Identity&#39;s Sessions
 [**list_sessions**](IdentityApi.md#list_sessions) | **GET** /admin/sessions | List All Sessions
+[**manage_sessions**](IdentityApi.md#manage_sessions) | **POST** /admin/sessions | Manage sessions in bulk
 [**patch_identity**](IdentityApi.md#patch_identity) | **PATCH** /admin/identities/{id} | Patch an Identity
 [**update_identity**](IdentityApi.md#update_identity) | **PUT** /admin/identities/{id} | Update an Identity
 
@@ -380,6 +382,91 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_test_login_flow**
+> LoginFlow create_test_login_flow(create_test_login_flow_body)
+
+Create a test OIDC login flow
+
+Creates a dry-run OIDC test login flow pre-scoped to one provider. The
+returned flow carries a single-submit UI and a CSRF bearer token. No
+identity is persisted and no session is issued when the flow completes;
+the captured debug data is returned in the flow's test_context.
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import ory_client
+from ory_client.models.create_test_login_flow_body import CreateTestLoginFlowBody
+from ory_client.models.login_flow import LoginFlow
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.IdentityApi(api_client)
+    create_test_login_flow_body = ory_client.CreateTestLoginFlowBody() # CreateTestLoginFlowBody | 
+
+    try:
+        # Create a test OIDC login flow
+        api_response = api_instance.create_test_login_flow(create_test_login_flow_body)
+        print("The response of IdentityApi->create_test_login_flow:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling IdentityApi->create_test_login_flow: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_test_login_flow_body** | [**CreateTestLoginFlowBody**](CreateTestLoginFlowBody.md)|  | 
+
+### Return type
+
+[**LoginFlow**](LoginFlow.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | loginFlow |  -  |
+**400** | errorGeneric |  -  |
+**404** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_identity**
 > delete_identity(id)
 
@@ -496,7 +583,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.IdentityApi(api_client)
     id = 'id_example' # str | ID is the identity's ID.
-    type = 'type_example' # str | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+    type = 'type_example' # str | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
     identifier = 'identifier_example' # str | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint. (optional)
 
     try:
@@ -514,7 +601,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID is the identity&#39;s ID. | 
- **type** | **str**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
+ **type** | **str**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
  **identifier** | **str**| Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{oidc,saml}&#x60; endpoint. | [optional] 
 
 ### Return type
@@ -1453,6 +1540,105 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Session List Response  The response given when listing sessions in an administrative context. |  -  |
 **400** | errorGeneric |  -  |
+**0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **manage_sessions**
+> ManageSessionsResponse manage_sessions(manage_sessions_body)
+
+Manage sessions in bulk
+
+Disable or delete sessions for a list of identities or a list of sessions in
+a single call. The `action` field selects the operation:
+
+`disable` — deactivate matching sessions (sets `active = false`, preserves
+audit data).
+`delete` — permanently delete matching sessions.
+
+Exactly one of `identities` or `sessions` must be provided. To scope the
+operation to every session in the network, pass `identities: ["*"]`; the
+wildcard is not accepted in the `sessions` field. Up to 500 explicit IDs
+are accepted per call.
+
+All requests return `200 OK` with `{processed, more}`. `processed` reports
+how many rows the call affected; for `disable` it counts only sessions
+that were active before the call. `more` is `true` only when a wildcard
+request reached the per-call batch limit and additional rows may remain;
+callers drain the network by re-issuing the same request while `more` is
+`true`. Explicit-IDs requests always return `more: false`.
+
+### Example
+
+* Bearer Authentication (oryAccessToken):
+
+```python
+import ory_client
+from ory_client.models.manage_sessions_body import ManageSessionsBody
+from ory_client.models.manage_sessions_response import ManageSessionsResponse
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: oryAccessToken
+configuration = ory_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.IdentityApi(api_client)
+    manage_sessions_body = ory_client.ManageSessionsBody() # ManageSessionsBody | 
+
+    try:
+        # Manage sessions in bulk
+        api_response = api_instance.manage_sessions(manage_sessions_body)
+        print("The response of IdentityApi->manage_sessions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling IdentityApi->manage_sessions: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **manage_sessions_body** | [**ManageSessionsBody**](ManageSessionsBody.md)|  | 
+
+### Return type
+
+[**ManageSessionsResponse**](ManageSessionsResponse.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | manageSessionsResponse |  -  |
+**400** | errorGeneric |  -  |
+**401** | errorGeneric |  -  |
 **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

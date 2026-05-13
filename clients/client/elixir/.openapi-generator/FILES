@@ -71,6 +71,7 @@ lib/ory/model/create_recovery_link_for_identity_body.ex
 lib/ory/model/create_relationship_body.ex
 lib/ory/model/create_subscription_body.ex
 lib/ory/model/create_subscription_common.ex
+lib/ory/model/create_test_login_flow_body.ex
 lib/ory/model/create_verifiable_credential_request_body.ex
 lib/ory/model/create_workspace_api_key_body.ex
 lib/ory/model/create_workspace_body.ex
@@ -81,6 +82,12 @@ lib/ory/model/credential_supported_draft00.ex
 lib/ory/model/custom_domain.ex
 lib/ory/model/customer_portal_availability.ex
 lib/ory/model/delete_my_sessions_count.ex
+lib/ory/model/device_authn_android_authorization_list.ex
+lib/ory/model/device_authn_android_key_description.ex
+lib/ory/model/device_authn_android_root_of_trust.ex
+lib/ory/model/device_authn_attestation.ex
+lib/ory/model/device_authn_ios_att_stmt.ex
+lib/ory/model/device_authn_ios_attestation.ex
 lib/ory/model/device_authn_key.ex
 lib/ory/model/device_authorization.ex
 lib/ory/model/device_user_auth_request.ex
@@ -165,7 +172,13 @@ lib/ory/model/list_workspace_projects.ex
 lib/ory/model/list_workspaces.ex
 lib/ory/model/login_flow.ex
 lib/ory/model/login_flow_state.ex
+lib/ory/model/login_flow_test_context.ex
+lib/ory/model/login_flow_test_debug_payload.ex
+lib/ory/model/login_flow_test_schema_validation_error.ex
+lib/ory/model/login_flow_test_step_error.ex
 lib/ory/model/logout_flow.ex
+lib/ory/model/manage_sessions_body.ex
+lib/ory/model/manage_sessions_response.ex
 lib/ory/model/managed_identity_schema.ex
 lib/ory/model/managed_identity_schema_validation_result.ex
 lib/ory/model/member_invite.ex

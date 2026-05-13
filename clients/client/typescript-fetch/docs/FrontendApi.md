@@ -16,6 +16,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**createNativeRegistrationFlow**](FrontendApi.md#createnativeregistrationflow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps |
 | [**createNativeSettingsFlow**](FrontendApi.md#createnativesettingsflow) | **GET** /self-service/settings/api | Create Settings Flow for Native Apps |
 | [**createNativeVerificationFlow**](FrontendApi.md#createnativeverificationflow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps |
+| [**deleteTestLoginFlow**](FrontendApi.md#deletetestloginflow) | **DELETE** /self-service/login/test | Delete a test OIDC login flow |
 | [**disableMyOtherSessions**](FrontendApi.md#disablemyothersessions) | **DELETE** /sessions | Disable my other sessions |
 | [**disableMySession**](FrontendApi.md#disablemysession) | **DELETE** /sessions/{id} | Disable one of my sessions |
 | [**exchangeSessionToken**](FrontendApi.md#exchangesessiontoken) | **GET** /sessions/token-exchange | Exchange Session Token |
@@ -924,6 +925,80 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | verificationFlow |  -  |
 | **400** | errorGeneric |  -  |
+| **0** | errorGeneric |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## deleteTestLoginFlow
+
+> deleteTestLoginFlow(id, cookie)
+
+Delete a test OIDC login flow
+
+Deletes a dry-run OIDC test login flow. A flow whose debug payload has been captured requires the HMAC cookie set by the OIDC callback; a flow still in the initial choose-method state is deletable with just the flow ID (it carries no PII, and the admin may want to abandon it).
+
+### Example
+
+```ts
+import {
+  Configuration,
+  FrontendApi,
+} from '@ory/client-fetch';
+import type { DeleteTestLoginFlowRequest } from '@ory/client-fetch';
+
+async function example() {
+  console.log("🚀 Testing @ory/client-fetch SDK...");
+  const api = new FrontendApi();
+
+  const body = {
+    // string | ID of the test login flow to delete.
+    id: id_example,
+    // string | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. (optional)
+    cookie: cookie_example,
+  } satisfies DeleteTestLoginFlowRequest;
+
+  try {
+    const data = await api.deleteTestLoginFlow(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | `string` | ID of the test login flow to delete. | [Defaults to `undefined`] |
+| **cookie** | `string` | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. | [Optional] [Defaults to `undefined`] |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | errorGeneric |  -  |
+| **403** | errorGeneric |  -  |
+| **404** | errorGeneric |  -  |
 | **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)

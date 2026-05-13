@@ -16,6 +16,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**create_native_registration_flow**](FrontendApi.md#create_native_registration_flow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps |
 | [**create_native_settings_flow**](FrontendApi.md#create_native_settings_flow) | **GET** /self-service/settings/api | Create Settings Flow for Native Apps |
 | [**create_native_verification_flow**](FrontendApi.md#create_native_verification_flow) | **GET** /self-service/verification/api | Create Verification Flow for Native Apps |
+| [**delete_test_login_flow**](FrontendApi.md#delete_test_login_flow) | **DELETE** /self-service/login/test | Delete a test OIDC login flow |
 | [**disable_my_other_sessions**](FrontendApi.md#disable_my_other_sessions) | **DELETE** /sessions | Disable my other sessions |
 | [**disable_my_session**](FrontendApi.md#disable_my_session) | **DELETE** /sessions/{id} | Disable one of my sessions |
 | [**exchange_session_token**](FrontendApi.md#exchange_session_token) | **GET** /sessions/token-exchange | Exchange Session Token |
@@ -857,6 +858,73 @@ end
 ### Return type
 
 [**VerificationFlow**](VerificationFlow.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## delete_test_login_flow
+
+> delete_test_login_flow(id, opts)
+
+Delete a test OIDC login flow
+
+Deletes a dry-run OIDC test login flow. A flow whose debug payload has been captured requires the HMAC cookie set by the OIDC callback; a flow still in the initial choose-method state is deletable with just the flow ID (it carries no PII, and the admin may want to abandon it).
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+
+api_instance = OryClient::FrontendApi.new
+id = 'id_example' # String | ID of the test login flow to delete.
+opts = {
+  cookie: 'cookie_example' # String | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not.
+}
+
+begin
+  # Delete a test OIDC login flow
+  api_instance.delete_test_login_flow(id, opts)
+rescue OryClient::ApiError => e
+  puts "Error when calling FrontendApi->delete_test_login_flow: #{e}"
+end
+```
+
+#### Using the delete_test_login_flow_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> delete_test_login_flow_with_http_info(id, opts)
+
+```ruby
+begin
+  # Delete a test OIDC login flow
+  data, status_code, headers = api_instance.delete_test_login_flow_with_http_info(id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue OryClient::ApiError => e
+  puts "Error when calling FrontendApi->delete_test_login_flow_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | ID of the test login flow to delete. |  |
+| **cookie** | **String** | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. | [optional] |
+
+### Return type
+
+nil (empty response body)
 
 ### Authorization
 

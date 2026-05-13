@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`attestation` | [DeviceAuthnAttestation](DeviceAuthnAttestation.md)
 `client_key_id` | string
 `created_at` | Date
 `device_name` | string
@@ -21,6 +22,7 @@ import type { DeviceAuthnKey } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "attestation": null,
   "client_key_id": null,
   "created_at": null,
   "device_name": null,

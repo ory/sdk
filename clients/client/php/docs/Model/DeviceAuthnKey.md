@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**attestation** | [**\Ory\Client\Model\DeviceAuthnAttestation**](DeviceAuthnAttestation.md) |  | [optional]
 **clientKeyId** | **string** | ClientKeyID is a client-chosen id for the key and is unique per identity. | [optional]
 **createdAt** | **\DateTime** | CreatedAt is the timestamp of when the key was created. Only used for troubleshooting/UI. | [optional]
 **deviceName** | **string** | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional]

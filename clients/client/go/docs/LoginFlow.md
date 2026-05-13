@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Active** | Pointer to **string** | The active login method  If set contains the login method used. If the flow is new, it is unset. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [optional] 
+**Active** | Pointer to **string** | The active login method  If set contains the login method used. If the flow is new, it is unset. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [optional] 
 **CreatedAt** | Pointer to **time.Time** | CreatedAt is a helper struct field for gobuffalo.pop. | [optional] 
 **ExpiresAt** | **time.Time** | ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in, a new flow has to be initiated. | 
 **Id** | **string** | ID represents the flow&#39;s unique ID. When performing the login flow, this represents the id in the login UI&#39;s query parameter: http://&lt;selfservice.flows.login.ui_url&gt;/?flow&#x3D;&lt;flow_id&gt; | 
@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
 **SessionTokenExchangeCode** | Pointer to **string** | SessionTokenExchangeCode holds the secret code that the client can use to retrieve a session token after the login flow has been completed. This is only set if the client has requested a session token exchange code, and if the flow is of type \&quot;api\&quot;, and only on creating the login flow. | [optional] 
 **State** | **interface{}** | State represents the state of this request:  choose_method: ask the user to choose a method to sign in with sent_email: the email has been sent to the user passed_challenge: the request was successful and the login challenge was passed. | 
+**TestContext** | Pointer to [**LoginFlowTestContext**](LoginFlowTestContext.md) |  | [optional] 
 **TransientPayload** | Pointer to **map[string]interface{}** | TransientPayload is used to pass data from the login to hooks and email templates | [optional] 
 **Type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | 
 **Ui** | [**UiContainer**](UiContainer.md) |  | 
@@ -413,6 +414,31 @@ SetState sets State field to given value.
 `func (o *LoginFlow) UnsetState()`
 
 UnsetState ensures that no value is present for State, not even an explicit nil
+### GetTestContext
+
+`func (o *LoginFlow) GetTestContext() LoginFlowTestContext`
+
+GetTestContext returns the TestContext field if non-nil, zero value otherwise.
+
+### GetTestContextOk
+
+`func (o *LoginFlow) GetTestContextOk() (*LoginFlowTestContext, bool)`
+
+GetTestContextOk returns a tuple with the TestContext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTestContext
+
+`func (o *LoginFlow) SetTestContext(v LoginFlowTestContext)`
+
+SetTestContext sets TestContext field to given value.
+
+### HasTestContext
+
+`func (o *LoginFlow) HasTestContext() bool`
+
+HasTestContext returns a boolean if a field has been set.
+
 ### GetTransientPayload
 
 `func (o *LoginFlow) GetTransientPayload() map[string]interface{}`
