@@ -1,4 +1,4 @@
-# @ory/client-fetch@v1.22.39
+# @ory/client-fetch@v1.22.40
 
 A TypeScript SDK client for the playground.projects.oryapis.com API.
 
@@ -16,9 +16,9 @@ Next, try it out.
 ```ts
 import {
   Configuration,
-  CourierApi,
+  APIKeysApi,
 } from '@ory/client-fetch';
-import type { GetCourierMessageRequest } from '@ory/client-fetch';
+import type { AdminBatchImportAPIKeysRequest } from '@ory/client-fetch';
 
 async function example() {
   console.log("🚀 Testing @ory/client-fetch SDK...");
@@ -26,15 +26,15 @@ async function example() {
     // Configure HTTP bearer authorization: oryAccessToken
     accessToken: "YOUR BEARER TOKEN",
   });
-  const api = new CourierApi(config);
+  const api = new APIKeysApi(config);
 
   const body = {
-    // string | MessageID is the ID of the message.
-    id: id_example,
-  } satisfies GetCourierMessageRequest;
+    // BatchImportAPIKeysRequest | BatchImportAPIKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys.
+    batchImportAPIKeysRequest: ...,
+  } satisfies AdminBatchImportAPIKeysRequest;
 
   try {
-    const data = await api.getCourierMessage(body);
+    const data = await api.adminBatchImportAPIKeys(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -54,6 +54,23 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Class | Method | HTTP request | Description
 | ----- | ------ | ------------ | -------------
+*APIKeysApi* | [**adminBatchImportAPIKeys**](docs/APIKeysApi.md#adminbatchimportapikeys) | **POST** /v2alpha1/admin/importedApiKeys:batchImport | Batch Import API Keys
+*APIKeysApi* | [**adminBatchVerifyAPIKeys**](docs/APIKeysApi.md#adminbatchverifyapikeys) | **POST** /v2alpha1/admin/apiKeys:batchVerify | Batch Verify API Keys
+*APIKeysApi* | [**adminDeleteImportedAPIKey**](docs/APIKeysApi.md#admindeleteimportedapikey) | **DELETE** /v2alpha1/admin/importedApiKeys/{key_id} | Delete Imported API Key
+*APIKeysApi* | [**adminDeriveToken**](docs/APIKeysApi.md#adminderivetoken) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token
+*APIKeysApi* | [**adminGetImportedAPIKey**](docs/APIKeysApi.md#admingetimportedapikey) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key
+*APIKeysApi* | [**adminGetIssuedAPIKey**](docs/APIKeysApi.md#admingetissuedapikey) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key
+*APIKeysApi* | [**adminGetJWKS**](docs/APIKeysApi.md#admingetjwks) | **GET** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS
+*APIKeysApi* | [**adminImportAPIKey**](docs/APIKeysApi.md#adminimportapikey) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key
+*APIKeysApi* | [**adminIssueAPIKey**](docs/APIKeysApi.md#adminissueapikey) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key
+*APIKeysApi* | [**adminListImportedAPIKeys**](docs/APIKeysApi.md#adminlistimportedapikeys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys
+*APIKeysApi* | [**adminListIssuedAPIKeys**](docs/APIKeysApi.md#adminlistissuedapikeys) | **GET** /v2alpha1/admin/issuedApiKeys | List Issued API Keys
+*APIKeysApi* | [**adminRevokeAPIKey**](docs/APIKeysApi.md#adminrevokeapikey) | **POST** /v2alpha1/admin/apiKeys/{key_id}:revoke | Revoke API Key
+*APIKeysApi* | [**adminRotateIssuedAPIKey**](docs/APIKeysApi.md#adminrotateissuedapikey) | **POST** /v2alpha1/admin/issuedApiKeys/{key_id}:rotate | Rotate Issued API Key
+*APIKeysApi* | [**adminUpdateImportedAPIKey**](docs/APIKeysApi.md#adminupdateimportedapikeyoperation) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key
+*APIKeysApi* | [**adminUpdateIssuedAPIKey**](docs/APIKeysApi.md#adminupdateissuedapikeyoperation) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key
+*APIKeysApi* | [**adminVerifyAPIKey**](docs/APIKeysApi.md#adminverifyapikey) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key
+*APIKeysApi* | [**revokeAPIKey**](docs/APIKeysApi.md#revokeapikey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
 *CourierApi* | [**getCourierMessage**](docs/CourierApi.md#getcouriermessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/CourierApi.md#listcouriermessages) | **GET** /admin/courier/messages | List Messages
 *EventsApi* | [**createEventStream**](docs/EventsApi.md#createeventstream) | **POST** /projects/{project_id}/eventstreams | Create an event stream for your project.
@@ -216,6 +233,11 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [AddProjectToWorkspaceBody](docs/AddProjectToWorkspaceBody.md)
 - [AdminIdentityImportCredentialsLookupSecret](docs/AdminIdentityImportCredentialsLookupSecret.md)
 - [AdminIdentityImportCredentialsLookupSecretConfig](docs/AdminIdentityImportCredentialsLookupSecretConfig.md)
+- [AdminRevokeAPIKeyBody](docs/AdminRevokeAPIKeyBody.md)
+- [AdminRotateIssuedAPIKeyBody](docs/AdminRotateIssuedAPIKeyBody.md)
+- [AdminUpdateImportedAPIKeyRequest](docs/AdminUpdateImportedAPIKeyRequest.md)
+- [AdminUpdateIssuedAPIKeyRequest](docs/AdminUpdateIssuedAPIKeyRequest.md)
+- [Any](docs/Any.md)
 - [Attribute](docs/Attribute.md)
 - [AttributeFilter](docs/AttributeFilter.md)
 - [AttributesCountDatapoint](docs/AttributesCountDatapoint.md)
@@ -223,7 +245,13 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [BasicOrganization](docs/BasicOrganization.md)
 - [BatchCheckPermissionBody](docs/BatchCheckPermissionBody.md)
 - [BatchCheckPermissionResult](docs/BatchCheckPermissionResult.md)
+- [BatchImportAPIKeysRequest](docs/BatchImportAPIKeysRequest.md)
+- [BatchImportAPIKeysResponse](docs/BatchImportAPIKeysResponse.md)
+- [BatchImportErrorCode](docs/BatchImportErrorCode.md)
+- [BatchImportResult](docs/BatchImportResult.md)
 - [BatchPatchIdentitiesResponse](docs/BatchPatchIdentitiesResponse.md)
+- [BatchVerifyAPIKeysRequest](docs/BatchVerifyAPIKeysRequest.md)
+- [BatchVerifyAPIKeysResponse](docs/BatchVerifyAPIKeysResponse.md)
 - [BillingPeriodBucket](docs/BillingPeriodBucket.md)
 - [CheckOplSyntaxResult](docs/CheckOplSyntaxResult.md)
 - [CheckPermissionResult](docs/CheckPermissionResult.md)
@@ -270,6 +298,8 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [CustomDomain](docs/CustomDomain.md)
 - [CustomerPortalAvailability](docs/CustomerPortalAvailability.md)
 - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
+- [DeriveTokenRequest](docs/DeriveTokenRequest.md)
+- [DeriveTokenResponse](docs/DeriveTokenResponse.md)
 - [DeviceAuthnAndroidAuthorizationList](docs/DeviceAuthnAndroidAuthorizationList.md)
 - [DeviceAuthnAndroidKeyDescription](docs/DeviceAuthnAndroidKeyDescription.md)
 - [DeviceAuthnAndroidRootOfTrust](docs/DeviceAuthnAndroidRootOfTrust.md)
@@ -294,6 +324,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [GenericOIDCProvider](docs/GenericOIDCProvider.md)
 - [GenericUsage](docs/GenericUsage.md)
 - [GetAttributesCount](docs/GetAttributesCount.md)
+- [GetJWKSResponse](docs/GetJWKSResponse.md)
 - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
 - [GetMetricsCount](docs/GetMetricsCount.md)
 - [GetMetricsEventAttributes](docs/GetMetricsEventAttributes.md)
@@ -306,6 +337,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [GetVersion200Response](docs/GetVersion200Response.md)
 - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
 - [HealthStatus](docs/HealthStatus.md)
+- [IPRestriction](docs/IPRestriction.md)
 - [Identity](docs/Identity.md)
 - [IdentityCredentials](docs/IdentityCredentials.md)
 - [IdentityCredentialsCode](docs/IdentityCredentialsCode.md)
@@ -337,6 +369,8 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [IdentityWithCredentialsTotpConfig](docs/IdentityWithCredentialsTotpConfig.md)
 - [IdentityWithCredentialsWebAuthn](docs/IdentityWithCredentialsWebAuthn.md)
 - [IdentityWithCredentialsWebAuthnConfig](docs/IdentityWithCredentialsWebAuthnConfig.md)
+- [ImportAPIKeyRequest](docs/ImportAPIKeyRequest.md)
+- [ImportedAPIKey](docs/ImportedAPIKey.md)
 - [InternalGetProjectBrandingBody](docs/InternalGetProjectBrandingBody.md)
 - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
 - [InternalIsOwnerForProjectBySlug](docs/InternalIsOwnerForProjectBySlug.md)
@@ -346,15 +380,22 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [Invoice](docs/Invoice.md)
 - [InvoiceDataV1](docs/InvoiceDataV1.md)
 - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
+- [IssueAPIKeyRequest](docs/IssueAPIKeyRequest.md)
+- [IssueAPIKeyResponse](docs/IssueAPIKeyResponse.md)
+- [IssuedAPIKey](docs/IssuedAPIKey.md)
 - [JsonPatch](docs/JsonPatch.md)
 - [JsonWebKey](docs/JsonWebKey.md)
 - [JsonWebKeySet](docs/JsonWebKeySet.md)
 - [KetoNamespace](docs/KetoNamespace.md)
+- [KeyStatus](docs/KeyStatus.md)
+- [KeyVisibility](docs/KeyVisibility.md)
 - [KeysetPaginationRequestParameters](docs/KeysetPaginationRequestParameters.md)
 - [KeysetPaginationResponseHeaders](docs/KeysetPaginationResponseHeaders.md)
 - [LineItemV1](docs/LineItemV1.md)
 - [ListEventStreams](docs/ListEventStreams.md)
+- [ListImportedAPIKeysResponse](docs/ListImportedAPIKeysResponse.md)
 - [ListInvoicesResponse](docs/ListInvoicesResponse.md)
+- [ListIssuedAPIKeysResponse](docs/ListIssuedAPIKeysResponse.md)
 - [ListOrganizationsResponse](docs/ListOrganizationsResponse.md)
 - [ListWorkspaceProjects](docs/ListWorkspaceProjects.md)
 - [ListWorkspaces](docs/ListWorkspaces.md)
@@ -385,6 +426,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [NormalizedProjectRevisionScimClient](docs/NormalizedProjectRevisionScimClient.md)
 - [NormalizedProjectRevisionThirdPartyProvider](docs/NormalizedProjectRevisionThirdPartyProvider.md)
 - [NormalizedProjectRevisionTokenizerTemplate](docs/NormalizedProjectRevisionTokenizerTemplate.md)
+- [NullValue](docs/NullValue.md)
 - [OAuth2Client](docs/OAuth2Client.md)
 - [OAuth2ClientTokenLifespans](docs/OAuth2ClientTokenLifespans.md)
 - [OAuth2ConsentRequest](docs/OAuth2ConsentRequest.md)
@@ -428,6 +470,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [Provider](docs/Provider.md)
 - [QuotaUsage](docs/QuotaUsage.md)
 - [RFC6749ErrorJson](docs/RFC6749ErrorJson.md)
+- [RateLimitPolicy](docs/RateLimitPolicy.md)
 - [RecoveryCodeForIdentity](docs/RecoveryCodeForIdentity.md)
 - [RecoveryFlow](docs/RecoveryFlow.md)
 - [RecoveryFlowState](docs/RecoveryFlowState.md)
@@ -442,7 +485,10 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [RelationshipPatch](docs/RelationshipPatch.md)
 - [Relationships](docs/Relationships.md)
 - [RevisionAccountExperienceCustomTranslation](docs/RevisionAccountExperienceCustomTranslation.md)
+- [RevocationReason](docs/RevocationReason.md)
+- [RotateIssuedAPIKeyResponse](docs/RotateIssuedAPIKeyResponse.md)
 - [SchemaPatch](docs/SchemaPatch.md)
+- [SelfRevokeAPIKeyRequest](docs/SelfRevokeAPIKeyRequest.md)
 - [SelfServiceFlowExpiredError](docs/SelfServiceFlowExpiredError.md)
 - [Session](docs/Session.md)
 - [SessionActivityDatapoint](docs/SessionActivityDatapoint.md)
@@ -456,6 +502,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [SettingsFlow](docs/SettingsFlow.md)
 - [SettingsFlowState](docs/SettingsFlowState.md)
 - [SourcePosition](docs/SourcePosition.md)
+- [Status](docs/Status.md)
 - [SubjectSet](docs/SubjectSet.md)
 - [Subscription](docs/Subscription.md)
 - [SuccessfulCodeExchangeResponse](docs/SuccessfulCodeExchangeResponse.md)
@@ -464,6 +511,8 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [SuccessfulProjectUpdate](docs/SuccessfulProjectUpdate.md)
 - [TaxLineItem](docs/TaxLineItem.md)
 - [TimeInterval](docs/TimeInterval.md)
+- [Token](docs/Token.md)
+- [TokenAlgorithm](docs/TokenAlgorithm.md)
 - [TokenPagination](docs/TokenPagination.md)
 - [TokenPaginationHeaders](docs/TokenPaginationHeaders.md)
 - [TokenPaginationRequestParameters](docs/TokenPaginationRequestParameters.md)
@@ -522,12 +571,17 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 - [UpdateVerificationFlowWithLinkMethod](docs/UpdateVerificationFlowWithLinkMethod.md)
 - [UpdateWorkspaceBody](docs/UpdateWorkspaceBody.md)
 - [Usage](docs/Usage.md)
+- [ValidateBaseURLRewriteRequest](docs/ValidateBaseURLRewriteRequest.md)
+- [ValidateBaseURLRewriteResponse](docs/ValidateBaseURLRewriteResponse.md)
 - [VerifiableCredentialPrimingResponse](docs/VerifiableCredentialPrimingResponse.md)
 - [VerifiableCredentialProof](docs/VerifiableCredentialProof.md)
 - [VerifiableCredentialResponse](docs/VerifiableCredentialResponse.md)
 - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
+- [VerificationErrorCode](docs/VerificationErrorCode.md)
 - [VerificationFlow](docs/VerificationFlow.md)
 - [VerificationFlowState](docs/VerificationFlowState.md)
+- [VerifyAPIKeyRequest](docs/VerifyAPIKeyRequest.md)
+- [VerifyAPIKeyResponse](docs/VerifyAPIKeyResponse.md)
 - [VerifyUserCodeRequest](docs/VerifyUserCodeRequest.md)
 - [Version](docs/Version.md)
 - [Warning](docs/Warning.md)
@@ -577,8 +631,8 @@ This TypeScript SDK client supports the [Fetch API](https://fetch.spec.whatwg.or
 and is automatically generated by the
 [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.22.39`
-- Package version: `v1.22.39`
+- API version: `v1.22.40`
+- Package version: `v1.22.40`
 - Generator version: `7.17.0`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
 

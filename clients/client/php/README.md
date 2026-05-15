@@ -72,19 +72,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Ory\Client\Api\CourierApi(
+$apiInstance = new Ory\Client\Api\APIKeysApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | MessageID is the ID of the message.
+$batchImportAPIKeysRequest = new \Ory\Client\Model\BatchImportAPIKeysRequest(); // \Ory\Client\Model\BatchImportAPIKeysRequest | BatchImportAPIKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys.
 
 try {
-    $result = $apiInstance->getCourierMessage($id);
+    $result = $apiInstance->adminBatchImportAPIKeys($batchImportAPIKeysRequest);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling CourierApi->getCourierMessage: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling APIKeysApi->adminBatchImportAPIKeys: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -95,6 +95,23 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*APIKeysApi* | [**adminBatchImportAPIKeys**](docs/Api/APIKeysApi.md#adminbatchimportapikeys) | **POST** /v2alpha1/admin/importedApiKeys:batchImport | Batch Import API Keys
+*APIKeysApi* | [**adminBatchVerifyAPIKeys**](docs/Api/APIKeysApi.md#adminbatchverifyapikeys) | **POST** /v2alpha1/admin/apiKeys:batchVerify | Batch Verify API Keys
+*APIKeysApi* | [**adminDeleteImportedAPIKey**](docs/Api/APIKeysApi.md#admindeleteimportedapikey) | **DELETE** /v2alpha1/admin/importedApiKeys/{key_id} | Delete Imported API Key
+*APIKeysApi* | [**adminDeriveToken**](docs/Api/APIKeysApi.md#adminderivetoken) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token
+*APIKeysApi* | [**adminGetImportedAPIKey**](docs/Api/APIKeysApi.md#admingetimportedapikey) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key
+*APIKeysApi* | [**adminGetIssuedAPIKey**](docs/Api/APIKeysApi.md#admingetissuedapikey) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key
+*APIKeysApi* | [**adminGetJWKS**](docs/Api/APIKeysApi.md#admingetjwks) | **GET** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS
+*APIKeysApi* | [**adminImportAPIKey**](docs/Api/APIKeysApi.md#adminimportapikey) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key
+*APIKeysApi* | [**adminIssueAPIKey**](docs/Api/APIKeysApi.md#adminissueapikey) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key
+*APIKeysApi* | [**adminListImportedAPIKeys**](docs/Api/APIKeysApi.md#adminlistimportedapikeys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys
+*APIKeysApi* | [**adminListIssuedAPIKeys**](docs/Api/APIKeysApi.md#adminlistissuedapikeys) | **GET** /v2alpha1/admin/issuedApiKeys | List Issued API Keys
+*APIKeysApi* | [**adminRevokeAPIKey**](docs/Api/APIKeysApi.md#adminrevokeapikey) | **POST** /v2alpha1/admin/apiKeys/{key_id}:revoke | Revoke API Key
+*APIKeysApi* | [**adminRotateIssuedAPIKey**](docs/Api/APIKeysApi.md#adminrotateissuedapikey) | **POST** /v2alpha1/admin/issuedApiKeys/{key_id}:rotate | Rotate Issued API Key
+*APIKeysApi* | [**adminUpdateImportedAPIKey**](docs/Api/APIKeysApi.md#adminupdateimportedapikey) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key
+*APIKeysApi* | [**adminUpdateIssuedAPIKey**](docs/Api/APIKeysApi.md#adminupdateissuedapikey) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key
+*APIKeysApi* | [**adminVerifyAPIKey**](docs/Api/APIKeysApi.md#adminverifyapikey) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key
+*APIKeysApi* | [**revokeAPIKey**](docs/Api/APIKeysApi.md#revokeapikey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
 *CourierApi* | [**getCourierMessage**](docs/Api/CourierApi.md#getcouriermessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/Api/CourierApi.md#listcouriermessages) | **GET** /admin/courier/messages | List Messages
 *EventsApi* | [**createEventStream**](docs/Api/EventsApi.md#createeventstream) | **POST** /projects/{project_id}/eventstreams | Create an event stream for your project.
@@ -256,6 +273,11 @@ Class | Method | HTTP request | Description
 - [AddProjectToWorkspaceBody](docs/Model/AddProjectToWorkspaceBody.md)
 - [AdminIdentityImportCredentialsLookupSecret](docs/Model/AdminIdentityImportCredentialsLookupSecret.md)
 - [AdminIdentityImportCredentialsLookupSecretConfig](docs/Model/AdminIdentityImportCredentialsLookupSecretConfig.md)
+- [AdminRevokeAPIKeyBody](docs/Model/AdminRevokeAPIKeyBody.md)
+- [AdminRotateIssuedAPIKeyBody](docs/Model/AdminRotateIssuedAPIKeyBody.md)
+- [AdminUpdateImportedAPIKeyRequest](docs/Model/AdminUpdateImportedAPIKeyRequest.md)
+- [AdminUpdateIssuedAPIKeyRequest](docs/Model/AdminUpdateIssuedAPIKeyRequest.md)
+- [Any](docs/Model/Any.md)
 - [Attribute](docs/Model/Attribute.md)
 - [AttributeFilter](docs/Model/AttributeFilter.md)
 - [AttributesCountDatapoint](docs/Model/AttributesCountDatapoint.md)
@@ -263,7 +285,13 @@ Class | Method | HTTP request | Description
 - [BasicOrganization](docs/Model/BasicOrganization.md)
 - [BatchCheckPermissionBody](docs/Model/BatchCheckPermissionBody.md)
 - [BatchCheckPermissionResult](docs/Model/BatchCheckPermissionResult.md)
+- [BatchImportAPIKeysRequest](docs/Model/BatchImportAPIKeysRequest.md)
+- [BatchImportAPIKeysResponse](docs/Model/BatchImportAPIKeysResponse.md)
+- [BatchImportErrorCode](docs/Model/BatchImportErrorCode.md)
+- [BatchImportResult](docs/Model/BatchImportResult.md)
 - [BatchPatchIdentitiesResponse](docs/Model/BatchPatchIdentitiesResponse.md)
+- [BatchVerifyAPIKeysRequest](docs/Model/BatchVerifyAPIKeysRequest.md)
+- [BatchVerifyAPIKeysResponse](docs/Model/BatchVerifyAPIKeysResponse.md)
 - [BillingPeriodBucket](docs/Model/BillingPeriodBucket.md)
 - [CheckOplSyntaxResult](docs/Model/CheckOplSyntaxResult.md)
 - [CheckPermissionResult](docs/Model/CheckPermissionResult.md)
@@ -310,6 +338,8 @@ Class | Method | HTTP request | Description
 - [CustomDomain](docs/Model/CustomDomain.md)
 - [CustomerPortalAvailability](docs/Model/CustomerPortalAvailability.md)
 - [DeleteMySessionsCount](docs/Model/DeleteMySessionsCount.md)
+- [DeriveTokenRequest](docs/Model/DeriveTokenRequest.md)
+- [DeriveTokenResponse](docs/Model/DeriveTokenResponse.md)
 - [DeviceAuthnAndroidAuthorizationList](docs/Model/DeviceAuthnAndroidAuthorizationList.md)
 - [DeviceAuthnAndroidKeyDescription](docs/Model/DeviceAuthnAndroidKeyDescription.md)
 - [DeviceAuthnAndroidRootOfTrust](docs/Model/DeviceAuthnAndroidRootOfTrust.md)
@@ -334,6 +364,7 @@ Class | Method | HTTP request | Description
 - [GenericOIDCProvider](docs/Model/GenericOIDCProvider.md)
 - [GenericUsage](docs/Model/GenericUsage.md)
 - [GetAttributesCount](docs/Model/GetAttributesCount.md)
+- [GetJWKSResponse](docs/Model/GetJWKSResponse.md)
 - [GetManagedIdentitySchemaLocation](docs/Model/GetManagedIdentitySchemaLocation.md)
 - [GetMetricsCount](docs/Model/GetMetricsCount.md)
 - [GetMetricsEventAttributes](docs/Model/GetMetricsEventAttributes.md)
@@ -346,6 +377,7 @@ Class | Method | HTTP request | Description
 - [GetVersion200Response](docs/Model/GetVersion200Response.md)
 - [HealthNotReadyStatus](docs/Model/HealthNotReadyStatus.md)
 - [HealthStatus](docs/Model/HealthStatus.md)
+- [IPRestriction](docs/Model/IPRestriction.md)
 - [Identity](docs/Model/Identity.md)
 - [IdentityCredentials](docs/Model/IdentityCredentials.md)
 - [IdentityCredentialsCode](docs/Model/IdentityCredentialsCode.md)
@@ -377,6 +409,8 @@ Class | Method | HTTP request | Description
 - [IdentityWithCredentialsTotpConfig](docs/Model/IdentityWithCredentialsTotpConfig.md)
 - [IdentityWithCredentialsWebAuthn](docs/Model/IdentityWithCredentialsWebAuthn.md)
 - [IdentityWithCredentialsWebAuthnConfig](docs/Model/IdentityWithCredentialsWebAuthnConfig.md)
+- [ImportAPIKeyRequest](docs/Model/ImportAPIKeyRequest.md)
+- [ImportedAPIKey](docs/Model/ImportedAPIKey.md)
 - [InternalGetProjectBrandingBody](docs/Model/InternalGetProjectBrandingBody.md)
 - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
 - [InternalIsOwnerForProjectBySlug](docs/Model/InternalIsOwnerForProjectBySlug.md)
@@ -386,15 +420,22 @@ Class | Method | HTTP request | Description
 - [Invoice](docs/Model/Invoice.md)
 - [InvoiceDataV1](docs/Model/InvoiceDataV1.md)
 - [IsOwnerForProjectBySlug](docs/Model/IsOwnerForProjectBySlug.md)
+- [IssueAPIKeyRequest](docs/Model/IssueAPIKeyRequest.md)
+- [IssueAPIKeyResponse](docs/Model/IssueAPIKeyResponse.md)
+- [IssuedAPIKey](docs/Model/IssuedAPIKey.md)
 - [JsonPatch](docs/Model/JsonPatch.md)
 - [JsonWebKey](docs/Model/JsonWebKey.md)
 - [JsonWebKeySet](docs/Model/JsonWebKeySet.md)
 - [KetoNamespace](docs/Model/KetoNamespace.md)
+- [KeyStatus](docs/Model/KeyStatus.md)
+- [KeyVisibility](docs/Model/KeyVisibility.md)
 - [KeysetPaginationRequestParameters](docs/Model/KeysetPaginationRequestParameters.md)
 - [KeysetPaginationResponseHeaders](docs/Model/KeysetPaginationResponseHeaders.md)
 - [LineItemV1](docs/Model/LineItemV1.md)
 - [ListEventStreams](docs/Model/ListEventStreams.md)
+- [ListImportedAPIKeysResponse](docs/Model/ListImportedAPIKeysResponse.md)
 - [ListInvoicesResponse](docs/Model/ListInvoicesResponse.md)
+- [ListIssuedAPIKeysResponse](docs/Model/ListIssuedAPIKeysResponse.md)
 - [ListOrganizationsResponse](docs/Model/ListOrganizationsResponse.md)
 - [ListWorkspaceProjects](docs/Model/ListWorkspaceProjects.md)
 - [ListWorkspaces](docs/Model/ListWorkspaces.md)
@@ -425,6 +466,7 @@ Class | Method | HTTP request | Description
 - [NormalizedProjectRevisionScimClient](docs/Model/NormalizedProjectRevisionScimClient.md)
 - [NormalizedProjectRevisionThirdPartyProvider](docs/Model/NormalizedProjectRevisionThirdPartyProvider.md)
 - [NormalizedProjectRevisionTokenizerTemplate](docs/Model/NormalizedProjectRevisionTokenizerTemplate.md)
+- [NullValue](docs/Model/NullValue.md)
 - [OAuth2Client](docs/Model/OAuth2Client.md)
 - [OAuth2ClientTokenLifespans](docs/Model/OAuth2ClientTokenLifespans.md)
 - [OAuth2ConsentRequest](docs/Model/OAuth2ConsentRequest.md)
@@ -468,6 +510,7 @@ Class | Method | HTTP request | Description
 - [Provider](docs/Model/Provider.md)
 - [QuotaUsage](docs/Model/QuotaUsage.md)
 - [RFC6749ErrorJson](docs/Model/RFC6749ErrorJson.md)
+- [RateLimitPolicy](docs/Model/RateLimitPolicy.md)
 - [RecoveryCodeForIdentity](docs/Model/RecoveryCodeForIdentity.md)
 - [RecoveryFlow](docs/Model/RecoveryFlow.md)
 - [RecoveryFlowState](docs/Model/RecoveryFlowState.md)
@@ -482,7 +525,10 @@ Class | Method | HTTP request | Description
 - [RelationshipPatch](docs/Model/RelationshipPatch.md)
 - [Relationships](docs/Model/Relationships.md)
 - [RevisionAccountExperienceCustomTranslation](docs/Model/RevisionAccountExperienceCustomTranslation.md)
+- [RevocationReason](docs/Model/RevocationReason.md)
+- [RotateIssuedAPIKeyResponse](docs/Model/RotateIssuedAPIKeyResponse.md)
 - [SchemaPatch](docs/Model/SchemaPatch.md)
+- [SelfRevokeAPIKeyRequest](docs/Model/SelfRevokeAPIKeyRequest.md)
 - [SelfServiceFlowExpiredError](docs/Model/SelfServiceFlowExpiredError.md)
 - [Session](docs/Model/Session.md)
 - [SessionActivityDatapoint](docs/Model/SessionActivityDatapoint.md)
@@ -496,6 +542,7 @@ Class | Method | HTTP request | Description
 - [SettingsFlow](docs/Model/SettingsFlow.md)
 - [SettingsFlowState](docs/Model/SettingsFlowState.md)
 - [SourcePosition](docs/Model/SourcePosition.md)
+- [Status](docs/Model/Status.md)
 - [SubjectSet](docs/Model/SubjectSet.md)
 - [Subscription](docs/Model/Subscription.md)
 - [SuccessfulCodeExchangeResponse](docs/Model/SuccessfulCodeExchangeResponse.md)
@@ -504,6 +551,8 @@ Class | Method | HTTP request | Description
 - [SuccessfulProjectUpdate](docs/Model/SuccessfulProjectUpdate.md)
 - [TaxLineItem](docs/Model/TaxLineItem.md)
 - [TimeInterval](docs/Model/TimeInterval.md)
+- [Token](docs/Model/Token.md)
+- [TokenAlgorithm](docs/Model/TokenAlgorithm.md)
 - [TokenPagination](docs/Model/TokenPagination.md)
 - [TokenPaginationHeaders](docs/Model/TokenPaginationHeaders.md)
 - [TokenPaginationRequestParameters](docs/Model/TokenPaginationRequestParameters.md)
@@ -562,12 +611,17 @@ Class | Method | HTTP request | Description
 - [UpdateVerificationFlowWithLinkMethod](docs/Model/UpdateVerificationFlowWithLinkMethod.md)
 - [UpdateWorkspaceBody](docs/Model/UpdateWorkspaceBody.md)
 - [Usage](docs/Model/Usage.md)
+- [ValidateBaseURLRewriteRequest](docs/Model/ValidateBaseURLRewriteRequest.md)
+- [ValidateBaseURLRewriteResponse](docs/Model/ValidateBaseURLRewriteResponse.md)
 - [VerifiableCredentialPrimingResponse](docs/Model/VerifiableCredentialPrimingResponse.md)
 - [VerifiableCredentialProof](docs/Model/VerifiableCredentialProof.md)
 - [VerifiableCredentialResponse](docs/Model/VerifiableCredentialResponse.md)
 - [VerifiableIdentityAddress](docs/Model/VerifiableIdentityAddress.md)
+- [VerificationErrorCode](docs/Model/VerificationErrorCode.md)
 - [VerificationFlow](docs/Model/VerificationFlow.md)
 - [VerificationFlowState](docs/Model/VerificationFlowState.md)
+- [VerifyAPIKeyRequest](docs/Model/VerifyAPIKeyRequest.md)
+- [VerifyAPIKeyResponse](docs/Model/VerifyAPIKeyResponse.md)
 - [VerifyUserCodeRequest](docs/Model/VerifyUserCodeRequest.md)
 - [Version](docs/Model/Version.md)
 - [Warning](docs/Model/Warning.md)
@@ -621,6 +675,6 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.22.39`
+- API version: `v1.22.40`
     - Generator version: `7.17.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

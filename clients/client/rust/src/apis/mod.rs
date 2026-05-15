@@ -111,6 +111,7 @@ impl From<&str> for ContentType {
     }
 }
 
+pub mod api_keys_api;
 pub mod courier_api;
 pub mod events_api;
 pub mod frontend_api;

@@ -1,4 +1,4 @@
-## @ory/client@v1.22.39
+## @ory/client@v1.22.40
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.39 --save
+npm install @ory/client@v1.22.40 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,23 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*APIKeysApi* | [**adminBatchImportAPIKeys**](docs/APIKeysApi.md#adminbatchimportapikeys) | **POST** /v2alpha1/admin/importedApiKeys:batchImport | Batch Import API Keys
+*APIKeysApi* | [**adminBatchVerifyAPIKeys**](docs/APIKeysApi.md#adminbatchverifyapikeys) | **POST** /v2alpha1/admin/apiKeys:batchVerify | Batch Verify API Keys
+*APIKeysApi* | [**adminDeleteImportedAPIKey**](docs/APIKeysApi.md#admindeleteimportedapikey) | **DELETE** /v2alpha1/admin/importedApiKeys/{key_id} | Delete Imported API Key
+*APIKeysApi* | [**adminDeriveToken**](docs/APIKeysApi.md#adminderivetoken) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token
+*APIKeysApi* | [**adminGetImportedAPIKey**](docs/APIKeysApi.md#admingetimportedapikey) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key
+*APIKeysApi* | [**adminGetIssuedAPIKey**](docs/APIKeysApi.md#admingetissuedapikey) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key
+*APIKeysApi* | [**adminGetJWKS**](docs/APIKeysApi.md#admingetjwks) | **GET** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS
+*APIKeysApi* | [**adminImportAPIKey**](docs/APIKeysApi.md#adminimportapikey) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key
+*APIKeysApi* | [**adminIssueAPIKey**](docs/APIKeysApi.md#adminissueapikey) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key
+*APIKeysApi* | [**adminListImportedAPIKeys**](docs/APIKeysApi.md#adminlistimportedapikeys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys
+*APIKeysApi* | [**adminListIssuedAPIKeys**](docs/APIKeysApi.md#adminlistissuedapikeys) | **GET** /v2alpha1/admin/issuedApiKeys | List Issued API Keys
+*APIKeysApi* | [**adminRevokeAPIKey**](docs/APIKeysApi.md#adminrevokeapikey) | **POST** /v2alpha1/admin/apiKeys/{key_id}:revoke | Revoke API Key
+*APIKeysApi* | [**adminRotateIssuedAPIKey**](docs/APIKeysApi.md#adminrotateissuedapikey) | **POST** /v2alpha1/admin/issuedApiKeys/{key_id}:rotate | Rotate Issued API Key
+*APIKeysApi* | [**adminUpdateImportedAPIKey**](docs/APIKeysApi.md#adminupdateimportedapikey) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key
+*APIKeysApi* | [**adminUpdateIssuedAPIKey**](docs/APIKeysApi.md#adminupdateissuedapikey) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key
+*APIKeysApi* | [**adminVerifyAPIKey**](docs/APIKeysApi.md#adminverifyapikey) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key
+*APIKeysApi* | [**revokeAPIKey**](docs/APIKeysApi.md#revokeapikey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
 *CourierApi* | [**getCourierMessage**](docs/CourierApi.md#getcouriermessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/CourierApi.md#listcouriermessages) | **GET** /admin/courier/messages | List Messages
 *EventsApi* | [**createEventStream**](docs/EventsApi.md#createeventstream) | **POST** /projects/{project_id}/eventstreams | Create an event stream for your project.
@@ -213,6 +230,11 @@ Class | Method | HTTP request | Description
  - [AddProjectToWorkspaceBody](docs/AddProjectToWorkspaceBody.md)
  - [AdminIdentityImportCredentialsLookupSecret](docs/AdminIdentityImportCredentialsLookupSecret.md)
  - [AdminIdentityImportCredentialsLookupSecretConfig](docs/AdminIdentityImportCredentialsLookupSecretConfig.md)
+ - [AdminRevokeAPIKeyBody](docs/AdminRevokeAPIKeyBody.md)
+ - [AdminRotateIssuedAPIKeyBody](docs/AdminRotateIssuedAPIKeyBody.md)
+ - [AdminUpdateImportedAPIKeyRequest](docs/AdminUpdateImportedAPIKeyRequest.md)
+ - [AdminUpdateIssuedAPIKeyRequest](docs/AdminUpdateIssuedAPIKeyRequest.md)
+ - [Any](docs/Any.md)
  - [Attribute](docs/Attribute.md)
  - [AttributeFilter](docs/AttributeFilter.md)
  - [AttributesCountDatapoint](docs/AttributesCountDatapoint.md)
@@ -220,7 +242,13 @@ Class | Method | HTTP request | Description
  - [BasicOrganization](docs/BasicOrganization.md)
  - [BatchCheckPermissionBody](docs/BatchCheckPermissionBody.md)
  - [BatchCheckPermissionResult](docs/BatchCheckPermissionResult.md)
+ - [BatchImportAPIKeysRequest](docs/BatchImportAPIKeysRequest.md)
+ - [BatchImportAPIKeysResponse](docs/BatchImportAPIKeysResponse.md)
+ - [BatchImportErrorCode](docs/BatchImportErrorCode.md)
+ - [BatchImportResult](docs/BatchImportResult.md)
  - [BatchPatchIdentitiesResponse](docs/BatchPatchIdentitiesResponse.md)
+ - [BatchVerifyAPIKeysRequest](docs/BatchVerifyAPIKeysRequest.md)
+ - [BatchVerifyAPIKeysResponse](docs/BatchVerifyAPIKeysResponse.md)
  - [BillingPeriodBucket](docs/BillingPeriodBucket.md)
  - [CheckOplSyntaxResult](docs/CheckOplSyntaxResult.md)
  - [CheckPermissionResult](docs/CheckPermissionResult.md)
@@ -267,6 +295,8 @@ Class | Method | HTTP request | Description
  - [CustomDomain](docs/CustomDomain.md)
  - [CustomerPortalAvailability](docs/CustomerPortalAvailability.md)
  - [DeleteMySessionsCount](docs/DeleteMySessionsCount.md)
+ - [DeriveTokenRequest](docs/DeriveTokenRequest.md)
+ - [DeriveTokenResponse](docs/DeriveTokenResponse.md)
  - [DeviceAuthnAndroidAuthorizationList](docs/DeviceAuthnAndroidAuthorizationList.md)
  - [DeviceAuthnAndroidKeyDescription](docs/DeviceAuthnAndroidKeyDescription.md)
  - [DeviceAuthnAndroidRootOfTrust](docs/DeviceAuthnAndroidRootOfTrust.md)
@@ -291,6 +321,7 @@ Class | Method | HTTP request | Description
  - [GenericOIDCProvider](docs/GenericOIDCProvider.md)
  - [GenericUsage](docs/GenericUsage.md)
  - [GetAttributesCount](docs/GetAttributesCount.md)
+ - [GetJWKSResponse](docs/GetJWKSResponse.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
  - [GetMetricsCount](docs/GetMetricsCount.md)
  - [GetMetricsEventAttributes](docs/GetMetricsEventAttributes.md)
@@ -303,6 +334,7 @@ Class | Method | HTTP request | Description
  - [GetVersion200Response](docs/GetVersion200Response.md)
  - [HealthNotReadyStatus](docs/HealthNotReadyStatus.md)
  - [HealthStatus](docs/HealthStatus.md)
+ - [IPRestriction](docs/IPRestriction.md)
  - [Identity](docs/Identity.md)
  - [IdentityCredentials](docs/IdentityCredentials.md)
  - [IdentityCredentialsCode](docs/IdentityCredentialsCode.md)
@@ -334,6 +366,8 @@ Class | Method | HTTP request | Description
  - [IdentityWithCredentialsTotpConfig](docs/IdentityWithCredentialsTotpConfig.md)
  - [IdentityWithCredentialsWebAuthn](docs/IdentityWithCredentialsWebAuthn.md)
  - [IdentityWithCredentialsWebAuthnConfig](docs/IdentityWithCredentialsWebAuthnConfig.md)
+ - [ImportAPIKeyRequest](docs/ImportAPIKeyRequest.md)
+ - [ImportedAPIKey](docs/ImportedAPIKey.md)
  - [InternalGetProjectBrandingBody](docs/InternalGetProjectBrandingBody.md)
  - [InternalIsAXWelcomeScreenEnabledForProjectBody](docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md)
  - [InternalIsOwnerForProjectBySlug](docs/InternalIsOwnerForProjectBySlug.md)
@@ -343,15 +377,22 @@ Class | Method | HTTP request | Description
  - [Invoice](docs/Invoice.md)
  - [InvoiceDataV1](docs/InvoiceDataV1.md)
  - [IsOwnerForProjectBySlug](docs/IsOwnerForProjectBySlug.md)
+ - [IssueAPIKeyRequest](docs/IssueAPIKeyRequest.md)
+ - [IssueAPIKeyResponse](docs/IssueAPIKeyResponse.md)
+ - [IssuedAPIKey](docs/IssuedAPIKey.md)
  - [JsonPatch](docs/JsonPatch.md)
  - [JsonWebKey](docs/JsonWebKey.md)
  - [JsonWebKeySet](docs/JsonWebKeySet.md)
  - [KetoNamespace](docs/KetoNamespace.md)
+ - [KeyStatus](docs/KeyStatus.md)
+ - [KeyVisibility](docs/KeyVisibility.md)
  - [KeysetPaginationRequestParameters](docs/KeysetPaginationRequestParameters.md)
  - [KeysetPaginationResponseHeaders](docs/KeysetPaginationResponseHeaders.md)
  - [LineItemV1](docs/LineItemV1.md)
  - [ListEventStreams](docs/ListEventStreams.md)
+ - [ListImportedAPIKeysResponse](docs/ListImportedAPIKeysResponse.md)
  - [ListInvoicesResponse](docs/ListInvoicesResponse.md)
+ - [ListIssuedAPIKeysResponse](docs/ListIssuedAPIKeysResponse.md)
  - [ListOrganizationsResponse](docs/ListOrganizationsResponse.md)
  - [ListWorkspaceProjects](docs/ListWorkspaceProjects.md)
  - [ListWorkspaces](docs/ListWorkspaces.md)
@@ -382,6 +423,7 @@ Class | Method | HTTP request | Description
  - [NormalizedProjectRevisionScimClient](docs/NormalizedProjectRevisionScimClient.md)
  - [NormalizedProjectRevisionThirdPartyProvider](docs/NormalizedProjectRevisionThirdPartyProvider.md)
  - [NormalizedProjectRevisionTokenizerTemplate](docs/NormalizedProjectRevisionTokenizerTemplate.md)
+ - [NullValue](docs/NullValue.md)
  - [OAuth2Client](docs/OAuth2Client.md)
  - [OAuth2ClientTokenLifespans](docs/OAuth2ClientTokenLifespans.md)
  - [OAuth2ConsentRequest](docs/OAuth2ConsentRequest.md)
@@ -425,6 +467,7 @@ Class | Method | HTTP request | Description
  - [Provider](docs/Provider.md)
  - [QuotaUsage](docs/QuotaUsage.md)
  - [RFC6749ErrorJson](docs/RFC6749ErrorJson.md)
+ - [RateLimitPolicy](docs/RateLimitPolicy.md)
  - [RecoveryCodeForIdentity](docs/RecoveryCodeForIdentity.md)
  - [RecoveryFlow](docs/RecoveryFlow.md)
  - [RecoveryFlowState](docs/RecoveryFlowState.md)
@@ -439,7 +482,10 @@ Class | Method | HTTP request | Description
  - [RelationshipPatch](docs/RelationshipPatch.md)
  - [Relationships](docs/Relationships.md)
  - [RevisionAccountExperienceCustomTranslation](docs/RevisionAccountExperienceCustomTranslation.md)
+ - [RevocationReason](docs/RevocationReason.md)
+ - [RotateIssuedAPIKeyResponse](docs/RotateIssuedAPIKeyResponse.md)
  - [SchemaPatch](docs/SchemaPatch.md)
+ - [SelfRevokeAPIKeyRequest](docs/SelfRevokeAPIKeyRequest.md)
  - [SelfServiceFlowExpiredError](docs/SelfServiceFlowExpiredError.md)
  - [Session](docs/Session.md)
  - [SessionActivityDatapoint](docs/SessionActivityDatapoint.md)
@@ -453,6 +499,7 @@ Class | Method | HTTP request | Description
  - [SettingsFlow](docs/SettingsFlow.md)
  - [SettingsFlowState](docs/SettingsFlowState.md)
  - [SourcePosition](docs/SourcePosition.md)
+ - [Status](docs/Status.md)
  - [SubjectSet](docs/SubjectSet.md)
  - [Subscription](docs/Subscription.md)
  - [SuccessfulCodeExchangeResponse](docs/SuccessfulCodeExchangeResponse.md)
@@ -461,6 +508,8 @@ Class | Method | HTTP request | Description
  - [SuccessfulProjectUpdate](docs/SuccessfulProjectUpdate.md)
  - [TaxLineItem](docs/TaxLineItem.md)
  - [TimeInterval](docs/TimeInterval.md)
+ - [Token](docs/Token.md)
+ - [TokenAlgorithm](docs/TokenAlgorithm.md)
  - [TokenPagination](docs/TokenPagination.md)
  - [TokenPaginationHeaders](docs/TokenPaginationHeaders.md)
  - [TokenPaginationRequestParameters](docs/TokenPaginationRequestParameters.md)
@@ -519,12 +568,17 @@ Class | Method | HTTP request | Description
  - [UpdateVerificationFlowWithLinkMethod](docs/UpdateVerificationFlowWithLinkMethod.md)
  - [UpdateWorkspaceBody](docs/UpdateWorkspaceBody.md)
  - [Usage](docs/Usage.md)
+ - [ValidateBaseURLRewriteRequest](docs/ValidateBaseURLRewriteRequest.md)
+ - [ValidateBaseURLRewriteResponse](docs/ValidateBaseURLRewriteResponse.md)
  - [VerifiableCredentialPrimingResponse](docs/VerifiableCredentialPrimingResponse.md)
  - [VerifiableCredentialProof](docs/VerifiableCredentialProof.md)
  - [VerifiableCredentialResponse](docs/VerifiableCredentialResponse.md)
  - [VerifiableIdentityAddress](docs/VerifiableIdentityAddress.md)
+ - [VerificationErrorCode](docs/VerificationErrorCode.md)
  - [VerificationFlow](docs/VerificationFlow.md)
  - [VerificationFlowState](docs/VerificationFlowState.md)
+ - [VerifyAPIKeyRequest](docs/VerifyAPIKeyRequest.md)
+ - [VerifyAPIKeyResponse](docs/VerifyAPIKeyResponse.md)
  - [VerifyUserCodeRequest](docs/VerifyUserCodeRequest.md)
  - [Version](docs/Version.md)
  - [Warning](docs/Warning.md)

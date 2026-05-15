@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.39
+  version: v1.22.40
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -8476,6 +8476,853 @@ paths:
       tags:
       - oidc
       x-ory-ratelimit-bucket: hydra-public-medium
+  /v2alpha1/admin/apiKeys/{key_id}:revoke:
+    post:
+      description: |-
+        Immediately revokes an API key (issued or imported). Once revoked, the key
+        can no longer be used for authentication. This operation is irreversible.
+        Revoked keys are retained for audit purposes.
+
+        ```http
+        POST /v2alpha1/admin/apiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:revoke
+        {
+          "reason": "REVOCATION_REASON_KEY_COMPROMISE"
+        }
+        ```
+      operationId: AdminRevokeAPIKey
+      parameters:
+      - description: Identifier of the API key resource.
+        explode: false
+        in: path
+        name: key_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminRevokeAPIKeyBody"
+        required: true
+        x-originalParamName: body
+      responses:
+        "204":
+          content:
+            application/json:
+              schema: {}
+          description: API key revoked successfully.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Revoke API Key
+      tags:
+      - APIKeys
+  /v2alpha1/admin/apiKeys:batchVerify:
+    post:
+      description: |-
+        Verifies multiple credentials in a single request. Efficiently verifies up
+        to 100 credentials in parallel. Each credential is verified independently;
+        partial failures are returned. Admin access only.
+
+        Cache Control (HTTP Headers):
+          - Cache-Control: no-cache  - Bypasses cache read, forces fresh DB lookup
+          - Cache-Control: no-store  - Bypasses cache read AND write (never cached)
+          - Pragma: no-cache         - Same as Cache-Control: no-cache (HTTP/1.0)
+
+        The cache directive applies to every credential in the batch.
+
+        ```http
+        POST /v2alpha1/admin/apiKeys:batchVerify
+        {
+          "requests": [
+            {"credential": "sk_live_abc123..."},
+            {"credential": "eyJhbGciOiJFZERTQSI..."}
+          ]
+        }
+        ```
+      operationId: AdminBatchVerifyAPIKeys
+      parameters:
+      - description: Cache-directive controlling the verifier cache. `no-cache` forces
+          a fresh database lookup (cache read is bypassed). `no-store` additionally
+          prevents the result from being written to the cache. Any other value is
+          ignored.
+        explode: false
+        in: header
+        name: Cache-Control
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: "HTTP/1.0 alias for `Cache-Control: no-cache`. Behaves identically\
+          \ when set to `no-cache`; ignored otherwise."
+        explode: false
+        in: header
+        name: Pragma
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchVerifyAPIKeysRequest"
+        required: true
+        x-originalParamName: body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatchVerifyAPIKeysResponse"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Batch Verify API Keys
+      tags:
+      - APIKeys
+  /v2alpha1/admin/apiKeys:derive:
+    post:
+      description: |-
+        Mints a short-lived JWT or Macaroon token from an API key. Works with both
+        issued and imported keys. The derived token inherits the permissions of the
+        parent API key.
+
+        ```http
+        POST /v2alpha1/admin/apiKeys:derive
+        {
+          "credential": "eyJhbGciOiJFZERTQSI...",
+          "ttl": "1h"
+        }
+        ```
+      operationId: AdminDeriveToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeriveTokenRequest"
+        required: true
+        x-originalParamName: body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeriveTokenResponse"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Derive Token
+      tags:
+      - APIKeys
+  /v2alpha1/admin/apiKeys:verify:
+    post:
+      description: |-
+        Verifies a single API key or derived token. Validates the credential's
+        signature, expiration, and revocation status. Works with any credential
+        type (issued keys, imported keys, JWT, macaroon). The verification result
+        includes decoded claims and metadata — admin access only.
+
+        Cache Control (HTTP Headers):
+          - Cache-Control: no-cache  - Bypasses cache read, forces fresh DB lookup
+          - Cache-Control: no-store  - Bypasses cache read AND write (never cached)
+          - Pragma: no-cache         - Same as Cache-Control: no-cache (HTTP/1.0)
+
+        ```http
+        POST /v2alpha1/admin/apiKeys:verify
+        {
+          "credential": "sk_live_abc123..."
+        }
+        ```
+      operationId: AdminVerifyAPIKey
+      parameters:
+      - description: Cache-directive controlling the verifier cache. `no-cache` forces
+          a fresh database lookup (cache read is bypassed). `no-store` additionally
+          prevents the result from being written to the cache. Any other value is
+          ignored.
+        explode: false
+        in: header
+        name: Cache-Control
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: "HTTP/1.0 alias for `Cache-Control: no-cache`. Behaves identically\
+          \ when set to `no-cache`; ignored otherwise."
+        explode: false
+        in: header
+        name: Pragma
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyAPIKeyRequest"
+        required: true
+        x-originalParamName: body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VerifyAPIKeyResponse"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Verify API Key
+      tags:
+      - APIKeys
+  /v2alpha1/admin/derivedKeys/jwks.json:
+    get:
+      description: |-
+        Returns the JSON Web Key Set for token verification. Provides the public
+        keys needed to verify JWT tokens issued by this service. Keys are loaded
+        from configuration (file://, https://, or base64:// URIs). Follows the
+        JWKS standard (RFC 7517).
+
+        ```http
+        GET /v2alpha1/admin/derivedKeys/jwks.json
+        ```
+      operationId: AdminGetJWKS
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetJWKSResponse"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Get JWKS
+      tags:
+      - APIKeys
+  /v2alpha1/admin/importedApiKeys:
+    get:
+      description: |-
+        Lists all imported keys with filtering. Returns imported keys only (not
+        issued keys). Supports pagination and AIP-160 filter expressions.
+
+        ```http
+        GET /v2alpha1/admin/importedApiKeys?page_size=50&filter=status%3DKEY_STATUS_ACTIVE
+        ```
+      operationId: AdminListImportedAPIKeys
+      parameters:
+      - description: "Number of items per page (default: 50, max: 1000)"
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Cursor token for pagination (OPTIONAL)
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          filter is an AIP-160 expression. Indexed fields (efficient at any scale):
+            actor_id, status. Other fields are not indexed and may be rejected.
+          Examples:
+            actor_id="user_123"
+            status=KEY_STATUS_ACTIVE
+            actor_id="user_123" AND status=KEY_STATUS_ACTIVE
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListImportedAPIKeysResponse"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: List Imported API Keys
+      tags:
+      - APIKeys
+    post:
+      description: |-
+        Imports an external API key into the system. Allows importing keys from
+        legacy systems or external providers. The raw key is hashed and stored
+        securely (HMAC). Imported keys support token derivation (JWT/Macaroon)
+        like issued keys.
+
+        ```http
+        POST /v2alpha1/admin/importedApiKeys
+        {
+          "raw_key": "sk_live_abc123xyz",
+          "name": "Imported Stripe Key",
+          "actor_id": "user_123"
+        }
+        ```
+      operationId: AdminImportAPIKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportAPIKeyRequest"
+        description: |-
+          Example:
+            {
+              "raw_key": "sk_live_abc123xyz789",
+              "name": "Stripe Production Key",
+              "actor_id": "payment-processor",
+              "scopes": ["read", "write"],
+              "ttl": "8760h",  // 1 year (also accepts: 31536000s)
+              "metadata": {"source": "stripe", "environment": "production"}
+            }
+        required: true
+        x-originalParamName: body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ImportedAPIKey"
+          description: API key imported successfully.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Import API Key
+      tags:
+      - APIKeys
+  /v2alpha1/admin/importedApiKeys/{key_id}:
+    delete:
+      description: |-
+        Permanently deletes an imported key (hard delete). The key is removed from
+        the database. Use RevokeAPIKey for soft deletion (recommended).
+
+        ```http
+        DELETE /v2alpha1/admin/importedApiKeys/{key_id}
+        ```
+      operationId: AdminDeleteImportedAPIKey
+      parameters:
+      - description: SHA512/256 hash of the imported key (REQUIRED)
+        explode: false
+        in: path
+        name: key_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          content:
+            application/json:
+              schema: {}
+          description: Imported key deleted successfully.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Delete Imported API Key
+      tags:
+      - APIKeys
+    get:
+      description: |-
+        Retrieves details about a specific imported key. Returns metadata about
+        the imported key. The original raw key is never returned.
+
+        ```http
+        GET /v2alpha1/admin/importedApiKeys/{key_id}
+        ```
+      operationId: AdminGetImportedAPIKey
+      parameters:
+      - description: SHA512/256 hash of the imported key (REQUIRED)
+        explode: false
+        in: path
+        name: key_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ImportedAPIKey"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Get Imported API Key
+      tags:
+      - APIKeys
+    patch:
+      description: |-
+        Updates metadata, scopes, or rate limits of an imported key. Supports
+        partial updates via the update_mask query parameter (AIP-134). Omitting
+        update_mask is equivalent to a mask of every populated field in the body.
+        To clear a field to its zero value, list it explicitly in update_mask and
+        leave it unset (or empty) in the body.
+
+        ```http
+        PATCH /v2alpha1/admin/importedApiKeys/{key_id}?update_mask=name
+        {
+          "imported_api_key": {
+            "key_id": "{key_id}",
+            "name": "New name"
+          }
+        }
+        ```
+      operationId: AdminUpdateImportedAPIKey
+      parameters:
+      - description: SHA-512/256 hash of credential
+        explode: false
+        in: path
+        name: key_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The list of fields to update. See AIP-134.
+        explode: true
+        in: query
+        name: update_mask
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminUpdateImportedAPIKey_request"
+        required: true
+        x-originalParamName: imported_api_key
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ImportedAPIKey"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Update Imported API Key
+      tags:
+      - APIKeys
+  /v2alpha1/admin/importedApiKeys:batchImport:
+    post:
+      description: |-
+        Imports up to 1000 external API keys in one request. Returns per-item
+        results. If at least one item succeeds, response is 200 OK. If all items
+        fail, the endpoint returns a non-200 error.
+
+        ```http
+        POST /v2alpha1/admin/importedApiKeys:batchImport
+        {
+          "requests": [
+            {"raw_key": "sk_live_abc", "name": "Stripe key", "actor_id": "user_1"},
+            {"raw_key": "ghp_xyz", "name": "GitHub PAT", "actor_id": "user_2"}
+          ]
+        }
+        ```
+      operationId: AdminBatchImportAPIKeys
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchImportAPIKeysRequest"
+        description: |-
+          BatchImportAPIKeysRequest imports multiple external API keys in one request.
+          The maximum batch size is 1000 keys.
+        required: true
+        x-originalParamName: body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatchImportAPIKeysResponse"
+          description: Batch import completed. Check per-item results for individual
+            status.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Batch Import API Keys
+      tags:
+      - APIKeys
+  /v2alpha1/admin/issuedApiKeys:
+    get:
+      description: |-
+        Lists issued API keys with optional filtering. Supports cursor-based
+        pagination and AIP-160 filter expressions. Returns only issued
+        (generated) API keys; use ListImportedAPIKeys for imported keys.
+
+        ```http
+        GET /v2alpha1/admin/issuedApiKeys?page_size=50&filter=actor_id%3D%22user_123%22
+        ```
+      operationId: AdminListIssuedAPIKeys
+      parameters:
+      - description: "Number of items per page (default: 50, max: 1000)"
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Cursor token for pagination
+        explode: true
+        in: query
+        name: page_token
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          filter is an AIP-160 expression. Indexed fields (efficient at any scale):
+            actor_id, status. Other fields are not indexed and may be rejected.
+          Examples:
+            actor_id="user_123"
+            status=KEY_STATUS_ACTIVE
+            actor_id="user_123" AND status=KEY_STATUS_ACTIVE
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListIssuedAPIKeysResponse"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: List Issued API Keys
+      tags:
+      - APIKeys
+    post:
+      description: |-
+        Creates a new API key for a given actor. The secret is returned only once
+        in the response and cannot be retrieved later. Keys can be scoped with
+        specific permissions and have optional expiration.
+
+        ```http
+        POST /v2alpha1/admin/issuedApiKeys
+        {
+          "name": "production-service",
+          "actor_id": "user_123",
+          "scopes": ["read", "write"],
+          "ttl": "8760h"
+        }
+        ```
+      operationId: AdminIssueAPIKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IssueAPIKeyRequest"
+        required: true
+        x-originalParamName: body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IssueAPIKeyResponse"
+          description: API key issued successfully.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Issue API Key
+      tags:
+      - APIKeys
+  /v2alpha1/admin/issuedApiKeys/{key_id}:
+    get:
+      description: |-
+        Retrieves details about a specific issued API key including its status,
+        scopes, expiration, and usage statistics. The secret is never returned.
+
+        ```http
+        GET /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ
+        ```
+      operationId: AdminGetIssuedAPIKey
+      parameters:
+      - description: Identifier of the API key resource.
+        explode: false
+        in: path
+        name: key_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IssuedAPIKey"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Get Issued API Key
+      tags:
+      - APIKeys
+    patch:
+      description: |-
+        Updates metadata, scopes, or rate limits of an issued key without rotating
+        the secret. Use RotateIssuedAPIKey to change the secret.
+
+        Follows AIP-134: the request body is the IssuedAPIKey resource itself,
+        and the update_mask query parameter names the subset of fields to apply.
+        Omitting update_mask is equivalent to a mask of every populated field
+        in the body. To clear a field to its zero value, list it explicitly in
+        update_mask and leave it unset (or empty) in the body.
+
+        ```http
+        PATCH /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ?update_mask=scopes
+        {
+          "issued_api_key": {
+            "key_id": "01HQZX9VYQKJB8XQZQXQZQXQXQ",
+            "scopes": ["read"]
+          }
+        }
+        ```
+      operationId: AdminUpdateIssuedAPIKey
+      parameters:
+      - description: Identifier of the API key resource.
+        explode: false
+        in: path
+        name: key_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The list of fields to update. See AIP-134.
+        explode: true
+        in: query
+        name: update_mask
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminUpdateIssuedAPIKey_request"
+        required: true
+        x-originalParamName: issued_api_key
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IssuedAPIKey"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Update Issued API Key
+      tags:
+      - APIKeys
+  /v2alpha1/admin/issuedApiKeys/{key_id}:rotate:
+    post:
+      description: |-
+        Generates a new secret for an issued API key. Creates a new API key with a
+        new key_id and secret, and immediately revokes the old key. This is the
+        recommended way to update scopes, metadata, or rotate credentials.
+
+        For zero-downtime rotation, use this workflow instead:
+          1. IssueAPIKey with new credentials
+          2. Deploy new secret to all services
+          3. Verify new secret works everywhere
+          4. RevokeAPIKey to remove the old key
+
+        ```http
+        POST /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:rotate
+        {
+          "scopes": ["read"]
+        }
+        ```
+      operationId: AdminRotateIssuedAPIKey
+      parameters:
+      - description: key_id is the ID of the existing API key to rotate
+        explode: false
+        in: path
+        name: key_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminRotateIssuedAPIKeyBody"
+        required: true
+        x-originalParamName: body
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RotateIssuedAPIKeyResponse"
+          description: "API key rotated successfully. New key issued, old key revoked."
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Rotate Issued API Key
+      tags:
+      - APIKeys
+  /v2alpha1/apiKeys:selfRevoke:
+    post:
+      description: |-
+        Proof-of-possession variant of revocation. Lives alongside `AdminRevokeAPIKey`
+        in this service; the `Self*` prefix on the request/response messages
+        disambiguates from the admin variant's `RevokeAPIKeyRequest`.
+
+        Allows an API key holder to revoke their own key. The caller must provide
+        the full API key secret as proof of possession. Supports issued API keys
+        and imported keys. JWT and macaroon tokens cannot be self-revoked (they
+        are stateless).
+
+        The PRIVILEGE_WITHDRAWN reason is not allowed for self-revocation
+        (admin-only).
+
+        ```http
+        POST /v2alpha1/apiKeys:selfRevoke
+        {
+          "credential": "sk_live_abc123...",
+          "reason": "REVOCATION_REASON_KEY_COMPROMISE"
+        }
+        ```
+      operationId: RevokeAPIKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SelfRevokeAPIKeyRequest"
+        description: |-
+          SelfRevokeAPIKeyRequest allows an API key holder to revoke their own key
+          by providing the full key secret as proof of possession.
+        required: true
+        x-originalParamName: body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SelfRevokeAPIKeyResponse"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      summary: Revoke API Key (self-service)
+      tags:
+      - APIKeys
   /version:
     get:
       description: |-
@@ -9323,9 +10170,78 @@ components:
             $ref: "#/components/schemas/identityCredentialsLookupSecretCode"
           type: array
       type: object
+    AdminRevokeAPIKeyBody:
+      example:
+        reason: REVOCATION_REASON_UNSPECIFIED
+        description: description
+      properties:
+        description:
+          description: Optional free-text explanation. Only allowed when reason is
+            PRIVILEGE_WITHDRAWN.
+          type: string
+        reason:
+          $ref: "#/components/schemas/RevocationReason"
+      type: object
+    AdminRotateIssuedAPIKeyBody:
+      description: |-
+        RotateIssuedAPIKeyRequest is the request for AdminRotateIssuedAPIKey.
+
+        Rotation is a custom method (AIP-136) that swaps an active key for a new
+        one with a fresh secret and key_id, then revokes the old key. It is not a
+        partial update, so it does not carry an update_mask. Mutable fields use
+        presence-based semantics: an absent field inherits from the old key, while
+        a present field (including an explicitly empty value) overrides.
+      example:
+        metadata: "{}"
+        rate_limit_policy:
+          unit: unit
+          quota: quota
+          window: window
+        visibility: KEY_VISIBILITY_UNSPECIFIED
+        name: name
+        scopes:
+        - scopes
+        - scopes
+        ip_restriction:
+          allowed_cidrs:
+          - allowed_cidrs
+          - allowed_cidrs
+      properties:
+        ip_restriction:
+          $ref: "#/components/schemas/IPRestriction"
+        metadata:
+          description: |-
+            metadata for the new API key. Absent (nil) inherits from the old key;
+            present (including empty Struct) overrides.
+          type: object
+        name:
+          description: |-
+            name for the new API key. Absent (HasName() == false) inherits from the
+            old key; present (including empty string) overrides.
+          type: string
+        rate_limit_policy:
+          $ref: "#/components/schemas/RateLimitPolicy"
+        scopes:
+          description: |-
+            scopes for the new API key. Absent (nil slice) inherits from the old key;
+            present (including empty list) overrides.
+          items:
+            type: string
+          type: array
+        visibility:
+          $ref: "#/components/schemas/KeyVisibility"
+      type: object
     AmountInCent:
       format: int64
       type: integer
+    Any:
+      additionalProperties: {}
+      example:
+        '@type': '@type'
+      properties:
+        '@type':
+          type: string
+      type: object
     Attribute:
       properties:
         key:
@@ -9384,6 +10300,247 @@ components:
         Specification: §5.8.4. Authenticator Transport Enumeration (https://www.w3.org/TR/webauthn/#enumdef-authenticatortransport)
       title: AuthenticatorTransport represents the IDL enum with the same name.
       type: string
+    BatchImportAPIKeysRequest:
+      description: |-
+        BatchImportAPIKeysRequest imports multiple external API keys in one request.
+        The maximum batch size is 1000 keys.
+      example:
+        requests:
+        - metadata: "{}"
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          name: name
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          request_id: request_id
+          ttl: ttl
+          ip_restriction:
+            allowed_cidrs:
+            - allowed_cidrs
+            - allowed_cidrs
+          raw_key: raw_key
+        - metadata: "{}"
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          name: name
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          request_id: request_id
+          ttl: ttl
+          ip_restriction:
+            allowed_cidrs:
+            - allowed_cidrs
+            - allowed_cidrs
+          raw_key: raw_key
+      properties:
+        requests:
+          items:
+            $ref: "#/components/schemas/ImportAPIKeyRequest"
+          title: Keys to import
+          type: array
+      type: object
+    BatchImportAPIKeysResponse:
+      description: BatchImportAPIKeysResponse returns per-item results and summary
+        counters.
+      example:
+        success_count: 1
+        failure_count: 0
+        results:
+        - error_message: error_message
+          imported_api_key:
+            metadata: "{}"
+            create_time: 2000-01-23T04:56:07.000+00:00
+            rate_limit_policy:
+              unit: unit
+              quota: quota
+              window: window
+            visibility: KEY_VISIBILITY_UNSPECIFIED
+            key_id: key_id
+            expire_time: 2000-01-23T04:56:07.000+00:00
+            revocation_description: revocation_description
+            update_time: 2000-01-23T04:56:07.000+00:00
+            last_used_time: 2000-01-23T04:56:07.000+00:00
+            name: name
+            revocation_reason: REVOCATION_REASON_UNSPECIFIED
+            actor_id: actor_id
+            scopes:
+            - scopes
+            - scopes
+            ip_restriction:
+              allowed_cidrs:
+              - allowed_cidrs
+              - allowed_cidrs
+            status: KEY_STATUS_UNSPECIFIED
+          index: 6
+          error_code: BATCH_IMPORT_ERROR_UNSPECIFIED
+        - error_message: error_message
+          imported_api_key:
+            metadata: "{}"
+            create_time: 2000-01-23T04:56:07.000+00:00
+            rate_limit_policy:
+              unit: unit
+              quota: quota
+              window: window
+            visibility: KEY_VISIBILITY_UNSPECIFIED
+            key_id: key_id
+            expire_time: 2000-01-23T04:56:07.000+00:00
+            revocation_description: revocation_description
+            update_time: 2000-01-23T04:56:07.000+00:00
+            last_used_time: 2000-01-23T04:56:07.000+00:00
+            name: name
+            revocation_reason: REVOCATION_REASON_UNSPECIFIED
+            actor_id: actor_id
+            scopes:
+            - scopes
+            - scopes
+            ip_restriction:
+              allowed_cidrs:
+              - allowed_cidrs
+              - allowed_cidrs
+            status: KEY_STATUS_UNSPECIFIED
+          index: 6
+          error_code: BATCH_IMPORT_ERROR_UNSPECIFIED
+      properties:
+        failure_count:
+          format: int32
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/BatchImportResult"
+          type: array
+        success_count:
+          format: int32
+          type: integer
+      type: object
+    BatchImportErrorCode:
+      default: BATCH_IMPORT_ERROR_UNSPECIFIED
+      description: |-
+        BatchImportErrorCode classifies per-item batch import failures.
+
+         - BATCH_IMPORT_ERROR_UNSPECIFIED: No error (import succeeded)
+         - BATCH_IMPORT_ERROR_INVALID_ARGUMENT: The key data is malformed or missing required fields
+         - BATCH_IMPORT_ERROR_ALREADY_EXISTS: A key with this identifier already exists
+         - BATCH_IMPORT_ERROR_FAILED_PRECONDITION: State conflict prevents the import
+         - BATCH_IMPORT_ERROR_INTERNAL: Server error during import
+      enum:
+      - BATCH_IMPORT_ERROR_UNSPECIFIED
+      - BATCH_IMPORT_ERROR_INVALID_ARGUMENT
+      - BATCH_IMPORT_ERROR_ALREADY_EXISTS
+      - BATCH_IMPORT_ERROR_FAILED_PRECONDITION
+      - BATCH_IMPORT_ERROR_INTERNAL
+      type: string
+    BatchImportResult:
+      description: BatchImportResult contains the result for one key in a batch import
+        request.
+      example:
+        error_message: error_message
+        imported_api_key:
+          metadata: "{}"
+          create_time: 2000-01-23T04:56:07.000+00:00
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          key_id: key_id
+          expire_time: 2000-01-23T04:56:07.000+00:00
+          revocation_description: revocation_description
+          update_time: 2000-01-23T04:56:07.000+00:00
+          last_used_time: 2000-01-23T04:56:07.000+00:00
+          name: name
+          revocation_reason: REVOCATION_REASON_UNSPECIFIED
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          ip_restriction:
+            allowed_cidrs:
+            - allowed_cidrs
+            - allowed_cidrs
+          status: KEY_STATUS_UNSPECIFIED
+        index: 6
+        error_code: BATCH_IMPORT_ERROR_UNSPECIFIED
+      properties:
+        error_code:
+          $ref: "#/components/schemas/BatchImportErrorCode"
+        error_message:
+          title: Human-readable failure reason
+          type: string
+        imported_api_key:
+          $ref: "#/components/schemas/ImportedAPIKey"
+        index:
+          format: int32
+          title: Zero-based index in request.requests
+          type: integer
+      type: object
+    BatchVerifyAPIKeysRequest:
+      example:
+        requests:
+        - credential: credential
+        - credential: credential
+      properties:
+        requests:
+          items:
+            $ref: "#/components/schemas/VerifyAPIKeyRequest"
+          type: array
+      type: object
+    BatchVerifyAPIKeysResponse:
+      example:
+        results:
+        - error_message: error_message
+          rate_limit_reset_time: 2000-01-23T04:56:07.000+00:00
+          metadata: "{}"
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          key_id: key_id
+          expire_time: 2000-01-23T04:56:07.000+00:00
+          issuer: issuer
+          is_valid: true
+          rate_limit_remaining: rate_limit_remaining
+          error_code: VERIFICATION_ERROR_UNSPECIFIED
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          status: KEY_STATUS_UNSPECIFIED
+        - error_message: error_message
+          rate_limit_reset_time: 2000-01-23T04:56:07.000+00:00
+          metadata: "{}"
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          key_id: key_id
+          expire_time: 2000-01-23T04:56:07.000+00:00
+          issuer: issuer
+          is_valid: true
+          rate_limit_remaining: rate_limit_remaining
+          error_code: VERIFICATION_ERROR_UNSPECIFIED
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          status: KEY_STATUS_UNSPECIFIED
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/VerifyAPIKeyResponse"
+          type: array
+      type: object
     BillingPeriodBucket:
       properties:
         base_invoices:
@@ -11224,6 +12381,58 @@ components:
         A shallow copy would inadvertently share these underlying fields,
         leading to incorrect behavior and data races in a concurrent context.
         Consequently, all methods take the type by pointer and not by value.
+    DeriveTokenRequest:
+      example:
+        credential: credential
+        scopes:
+        - scopes
+        - scopes
+        ttl: ttl
+        custom_claims: "{}"
+        algorithm: TOKEN_ALGORITHM_UNSPECIFIED
+      properties:
+        algorithm:
+          $ref: "#/components/schemas/TokenAlgorithm"
+        credential:
+          title: The API key secret (issued or imported) to derive a token from
+          type: string
+        custom_claims:
+          description: |-
+            custom_claims is a JSON object whose entries are merged into the JWT
+            payload (or macaroon caveats) at signing time. Reserved JWT claims
+            (iss, sub, aud, exp, nbf, iat, jti) are rejected. Total serialized
+            size is capped at 4KB.
+          type: object
+        scopes:
+          items:
+            type: string
+          type: array
+        ttl:
+          description: |-
+            ttl sets the expiry as a duration from now. Encoded as a
+            google.protobuf.Duration (string ending in "s", e.g. "3600s").
+            Accepted bounds: 1s to 315360000s (~10 years). If unset or zero, the
+            project default TTL applies.
+            For convenience, the server also accepts Go-style duration strings
+            ("24h", "30m", "1h30m") and an extended unit set ("1d", "1w", "1mo",
+            "1y"; approximations: 1mo = 30d, 1y = 365d). Clients should prefer
+            the standard Duration encoding for portability.
+          type: string
+      title: Token derivation messages
+      type: object
+    DeriveTokenResponse:
+      example:
+        token:
+          claims: "{}"
+          expire_time: 2000-01-23T04:56:07.000+00:00
+          scopes:
+          - scopes
+          - scopes
+          token: token
+      properties:
+        token:
+          $ref: "#/components/schemas/Token"
+      type: object
     DeviceAuthnKey:
       properties:
         attestation:
@@ -11340,9 +12549,196 @@ components:
       - included_usage
       title: GenericUsage is the generic usage type that can be used for any feature.
       type: object
+    GetJWKSResponse:
+      example:
+        jwks: "{}"
+      properties:
+        jwks:
+          description: |-
+            jwks is a JSON Web Key Set (RFC 7517). Always contains a single top-level
+            field "keys" whose value is an array of JWK objects. Each JWK has at
+            minimum a "kty" (key type), "kid" (key ID), and key-type-specific
+            material (e.g., "x" and "crv" for OKP/Ed25519, "n" and "e" for RSA).
+          type: object
+      type: object
     ID:
       format: int64
       type: integer
+    IPRestriction:
+      description: |-
+        IPRestriction defines IP-based access controls for an API key.
+        When allowed_cidrs is non-empty, only requests from IPs matching at least one
+        CIDR range are permitted. Empty allowed_cidrs means no IP restriction (all IPs allowed).
+        IP restrictions apply to root API key and imported key verification only;
+        derived tokens (JWT/macaroon) are stateless and not subject to IP checks.
+      example:
+        allowed_cidrs:
+        - allowed_cidrs
+        - allowed_cidrs
+      properties:
+        allowed_cidrs:
+          description: |-
+            allowed_cidrs is a list of CIDR ranges that are allowed to use this key.
+            Supports both IPv4 (e.g., "10.0.0.0/8") and IPv6 (e.g., "2001:db8::/32").
+            If empty, all IPs are allowed (no restriction).
+          items:
+            type: string
+          type: array
+      type: object
+    ImportAPIKeyRequest:
+      description: |-
+        Example:
+          {
+            "raw_key": "sk_live_abc123xyz789",
+            "name": "Stripe Production Key",
+            "actor_id": "payment-processor",
+            "scopes": ["read", "write"],
+            "ttl": "8760h",  // 1 year (also accepts: 31536000s)
+            "metadata": {"source": "stripe", "environment": "production"}
+          }
+      example:
+        metadata: "{}"
+        rate_limit_policy:
+          unit: unit
+          quota: quota
+          window: window
+        visibility: KEY_VISIBILITY_UNSPECIFIED
+        name: name
+        actor_id: actor_id
+        scopes:
+        - scopes
+        - scopes
+        request_id: request_id
+        ttl: ttl
+        ip_restriction:
+          allowed_cidrs:
+          - allowed_cidrs
+          - allowed_cidrs
+        raw_key: raw_key
+      properties:
+        actor_id:
+          description: |-
+            actor_id is the identifier of the entity that owns this imported key.
+            Required so every imported key is traceable to an actor for revocation and
+            audit queries.
+          type: string
+        ip_restriction:
+          $ref: "#/components/schemas/IPRestriction"
+        metadata:
+          description: |-
+            metadata is a free-form JSON object for caller-defined attributes (e.g.,
+            source, environment, tags). Values may be strings, numbers, booleans,
+            arrays, objects, or null. Total serialized size is capped at 4KB.
+            AIP-148 metadata field.
+          type: object
+        name:
+          title: Human-readable name (REQUIRED)
+          type: string
+        rate_limit_policy:
+          $ref: "#/components/schemas/RateLimitPolicy"
+        raw_key:
+          title: The actual key string to import (REQUIRED)
+          type: string
+        request_id:
+          title: Client-controlled idempotency key (AIP-155)
+          type: string
+        scopes:
+          items:
+            type: string
+          title: Scopes for the imported key (OPTIONAL)
+          type: array
+        ttl:
+          description: |-
+            ttl sets the expiry as a duration from now. Encoded as a
+            google.protobuf.Duration (string ending in "s", e.g. "3600s").
+            Accepted bounds: 1s to 315360000s (~10 years). If unset or zero, the
+            project default TTL applies.
+            For convenience, the server also accepts Go-style duration strings
+            ("24h", "30m", "1h30m") and an extended unit set ("1d", "1w", "1mo",
+            "1y"; approximations: 1mo = 30d, 1y = 365d). Clients should prefer
+            the standard Duration encoding for portability.
+          type: string
+        visibility:
+          $ref: "#/components/schemas/KeyVisibility"
+      title: ImportAPIKeyRequest imports an external HMAC-based API key
+      type: object
+    ImportedAPIKey:
+      description: |-
+        ImportedAPIKey represents an API key imported from an external system.
+        The raw key is hashed (SHA-512/256) and stored. The original key is never retained.
+      example:
+        metadata: "{}"
+        create_time: 2000-01-23T04:56:07.000+00:00
+        rate_limit_policy:
+          unit: unit
+          quota: quota
+          window: window
+        visibility: KEY_VISIBILITY_UNSPECIFIED
+        key_id: key_id
+        expire_time: 2000-01-23T04:56:07.000+00:00
+        revocation_description: revocation_description
+        update_time: 2000-01-23T04:56:07.000+00:00
+        last_used_time: 2000-01-23T04:56:07.000+00:00
+        name: name
+        revocation_reason: REVOCATION_REASON_UNSPECIFIED
+        actor_id: actor_id
+        scopes:
+        - scopes
+        - scopes
+        ip_restriction:
+          allowed_cidrs:
+          - allowed_cidrs
+          - allowed_cidrs
+        status: KEY_STATUS_UNSPECIFIED
+      properties:
+        actor_id:
+          type: string
+        create_time:
+          format: date-time
+          type: string
+        expire_time:
+          format: date-time
+          type: string
+        ip_restriction:
+          $ref: "#/components/schemas/IPRestriction"
+        key_id:
+          title: SHA-512/256 hash of credential
+          type: string
+        last_used_time:
+          format: date-time
+          type: string
+        metadata:
+          description: |-
+            metadata is a free-form JSON object for caller-defined attributes
+            (e.g., source, environment, tags). Values may be strings, numbers,
+            booleans, arrays, objects, or null. Total serialized size is capped
+            at 4KB. AIP-148 metadata field.
+          type: object
+        name:
+          type: string
+        rate_limit_policy:
+          $ref: "#/components/schemas/RateLimitPolicy"
+        revocation_description:
+          description: |-
+            revocation_description provides free-form context for a revocation.
+            Only set when revocation_reason is PRIVILEGE_WITHDRAWN.
+            JSON API change: field was formerly revocation_reason_text. Field number 13
+            is unchanged so the change is wire-compatible for binary proto encoding.
+          type: string
+        revocation_reason:
+          $ref: "#/components/schemas/RevocationReason"
+        scopes:
+          items:
+            type: string
+          type: array
+        status:
+          $ref: "#/components/schemas/KeyStatus"
+        update_time:
+          format: date-time
+          type: string
+        visibility:
+          $ref: "#/components/schemas/KeyVisibility"
+      type: object
     InvoiceDataV1:
       properties:
         billing_period:
@@ -11404,6 +12800,173 @@ components:
       items:
         $ref: "#/components/schemas/invoice"
       type: array
+    IssueAPIKeyRequest:
+      example:
+        metadata: "{}"
+        rate_limit_policy:
+          unit: unit
+          quota: quota
+          window: window
+        visibility: KEY_VISIBILITY_UNSPECIFIED
+        name: name
+        actor_id: actor_id
+        scopes:
+        - scopes
+        - scopes
+        request_id: request_id
+        ttl: ttl
+        ip_restriction:
+          allowed_cidrs:
+          - allowed_cidrs
+          - allowed_cidrs
+      properties:
+        actor_id:
+          type: string
+        ip_restriction:
+          $ref: "#/components/schemas/IPRestriction"
+        metadata:
+          description: |-
+            metadata is a free-form JSON object for caller-defined attributes
+            (e.g., source, environment, tags). Values may be strings, numbers,
+            booleans, arrays, objects, or null. Total serialized size is capped
+            at 4KB. AIP-148 metadata field.
+          type: object
+        name:
+          type: string
+        rate_limit_policy:
+          $ref: "#/components/schemas/RateLimitPolicy"
+        request_id:
+          title: Client-controlled idempotency key (AIP-155)
+          type: string
+        scopes:
+          items:
+            type: string
+          type: array
+        ttl:
+          description: |-
+            ttl sets the expiry as a duration from now. Encoded as a
+            google.protobuf.Duration (string ending in "s", e.g. "3600s").
+            Accepted bounds: 1s to 315360000s (~10 years). If unset or zero, the
+            project default TTL applies.
+            For convenience, the server also accepts Go-style duration strings
+            ("24h", "30m", "1h30m") and an extended unit set ("1d", "1w", "1mo",
+            "1y"; approximations: 1mo = 30d, 1y = 365d). Clients should prefer
+            the standard Duration encoding for portability.
+          type: string
+        visibility:
+          $ref: "#/components/schemas/KeyVisibility"
+      type: object
+    IssueAPIKeyResponse:
+      example:
+        secret: secret
+        issued_api_key:
+          metadata: "{}"
+          create_time: 2000-01-23T04:56:07.000+00:00
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          key_id: key_id
+          expire_time: 2000-01-23T04:56:07.000+00:00
+          revocation_description: revocation_description
+          update_time: 2000-01-23T04:56:07.000+00:00
+          last_used_time: 2000-01-23T04:56:07.000+00:00
+          name: name
+          revocation_reason: REVOCATION_REASON_UNSPECIFIED
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          ip_restriction:
+            allowed_cidrs:
+            - allowed_cidrs
+            - allowed_cidrs
+          status: KEY_STATUS_UNSPECIFIED
+      properties:
+        issued_api_key:
+          $ref: "#/components/schemas/IssuedAPIKey"
+        secret:
+          title: Only returned on creation
+          type: string
+      type: object
+    IssuedAPIKey:
+      description: |-
+        IssuedAPIKey represents an API key issued (generated) by Talos.
+        Root keys are opaque v1 format tokens stored in the database.
+        Derived tokens (JWT/Macaroon) are created via DeriveToken and are stateless (not stored).
+      example:
+        metadata: "{}"
+        create_time: 2000-01-23T04:56:07.000+00:00
+        rate_limit_policy:
+          unit: unit
+          quota: quota
+          window: window
+        visibility: KEY_VISIBILITY_UNSPECIFIED
+        key_id: key_id
+        expire_time: 2000-01-23T04:56:07.000+00:00
+        revocation_description: revocation_description
+        update_time: 2000-01-23T04:56:07.000+00:00
+        last_used_time: 2000-01-23T04:56:07.000+00:00
+        name: name
+        revocation_reason: REVOCATION_REASON_UNSPECIFIED
+        actor_id: actor_id
+        scopes:
+        - scopes
+        - scopes
+        ip_restriction:
+          allowed_cidrs:
+          - allowed_cidrs
+          - allowed_cidrs
+        status: KEY_STATUS_UNSPECIFIED
+      properties:
+        actor_id:
+          type: string
+        create_time:
+          format: date-time
+          type: string
+        expire_time:
+          format: date-time
+          type: string
+        ip_restriction:
+          $ref: "#/components/schemas/IPRestriction"
+        key_id:
+          type: string
+        last_used_time:
+          format: date-time
+          type: string
+        metadata:
+          description: |-
+            metadata is a free-form JSON object for caller-defined attributes
+            (e.g., source, environment, tags). Values may be strings, numbers,
+            booleans, arrays, objects, or null. Total serialized size is capped
+            at 4KB. AIP-148 metadata field.
+          type: object
+        name:
+          type: string
+        rate_limit_policy:
+          $ref: "#/components/schemas/RateLimitPolicy"
+        revocation_description:
+          description: |-
+            revocation_description provides free-form context for a revocation.
+            Only set when revocation_reason is PRIVILEGE_WITHDRAWN.
+            JSON API change: field was formerly revocation_reason_text. Field number 13
+            is unchanged so the change is wire-compatible for binary proto encoding.
+          type: string
+        revocation_reason:
+          $ref: "#/components/schemas/RevocationReason"
+        scopes:
+          items:
+            type: string
+          type: array
+        status:
+          $ref: "#/components/schemas/KeyStatus"
+        update_time:
+          format: date-time
+          type: string
+        visibility:
+          $ref: "#/components/schemas/KeyVisibility"
+      type: object
     JSONRawMessage:
       title: "JSONRawMessage represents a json.RawMessage that works well with JSON,\
         \ SQL, and Swagger."
@@ -11421,6 +12984,38 @@ components:
         $ref: "#/components/schemas/KetoNamespace"
       type: array
     KeyState:
+      type: string
+    KeyStatus:
+      default: KEY_STATUS_UNSPECIFIED
+      description: |-
+        KeyStatus represents the lifecycle state of an API key.
+
+         - KEY_STATUS_UNSPECIFIED: Default zero value. Never returned by the server. Treated as ACTIVE for
+        backward compatibility but should not be relied on.
+         - KEY_STATUS_ACTIVE: The key is valid and can be used to authenticate.
+         - KEY_STATUS_REVOKED: The key was revoked. Verification fails with VERIFICATION_ERROR_REVOKED.
+        See revocation_reason for the cause.
+         - KEY_STATUS_EXPIRED: The key passed its expire_time. Verification fails with
+        VERIFICATION_ERROR_EXPIRED. The transition is computed at read time and
+        not persisted.
+      enum:
+      - KEY_STATUS_UNSPECIFIED
+      - KEY_STATUS_ACTIVE
+      - KEY_STATUS_REVOKED
+      - KEY_STATUS_EXPIRED
+      type: string
+    KeyVisibility:
+      default: KEY_VISIBILITY_UNSPECIFIED
+      description: |-
+        KeyVisibility distinguishes public (client-safe) keys from secret (server-only) keys.
+        Public keys use a different configurable prefix for visual distinction.
+        Both types share the same scope/permission system — visibility is about exposure safety.
+
+         - KEY_VISIBILITY_UNSPECIFIED: Treated as SECRET
+      enum:
+      - KEY_VISIBILITY_UNSPECIFIED
+      - KEY_VISIBILITY_SECRET
+      - KEY_VISIBILITY_PUBLIC
       type: string
     LineItemV1:
       properties:
@@ -11440,6 +13035,125 @@ components:
         title:
           type: string
         unit_price:
+          type: string
+      type: object
+    ListImportedAPIKeysResponse:
+      example:
+        next_page_token: next_page_token
+        imported_api_keys:
+        - metadata: "{}"
+          create_time: 2000-01-23T04:56:07.000+00:00
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          key_id: key_id
+          expire_time: 2000-01-23T04:56:07.000+00:00
+          revocation_description: revocation_description
+          update_time: 2000-01-23T04:56:07.000+00:00
+          last_used_time: 2000-01-23T04:56:07.000+00:00
+          name: name
+          revocation_reason: REVOCATION_REASON_UNSPECIFIED
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          ip_restriction:
+            allowed_cidrs:
+            - allowed_cidrs
+            - allowed_cidrs
+          status: KEY_STATUS_UNSPECIFIED
+        - metadata: "{}"
+          create_time: 2000-01-23T04:56:07.000+00:00
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          key_id: key_id
+          expire_time: 2000-01-23T04:56:07.000+00:00
+          revocation_description: revocation_description
+          update_time: 2000-01-23T04:56:07.000+00:00
+          last_used_time: 2000-01-23T04:56:07.000+00:00
+          name: name
+          revocation_reason: REVOCATION_REASON_UNSPECIFIED
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          ip_restriction:
+            allowed_cidrs:
+            - allowed_cidrs
+            - allowed_cidrs
+          status: KEY_STATUS_UNSPECIFIED
+      properties:
+        imported_api_keys:
+          items:
+            $ref: "#/components/schemas/ImportedAPIKey"
+          title: List of imported keys
+          type: array
+        next_page_token:
+          title: Token for fetching the next page (empty if no more results)
+          type: string
+      title: ListImportedAPIKeysResponse returns paginated list of imported keys
+      type: object
+    ListIssuedAPIKeysResponse:
+      example:
+        next_page_token: next_page_token
+        issued_api_keys:
+        - metadata: "{}"
+          create_time: 2000-01-23T04:56:07.000+00:00
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          key_id: key_id
+          expire_time: 2000-01-23T04:56:07.000+00:00
+          revocation_description: revocation_description
+          update_time: 2000-01-23T04:56:07.000+00:00
+          last_used_time: 2000-01-23T04:56:07.000+00:00
+          name: name
+          revocation_reason: REVOCATION_REASON_UNSPECIFIED
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          ip_restriction:
+            allowed_cidrs:
+            - allowed_cidrs
+            - allowed_cidrs
+          status: KEY_STATUS_UNSPECIFIED
+        - metadata: "{}"
+          create_time: 2000-01-23T04:56:07.000+00:00
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          key_id: key_id
+          expire_time: 2000-01-23T04:56:07.000+00:00
+          revocation_description: revocation_description
+          update_time: 2000-01-23T04:56:07.000+00:00
+          last_used_time: 2000-01-23T04:56:07.000+00:00
+          name: name
+          revocation_reason: REVOCATION_REASON_UNSPECIFIED
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          ip_restriction:
+            allowed_cidrs:
+            - allowed_cidrs
+            - allowed_cidrs
+          status: KEY_STATUS_UNSPECIFIED
+      properties:
+        issued_api_keys:
+          items:
+            $ref: "#/components/schemas/IssuedAPIKey"
+          type: array
+        next_page_token:
           type: string
       type: object
     Money:
@@ -11552,6 +13266,18 @@ components:
     NullUUID:
       format: uuid4
       nullable: true
+      type: string
+    NullValue:
+      default: NULL_VALUE
+      description: |-
+        `NullValue` is a singleton enumeration to represent the null value for the
+        `Value` type union.
+
+        The JSON representation for `NullValue` is JSON `null`.
+
+         - NULL_VALUE: Null value.
+      enum:
+      - NULL_VALUE
       type: string
     OAuth2LoginChallengeParams:
       type: object
@@ -11813,6 +13539,37 @@ components:
           type: integer
       title: RFC6749ErrorJson is a helper struct for JSON encoding/decoding of RFC6749Error.
       type: object
+    RateLimitPolicy:
+      description: |-
+        RateLimitPolicy describes the rate limit policy for an API key.
+
+        In OSS mode, this policy is informational and meant to be consumed by
+        upstream gateways (Envoy, Cloudflare, etc.) for enforcement.
+        In commercial mode, Talos enforces rate limits using in-memory or Redis backends,
+        both powered by the GCRA (Generic Cell Rate Algorithm).
+
+        Compliant with draft-ietf-httpapi-ratelimit-headers-10.
+      example:
+        unit: unit
+        quota: quota
+        window: window
+      properties:
+        quota:
+          description: quota is the number of requests allowed per window.
+          format: int64
+          type: string
+        unit:
+          title: |-
+            unit describes the quota unit type.
+            Default: "requests"
+            Other valid values per IETF spec: "content-bytes", "concurrent-requests"
+          type: string
+        window:
+          description: |-
+            window is the time window for the quota.
+            Common values: 60s (1 minute), 3600s (1 hour), 86400s (1 day).
+          type: string
+      type: object
     RevisionAccountExperienceCustomTranslation:
       properties:
         locale:
@@ -11824,6 +13581,111 @@ components:
       required:
       - locale
       - translations
+      type: object
+    RevocationReason:
+      default: REVOCATION_REASON_UNSPECIFIED
+      description: |-
+        RevocationReason provides structured revocation reasons inspired by RFC 5280.
+        Used in both admin and self-revocation flows.
+
+         - REVOCATION_REASON_UNSPECIFIED: Default zero value. Use a specific reason; UNSPECIFIED is rejected by
+        admin and self-revocation endpoints.
+         - REVOCATION_REASON_KEY_COMPROMISE: The key was leaked or believed to be in the hands of an unauthorized
+        party.
+         - REVOCATION_REASON_AFFILIATION_CHANGED: The owning actor's relationship with the issuer changed (e.g., role
+        change, departure).
+         - REVOCATION_REASON_SUPERSEDED: A new key has replaced this one as part of a rotation.
+         - REVOCATION_REASON_PRIVILEGE_WITHDRAWN: Admin-only. The actor's privilege to use this key was withdrawn by
+        an operator. Self-revocation requests using this reason are rejected
+        with InvalidArgument. Pair with `description` on RevokeAPIKeyRequest
+        to record the operator-supplied justification.
+      enum:
+      - REVOCATION_REASON_UNSPECIFIED
+      - REVOCATION_REASON_KEY_COMPROMISE
+      - REVOCATION_REASON_AFFILIATION_CHANGED
+      - REVOCATION_REASON_SUPERSEDED
+      - REVOCATION_REASON_PRIVILEGE_WITHDRAWN
+      type: string
+    RotateIssuedAPIKeyResponse:
+      example:
+        old_issued_api_key:
+          metadata: "{}"
+          create_time: 2000-01-23T04:56:07.000+00:00
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          key_id: key_id
+          expire_time: 2000-01-23T04:56:07.000+00:00
+          revocation_description: revocation_description
+          update_time: 2000-01-23T04:56:07.000+00:00
+          last_used_time: 2000-01-23T04:56:07.000+00:00
+          name: name
+          revocation_reason: REVOCATION_REASON_UNSPECIFIED
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          ip_restriction:
+            allowed_cidrs:
+            - allowed_cidrs
+            - allowed_cidrs
+          status: KEY_STATUS_UNSPECIFIED
+        secret: secret
+        issued_api_key:
+          metadata: "{}"
+          create_time: 2000-01-23T04:56:07.000+00:00
+          rate_limit_policy:
+            unit: unit
+            quota: quota
+            window: window
+          visibility: KEY_VISIBILITY_UNSPECIFIED
+          key_id: key_id
+          expire_time: 2000-01-23T04:56:07.000+00:00
+          revocation_description: revocation_description
+          update_time: 2000-01-23T04:56:07.000+00:00
+          last_used_time: 2000-01-23T04:56:07.000+00:00
+          name: name
+          revocation_reason: REVOCATION_REASON_UNSPECIFIED
+          actor_id: actor_id
+          scopes:
+          - scopes
+          - scopes
+          ip_restriction:
+            allowed_cidrs:
+            - allowed_cidrs
+            - allowed_cidrs
+          status: KEY_STATUS_UNSPECIFIED
+      properties:
+        issued_api_key:
+          $ref: "#/components/schemas/IssuedAPIKey"
+        old_issued_api_key:
+          $ref: "#/components/schemas/IssuedAPIKey"
+        secret:
+          title: "secret is the new API key secret (only returned once, never retrievable\
+            \ again)"
+          type: string
+      type: object
+    SelfRevokeAPIKeyRequest:
+      description: |-
+        SelfRevokeAPIKeyRequest allows an API key holder to revoke their own key
+        by providing the full key secret as proof of possession.
+      example:
+        reason: REVOCATION_REASON_UNSPECIFIED
+        credential: credential
+      properties:
+        credential:
+          title: Full API key secret or imported key (REQUIRED)
+          type: string
+        reason:
+          $ref: "#/components/schemas/RevocationReason"
+      type: object
+    SelfRevokeAPIKeyResponse:
+      description: |-
+        SelfRevokeAPIKeyResponse is returned on successful self-revocation.
+
+        Empty on success
       type: object
     SessionActivityDatapoint:
       properties:
@@ -11854,6 +13716,24 @@ components:
         column:
           format: int64
           type: integer
+      type: object
+    Status:
+      example:
+        code: 0
+        details:
+        - '@type': '@type'
+        - '@type': '@type'
+        message: message
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: "#/components/schemas/Any"
+          type: array
+        message:
+          type: string
       type: object
     String:
       $ref: "#/components/schemas/NullString"
@@ -11896,6 +13776,50 @@ components:
       - end
       - start
       type: object
+    Token:
+      example:
+        claims: "{}"
+        expire_time: 2000-01-23T04:56:07.000+00:00
+        scopes:
+        - scopes
+        - scopes
+        token: token
+      properties:
+        claims:
+          description: |-
+            claims is the decoded token payload. For JWT, this contains the
+            standard claims (iss, sub, aud, exp, iat, jti) plus custom claims.
+            For macaroons, this lists the caveats. The shape is backend-dependent
+            and should be treated as opaque diagnostic data.
+          type: object
+        expire_time:
+          format: date-time
+          type: string
+        scopes:
+          items:
+            type: string
+          type: array
+        token:
+          description: |-
+            The encoded token string. JWT tokens are signed JWS in compact
+            serialization (header.payload.signature). Macaroons are base64-encoded
+            binary blobs.
+          type: string
+      title: Token represents a short-lived derived token (JWT or Macaroon)
+      type: object
+    TokenAlgorithm:
+      default: TOKEN_ALGORITHM_UNSPECIFIED
+      description: |-
+        - TOKEN_ALGORITHM_JWT: JWT with EdDSA (self-contained, signed)
+         - TOKEN_ALGORITHM_MACAROON: Macaroon with HMAC (self-contained, caveat-based)
+      enum:
+      - TOKEN_ALGORITHM_UNSPECIFIED
+      - TOKEN_ALGORITHM_JWT
+      - TOKEN_ALGORITHM_MACAROON
+      title: |-
+        TokenAlgorithm specifies the cryptographic algorithm used for derived tokens
+        Note: API keys (root tokens) are always opaque; this enum is only for DeriveToken
+      type: string
     UUID:
       format: uuid4
       type: string
@@ -11939,6 +13863,114 @@ components:
         proof_type:
           type: string
       title: VerifiableCredentialProof contains the proof of a verifiable credential.
+      type: object
+    VerificationErrorCode:
+      default: VERIFICATION_ERROR_UNSPECIFIED
+      description: |-
+        - VERIFICATION_ERROR_UNSPECIFIED: No error (key is valid)
+         - VERIFICATION_ERROR_INVALID_FORMAT: Credential format is invalid
+         - VERIFICATION_ERROR_EXPIRED: Credential has expired
+         - VERIFICATION_ERROR_REVOKED: Credential has been revoked
+         - VERIFICATION_ERROR_NOT_FOUND: Credential not found in database
+         - VERIFICATION_ERROR_SIGNATURE_INVALID: Cryptographic signature verification failed
+         - VERIFICATION_ERROR_INTERNAL: Internal server error during verification
+         - VERIFICATION_ERROR_IP_NOT_ALLOWED: Request IP is not in the key's allowed CIDR ranges
+         - VERIFICATION_ERROR_RATE_LIMITED: Rate limit quota exhausted (commercial-only)
+      enum:
+      - VERIFICATION_ERROR_UNSPECIFIED
+      - VERIFICATION_ERROR_INVALID_FORMAT
+      - VERIFICATION_ERROR_EXPIRED
+      - VERIFICATION_ERROR_REVOKED
+      - VERIFICATION_ERROR_NOT_FOUND
+      - VERIFICATION_ERROR_SIGNATURE_INVALID
+      - VERIFICATION_ERROR_INTERNAL
+      - VERIFICATION_ERROR_IP_NOT_ALLOWED
+      - VERIFICATION_ERROR_RATE_LIMITED
+      title: VerificationErrorCode provides type-safe error codes for verification
+        failures
+      type: string
+    VerifyAPIKeyRequest:
+      example:
+        credential: credential
+      properties:
+        credential:
+          title: "API key or derived token (any format: sk_*, JWT, macaroon)"
+          type: string
+      type: object
+    VerifyAPIKeyResponse:
+      example:
+        error_message: error_message
+        rate_limit_reset_time: 2000-01-23T04:56:07.000+00:00
+        metadata: "{}"
+        rate_limit_policy:
+          unit: unit
+          quota: quota
+          window: window
+        visibility: KEY_VISIBILITY_UNSPECIFIED
+        key_id: key_id
+        expire_time: 2000-01-23T04:56:07.000+00:00
+        issuer: issuer
+        is_valid: true
+        rate_limit_remaining: rate_limit_remaining
+        error_code: VERIFICATION_ERROR_UNSPECIFIED
+        actor_id: actor_id
+        scopes:
+        - scopes
+        - scopes
+        status: KEY_STATUS_UNSPECIFIED
+      properties:
+        actor_id:
+          type: string
+        error_code:
+          $ref: "#/components/schemas/VerificationErrorCode"
+        error_message:
+          title: Human-readable error message (only set if is_valid=false)
+          type: string
+        expire_time:
+          format: date-time
+          type: string
+        is_valid:
+          description: |-
+            is_valid reports whether verification succeeded. It is true only when the
+            credential parses, the signature checks out, the key was found, all
+            policy gates (expiry, revocation, IP allowlist, rate limit) pass, and the
+            key's status is KEY_STATUS_ACTIVE. When false, error_code and
+            error_message describe the reason. Use this field for authentication
+            decisions; use status to inspect lifecycle state independently.
+          type: boolean
+        issuer:
+          description: |-
+            The configured token issuer for this project. For derived tokens (JWT/macaroon),
+            this matches the iss claim embedded in the verified token.
+          type: string
+        key_id:
+          type: string
+        metadata:
+          description: |-
+            metadata mirrors the metadata stored on the verified key. AIP-148
+            metadata field.
+          type: object
+        rate_limit_policy:
+          $ref: "#/components/schemas/RateLimitPolicy"
+        rate_limit_remaining:
+          description: |-
+            Approximate number of requests available before the rate limit is reached
+            (commercial-only, only set when enforcement is active).
+          format: int64
+          type: string
+        rate_limit_reset_time:
+          description: Time when the rate limiter returns to full capacity (all quota
+            recovered).
+          format: date-time
+          type: string
+        scopes:
+          items:
+            type: string
+          type: array
+        status:
+          $ref: "#/components/schemas/KeyStatus"
+        visibility:
+          $ref: "#/components/schemas/KeyVisibility"
       type: object
     Warning:
       example:
@@ -26255,6 +28287,54 @@ components:
       required:
       - name
       type: object
+    validateBaseURLRewriteRequest:
+      description: |-
+        The endpoint is mounted on backoffice's admin listener and is not exposed
+        on the public ingress; the bearer token is the credential. See
+        .claude/docs/plans/courier-rewrite.md for the design.
+      properties:
+        base_url:
+          description: |-
+            The base URL the proxy wants Kratos to rewrite courier links to,
+            e.g. "http://localhost:4000" for the Ory CLI / NextJS proxy.
+          type: string
+        project_id:
+          description: The Project ID the token is being authorized against.
+          format: uuid
+          type: string
+        token:
+          description: The bearer token from the inbound Ory-Base-URL-Rewrite-Token
+            header.
+          type: string
+      required:
+      - base_url
+      - project_id
+      - token
+      title: |-
+        ValidateBaseURLRewriteRequest is the JSON body of
+        POST /validate-base-url-rewrite, the internal endpoint Kratos cloud
+        calls at recovery / verification flow init time to authorize an
+        Ory-Base-URL-Rewrite header against the project's API tokens.
+      type: object
+    validateBaseURLRewriteResponse:
+      description: |-
+        ValidateBaseURLRewriteResponse is the response shape. The endpoint always
+        returns HTTP 200 with a structured outcome so the client has a single
+        response shape for tracing and so neither side has to special-case 4xx
+        vs. body parsing.
+      properties:
+        reason:
+          description: |-
+            A machine-readable reason for negative outcomes. One of
+            "token_not_found", "missing_permission", or "invalid_base_url".
+            Empty when valid is true.
+          type: string
+        valid:
+          description: Whether the token authorizes the base URL rewrite.
+          type: boolean
+      required:
+      - valid
+      type: object
     verifiableCredentialPrimingResponse:
       example:
         c_nonce_expires_in: 0
@@ -26810,6 +28890,107 @@ components:
           type: string
       required:
       - name
+      type: object
+    AdminUpdateImportedAPIKey_request:
+      description: |-
+        ImportedAPIKey represents an API key imported from an external system.
+        The raw key is hashed (SHA-512/256) and stored. The original key is never retained.
+      properties:
+        actor_id:
+          type: string
+        create_time:
+          format: date-time
+          type: string
+        expire_time:
+          format: date-time
+          type: string
+        ip_restriction:
+          $ref: "#/components/schemas/IPRestriction"
+        last_used_time:
+          format: date-time
+          type: string
+        metadata:
+          description: |-
+            metadata is a free-form JSON object for caller-defined attributes
+            (e.g., source, environment, tags). Values may be strings, numbers,
+            booleans, arrays, objects, or null. Total serialized size is capped
+            at 4KB. AIP-148 metadata field.
+          type: object
+        name:
+          type: string
+        rate_limit_policy:
+          $ref: "#/components/schemas/RateLimitPolicy"
+        revocation_description:
+          description: |-
+            revocation_description provides free-form context for a revocation.
+            Only set when revocation_reason is PRIVILEGE_WITHDRAWN.
+            JSON API change: field was formerly revocation_reason_text. Field number 13
+            is unchanged so the change is wire-compatible for binary proto encoding.
+          type: string
+        revocation_reason:
+          $ref: "#/components/schemas/RevocationReason"
+        scopes:
+          items:
+            type: string
+          type: array
+        status:
+          $ref: "#/components/schemas/KeyStatus"
+        update_time:
+          format: date-time
+          type: string
+        visibility:
+          $ref: "#/components/schemas/KeyVisibility"
+      type: object
+    AdminUpdateIssuedAPIKey_request:
+      description: |-
+        IssuedAPIKey represents an API key issued (generated) by Talos.
+        Root keys are opaque v1 format tokens stored in the database.
+        Derived tokens (JWT/Macaroon) are created via DeriveToken and are stateless (not stored).
+      properties:
+        actor_id:
+          type: string
+        create_time:
+          format: date-time
+          type: string
+        expire_time:
+          format: date-time
+          type: string
+        ip_restriction:
+          $ref: "#/components/schemas/IPRestriction"
+        last_used_time:
+          format: date-time
+          type: string
+        metadata:
+          description: |-
+            metadata is a free-form JSON object for caller-defined attributes
+            (e.g., source, environment, tags). Values may be strings, numbers,
+            booleans, arrays, objects, or null. Total serialized size is capped
+            at 4KB. AIP-148 metadata field.
+          type: object
+        name:
+          type: string
+        rate_limit_policy:
+          $ref: "#/components/schemas/RateLimitPolicy"
+        revocation_description:
+          description: |-
+            revocation_description provides free-form context for a revocation.
+            Only set when revocation_reason is PRIVILEGE_WITHDRAWN.
+            JSON API change: field was formerly revocation_reason_text. Field number 13
+            is unchanged so the change is wire-compatible for binary proto encoding.
+          type: string
+        revocation_reason:
+          $ref: "#/components/schemas/RevocationReason"
+        scopes:
+          items:
+            type: string
+          type: array
+        status:
+          $ref: "#/components/schemas/KeyStatus"
+        update_time:
+          format: date-time
+          type: string
+        visibility:
+          $ref: "#/components/schemas/KeyVisibility"
       type: object
     getVersion_200_response:
       example:
