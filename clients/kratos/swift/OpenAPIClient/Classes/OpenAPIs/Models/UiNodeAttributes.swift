@@ -58,4 +58,15 @@ public enum UiNodeAttributes: Codable, JSONEncodable, Hashable {
 
 
 @available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
-extension UiNodeAttributes: Identifiable {}
+extension UiNodeAttributes: Identifiable {
+    public var id: String {
+        switch self {
+        case .typeUiNodeAnchorAttributes(let value): return value.id
+        case .typeUiNodeDivisionAttributes(let value): return value.id
+        case .typeUiNodeImageAttributes(let value): return value.id
+        case .typeUiNodeInputAttributes(let value): return value.name
+        case .typeUiNodeScriptAttributes(let value): return value.id
+        case .typeUiNodeTextAttributes(let value): return value.id
+        }
+    }
+}
