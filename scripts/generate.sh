@@ -8,7 +8,7 @@ source scripts/prep.sh
 
 rm -rf config/client/*.proc.yml
 
-for f in config/client/*
+for f in config/client/*.yml
 do
   echo "Processing $f..."
   envsubst < "${f}" > "${f}.proc.yml"
@@ -227,9 +227,10 @@ dotnet () {
   rm -rf "$dir" || true
   mkdir -p "$dir"
 
-  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
+  npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.22.0
   npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g csharp \
+    -t ./config/client/dotnet-templates \
     -o "$dir" \
     --model-name-prefix "${PROJECT_UCF}" \
     --git-user-id ory \
