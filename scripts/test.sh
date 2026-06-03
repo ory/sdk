@@ -111,5 +111,4 @@ php
 python
 ruby
 # dartpub
-# TODO: https://github.com/ory/sdk/issues/434
-# csharp
+csharp
