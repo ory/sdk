@@ -208,7 +208,6 @@ docs/models/ClientMemberInvite.md
 docs/models/ClientMessage.md
 docs/models/ClientMessageDispatch.md
 docs/models/ClientMetricsDatapoint.md
-docs/models/ClientMoney.md
 docs/models/ClientNamespace.md
 docs/models/ClientNeedsPrivilegedSessionError.md
 docs/models/ClientNormalizedProject.md
@@ -590,7 +589,6 @@ src/Ory.Client.Test/Model/ClientMemberInviteTests.cs
 src/Ory.Client.Test/Model/ClientMessageDispatchTests.cs
 src/Ory.Client.Test/Model/ClientMessageTests.cs
 src/Ory.Client.Test/Model/ClientMetricsDatapointTests.cs
-src/Ory.Client.Test/Model/ClientMoneyTests.cs
 src/Ory.Client.Test/Model/ClientNamespaceTests.cs
 src/Ory.Client.Test/Model/ClientNeedsPrivilegedSessionErrorTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionCourierChannelTests.cs
@@ -794,6 +792,7 @@ src/Ory.Client/Client/DateOnlyNullableJsonConverter.cs
 src/Ory.Client/Client/DateTimeJsonConverter.cs
 src/Ory.Client/Client/DateTimeNullableJsonConverter.cs
 src/Ory.Client/Client/ExceptionEventArgs.cs
+src/Ory.Client/Client/FileParameter.cs
 src/Ory.Client/Client/HostConfiguration.cs
 src/Ory.Client/Client/JsonSerializerOptionsProvider.cs
 src/Ory.Client/Client/OAuthToken.cs
@@ -995,7 +994,6 @@ src/Ory.Client/Model/ClientMemberInvite.cs
 src/Ory.Client/Model/ClientMessage.cs
 src/Ory.Client/Model/ClientMessageDispatch.cs
 src/Ory.Client/Model/ClientMetricsDatapoint.cs
-src/Ory.Client/Model/ClientMoney.cs
 src/Ory.Client/Model/ClientNamespace.cs
 src/Ory.Client/Model/ClientNeedsPrivilegedSessionError.cs
 src/Ory.Client/Model/ClientNormalizedProject.cs

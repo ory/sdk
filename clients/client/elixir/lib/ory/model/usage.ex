@@ -8,18 +8,17 @@ defmodule Ory.Model.Usage do
 
   @derive Jason.Encoder
   defstruct [
-    :GenericUsage
+    :additional_price,
+    :included_usage
   ]
 
   @type t :: %__MODULE__{
-    :GenericUsage => Ory.Model.GenericUsage.t | nil
+    :additional_price => String.t,
+    :included_usage => integer()
   }
-
-  alias Ory.Deserializer
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:GenericUsage, :struct, Ory.Model.GenericUsage)
   end
 end
 

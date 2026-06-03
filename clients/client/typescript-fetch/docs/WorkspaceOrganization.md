@@ -13,6 +13,7 @@ Name | Type
 `id` | string
 `label` | string
 `providers` | Array&lt;string&gt;
+`session_lifespan` | string
 
 ## Example
 
@@ -28,6 +29,7 @@ const example = {
   "id": null,
   "label": null,
   "providers": null,
+  "session_lifespan": 24h,
 } satisfies WorkspaceOrganization
 
 console.log(example)

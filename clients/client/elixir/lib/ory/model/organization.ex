@@ -12,7 +12,8 @@ defmodule Ory.Model.Organization do
     :default_region,
     :domains,
     :id,
-    :label
+    :label,
+    :session_lifespan
   ]
 
   @type t :: %__MODULE__{
@@ -20,7 +21,8 @@ defmodule Ory.Model.Organization do
     :default_region => String.t | nil,
     :domains => [String.t],
     :id => String.t,
-    :label => String.t
+    :label => String.t,
+    :session_lifespan => String.t | nil
   }
 
   alias Ory.Deserializer

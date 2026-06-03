@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**generic_usage** | [**GenericUsage**](GenericUsage.md) |  | [optional] 
+**additional_price** | **str** |  | 
+**included_usage** | **int** | IncludedUsage is the number of included items. | 
 
 ## Example
 

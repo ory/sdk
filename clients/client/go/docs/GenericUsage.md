@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdditionalPrice** | [**Money**](Money.md) |  | 
+**AdditionalPrice** | **string** |  | 
 **IncludedUsage** | **int64** | IncludedUsage is the number of included items. | 
 
 ## Methods
 
 ### NewGenericUsage
 
-`func NewGenericUsage(additionalPrice Money, includedUsage int64, ) *GenericUsage`
+`func NewGenericUsage(additionalPrice string, includedUsage int64, ) *GenericUsage`
 
 NewGenericUsage instantiates a new GenericUsage object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAdditionalPrice
 
-`func (o *GenericUsage) GetAdditionalPrice() Money`
+`func (o *GenericUsage) GetAdditionalPrice() string`
 
 GetAdditionalPrice returns the AdditionalPrice field if non-nil, zero value otherwise.
 
 ### GetAdditionalPriceOk
 
-`func (o *GenericUsage) GetAdditionalPriceOk() (*Money, bool)`
+`func (o *GenericUsage) GetAdditionalPriceOk() (*string, bool)`
 
 GetAdditionalPriceOk returns a tuple with the AdditionalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdditionalPrice
 
-`func (o *GenericUsage) SetAdditionalPrice(v Money)`
+`func (o *GenericUsage) SetAdditionalPrice(v string)`
 
 SetAdditionalPrice sets AdditionalPrice field to given value.
 

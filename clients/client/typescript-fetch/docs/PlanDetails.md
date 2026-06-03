@@ -10,12 +10,12 @@ Name | Type
 `base_fee_yearly` | number
 `custom` | boolean
 `description` | string
-`development_features` | [{ [key: string]: GenericUsage; }](GenericUsage.md)
-`features` | [{ [key: string]: GenericUsage; }](GenericUsage.md)
+`development_features` | [{ [key: string]: Usage; }](Usage.md)
+`features` | [{ [key: string]: Usage; }](Usage.md)
 `latest` | boolean
 `name` | string
-`production_features` | [{ [key: string]: GenericUsage; }](GenericUsage.md)
-`staging_features` | [{ [key: string]: GenericUsage; }](GenericUsage.md)
+`production_features` | [{ [key: string]: Usage; }](Usage.md)
+`staging_features` | [{ [key: string]: Usage; }](Usage.md)
 `version` | number
 `yearly_only` | boolean
 

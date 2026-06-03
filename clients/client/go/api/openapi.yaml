@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.40
+  version: v1.22.46
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -8699,36 +8699,6 @@ paths:
       summary: Verify API Key
       tags:
       - APIKeys
-  /v2alpha1/admin/derivedKeys/jwks.json:
-    get:
-      description: |-
-        Returns the JSON Web Key Set for token verification. Provides the public
-        keys needed to verify JWT tokens issued by this service. Keys are loaded
-        from configuration (file://, https://, or base64:// URIs). Follows the
-        JWKS standard (RFC 7517).
-
-        ```http
-        GET /v2alpha1/admin/derivedKeys/jwks.json
-        ```
-      operationId: AdminGetJWKS
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetJWKSResponse"
-          description: A successful response.
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Status"
-          description: An unexpected error response.
-      security:
-      - oryAccessToken: []
-      summary: Get JWKS
-      tags:
-      - APIKeys
   /v2alpha1/admin/importedApiKeys:
     get:
       description: |-
@@ -9321,6 +9291,34 @@ paths:
                 $ref: "#/components/schemas/Status"
           description: An unexpected error response.
       summary: Revoke API Key (self-service)
+      tags:
+      - APIKeys
+  /v2alpha1/derivedKeys/jwks.json:
+    get:
+      description: |-
+        Returns the JSON Web Key Set for token verification. Provides the public
+        keys needed to verify JWT tokens issued by this service. Keys are loaded
+        from configuration (file://, https://, or base64:// URIs). Follows the
+        JWKS standard (RFC 7517).
+
+        ```http
+        GET /v2alpha1/derivedKeys/jwks.json
+        ```
+      operationId: GetJWKS
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetJWKSResponse"
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      summary: Get JWKS
       tags:
       - APIKeys
   /version:
@@ -10432,12 +10430,14 @@ components:
          - BATCH_IMPORT_ERROR_ALREADY_EXISTS: A key with this identifier already exists
          - BATCH_IMPORT_ERROR_FAILED_PRECONDITION: State conflict prevents the import
          - BATCH_IMPORT_ERROR_INTERNAL: Server error during import
+         - BATCH_IMPORT_ERROR_RESOURCE_EXHAUSTED: Per-tenant quota cap reached
       enum:
       - BATCH_IMPORT_ERROR_UNSPECIFIED
       - BATCH_IMPORT_ERROR_INVALID_ARGUMENT
       - BATCH_IMPORT_ERROR_ALREADY_EXISTS
       - BATCH_IMPORT_ERROR_FAILED_PRECONDITION
       - BATCH_IMPORT_ERROR_INTERNAL
+      - BATCH_IMPORT_ERROR_RESOURCE_EXHAUSTED
       type: string
     BatchImportResult:
       description: BatchImportResult contains the result for one key in a batch import
@@ -10731,7 +10731,7 @@ components:
           type: boolean
         hydra_oauth2_exclude_not_before_claim:
           description: |-
-            Set to true if you want to exclude claim `nbf (not before)` part of access token.
+            Set to true if you want to omit the `nbf` (not valid before) claim in the access token.
 
             This governs the "oauth2.exclude_not_before_claim" setting.
           type: boolean
@@ -10770,8 +10770,18 @@ components:
 
             If set to `null` or `"0s"`, the graceful refresh token rotation is disabled.
 
-            This governs the "oauth2.grant.refresh_token_rotation_grace_period" setting.
+            This governs the "oauth2.grant.refresh_token.rotation_grace_period" setting.
           type: string
+        hydra_oauth2_grant_refresh_token_rotation_grace_reuse_count:
+          description: |-
+            Configures the OAuth2 Grant Refresh Token Rotation Grace Reuse Count.
+
+            The maximum number of times a refresh token can be reused within the grace period.
+            If set to `null` or `0`, the limit is disabled.
+
+            This governs the "oauth2.grant.refresh_token.rotation_grace_reuse_count" setting.
+          format: int64
+          type: integer
         hydra_oauth2_mirror_top_level_claims:
           description: |-
             Set to false if you don't want to mirror custom claims under 'ext'.
@@ -10807,6 +10817,23 @@ components:
             Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.
 
             This governs the "oauth2.token_hook.url" setting.
+          type: string
+        hydra_oauth2_token_prefix:
+          description: |-
+            Sets a per-project Access Token, Refresh Token, and Authorization Code
+            prefix. The literal "%s" is replaced at issuance time with the token kind:
+            "at" (access token), "rt" (refresh token), or "ac" (authorization code).
+            For example, "acme_%s_" yields "acme_at_…", "acme_rt_…", and "acme_ac_…".
+
+            Must be a fmt.Sprintf template with exactly one "%s" substitution. The
+            rendered prefix may contain only ASCII letters, digits, and underscores —
+            no other "%" directives ("%d", "%%", positional or width-flagged verbs),
+            no hyphens, dots, slashes, whitespace, quotes, or non-ASCII characters.
+            Leave empty to keep the default "ory_%s_" prefix.
+
+            This is an Enterprise feature.
+
+            This governs the "oauth2.token_prefix" setting.
           type: string
         hydra_oidc_dynamic_client_registration_default_scope:
           description: |-
@@ -12539,7 +12566,7 @@ components:
     GenericUsage:
       properties:
         additional_price:
-          $ref: "#/components/schemas/Money"
+          type: string
         included_usage:
           description: IncludedUsage is the number of included items.
           format: int64
@@ -13157,15 +13184,7 @@ components:
           type: string
       type: object
     Money:
-      properties:
-        Cents:
-          format: int64
-          type: integer
-        String:
-          type: string
-        Unit:
-          type: string
-      type: object
+      type: string
     NormalizedProjectRevisionCourierChannel:
       properties:
         channel_id:
@@ -13284,6 +13303,7 @@ components:
     OrganizationBody:
       description: Create B2B SSO Organization Request Body
       example:
+        session_lifespan: 24h
         default_region: eu-central
         domains:
         - domains
@@ -13334,6 +13354,14 @@ components:
           type: array
         label:
           description: Label contains the organization's label.
+          type: string
+        session_lifespan:
+          description: |-
+            SessionLifespan overrides the project-level session.lifespan for sessions
+            issued for this organization. A Go duration string between 1m and 8760h
+            (e.g. "1h", "24h"). Send "" to clear and inherit the project default. Omit
+            to leave the existing value unchanged on update.
+          example: 24h
           type: string
       type: object
     ParseError:
@@ -13392,12 +13420,12 @@ components:
           type: string
         development_features:
           additionalProperties:
-            $ref: "#/components/schemas/GenericUsage"
+            $ref: "#/components/schemas/Usage"
           title: PlanFeatures are the feature definitions included in the plan.
           type: object
         features:
           additionalProperties:
-            $ref: "#/components/schemas/GenericUsage"
+            $ref: "#/components/schemas/Usage"
           title: PlanFeatures are the feature definitions included in the plan.
           type: object
         latest:
@@ -13409,12 +13437,12 @@ components:
           type: string
         production_features:
           additionalProperties:
-            $ref: "#/components/schemas/GenericUsage"
+            $ref: "#/components/schemas/Usage"
           title: PlanFeatures are the feature definitions included in the plan.
           type: object
         staging_features:
           additionalProperties:
-            $ref: "#/components/schemas/GenericUsage"
+            $ref: "#/components/schemas/Usage"
           title: PlanFeatures are the feature definitions included in the plan.
           type: object
         version:
@@ -13440,7 +13468,7 @@ components:
       type: object
     PlanFeatures:
       additionalProperties:
-        $ref: "#/components/schemas/GenericUsage"
+        $ref: "#/components/schemas/Usage"
       title: PlanFeatures are the feature definitions included in the plan.
       type: object
     Pricing:
@@ -13849,10 +13877,11 @@ components:
       - token
       type: object
     Usage:
-      properties:
-        GenericUsage:
-          $ref: "#/components/schemas/GenericUsage"
-      type: object
+      oneOf:
+      - $ref: "#/components/schemas/GenericUsage"
+      - type: string
+      - type: boolean
+      - type: number
     VerifiableCredentialProof:
       example:
         proof_type: proof_type
@@ -14247,6 +14276,7 @@ components:
       type: string
     basicOrganization:
       example:
+        session_lifespan: 24h
         default_region: eu-central
         domains:
         - domains
@@ -14296,6 +14326,14 @@ components:
           type: string
         label:
           description: The organization's human-readable label.
+          type: string
+        session_lifespan:
+          description: |-
+            SessionLifespan overrides the project-level session lifespan for sessions
+            issued for this organization. A Go duration string between 1m and 8760h.
+            A null (or zero) value means the project default applies.
+          example: 24h
+          pattern: "^[0-9]+(s|m|h)$"
           type: string
       required:
       - domains
@@ -16001,6 +16039,7 @@ components:
     getOrganizationResponse:
       example:
         organization:
+          session_lifespan: 24h
           default_region: eu-central
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
@@ -17337,14 +17376,16 @@ components:
         next_page_token: next_page_token
         has_next_page: true
         organizations:
-        - default_region: eu-central
+        - session_lifespan: 24h
+          default_region: eu-central
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
           - domains
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
-        - default_region: eu-central
+        - session_lifespan: 24h
+          default_region: eu-central
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
@@ -18671,7 +18712,7 @@ components:
           type: boolean
         hydra_oauth2_exclude_not_before_claim:
           description: |-
-            Set to true if you want to exclude claim `nbf (not before)` part of access token.
+            Set to true if you want to omit the `nbf` (not valid before) claim in the access token.
 
             This governs the "oauth2.exclude_not_before_claim" setting.
           type: boolean
@@ -18710,8 +18751,18 @@ components:
 
             If set to `null` or `"0s"`, the graceful refresh token rotation is disabled.
 
-            This governs the "oauth2.grant.refresh_token_rotation_grace_period" setting.
+            This governs the "oauth2.grant.refresh_token.rotation_grace_period" setting.
           type: string
+        hydra_oauth2_grant_refresh_token_rotation_grace_reuse_count:
+          description: |-
+            Configures the OAuth2 Grant Refresh Token Rotation Grace Reuse Count.
+
+            The maximum number of times a refresh token can be reused within the grace period.
+            If set to `null` or `0`, the limit is disabled.
+
+            This governs the "oauth2.grant.refresh_token.rotation_grace_reuse_count" setting.
+          format: int64
+          type: integer
         hydra_oauth2_mirror_top_level_claims:
           description: |-
             Set to false if you don't want to mirror custom claims under 'ext'.
@@ -18747,6 +18798,23 @@ components:
             Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.
 
             This governs the "oauth2.token_hook.url" setting.
+          type: string
+        hydra_oauth2_token_prefix:
+          description: |-
+            Sets a per-project Access Token, Refresh Token, and Authorization Code
+            prefix. The literal "%s" is replaced at issuance time with the token kind:
+            "at" (access token), "rt" (refresh token), or "ac" (authorization code).
+            For example, "acme_%s_" yields "acme_at_…", "acme_rt_…", and "acme_ac_…".
+
+            Must be a fmt.Sprintf template with exactly one "%s" substitution. The
+            rendered prefix may contain only ASCII letters, digits, and underscores —
+            no other "%" directives ("%d", "%%", positional or width-flagged verbs),
+            no hyphens, dots, slashes, whitespace, quotes, or non-ASCII characters.
+            Leave empty to keep the default "ory_%s_" prefix.
+
+            This is an Enterprise feature.
+
+            This governs the "oauth2.token_prefix" setting.
           type: string
         hydra_oidc_dynamic_client_registration_default_scope:
           description: |-
@@ -22851,6 +22919,7 @@ components:
     organization:
       description: B2B SSO Organization
       example:
+        session_lifespan: 24h
         default_region: eu-central
         created_at: 2000-01-23T04:56:07.000+00:00
         domains:
@@ -22904,6 +22973,14 @@ components:
           type: string
         label:
           description: The organization's human-readable label.
+          type: string
+        session_lifespan:
+          description: |-
+            SessionLifespan overrides the project-level session lifespan for sessions
+            issued for this organization. A Go duration string between 1m and 8760h.
+            A null (or zero) value means the project default applies.
+          example: 24h
+          pattern: "^[0-9]+(s|m|h)$"
           type: string
       required:
       - created_at
@@ -23062,13 +23139,15 @@ components:
         home_region: eu-central
         name: name
         organizations:
-        - default_region: eu-central
+        - session_lifespan: 24h
+          default_region: eu-central
           domains:
           - domains
           - domains
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           label: label
-        - default_region: eu-central
+        - session_lifespan: 24h
+          default_region: eu-central
           domains:
           - domains
           - domains
@@ -23948,6 +24027,8 @@ components:
             default_smtp_email_customization DefaultSMTPEmailCustomization
             onboarding_portal OnboardingPortal
             console_organization_sso ConsoleOrganizationSSO
+            graceful_refresh_token_count GracefulRefreshTokenCount
+            hydra_token_prefix HydraTokenPrefix
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
             update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
             update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
@@ -24018,6 +24099,8 @@ components:
           - default_smtp_email_customization
           - onboarding_portal
           - console_organization_sso
+          - graceful_refresh_token_count
+          - hydra_token_prefix
           - update_self_service_registration_rate_limit_tier
           - update_self_service_recovery_rate_limit_tier
           - update_self_service_settings_rate_limit_tier
@@ -24089,6 +24172,8 @@ components:
             default_smtp_email_customization DefaultSMTPEmailCustomization
             onboarding_portal OnboardingPortal
             console_organization_sso ConsoleOrganizationSSO
+            graceful_refresh_token_count GracefulRefreshTokenCount
+            hydra_token_prefix HydraTokenPrefix
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
             update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
             update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
@@ -26051,13 +26136,15 @@ components:
           home_region: eu-central
           name: name
           organizations:
-          - default_region: eu-central
+          - session_lifespan: 24h
+            default_region: eu-central
             domains:
             - domains
             - domains
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             label: label
-          - default_region: eu-central
+          - session_lifespan: 24h
+            default_region: eu-central
             domains:
             - domains
             - domains
@@ -28805,6 +28892,14 @@ components:
           items:
             type: string
           type: array
+        session_lifespan:
+          description: |-
+            SessionLifespan overrides the project-level session lifespan for sessions
+            issued for this organization. A Go duration string between 1m and 8760h.
+            A null (or zero) value means the project default applies.
+          example: 24h
+          pattern: "^[0-9]+(s|m|h)$"
+          type: string
       required:
       - created_at
       - domains

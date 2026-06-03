@@ -8,6 +8,7 @@
 | **domains** | **Array&lt;String&gt;** | The list of organization&#39;s domains. |  |
 | **id** | **String** | The organization&#39;s ID. |  |
 | **label** | **String** | The organization&#39;s human-readable label. |  |
+| **session_lifespan** | **String** | SessionLifespan overrides the project-level session lifespan for sessions issued for this organization. A Go duration string between 1m and 8760h. A null (or zero) value means the project default applies. | [optional] |
 
 ## Example
 
@@ -18,7 +19,8 @@ instance = OryClient::BasicOrganization.new(
   default_region: null,
   domains: null,
   id: null,
-  label: null
+  label: null,
+  session_lifespan: 24h
 )
 ```
 

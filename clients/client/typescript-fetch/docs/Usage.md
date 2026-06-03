@@ -6,7 +6,8 @@
 
 Name | Type
 ------------ | -------------
-`GenericUsage` | [GenericUsage](GenericUsage.md)
+`additional_price` | string
+`included_usage` | number
 
 ## Example
 
@@ -15,7 +16,8 @@ import type { Usage } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
-  "GenericUsage": null,
+  "additional_price": null,
+  "included_usage": null,
 } satisfies Usage
 
 console.log(example)

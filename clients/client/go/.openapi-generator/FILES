@@ -216,7 +216,6 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataAPI.md
 docs/MetricsDatapoint.md
-docs/Money.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -590,7 +589,6 @@ model_member_invite.go
 model_message.go
 model_message_dispatch.go
 model_metrics_datapoint.go
-model_money.go
 model_namespace.go
 model_needs_privileged_session_error.go
 model_normalized_project.go

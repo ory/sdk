@@ -200,7 +200,6 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/MetricsDatapoint.md
-docs/Money.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -590,7 +589,6 @@ src/models/message.rs
 src/models/message_dispatch.rs
 src/models/metrics_datapoint.rs
 src/models/mod.rs
-src/models/money.rs
 src/models/namespace.rs
 src/models/needs_privileged_session_error.rs
 src/models/normalized_project.rs

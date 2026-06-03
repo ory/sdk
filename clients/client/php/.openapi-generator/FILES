@@ -209,7 +209,6 @@ docs/Model/Message.md
 docs/Model/MessageDispatch.md
 docs/Model/MetricsDatapoint.md
 docs/Model/ModelNamespace.md
-docs/Model/Money.md
 docs/Model/NeedsPrivilegedSessionError.md
 docs/Model/NormalizedProject.md
 docs/Model/NormalizedProjectRevision.md
@@ -593,7 +592,6 @@ lib/Model/MessageDispatch.php
 lib/Model/MetricsDatapoint.php
 lib/Model/ModelInterface.php
 lib/Model/ModelNamespace.php
-lib/Model/Money.php
 lib/Model/NeedsPrivilegedSessionError.php
 lib/Model/NormalizedProject.php
 lib/Model/NormalizedProjectRevision.php
@@ -973,7 +971,6 @@ test/Model/MessageDispatchTest.php
 test/Model/MessageTest.php
 test/Model/MetricsDatapointTest.php
 test/Model/ModelNamespaceTest.php
-test/Model/MoneyTest.php
 test/Model/NeedsPrivilegedSessionErrorTest.php
 test/Model/NormalizedProjectRevisionCourierChannelTest.php
 test/Model/NormalizedProjectRevisionHookTest.php

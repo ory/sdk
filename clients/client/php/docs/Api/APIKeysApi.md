@@ -12,7 +12,6 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**adminDeriveToken()**](APIKeysApi.md#adminDeriveToken) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token |
 | [**adminGetImportedAPIKey()**](APIKeysApi.md#adminGetImportedAPIKey) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key |
 | [**adminGetIssuedAPIKey()**](APIKeysApi.md#adminGetIssuedAPIKey) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key |
-| [**adminGetJWKS()**](APIKeysApi.md#adminGetJWKS) | **GET** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS |
 | [**adminImportAPIKey()**](APIKeysApi.md#adminImportAPIKey) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key |
 | [**adminIssueAPIKey()**](APIKeysApi.md#adminIssueAPIKey) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key |
 | [**adminListImportedAPIKeys()**](APIKeysApi.md#adminListImportedAPIKeys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys |
@@ -22,6 +21,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**adminUpdateImportedAPIKey()**](APIKeysApi.md#adminUpdateImportedAPIKey) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key |
 | [**adminUpdateIssuedAPIKey()**](APIKeysApi.md#adminUpdateIssuedAPIKey) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key |
 | [**adminVerifyAPIKey()**](APIKeysApi.md#adminVerifyAPIKey) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key |
+| [**getJWKS()**](APIKeysApi.md#getJWKS) | **GET** /v2alpha1/derivedKeys/jwks.json | Get JWKS |
 | [**revokeAPIKey()**](APIKeysApi.md#revokeAPIKey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service) |
 
 
@@ -375,63 +375,6 @@ try {
 ### Return type
 
 [**\Ory\Client\Model\IssuedAPIKey**](../Model/IssuedAPIKey.md)
-
-### Authorization
-
-[oryAccessToken](../../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `adminGetJWKS()`
-
-```php
-adminGetJWKS(): \Ory\Client\Model\GetJWKSResponse
-```
-
-Get JWKS
-
-Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  ```http GET /v2alpha1/admin/derivedKeys/jwks.json ```
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure Bearer authorization: oryAccessToken
-$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new Ory\Client\Api\APIKeysApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-
-try {
-    $result = $apiInstance->adminGetJWKS();
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling APIKeysApi->adminGetJWKS: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**\Ory\Client\Model\GetJWKSResponse**](../Model/GetJWKSResponse.md)
 
 ### Authorization
 
@@ -1004,6 +947,59 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getJWKS()`
+
+```php
+getJWKS(): \Ory\Client\Model\GetJWKSResponse
+```
+
+Get JWKS
+
+Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  ```http GET /v2alpha1/derivedKeys/jwks.json ```
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\APIKeysApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->getJWKS();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling APIKeysApi->getJWKS: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Client\Model\GetJWKSResponse**](../Model/GetJWKSResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

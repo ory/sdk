@@ -6,7 +6,7 @@
 
 Name | Type
 ------------ | -------------
-`additional_price` | [Money](Money.md)
+`additional_price` | string
 `included_usage` | number
 
 ## Example

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **domains** | **Array&lt;string&gt;** | The list of organization\&#39;s domains. | [default to undefined]
 **id** | **string** | The organization\&#39;s ID. | [default to undefined]
 **label** | **string** | The organization\&#39;s human-readable label. | [default to undefined]
+**session_lifespan** | **string** | SessionLifespan overrides the project-level session lifespan for sessions issued for this organization. A Go duration string between 1m and 8760h. A null (or zero) value means the project default applies. | [optional] [default to undefined]
 
 ## Example
 
@@ -23,6 +24,7 @@ const instance: Organization = {
     domains,
     id,
     label,
+    session_lifespan,
 };
 ```
 

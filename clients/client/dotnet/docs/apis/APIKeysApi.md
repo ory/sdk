@@ -10,7 +10,6 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**AdminDeriveToken**](APIKeysApi.md#adminderivetoken) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token |
 | [**AdminGetImportedAPIKey**](APIKeysApi.md#admingetimportedapikey) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key |
 | [**AdminGetIssuedAPIKey**](APIKeysApi.md#admingetissuedapikey) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key |
-| [**AdminGetJWKS**](APIKeysApi.md#admingetjwks) | **GET** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS |
 | [**AdminImportAPIKey**](APIKeysApi.md#adminimportapikey) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key |
 | [**AdminIssueAPIKey**](APIKeysApi.md#adminissueapikey) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key |
 | [**AdminListImportedAPIKeys**](APIKeysApi.md#adminlistimportedapikeys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys |
@@ -20,6 +19,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**AdminUpdateImportedAPIKey**](APIKeysApi.md#adminupdateimportedapikey) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key |
 | [**AdminUpdateIssuedAPIKey**](APIKeysApi.md#adminupdateissuedapikey) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key |
 | [**AdminVerifyAPIKey**](APIKeysApi.md#adminverifyapikey) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key |
+| [**GetJWKS**](APIKeysApi.md#getjwks) | **GET** /v2alpha1/derivedKeys/jwks.json | Get JWKS |
 | [**RevokeAPIKey**](APIKeysApi.md#revokeapikey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service) |
 
 <a id="adminbatchimportapikeys"></a>
@@ -227,39 +227,6 @@ Retrieves details about a specific issued API key including its status, scopes, 
 ### Return type
 
 [**ClientIssuedAPIKey**](ClientIssuedAPIKey.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A successful response. |  -  |
-| **0** | An unexpected error response. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-<a id="admingetjwks"></a>
-# **AdminGetJWKS**
-> ClientGetJWKSResponse AdminGetJWKS ()
-
-Get JWKS
-
-Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  ```http GET /v2alpha1/admin/derivedKeys/jwks.json ```
-
-
-### Parameters
-This endpoint does not need any parameter.
-### Return type
-
-[**ClientGetJWKSResponse**](ClientGetJWKSResponse.md)
 
 ### Authorization
 
@@ -613,6 +580,39 @@ Verifies a single API key or derived token. Validates the credential's signature
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A successful response. |  -  |
+| **0** | An unexpected error response. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="getjwks"></a>
+# **GetJWKS**
+> ClientGetJWKSResponse GetJWKS ()
+
+Get JWKS
+
+Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  ```http GET /v2alpha1/derivedKeys/jwks.json ```
+
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**ClientGetJWKSResponse**](ClientGetJWKSResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 

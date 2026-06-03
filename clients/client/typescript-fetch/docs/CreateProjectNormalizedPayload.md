@@ -31,12 +31,14 @@ Name | Type
 `hydra_oauth2_grant_jwt_jti_optional` | boolean
 `hydra_oauth2_grant_jwt_max_ttl` | string
 `hydra_oauth2_grant_refresh_token_rotation_grace_period` | string
+`hydra_oauth2_grant_refresh_token_rotation_grace_reuse_count` | number
 `hydra_oauth2_mirror_top_level_claims` | boolean
 `hydra_oauth2_pkce_enforced` | boolean
 `hydra_oauth2_pkce_enforced_for_public_clients` | boolean
 `hydra_oauth2_preserve_ext_claims` | boolean
 `hydra_oauth2_refresh_token_hook` | string
 `hydra_oauth2_token_hook` | string
+`hydra_oauth2_token_prefix` | string
 `hydra_oidc_dynamic_client_registration_default_scope` | Array&lt;string&gt;
 `hydra_oidc_dynamic_client_registration_enabled` | boolean
 `hydra_oidc_subject_identifiers_pairwise_salt` | string
@@ -286,12 +288,14 @@ const example = {
   "hydra_oauth2_grant_jwt_jti_optional": null,
   "hydra_oauth2_grant_jwt_max_ttl": 30m,
   "hydra_oauth2_grant_refresh_token_rotation_grace_period": null,
+  "hydra_oauth2_grant_refresh_token_rotation_grace_reuse_count": null,
   "hydra_oauth2_mirror_top_level_claims": null,
   "hydra_oauth2_pkce_enforced": null,
   "hydra_oauth2_pkce_enforced_for_public_clients": null,
   "hydra_oauth2_preserve_ext_claims": null,
   "hydra_oauth2_refresh_token_hook": null,
   "hydra_oauth2_token_hook": null,
+  "hydra_oauth2_token_prefix": null,
   "hydra_oidc_dynamic_client_registration_default_scope": null,
   "hydra_oidc_dynamic_client_registration_enabled": null,
   "hydra_oidc_subject_identifiers_pairwise_salt": null,

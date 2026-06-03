@@ -203,7 +203,6 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/MetricsDatapoint.md
-docs/Money.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -619,7 +618,6 @@ src/main/java/sh/ory/model/MemberInvite.java
 src/main/java/sh/ory/model/Message.java
 src/main/java/sh/ory/model/MessageDispatch.java
 src/main/java/sh/ory/model/MetricsDatapoint.java
-src/main/java/sh/ory/model/Money.java
 src/main/java/sh/ory/model/Namespace.java
 src/main/java/sh/ory/model/NeedsPrivilegedSessionError.java
 src/main/java/sh/ory/model/NormalizedProject.java
@@ -997,7 +995,6 @@ src/test/java/sh/ory/model/MemberInviteTest.java
 src/test/java/sh/ory/model/MessageDispatchTest.java
 src/test/java/sh/ory/model/MessageTest.java
 src/test/java/sh/ory/model/MetricsDatapointTest.java
-src/test/java/sh/ory/model/MoneyTest.java
 src/test/java/sh/ory/model/NamespaceTest.java
 src/test/java/sh/ory/model/NeedsPrivilegedSessionErrorTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionCourierChannelTest.java

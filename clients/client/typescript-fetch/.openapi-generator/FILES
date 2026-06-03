@@ -199,7 +199,6 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/MetricsDatapoint.md
-docs/Money.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -594,7 +593,6 @@ src/models/MemberInvite.ts
 src/models/Message.ts
 src/models/MessageDispatch.ts
 src/models/MetricsDatapoint.ts
-src/models/Money.ts
 src/models/Namespace.ts
 src/models/NeedsPrivilegedSessionError.ts
 src/models/NormalizedProject.ts

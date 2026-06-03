@@ -201,7 +201,6 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/MetricsDatapoint.md
-docs/Money.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -594,7 +593,6 @@ ory_client/models/member_invite.py
 ory_client/models/message.py
 ory_client/models/message_dispatch.py
 ory_client/models/metrics_datapoint.py
-ory_client/models/money.py
 ory_client/models/namespace.py
 ory_client/models/needs_privileged_session_error.py
 ory_client/models/normalized_project.py
@@ -973,7 +971,6 @@ test/test_message.py
 test/test_message_dispatch.py
 test/test_metadata_api.py
 test/test_metrics_datapoint.py
-test/test_money.py
 test/test_namespace.py
 test/test_needs_privileged_session_error.py
 test/test_normalized_project.py

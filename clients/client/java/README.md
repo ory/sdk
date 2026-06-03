@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.40
-  - Build date: 2026-05-15T11:02:52.489903312Z[Etc/UTC]
+- API version: v1.22.46
+  - Build date: 2026-06-03T13:39:08.295034176Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.40</version>
+  <version>v1.22.46</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.40"
+     implementation "sh.ory:client:v1.22.46"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.40.jar`
+* `target/client-v1.22.46.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -146,7 +146,6 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**adminDeriveToken**](docs/ApiKeysApi.md#adminDeriveToken) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token
 *ApiKeysApi* | [**adminGetImportedAPIKey**](docs/ApiKeysApi.md#adminGetImportedAPIKey) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key
 *ApiKeysApi* | [**adminGetIssuedAPIKey**](docs/ApiKeysApi.md#adminGetIssuedAPIKey) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key
-*ApiKeysApi* | [**adminGetJWKS**](docs/ApiKeysApi.md#adminGetJWKS) | **GET** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS
 *ApiKeysApi* | [**adminImportAPIKey**](docs/ApiKeysApi.md#adminImportAPIKey) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key
 *ApiKeysApi* | [**adminIssueAPIKey**](docs/ApiKeysApi.md#adminIssueAPIKey) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key
 *ApiKeysApi* | [**adminListImportedAPIKeys**](docs/ApiKeysApi.md#adminListImportedAPIKeys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys
@@ -156,6 +155,7 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**adminUpdateImportedAPIKey**](docs/ApiKeysApi.md#adminUpdateImportedAPIKey) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key
 *ApiKeysApi* | [**adminUpdateIssuedAPIKey**](docs/ApiKeysApi.md#adminUpdateIssuedAPIKey) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key
 *ApiKeysApi* | [**adminVerifyAPIKey**](docs/ApiKeysApi.md#adminVerifyAPIKey) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key
+*ApiKeysApi* | [**getJWKS**](docs/ApiKeysApi.md#getJWKS) | **GET** /v2alpha1/derivedKeys/jwks.json | Get JWKS
 *ApiKeysApi* | [**revokeAPIKey**](docs/ApiKeysApi.md#revokeAPIKey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
 *CourierApi* | [**getCourierMessage**](docs/CourierApi.md#getCourierMessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/CourierApi.md#listCourierMessages) | **GET** /admin/courier/messages | List Messages
@@ -500,7 +500,6 @@ Class | Method | HTTP request | Description
  - [Message](docs/Message.md)
  - [MessageDispatch](docs/MessageDispatch.md)
  - [MetricsDatapoint](docs/MetricsDatapoint.md)
- - [Money](docs/Money.md)
  - [Namespace](docs/Namespace.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)

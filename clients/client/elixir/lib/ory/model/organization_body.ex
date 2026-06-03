@@ -10,13 +10,15 @@ defmodule Ory.Model.OrganizationBody do
   defstruct [
     :default_region,
     :domains,
-    :label
+    :label,
+    :session_lifespan
   ]
 
   @type t :: %__MODULE__{
     :default_region => String.t | nil,
     :domains => [String.t] | nil,
-    :label => String.t | nil
+    :label => String.t | nil,
+    :session_lifespan => String.t | nil
   }
 
   def decode(value) do

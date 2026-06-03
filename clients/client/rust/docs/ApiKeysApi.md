@@ -10,7 +10,6 @@ Method | HTTP request | Description
 [**admin_derive_token**](ApiKeysApi.md#admin_derive_token) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token
 [**admin_get_imported_api_key**](ApiKeysApi.md#admin_get_imported_api_key) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key
 [**admin_get_issued_api_key**](ApiKeysApi.md#admin_get_issued_api_key) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key
-[**admin_get_jwks**](ApiKeysApi.md#admin_get_jwks) | **GET** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS
 [**admin_import_api_key**](ApiKeysApi.md#admin_import_api_key) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key
 [**admin_issue_api_key**](ApiKeysApi.md#admin_issue_api_key) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key
 [**admin_list_imported_api_keys**](ApiKeysApi.md#admin_list_imported_api_keys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys
@@ -20,6 +19,7 @@ Method | HTTP request | Description
 [**admin_update_imported_api_key**](ApiKeysApi.md#admin_update_imported_api_key) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key
 [**admin_update_issued_api_key**](ApiKeysApi.md#admin_update_issued_api_key) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key
 [**admin_verify_api_key**](ApiKeysApi.md#admin_verify_api_key) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key
+[**get_jwks**](ApiKeysApi.md#get_jwks) | **GET** /v2alpha1/derivedKeys/jwks.json | Get JWKS
 [**revoke_api_key**](ApiKeysApi.md#revoke_api_key) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
 
 
@@ -193,33 +193,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::IssuedApiKey**](IssuedAPIKey.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## admin_get_jwks
-
-> models::GetJwksResponse admin_get_jwks()
-Get JWKS
-
-Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  ```http GET /v2alpha1/admin/derivedKeys/jwks.json ```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**models::GetJwksResponse**](GetJWKSResponse.md)
 
 ### Authorization
 
@@ -510,6 +483,33 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_jwks
+
+> models::GetJwksResponse get_jwks()
+Get JWKS
+
+Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  ```http GET /v2alpha1/derivedKeys/jwks.json ```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::GetJwksResponse**](GetJWKSResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

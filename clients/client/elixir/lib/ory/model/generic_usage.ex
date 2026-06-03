@@ -13,15 +13,12 @@ defmodule Ory.Model.GenericUsage do
   ]
 
   @type t :: %__MODULE__{
-    :additional_price => Ory.Model.Money.t,
+    :additional_price => String.t,
     :included_usage => integer()
   }
 
-  alias Ory.Deserializer
-
   def decode(value) do
     value
-     |> Deserializer.deserialize(:additional_price, :struct, Ory.Model.Money)
   end
 end
 

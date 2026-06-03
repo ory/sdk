@@ -10,6 +10,7 @@ Name | Type
 `default_region` | string
 `domains` | Array&lt;string&gt;
 `label` | string
+`session_lifespan` | string
 
 ## Example
 
@@ -21,6 +22,7 @@ const example = {
   "default_region": null,
   "domains": null,
   "label": null,
+  "session_lifespan": 24h,
 } satisfies OrganizationBody
 
 console.log(example)

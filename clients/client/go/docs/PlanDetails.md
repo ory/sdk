@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 **BaseFeeYearly** | **int64** | BaseFeeYearly is the yearly base fee for the plan. | 
 **Custom** | **bool** | Custom is true if the plan is custom. This means it will be hidden from the pricing page. | 
 **Description** | **string** | Description is the description of the plan. | 
-**DevelopmentFeatures** | [**map[string]GenericUsage**](GenericUsage.md) |  | 
-**Features** | [**map[string]GenericUsage**](GenericUsage.md) |  | 
+**DevelopmentFeatures** | [**map[string]Usage**](Usage.md) |  | 
+**Features** | [**map[string]Usage**](Usage.md) |  | 
 **Latest** | Pointer to **bool** | Latest is true if the plan is the latest version of a plan and should be available for self-service usage. | [optional] 
 **Name** | **string** | Name is the name of the plan. | 
-**ProductionFeatures** | [**map[string]GenericUsage**](GenericUsage.md) |  | 
-**StagingFeatures** | [**map[string]GenericUsage**](GenericUsage.md) |  | 
+**ProductionFeatures** | [**map[string]Usage**](Usage.md) |  | 
+**StagingFeatures** | [**map[string]Usage**](Usage.md) |  | 
 **Version** | **int64** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. | 
 **YearlyOnly** | **bool** | YearlyOnly is true if the plan only supports yearly billing. | 
 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewPlanDetails
 
-`func NewPlanDetails(baseFeeMonthly int64, baseFeeYearly int64, custom bool, description string, developmentFeatures map[string]GenericUsage, features map[string]GenericUsage, name string, productionFeatures map[string]GenericUsage, stagingFeatures map[string]GenericUsage, version int64, yearlyOnly bool, ) *PlanDetails`
+`func NewPlanDetails(baseFeeMonthly int64, baseFeeYearly int64, custom bool, description string, developmentFeatures map[string]Usage, features map[string]Usage, name string, productionFeatures map[string]Usage, stagingFeatures map[string]Usage, version int64, yearlyOnly bool, ) *PlanDetails`
 
 NewPlanDetails instantiates a new PlanDetails object
 This constructor will assign default values to properties that have it defined,
@@ -118,40 +118,40 @@ SetDescription sets Description field to given value.
 
 ### GetDevelopmentFeatures
 
-`func (o *PlanDetails) GetDevelopmentFeatures() map[string]GenericUsage`
+`func (o *PlanDetails) GetDevelopmentFeatures() map[string]Usage`
 
 GetDevelopmentFeatures returns the DevelopmentFeatures field if non-nil, zero value otherwise.
 
 ### GetDevelopmentFeaturesOk
 
-`func (o *PlanDetails) GetDevelopmentFeaturesOk() (*map[string]GenericUsage, bool)`
+`func (o *PlanDetails) GetDevelopmentFeaturesOk() (*map[string]Usage, bool)`
 
 GetDevelopmentFeaturesOk returns a tuple with the DevelopmentFeatures field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDevelopmentFeatures
 
-`func (o *PlanDetails) SetDevelopmentFeatures(v map[string]GenericUsage)`
+`func (o *PlanDetails) SetDevelopmentFeatures(v map[string]Usage)`
 
 SetDevelopmentFeatures sets DevelopmentFeatures field to given value.
 
 
 ### GetFeatures
 
-`func (o *PlanDetails) GetFeatures() map[string]GenericUsage`
+`func (o *PlanDetails) GetFeatures() map[string]Usage`
 
 GetFeatures returns the Features field if non-nil, zero value otherwise.
 
 ### GetFeaturesOk
 
-`func (o *PlanDetails) GetFeaturesOk() (*map[string]GenericUsage, bool)`
+`func (o *PlanDetails) GetFeaturesOk() (*map[string]Usage, bool)`
 
 GetFeaturesOk returns a tuple with the Features field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFeatures
 
-`func (o *PlanDetails) SetFeatures(v map[string]GenericUsage)`
+`func (o *PlanDetails) SetFeatures(v map[string]Usage)`
 
 SetFeatures sets Features field to given value.
 
@@ -203,40 +203,40 @@ SetName sets Name field to given value.
 
 ### GetProductionFeatures
 
-`func (o *PlanDetails) GetProductionFeatures() map[string]GenericUsage`
+`func (o *PlanDetails) GetProductionFeatures() map[string]Usage`
 
 GetProductionFeatures returns the ProductionFeatures field if non-nil, zero value otherwise.
 
 ### GetProductionFeaturesOk
 
-`func (o *PlanDetails) GetProductionFeaturesOk() (*map[string]GenericUsage, bool)`
+`func (o *PlanDetails) GetProductionFeaturesOk() (*map[string]Usage, bool)`
 
 GetProductionFeaturesOk returns a tuple with the ProductionFeatures field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProductionFeatures
 
-`func (o *PlanDetails) SetProductionFeatures(v map[string]GenericUsage)`
+`func (o *PlanDetails) SetProductionFeatures(v map[string]Usage)`
 
 SetProductionFeatures sets ProductionFeatures field to given value.
 
 
 ### GetStagingFeatures
 
-`func (o *PlanDetails) GetStagingFeatures() map[string]GenericUsage`
+`func (o *PlanDetails) GetStagingFeatures() map[string]Usage`
 
 GetStagingFeatures returns the StagingFeatures field if non-nil, zero value otherwise.
 
 ### GetStagingFeaturesOk
 
-`func (o *PlanDetails) GetStagingFeaturesOk() (*map[string]GenericUsage, bool)`
+`func (o *PlanDetails) GetStagingFeaturesOk() (*map[string]Usage, bool)`
 
 GetStagingFeaturesOk returns a tuple with the StagingFeatures field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStagingFeatures
 
-`func (o *PlanDetails) SetStagingFeatures(v map[string]GenericUsage)`
+`func (o *PlanDetails) SetStagingFeatures(v map[string]Usage)`
 
 SetStagingFeatures sets StagingFeatures field to given value.
 

@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**additionalPrice** | [**Money**](Money.md) |  |  |
+|**additionalPrice** | **String** |  |  |
 |**includedUsage** | **Long** | IncludedUsage is the number of included items. |  |
 
 

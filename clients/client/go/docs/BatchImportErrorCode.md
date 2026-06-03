@@ -13,6 +13,8 @@
 
 * `BATCH_IMPORT_ERROR_INTERNAL` (value: `"BATCH_IMPORT_ERROR_INTERNAL"`)
 
+* `BATCH_IMPORT_ERROR_RESOURCE_EXHAUSTED` (value: `"BATCH_IMPORT_ERROR_RESOURCE_EXHAUSTED"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

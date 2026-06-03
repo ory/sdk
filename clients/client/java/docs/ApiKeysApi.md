@@ -10,7 +10,6 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**adminDeriveToken**](ApiKeysApi.md#adminDeriveToken) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token |
 | [**adminGetImportedAPIKey**](ApiKeysApi.md#adminGetImportedAPIKey) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key |
 | [**adminGetIssuedAPIKey**](ApiKeysApi.md#adminGetIssuedAPIKey) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key |
-| [**adminGetJWKS**](ApiKeysApi.md#adminGetJWKS) | **GET** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS |
 | [**adminImportAPIKey**](ApiKeysApi.md#adminImportAPIKey) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key |
 | [**adminIssueAPIKey**](ApiKeysApi.md#adminIssueAPIKey) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key |
 | [**adminListImportedAPIKeys**](ApiKeysApi.md#adminListImportedAPIKeys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys |
@@ -20,6 +19,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**adminUpdateImportedAPIKey**](ApiKeysApi.md#adminUpdateImportedAPIKey) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key |
 | [**adminUpdateIssuedAPIKey**](ApiKeysApi.md#adminUpdateIssuedAPIKey) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key |
 | [**adminVerifyAPIKey**](ApiKeysApi.md#adminVerifyAPIKey) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key |
+| [**getJWKS**](ApiKeysApi.md#getJWKS) | **GET** /v2alpha1/derivedKeys/jwks.json | Get JWKS |
 | [**revokeAPIKey**](ApiKeysApi.md#revokeAPIKey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service) |
 
 
@@ -419,70 +419,6 @@ public class Example {
 ### Return type
 
 [**IssuedAPIKey**](IssuedAPIKey.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A successful response. |  -  |
-| **0** | An unexpected error response. |  -  |
-
-<a id="adminGetJWKS"></a>
-# **adminGetJWKS**
-> GetJWKSResponse adminGetJWKS()
-
-Get JWKS
-
-Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  &#x60;&#x60;&#x60;http GET /v2alpha1/admin/derivedKeys/jwks.json &#x60;&#x60;&#x60;
-
-### Example
-```java
-// Import classes:
-import sh.ory.ApiClient;
-import sh.ory.ApiException;
-import sh.ory.Configuration;
-import sh.ory.auth.*;
-import sh.ory.models.*;
-import sh.ory.api.ApiKeysApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://playground.projects.oryapis.com");
-    
-    // Configure HTTP bearer authorization: oryAccessToken
-    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
-    oryAccessToken.setBearerToken("BEARER TOKEN");
-
-    ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
-    try {
-      GetJWKSResponse result = apiInstance.adminGetJWKS();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminGetJWKS");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**GetJWKSResponse**](GetJWKSResponse.md)
 
 ### Authorization
 
@@ -1127,6 +1063,65 @@ public class Example {
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A successful response. |  -  |
+| **0** | An unexpected error response. |  -  |
+
+<a id="getJWKS"></a>
+# **getJWKS**
+> GetJWKSResponse getJWKS()
+
+Get JWKS
+
+Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  &#x60;&#x60;&#x60;http GET /v2alpha1/derivedKeys/jwks.json &#x60;&#x60;&#x60;
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.ApiKeysApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
+    try {
+      GetJWKSResponse result = apiInstance.getJWKS();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ApiKeysApi#getJWKS");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetJWKSResponse**](GetJWKSResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details

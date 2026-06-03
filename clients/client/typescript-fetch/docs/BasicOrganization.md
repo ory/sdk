@@ -10,6 +10,7 @@ Name | Type
 `domains` | Array&lt;string&gt;
 `id` | string
 `label` | string
+`session_lifespan` | string
 
 ## Example
 
@@ -22,6 +23,7 @@ const example = {
   "domains": null,
   "id": null,
   "label": null,
+  "session_lifespan": 24h,
 } satisfies BasicOrganization
 
 console.log(example)

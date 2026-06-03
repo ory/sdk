@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.40
+API version: v1.22.46
 Contact: support@ory.sh
 */
 
@@ -29,14 +29,14 @@ type PlanDetails struct {
 	Custom bool `json:"custom"`
 	// Description is the description of the plan.
 	Description string `json:"description"`
-	DevelopmentFeatures map[string]GenericUsage `json:"development_features"`
-	Features map[string]GenericUsage `json:"features"`
+	DevelopmentFeatures map[string]Usage `json:"development_features"`
+	Features map[string]Usage `json:"features"`
 	// Latest is true if the plan is the latest version of a plan and should be available for self-service usage.
 	Latest *bool `json:"latest,omitempty"`
 	// Name is the name of the plan.
 	Name string `json:"name"`
-	ProductionFeatures map[string]GenericUsage `json:"production_features"`
-	StagingFeatures map[string]GenericUsage `json:"staging_features"`
+	ProductionFeatures map[string]Usage `json:"production_features"`
+	StagingFeatures map[string]Usage `json:"staging_features"`
 	// Version is the version of the plan. The combination of `name@version` must be unique.
 	Version int64 `json:"version"`
 	// YearlyOnly is true if the plan only supports yearly billing.
@@ -50,7 +50,7 @@ type _PlanDetails PlanDetails
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlanDetails(baseFeeMonthly int64, baseFeeYearly int64, custom bool, description string, developmentFeatures map[string]GenericUsage, features map[string]GenericUsage, name string, productionFeatures map[string]GenericUsage, stagingFeatures map[string]GenericUsage, version int64, yearlyOnly bool) *PlanDetails {
+func NewPlanDetails(baseFeeMonthly int64, baseFeeYearly int64, custom bool, description string, developmentFeatures map[string]Usage, features map[string]Usage, name string, productionFeatures map[string]Usage, stagingFeatures map[string]Usage, version int64, yearlyOnly bool) *PlanDetails {
 	this := PlanDetails{}
 	this.BaseFeeMonthly = baseFeeMonthly
 	this.BaseFeeYearly = baseFeeYearly
@@ -171,9 +171,9 @@ func (o *PlanDetails) SetDescription(v string) {
 }
 
 // GetDevelopmentFeatures returns the DevelopmentFeatures field value
-func (o *PlanDetails) GetDevelopmentFeatures() map[string]GenericUsage {
+func (o *PlanDetails) GetDevelopmentFeatures() map[string]Usage {
 	if o == nil {
-		var ret map[string]GenericUsage
+		var ret map[string]Usage
 		return ret
 	}
 
@@ -182,22 +182,22 @@ func (o *PlanDetails) GetDevelopmentFeatures() map[string]GenericUsage {
 
 // GetDevelopmentFeaturesOk returns a tuple with the DevelopmentFeatures field value
 // and a boolean to check if the value has been set.
-func (o *PlanDetails) GetDevelopmentFeaturesOk() (*map[string]GenericUsage, bool) {
+func (o *PlanDetails) GetDevelopmentFeaturesOk() (map[string]Usage, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]Usage{}, false
 	}
-	return &o.DevelopmentFeatures, true
+	return o.DevelopmentFeatures, true
 }
 
 // SetDevelopmentFeatures sets field value
-func (o *PlanDetails) SetDevelopmentFeatures(v map[string]GenericUsage) {
+func (o *PlanDetails) SetDevelopmentFeatures(v map[string]Usage) {
 	o.DevelopmentFeatures = v
 }
 
 // GetFeatures returns the Features field value
-func (o *PlanDetails) GetFeatures() map[string]GenericUsage {
+func (o *PlanDetails) GetFeatures() map[string]Usage {
 	if o == nil {
-		var ret map[string]GenericUsage
+		var ret map[string]Usage
 		return ret
 	}
 
@@ -206,15 +206,15 @@ func (o *PlanDetails) GetFeatures() map[string]GenericUsage {
 
 // GetFeaturesOk returns a tuple with the Features field value
 // and a boolean to check if the value has been set.
-func (o *PlanDetails) GetFeaturesOk() (*map[string]GenericUsage, bool) {
+func (o *PlanDetails) GetFeaturesOk() (map[string]Usage, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]Usage{}, false
 	}
-	return &o.Features, true
+	return o.Features, true
 }
 
 // SetFeatures sets field value
-func (o *PlanDetails) SetFeatures(v map[string]GenericUsage) {
+func (o *PlanDetails) SetFeatures(v map[string]Usage) {
 	o.Features = v
 }
 
@@ -275,9 +275,9 @@ func (o *PlanDetails) SetName(v string) {
 }
 
 // GetProductionFeatures returns the ProductionFeatures field value
-func (o *PlanDetails) GetProductionFeatures() map[string]GenericUsage {
+func (o *PlanDetails) GetProductionFeatures() map[string]Usage {
 	if o == nil {
-		var ret map[string]GenericUsage
+		var ret map[string]Usage
 		return ret
 	}
 
@@ -286,22 +286,22 @@ func (o *PlanDetails) GetProductionFeatures() map[string]GenericUsage {
 
 // GetProductionFeaturesOk returns a tuple with the ProductionFeatures field value
 // and a boolean to check if the value has been set.
-func (o *PlanDetails) GetProductionFeaturesOk() (*map[string]GenericUsage, bool) {
+func (o *PlanDetails) GetProductionFeaturesOk() (map[string]Usage, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]Usage{}, false
 	}
-	return &o.ProductionFeatures, true
+	return o.ProductionFeatures, true
 }
 
 // SetProductionFeatures sets field value
-func (o *PlanDetails) SetProductionFeatures(v map[string]GenericUsage) {
+func (o *PlanDetails) SetProductionFeatures(v map[string]Usage) {
 	o.ProductionFeatures = v
 }
 
 // GetStagingFeatures returns the StagingFeatures field value
-func (o *PlanDetails) GetStagingFeatures() map[string]GenericUsage {
+func (o *PlanDetails) GetStagingFeatures() map[string]Usage {
 	if o == nil {
-		var ret map[string]GenericUsage
+		var ret map[string]Usage
 		return ret
 	}
 
@@ -310,15 +310,15 @@ func (o *PlanDetails) GetStagingFeatures() map[string]GenericUsage {
 
 // GetStagingFeaturesOk returns a tuple with the StagingFeatures field value
 // and a boolean to check if the value has been set.
-func (o *PlanDetails) GetStagingFeaturesOk() (*map[string]GenericUsage, bool) {
+func (o *PlanDetails) GetStagingFeaturesOk() (map[string]Usage, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]Usage{}, false
 	}
-	return &o.StagingFeatures, true
+	return o.StagingFeatures, true
 }
 
 // SetStagingFeatures sets field value
-func (o *PlanDetails) SetStagingFeatures(v map[string]GenericUsage) {
+func (o *PlanDetails) SetStagingFeatures(v map[string]Usage) {
 	o.StagingFeatures = v
 }
 

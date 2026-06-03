@@ -100,18 +100,6 @@ func Test_client_APIKeysAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test APIKeysAPIService AdminGetJWKS", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.APIKeysAPI.AdminGetJWKS(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test APIKeysAPIService AdminImportAPIKey", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -221,6 +209,18 @@ func Test_client_APIKeysAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.APIKeysAPI.AdminVerifyAPIKey(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test APIKeysAPIService GetJWKS", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.APIKeysAPI.GetJWKS(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

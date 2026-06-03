@@ -207,36 +207,6 @@ defmodule Ory.Api.APIKeys do
   end
 
   @doc """
-  Get JWKS
-  Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  ```http GET /v2alpha1/admin/derivedKeys/jwks.json ```
-
-  ### Parameters
-
-  - `connection` (Ory.Connection): Connection to server
-  - `opts` (keyword): Optional parameters
-
-  ### Returns
-
-  - `{:ok, Ory.Model.GetJwksResponse.t}` on success
-  - `{:error, Tesla.Env.t}` on failure
-  """
-  @spec admin_get_jwks(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.Status.t} | {:ok, Ory.Model.GetJwksResponse.t} | {:error, Tesla.Env.t}
-  def admin_get_jwks(connection, _opts \\ []) do
-    request =
-      %{}
-      |> method(:get)
-      |> url("/v2alpha1/admin/derivedKeys/jwks.json")
-      |> Enum.into([])
-
-    connection
-    |> Connection.request(request)
-    |> evaluate_response([
-      {200, Ory.Model.GetJwksResponse},
-      {:default, Ory.Model.Status}
-    ])
-  end
-
-  @doc """
   Import API Key
   Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"sk_live_abc123xyz\",   \"name\": \"Imported Stripe Key\",   \"actor_id\": \"user_123\" } ```
 
@@ -560,6 +530,36 @@ defmodule Ory.Api.APIKeys do
     |> Connection.request(request)
     |> evaluate_response([
       {200, Ory.Model.VerifyApiKeyResponse},
+      {:default, Ory.Model.Status}
+    ])
+  end
+
+  @doc """
+  Get JWKS
+  Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  ```http GET /v2alpha1/derivedKeys/jwks.json ```
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.GetJwksResponse.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_jwks(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.Status.t} | {:ok, Ory.Model.GetJwksResponse.t} | {:error, Tesla.Env.t}
+  def get_jwks(connection, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v2alpha1/derivedKeys/jwks.json")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.GetJwksResponse},
       {:default, Ory.Model.Status}
     ])
   end

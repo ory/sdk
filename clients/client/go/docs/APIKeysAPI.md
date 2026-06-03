@@ -10,7 +10,6 @@ Method | HTTP request | Description
 [**AdminDeriveToken**](APIKeysAPI.md#AdminDeriveToken) | **Post** /v2alpha1/admin/apiKeys:derive | Derive Token
 [**AdminGetImportedAPIKey**](APIKeysAPI.md#AdminGetImportedAPIKey) | **Get** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key
 [**AdminGetIssuedAPIKey**](APIKeysAPI.md#AdminGetIssuedAPIKey) | **Get** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key
-[**AdminGetJWKS**](APIKeysAPI.md#AdminGetJWKS) | **Get** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS
 [**AdminImportAPIKey**](APIKeysAPI.md#AdminImportAPIKey) | **Post** /v2alpha1/admin/importedApiKeys | Import API Key
 [**AdminIssueAPIKey**](APIKeysAPI.md#AdminIssueAPIKey) | **Post** /v2alpha1/admin/issuedApiKeys | Issue API Key
 [**AdminListImportedAPIKeys**](APIKeysAPI.md#AdminListImportedAPIKeys) | **Get** /v2alpha1/admin/importedApiKeys | List Imported API Keys
@@ -20,6 +19,7 @@ Method | HTTP request | Description
 [**AdminUpdateImportedAPIKey**](APIKeysAPI.md#AdminUpdateImportedAPIKey) | **Patch** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key
 [**AdminUpdateIssuedAPIKey**](APIKeysAPI.md#AdminUpdateIssuedAPIKey) | **Patch** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key
 [**AdminVerifyAPIKey**](APIKeysAPI.md#AdminVerifyAPIKey) | **Post** /v2alpha1/admin/apiKeys:verify | Verify API Key
+[**GetJWKS**](APIKeysAPI.md#GetJWKS) | **Get** /v2alpha1/derivedKeys/jwks.json | Get JWKS
 [**RevokeAPIKey**](APIKeysAPI.md#RevokeAPIKey) | **Post** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
 
 
@@ -421,67 +421,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**IssuedAPIKey**](IssuedAPIKey.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## AdminGetJWKS
-
-> GetJWKSResponse AdminGetJWKS(ctx).Execute()
-
-Get JWKS
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/ory/client-go"
-)
-
-func main() {
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.APIKeysAPI.AdminGetJWKS(context.Background()).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.AdminGetJWKS``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `AdminGetJWKS`: GetJWKSResponse
-	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.AdminGetJWKS`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAdminGetJWKSRequest struct via the builder pattern
-
-
-### Return type
-
-[**GetJWKSResponse**](GetJWKSResponse.md)
 
 ### Authorization
 
@@ -1124,6 +1063,67 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetJWKS
+
+> GetJWKSResponse GetJWKS(ctx).Execute()
+
+Get JWKS
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.APIKeysAPI.GetJWKS(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `APIKeysAPI.GetJWKS``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetJWKS`: GetJWKSResponse
+	fmt.Fprintf(os.Stdout, "Response from `APIKeysAPI.GetJWKS`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetJWKSRequest struct via the builder pattern
+
+
+### Return type
+
+[**GetJWKSResponse**](GetJWKSResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

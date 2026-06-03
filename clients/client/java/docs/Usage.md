@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**genericUsage** | [**GenericUsage**](GenericUsage.md) |  |  [optional] |
+|**additionalPrice** | **String** |  |  |
+|**includedUsage** | **Long** | IncludedUsage is the number of included items. |  |
 
 
 

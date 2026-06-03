@@ -378,8 +378,6 @@ pub mod message_dispatch;
 pub use self::message_dispatch::MessageDispatch;
 pub mod metrics_datapoint;
 pub use self::metrics_datapoint::MetricsDatapoint;
-pub mod money;
-pub use self::money::Money;
 pub mod namespace;
 pub use self::namespace::Namespace;
 pub mod needs_privileged_session_error;

@@ -10,7 +10,6 @@ Method | HTTP request | Description
 [**admin_derive_token**](APIKeysApi.md#admin_derive_token) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token
 [**admin_get_imported_api_key**](APIKeysApi.md#admin_get_imported_api_key) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key
 [**admin_get_issued_api_key**](APIKeysApi.md#admin_get_issued_api_key) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key
-[**admin_get_jwks**](APIKeysApi.md#admin_get_jwks) | **GET** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS
 [**admin_import_api_key**](APIKeysApi.md#admin_import_api_key) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key
 [**admin_issue_api_key**](APIKeysApi.md#admin_issue_api_key) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key
 [**admin_list_imported_api_keys**](APIKeysApi.md#admin_list_imported_api_keys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys
@@ -20,6 +19,7 @@ Method | HTTP request | Description
 [**admin_update_imported_api_key**](APIKeysApi.md#admin_update_imported_api_key) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key
 [**admin_update_issued_api_key**](APIKeysApi.md#admin_update_issued_api_key) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key
 [**admin_verify_api_key**](APIKeysApi.md#admin_verify_api_key) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key
+[**get_jwks**](APIKeysApi.md#get_jwks) | **GET** /v2alpha1/derivedKeys/jwks.json | Get JWKS
 [**revoke_api_key**](APIKeysApi.md#revoke_api_key) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
 
 
@@ -540,88 +540,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**IssuedAPIKey**](IssuedAPIKey.md)
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**0** | An unexpected error response. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **admin_get_jwks**
-> GetJWKSResponse admin_get_jwks()
-
-Get JWKS
-
-Returns the JSON Web Key Set for token verification. Provides the public
-keys needed to verify JWT tokens issued by this service. Keys are loaded
-from configuration (file://, https://, or base64:// URIs). Follows the
-JWKS standard (RFC 7517).
-
-```http
-GET /v2alpha1/admin/derivedKeys/jwks.json
-```
-
-### Example
-
-* Bearer Authentication (oryAccessToken):
-
-```python
-import ory_client
-from ory_client.models.get_jwks_response import GetJWKSResponse
-from ory_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://playground.projects.oryapis.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = ory_client.Configuration(
-    host = "https://playground.projects.oryapis.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: oryAccessToken
-configuration = ory_client.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with ory_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = ory_client.APIKeysApi(api_client)
-
-    try:
-        # Get JWKS
-        api_response = api_instance.admin_get_jwks()
-        print("The response of APIKeysApi->admin_get_jwks:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling APIKeysApi->admin_get_jwks: %s\n" % e)
-```
-
-
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**GetJWKSResponse**](GetJWKSResponse.md)
 
 ### Authorization
 
@@ -1476,6 +1394,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A successful response. |  -  |
+**0** | An unexpected error response. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_jwks**
+> GetJWKSResponse get_jwks()
+
+Get JWKS
+
+Returns the JSON Web Key Set for token verification. Provides the public
+keys needed to verify JWT tokens issued by this service. Keys are loaded
+from configuration (file://, https://, or base64:// URIs). Follows the
+JWKS standard (RFC 7517).
+
+```http
+GET /v2alpha1/derivedKeys/jwks.json
+```
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.models.get_jwks_response import GetJWKSResponse
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.APIKeysApi(api_client)
+
+    try:
+        # Get JWKS
+        api_response = api_instance.get_jwks()
+        print("The response of APIKeysApi->get_jwks:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling APIKeysApi->get_jwks: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetJWKSResponse**](GetJWKSResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details

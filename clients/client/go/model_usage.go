@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.40
+API version: v1.22.46
 Contact: support@ory.sh
 */
 
@@ -13,108 +13,183 @@ package client
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// checks if the Usage type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Usage{}
-
-// Usage struct for Usage
+// Usage - struct for Usage
 type Usage struct {
-	GenericUsage *GenericUsage `json:"GenericUsage,omitempty"`
-	AdditionalProperties map[string]interface{}
+	GenericUsage *GenericUsage
+	Bool *bool
+	Float32 *float32
+	String *string
 }
 
-type _Usage Usage
-
-// NewUsage instantiates a new Usage object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUsage() *Usage {
-	this := Usage{}
-	return &this
-}
-
-// NewUsageWithDefaults instantiates a new Usage object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUsageWithDefaults() *Usage {
-	this := Usage{}
-	return &this
-}
-
-// GetGenericUsage returns the GenericUsage field value if set, zero value otherwise.
-func (o *Usage) GetGenericUsage() GenericUsage {
-	if o == nil || IsNil(o.GenericUsage) {
-		var ret GenericUsage
-		return ret
+// GenericUsageAsUsage is a convenience function that returns GenericUsage wrapped in Usage
+func GenericUsageAsUsage(v *GenericUsage) Usage {
+	return Usage{
+		GenericUsage: v,
 	}
-	return *o.GenericUsage
 }
 
-// GetGenericUsageOk returns a tuple with the GenericUsage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Usage) GetGenericUsageOk() (*GenericUsage, bool) {
-	if o == nil || IsNil(o.GenericUsage) {
-		return nil, false
+// boolAsUsage is a convenience function that returns bool wrapped in Usage
+func BoolAsUsage(v *bool) Usage {
+	return Usage{
+		Bool: v,
 	}
-	return o.GenericUsage, true
 }
 
-// HasGenericUsage returns a boolean if a field has been set.
-func (o *Usage) HasGenericUsage() bool {
-	if o != nil && !IsNil(o.GenericUsage) {
-		return true
+// float32AsUsage is a convenience function that returns float32 wrapped in Usage
+func Float32AsUsage(v *float32) Usage {
+	return Usage{
+		Float32: v,
 	}
-
-	return false
 }
 
-// SetGenericUsage gets a reference to the given GenericUsage and assigns it to the GenericUsage field.
-func (o *Usage) SetGenericUsage(v GenericUsage) {
-	o.GenericUsage = &v
-}
-
-func (o Usage) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
+// stringAsUsage is a convenience function that returns string wrapped in Usage
+func StringAsUsage(v *string) Usage {
+	return Usage{
+		String: v,
 	}
-	return json.Marshal(toSerialize)
 }
 
-func (o Usage) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.GenericUsage) {
-		toSerialize["GenericUsage"] = o.GenericUsage
+
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *Usage) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into GenericUsage
+	err = json.Unmarshal(data, &dst.GenericUsage)
+	if err == nil {
+		jsonGenericUsage, _ := json.Marshal(dst.GenericUsage)
+		if string(jsonGenericUsage) == "{}" { // empty struct
+			dst.GenericUsage = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.GenericUsage = nil
 	}
 
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	// try to unmarshal data into Bool
+	err = json.Unmarshal(data, &dst.Bool)
+	if err == nil {
+		jsonBool, _ := json.Marshal(dst.Bool)
+		if string(jsonBool) == "{}" { // empty struct
+			dst.Bool = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Bool = nil
 	}
 
-	return toSerialize, nil
+	// try to unmarshal data into Float32
+	err = json.Unmarshal(data, &dst.Float32)
+	if err == nil {
+		jsonFloat32, _ := json.Marshal(dst.Float32)
+		if string(jsonFloat32) == "{}" { // empty struct
+			dst.Float32 = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Float32 = nil
+	}
+
+	// try to unmarshal data into String
+	err = json.Unmarshal(data, &dst.String)
+	if err == nil {
+		jsonString, _ := json.Marshal(dst.String)
+		if string(jsonString) == "{}" { // empty struct
+			dst.String = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.String = nil
+	}
+
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.GenericUsage = nil
+		dst.Bool = nil
+		dst.Float32 = nil
+		dst.String = nil
+
+		return fmt.Errorf("data matches more than one schema in oneOf(Usage)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(Usage)")
+	}
 }
 
-func (o *Usage) UnmarshalJSON(data []byte) (err error) {
-	varUsage := _Usage{}
-
-	err = json.Unmarshal(data, &varUsage)
-
-	if err != nil {
-		return err
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src Usage) MarshalJSON() ([]byte, error) {
+	if src.GenericUsage != nil {
+		return json.Marshal(&src.GenericUsage)
 	}
 
-	*o = Usage(varUsage)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "GenericUsage")
-		o.AdditionalProperties = additionalProperties
+	if src.Bool != nil {
+		return json.Marshal(&src.Bool)
 	}
 
-	return err
+	if src.Float32 != nil {
+		return json.Marshal(&src.Float32)
+	}
+
+	if src.String != nil {
+		return json.Marshal(&src.String)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *Usage) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.GenericUsage != nil {
+		return obj.GenericUsage
+	}
+
+	if obj.Bool != nil {
+		return obj.Bool
+	}
+
+	if obj.Float32 != nil {
+		return obj.Float32
+	}
+
+	if obj.String != nil {
+		return obj.String
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj Usage) GetActualInstanceValue() (interface{}) {
+	if obj.GenericUsage != nil {
+		return *obj.GenericUsage
+	}
+
+	if obj.Bool != nil {
+		return *obj.Bool
+	}
+
+	if obj.Float32 != nil {
+		return *obj.Float32
+	}
+
+	if obj.String != nil {
+		return *obj.String
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableUsage struct {

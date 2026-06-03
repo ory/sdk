@@ -14,7 +14,8 @@ defmodule Ory.Model.WorkspaceOrganization do
     :domains,
     :id,
     :label,
-    :providers
+    :providers,
+    :session_lifespan
   ]
 
   @type t :: %__MODULE__{
@@ -24,7 +25,8 @@ defmodule Ory.Model.WorkspaceOrganization do
     :domains => [String.t],
     :id => String.t,
     :label => String.t,
-    :providers => [String.t]
+    :providers => [String.t],
+    :session_lifespan => String.t | nil
   }
 
   alias Ory.Deserializer

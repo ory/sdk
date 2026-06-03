@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 **baseFeeYearly** | **int** | BaseFeeYearly is the yearly base fee for the plan. |
 **custom** | **bool** | Custom is true if the plan is custom. This means it will be hidden from the pricing page. |
 **description** | **string** | Description is the description of the plan. |
-**developmentFeatures** | [**array<string,\Ory\Client\Model\GenericUsage>**](GenericUsage.md) |  |
-**features** | [**array<string,\Ory\Client\Model\GenericUsage>**](GenericUsage.md) |  |
+**developmentFeatures** | [**array<string,\Ory\Client\Model\Usage>**](Usage.md) |  |
+**features** | [**array<string,\Ory\Client\Model\Usage>**](Usage.md) |  |
 **latest** | **bool** | Latest is true if the plan is the latest version of a plan and should be available for self-service usage. | [optional]
 **name** | **string** | Name is the name of the plan. |
-**productionFeatures** | [**array<string,\Ory\Client\Model\GenericUsage>**](GenericUsage.md) |  |
-**stagingFeatures** | [**array<string,\Ory\Client\Model\GenericUsage>**](GenericUsage.md) |  |
+**productionFeatures** | [**array<string,\Ory\Client\Model\Usage>**](Usage.md) |  |
+**stagingFeatures** | [**array<string,\Ory\Client\Model\Usage>**](Usage.md) |  |
 **version** | **int** | Version is the version of the plan. The combination of &#x60;name@version&#x60; must be unique. |
 **yearlyOnly** | **bool** | YearlyOnly is true if the plan only supports yearly billing. |
 

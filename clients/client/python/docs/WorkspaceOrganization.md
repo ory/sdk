@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **id** | **str** | The organization&#39;s ID. | 
 **label** | **str** | The organization&#39;s human-readable label. | 
 **providers** | **List[str]** |  | 
+**session_lifespan** | **str** | SessionLifespan overrides the project-level session lifespan for sessions issued for this organization. A Go duration string between 1m and 8760h. A null (or zero) value means the project default applies. | [optional] 
 
 ## Example
 

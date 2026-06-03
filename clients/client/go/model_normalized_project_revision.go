@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.40
+API version: v1.22.46
 Contact: support@ory.sh
 */
 
@@ -56,7 +56,7 @@ type NormalizedProjectRevision struct {
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
 	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 	HydraOauth2ClientCredentialsDefaultGrantAllowedScope *bool `json:"hydra_oauth2_client_credentials_default_grant_allowed_scope,omitempty"`
-	// Set to true if you want to exclude claim `nbf (not before)` part of access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
+	// Set to true if you want to omit the `nbf` (not valid before) claim in the access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
 	HydraOauth2ExcludeNotBeforeClaim *bool `json:"hydra_oauth2_exclude_not_before_claim,omitempty"`
 	// Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
 	HydraOauth2GrantJwtIatOptional *bool `json:"hydra_oauth2_grant_jwt_iat_optional,omitempty"`
@@ -64,8 +64,10 @@ type NormalizedProjectRevision struct {
 	HydraOauth2GrantJwtJtiOptional *bool `json:"hydra_oauth2_grant_jwt_jti_optional,omitempty"`
 	// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
 	HydraOauth2GrantJwtMaxTtl *string `json:"hydra_oauth2_grant_jwt_max_ttl,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
-	// Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to `null` or `\"0s\"`, the graceful refresh token rotation is disabled.  This governs the \"oauth2.grant.refresh_token_rotation_grace_period\" setting.
+	// Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to `null` or `\"0s\"`, the graceful refresh token rotation is disabled.  This governs the \"oauth2.grant.refresh_token.rotation_grace_period\" setting.
 	HydraOauth2GrantRefreshTokenRotationGracePeriod *string `json:"hydra_oauth2_grant_refresh_token_rotation_grace_period,omitempty"`
+	// Configures the OAuth2 Grant Refresh Token Rotation Grace Reuse Count.  The maximum number of times a refresh token can be reused within the grace period. If set to `null` or `0`, the limit is disabled.  This governs the \"oauth2.grant.refresh_token.rotation_grace_reuse_count\" setting.
+	HydraOauth2GrantRefreshTokenRotationGraceReuseCount *int64 `json:"hydra_oauth2_grant_refresh_token_rotation_grace_reuse_count,omitempty"`
 	// Set to false if you don't want to mirror custom claims under 'ext'.  This governs the \"oauth2.mirror_top_level_claims\" setting.
 	HydraOauth2MirrorTopLevelClaims *bool `json:"hydra_oauth2_mirror_top_level_claims,omitempty"`
 	// Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \"oauth2.pkce.enforced\" setting.
@@ -78,6 +80,8 @@ type NormalizedProjectRevision struct {
 	HydraOauth2RefreshTokenHook *string `json:"hydra_oauth2_refresh_token_hook,omitempty"`
 	// Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \"oauth2.token_hook.url\" setting.
 	HydraOauth2TokenHook *string `json:"hydra_oauth2_token_hook,omitempty"`
+	// Sets a per-project Access Token, Refresh Token, and Authorization Code prefix. The literal \"%s\" is replaced at issuance time with the token kind: \"at\" (access token), \"rt\" (refresh token), or \"ac\" (authorization code). For example, \"acme_%s_\" yields \"acme_at_…\", \"acme_rt_…\", and \"acme_ac_…\".  Must be a fmt.Sprintf template with exactly one \"%s\" substitution. The rendered prefix may contain only ASCII letters, digits, and underscores — no other \"%\" directives (\"%d\", \"%%\", positional or width-flagged verbs), no hyphens, dots, slashes, whitespace, quotes, or non-ASCII characters. Leave empty to keep the default \"ory_%s_\" prefix.  This is an Enterprise feature.  This governs the \"oauth2.token_prefix\" setting.
+	HydraOauth2TokenPrefix *string `json:"hydra_oauth2_token_prefix,omitempty"`
 	// The OpenID Connect Dynamic Client Registration specification has no concept of whitelisting OAuth 2.0 Scope. If you want to expose Dynamic Client Registration, you should set the default scope enabled for newly registered clients. Keep in mind that users can overwrite this default by setting the \"scope\" key in the registration payload, effectively disabling the concept of whitelisted scopes.  This governs the \"oidc.dynamic_client_registration.default_scope\" setting.
 	HydraOidcDynamicClientRegistrationDefaultScope []string `json:"hydra_oidc_dynamic_client_registration_default_scope,omitempty"`
 	// Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
@@ -1276,6 +1280,38 @@ func (o *NormalizedProjectRevision) SetHydraOauth2GrantRefreshTokenRotationGrace
 	o.HydraOauth2GrantRefreshTokenRotationGracePeriod = &v
 }
 
+// GetHydraOauth2GrantRefreshTokenRotationGraceReuseCount returns the HydraOauth2GrantRefreshTokenRotationGraceReuseCount field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2GrantRefreshTokenRotationGraceReuseCount() int64 {
+	if o == nil || IsNil(o.HydraOauth2GrantRefreshTokenRotationGraceReuseCount) {
+		var ret int64
+		return ret
+	}
+	return *o.HydraOauth2GrantRefreshTokenRotationGraceReuseCount
+}
+
+// GetHydraOauth2GrantRefreshTokenRotationGraceReuseCountOk returns a tuple with the HydraOauth2GrantRefreshTokenRotationGraceReuseCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2GrantRefreshTokenRotationGraceReuseCountOk() (*int64, bool) {
+	if o == nil || IsNil(o.HydraOauth2GrantRefreshTokenRotationGraceReuseCount) {
+		return nil, false
+	}
+	return o.HydraOauth2GrantRefreshTokenRotationGraceReuseCount, true
+}
+
+// HasHydraOauth2GrantRefreshTokenRotationGraceReuseCount returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2GrantRefreshTokenRotationGraceReuseCount() bool {
+	if o != nil && !IsNil(o.HydraOauth2GrantRefreshTokenRotationGraceReuseCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2GrantRefreshTokenRotationGraceReuseCount gets a reference to the given int64 and assigns it to the HydraOauth2GrantRefreshTokenRotationGraceReuseCount field.
+func (o *NormalizedProjectRevision) SetHydraOauth2GrantRefreshTokenRotationGraceReuseCount(v int64) {
+	o.HydraOauth2GrantRefreshTokenRotationGraceReuseCount = &v
+}
+
 // GetHydraOauth2MirrorTopLevelClaims returns the HydraOauth2MirrorTopLevelClaims field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetHydraOauth2MirrorTopLevelClaims() bool {
 	if o == nil || IsNil(o.HydraOauth2MirrorTopLevelClaims) {
@@ -1466,6 +1502,38 @@ func (o *NormalizedProjectRevision) HasHydraOauth2TokenHook() bool {
 // SetHydraOauth2TokenHook gets a reference to the given string and assigns it to the HydraOauth2TokenHook field.
 func (o *NormalizedProjectRevision) SetHydraOauth2TokenHook(v string) {
 	o.HydraOauth2TokenHook = &v
+}
+
+// GetHydraOauth2TokenPrefix returns the HydraOauth2TokenPrefix field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2TokenPrefix() string {
+	if o == nil || IsNil(o.HydraOauth2TokenPrefix) {
+		var ret string
+		return ret
+	}
+	return *o.HydraOauth2TokenPrefix
+}
+
+// GetHydraOauth2TokenPrefixOk returns a tuple with the HydraOauth2TokenPrefix field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2TokenPrefixOk() (*string, bool) {
+	if o == nil || IsNil(o.HydraOauth2TokenPrefix) {
+		return nil, false
+	}
+	return o.HydraOauth2TokenPrefix, true
+}
+
+// HasHydraOauth2TokenPrefix returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2TokenPrefix() bool {
+	if o != nil && !IsNil(o.HydraOauth2TokenPrefix) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2TokenPrefix gets a reference to the given string and assigns it to the HydraOauth2TokenPrefix field.
+func (o *NormalizedProjectRevision) SetHydraOauth2TokenPrefix(v string) {
+	o.HydraOauth2TokenPrefix = &v
 }
 
 // GetHydraOidcDynamicClientRegistrationDefaultScope returns the HydraOidcDynamicClientRegistrationDefaultScope field value if set, zero value otherwise.
@@ -8448,6 +8516,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HydraOauth2GrantRefreshTokenRotationGracePeriod) {
 		toSerialize["hydra_oauth2_grant_refresh_token_rotation_grace_period"] = o.HydraOauth2GrantRefreshTokenRotationGracePeriod
 	}
+	if !IsNil(o.HydraOauth2GrantRefreshTokenRotationGraceReuseCount) {
+		toSerialize["hydra_oauth2_grant_refresh_token_rotation_grace_reuse_count"] = o.HydraOauth2GrantRefreshTokenRotationGraceReuseCount
+	}
 	if !IsNil(o.HydraOauth2MirrorTopLevelClaims) {
 		toSerialize["hydra_oauth2_mirror_top_level_claims"] = o.HydraOauth2MirrorTopLevelClaims
 	}
@@ -8465,6 +8536,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.HydraOauth2TokenHook) {
 		toSerialize["hydra_oauth2_token_hook"] = o.HydraOauth2TokenHook
+	}
+	if !IsNil(o.HydraOauth2TokenPrefix) {
+		toSerialize["hydra_oauth2_token_prefix"] = o.HydraOauth2TokenPrefix
 	}
 	if !IsNil(o.HydraOidcDynamicClientRegistrationDefaultScope) {
 		toSerialize["hydra_oidc_dynamic_client_registration_default_scope"] = o.HydraOidcDynamicClientRegistrationDefaultScope
@@ -9177,12 +9251,14 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "hydra_oauth2_grant_jwt_jti_optional")
 		delete(additionalProperties, "hydra_oauth2_grant_jwt_max_ttl")
 		delete(additionalProperties, "hydra_oauth2_grant_refresh_token_rotation_grace_period")
+		delete(additionalProperties, "hydra_oauth2_grant_refresh_token_rotation_grace_reuse_count")
 		delete(additionalProperties, "hydra_oauth2_mirror_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_pkce_enforced")
 		delete(additionalProperties, "hydra_oauth2_pkce_enforced_for_public_clients")
 		delete(additionalProperties, "hydra_oauth2_preserve_ext_claims")
 		delete(additionalProperties, "hydra_oauth2_refresh_token_hook")
 		delete(additionalProperties, "hydra_oauth2_token_hook")
+		delete(additionalProperties, "hydra_oauth2_token_prefix")
 		delete(additionalProperties, "hydra_oidc_dynamic_client_registration_default_scope")
 		delete(additionalProperties, "hydra_oidc_dynamic_client_registration_enabled")
 		delete(additionalProperties, "hydra_oidc_subject_identifiers_pairwise_salt")

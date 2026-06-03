@@ -210,7 +210,6 @@ lib/ory/model/member_invite.ex
 lib/ory/model/message.ex
 lib/ory/model/message_dispatch.ex
 lib/ory/model/metrics_datapoint.ex
-lib/ory/model/money.ex
 lib/ory/model/namespace.ex
 lib/ory/model/needs_privileged_session_error.ex
 lib/ory/model/normalized_project.ex

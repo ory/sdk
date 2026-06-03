@@ -204,7 +204,6 @@ docs/Message.md
 docs/MessageDispatch.md
 docs/MetadataApi.md
 docs/MetricsDatapoint.md
-docs/Money.md
 docs/Namespace.md
 docs/NeedsPrivilegedSessionError.md
 docs/NormalizedProject.md
@@ -595,7 +594,6 @@ lib/ory-client/models/member_invite.rb
 lib/ory-client/models/message.rb
 lib/ory-client/models/message_dispatch.rb
 lib/ory-client/models/metrics_datapoint.rb
-lib/ory-client/models/money.rb
 lib/ory-client/models/namespace.rb
 lib/ory-client/models/needs_privileged_session_error.rb
 lib/ory-client/models/normalized_project.rb
@@ -975,7 +973,6 @@ spec/models/member_invite_spec.rb
 spec/models/message_dispatch_spec.rb
 spec/models/message_spec.rb
 spec/models/metrics_datapoint_spec.rb
-spec/models/money_spec.rb
 spec/models/namespace_spec.rb
 spec/models/needs_privileged_session_error_spec.rb
 spec/models/normalized_project_revision_courier_channel_spec.rb

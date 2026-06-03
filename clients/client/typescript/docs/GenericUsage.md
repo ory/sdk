@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**additional_price** | [**Money**](Money.md) |  | [default to undefined]
+**additional_price** | **string** |  | [default to undefined]
 **included_usage** | **number** | IncludedUsage is the number of included items. | [default to undefined]
 
 ## Example

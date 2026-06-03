@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GenericUsage** | [**GenericUsage**](GenericUsage.md) |  | [optional] [default to undefined]
+**additional_price** | **string** |  | [default to undefined]
+**included_usage** | **number** | IncludedUsage is the number of included items. | [default to undefined]
 
 ## Example
 
@@ -13,7 +14,8 @@ Name | Type | Description | Notes
 import { Usage } from '@ory/client';
 
 const instance: Usage = {
-    GenericUsage,
+    additional_price,
+    included_usage,
 };
 ```
 

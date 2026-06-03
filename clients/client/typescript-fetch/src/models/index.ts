@@ -190,7 +190,6 @@ export * from './MemberInvite';
 export * from './Message';
 export * from './MessageDispatch';
 export * from './MetricsDatapoint';
-export * from './Money';
 export * from './Namespace';
 export * from './NeedsPrivilegedSessionError';
 export * from './NormalizedProject';

@@ -1,4 +1,4 @@
-## @ory/client@v1.22.40
+## @ory/client@v1.22.46
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.40 --save
+npm install @ory/client@v1.22.46 --save
 ```
 
 _unPublished (not recommended):_
@@ -57,7 +57,6 @@ Class | Method | HTTP request | Description
 *APIKeysApi* | [**adminDeriveToken**](docs/APIKeysApi.md#adminderivetoken) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token
 *APIKeysApi* | [**adminGetImportedAPIKey**](docs/APIKeysApi.md#admingetimportedapikey) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key
 *APIKeysApi* | [**adminGetIssuedAPIKey**](docs/APIKeysApi.md#admingetissuedapikey) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key
-*APIKeysApi* | [**adminGetJWKS**](docs/APIKeysApi.md#admingetjwks) | **GET** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS
 *APIKeysApi* | [**adminImportAPIKey**](docs/APIKeysApi.md#adminimportapikey) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key
 *APIKeysApi* | [**adminIssueAPIKey**](docs/APIKeysApi.md#adminissueapikey) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key
 *APIKeysApi* | [**adminListImportedAPIKeys**](docs/APIKeysApi.md#adminlistimportedapikeys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys
@@ -67,6 +66,7 @@ Class | Method | HTTP request | Description
 *APIKeysApi* | [**adminUpdateImportedAPIKey**](docs/APIKeysApi.md#adminupdateimportedapikey) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key
 *APIKeysApi* | [**adminUpdateIssuedAPIKey**](docs/APIKeysApi.md#adminupdateissuedapikey) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key
 *APIKeysApi* | [**adminVerifyAPIKey**](docs/APIKeysApi.md#adminverifyapikey) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key
+*APIKeysApi* | [**getJWKS**](docs/APIKeysApi.md#getjwks) | **GET** /v2alpha1/derivedKeys/jwks.json | Get JWKS
 *APIKeysApi* | [**revokeAPIKey**](docs/APIKeysApi.md#revokeapikey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
 *CourierApi* | [**getCourierMessage**](docs/CourierApi.md#getcouriermessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/CourierApi.md#listcouriermessages) | **GET** /admin/courier/messages | List Messages
@@ -411,7 +411,6 @@ Class | Method | HTTP request | Description
  - [Message](docs/Message.md)
  - [MessageDispatch](docs/MessageDispatch.md)
  - [MetricsDatapoint](docs/MetricsDatapoint.md)
- - [Money](docs/Money.md)
  - [Namespace](docs/Namespace.md)
  - [NeedsPrivilegedSessionError](docs/NeedsPrivilegedSessionError.md)
  - [NormalizedProject](docs/NormalizedProject.md)

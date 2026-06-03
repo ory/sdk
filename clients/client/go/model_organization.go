@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.40
+API version: v1.22.46
 Contact: support@ory.sh
 */
 
@@ -31,6 +31,8 @@ type Organization struct {
 	Id string `json:"id"`
 	// The organization's human-readable label.
 	Label string `json:"label"`
+	// SessionLifespan overrides the project-level session lifespan for sessions issued for this organization. A Go duration string between 1m and 8760h. A null (or zero) value means the project default applies.
+	SessionLifespan *string `json:"session_lifespan,omitempty" validate:"regexp=^[0-9]+(s|m|h)$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -185,6 +187,38 @@ func (o *Organization) SetLabel(v string) {
 	o.Label = v
 }
 
+// GetSessionLifespan returns the SessionLifespan field value if set, zero value otherwise.
+func (o *Organization) GetSessionLifespan() string {
+	if o == nil || IsNil(o.SessionLifespan) {
+		var ret string
+		return ret
+	}
+	return *o.SessionLifespan
+}
+
+// GetSessionLifespanOk returns a tuple with the SessionLifespan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetSessionLifespanOk() (*string, bool) {
+	if o == nil || IsNil(o.SessionLifespan) {
+		return nil, false
+	}
+	return o.SessionLifespan, true
+}
+
+// HasSessionLifespan returns a boolean if a field has been set.
+func (o *Organization) HasSessionLifespan() bool {
+	if o != nil && !IsNil(o.SessionLifespan) {
+		return true
+	}
+
+	return false
+}
+
+// SetSessionLifespan gets a reference to the given string and assigns it to the SessionLifespan field.
+func (o *Organization) SetSessionLifespan(v string) {
+	o.SessionLifespan = &v
+}
+
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -202,6 +236,9 @@ func (o Organization) ToMap() (map[string]interface{}, error) {
 	toSerialize["domains"] = o.Domains
 	toSerialize["id"] = o.Id
 	toSerialize["label"] = o.Label
+	if !IsNil(o.SessionLifespan) {
+		toSerialize["session_lifespan"] = o.SessionLifespan
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -253,6 +290,7 @@ func (o *Organization) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "domains")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "session_lifespan")
 		o.AdditionalProperties = additionalProperties
 	}
 

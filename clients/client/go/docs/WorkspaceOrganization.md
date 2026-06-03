@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The organization&#39;s ID. | 
 **Label** | **string** | The organization&#39;s human-readable label. | 
 **Providers** | **[]string** |  | 
+**SessionLifespan** | Pointer to **string** | SessionLifespan overrides the project-level session lifespan for sessions issued for this organization. A Go duration string between 1m and 8760h. A null (or zero) value means the project default applies. | [optional] 
 
 ## Methods
 
@@ -180,6 +181,31 @@ and a boolean to check if the value has been set.
 
 SetProviders sets Providers field to given value.
 
+
+### GetSessionLifespan
+
+`func (o *WorkspaceOrganization) GetSessionLifespan() string`
+
+GetSessionLifespan returns the SessionLifespan field if non-nil, zero value otherwise.
+
+### GetSessionLifespanOk
+
+`func (o *WorkspaceOrganization) GetSessionLifespanOk() (*string, bool)`
+
+GetSessionLifespanOk returns a tuple with the SessionLifespan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSessionLifespan
+
+`func (o *WorkspaceOrganization) SetSessionLifespan(v string)`
+
+SetSessionLifespan sets SessionLifespan field to given value.
+
+### HasSessionLifespan
+
+`func (o *WorkspaceOrganization) HasSessionLifespan() bool`
+
+HasSessionLifespan returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

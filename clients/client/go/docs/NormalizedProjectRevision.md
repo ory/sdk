@@ -21,17 +21,19 @@ Name | Type | Description | Notes
 **EnableAxV2** | Pointer to **bool** | Whether the new account experience is enabled and reachable. This governs the \&quot;enable_ax_v2\&quot; setting. | [optional] 
 **HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** | A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.  This governs the \&quot;oauth2.allowed_top_level_claims\&quot; setting. | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
-**HydraOauth2ExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to exclude claim &#x60;nbf (not before)&#x60; part of access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
+**HydraOauth2ExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to omit the &#x60;nbf&#x60; (not valid before) claim in the access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtIatOptional** | Pointer to **bool** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtJtiOptional** | Pointer to **bool** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtMaxTtl** | Pointer to **string** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional] [default to "720h"]
-**HydraOauth2GrantRefreshTokenRotationGracePeriod** | Pointer to **string** | Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to &#x60;null&#x60; or &#x60;\&quot;0s\&quot;&#x60;, the graceful refresh token rotation is disabled.  This governs the \&quot;oauth2.grant.refresh_token_rotation_grace_period\&quot; setting. | [optional] 
+**HydraOauth2GrantRefreshTokenRotationGracePeriod** | Pointer to **string** | Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to &#x60;null&#x60; or &#x60;\&quot;0s\&quot;&#x60;, the graceful refresh token rotation is disabled.  This governs the \&quot;oauth2.grant.refresh_token.rotation_grace_period\&quot; setting. | [optional] 
+**HydraOauth2GrantRefreshTokenRotationGraceReuseCount** | Pointer to **int64** | Configures the OAuth2 Grant Refresh Token Rotation Grace Reuse Count.  The maximum number of times a refresh token can be reused within the grace period. If set to &#x60;null&#x60; or &#x60;0&#x60;, the limit is disabled.  This governs the \&quot;oauth2.grant.refresh_token.rotation_grace_reuse_count\&quot; setting. | [optional] 
 **HydraOauth2MirrorTopLevelClaims** | Pointer to **bool** | Set to false if you don&#39;t want to mirror custom claims under &#39;ext&#39;.  This governs the \&quot;oauth2.mirror_top_level_claims\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforced** | Pointer to **bool** | Configures whether PKCE should be enforced for all OAuth2 Clients.  This governs the \&quot;oauth2.pkce.enforced\&quot; setting. | [optional] 
 **HydraOauth2PkceEnforcedForPublicClients** | Pointer to **bool** | Configures whether PKCE should be enforced for OAuth2 Clients without a client secret (public clients).  This governs the \&quot;oauth2.pkce.enforced_for_public_clients\&quot; setting. | [optional] 
 **HydraOauth2PreserveExtClaims** | Pointer to **bool** | Set to true to keep custom claims that are not promoted to the top level in the &#39;ext&#39; claim. Only applies when mirror_top_level_claims is false.  This governs the \&quot;oauth2.preserve_ext_claims\&quot; setting. | [optional] 
 **HydraOauth2RefreshTokenHook** | Pointer to **string** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
 **HydraOauth2TokenHook** | Pointer to **string** | Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \&quot;oauth2.token_hook.url\&quot; setting. | [optional] 
+**HydraOauth2TokenPrefix** | Pointer to **string** | Sets a per-project Access Token, Refresh Token, and Authorization Code prefix. The literal \&quot;%s\&quot; is replaced at issuance time with the token kind: \&quot;at\&quot; (access token), \&quot;rt\&quot; (refresh token), or \&quot;ac\&quot; (authorization code). For example, \&quot;acme_%s_\&quot; yields \&quot;acme_at_…\&quot;, \&quot;acme_rt_…\&quot;, and \&quot;acme_ac_…\&quot;.  Must be a fmt.Sprintf template with exactly one \&quot;%s\&quot; substitution. The rendered prefix may contain only ASCII letters, digits, and underscores — no other \&quot;%\&quot; directives (\&quot;%d\&quot;, \&quot;%%\&quot;, positional or width-flagged verbs), no hyphens, dots, slashes, whitespace, quotes, or non-ASCII characters. Leave empty to keep the default \&quot;ory_%s_\&quot; prefix.  This is an Enterprise feature.  This governs the \&quot;oauth2.token_prefix\&quot; setting. | [optional] 
 **HydraOidcDynamicClientRegistrationDefaultScope** | Pointer to **[]string** | The OpenID Connect Dynamic Client Registration specification has no concept of whitelisting OAuth 2.0 Scope. If you want to expose Dynamic Client Registration, you should set the default scope enabled for newly registered clients. Keep in mind that users can overwrite this default by setting the \&quot;scope\&quot; key in the registration payload, effectively disabling the concept of whitelisted scopes.  This governs the \&quot;oidc.dynamic_client_registration.default_scope\&quot; setting. | [optional] 
 **HydraOidcDynamicClientRegistrationEnabled** | Pointer to **bool** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] 
 **HydraOidcSubjectIdentifiersPairwiseSalt** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] 
@@ -818,6 +820,31 @@ SetHydraOauth2GrantRefreshTokenRotationGracePeriod sets HydraOauth2GrantRefreshT
 
 HasHydraOauth2GrantRefreshTokenRotationGracePeriod returns a boolean if a field has been set.
 
+### GetHydraOauth2GrantRefreshTokenRotationGraceReuseCount
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2GrantRefreshTokenRotationGraceReuseCount() int64`
+
+GetHydraOauth2GrantRefreshTokenRotationGraceReuseCount returns the HydraOauth2GrantRefreshTokenRotationGraceReuseCount field if non-nil, zero value otherwise.
+
+### GetHydraOauth2GrantRefreshTokenRotationGraceReuseCountOk
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2GrantRefreshTokenRotationGraceReuseCountOk() (*int64, bool)`
+
+GetHydraOauth2GrantRefreshTokenRotationGraceReuseCountOk returns a tuple with the HydraOauth2GrantRefreshTokenRotationGraceReuseCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2GrantRefreshTokenRotationGraceReuseCount
+
+`func (o *NormalizedProjectRevision) SetHydraOauth2GrantRefreshTokenRotationGraceReuseCount(v int64)`
+
+SetHydraOauth2GrantRefreshTokenRotationGraceReuseCount sets HydraOauth2GrantRefreshTokenRotationGraceReuseCount field to given value.
+
+### HasHydraOauth2GrantRefreshTokenRotationGraceReuseCount
+
+`func (o *NormalizedProjectRevision) HasHydraOauth2GrantRefreshTokenRotationGraceReuseCount() bool`
+
+HasHydraOauth2GrantRefreshTokenRotationGraceReuseCount returns a boolean if a field has been set.
+
 ### GetHydraOauth2MirrorTopLevelClaims
 
 `func (o *NormalizedProjectRevision) GetHydraOauth2MirrorTopLevelClaims() bool`
@@ -967,6 +994,31 @@ SetHydraOauth2TokenHook sets HydraOauth2TokenHook field to given value.
 `func (o *NormalizedProjectRevision) HasHydraOauth2TokenHook() bool`
 
 HasHydraOauth2TokenHook returns a boolean if a field has been set.
+
+### GetHydraOauth2TokenPrefix
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2TokenPrefix() string`
+
+GetHydraOauth2TokenPrefix returns the HydraOauth2TokenPrefix field if non-nil, zero value otherwise.
+
+### GetHydraOauth2TokenPrefixOk
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2TokenPrefixOk() (*string, bool)`
+
+GetHydraOauth2TokenPrefixOk returns a tuple with the HydraOauth2TokenPrefix field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2TokenPrefix
+
+`func (o *NormalizedProjectRevision) SetHydraOauth2TokenPrefix(v string)`
+
+SetHydraOauth2TokenPrefix sets HydraOauth2TokenPrefix field to given value.
+
+### HasHydraOauth2TokenPrefix
+
+`func (o *NormalizedProjectRevision) HasHydraOauth2TokenPrefix() bool`
+
+HasHydraOauth2TokenPrefix returns a boolean if a field has been set.
 
 ### GetHydraOidcDynamicClientRegistrationDefaultScope
 

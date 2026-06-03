@@ -10,7 +10,6 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 |[**adminDeriveToken**](#adminderivetoken) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token|
 |[**adminGetImportedAPIKey**](#admingetimportedapikey) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key|
 |[**adminGetIssuedAPIKey**](#admingetissuedapikey) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key|
-|[**adminGetJWKS**](#admingetjwks) | **GET** /v2alpha1/admin/derivedKeys/jwks.json | Get JWKS|
 |[**adminImportAPIKey**](#adminimportapikey) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key|
 |[**adminIssueAPIKey**](#adminissueapikey) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key|
 |[**adminListImportedAPIKeys**](#adminlistimportedapikeys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys|
@@ -20,6 +19,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 |[**adminUpdateImportedAPIKey**](#adminupdateimportedapikey) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key|
 |[**adminUpdateIssuedAPIKey**](#adminupdateissuedapikey) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key|
 |[**adminVerifyAPIKey**](#adminverifyapikey) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key|
+|[**getJWKS**](#getjwks) | **GET** /v2alpha1/derivedKeys/jwks.json | Get JWKS|
 |[**revokeAPIKey**](#revokeapikey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)|
 
 # **adminBatchImportAPIKeys**
@@ -324,51 +324,6 @@ const { status, data } = await apiInstance.adminGetIssuedAPIKey(
 ### Return type
 
 **IssuedAPIKey**
-
-### Authorization
-
-[oryAccessToken](../README.md#oryAccessToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | A successful response. |  -  |
-|**0** | An unexpected error response. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **adminGetJWKS**
-> GetJWKSResponse adminGetJWKS()
-
-Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  ```http GET /v2alpha1/admin/derivedKeys/jwks.json ```
-
-### Example
-
-```typescript
-import {
-    APIKeysApi,
-    Configuration
-} from '@ory/client';
-
-const configuration = new Configuration();
-const apiInstance = new APIKeysApi(configuration);
-
-const { status, data } = await apiInstance.adminGetJWKS();
-```
-
-### Parameters
-This endpoint does not have any parameters.
-
-
-### Return type
-
-**GetJWKSResponse**
 
 ### Authorization
 
@@ -888,6 +843,51 @@ const { status, data } = await apiInstance.adminVerifyAPIKey(
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | A successful response. |  -  |
+|**0** | An unexpected error response. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getJWKS**
+> GetJWKSResponse getJWKS()
+
+Returns the JSON Web Key Set for token verification. Provides the public keys needed to verify JWT tokens issued by this service. Keys are loaded from configuration (file://, https://, or base64:// URIs). Follows the JWKS standard (RFC 7517).  ```http GET /v2alpha1/derivedKeys/jwks.json ```
+
+### Example
+
+```typescript
+import {
+    APIKeysApi,
+    Configuration
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new APIKeysApi(configuration);
+
+const { status, data } = await apiInstance.getJWKS();
+```
+
+### Parameters
+This endpoint does not have any parameters.
+
+
+### Return type
+
+**GetJWKSResponse**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 

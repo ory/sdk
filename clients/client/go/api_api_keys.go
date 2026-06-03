@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.40
+API version: v1.22.46
 Contact: support@ory.sh
 */
 
@@ -165,27 +165,6 @@ GET /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ
 	// AdminGetIssuedAPIKeyExecute executes the request
 	//  @return IssuedAPIKey
 	AdminGetIssuedAPIKeyExecute(r APIKeysAPIAdminGetIssuedAPIKeyRequest) (*IssuedAPIKey, *http.Response, error)
-
-	/*
-	AdminGetJWKS Get JWKS
-
-	Returns the JSON Web Key Set for token verification. Provides the public
-keys needed to verify JWT tokens issued by this service. Keys are loaded
-from configuration (file://, https://, or base64:// URIs). Follows the
-JWKS standard (RFC 7517).
-
-```http
-GET /v2alpha1/admin/derivedKeys/jwks.json
-```
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return APIKeysAPIAdminGetJWKSRequest
-	*/
-	AdminGetJWKS(ctx context.Context) APIKeysAPIAdminGetJWKSRequest
-
-	// AdminGetJWKSExecute executes the request
-	//  @return GetJWKSResponse
-	AdminGetJWKSExecute(r APIKeysAPIAdminGetJWKSRequest) (*GetJWKSResponse, *http.Response, error)
 
 	/*
 	AdminImportAPIKey Import API Key
@@ -421,6 +400,27 @@ POST /v2alpha1/admin/apiKeys:verify
 	// AdminVerifyAPIKeyExecute executes the request
 	//  @return VerifyAPIKeyResponse
 	AdminVerifyAPIKeyExecute(r APIKeysAPIAdminVerifyAPIKeyRequest) (*VerifyAPIKeyResponse, *http.Response, error)
+
+	/*
+	GetJWKS Get JWKS
+
+	Returns the JSON Web Key Set for token verification. Provides the public
+keys needed to verify JWT tokens issued by this service. Keys are loaded
+from configuration (file://, https://, or base64:// URIs). Follows the
+JWKS standard (RFC 7517).
+
+```http
+GET /v2alpha1/derivedKeys/jwks.json
+```
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return APIKeysAPIGetJWKSRequest
+	*/
+	GetJWKS(ctx context.Context) APIKeysAPIGetJWKSRequest
+
+	// GetJWKSExecute executes the request
+	//  @return GetJWKSResponse
+	GetJWKSExecute(r APIKeysAPIGetJWKSRequest) (*GetJWKSResponse, *http.Response, error)
 
 	/*
 	RevokeAPIKey Revoke API Key (self-service)
@@ -1155,120 +1155,6 @@ func (a *APIKeysAPIService) AdminGetIssuedAPIKeyExecute(r APIKeysAPIAdminGetIssu
 
 	localVarPath := localBasePath + "/v2alpha1/admin/issuedApiKeys/{key_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"key_id"+"}", url.PathEscape(parameterValueToString(r.keyId, "keyId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type APIKeysAPIAdminGetJWKSRequest struct {
-	ctx context.Context
-	ApiService APIKeysAPI
-}
-
-func (r APIKeysAPIAdminGetJWKSRequest) Execute() (*GetJWKSResponse, *http.Response, error) {
-	return r.ApiService.AdminGetJWKSExecute(r)
-}
-
-/*
-AdminGetJWKS Get JWKS
-
-Returns the JSON Web Key Set for token verification. Provides the public
-keys needed to verify JWT tokens issued by this service. Keys are loaded
-from configuration (file://, https://, or base64:// URIs). Follows the
-JWKS standard (RFC 7517).
-
-```http
-GET /v2alpha1/admin/derivedKeys/jwks.json
-```
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return APIKeysAPIAdminGetJWKSRequest
-*/
-func (a *APIKeysAPIService) AdminGetJWKS(ctx context.Context) APIKeysAPIAdminGetJWKSRequest {
-	return APIKeysAPIAdminGetJWKSRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return GetJWKSResponse
-func (a *APIKeysAPIService) AdminGetJWKSExecute(r APIKeysAPIAdminGetJWKSRequest) (*GetJWKSResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetJWKSResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "APIKeysAPIService.AdminGetJWKS")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v2alpha1/admin/derivedKeys/jwks.json"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2553,6 +2439,120 @@ func (a *APIKeysAPIService) AdminVerifyAPIKeyExecute(r APIKeysAPIAdminVerifyAPIK
 	}
 	// body params
 	localVarPostBody = r.verifyAPIKeyRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v Status
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type APIKeysAPIGetJWKSRequest struct {
+	ctx context.Context
+	ApiService APIKeysAPI
+}
+
+func (r APIKeysAPIGetJWKSRequest) Execute() (*GetJWKSResponse, *http.Response, error) {
+	return r.ApiService.GetJWKSExecute(r)
+}
+
+/*
+GetJWKS Get JWKS
+
+Returns the JSON Web Key Set for token verification. Provides the public
+keys needed to verify JWT tokens issued by this service. Keys are loaded
+from configuration (file://, https://, or base64:// URIs). Follows the
+JWKS standard (RFC 7517).
+
+```http
+GET /v2alpha1/derivedKeys/jwks.json
+```
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return APIKeysAPIGetJWKSRequest
+*/
+func (a *APIKeysAPIService) GetJWKS(ctx context.Context) APIKeysAPIGetJWKSRequest {
+	return APIKeysAPIGetJWKSRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetJWKSResponse
+func (a *APIKeysAPIService) GetJWKSExecute(r APIKeysAPIGetJWKSRequest) (*GetJWKSResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetJWKSResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "APIKeysAPIService.GetJWKS")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2alpha1/derivedKeys/jwks.json"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
