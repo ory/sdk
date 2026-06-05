@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -15,38 +15,38 @@ import (
 	"encoding/json"
 )
 
-// checks if the BatchVerifyAPIKeysRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BatchVerifyAPIKeysRequest{}
+// checks if the BatchVerifyApiKeysRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BatchVerifyApiKeysRequest{}
 
-// BatchVerifyAPIKeysRequest struct for BatchVerifyAPIKeysRequest
-type BatchVerifyAPIKeysRequest struct {
-	Requests []VerifyAPIKeyRequest `json:"requests,omitempty"`
+// BatchVerifyApiKeysRequest struct for BatchVerifyApiKeysRequest
+type BatchVerifyApiKeysRequest struct {
+	Requests []VerifyApiKeyRequest `json:"requests,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _BatchVerifyAPIKeysRequest BatchVerifyAPIKeysRequest
+type _BatchVerifyApiKeysRequest BatchVerifyApiKeysRequest
 
-// NewBatchVerifyAPIKeysRequest instantiates a new BatchVerifyAPIKeysRequest object
+// NewBatchVerifyApiKeysRequest instantiates a new BatchVerifyApiKeysRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBatchVerifyAPIKeysRequest() *BatchVerifyAPIKeysRequest {
-	this := BatchVerifyAPIKeysRequest{}
+func NewBatchVerifyApiKeysRequest() *BatchVerifyApiKeysRequest {
+	this := BatchVerifyApiKeysRequest{}
 	return &this
 }
 
-// NewBatchVerifyAPIKeysRequestWithDefaults instantiates a new BatchVerifyAPIKeysRequest object
+// NewBatchVerifyApiKeysRequestWithDefaults instantiates a new BatchVerifyApiKeysRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBatchVerifyAPIKeysRequestWithDefaults() *BatchVerifyAPIKeysRequest {
-	this := BatchVerifyAPIKeysRequest{}
+func NewBatchVerifyApiKeysRequestWithDefaults() *BatchVerifyApiKeysRequest {
+	this := BatchVerifyApiKeysRequest{}
 	return &this
 }
 
 // GetRequests returns the Requests field value if set, zero value otherwise.
-func (o *BatchVerifyAPIKeysRequest) GetRequests() []VerifyAPIKeyRequest {
+func (o *BatchVerifyApiKeysRequest) GetRequests() []VerifyApiKeyRequest {
 	if o == nil || IsNil(o.Requests) {
-		var ret []VerifyAPIKeyRequest
+		var ret []VerifyApiKeyRequest
 		return ret
 	}
 	return o.Requests
@@ -54,7 +54,7 @@ func (o *BatchVerifyAPIKeysRequest) GetRequests() []VerifyAPIKeyRequest {
 
 // GetRequestsOk returns a tuple with the Requests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchVerifyAPIKeysRequest) GetRequestsOk() ([]VerifyAPIKeyRequest, bool) {
+func (o *BatchVerifyApiKeysRequest) GetRequestsOk() ([]VerifyApiKeyRequest, bool) {
 	if o == nil || IsNil(o.Requests) {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *BatchVerifyAPIKeysRequest) GetRequestsOk() ([]VerifyAPIKeyRequest, bool
 }
 
 // HasRequests returns a boolean if a field has been set.
-func (o *BatchVerifyAPIKeysRequest) HasRequests() bool {
+func (o *BatchVerifyApiKeysRequest) HasRequests() bool {
 	if o != nil && !IsNil(o.Requests) {
 		return true
 	}
@@ -70,12 +70,12 @@ func (o *BatchVerifyAPIKeysRequest) HasRequests() bool {
 	return false
 }
 
-// SetRequests gets a reference to the given []VerifyAPIKeyRequest and assigns it to the Requests field.
-func (o *BatchVerifyAPIKeysRequest) SetRequests(v []VerifyAPIKeyRequest) {
+// SetRequests gets a reference to the given []VerifyApiKeyRequest and assigns it to the Requests field.
+func (o *BatchVerifyApiKeysRequest) SetRequests(v []VerifyApiKeyRequest) {
 	o.Requests = v
 }
 
-func (o BatchVerifyAPIKeysRequest) MarshalJSON() ([]byte, error) {
+func (o BatchVerifyApiKeysRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -83,7 +83,7 @@ func (o BatchVerifyAPIKeysRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BatchVerifyAPIKeysRequest) ToMap() (map[string]interface{}, error) {
+func (o BatchVerifyApiKeysRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Requests) {
 		toSerialize["requests"] = o.Requests
@@ -96,16 +96,16 @@ func (o BatchVerifyAPIKeysRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BatchVerifyAPIKeysRequest) UnmarshalJSON(data []byte) (err error) {
-	varBatchVerifyAPIKeysRequest := _BatchVerifyAPIKeysRequest{}
+func (o *BatchVerifyApiKeysRequest) UnmarshalJSON(data []byte) (err error) {
+	varBatchVerifyApiKeysRequest := _BatchVerifyApiKeysRequest{}
 
-	err = json.Unmarshal(data, &varBatchVerifyAPIKeysRequest)
+	err = json.Unmarshal(data, &varBatchVerifyApiKeysRequest)
 
 	if err != nil {
 		return err
 	}
 
-	*o = BatchVerifyAPIKeysRequest(varBatchVerifyAPIKeysRequest)
+	*o = BatchVerifyApiKeysRequest(varBatchVerifyApiKeysRequest)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -117,38 +117,38 @@ func (o *BatchVerifyAPIKeysRequest) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableBatchVerifyAPIKeysRequest struct {
-	value *BatchVerifyAPIKeysRequest
+type NullableBatchVerifyApiKeysRequest struct {
+	value *BatchVerifyApiKeysRequest
 	isSet bool
 }
 
-func (v NullableBatchVerifyAPIKeysRequest) Get() *BatchVerifyAPIKeysRequest {
+func (v NullableBatchVerifyApiKeysRequest) Get() *BatchVerifyApiKeysRequest {
 	return v.value
 }
 
-func (v *NullableBatchVerifyAPIKeysRequest) Set(val *BatchVerifyAPIKeysRequest) {
+func (v *NullableBatchVerifyApiKeysRequest) Set(val *BatchVerifyApiKeysRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBatchVerifyAPIKeysRequest) IsSet() bool {
+func (v NullableBatchVerifyApiKeysRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBatchVerifyAPIKeysRequest) Unset() {
+func (v *NullableBatchVerifyApiKeysRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBatchVerifyAPIKeysRequest(val *BatchVerifyAPIKeysRequest) *NullableBatchVerifyAPIKeysRequest {
-	return &NullableBatchVerifyAPIKeysRequest{value: val, isSet: true}
+func NewNullableBatchVerifyApiKeysRequest(val *BatchVerifyApiKeysRequest) *NullableBatchVerifyApiKeysRequest {
+	return &NullableBatchVerifyApiKeysRequest{value: val, isSet: true}
 }
 
-func (v NullableBatchVerifyAPIKeysRequest) MarshalJSON() ([]byte, error) {
+func (v NullableBatchVerifyApiKeysRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBatchVerifyAPIKeysRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableBatchVerifyApiKeysRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -207,6 +207,7 @@
 | **kratos_selfservice_methods_code_mfa_enabled** | **Boolean** | Configures whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_passwordless_enabled** | **Boolean** | Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_passwordless_login_fallback_enabled** | **Boolean** | This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \&quot;selfservice.methods.code.passwordless_login_fallback_enabled\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_deviceauthn_enabled** | **Boolean** | Configures whether Ory Kratos Device authentication is enabled  This governs the \&quot;selfservice.methods.deviceauthn.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_link_config_base_url** | **String** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_link_config_lifespan** | **String** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_link_enabled** | **Boolean** | Configures whether Ory Kratos Link Method is enabled  This governs the \&quot;selfservice.methods.link.enabled\&quot; setting. | [optional] |
@@ -251,6 +252,24 @@
 | **serve_public_cors_allowed_origins** | **Array&lt;String&gt;** | Configures the CORS Allowed Origins on public APIs  This governs the \&quot;serve.public.cors.allowed_origins\&quot; setting. | [optional] |
 | **serve_public_cors_enabled** | **Boolean** | Enable CORS headers on all public APIs  This governs the \&quot;serve.public.cors.enabled\&quot; setting. | [optional] |
 | **strict_security** | **Boolean** | Whether the project should employ strict security measures. Setting this to true is recommended for going into production. | [optional] |
+| **talos_cache_enabled** | **Boolean** | Talos cache enabled.  When true, API key verification results are cached. Revoked keys may be accepted until the cached entry expires. When false, every verification reads the database and revocations take effect immediately. | [optional] |
+| **talos_cache_ttl** | **String** | Talos cache TTL controls how long API key verification results are cached. | [optional] |
+| **talos_credentials_api_keys_default_ttl** | **String** | Talos API keys default TTL. | [optional] |
+| **talos_credentials_api_keys_max_ttl** | **String** | Talos API keys max TTL. | [optional] |
+| **talos_credentials_api_keys_prefix_current** | **String** | Talos API keys prefix (current). | [optional] |
+| **talos_credentials_api_keys_prefix_public_current** | **String** | Talos API keys public prefix (current). | [optional] |
+| **talos_credentials_api_keys_prefix_public_retired** | **Array&lt;String&gt;** | Talos API keys public prefix (retired).  Previously active public API key prefixes kept for verification of outstanding tokens. The first element of this list was the most recently retired active prefix. | [optional] |
+| **talos_credentials_api_keys_prefix_retired** | **Array&lt;String&gt;** | Talos API keys prefix (retired).  Previously active API key prefixes kept for verification of outstanding tokens. The first element of this list was the most recently retired active prefix. | [optional] |
+| **talos_credentials_derived_tokens_default_ttl** | **String** | Talos derived tokens default TTL (applies to both JWT and macaroon tokens). | [optional] |
+| **talos_credentials_derived_tokens_jwt_signing_key_id** | **String** | Talos derived tokens JWT signing key ID (kid). | [optional] |
+| **talos_credentials_derived_tokens_jwt_signing_keys_urls** | **Array&lt;String&gt;** | Talos derived tokens JWT signing key URLs. | [optional] |
+| **talos_credentials_derived_tokens_macaroon_prefix_current** | **String** | Talos derived tokens macaroon prefix (current). | [optional] |
+| **talos_credentials_derived_tokens_macaroon_prefix_retired** | **Array&lt;String&gt;** | Talos derived tokens macaroon prefix (retired).  Previously active macaroon prefixes kept for verification of outstanding tokens. The first element of this list was the most recently retired active prefix. | [optional] |
+| **talos_credentials_issuer** | **String** | Talos credentials issuer URL. | [optional] |
+| **talos_credentials_issuer_retired** | **Array&lt;String&gt;** | Talos credentials retired issuer URLs.  Previously active issuer URLs kept for verification of outstanding tokens. Tokens signed with these issuers remain valid; new tokens use the current issuer. | [optional] |
+| **talos_rate_limit_enabled** | **Boolean** | Talos rate limit enabled.  When true, server-side rate limiting is enforced for API key verifications. | [optional] |
+| **talos_secrets_hmac_current** | **String** | TalosSecretsHMACCurrent stores the current HMAC symmetric key as a plain secret string. Application-layer encryption is handled upstream; SanitizeModel (MarshalJSON) redacts this field from API responses. | [optional] |
+| **talos_secrets_hmac_retired** | **Array&lt;String&gt;** | TalosSecretsHMACRetired stores previously active HMAC symmetric keys as a JSON array of plain secret strings. Application-layer encryption is handled upstream; SanitizeModel (MarshalJSON) redacts this field from API responses. The verifier tries all retired secrets when the current key does not produce a matching HMAC. | [optional] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
 | **workspace_id** | **String** |  | [optional] |
 
@@ -463,6 +482,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_selfservice_methods_code_mfa_enabled: null,
   kratos_selfservice_methods_code_passwordless_enabled: null,
   kratos_selfservice_methods_code_passwordless_login_fallback_enabled: null,
+  kratos_selfservice_methods_deviceauthn_enabled: null,
   kratos_selfservice_methods_link_config_base_url: null,
   kratos_selfservice_methods_link_config_lifespan: null,
   kratos_selfservice_methods_link_enabled: null,
@@ -507,6 +527,24 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   serve_public_cors_allowed_origins: null,
   serve_public_cors_enabled: null,
   strict_security: null,
+  talos_cache_enabled: null,
+  talos_cache_ttl: 5m,
+  talos_credentials_api_keys_default_ttl: 1h,
+  talos_credentials_api_keys_max_ttl: 24h,
+  talos_credentials_api_keys_prefix_current: null,
+  talos_credentials_api_keys_prefix_public_current: null,
+  talos_credentials_api_keys_prefix_public_retired: null,
+  talos_credentials_api_keys_prefix_retired: null,
+  talos_credentials_derived_tokens_default_ttl: 1h,
+  talos_credentials_derived_tokens_jwt_signing_key_id: null,
+  talos_credentials_derived_tokens_jwt_signing_keys_urls: null,
+  talos_credentials_derived_tokens_macaroon_prefix_current: null,
+  talos_credentials_derived_tokens_macaroon_prefix_retired: null,
+  talos_credentials_issuer: null,
+  talos_credentials_issuer_retired: null,
+  talos_rate_limit_enabled: null,
+  talos_secrets_hmac_current: null,
+  talos_secrets_hmac_retired: null,
   updated_at: null,
   workspace_id: null
 )

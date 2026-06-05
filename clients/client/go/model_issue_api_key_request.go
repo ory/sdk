@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the IssueAPIKeyRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &IssueAPIKeyRequest{}
+// checks if the IssueApiKeyRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IssueApiKeyRequest{}
 
-// IssueAPIKeyRequest struct for IssueAPIKeyRequest
-type IssueAPIKeyRequest struct {
+// IssueApiKeyRequest struct for IssueApiKeyRequest
+type IssueApiKeyRequest struct {
 	ActorId *string `json:"actor_id,omitempty"`
 	IpRestriction *IPRestriction `json:"ip_restriction,omitempty"`
 	// metadata is a free-form JSON object for caller-defined attributes (e.g., source, environment, tags). Values may be strings, numbers, booleans, arrays, objects, or null. Total serialized size is capped at 4KB. AIP-148 metadata field.
@@ -34,31 +34,31 @@ type IssueAPIKeyRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _IssueAPIKeyRequest IssueAPIKeyRequest
+type _IssueApiKeyRequest IssueApiKeyRequest
 
-// NewIssueAPIKeyRequest instantiates a new IssueAPIKeyRequest object
+// NewIssueApiKeyRequest instantiates a new IssueApiKeyRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIssueAPIKeyRequest() *IssueAPIKeyRequest {
-	this := IssueAPIKeyRequest{}
+func NewIssueApiKeyRequest() *IssueApiKeyRequest {
+	this := IssueApiKeyRequest{}
 	var visibility KeyVisibility = KEYVISIBILITY_KEY_VISIBILITY_UNSPECIFIED
 	this.Visibility = &visibility
 	return &this
 }
 
-// NewIssueAPIKeyRequestWithDefaults instantiates a new IssueAPIKeyRequest object
+// NewIssueApiKeyRequestWithDefaults instantiates a new IssueApiKeyRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIssueAPIKeyRequestWithDefaults() *IssueAPIKeyRequest {
-	this := IssueAPIKeyRequest{}
+func NewIssueApiKeyRequestWithDefaults() *IssueApiKeyRequest {
+	this := IssueApiKeyRequest{}
 	var visibility KeyVisibility = KEYVISIBILITY_KEY_VISIBILITY_UNSPECIFIED
 	this.Visibility = &visibility
 	return &this
 }
 
 // GetActorId returns the ActorId field value if set, zero value otherwise.
-func (o *IssueAPIKeyRequest) GetActorId() string {
+func (o *IssueApiKeyRequest) GetActorId() string {
 	if o == nil || IsNil(o.ActorId) {
 		var ret string
 		return ret
@@ -68,7 +68,7 @@ func (o *IssueAPIKeyRequest) GetActorId() string {
 
 // GetActorIdOk returns a tuple with the ActorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueAPIKeyRequest) GetActorIdOk() (*string, bool) {
+func (o *IssueApiKeyRequest) GetActorIdOk() (*string, bool) {
 	if o == nil || IsNil(o.ActorId) {
 		return nil, false
 	}
@@ -76,7 +76,7 @@ func (o *IssueAPIKeyRequest) GetActorIdOk() (*string, bool) {
 }
 
 // HasActorId returns a boolean if a field has been set.
-func (o *IssueAPIKeyRequest) HasActorId() bool {
+func (o *IssueApiKeyRequest) HasActorId() bool {
 	if o != nil && !IsNil(o.ActorId) {
 		return true
 	}
@@ -85,12 +85,12 @@ func (o *IssueAPIKeyRequest) HasActorId() bool {
 }
 
 // SetActorId gets a reference to the given string and assigns it to the ActorId field.
-func (o *IssueAPIKeyRequest) SetActorId(v string) {
+func (o *IssueApiKeyRequest) SetActorId(v string) {
 	o.ActorId = &v
 }
 
 // GetIpRestriction returns the IpRestriction field value if set, zero value otherwise.
-func (o *IssueAPIKeyRequest) GetIpRestriction() IPRestriction {
+func (o *IssueApiKeyRequest) GetIpRestriction() IPRestriction {
 	if o == nil || IsNil(o.IpRestriction) {
 		var ret IPRestriction
 		return ret
@@ -100,7 +100,7 @@ func (o *IssueAPIKeyRequest) GetIpRestriction() IPRestriction {
 
 // GetIpRestrictionOk returns a tuple with the IpRestriction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueAPIKeyRequest) GetIpRestrictionOk() (*IPRestriction, bool) {
+func (o *IssueApiKeyRequest) GetIpRestrictionOk() (*IPRestriction, bool) {
 	if o == nil || IsNil(o.IpRestriction) {
 		return nil, false
 	}
@@ -108,7 +108,7 @@ func (o *IssueAPIKeyRequest) GetIpRestrictionOk() (*IPRestriction, bool) {
 }
 
 // HasIpRestriction returns a boolean if a field has been set.
-func (o *IssueAPIKeyRequest) HasIpRestriction() bool {
+func (o *IssueApiKeyRequest) HasIpRestriction() bool {
 	if o != nil && !IsNil(o.IpRestriction) {
 		return true
 	}
@@ -117,12 +117,12 @@ func (o *IssueAPIKeyRequest) HasIpRestriction() bool {
 }
 
 // SetIpRestriction gets a reference to the given IPRestriction and assigns it to the IpRestriction field.
-func (o *IssueAPIKeyRequest) SetIpRestriction(v IPRestriction) {
+func (o *IssueApiKeyRequest) SetIpRestriction(v IPRestriction) {
 	o.IpRestriction = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *IssueAPIKeyRequest) GetMetadata() map[string]interface{} {
+func (o *IssueApiKeyRequest) GetMetadata() map[string]interface{} {
 	if o == nil || IsNil(o.Metadata) {
 		var ret map[string]interface{}
 		return ret
@@ -132,7 +132,7 @@ func (o *IssueAPIKeyRequest) GetMetadata() map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueAPIKeyRequest) GetMetadataOk() (map[string]interface{}, bool) {
+func (o *IssueApiKeyRequest) GetMetadataOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Metadata) {
 		return map[string]interface{}{}, false
 	}
@@ -140,7 +140,7 @@ func (o *IssueAPIKeyRequest) GetMetadataOk() (map[string]interface{}, bool) {
 }
 
 // HasMetadata returns a boolean if a field has been set.
-func (o *IssueAPIKeyRequest) HasMetadata() bool {
+func (o *IssueApiKeyRequest) HasMetadata() bool {
 	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
@@ -149,12 +149,12 @@ func (o *IssueAPIKeyRequest) HasMetadata() bool {
 }
 
 // SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
-func (o *IssueAPIKeyRequest) SetMetadata(v map[string]interface{}) {
+func (o *IssueApiKeyRequest) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *IssueAPIKeyRequest) GetName() string {
+func (o *IssueApiKeyRequest) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -164,7 +164,7 @@ func (o *IssueAPIKeyRequest) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueAPIKeyRequest) GetNameOk() (*string, bool) {
+func (o *IssueApiKeyRequest) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -172,7 +172,7 @@ func (o *IssueAPIKeyRequest) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *IssueAPIKeyRequest) HasName() bool {
+func (o *IssueApiKeyRequest) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -181,12 +181,12 @@ func (o *IssueAPIKeyRequest) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *IssueAPIKeyRequest) SetName(v string) {
+func (o *IssueApiKeyRequest) SetName(v string) {
 	o.Name = &v
 }
 
 // GetRateLimitPolicy returns the RateLimitPolicy field value if set, zero value otherwise.
-func (o *IssueAPIKeyRequest) GetRateLimitPolicy() RateLimitPolicy {
+func (o *IssueApiKeyRequest) GetRateLimitPolicy() RateLimitPolicy {
 	if o == nil || IsNil(o.RateLimitPolicy) {
 		var ret RateLimitPolicy
 		return ret
@@ -196,7 +196,7 @@ func (o *IssueAPIKeyRequest) GetRateLimitPolicy() RateLimitPolicy {
 
 // GetRateLimitPolicyOk returns a tuple with the RateLimitPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueAPIKeyRequest) GetRateLimitPolicyOk() (*RateLimitPolicy, bool) {
+func (o *IssueApiKeyRequest) GetRateLimitPolicyOk() (*RateLimitPolicy, bool) {
 	if o == nil || IsNil(o.RateLimitPolicy) {
 		return nil, false
 	}
@@ -204,7 +204,7 @@ func (o *IssueAPIKeyRequest) GetRateLimitPolicyOk() (*RateLimitPolicy, bool) {
 }
 
 // HasRateLimitPolicy returns a boolean if a field has been set.
-func (o *IssueAPIKeyRequest) HasRateLimitPolicy() bool {
+func (o *IssueApiKeyRequest) HasRateLimitPolicy() bool {
 	if o != nil && !IsNil(o.RateLimitPolicy) {
 		return true
 	}
@@ -213,12 +213,12 @@ func (o *IssueAPIKeyRequest) HasRateLimitPolicy() bool {
 }
 
 // SetRateLimitPolicy gets a reference to the given RateLimitPolicy and assigns it to the RateLimitPolicy field.
-func (o *IssueAPIKeyRequest) SetRateLimitPolicy(v RateLimitPolicy) {
+func (o *IssueApiKeyRequest) SetRateLimitPolicy(v RateLimitPolicy) {
 	o.RateLimitPolicy = &v
 }
 
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
-func (o *IssueAPIKeyRequest) GetRequestId() string {
+func (o *IssueApiKeyRequest) GetRequestId() string {
 	if o == nil || IsNil(o.RequestId) {
 		var ret string
 		return ret
@@ -228,7 +228,7 @@ func (o *IssueAPIKeyRequest) GetRequestId() string {
 
 // GetRequestIdOk returns a tuple with the RequestId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueAPIKeyRequest) GetRequestIdOk() (*string, bool) {
+func (o *IssueApiKeyRequest) GetRequestIdOk() (*string, bool) {
 	if o == nil || IsNil(o.RequestId) {
 		return nil, false
 	}
@@ -236,7 +236,7 @@ func (o *IssueAPIKeyRequest) GetRequestIdOk() (*string, bool) {
 }
 
 // HasRequestId returns a boolean if a field has been set.
-func (o *IssueAPIKeyRequest) HasRequestId() bool {
+func (o *IssueApiKeyRequest) HasRequestId() bool {
 	if o != nil && !IsNil(o.RequestId) {
 		return true
 	}
@@ -245,12 +245,12 @@ func (o *IssueAPIKeyRequest) HasRequestId() bool {
 }
 
 // SetRequestId gets a reference to the given string and assigns it to the RequestId field.
-func (o *IssueAPIKeyRequest) SetRequestId(v string) {
+func (o *IssueApiKeyRequest) SetRequestId(v string) {
 	o.RequestId = &v
 }
 
 // GetScopes returns the Scopes field value if set, zero value otherwise.
-func (o *IssueAPIKeyRequest) GetScopes() []string {
+func (o *IssueApiKeyRequest) GetScopes() []string {
 	if o == nil || IsNil(o.Scopes) {
 		var ret []string
 		return ret
@@ -260,7 +260,7 @@ func (o *IssueAPIKeyRequest) GetScopes() []string {
 
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueAPIKeyRequest) GetScopesOk() ([]string, bool) {
+func (o *IssueApiKeyRequest) GetScopesOk() ([]string, bool) {
 	if o == nil || IsNil(o.Scopes) {
 		return nil, false
 	}
@@ -268,7 +268,7 @@ func (o *IssueAPIKeyRequest) GetScopesOk() ([]string, bool) {
 }
 
 // HasScopes returns a boolean if a field has been set.
-func (o *IssueAPIKeyRequest) HasScopes() bool {
+func (o *IssueApiKeyRequest) HasScopes() bool {
 	if o != nil && !IsNil(o.Scopes) {
 		return true
 	}
@@ -277,12 +277,12 @@ func (o *IssueAPIKeyRequest) HasScopes() bool {
 }
 
 // SetScopes gets a reference to the given []string and assigns it to the Scopes field.
-func (o *IssueAPIKeyRequest) SetScopes(v []string) {
+func (o *IssueApiKeyRequest) SetScopes(v []string) {
 	o.Scopes = v
 }
 
 // GetTtl returns the Ttl field value if set, zero value otherwise.
-func (o *IssueAPIKeyRequest) GetTtl() string {
+func (o *IssueApiKeyRequest) GetTtl() string {
 	if o == nil || IsNil(o.Ttl) {
 		var ret string
 		return ret
@@ -292,7 +292,7 @@ func (o *IssueAPIKeyRequest) GetTtl() string {
 
 // GetTtlOk returns a tuple with the Ttl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueAPIKeyRequest) GetTtlOk() (*string, bool) {
+func (o *IssueApiKeyRequest) GetTtlOk() (*string, bool) {
 	if o == nil || IsNil(o.Ttl) {
 		return nil, false
 	}
@@ -300,7 +300,7 @@ func (o *IssueAPIKeyRequest) GetTtlOk() (*string, bool) {
 }
 
 // HasTtl returns a boolean if a field has been set.
-func (o *IssueAPIKeyRequest) HasTtl() bool {
+func (o *IssueApiKeyRequest) HasTtl() bool {
 	if o != nil && !IsNil(o.Ttl) {
 		return true
 	}
@@ -309,12 +309,12 @@ func (o *IssueAPIKeyRequest) HasTtl() bool {
 }
 
 // SetTtl gets a reference to the given string and assigns it to the Ttl field.
-func (o *IssueAPIKeyRequest) SetTtl(v string) {
+func (o *IssueApiKeyRequest) SetTtl(v string) {
 	o.Ttl = &v
 }
 
 // GetVisibility returns the Visibility field value if set, zero value otherwise.
-func (o *IssueAPIKeyRequest) GetVisibility() KeyVisibility {
+func (o *IssueApiKeyRequest) GetVisibility() KeyVisibility {
 	if o == nil || IsNil(o.Visibility) {
 		var ret KeyVisibility
 		return ret
@@ -324,7 +324,7 @@ func (o *IssueAPIKeyRequest) GetVisibility() KeyVisibility {
 
 // GetVisibilityOk returns a tuple with the Visibility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueAPIKeyRequest) GetVisibilityOk() (*KeyVisibility, bool) {
+func (o *IssueApiKeyRequest) GetVisibilityOk() (*KeyVisibility, bool) {
 	if o == nil || IsNil(o.Visibility) {
 		return nil, false
 	}
@@ -332,7 +332,7 @@ func (o *IssueAPIKeyRequest) GetVisibilityOk() (*KeyVisibility, bool) {
 }
 
 // HasVisibility returns a boolean if a field has been set.
-func (o *IssueAPIKeyRequest) HasVisibility() bool {
+func (o *IssueApiKeyRequest) HasVisibility() bool {
 	if o != nil && !IsNil(o.Visibility) {
 		return true
 	}
@@ -341,11 +341,11 @@ func (o *IssueAPIKeyRequest) HasVisibility() bool {
 }
 
 // SetVisibility gets a reference to the given KeyVisibility and assigns it to the Visibility field.
-func (o *IssueAPIKeyRequest) SetVisibility(v KeyVisibility) {
+func (o *IssueApiKeyRequest) SetVisibility(v KeyVisibility) {
 	o.Visibility = &v
 }
 
-func (o IssueAPIKeyRequest) MarshalJSON() ([]byte, error) {
+func (o IssueApiKeyRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -353,7 +353,7 @@ func (o IssueAPIKeyRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o IssueAPIKeyRequest) ToMap() (map[string]interface{}, error) {
+func (o IssueApiKeyRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ActorId) {
 		toSerialize["actor_id"] = o.ActorId
@@ -390,16 +390,16 @@ func (o IssueAPIKeyRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *IssueAPIKeyRequest) UnmarshalJSON(data []byte) (err error) {
-	varIssueAPIKeyRequest := _IssueAPIKeyRequest{}
+func (o *IssueApiKeyRequest) UnmarshalJSON(data []byte) (err error) {
+	varIssueApiKeyRequest := _IssueApiKeyRequest{}
 
-	err = json.Unmarshal(data, &varIssueAPIKeyRequest)
+	err = json.Unmarshal(data, &varIssueApiKeyRequest)
 
 	if err != nil {
 		return err
 	}
 
-	*o = IssueAPIKeyRequest(varIssueAPIKeyRequest)
+	*o = IssueApiKeyRequest(varIssueApiKeyRequest)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -419,38 +419,38 @@ func (o *IssueAPIKeyRequest) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableIssueAPIKeyRequest struct {
-	value *IssueAPIKeyRequest
+type NullableIssueApiKeyRequest struct {
+	value *IssueApiKeyRequest
 	isSet bool
 }
 
-func (v NullableIssueAPIKeyRequest) Get() *IssueAPIKeyRequest {
+func (v NullableIssueApiKeyRequest) Get() *IssueApiKeyRequest {
 	return v.value
 }
 
-func (v *NullableIssueAPIKeyRequest) Set(val *IssueAPIKeyRequest) {
+func (v *NullableIssueApiKeyRequest) Set(val *IssueApiKeyRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIssueAPIKeyRequest) IsSet() bool {
+func (v NullableIssueApiKeyRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIssueAPIKeyRequest) Unset() {
+func (v *NullableIssueApiKeyRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIssueAPIKeyRequest(val *IssueAPIKeyRequest) *NullableIssueAPIKeyRequest {
-	return &NullableIssueAPIKeyRequest{value: val, isSet: true}
+func NewNullableIssueApiKeyRequest(val *IssueApiKeyRequest) *NullableIssueApiKeyRequest {
+	return &NullableIssueApiKeyRequest{value: val, isSet: true}
 }
 
-func (v NullableIssueAPIKeyRequest) MarshalJSON() ([]byte, error) {
+func (v NullableIssueApiKeyRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIssueAPIKeyRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableIssueApiKeyRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

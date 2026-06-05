@@ -11,14 +11,16 @@ defmodule Ory.Model.ProjectServices do
     :account_experience,
     :identity,
     :oauth2,
-    :permission
+    :permission,
+    :talos
   ]
 
   @type t :: %__MODULE__{
     :account_experience => Ory.Model.ProjectServiceAccountExperience.t | nil,
     :identity => Ory.Model.ProjectServiceIdentity.t | nil,
     :oauth2 => Ory.Model.ProjectServiceOAuth2.t | nil,
-    :permission => Ory.Model.ProjectServicePermission.t | nil
+    :permission => Ory.Model.ProjectServicePermission.t | nil,
+    :talos => Ory.Model.ProjectServiceTalos.t | nil
   }
 
   alias Ory.Deserializer
@@ -29,6 +31,7 @@ defmodule Ory.Model.ProjectServices do
      |> Deserializer.deserialize(:identity, :struct, Ory.Model.ProjectServiceIdentity)
      |> Deserializer.deserialize(:oauth2, :struct, Ory.Model.ProjectServiceOAuth2)
      |> Deserializer.deserialize(:permission, :struct, Ory.Model.ProjectServicePermission)
+     |> Deserializer.deserialize(:talos, :struct, Ory.Model.ProjectServiceTalos)
   end
 end
 

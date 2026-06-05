@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.47
+  version: v1.22.48
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -8476,53 +8476,6 @@ paths:
       tags:
       - oidc
       x-ory-ratelimit-bucket: hydra-public-medium
-  /v2alpha1/admin/apiKeys/{key_id}:revoke:
-    post:
-      description: |-
-        Immediately revokes an API key (issued or imported). Once revoked, the key
-        can no longer be used for authentication. This operation is irreversible.
-        Revoked keys are retained for audit purposes.
-
-        ```http
-        POST /v2alpha1/admin/apiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:revoke
-        {
-          "reason": "REVOCATION_REASON_KEY_COMPROMISE"
-        }
-        ```
-      operationId: AdminRevokeAPIKey
-      parameters:
-      - description: Identifier of the API key resource.
-        explode: false
-        in: path
-        name: key_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AdminRevokeAPIKeyBody"
-        required: true
-        x-originalParamName: body
-      responses:
-        "204":
-          content:
-            application/json:
-              schema: {}
-          description: API key revoked successfully.
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Status"
-          description: An unexpected error response.
-      security:
-      - oryAccessToken: []
-      summary: Revoke API Key
-      tags:
-      - APIKeys
   /v2alpha1/admin/apiKeys:batchVerify:
     post:
       description: |-
@@ -8546,7 +8499,7 @@ paths:
           ]
         }
         ```
-      operationId: AdminBatchVerifyAPIKeys
+      operationId: adminBatchVerifyApiKeys
       parameters:
       - description: Cache-directive controlling the verifier cache. `no-cache` forces
           a fresh database lookup (cache read is bypassed). `no-store` additionally
@@ -8572,7 +8525,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/BatchVerifyAPIKeysRequest"
+              $ref: "#/components/schemas/BatchVerifyApiKeysRequest"
         required: true
         x-originalParamName: body
       responses:
@@ -8580,7 +8533,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BatchVerifyAPIKeysResponse"
+                $ref: "#/components/schemas/BatchVerifyApiKeysResponse"
           description: A successful response.
         default:
           content:
@@ -8592,7 +8545,7 @@ paths:
       - oryAccessToken: []
       summary: Batch Verify API Keys
       tags:
-      - APIKeys
+      - ApiKeys
   /v2alpha1/admin/apiKeys:derive:
     post:
       description: |-
@@ -8607,7 +8560,7 @@ paths:
           "ttl": "1h"
         }
         ```
-      operationId: AdminDeriveToken
+      operationId: adminDeriveToken
       requestBody:
         content:
           application/json:
@@ -8632,7 +8585,7 @@ paths:
       - oryAccessToken: []
       summary: Derive Token
       tags:
-      - APIKeys
+      - ApiKeys
   /v2alpha1/admin/apiKeys:verify:
     post:
       description: |-
@@ -8652,7 +8605,7 @@ paths:
           "credential": "sk_live_abc123..."
         }
         ```
-      operationId: AdminVerifyAPIKey
+      operationId: adminVerifyApiKey
       parameters:
       - description: Cache-directive controlling the verifier cache. `no-cache` forces
           a fresh database lookup (cache read is bypassed). `no-store` additionally
@@ -8678,7 +8631,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/VerifyAPIKeyRequest"
+              $ref: "#/components/schemas/VerifyApiKeyRequest"
         required: true
         x-originalParamName: body
       responses:
@@ -8686,7 +8639,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/VerifyAPIKeyResponse"
+                $ref: "#/components/schemas/VerifyApiKeyResponse"
           description: A successful response.
         default:
           content:
@@ -8698,7 +8651,7 @@ paths:
       - oryAccessToken: []
       summary: Verify API Key
       tags:
-      - APIKeys
+      - ApiKeys
   /v2alpha1/admin/importedApiKeys:
     get:
       description: |-
@@ -8708,7 +8661,7 @@ paths:
         ```http
         GET /v2alpha1/admin/importedApiKeys?page_size=50&filter=status%3DKEY_STATUS_ACTIVE
         ```
-      operationId: AdminListImportedAPIKeys
+      operationId: adminListImportedApiKeys
       parameters:
       - description: "Number of items per page (default: 50, max: 1000)"
         explode: true
@@ -8746,7 +8699,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ListImportedAPIKeysResponse"
+                $ref: "#/components/schemas/ListImportedApiKeysResponse"
           description: A successful response.
         default:
           content:
@@ -8758,7 +8711,7 @@ paths:
       - oryAccessToken: []
       summary: List Imported API Keys
       tags:
-      - APIKeys
+      - ApiKeys
     post:
       description: |-
         Imports an external API key into the system. Allows importing keys from
@@ -8774,12 +8727,12 @@ paths:
           "actor_id": "user_123"
         }
         ```
-      operationId: AdminImportAPIKey
+      operationId: adminImportApiKey
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ImportAPIKeyRequest"
+              $ref: "#/components/schemas/ImportApiKeyRequest"
         description: |-
           Example:
             {
@@ -8797,7 +8750,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ImportedAPIKey"
+                $ref: "#/components/schemas/ImportedApiKey"
           description: API key imported successfully.
         default:
           content:
@@ -8809,17 +8762,17 @@ paths:
       - oryAccessToken: []
       summary: Import API Key
       tags:
-      - APIKeys
+      - ApiKeys
   /v2alpha1/admin/importedApiKeys/{key_id}:
     delete:
       description: |-
         Permanently deletes an imported key (hard delete). The key is removed from
-        the database. Use RevokeAPIKey for soft deletion (recommended).
+        the database. Use AdminRevokeImportedApiKey for soft deletion (recommended).
 
         ```http
         DELETE /v2alpha1/admin/importedApiKeys/{key_id}
         ```
-      operationId: AdminDeleteImportedAPIKey
+      operationId: adminDeleteImportedApiKey
       parameters:
       - description: SHA512/256 hash of the imported key (REQUIRED)
         explode: false
@@ -8845,7 +8798,7 @@ paths:
       - oryAccessToken: []
       summary: Delete Imported API Key
       tags:
-      - APIKeys
+      - ApiKeys
     get:
       description: |-
         Retrieves details about a specific imported key. Returns metadata about
@@ -8854,7 +8807,7 @@ paths:
         ```http
         GET /v2alpha1/admin/importedApiKeys/{key_id}
         ```
-      operationId: AdminGetImportedAPIKey
+      operationId: adminGetImportedApiKey
       parameters:
       - description: SHA512/256 hash of the imported key (REQUIRED)
         explode: false
@@ -8869,7 +8822,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ImportedAPIKey"
+                $ref: "#/components/schemas/ImportedApiKey"
           description: A successful response.
         default:
           content:
@@ -8881,7 +8834,7 @@ paths:
       - oryAccessToken: []
       summary: Get Imported API Key
       tags:
-      - APIKeys
+      - ApiKeys
     patch:
       description: |-
         Updates metadata, scopes, or rate limits of an imported key. Supports
@@ -8899,7 +8852,7 @@ paths:
           }
         }
         ```
-      operationId: AdminUpdateImportedAPIKey
+      operationId: adminUpdateImportedApiKey
       parameters:
       - description: SHA-512/256 hash of credential
         explode: false
@@ -8921,7 +8874,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AdminUpdateImportedAPIKey_request"
+              $ref: "#/components/schemas/adminUpdateImportedApiKey_request"
         required: true
         x-originalParamName: imported_api_key
       responses:
@@ -8929,7 +8882,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ImportedAPIKey"
+                $ref: "#/components/schemas/ImportedApiKey"
           description: A successful response.
         default:
           content:
@@ -8941,8 +8894,55 @@ paths:
       - oryAccessToken: []
       summary: Update Imported API Key
       tags:
-      - APIKeys
-  /v2alpha1/admin/importedApiKeys:batchImport:
+      - ApiKeys
+  /v2alpha1/admin/importedApiKeys/{key_id}:revoke:
+    post:
+      description: |-
+        Immediately revokes an imported API key. Once revoked, the key can no longer
+        be used for authentication. This operation is irreversible. Revoked keys
+        are retained for audit purposes.
+
+        ```http
+        POST /v2alpha1/admin/importedApiKeys/9a3f051b2c7e8d4f1a6b9c0e5f2d8a3b:revoke
+        {
+          "reason": "REVOCATION_REASON_KEY_COMPROMISE"
+        }
+        ```
+      operationId: adminRevokeImportedApiKey
+      parameters:
+      - description: SHA-512/256 hash of the imported key (REQUIRED)
+        explode: false
+        in: path
+        name: key_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminRevokeImportedApiKeyBody"
+        required: true
+        x-originalParamName: body
+      responses:
+        "204":
+          content:
+            application/json:
+              schema: {}
+          description: API key revoked successfully.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Revoke Imported API Key
+      tags:
+      - ApiKeys
+  /v2alpha1/admin/importedApiKeys:batchCreate:
     post:
       description: |-
         Imports up to 1000 external API keys in one request. Returns per-item
@@ -8950,7 +8950,7 @@ paths:
         fail, the endpoint returns a non-200 error.
 
         ```http
-        POST /v2alpha1/admin/importedApiKeys:batchImport
+        POST /v2alpha1/admin/importedApiKeys:batchCreate
         {
           "requests": [
             {"raw_key": "sk_live_abc", "name": "Stripe key", "actor_id": "user_1"},
@@ -8958,14 +8958,14 @@ paths:
           ]
         }
         ```
-      operationId: AdminBatchImportAPIKeys
+      operationId: adminBatchCreateImportedApiKeys
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/BatchImportAPIKeysRequest"
+              $ref: "#/components/schemas/BatchCreateImportedApiKeysRequest"
         description: |-
-          BatchImportAPIKeysRequest imports multiple external API keys in one request.
+          BatchCreateImportedApiKeysRequest imports multiple external API keys in one request.
           The maximum batch size is 1000 keys.
         required: true
         x-originalParamName: body
@@ -8974,7 +8974,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BatchImportAPIKeysResponse"
+                $ref: "#/components/schemas/BatchCreateImportedApiKeysResponse"
           description: Batch import completed. Check per-item results for individual
             status.
         default:
@@ -8987,18 +8987,18 @@ paths:
       - oryAccessToken: []
       summary: Batch Import API Keys
       tags:
-      - APIKeys
+      - ApiKeys
   /v2alpha1/admin/issuedApiKeys:
     get:
       description: |-
         Lists issued API keys with optional filtering. Supports cursor-based
         pagination and AIP-160 filter expressions. Returns only issued
-        (generated) API keys; use ListImportedAPIKeys for imported keys.
+        (generated) API keys; use ListImportedApiKeys for imported keys.
 
         ```http
         GET /v2alpha1/admin/issuedApiKeys?page_size=50&filter=actor_id%3D%22user_123%22
         ```
-      operationId: AdminListIssuedAPIKeys
+      operationId: adminListIssuedApiKeys
       parameters:
       - description: "Number of items per page (default: 50, max: 1000)"
         explode: true
@@ -9036,7 +9036,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ListIssuedAPIKeysResponse"
+                $ref: "#/components/schemas/ListIssuedApiKeysResponse"
           description: A successful response.
         default:
           content:
@@ -9048,7 +9048,7 @@ paths:
       - oryAccessToken: []
       summary: List Issued API Keys
       tags:
-      - APIKeys
+      - ApiKeys
     post:
       description: |-
         Creates a new API key for a given actor. The secret is returned only once
@@ -9064,12 +9064,12 @@ paths:
           "ttl": "8760h"
         }
         ```
-      operationId: AdminIssueAPIKey
+      operationId: adminIssueApiKey
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/IssueAPIKeyRequest"
+              $ref: "#/components/schemas/IssueApiKeyRequest"
         required: true
         x-originalParamName: body
       responses:
@@ -9077,7 +9077,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/IssueAPIKeyResponse"
+                $ref: "#/components/schemas/IssueApiKeyResponse"
           description: API key issued successfully.
         default:
           content:
@@ -9089,7 +9089,7 @@ paths:
       - oryAccessToken: []
       summary: Issue API Key
       tags:
-      - APIKeys
+      - ApiKeys
   /v2alpha1/admin/issuedApiKeys/{key_id}:
     get:
       description: |-
@@ -9099,7 +9099,7 @@ paths:
         ```http
         GET /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ
         ```
-      operationId: AdminGetIssuedAPIKey
+      operationId: adminGetIssuedApiKey
       parameters:
       - description: Identifier of the API key resource.
         explode: false
@@ -9114,7 +9114,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/IssuedAPIKey"
+                $ref: "#/components/schemas/IssuedApiKey"
           description: A successful response.
         default:
           content:
@@ -9126,13 +9126,13 @@ paths:
       - oryAccessToken: []
       summary: Get Issued API Key
       tags:
-      - APIKeys
+      - ApiKeys
     patch:
       description: |-
         Updates metadata, scopes, or rate limits of an issued key without rotating
-        the secret. Use RotateIssuedAPIKey to change the secret.
+        the secret. Use RotateIssuedApiKey to change the secret.
 
-        Follows AIP-134: the request body is the IssuedAPIKey resource itself,
+        Follows AIP-134: the request body is the IssuedApiKey resource itself,
         and the update_mask query parameter names the subset of fields to apply.
         Omitting update_mask is equivalent to a mask of every populated field
         in the body. To clear a field to its zero value, list it explicitly in
@@ -9147,7 +9147,7 @@ paths:
           }
         }
         ```
-      operationId: AdminUpdateIssuedAPIKey
+      operationId: adminUpdateIssuedApiKey
       parameters:
       - description: Identifier of the API key resource.
         explode: false
@@ -9169,7 +9169,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AdminUpdateIssuedAPIKey_request"
+              $ref: "#/components/schemas/adminUpdateIssuedApiKey_request"
         required: true
         x-originalParamName: issued_api_key
       responses:
@@ -9177,7 +9177,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/IssuedAPIKey"
+                $ref: "#/components/schemas/IssuedApiKey"
           description: A successful response.
         default:
           content:
@@ -9189,7 +9189,54 @@ paths:
       - oryAccessToken: []
       summary: Update Issued API Key
       tags:
-      - APIKeys
+      - ApiKeys
+  /v2alpha1/admin/issuedApiKeys/{key_id}:revoke:
+    post:
+      description: |-
+        Immediately revokes an issued API key. Once revoked, the key can no longer
+        be used for authentication. This operation is irreversible. Revoked keys
+        are retained for audit purposes.
+
+        ```http
+        POST /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:revoke
+        {
+          "reason": "REVOCATION_REASON_KEY_COMPROMISE"
+        }
+        ```
+      operationId: adminRevokeIssuedApiKey
+      parameters:
+      - description: UUID of the issued key (REQUIRED)
+        explode: false
+        in: path
+        name: key_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminRevokeIssuedApiKeyBody"
+        required: true
+        x-originalParamName: body
+      responses:
+        "204":
+          content:
+            application/json:
+              schema: {}
+          description: API key revoked successfully.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: An unexpected error response.
+      security:
+      - oryAccessToken: []
+      summary: Revoke Issued API Key
+      tags:
+      - ApiKeys
   /v2alpha1/admin/issuedApiKeys/{key_id}:rotate:
     post:
       description: |-
@@ -9198,10 +9245,10 @@ paths:
         recommended way to update scopes, metadata, or rotate credentials.
 
         For zero-downtime rotation, use this workflow instead:
-          1. IssueAPIKey with new credentials
+          1. IssueApiKey with new credentials
           2. Deploy new secret to all services
           3. Verify new secret works everywhere
-          4. RevokeAPIKey to remove the old key
+          4. AdminRevokeIssuedApiKey to remove the old key
 
         ```http
         POST /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:rotate
@@ -9209,7 +9256,7 @@ paths:
           "scopes": ["read"]
         }
         ```
-      operationId: AdminRotateIssuedAPIKey
+      operationId: adminRotateIssuedApiKey
       parameters:
       - description: key_id is the ID of the existing API key to rotate
         explode: false
@@ -9223,7 +9270,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AdminRotateIssuedAPIKeyBody"
+              $ref: "#/components/schemas/AdminRotateIssuedApiKeyBody"
         required: true
         x-originalParamName: body
       responses:
@@ -9231,7 +9278,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RotateIssuedAPIKeyResponse"
+                $ref: "#/components/schemas/RotateIssuedApiKeyResponse"
           description: "API key rotated successfully. New key issued, old key revoked."
         default:
           content:
@@ -9243,13 +9290,13 @@ paths:
       - oryAccessToken: []
       summary: Rotate Issued API Key
       tags:
-      - APIKeys
+      - ApiKeys
   /v2alpha1/apiKeys:selfRevoke:
     post:
       description: |-
-        Proof-of-possession variant of revocation. Lives alongside `AdminRevokeAPIKey`
-        in this service; the `Self*` prefix on the request/response messages
-        disambiguates from the admin variant's `RevokeAPIKeyRequest`.
+        Proof-of-possession variant of revocation. The `Self*` prefix on the
+        request/response messages disambiguates from the admin variants
+        (`AdminRevokeIssuedApiKey` / `AdminRevokeImportedApiKey`).
 
         Allows an API key holder to revoke their own key. The caller must provide
         the full API key secret as proof of possession. Supports issued API keys
@@ -9266,14 +9313,14 @@ paths:
           "reason": "REVOCATION_REASON_KEY_COMPROMISE"
         }
         ```
-      operationId: RevokeAPIKey
+      operationId: revokeApiKey
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SelfRevokeAPIKeyRequest"
+              $ref: "#/components/schemas/SelfRevokeApiKeyRequest"
         description: |-
-          SelfRevokeAPIKeyRequest allows an API key holder to revoke their own key
+          SelfRevokeApiKeyRequest allows an API key holder to revoke their own key
           by providing the full key secret as proof of possession.
         required: true
         x-originalParamName: body
@@ -9282,7 +9329,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SelfRevokeAPIKeyResponse"
+                $ref: "#/components/schemas/SelfRevokeApiKeyResponse"
           description: A successful response.
         default:
           content:
@@ -9292,7 +9339,7 @@ paths:
           description: An unexpected error response.
       summary: Revoke API Key (self-service)
       tags:
-      - APIKeys
+      - ApiKeys
   /v2alpha1/derivedKeys/jwks.json:
     get:
       description: |-
@@ -9304,7 +9351,7 @@ paths:
         ```http
         GET /v2alpha1/derivedKeys/jwks.json
         ```
-      operationId: GetJWKS
+      operationId: getJwks
       responses:
         "200":
           content:
@@ -9320,7 +9367,7 @@ paths:
           description: An unexpected error response.
       summary: Get JWKS
       tags:
-      - APIKeys
+      - ApiKeys
   /version:
     get:
       description: |-
@@ -10168,7 +10215,9 @@ components:
             $ref: "#/components/schemas/identityCredentialsLookupSecretCode"
           type: array
       type: object
-    AdminRevokeAPIKeyBody:
+    AdminRevokeImportedApiKeyBody:
+      description: RevokeImportedApiKeyRequest revokes an imported API key by its
+        key_id.
       example:
         reason: REVOCATION_REASON_UNSPECIFIED
         description: description
@@ -10180,9 +10229,22 @@ components:
         reason:
           $ref: "#/components/schemas/RevocationReason"
       type: object
-    AdminRotateIssuedAPIKeyBody:
+    AdminRevokeIssuedApiKeyBody:
+      description: RevokeIssuedApiKeyRequest revokes an issued API key by its key_id.
+      example:
+        reason: REVOCATION_REASON_UNSPECIFIED
+        description: description
+      properties:
+        description:
+          description: Optional free-text explanation. Only allowed when reason is
+            PRIVILEGE_WITHDRAWN.
+          type: string
+        reason:
+          $ref: "#/components/schemas/RevocationReason"
+      type: object
+    AdminRotateIssuedApiKeyBody:
       description: |-
-        RotateIssuedAPIKeyRequest is the request for AdminRotateIssuedAPIKey.
+        RotateIssuedApiKeyRequest is the request for AdminRotateIssuedApiKey.
 
         Rotation is a custom method (AIP-136) that swaps an active key for a new
         one with a fresh secret and key_id, then revokes the old key. It is not a
@@ -10298,9 +10360,28 @@ components:
         Specification: §5.8.4. Authenticator Transport Enumeration (https://www.w3.org/TR/webauthn/#enumdef-authenticatortransport)
       title: AuthenticatorTransport represents the IDL enum with the same name.
       type: string
-    BatchImportAPIKeysRequest:
+    BatchCreateImportedApiKeysErrorCode:
+      default: BATCH_CREATE_IMPORTED_API_KEYS_ERROR_UNSPECIFIED
       description: |-
-        BatchImportAPIKeysRequest imports multiple external API keys in one request.
+        BatchCreateImportedApiKeysErrorCode classifies per-item batch import failures.
+
+         - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_UNSPECIFIED: No error (import succeeded)
+         - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_INVALID_ARGUMENT: The key data is malformed or missing required fields
+         - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_ALREADY_EXISTS: A key with this identifier already exists
+         - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_FAILED_PRECONDITION: State conflict prevents the import
+         - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_INTERNAL: Server error during import
+         - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_RESOURCE_EXHAUSTED: Per-tenant quota cap reached
+      enum:
+      - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_UNSPECIFIED
+      - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_INVALID_ARGUMENT
+      - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_ALREADY_EXISTS
+      - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_FAILED_PRECONDITION
+      - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_INTERNAL
+      - BATCH_CREATE_IMPORTED_API_KEYS_ERROR_RESOURCE_EXHAUSTED
+      type: string
+    BatchCreateImportedApiKeysRequest:
+      description: |-
+        BatchCreateImportedApiKeysRequest imports multiple external API keys in one request.
         The maximum batch size is 1000 keys.
       example:
         requests:
@@ -10343,13 +10424,13 @@ components:
       properties:
         requests:
           items:
-            $ref: "#/components/schemas/ImportAPIKeyRequest"
+            $ref: "#/components/schemas/ImportApiKeyRequest"
           title: Keys to import
           type: array
       type: object
-    BatchImportAPIKeysResponse:
-      description: BatchImportAPIKeysResponse returns per-item results and summary
-        counters.
+    BatchCreateImportedApiKeysResponse:
+      description: BatchCreateImportedApiKeysResponse returns per-item results and
+        summary counters.
       example:
         success_count: 1
         failure_count: 0
@@ -10380,7 +10461,7 @@ components:
               - allowed_cidrs
             status: KEY_STATUS_UNSPECIFIED
           index: 6
-          error_code: BATCH_IMPORT_ERROR_UNSPECIFIED
+          error_code: BATCH_CREATE_IMPORTED_API_KEYS_ERROR_UNSPECIFIED
         - error_message: error_message
           imported_api_key:
             metadata: "{}"
@@ -10407,41 +10488,22 @@ components:
               - allowed_cidrs
             status: KEY_STATUS_UNSPECIFIED
           index: 6
-          error_code: BATCH_IMPORT_ERROR_UNSPECIFIED
+          error_code: BATCH_CREATE_IMPORTED_API_KEYS_ERROR_UNSPECIFIED
       properties:
         failure_count:
           format: int32
           type: integer
         results:
           items:
-            $ref: "#/components/schemas/BatchImportResult"
+            $ref: "#/components/schemas/BatchCreateImportedApiKeysResult"
           type: array
         success_count:
           format: int32
           type: integer
       type: object
-    BatchImportErrorCode:
-      default: BATCH_IMPORT_ERROR_UNSPECIFIED
-      description: |-
-        BatchImportErrorCode classifies per-item batch import failures.
-
-         - BATCH_IMPORT_ERROR_UNSPECIFIED: No error (import succeeded)
-         - BATCH_IMPORT_ERROR_INVALID_ARGUMENT: The key data is malformed or missing required fields
-         - BATCH_IMPORT_ERROR_ALREADY_EXISTS: A key with this identifier already exists
-         - BATCH_IMPORT_ERROR_FAILED_PRECONDITION: State conflict prevents the import
-         - BATCH_IMPORT_ERROR_INTERNAL: Server error during import
-         - BATCH_IMPORT_ERROR_RESOURCE_EXHAUSTED: Per-tenant quota cap reached
-      enum:
-      - BATCH_IMPORT_ERROR_UNSPECIFIED
-      - BATCH_IMPORT_ERROR_INVALID_ARGUMENT
-      - BATCH_IMPORT_ERROR_ALREADY_EXISTS
-      - BATCH_IMPORT_ERROR_FAILED_PRECONDITION
-      - BATCH_IMPORT_ERROR_INTERNAL
-      - BATCH_IMPORT_ERROR_RESOURCE_EXHAUSTED
-      type: string
-    BatchImportResult:
-      description: BatchImportResult contains the result for one key in a batch import
-        request.
+    BatchCreateImportedApiKeysResult:
+      description: BatchCreateImportedApiKeysResult contains the result for one key
+        in a batch import request.
       example:
         error_message: error_message
         imported_api_key:
@@ -10469,21 +10531,21 @@ components:
             - allowed_cidrs
           status: KEY_STATUS_UNSPECIFIED
         index: 6
-        error_code: BATCH_IMPORT_ERROR_UNSPECIFIED
+        error_code: BATCH_CREATE_IMPORTED_API_KEYS_ERROR_UNSPECIFIED
       properties:
         error_code:
-          $ref: "#/components/schemas/BatchImportErrorCode"
+          $ref: "#/components/schemas/BatchCreateImportedApiKeysErrorCode"
         error_message:
           title: Human-readable failure reason
           type: string
         imported_api_key:
-          $ref: "#/components/schemas/ImportedAPIKey"
+          $ref: "#/components/schemas/ImportedApiKey"
         index:
           format: int32
           title: Zero-based index in request.requests
           type: integer
       type: object
-    BatchVerifyAPIKeysRequest:
+    BatchVerifyApiKeysRequest:
       example:
         requests:
         - credential: credential
@@ -10491,10 +10553,10 @@ components:
       properties:
         requests:
           items:
-            $ref: "#/components/schemas/VerifyAPIKeyRequest"
+            $ref: "#/components/schemas/VerifyApiKeyRequest"
           type: array
       type: object
-    BatchVerifyAPIKeysResponse:
+    BatchVerifyApiKeysResponse:
       example:
         results:
         - error_message: error_message
@@ -10538,7 +10600,7 @@ components:
       properties:
         results:
           items:
-            $ref: "#/components/schemas/VerifyAPIKeyResponse"
+            $ref: "#/components/schemas/VerifyApiKeyResponse"
           type: array
       type: object
     BillingPeriodBucket:
@@ -10762,7 +10824,7 @@ components:
 
             This governs the "oauth2.grant.jwt.max_ttl" setting.
           example: 30m
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
           type: string
         hydra_oauth2_grant_refresh_token_rotation_grace_period:
           description: |-
@@ -10955,7 +11017,7 @@ components:
           default: 30m
           description: This governs the "ttl.access_token" setting.
           example: 1h
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
           type: string
         hydra_ttl_auth_code:
           default: 720h
@@ -10966,13 +11028,13 @@ components:
 
             This governs the "ttl.auth_code" setting.
           example: 30m
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
           type: string
         hydra_ttl_id_token:
           default: 30m
           description: This governs the "ttl.id_token" setting.
           example: 1h
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
           type: string
         hydra_ttl_login_consent_request:
           default: 30m
@@ -10981,7 +11043,7 @@ components:
 
             This governs the "ttl.login_consent_request" setting.
           example: 1h
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
           type: string
         hydra_ttl_refresh_token:
           default: 720h
@@ -12030,6 +12092,12 @@ components:
 
             This governs the "selfservice.methods.code.passwordless_login_fallback_enabled" setting.
           type: boolean
+        kratos_selfservice_methods_deviceauthn_enabled:
+          description: |-
+            Configures whether Ory Kratos Device authentication is enabled
+
+            This governs the "selfservice.methods.deviceauthn.enabled" setting.
+          type: boolean
         kratos_selfservice_methods_link_config_base_url:
           description: |-
             Configures the Base URL which Recovery, Verification, and Login Links Point to
@@ -12289,6 +12357,114 @@ components:
           description: Whether the project should employ strict security measures.
             Setting this to true is recommended for going into production.
           type: boolean
+        talos_cache_enabled:
+          description: |-
+            Talos cache enabled.
+
+            When true, API key verification results are cached. Revoked keys may be
+            accepted until the cached entry expires. When false, every verification
+            reads the database and revocations take effect immediately.
+          type: boolean
+        talos_cache_ttl:
+          description: Talos cache TTL controls how long API key verification results
+            are cached.
+          example: 5m
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          type: string
+        talos_credentials_api_keys_default_ttl:
+          description: Talos API keys default TTL.
+          example: 1h
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          type: string
+        talos_credentials_api_keys_max_ttl:
+          description: Talos API keys max TTL.
+          example: 24h
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          type: string
+        talos_credentials_api_keys_prefix_current:
+          description: Talos API keys prefix (current).
+          type: string
+        talos_credentials_api_keys_prefix_public_current:
+          description: Talos API keys public prefix (current).
+          type: string
+        talos_credentials_api_keys_prefix_public_retired:
+          description: |-
+            Talos API keys public prefix (retired).
+
+            Previously active public API key prefixes kept for verification of outstanding tokens.
+            The first element of this list was the most recently retired active prefix.
+          items:
+            type: string
+          type: array
+        talos_credentials_api_keys_prefix_retired:
+          description: |-
+            Talos API keys prefix (retired).
+
+            Previously active API key prefixes kept for verification of outstanding tokens.
+            The first element of this list was the most recently retired active prefix.
+          items:
+            type: string
+          type: array
+        talos_credentials_derived_tokens_default_ttl:
+          description: Talos derived tokens default TTL (applies to both JWT and macaroon
+            tokens).
+          example: 1h
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          type: string
+        talos_credentials_derived_tokens_jwt_signing_key_id:
+          description: Talos derived tokens JWT signing key ID (kid).
+          type: string
+        talos_credentials_derived_tokens_jwt_signing_keys_urls:
+          description: Talos derived tokens JWT signing key URLs.
+          items:
+            type: string
+          type: array
+        talos_credentials_derived_tokens_macaroon_prefix_current:
+          description: Talos derived tokens macaroon prefix (current).
+          type: string
+        talos_credentials_derived_tokens_macaroon_prefix_retired:
+          description: |-
+            Talos derived tokens macaroon prefix (retired).
+
+            Previously active macaroon prefixes kept for verification of outstanding tokens.
+            The first element of this list was the most recently retired active prefix.
+          items:
+            type: string
+          type: array
+        talos_credentials_issuer:
+          description: Talos credentials issuer URL.
+          type: string
+        talos_credentials_issuer_retired:
+          description: |-
+            Talos credentials retired issuer URLs.
+
+            Previously active issuer URLs kept for verification of outstanding tokens.
+            Tokens signed with these issuers remain valid; new tokens use the current issuer.
+          items:
+            type: string
+          type: array
+        talos_rate_limit_enabled:
+          description: |-
+            Talos rate limit enabled.
+
+            When true, server-side rate limiting is enforced for API key verifications.
+          type: boolean
+        talos_secrets_hmac_current:
+          description: |-
+            TalosSecretsHMACCurrent stores the current HMAC symmetric key as a
+            plain secret string. Application-layer encryption is handled upstream;
+            SanitizeModel (MarshalJSON) redacts this field from API responses.
+          type: string
+        talos_secrets_hmac_retired:
+          description: |-
+            TalosSecretsHMACRetired stores previously active HMAC symmetric keys as
+            a JSON array of plain secret strings. Application-layer encryption is
+            handled upstream; SanitizeModel (MarshalJSON) redacts this field from
+            API responses. The verifier tries all retired secrets when the current
+            key does not produce a matching HMAC.
+          items:
+            type: string
+          type: array
         updated_at:
           description: Last Time Project's Revision was Updated
           format: date-time
@@ -12612,7 +12788,7 @@ components:
             type: string
           type: array
       type: object
-    ImportAPIKeyRequest:
+    ImportApiKeyRequest:
       description: |-
         Example:
           {
@@ -12687,11 +12863,11 @@ components:
           type: string
         visibility:
           $ref: "#/components/schemas/KeyVisibility"
-      title: ImportAPIKeyRequest imports an external HMAC-based API key
+      title: ImportApiKeyRequest imports an external HMAC-based API key
       type: object
-    ImportedAPIKey:
+    ImportedApiKey:
       description: |-
-        ImportedAPIKey represents an API key imported from an external system.
+        ImportedApiKey represents an API key imported from an external system.
         The raw key is hashed (SHA-512/256) and stored. The original key is never retained.
       example:
         metadata: "{}"
@@ -12827,7 +13003,7 @@ components:
       items:
         $ref: "#/components/schemas/invoice"
       type: array
-    IssueAPIKeyRequest:
+    IssueApiKeyRequest:
       example:
         metadata: "{}"
         rate_limit_policy:
@@ -12883,7 +13059,7 @@ components:
         visibility:
           $ref: "#/components/schemas/KeyVisibility"
       type: object
-    IssueAPIKeyResponse:
+    IssueApiKeyResponse:
       example:
         secret: secret
         issued_api_key:
@@ -12912,14 +13088,14 @@ components:
           status: KEY_STATUS_UNSPECIFIED
       properties:
         issued_api_key:
-          $ref: "#/components/schemas/IssuedAPIKey"
+          $ref: "#/components/schemas/IssuedApiKey"
         secret:
           title: Only returned on creation
           type: string
       type: object
-    IssuedAPIKey:
+    IssuedApiKey:
       description: |-
-        IssuedAPIKey represents an API key issued (generated) by Talos.
+        IssuedApiKey represents an API key issued (generated) by Talos.
         Root keys are opaque v1 format tokens stored in the database.
         Derived tokens (JWT/Macaroon) are created via DeriveToken and are stateless (not stored).
       example:
@@ -13064,7 +13240,7 @@ components:
         unit_price:
           type: string
       type: object
-    ListImportedAPIKeysResponse:
+    ListImportedApiKeysResponse:
       example:
         next_page_token: next_page_token
         imported_api_keys:
@@ -13117,15 +13293,15 @@ components:
       properties:
         imported_api_keys:
           items:
-            $ref: "#/components/schemas/ImportedAPIKey"
+            $ref: "#/components/schemas/ImportedApiKey"
           title: List of imported keys
           type: array
         next_page_token:
           title: Token for fetching the next page (empty if no more results)
           type: string
-      title: ListImportedAPIKeysResponse returns paginated list of imported keys
+      title: ListImportedApiKeysResponse returns paginated list of imported keys
       type: object
-    ListIssuedAPIKeysResponse:
+    ListIssuedApiKeysResponse:
       example:
         next_page_token: next_page_token
         issued_api_keys:
@@ -13178,7 +13354,7 @@ components:
       properties:
         issued_api_keys:
           items:
-            $ref: "#/components/schemas/IssuedAPIKey"
+            $ref: "#/components/schemas/IssuedApiKey"
           type: array
         next_page_token:
           type: string
@@ -13625,7 +13801,7 @@ components:
          - REVOCATION_REASON_SUPERSEDED: A new key has replaced this one as part of a rotation.
          - REVOCATION_REASON_PRIVILEGE_WITHDRAWN: Admin-only. The actor's privilege to use this key was withdrawn by
         an operator. Self-revocation requests using this reason are rejected
-        with InvalidArgument. Pair with `description` on RevokeAPIKeyRequest
+        with InvalidArgument. Pair with `description` on the admin revoke requests
         to record the operator-supplied justification.
       enum:
       - REVOCATION_REASON_UNSPECIFIED
@@ -13634,7 +13810,7 @@ components:
       - REVOCATION_REASON_SUPERSEDED
       - REVOCATION_REASON_PRIVILEGE_WITHDRAWN
       type: string
-    RotateIssuedAPIKeyResponse:
+    RotateIssuedApiKeyResponse:
       example:
         old_issued_api_key:
           metadata: "{}"
@@ -13687,17 +13863,17 @@ components:
           status: KEY_STATUS_UNSPECIFIED
       properties:
         issued_api_key:
-          $ref: "#/components/schemas/IssuedAPIKey"
+          $ref: "#/components/schemas/IssuedApiKey"
         old_issued_api_key:
-          $ref: "#/components/schemas/IssuedAPIKey"
+          $ref: "#/components/schemas/IssuedApiKey"
         secret:
           title: "secret is the new API key secret (only returned once, never retrievable\
             \ again)"
           type: string
       type: object
-    SelfRevokeAPIKeyRequest:
+    SelfRevokeApiKeyRequest:
       description: |-
-        SelfRevokeAPIKeyRequest allows an API key holder to revoke their own key
+        SelfRevokeApiKeyRequest allows an API key holder to revoke their own key
         by providing the full key secret as proof of possession.
       example:
         reason: REVOCATION_REASON_UNSPECIFIED
@@ -13709,9 +13885,9 @@ components:
         reason:
           $ref: "#/components/schemas/RevocationReason"
       type: object
-    SelfRevokeAPIKeyResponse:
+    SelfRevokeApiKeyResponse:
       description: |-
-        SelfRevokeAPIKeyResponse is returned on successful self-revocation.
+        SelfRevokeApiKeyResponse is returned on successful self-revocation.
 
         Empty on success
       type: object
@@ -13918,7 +14094,7 @@ components:
       title: VerificationErrorCode provides type-safe error codes for verification
         failures
       type: string
-    VerifyAPIKeyRequest:
+    VerifyApiKeyRequest:
       example:
         credential: credential
       properties:
@@ -13926,7 +14102,7 @@ components:
           title: "API key or derived token (any format: sk_*, JWT, macaroon)"
           type: string
       type: object
-    VerifyAPIKeyResponse:
+    VerifyApiKeyResponse:
       example:
         error_message: error_message
         rate_limit_reset_time: 2000-01-23T04:56:07.000+00:00
@@ -18743,7 +18919,7 @@ components:
 
             This governs the "oauth2.grant.jwt.max_ttl" setting.
           example: 30m
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
           type: string
         hydra_oauth2_grant_refresh_token_rotation_grace_period:
           description: |-
@@ -18936,7 +19112,7 @@ components:
           default: 30m
           description: This governs the "ttl.access_token" setting.
           example: 1h
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
           type: string
         hydra_ttl_auth_code:
           default: 720h
@@ -18947,13 +19123,13 @@ components:
 
             This governs the "ttl.auth_code" setting.
           example: 30m
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
           type: string
         hydra_ttl_id_token:
           default: 30m
           description: This governs the "ttl.id_token" setting.
           example: 1h
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
           type: string
         hydra_ttl_login_consent_request:
           default: 30m
@@ -18962,7 +19138,7 @@ components:
 
             This governs the "ttl.login_consent_request" setting.
           example: 1h
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
           type: string
         hydra_ttl_refresh_token:
           default: 720h
@@ -20011,6 +20187,12 @@ components:
 
             This governs the "selfservice.methods.code.passwordless_login_fallback_enabled" setting.
           type: boolean
+        kratos_selfservice_methods_deviceauthn_enabled:
+          description: |-
+            Configures whether Ory Kratos Device authentication is enabled
+
+            This governs the "selfservice.methods.deviceauthn.enabled" setting.
+          type: boolean
         kratos_selfservice_methods_link_config_base_url:
           description: |-
             Configures the Base URL which Recovery, Verification, and Login Links Point to
@@ -20270,6 +20452,114 @@ components:
           description: Whether the project should employ strict security measures.
             Setting this to true is recommended for going into production.
           type: boolean
+        talos_cache_enabled:
+          description: |-
+            Talos cache enabled.
+
+            When true, API key verification results are cached. Revoked keys may be
+            accepted until the cached entry expires. When false, every verification
+            reads the database and revocations take effect immediately.
+          type: boolean
+        talos_cache_ttl:
+          description: Talos cache TTL controls how long API key verification results
+            are cached.
+          example: 5m
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          type: string
+        talos_credentials_api_keys_default_ttl:
+          description: Talos API keys default TTL.
+          example: 1h
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          type: string
+        talos_credentials_api_keys_max_ttl:
+          description: Talos API keys max TTL.
+          example: 24h
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          type: string
+        talos_credentials_api_keys_prefix_current:
+          description: Talos API keys prefix (current).
+          type: string
+        talos_credentials_api_keys_prefix_public_current:
+          description: Talos API keys public prefix (current).
+          type: string
+        talos_credentials_api_keys_prefix_public_retired:
+          description: |-
+            Talos API keys public prefix (retired).
+
+            Previously active public API key prefixes kept for verification of outstanding tokens.
+            The first element of this list was the most recently retired active prefix.
+          items:
+            type: string
+          type: array
+        talos_credentials_api_keys_prefix_retired:
+          description: |-
+            Talos API keys prefix (retired).
+
+            Previously active API key prefixes kept for verification of outstanding tokens.
+            The first element of this list was the most recently retired active prefix.
+          items:
+            type: string
+          type: array
+        talos_credentials_derived_tokens_default_ttl:
+          description: Talos derived tokens default TTL (applies to both JWT and macaroon
+            tokens).
+          example: 1h
+          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          type: string
+        talos_credentials_derived_tokens_jwt_signing_key_id:
+          description: Talos derived tokens JWT signing key ID (kid).
+          type: string
+        talos_credentials_derived_tokens_jwt_signing_keys_urls:
+          description: Talos derived tokens JWT signing key URLs.
+          items:
+            type: string
+          type: array
+        talos_credentials_derived_tokens_macaroon_prefix_current:
+          description: Talos derived tokens macaroon prefix (current).
+          type: string
+        talos_credentials_derived_tokens_macaroon_prefix_retired:
+          description: |-
+            Talos derived tokens macaroon prefix (retired).
+
+            Previously active macaroon prefixes kept for verification of outstanding tokens.
+            The first element of this list was the most recently retired active prefix.
+          items:
+            type: string
+          type: array
+        talos_credentials_issuer:
+          description: Talos credentials issuer URL.
+          type: string
+        talos_credentials_issuer_retired:
+          description: |-
+            Talos credentials retired issuer URLs.
+
+            Previously active issuer URLs kept for verification of outstanding tokens.
+            Tokens signed with these issuers remain valid; new tokens use the current issuer.
+          items:
+            type: string
+          type: array
+        talos_rate_limit_enabled:
+          description: |-
+            Talos rate limit enabled.
+
+            When true, server-side rate limiting is enforced for API key verifications.
+          type: boolean
+        talos_secrets_hmac_current:
+          description: |-
+            TalosSecretsHMACCurrent stores the current HMAC symmetric key as a
+            plain secret string. Application-layer encryption is handled upstream;
+            SanitizeModel (MarshalJSON) redacts this field from API responses.
+          type: string
+        talos_secrets_hmac_retired:
+          description: |-
+            TalosSecretsHMACRetired stores previously active HMAC symmetric keys as
+            a JSON array of plain secret strings. Application-layer encryption is
+            handled upstream; SanitizeModel (MarshalJSON) redacts this field from
+            API responses. The verifier tries all retired secrets when the current
+            key does not produce a matching HMAC.
+          items:
+            type: string
+          type: array
         updated_at:
           description: Last Time Project's Revision was Updated
           format: date-time
@@ -23160,6 +23450,8 @@ components:
           enabled: true
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         services:
+          talos:
+            config: "{}"
           identity:
             config: "{}"
           permission:
@@ -23961,8 +24253,19 @@ components:
       required:
       - config
       type: object
+    projectServiceTalos:
+      example:
+        config: "{}"
+      properties:
+        config:
+          type: object
+      required:
+      - config
+      type: object
     projectServices:
       example:
+        talos:
+          config: "{}"
         identity:
           config: "{}"
         permission:
@@ -23980,6 +24283,8 @@ components:
           $ref: "#/components/schemas/projectServiceOAuth2"
         permission:
           $ref: "#/components/schemas/projectServicePermission"
+        talos:
+          $ref: "#/components/schemas/projectServiceTalos"
       type: object
     quotaUsage:
       properties:
@@ -24027,8 +24332,12 @@ components:
             default_smtp_email_customization DefaultSMTPEmailCustomization
             onboarding_portal OnboardingPortal
             console_organization_sso ConsoleOrganizationSSO
+            talos_api_keys TalosAPIKeys
+            talos_rate_limit TalosRateLimit
+            talos_cache TalosCache
             graceful_refresh_token_count GracefulRefreshTokenCount
             hydra_token_prefix HydraTokenPrefix
+            deviceauthn Deviceauthn
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
             update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
             update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
@@ -24061,6 +24370,11 @@ components:
             kratos_public_low_rate_limit_tier RateLimitTierKratosPublicLow
             polis_public_high_rate_limit_tier RateLimitTierPolisPublicHigh
             polis_public_medium_rate_limit_tier RateLimitTierPolisPublicMedium
+            talos_admin_high_rate_limit_tier RateLimitTierTalosAdminHigh
+            talos_admin_medium_rate_limit_tier RateLimitTierTalosAdminMedium
+            talos_admin_low_rate_limit_tier RateLimitTierTalosAdminLow
+            talos_public_high_rate_limit_tier RateLimitTierTalosPublicHigh
+            talos_public_low_rate_limit_tier RateLimitTierTalosPublicLow
             unassigned_rate_limit_tier RateLimitTierUnassigned
           enum:
           - production_projects
@@ -24099,8 +24413,12 @@ components:
           - default_smtp_email_customization
           - onboarding_portal
           - console_organization_sso
+          - talos_api_keys
+          - talos_rate_limit
+          - talos_cache
           - graceful_refresh_token_count
           - hydra_token_prefix
+          - deviceauthn
           - update_self_service_registration_rate_limit_tier
           - update_self_service_recovery_rate_limit_tier
           - update_self_service_settings_rate_limit_tier
@@ -24133,6 +24451,11 @@ components:
           - kratos_public_low_rate_limit_tier
           - polis_public_high_rate_limit_tier
           - polis_public_medium_rate_limit_tier
+          - talos_admin_high_rate_limit_tier
+          - talos_admin_medium_rate_limit_tier
+          - talos_admin_low_rate_limit_tier
+          - talos_public_high_rate_limit_tier
+          - talos_public_low_rate_limit_tier
           - unassigned_rate_limit_tier
           type: string
           x-go-enum-desc: |-
@@ -24172,8 +24495,12 @@ components:
             default_smtp_email_customization DefaultSMTPEmailCustomization
             onboarding_portal OnboardingPortal
             console_organization_sso ConsoleOrganizationSSO
+            talos_api_keys TalosAPIKeys
+            talos_rate_limit TalosRateLimit
+            talos_cache TalosCache
             graceful_refresh_token_count GracefulRefreshTokenCount
             hydra_token_prefix HydraTokenPrefix
+            deviceauthn Deviceauthn
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
             update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
             update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
@@ -24206,6 +24533,11 @@ components:
             kratos_public_low_rate_limit_tier RateLimitTierKratosPublicLow
             polis_public_high_rate_limit_tier RateLimitTierPolisPublicHigh
             polis_public_medium_rate_limit_tier RateLimitTierPolisPublicMedium
+            talos_admin_high_rate_limit_tier RateLimitTierTalosAdminHigh
+            talos_admin_medium_rate_limit_tier RateLimitTierTalosAdminMedium
+            talos_admin_low_rate_limit_tier RateLimitTierTalosAdminLow
+            talos_public_high_rate_limit_tier RateLimitTierTalosPublicHigh
+            talos_public_low_rate_limit_tier RateLimitTierTalosPublicLow
             unassigned_rate_limit_tier RateLimitTierUnassigned
         feature_available:
           type: boolean
@@ -25004,6 +25336,19 @@ components:
       items:
         $ref: "#/components/schemas/NormalizedProjectRevisionCourierChannel"
       type: array
+    rotateTalosKeyBody:
+      description: Rotate Talos key request body
+      properties:
+        mode:
+          default: graceful
+          description: |-
+            Rotation mode. Use "graceful" to keep the old key for verification of
+            existing tokens, or "revoke" to discard it immediately.
+          enum:
+          - graceful
+          - revoke
+          type: string
+      type: object
     schemaPatch:
       properties:
         data:
@@ -26157,6 +26502,8 @@ components:
             enabled: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           services:
+            talos:
+              config: "{}"
             identity:
               config: "{}"
             permission:
@@ -28986,9 +29333,9 @@ components:
       required:
       - name
       type: object
-    AdminUpdateImportedAPIKey_request:
+    adminUpdateImportedApiKey_request:
       description: |-
-        ImportedAPIKey represents an API key imported from an external system.
+        ImportedApiKey represents an API key imported from an external system.
         The raw key is hashed (SHA-512/256) and stored. The original key is never retained.
       properties:
         actor_id:
@@ -29036,9 +29383,9 @@ components:
         visibility:
           $ref: "#/components/schemas/KeyVisibility"
       type: object
-    AdminUpdateIssuedAPIKey_request:
+    adminUpdateIssuedApiKey_request:
       description: |-
-        IssuedAPIKey represents an API key issued (generated) by Talos.
+        IssuedApiKey represents an API key issued (generated) by Talos.
         Root keys are opaque v1 format tokens stored in the database.
         Derived tokens (JWT/Macaroon) are created via DeriveToken and are stateless (not stored).
       properties:

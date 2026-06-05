@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -16,11 +16,11 @@ import (
 	"time"
 )
 
-// checks if the AdminUpdateImportedAPIKeyRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &AdminUpdateImportedAPIKeyRequest{}
+// checks if the AdminUpdateImportedApiKeyRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AdminUpdateImportedApiKeyRequest{}
 
-// AdminUpdateImportedAPIKeyRequest ImportedAPIKey represents an API key imported from an external system. The raw key is hashed (SHA-512/256) and stored. The original key is never retained.
-type AdminUpdateImportedAPIKeyRequest struct {
+// AdminUpdateImportedApiKeyRequest ImportedApiKey represents an API key imported from an external system. The raw key is hashed (SHA-512/256) and stored. The original key is never retained.
+type AdminUpdateImportedApiKeyRequest struct {
 	ActorId *string `json:"actor_id,omitempty"`
 	CreateTime *time.Time `json:"create_time,omitempty"`
 	ExpireTime *time.Time `json:"expire_time,omitempty"`
@@ -40,14 +40,14 @@ type AdminUpdateImportedAPIKeyRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _AdminUpdateImportedAPIKeyRequest AdminUpdateImportedAPIKeyRequest
+type _AdminUpdateImportedApiKeyRequest AdminUpdateImportedApiKeyRequest
 
-// NewAdminUpdateImportedAPIKeyRequest instantiates a new AdminUpdateImportedAPIKeyRequest object
+// NewAdminUpdateImportedApiKeyRequest instantiates a new AdminUpdateImportedApiKeyRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAdminUpdateImportedAPIKeyRequest() *AdminUpdateImportedAPIKeyRequest {
-	this := AdminUpdateImportedAPIKeyRequest{}
+func NewAdminUpdateImportedApiKeyRequest() *AdminUpdateImportedApiKeyRequest {
+	this := AdminUpdateImportedApiKeyRequest{}
 	var revocationReason RevocationReason = REVOCATIONREASON_REVOCATION_REASON_UNSPECIFIED
 	this.RevocationReason = &revocationReason
 	var status KeyStatus = KEYSTATUS_KEY_STATUS_UNSPECIFIED
@@ -57,11 +57,11 @@ func NewAdminUpdateImportedAPIKeyRequest() *AdminUpdateImportedAPIKeyRequest {
 	return &this
 }
 
-// NewAdminUpdateImportedAPIKeyRequestWithDefaults instantiates a new AdminUpdateImportedAPIKeyRequest object
+// NewAdminUpdateImportedApiKeyRequestWithDefaults instantiates a new AdminUpdateImportedApiKeyRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAdminUpdateImportedAPIKeyRequestWithDefaults() *AdminUpdateImportedAPIKeyRequest {
-	this := AdminUpdateImportedAPIKeyRequest{}
+func NewAdminUpdateImportedApiKeyRequestWithDefaults() *AdminUpdateImportedApiKeyRequest {
+	this := AdminUpdateImportedApiKeyRequest{}
 	var revocationReason RevocationReason = REVOCATIONREASON_REVOCATION_REASON_UNSPECIFIED
 	this.RevocationReason = &revocationReason
 	var status KeyStatus = KEYSTATUS_KEY_STATUS_UNSPECIFIED
@@ -72,7 +72,7 @@ func NewAdminUpdateImportedAPIKeyRequestWithDefaults() *AdminUpdateImportedAPIKe
 }
 
 // GetActorId returns the ActorId field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetActorId() string {
+func (o *AdminUpdateImportedApiKeyRequest) GetActorId() string {
 	if o == nil || IsNil(o.ActorId) {
 		var ret string
 		return ret
@@ -82,7 +82,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetActorId() string {
 
 // GetActorIdOk returns a tuple with the ActorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetActorIdOk() (*string, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetActorIdOk() (*string, bool) {
 	if o == nil || IsNil(o.ActorId) {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetActorIdOk() (*string, bool) {
 }
 
 // HasActorId returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasActorId() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasActorId() bool {
 	if o != nil && !IsNil(o.ActorId) {
 		return true
 	}
@@ -99,12 +99,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasActorId() bool {
 }
 
 // SetActorId gets a reference to the given string and assigns it to the ActorId field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetActorId(v string) {
+func (o *AdminUpdateImportedApiKeyRequest) SetActorId(v string) {
 	o.ActorId = &v
 }
 
 // GetCreateTime returns the CreateTime field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetCreateTime() time.Time {
+func (o *AdminUpdateImportedApiKeyRequest) GetCreateTime() time.Time {
 	if o == nil || IsNil(o.CreateTime) {
 		var ret time.Time
 		return ret
@@ -114,7 +114,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetCreateTime() time.Time {
 
 // GetCreateTimeOk returns a tuple with the CreateTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetCreateTimeOk() (*time.Time, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetCreateTimeOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.CreateTime) {
 		return nil, false
 	}
@@ -122,7 +122,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetCreateTimeOk() (*time.Time, bool) 
 }
 
 // HasCreateTime returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasCreateTime() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasCreateTime() bool {
 	if o != nil && !IsNil(o.CreateTime) {
 		return true
 	}
@@ -131,12 +131,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasCreateTime() bool {
 }
 
 // SetCreateTime gets a reference to the given time.Time and assigns it to the CreateTime field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetCreateTime(v time.Time) {
+func (o *AdminUpdateImportedApiKeyRequest) SetCreateTime(v time.Time) {
 	o.CreateTime = &v
 }
 
 // GetExpireTime returns the ExpireTime field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetExpireTime() time.Time {
+func (o *AdminUpdateImportedApiKeyRequest) GetExpireTime() time.Time {
 	if o == nil || IsNil(o.ExpireTime) {
 		var ret time.Time
 		return ret
@@ -146,7 +146,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetExpireTime() time.Time {
 
 // GetExpireTimeOk returns a tuple with the ExpireTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetExpireTimeOk() (*time.Time, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetExpireTimeOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.ExpireTime) {
 		return nil, false
 	}
@@ -154,7 +154,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetExpireTimeOk() (*time.Time, bool) 
 }
 
 // HasExpireTime returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasExpireTime() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasExpireTime() bool {
 	if o != nil && !IsNil(o.ExpireTime) {
 		return true
 	}
@@ -163,12 +163,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasExpireTime() bool {
 }
 
 // SetExpireTime gets a reference to the given time.Time and assigns it to the ExpireTime field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetExpireTime(v time.Time) {
+func (o *AdminUpdateImportedApiKeyRequest) SetExpireTime(v time.Time) {
 	o.ExpireTime = &v
 }
 
 // GetIpRestriction returns the IpRestriction field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetIpRestriction() IPRestriction {
+func (o *AdminUpdateImportedApiKeyRequest) GetIpRestriction() IPRestriction {
 	if o == nil || IsNil(o.IpRestriction) {
 		var ret IPRestriction
 		return ret
@@ -178,7 +178,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetIpRestriction() IPRestriction {
 
 // GetIpRestrictionOk returns a tuple with the IpRestriction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetIpRestrictionOk() (*IPRestriction, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetIpRestrictionOk() (*IPRestriction, bool) {
 	if o == nil || IsNil(o.IpRestriction) {
 		return nil, false
 	}
@@ -186,7 +186,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetIpRestrictionOk() (*IPRestriction,
 }
 
 // HasIpRestriction returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasIpRestriction() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasIpRestriction() bool {
 	if o != nil && !IsNil(o.IpRestriction) {
 		return true
 	}
@@ -195,12 +195,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasIpRestriction() bool {
 }
 
 // SetIpRestriction gets a reference to the given IPRestriction and assigns it to the IpRestriction field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetIpRestriction(v IPRestriction) {
+func (o *AdminUpdateImportedApiKeyRequest) SetIpRestriction(v IPRestriction) {
 	o.IpRestriction = &v
 }
 
 // GetLastUsedTime returns the LastUsedTime field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetLastUsedTime() time.Time {
+func (o *AdminUpdateImportedApiKeyRequest) GetLastUsedTime() time.Time {
 	if o == nil || IsNil(o.LastUsedTime) {
 		var ret time.Time
 		return ret
@@ -210,7 +210,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetLastUsedTime() time.Time {
 
 // GetLastUsedTimeOk returns a tuple with the LastUsedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetLastUsedTimeOk() (*time.Time, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetLastUsedTimeOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.LastUsedTime) {
 		return nil, false
 	}
@@ -218,7 +218,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetLastUsedTimeOk() (*time.Time, bool
 }
 
 // HasLastUsedTime returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasLastUsedTime() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasLastUsedTime() bool {
 	if o != nil && !IsNil(o.LastUsedTime) {
 		return true
 	}
@@ -227,12 +227,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasLastUsedTime() bool {
 }
 
 // SetLastUsedTime gets a reference to the given time.Time and assigns it to the LastUsedTime field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetLastUsedTime(v time.Time) {
+func (o *AdminUpdateImportedApiKeyRequest) SetLastUsedTime(v time.Time) {
 	o.LastUsedTime = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetMetadata() map[string]interface{} {
+func (o *AdminUpdateImportedApiKeyRequest) GetMetadata() map[string]interface{} {
 	if o == nil || IsNil(o.Metadata) {
 		var ret map[string]interface{}
 		return ret
@@ -242,7 +242,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetMetadata() map[string]interface{} 
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetMetadataOk() (map[string]interface{}, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetMetadataOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Metadata) {
 		return map[string]interface{}{}, false
 	}
@@ -250,7 +250,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetMetadataOk() (map[string]interface
 }
 
 // HasMetadata returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasMetadata() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasMetadata() bool {
 	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
@@ -259,12 +259,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasMetadata() bool {
 }
 
 // SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetMetadata(v map[string]interface{}) {
+func (o *AdminUpdateImportedApiKeyRequest) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetName() string {
+func (o *AdminUpdateImportedApiKeyRequest) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -274,7 +274,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetNameOk() (*string, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -282,7 +282,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasName() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -291,12 +291,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetName(v string) {
+func (o *AdminUpdateImportedApiKeyRequest) SetName(v string) {
 	o.Name = &v
 }
 
 // GetRateLimitPolicy returns the RateLimitPolicy field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetRateLimitPolicy() RateLimitPolicy {
+func (o *AdminUpdateImportedApiKeyRequest) GetRateLimitPolicy() RateLimitPolicy {
 	if o == nil || IsNil(o.RateLimitPolicy) {
 		var ret RateLimitPolicy
 		return ret
@@ -306,7 +306,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetRateLimitPolicy() RateLimitPolicy 
 
 // GetRateLimitPolicyOk returns a tuple with the RateLimitPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetRateLimitPolicyOk() (*RateLimitPolicy, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetRateLimitPolicyOk() (*RateLimitPolicy, bool) {
 	if o == nil || IsNil(o.RateLimitPolicy) {
 		return nil, false
 	}
@@ -314,7 +314,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetRateLimitPolicyOk() (*RateLimitPol
 }
 
 // HasRateLimitPolicy returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasRateLimitPolicy() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasRateLimitPolicy() bool {
 	if o != nil && !IsNil(o.RateLimitPolicy) {
 		return true
 	}
@@ -323,12 +323,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasRateLimitPolicy() bool {
 }
 
 // SetRateLimitPolicy gets a reference to the given RateLimitPolicy and assigns it to the RateLimitPolicy field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetRateLimitPolicy(v RateLimitPolicy) {
+func (o *AdminUpdateImportedApiKeyRequest) SetRateLimitPolicy(v RateLimitPolicy) {
 	o.RateLimitPolicy = &v
 }
 
 // GetRevocationDescription returns the RevocationDescription field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetRevocationDescription() string {
+func (o *AdminUpdateImportedApiKeyRequest) GetRevocationDescription() string {
 	if o == nil || IsNil(o.RevocationDescription) {
 		var ret string
 		return ret
@@ -338,7 +338,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetRevocationDescription() string {
 
 // GetRevocationDescriptionOk returns a tuple with the RevocationDescription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetRevocationDescriptionOk() (*string, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetRevocationDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.RevocationDescription) {
 		return nil, false
 	}
@@ -346,7 +346,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetRevocationDescriptionOk() (*string
 }
 
 // HasRevocationDescription returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasRevocationDescription() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasRevocationDescription() bool {
 	if o != nil && !IsNil(o.RevocationDescription) {
 		return true
 	}
@@ -355,12 +355,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasRevocationDescription() bool {
 }
 
 // SetRevocationDescription gets a reference to the given string and assigns it to the RevocationDescription field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetRevocationDescription(v string) {
+func (o *AdminUpdateImportedApiKeyRequest) SetRevocationDescription(v string) {
 	o.RevocationDescription = &v
 }
 
 // GetRevocationReason returns the RevocationReason field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetRevocationReason() RevocationReason {
+func (o *AdminUpdateImportedApiKeyRequest) GetRevocationReason() RevocationReason {
 	if o == nil || IsNil(o.RevocationReason) {
 		var ret RevocationReason
 		return ret
@@ -370,7 +370,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetRevocationReason() RevocationReaso
 
 // GetRevocationReasonOk returns a tuple with the RevocationReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetRevocationReasonOk() (*RevocationReason, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetRevocationReasonOk() (*RevocationReason, bool) {
 	if o == nil || IsNil(o.RevocationReason) {
 		return nil, false
 	}
@@ -378,7 +378,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetRevocationReasonOk() (*RevocationR
 }
 
 // HasRevocationReason returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasRevocationReason() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasRevocationReason() bool {
 	if o != nil && !IsNil(o.RevocationReason) {
 		return true
 	}
@@ -387,12 +387,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasRevocationReason() bool {
 }
 
 // SetRevocationReason gets a reference to the given RevocationReason and assigns it to the RevocationReason field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetRevocationReason(v RevocationReason) {
+func (o *AdminUpdateImportedApiKeyRequest) SetRevocationReason(v RevocationReason) {
 	o.RevocationReason = &v
 }
 
 // GetScopes returns the Scopes field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetScopes() []string {
+func (o *AdminUpdateImportedApiKeyRequest) GetScopes() []string {
 	if o == nil || IsNil(o.Scopes) {
 		var ret []string
 		return ret
@@ -402,7 +402,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetScopes() []string {
 
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetScopesOk() ([]string, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetScopesOk() ([]string, bool) {
 	if o == nil || IsNil(o.Scopes) {
 		return nil, false
 	}
@@ -410,7 +410,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetScopesOk() ([]string, bool) {
 }
 
 // HasScopes returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasScopes() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasScopes() bool {
 	if o != nil && !IsNil(o.Scopes) {
 		return true
 	}
@@ -419,12 +419,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasScopes() bool {
 }
 
 // SetScopes gets a reference to the given []string and assigns it to the Scopes field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetScopes(v []string) {
+func (o *AdminUpdateImportedApiKeyRequest) SetScopes(v []string) {
 	o.Scopes = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetStatus() KeyStatus {
+func (o *AdminUpdateImportedApiKeyRequest) GetStatus() KeyStatus {
 	if o == nil || IsNil(o.Status) {
 		var ret KeyStatus
 		return ret
@@ -434,7 +434,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetStatus() KeyStatus {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetStatusOk() (*KeyStatus, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetStatusOk() (*KeyStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -442,7 +442,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetStatusOk() (*KeyStatus, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasStatus() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasStatus() bool {
 	if o != nil && !IsNil(o.Status) {
 		return true
 	}
@@ -451,12 +451,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given KeyStatus and assigns it to the Status field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetStatus(v KeyStatus) {
+func (o *AdminUpdateImportedApiKeyRequest) SetStatus(v KeyStatus) {
 	o.Status = &v
 }
 
 // GetUpdateTime returns the UpdateTime field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetUpdateTime() time.Time {
+func (o *AdminUpdateImportedApiKeyRequest) GetUpdateTime() time.Time {
 	if o == nil || IsNil(o.UpdateTime) {
 		var ret time.Time
 		return ret
@@ -466,7 +466,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetUpdateTime() time.Time {
 
 // GetUpdateTimeOk returns a tuple with the UpdateTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetUpdateTimeOk() (*time.Time, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetUpdateTimeOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.UpdateTime) {
 		return nil, false
 	}
@@ -474,7 +474,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetUpdateTimeOk() (*time.Time, bool) 
 }
 
 // HasUpdateTime returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasUpdateTime() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasUpdateTime() bool {
 	if o != nil && !IsNil(o.UpdateTime) {
 		return true
 	}
@@ -483,12 +483,12 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasUpdateTime() bool {
 }
 
 // SetUpdateTime gets a reference to the given time.Time and assigns it to the UpdateTime field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetUpdateTime(v time.Time) {
+func (o *AdminUpdateImportedApiKeyRequest) SetUpdateTime(v time.Time) {
 	o.UpdateTime = &v
 }
 
 // GetVisibility returns the Visibility field value if set, zero value otherwise.
-func (o *AdminUpdateImportedAPIKeyRequest) GetVisibility() KeyVisibility {
+func (o *AdminUpdateImportedApiKeyRequest) GetVisibility() KeyVisibility {
 	if o == nil || IsNil(o.Visibility) {
 		var ret KeyVisibility
 		return ret
@@ -498,7 +498,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetVisibility() KeyVisibility {
 
 // GetVisibilityOk returns a tuple with the Visibility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) GetVisibilityOk() (*KeyVisibility, bool) {
+func (o *AdminUpdateImportedApiKeyRequest) GetVisibilityOk() (*KeyVisibility, bool) {
 	if o == nil || IsNil(o.Visibility) {
 		return nil, false
 	}
@@ -506,7 +506,7 @@ func (o *AdminUpdateImportedAPIKeyRequest) GetVisibilityOk() (*KeyVisibility, bo
 }
 
 // HasVisibility returns a boolean if a field has been set.
-func (o *AdminUpdateImportedAPIKeyRequest) HasVisibility() bool {
+func (o *AdminUpdateImportedApiKeyRequest) HasVisibility() bool {
 	if o != nil && !IsNil(o.Visibility) {
 		return true
 	}
@@ -515,11 +515,11 @@ func (o *AdminUpdateImportedAPIKeyRequest) HasVisibility() bool {
 }
 
 // SetVisibility gets a reference to the given KeyVisibility and assigns it to the Visibility field.
-func (o *AdminUpdateImportedAPIKeyRequest) SetVisibility(v KeyVisibility) {
+func (o *AdminUpdateImportedApiKeyRequest) SetVisibility(v KeyVisibility) {
 	o.Visibility = &v
 }
 
-func (o AdminUpdateImportedAPIKeyRequest) MarshalJSON() ([]byte, error) {
+func (o AdminUpdateImportedApiKeyRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -527,7 +527,7 @@ func (o AdminUpdateImportedAPIKeyRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o AdminUpdateImportedAPIKeyRequest) ToMap() (map[string]interface{}, error) {
+func (o AdminUpdateImportedApiKeyRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ActorId) {
 		toSerialize["actor_id"] = o.ActorId
@@ -579,16 +579,16 @@ func (o AdminUpdateImportedAPIKeyRequest) ToMap() (map[string]interface{}, error
 	return toSerialize, nil
 }
 
-func (o *AdminUpdateImportedAPIKeyRequest) UnmarshalJSON(data []byte) (err error) {
-	varAdminUpdateImportedAPIKeyRequest := _AdminUpdateImportedAPIKeyRequest{}
+func (o *AdminUpdateImportedApiKeyRequest) UnmarshalJSON(data []byte) (err error) {
+	varAdminUpdateImportedApiKeyRequest := _AdminUpdateImportedApiKeyRequest{}
 
-	err = json.Unmarshal(data, &varAdminUpdateImportedAPIKeyRequest)
+	err = json.Unmarshal(data, &varAdminUpdateImportedApiKeyRequest)
 
 	if err != nil {
 		return err
 	}
 
-	*o = AdminUpdateImportedAPIKeyRequest(varAdminUpdateImportedAPIKeyRequest)
+	*o = AdminUpdateImportedApiKeyRequest(varAdminUpdateImportedApiKeyRequest)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -613,38 +613,38 @@ func (o *AdminUpdateImportedAPIKeyRequest) UnmarshalJSON(data []byte) (err error
 	return err
 }
 
-type NullableAdminUpdateImportedAPIKeyRequest struct {
-	value *AdminUpdateImportedAPIKeyRequest
+type NullableAdminUpdateImportedApiKeyRequest struct {
+	value *AdminUpdateImportedApiKeyRequest
 	isSet bool
 }
 
-func (v NullableAdminUpdateImportedAPIKeyRequest) Get() *AdminUpdateImportedAPIKeyRequest {
+func (v NullableAdminUpdateImportedApiKeyRequest) Get() *AdminUpdateImportedApiKeyRequest {
 	return v.value
 }
 
-func (v *NullableAdminUpdateImportedAPIKeyRequest) Set(val *AdminUpdateImportedAPIKeyRequest) {
+func (v *NullableAdminUpdateImportedApiKeyRequest) Set(val *AdminUpdateImportedApiKeyRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAdminUpdateImportedAPIKeyRequest) IsSet() bool {
+func (v NullableAdminUpdateImportedApiKeyRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAdminUpdateImportedAPIKeyRequest) Unset() {
+func (v *NullableAdminUpdateImportedApiKeyRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAdminUpdateImportedAPIKeyRequest(val *AdminUpdateImportedAPIKeyRequest) *NullableAdminUpdateImportedAPIKeyRequest {
-	return &NullableAdminUpdateImportedAPIKeyRequest{value: val, isSet: true}
+func NewNullableAdminUpdateImportedApiKeyRequest(val *AdminUpdateImportedApiKeyRequest) *NullableAdminUpdateImportedApiKeyRequest {
+	return &NullableAdminUpdateImportedApiKeyRequest{value: val, isSet: true}
 }
 
-func (v NullableAdminUpdateImportedAPIKeyRequest) MarshalJSON() ([]byte, error) {
+func (v NullableAdminUpdateImportedApiKeyRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAdminUpdateImportedAPIKeyRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableAdminUpdateImportedApiKeyRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

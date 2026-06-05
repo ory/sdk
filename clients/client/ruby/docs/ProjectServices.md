@@ -8,6 +8,7 @@
 | **identity** | [**ProjectServiceIdentity**](ProjectServiceIdentity.md) |  | [optional] |
 | **oauth2** | [**ProjectServiceOAuth2**](ProjectServiceOAuth2.md) |  | [optional] |
 | **permission** | [**ProjectServicePermission**](ProjectServicePermission.md) |  | [optional] |
+| **talos** | [**ProjectServiceTalos**](ProjectServiceTalos.md) |  | [optional] |
 
 ## Example
 
@@ -18,7 +19,8 @@ instance = OryClient::ProjectServices.new(
   account_experience: null,
   identity: null,
   oauth2: null,
-  permission: null
+  permission: null,
+  talos: null
 )
 ```
 

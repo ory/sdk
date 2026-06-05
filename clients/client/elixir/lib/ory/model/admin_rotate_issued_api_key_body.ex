@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.AdminRotateIssuedApiKeyBody do
   @moduledoc """
-  RotateIssuedAPIKeyRequest is the request for AdminRotateIssuedAPIKey.  Rotation is a custom method (AIP-136) that swaps an active key for a new one with a fresh secret and key_id, then revokes the old key. It is not a partial update, so it does not carry an update_mask. Mutable fields use presence-based semantics: an absent field inherits from the old key, while a present field (including an explicitly empty value) overrides.
+  RotateIssuedApiKeyRequest is the request for AdminRotateIssuedApiKey.  Rotation is a custom method (AIP-136) that swaps an active key for a new one with a fresh secret and key_id, then revokes the old key. It is not a partial update, so it does not carry an update_mask. Mutable fields use presence-based semantics: an absent field inherits from the old key, while a present field (including an explicitly empty value) overrides.
   """
 
   @derive Jason.Encoder

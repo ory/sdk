@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -16,11 +16,11 @@ import (
 	"time"
 )
 
-// checks if the ImportedAPIKey type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ImportedAPIKey{}
+// checks if the ImportedApiKey type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ImportedApiKey{}
 
-// ImportedAPIKey ImportedAPIKey represents an API key imported from an external system. The raw key is hashed (SHA-512/256) and stored. The original key is never retained.
-type ImportedAPIKey struct {
+// ImportedApiKey ImportedApiKey represents an API key imported from an external system. The raw key is hashed (SHA-512/256) and stored. The original key is never retained.
+type ImportedApiKey struct {
 	ActorId *string `json:"actor_id,omitempty"`
 	CreateTime *time.Time `json:"create_time,omitempty"`
 	ExpireTime *time.Time `json:"expire_time,omitempty"`
@@ -41,14 +41,14 @@ type ImportedAPIKey struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ImportedAPIKey ImportedAPIKey
+type _ImportedApiKey ImportedApiKey
 
-// NewImportedAPIKey instantiates a new ImportedAPIKey object
+// NewImportedApiKey instantiates a new ImportedApiKey object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewImportedAPIKey() *ImportedAPIKey {
-	this := ImportedAPIKey{}
+func NewImportedApiKey() *ImportedApiKey {
+	this := ImportedApiKey{}
 	var revocationReason RevocationReason = REVOCATIONREASON_REVOCATION_REASON_UNSPECIFIED
 	this.RevocationReason = &revocationReason
 	var status KeyStatus = KEYSTATUS_KEY_STATUS_UNSPECIFIED
@@ -58,11 +58,11 @@ func NewImportedAPIKey() *ImportedAPIKey {
 	return &this
 }
 
-// NewImportedAPIKeyWithDefaults instantiates a new ImportedAPIKey object
+// NewImportedApiKeyWithDefaults instantiates a new ImportedApiKey object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewImportedAPIKeyWithDefaults() *ImportedAPIKey {
-	this := ImportedAPIKey{}
+func NewImportedApiKeyWithDefaults() *ImportedApiKey {
+	this := ImportedApiKey{}
 	var revocationReason RevocationReason = REVOCATIONREASON_REVOCATION_REASON_UNSPECIFIED
 	this.RevocationReason = &revocationReason
 	var status KeyStatus = KEYSTATUS_KEY_STATUS_UNSPECIFIED
@@ -73,7 +73,7 @@ func NewImportedAPIKeyWithDefaults() *ImportedAPIKey {
 }
 
 // GetActorId returns the ActorId field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetActorId() string {
+func (o *ImportedApiKey) GetActorId() string {
 	if o == nil || IsNil(o.ActorId) {
 		var ret string
 		return ret
@@ -83,7 +83,7 @@ func (o *ImportedAPIKey) GetActorId() string {
 
 // GetActorIdOk returns a tuple with the ActorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetActorIdOk() (*string, bool) {
+func (o *ImportedApiKey) GetActorIdOk() (*string, bool) {
 	if o == nil || IsNil(o.ActorId) {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *ImportedAPIKey) GetActorIdOk() (*string, bool) {
 }
 
 // HasActorId returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasActorId() bool {
+func (o *ImportedApiKey) HasActorId() bool {
 	if o != nil && !IsNil(o.ActorId) {
 		return true
 	}
@@ -100,12 +100,12 @@ func (o *ImportedAPIKey) HasActorId() bool {
 }
 
 // SetActorId gets a reference to the given string and assigns it to the ActorId field.
-func (o *ImportedAPIKey) SetActorId(v string) {
+func (o *ImportedApiKey) SetActorId(v string) {
 	o.ActorId = &v
 }
 
 // GetCreateTime returns the CreateTime field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetCreateTime() time.Time {
+func (o *ImportedApiKey) GetCreateTime() time.Time {
 	if o == nil || IsNil(o.CreateTime) {
 		var ret time.Time
 		return ret
@@ -115,7 +115,7 @@ func (o *ImportedAPIKey) GetCreateTime() time.Time {
 
 // GetCreateTimeOk returns a tuple with the CreateTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetCreateTimeOk() (*time.Time, bool) {
+func (o *ImportedApiKey) GetCreateTimeOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.CreateTime) {
 		return nil, false
 	}
@@ -123,7 +123,7 @@ func (o *ImportedAPIKey) GetCreateTimeOk() (*time.Time, bool) {
 }
 
 // HasCreateTime returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasCreateTime() bool {
+func (o *ImportedApiKey) HasCreateTime() bool {
 	if o != nil && !IsNil(o.CreateTime) {
 		return true
 	}
@@ -132,12 +132,12 @@ func (o *ImportedAPIKey) HasCreateTime() bool {
 }
 
 // SetCreateTime gets a reference to the given time.Time and assigns it to the CreateTime field.
-func (o *ImportedAPIKey) SetCreateTime(v time.Time) {
+func (o *ImportedApiKey) SetCreateTime(v time.Time) {
 	o.CreateTime = &v
 }
 
 // GetExpireTime returns the ExpireTime field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetExpireTime() time.Time {
+func (o *ImportedApiKey) GetExpireTime() time.Time {
 	if o == nil || IsNil(o.ExpireTime) {
 		var ret time.Time
 		return ret
@@ -147,7 +147,7 @@ func (o *ImportedAPIKey) GetExpireTime() time.Time {
 
 // GetExpireTimeOk returns a tuple with the ExpireTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetExpireTimeOk() (*time.Time, bool) {
+func (o *ImportedApiKey) GetExpireTimeOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.ExpireTime) {
 		return nil, false
 	}
@@ -155,7 +155,7 @@ func (o *ImportedAPIKey) GetExpireTimeOk() (*time.Time, bool) {
 }
 
 // HasExpireTime returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasExpireTime() bool {
+func (o *ImportedApiKey) HasExpireTime() bool {
 	if o != nil && !IsNil(o.ExpireTime) {
 		return true
 	}
@@ -164,12 +164,12 @@ func (o *ImportedAPIKey) HasExpireTime() bool {
 }
 
 // SetExpireTime gets a reference to the given time.Time and assigns it to the ExpireTime field.
-func (o *ImportedAPIKey) SetExpireTime(v time.Time) {
+func (o *ImportedApiKey) SetExpireTime(v time.Time) {
 	o.ExpireTime = &v
 }
 
 // GetIpRestriction returns the IpRestriction field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetIpRestriction() IPRestriction {
+func (o *ImportedApiKey) GetIpRestriction() IPRestriction {
 	if o == nil || IsNil(o.IpRestriction) {
 		var ret IPRestriction
 		return ret
@@ -179,7 +179,7 @@ func (o *ImportedAPIKey) GetIpRestriction() IPRestriction {
 
 // GetIpRestrictionOk returns a tuple with the IpRestriction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetIpRestrictionOk() (*IPRestriction, bool) {
+func (o *ImportedApiKey) GetIpRestrictionOk() (*IPRestriction, bool) {
 	if o == nil || IsNil(o.IpRestriction) {
 		return nil, false
 	}
@@ -187,7 +187,7 @@ func (o *ImportedAPIKey) GetIpRestrictionOk() (*IPRestriction, bool) {
 }
 
 // HasIpRestriction returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasIpRestriction() bool {
+func (o *ImportedApiKey) HasIpRestriction() bool {
 	if o != nil && !IsNil(o.IpRestriction) {
 		return true
 	}
@@ -196,12 +196,12 @@ func (o *ImportedAPIKey) HasIpRestriction() bool {
 }
 
 // SetIpRestriction gets a reference to the given IPRestriction and assigns it to the IpRestriction field.
-func (o *ImportedAPIKey) SetIpRestriction(v IPRestriction) {
+func (o *ImportedApiKey) SetIpRestriction(v IPRestriction) {
 	o.IpRestriction = &v
 }
 
 // GetKeyId returns the KeyId field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetKeyId() string {
+func (o *ImportedApiKey) GetKeyId() string {
 	if o == nil || IsNil(o.KeyId) {
 		var ret string
 		return ret
@@ -211,7 +211,7 @@ func (o *ImportedAPIKey) GetKeyId() string {
 
 // GetKeyIdOk returns a tuple with the KeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetKeyIdOk() (*string, bool) {
+func (o *ImportedApiKey) GetKeyIdOk() (*string, bool) {
 	if o == nil || IsNil(o.KeyId) {
 		return nil, false
 	}
@@ -219,7 +219,7 @@ func (o *ImportedAPIKey) GetKeyIdOk() (*string, bool) {
 }
 
 // HasKeyId returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasKeyId() bool {
+func (o *ImportedApiKey) HasKeyId() bool {
 	if o != nil && !IsNil(o.KeyId) {
 		return true
 	}
@@ -228,12 +228,12 @@ func (o *ImportedAPIKey) HasKeyId() bool {
 }
 
 // SetKeyId gets a reference to the given string and assigns it to the KeyId field.
-func (o *ImportedAPIKey) SetKeyId(v string) {
+func (o *ImportedApiKey) SetKeyId(v string) {
 	o.KeyId = &v
 }
 
 // GetLastUsedTime returns the LastUsedTime field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetLastUsedTime() time.Time {
+func (o *ImportedApiKey) GetLastUsedTime() time.Time {
 	if o == nil || IsNil(o.LastUsedTime) {
 		var ret time.Time
 		return ret
@@ -243,7 +243,7 @@ func (o *ImportedAPIKey) GetLastUsedTime() time.Time {
 
 // GetLastUsedTimeOk returns a tuple with the LastUsedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetLastUsedTimeOk() (*time.Time, bool) {
+func (o *ImportedApiKey) GetLastUsedTimeOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.LastUsedTime) {
 		return nil, false
 	}
@@ -251,7 +251,7 @@ func (o *ImportedAPIKey) GetLastUsedTimeOk() (*time.Time, bool) {
 }
 
 // HasLastUsedTime returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasLastUsedTime() bool {
+func (o *ImportedApiKey) HasLastUsedTime() bool {
 	if o != nil && !IsNil(o.LastUsedTime) {
 		return true
 	}
@@ -260,12 +260,12 @@ func (o *ImportedAPIKey) HasLastUsedTime() bool {
 }
 
 // SetLastUsedTime gets a reference to the given time.Time and assigns it to the LastUsedTime field.
-func (o *ImportedAPIKey) SetLastUsedTime(v time.Time) {
+func (o *ImportedApiKey) SetLastUsedTime(v time.Time) {
 	o.LastUsedTime = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetMetadata() map[string]interface{} {
+func (o *ImportedApiKey) GetMetadata() map[string]interface{} {
 	if o == nil || IsNil(o.Metadata) {
 		var ret map[string]interface{}
 		return ret
@@ -275,7 +275,7 @@ func (o *ImportedAPIKey) GetMetadata() map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetMetadataOk() (map[string]interface{}, bool) {
+func (o *ImportedApiKey) GetMetadataOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Metadata) {
 		return map[string]interface{}{}, false
 	}
@@ -283,7 +283,7 @@ func (o *ImportedAPIKey) GetMetadataOk() (map[string]interface{}, bool) {
 }
 
 // HasMetadata returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasMetadata() bool {
+func (o *ImportedApiKey) HasMetadata() bool {
 	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
@@ -292,12 +292,12 @@ func (o *ImportedAPIKey) HasMetadata() bool {
 }
 
 // SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
-func (o *ImportedAPIKey) SetMetadata(v map[string]interface{}) {
+func (o *ImportedApiKey) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetName() string {
+func (o *ImportedApiKey) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -307,7 +307,7 @@ func (o *ImportedAPIKey) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetNameOk() (*string, bool) {
+func (o *ImportedApiKey) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -315,7 +315,7 @@ func (o *ImportedAPIKey) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasName() bool {
+func (o *ImportedApiKey) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -324,12 +324,12 @@ func (o *ImportedAPIKey) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ImportedAPIKey) SetName(v string) {
+func (o *ImportedApiKey) SetName(v string) {
 	o.Name = &v
 }
 
 // GetRateLimitPolicy returns the RateLimitPolicy field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetRateLimitPolicy() RateLimitPolicy {
+func (o *ImportedApiKey) GetRateLimitPolicy() RateLimitPolicy {
 	if o == nil || IsNil(o.RateLimitPolicy) {
 		var ret RateLimitPolicy
 		return ret
@@ -339,7 +339,7 @@ func (o *ImportedAPIKey) GetRateLimitPolicy() RateLimitPolicy {
 
 // GetRateLimitPolicyOk returns a tuple with the RateLimitPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetRateLimitPolicyOk() (*RateLimitPolicy, bool) {
+func (o *ImportedApiKey) GetRateLimitPolicyOk() (*RateLimitPolicy, bool) {
 	if o == nil || IsNil(o.RateLimitPolicy) {
 		return nil, false
 	}
@@ -347,7 +347,7 @@ func (o *ImportedAPIKey) GetRateLimitPolicyOk() (*RateLimitPolicy, bool) {
 }
 
 // HasRateLimitPolicy returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasRateLimitPolicy() bool {
+func (o *ImportedApiKey) HasRateLimitPolicy() bool {
 	if o != nil && !IsNil(o.RateLimitPolicy) {
 		return true
 	}
@@ -356,12 +356,12 @@ func (o *ImportedAPIKey) HasRateLimitPolicy() bool {
 }
 
 // SetRateLimitPolicy gets a reference to the given RateLimitPolicy and assigns it to the RateLimitPolicy field.
-func (o *ImportedAPIKey) SetRateLimitPolicy(v RateLimitPolicy) {
+func (o *ImportedApiKey) SetRateLimitPolicy(v RateLimitPolicy) {
 	o.RateLimitPolicy = &v
 }
 
 // GetRevocationDescription returns the RevocationDescription field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetRevocationDescription() string {
+func (o *ImportedApiKey) GetRevocationDescription() string {
 	if o == nil || IsNil(o.RevocationDescription) {
 		var ret string
 		return ret
@@ -371,7 +371,7 @@ func (o *ImportedAPIKey) GetRevocationDescription() string {
 
 // GetRevocationDescriptionOk returns a tuple with the RevocationDescription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetRevocationDescriptionOk() (*string, bool) {
+func (o *ImportedApiKey) GetRevocationDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.RevocationDescription) {
 		return nil, false
 	}
@@ -379,7 +379,7 @@ func (o *ImportedAPIKey) GetRevocationDescriptionOk() (*string, bool) {
 }
 
 // HasRevocationDescription returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasRevocationDescription() bool {
+func (o *ImportedApiKey) HasRevocationDescription() bool {
 	if o != nil && !IsNil(o.RevocationDescription) {
 		return true
 	}
@@ -388,12 +388,12 @@ func (o *ImportedAPIKey) HasRevocationDescription() bool {
 }
 
 // SetRevocationDescription gets a reference to the given string and assigns it to the RevocationDescription field.
-func (o *ImportedAPIKey) SetRevocationDescription(v string) {
+func (o *ImportedApiKey) SetRevocationDescription(v string) {
 	o.RevocationDescription = &v
 }
 
 // GetRevocationReason returns the RevocationReason field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetRevocationReason() RevocationReason {
+func (o *ImportedApiKey) GetRevocationReason() RevocationReason {
 	if o == nil || IsNil(o.RevocationReason) {
 		var ret RevocationReason
 		return ret
@@ -403,7 +403,7 @@ func (o *ImportedAPIKey) GetRevocationReason() RevocationReason {
 
 // GetRevocationReasonOk returns a tuple with the RevocationReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetRevocationReasonOk() (*RevocationReason, bool) {
+func (o *ImportedApiKey) GetRevocationReasonOk() (*RevocationReason, bool) {
 	if o == nil || IsNil(o.RevocationReason) {
 		return nil, false
 	}
@@ -411,7 +411,7 @@ func (o *ImportedAPIKey) GetRevocationReasonOk() (*RevocationReason, bool) {
 }
 
 // HasRevocationReason returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasRevocationReason() bool {
+func (o *ImportedApiKey) HasRevocationReason() bool {
 	if o != nil && !IsNil(o.RevocationReason) {
 		return true
 	}
@@ -420,12 +420,12 @@ func (o *ImportedAPIKey) HasRevocationReason() bool {
 }
 
 // SetRevocationReason gets a reference to the given RevocationReason and assigns it to the RevocationReason field.
-func (o *ImportedAPIKey) SetRevocationReason(v RevocationReason) {
+func (o *ImportedApiKey) SetRevocationReason(v RevocationReason) {
 	o.RevocationReason = &v
 }
 
 // GetScopes returns the Scopes field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetScopes() []string {
+func (o *ImportedApiKey) GetScopes() []string {
 	if o == nil || IsNil(o.Scopes) {
 		var ret []string
 		return ret
@@ -435,7 +435,7 @@ func (o *ImportedAPIKey) GetScopes() []string {
 
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetScopesOk() ([]string, bool) {
+func (o *ImportedApiKey) GetScopesOk() ([]string, bool) {
 	if o == nil || IsNil(o.Scopes) {
 		return nil, false
 	}
@@ -443,7 +443,7 @@ func (o *ImportedAPIKey) GetScopesOk() ([]string, bool) {
 }
 
 // HasScopes returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasScopes() bool {
+func (o *ImportedApiKey) HasScopes() bool {
 	if o != nil && !IsNil(o.Scopes) {
 		return true
 	}
@@ -452,12 +452,12 @@ func (o *ImportedAPIKey) HasScopes() bool {
 }
 
 // SetScopes gets a reference to the given []string and assigns it to the Scopes field.
-func (o *ImportedAPIKey) SetScopes(v []string) {
+func (o *ImportedApiKey) SetScopes(v []string) {
 	o.Scopes = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetStatus() KeyStatus {
+func (o *ImportedApiKey) GetStatus() KeyStatus {
 	if o == nil || IsNil(o.Status) {
 		var ret KeyStatus
 		return ret
@@ -467,7 +467,7 @@ func (o *ImportedAPIKey) GetStatus() KeyStatus {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetStatusOk() (*KeyStatus, bool) {
+func (o *ImportedApiKey) GetStatusOk() (*KeyStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -475,7 +475,7 @@ func (o *ImportedAPIKey) GetStatusOk() (*KeyStatus, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasStatus() bool {
+func (o *ImportedApiKey) HasStatus() bool {
 	if o != nil && !IsNil(o.Status) {
 		return true
 	}
@@ -484,12 +484,12 @@ func (o *ImportedAPIKey) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given KeyStatus and assigns it to the Status field.
-func (o *ImportedAPIKey) SetStatus(v KeyStatus) {
+func (o *ImportedApiKey) SetStatus(v KeyStatus) {
 	o.Status = &v
 }
 
 // GetUpdateTime returns the UpdateTime field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetUpdateTime() time.Time {
+func (o *ImportedApiKey) GetUpdateTime() time.Time {
 	if o == nil || IsNil(o.UpdateTime) {
 		var ret time.Time
 		return ret
@@ -499,7 +499,7 @@ func (o *ImportedAPIKey) GetUpdateTime() time.Time {
 
 // GetUpdateTimeOk returns a tuple with the UpdateTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetUpdateTimeOk() (*time.Time, bool) {
+func (o *ImportedApiKey) GetUpdateTimeOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.UpdateTime) {
 		return nil, false
 	}
@@ -507,7 +507,7 @@ func (o *ImportedAPIKey) GetUpdateTimeOk() (*time.Time, bool) {
 }
 
 // HasUpdateTime returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasUpdateTime() bool {
+func (o *ImportedApiKey) HasUpdateTime() bool {
 	if o != nil && !IsNil(o.UpdateTime) {
 		return true
 	}
@@ -516,12 +516,12 @@ func (o *ImportedAPIKey) HasUpdateTime() bool {
 }
 
 // SetUpdateTime gets a reference to the given time.Time and assigns it to the UpdateTime field.
-func (o *ImportedAPIKey) SetUpdateTime(v time.Time) {
+func (o *ImportedApiKey) SetUpdateTime(v time.Time) {
 	o.UpdateTime = &v
 }
 
 // GetVisibility returns the Visibility field value if set, zero value otherwise.
-func (o *ImportedAPIKey) GetVisibility() KeyVisibility {
+func (o *ImportedApiKey) GetVisibility() KeyVisibility {
 	if o == nil || IsNil(o.Visibility) {
 		var ret KeyVisibility
 		return ret
@@ -531,7 +531,7 @@ func (o *ImportedAPIKey) GetVisibility() KeyVisibility {
 
 // GetVisibilityOk returns a tuple with the Visibility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportedAPIKey) GetVisibilityOk() (*KeyVisibility, bool) {
+func (o *ImportedApiKey) GetVisibilityOk() (*KeyVisibility, bool) {
 	if o == nil || IsNil(o.Visibility) {
 		return nil, false
 	}
@@ -539,7 +539,7 @@ func (o *ImportedAPIKey) GetVisibilityOk() (*KeyVisibility, bool) {
 }
 
 // HasVisibility returns a boolean if a field has been set.
-func (o *ImportedAPIKey) HasVisibility() bool {
+func (o *ImportedApiKey) HasVisibility() bool {
 	if o != nil && !IsNil(o.Visibility) {
 		return true
 	}
@@ -548,11 +548,11 @@ func (o *ImportedAPIKey) HasVisibility() bool {
 }
 
 // SetVisibility gets a reference to the given KeyVisibility and assigns it to the Visibility field.
-func (o *ImportedAPIKey) SetVisibility(v KeyVisibility) {
+func (o *ImportedApiKey) SetVisibility(v KeyVisibility) {
 	o.Visibility = &v
 }
 
-func (o ImportedAPIKey) MarshalJSON() ([]byte, error) {
+func (o ImportedApiKey) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -560,7 +560,7 @@ func (o ImportedAPIKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ImportedAPIKey) ToMap() (map[string]interface{}, error) {
+func (o ImportedApiKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ActorId) {
 		toSerialize["actor_id"] = o.ActorId
@@ -615,16 +615,16 @@ func (o ImportedAPIKey) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ImportedAPIKey) UnmarshalJSON(data []byte) (err error) {
-	varImportedAPIKey := _ImportedAPIKey{}
+func (o *ImportedApiKey) UnmarshalJSON(data []byte) (err error) {
+	varImportedApiKey := _ImportedApiKey{}
 
-	err = json.Unmarshal(data, &varImportedAPIKey)
+	err = json.Unmarshal(data, &varImportedApiKey)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ImportedAPIKey(varImportedAPIKey)
+	*o = ImportedApiKey(varImportedApiKey)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -650,38 +650,38 @@ func (o *ImportedAPIKey) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableImportedAPIKey struct {
-	value *ImportedAPIKey
+type NullableImportedApiKey struct {
+	value *ImportedApiKey
 	isSet bool
 }
 
-func (v NullableImportedAPIKey) Get() *ImportedAPIKey {
+func (v NullableImportedApiKey) Get() *ImportedApiKey {
 	return v.value
 }
 
-func (v *NullableImportedAPIKey) Set(val *ImportedAPIKey) {
+func (v *NullableImportedApiKey) Set(val *ImportedApiKey) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableImportedAPIKey) IsSet() bool {
+func (v NullableImportedApiKey) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableImportedAPIKey) Unset() {
+func (v *NullableImportedApiKey) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableImportedAPIKey(val *ImportedAPIKey) *NullableImportedAPIKey {
-	return &NullableImportedAPIKey{value: val, isSet: true}
+func NewNullableImportedApiKey(val *ImportedApiKey) *NullableImportedApiKey {
+	return &NullableImportedApiKey{value: val, isSet: true}
 }
 
-func (v NullableImportedAPIKey) MarshalJSON() ([]byte, error) {
+func (v NullableImportedApiKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableImportedAPIKey) UnmarshalJSON(src []byte) error {
+func (v *NullableImportedApiKey) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

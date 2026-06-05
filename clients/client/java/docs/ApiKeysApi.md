@@ -4,32 +4,33 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**adminBatchImportAPIKeys**](ApiKeysApi.md#adminBatchImportAPIKeys) | **POST** /v2alpha1/admin/importedApiKeys:batchImport | Batch Import API Keys |
-| [**adminBatchVerifyAPIKeys**](ApiKeysApi.md#adminBatchVerifyAPIKeys) | **POST** /v2alpha1/admin/apiKeys:batchVerify | Batch Verify API Keys |
-| [**adminDeleteImportedAPIKey**](ApiKeysApi.md#adminDeleteImportedAPIKey) | **DELETE** /v2alpha1/admin/importedApiKeys/{key_id} | Delete Imported API Key |
+| [**adminBatchCreateImportedApiKeys**](ApiKeysApi.md#adminBatchCreateImportedApiKeys) | **POST** /v2alpha1/admin/importedApiKeys:batchCreate | Batch Import API Keys |
+| [**adminBatchVerifyApiKeys**](ApiKeysApi.md#adminBatchVerifyApiKeys) | **POST** /v2alpha1/admin/apiKeys:batchVerify | Batch Verify API Keys |
+| [**adminDeleteImportedApiKey**](ApiKeysApi.md#adminDeleteImportedApiKey) | **DELETE** /v2alpha1/admin/importedApiKeys/{key_id} | Delete Imported API Key |
 | [**adminDeriveToken**](ApiKeysApi.md#adminDeriveToken) | **POST** /v2alpha1/admin/apiKeys:derive | Derive Token |
-| [**adminGetImportedAPIKey**](ApiKeysApi.md#adminGetImportedAPIKey) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key |
-| [**adminGetIssuedAPIKey**](ApiKeysApi.md#adminGetIssuedAPIKey) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key |
-| [**adminImportAPIKey**](ApiKeysApi.md#adminImportAPIKey) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key |
-| [**adminIssueAPIKey**](ApiKeysApi.md#adminIssueAPIKey) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key |
-| [**adminListImportedAPIKeys**](ApiKeysApi.md#adminListImportedAPIKeys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys |
-| [**adminListIssuedAPIKeys**](ApiKeysApi.md#adminListIssuedAPIKeys) | **GET** /v2alpha1/admin/issuedApiKeys | List Issued API Keys |
-| [**adminRevokeAPIKey**](ApiKeysApi.md#adminRevokeAPIKey) | **POST** /v2alpha1/admin/apiKeys/{key_id}:revoke | Revoke API Key |
-| [**adminRotateIssuedAPIKey**](ApiKeysApi.md#adminRotateIssuedAPIKey) | **POST** /v2alpha1/admin/issuedApiKeys/{key_id}:rotate | Rotate Issued API Key |
-| [**adminUpdateImportedAPIKey**](ApiKeysApi.md#adminUpdateImportedAPIKey) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key |
-| [**adminUpdateIssuedAPIKey**](ApiKeysApi.md#adminUpdateIssuedAPIKey) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key |
-| [**adminVerifyAPIKey**](ApiKeysApi.md#adminVerifyAPIKey) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key |
-| [**getJWKS**](ApiKeysApi.md#getJWKS) | **GET** /v2alpha1/derivedKeys/jwks.json | Get JWKS |
-| [**revokeAPIKey**](ApiKeysApi.md#revokeAPIKey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service) |
+| [**adminGetImportedApiKey**](ApiKeysApi.md#adminGetImportedApiKey) | **GET** /v2alpha1/admin/importedApiKeys/{key_id} | Get Imported API Key |
+| [**adminGetIssuedApiKey**](ApiKeysApi.md#adminGetIssuedApiKey) | **GET** /v2alpha1/admin/issuedApiKeys/{key_id} | Get Issued API Key |
+| [**adminImportApiKey**](ApiKeysApi.md#adminImportApiKey) | **POST** /v2alpha1/admin/importedApiKeys | Import API Key |
+| [**adminIssueApiKey**](ApiKeysApi.md#adminIssueApiKey) | **POST** /v2alpha1/admin/issuedApiKeys | Issue API Key |
+| [**adminListImportedApiKeys**](ApiKeysApi.md#adminListImportedApiKeys) | **GET** /v2alpha1/admin/importedApiKeys | List Imported API Keys |
+| [**adminListIssuedApiKeys**](ApiKeysApi.md#adminListIssuedApiKeys) | **GET** /v2alpha1/admin/issuedApiKeys | List Issued API Keys |
+| [**adminRevokeImportedApiKey**](ApiKeysApi.md#adminRevokeImportedApiKey) | **POST** /v2alpha1/admin/importedApiKeys/{key_id}:revoke | Revoke Imported API Key |
+| [**adminRevokeIssuedApiKey**](ApiKeysApi.md#adminRevokeIssuedApiKey) | **POST** /v2alpha1/admin/issuedApiKeys/{key_id}:revoke | Revoke Issued API Key |
+| [**adminRotateIssuedApiKey**](ApiKeysApi.md#adminRotateIssuedApiKey) | **POST** /v2alpha1/admin/issuedApiKeys/{key_id}:rotate | Rotate Issued API Key |
+| [**adminUpdateImportedApiKey**](ApiKeysApi.md#adminUpdateImportedApiKey) | **PATCH** /v2alpha1/admin/importedApiKeys/{key_id} | Update Imported API Key |
+| [**adminUpdateIssuedApiKey**](ApiKeysApi.md#adminUpdateIssuedApiKey) | **PATCH** /v2alpha1/admin/issuedApiKeys/{key_id} | Update Issued API Key |
+| [**adminVerifyApiKey**](ApiKeysApi.md#adminVerifyApiKey) | **POST** /v2alpha1/admin/apiKeys:verify | Verify API Key |
+| [**getJwks**](ApiKeysApi.md#getJwks) | **GET** /v2alpha1/derivedKeys/jwks.json | Get JWKS |
+| [**revokeApiKey**](ApiKeysApi.md#revokeApiKey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service) |
 
 
-<a id="adminBatchImportAPIKeys"></a>
-# **adminBatchImportAPIKeys**
-> BatchImportAPIKeysResponse adminBatchImportAPIKeys(batchImportAPIKeysRequest)
+<a id="adminBatchCreateImportedApiKeys"></a>
+# **adminBatchCreateImportedApiKeys**
+> BatchCreateImportedApiKeysResponse adminBatchCreateImportedApiKeys(batchCreateImportedApiKeysRequest)
 
 Batch Import API Keys
 
-Imports up to 1000 external API keys in one request. Returns per-item results. If at least one item succeeds, response is 200 OK. If all items fail, the endpoint returns a non-200 error.  &#x60;&#x60;&#x60;http POST /v2alpha1/admin/importedApiKeys:batchImport {   \&quot;requests\&quot;: [     {\&quot;raw_key\&quot;: \&quot;sk_live_abc\&quot;, \&quot;name\&quot;: \&quot;Stripe key\&quot;, \&quot;actor_id\&quot;: \&quot;user_1\&quot;},     {\&quot;raw_key\&quot;: \&quot;ghp_xyz\&quot;, \&quot;name\&quot;: \&quot;GitHub PAT\&quot;, \&quot;actor_id\&quot;: \&quot;user_2\&quot;}   ] } &#x60;&#x60;&#x60;
+Imports up to 1000 external API keys in one request. Returns per-item results. If at least one item succeeds, response is 200 OK. If all items fail, the endpoint returns a non-200 error.  &#x60;&#x60;&#x60;http POST /v2alpha1/admin/importedApiKeys:batchCreate {   \&quot;requests\&quot;: [     {\&quot;raw_key\&quot;: \&quot;sk_live_abc\&quot;, \&quot;name\&quot;: \&quot;Stripe key\&quot;, \&quot;actor_id\&quot;: \&quot;user_1\&quot;},     {\&quot;raw_key\&quot;: \&quot;ghp_xyz\&quot;, \&quot;name\&quot;: \&quot;GitHub PAT\&quot;, \&quot;actor_id\&quot;: \&quot;user_2\&quot;}   ] } &#x60;&#x60;&#x60;
 
 ### Example
 ```java
@@ -51,12 +52,12 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
-    BatchImportAPIKeysRequest batchImportAPIKeysRequest = new BatchImportAPIKeysRequest(); // BatchImportAPIKeysRequest | BatchImportAPIKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys.
+    BatchCreateImportedApiKeysRequest batchCreateImportedApiKeysRequest = new BatchCreateImportedApiKeysRequest(); // BatchCreateImportedApiKeysRequest | BatchCreateImportedApiKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys.
     try {
-      BatchImportAPIKeysResponse result = apiInstance.adminBatchImportAPIKeys(batchImportAPIKeysRequest);
+      BatchCreateImportedApiKeysResponse result = apiInstance.adminBatchCreateImportedApiKeys(batchCreateImportedApiKeysRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminBatchImportAPIKeys");
+      System.err.println("Exception when calling ApiKeysApi#adminBatchCreateImportedApiKeys");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -70,11 +71,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **batchImportAPIKeysRequest** | [**BatchImportAPIKeysRequest**](BatchImportAPIKeysRequest.md)| BatchImportAPIKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys. | |
+| **batchCreateImportedApiKeysRequest** | [**BatchCreateImportedApiKeysRequest**](BatchCreateImportedApiKeysRequest.md)| BatchCreateImportedApiKeysRequest imports multiple external API keys in one request. The maximum batch size is 1000 keys. | |
 
 ### Return type
 
-[**BatchImportAPIKeysResponse**](BatchImportAPIKeysResponse.md)
+[**BatchCreateImportedApiKeysResponse**](BatchCreateImportedApiKeysResponse.md)
 
 ### Authorization
 
@@ -91,9 +92,9 @@ public class Example {
 | **200** | Batch import completed. Check per-item results for individual status. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminBatchVerifyAPIKeys"></a>
-# **adminBatchVerifyAPIKeys**
-> BatchVerifyAPIKeysResponse adminBatchVerifyAPIKeys(batchVerifyAPIKeysRequest, cacheControl, pragma)
+<a id="adminBatchVerifyApiKeys"></a>
+# **adminBatchVerifyApiKeys**
+> BatchVerifyApiKeysResponse adminBatchVerifyApiKeys(batchVerifyApiKeysRequest, cacheControl, pragma)
 
 Batch Verify API Keys
 
@@ -119,14 +120,14 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
-    BatchVerifyAPIKeysRequest batchVerifyAPIKeysRequest = new BatchVerifyAPIKeysRequest(); // BatchVerifyAPIKeysRequest | 
+    BatchVerifyApiKeysRequest batchVerifyApiKeysRequest = new BatchVerifyApiKeysRequest(); // BatchVerifyApiKeysRequest | 
     String cacheControl = "cacheControl_example"; // String | Cache-directive controlling the verifier cache. `no-cache` forces a fresh database lookup (cache read is bypassed). `no-store` additionally prevents the result from being written to the cache. Any other value is ignored.
     String pragma = "pragma_example"; // String | HTTP/1.0 alias for `Cache-Control: no-cache`. Behaves identically when set to `no-cache`; ignored otherwise.
     try {
-      BatchVerifyAPIKeysResponse result = apiInstance.adminBatchVerifyAPIKeys(batchVerifyAPIKeysRequest, cacheControl, pragma);
+      BatchVerifyApiKeysResponse result = apiInstance.adminBatchVerifyApiKeys(batchVerifyApiKeysRequest, cacheControl, pragma);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminBatchVerifyAPIKeys");
+      System.err.println("Exception when calling ApiKeysApi#adminBatchVerifyApiKeys");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -140,13 +141,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **batchVerifyAPIKeysRequest** | [**BatchVerifyAPIKeysRequest**](BatchVerifyAPIKeysRequest.md)|  | |
+| **batchVerifyApiKeysRequest** | [**BatchVerifyApiKeysRequest**](BatchVerifyApiKeysRequest.md)|  | |
 | **cacheControl** | **String**| Cache-directive controlling the verifier cache. &#x60;no-cache&#x60; forces a fresh database lookup (cache read is bypassed). &#x60;no-store&#x60; additionally prevents the result from being written to the cache. Any other value is ignored. | [optional] |
 | **pragma** | **String**| HTTP/1.0 alias for &#x60;Cache-Control: no-cache&#x60;. Behaves identically when set to &#x60;no-cache&#x60;; ignored otherwise. | [optional] |
 
 ### Return type
 
-[**BatchVerifyAPIKeysResponse**](BatchVerifyAPIKeysResponse.md)
+[**BatchVerifyApiKeysResponse**](BatchVerifyApiKeysResponse.md)
 
 ### Authorization
 
@@ -163,13 +164,13 @@ public class Example {
 | **200** | A successful response. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminDeleteImportedAPIKey"></a>
-# **adminDeleteImportedAPIKey**
-> Object adminDeleteImportedAPIKey(keyId)
+<a id="adminDeleteImportedApiKey"></a>
+# **adminDeleteImportedApiKey**
+> Object adminDeleteImportedApiKey(keyId)
 
 Delete Imported API Key
 
-Permanently deletes an imported key (hard delete). The key is removed from the database. Use RevokeAPIKey for soft deletion (recommended).  &#x60;&#x60;&#x60;http DELETE /v2alpha1/admin/importedApiKeys/{key_id} &#x60;&#x60;&#x60;
+Permanently deletes an imported key (hard delete). The key is removed from the database. Use AdminRevokeImportedApiKey for soft deletion (recommended).  &#x60;&#x60;&#x60;http DELETE /v2alpha1/admin/importedApiKeys/{key_id} &#x60;&#x60;&#x60;
 
 ### Example
 ```java
@@ -193,10 +194,10 @@ public class Example {
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
     String keyId = "keyId_example"; // String | SHA512/256 hash of the imported key (REQUIRED)
     try {
-      Object result = apiInstance.adminDeleteImportedAPIKey(keyId);
+      Object result = apiInstance.adminDeleteImportedApiKey(keyId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminDeleteImportedAPIKey");
+      System.err.println("Exception when calling ApiKeysApi#adminDeleteImportedApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -299,9 +300,9 @@ public class Example {
 | **200** | A successful response. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminGetImportedAPIKey"></a>
-# **adminGetImportedAPIKey**
-> ImportedAPIKey adminGetImportedAPIKey(keyId)
+<a id="adminGetImportedApiKey"></a>
+# **adminGetImportedApiKey**
+> ImportedApiKey adminGetImportedApiKey(keyId)
 
 Get Imported API Key
 
@@ -329,10 +330,10 @@ public class Example {
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
     String keyId = "keyId_example"; // String | SHA512/256 hash of the imported key (REQUIRED)
     try {
-      ImportedAPIKey result = apiInstance.adminGetImportedAPIKey(keyId);
+      ImportedApiKey result = apiInstance.adminGetImportedApiKey(keyId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminGetImportedAPIKey");
+      System.err.println("Exception when calling ApiKeysApi#adminGetImportedApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -350,7 +351,7 @@ public class Example {
 
 ### Return type
 
-[**ImportedAPIKey**](ImportedAPIKey.md)
+[**ImportedApiKey**](ImportedApiKey.md)
 
 ### Authorization
 
@@ -367,9 +368,9 @@ public class Example {
 | **200** | A successful response. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminGetIssuedAPIKey"></a>
-# **adminGetIssuedAPIKey**
-> IssuedAPIKey adminGetIssuedAPIKey(keyId)
+<a id="adminGetIssuedApiKey"></a>
+# **adminGetIssuedApiKey**
+> IssuedApiKey adminGetIssuedApiKey(keyId)
 
 Get Issued API Key
 
@@ -397,10 +398,10 @@ public class Example {
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
     String keyId = "keyId_example"; // String | Identifier of the API key resource.
     try {
-      IssuedAPIKey result = apiInstance.adminGetIssuedAPIKey(keyId);
+      IssuedApiKey result = apiInstance.adminGetIssuedApiKey(keyId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminGetIssuedAPIKey");
+      System.err.println("Exception when calling ApiKeysApi#adminGetIssuedApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -418,7 +419,7 @@ public class Example {
 
 ### Return type
 
-[**IssuedAPIKey**](IssuedAPIKey.md)
+[**IssuedApiKey**](IssuedApiKey.md)
 
 ### Authorization
 
@@ -435,9 +436,9 @@ public class Example {
 | **200** | A successful response. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminImportAPIKey"></a>
-# **adminImportAPIKey**
-> ImportedAPIKey adminImportAPIKey(importAPIKeyRequest)
+<a id="adminImportApiKey"></a>
+# **adminImportApiKey**
+> ImportedApiKey adminImportApiKey(importApiKeyRequest)
 
 Import API Key
 
@@ -463,12 +464,12 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
-    ImportAPIKeyRequest importAPIKeyRequest = new ImportAPIKeyRequest(); // ImportAPIKeyRequest | Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
+    ImportApiKeyRequest importApiKeyRequest = new ImportApiKeyRequest(); // ImportApiKeyRequest | Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
     try {
-      ImportedAPIKey result = apiInstance.adminImportAPIKey(importAPIKeyRequest);
+      ImportedApiKey result = apiInstance.adminImportApiKey(importApiKeyRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminImportAPIKey");
+      System.err.println("Exception when calling ApiKeysApi#adminImportApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -482,11 +483,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **importAPIKeyRequest** | [**ImportAPIKeyRequest**](ImportAPIKeyRequest.md)| Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } | |
+| **importApiKeyRequest** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md)| Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } | |
 
 ### Return type
 
-[**ImportedAPIKey**](ImportedAPIKey.md)
+[**ImportedApiKey**](ImportedApiKey.md)
 
 ### Authorization
 
@@ -503,9 +504,9 @@ public class Example {
 | **201** | API key imported successfully. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminIssueAPIKey"></a>
-# **adminIssueAPIKey**
-> IssueAPIKeyResponse adminIssueAPIKey(issueAPIKeyRequest)
+<a id="adminIssueApiKey"></a>
+# **adminIssueApiKey**
+> IssueApiKeyResponse adminIssueApiKey(issueApiKeyRequest)
 
 Issue API Key
 
@@ -531,12 +532,12 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
-    IssueAPIKeyRequest issueAPIKeyRequest = new IssueAPIKeyRequest(); // IssueAPIKeyRequest | 
+    IssueApiKeyRequest issueApiKeyRequest = new IssueApiKeyRequest(); // IssueApiKeyRequest | 
     try {
-      IssueAPIKeyResponse result = apiInstance.adminIssueAPIKey(issueAPIKeyRequest);
+      IssueApiKeyResponse result = apiInstance.adminIssueApiKey(issueApiKeyRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminIssueAPIKey");
+      System.err.println("Exception when calling ApiKeysApi#adminIssueApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -550,11 +551,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **issueAPIKeyRequest** | [**IssueAPIKeyRequest**](IssueAPIKeyRequest.md)|  | |
+| **issueApiKeyRequest** | [**IssueApiKeyRequest**](IssueApiKeyRequest.md)|  | |
 
 ### Return type
 
-[**IssueAPIKeyResponse**](IssueAPIKeyResponse.md)
+[**IssueApiKeyResponse**](IssueApiKeyResponse.md)
 
 ### Authorization
 
@@ -571,9 +572,9 @@ public class Example {
 | **201** | API key issued successfully. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminListImportedAPIKeys"></a>
-# **adminListImportedAPIKeys**
-> ListImportedAPIKeysResponse adminListImportedAPIKeys(pageSize, pageToken, filter)
+<a id="adminListImportedApiKeys"></a>
+# **adminListImportedApiKeys**
+> ListImportedApiKeysResponse adminListImportedApiKeys(pageSize, pageToken, filter)
 
 List Imported API Keys
 
@@ -603,10 +604,10 @@ public class Example {
     String pageToken = "pageToken_example"; // String | Cursor token for pagination (OPTIONAL)
     String filter = "filter_example"; // String | filter is an AIP-160 expression. Indexed fields (efficient at any scale):   actor_id, status. Other fields are not indexed and may be rejected. Examples:   actor_id=\"user_123\"   status=KEY_STATUS_ACTIVE   actor_id=\"user_123\" AND status=KEY_STATUS_ACTIVE
     try {
-      ListImportedAPIKeysResponse result = apiInstance.adminListImportedAPIKeys(pageSize, pageToken, filter);
+      ListImportedApiKeysResponse result = apiInstance.adminListImportedApiKeys(pageSize, pageToken, filter);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminListImportedAPIKeys");
+      System.err.println("Exception when calling ApiKeysApi#adminListImportedApiKeys");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -626,7 +627,7 @@ public class Example {
 
 ### Return type
 
-[**ListImportedAPIKeysResponse**](ListImportedAPIKeysResponse.md)
+[**ListImportedApiKeysResponse**](ListImportedApiKeysResponse.md)
 
 ### Authorization
 
@@ -643,13 +644,13 @@ public class Example {
 | **200** | A successful response. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminListIssuedAPIKeys"></a>
-# **adminListIssuedAPIKeys**
-> ListIssuedAPIKeysResponse adminListIssuedAPIKeys(pageSize, pageToken, filter)
+<a id="adminListIssuedApiKeys"></a>
+# **adminListIssuedApiKeys**
+> ListIssuedApiKeysResponse adminListIssuedApiKeys(pageSize, pageToken, filter)
 
 List Issued API Keys
 
-Lists issued API keys with optional filtering. Supports cursor-based pagination and AIP-160 filter expressions. Returns only issued (generated) API keys; use ListImportedAPIKeys for imported keys.  &#x60;&#x60;&#x60;http GET /v2alpha1/admin/issuedApiKeys?page_size&#x3D;50&amp;filter&#x3D;actor_id%3D%22user_123%22 &#x60;&#x60;&#x60;
+Lists issued API keys with optional filtering. Supports cursor-based pagination and AIP-160 filter expressions. Returns only issued (generated) API keys; use ListImportedApiKeys for imported keys.  &#x60;&#x60;&#x60;http GET /v2alpha1/admin/issuedApiKeys?page_size&#x3D;50&amp;filter&#x3D;actor_id%3D%22user_123%22 &#x60;&#x60;&#x60;
 
 ### Example
 ```java
@@ -675,10 +676,10 @@ public class Example {
     String pageToken = "pageToken_example"; // String | Cursor token for pagination
     String filter = "filter_example"; // String | filter is an AIP-160 expression. Indexed fields (efficient at any scale):   actor_id, status. Other fields are not indexed and may be rejected. Examples:   actor_id=\"user_123\"   status=KEY_STATUS_ACTIVE   actor_id=\"user_123\" AND status=KEY_STATUS_ACTIVE
     try {
-      ListIssuedAPIKeysResponse result = apiInstance.adminListIssuedAPIKeys(pageSize, pageToken, filter);
+      ListIssuedApiKeysResponse result = apiInstance.adminListIssuedApiKeys(pageSize, pageToken, filter);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminListIssuedAPIKeys");
+      System.err.println("Exception when calling ApiKeysApi#adminListIssuedApiKeys");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -698,7 +699,7 @@ public class Example {
 
 ### Return type
 
-[**ListIssuedAPIKeysResponse**](ListIssuedAPIKeysResponse.md)
+[**ListIssuedApiKeysResponse**](ListIssuedApiKeysResponse.md)
 
 ### Authorization
 
@@ -715,13 +716,13 @@ public class Example {
 | **200** | A successful response. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminRevokeAPIKey"></a>
-# **adminRevokeAPIKey**
-> Object adminRevokeAPIKey(keyId, adminRevokeAPIKeyBody)
+<a id="adminRevokeImportedApiKey"></a>
+# **adminRevokeImportedApiKey**
+> Object adminRevokeImportedApiKey(keyId, adminRevokeImportedApiKeyBody)
 
-Revoke API Key
+Revoke Imported API Key
 
-Immediately revokes an API key (issued or imported). Once revoked, the key can no longer be used for authentication. This operation is irreversible. Revoked keys are retained for audit purposes.  &#x60;&#x60;&#x60;http POST /v2alpha1/admin/apiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:revoke {   \&quot;reason\&quot;: \&quot;REVOCATION_REASON_KEY_COMPROMISE\&quot; } &#x60;&#x60;&#x60;
+Immediately revokes an imported API key. Once revoked, the key can no longer be used for authentication. This operation is irreversible. Revoked keys are retained for audit purposes.  &#x60;&#x60;&#x60;http POST /v2alpha1/admin/importedApiKeys/9a3f051b2c7e8d4f1a6b9c0e5f2d8a3b:revoke {   \&quot;reason\&quot;: \&quot;REVOCATION_REASON_KEY_COMPROMISE\&quot; } &#x60;&#x60;&#x60;
 
 ### Example
 ```java
@@ -743,13 +744,13 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
-    String keyId = "keyId_example"; // String | Identifier of the API key resource.
-    AdminRevokeAPIKeyBody adminRevokeAPIKeyBody = new AdminRevokeAPIKeyBody(); // AdminRevokeAPIKeyBody | 
+    String keyId = "keyId_example"; // String | SHA-512/256 hash of the imported key (REQUIRED)
+    AdminRevokeImportedApiKeyBody adminRevokeImportedApiKeyBody = new AdminRevokeImportedApiKeyBody(); // AdminRevokeImportedApiKeyBody | 
     try {
-      Object result = apiInstance.adminRevokeAPIKey(keyId, adminRevokeAPIKeyBody);
+      Object result = apiInstance.adminRevokeImportedApiKey(keyId, adminRevokeImportedApiKeyBody);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminRevokeAPIKey");
+      System.err.println("Exception when calling ApiKeysApi#adminRevokeImportedApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -763,8 +764,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **keyId** | **String**| Identifier of the API key resource. | |
-| **adminRevokeAPIKeyBody** | [**AdminRevokeAPIKeyBody**](AdminRevokeAPIKeyBody.md)|  | |
+| **keyId** | **String**| SHA-512/256 hash of the imported key (REQUIRED) | |
+| **adminRevokeImportedApiKeyBody** | [**AdminRevokeImportedApiKeyBody**](AdminRevokeImportedApiKeyBody.md)|  | |
 
 ### Return type
 
@@ -785,13 +786,83 @@ public class Example {
 | **204** | API key revoked successfully. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminRotateIssuedAPIKey"></a>
-# **adminRotateIssuedAPIKey**
-> RotateIssuedAPIKeyResponse adminRotateIssuedAPIKey(keyId, adminRotateIssuedAPIKeyBody)
+<a id="adminRevokeIssuedApiKey"></a>
+# **adminRevokeIssuedApiKey**
+> Object adminRevokeIssuedApiKey(keyId, adminRevokeIssuedApiKeyBody)
+
+Revoke Issued API Key
+
+Immediately revokes an issued API key. Once revoked, the key can no longer be used for authentication. This operation is irreversible. Revoked keys are retained for audit purposes.  &#x60;&#x60;&#x60;http POST /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:revoke {   \&quot;reason\&quot;: \&quot;REVOCATION_REASON_KEY_COMPROMISE\&quot; } &#x60;&#x60;&#x60;
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.auth.*;
+import sh.ory.models.*;
+import sh.ory.api.ApiKeysApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+    
+    // Configure HTTP bearer authorization: oryAccessToken
+    HttpBearerAuth oryAccessToken = (HttpBearerAuth) defaultClient.getAuthentication("oryAccessToken");
+    oryAccessToken.setBearerToken("BEARER TOKEN");
+
+    ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
+    String keyId = "keyId_example"; // String | UUID of the issued key (REQUIRED)
+    AdminRevokeIssuedApiKeyBody adminRevokeIssuedApiKeyBody = new AdminRevokeIssuedApiKeyBody(); // AdminRevokeIssuedApiKeyBody | 
+    try {
+      Object result = apiInstance.adminRevokeIssuedApiKey(keyId, adminRevokeIssuedApiKeyBody);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ApiKeysApi#adminRevokeIssuedApiKey");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **keyId** | **String**| UUID of the issued key (REQUIRED) | |
+| **adminRevokeIssuedApiKeyBody** | [**AdminRevokeIssuedApiKeyBody**](AdminRevokeIssuedApiKeyBody.md)|  | |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | API key revoked successfully. |  -  |
+| **0** | An unexpected error response. |  -  |
+
+<a id="adminRotateIssuedApiKey"></a>
+# **adminRotateIssuedApiKey**
+> RotateIssuedApiKeyResponse adminRotateIssuedApiKey(keyId, adminRotateIssuedApiKeyBody)
 
 Rotate Issued API Key
 
-Generates a new secret for an issued API key. Creates a new API key with a new key_id and secret, and immediately revokes the old key. This is the recommended way to update scopes, metadata, or rotate credentials.  For zero-downtime rotation, use this workflow instead:   1. IssueAPIKey with new credentials   2. Deploy new secret to all services   3. Verify new secret works everywhere   4. RevokeAPIKey to remove the old key  &#x60;&#x60;&#x60;http POST /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:rotate {   \&quot;scopes\&quot;: [\&quot;read\&quot;] } &#x60;&#x60;&#x60;
+Generates a new secret for an issued API key. Creates a new API key with a new key_id and secret, and immediately revokes the old key. This is the recommended way to update scopes, metadata, or rotate credentials.  For zero-downtime rotation, use this workflow instead:   1. IssueApiKey with new credentials   2. Deploy new secret to all services   3. Verify new secret works everywhere   4. AdminRevokeIssuedApiKey to remove the old key  &#x60;&#x60;&#x60;http POST /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:rotate {   \&quot;scopes\&quot;: [\&quot;read\&quot;] } &#x60;&#x60;&#x60;
 
 ### Example
 ```java
@@ -814,12 +885,12 @@ public class Example {
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
     String keyId = "keyId_example"; // String | key_id is the ID of the existing API key to rotate
-    AdminRotateIssuedAPIKeyBody adminRotateIssuedAPIKeyBody = new AdminRotateIssuedAPIKeyBody(); // AdminRotateIssuedAPIKeyBody | 
+    AdminRotateIssuedApiKeyBody adminRotateIssuedApiKeyBody = new AdminRotateIssuedApiKeyBody(); // AdminRotateIssuedApiKeyBody | 
     try {
-      RotateIssuedAPIKeyResponse result = apiInstance.adminRotateIssuedAPIKey(keyId, adminRotateIssuedAPIKeyBody);
+      RotateIssuedApiKeyResponse result = apiInstance.adminRotateIssuedApiKey(keyId, adminRotateIssuedApiKeyBody);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminRotateIssuedAPIKey");
+      System.err.println("Exception when calling ApiKeysApi#adminRotateIssuedApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -834,11 +905,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **keyId** | **String**| key_id is the ID of the existing API key to rotate | |
-| **adminRotateIssuedAPIKeyBody** | [**AdminRotateIssuedAPIKeyBody**](AdminRotateIssuedAPIKeyBody.md)|  | |
+| **adminRotateIssuedApiKeyBody** | [**AdminRotateIssuedApiKeyBody**](AdminRotateIssuedApiKeyBody.md)|  | |
 
 ### Return type
 
-[**RotateIssuedAPIKeyResponse**](RotateIssuedAPIKeyResponse.md)
+[**RotateIssuedApiKeyResponse**](RotateIssuedApiKeyResponse.md)
 
 ### Authorization
 
@@ -855,9 +926,9 @@ public class Example {
 | **201** | API key rotated successfully. New key issued, old key revoked. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminUpdateImportedAPIKey"></a>
-# **adminUpdateImportedAPIKey**
-> ImportedAPIKey adminUpdateImportedAPIKey(keyId, adminUpdateImportedAPIKeyRequest, updateMask)
+<a id="adminUpdateImportedApiKey"></a>
+# **adminUpdateImportedApiKey**
+> ImportedApiKey adminUpdateImportedApiKey(keyId, adminUpdateImportedApiKeyRequest, updateMask)
 
 Update Imported API Key
 
@@ -884,13 +955,13 @@ public class Example {
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
     String keyId = "keyId_example"; // String | SHA-512/256 hash of credential
-    AdminUpdateImportedAPIKeyRequest adminUpdateImportedAPIKeyRequest = new AdminUpdateImportedAPIKeyRequest(); // AdminUpdateImportedAPIKeyRequest | 
+    AdminUpdateImportedApiKeyRequest adminUpdateImportedApiKeyRequest = new AdminUpdateImportedApiKeyRequest(); // AdminUpdateImportedApiKeyRequest | 
     String updateMask = "updateMask_example"; // String | The list of fields to update. See AIP-134.
     try {
-      ImportedAPIKey result = apiInstance.adminUpdateImportedAPIKey(keyId, adminUpdateImportedAPIKeyRequest, updateMask);
+      ImportedApiKey result = apiInstance.adminUpdateImportedApiKey(keyId, adminUpdateImportedApiKeyRequest, updateMask);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminUpdateImportedAPIKey");
+      System.err.println("Exception when calling ApiKeysApi#adminUpdateImportedApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -905,12 +976,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **keyId** | **String**| SHA-512/256 hash of credential | |
-| **adminUpdateImportedAPIKeyRequest** | [**AdminUpdateImportedAPIKeyRequest**](AdminUpdateImportedAPIKeyRequest.md)|  | |
+| **adminUpdateImportedApiKeyRequest** | [**AdminUpdateImportedApiKeyRequest**](AdminUpdateImportedApiKeyRequest.md)|  | |
 | **updateMask** | **String**| The list of fields to update. See AIP-134. | [optional] |
 
 ### Return type
 
-[**ImportedAPIKey**](ImportedAPIKey.md)
+[**ImportedApiKey**](ImportedApiKey.md)
 
 ### Authorization
 
@@ -927,13 +998,13 @@ public class Example {
 | **200** | A successful response. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminUpdateIssuedAPIKey"></a>
-# **adminUpdateIssuedAPIKey**
-> IssuedAPIKey adminUpdateIssuedAPIKey(keyId, adminUpdateIssuedAPIKeyRequest, updateMask)
+<a id="adminUpdateIssuedApiKey"></a>
+# **adminUpdateIssuedApiKey**
+> IssuedApiKey adminUpdateIssuedApiKey(keyId, adminUpdateIssuedApiKeyRequest, updateMask)
 
 Update Issued API Key
 
-Updates metadata, scopes, or rate limits of an issued key without rotating the secret. Use RotateIssuedAPIKey to change the secret.  Follows AIP-134: the request body is the IssuedAPIKey resource itself, and the update_mask query parameter names the subset of fields to apply. Omitting update_mask is equivalent to a mask of every populated field in the body. To clear a field to its zero value, list it explicitly in update_mask and leave it unset (or empty) in the body.  &#x60;&#x60;&#x60;http PATCH /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ?update_mask&#x3D;scopes {   \&quot;issued_api_key\&quot;: {     \&quot;key_id\&quot;: \&quot;01HQZX9VYQKJB8XQZQXQZQXQXQ\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;]   } } &#x60;&#x60;&#x60;
+Updates metadata, scopes, or rate limits of an issued key without rotating the secret. Use RotateIssuedApiKey to change the secret.  Follows AIP-134: the request body is the IssuedApiKey resource itself, and the update_mask query parameter names the subset of fields to apply. Omitting update_mask is equivalent to a mask of every populated field in the body. To clear a field to its zero value, list it explicitly in update_mask and leave it unset (or empty) in the body.  &#x60;&#x60;&#x60;http PATCH /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ?update_mask&#x3D;scopes {   \&quot;issued_api_key\&quot;: {     \&quot;key_id\&quot;: \&quot;01HQZX9VYQKJB8XQZQXQZQXQXQ\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;]   } } &#x60;&#x60;&#x60;
 
 ### Example
 ```java
@@ -956,13 +1027,13 @@ public class Example {
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
     String keyId = "keyId_example"; // String | Identifier of the API key resource.
-    AdminUpdateIssuedAPIKeyRequest adminUpdateIssuedAPIKeyRequest = new AdminUpdateIssuedAPIKeyRequest(); // AdminUpdateIssuedAPIKeyRequest | 
+    AdminUpdateIssuedApiKeyRequest adminUpdateIssuedApiKeyRequest = new AdminUpdateIssuedApiKeyRequest(); // AdminUpdateIssuedApiKeyRequest | 
     String updateMask = "updateMask_example"; // String | The list of fields to update. See AIP-134.
     try {
-      IssuedAPIKey result = apiInstance.adminUpdateIssuedAPIKey(keyId, adminUpdateIssuedAPIKeyRequest, updateMask);
+      IssuedApiKey result = apiInstance.adminUpdateIssuedApiKey(keyId, adminUpdateIssuedApiKeyRequest, updateMask);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminUpdateIssuedAPIKey");
+      System.err.println("Exception when calling ApiKeysApi#adminUpdateIssuedApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -977,12 +1048,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **keyId** | **String**| Identifier of the API key resource. | |
-| **adminUpdateIssuedAPIKeyRequest** | [**AdminUpdateIssuedAPIKeyRequest**](AdminUpdateIssuedAPIKeyRequest.md)|  | |
+| **adminUpdateIssuedApiKeyRequest** | [**AdminUpdateIssuedApiKeyRequest**](AdminUpdateIssuedApiKeyRequest.md)|  | |
 | **updateMask** | **String**| The list of fields to update. See AIP-134. | [optional] |
 
 ### Return type
 
-[**IssuedAPIKey**](IssuedAPIKey.md)
+[**IssuedApiKey**](IssuedApiKey.md)
 
 ### Authorization
 
@@ -999,9 +1070,9 @@ public class Example {
 | **200** | A successful response. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="adminVerifyAPIKey"></a>
-# **adminVerifyAPIKey**
-> VerifyAPIKeyResponse adminVerifyAPIKey(verifyAPIKeyRequest, cacheControl, pragma)
+<a id="adminVerifyApiKey"></a>
+# **adminVerifyApiKey**
+> VerifyApiKeyResponse adminVerifyApiKey(verifyApiKeyRequest, cacheControl, pragma)
 
 Verify API Key
 
@@ -1027,14 +1098,14 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
-    VerifyAPIKeyRequest verifyAPIKeyRequest = new VerifyAPIKeyRequest(); // VerifyAPIKeyRequest | 
+    VerifyApiKeyRequest verifyApiKeyRequest = new VerifyApiKeyRequest(); // VerifyApiKeyRequest | 
     String cacheControl = "cacheControl_example"; // String | Cache-directive controlling the verifier cache. `no-cache` forces a fresh database lookup (cache read is bypassed). `no-store` additionally prevents the result from being written to the cache. Any other value is ignored.
     String pragma = "pragma_example"; // String | HTTP/1.0 alias for `Cache-Control: no-cache`. Behaves identically when set to `no-cache`; ignored otherwise.
     try {
-      VerifyAPIKeyResponse result = apiInstance.adminVerifyAPIKey(verifyAPIKeyRequest, cacheControl, pragma);
+      VerifyApiKeyResponse result = apiInstance.adminVerifyApiKey(verifyApiKeyRequest, cacheControl, pragma);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#adminVerifyAPIKey");
+      System.err.println("Exception when calling ApiKeysApi#adminVerifyApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1048,13 +1119,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **verifyAPIKeyRequest** | [**VerifyAPIKeyRequest**](VerifyAPIKeyRequest.md)|  | |
+| **verifyApiKeyRequest** | [**VerifyApiKeyRequest**](VerifyApiKeyRequest.md)|  | |
 | **cacheControl** | **String**| Cache-directive controlling the verifier cache. &#x60;no-cache&#x60; forces a fresh database lookup (cache read is bypassed). &#x60;no-store&#x60; additionally prevents the result from being written to the cache. Any other value is ignored. | [optional] |
 | **pragma** | **String**| HTTP/1.0 alias for &#x60;Cache-Control: no-cache&#x60;. Behaves identically when set to &#x60;no-cache&#x60;; ignored otherwise. | [optional] |
 
 ### Return type
 
-[**VerifyAPIKeyResponse**](VerifyAPIKeyResponse.md)
+[**VerifyApiKeyResponse**](VerifyApiKeyResponse.md)
 
 ### Authorization
 
@@ -1071,9 +1142,9 @@ public class Example {
 | **200** | A successful response. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="getJWKS"></a>
-# **getJWKS**
-> GetJWKSResponse getJWKS()
+<a id="getJwks"></a>
+# **getJwks**
+> GetJWKSResponse getJwks()
 
 Get JWKS
 
@@ -1095,10 +1166,10 @@ public class Example {
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
     try {
-      GetJWKSResponse result = apiInstance.getJWKS();
+      GetJWKSResponse result = apiInstance.getJwks();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#getJWKS");
+      System.err.println("Exception when calling ApiKeysApi#getJwks");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1130,13 +1201,13 @@ No authorization required
 | **200** | A successful response. |  -  |
 | **0** | An unexpected error response. |  -  |
 
-<a id="revokeAPIKey"></a>
-# **revokeAPIKey**
-> Object revokeAPIKey(selfRevokeAPIKeyRequest)
+<a id="revokeApiKey"></a>
+# **revokeApiKey**
+> Object revokeApiKey(selfRevokeApiKeyRequest)
 
 Revoke API Key (self-service)
 
-Proof-of-possession variant of revocation. Lives alongside &#x60;AdminRevokeAPIKey&#x60; in this service; the &#x60;Self*&#x60; prefix on the request/response messages disambiguates from the admin variant&#39;s &#x60;RevokeAPIKeyRequest&#x60;.  Allows an API key holder to revoke their own key. The caller must provide the full API key secret as proof of possession. Supports issued API keys and imported keys. JWT and macaroon tokens cannot be self-revoked (they are stateless).  The PRIVILEGE_WITHDRAWN reason is not allowed for self-revocation (admin-only).  &#x60;&#x60;&#x60;http POST /v2alpha1/apiKeys:selfRevoke {   \&quot;credential\&quot;: \&quot;sk_live_abc123...\&quot;,   \&quot;reason\&quot;: \&quot;REVOCATION_REASON_KEY_COMPROMISE\&quot; } &#x60;&#x60;&#x60;
+Proof-of-possession variant of revocation. The &#x60;Self*&#x60; prefix on the request/response messages disambiguates from the admin variants (&#x60;AdminRevokeIssuedApiKey&#x60; / &#x60;AdminRevokeImportedApiKey&#x60;).  Allows an API key holder to revoke their own key. The caller must provide the full API key secret as proof of possession. Supports issued API keys and imported keys. JWT and macaroon tokens cannot be self-revoked (they are stateless).  The PRIVILEGE_WITHDRAWN reason is not allowed for self-revocation (admin-only).  &#x60;&#x60;&#x60;http POST /v2alpha1/apiKeys:selfRevoke {   \&quot;credential\&quot;: \&quot;sk_live_abc123...\&quot;,   \&quot;reason\&quot;: \&quot;REVOCATION_REASON_KEY_COMPROMISE\&quot; } &#x60;&#x60;&#x60;
 
 ### Example
 ```java
@@ -1153,12 +1224,12 @@ public class Example {
     defaultClient.setBasePath("https://playground.projects.oryapis.com");
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
-    SelfRevokeAPIKeyRequest selfRevokeAPIKeyRequest = new SelfRevokeAPIKeyRequest(); // SelfRevokeAPIKeyRequest | SelfRevokeAPIKeyRequest allows an API key holder to revoke their own key by providing the full key secret as proof of possession.
+    SelfRevokeApiKeyRequest selfRevokeApiKeyRequest = new SelfRevokeApiKeyRequest(); // SelfRevokeApiKeyRequest | SelfRevokeApiKeyRequest allows an API key holder to revoke their own key by providing the full key secret as proof of possession.
     try {
-      Object result = apiInstance.revokeAPIKey(selfRevokeAPIKeyRequest);
+      Object result = apiInstance.revokeApiKey(selfRevokeApiKeyRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling ApiKeysApi#revokeAPIKey");
+      System.err.println("Exception when calling ApiKeysApi#revokeApiKey");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1172,7 +1243,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **selfRevokeAPIKeyRequest** | [**SelfRevokeAPIKeyRequest**](SelfRevokeAPIKeyRequest.md)| SelfRevokeAPIKeyRequest allows an API key holder to revoke their own key by providing the full key secret as proof of possession. | |
+| **selfRevokeApiKeyRequest** | [**SelfRevokeApiKeyRequest**](SelfRevokeApiKeyRequest.md)| SelfRevokeApiKeyRequest allows an API key holder to revoke their own key by providing the full key secret as proof of possession. | |
 
 ### Return type
 

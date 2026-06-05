@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **identity** | [**ProjectServiceIdentity**](ProjectServiceIdentity.md) |  | [optional] [default to undefined]
 **oauth2** | [**ProjectServiceOAuth2**](ProjectServiceOAuth2.md) |  | [optional] [default to undefined]
 **permission** | [**ProjectServicePermission**](ProjectServicePermission.md) |  | [optional] [default to undefined]
+**talos** | [**ProjectServiceTalos**](ProjectServiceTalos.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -20,6 +21,7 @@ const instance: ProjectServices = {
     identity,
     oauth2,
     permission,
+    talos,
 };
 ```
 

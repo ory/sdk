@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './APIKeysApi';
+export * from './ApiKeysApi';
 export * from './CourierApi';
 export * from './EventsApi';
 export * from './FrontendApi';

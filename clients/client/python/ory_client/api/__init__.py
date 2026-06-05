@@ -1,7 +1,7 @@
 # flake8: noqa
 
 # import apis into api package
-from ory_client.api.api_keys_api import APIKeysApi
+from ory_client.api.api_keys_api import ApiKeysApi
 from ory_client.api.courier_api import CourierApi
 from ory_client.api.events_api import EventsApi
 from ory_client.api.frontend_api import FrontendApi

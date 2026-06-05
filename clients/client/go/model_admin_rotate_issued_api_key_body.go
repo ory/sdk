@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the AdminRotateIssuedAPIKeyBody type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &AdminRotateIssuedAPIKeyBody{}
+// checks if the AdminRotateIssuedApiKeyBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AdminRotateIssuedApiKeyBody{}
 
-// AdminRotateIssuedAPIKeyBody RotateIssuedAPIKeyRequest is the request for AdminRotateIssuedAPIKey.  Rotation is a custom method (AIP-136) that swaps an active key for a new one with a fresh secret and key_id, then revokes the old key. It is not a partial update, so it does not carry an update_mask. Mutable fields use presence-based semantics: an absent field inherits from the old key, while a present field (including an explicitly empty value) overrides.
-type AdminRotateIssuedAPIKeyBody struct {
+// AdminRotateIssuedApiKeyBody RotateIssuedApiKeyRequest is the request for AdminRotateIssuedApiKey.  Rotation is a custom method (AIP-136) that swaps an active key for a new one with a fresh secret and key_id, then revokes the old key. It is not a partial update, so it does not carry an update_mask. Mutable fields use presence-based semantics: an absent field inherits from the old key, while a present field (including an explicitly empty value) overrides.
+type AdminRotateIssuedApiKeyBody struct {
 	IpRestriction *IPRestriction `json:"ip_restriction,omitempty"`
 	// metadata for the new API key. Absent (nil) inherits from the old key; present (including empty Struct) overrides.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
@@ -32,31 +32,31 @@ type AdminRotateIssuedAPIKeyBody struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _AdminRotateIssuedAPIKeyBody AdminRotateIssuedAPIKeyBody
+type _AdminRotateIssuedApiKeyBody AdminRotateIssuedApiKeyBody
 
-// NewAdminRotateIssuedAPIKeyBody instantiates a new AdminRotateIssuedAPIKeyBody object
+// NewAdminRotateIssuedApiKeyBody instantiates a new AdminRotateIssuedApiKeyBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAdminRotateIssuedAPIKeyBody() *AdminRotateIssuedAPIKeyBody {
-	this := AdminRotateIssuedAPIKeyBody{}
+func NewAdminRotateIssuedApiKeyBody() *AdminRotateIssuedApiKeyBody {
+	this := AdminRotateIssuedApiKeyBody{}
 	var visibility KeyVisibility = KEYVISIBILITY_KEY_VISIBILITY_UNSPECIFIED
 	this.Visibility = &visibility
 	return &this
 }
 
-// NewAdminRotateIssuedAPIKeyBodyWithDefaults instantiates a new AdminRotateIssuedAPIKeyBody object
+// NewAdminRotateIssuedApiKeyBodyWithDefaults instantiates a new AdminRotateIssuedApiKeyBody object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAdminRotateIssuedAPIKeyBodyWithDefaults() *AdminRotateIssuedAPIKeyBody {
-	this := AdminRotateIssuedAPIKeyBody{}
+func NewAdminRotateIssuedApiKeyBodyWithDefaults() *AdminRotateIssuedApiKeyBody {
+	this := AdminRotateIssuedApiKeyBody{}
 	var visibility KeyVisibility = KEYVISIBILITY_KEY_VISIBILITY_UNSPECIFIED
 	this.Visibility = &visibility
 	return &this
 }
 
 // GetIpRestriction returns the IpRestriction field value if set, zero value otherwise.
-func (o *AdminRotateIssuedAPIKeyBody) GetIpRestriction() IPRestriction {
+func (o *AdminRotateIssuedApiKeyBody) GetIpRestriction() IPRestriction {
 	if o == nil || IsNil(o.IpRestriction) {
 		var ret IPRestriction
 		return ret
@@ -66,7 +66,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetIpRestriction() IPRestriction {
 
 // GetIpRestrictionOk returns a tuple with the IpRestriction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminRotateIssuedAPIKeyBody) GetIpRestrictionOk() (*IPRestriction, bool) {
+func (o *AdminRotateIssuedApiKeyBody) GetIpRestrictionOk() (*IPRestriction, bool) {
 	if o == nil || IsNil(o.IpRestriction) {
 		return nil, false
 	}
@@ -74,7 +74,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetIpRestrictionOk() (*IPRestriction, bool
 }
 
 // HasIpRestriction returns a boolean if a field has been set.
-func (o *AdminRotateIssuedAPIKeyBody) HasIpRestriction() bool {
+func (o *AdminRotateIssuedApiKeyBody) HasIpRestriction() bool {
 	if o != nil && !IsNil(o.IpRestriction) {
 		return true
 	}
@@ -83,12 +83,12 @@ func (o *AdminRotateIssuedAPIKeyBody) HasIpRestriction() bool {
 }
 
 // SetIpRestriction gets a reference to the given IPRestriction and assigns it to the IpRestriction field.
-func (o *AdminRotateIssuedAPIKeyBody) SetIpRestriction(v IPRestriction) {
+func (o *AdminRotateIssuedApiKeyBody) SetIpRestriction(v IPRestriction) {
 	o.IpRestriction = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *AdminRotateIssuedAPIKeyBody) GetMetadata() map[string]interface{} {
+func (o *AdminRotateIssuedApiKeyBody) GetMetadata() map[string]interface{} {
 	if o == nil || IsNil(o.Metadata) {
 		var ret map[string]interface{}
 		return ret
@@ -98,7 +98,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetMetadata() map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminRotateIssuedAPIKeyBody) GetMetadataOk() (map[string]interface{}, bool) {
+func (o *AdminRotateIssuedApiKeyBody) GetMetadataOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Metadata) {
 		return map[string]interface{}{}, false
 	}
@@ -106,7 +106,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetMetadataOk() (map[string]interface{}, b
 }
 
 // HasMetadata returns a boolean if a field has been set.
-func (o *AdminRotateIssuedAPIKeyBody) HasMetadata() bool {
+func (o *AdminRotateIssuedApiKeyBody) HasMetadata() bool {
 	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
@@ -115,12 +115,12 @@ func (o *AdminRotateIssuedAPIKeyBody) HasMetadata() bool {
 }
 
 // SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
-func (o *AdminRotateIssuedAPIKeyBody) SetMetadata(v map[string]interface{}) {
+func (o *AdminRotateIssuedApiKeyBody) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *AdminRotateIssuedAPIKeyBody) GetName() string {
+func (o *AdminRotateIssuedApiKeyBody) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -130,7 +130,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminRotateIssuedAPIKeyBody) GetNameOk() (*string, bool) {
+func (o *AdminRotateIssuedApiKeyBody) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -138,7 +138,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *AdminRotateIssuedAPIKeyBody) HasName() bool {
+func (o *AdminRotateIssuedApiKeyBody) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -147,12 +147,12 @@ func (o *AdminRotateIssuedAPIKeyBody) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *AdminRotateIssuedAPIKeyBody) SetName(v string) {
+func (o *AdminRotateIssuedApiKeyBody) SetName(v string) {
 	o.Name = &v
 }
 
 // GetRateLimitPolicy returns the RateLimitPolicy field value if set, zero value otherwise.
-func (o *AdminRotateIssuedAPIKeyBody) GetRateLimitPolicy() RateLimitPolicy {
+func (o *AdminRotateIssuedApiKeyBody) GetRateLimitPolicy() RateLimitPolicy {
 	if o == nil || IsNil(o.RateLimitPolicy) {
 		var ret RateLimitPolicy
 		return ret
@@ -162,7 +162,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetRateLimitPolicy() RateLimitPolicy {
 
 // GetRateLimitPolicyOk returns a tuple with the RateLimitPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminRotateIssuedAPIKeyBody) GetRateLimitPolicyOk() (*RateLimitPolicy, bool) {
+func (o *AdminRotateIssuedApiKeyBody) GetRateLimitPolicyOk() (*RateLimitPolicy, bool) {
 	if o == nil || IsNil(o.RateLimitPolicy) {
 		return nil, false
 	}
@@ -170,7 +170,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetRateLimitPolicyOk() (*RateLimitPolicy, 
 }
 
 // HasRateLimitPolicy returns a boolean if a field has been set.
-func (o *AdminRotateIssuedAPIKeyBody) HasRateLimitPolicy() bool {
+func (o *AdminRotateIssuedApiKeyBody) HasRateLimitPolicy() bool {
 	if o != nil && !IsNil(o.RateLimitPolicy) {
 		return true
 	}
@@ -179,12 +179,12 @@ func (o *AdminRotateIssuedAPIKeyBody) HasRateLimitPolicy() bool {
 }
 
 // SetRateLimitPolicy gets a reference to the given RateLimitPolicy and assigns it to the RateLimitPolicy field.
-func (o *AdminRotateIssuedAPIKeyBody) SetRateLimitPolicy(v RateLimitPolicy) {
+func (o *AdminRotateIssuedApiKeyBody) SetRateLimitPolicy(v RateLimitPolicy) {
 	o.RateLimitPolicy = &v
 }
 
 // GetScopes returns the Scopes field value if set, zero value otherwise.
-func (o *AdminRotateIssuedAPIKeyBody) GetScopes() []string {
+func (o *AdminRotateIssuedApiKeyBody) GetScopes() []string {
 	if o == nil || IsNil(o.Scopes) {
 		var ret []string
 		return ret
@@ -194,7 +194,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetScopes() []string {
 
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminRotateIssuedAPIKeyBody) GetScopesOk() ([]string, bool) {
+func (o *AdminRotateIssuedApiKeyBody) GetScopesOk() ([]string, bool) {
 	if o == nil || IsNil(o.Scopes) {
 		return nil, false
 	}
@@ -202,7 +202,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetScopesOk() ([]string, bool) {
 }
 
 // HasScopes returns a boolean if a field has been set.
-func (o *AdminRotateIssuedAPIKeyBody) HasScopes() bool {
+func (o *AdminRotateIssuedApiKeyBody) HasScopes() bool {
 	if o != nil && !IsNil(o.Scopes) {
 		return true
 	}
@@ -211,12 +211,12 @@ func (o *AdminRotateIssuedAPIKeyBody) HasScopes() bool {
 }
 
 // SetScopes gets a reference to the given []string and assigns it to the Scopes field.
-func (o *AdminRotateIssuedAPIKeyBody) SetScopes(v []string) {
+func (o *AdminRotateIssuedApiKeyBody) SetScopes(v []string) {
 	o.Scopes = v
 }
 
 // GetVisibility returns the Visibility field value if set, zero value otherwise.
-func (o *AdminRotateIssuedAPIKeyBody) GetVisibility() KeyVisibility {
+func (o *AdminRotateIssuedApiKeyBody) GetVisibility() KeyVisibility {
 	if o == nil || IsNil(o.Visibility) {
 		var ret KeyVisibility
 		return ret
@@ -226,7 +226,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetVisibility() KeyVisibility {
 
 // GetVisibilityOk returns a tuple with the Visibility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AdminRotateIssuedAPIKeyBody) GetVisibilityOk() (*KeyVisibility, bool) {
+func (o *AdminRotateIssuedApiKeyBody) GetVisibilityOk() (*KeyVisibility, bool) {
 	if o == nil || IsNil(o.Visibility) {
 		return nil, false
 	}
@@ -234,7 +234,7 @@ func (o *AdminRotateIssuedAPIKeyBody) GetVisibilityOk() (*KeyVisibility, bool) {
 }
 
 // HasVisibility returns a boolean if a field has been set.
-func (o *AdminRotateIssuedAPIKeyBody) HasVisibility() bool {
+func (o *AdminRotateIssuedApiKeyBody) HasVisibility() bool {
 	if o != nil && !IsNil(o.Visibility) {
 		return true
 	}
@@ -243,11 +243,11 @@ func (o *AdminRotateIssuedAPIKeyBody) HasVisibility() bool {
 }
 
 // SetVisibility gets a reference to the given KeyVisibility and assigns it to the Visibility field.
-func (o *AdminRotateIssuedAPIKeyBody) SetVisibility(v KeyVisibility) {
+func (o *AdminRotateIssuedApiKeyBody) SetVisibility(v KeyVisibility) {
 	o.Visibility = &v
 }
 
-func (o AdminRotateIssuedAPIKeyBody) MarshalJSON() ([]byte, error) {
+func (o AdminRotateIssuedApiKeyBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -255,7 +255,7 @@ func (o AdminRotateIssuedAPIKeyBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o AdminRotateIssuedAPIKeyBody) ToMap() (map[string]interface{}, error) {
+func (o AdminRotateIssuedApiKeyBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.IpRestriction) {
 		toSerialize["ip_restriction"] = o.IpRestriction
@@ -283,16 +283,16 @@ func (o AdminRotateIssuedAPIKeyBody) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *AdminRotateIssuedAPIKeyBody) UnmarshalJSON(data []byte) (err error) {
-	varAdminRotateIssuedAPIKeyBody := _AdminRotateIssuedAPIKeyBody{}
+func (o *AdminRotateIssuedApiKeyBody) UnmarshalJSON(data []byte) (err error) {
+	varAdminRotateIssuedApiKeyBody := _AdminRotateIssuedApiKeyBody{}
 
-	err = json.Unmarshal(data, &varAdminRotateIssuedAPIKeyBody)
+	err = json.Unmarshal(data, &varAdminRotateIssuedApiKeyBody)
 
 	if err != nil {
 		return err
 	}
 
-	*o = AdminRotateIssuedAPIKeyBody(varAdminRotateIssuedAPIKeyBody)
+	*o = AdminRotateIssuedApiKeyBody(varAdminRotateIssuedApiKeyBody)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -309,38 +309,38 @@ func (o *AdminRotateIssuedAPIKeyBody) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableAdminRotateIssuedAPIKeyBody struct {
-	value *AdminRotateIssuedAPIKeyBody
+type NullableAdminRotateIssuedApiKeyBody struct {
+	value *AdminRotateIssuedApiKeyBody
 	isSet bool
 }
 
-func (v NullableAdminRotateIssuedAPIKeyBody) Get() *AdminRotateIssuedAPIKeyBody {
+func (v NullableAdminRotateIssuedApiKeyBody) Get() *AdminRotateIssuedApiKeyBody {
 	return v.value
 }
 
-func (v *NullableAdminRotateIssuedAPIKeyBody) Set(val *AdminRotateIssuedAPIKeyBody) {
+func (v *NullableAdminRotateIssuedApiKeyBody) Set(val *AdminRotateIssuedApiKeyBody) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAdminRotateIssuedAPIKeyBody) IsSet() bool {
+func (v NullableAdminRotateIssuedApiKeyBody) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAdminRotateIssuedAPIKeyBody) Unset() {
+func (v *NullableAdminRotateIssuedApiKeyBody) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAdminRotateIssuedAPIKeyBody(val *AdminRotateIssuedAPIKeyBody) *NullableAdminRotateIssuedAPIKeyBody {
-	return &NullableAdminRotateIssuedAPIKeyBody{value: val, isSet: true}
+func NewNullableAdminRotateIssuedApiKeyBody(val *AdminRotateIssuedApiKeyBody) *NullableAdminRotateIssuedApiKeyBody {
+	return &NullableAdminRotateIssuedApiKeyBody{value: val, isSet: true}
 }
 
-func (v NullableAdminRotateIssuedAPIKeyBody) MarshalJSON() ([]byte, error) {
+func (v NullableAdminRotateIssuedApiKeyBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAdminRotateIssuedAPIKeyBody) UnmarshalJSON(src []byte) error {
+func (v *NullableAdminRotateIssuedApiKeyBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

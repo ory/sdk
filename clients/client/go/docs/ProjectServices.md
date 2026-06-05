@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Identity** | Pointer to [**ProjectServiceIdentity**](ProjectServiceIdentity.md) |  | [optional] 
 **Oauth2** | Pointer to [**ProjectServiceOAuth2**](ProjectServiceOAuth2.md) |  | [optional] 
 **Permission** | Pointer to [**ProjectServicePermission**](ProjectServicePermission.md) |  | [optional] 
+**Talos** | Pointer to [**ProjectServiceTalos**](ProjectServiceTalos.md) |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetPermission sets Permission field to given value.
 `func (o *ProjectServices) HasPermission() bool`
 
 HasPermission returns a boolean if a field has been set.
+
+### GetTalos
+
+`func (o *ProjectServices) GetTalos() ProjectServiceTalos`
+
+GetTalos returns the Talos field if non-nil, zero value otherwise.
+
+### GetTalosOk
+
+`func (o *ProjectServices) GetTalosOk() (*ProjectServiceTalos, bool)`
+
+GetTalosOk returns a tuple with the Talos field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTalos
+
+`func (o *ProjectServices) SetTalos(v ProjectServiceTalos)`
+
+SetTalos sets Talos field to given value.
+
+### HasTalos
+
+`func (o *ProjectServices) HasTalos() bool`
+
+HasTalos returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

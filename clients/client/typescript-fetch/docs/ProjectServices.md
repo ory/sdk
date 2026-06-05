@@ -10,6 +10,7 @@ Name | Type
 `identity` | [ProjectServiceIdentity](ProjectServiceIdentity.md)
 `oauth2` | [ProjectServiceOAuth2](ProjectServiceOAuth2.md)
 `permission` | [ProjectServicePermission](ProjectServicePermission.md)
+`talos` | [ProjectServiceTalos](ProjectServiceTalos.md)
 
 ## Example
 
@@ -22,6 +23,7 @@ const example = {
   "identity": null,
   "oauth2": null,
   "permission": null,
+  "talos": null,
 } satisfies ProjectServices
 
 console.log(example)

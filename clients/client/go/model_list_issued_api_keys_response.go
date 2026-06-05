@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -15,39 +15,39 @@ import (
 	"encoding/json"
 )
 
-// checks if the ListIssuedAPIKeysResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListIssuedAPIKeysResponse{}
+// checks if the ListIssuedApiKeysResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListIssuedApiKeysResponse{}
 
-// ListIssuedAPIKeysResponse struct for ListIssuedAPIKeysResponse
-type ListIssuedAPIKeysResponse struct {
-	IssuedApiKeys []IssuedAPIKey `json:"issued_api_keys,omitempty"`
+// ListIssuedApiKeysResponse struct for ListIssuedApiKeysResponse
+type ListIssuedApiKeysResponse struct {
+	IssuedApiKeys []IssuedApiKey `json:"issued_api_keys,omitempty"`
 	NextPageToken *string `json:"next_page_token,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ListIssuedAPIKeysResponse ListIssuedAPIKeysResponse
+type _ListIssuedApiKeysResponse ListIssuedApiKeysResponse
 
-// NewListIssuedAPIKeysResponse instantiates a new ListIssuedAPIKeysResponse object
+// NewListIssuedApiKeysResponse instantiates a new ListIssuedApiKeysResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListIssuedAPIKeysResponse() *ListIssuedAPIKeysResponse {
-	this := ListIssuedAPIKeysResponse{}
+func NewListIssuedApiKeysResponse() *ListIssuedApiKeysResponse {
+	this := ListIssuedApiKeysResponse{}
 	return &this
 }
 
-// NewListIssuedAPIKeysResponseWithDefaults instantiates a new ListIssuedAPIKeysResponse object
+// NewListIssuedApiKeysResponseWithDefaults instantiates a new ListIssuedApiKeysResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListIssuedAPIKeysResponseWithDefaults() *ListIssuedAPIKeysResponse {
-	this := ListIssuedAPIKeysResponse{}
+func NewListIssuedApiKeysResponseWithDefaults() *ListIssuedApiKeysResponse {
+	this := ListIssuedApiKeysResponse{}
 	return &this
 }
 
 // GetIssuedApiKeys returns the IssuedApiKeys field value if set, zero value otherwise.
-func (o *ListIssuedAPIKeysResponse) GetIssuedApiKeys() []IssuedAPIKey {
+func (o *ListIssuedApiKeysResponse) GetIssuedApiKeys() []IssuedApiKey {
 	if o == nil || IsNil(o.IssuedApiKeys) {
-		var ret []IssuedAPIKey
+		var ret []IssuedApiKey
 		return ret
 	}
 	return o.IssuedApiKeys
@@ -55,7 +55,7 @@ func (o *ListIssuedAPIKeysResponse) GetIssuedApiKeys() []IssuedAPIKey {
 
 // GetIssuedApiKeysOk returns a tuple with the IssuedApiKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListIssuedAPIKeysResponse) GetIssuedApiKeysOk() ([]IssuedAPIKey, bool) {
+func (o *ListIssuedApiKeysResponse) GetIssuedApiKeysOk() ([]IssuedApiKey, bool) {
 	if o == nil || IsNil(o.IssuedApiKeys) {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *ListIssuedAPIKeysResponse) GetIssuedApiKeysOk() ([]IssuedAPIKey, bool) 
 }
 
 // HasIssuedApiKeys returns a boolean if a field has been set.
-func (o *ListIssuedAPIKeysResponse) HasIssuedApiKeys() bool {
+func (o *ListIssuedApiKeysResponse) HasIssuedApiKeys() bool {
 	if o != nil && !IsNil(o.IssuedApiKeys) {
 		return true
 	}
@@ -71,13 +71,13 @@ func (o *ListIssuedAPIKeysResponse) HasIssuedApiKeys() bool {
 	return false
 }
 
-// SetIssuedApiKeys gets a reference to the given []IssuedAPIKey and assigns it to the IssuedApiKeys field.
-func (o *ListIssuedAPIKeysResponse) SetIssuedApiKeys(v []IssuedAPIKey) {
+// SetIssuedApiKeys gets a reference to the given []IssuedApiKey and assigns it to the IssuedApiKeys field.
+func (o *ListIssuedApiKeysResponse) SetIssuedApiKeys(v []IssuedApiKey) {
 	o.IssuedApiKeys = v
 }
 
 // GetNextPageToken returns the NextPageToken field value if set, zero value otherwise.
-func (o *ListIssuedAPIKeysResponse) GetNextPageToken() string {
+func (o *ListIssuedApiKeysResponse) GetNextPageToken() string {
 	if o == nil || IsNil(o.NextPageToken) {
 		var ret string
 		return ret
@@ -87,7 +87,7 @@ func (o *ListIssuedAPIKeysResponse) GetNextPageToken() string {
 
 // GetNextPageTokenOk returns a tuple with the NextPageToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListIssuedAPIKeysResponse) GetNextPageTokenOk() (*string, bool) {
+func (o *ListIssuedApiKeysResponse) GetNextPageTokenOk() (*string, bool) {
 	if o == nil || IsNil(o.NextPageToken) {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *ListIssuedAPIKeysResponse) GetNextPageTokenOk() (*string, bool) {
 }
 
 // HasNextPageToken returns a boolean if a field has been set.
-func (o *ListIssuedAPIKeysResponse) HasNextPageToken() bool {
+func (o *ListIssuedApiKeysResponse) HasNextPageToken() bool {
 	if o != nil && !IsNil(o.NextPageToken) {
 		return true
 	}
@@ -104,11 +104,11 @@ func (o *ListIssuedAPIKeysResponse) HasNextPageToken() bool {
 }
 
 // SetNextPageToken gets a reference to the given string and assigns it to the NextPageToken field.
-func (o *ListIssuedAPIKeysResponse) SetNextPageToken(v string) {
+func (o *ListIssuedApiKeysResponse) SetNextPageToken(v string) {
 	o.NextPageToken = &v
 }
 
-func (o ListIssuedAPIKeysResponse) MarshalJSON() ([]byte, error) {
+func (o ListIssuedApiKeysResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -116,7 +116,7 @@ func (o ListIssuedAPIKeysResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ListIssuedAPIKeysResponse) ToMap() (map[string]interface{}, error) {
+func (o ListIssuedApiKeysResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.IssuedApiKeys) {
 		toSerialize["issued_api_keys"] = o.IssuedApiKeys
@@ -132,16 +132,16 @@ func (o ListIssuedAPIKeysResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ListIssuedAPIKeysResponse) UnmarshalJSON(data []byte) (err error) {
-	varListIssuedAPIKeysResponse := _ListIssuedAPIKeysResponse{}
+func (o *ListIssuedApiKeysResponse) UnmarshalJSON(data []byte) (err error) {
+	varListIssuedApiKeysResponse := _ListIssuedApiKeysResponse{}
 
-	err = json.Unmarshal(data, &varListIssuedAPIKeysResponse)
+	err = json.Unmarshal(data, &varListIssuedApiKeysResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ListIssuedAPIKeysResponse(varListIssuedAPIKeysResponse)
+	*o = ListIssuedApiKeysResponse(varListIssuedApiKeysResponse)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -154,38 +154,38 @@ func (o *ListIssuedAPIKeysResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableListIssuedAPIKeysResponse struct {
-	value *ListIssuedAPIKeysResponse
+type NullableListIssuedApiKeysResponse struct {
+	value *ListIssuedApiKeysResponse
 	isSet bool
 }
 
-func (v NullableListIssuedAPIKeysResponse) Get() *ListIssuedAPIKeysResponse {
+func (v NullableListIssuedApiKeysResponse) Get() *ListIssuedApiKeysResponse {
 	return v.value
 }
 
-func (v *NullableListIssuedAPIKeysResponse) Set(val *ListIssuedAPIKeysResponse) {
+func (v *NullableListIssuedApiKeysResponse) Set(val *ListIssuedApiKeysResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListIssuedAPIKeysResponse) IsSet() bool {
+func (v NullableListIssuedApiKeysResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListIssuedAPIKeysResponse) Unset() {
+func (v *NullableListIssuedApiKeysResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListIssuedAPIKeysResponse(val *ListIssuedAPIKeysResponse) *NullableListIssuedAPIKeysResponse {
-	return &NullableListIssuedAPIKeysResponse{value: val, isSet: true}
+func NewNullableListIssuedApiKeysResponse(val *ListIssuedApiKeysResponse) *NullableListIssuedApiKeysResponse {
+	return &NullableListIssuedApiKeysResponse{value: val, isSet: true}
 }
 
-func (v NullableListIssuedAPIKeysResponse) MarshalJSON() ([]byte, error) {
+func (v NullableListIssuedApiKeysResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListIssuedAPIKeysResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableListIssuedApiKeysResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

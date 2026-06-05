@@ -29,7 +29,8 @@ lib/ory/model/account_experience_configuration.ex
 lib/ory/model/add_project_to_workspace_body.ex
 lib/ory/model/admin_identity_import_credentials_lookup_secret.ex
 lib/ory/model/admin_identity_import_credentials_lookup_secret_config.ex
-lib/ory/model/admin_revoke_api_key_body.ex
+lib/ory/model/admin_revoke_imported_api_key_body.ex
+lib/ory/model/admin_revoke_issued_api_key_body.ex
 lib/ory/model/admin_rotate_issued_api_key_body.ex
 lib/ory/model/admin_update_imported_api_key_request.ex
 lib/ory/model/admin_update_issued_api_key_request.ex
@@ -41,10 +42,10 @@ lib/ory/model/authenticator_assurance_level.ex
 lib/ory/model/basic_organization.ex
 lib/ory/model/batch_check_permission_body.ex
 lib/ory/model/batch_check_permission_result.ex
-lib/ory/model/batch_import_api_keys_request.ex
-lib/ory/model/batch_import_api_keys_response.ex
-lib/ory/model/batch_import_error_code.ex
-lib/ory/model/batch_import_result.ex
+lib/ory/model/batch_create_imported_api_keys_error_code.ex
+lib/ory/model/batch_create_imported_api_keys_request.ex
+lib/ory/model/batch_create_imported_api_keys_response.ex
+lib/ory/model/batch_create_imported_api_keys_result.ex
 lib/ory/model/batch_patch_identities_response.ex
 lib/ory/model/batch_verify_api_keys_request.ex
 lib/ory/model/batch_verify_api_keys_response.ex
@@ -261,6 +262,7 @@ lib/ory/model/project_service_account_experience.ex
 lib/ory/model/project_service_identity.ex
 lib/ory/model/project_service_o_auth2.ex
 lib/ory/model/project_service_permission.ex
+lib/ory/model/project_service_talos.ex
 lib/ory/model/project_services.ex
 lib/ory/model/provider.ex
 lib/ory/model/quota_usage.ex
@@ -282,6 +284,7 @@ lib/ory/model/revision_account_experience_custom_translation.ex
 lib/ory/model/revocation_reason.ex
 lib/ory/model/rfc6749_error_json.ex
 lib/ory/model/rotate_issued_api_key_response.ex
+lib/ory/model/rotate_talos_key_body.ex
 lib/ory/model/schema_patch.ex
 lib/ory/model/self_revoke_api_key_request.ex
 lib/ory/model/self_service_flow_expired_error.ex

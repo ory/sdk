@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -15,40 +15,40 @@ import (
 	"encoding/json"
 )
 
-// checks if the RotateIssuedAPIKeyResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &RotateIssuedAPIKeyResponse{}
+// checks if the RotateIssuedApiKeyResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RotateIssuedApiKeyResponse{}
 
-// RotateIssuedAPIKeyResponse struct for RotateIssuedAPIKeyResponse
-type RotateIssuedAPIKeyResponse struct {
-	IssuedApiKey *IssuedAPIKey `json:"issued_api_key,omitempty"`
-	OldIssuedApiKey *IssuedAPIKey `json:"old_issued_api_key,omitempty"`
+// RotateIssuedApiKeyResponse struct for RotateIssuedApiKeyResponse
+type RotateIssuedApiKeyResponse struct {
+	IssuedApiKey *IssuedApiKey `json:"issued_api_key,omitempty"`
+	OldIssuedApiKey *IssuedApiKey `json:"old_issued_api_key,omitempty"`
 	Secret *string `json:"secret,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _RotateIssuedAPIKeyResponse RotateIssuedAPIKeyResponse
+type _RotateIssuedApiKeyResponse RotateIssuedApiKeyResponse
 
-// NewRotateIssuedAPIKeyResponse instantiates a new RotateIssuedAPIKeyResponse object
+// NewRotateIssuedApiKeyResponse instantiates a new RotateIssuedApiKeyResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRotateIssuedAPIKeyResponse() *RotateIssuedAPIKeyResponse {
-	this := RotateIssuedAPIKeyResponse{}
+func NewRotateIssuedApiKeyResponse() *RotateIssuedApiKeyResponse {
+	this := RotateIssuedApiKeyResponse{}
 	return &this
 }
 
-// NewRotateIssuedAPIKeyResponseWithDefaults instantiates a new RotateIssuedAPIKeyResponse object
+// NewRotateIssuedApiKeyResponseWithDefaults instantiates a new RotateIssuedApiKeyResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewRotateIssuedAPIKeyResponseWithDefaults() *RotateIssuedAPIKeyResponse {
-	this := RotateIssuedAPIKeyResponse{}
+func NewRotateIssuedApiKeyResponseWithDefaults() *RotateIssuedApiKeyResponse {
+	this := RotateIssuedApiKeyResponse{}
 	return &this
 }
 
 // GetIssuedApiKey returns the IssuedApiKey field value if set, zero value otherwise.
-func (o *RotateIssuedAPIKeyResponse) GetIssuedApiKey() IssuedAPIKey {
+func (o *RotateIssuedApiKeyResponse) GetIssuedApiKey() IssuedApiKey {
 	if o == nil || IsNil(o.IssuedApiKey) {
-		var ret IssuedAPIKey
+		var ret IssuedApiKey
 		return ret
 	}
 	return *o.IssuedApiKey
@@ -56,7 +56,7 @@ func (o *RotateIssuedAPIKeyResponse) GetIssuedApiKey() IssuedAPIKey {
 
 // GetIssuedApiKeyOk returns a tuple with the IssuedApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RotateIssuedAPIKeyResponse) GetIssuedApiKeyOk() (*IssuedAPIKey, bool) {
+func (o *RotateIssuedApiKeyResponse) GetIssuedApiKeyOk() (*IssuedApiKey, bool) {
 	if o == nil || IsNil(o.IssuedApiKey) {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *RotateIssuedAPIKeyResponse) GetIssuedApiKeyOk() (*IssuedAPIKey, bool) {
 }
 
 // HasIssuedApiKey returns a boolean if a field has been set.
-func (o *RotateIssuedAPIKeyResponse) HasIssuedApiKey() bool {
+func (o *RotateIssuedApiKeyResponse) HasIssuedApiKey() bool {
 	if o != nil && !IsNil(o.IssuedApiKey) {
 		return true
 	}
@@ -72,15 +72,15 @@ func (o *RotateIssuedAPIKeyResponse) HasIssuedApiKey() bool {
 	return false
 }
 
-// SetIssuedApiKey gets a reference to the given IssuedAPIKey and assigns it to the IssuedApiKey field.
-func (o *RotateIssuedAPIKeyResponse) SetIssuedApiKey(v IssuedAPIKey) {
+// SetIssuedApiKey gets a reference to the given IssuedApiKey and assigns it to the IssuedApiKey field.
+func (o *RotateIssuedApiKeyResponse) SetIssuedApiKey(v IssuedApiKey) {
 	o.IssuedApiKey = &v
 }
 
 // GetOldIssuedApiKey returns the OldIssuedApiKey field value if set, zero value otherwise.
-func (o *RotateIssuedAPIKeyResponse) GetOldIssuedApiKey() IssuedAPIKey {
+func (o *RotateIssuedApiKeyResponse) GetOldIssuedApiKey() IssuedApiKey {
 	if o == nil || IsNil(o.OldIssuedApiKey) {
-		var ret IssuedAPIKey
+		var ret IssuedApiKey
 		return ret
 	}
 	return *o.OldIssuedApiKey
@@ -88,7 +88,7 @@ func (o *RotateIssuedAPIKeyResponse) GetOldIssuedApiKey() IssuedAPIKey {
 
 // GetOldIssuedApiKeyOk returns a tuple with the OldIssuedApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RotateIssuedAPIKeyResponse) GetOldIssuedApiKeyOk() (*IssuedAPIKey, bool) {
+func (o *RotateIssuedApiKeyResponse) GetOldIssuedApiKeyOk() (*IssuedApiKey, bool) {
 	if o == nil || IsNil(o.OldIssuedApiKey) {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *RotateIssuedAPIKeyResponse) GetOldIssuedApiKeyOk() (*IssuedAPIKey, bool
 }
 
 // HasOldIssuedApiKey returns a boolean if a field has been set.
-func (o *RotateIssuedAPIKeyResponse) HasOldIssuedApiKey() bool {
+func (o *RotateIssuedApiKeyResponse) HasOldIssuedApiKey() bool {
 	if o != nil && !IsNil(o.OldIssuedApiKey) {
 		return true
 	}
@@ -104,13 +104,13 @@ func (o *RotateIssuedAPIKeyResponse) HasOldIssuedApiKey() bool {
 	return false
 }
 
-// SetOldIssuedApiKey gets a reference to the given IssuedAPIKey and assigns it to the OldIssuedApiKey field.
-func (o *RotateIssuedAPIKeyResponse) SetOldIssuedApiKey(v IssuedAPIKey) {
+// SetOldIssuedApiKey gets a reference to the given IssuedApiKey and assigns it to the OldIssuedApiKey field.
+func (o *RotateIssuedApiKeyResponse) SetOldIssuedApiKey(v IssuedApiKey) {
 	o.OldIssuedApiKey = &v
 }
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
-func (o *RotateIssuedAPIKeyResponse) GetSecret() string {
+func (o *RotateIssuedApiKeyResponse) GetSecret() string {
 	if o == nil || IsNil(o.Secret) {
 		var ret string
 		return ret
@@ -120,7 +120,7 @@ func (o *RotateIssuedAPIKeyResponse) GetSecret() string {
 
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RotateIssuedAPIKeyResponse) GetSecretOk() (*string, bool) {
+func (o *RotateIssuedApiKeyResponse) GetSecretOk() (*string, bool) {
 	if o == nil || IsNil(o.Secret) {
 		return nil, false
 	}
@@ -128,7 +128,7 @@ func (o *RotateIssuedAPIKeyResponse) GetSecretOk() (*string, bool) {
 }
 
 // HasSecret returns a boolean if a field has been set.
-func (o *RotateIssuedAPIKeyResponse) HasSecret() bool {
+func (o *RotateIssuedApiKeyResponse) HasSecret() bool {
 	if o != nil && !IsNil(o.Secret) {
 		return true
 	}
@@ -137,11 +137,11 @@ func (o *RotateIssuedAPIKeyResponse) HasSecret() bool {
 }
 
 // SetSecret gets a reference to the given string and assigns it to the Secret field.
-func (o *RotateIssuedAPIKeyResponse) SetSecret(v string) {
+func (o *RotateIssuedApiKeyResponse) SetSecret(v string) {
 	o.Secret = &v
 }
 
-func (o RotateIssuedAPIKeyResponse) MarshalJSON() ([]byte, error) {
+func (o RotateIssuedApiKeyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -149,7 +149,7 @@ func (o RotateIssuedAPIKeyResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o RotateIssuedAPIKeyResponse) ToMap() (map[string]interface{}, error) {
+func (o RotateIssuedApiKeyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.IssuedApiKey) {
 		toSerialize["issued_api_key"] = o.IssuedApiKey
@@ -168,16 +168,16 @@ func (o RotateIssuedAPIKeyResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *RotateIssuedAPIKeyResponse) UnmarshalJSON(data []byte) (err error) {
-	varRotateIssuedAPIKeyResponse := _RotateIssuedAPIKeyResponse{}
+func (o *RotateIssuedApiKeyResponse) UnmarshalJSON(data []byte) (err error) {
+	varRotateIssuedApiKeyResponse := _RotateIssuedApiKeyResponse{}
 
-	err = json.Unmarshal(data, &varRotateIssuedAPIKeyResponse)
+	err = json.Unmarshal(data, &varRotateIssuedApiKeyResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = RotateIssuedAPIKeyResponse(varRotateIssuedAPIKeyResponse)
+	*o = RotateIssuedApiKeyResponse(varRotateIssuedApiKeyResponse)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -191,38 +191,38 @@ func (o *RotateIssuedAPIKeyResponse) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableRotateIssuedAPIKeyResponse struct {
-	value *RotateIssuedAPIKeyResponse
+type NullableRotateIssuedApiKeyResponse struct {
+	value *RotateIssuedApiKeyResponse
 	isSet bool
 }
 
-func (v NullableRotateIssuedAPIKeyResponse) Get() *RotateIssuedAPIKeyResponse {
+func (v NullableRotateIssuedApiKeyResponse) Get() *RotateIssuedApiKeyResponse {
 	return v.value
 }
 
-func (v *NullableRotateIssuedAPIKeyResponse) Set(val *RotateIssuedAPIKeyResponse) {
+func (v *NullableRotateIssuedApiKeyResponse) Set(val *RotateIssuedApiKeyResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableRotateIssuedAPIKeyResponse) IsSet() bool {
+func (v NullableRotateIssuedApiKeyResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableRotateIssuedAPIKeyResponse) Unset() {
+func (v *NullableRotateIssuedApiKeyResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableRotateIssuedAPIKeyResponse(val *RotateIssuedAPIKeyResponse) *NullableRotateIssuedAPIKeyResponse {
-	return &NullableRotateIssuedAPIKeyResponse{value: val, isSet: true}
+func NewNullableRotateIssuedApiKeyResponse(val *RotateIssuedApiKeyResponse) *NullableRotateIssuedApiKeyResponse {
+	return &NullableRotateIssuedApiKeyResponse{value: val, isSet: true}
 }
 
-func (v NullableRotateIssuedAPIKeyResponse) MarshalJSON() ([]byte, error) {
+func (v NullableRotateIssuedApiKeyResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableRotateIssuedAPIKeyResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableRotateIssuedApiKeyResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

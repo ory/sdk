@@ -207,6 +207,7 @@ Name | Type
 `kratos_selfservice_methods_code_mfa_enabled` | boolean
 `kratos_selfservice_methods_code_passwordless_enabled` | boolean
 `kratos_selfservice_methods_code_passwordless_login_fallback_enabled` | boolean
+`kratos_selfservice_methods_deviceauthn_enabled` | boolean
 `kratos_selfservice_methods_link_config_base_url` | string
 `kratos_selfservice_methods_link_config_lifespan` | string
 `kratos_selfservice_methods_link_enabled` | boolean
@@ -251,6 +252,24 @@ Name | Type
 `serve_public_cors_allowed_origins` | Array&lt;string&gt;
 `serve_public_cors_enabled` | boolean
 `strict_security` | boolean
+`talos_cache_enabled` | boolean
+`talos_cache_ttl` | string
+`talos_credentials_api_keys_default_ttl` | string
+`talos_credentials_api_keys_max_ttl` | string
+`talos_credentials_api_keys_prefix_current` | string
+`talos_credentials_api_keys_prefix_public_current` | string
+`talos_credentials_api_keys_prefix_public_retired` | Array&lt;string&gt;
+`talos_credentials_api_keys_prefix_retired` | Array&lt;string&gt;
+`talos_credentials_derived_tokens_default_ttl` | string
+`talos_credentials_derived_tokens_jwt_signing_key_id` | string
+`talos_credentials_derived_tokens_jwt_signing_keys_urls` | Array&lt;string&gt;
+`talos_credentials_derived_tokens_macaroon_prefix_current` | string
+`talos_credentials_derived_tokens_macaroon_prefix_retired` | Array&lt;string&gt;
+`talos_credentials_issuer` | string
+`talos_credentials_issuer_retired` | Array&lt;string&gt;
+`talos_rate_limit_enabled` | boolean
+`talos_secrets_hmac_current` | string
+`talos_secrets_hmac_retired` | Array&lt;string&gt;
 `updated_at` | Date
 
 ## Example
@@ -461,6 +480,7 @@ const example = {
   "kratos_selfservice_methods_code_mfa_enabled": null,
   "kratos_selfservice_methods_code_passwordless_enabled": null,
   "kratos_selfservice_methods_code_passwordless_login_fallback_enabled": null,
+  "kratos_selfservice_methods_deviceauthn_enabled": null,
   "kratos_selfservice_methods_link_config_base_url": null,
   "kratos_selfservice_methods_link_config_lifespan": null,
   "kratos_selfservice_methods_link_enabled": null,
@@ -505,6 +525,24 @@ const example = {
   "serve_public_cors_allowed_origins": null,
   "serve_public_cors_enabled": null,
   "strict_security": null,
+  "talos_cache_enabled": null,
+  "talos_cache_ttl": 5m,
+  "talos_credentials_api_keys_default_ttl": 1h,
+  "talos_credentials_api_keys_max_ttl": 24h,
+  "talos_credentials_api_keys_prefix_current": null,
+  "talos_credentials_api_keys_prefix_public_current": null,
+  "talos_credentials_api_keys_prefix_public_retired": null,
+  "talos_credentials_api_keys_prefix_retired": null,
+  "talos_credentials_derived_tokens_default_ttl": 1h,
+  "talos_credentials_derived_tokens_jwt_signing_key_id": null,
+  "talos_credentials_derived_tokens_jwt_signing_keys_urls": null,
+  "talos_credentials_derived_tokens_macaroon_prefix_current": null,
+  "talos_credentials_derived_tokens_macaroon_prefix_retired": null,
+  "talos_credentials_issuer": null,
+  "talos_credentials_issuer_retired": null,
+  "talos_rate_limit_enabled": null,
+  "talos_secrets_hmac_current": null,
+  "talos_secrets_hmac_retired": null,
   "updated_at": null,
 } satisfies NormalizedProjectRevision
 

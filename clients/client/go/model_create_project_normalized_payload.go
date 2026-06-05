@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.47
+API version: v1.22.48
 Contact: support@ory.sh
 */
 
@@ -67,7 +67,7 @@ type CreateProjectNormalizedPayload struct {
 	// Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
 	HydraOauth2GrantJwtJtiOptional *bool `json:"hydra_oauth2_grant_jwt_jti_optional,omitempty"`
 	// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
-	HydraOauth2GrantJwtMaxTtl *string `json:"hydra_oauth2_grant_jwt_max_ttl,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
+	HydraOauth2GrantJwtMaxTtl *string `json:"hydra_oauth2_grant_jwt_max_ttl,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to `null` or `\"0s\"`, the graceful refresh token rotation is disabled.  This governs the \"oauth2.grant.refresh_token.rotation_grace_period\" setting.
 	HydraOauth2GrantRefreshTokenRotationGracePeriod *string `json:"hydra_oauth2_grant_refresh_token_rotation_grace_period,omitempty"`
 	// Configures the OAuth2 Grant Refresh Token Rotation Grace Reuse Count.  The maximum number of times a refresh token can be reused within the grace period. If set to `null` or `0`, the limit is disabled.  This governs the \"oauth2.grant.refresh_token.rotation_grace_reuse_count\" setting.
@@ -111,13 +111,13 @@ type CreateProjectNormalizedPayload struct {
 	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
 	HydraStrategiesScope *string `json:"hydra_strategies_scope,omitempty"`
 	// This governs the \"ttl.access_token\" setting.
-	HydraTtlAccessToken *string `json:"hydra_ttl_access_token,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
+	HydraTtlAccessToken *string `json:"hydra_ttl_access_token,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
-	HydraTtlAuthCode *string `json:"hydra_ttl_auth_code,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
+	HydraTtlAuthCode *string `json:"hydra_ttl_auth_code,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
 	// This governs the \"ttl.id_token\" setting.
-	HydraTtlIdToken *string `json:"hydra_ttl_id_token,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
+	HydraTtlIdToken *string `json:"hydra_ttl_id_token,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Configures how long a user login and consent flow may take.  This governs the \"ttl.login_consent_request\" setting.
-	HydraTtlLoginConsentRequest *string `json:"hydra_ttl_login_consent_request,omitempty" validate:"regexp=^[0-9]+(ns|us|ms|s|m|h)$"`
+	HydraTtlLoginConsentRequest *string `json:"hydra_ttl_login_consent_request,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.refresh_token\" setting.
 	HydraTtlRefreshToken *string `json:"hydra_ttl_refresh_token,omitempty" validate:"regexp=^([0-9]+(ns|us|ms|s|m|h)|-1)$"`
 	// Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.consent\" setting.
@@ -425,6 +425,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceMethodsCodePasswordlessEnabled *bool `json:"kratos_selfservice_methods_code_passwordless_enabled,omitempty"`
 	// This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \"selfservice.methods.code.passwordless_login_fallback_enabled\" setting.
 	KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled *bool `json:"kratos_selfservice_methods_code_passwordless_login_fallback_enabled,omitempty"`
+	// Configures whether Ory Kratos Device authentication is enabled  This governs the \"selfservice.methods.deviceauthn.enabled\" setting.
+	KratosSelfserviceMethodsDeviceauthnEnabled *bool `json:"kratos_selfservice_methods_deviceauthn_enabled,omitempty"`
 	// Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
 	KratosSelfserviceMethodsLinkConfigBaseUrl *string `json:"kratos_selfservice_methods_link_config_base_url,omitempty"`
 	// Configures the Ory Kratos Link Method's lifespan  This governs the \"selfservice.methods.link.config.lifespan\" setting.
@@ -507,6 +509,42 @@ type CreateProjectNormalizedPayload struct {
 	ServePublicCorsEnabled *bool `json:"serve_public_cors_enabled,omitempty"`
 	// Whether the project should employ strict security measures. Setting this to true is recommended for going into production.
 	StrictSecurity *bool `json:"strict_security,omitempty"`
+	// Talos cache enabled.  When true, API key verification results are cached. Revoked keys may be accepted until the cached entry expires. When false, every verification reads the database and revocations take effect immediately.
+	TalosCacheEnabled *bool `json:"talos_cache_enabled,omitempty"`
+	// Talos cache TTL controls how long API key verification results are cached.
+	TalosCacheTtl *string `json:"talos_cache_ttl,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	// Talos API keys default TTL.
+	TalosCredentialsApiKeysDefaultTtl *string `json:"talos_credentials_api_keys_default_ttl,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	// Talos API keys max TTL.
+	TalosCredentialsApiKeysMaxTtl *string `json:"talos_credentials_api_keys_max_ttl,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	// Talos API keys prefix (current).
+	TalosCredentialsApiKeysPrefixCurrent *string `json:"talos_credentials_api_keys_prefix_current,omitempty"`
+	// Talos API keys public prefix (current).
+	TalosCredentialsApiKeysPrefixPublicCurrent *string `json:"talos_credentials_api_keys_prefix_public_current,omitempty"`
+	// Talos API keys public prefix (retired).  Previously active public API key prefixes kept for verification of outstanding tokens. The first element of this list was the most recently retired active prefix.
+	TalosCredentialsApiKeysPrefixPublicRetired []string `json:"talos_credentials_api_keys_prefix_public_retired,omitempty"`
+	// Talos API keys prefix (retired).  Previously active API key prefixes kept for verification of outstanding tokens. The first element of this list was the most recently retired active prefix.
+	TalosCredentialsApiKeysPrefixRetired []string `json:"talos_credentials_api_keys_prefix_retired,omitempty"`
+	// Talos derived tokens default TTL (applies to both JWT and macaroon tokens).
+	TalosCredentialsDerivedTokensDefaultTtl *string `json:"talos_credentials_derived_tokens_default_ttl,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	// Talos derived tokens JWT signing key ID (kid).
+	TalosCredentialsDerivedTokensJwtSigningKeyId *string `json:"talos_credentials_derived_tokens_jwt_signing_key_id,omitempty"`
+	// Talos derived tokens JWT signing key URLs.
+	TalosCredentialsDerivedTokensJwtSigningKeysUrls []string `json:"talos_credentials_derived_tokens_jwt_signing_keys_urls,omitempty"`
+	// Talos derived tokens macaroon prefix (current).
+	TalosCredentialsDerivedTokensMacaroonPrefixCurrent *string `json:"talos_credentials_derived_tokens_macaroon_prefix_current,omitempty"`
+	// Talos derived tokens macaroon prefix (retired).  Previously active macaroon prefixes kept for verification of outstanding tokens. The first element of this list was the most recently retired active prefix.
+	TalosCredentialsDerivedTokensMacaroonPrefixRetired []string `json:"talos_credentials_derived_tokens_macaroon_prefix_retired,omitempty"`
+	// Talos credentials issuer URL.
+	TalosCredentialsIssuer *string `json:"talos_credentials_issuer,omitempty"`
+	// Talos credentials retired issuer URLs.  Previously active issuer URLs kept for verification of outstanding tokens. Tokens signed with these issuers remain valid; new tokens use the current issuer.
+	TalosCredentialsIssuerRetired []string `json:"talos_credentials_issuer_retired,omitempty"`
+	// Talos rate limit enabled.  When true, server-side rate limiting is enforced for API key verifications.
+	TalosRateLimitEnabled *bool `json:"talos_rate_limit_enabled,omitempty"`
+	// TalosSecretsHMACCurrent stores the current HMAC symmetric key as a plain secret string. Application-layer encryption is handled upstream; SanitizeModel (MarshalJSON) redacts this field from API responses.
+	TalosSecretsHmacCurrent *string `json:"talos_secrets_hmac_current,omitempty"`
+	// TalosSecretsHMACRetired stores previously active HMAC symmetric keys as a JSON array of plain secret strings. Application-layer encryption is handled upstream; SanitizeModel (MarshalJSON) redacts this field from API responses. The verifier tries all retired secrets when the current key does not produce a matching HMAC.
+	TalosSecretsHmacRetired []string `json:"talos_secrets_hmac_retired,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	WorkspaceId *string `json:"workspace_id,omitempty"`
@@ -7070,6 +7108,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCodePassword
 	o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled = &v
 }
 
+// GetKratosSelfserviceMethodsDeviceauthnEnabled returns the KratosSelfserviceMethodsDeviceauthnEnabled field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnEnabled() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsDeviceauthnEnabled
+}
+
+// GetKratosSelfserviceMethodsDeviceauthnEnabledOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnEnabled) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsDeviceauthnEnabled, true
+}
+
+// HasKratosSelfserviceMethodsDeviceauthnEnabled returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsDeviceauthnEnabled() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsDeviceauthnEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsDeviceauthnEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsDeviceauthnEnabled field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsDeviceauthnEnabled(v bool) {
+	o.KratosSelfserviceMethodsDeviceauthnEnabled = &v
+}
+
 // GetKratosSelfserviceMethodsLinkConfigBaseUrl returns the KratosSelfserviceMethodsLinkConfigBaseUrl field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsLinkConfigBaseUrl() string {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsLinkConfigBaseUrl) {
@@ -8470,6 +8540,582 @@ func (o *CreateProjectNormalizedPayload) SetStrictSecurity(v bool) {
 	o.StrictSecurity = &v
 }
 
+// GetTalosCacheEnabled returns the TalosCacheEnabled field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCacheEnabled() bool {
+	if o == nil || IsNil(o.TalosCacheEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.TalosCacheEnabled
+}
+
+// GetTalosCacheEnabledOk returns a tuple with the TalosCacheEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCacheEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.TalosCacheEnabled) {
+		return nil, false
+	}
+	return o.TalosCacheEnabled, true
+}
+
+// HasTalosCacheEnabled returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCacheEnabled() bool {
+	if o != nil && !IsNil(o.TalosCacheEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCacheEnabled gets a reference to the given bool and assigns it to the TalosCacheEnabled field.
+func (o *CreateProjectNormalizedPayload) SetTalosCacheEnabled(v bool) {
+	o.TalosCacheEnabled = &v
+}
+
+// GetTalosCacheTtl returns the TalosCacheTtl field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCacheTtl() string {
+	if o == nil || IsNil(o.TalosCacheTtl) {
+		var ret string
+		return ret
+	}
+	return *o.TalosCacheTtl
+}
+
+// GetTalosCacheTtlOk returns a tuple with the TalosCacheTtl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCacheTtlOk() (*string, bool) {
+	if o == nil || IsNil(o.TalosCacheTtl) {
+		return nil, false
+	}
+	return o.TalosCacheTtl, true
+}
+
+// HasTalosCacheTtl returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCacheTtl() bool {
+	if o != nil && !IsNil(o.TalosCacheTtl) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCacheTtl gets a reference to the given string and assigns it to the TalosCacheTtl field.
+func (o *CreateProjectNormalizedPayload) SetTalosCacheTtl(v string) {
+	o.TalosCacheTtl = &v
+}
+
+// GetTalosCredentialsApiKeysDefaultTtl returns the TalosCredentialsApiKeysDefaultTtl field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysDefaultTtl() string {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysDefaultTtl) {
+		var ret string
+		return ret
+	}
+	return *o.TalosCredentialsApiKeysDefaultTtl
+}
+
+// GetTalosCredentialsApiKeysDefaultTtlOk returns a tuple with the TalosCredentialsApiKeysDefaultTtl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysDefaultTtlOk() (*string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysDefaultTtl) {
+		return nil, false
+	}
+	return o.TalosCredentialsApiKeysDefaultTtl, true
+}
+
+// HasTalosCredentialsApiKeysDefaultTtl returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsApiKeysDefaultTtl() bool {
+	if o != nil && !IsNil(o.TalosCredentialsApiKeysDefaultTtl) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsApiKeysDefaultTtl gets a reference to the given string and assigns it to the TalosCredentialsApiKeysDefaultTtl field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsApiKeysDefaultTtl(v string) {
+	o.TalosCredentialsApiKeysDefaultTtl = &v
+}
+
+// GetTalosCredentialsApiKeysMaxTtl returns the TalosCredentialsApiKeysMaxTtl field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysMaxTtl() string {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysMaxTtl) {
+		var ret string
+		return ret
+	}
+	return *o.TalosCredentialsApiKeysMaxTtl
+}
+
+// GetTalosCredentialsApiKeysMaxTtlOk returns a tuple with the TalosCredentialsApiKeysMaxTtl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysMaxTtlOk() (*string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysMaxTtl) {
+		return nil, false
+	}
+	return o.TalosCredentialsApiKeysMaxTtl, true
+}
+
+// HasTalosCredentialsApiKeysMaxTtl returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsApiKeysMaxTtl() bool {
+	if o != nil && !IsNil(o.TalosCredentialsApiKeysMaxTtl) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsApiKeysMaxTtl gets a reference to the given string and assigns it to the TalosCredentialsApiKeysMaxTtl field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsApiKeysMaxTtl(v string) {
+	o.TalosCredentialsApiKeysMaxTtl = &v
+}
+
+// GetTalosCredentialsApiKeysPrefixCurrent returns the TalosCredentialsApiKeysPrefixCurrent field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysPrefixCurrent() string {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysPrefixCurrent) {
+		var ret string
+		return ret
+	}
+	return *o.TalosCredentialsApiKeysPrefixCurrent
+}
+
+// GetTalosCredentialsApiKeysPrefixCurrentOk returns a tuple with the TalosCredentialsApiKeysPrefixCurrent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysPrefixCurrentOk() (*string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysPrefixCurrent) {
+		return nil, false
+	}
+	return o.TalosCredentialsApiKeysPrefixCurrent, true
+}
+
+// HasTalosCredentialsApiKeysPrefixCurrent returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsApiKeysPrefixCurrent() bool {
+	if o != nil && !IsNil(o.TalosCredentialsApiKeysPrefixCurrent) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsApiKeysPrefixCurrent gets a reference to the given string and assigns it to the TalosCredentialsApiKeysPrefixCurrent field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsApiKeysPrefixCurrent(v string) {
+	o.TalosCredentialsApiKeysPrefixCurrent = &v
+}
+
+// GetTalosCredentialsApiKeysPrefixPublicCurrent returns the TalosCredentialsApiKeysPrefixPublicCurrent field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysPrefixPublicCurrent() string {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysPrefixPublicCurrent) {
+		var ret string
+		return ret
+	}
+	return *o.TalosCredentialsApiKeysPrefixPublicCurrent
+}
+
+// GetTalosCredentialsApiKeysPrefixPublicCurrentOk returns a tuple with the TalosCredentialsApiKeysPrefixPublicCurrent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysPrefixPublicCurrentOk() (*string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysPrefixPublicCurrent) {
+		return nil, false
+	}
+	return o.TalosCredentialsApiKeysPrefixPublicCurrent, true
+}
+
+// HasTalosCredentialsApiKeysPrefixPublicCurrent returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsApiKeysPrefixPublicCurrent() bool {
+	if o != nil && !IsNil(o.TalosCredentialsApiKeysPrefixPublicCurrent) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsApiKeysPrefixPublicCurrent gets a reference to the given string and assigns it to the TalosCredentialsApiKeysPrefixPublicCurrent field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsApiKeysPrefixPublicCurrent(v string) {
+	o.TalosCredentialsApiKeysPrefixPublicCurrent = &v
+}
+
+// GetTalosCredentialsApiKeysPrefixPublicRetired returns the TalosCredentialsApiKeysPrefixPublicRetired field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysPrefixPublicRetired() []string {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysPrefixPublicRetired) {
+		var ret []string
+		return ret
+	}
+	return o.TalosCredentialsApiKeysPrefixPublicRetired
+}
+
+// GetTalosCredentialsApiKeysPrefixPublicRetiredOk returns a tuple with the TalosCredentialsApiKeysPrefixPublicRetired field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysPrefixPublicRetiredOk() ([]string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysPrefixPublicRetired) {
+		return nil, false
+	}
+	return o.TalosCredentialsApiKeysPrefixPublicRetired, true
+}
+
+// HasTalosCredentialsApiKeysPrefixPublicRetired returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsApiKeysPrefixPublicRetired() bool {
+	if o != nil && !IsNil(o.TalosCredentialsApiKeysPrefixPublicRetired) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsApiKeysPrefixPublicRetired gets a reference to the given []string and assigns it to the TalosCredentialsApiKeysPrefixPublicRetired field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsApiKeysPrefixPublicRetired(v []string) {
+	o.TalosCredentialsApiKeysPrefixPublicRetired = v
+}
+
+// GetTalosCredentialsApiKeysPrefixRetired returns the TalosCredentialsApiKeysPrefixRetired field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysPrefixRetired() []string {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysPrefixRetired) {
+		var ret []string
+		return ret
+	}
+	return o.TalosCredentialsApiKeysPrefixRetired
+}
+
+// GetTalosCredentialsApiKeysPrefixRetiredOk returns a tuple with the TalosCredentialsApiKeysPrefixRetired field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsApiKeysPrefixRetiredOk() ([]string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsApiKeysPrefixRetired) {
+		return nil, false
+	}
+	return o.TalosCredentialsApiKeysPrefixRetired, true
+}
+
+// HasTalosCredentialsApiKeysPrefixRetired returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsApiKeysPrefixRetired() bool {
+	if o != nil && !IsNil(o.TalosCredentialsApiKeysPrefixRetired) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsApiKeysPrefixRetired gets a reference to the given []string and assigns it to the TalosCredentialsApiKeysPrefixRetired field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsApiKeysPrefixRetired(v []string) {
+	o.TalosCredentialsApiKeysPrefixRetired = v
+}
+
+// GetTalosCredentialsDerivedTokensDefaultTtl returns the TalosCredentialsDerivedTokensDefaultTtl field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsDerivedTokensDefaultTtl() string {
+	if o == nil || IsNil(o.TalosCredentialsDerivedTokensDefaultTtl) {
+		var ret string
+		return ret
+	}
+	return *o.TalosCredentialsDerivedTokensDefaultTtl
+}
+
+// GetTalosCredentialsDerivedTokensDefaultTtlOk returns a tuple with the TalosCredentialsDerivedTokensDefaultTtl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsDerivedTokensDefaultTtlOk() (*string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsDerivedTokensDefaultTtl) {
+		return nil, false
+	}
+	return o.TalosCredentialsDerivedTokensDefaultTtl, true
+}
+
+// HasTalosCredentialsDerivedTokensDefaultTtl returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsDerivedTokensDefaultTtl() bool {
+	if o != nil && !IsNil(o.TalosCredentialsDerivedTokensDefaultTtl) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsDerivedTokensDefaultTtl gets a reference to the given string and assigns it to the TalosCredentialsDerivedTokensDefaultTtl field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsDerivedTokensDefaultTtl(v string) {
+	o.TalosCredentialsDerivedTokensDefaultTtl = &v
+}
+
+// GetTalosCredentialsDerivedTokensJwtSigningKeyId returns the TalosCredentialsDerivedTokensJwtSigningKeyId field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsDerivedTokensJwtSigningKeyId() string {
+	if o == nil || IsNil(o.TalosCredentialsDerivedTokensJwtSigningKeyId) {
+		var ret string
+		return ret
+	}
+	return *o.TalosCredentialsDerivedTokensJwtSigningKeyId
+}
+
+// GetTalosCredentialsDerivedTokensJwtSigningKeyIdOk returns a tuple with the TalosCredentialsDerivedTokensJwtSigningKeyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsDerivedTokensJwtSigningKeyIdOk() (*string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsDerivedTokensJwtSigningKeyId) {
+		return nil, false
+	}
+	return o.TalosCredentialsDerivedTokensJwtSigningKeyId, true
+}
+
+// HasTalosCredentialsDerivedTokensJwtSigningKeyId returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsDerivedTokensJwtSigningKeyId() bool {
+	if o != nil && !IsNil(o.TalosCredentialsDerivedTokensJwtSigningKeyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsDerivedTokensJwtSigningKeyId gets a reference to the given string and assigns it to the TalosCredentialsDerivedTokensJwtSigningKeyId field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsDerivedTokensJwtSigningKeyId(v string) {
+	o.TalosCredentialsDerivedTokensJwtSigningKeyId = &v
+}
+
+// GetTalosCredentialsDerivedTokensJwtSigningKeysUrls returns the TalosCredentialsDerivedTokensJwtSigningKeysUrls field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsDerivedTokensJwtSigningKeysUrls() []string {
+	if o == nil || IsNil(o.TalosCredentialsDerivedTokensJwtSigningKeysUrls) {
+		var ret []string
+		return ret
+	}
+	return o.TalosCredentialsDerivedTokensJwtSigningKeysUrls
+}
+
+// GetTalosCredentialsDerivedTokensJwtSigningKeysUrlsOk returns a tuple with the TalosCredentialsDerivedTokensJwtSigningKeysUrls field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsDerivedTokensJwtSigningKeysUrlsOk() ([]string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsDerivedTokensJwtSigningKeysUrls) {
+		return nil, false
+	}
+	return o.TalosCredentialsDerivedTokensJwtSigningKeysUrls, true
+}
+
+// HasTalosCredentialsDerivedTokensJwtSigningKeysUrls returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsDerivedTokensJwtSigningKeysUrls() bool {
+	if o != nil && !IsNil(o.TalosCredentialsDerivedTokensJwtSigningKeysUrls) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsDerivedTokensJwtSigningKeysUrls gets a reference to the given []string and assigns it to the TalosCredentialsDerivedTokensJwtSigningKeysUrls field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsDerivedTokensJwtSigningKeysUrls(v []string) {
+	o.TalosCredentialsDerivedTokensJwtSigningKeysUrls = v
+}
+
+// GetTalosCredentialsDerivedTokensMacaroonPrefixCurrent returns the TalosCredentialsDerivedTokensMacaroonPrefixCurrent field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsDerivedTokensMacaroonPrefixCurrent() string {
+	if o == nil || IsNil(o.TalosCredentialsDerivedTokensMacaroonPrefixCurrent) {
+		var ret string
+		return ret
+	}
+	return *o.TalosCredentialsDerivedTokensMacaroonPrefixCurrent
+}
+
+// GetTalosCredentialsDerivedTokensMacaroonPrefixCurrentOk returns a tuple with the TalosCredentialsDerivedTokensMacaroonPrefixCurrent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsDerivedTokensMacaroonPrefixCurrentOk() (*string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsDerivedTokensMacaroonPrefixCurrent) {
+		return nil, false
+	}
+	return o.TalosCredentialsDerivedTokensMacaroonPrefixCurrent, true
+}
+
+// HasTalosCredentialsDerivedTokensMacaroonPrefixCurrent returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsDerivedTokensMacaroonPrefixCurrent() bool {
+	if o != nil && !IsNil(o.TalosCredentialsDerivedTokensMacaroonPrefixCurrent) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsDerivedTokensMacaroonPrefixCurrent gets a reference to the given string and assigns it to the TalosCredentialsDerivedTokensMacaroonPrefixCurrent field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsDerivedTokensMacaroonPrefixCurrent(v string) {
+	o.TalosCredentialsDerivedTokensMacaroonPrefixCurrent = &v
+}
+
+// GetTalosCredentialsDerivedTokensMacaroonPrefixRetired returns the TalosCredentialsDerivedTokensMacaroonPrefixRetired field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsDerivedTokensMacaroonPrefixRetired() []string {
+	if o == nil || IsNil(o.TalosCredentialsDerivedTokensMacaroonPrefixRetired) {
+		var ret []string
+		return ret
+	}
+	return o.TalosCredentialsDerivedTokensMacaroonPrefixRetired
+}
+
+// GetTalosCredentialsDerivedTokensMacaroonPrefixRetiredOk returns a tuple with the TalosCredentialsDerivedTokensMacaroonPrefixRetired field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsDerivedTokensMacaroonPrefixRetiredOk() ([]string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsDerivedTokensMacaroonPrefixRetired) {
+		return nil, false
+	}
+	return o.TalosCredentialsDerivedTokensMacaroonPrefixRetired, true
+}
+
+// HasTalosCredentialsDerivedTokensMacaroonPrefixRetired returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsDerivedTokensMacaroonPrefixRetired() bool {
+	if o != nil && !IsNil(o.TalosCredentialsDerivedTokensMacaroonPrefixRetired) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsDerivedTokensMacaroonPrefixRetired gets a reference to the given []string and assigns it to the TalosCredentialsDerivedTokensMacaroonPrefixRetired field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsDerivedTokensMacaroonPrefixRetired(v []string) {
+	o.TalosCredentialsDerivedTokensMacaroonPrefixRetired = v
+}
+
+// GetTalosCredentialsIssuer returns the TalosCredentialsIssuer field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsIssuer() string {
+	if o == nil || IsNil(o.TalosCredentialsIssuer) {
+		var ret string
+		return ret
+	}
+	return *o.TalosCredentialsIssuer
+}
+
+// GetTalosCredentialsIssuerOk returns a tuple with the TalosCredentialsIssuer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsIssuerOk() (*string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsIssuer) {
+		return nil, false
+	}
+	return o.TalosCredentialsIssuer, true
+}
+
+// HasTalosCredentialsIssuer returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsIssuer() bool {
+	if o != nil && !IsNil(o.TalosCredentialsIssuer) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsIssuer gets a reference to the given string and assigns it to the TalosCredentialsIssuer field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsIssuer(v string) {
+	o.TalosCredentialsIssuer = &v
+}
+
+// GetTalosCredentialsIssuerRetired returns the TalosCredentialsIssuerRetired field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsIssuerRetired() []string {
+	if o == nil || IsNil(o.TalosCredentialsIssuerRetired) {
+		var ret []string
+		return ret
+	}
+	return o.TalosCredentialsIssuerRetired
+}
+
+// GetTalosCredentialsIssuerRetiredOk returns a tuple with the TalosCredentialsIssuerRetired field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosCredentialsIssuerRetiredOk() ([]string, bool) {
+	if o == nil || IsNil(o.TalosCredentialsIssuerRetired) {
+		return nil, false
+	}
+	return o.TalosCredentialsIssuerRetired, true
+}
+
+// HasTalosCredentialsIssuerRetired returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosCredentialsIssuerRetired() bool {
+	if o != nil && !IsNil(o.TalosCredentialsIssuerRetired) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsIssuerRetired gets a reference to the given []string and assigns it to the TalosCredentialsIssuerRetired field.
+func (o *CreateProjectNormalizedPayload) SetTalosCredentialsIssuerRetired(v []string) {
+	o.TalosCredentialsIssuerRetired = v
+}
+
+// GetTalosRateLimitEnabled returns the TalosRateLimitEnabled field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosRateLimitEnabled() bool {
+	if o == nil || IsNil(o.TalosRateLimitEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.TalosRateLimitEnabled
+}
+
+// GetTalosRateLimitEnabledOk returns a tuple with the TalosRateLimitEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosRateLimitEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.TalosRateLimitEnabled) {
+		return nil, false
+	}
+	return o.TalosRateLimitEnabled, true
+}
+
+// HasTalosRateLimitEnabled returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosRateLimitEnabled() bool {
+	if o != nil && !IsNil(o.TalosRateLimitEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosRateLimitEnabled gets a reference to the given bool and assigns it to the TalosRateLimitEnabled field.
+func (o *CreateProjectNormalizedPayload) SetTalosRateLimitEnabled(v bool) {
+	o.TalosRateLimitEnabled = &v
+}
+
+// GetTalosSecretsHmacCurrent returns the TalosSecretsHmacCurrent field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosSecretsHmacCurrent() string {
+	if o == nil || IsNil(o.TalosSecretsHmacCurrent) {
+		var ret string
+		return ret
+	}
+	return *o.TalosSecretsHmacCurrent
+}
+
+// GetTalosSecretsHmacCurrentOk returns a tuple with the TalosSecretsHmacCurrent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosSecretsHmacCurrentOk() (*string, bool) {
+	if o == nil || IsNil(o.TalosSecretsHmacCurrent) {
+		return nil, false
+	}
+	return o.TalosSecretsHmacCurrent, true
+}
+
+// HasTalosSecretsHmacCurrent returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosSecretsHmacCurrent() bool {
+	if o != nil && !IsNil(o.TalosSecretsHmacCurrent) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosSecretsHmacCurrent gets a reference to the given string and assigns it to the TalosSecretsHmacCurrent field.
+func (o *CreateProjectNormalizedPayload) SetTalosSecretsHmacCurrent(v string) {
+	o.TalosSecretsHmacCurrent = &v
+}
+
+// GetTalosSecretsHmacRetired returns the TalosSecretsHmacRetired field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetTalosSecretsHmacRetired() []string {
+	if o == nil || IsNil(o.TalosSecretsHmacRetired) {
+		var ret []string
+		return ret
+	}
+	return o.TalosSecretsHmacRetired
+}
+
+// GetTalosSecretsHmacRetiredOk returns a tuple with the TalosSecretsHmacRetired field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetTalosSecretsHmacRetiredOk() ([]string, bool) {
+	if o == nil || IsNil(o.TalosSecretsHmacRetired) {
+		return nil, false
+	}
+	return o.TalosSecretsHmacRetired, true
+}
+
+// HasTalosSecretsHmacRetired returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasTalosSecretsHmacRetired() bool {
+	if o != nil && !IsNil(o.TalosSecretsHmacRetired) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosSecretsHmacRetired gets a reference to the given []string and assigns it to the TalosSecretsHmacRetired field.
+func (o *CreateProjectNormalizedPayload) SetTalosSecretsHmacRetired(v []string) {
+	o.TalosSecretsHmacRetired = v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetUpdatedAt() time.Time {
 	if o == nil || IsNil(o.UpdatedAt) {
@@ -9151,6 +9797,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled) {
 		toSerialize["kratos_selfservice_methods_code_passwordless_login_fallback_enabled"] = o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled
 	}
+	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnEnabled) {
+		toSerialize["kratos_selfservice_methods_deviceauthn_enabled"] = o.KratosSelfserviceMethodsDeviceauthnEnabled
+	}
 	if !IsNil(o.KratosSelfserviceMethodsLinkConfigBaseUrl) {
 		toSerialize["kratos_selfservice_methods_link_config_base_url"] = o.KratosSelfserviceMethodsLinkConfigBaseUrl
 	}
@@ -9280,6 +9929,60 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.StrictSecurity) {
 		toSerialize["strict_security"] = o.StrictSecurity
+	}
+	if !IsNil(o.TalosCacheEnabled) {
+		toSerialize["talos_cache_enabled"] = o.TalosCacheEnabled
+	}
+	if !IsNil(o.TalosCacheTtl) {
+		toSerialize["talos_cache_ttl"] = o.TalosCacheTtl
+	}
+	if !IsNil(o.TalosCredentialsApiKeysDefaultTtl) {
+		toSerialize["talos_credentials_api_keys_default_ttl"] = o.TalosCredentialsApiKeysDefaultTtl
+	}
+	if !IsNil(o.TalosCredentialsApiKeysMaxTtl) {
+		toSerialize["talos_credentials_api_keys_max_ttl"] = o.TalosCredentialsApiKeysMaxTtl
+	}
+	if !IsNil(o.TalosCredentialsApiKeysPrefixCurrent) {
+		toSerialize["talos_credentials_api_keys_prefix_current"] = o.TalosCredentialsApiKeysPrefixCurrent
+	}
+	if !IsNil(o.TalosCredentialsApiKeysPrefixPublicCurrent) {
+		toSerialize["talos_credentials_api_keys_prefix_public_current"] = o.TalosCredentialsApiKeysPrefixPublicCurrent
+	}
+	if !IsNil(o.TalosCredentialsApiKeysPrefixPublicRetired) {
+		toSerialize["talos_credentials_api_keys_prefix_public_retired"] = o.TalosCredentialsApiKeysPrefixPublicRetired
+	}
+	if !IsNil(o.TalosCredentialsApiKeysPrefixRetired) {
+		toSerialize["talos_credentials_api_keys_prefix_retired"] = o.TalosCredentialsApiKeysPrefixRetired
+	}
+	if !IsNil(o.TalosCredentialsDerivedTokensDefaultTtl) {
+		toSerialize["talos_credentials_derived_tokens_default_ttl"] = o.TalosCredentialsDerivedTokensDefaultTtl
+	}
+	if !IsNil(o.TalosCredentialsDerivedTokensJwtSigningKeyId) {
+		toSerialize["talos_credentials_derived_tokens_jwt_signing_key_id"] = o.TalosCredentialsDerivedTokensJwtSigningKeyId
+	}
+	if !IsNil(o.TalosCredentialsDerivedTokensJwtSigningKeysUrls) {
+		toSerialize["talos_credentials_derived_tokens_jwt_signing_keys_urls"] = o.TalosCredentialsDerivedTokensJwtSigningKeysUrls
+	}
+	if !IsNil(o.TalosCredentialsDerivedTokensMacaroonPrefixCurrent) {
+		toSerialize["talos_credentials_derived_tokens_macaroon_prefix_current"] = o.TalosCredentialsDerivedTokensMacaroonPrefixCurrent
+	}
+	if !IsNil(o.TalosCredentialsDerivedTokensMacaroonPrefixRetired) {
+		toSerialize["talos_credentials_derived_tokens_macaroon_prefix_retired"] = o.TalosCredentialsDerivedTokensMacaroonPrefixRetired
+	}
+	if !IsNil(o.TalosCredentialsIssuer) {
+		toSerialize["talos_credentials_issuer"] = o.TalosCredentialsIssuer
+	}
+	if !IsNil(o.TalosCredentialsIssuerRetired) {
+		toSerialize["talos_credentials_issuer_retired"] = o.TalosCredentialsIssuerRetired
+	}
+	if !IsNil(o.TalosRateLimitEnabled) {
+		toSerialize["talos_rate_limit_enabled"] = o.TalosRateLimitEnabled
+	}
+	if !IsNil(o.TalosSecretsHmacCurrent) {
+		toSerialize["talos_secrets_hmac_current"] = o.TalosSecretsHmacCurrent
+	}
+	if !IsNil(o.TalosSecretsHmacRetired) {
+		toSerialize["talos_secrets_hmac_retired"] = o.TalosSecretsHmacRetired
 	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
@@ -9534,6 +10237,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_selfservice_methods_code_mfa_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_login_fallback_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_link_config_base_url")
 		delete(additionalProperties, "kratos_selfservice_methods_link_config_lifespan")
 		delete(additionalProperties, "kratos_selfservice_methods_link_enabled")
@@ -9578,6 +10282,24 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "serve_public_cors_allowed_origins")
 		delete(additionalProperties, "serve_public_cors_enabled")
 		delete(additionalProperties, "strict_security")
+		delete(additionalProperties, "talos_cache_enabled")
+		delete(additionalProperties, "talos_cache_ttl")
+		delete(additionalProperties, "talos_credentials_api_keys_default_ttl")
+		delete(additionalProperties, "talos_credentials_api_keys_max_ttl")
+		delete(additionalProperties, "talos_credentials_api_keys_prefix_current")
+		delete(additionalProperties, "talos_credentials_api_keys_prefix_public_current")
+		delete(additionalProperties, "talos_credentials_api_keys_prefix_public_retired")
+		delete(additionalProperties, "talos_credentials_api_keys_prefix_retired")
+		delete(additionalProperties, "talos_credentials_derived_tokens_default_ttl")
+		delete(additionalProperties, "talos_credentials_derived_tokens_jwt_signing_key_id")
+		delete(additionalProperties, "talos_credentials_derived_tokens_jwt_signing_keys_urls")
+		delete(additionalProperties, "talos_credentials_derived_tokens_macaroon_prefix_current")
+		delete(additionalProperties, "talos_credentials_derived_tokens_macaroon_prefix_retired")
+		delete(additionalProperties, "talos_credentials_issuer")
+		delete(additionalProperties, "talos_credentials_issuer_retired")
+		delete(additionalProperties, "talos_rate_limit_enabled")
+		delete(additionalProperties, "talos_secrets_hmac_current")
+		delete(additionalProperties, "talos_secrets_hmac_retired")
 		delete(additionalProperties, "updated_at")
 		delete(additionalProperties, "workspace_id")
 		o.AdditionalProperties = additionalProperties

@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.AdminUpdateIssuedApiKeyRequest do
   @moduledoc """
-  IssuedAPIKey represents an API key issued (generated) by Talos. Root keys are opaque v1 format tokens stored in the database. Derived tokens (JWT/Macaroon) are created via DeriveToken and are stateless (not stored).
+  IssuedApiKey represents an API key issued (generated) by Talos. Root keys are opaque v1 format tokens stored in the database. Derived tokens (JWT/Macaroon) are created via DeriveToken and are stateless (not stored).
   """
 
   @derive Jason.Encoder

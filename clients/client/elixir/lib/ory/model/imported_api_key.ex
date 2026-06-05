@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.ImportedApiKey do
   @moduledoc """
-  ImportedAPIKey represents an API key imported from an external system. The raw key is hashed (SHA-512/256) and stored. The original key is never retained.
+  ImportedApiKey represents an API key imported from an external system. The raw key is hashed (SHA-512/256) and stored. The original key is never retained.
   """
 
   @derive Jason.Encoder

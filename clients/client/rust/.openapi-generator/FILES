@@ -12,7 +12,8 @@ docs/AccountExperienceConfiguration.md
 docs/AddProjectToWorkspaceBody.md
 docs/AdminIdentityImportCredentialsLookupSecret.md
 docs/AdminIdentityImportCredentialsLookupSecretConfig.md
-docs/AdminRevokeApiKeyBody.md
+docs/AdminRevokeImportedApiKeyBody.md
+docs/AdminRevokeIssuedApiKeyBody.md
 docs/AdminRotateIssuedApiKeyBody.md
 docs/AdminUpdateImportedApiKeyRequest.md
 docs/AdminUpdateIssuedApiKeyRequest.md
@@ -25,10 +26,10 @@ docs/AuthenticatorAssuranceLevel.md
 docs/BasicOrganization.md
 docs/BatchCheckPermissionBody.md
 docs/BatchCheckPermissionResult.md
-docs/BatchImportApiKeysRequest.md
-docs/BatchImportApiKeysResponse.md
-docs/BatchImportErrorCode.md
-docs/BatchImportResult.md
+docs/BatchCreateImportedApiKeysErrorCode.md
+docs/BatchCreateImportedApiKeysRequest.md
+docs/BatchCreateImportedApiKeysResponse.md
+docs/BatchCreateImportedApiKeysResult.md
 docs/BatchPatchIdentitiesResponse.md
 docs/BatchVerifyApiKeysRequest.md
 docs/BatchVerifyApiKeysResponse.md
@@ -255,6 +256,7 @@ docs/ProjectServiceAccountExperience.md
 docs/ProjectServiceIdentity.md
 docs/ProjectServiceOAuth2.md
 docs/ProjectServicePermission.md
+docs/ProjectServiceTalos.md
 docs/ProjectServices.md
 docs/Provider.md
 docs/QuotaUsage.md
@@ -277,6 +279,7 @@ docs/RevisionAccountExperienceCustomTranslation.md
 docs/RevocationReason.md
 docs/Rfc6749ErrorJson.md
 docs/RotateIssuedApiKeyResponse.md
+docs/RotateTalosKeyBody.md
 docs/SchemaPatch.md
 docs/SelfRevokeApiKeyRequest.md
 docs/SelfServiceFlowExpiredError.md
@@ -407,7 +410,8 @@ src/models/account_experience_configuration.rs
 src/models/add_project_to_workspace_body.rs
 src/models/admin_identity_import_credentials_lookup_secret.rs
 src/models/admin_identity_import_credentials_lookup_secret_config.rs
-src/models/admin_revoke_api_key_body.rs
+src/models/admin_revoke_imported_api_key_body.rs
+src/models/admin_revoke_issued_api_key_body.rs
 src/models/admin_rotate_issued_api_key_body.rs
 src/models/admin_update_imported_api_key_request.rs
 src/models/admin_update_issued_api_key_request.rs
@@ -419,10 +423,10 @@ src/models/authenticator_assurance_level.rs
 src/models/basic_organization.rs
 src/models/batch_check_permission_body.rs
 src/models/batch_check_permission_result.rs
-src/models/batch_import_api_keys_request.rs
-src/models/batch_import_api_keys_response.rs
-src/models/batch_import_error_code.rs
-src/models/batch_import_result.rs
+src/models/batch_create_imported_api_keys_error_code.rs
+src/models/batch_create_imported_api_keys_request.rs
+src/models/batch_create_imported_api_keys_response.rs
+src/models/batch_create_imported_api_keys_result.rs
 src/models/batch_patch_identities_response.rs
 src/models/batch_verify_api_keys_request.rs
 src/models/batch_verify_api_keys_response.rs
@@ -640,6 +644,7 @@ src/models/project_service_account_experience.rs
 src/models/project_service_identity.rs
 src/models/project_service_o_auth2.rs
 src/models/project_service_permission.rs
+src/models/project_service_talos.rs
 src/models/project_services.rs
 src/models/provider.rs
 src/models/quota_usage.rs
@@ -661,6 +666,7 @@ src/models/revision_account_experience_custom_translation.rs
 src/models/revocation_reason.rs
 src/models/rfc6749_error_json.rs
 src/models/rotate_issued_api_key_response.rs
+src/models/rotate_talos_key_body.rs
 src/models/schema_patch.rs
 src/models/self_revoke_api_key_request.rs
 src/models/self_service_flow_expired_error.rs

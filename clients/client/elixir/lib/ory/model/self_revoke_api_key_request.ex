@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.SelfRevokeApiKeyRequest do
   @moduledoc """
-  SelfRevokeAPIKeyRequest allows an API key holder to revoke their own key by providing the full key secret as proof of possession.
+  SelfRevokeApiKeyRequest allows an API key holder to revoke their own key by providing the full key secret as proof of possession.
   """
 
   @derive Jason.Encoder
