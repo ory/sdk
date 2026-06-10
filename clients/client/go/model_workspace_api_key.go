@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.48
+API version: v1.22.49
 Contact: support@ory.sh
 */
 
@@ -27,6 +27,8 @@ type WorkspaceApiKey struct {
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 	// The key's ID.
 	Id string `json:"id"`
+	// The last characters of the key's value.  Lets you tell API keys apart in the UI without revealing the full value. Empty for keys created before this was introduced.
+	LastCharacters *string `json:"last_characters,omitempty"`
 	// The API key's Name  Set this to help you remember, for example, where you use the API key.
 	Name string `json:"name"`
 	// The key's owner
@@ -148,6 +150,38 @@ func (o *WorkspaceApiKey) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *WorkspaceApiKey) SetId(v string) {
 	o.Id = v
+}
+
+// GetLastCharacters returns the LastCharacters field value if set, zero value otherwise.
+func (o *WorkspaceApiKey) GetLastCharacters() string {
+	if o == nil || IsNil(o.LastCharacters) {
+		var ret string
+		return ret
+	}
+	return *o.LastCharacters
+}
+
+// GetLastCharactersOk returns a tuple with the LastCharacters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceApiKey) GetLastCharactersOk() (*string, bool) {
+	if o == nil || IsNil(o.LastCharacters) {
+		return nil, false
+	}
+	return o.LastCharacters, true
+}
+
+// HasLastCharacters returns a boolean if a field has been set.
+func (o *WorkspaceApiKey) HasLastCharacters() bool {
+	if o != nil && !IsNil(o.LastCharacters) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastCharacters gets a reference to the given string and assigns it to the LastCharacters field.
+func (o *WorkspaceApiKey) SetLastCharacters(v string) {
+	o.LastCharacters = &v
 }
 
 // GetName returns the Name field value
@@ -311,6 +345,9 @@ func (o WorkspaceApiKey) ToMap() (map[string]interface{}, error) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
 	toSerialize["id"] = o.Id
+	if !IsNil(o.LastCharacters) {
+		toSerialize["last_characters"] = o.LastCharacters
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["owner_id"] = o.OwnerId
 	if !IsNil(o.UpdatedAt) {
@@ -370,6 +407,7 @@ func (o *WorkspaceApiKey) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "expires_at")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "last_characters")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "owner_id")
 		delete(additionalProperties, "updated_at")

@@ -86,6 +86,7 @@ docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateSubscriptionCommon.md
 docs/CreateTestLoginFlowBody.md
+docs/CreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
@@ -244,6 +245,7 @@ docs/OidcConfiguration.md
 docs/OidcUserInfo.md
 docs/OnboardingPortalLink.md
 docs/OnboardingPortalOrganization.md
+docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationOnboardingPortalLinksResponse.md
@@ -467,6 +469,7 @@ model_create_relationship_body.go
 model_create_subscription_body.go
 model_create_subscription_common.go
 model_create_test_login_flow_body.go
+model_create_test_login_flow_from_onboarding_portal_link_body.go
 model_create_verifiable_credential_request_body.go
 model_create_workspace_api_key_body.go
 model_create_workspace_body.go
@@ -618,6 +621,7 @@ model_oidc_configuration.go
 model_oidc_user_info.go
 model_onboarding_portal_link.go
 model_onboarding_portal_organization.go
+model_onboarding_portal_test_login_flow.go
 model_organization.go
 model_organization_body.go
 model_organization_onboarding_portal_links_response.go

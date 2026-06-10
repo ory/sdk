@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** | The token&#39;s creation date | [optional] [readonly] 
 **ExpiresAt** | Pointer to **time.Time** |  | [optional] 
 **Id** | **string** | The token&#39;s ID. | [readonly] 
+**LastCharacters** | Pointer to **string** | The last characters of the token&#39;s value.  Lets you tell API keys apart in the UI without revealing the full value. Empty for keys created before this was introduced. | [optional] [readonly] 
 **Name** | **string** | The Token&#39;s Name  Set this to help you remember, for example, where you use the token. | 
 **OwnerId** | **string** | The token&#39;s owner | [readonly] 
 **ProjectId** | Pointer to **string** | The Token&#39;s Project ID | [optional] [readonly] 
@@ -101,6 +102,31 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetLastCharacters
+
+`func (o *ProjectApiKey) GetLastCharacters() string`
+
+GetLastCharacters returns the LastCharacters field if non-nil, zero value otherwise.
+
+### GetLastCharactersOk
+
+`func (o *ProjectApiKey) GetLastCharactersOk() (*string, bool)`
+
+GetLastCharactersOk returns a tuple with the LastCharacters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastCharacters
+
+`func (o *ProjectApiKey) SetLastCharacters(v string)`
+
+SetLastCharacters sets LastCharacters field to given value.
+
+### HasLastCharacters
+
+`func (o *ProjectApiKey) HasLastCharacters() bool`
+
+HasLastCharacters returns a boolean if a field has been set.
 
 ### GetName
 

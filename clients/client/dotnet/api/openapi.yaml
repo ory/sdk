@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.48
+  version: v1.22.49
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -15224,6 +15224,20 @@ components:
       - provider_id
       title: Request body for creating a test OIDC login flow.
       type: object
+    createTestLoginFlowFromOnboardingPortalLinkBody:
+      description: |-
+        Request body for starting a dry-run OIDC test login flow from an onboarding
+        portal link.
+      properties:
+        provider_id:
+          description: |-
+            ID of the OIDC provider to test. Must match a provider configured on
+            the link's organization.
+          maxLength: 255
+          type: string
+      required:
+      - provider_id
+      type: object
     createWorkspaceBody:
       properties:
         name:
@@ -23067,6 +23081,19 @@ components:
       - scim_enabled
       - sso_enabled
       type: object
+    onboardingPortalTestLoginFlow:
+      description: |-
+        Response body for a dry-run OIDC test login flow created from an onboarding
+        portal link. Only the flow ID is part of the API contract.
+      properties:
+        id:
+          description: |-
+            ID of the created test login flow. Append this as the `flow` query
+            parameter on the test sign-in UI URL.
+          type: string
+      required:
+      - id
+      type: object
     organization:
       description: B2B SSO Organization
       example:
@@ -23448,6 +23475,7 @@ components:
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        last_characters: last_characters
         value: value
       properties:
         created_at:
@@ -23461,6 +23489,14 @@ components:
         id:
           description: The token's ID.
           format: uuid
+          readOnly: true
+          type: string
+        last_characters:
+          description: |-
+            The last characters of the token's value.
+
+            Lets you tell API keys apart in the UI without revealing the full
+            value. Empty for keys created before this was introduced.
           readOnly: true
           type: string
         name:
@@ -28997,6 +29033,7 @@ components:
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        last_characters: last_characters
         value: value
       properties:
         created_at:
@@ -29010,6 +29047,14 @@ components:
         id:
           description: The key's ID.
           format: uuid
+          readOnly: true
+          type: string
+        last_characters:
+          description: |-
+            The last characters of the key's value.
+
+            Lets you tell API keys apart in the UI without revealing the full
+            value. Empty for keys created before this was introduced.
           readOnly: true
           type: string
         name:

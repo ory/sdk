@@ -69,6 +69,7 @@ docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateSubscriptionCommon.md
 docs/CreateTestLoginFlowBody.md
+docs/CreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
@@ -227,6 +228,7 @@ docs/OidcConfiguration.md
 docs/OidcUserInfo.md
 docs/OnboardingPortalLink.md
 docs/OnboardingPortalOrganization.md
+docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationOnboardingPortalLinksResponse.md
@@ -471,6 +473,7 @@ src/models/CreateRelationshipBody.ts
 src/models/CreateSubscriptionBody.ts
 src/models/CreateSubscriptionCommon.ts
 src/models/CreateTestLoginFlowBody.ts
+src/models/CreateTestLoginFlowFromOnboardingPortalLinkBody.ts
 src/models/CreateVerifiableCredentialRequestBody.ts
 src/models/CreateWorkspaceApiKeyBody.ts
 src/models/CreateWorkspaceBody.ts
@@ -622,6 +625,7 @@ src/models/OidcConfiguration.ts
 src/models/OidcUserInfo.ts
 src/models/OnboardingPortalLink.ts
 src/models/OnboardingPortalOrganization.ts
+src/models/OnboardingPortalTestLoginFlow.ts
 src/models/Organization.ts
 src/models/OrganizationBody.ts
 src/models/OrganizationOnboardingPortalLinksResponse.ts

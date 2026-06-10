@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **OwnerId** | **string** | The key&#39;s owner | [readonly] 
 **CreatedAt** | **DateTime** | The API key&#39;s creation date | [optional] [readonly] 
 **ExpiresAt** | **DateTime** |  | [optional] 
+**LastCharacters** | **string** | The last characters of the key&#39;s value.  Lets you tell API keys apart in the UI without revealing the full value. Empty for keys created before this was introduced. | [optional] [readonly] 
 **UpdatedAt** | **DateTime** | The API key&#39;s last update date | [optional] [readonly] 
 **Value** | **string** | The key&#39;s value | [optional] [readonly] 
 **WorkspaceId** | **string** | The API key&#39;s workspace ID | [optional] [readonly] 

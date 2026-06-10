@@ -71,6 +71,7 @@ docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateSubscriptionCommon.md
 docs/CreateTestLoginFlowBody.md
+docs/CreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
@@ -229,6 +230,7 @@ docs/OidcConfiguration.md
 docs/OidcUserInfo.md
 docs/OnboardingPortalLink.md
 docs/OnboardingPortalOrganization.md
+docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationOnboardingPortalLinksResponse.md
@@ -471,6 +473,7 @@ ory_client/models/create_relationship_body.py
 ory_client/models/create_subscription_body.py
 ory_client/models/create_subscription_common.py
 ory_client/models/create_test_login_flow_body.py
+ory_client/models/create_test_login_flow_from_onboarding_portal_link_body.py
 ory_client/models/create_verifiable_credential_request_body.py
 ory_client/models/create_workspace_api_key_body.py
 ory_client/models/create_workspace_body.py
@@ -622,6 +625,7 @@ ory_client/models/oidc_configuration.py
 ory_client/models/oidc_user_info.py
 ory_client/models/onboarding_portal_link.py
 ory_client/models/onboarding_portal_organization.py
+ory_client/models/onboarding_portal_test_login_flow.py
 ory_client/models/organization.py
 ory_client/models/organization_body.py
 ory_client/models/organization_onboarding_portal_links_response.py
@@ -847,6 +851,7 @@ test/test_create_relationship_body.py
 test/test_create_subscription_body.py
 test/test_create_subscription_common.py
 test/test_create_test_login_flow_body.py
+test/test_create_test_login_flow_from_onboarding_portal_link_body.py
 test/test_create_verifiable_credential_request_body.py
 test/test_create_workspace_api_key_body.py
 test/test_create_workspace_body.py
@@ -1005,6 +1010,7 @@ test/test_oidc_configuration.py
 test/test_oidc_user_info.py
 test/test_onboarding_portal_link.py
 test/test_onboarding_portal_organization.py
+test/test_onboarding_portal_test_login_flow.py
 test/test_organization.py
 test/test_organization_body.py
 test/test_organization_onboarding_portal_links_response.py

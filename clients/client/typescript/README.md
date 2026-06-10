@@ -1,4 +1,4 @@
-## @ory/client@v1.22.48
+## @ory/client@v1.22.49
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.48 --save
+npm install @ory/client@v1.22.49 --save
 ```
 
 _unPublished (not recommended):_
@@ -287,6 +287,7 @@ Class | Method | HTTP request | Description
  - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
  - [CreateSubscriptionCommon](docs/CreateSubscriptionCommon.md)
  - [CreateTestLoginFlowBody](docs/CreateTestLoginFlowBody.md)
+ - [CreateTestLoginFlowFromOnboardingPortalLinkBody](docs/CreateTestLoginFlowFromOnboardingPortalLinkBody.md)
  - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
  - [CreateWorkspaceApiKeyBody](docs/CreateWorkspaceApiKeyBody.md)
  - [CreateWorkspaceBody](docs/CreateWorkspaceBody.md)
@@ -438,6 +439,7 @@ Class | Method | HTTP request | Description
  - [OidcUserInfo](docs/OidcUserInfo.md)
  - [OnboardingPortalLink](docs/OnboardingPortalLink.md)
  - [OnboardingPortalOrganization](docs/OnboardingPortalOrganization.md)
+ - [OnboardingPortalTestLoginFlow](docs/OnboardingPortalTestLoginFlow.md)
  - [Organization](docs/Organization.md)
  - [OrganizationBody](docs/OrganizationBody.md)
  - [OrganizationOnboardingPortalLinksResponse](docs/OrganizationOnboardingPortalLinksResponse.md)

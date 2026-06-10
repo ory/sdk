@@ -83,6 +83,7 @@ docs/models/ClientCreateRelationshipBody.md
 docs/models/ClientCreateSubscriptionBody.md
 docs/models/ClientCreateSubscriptionCommon.md
 docs/models/ClientCreateTestLoginFlowBody.md
+docs/models/ClientCreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/models/ClientCreateVerifiableCredentialRequestBody.md
 docs/models/ClientCreateWorkspaceApiKeyBody.md
 docs/models/ClientCreateWorkspaceBody.md
@@ -234,6 +235,7 @@ docs/models/ClientOidcConfiguration.md
 docs/models/ClientOidcUserInfo.md
 docs/models/ClientOnboardingPortalLink.md
 docs/models/ClientOnboardingPortalOrganization.md
+docs/models/ClientOnboardingPortalTestLoginFlow.md
 docs/models/ClientOrganization.md
 docs/models/ClientOrganizationBody.md
 docs/models/ClientOrganizationOnboardingPortalLinksResponse.md
@@ -467,6 +469,7 @@ src/Ory.Client.Test/Model/ClientCreateRelationshipBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateSubscriptionBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateSubscriptionCommonTests.cs
 src/Ory.Client.Test/Model/ClientCreateTestLoginFlowBodyTests.cs
+src/Ory.Client.Test/Model/ClientCreateTestLoginFlowFromOnboardingPortalLinkBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateVerifiableCredentialRequestBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceApiKeyBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceBodyTests.cs
@@ -618,6 +621,7 @@ src/Ory.Client.Test/Model/ClientOidcConfigurationTests.cs
 src/Ory.Client.Test/Model/ClientOidcUserInfoTests.cs
 src/Ory.Client.Test/Model/ClientOnboardingPortalLinkTests.cs
 src/Ory.Client.Test/Model/ClientOnboardingPortalOrganizationTests.cs
+src/Ory.Client.Test/Model/ClientOnboardingPortalTestLoginFlowTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationBodyTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationOnboardingPortalLinksResponseTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationTests.cs
@@ -875,6 +879,7 @@ src/Ory.Client/Model/ClientCreateRelationshipBody.cs
 src/Ory.Client/Model/ClientCreateSubscriptionBody.cs
 src/Ory.Client/Model/ClientCreateSubscriptionCommon.cs
 src/Ory.Client/Model/ClientCreateTestLoginFlowBody.cs
+src/Ory.Client/Model/ClientCreateTestLoginFlowFromOnboardingPortalLinkBody.cs
 src/Ory.Client/Model/ClientCreateVerifiableCredentialRequestBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceApiKeyBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceBody.cs
@@ -1026,6 +1031,7 @@ src/Ory.Client/Model/ClientOidcConfiguration.cs
 src/Ory.Client/Model/ClientOidcUserInfo.cs
 src/Ory.Client/Model/ClientOnboardingPortalLink.cs
 src/Ory.Client/Model/ClientOnboardingPortalOrganization.cs
+src/Ory.Client/Model/ClientOnboardingPortalTestLoginFlow.cs
 src/Ory.Client/Model/ClientOrganization.cs
 src/Ory.Client/Model/ClientOrganizationBody.cs
 src/Ory.Client/Model/ClientOrganizationOnboardingPortalLinksResponse.cs

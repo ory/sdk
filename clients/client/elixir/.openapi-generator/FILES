@@ -85,6 +85,7 @@ lib/ory/model/create_relationship_body.ex
 lib/ory/model/create_subscription_body.ex
 lib/ory/model/create_subscription_common.ex
 lib/ory/model/create_test_login_flow_body.ex
+lib/ory/model/create_test_login_flow_from_onboarding_portal_link_body.ex
 lib/ory/model/create_verifiable_credential_request_body.ex
 lib/ory/model/create_workspace_api_key_body.ex
 lib/ory/model/create_workspace_body.ex
@@ -236,6 +237,7 @@ lib/ory/model/oidc_configuration.ex
 lib/ory/model/oidc_user_info.ex
 lib/ory/model/onboarding_portal_link.ex
 lib/ory/model/onboarding_portal_organization.ex
+lib/ory/model/onboarding_portal_test_login_flow.ex
 lib/ory/model/organization.ex
 lib/ory/model/organization_body.ex
 lib/ory/model/organization_onboarding_portal_links_response.ex

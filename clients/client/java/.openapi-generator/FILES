@@ -73,6 +73,7 @@ docs/CreateRelationshipBody.md
 docs/CreateSubscriptionBody.md
 docs/CreateSubscriptionCommon.md
 docs/CreateTestLoginFlowBody.md
+docs/CreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
@@ -231,6 +232,7 @@ docs/OidcConfiguration.md
 docs/OidcUserInfo.md
 docs/OnboardingPortalLink.md
 docs/OnboardingPortalOrganization.md
+docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationOnboardingPortalLinksResponse.md
@@ -496,6 +498,7 @@ src/main/java/sh/ory/model/CreateRelationshipBody.java
 src/main/java/sh/ory/model/CreateSubscriptionBody.java
 src/main/java/sh/ory/model/CreateSubscriptionCommon.java
 src/main/java/sh/ory/model/CreateTestLoginFlowBody.java
+src/main/java/sh/ory/model/CreateTestLoginFlowFromOnboardingPortalLinkBody.java
 src/main/java/sh/ory/model/CreateVerifiableCredentialRequestBody.java
 src/main/java/sh/ory/model/CreateWorkspaceApiKeyBody.java
 src/main/java/sh/ory/model/CreateWorkspaceBody.java
@@ -647,6 +650,7 @@ src/main/java/sh/ory/model/OidcConfiguration.java
 src/main/java/sh/ory/model/OidcUserInfo.java
 src/main/java/sh/ory/model/OnboardingPortalLink.java
 src/main/java/sh/ory/model/OnboardingPortalOrganization.java
+src/main/java/sh/ory/model/OnboardingPortalTestLoginFlow.java
 src/main/java/sh/ory/model/Organization.java
 src/main/java/sh/ory/model/OrganizationBody.java
 src/main/java/sh/ory/model/OrganizationOnboardingPortalLinksResponse.java
@@ -876,6 +880,7 @@ src/test/java/sh/ory/model/CreateRelationshipBodyTest.java
 src/test/java/sh/ory/model/CreateSubscriptionBodyTest.java
 src/test/java/sh/ory/model/CreateSubscriptionCommonTest.java
 src/test/java/sh/ory/model/CreateTestLoginFlowBodyTest.java
+src/test/java/sh/ory/model/CreateTestLoginFlowFromOnboardingPortalLinkBodyTest.java
 src/test/java/sh/ory/model/CreateVerifiableCredentialRequestBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceApiKeyBodyTest.java
 src/test/java/sh/ory/model/CreateWorkspaceBodyTest.java
@@ -1027,6 +1032,7 @@ src/test/java/sh/ory/model/OidcConfigurationTest.java
 src/test/java/sh/ory/model/OidcUserInfoTest.java
 src/test/java/sh/ory/model/OnboardingPortalLinkTest.java
 src/test/java/sh/ory/model/OnboardingPortalOrganizationTest.java
+src/test/java/sh/ory/model/OnboardingPortalTestLoginFlowTest.java
 src/test/java/sh/ory/model/OrganizationBodyTest.java
 src/test/java/sh/ory/model/OrganizationOnboardingPortalLinksResponseTest.java
 src/test/java/sh/ory/model/OrganizationTest.java

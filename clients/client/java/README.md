@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.48
-  - Build date: 2026-06-05T12:28:42.856399507Z[Etc/UTC]
+- API version: v1.22.49
+  - Build date: 2026-06-10T12:17:17.282331249Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.48</version>
+  <version>v1.22.49</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.48"
+     implementation "sh.ory:client:v1.22.49"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.48.jar`
+* `target/client-v1.22.49.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -376,6 +376,7 @@ Class | Method | HTTP request | Description
  - [CreateSubscriptionBody](docs/CreateSubscriptionBody.md)
  - [CreateSubscriptionCommon](docs/CreateSubscriptionCommon.md)
  - [CreateTestLoginFlowBody](docs/CreateTestLoginFlowBody.md)
+ - [CreateTestLoginFlowFromOnboardingPortalLinkBody](docs/CreateTestLoginFlowFromOnboardingPortalLinkBody.md)
  - [CreateVerifiableCredentialRequestBody](docs/CreateVerifiableCredentialRequestBody.md)
  - [CreateWorkspaceApiKeyBody](docs/CreateWorkspaceApiKeyBody.md)
  - [CreateWorkspaceBody](docs/CreateWorkspaceBody.md)
@@ -527,6 +528,7 @@ Class | Method | HTTP request | Description
  - [OidcUserInfo](docs/OidcUserInfo.md)
  - [OnboardingPortalLink](docs/OnboardingPortalLink.md)
  - [OnboardingPortalOrganization](docs/OnboardingPortalOrganization.md)
+ - [OnboardingPortalTestLoginFlow](docs/OnboardingPortalTestLoginFlow.md)
  - [Organization](docs/Organization.md)
  - [OrganizationBody](docs/OrganizationBody.md)
  - [OrganizationOnboardingPortalLinksResponse](docs/OrganizationOnboardingPortalLinksResponse.md)

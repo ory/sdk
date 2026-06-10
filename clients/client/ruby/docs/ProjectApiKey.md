@@ -7,6 +7,7 @@
 | **created_at** | **Time** | The token&#39;s creation date | [optional][readonly] |
 | **expires_at** | **Time** |  | [optional] |
 | **id** | **String** | The token&#39;s ID. | [readonly] |
+| **last_characters** | **String** | The last characters of the token&#39;s value.  Lets you tell API keys apart in the UI without revealing the full value. Empty for keys created before this was introduced. | [optional][readonly] |
 | **name** | **String** | The Token&#39;s Name  Set this to help you remember, for example, where you use the token. |  |
 | **owner_id** | **String** | The token&#39;s owner | [readonly] |
 | **project_id** | **String** | The Token&#39;s Project ID | [optional][readonly] |
@@ -22,6 +23,7 @@ instance = OryClient::ProjectApiKey.new(
   created_at: null,
   expires_at: null,
   id: null,
+  last_characters: null,
   name: null,
   owner_id: null,
   project_id: null,

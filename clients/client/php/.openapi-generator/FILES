@@ -83,6 +83,7 @@ docs/Model/CreateRelationshipBody.md
 docs/Model/CreateSubscriptionBody.md
 docs/Model/CreateSubscriptionCommon.md
 docs/Model/CreateTestLoginFlowBody.md
+docs/Model/CreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/Model/CreateVerifiableCredentialRequestBody.md
 docs/Model/CreateWorkspaceApiKeyBody.md
 docs/Model/CreateWorkspaceBody.md
@@ -234,6 +235,7 @@ docs/Model/OidcConfiguration.md
 docs/Model/OidcUserInfo.md
 docs/Model/OnboardingPortalLink.md
 docs/Model/OnboardingPortalOrganization.md
+docs/Model/OnboardingPortalTestLoginFlow.md
 docs/Model/Organization.md
 docs/Model/OrganizationBody.md
 docs/Model/OrganizationOnboardingPortalLinksResponse.md
@@ -468,6 +470,7 @@ lib/Model/CreateRelationshipBody.php
 lib/Model/CreateSubscriptionBody.php
 lib/Model/CreateSubscriptionCommon.php
 lib/Model/CreateTestLoginFlowBody.php
+lib/Model/CreateTestLoginFlowFromOnboardingPortalLinkBody.php
 lib/Model/CreateVerifiableCredentialRequestBody.php
 lib/Model/CreateWorkspaceApiKeyBody.php
 lib/Model/CreateWorkspaceBody.php
@@ -620,6 +623,7 @@ lib/Model/OidcConfiguration.php
 lib/Model/OidcUserInfo.php
 lib/Model/OnboardingPortalLink.php
 lib/Model/OnboardingPortalOrganization.php
+lib/Model/OnboardingPortalTestLoginFlow.php
 lib/Model/Organization.php
 lib/Model/OrganizationBody.php
 lib/Model/OrganizationOnboardingPortalLinksResponse.php
@@ -851,6 +855,7 @@ test/Model/CreateRelationshipBodyTest.php
 test/Model/CreateSubscriptionBodyTest.php
 test/Model/CreateSubscriptionCommonTest.php
 test/Model/CreateTestLoginFlowBodyTest.php
+test/Model/CreateTestLoginFlowFromOnboardingPortalLinkBodyTest.php
 test/Model/CreateVerifiableCredentialRequestBodyTest.php
 test/Model/CreateWorkspaceApiKeyBodyTest.php
 test/Model/CreateWorkspaceBodyTest.php
@@ -1002,6 +1007,7 @@ test/Model/OidcConfigurationTest.php
 test/Model/OidcUserInfoTest.php
 test/Model/OnboardingPortalLinkTest.php
 test/Model/OnboardingPortalOrganizationTest.php
+test/Model/OnboardingPortalTestLoginFlowTest.php
 test/Model/OrganizationBodyTest.php
 test/Model/OrganizationOnboardingPortalLinksResponseTest.php
 test/Model/OrganizationTest.php

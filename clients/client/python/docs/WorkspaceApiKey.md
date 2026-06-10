@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **created_at** | **datetime** | The API key&#39;s creation date | [optional] [readonly] 
 **expires_at** | **datetime** |  | [optional] 
 **id** | **str** | The key&#39;s ID. | [readonly] 
+**last_characters** | **str** | The last characters of the key&#39;s value.  Lets you tell API keys apart in the UI without revealing the full value. Empty for keys created before this was introduced. | [optional] [readonly] 
 **name** | **str** | The API key&#39;s Name  Set this to help you remember, for example, where you use the API key. | 
 **owner_id** | **str** | The key&#39;s owner | [readonly] 
 **updated_at** | **datetime** | The API key&#39;s last update date | [optional] [readonly] 

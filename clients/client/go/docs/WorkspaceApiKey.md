@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** | The API key&#39;s creation date | [optional] [readonly] 
 **ExpiresAt** | Pointer to **time.Time** |  | [optional] 
 **Id** | **string** | The key&#39;s ID. | [readonly] 
+**LastCharacters** | Pointer to **string** | The last characters of the key&#39;s value.  Lets you tell API keys apart in the UI without revealing the full value. Empty for keys created before this was introduced. | [optional] [readonly] 
 **Name** | **string** | The API key&#39;s Name  Set this to help you remember, for example, where you use the API key. | 
 **OwnerId** | **string** | The key&#39;s owner | [readonly] 
 **UpdatedAt** | Pointer to **time.Time** | The API key&#39;s last update date | [optional] [readonly] 
@@ -101,6 +102,31 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetLastCharacters
+
+`func (o *WorkspaceApiKey) GetLastCharacters() string`
+
+GetLastCharacters returns the LastCharacters field if non-nil, zero value otherwise.
+
+### GetLastCharactersOk
+
+`func (o *WorkspaceApiKey) GetLastCharactersOk() (*string, bool)`
+
+GetLastCharactersOk returns a tuple with the LastCharacters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastCharacters
+
+`func (o *WorkspaceApiKey) SetLastCharacters(v string)`
+
+SetLastCharacters sets LastCharacters field to given value.
+
+### HasLastCharacters
+
+`func (o *WorkspaceApiKey) HasLastCharacters() bool`
+
+HasLastCharacters returns a boolean if a field has been set.
 
 ### GetName
 

@@ -9,6 +9,7 @@ Name | Type
 `created_at` | Date
 `expires_at` | Date
 `id` | string
+`last_characters` | string
 `name` | string
 `owner_id` | string
 `updated_at` | Date
@@ -25,6 +26,7 @@ const example = {
   "created_at": null,
   "expires_at": null,
   "id": null,
+  "last_characters": null,
   "name": null,
   "owner_id": null,
   "updated_at": null,
