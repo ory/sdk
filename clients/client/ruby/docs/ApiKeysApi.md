@@ -170,7 +170,7 @@ end
 
 ## admin_delete_imported_api_key
 
-> Object admin_delete_imported_api_key(key_id)
+> admin_delete_imported_api_key(key_id)
 
 Delete Imported API Key
 
@@ -192,8 +192,7 @@ key_id = 'key_id_example' # String | SHA512/256 hash of the imported key (REQUIR
 
 begin
   # Delete Imported API Key
-  result = api_instance.admin_delete_imported_api_key(key_id)
-  p result
+  api_instance.admin_delete_imported_api_key(key_id)
 rescue OryClient::ApiError => e
   puts "Error when calling ApiKeysApi->admin_delete_imported_api_key: #{e}"
 end
@@ -201,9 +200,9 @@ end
 
 #### Using the admin_delete_imported_api_key_with_http_info variant
 
-This returns an Array which contains the response data, status code and headers.
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(Object, Integer, Hash)> admin_delete_imported_api_key_with_http_info(key_id)
+> <Array(nil, Integer, Hash)> admin_delete_imported_api_key_with_http_info(key_id)
 
 ```ruby
 begin
@@ -211,7 +210,7 @@ begin
   data, status_code, headers = api_instance.admin_delete_imported_api_key_with_http_info(key_id)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => Object
+  p data # => nil
 rescue OryClient::ApiError => e
   puts "Error when calling ApiKeysApi->admin_delete_imported_api_key_with_http_info: #{e}"
 end
@@ -225,7 +224,7 @@ end
 
 ### Return type
 
-**Object**
+nil (empty response body)
 
 ### Authorization
 
@@ -450,7 +449,7 @@ end
 
 Import API Key
 
-Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"sk_live_abc123xyz\",   \"name\": \"Imported Stripe Key\",   \"actor_id\": \"user_123\" } ```
+Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",   \"name\": \"Example imported key\",   \"actor_id\": \"user_123\" } ```
 
 ### Examples
 
@@ -464,7 +463,7 @@ OryClient.configure do |config|
 end
 
 api_instance = OryClient::ApiKeysApi.new
-import_api_key_request = OryClient::ImportApiKeyRequest.new # ImportApiKeyRequest | Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
+import_api_key_request = OryClient::ImportApiKeyRequest.new # ImportApiKeyRequest | Example:   {     \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",     \"name\": \"Example imported key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"example-provider\", \"environment\": \"staging\"}   }
 
 begin
   # Import API Key
@@ -497,7 +496,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **import_api_key_request** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md) | Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } |  |
+| **import_api_key_request** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md) | Example:   {     \&quot;raw_key\&quot;: \&quot;imported-key-EXAMPLE-not-a-real-secret\&quot;,     \&quot;name\&quot;: \&quot;Example imported key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;example-provider\&quot;, \&quot;environment\&quot;: \&quot;staging\&quot;}   } |  |
 
 ### Return type
 
@@ -734,7 +733,7 @@ end
 
 ## admin_revoke_imported_api_key
 
-> Object admin_revoke_imported_api_key(key_id, admin_revoke_imported_api_key_body)
+> admin_revoke_imported_api_key(key_id, admin_revoke_imported_api_key_body)
 
 Revoke Imported API Key
 
@@ -757,8 +756,7 @@ admin_revoke_imported_api_key_body = OryClient::AdminRevokeImportedApiKeyBody.ne
 
 begin
   # Revoke Imported API Key
-  result = api_instance.admin_revoke_imported_api_key(key_id, admin_revoke_imported_api_key_body)
-  p result
+  api_instance.admin_revoke_imported_api_key(key_id, admin_revoke_imported_api_key_body)
 rescue OryClient::ApiError => e
   puts "Error when calling ApiKeysApi->admin_revoke_imported_api_key: #{e}"
 end
@@ -766,9 +764,9 @@ end
 
 #### Using the admin_revoke_imported_api_key_with_http_info variant
 
-This returns an Array which contains the response data, status code and headers.
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(Object, Integer, Hash)> admin_revoke_imported_api_key_with_http_info(key_id, admin_revoke_imported_api_key_body)
+> <Array(nil, Integer, Hash)> admin_revoke_imported_api_key_with_http_info(key_id, admin_revoke_imported_api_key_body)
 
 ```ruby
 begin
@@ -776,7 +774,7 @@ begin
   data, status_code, headers = api_instance.admin_revoke_imported_api_key_with_http_info(key_id, admin_revoke_imported_api_key_body)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => Object
+  p data # => nil
 rescue OryClient::ApiError => e
   puts "Error when calling ApiKeysApi->admin_revoke_imported_api_key_with_http_info: #{e}"
 end
@@ -791,7 +789,7 @@ end
 
 ### Return type
 
-**Object**
+nil (empty response body)
 
 ### Authorization
 
@@ -805,7 +803,7 @@ end
 
 ## admin_revoke_issued_api_key
 
-> Object admin_revoke_issued_api_key(key_id, admin_revoke_issued_api_key_body)
+> admin_revoke_issued_api_key(key_id, admin_revoke_issued_api_key_body)
 
 Revoke Issued API Key
 
@@ -828,8 +826,7 @@ admin_revoke_issued_api_key_body = OryClient::AdminRevokeIssuedApiKeyBody.new # 
 
 begin
   # Revoke Issued API Key
-  result = api_instance.admin_revoke_issued_api_key(key_id, admin_revoke_issued_api_key_body)
-  p result
+  api_instance.admin_revoke_issued_api_key(key_id, admin_revoke_issued_api_key_body)
 rescue OryClient::ApiError => e
   puts "Error when calling ApiKeysApi->admin_revoke_issued_api_key: #{e}"
 end
@@ -837,9 +834,9 @@ end
 
 #### Using the admin_revoke_issued_api_key_with_http_info variant
 
-This returns an Array which contains the response data, status code and headers.
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(Object, Integer, Hash)> admin_revoke_issued_api_key_with_http_info(key_id, admin_revoke_issued_api_key_body)
+> <Array(nil, Integer, Hash)> admin_revoke_issued_api_key_with_http_info(key_id, admin_revoke_issued_api_key_body)
 
 ```ruby
 begin
@@ -847,7 +844,7 @@ begin
   data, status_code, headers = api_instance.admin_revoke_issued_api_key_with_http_info(key_id, admin_revoke_issued_api_key_body)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => Object
+  p data # => nil
 rescue OryClient::ApiError => e
   puts "Error when calling ApiKeysApi->admin_revoke_issued_api_key_with_http_info: #{e}"
 end
@@ -862,7 +859,7 @@ end
 
 ### Return type
 
-**Object**
+nil (empty response body)
 
 ### Authorization
 

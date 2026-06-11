@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **https_endpoint** | **str** | The HTTPS endpoint URL to send events to. Required if type is https. | [optional] 
 **role_arn** | **str** | The AWS IAM role ARN to assume when publishing to the SNS topic. Required if type is sns. | [optional] 
+**status** | **str** | The status of the event stream. Defaults to active. A paused stream is created but does not forward any events until it is set to active. | [optional] 
 **topic_arn** | **str** | The AWS SNS topic ARN. Required if type is sns. | [optional] 
 **type** | **str** | The type of the event stream (AWS SNS or HTTPS webhook). | 
 

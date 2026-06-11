@@ -121,6 +121,8 @@ docs/models/ClientGenericOIDCProvider.md
 docs/models/ClientGenericUsage.md
 docs/models/ClientGetAttributesCount.md
 docs/models/ClientGetJWKSResponse.md
+docs/models/ClientGetJWKSResponseJwks.md
+docs/models/ClientGetJWKSResponseJwksKeysInner.md
 docs/models/ClientGetManagedIdentitySchemaLocation.md
 docs/models/ClientGetMetricsCount.md
 docs/models/ClientGetMetricsEventAttributes.md
@@ -506,6 +508,8 @@ src/Ory.Client.Test/Model/ClientGenericErrorTests.cs
 src/Ory.Client.Test/Model/ClientGenericOIDCProviderTests.cs
 src/Ory.Client.Test/Model/ClientGenericUsageTests.cs
 src/Ory.Client.Test/Model/ClientGetAttributesCountTests.cs
+src/Ory.Client.Test/Model/ClientGetJWKSResponseJwksKeysInnerTests.cs
+src/Ory.Client.Test/Model/ClientGetJWKSResponseJwksTests.cs
 src/Ory.Client.Test/Model/ClientGetJWKSResponseTests.cs
 src/Ory.Client.Test/Model/ClientGetManagedIdentitySchemaLocationTests.cs
 src/Ory.Client.Test/Model/ClientGetMetricsCountTests.cs
@@ -917,6 +921,8 @@ src/Ory.Client/Model/ClientGenericOIDCProvider.cs
 src/Ory.Client/Model/ClientGenericUsage.cs
 src/Ory.Client/Model/ClientGetAttributesCount.cs
 src/Ory.Client/Model/ClientGetJWKSResponse.cs
+src/Ory.Client/Model/ClientGetJWKSResponseJwks.cs
+src/Ory.Client/Model/ClientGetJWKSResponseJwksKeysInner.cs
 src/Ory.Client/Model/ClientGetManagedIdentitySchemaLocation.cs
 src/Ory.Client/Model/ClientGetMetricsCount.cs
 src/Ory.Client/Model/ClientGetMetricsEventAttributes.cs

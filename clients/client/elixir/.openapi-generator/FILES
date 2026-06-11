@@ -123,6 +123,8 @@ lib/ory/model/generic_oidc_provider.ex
 lib/ory/model/generic_usage.ex
 lib/ory/model/get_attributes_count.ex
 lib/ory/model/get_jwks_response.ex
+lib/ory/model/get_jwks_response_jwks.ex
+lib/ory/model/get_jwks_response_jwks_keys_inner.ex
 lib/ory/model/get_managed_identity_schema_location.ex
 lib/ory/model/get_metrics_count.ex
 lib/ory/model/get_metrics_event_attributes.ex

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.49
+API version: v1.22.50
 Contact: support@ory.sh
 */
 
@@ -13,22 +13,23 @@ package client
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SetEventStreamBody type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SetEventStreamBody{}
 
-// SetEventStreamBody Update Event Stream Body
+// SetEventStreamBody All fields are optional. Omitted fields keep their current value, so a caller can change only the status (pause/resume) without resubmitting the destination. This matters because secrets such as the password in an HTTPS endpoint URL are redacted in API responses, and resubmitting the redacted value would overwrite the real one.
 type SetEventStreamBody struct {
-	// The HTTPS endpoint URL to send events to. Required if type is https.
+	// The HTTPS endpoint URL to send events to. When omitted, the current value is kept.
 	HttpsEndpoint *string `json:"https_endpoint,omitempty"`
-	// The AWS IAM role ARN to assume when publishing to the SNS topic. Required if type is sns.
+	// The AWS IAM role ARN to assume when publishing to the SNS topic. When omitted, the current value is kept.
 	RoleArn *string `json:"role_arn,omitempty"`
-	// The AWS SNS topic ARN. Required if type is sns.
+	// The desired status of the event stream. When omitted, the current status is kept.
+	Status *string `json:"status,omitempty"`
+	// The AWS SNS topic ARN. When omitted, the current value is kept.
 	TopicArn *string `json:"topic_arn,omitempty"`
-	// The type of the event stream (AWS SNS or HTTPS webhook).
-	Type string `json:"type"`
+	// The type of the event stream (AWS SNS or HTTPS webhook). When omitted, the current type and its destination settings are kept.
+	Type *string `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,9 +39,8 @@ type _SetEventStreamBody SetEventStreamBody
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSetEventStreamBody(type_ string) *SetEventStreamBody {
+func NewSetEventStreamBody() *SetEventStreamBody {
 	this := SetEventStreamBody{}
-	this.Type = type_
 	return &this
 }
 
@@ -116,6 +116,38 @@ func (o *SetEventStreamBody) SetRoleArn(v string) {
 	o.RoleArn = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *SetEventStreamBody) GetStatus() string {
+	if o == nil || IsNil(o.Status) {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SetEventStreamBody) GetStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *SetEventStreamBody) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *SetEventStreamBody) SetStatus(v string) {
+	o.Status = &v
+}
+
 // GetTopicArn returns the TopicArn field value if set, zero value otherwise.
 func (o *SetEventStreamBody) GetTopicArn() string {
 	if o == nil || IsNil(o.TopicArn) {
@@ -148,28 +180,36 @@ func (o *SetEventStreamBody) SetTopicArn(v string) {
 	o.TopicArn = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *SetEventStreamBody) GetType() string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SetEventStreamBody) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *SetEventStreamBody) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *SetEventStreamBody) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
 func (o SetEventStreamBody) MarshalJSON() ([]byte, error) {
@@ -188,10 +228,15 @@ func (o SetEventStreamBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RoleArn) {
 		toSerialize["role_arn"] = o.RoleArn
 	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
 	if !IsNil(o.TopicArn) {
 		toSerialize["topic_arn"] = o.TopicArn
 	}
-	toSerialize["type"] = o.Type
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -201,27 +246,6 @@ func (o SetEventStreamBody) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *SetEventStreamBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varSetEventStreamBody := _SetEventStreamBody{}
 
 	err = json.Unmarshal(data, &varSetEventStreamBody)
@@ -237,6 +261,7 @@ func (o *SetEventStreamBody) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "https_endpoint")
 		delete(additionalProperties, "role_arn")
+		delete(additionalProperties, "status")
 		delete(additionalProperties, "topic_arn")
 		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties

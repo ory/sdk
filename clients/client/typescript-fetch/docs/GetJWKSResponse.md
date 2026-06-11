@@ -6,7 +6,7 @@
 
 Name | Type
 ------------ | -------------
-`jwks` | object
+`jwks` | [GetJWKSResponseJwks](GetJWKSResponseJwks.md)
 
 ## Example
 

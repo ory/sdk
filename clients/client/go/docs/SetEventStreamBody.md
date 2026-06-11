@@ -4,16 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HttpsEndpoint** | Pointer to **string** | The HTTPS endpoint URL to send events to. Required if type is https. | [optional] 
-**RoleArn** | Pointer to **string** | The AWS IAM role ARN to assume when publishing to the SNS topic. Required if type is sns. | [optional] 
-**TopicArn** | Pointer to **string** | The AWS SNS topic ARN. Required if type is sns. | [optional] 
-**Type** | **string** | The type of the event stream (AWS SNS or HTTPS webhook). | 
+**HttpsEndpoint** | Pointer to **string** | The HTTPS endpoint URL to send events to. When omitted, the current value is kept. | [optional] 
+**RoleArn** | Pointer to **string** | The AWS IAM role ARN to assume when publishing to the SNS topic. When omitted, the current value is kept. | [optional] 
+**Status** | Pointer to **string** | The desired status of the event stream. When omitted, the current status is kept. | [optional] 
+**TopicArn** | Pointer to **string** | The AWS SNS topic ARN. When omitted, the current value is kept. | [optional] 
+**Type** | Pointer to **string** | The type of the event stream (AWS SNS or HTTPS webhook). When omitted, the current type and its destination settings are kept. | [optional] 
 
 ## Methods
 
 ### NewSetEventStreamBody
 
-`func NewSetEventStreamBody(type_ string, ) *SetEventStreamBody`
+`func NewSetEventStreamBody() *SetEventStreamBody`
 
 NewSetEventStreamBody instantiates a new SetEventStreamBody object
 This constructor will assign default values to properties that have it defined,
@@ -78,6 +79,31 @@ SetRoleArn sets RoleArn field to given value.
 
 HasRoleArn returns a boolean if a field has been set.
 
+### GetStatus
+
+`func (o *SetEventStreamBody) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *SetEventStreamBody) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *SetEventStreamBody) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *SetEventStreamBody) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
 ### GetTopicArn
 
 `func (o *SetEventStreamBody) GetTopicArn() string`
@@ -122,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *SetEventStreamBody) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

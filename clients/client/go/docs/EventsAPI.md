@@ -241,7 +241,7 @@ import (
 func main() {
 	projectId := "projectId_example" // string | Project ID  The project's ID.
 	eventStreamId := "eventStreamId_example" // string | Event Stream ID  The event stream's ID.
-	setEventStreamBody := *openapiclient.NewSetEventStreamBody("Type_example") // SetEventStreamBody |  (optional)
+	setEventStreamBody := *openapiclient.NewSetEventStreamBody() // SetEventStreamBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -12,11 +12,14 @@ defmodule Ory.Model.GetJwksResponse do
   ]
 
   @type t :: %__MODULE__{
-    :jwks => map() | nil
+    :jwks => Ory.Model.GetJwksResponseJwks.t | nil
   }
+
+  alias Ory.Deserializer
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:jwks, :struct, Ory.Model.GetJwksResponseJwks)
   end
 end
 

@@ -52,10 +52,9 @@ func Test_client_ApiKeysAPIService(t *testing.T) {
 
 		var keyId string
 
-		resp, httpRes, err := apiClient.ApiKeysAPI.AdminDeleteImportedApiKey(context.Background(), keyId).Execute()
+		httpRes, err := apiClient.ApiKeysAPI.AdminDeleteImportedApiKey(context.Background(), keyId).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -154,10 +153,9 @@ func Test_client_ApiKeysAPIService(t *testing.T) {
 
 		var keyId string
 
-		resp, httpRes, err := apiClient.ApiKeysAPI.AdminRevokeImportedApiKey(context.Background(), keyId).Execute()
+		httpRes, err := apiClient.ApiKeysAPI.AdminRevokeImportedApiKey(context.Background(), keyId).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -168,10 +166,9 @@ func Test_client_ApiKeysAPIService(t *testing.T) {
 
 		var keyId string
 
-		resp, httpRes, err := apiClient.ApiKeysAPI.AdminRevokeIssuedApiKey(context.Background(), keyId).Execute()
+		httpRes, err := apiClient.ApiKeysAPI.AdminRevokeIssuedApiKey(context.Background(), keyId).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

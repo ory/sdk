@@ -101,7 +101,7 @@ Verifies multiple credentials in a single request. Efficiently verifies up to 10
 
 <a id="admindeleteimportedapikey"></a>
 # **AdminDeleteImportedApiKey**
-> Object AdminDeleteImportedApiKey (string keyId)
+> void AdminDeleteImportedApiKey (string keyId)
 
 Delete Imported API Key
 
@@ -116,7 +116,7 @@ Permanently deletes an imported key (hard delete). The key is removed from the d
 
 ### Return type
 
-**Object**
+void (empty response body)
 
 ### Authorization
 
@@ -253,14 +253,14 @@ Retrieves details about a specific issued API key including its status, scopes, 
 
 Import API Key
 
-Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"sk_live_abc123xyz\",   \"name\": \"Imported Stripe Key\",   \"actor_id\": \"user_123\" } ```
+Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",   \"name\": \"Example imported key\",   \"actor_id\": \"user_123\" } ```
 
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **clientImportApiKeyRequest** | [**ClientImportApiKeyRequest**](ClientImportApiKeyRequest.md) | Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } |  |
+| **clientImportApiKeyRequest** | [**ClientImportApiKeyRequest**](ClientImportApiKeyRequest.md) | Example:   {     \&quot;raw_key\&quot;: \&quot;imported-key-EXAMPLE-not-a-real-secret\&quot;,     \&quot;name\&quot;: \&quot;Example imported key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;example-provider\&quot;, \&quot;environment\&quot;: \&quot;staging\&quot;}   } |  |
 
 ### Return type
 
@@ -401,7 +401,7 @@ Lists issued API keys with optional filtering. Supports cursor-based pagination 
 
 <a id="adminrevokeimportedapikey"></a>
 # **AdminRevokeImportedApiKey**
-> Object AdminRevokeImportedApiKey (string keyId, ClientAdminRevokeImportedApiKeyBody clientAdminRevokeImportedApiKeyBody)
+> void AdminRevokeImportedApiKey (string keyId, ClientAdminRevokeImportedApiKeyBody clientAdminRevokeImportedApiKeyBody)
 
 Revoke Imported API Key
 
@@ -417,7 +417,7 @@ Immediately revokes an imported API key. Once revoked, the key can no longer be 
 
 ### Return type
 
-**Object**
+void (empty response body)
 
 ### Authorization
 
@@ -439,7 +439,7 @@ Immediately revokes an imported API key. Once revoked, the key can no longer be 
 
 <a id="adminrevokeissuedapikey"></a>
 # **AdminRevokeIssuedApiKey**
-> Object AdminRevokeIssuedApiKey (string keyId, ClientAdminRevokeIssuedApiKeyBody clientAdminRevokeIssuedApiKeyBody)
+> void AdminRevokeIssuedApiKey (string keyId, ClientAdminRevokeIssuedApiKeyBody clientAdminRevokeIssuedApiKeyBody)
 
 Revoke Issued API Key
 
@@ -455,7 +455,7 @@ Immediately revokes an issued API key. Once revoked, the key can no longer be us
 
 ### Return type
 
-**Object**
+void (empty response body)
 
 ### Authorization
 

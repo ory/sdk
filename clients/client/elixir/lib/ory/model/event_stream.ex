@@ -12,6 +12,7 @@ defmodule Ory.Model.EventStream do
     :https_endpoint,
     :id,
     :role_arn,
+    :status,
     :topic_arn,
     :type,
     :updated_at
@@ -22,6 +23,7 @@ defmodule Ory.Model.EventStream do
     :https_endpoint => String.t | nil,
     :id => String.t | nil,
     :role_arn => String.t | nil,
+    :status => String.t | nil,
     :topic_arn => String.t | nil,
     :type => String.t | nil,
     :updated_at => DateTime.t | nil

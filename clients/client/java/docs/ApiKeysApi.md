@@ -166,7 +166,7 @@ public class Example {
 
 <a id="adminDeleteImportedApiKey"></a>
 # **adminDeleteImportedApiKey**
-> Object adminDeleteImportedApiKey(keyId)
+> adminDeleteImportedApiKey(keyId)
 
 Delete Imported API Key
 
@@ -194,8 +194,7 @@ public class Example {
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
     String keyId = "keyId_example"; // String | SHA512/256 hash of the imported key (REQUIRED)
     try {
-      Object result = apiInstance.adminDeleteImportedApiKey(keyId);
-      System.out.println(result);
+      apiInstance.adminDeleteImportedApiKey(keyId);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApiKeysApi#adminDeleteImportedApiKey");
       System.err.println("Status code: " + e.getCode());
@@ -215,7 +214,7 @@ public class Example {
 
 ### Return type
 
-**Object**
+null (empty response body)
 
 ### Authorization
 
@@ -442,7 +441,7 @@ public class Example {
 
 Import API Key
 
-Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  &#x60;&#x60;&#x60;http POST /v2alpha1/admin/importedApiKeys {   \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz\&quot;,   \&quot;name\&quot;: \&quot;Imported Stripe Key\&quot;,   \&quot;actor_id\&quot;: \&quot;user_123\&quot; } &#x60;&#x60;&#x60;
+Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  &#x60;&#x60;&#x60;http POST /v2alpha1/admin/importedApiKeys {   \&quot;raw_key\&quot;: \&quot;imported-key-EXAMPLE-not-a-real-secret\&quot;,   \&quot;name\&quot;: \&quot;Example imported key\&quot;,   \&quot;actor_id\&quot;: \&quot;user_123\&quot; } &#x60;&#x60;&#x60;
 
 ### Example
 ```java
@@ -464,7 +463,7 @@ public class Example {
     oryAccessToken.setBearerToken("BEARER TOKEN");
 
     ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
-    ImportApiKeyRequest importApiKeyRequest = new ImportApiKeyRequest(); // ImportApiKeyRequest | Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
+    ImportApiKeyRequest importApiKeyRequest = new ImportApiKeyRequest(); // ImportApiKeyRequest | Example:   {     \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",     \"name\": \"Example imported key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"example-provider\", \"environment\": \"staging\"}   }
     try {
       ImportedApiKey result = apiInstance.adminImportApiKey(importApiKeyRequest);
       System.out.println(result);
@@ -483,7 +482,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **importApiKeyRequest** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md)| Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } | |
+| **importApiKeyRequest** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md)| Example:   {     \&quot;raw_key\&quot;: \&quot;imported-key-EXAMPLE-not-a-real-secret\&quot;,     \&quot;name\&quot;: \&quot;Example imported key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;example-provider\&quot;, \&quot;environment\&quot;: \&quot;staging\&quot;}   } | |
 
 ### Return type
 
@@ -718,7 +717,7 @@ public class Example {
 
 <a id="adminRevokeImportedApiKey"></a>
 # **adminRevokeImportedApiKey**
-> Object adminRevokeImportedApiKey(keyId, adminRevokeImportedApiKeyBody)
+> adminRevokeImportedApiKey(keyId, adminRevokeImportedApiKeyBody)
 
 Revoke Imported API Key
 
@@ -747,8 +746,7 @@ public class Example {
     String keyId = "keyId_example"; // String | SHA-512/256 hash of the imported key (REQUIRED)
     AdminRevokeImportedApiKeyBody adminRevokeImportedApiKeyBody = new AdminRevokeImportedApiKeyBody(); // AdminRevokeImportedApiKeyBody | 
     try {
-      Object result = apiInstance.adminRevokeImportedApiKey(keyId, adminRevokeImportedApiKeyBody);
-      System.out.println(result);
+      apiInstance.adminRevokeImportedApiKey(keyId, adminRevokeImportedApiKeyBody);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApiKeysApi#adminRevokeImportedApiKey");
       System.err.println("Status code: " + e.getCode());
@@ -769,7 +767,7 @@ public class Example {
 
 ### Return type
 
-**Object**
+null (empty response body)
 
 ### Authorization
 
@@ -788,7 +786,7 @@ public class Example {
 
 <a id="adminRevokeIssuedApiKey"></a>
 # **adminRevokeIssuedApiKey**
-> Object adminRevokeIssuedApiKey(keyId, adminRevokeIssuedApiKeyBody)
+> adminRevokeIssuedApiKey(keyId, adminRevokeIssuedApiKeyBody)
 
 Revoke Issued API Key
 
@@ -817,8 +815,7 @@ public class Example {
     String keyId = "keyId_example"; // String | UUID of the issued key (REQUIRED)
     AdminRevokeIssuedApiKeyBody adminRevokeIssuedApiKeyBody = new AdminRevokeIssuedApiKeyBody(); // AdminRevokeIssuedApiKeyBody | 
     try {
-      Object result = apiInstance.adminRevokeIssuedApiKey(keyId, adminRevokeIssuedApiKeyBody);
-      System.out.println(result);
+      apiInstance.adminRevokeIssuedApiKey(keyId, adminRevokeIssuedApiKeyBody);
     } catch (ApiException e) {
       System.err.println("Exception when calling ApiKeysApi#adminRevokeIssuedApiKey");
       System.err.println("Status code: " + e.getCode());
@@ -839,7 +836,7 @@ public class Example {
 
 ### Return type
 
-**Object**
+null (empty response body)
 
 ### Authorization
 

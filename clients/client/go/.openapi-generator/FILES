@@ -126,6 +126,8 @@ docs/GenericOIDCProvider.md
 docs/GenericUsage.md
 docs/GetAttributesCount.md
 docs/GetJWKSResponse.md
+docs/GetJWKSResponseJwks.md
+docs/GetJWKSResponseJwksKeysInner.md
 docs/GetManagedIdentitySchemaLocation.md
 docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md
@@ -507,6 +509,8 @@ model_generic_oidc_provider.go
 model_generic_usage.go
 model_get_attributes_count.go
 model_get_jwks_response.go
+model_get_jwks_response_jwks.go
+model_get_jwks_response_jwks_keys_inner.go
 model_get_managed_identity_schema_location.go
 model_get_metrics_count.go
 model_get_metrics_event_attributes.go

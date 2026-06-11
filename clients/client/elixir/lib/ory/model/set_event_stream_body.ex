@@ -3,13 +3,14 @@
 
 defmodule Ory.Model.SetEventStreamBody do
   @moduledoc """
-  Update Event Stream Body
+  All fields are optional. Omitted fields keep their current value, so a caller can change only the status (pause/resume) without resubmitting the destination. This matters because secrets such as the password in an HTTPS endpoint URL are redacted in API responses, and resubmitting the redacted value would overwrite the real one.
   """
 
   @derive Jason.Encoder
   defstruct [
     :https_endpoint,
     :role_arn,
+    :status,
     :topic_arn,
     :type
   ]
@@ -17,8 +18,9 @@ defmodule Ory.Model.SetEventStreamBody do
   @type t :: %__MODULE__{
     :https_endpoint => String.t | nil,
     :role_arn => String.t | nil,
+    :status => String.t | nil,
     :topic_arn => String.t | nil,
-    :type => String.t
+    :type => String.t | nil
   }
 
   def decode(value) do

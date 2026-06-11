@@ -113,6 +113,8 @@ docs/GenericOIDCProvider.md
 docs/GenericUsage.md
 docs/GetAttributesCount.md
 docs/GetJWKSResponse.md
+docs/GetJWKSResponseJwks.md
+docs/GetJWKSResponseJwksKeysInner.md
 docs/GetManagedIdentitySchemaLocation.md
 docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md

@@ -103,6 +103,8 @@ export * from './GenericOIDCProvider';
 export * from './GenericUsage';
 export * from './GetAttributesCount';
 export * from './GetJWKSResponse';
+export * from './GetJWKSResponseJwks';
+export * from './GetJWKSResponseJwksKeysInner';
 export * from './GetManagedIdentitySchemaLocation';
 export * from './GetMetricsCount';
 export * from './GetMetricsEventAttributes';

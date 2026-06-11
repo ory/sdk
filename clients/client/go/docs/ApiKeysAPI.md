@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ## AdminDeleteImportedApiKey
 
-> interface{} AdminDeleteImportedApiKey(ctx, keyId).Execute()
+> AdminDeleteImportedApiKey(ctx, keyId).Execute()
 
 Delete Imported API Key
 
@@ -186,13 +186,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApiKeysAPI.AdminDeleteImportedApiKey(context.Background(), keyId).Execute()
+	r, err := apiClient.ApiKeysAPI.AdminDeleteImportedApiKey(context.Background(), keyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminDeleteImportedApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminDeleteImportedApiKey`: interface{}
-	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminDeleteImportedApiKey`: %v\n", resp)
 }
 ```
 
@@ -215,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+ (empty response body)
 
 ### Authorization
 
@@ -458,7 +456,7 @@ import (
 )
 
 func main() {
-	importApiKeyRequest := *openapiclient.NewImportApiKeyRequest() // ImportApiKeyRequest | Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
+	importApiKeyRequest := *openapiclient.NewImportApiKeyRequest() // ImportApiKeyRequest | Example:   {     \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",     \"name\": \"Example imported key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"example-provider\", \"environment\": \"staging\"}   }
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -483,7 +481,7 @@ Other parameters are passed through a pointer to a apiAdminImportApiKeyRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **importApiKeyRequest** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md) | Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } | 
+ **importApiKeyRequest** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md) | Example:   {     \&quot;raw_key\&quot;: \&quot;imported-key-EXAMPLE-not-a-real-secret\&quot;,     \&quot;name\&quot;: \&quot;Example imported key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;example-provider\&quot;, \&quot;environment\&quot;: \&quot;staging\&quot;}   } | 
 
 ### Return type
 
@@ -711,7 +709,7 @@ Name | Type | Description  | Notes
 
 ## AdminRevokeImportedApiKey
 
-> interface{} AdminRevokeImportedApiKey(ctx, keyId).AdminRevokeImportedApiKeyBody(adminRevokeImportedApiKeyBody).Execute()
+> AdminRevokeImportedApiKey(ctx, keyId).AdminRevokeImportedApiKeyBody(adminRevokeImportedApiKeyBody).Execute()
 
 Revoke Imported API Key
 
@@ -735,13 +733,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApiKeysAPI.AdminRevokeImportedApiKey(context.Background(), keyId).AdminRevokeImportedApiKeyBody(adminRevokeImportedApiKeyBody).Execute()
+	r, err := apiClient.ApiKeysAPI.AdminRevokeImportedApiKey(context.Background(), keyId).AdminRevokeImportedApiKeyBody(adminRevokeImportedApiKeyBody).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminRevokeImportedApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminRevokeImportedApiKey`: interface{}
-	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminRevokeImportedApiKey`: %v\n", resp)
 }
 ```
 
@@ -765,7 +761,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+ (empty response body)
 
 ### Authorization
 
@@ -783,7 +779,7 @@ Name | Type | Description  | Notes
 
 ## AdminRevokeIssuedApiKey
 
-> interface{} AdminRevokeIssuedApiKey(ctx, keyId).AdminRevokeIssuedApiKeyBody(adminRevokeIssuedApiKeyBody).Execute()
+> AdminRevokeIssuedApiKey(ctx, keyId).AdminRevokeIssuedApiKeyBody(adminRevokeIssuedApiKeyBody).Execute()
 
 Revoke Issued API Key
 
@@ -807,13 +803,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApiKeysAPI.AdminRevokeIssuedApiKey(context.Background(), keyId).AdminRevokeIssuedApiKeyBody(adminRevokeIssuedApiKeyBody).Execute()
+	r, err := apiClient.ApiKeysAPI.AdminRevokeIssuedApiKey(context.Background(), keyId).AdminRevokeIssuedApiKeyBody(adminRevokeIssuedApiKeyBody).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysAPI.AdminRevokeIssuedApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AdminRevokeIssuedApiKey`: interface{}
-	fmt.Fprintf(os.Stdout, "Response from `ApiKeysAPI.AdminRevokeIssuedApiKey`: %v\n", resp)
 }
 ```
 
@@ -837,7 +831,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+ (empty response body)
 
 ### Authorization
 

@@ -114,6 +114,8 @@ docs/GenericOIDCProvider.md
 docs/GenericUsage.md
 docs/GetAttributesCount.md
 docs/GetJWKSResponse.md
+docs/GetJWKSResponseJwks.md
+docs/GetJWKSResponseJwksKeysInner.md
 docs/GetManagedIdentitySchemaLocation.md
 docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md
@@ -512,6 +514,8 @@ lib/ory-client/models/generic_oidc_provider.rb
 lib/ory-client/models/generic_usage.rb
 lib/ory-client/models/get_attributes_count.rb
 lib/ory-client/models/get_jwks_response.rb
+lib/ory-client/models/get_jwks_response_jwks.rb
+lib/ory-client/models/get_jwks_response_jwks_keys_inner.rb
 lib/ory-client/models/get_managed_identity_schema_location.rb
 lib/ory-client/models/get_metrics_count.rb
 lib/ory-client/models/get_metrics_event_attributes.rb
@@ -895,6 +899,8 @@ spec/models/generic_error_spec.rb
 spec/models/generic_oidc_provider_spec.rb
 spec/models/generic_usage_spec.rb
 spec/models/get_attributes_count_spec.rb
+spec/models/get_jwks_response_jwks_keys_inner_spec.rb
+spec/models/get_jwks_response_jwks_spec.rb
 spec/models/get_jwks_response_spec.rb
 spec/models/get_managed_identity_schema_location_spec.rb
 spec/models/get_metrics_count_spec.rb

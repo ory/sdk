@@ -89,7 +89,7 @@ Name | Type | Description  | Required | Notes
 
 ## admin_delete_imported_api_key
 
-> serde_json::Value admin_delete_imported_api_key(key_id)
+> admin_delete_imported_api_key(key_id)
 Delete Imported API Key
 
 Permanently deletes an imported key (hard delete). The key is removed from the database. Use AdminRevokeImportedApiKey for soft deletion (recommended).  ```http DELETE /v2alpha1/admin/importedApiKeys/{key_id} ```
@@ -103,7 +103,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**serde_json::Value**](serde_json::Value.md)
+ (empty response body)
 
 ### Authorization
 
@@ -212,14 +212,14 @@ Name | Type | Description  | Required | Notes
 > models::ImportedApiKey admin_import_api_key(import_api_key_request)
 Import API Key
 
-Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"sk_live_abc123xyz\",   \"name\": \"Imported Stripe Key\",   \"actor_id\": \"user_123\" } ```
+Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",   \"name\": \"Example imported key\",   \"actor_id\": \"user_123\" } ```
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**import_api_key_request** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md) | Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   } | [required] |
+**import_api_key_request** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md) | Example:   {     \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",     \"name\": \"Example imported key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"example-provider\", \"environment\": \"staging\"}   } | [required] |
 
 ### Return type
 
@@ -333,7 +333,7 @@ Name | Type | Description  | Required | Notes
 
 ## admin_revoke_imported_api_key
 
-> serde_json::Value admin_revoke_imported_api_key(key_id, admin_revoke_imported_api_key_body)
+> admin_revoke_imported_api_key(key_id, admin_revoke_imported_api_key_body)
 Revoke Imported API Key
 
 Immediately revokes an imported API key. Once revoked, the key can no longer be used for authentication. This operation is irreversible. Revoked keys are retained for audit purposes.  ```http POST /v2alpha1/admin/importedApiKeys/9a3f051b2c7e8d4f1a6b9c0e5f2d8a3b:revoke {   \"reason\": \"REVOCATION_REASON_KEY_COMPROMISE\" } ```
@@ -348,7 +348,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**serde_json::Value**](serde_json::Value.md)
+ (empty response body)
 
 ### Authorization
 
@@ -364,7 +364,7 @@ Name | Type | Description  | Required | Notes
 
 ## admin_revoke_issued_api_key
 
-> serde_json::Value admin_revoke_issued_api_key(key_id, admin_revoke_issued_api_key_body)
+> admin_revoke_issued_api_key(key_id, admin_revoke_issued_api_key_body)
 Revoke Issued API Key
 
 Immediately revokes an issued API key. Once revoked, the key can no longer be used for authentication. This operation is irreversible. Revoked keys are retained for audit purposes.  ```http POST /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:revoke {   \"reason\": \"REVOCATION_REASON_KEY_COMPROMISE\" } ```
@@ -379,7 +379,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**serde_json::Value**](serde_json::Value.md)
+ (empty response body)
 
 ### Authorization
 

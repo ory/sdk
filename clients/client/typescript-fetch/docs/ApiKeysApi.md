@@ -177,7 +177,7 @@ example().catch(console.error);
 
 ## adminDeleteImportedApiKey
 
-> any adminDeleteImportedApiKey(keyId)
+> adminDeleteImportedApiKey(keyId)
 
 Delete Imported API Key
 
@@ -226,7 +226,7 @@ example().catch(console.error);
 
 ### Return type
 
-**any**
+`void` (Empty response body)
 
 ### Authorization
 
@@ -469,7 +469,7 @@ example().catch(console.error);
 
 Import API Key
 
-Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  &#x60;&#x60;&#x60;http POST /v2alpha1/admin/importedApiKeys {   \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz\&quot;,   \&quot;name\&quot;: \&quot;Imported Stripe Key\&quot;,   \&quot;actor_id\&quot;: \&quot;user_123\&quot; } &#x60;&#x60;&#x60;
+Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  &#x60;&#x60;&#x60;http POST /v2alpha1/admin/importedApiKeys {   \&quot;raw_key\&quot;: \&quot;imported-key-EXAMPLE-not-a-real-secret\&quot;,   \&quot;name\&quot;: \&quot;Example imported key\&quot;,   \&quot;actor_id\&quot;: \&quot;user_123\&quot; } &#x60;&#x60;&#x60;
 
 ### Example
 
@@ -489,7 +489,7 @@ async function example() {
   const api = new ApiKeysApi(config);
 
   const body = {
-    // ImportApiKeyRequest | Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
+    // ImportApiKeyRequest | Example:   {     \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",     \"name\": \"Example imported key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"example-provider\", \"environment\": \"staging\"}   }
     importApiKeyRequest: ...,
   } satisfies AdminImportApiKeyRequest;
 
@@ -510,7 +510,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **importApiKeyRequest** | [ImportApiKeyRequest](ImportApiKeyRequest.md) | Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } | |
+| **importApiKeyRequest** | [ImportApiKeyRequest](ImportApiKeyRequest.md) | Example:   {     \&quot;raw_key\&quot;: \&quot;imported-key-EXAMPLE-not-a-real-secret\&quot;,     \&quot;name\&quot;: \&quot;Example imported key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;example-provider\&quot;, \&quot;environment\&quot;: \&quot;staging\&quot;}   } | |
 
 ### Return type
 
@@ -765,7 +765,7 @@ example().catch(console.error);
 
 ## adminRevokeImportedApiKey
 
-> any adminRevokeImportedApiKey(keyId, adminRevokeImportedApiKeyBody)
+> adminRevokeImportedApiKey(keyId, adminRevokeImportedApiKeyBody)
 
 Revoke Imported API Key
 
@@ -817,7 +817,7 @@ example().catch(console.error);
 
 ### Return type
 
-**any**
+`void` (Empty response body)
 
 ### Authorization
 
@@ -840,7 +840,7 @@ example().catch(console.error);
 
 ## adminRevokeIssuedApiKey
 
-> any adminRevokeIssuedApiKey(keyId, adminRevokeIssuedApiKeyBody)
+> adminRevokeIssuedApiKey(keyId, adminRevokeIssuedApiKeyBody)
 
 Revoke Issued API Key
 
@@ -892,7 +892,7 @@ example().catch(console.error);
 
 ### Return type
 
-**any**
+`void` (Empty response body)
 
 ### Authorization
 

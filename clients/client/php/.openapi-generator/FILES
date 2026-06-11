@@ -121,6 +121,8 @@ docs/Model/GenericOIDCProvider.md
 docs/Model/GenericUsage.md
 docs/Model/GetAttributesCount.md
 docs/Model/GetJWKSResponse.md
+docs/Model/GetJWKSResponseJwks.md
+docs/Model/GetJWKSResponseJwksKeysInner.md
 docs/Model/GetManagedIdentitySchemaLocation.md
 docs/Model/GetMetricsCount.md
 docs/Model/GetMetricsEventAttributes.md
@@ -508,6 +510,8 @@ lib/Model/GenericOIDCProvider.php
 lib/Model/GenericUsage.php
 lib/Model/GetAttributesCount.php
 lib/Model/GetJWKSResponse.php
+lib/Model/GetJWKSResponseJwks.php
+lib/Model/GetJWKSResponseJwksKeysInner.php
 lib/Model/GetManagedIdentitySchemaLocation.php
 lib/Model/GetMetricsCount.php
 lib/Model/GetMetricsEventAttributes.php
@@ -892,6 +896,8 @@ test/Model/GenericErrorTest.php
 test/Model/GenericOIDCProviderTest.php
 test/Model/GenericUsageTest.php
 test/Model/GetAttributesCountTest.php
+test/Model/GetJWKSResponseJwksKeysInnerTest.php
+test/Model/GetJWKSResponseJwksTest.php
 test/Model/GetJWKSResponseTest.php
 test/Model/GetManagedIdentitySchemaLocationTest.php
 test/Model/GetMetricsCountTest.php

@@ -111,6 +111,8 @@ docs/GenericOIDCProvider.md
 docs/GenericUsage.md
 docs/GetAttributesCount.md
 docs/GetJWKSResponse.md
+docs/GetJWKSResponseJwks.md
+docs/GetJWKSResponseJwksKeysInner.md
 docs/GetManagedIdentitySchemaLocation.md
 docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md
@@ -511,6 +513,8 @@ ory_client/models/generic_oidc_provider.py
 ory_client/models/generic_usage.py
 ory_client/models/get_attributes_count.py
 ory_client/models/get_jwks_response.py
+ory_client/models/get_jwks_response_jwks.py
+ory_client/models/get_jwks_response_jwks_keys_inner.py
 ory_client/models/get_managed_identity_schema_location.py
 ory_client/models/get_metrics_count.py
 ory_client/models/get_metrics_event_attributes.py
@@ -891,6 +895,8 @@ test/test_generic_oidc_provider.py
 test/test_generic_usage.py
 test/test_get_attributes_count.py
 test/test_get_jwks_response.py
+test/test_get_jwks_response_jwks.py
+test/test_get_jwks_response_jwks_keys_inner.py
 test/test_get_managed_identity_schema_location.py
 test/test_get_metrics_count.py
 test/test_get_metrics_event_attributes.py

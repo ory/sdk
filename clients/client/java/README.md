@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.49
-  - Build date: 2026-06-10T12:17:17.282331249Z[Etc/UTC]
+- API version: v1.22.50
+  - Build date: 2026-06-11T10:55:30.150224347Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.49</version>
+  <version>v1.22.50</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.49"
+     implementation "sh.ory:client:v1.22.50"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.49.jar`
+* `target/client-v1.22.50.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -414,6 +414,8 @@ Class | Method | HTTP request | Description
  - [GenericUsage](docs/GenericUsage.md)
  - [GetAttributesCount](docs/GetAttributesCount.md)
  - [GetJWKSResponse](docs/GetJWKSResponse.md)
+ - [GetJWKSResponseJwks](docs/GetJWKSResponseJwks.md)
+ - [GetJWKSResponseJwksKeysInner](docs/GetJWKSResponseJwksKeysInner.md)
  - [GetManagedIdentitySchemaLocation](docs/GetManagedIdentitySchemaLocation.md)
  - [GetMetricsCount](docs/GetMetricsCount.md)
  - [GetMetricsEventAttributes](docs/GetMetricsEventAttributes.md)

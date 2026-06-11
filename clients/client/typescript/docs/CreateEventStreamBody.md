@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **https_endpoint** | **string** | The HTTPS endpoint URL to send events to. Required if type is https. | [optional] [default to undefined]
 **role_arn** | **string** | The AWS IAM role ARN to assume when publishing to the SNS topic. Required if type is sns. | [optional] [default to undefined]
+**status** | **string** | The status of the event stream. Defaults to active. A paused stream is created but does not forward any events until it is set to active. | [optional] [default to undefined]
 **topic_arn** | **string** | The AWS SNS topic ARN. Required if type is sns. | [optional] [default to undefined]
 **type** | **string** | The type of the event stream (AWS SNS or HTTPS webhook). | [default to undefined]
 
@@ -19,6 +20,7 @@ import { CreateEventStreamBody } from '@ory/client';
 const instance: CreateEventStreamBody = {
     https_endpoint,
     role_arn,
+    status,
     topic_arn,
     type,
 };

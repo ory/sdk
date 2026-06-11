@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **HttpsEndpoint** | Pointer to **NullableString** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **RoleArn** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** | The status of the event stream. A paused event stream does not forward any events until it is set back to active. | [optional] 
 **TopicArn** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
@@ -140,6 +141,31 @@ SetRoleArn sets RoleArn field to given value.
 `func (o *EventStream) HasRoleArn() bool`
 
 HasRoleArn returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *EventStream) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *EventStream) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *EventStream) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *EventStream) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetTopicArn
 

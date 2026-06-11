@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.49
+API version: v1.22.50
 Contact: support@ory.sh
 */
 
@@ -99,8 +99,7 @@ DELETE /v2alpha1/admin/importedApiKeys/{key_id}
 	AdminDeleteImportedApiKey(ctx context.Context, keyId string) ApiKeysAPIAdminDeleteImportedApiKeyRequest
 
 	// AdminDeleteImportedApiKeyExecute executes the request
-	//  @return interface{}
-	AdminDeleteImportedApiKeyExecute(r ApiKeysAPIAdminDeleteImportedApiKeyRequest) (interface{}, *http.Response, error)
+	AdminDeleteImportedApiKeyExecute(r ApiKeysAPIAdminDeleteImportedApiKeyRequest) (*http.Response, error)
 
 	/*
 	AdminDeriveToken Derive Token
@@ -177,8 +176,8 @@ like issued keys.
 ```http
 POST /v2alpha1/admin/importedApiKeys
 {
-  "raw_key": "sk_live_abc123xyz",
-  "name": "Imported Stripe Key",
+  "raw_key": "imported-key-EXAMPLE-not-a-real-secret",
+  "name": "Example imported key",
   "actor_id": "user_123"
 }
 ```
@@ -278,8 +277,7 @@ POST /v2alpha1/admin/importedApiKeys/9a3f051b2c7e8d4f1a6b9c0e5f2d8a3b:revoke
 	AdminRevokeImportedApiKey(ctx context.Context, keyId string) ApiKeysAPIAdminRevokeImportedApiKeyRequest
 
 	// AdminRevokeImportedApiKeyExecute executes the request
-	//  @return interface{}
-	AdminRevokeImportedApiKeyExecute(r ApiKeysAPIAdminRevokeImportedApiKeyRequest) (interface{}, *http.Response, error)
+	AdminRevokeImportedApiKeyExecute(r ApiKeysAPIAdminRevokeImportedApiKeyRequest) (*http.Response, error)
 
 	/*
 	AdminRevokeIssuedApiKey Revoke Issued API Key
@@ -302,8 +300,7 @@ POST /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:revoke
 	AdminRevokeIssuedApiKey(ctx context.Context, keyId string) ApiKeysAPIAdminRevokeIssuedApiKeyRequest
 
 	// AdminRevokeIssuedApiKeyExecute executes the request
-	//  @return interface{}
-	AdminRevokeIssuedApiKeyExecute(r ApiKeysAPIAdminRevokeIssuedApiKeyRequest) (interface{}, *http.Response, error)
+	AdminRevokeIssuedApiKeyExecute(r ApiKeysAPIAdminRevokeIssuedApiKeyRequest) (*http.Response, error)
 
 	/*
 	AdminRotateIssuedApiKey Rotate Issued API Key
@@ -776,7 +773,7 @@ type ApiKeysAPIAdminDeleteImportedApiKeyRequest struct {
 	keyId string
 }
 
-func (r ApiKeysAPIAdminDeleteImportedApiKeyRequest) Execute() (interface{}, *http.Response, error) {
+func (r ApiKeysAPIAdminDeleteImportedApiKeyRequest) Execute() (*http.Response, error) {
 	return r.ApiService.AdminDeleteImportedApiKeyExecute(r)
 }
 
@@ -803,18 +800,16 @@ func (a *ApiKeysAPIService) AdminDeleteImportedApiKey(ctx context.Context, keyId
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *ApiKeysAPIService) AdminDeleteImportedApiKeyExecute(r ApiKeysAPIAdminDeleteImportedApiKeyRequest) (interface{}, *http.Response, error) {
+func (a *ApiKeysAPIService) AdminDeleteImportedApiKeyExecute(r ApiKeysAPIAdminDeleteImportedApiKeyRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiKeysAPIService.AdminDeleteImportedApiKey")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2alpha1/admin/importedApiKeys/{key_id}"
@@ -843,19 +838,19 @@ func (a *ApiKeysAPIService) AdminDeleteImportedApiKeyExecute(r ApiKeysAPIAdminDe
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -867,23 +862,14 @@ func (a *ApiKeysAPIService) AdminDeleteImportedApiKeyExecute(r ApiKeysAPIAdminDe
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiKeysAPIAdminDeriveTokenRequest struct {
@@ -1252,7 +1238,7 @@ type ApiKeysAPIAdminImportApiKeyRequest struct {
 	importApiKeyRequest *ImportApiKeyRequest
 }
 
-// Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   }
+// Example:   {     \&quot;raw_key\&quot;: \&quot;imported-key-EXAMPLE-not-a-real-secret\&quot;,     \&quot;name\&quot;: \&quot;Example imported key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;example-provider\&quot;, \&quot;environment\&quot;: \&quot;staging\&quot;}   }
 func (r ApiKeysAPIAdminImportApiKeyRequest) ImportApiKeyRequest(importApiKeyRequest ImportApiKeyRequest) ApiKeysAPIAdminImportApiKeyRequest {
 	r.importApiKeyRequest = &importApiKeyRequest
 	return r
@@ -1273,8 +1259,8 @@ like issued keys.
 ```http
 POST /v2alpha1/admin/importedApiKeys
 {
-  "raw_key": "sk_live_abc123xyz",
-  "name": "Imported Stripe Key",
+  "raw_key": "imported-key-EXAMPLE-not-a-real-secret",
+  "name": "Example imported key",
   "actor_id": "user_123"
 }
 ```
@@ -1804,7 +1790,7 @@ func (r ApiKeysAPIAdminRevokeImportedApiKeyRequest) AdminRevokeImportedApiKeyBod
 	return r
 }
 
-func (r ApiKeysAPIAdminRevokeImportedApiKeyRequest) Execute() (interface{}, *http.Response, error) {
+func (r ApiKeysAPIAdminRevokeImportedApiKeyRequest) Execute() (*http.Response, error) {
 	return r.ApiService.AdminRevokeImportedApiKeyExecute(r)
 }
 
@@ -1835,18 +1821,16 @@ func (a *ApiKeysAPIService) AdminRevokeImportedApiKey(ctx context.Context, keyId
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *ApiKeysAPIService) AdminRevokeImportedApiKeyExecute(r ApiKeysAPIAdminRevokeImportedApiKeyRequest) (interface{}, *http.Response, error) {
+func (a *ApiKeysAPIService) AdminRevokeImportedApiKeyExecute(r ApiKeysAPIAdminRevokeImportedApiKeyRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiKeysAPIService.AdminRevokeImportedApiKey")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2alpha1/admin/importedApiKeys/{key_id}:revoke"
@@ -1856,7 +1840,7 @@ func (a *ApiKeysAPIService) AdminRevokeImportedApiKeyExecute(r ApiKeysAPIAdminRe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.adminRevokeImportedApiKeyBody == nil {
-		return localVarReturnValue, nil, reportError("adminRevokeImportedApiKeyBody is required and must be specified")
+		return nil, reportError("adminRevokeImportedApiKeyBody is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1880,19 +1864,19 @@ func (a *ApiKeysAPIService) AdminRevokeImportedApiKeyExecute(r ApiKeysAPIAdminRe
 	localVarPostBody = r.adminRevokeImportedApiKeyBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1904,23 +1888,14 @@ func (a *ApiKeysAPIService) AdminRevokeImportedApiKeyExecute(r ApiKeysAPIAdminRe
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiKeysAPIAdminRevokeIssuedApiKeyRequest struct {
@@ -1935,7 +1910,7 @@ func (r ApiKeysAPIAdminRevokeIssuedApiKeyRequest) AdminRevokeIssuedApiKeyBody(ad
 	return r
 }
 
-func (r ApiKeysAPIAdminRevokeIssuedApiKeyRequest) Execute() (interface{}, *http.Response, error) {
+func (r ApiKeysAPIAdminRevokeIssuedApiKeyRequest) Execute() (*http.Response, error) {
 	return r.ApiService.AdminRevokeIssuedApiKeyExecute(r)
 }
 
@@ -1966,18 +1941,16 @@ func (a *ApiKeysAPIService) AdminRevokeIssuedApiKey(ctx context.Context, keyId s
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *ApiKeysAPIService) AdminRevokeIssuedApiKeyExecute(r ApiKeysAPIAdminRevokeIssuedApiKeyRequest) (interface{}, *http.Response, error) {
+func (a *ApiKeysAPIService) AdminRevokeIssuedApiKeyExecute(r ApiKeysAPIAdminRevokeIssuedApiKeyRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiKeysAPIService.AdminRevokeIssuedApiKey")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2alpha1/admin/issuedApiKeys/{key_id}:revoke"
@@ -1987,7 +1960,7 @@ func (a *ApiKeysAPIService) AdminRevokeIssuedApiKeyExecute(r ApiKeysAPIAdminRevo
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.adminRevokeIssuedApiKeyBody == nil {
-		return localVarReturnValue, nil, reportError("adminRevokeIssuedApiKeyBody is required and must be specified")
+		return nil, reportError("adminRevokeIssuedApiKeyBody is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2011,19 +1984,19 @@ func (a *ApiKeysAPIService) AdminRevokeIssuedApiKeyExecute(r ApiKeysAPIAdminRevo
 	localVarPostBody = r.adminRevokeIssuedApiKeyBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -2035,23 +2008,14 @@ func (a *ApiKeysAPIService) AdminRevokeIssuedApiKeyExecute(r ApiKeysAPIAdminRevo
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiKeysAPIAdminRotateIssuedApiKeyRequest struct {

@@ -153,7 +153,7 @@ try {
 ## `adminDeleteImportedApiKey()`
 
 ```php
-adminDeleteImportedApiKey($keyId): mixed
+adminDeleteImportedApiKey($keyId)
 ```
 
 Delete Imported API Key
@@ -180,8 +180,7 @@ $apiInstance = new Ory\Client\Api\ApiKeysApi(
 $keyId = 'keyId_example'; // string | SHA512/256 hash of the imported key (REQUIRED)
 
 try {
-    $result = $apiInstance->adminDeleteImportedApiKey($keyId);
-    print_r($result);
+    $apiInstance->adminDeleteImportedApiKey($keyId);
 } catch (Exception $e) {
     echo 'Exception when calling ApiKeysApi->adminDeleteImportedApiKey: ', $e->getMessage(), PHP_EOL;
 }
@@ -195,7 +194,7 @@ try {
 
 ### Return type
 
-**mixed**
+void (empty response body)
 
 ### Authorization
 
@@ -398,7 +397,7 @@ adminImportApiKey($importApiKeyRequest): \Ory\Client\Model\ImportedApiKey
 
 Import API Key
 
-Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"sk_live_abc123xyz\",   \"name\": \"Imported Stripe Key\",   \"actor_id\": \"user_123\" } ```
+Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",   \"name\": \"Example imported key\",   \"actor_id\": \"user_123\" } ```
 
 ### Example
 
@@ -417,7 +416,7 @@ $apiInstance = new Ory\Client\Api\ApiKeysApi(
     new GuzzleHttp\Client(),
     $config
 );
-$importApiKeyRequest = new \Ory\Client\Model\ImportApiKeyRequest(); // \Ory\Client\Model\ImportApiKeyRequest | Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
+$importApiKeyRequest = new \Ory\Client\Model\ImportApiKeyRequest(); // \Ory\Client\Model\ImportApiKeyRequest | Example:   {     \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",     \"name\": \"Example imported key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"example-provider\", \"environment\": \"staging\"}   }
 
 try {
     $result = $apiInstance->adminImportApiKey($importApiKeyRequest);
@@ -431,7 +430,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **importApiKeyRequest** | [**\Ory\Client\Model\ImportApiKeyRequest**](../Model/ImportApiKeyRequest.md)| Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } | |
+| **importApiKeyRequest** | [**\Ory\Client\Model\ImportApiKeyRequest**](../Model/ImportApiKeyRequest.md)| Example:   {     \&quot;raw_key\&quot;: \&quot;imported-key-EXAMPLE-not-a-real-secret\&quot;,     \&quot;name\&quot;: \&quot;Example imported key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;example-provider\&quot;, \&quot;environment\&quot;: \&quot;staging\&quot;}   } | |
 
 ### Return type
 
@@ -641,7 +640,7 @@ try {
 ## `adminRevokeImportedApiKey()`
 
 ```php
-adminRevokeImportedApiKey($keyId, $adminRevokeImportedApiKeyBody): mixed
+adminRevokeImportedApiKey($keyId, $adminRevokeImportedApiKeyBody)
 ```
 
 Revoke Imported API Key
@@ -669,8 +668,7 @@ $keyId = 'keyId_example'; // string | SHA-512/256 hash of the imported key (REQU
 $adminRevokeImportedApiKeyBody = new \Ory\Client\Model\AdminRevokeImportedApiKeyBody(); // \Ory\Client\Model\AdminRevokeImportedApiKeyBody
 
 try {
-    $result = $apiInstance->adminRevokeImportedApiKey($keyId, $adminRevokeImportedApiKeyBody);
-    print_r($result);
+    $apiInstance->adminRevokeImportedApiKey($keyId, $adminRevokeImportedApiKeyBody);
 } catch (Exception $e) {
     echo 'Exception when calling ApiKeysApi->adminRevokeImportedApiKey: ', $e->getMessage(), PHP_EOL;
 }
@@ -685,7 +683,7 @@ try {
 
 ### Return type
 
-**mixed**
+void (empty response body)
 
 ### Authorization
 
@@ -703,7 +701,7 @@ try {
 ## `adminRevokeIssuedApiKey()`
 
 ```php
-adminRevokeIssuedApiKey($keyId, $adminRevokeIssuedApiKeyBody): mixed
+adminRevokeIssuedApiKey($keyId, $adminRevokeIssuedApiKeyBody)
 ```
 
 Revoke Issued API Key
@@ -731,8 +729,7 @@ $keyId = 'keyId_example'; // string | UUID of the issued key (REQUIRED)
 $adminRevokeIssuedApiKeyBody = new \Ory\Client\Model\AdminRevokeIssuedApiKeyBody(); // \Ory\Client\Model\AdminRevokeIssuedApiKeyBody
 
 try {
-    $result = $apiInstance->adminRevokeIssuedApiKey($keyId, $adminRevokeIssuedApiKeyBody);
-    print_r($result);
+    $apiInstance->adminRevokeIssuedApiKey($keyId, $adminRevokeIssuedApiKeyBody);
 } catch (Exception $e) {
     echo 'Exception when calling ApiKeysApi->adminRevokeIssuedApiKey: ', $e->getMessage(), PHP_EOL;
 }
@@ -747,7 +744,7 @@ try {
 
 ### Return type
 
-**mixed**
+void (empty response body)
 
 ### Authorization
 

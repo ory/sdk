@@ -10,6 +10,7 @@ defmodule Ory.Model.CreateEventStreamBody do
   defstruct [
     :https_endpoint,
     :role_arn,
+    :status,
     :topic_arn,
     :type
   ]
@@ -17,6 +18,7 @@ defmodule Ory.Model.CreateEventStreamBody do
   @type t :: %__MODULE__{
     :https_endpoint => String.t | nil,
     :role_arn => String.t | nil,
+    :status => String.t | nil,
     :topic_arn => String.t | nil,
     :type => String.t
   }

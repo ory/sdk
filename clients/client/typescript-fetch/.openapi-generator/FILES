@@ -109,6 +109,8 @@ docs/GenericOIDCProvider.md
 docs/GenericUsage.md
 docs/GetAttributesCount.md
 docs/GetJWKSResponse.md
+docs/GetJWKSResponseJwks.md
+docs/GetJWKSResponseJwksKeysInner.md
 docs/GetManagedIdentitySchemaLocation.md
 docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md
@@ -511,6 +513,8 @@ src/models/GenericOIDCProvider.ts
 src/models/GenericUsage.ts
 src/models/GetAttributesCount.ts
 src/models/GetJWKSResponse.ts
+src/models/GetJWKSResponseJwks.ts
+src/models/GetJWKSResponseJwksKeysInner.ts
 src/models/GetManagedIdentitySchemaLocation.ts
 src/models/GetMetricsCount.ts
 src/models/GetMetricsEventAttributes.ts

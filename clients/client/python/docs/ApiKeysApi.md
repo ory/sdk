@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **admin_delete_imported_api_key**
-> object admin_delete_imported_api_key(key_id)
+> admin_delete_imported_api_key(key_id)
 
 Delete Imported API Key
 
@@ -264,9 +264,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     try:
         # Delete Imported API Key
-        api_response = api_instance.admin_delete_imported_api_key(key_id)
-        print("The response of ApiKeysApi->admin_delete_imported_api_key:\n")
-        pprint(api_response)
+        api_instance.admin_delete_imported_api_key(key_id)
     except Exception as e:
         print("Exception when calling ApiKeysApi->admin_delete_imported_api_key: %s\n" % e)
 ```
@@ -282,7 +280,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+void (empty response body)
 
 ### Authorization
 
@@ -573,8 +571,8 @@ like issued keys.
 ```http
 POST /v2alpha1/admin/importedApiKeys
 {
-  "raw_key": "sk_live_abc123xyz",
-  "name": "Imported Stripe Key",
+  "raw_key": "imported-key-EXAMPLE-not-a-real-secret",
+  "name": "Example imported key",
   "actor_id": "user_123"
 }
 ```
@@ -610,7 +608,7 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.ApiKeysApi(api_client)
-    import_api_key_request = ory_client.ImportApiKeyRequest() # ImportApiKeyRequest | Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
+    import_api_key_request = ory_client.ImportApiKeyRequest() # ImportApiKeyRequest | Example:   {     \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",     \"name\": \"Example imported key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"example-provider\", \"environment\": \"staging\"}   }
 
     try:
         # Import API Key
@@ -628,7 +626,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **import_api_key_request** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md)| Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } | 
+ **import_api_key_request** | [**ImportApiKeyRequest**](ImportApiKeyRequest.md)| Example:   {     \&quot;raw_key\&quot;: \&quot;imported-key-EXAMPLE-not-a-real-secret\&quot;,     \&quot;name\&quot;: \&quot;Example imported key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;example-provider\&quot;, \&quot;environment\&quot;: \&quot;staging\&quot;}   } | 
 
 ### Return type
 
@@ -922,7 +920,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **admin_revoke_imported_api_key**
-> object admin_revoke_imported_api_key(key_id, admin_revoke_imported_api_key_body)
+> admin_revoke_imported_api_key(key_id, admin_revoke_imported_api_key_body)
 
 Revoke Imported API Key
 
@@ -972,9 +970,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     try:
         # Revoke Imported API Key
-        api_response = api_instance.admin_revoke_imported_api_key(key_id, admin_revoke_imported_api_key_body)
-        print("The response of ApiKeysApi->admin_revoke_imported_api_key:\n")
-        pprint(api_response)
+        api_instance.admin_revoke_imported_api_key(key_id, admin_revoke_imported_api_key_body)
     except Exception as e:
         print("Exception when calling ApiKeysApi->admin_revoke_imported_api_key: %s\n" % e)
 ```
@@ -991,7 +987,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+void (empty response body)
 
 ### Authorization
 
@@ -1012,7 +1008,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **admin_revoke_issued_api_key**
-> object admin_revoke_issued_api_key(key_id, admin_revoke_issued_api_key_body)
+> admin_revoke_issued_api_key(key_id, admin_revoke_issued_api_key_body)
 
 Revoke Issued API Key
 
@@ -1062,9 +1058,7 @@ with ory_client.ApiClient(configuration) as api_client:
 
     try:
         # Revoke Issued API Key
-        api_response = api_instance.admin_revoke_issued_api_key(key_id, admin_revoke_issued_api_key_body)
-        print("The response of ApiKeysApi->admin_revoke_issued_api_key:\n")
-        pprint(api_response)
+        api_instance.admin_revoke_issued_api_key(key_id, admin_revoke_issued_api_key_body)
     except Exception as e:
         print("Exception when calling ApiKeysApi->admin_revoke_issued_api_key: %s\n" % e)
 ```
@@ -1081,7 +1075,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+void (empty response body)
 
 ### Authorization
 

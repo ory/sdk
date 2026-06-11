@@ -9,6 +9,7 @@ Name | Type
 ------------ | -------------
 `https_endpoint` | string
 `role_arn` | string
+`status` | string
 `topic_arn` | string
 `type` | string
 
@@ -21,6 +22,7 @@ import type { CreateEventStreamBody } from '@ory/client-fetch'
 const example = {
   "https_endpoint": null,
   "role_arn": null,
+  "status": null,
   "topic_arn": null,
   "type": null,
 } satisfies CreateEventStreamBody

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **https_endpoint** | **string** |  | [optional] [default to undefined]
 **id** | **string** |  | [optional] [default to undefined]
 **role_arn** | **string** |  | [optional] [default to undefined]
+**status** | **string** | The status of the event stream. A paused event stream does not forward any events until it is set back to active. | [optional] [default to undefined]
 **topic_arn** | **string** |  | [optional] [default to undefined]
 **type** | **string** |  | [optional] [default to undefined]
 **updated_at** | **string** |  | [optional] [default to undefined]
@@ -24,6 +25,7 @@ const instance: EventStream = {
     https_endpoint,
     id,
     role_arn,
+    status,
     topic_arn,
     type,
     updated_at,

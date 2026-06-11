@@ -1,7 +1,7 @@
 
 # SetEventStreamBody
 
-Update Event Stream Body
+All fields are optional. Omitted fields keep their current value, so a caller can change only the status (pause/resume) without resubmitting the destination. This matters because secrets such as the password in an HTTPS endpoint URL are redacted in API responses, and resubmitting the redacted value would overwrite the real one.
 
 ## Properties
 
@@ -9,6 +9,7 @@ Name | Type
 ------------ | -------------
 `https_endpoint` | string
 `role_arn` | string
+`status` | string
 `topic_arn` | string
 `type` | string
 
@@ -21,6 +22,7 @@ import type { SetEventStreamBody } from '@ory/client-fetch'
 const example = {
   "https_endpoint": null,
   "role_arn": null,
+  "status": null,
   "topic_arn": null,
   "type": null,
 } satisfies SetEventStreamBody

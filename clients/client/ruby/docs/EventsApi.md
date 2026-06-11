@@ -237,7 +237,7 @@ api_instance = OryClient::EventsApi.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
 event_stream_id = 'event_stream_id_example' # String | Event Stream ID  The event stream's ID.
 opts = {
-  set_event_stream_body: OryClient::SetEventStreamBody.new({type: 'sns'}) # SetEventStreamBody | 
+  set_event_stream_body: OryClient::SetEventStreamBody.new # SetEventStreamBody | 
 }
 
 begin

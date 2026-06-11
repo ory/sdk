@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HttpsEndpoint** | Pointer to **string** | The HTTPS endpoint URL to send events to. Required if type is https. | [optional] 
 **RoleArn** | Pointer to **string** | The AWS IAM role ARN to assume when publishing to the SNS topic. Required if type is sns. | [optional] 
+**Status** | Pointer to **string** | The status of the event stream. Defaults to active. A paused stream is created but does not forward any events until it is set to active. | [optional] 
 **TopicArn** | Pointer to **string** | The AWS SNS topic ARN. Required if type is sns. | [optional] 
 **Type** | **string** | The type of the event stream (AWS SNS or HTTPS webhook). | 
 
@@ -77,6 +78,31 @@ SetRoleArn sets RoleArn field to given value.
 `func (o *CreateEventStreamBody) HasRoleArn() bool`
 
 HasRoleArn returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *CreateEventStreamBody) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *CreateEventStreamBody) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *CreateEventStreamBody) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *CreateEventStreamBody) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetTopicArn
 

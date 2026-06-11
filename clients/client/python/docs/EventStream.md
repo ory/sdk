@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **https_endpoint** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
 **role_arn** | **str** |  | [optional] 
+**status** | **str** | The status of the event stream. A paused event stream does not forward any events until it is set back to active. | [optional] 
 **topic_arn** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 

@@ -8,6 +8,7 @@
 | **https_endpoint** | **String** |  | [optional] |
 | **id** | **String** |  | [optional] |
 | **role_arn** | **String** |  | [optional] |
+| **status** | **String** | The status of the event stream. A paused event stream does not forward any events until it is set back to active. | [optional] |
 | **topic_arn** | **String** |  | [optional] |
 | **type** | **String** |  | [optional] |
 | **updated_at** | **Time** |  | [optional] |
@@ -22,6 +23,7 @@ instance = OryClient::EventStream.new(
   https_endpoint: null,
   id: null,
   role_arn: null,
+  status: null,
   topic_arn: null,
   type: null,
   updated_at: null

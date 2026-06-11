@@ -93,10 +93,10 @@ defmodule Ory.Api.ApiKeys do
 
   ### Returns
 
-  - `{:ok, any()}` on success
+  - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec admin_delete_imported_api_key(Tesla.Env.client, String.t, keyword()) :: {:ok, any()} | {:ok, Ory.Model.Status.t} | {:error, Tesla.Env.t}
+  @spec admin_delete_imported_api_key(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.Status.t} | {:error, Tesla.Env.t}
   def admin_delete_imported_api_key(connection, key_id, _opts \\ []) do
     request =
       %{}
@@ -208,12 +208,12 @@ defmodule Ory.Api.ApiKeys do
 
   @doc """
   Import API Key
-  Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"sk_live_abc123xyz\",   \"name\": \"Imported Stripe Key\",   \"actor_id\": \"user_123\" } ```
+  Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",   \"name\": \"Example imported key\",   \"actor_id\": \"user_123\" } ```
 
   ### Parameters
 
   - `connection` (Ory.Connection): Connection to server
-  - `import_api_key_request` (ImportApiKeyRequest): Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
+  - `import_api_key_request` (ImportApiKeyRequest): Example:   {     \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",     \"name\": \"Example imported key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"example-provider\", \"environment\": \"staging\"}   }
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -363,10 +363,10 @@ defmodule Ory.Api.ApiKeys do
 
   ### Returns
 
-  - `{:ok, any()}` on success
+  - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec admin_revoke_imported_api_key(Tesla.Env.client, String.t, Ory.Model.AdminRevokeImportedApiKeyBody.t, keyword()) :: {:ok, any()} | {:ok, Ory.Model.Status.t} | {:error, Tesla.Env.t}
+  @spec admin_revoke_imported_api_key(Tesla.Env.client, String.t, Ory.Model.AdminRevokeImportedApiKeyBody.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.Status.t} | {:error, Tesla.Env.t}
   def admin_revoke_imported_api_key(connection, key_id, admin_revoke_imported_api_key_body, _opts \\ []) do
     request =
       %{}
@@ -396,10 +396,10 @@ defmodule Ory.Api.ApiKeys do
 
   ### Returns
 
-  - `{:ok, any()}` on success
+  - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec admin_revoke_issued_api_key(Tesla.Env.client, String.t, Ory.Model.AdminRevokeIssuedApiKeyBody.t, keyword()) :: {:ok, any()} | {:ok, Ory.Model.Status.t} | {:error, Tesla.Env.t}
+  @spec admin_revoke_issued_api_key(Tesla.Env.client, String.t, Ory.Model.AdminRevokeIssuedApiKeyBody.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.Status.t} | {:error, Tesla.Env.t}
   def admin_revoke_issued_api_key(connection, key_id, admin_revoke_issued_api_key_body, _opts \\ []) do
     request =
       %{}

@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.49
+  version: v1.22.50
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -8722,8 +8722,8 @@ paths:
         ```http
         POST /v2alpha1/admin/importedApiKeys
         {
-          "raw_key": "sk_live_abc123xyz",
-          "name": "Imported Stripe Key",
+          "raw_key": "imported-key-EXAMPLE-not-a-real-secret",
+          "name": "Example imported key",
           "actor_id": "user_123"
         }
         ```
@@ -8736,12 +8736,12 @@ paths:
         description: |-
           Example:
             {
-              "raw_key": "sk_live_abc123xyz789",
-              "name": "Stripe Production Key",
+              "raw_key": "imported-key-EXAMPLE-not-a-real-secret",
+              "name": "Example imported key",
               "actor_id": "payment-processor",
               "scopes": ["read", "write"],
               "ttl": "8760h",  // 1 year (also accepts: 31536000s)
-              "metadata": {"source": "stripe", "environment": "production"}
+              "metadata": {"source": "example-provider", "environment": "staging"}
             }
         required: true
         x-originalParamName: body
@@ -8784,9 +8784,6 @@ paths:
         style: simple
       responses:
         "204":
-          content:
-            application/json:
-              schema: {}
           description: Imported key deleted successfully.
         default:
           content:
@@ -8927,9 +8924,6 @@ paths:
         x-originalParamName: body
       responses:
         "204":
-          content:
-            application/json:
-              schema: {}
           description: API key revoked successfully.
         default:
           content:
@@ -9222,9 +9216,6 @@ paths:
         x-originalParamName: body
       responses:
         "204":
-          content:
-            application/json:
-              schema: {}
           description: API key revoked successfully.
         default:
           content:
@@ -12754,15 +12745,29 @@ components:
       type: object
     GetJWKSResponse:
       example:
-        jwks: "{}"
+        jwks:
+          keys:
+          - kty: kty
+            e: e
+            crv: crv
+            use: use
+            kid: kid
+            x: x
+            "y": "y"
+            alg: alg
+            "n": "n"
+          - kty: kty
+            e: e
+            crv: crv
+            use: use
+            kid: kid
+            x: x
+            "y": "y"
+            alg: alg
+            "n": "n"
       properties:
         jwks:
-          description: |-
-            jwks is a JSON Web Key Set (RFC 7517). Always contains a single top-level
-            field "keys" whose value is an array of JWK objects. Each JWK has at
-            minimum a "kty" (key type), "kid" (key ID), and key-type-specific
-            material (e.g., "x" and "crv" for OKP/Ed25519, "n" and "e" for RSA).
-          type: object
+          $ref: "#/components/schemas/GetJWKSResponse_jwks"
       type: object
     ID:
       format: int64
@@ -12792,12 +12797,12 @@ components:
       description: |-
         Example:
           {
-            "raw_key": "sk_live_abc123xyz789",
-            "name": "Stripe Production Key",
+            "raw_key": "imported-key-EXAMPLE-not-a-real-secret",
+            "name": "Example imported key",
             "actor_id": "payment-processor",
             "scopes": ["read", "write"],
             "ttl": "8760h",  // 1 year (also accepts: 31536000s)
-            "metadata": {"source": "stripe", "environment": "production"}
+            "metadata": {"source": "example-provider", "environment": "staging"}
           }
       example:
         metadata: "{}"
@@ -13196,8 +13201,10 @@ components:
          - KEY_STATUS_UNSPECIFIED: Default zero value. Never returned by the server. Treated as ACTIVE for
         backward compatibility but should not be relied on.
          - KEY_STATUS_ACTIVE: The key is valid and can be used to authenticate.
-         - KEY_STATUS_REVOKED: The key was revoked. Verification fails with VERIFICATION_ERROR_REVOKED.
-        See revocation_reason for the cause.
+         - KEY_STATUS_REVOKED: The key was revoked and can no longer authenticate. On the API key object,
+        the revocation_reason field carries the cause (set via the admin and
+        self-revocation flows). Verification responses do not include this status:
+        a revoked key fails verification with error_code VERIFICATION_ERROR_REVOKED.
          - KEY_STATUS_EXPIRED: The key passed its expire_time. Verification fails with
         VERIFICATION_ERROR_EXPIRED. The transition is computed at read time and
         not persisted.
@@ -14893,6 +14900,14 @@ components:
           description: The AWS IAM role ARN to assume when publishing to the SNS topic.
             Required if type is sns.
           type: string
+        status:
+          description: |-
+            The status of the event stream. Defaults to active. A paused stream is
+            created but does not forward any events until it is set to active.
+          enum:
+          - active
+          - paused
+          type: string
         topic_arn:
           description: The AWS SNS topic ARN. Required if type is sns.
           type: string
@@ -15949,6 +15964,7 @@ components:
         https_endpoint: https_endpoint
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         type: type
+        status: active
       properties:
         created_at:
           format: date-time
@@ -15960,6 +15976,14 @@ components:
           format: uuid
           type: string
         role_arn:
+          type: string
+        status:
+          description: |-
+            The status of the event stream. A paused event stream does not forward
+            any events until it is set back to active.
+          enum:
+          - active
+          - paused
           type: string
         topic_arn:
           type: string
@@ -17532,6 +17556,7 @@ components:
           https_endpoint: https_endpoint
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
+          status: active
         - role_arn: role_arn
           updated_at: 2000-01-23T04:56:07.000+00:00
           topic_arn: topic_arn
@@ -17539,6 +17564,7 @@ components:
           https_endpoint: https_endpoint
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
+          status: active
       properties:
         event_streams:
           items:
@@ -25710,27 +25736,41 @@ components:
           type: string
       type: object
     setEventStreamBody:
-      description: Update Event Stream Body
+      description: |-
+        All fields are optional. Omitted fields keep their current value, so a caller
+        can change only the status (pause/resume) without resubmitting the
+        destination. This matters because secrets such as the password in an HTTPS
+        endpoint URL are redacted in API responses, and resubmitting the redacted
+        value would overwrite the real one.
       properties:
         https_endpoint:
-          description: The HTTPS endpoint URL to send events to. Required if type
-            is https.
+          description: "The HTTPS endpoint URL to send events to. When omitted, the\
+            \ current value is kept."
           type: string
         role_arn:
-          description: The AWS IAM role ARN to assume when publishing to the SNS topic.
-            Required if type is sns.
+          description: "The AWS IAM role ARN to assume when publishing to the SNS\
+            \ topic. When omitted, the current value is kept."
+          type: string
+        status:
+          description: "The desired status of the event stream. When omitted, the\
+            \ current status is kept."
+          enum:
+          - active
+          - paused
           type: string
         topic_arn:
-          description: The AWS SNS topic ARN. Required if type is sns.
+          description: "The AWS SNS topic ARN. When omitted, the current value is\
+            \ kept."
           type: string
         type:
-          description: The type of the event stream (AWS SNS or HTTPS webhook).
+          description: |-
+            The type of the event stream (AWS SNS or HTTPS webhook). When omitted, the
+            current type and its destination settings are kept.
           enum:
           - sns
           - https
           type: string
-      required:
-      - type
+      title: Update Event Stream Body
       type: object
     setOrganizationFromOnboardingPortalLinkBody:
       properties:
@@ -29488,6 +29528,74 @@ components:
           type: string
       required:
       - version
+      type: object
+    GetJWKSResponse_jwks_keys_inner:
+      example:
+        kty: kty
+        e: e
+        crv: crv
+        use: use
+        kid: kid
+        x: x
+        "y": "y"
+        alg: alg
+        "n": "n"
+      properties:
+        alg:
+          type: string
+        crv:
+          type: string
+        e:
+          type: string
+        kid:
+          type: string
+        kty:
+          type: string
+        "n":
+          type: string
+        use:
+          type: string
+        x:
+          type: string
+        "y":
+          type: string
+      required:
+      - kid
+      - kty
+      type: object
+    GetJWKSResponse_jwks:
+      description: "A JSON Web Key Set (RFC 7517). Contains a single field `keys`,\
+        \ an array of JWK objects."
+      example:
+        keys:
+        - kty: kty
+          e: e
+          crv: crv
+          use: use
+          kid: kid
+          x: x
+          "y": "y"
+          alg: alg
+          "n": "n"
+        - kty: kty
+          e: e
+          crv: crv
+          use: use
+          kid: kid
+          x: x
+          "y": "y"
+          alg: alg
+          "n": "n"
+      properties:
+        keys:
+          description: "Array of JWK objects. Each key has at minimum `kty` (key type)\
+            \ and `kid` (key ID) plus key-type-specific material (e.g. `x`/`crv` for\
+            \ OKP/Ed25519, `n`/`e` for RSA)."
+          items:
+            $ref: "#/components/schemas/GetJWKSResponse_jwks_keys_inner"
+          type: array
+      required:
+      - keys
       type: object
   securitySchemes:
     basic:

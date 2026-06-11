@@ -110,6 +110,8 @@ docs/GenericOidcProvider.md
 docs/GenericUsage.md
 docs/GetAttributesCount.md
 docs/GetJwksResponse.md
+docs/GetJwksResponseJwks.md
+docs/GetJwksResponseJwksKeysInner.md
 docs/GetManagedIdentitySchemaLocation.md
 docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md
@@ -506,6 +508,8 @@ src/models/generic_oidc_provider.rs
 src/models/generic_usage.rs
 src/models/get_attributes_count.rs
 src/models/get_jwks_response.rs
+src/models/get_jwks_response_jwks.rs
+src/models/get_jwks_response_jwks_keys_inner.rs
 src/models/get_managed_identity_schema_location.rs
 src/models/get_metrics_count.rs
 src/models/get_metrics_event_attributes.rs

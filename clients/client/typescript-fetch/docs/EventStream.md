@@ -11,6 +11,7 @@ Name | Type
 `https_endpoint` | string
 `id` | string
 `role_arn` | string
+`status` | string
 `topic_arn` | string
 `type` | string
 `updated_at` | Date
@@ -26,6 +27,7 @@ const example = {
   "https_endpoint": null,
   "id": null,
   "role_arn": null,
+  "status": null,
   "topic_arn": null,
   "type": null,
   "updated_at": null,

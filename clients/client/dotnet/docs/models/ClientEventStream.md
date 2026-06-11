@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **HttpsEndpoint** | **string** |  | [optional] 
 **Id** | **string** |  | [optional] 
 **RoleArn** | **string** |  | [optional] 
+**Status** | **string** | The status of the event stream. A paused event stream does not forward any events until it is set back to active. | [optional] 
 **TopicArn** | **string** |  | [optional] 
 **Type** | **string** |  | [optional] 
 **UpdatedAt** | **DateTime** |  | [optional] 

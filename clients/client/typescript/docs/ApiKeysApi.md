@@ -136,7 +136,7 @@ const { status, data } = await apiInstance.adminBatchVerifyApiKeys(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **adminDeleteImportedApiKey**
-> any adminDeleteImportedApiKey()
+> adminDeleteImportedApiKey()
 
 Permanently deletes an imported key (hard delete). The key is removed from the database. Use AdminRevokeImportedApiKey for soft deletion (recommended).  ```http DELETE /v2alpha1/admin/importedApiKeys/{key_id} ```
 
@@ -167,7 +167,7 @@ const { status, data } = await apiInstance.adminDeleteImportedApiKey(
 
 ### Return type
 
-**any**
+void (empty response body)
 
 ### Authorization
 
@@ -347,7 +347,7 @@ const { status, data } = await apiInstance.adminGetIssuedApiKey(
 # **adminImportApiKey**
 > ImportedApiKey adminImportApiKey(importApiKeyRequest)
 
-Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"sk_live_abc123xyz\",   \"name\": \"Imported Stripe Key\",   \"actor_id\": \"user_123\" } ```
+Imports an external API key into the system. Allows importing keys from legacy systems or external providers. The raw key is hashed and stored securely (HMAC). Imported keys support token derivation (JWT/Macaroon) like issued keys.  ```http POST /v2alpha1/admin/importedApiKeys {   \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",   \"name\": \"Example imported key\",   \"actor_id\": \"user_123\" } ```
 
 ### Example
 
@@ -361,7 +361,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ApiKeysApi(configuration);
 
-let importApiKeyRequest: ImportApiKeyRequest; //Example:   {     \"raw_key\": \"sk_live_abc123xyz789\",     \"name\": \"Stripe Production Key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"stripe\", \"environment\": \"production\"}   }
+let importApiKeyRequest: ImportApiKeyRequest; //Example:   {     \"raw_key\": \"imported-key-EXAMPLE-not-a-real-secret\",     \"name\": \"Example imported key\",     \"actor_id\": \"payment-processor\",     \"scopes\": [\"read\", \"write\"],     \"ttl\": \"8760h\",  // 1 year (also accepts: 31536000s)     \"metadata\": {\"source\": \"example-provider\", \"environment\": \"staging\"}   }
 
 const { status, data } = await apiInstance.adminImportApiKey(
     importApiKeyRequest
@@ -372,7 +372,7 @@ const { status, data } = await apiInstance.adminImportApiKey(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **importApiKeyRequest** | **ImportApiKeyRequest**| Example:   {     \&quot;raw_key\&quot;: \&quot;sk_live_abc123xyz789\&quot;,     \&quot;name\&quot;: \&quot;Stripe Production Key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;stripe\&quot;, \&quot;environment\&quot;: \&quot;production\&quot;}   } | |
+| **importApiKeyRequest** | **ImportApiKeyRequest**| Example:   {     \&quot;raw_key\&quot;: \&quot;imported-key-EXAMPLE-not-a-real-secret\&quot;,     \&quot;name\&quot;: \&quot;Example imported key\&quot;,     \&quot;actor_id\&quot;: \&quot;payment-processor\&quot;,     \&quot;scopes\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;],     \&quot;ttl\&quot;: \&quot;8760h\&quot;,  // 1 year (also accepts: 31536000s)     \&quot;metadata\&quot;: {\&quot;source\&quot;: \&quot;example-provider\&quot;, \&quot;environment\&quot;: \&quot;staging\&quot;}   } | |
 
 
 ### Return type
@@ -567,7 +567,7 @@ const { status, data } = await apiInstance.adminListIssuedApiKeys(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **adminRevokeImportedApiKey**
-> any adminRevokeImportedApiKey(adminRevokeImportedApiKeyBody)
+> adminRevokeImportedApiKey(adminRevokeImportedApiKeyBody)
 
 Immediately revokes an imported API key. Once revoked, the key can no longer be used for authentication. This operation is irreversible. Revoked keys are retained for audit purposes.  ```http POST /v2alpha1/admin/importedApiKeys/9a3f051b2c7e8d4f1a6b9c0e5f2d8a3b:revoke {   \"reason\": \"REVOCATION_REASON_KEY_COMPROMISE\" } ```
 
@@ -602,7 +602,7 @@ const { status, data } = await apiInstance.adminRevokeImportedApiKey(
 
 ### Return type
 
-**any**
+void (empty response body)
 
 ### Authorization
 
@@ -623,7 +623,7 @@ const { status, data } = await apiInstance.adminRevokeImportedApiKey(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **adminRevokeIssuedApiKey**
-> any adminRevokeIssuedApiKey(adminRevokeIssuedApiKeyBody)
+> adminRevokeIssuedApiKey(adminRevokeIssuedApiKeyBody)
 
 Immediately revokes an issued API key. Once revoked, the key can no longer be used for authentication. This operation is irreversible. Revoked keys are retained for audit purposes.  ```http POST /v2alpha1/admin/issuedApiKeys/01HQZX9VYQKJB8XQZQXQZQXQXQ:revoke {   \"reason\": \"REVOCATION_REASON_KEY_COMPROMISE\" } ```
 
@@ -658,7 +658,7 @@ const { status, data } = await apiInstance.adminRevokeIssuedApiKey(
 
 ### Return type
 
-**any**
+void (empty response body)
 
 ### Authorization
 

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.49
+API version: v1.22.50
 Contact: support@ory.sh
 */
 
@@ -25,6 +25,8 @@ type CreateEventStreamBody struct {
 	HttpsEndpoint *string `json:"https_endpoint,omitempty"`
 	// The AWS IAM role ARN to assume when publishing to the SNS topic. Required if type is sns.
 	RoleArn *string `json:"role_arn,omitempty"`
+	// The status of the event stream. Defaults to active. A paused stream is created but does not forward any events until it is set to active.
+	Status *string `json:"status,omitempty"`
 	// The AWS SNS topic ARN. Required if type is sns.
 	TopicArn *string `json:"topic_arn,omitempty"`
 	// The type of the event stream (AWS SNS or HTTPS webhook).
@@ -116,6 +118,38 @@ func (o *CreateEventStreamBody) SetRoleArn(v string) {
 	o.RoleArn = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *CreateEventStreamBody) GetStatus() string {
+	if o == nil || IsNil(o.Status) {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEventStreamBody) GetStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *CreateEventStreamBody) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *CreateEventStreamBody) SetStatus(v string) {
+	o.Status = &v
+}
+
 // GetTopicArn returns the TopicArn field value if set, zero value otherwise.
 func (o *CreateEventStreamBody) GetTopicArn() string {
 	if o == nil || IsNil(o.TopicArn) {
@@ -188,6 +222,9 @@ func (o CreateEventStreamBody) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RoleArn) {
 		toSerialize["role_arn"] = o.RoleArn
 	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
 	if !IsNil(o.TopicArn) {
 		toSerialize["topic_arn"] = o.TopicArn
 	}
@@ -237,6 +274,7 @@ func (o *CreateEventStreamBody) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "https_endpoint")
 		delete(additionalProperties, "role_arn")
+		delete(additionalProperties, "status")
 		delete(additionalProperties, "topic_arn")
 		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
