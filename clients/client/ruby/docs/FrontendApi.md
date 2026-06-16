@@ -346,7 +346,8 @@ require 'ory-client'
 api_instance = OryClient::FrontendApi.new
 opts = {
   return_to: 'return_to_example', # String | The URL to return the browser to after the flow was completed.
-  cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+  cookie: 'cookie_example', # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+  organization: 'organization_example' # String | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network.
 }
 
 begin
@@ -382,6 +383,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **return_to** | **String** | The URL to return the browser to after the flow was completed. | [optional] |
 | **cookie** | **String** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
+| **organization** | **String** | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [optional] |
 
 ### Return type
 
@@ -753,7 +755,8 @@ require 'ory-client'
 
 api_instance = OryClient::FrontendApi.new
 opts = {
-  x_session_token: 'x_session_token_example' # String | The Session Token of the Identity performing the settings flow.
+  x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
+  organization: 'organization_example' # String | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network.
 }
 
 begin
@@ -788,6 +791,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **x_session_token** | **String** | The Session Token of the Identity performing the settings flow. | [optional] |
+| **organization** | **String** | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [optional] |
 
 ### Return type
 

@@ -10,6 +10,7 @@
 | **id** | **String** | ID represents the flow&#39;s unique ID. When performing the settings flow, this represents the id in the settings ui&#39;s query parameter: http://&lt;selfservice.flows.settings.ui_url&gt;?flow&#x3D;&lt;id&gt; |  |
 | **identity** | [**Identity**](Identity.md) |  |  |
 | **issued_at** | **Time** | IssuedAt is the time (UTC) when the flow occurred. |  |
+| **organization_id** | **String** |  | [optional] |
 | **request_url** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. |  |
 | **return_to** | **String** | ReturnTo contains the requested return_to URL. | [optional] |
 | **state** | **Object** | State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \&quot;please use a valid phone number\&quot;) data was sent. |  |
@@ -29,6 +30,7 @@ instance = OryClient::SettingsFlow.new(
   id: null,
   identity: null,
   issued_at: null,
+  organization_id: null,
   request_url: null,
   return_to: null,
   state: null,

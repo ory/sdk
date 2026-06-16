@@ -360,7 +360,7 @@ No authorization required
 
 ## createBrowserSettingsFlow
 
-> SettingsFlow createBrowserSettingsFlow(returnTo, cookie)
+> SettingsFlow createBrowserSettingsFlow(returnTo, cookie, organization)
 
 Create Settings Flow for Browsers
 
@@ -384,6 +384,8 @@ async function example() {
     returnTo: returnTo_example,
     // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
     cookie: cookie_example,
+    // string | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional)
+    organization: organization_example,
   } satisfies CreateBrowserSettingsFlowRequest;
 
   try {
@@ -405,6 +407,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **returnTo** | `string` | The URL to return the browser to after the flow was completed. | [Optional] [Defaults to `undefined`] |
 | **cookie** | `string` | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [Optional] [Defaults to `undefined`] |
+| **organization** | `string` | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -794,7 +797,7 @@ No authorization required
 
 ## createNativeSettingsFlow
 
-> SettingsFlow createNativeSettingsFlow(xSessionToken)
+> SettingsFlow createNativeSettingsFlow(xSessionToken, organization)
 
 Create Settings Flow for Native Apps
 
@@ -816,6 +819,8 @@ async function example() {
   const body = {
     // string | The Session Token of the Identity performing the settings flow. (optional)
     xSessionToken: xSessionToken_example,
+    // string | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional)
+    organization: organization_example,
   } satisfies CreateNativeSettingsFlowRequest;
 
   try {
@@ -836,6 +841,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **xSessionToken** | `string` | The Session Token of the Identity performing the settings flow. | [Optional] [Defaults to `undefined`] |
+| **organization** | `string` | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

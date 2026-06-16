@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.51
+  version: v1.22.52
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -7530,6 +7530,16 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          An optional organization ID that scopes the settings flow to providers of that organization.
+          This parameter is only effective in the Ory Network.
+        explode: true
+        in: query
+        name: organization
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -7604,6 +7614,16 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          An optional organization ID that scopes the settings flow to providers of that organization.
+          This parameter is only effective in the Ory Network.
+        explode: true
+        in: query
+        name: organization
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -25844,6 +25864,22 @@ components:
 
         We recommend reading the [User Settings Documentation](../self-service/flows/user-settings)
       example:
+        continue_with:
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        - action: show_verification_ui
+          flow:
+            verifiable_address: verifiable_address
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            url: url
+        active: active
+        return_to: return_to
+        type: type
+        issued_at: 2000-01-23T04:56:07.000+00:00
+        request_url: request_url
         expires_at: 2000-01-23T04:56:07.000+00:00
         transient_payload: "{}"
         ui:
@@ -25991,24 +26027,9 @@ components:
           state: active
           region: eu-central
           metadata_public: "{}"
-        continue_with:
-        - action: show_verification_ui
-          flow:
-            verifiable_address: verifiable_address
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            url: url
-        - action: show_verification_ui
-          flow:
-            verifiable_address: verifiable_address
-            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-            url: url
-        active: active
-        return_to: return_to
+        organization_id: organization_id
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         state: ""
-        type: type
-        issued_at: 2000-01-23T04:56:07.000+00:00
-        request_url: request_url
       properties:
         active:
           description: |-
@@ -26041,6 +26062,10 @@ components:
         issued_at:
           description: IssuedAt is the time (UTC) when the flow occurred.
           format: date-time
+          type: string
+        organization_id:
+          format: uuid4
+          nullable: true
           type: string
         request_url:
           description: |-

@@ -196,6 +196,7 @@ defmodule Ory.Api.Frontend do
   - `opts` (keyword): Optional parameters
     - `:return_to` (String.t): The URL to return the browser to after the flow was completed.
     - `:Cookie` (String.t): HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+    - `:organization` (String.t): An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network.
 
   ### Returns
 
@@ -206,7 +207,8 @@ defmodule Ory.Api.Frontend do
   def create_browser_settings_flow(connection, opts \\ []) do
     optional_params = %{
       :return_to => :query,
-      :Cookie => :headers
+      :Cookie => :headers,
+      :organization => :query
     }
 
     request =
@@ -430,6 +432,7 @@ defmodule Ory.Api.Frontend do
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
     - `:"X-Session-Token"` (String.t): The Session Token of the Identity performing the settings flow.
+    - `:organization` (String.t): An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network.
 
   ### Returns
 
@@ -439,7 +442,8 @@ defmodule Ory.Api.Frontend do
   @spec create_native_settings_flow(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.SettingsFlow.t} | {:error, Tesla.Env.t}
   def create_native_settings_flow(connection, opts \\ []) do
     optional_params = %{
-      :"X-Session-Token" => :headers
+      :"X-Session-Token" => :headers,
+      :organization => :query
     }
 
     request =

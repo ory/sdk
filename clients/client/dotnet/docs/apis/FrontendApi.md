@@ -208,7 +208,7 @@ No authorization required
 
 <a id="createbrowsersettingsflow"></a>
 # **CreateBrowserSettingsFlow**
-> ClientSettingsFlow CreateBrowserSettingsFlow (string returnTo = null, string cookie = null)
+> ClientSettingsFlow CreateBrowserSettingsFlow (string returnTo = null, string cookie = null, string organization = null)
 
 Create Settings Flow for Browsers
 
@@ -221,6 +221,7 @@ This endpoint initializes a browser-based user settings flow. Once initialized, 
 |------|------|-------------|-------|
 | **returnTo** | **string** | The URL to return the browser to after the flow was completed. | [optional]  |
 | **cookie** | **string** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]  |
+| **organization** | **string** | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [optional]  |
 
 ### Return type
 
@@ -442,7 +443,7 @@ No authorization required
 
 <a id="createnativesettingsflow"></a>
 # **CreateNativeSettingsFlow**
-> ClientSettingsFlow CreateNativeSettingsFlow (string xSessionToken = null)
+> ClientSettingsFlow CreateNativeSettingsFlow (string xSessionToken = null, string organization = null)
 
 Create Settings Flow for Native Apps
 
@@ -454,6 +455,7 @@ This endpoint initiates a settings flow for API clients such as mobile devices, 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **xSessionToken** | **string** | The Session Token of the Identity performing the settings flow. | [optional]  |
+| **organization** | **string** | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [optional]  |
 
 ### Return type
 

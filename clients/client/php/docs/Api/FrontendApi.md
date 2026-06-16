@@ -294,7 +294,7 @@ No authorization required
 ## `createBrowserSettingsFlow()`
 
 ```php
-createBrowserSettingsFlow($returnTo, $cookie): \Ory\Client\Model\SettingsFlow
+createBrowserSettingsFlow($returnTo, $cookie, $organization): \Ory\Client\Model\SettingsFlow
 ```
 
 Create Settings Flow for Browsers
@@ -316,9 +316,10 @@ $apiInstance = new Ory\Client\Api\FrontendApi(
 );
 $returnTo = 'returnTo_example'; // string | The URL to return the browser to after the flow was completed.
 $cookie = 'cookie_example'; // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+$organization = 'organization_example'; // string | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network.
 
 try {
-    $result = $apiInstance->createBrowserSettingsFlow($returnTo, $cookie);
+    $result = $apiInstance->createBrowserSettingsFlow($returnTo, $cookie, $organization);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createBrowserSettingsFlow: ', $e->getMessage(), PHP_EOL;
@@ -331,6 +332,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **returnTo** | **string**| The URL to return the browser to after the flow was completed. | [optional] |
 | **cookie** | **string**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
+| **organization** | **string**| An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [optional] |
 
 ### Return type
 
@@ -646,7 +648,7 @@ No authorization required
 ## `createNativeSettingsFlow()`
 
 ```php
-createNativeSettingsFlow($xSessionToken): \Ory\Client\Model\SettingsFlow
+createNativeSettingsFlow($xSessionToken, $organization): \Ory\Client\Model\SettingsFlow
 ```
 
 Create Settings Flow for Native Apps
@@ -667,9 +669,10 @@ $apiInstance = new Ory\Client\Api\FrontendApi(
     new GuzzleHttp\Client()
 );
 $xSessionToken = 'xSessionToken_example'; // string | The Session Token of the Identity performing the settings flow.
+$organization = 'organization_example'; // string | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network.
 
 try {
-    $result = $apiInstance->createNativeSettingsFlow($xSessionToken);
+    $result = $apiInstance->createNativeSettingsFlow($xSessionToken, $organization);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FrontendApi->createNativeSettingsFlow: ', $e->getMessage(), PHP_EOL;
@@ -681,6 +684,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **xSessionToken** | **string**| The Session Token of the Identity performing the settings flow. | [optional] |
+| **organization** | **string**| An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [optional] |
 
 ### Return type
 

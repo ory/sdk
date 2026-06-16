@@ -332,7 +332,7 @@ No authorization required
 
 ## CreateBrowserSettingsFlow
 
-> SettingsFlow CreateBrowserSettingsFlow(ctx).ReturnTo(returnTo).Cookie(cookie).Execute()
+> SettingsFlow CreateBrowserSettingsFlow(ctx).ReturnTo(returnTo).Cookie(cookie).Organization(organization).Execute()
 
 Create Settings Flow for Browsers
 
@@ -353,10 +353,11 @@ import (
 func main() {
 	returnTo := "returnTo_example" // string | The URL to return the browser to after the flow was completed. (optional)
 	cookie := "cookie_example" // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+	organization := "organization_example" // string | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FrontendAPI.CreateBrowserSettingsFlow(context.Background()).ReturnTo(returnTo).Cookie(cookie).Execute()
+	resp, r, err := apiClient.FrontendAPI.CreateBrowserSettingsFlow(context.Background()).ReturnTo(returnTo).Cookie(cookie).Organization(organization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateBrowserSettingsFlow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -379,6 +380,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **returnTo** | **string** | The URL to return the browser to after the flow was completed. | 
  **cookie** | **string** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | 
+ **organization** | **string** | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | 
 
 ### Return type
 
@@ -740,7 +742,7 @@ No authorization required
 
 ## CreateNativeSettingsFlow
 
-> SettingsFlow CreateNativeSettingsFlow(ctx).XSessionToken(xSessionToken).Execute()
+> SettingsFlow CreateNativeSettingsFlow(ctx).XSessionToken(xSessionToken).Organization(organization).Execute()
 
 Create Settings Flow for Native Apps
 
@@ -760,10 +762,11 @@ import (
 
 func main() {
 	xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
+	organization := "organization_example" // string | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FrontendAPI.CreateNativeSettingsFlow(context.Background()).XSessionToken(xSessionToken).Execute()
+	resp, r, err := apiClient.FrontendAPI.CreateNativeSettingsFlow(context.Background()).XSessionToken(xSessionToken).Organization(organization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateNativeSettingsFlow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -785,6 +788,7 @@ Other parameters are passed through a pointer to a apiCreateNativeSettingsFlowRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xSessionToken** | **string** | The Session Token of the Identity performing the settings flow. | 
+ **organization** | **string** | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | 
 
 ### Return type
 

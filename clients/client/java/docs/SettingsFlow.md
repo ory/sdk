@@ -14,6 +14,7 @@ This flow is used when an identity wants to update settings (e.g. profile data, 
 |**id** | **String** | ID represents the flow&#39;s unique ID. When performing the settings flow, this represents the id in the settings ui&#39;s query parameter: http://&lt;selfservice.flows.settings.ui_url&gt;?flow&#x3D;&lt;id&gt; |  |
 |**identity** | [**Identity**](Identity.md) |  |  |
 |**issuedAt** | **OffsetDateTime** | IssuedAt is the time (UTC) when the flow occurred. |  |
+|**organizationId** | **String** |  |  [optional] |
 |**requestUrl** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. |  |
 |**returnTo** | **String** | ReturnTo contains the requested return_to URL. |  [optional] |
 |**state** | **Object** | State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \&quot;please use a valid phone number\&quot;) data was sent. |  |

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Ui** | [**ClientUiContainer**](ClientUiContainer.md) |  | 
 **Active** | **string** | Active, if set, contains the registration method that is being used. It is initially not set. | [optional] 
 **ContinueWith** | [**List&lt;ClientContinueWith&gt;**](ClientContinueWith.md) | Contains a list of actions, that could follow this flow  It can, for example, contain a reference to the verification flow, created as part of the user&#39;s registration. | [optional] 
+**OrganizationId** | **string** |  | [optional] 
 **ReturnTo** | **string** | ReturnTo contains the requested return_to URL. | [optional] 
 **State** | **Object** | State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \&quot;please use a valid phone number\&quot;) data was sent. | 
 **TransientPayload** | **Object** | TransientPayload is used to pass data from the settings flow to hooks and email templates | [optional] 

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **id** | **string** | ID represents the flow\&#39;s unique ID. When performing the settings flow, this represents the id in the settings ui\&#39;s query parameter: http://&lt;selfservice.flows.settings.ui_url&gt;?flow&#x3D;&lt;id&gt; | [default to undefined]
 **identity** | [**Identity**](Identity.md) |  | [default to undefined]
 **issued_at** | **string** | IssuedAt is the time (UTC) when the flow occurred. | [default to undefined]
+**organization_id** | **string** |  | [optional] [default to undefined]
 **request_url** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL\&#39;s path or query for example. | [default to undefined]
 **return_to** | **string** | ReturnTo contains the requested return_to URL. | [optional] [default to undefined]
 **state** | **any** | State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \&quot;please use a valid phone number\&quot;) data was sent. | [default to undefined]
@@ -31,6 +32,7 @@ const instance: SettingsFlow = {
     id,
     identity,
     issued_at,
+    organization_id,
     request_url,
     return_to,
     state,

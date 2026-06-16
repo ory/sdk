@@ -326,7 +326,7 @@ No authorization required
 
 <a id="createBrowserSettingsFlow"></a>
 # **createBrowserSettingsFlow**
-> SettingsFlow createBrowserSettingsFlow(returnTo, cookie)
+> SettingsFlow createBrowserSettingsFlow(returnTo, cookie, organization)
 
 Create Settings Flow for Browsers
 
@@ -349,8 +349,9 @@ public class Example {
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String returnTo = "returnTo_example"; // String | The URL to return the browser to after the flow was completed.
     String cookie = "cookie_example"; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.
+    String organization = "organization_example"; // String | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network.
     try {
-      SettingsFlow result = apiInstance.createBrowserSettingsFlow(returnTo, cookie);
+      SettingsFlow result = apiInstance.createBrowserSettingsFlow(returnTo, cookie, organization);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createBrowserSettingsFlow");
@@ -369,6 +370,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **returnTo** | **String**| The URL to return the browser to after the flow was completed. | [optional] |
 | **cookie** | **String**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] |
+| **organization** | **String**| An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [optional] |
 
 ### Return type
 
@@ -727,7 +729,7 @@ No authorization required
 
 <a id="createNativeSettingsFlow"></a>
 # **createNativeSettingsFlow**
-> SettingsFlow createNativeSettingsFlow(xSessionToken)
+> SettingsFlow createNativeSettingsFlow(xSessionToken, organization)
 
 Create Settings Flow for Native Apps
 
@@ -749,8 +751,9 @@ public class Example {
 
     FrontendApi apiInstance = new FrontendApi(defaultClient);
     String xSessionToken = "xSessionToken_example"; // String | The Session Token of the Identity performing the settings flow.
+    String organization = "organization_example"; // String | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network.
     try {
-      SettingsFlow result = apiInstance.createNativeSettingsFlow(xSessionToken);
+      SettingsFlow result = apiInstance.createNativeSettingsFlow(xSessionToken, organization);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FrontendApi#createNativeSettingsFlow");
@@ -768,6 +771,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **xSessionToken** | **String**| The Session Token of the Identity performing the settings flow. | [optional] |
+| **organization** | **String**| An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [optional] |
 
 ### Return type
 

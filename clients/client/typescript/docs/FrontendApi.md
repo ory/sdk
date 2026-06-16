@@ -310,10 +310,12 @@ const apiInstance = new FrontendApi(configuration);
 
 let returnTo: string; //The URL to return the browser to after the flow was completed. (optional) (default to undefined)
 let cookie: string; //HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional) (default to undefined)
+let organization: string; //An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.createBrowserSettingsFlow(
     returnTo,
-    cookie
+    cookie,
+    organization
 );
 ```
 
@@ -323,6 +325,7 @@ const { status, data } = await apiInstance.createBrowserSettingsFlow(
 |------------- | ------------- | ------------- | -------------|
 | **returnTo** | [**string**] | The URL to return the browser to after the flow was completed. | (optional) defaults to undefined|
 | **cookie** | [**string**] | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | (optional) defaults to undefined|
+| **organization** | [**string**] | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -649,9 +652,11 @@ const configuration = new Configuration();
 const apiInstance = new FrontendApi(configuration);
 
 let xSessionToken: string; //The Session Token of the Identity performing the settings flow. (optional) (default to undefined)
+let organization: string; //An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.createNativeSettingsFlow(
-    xSessionToken
+    xSessionToken,
+    organization
 );
 ```
 
@@ -660,6 +665,7 @@ const { status, data } = await apiInstance.createNativeSettingsFlow(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **xSessionToken** | [**string**] | The Session Token of the Identity performing the settings flow. | (optional) defaults to undefined|
+| **organization** | [**string**] | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | (optional) defaults to undefined|
 
 
 ### Return type

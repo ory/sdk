@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Id** | **string** | ID represents the flow&#39;s unique ID. When performing the settings flow, this represents the id in the settings ui&#39;s query parameter: http://&lt;selfservice.flows.settings.ui_url&gt;?flow&#x3D;&lt;id&gt; | 
 **Identity** | [**Identity**](Identity.md) |  | 
 **IssuedAt** | **time.Time** | IssuedAt is the time (UTC) when the flow occurred. | 
+**OrganizationId** | Pointer to **NullableString** |  | [optional] 
 **RequestUrl** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL&#39;s path or query for example. | 
 **ReturnTo** | Pointer to **string** | ReturnTo contains the requested return_to URL. | [optional] 
 **State** | **interface{}** | State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \&quot;please use a valid phone number\&quot;) data was sent. | 
@@ -166,6 +167,41 @@ and a boolean to check if the value has been set.
 SetIssuedAt sets IssuedAt field to given value.
 
 
+### GetOrganizationId
+
+`func (o *SettingsFlow) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *SettingsFlow) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *SettingsFlow) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *SettingsFlow) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
+
+### SetOrganizationIdNil
+
+`func (o *SettingsFlow) SetOrganizationIdNil(b bool)`
+
+ SetOrganizationIdNil sets the value for OrganizationId to be an explicit nil
+
+### UnsetOrganizationId
+`func (o *SettingsFlow) UnsetOrganizationId()`
+
+UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
 ### GetRequestUrl
 
 `func (o *SettingsFlow) GetRequestUrl() string`

@@ -13,6 +13,7 @@ Name | Type
 `id` | string
 `identity` | [Identity](Identity.md)
 `issued_at` | Date
+`organization_id` | string
 `request_url` | string
 `return_to` | string
 `state` | any
@@ -33,6 +34,7 @@ const example = {
   "id": null,
   "identity": null,
   "issued_at": null,
+  "organization_id": null,
   "request_url": null,
   "return_to": null,
   "state": null,

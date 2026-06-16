@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **id** | **String** | ID represents the flow's unique ID. When performing the settings flow, this represents the id in the settings ui's query parameter: http://<selfservice.flows.settings.ui_url>?flow=<id> | 
 **identity** | [**models::Identity**](identity.md) |  | 
 **issued_at** | **String** | IssuedAt is the time (UTC) when the flow occurred. | 
+**organization_id** | Option<**String**> |  | [optional]
 **request_url** | **String** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL's path or query for example. | 
 **return_to** | Option<**String**> | ReturnTo contains the requested return_to URL. | [optional]
 **state** | Option<[**serde_json::Value**](.md)> | State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \"please use a valid phone number\") data was sent. | 

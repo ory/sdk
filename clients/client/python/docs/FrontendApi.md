@@ -407,7 +407,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_browser_settings_flow**
-> SettingsFlow create_browser_settings_flow(return_to=return_to, cookie=cookie)
+> SettingsFlow create_browser_settings_flow(return_to=return_to, cookie=cookie, organization=organization)
 
 Create Settings Flow for Browsers
 
@@ -460,10 +460,11 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = ory_client.FrontendApi(api_client)
     return_to = 'return_to_example' # str | The URL to return the browser to after the flow was completed. (optional)
     cookie = 'cookie_example' # str | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+    organization = 'organization_example' # str | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional)
 
     try:
         # Create Settings Flow for Browsers
-        api_response = api_instance.create_browser_settings_flow(return_to=return_to, cookie=cookie)
+        api_response = api_instance.create_browser_settings_flow(return_to=return_to, cookie=cookie, organization=organization)
         print("The response of FrontendApi->create_browser_settings_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -479,6 +480,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **return_to** | **str**| The URL to return the browser to after the flow was completed. | [optional] 
  **cookie** | **str**| HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional] 
+ **organization** | **str**| An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [optional] 
 
 ### Return type
 
@@ -925,7 +927,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_native_settings_flow**
-> SettingsFlow create_native_settings_flow(x_session_token=x_session_token)
+> SettingsFlow create_native_settings_flow(x_session_token=x_session_token, organization=organization)
 
 Create Settings Flow for Native Apps
 
@@ -973,10 +975,11 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.FrontendApi(api_client)
     x_session_token = 'x_session_token_example' # str | The Session Token of the Identity performing the settings flow. (optional)
+    organization = 'organization_example' # str | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional)
 
     try:
         # Create Settings Flow for Native Apps
-        api_response = api_instance.create_native_settings_flow(x_session_token=x_session_token)
+        api_response = api_instance.create_native_settings_flow(x_session_token=x_session_token, organization=organization)
         print("The response of FrontendApi->create_native_settings_flow:\n")
         pprint(api_response)
     except Exception as e:
@@ -991,6 +994,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **x_session_token** | **str**| The Session Token of the Identity performing the settings flow. | [optional] 
+ **organization** | **str**| An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. | [optional] 
 
 ### Return type
 
