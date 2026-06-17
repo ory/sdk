@@ -132,3 +132,9 @@ and refer to the [self-hosted documentation](https://www.ory.sh/docs/ecosystem/p
 
 "
 fi
+
+# Base for the SDK User-Agent / X-Ory-SDK header used to track SDK usage in our
+# monitoring stack. Defined after the client-specific overrides so it picks up
+# the correct GIT_REPO (e.g. "client", "keto-client"). Each generator appends
+# its language and the version, e.g. "ory-client-go/v1.22.53".
+export SDK_USER_AGENT_BASE="ory-${GIT_REPO}"

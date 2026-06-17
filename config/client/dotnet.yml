@@ -1,6 +1,7 @@
 licenseId: Apache-2.0
 packageName: "${DOTNET_PACKAGE_NAME}"
 packageVersion: $RAW_VERSION
+httpUserAgent: ${SDK_USER_AGENT_BASE}-dotnet/${VERSION}
 packageAuthors: Ory
 packageCompany: Ory Corp
 netCoreProjectFile: true

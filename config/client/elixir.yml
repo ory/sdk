@@ -1,5 +1,6 @@
 packageName: ${ELIXIR_PACKAGE_NAME}
 packageVersion: $RAW_VERSION
+httpUserAgent: ${SDK_USER_AGENT_BASE}-elixir/${VERSION}
 invokerPackage: Ory
 licenseId: Apache-2.0
 

@@ -1,4 +1,5 @@
 packageName: ${PHP_PACKAGE_NAME}-php
+httpUserAgent: ${SDK_USER_AGENT_BASE}-php/${VERSION}
 variableNamingConvention: camelCase
 invokerPackage: ${PHP_INVOKER_PACKAGE}
 disallowAdditionalPropertiesIfNotPresent: false

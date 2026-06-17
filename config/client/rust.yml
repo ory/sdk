@@ -1,5 +1,6 @@
 packageName: ${RUST_PACKAGE_NAME}
 packageVersion: $VERSION
+httpUserAgent: ${SDK_USER_AGENT_BASE}-rust/${VERSION}
 library: reqwest
 supportAsync: true
 enumNameSuffix: Enum

@@ -1,4 +1,5 @@
 disallowAdditionalPropertiesIfNotPresent: false
+httpUserAgent: ${SDK_USER_AGENT_BASE}-go/${VERSION}
 packageName: client
 generateInterfaces: true
 structPrefix: true

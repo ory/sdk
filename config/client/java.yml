@@ -5,6 +5,7 @@ modelPackage: ${JAVA_GROUP_ID}.model
 
 artifactId: ${JAVA_ARTIFACT_ID}
 artifactVersion: $VERSION
+httpUserAgent: ${SDK_USER_AGENT_BASE}-java/${VERSION}
 library: okhttp-gson
 dateLibrary: java8
 developerName: Ory
