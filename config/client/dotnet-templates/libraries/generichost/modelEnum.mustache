@@ -1,0 +1,211 @@
+    /// <summary>
+    /// {{description}}{{^description}}Defines {{{name}}}{{/description}}
+    /// </summary>
+    {{#description}}
+    /// <value>{{.}}</value>
+    {{/description}}
+    {{#vendorExtensions.x-cls-compliant}}
+    [CLSCompliant({{{.}}})]
+    {{/vendorExtensions.x-cls-compliant}}
+    {{#vendorExtensions.x-com-visible}}
+    [ComVisible({{{.}}})]
+    {{/vendorExtensions.x-com-visible}}
+    {{#allowableValues}}
+    {{#enumVars}}
+    {{#-first}}
+    {{#isString}}
+    {{^useGenericHost}}
+    [JsonConverter(typeof(StringEnumConverter))]
+    {{/useGenericHost}}
+    {{/isString}}
+    {{/-first}}
+    {{/enumVars}}
+    {{/allowableValues}}
+    {{>visibility}} enum {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}{{#vendorExtensions.x-enum-byte}}: byte{{/vendorExtensions.x-enum-byte}}
+    {
+        {{! ORY OVERRIDE: forward-compatible sentinel for string enums. Unknown API values }}
+        {{! deserialize to Unknown instead of throwing, so new server-side enum members do }}
+        {{! not break older SDK builds. See FromStringOrDefault / ToJsonValue below.        }}
+        {{#isString}}
+        /// <summary>
+        /// Sentinel value for any enum value not known to this SDK version. Unrecognized
+        /// values returned by the API deserialize to this member instead of throwing.
+        /// </summary>
+        Unknown = 0,
+
+        {{/isString}}
+        {{#allowableValues}}
+        {{#enumVars}}
+        /// <summary>
+        /// Enum {{name}} for value: {{value}}
+        /// </summary>
+        {{#isString}}
+        {{^useGenericHost}}
+        {{! EnumMember not currently supported in System.Text.Json, use a converter instead }}
+        [EnumMember(Value = "{{{value}}}")]
+        {{/useGenericHost}}
+        {{/isString}}
+        {{name}}{{^isString}} = {{{value}}}{{/isString}}{{#isString}}{{^vendorExtensions.x-zero-based-enum}} = {{-index}}{{/vendorExtensions.x-zero-based-enum}}{{/isString}}{{^-last}},{{/-last}}
+        {{^-last}}
+
+        {{/-last}}
+        {{/enumVars}}
+        {{/allowableValues}}
+    }
+    {{#useGenericHost}}
+
+    /// <summary>
+    /// Converts <see cref="{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}"/> to and from the JSON value
+    /// </summary>
+    {{>visibility}} static class {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}ValueConverter
+    {
+        /// <summary>
+        /// Parses a given value to <see cref="{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        {{>visibility}} static {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}} FromString(string value)
+        {
+            {{#allowableValues}}
+            {{#enumVars}}
+            if (value.Equals({{^isString}}({{{value}}}).ToString(){{/isString}}{{#isString}}"{{{value}}}"{{/isString}}))
+                return {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}.{{name}};
+
+            {{/enumVars}}
+            {{/allowableValues}}
+            {{! ORY OVERRIDE: tolerate unknown string values instead of throwing. }}
+            {{#isString}}
+            return {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}.Unknown;
+            {{/isString}}
+            {{^isString}}
+            throw new NotImplementedException($"Could not convert value to type {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}: '{value}'");
+            {{/isString}}
+        }
+
+        /// <summary>
+        /// Parses a given value to <see cref="{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        {{>visibility}} static {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}? FromStringOrDefault(string value)
+        {
+            {{#allowableValues}}
+            {{#enumVars}}
+            if (value.Equals({{^isString}}({{{value}}}).ToString(){{/isString}}{{#isString}}"{{{value}}}"{{/isString}}))
+                return {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}.{{name}};
+
+            {{/enumVars}}
+            {{/allowableValues}}
+            {{! ORY OVERRIDE: map unknown string values to the Unknown sentinel (non-null) so }}
+            {{! the JsonConverter does not throw and inner-enum non-null validation passes.   }}
+            {{#isString}}
+            return {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}.Unknown;
+            {{/isString}}
+            {{^isString}}
+            return null;
+            {{/isString}}
+        }
+
+        /// <summary>
+        /// Converts the <see cref="{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        {{>visibility}} static {{>EnumValueDataType}} ToJsonValue({{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}} value)
+        {
+            {{^isString}}
+            return ({{>EnumValueDataType}}) value;
+            {{/isString}}
+            {{#isString}}
+            {{#allowableValues}}
+            {{#enumVars}}
+            if (value == {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}.{{name}})
+                return {{^isNumeric}}"{{/isNumeric}}{{{value}}}{{^isNumeric}}"{{/isNumeric}};
+
+            {{/enumVars}}
+            {{/allowableValues}}
+            {{! ORY OVERRIDE: re-serializing a value that was unknown at deserialization time }}
+            {{! is lossy but must not crash; emit a stable sentinel string.                    }}
+            return "unknown_default_open_api";
+            {{/isString}}
+        }
+    }
+
+    /// <summary>
+    /// A Json converter for type <see cref="{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}"/>
+    /// </summary>
+    /// <exception cref="NotImplementedException"></exception>
+    {{>visibility}} class {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}JsonConverter : JsonConverter<{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}>
+    {
+        /// <summary>
+        /// Returns a {{datatypeWithEnum}} from the Json object
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="typeToConvert"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public override {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}} Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            string{{nrt?}} rawValue = reader.GetString();
+
+            {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}? result = rawValue == null
+                ? null
+                : {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}ValueConverter.FromStringOrDefault(rawValue);
+
+            if (result != null)
+                return result.Value;
+
+            throw new JsonException();
+        }
+
+        /// <summary>
+        /// Writes the {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}} to the json writer
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="{{#lambda.camelcase_sanitize_param}}{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}{{/lambda.camelcase_sanitize_param}}"></param>
+        /// <param name="options"></param>
+        public override void Write(Utf8JsonWriter writer, {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}} {{#lambda.camelcase_sanitize_param}}{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}{{/lambda.camelcase_sanitize_param}}, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue({{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}ValueConverter.ToJsonValue({{#lambda.camelcase_sanitize_param}}{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}{{/lambda.camelcase_sanitize_param}}).ToString());
+        }
+    }
+
+    /// <summary>
+    /// A Json converter for type <see cref="{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}"/>
+    /// </summary>
+    {{>visibility}} class {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}NullableJsonConverter : JsonConverter<{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}?>
+    {
+        /// <summary>
+        /// Returns a {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}} from the Json object
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="typeToConvert"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public override {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            string{{nrt?}} rawValue = reader.GetString();
+
+            {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}? result = rawValue == null
+                ? null
+                : {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}ValueConverter.FromStringOrDefault(rawValue);
+
+            if (result != null)
+                return result.Value;
+
+            throw new JsonException();
+        }
+
+        /// <summary>
+        /// Writes the {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}} to the json writer
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="{{#lambda.camelcase_sanitize_param}}{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}{{/lambda.camelcase_sanitize_param}}"></param>
+        /// <param name="options"></param>
+        public override void Write(Utf8JsonWriter writer, {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}? {{#lambda.camelcase_sanitize_param}}{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}{{/lambda.camelcase_sanitize_param}}, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue({{#lambda.camelcase_sanitize_param}}{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}{{/lambda.camelcase_sanitize_param}}.HasValue ? {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}ValueConverter.ToJsonValue({{#lambda.camelcase_sanitize_param}}{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}{{/lambda.camelcase_sanitize_param}}.Value).ToString() : "null");
+        }
+    }
+    {{/useGenericHost}}
