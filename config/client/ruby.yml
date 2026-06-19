@@ -2,6 +2,7 @@ projectName: ${RUBY_PROJECT_NAME}
 gemName: ${RUBY_PROJECT_NAME}
 
 gemVersion: $VERSION
+httpUserAgent: ${SDK_USER_AGENT_BASE}-ruby/${VERSION}
 library: typhoeus
 gemAuthorEmail: opensource@ory.sh
 gemAuthor: ORY GmbH

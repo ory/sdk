@@ -56,6 +56,14 @@ typescript () {
 
   cat "${file}"
   cp "LICENSE" "clients/${PROJECT}/typescript"
+
+  # The typescript-axios generator does not support `httpUserAgent`, and browsers
+  # forbid setting `User-Agent` from JS. Inject a custom `X-Ory-SDK` header into
+  # the default request headers so every request identifies the SDK for usage
+  # tracking. This mirrors the post-generation patching done elsewhere (jq/sed).
+  config_ts="${dir}/configuration.ts"
+  sed -i "s#\(\.\.\.param\.baseOptions?\.headers,\)#\1\n                \"X-Ory-SDK\": \"${SDK_USER_AGENT_BASE}-typescript/${VERSION}\",#" "${config_ts}"
+  grep -q "X-Ory-SDK" "${config_ts}" # fail loudly if the injection point moved
 }
 
 typescript_fetch () {
@@ -91,6 +99,14 @@ typescript_fetch () {
 
   cat "${file}"
   cp "LICENSE" "clients/${PROJECT}/typescript-fetch"
+
+  # The typescript-fetch generator does not support `httpUserAgent`, and browsers
+  # forbid setting `User-Agent` from JS. Append a custom `X-Ory-SDK` header (last,
+  # so it always wins) to the per-request header merge in runtime.ts to identify
+  # the SDK for usage tracking. Mirrors the post-generation patching done elsewhere.
+  runtime_ts="${dir}/src/runtime.ts"
+  sed -i "s#Object.assign({}, this.configuration.headers, context.headers);#Object.assign({}, this.configuration.headers, context.headers, { \"X-Ory-SDK\": \"${SDK_USER_AGENT_BASE}-typescript-fetch/${VERSION}\" });#" "${runtime_ts}"
+  grep -q "X-Ory-SDK" "${runtime_ts}" # fail loudly if the injection point moved
 }
 
 java () {
@@ -237,6 +253,14 @@ dotnet () {
     --git-repo-id sdk \
     --git-host github.com \
     -c ./config/client/dotnet.yml.proc.yml
+
+  # The csharp generichost library sets no User-Agent and ignores `httpUserAgent`.
+  # Compose the SDK User-Agent into the HttpClient configuration action so every
+  # request identifies the SDK for usage tracking.
+  host_config="${dir}/src/${DOTNET_PACKAGE_NAME}/Client/HostConfiguration.cs"
+  sed -i "s#\(List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();\)#var oryInnerClient = client;\n            client = c => { oryInnerClient(c); c.DefaultRequestHeaders.UserAgent.TryParseAdd(\"${SDK_USER_AGENT_BASE}-dotnet/${VERSION}\"); };\n\n            \1#" "${host_config}"
+  grep -q "${SDK_USER_AGENT_BASE}-dotnet/${VERSION}" "${host_config}" # fail loudly if the injection point moved
+
   cp "LICENSE" "clients/${PROJECT}/dotnet"
 }
 
@@ -319,6 +343,12 @@ elixir () {
       """,
   ' "${file}"
   sed -i "s/${VERSION}/${RAW_VERSION}/g" "${file}"
+
+  # The elixir generator ignores `httpUserAgent` and hardcodes its own default
+  # User-Agent in connection.ex. Patch it to identify the SDK for usage tracking.
+  connection_ex="${dir}/lib/ory/connection.ex"
+  sed -i "s#\"openapi-generator - [^\"]* - elixir\"#\"${SDK_USER_AGENT_BASE}-elixir/${VERSION}\"#" "${connection_ex}"
+  grep -q "${SDK_USER_AGENT_BASE}-elixir/${VERSION}" "${connection_ex}" # fail loudly if the injection point moved
 
   cp "LICENSE" "clients/${PROJECT}/elixir"
 }

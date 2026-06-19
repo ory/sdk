@@ -1,6 +1,7 @@
 projectName: ${PYTHON_PROJECT_NAME}
 packageName: ${PYTHON_PACKAGE_NAME}
 packageVersion: $VERSION
+httpUserAgent: ${SDK_USER_AGENT_BASE}-python/${VERSION}
 library: urllib3
 packageUrl: https://github.com/ory/sdk
 
