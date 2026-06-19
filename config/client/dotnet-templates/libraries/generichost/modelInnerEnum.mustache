@@ -1,0 +1,123 @@
+        {{^isContainer}}
+        /// <summary>
+        /// {{description}}{{^description}}Defines {{{name}}}{{/description}}
+        /// </summary>
+        {{#description}}
+        /// <value>{{.}}</value>
+        {{/description}}
+        {{#isString}}
+        {{^useGenericHost}}
+        [JsonConverter(typeof(StringEnumConverter))]
+        {{/useGenericHost}}
+        {{/isString}}
+        {{>visibility}} enum {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}{{#vendorExtensions.x-enum-byte}}: byte{{/vendorExtensions.x-enum-byte}}
+        {
+            {{! ORY OVERRIDE: forward-compatible sentinel for string enums; see modelEnum.mustache. }}
+            {{#isString}}
+            /// <summary>
+            /// Sentinel value for any enum value not known to this SDK version. Unrecognized
+            /// values returned by the API deserialize to this member instead of throwing.
+            /// </summary>
+            Unknown = 0,
+
+            {{/isString}}
+            {{#allowableValues}}
+            {{#enumVars}}
+            /// <summary>
+            /// Enum {{name}} for value: {{value}}
+            /// </summary>
+            {{^useGenericHost}}
+            {{#isString}}
+            [EnumMember(Value = "{{{value}}}")]
+            {{/isString}}
+            {{/useGenericHost}}
+            {{name}}{{^isString}} = {{{value}}}{{/isString}}{{#isString}}{{^vendorExtensions.x-zero-based-enum}} = {{-index}}{{/vendorExtensions.x-zero-based-enum}}{{/isString}}{{^-last}},{{/-last}}
+            {{^-last}}
+
+            {{/-last}}
+            {{/enumVars}}
+            {{/allowableValues}}
+        }
+        {{#useGenericHost}}
+
+        /// <summary>
+        /// Returns a <see cref="{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}} {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}FromString(string value)
+        {
+            {{#allowableValues}}
+            {{#enumVars}}
+            if (value.Equals({{^isString}}({{{value}}}).ToString(){{/isString}}{{#isString}}"{{{value}}}"{{/isString}}))
+                return {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}.{{name}};
+
+            {{/enumVars}}
+            {{/allowableValues}}
+            {{! ORY OVERRIDE: tolerate unknown string values instead of throwing. }}
+            {{#isString}}
+            return {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}.Unknown;
+            {{/isString}}
+            {{^isString}}
+            throw new NotImplementedException($"Could not convert value to type {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}: '{value}'");
+            {{/isString}}
+        }
+
+        /// <summary>
+        /// Returns a <see cref="{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}? {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}FromStringOrDefault(string value)
+        {
+            {{#allowableValues}}
+            {{#enumVars}}
+            if (value.Equals({{^isString}}({{{value}}}).ToString(){{/isString}}{{#isString}}"{{{value}}}"{{/isString}}))
+                return {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}.{{name}};
+
+            {{/enumVars}}
+            {{/allowableValues}}
+            {{! ORY OVERRIDE: map unknown string values to the Unknown sentinel (non-null) so }}
+            {{! the model JsonConverter does not throw and non-null validation passes.        }}
+            {{#isString}}
+            return {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}.Unknown;
+            {{/isString}}
+            {{^isString}}
+            return null;
+            {{/isString}}
+        }
+
+        /// <summary>
+        /// Converts the <see cref="{{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}"/> to the json value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        {{#isString}}
+        /// <exception cref="NotImplementedException"></exception>
+        {{/isString}}
+        public static {{>EnumValueDataType}}{{#lambda.first}}{{#nrt}}{{#isString}}{{#isNullable}}{{nrt?}}  {{^nrt}}{{#vendorExtensions.x-is-value-type}}?  {{/vendorExtensions.x-is-value-type}}{{/nrt}}{{/isNullable}}{{/isString}}{{/nrt}}{{/lambda.first}} {{datatypeWithEnum}}ToJsonValue({{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}{{#isString}}{{>NullConditionalProperty}}{{/isString}} value)
+        {
+            {{^isString}}
+            return ({{>EnumValueDataType}}) value;
+            {{/isString}}
+            {{#isString}}
+            {{#isNullable}}
+            if (value == null)
+                return null;
+
+            {{/isNullable}}
+            {{#allowableValues}}
+            {{#enumVars}}
+            if (value == {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}.{{name}})
+                return {{^isNumeric}}"{{/isNumeric}}{{{value}}}{{^isNumeric}}"{{/isNumeric}};
+
+            {{/enumVars}}
+            {{/allowableValues}}
+            {{! ORY OVERRIDE: re-serializing a value unknown at deserialization time is lossy }}
+            {{! but must not crash; emit a stable sentinel string.                            }}
+            return "unknown_default_open_api";
+            {{/isString}}
+        }
+        {{/useGenericHost}}
+        {{/isContainer}}
