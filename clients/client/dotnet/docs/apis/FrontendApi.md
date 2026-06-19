@@ -27,6 +27,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**GetSettingsFlow**](FrontendApi.md#getsettingsflow) | **GET** /self-service/settings/flows | Get Settings Flow |
 | [**GetVerificationFlow**](FrontendApi.md#getverificationflow) | **GET** /self-service/verification/flows | Get Verification Flow |
 | [**GetWebAuthnJavaScript**](FrontendApi.md#getwebauthnjavascript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript |
+| [**GetWellKnownChangePassword**](FrontendApi.md#getwellknownchangepassword) | **GET** /.well-known/change-password | Change Password URL |
 | [**ListMySessions**](FrontendApi.md#listmysessions) | **GET** /sessions | Get My Active Sessions |
 | [**PerformNativeLogout**](FrontendApi.md#performnativelogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps |
 | [**ToSession**](FrontendApi.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To |
@@ -953,6 +954,39 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | webAuthnJavaScript |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="getwellknownchangepassword"></a>
+# **GetWellKnownChangePassword**
+> ClientErrorGeneric GetWellKnownChangePassword ()
+
+Change Password URL
+
+This endpoint implements the W3C \"change password URL\" well-known location by redirecting the browser to the configured settings UI. Password managers follow this redirect to take users straight to the page where they can change their password.
+
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**ClientErrorGeneric**](ClientErrorGeneric.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

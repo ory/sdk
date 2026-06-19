@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**autocomplete** | [**AutocompleteEnum**](#AutocompleteEnum) | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn |  [optional] |
+|**autocomplete** | [**AutocompleteEnum**](#AutocompleteEnum) | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username InputAttributeAutocompleteUsername username webauthn InputAttributeAutocompleteUsernameWebauthn |  [optional] |
 |**disabled** | **Boolean** | Sets the input&#39;s disabled field to true or false. |  |
 |**label** | [**UiText**](UiText.md) |  |  [optional] |
 |**maxlength** | **Long** | MaxLength may contain the input&#39;s maximum length. |  [optional] |
@@ -49,6 +49,7 @@
 | CURRENT_PASSWORD | &quot;current-password&quot; |
 | NEW_PASSWORD | &quot;new-password&quot; |
 | ONE_TIME_CODE | &quot;one-time-code&quot; |
+| USERNAME | &quot;username&quot; |
 | USERNAME_WEBAUTHN | &quot;username webauthn&quot; |
 
 

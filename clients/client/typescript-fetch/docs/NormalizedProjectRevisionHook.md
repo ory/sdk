@@ -10,6 +10,7 @@ Name | Type
 `created_at` | Date
 `hook` | string
 `id` | string
+`notify_previous_addresses_config_recipients` | string
 `project_revision_id` | string
 `updated_at` | Date
 `web_hook_config_auth_api_key_in` | string
@@ -36,6 +37,7 @@ const example = {
   "created_at": null,
   "hook": null,
   "id": null,
+  "notify_previous_addresses_config_recipients": all_verified,
   "project_revision_id": null,
   "updated_at": null,
   "web_hook_config_auth_api_key_in": header,

@@ -2,6 +2,7 @@
 /* eslint-disable */
 export * from './ApiKeysApi';
 export * from './CourierApi';
+export * from './ElementsApi';
 export * from './EventsApi';
 export * from './FrontendApi';
 export * from './IdentityApi';

@@ -27,6 +27,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**getSettingsFlow**](FrontendApi.md#getSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow |
 | [**getVerificationFlow**](FrontendApi.md#getVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow |
 | [**getWebAuthnJavaScript**](FrontendApi.md#getWebAuthnJavaScript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript |
+| [**getWellKnownChangePassword**](FrontendApi.md#getWellKnownChangePassword) | **GET** /.well-known/change-password | Change Password URL |
 | [**listMySessions**](FrontendApi.md#listMySessions) | **GET** /sessions | Get My Active Sessions |
 | [**performNativeLogout**](FrontendApi.md#performNativeLogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps |
 | [**toSession**](FrontendApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To |
@@ -1589,6 +1590,65 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | webAuthnJavaScript |  -  |
+
+<a id="getWellKnownChangePassword"></a>
+# **getWellKnownChangePassword**
+> ErrorGeneric getWellKnownChangePassword()
+
+Change Password URL
+
+This endpoint implements the W3C \&quot;change password URL\&quot; well-known location by redirecting the browser to the configured settings UI. Password managers follow this redirect to take users straight to the page where they can change their password.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    try {
+      ErrorGeneric result = apiInstance.getWellKnownChangePassword();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#getWellKnownChangePassword");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ErrorGeneric**](ErrorGeneric.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **0** | errorGeneric |  -  |
 
 <a id="listMySessions"></a>
 # **listMySessions**

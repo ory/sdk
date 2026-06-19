@@ -6,6 +6,7 @@ config/config.exs
 config/runtime.exs
 lib/ory/api/api_keys.ex
 lib/ory/api/courier.ex
+lib/ory/api/elements.ex
 lib/ory/api/events.ex
 lib/ory/api/frontend.ex
 lib/ory/api/identity.ex
@@ -107,6 +108,7 @@ lib/ory/model/device_authn_ios_attestation.ex
 lib/ory/model/device_authn_key.ex
 lib/ory/model/device_authorization.ex
 lib/ory/model/device_user_auth_request.ex
+lib/ory/model/elements_configuration.ex
 lib/ory/model/email_template_data.ex
 lib/ory/model/email_template_data_body.ex
 lib/ory/model/error_authenticator_assurance_level_not_satisfied.ex

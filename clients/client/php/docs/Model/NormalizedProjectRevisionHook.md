@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **createdAt** | **\DateTime** | The Project&#39;s Revision Creation Date | [optional] [readonly]
 **hook** | **string** | The Hook Type |
 **id** | **string** | ID of the entry | [optional]
+**notifyPreviousAddressesConfigRecipients** | **string** | The recipients to be notified in case of a change of the users verified email addresses. Possible values are: \&quot;all\&quot;, \&quot;all_verified\&quot;, \&quot;removed\&quot; (only notify about removed email addresses) | [optional]
 **projectRevisionId** | **string** | The Revision&#39;s ID this schema belongs to | [optional]
 **updatedAt** | **\DateTime** | Last Time Project&#39;s Revision was Updated | [optional] [readonly]
 **webHookConfigAuthApiKeyIn** | **string** | Whether to send the API Key in the HTTP Header or as a HTTP Cookie | [optional]

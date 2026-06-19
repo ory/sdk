@@ -27,6 +27,7 @@ Method | HTTP request | Description
 [**GetSettingsFlow**](FrontendAPI.md#GetSettingsFlow) | **Get** /self-service/settings/flows | Get Settings Flow
 [**GetVerificationFlow**](FrontendAPI.md#GetVerificationFlow) | **Get** /self-service/verification/flows | Get Verification Flow
 [**GetWebAuthnJavaScript**](FrontendAPI.md#GetWebAuthnJavaScript) | **Get** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+[**GetWellKnownChangePassword**](FrontendAPI.md#GetWellKnownChangePassword) | **Get** /.well-known/change-password | Change Password URL
 [**ListMySessions**](FrontendAPI.md#ListMySessions) | **Get** /sessions | Get My Active Sessions
 [**PerformNativeLogout**](FrontendAPI.md#PerformNativeLogout) | **Delete** /self-service/logout/api | Perform Logout for Native Apps
 [**ToSession**](FrontendAPI.md#ToSession) | **Get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
@@ -1600,6 +1601,67 @@ Other parameters are passed through a pointer to a apiGetWebAuthnJavaScriptReque
 ### Return type
 
 **string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetWellKnownChangePassword
+
+> ErrorGeneric GetWellKnownChangePassword(ctx).Execute()
+
+Change Password URL
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrontendAPI.GetWellKnownChangePassword(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.GetWellKnownChangePassword``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWellKnownChangePassword`: ErrorGeneric
+	fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.GetWellKnownChangePassword`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWellKnownChangePasswordRequest struct via the builder pattern
+
+
+### Return type
+
+[**ErrorGeneric**](ErrorGeneric.md)
 
 ### Authorization
 

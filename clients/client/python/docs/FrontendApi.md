@@ -27,6 +27,7 @@ Method | HTTP request | Description
 [**get_settings_flow**](FrontendApi.md#get_settings_flow) | **GET** /self-service/settings/flows | Get Settings Flow
 [**get_verification_flow**](FrontendApi.md#get_verification_flow) | **GET** /self-service/verification/flows | Get Verification Flow
 [**get_web_authn_java_script**](FrontendApi.md#get_web_authn_java_script) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+[**get_well_known_change_password**](FrontendApi.md#get_well_known_change_password) | **GET** /.well-known/change-password | Change Password URL
 [**list_my_sessions**](FrontendApi.md#list_my_sessions) | **GET** /sessions | Get My Active Sessions
 [**perform_native_logout**](FrontendApi.md#perform_native_logout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
 [**to_session**](FrontendApi.md#to_session) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
@@ -2005,6 +2006,74 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | webAuthnJavaScript |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_well_known_change_password**
+> ErrorGeneric get_well_known_change_password()
+
+Change Password URL
+
+This endpoint implements the W3C "change password URL" well-known location by
+redirecting the browser to the configured settings UI. Password managers follow
+this redirect to take users straight to the page where they can change their
+password.
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.models.error_generic import ErrorGeneric
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.FrontendApi(api_client)
+
+    try:
+        # Change Password URL
+        api_response = api_instance.get_well_known_change_password()
+        print("The response of FrontendApi->get_well_known_change_password:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FrontendApi->get_well_known_change_password: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ErrorGeneric**](ErrorGeneric.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**0** | errorGeneric |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

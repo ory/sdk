@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **created_at** | **string** | The Project\&#39;s Revision Creation Date | [optional] [readonly] [default to undefined]
 **hook** | **string** | The Hook Type | [default to undefined]
 **id** | **string** | ID of the entry | [optional] [default to undefined]
+**notify_previous_addresses_config_recipients** | **string** | The recipients to be notified in case of a change of the users verified email addresses. Possible values are: \&quot;all\&quot;, \&quot;all_verified\&quot;, \&quot;removed\&quot; (only notify about removed email addresses) | [optional] [default to undefined]
 **project_revision_id** | **string** | The Revision\&#39;s ID this schema belongs to | [optional] [default to undefined]
 **updated_at** | **string** | Last Time Project\&#39;s Revision was Updated | [optional] [readonly] [default to undefined]
 **web_hook_config_auth_api_key_in** | **string** | Whether to send the API Key in the HTTP Header or as a HTTP Cookie | [optional] [default to undefined]
@@ -34,6 +35,7 @@ const instance: NormalizedProjectRevisionHook = {
     created_at,
     hook,
     id,
+    notify_previous_addresses_config_recipients,
     project_revision_id,
     updated_at,
     web_hook_config_auth_api_key_in,

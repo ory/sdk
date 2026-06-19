@@ -27,6 +27,7 @@ Method | HTTP request | Description
 [**get_settings_flow**](FrontendApi.md#get_settings_flow) | **GET** /self-service/settings/flows | Get Settings Flow
 [**get_verification_flow**](FrontendApi.md#get_verification_flow) | **GET** /self-service/verification/flows | Get Verification Flow
 [**get_web_authn_java_script**](FrontendApi.md#get_web_authn_java_script) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+[**get_well_known_change_password**](FrontendApi.md#get_well_known_change_password) | **GET** /.well-known/change-password | Change Password URL
 [**list_my_sessions**](FrontendApi.md#list_my_sessions) | **GET** /sessions | Get My Active Sessions
 [**perform_native_logout**](FrontendApi.md#perform_native_logout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
 [**to_session**](FrontendApi.md#to_session) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
@@ -743,6 +744,33 @@ This endpoint does not need any parameter.
 ### Return type
 
 **String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_well_known_change_password
+
+> models::ErrorGeneric get_well_known_change_password()
+Change Password URL
+
+This endpoint implements the W3C \"change password URL\" well-known location by redirecting the browser to the configured settings UI. Password managers follow this redirect to take users straight to the page where they can change their password.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::ErrorGeneric**](errorGeneric.md)
 
 ### Authorization
 

@@ -11,6 +11,7 @@
 |**createdAt** | **OffsetDateTime** | The Project&#39;s Revision Creation Date |  [optional] [readonly] |
 |**hook** | **String** | The Hook Type |  |
 |**id** | **String** | ID of the entry |  [optional] |
+|**notifyPreviousAddressesConfigRecipients** | **String** | The recipients to be notified in case of a change of the users verified email addresses. Possible values are: \&quot;all\&quot;, \&quot;all_verified\&quot;, \&quot;removed\&quot; (only notify about removed email addresses) |  [optional] |
 |**projectRevisionId** | **String** | The Revision&#39;s ID this schema belongs to |  [optional] |
 |**updatedAt** | **OffsetDateTime** | Last Time Project&#39;s Revision was Updated |  [optional] [readonly] |
 |**webHookConfigAuthApiKeyIn** | **String** | Whether to send the API Key in the HTTP Header or as a HTTP Cookie |  [optional] |

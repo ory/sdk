@@ -113,6 +113,10 @@ Name | Type
 `kratos_courier_templates_registration_code_valid_email_body_plaintext` | string
 `kratos_courier_templates_registration_code_valid_email_subject` | string
 `kratos_courier_templates_registration_code_valid_sms_body_plaintext` | string
+`kratos_courier_templates_verifiable_address_changed_email_body_html` | string
+`kratos_courier_templates_verifiable_address_changed_email_body_plaintext` | string
+`kratos_courier_templates_verifiable_address_changed_email_subject` | string
+`kratos_courier_templates_verifiable_address_changed_sms_body_plaintext` | string
 `kratos_courier_templates_verification_code_invalid_email_body_html` | string
 `kratos_courier_templates_verification_code_invalid_email_body_plaintext` | string
 `kratos_courier_templates_verification_code_invalid_email_subject` | string
@@ -210,6 +214,7 @@ Name | Type
 `kratos_selfservice_methods_code_mfa_enabled` | boolean
 `kratos_selfservice_methods_code_passwordless_enabled` | boolean
 `kratos_selfservice_methods_code_passwordless_login_fallback_enabled` | boolean
+`kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation` | boolean
 `kratos_selfservice_methods_deviceauthn_enabled` | boolean
 `kratos_selfservice_methods_link_config_base_url` | string
 `kratos_selfservice_methods_link_config_lifespan` | string
@@ -389,6 +394,10 @@ const example = {
   "kratos_courier_templates_registration_code_valid_email_body_plaintext": null,
   "kratos_courier_templates_registration_code_valid_email_subject": null,
   "kratos_courier_templates_registration_code_valid_sms_body_plaintext": null,
+  "kratos_courier_templates_verifiable_address_changed_email_body_html": null,
+  "kratos_courier_templates_verifiable_address_changed_email_body_plaintext": null,
+  "kratos_courier_templates_verifiable_address_changed_email_subject": null,
+  "kratos_courier_templates_verifiable_address_changed_sms_body_plaintext": null,
   "kratos_courier_templates_verification_code_invalid_email_body_html": null,
   "kratos_courier_templates_verification_code_invalid_email_body_plaintext": null,
   "kratos_courier_templates_verification_code_invalid_email_subject": null,
@@ -486,6 +495,7 @@ const example = {
   "kratos_selfservice_methods_code_mfa_enabled": null,
   "kratos_selfservice_methods_code_passwordless_enabled": null,
   "kratos_selfservice_methods_code_passwordless_login_fallback_enabled": null,
+  "kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation": null,
   "kratos_selfservice_methods_deviceauthn_enabled": null,
   "kratos_selfservice_methods_link_config_base_url": null,
   "kratos_selfservice_methods_link_config_lifespan": null,

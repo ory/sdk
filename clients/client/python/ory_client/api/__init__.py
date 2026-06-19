@@ -3,6 +3,7 @@
 # import apis into api package
 from ory_client.api.api_keys_api import ApiKeysApi
 from ory_client.api.courier_api import CourierApi
+from ory_client.api.elements_api import ElementsApi
 from ory_client.api.events_api import EventsApi
 from ory_client.api.frontend_api import FrontendApi
 from ory_client.api.identity_api import IdentityApi

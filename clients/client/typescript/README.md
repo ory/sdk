@@ -1,4 +1,4 @@
-## @ory/client@v1.22.52
+## @ory/client@v1.22.54
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.52 --save
+npm install @ory/client@v1.22.54 --save
 ```
 
 _unPublished (not recommended):_
@@ -71,6 +71,7 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**revokeApiKey**](docs/ApiKeysApi.md#revokeapikey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
 *CourierApi* | [**getCourierMessage**](docs/CourierApi.md#getcouriermessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/CourierApi.md#listcouriermessages) | **GET** /admin/courier/messages | List Messages
+*ElementsApi* | [**getConfiguration**](docs/ElementsApi.md#getconfiguration) | **GET** /elements/configuration | Get Ory Elements configuration
 *EventsApi* | [**createEventStream**](docs/EventsApi.md#createeventstream) | **POST** /projects/{project_id}/eventstreams | Create an event stream for your project.
 *EventsApi* | [**deleteEventStream**](docs/EventsApi.md#deleteeventstream) | **DELETE** /projects/{project_id}/eventstreams/{event_stream_id} | Remove an event stream from a project
 *EventsApi* | [**listEventStreams**](docs/EventsApi.md#listeventstreams) | **GET** /projects/{project_id}/eventstreams | List all event streams for the project. This endpoint is not paginated.
@@ -98,6 +99,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**getSettingsFlow**](docs/FrontendApi.md#getsettingsflow) | **GET** /self-service/settings/flows | Get Settings Flow
 *FrontendApi* | [**getVerificationFlow**](docs/FrontendApi.md#getverificationflow) | **GET** /self-service/verification/flows | Get Verification Flow
 *FrontendApi* | [**getWebAuthnJavaScript**](docs/FrontendApi.md#getwebauthnjavascript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+*FrontendApi* | [**getWellKnownChangePassword**](docs/FrontendApi.md#getwellknownchangepassword) | **GET** /.well-known/change-password | Change Password URL
 *FrontendApi* | [**listMySessions**](docs/FrontendApi.md#listmysessions) | **GET** /sessions | Get My Active Sessions
 *FrontendApi* | [**performNativeLogout**](docs/FrontendApi.md#performnativelogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
 *FrontendApi* | [**toSession**](docs/FrontendApi.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
@@ -309,6 +311,7 @@ Class | Method | HTTP request | Description
  - [DeviceAuthnKey](docs/DeviceAuthnKey.md)
  - [DeviceAuthorization](docs/DeviceAuthorization.md)
  - [DeviceUserAuthRequest](docs/DeviceUserAuthRequest.md)
+ - [ElementsConfiguration](docs/ElementsConfiguration.md)
  - [EmailTemplateData](docs/EmailTemplateData.md)
  - [EmailTemplateDataBody](docs/EmailTemplateDataBody.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)

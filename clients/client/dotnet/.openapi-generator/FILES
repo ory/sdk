@@ -6,6 +6,7 @@ api/openapi.yaml
 appveyor.yml
 docs/apis/ApiKeysApi.md
 docs/apis/CourierApi.md
+docs/apis/ElementsApi.md
 docs/apis/EventsApi.md
 docs/apis/FrontendApi.md
 docs/apis/IdentityApi.md
@@ -105,6 +106,7 @@ docs/models/ClientDeviceAuthnIOSAttestation.md
 docs/models/ClientDeviceAuthnKey.md
 docs/models/ClientDeviceAuthorization.md
 docs/models/ClientDeviceUserAuthRequest.md
+docs/models/ClientElementsConfiguration.md
 docs/models/ClientEmailTemplateData.md
 docs/models/ClientEmailTemplateDataBody.md
 docs/models/ClientErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -394,6 +396,7 @@ src/Ory.Client.Test/Api/ApiKeysApiTests.cs
 src/Ory.Client.Test/Api/ApiTestsBase.cs
 src/Ory.Client.Test/Api/CourierApiTests.cs
 src/Ory.Client.Test/Api/DependencyInjectionTests.cs
+src/Ory.Client.Test/Api/ElementsApiTests.cs
 src/Ory.Client.Test/Api/EventsApiTests.cs
 src/Ory.Client.Test/Api/FrontendApiTests.cs
 src/Ory.Client.Test/Api/IdentityApiTests.cs
@@ -493,6 +496,7 @@ src/Ory.Client.Test/Model/ClientDeviceAuthnIOSAttestationTests.cs
 src/Ory.Client.Test/Model/ClientDeviceAuthnKeyTests.cs
 src/Ory.Client.Test/Model/ClientDeviceAuthorizationTests.cs
 src/Ory.Client.Test/Model/ClientDeviceUserAuthRequestTests.cs
+src/Ory.Client.Test/Model/ClientElementsConfigurationTests.cs
 src/Ory.Client.Test/Model/ClientEmailTemplateDataBodyTests.cs
 src/Ory.Client.Test/Model/ClientEmailTemplateDataTests.cs
 src/Ory.Client.Test/Model/ClientErrorAuthenticatorAssuranceLevelNotSatisfiedTests.cs
@@ -780,6 +784,7 @@ src/Ory.Client.Test/Ory.Client.Test.csproj
 src/Ory.Client.Test/README.md
 src/Ory.Client/Api/ApiKeysApi.cs
 src/Ory.Client/Api/CourierApi.cs
+src/Ory.Client/Api/ElementsApi.cs
 src/Ory.Client/Api/EventsApi.cs
 src/Ory.Client/Api/FrontendApi.cs
 src/Ory.Client/Api/IApi.cs
@@ -905,6 +910,7 @@ src/Ory.Client/Model/ClientDeviceAuthnIOSAttestation.cs
 src/Ory.Client/Model/ClientDeviceAuthnKey.cs
 src/Ory.Client/Model/ClientDeviceAuthorization.cs
 src/Ory.Client/Model/ClientDeviceUserAuthRequest.cs
+src/Ory.Client/Model/ClientElementsConfiguration.cs
 src/Ory.Client/Model/ClientEmailTemplateData.cs
 src/Ory.Client/Model/ClientEmailTemplateDataBody.cs
 src/Ory.Client/Model/ClientErrorAuthenticatorAssuranceLevelNotSatisfied.cs

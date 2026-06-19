@@ -12,6 +12,7 @@ Name | Type
 `device_name` | string
 `device_type` | string
 `public_key` | Array&lt;number&gt;
+`relaxed_attestation_expires_at` | Date
 `state` | string
 `version` | number
 
@@ -28,6 +29,7 @@ const example = {
   "device_name": null,
   "device_type": null,
   "public_key": null,
+  "relaxed_attestation_expires_at": null,
   "state": null,
   "version": null,
 } satisfies DeviceAuthnKey

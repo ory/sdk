@@ -928,6 +928,36 @@ defmodule Ory.Api.Frontend do
   end
 
   @doc """
+  Change Password URL
+  This endpoint implements the W3C \"change password URL\" well-known location by redirecting the browser to the configured settings UI. Password managers follow this redirect to take users straight to the page where they can change their password.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.ErrorGeneric.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_well_known_change_password(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:error, Tesla.Env.t}
+  def get_well_known_change_password(connection, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/.well-known/change-password")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {303, false},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
   Get My Active Sessions
   This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
 

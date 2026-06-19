@@ -108,6 +108,10 @@ Name | Type | Description | Notes
 **KratosCourierTemplatesRegistrationCodeValidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template  This governs the \&quot;courier.templates.registration_code.valid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesRegistrationCodeValidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \&quot;courier.templates.registration_code.valid.email.subject\&quot; setting. | [optional] 
 **KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Valid Registration via Code SMS Body Plaintext Template  This governs the \&quot;courier.templates.registration_code.valid.sms.body.plaintext\&quot; setting. | [optional] 
+**KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Verifiable Address Changed Email Body HTML Template  This governs the \&quot;courier.templates.verifiable_address_changed.email.body.html\&quot; setting. | [optional] 
+**KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Verifiable Address Changed Email Body Plaintext Template  This governs the \&quot;courier.templates.verifiable_address_changed.email.body.plaintext\&quot; setting. | [optional] 
+**KratosCourierTemplatesVerifiableAddressChangedEmailSubject** | Pointer to **string** | Configures the Ory Kratos Verifiable Address Changed Email Subject Template  This governs the \&quot;courier.templates.verifiable_address_changed.email.subject\&quot; setting. | [optional] 
+**KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Verifiable Address Changed SMS Body Plaintext Template  This governs the \&quot;courier.templates.verifiable_address_changed.sms.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml** | Pointer to **string** | Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \&quot;courier.templates.verification_code.invalid.email.body.html\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationCodeInvalidEmailBodyPlaintext** | Pointer to **string** | Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \&quot;courier.templates.verification_code.invalid.email.body.plaintext\&quot; setting. | [optional] 
 **KratosCourierTemplatesVerificationCodeInvalidEmailSubject** | Pointer to **string** | Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \&quot;courier.templates.verification_code.invalid.email.subject\&quot; setting. | [optional] 
@@ -205,6 +209,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsCodeMfaEnabled** | Pointer to **bool** | Configures whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodePasswordlessEnabled** | Pointer to **bool** | Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled** | Pointer to **bool** | This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \&quot;selfservice.methods.code.passwordless_login_fallback_enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation** | Pointer to **bool** | Configures whether Ory Kratos Device authentication accepts relaxed attestations for testing  Only allowed on development projects and forced off otherwise. Keys enrolled under relaxation are short-lived and refused once this is turned off.  This governs the \&quot;selfservice.methods.deviceauthn.config.insecure_allow_relaxed_attestation\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnEnabled** | Pointer to **bool** | Configures whether Ory Kratos Device authentication is enabled  This governs the \&quot;selfservice.methods.deviceauthn.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigBaseUrl** | Pointer to **string** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] 
@@ -2889,6 +2894,106 @@ SetKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext sets KratosCourie
 
 HasKratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext returns a boolean if a field has been set.
 
+### GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml() string`
+
+GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml returns the KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtmlOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtmlOk() (*string, bool)`
+
+GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml(v string)`
+
+SetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml sets KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml field to given value.
+
+### HasKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml() bool`
+
+HasKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext() string`
+
+GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext returns the KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintextOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintextOk() (*string, bool)`
+
+GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext(v string)`
+
+SetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext sets KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext field to given value.
+
+### HasKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext() bool`
+
+HasKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesVerifiableAddressChangedEmailSubject
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerifiableAddressChangedEmailSubject() string`
+
+GetKratosCourierTemplatesVerifiableAddressChangedEmailSubject returns the KratosCourierTemplatesVerifiableAddressChangedEmailSubject field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesVerifiableAddressChangedEmailSubjectOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerifiableAddressChangedEmailSubjectOk() (*string, bool)`
+
+GetKratosCourierTemplatesVerifiableAddressChangedEmailSubjectOk returns a tuple with the KratosCourierTemplatesVerifiableAddressChangedEmailSubject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesVerifiableAddressChangedEmailSubject
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerifiableAddressChangedEmailSubject(v string)`
+
+SetKratosCourierTemplatesVerifiableAddressChangedEmailSubject sets KratosCourierTemplatesVerifiableAddressChangedEmailSubject field to given value.
+
+### HasKratosCourierTemplatesVerifiableAddressChangedEmailSubject
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerifiableAddressChangedEmailSubject() bool`
+
+HasKratosCourierTemplatesVerifiableAddressChangedEmailSubject returns a boolean if a field has been set.
+
+### GetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext() string`
+
+GetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext returns the KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext field if non-nil, zero value otherwise.
+
+### GetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintextOk
+
+`func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintextOk() (*string, bool)`
+
+GetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext
+
+`func (o *NormalizedProjectRevision) SetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext(v string)`
+
+SetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext sets KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext field to given value.
+
+### HasKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext
+
+`func (o *NormalizedProjectRevision) HasKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext() bool`
+
+HasKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext returns a boolean if a field has been set.
+
 ### GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml
 
 `func (o *NormalizedProjectRevision) GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml() string`
@@ -5313,6 +5418,31 @@ SetKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled sets KratosSelfs
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled() bool`
 
 HasKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation() bool`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation returns the KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestationOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestationOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestationOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation(v bool)`
+
+SetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation sets KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation field to given value.
+
+### HasKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation() bool`
+
+HasKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsDeviceauthnEnabled
 

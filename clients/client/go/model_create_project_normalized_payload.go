@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.52
+API version: v1.22.54
 Contact: support@ory.sh
 */
 
@@ -232,6 +232,14 @@ type CreateProjectNormalizedPayload struct {
 	KratosCourierTemplatesRegistrationCodeValidEmailSubject *string `json:"kratos_courier_templates_registration_code_valid_email_subject,omitempty"`
 	// Configures the Ory Kratos Valid Registration via Code SMS Body Plaintext Template  This governs the \"courier.templates.registration_code.valid.sms.body.plaintext\" setting.
 	KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext *string `json:"kratos_courier_templates_registration_code_valid_sms_body_plaintext,omitempty"`
+	// Configures the Ory Kratos Verifiable Address Changed Email Body HTML Template  This governs the \"courier.templates.verifiable_address_changed.email.body.html\" setting.
+	KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml *string `json:"kratos_courier_templates_verifiable_address_changed_email_body_html,omitempty"`
+	// Configures the Ory Kratos Verifiable Address Changed Email Body Plaintext Template  This governs the \"courier.templates.verifiable_address_changed.email.body.plaintext\" setting.
+	KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext *string `json:"kratos_courier_templates_verifiable_address_changed_email_body_plaintext,omitempty"`
+	// Configures the Ory Kratos Verifiable Address Changed Email Subject Template  This governs the \"courier.templates.verifiable_address_changed.email.subject\" setting.
+	KratosCourierTemplatesVerifiableAddressChangedEmailSubject *string `json:"kratos_courier_templates_verifiable_address_changed_email_subject,omitempty"`
+	// Configures the Ory Kratos Verifiable Address Changed SMS Body Plaintext Template  This governs the \"courier.templates.verifiable_address_changed.sms.body.plaintext\" setting.
+	KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext *string `json:"kratos_courier_templates_verifiable_address_changed_sms_body_plaintext,omitempty"`
 	// Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \"courier.templates.verification_code.invalid.email.body.html\" setting.
 	KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml *string `json:"kratos_courier_templates_verification_code_invalid_email_body_html,omitempty"`
 	// Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \"courier.templates.verification_code.invalid.email.body.plaintext\" setting.
@@ -425,6 +433,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceMethodsCodePasswordlessEnabled *bool `json:"kratos_selfservice_methods_code_passwordless_enabled,omitempty"`
 	// This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \"selfservice.methods.code.passwordless_login_fallback_enabled\" setting.
 	KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled *bool `json:"kratos_selfservice_methods_code_passwordless_login_fallback_enabled,omitempty"`
+	// Configures whether Ory Kratos Device authentication accepts relaxed attestations for testing  Only allowed on development projects and forced off otherwise. Keys enrolled under relaxation are short-lived and refused once this is turned off.  This governs the \"selfservice.methods.deviceauthn.config.insecure_allow_relaxed_attestation\" setting.
+	KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation *bool `json:"kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation,omitempty"`
 	// Configures whether Ory Kratos Device authentication is enabled  This governs the \"selfservice.methods.deviceauthn.enabled\" setting.
 	KratosSelfserviceMethodsDeviceauthnEnabled *bool `json:"kratos_selfservice_methods_deviceauthn_enabled,omitempty"`
 	// Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
@@ -4004,6 +4014,134 @@ func (o *CreateProjectNormalizedPayload) SetKratosCourierTemplatesRegistrationCo
 	o.KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext = &v
 }
 
+// GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml returns the KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml() string {
+	if o == nil || IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml) {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml
+}
+
+// GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtmlOk returns a tuple with the KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtmlOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml) {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml, true
+}
+
+// HasKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml() bool {
+	if o != nil && !IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml gets a reference to the given string and assigns it to the KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml field.
+func (o *CreateProjectNormalizedPayload) SetKratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml(v string) {
+	o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml = &v
+}
+
+// GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext returns the KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext() string {
+	if o == nil || IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext) {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext
+}
+
+// GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintextOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext) {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext() bool {
+	if o != nil && !IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext field.
+func (o *CreateProjectNormalizedPayload) SetKratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext(v string) {
+	o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext = &v
+}
+
+// GetKratosCourierTemplatesVerifiableAddressChangedEmailSubject returns the KratosCourierTemplatesVerifiableAddressChangedEmailSubject field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerifiableAddressChangedEmailSubject() string {
+	if o == nil || IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailSubject) {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerifiableAddressChangedEmailSubject
+}
+
+// GetKratosCourierTemplatesVerifiableAddressChangedEmailSubjectOk returns a tuple with the KratosCourierTemplatesVerifiableAddressChangedEmailSubject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerifiableAddressChangedEmailSubjectOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailSubject) {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerifiableAddressChangedEmailSubject, true
+}
+
+// HasKratosCourierTemplatesVerifiableAddressChangedEmailSubject returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosCourierTemplatesVerifiableAddressChangedEmailSubject() bool {
+	if o != nil && !IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailSubject) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerifiableAddressChangedEmailSubject gets a reference to the given string and assigns it to the KratosCourierTemplatesVerifiableAddressChangedEmailSubject field.
+func (o *CreateProjectNormalizedPayload) SetKratosCourierTemplatesVerifiableAddressChangedEmailSubject(v string) {
+	o.KratosCourierTemplatesVerifiableAddressChangedEmailSubject = &v
+}
+
+// GetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext returns the KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext() string {
+	if o == nil || IsNil(o.KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext) {
+		var ret string
+		return ret
+	}
+	return *o.KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext
+}
+
+// GetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintextOk returns a tuple with the KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintextOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext) {
+		return nil, false
+	}
+	return o.KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext, true
+}
+
+// HasKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext() bool {
+	if o != nil && !IsNil(o.KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext gets a reference to the given string and assigns it to the KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext field.
+func (o *CreateProjectNormalizedPayload) SetKratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext(v string) {
+	o.KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext = &v
+}
+
 // GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml returns the KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml() string {
 	if o == nil || IsNil(o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml) {
@@ -7108,6 +7246,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCodePassword
 	o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled = &v
 }
 
+// GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation returns the KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation
+}
+
+// GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestationOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestationOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation, true
+}
+
+// HasKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation(v bool) {
+	o.KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation = &v
+}
+
 // GetKratosSelfserviceMethodsDeviceauthnEnabled returns the KratosSelfserviceMethodsDeviceauthnEnabled field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnEnabled() bool {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnEnabled) {
@@ -9506,6 +9676,18 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext) {
 		toSerialize["kratos_courier_templates_registration_code_valid_sms_body_plaintext"] = o.KratosCourierTemplatesRegistrationCodeValidSmsBodyPlaintext
 	}
+	if !IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml) {
+		toSerialize["kratos_courier_templates_verifiable_address_changed_email_body_html"] = o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyHtml
+	}
+	if !IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext) {
+		toSerialize["kratos_courier_templates_verifiable_address_changed_email_body_plaintext"] = o.KratosCourierTemplatesVerifiableAddressChangedEmailBodyPlaintext
+	}
+	if !IsNil(o.KratosCourierTemplatesVerifiableAddressChangedEmailSubject) {
+		toSerialize["kratos_courier_templates_verifiable_address_changed_email_subject"] = o.KratosCourierTemplatesVerifiableAddressChangedEmailSubject
+	}
+	if !IsNil(o.KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext) {
+		toSerialize["kratos_courier_templates_verifiable_address_changed_sms_body_plaintext"] = o.KratosCourierTemplatesVerifiableAddressChangedSmsBodyPlaintext
+	}
 	if !IsNil(o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml) {
 		toSerialize["kratos_courier_templates_verification_code_invalid_email_body_html"] = o.KratosCourierTemplatesVerificationCodeInvalidEmailBodyHtml
 	}
@@ -9796,6 +9978,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled) {
 		toSerialize["kratos_selfservice_methods_code_passwordless_login_fallback_enabled"] = o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled
+	}
+	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation) {
+		toSerialize["kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation"] = o.KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation
 	}
 	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnEnabled) {
 		toSerialize["kratos_selfservice_methods_deviceauthn_enabled"] = o.KratosSelfserviceMethodsDeviceauthnEnabled
@@ -10140,6 +10325,10 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_courier_templates_registration_code_valid_email_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_registration_code_valid_email_subject")
 		delete(additionalProperties, "kratos_courier_templates_registration_code_valid_sms_body_plaintext")
+		delete(additionalProperties, "kratos_courier_templates_verifiable_address_changed_email_body_html")
+		delete(additionalProperties, "kratos_courier_templates_verifiable_address_changed_email_body_plaintext")
+		delete(additionalProperties, "kratos_courier_templates_verifiable_address_changed_email_subject")
+		delete(additionalProperties, "kratos_courier_templates_verifiable_address_changed_sms_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_verification_code_invalid_email_body_html")
 		delete(additionalProperties, "kratos_courier_templates_verification_code_invalid_email_body_plaintext")
 		delete(additionalProperties, "kratos_courier_templates_verification_code_invalid_email_subject")
@@ -10237,6 +10426,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_selfservice_methods_code_mfa_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_login_fallback_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation")
 		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_link_config_base_url")
 		delete(additionalProperties, "kratos_selfservice_methods_link_config_lifespan")

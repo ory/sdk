@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Hook** | **string** | The Hook Type | 
 **Id** | Pointer to **string** | ID of the entry | [optional] 
+**NotifyPreviousAddressesConfigRecipients** | Pointer to **string** | The recipients to be notified in case of a change of the users verified email addresses. Possible values are: \&quot;all\&quot;, \&quot;all_verified\&quot;, \&quot;removed\&quot; (only notify about removed email addresses) | [optional] 
 **ProjectRevisionId** | Pointer to **string** | The Revision&#39;s ID this schema belongs to | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 **WebHookConfigAuthApiKeyIn** | Pointer to **string** | Whether to send the API Key in the HTTP Header or as a HTTP Cookie | [optional] 
@@ -131,6 +132,31 @@ SetId sets Id field to given value.
 `func (o *NormalizedProjectRevisionHook) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetNotifyPreviousAddressesConfigRecipients
+
+`func (o *NormalizedProjectRevisionHook) GetNotifyPreviousAddressesConfigRecipients() string`
+
+GetNotifyPreviousAddressesConfigRecipients returns the NotifyPreviousAddressesConfigRecipients field if non-nil, zero value otherwise.
+
+### GetNotifyPreviousAddressesConfigRecipientsOk
+
+`func (o *NormalizedProjectRevisionHook) GetNotifyPreviousAddressesConfigRecipientsOk() (*string, bool)`
+
+GetNotifyPreviousAddressesConfigRecipientsOk returns a tuple with the NotifyPreviousAddressesConfigRecipients field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotifyPreviousAddressesConfigRecipients
+
+`func (o *NormalizedProjectRevisionHook) SetNotifyPreviousAddressesConfigRecipients(v string)`
+
+SetNotifyPreviousAddressesConfigRecipients sets NotifyPreviousAddressesConfigRecipients field to given value.
+
+### HasNotifyPreviousAddressesConfigRecipients
+
+`func (o *NormalizedProjectRevisionHook) HasNotifyPreviousAddressesConfigRecipients() bool`
+
+HasNotifyPreviousAddressesConfigRecipients returns a boolean if a field has been set.
 
 ### GetProjectRevisionId
 

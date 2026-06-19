@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.52
-  - Build date: 2026-06-16T11:02:19.676317167Z[Etc/UTC]
+- API version: v1.22.54
+  - Build date: 2026-06-19T10:20:13.205170120Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.52</version>
+  <version>v1.22.54</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.52"
+     implementation "sh.ory:client:v1.22.54"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.52.jar`
+* `target/client-v1.22.54.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -160,6 +160,7 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**revokeApiKey**](docs/ApiKeysApi.md#revokeApiKey) | **POST** /v2alpha1/apiKeys:selfRevoke | Revoke API Key (self-service)
 *CourierApi* | [**getCourierMessage**](docs/CourierApi.md#getCourierMessage) | **GET** /admin/courier/messages/{id} | Get a Message
 *CourierApi* | [**listCourierMessages**](docs/CourierApi.md#listCourierMessages) | **GET** /admin/courier/messages | List Messages
+*ElementsApi* | [**getConfiguration**](docs/ElementsApi.md#getConfiguration) | **GET** /elements/configuration | Get Ory Elements configuration
 *EventsApi* | [**createEventStream**](docs/EventsApi.md#createEventStream) | **POST** /projects/{project_id}/eventstreams | Create an event stream for your project.
 *EventsApi* | [**deleteEventStream**](docs/EventsApi.md#deleteEventStream) | **DELETE** /projects/{project_id}/eventstreams/{event_stream_id} | Remove an event stream from a project
 *EventsApi* | [**listEventStreams**](docs/EventsApi.md#listEventStreams) | **GET** /projects/{project_id}/eventstreams | List all event streams for the project. This endpoint is not paginated.
@@ -187,6 +188,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**getSettingsFlow**](docs/FrontendApi.md#getSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
 *FrontendApi* | [**getVerificationFlow**](docs/FrontendApi.md#getVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
 *FrontendApi* | [**getWebAuthnJavaScript**](docs/FrontendApi.md#getWebAuthnJavaScript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+*FrontendApi* | [**getWellKnownChangePassword**](docs/FrontendApi.md#getWellKnownChangePassword) | **GET** /.well-known/change-password | Change Password URL
 *FrontendApi* | [**listMySessions**](docs/FrontendApi.md#listMySessions) | **GET** /sessions | Get My Active Sessions
 *FrontendApi* | [**performNativeLogout**](docs/FrontendApi.md#performNativeLogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
 *FrontendApi* | [**toSession**](docs/FrontendApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
@@ -398,6 +400,7 @@ Class | Method | HTTP request | Description
  - [DeviceAuthnKey](docs/DeviceAuthnKey.md)
  - [DeviceAuthorization](docs/DeviceAuthorization.md)
  - [DeviceUserAuthRequest](docs/DeviceUserAuthRequest.md)
+ - [ElementsConfiguration](docs/ElementsConfiguration.md)
  - [EmailTemplateData](docs/EmailTemplateData.md)
  - [EmailTemplateDataBody](docs/EmailTemplateDataBody.md)
  - [ErrorAuthenticatorAssuranceLevelNotSatisfied](docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md)

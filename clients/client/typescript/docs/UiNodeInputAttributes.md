@@ -6,7 +6,7 @@ InputAttributes represents the attributes of an input node
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**autocomplete** | **string** | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username webauthn InputAttributeAutocompleteUsernameWebauthn | [optional] [default to undefined]
+**autocomplete** | **string** | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username InputAttributeAutocompleteUsername username webauthn InputAttributeAutocompleteUsernameWebauthn | [optional] [default to undefined]
 **disabled** | **boolean** | Sets the input\&#39;s disabled field to true or false. | [default to undefined]
 **label** | [**UiText**](UiText.md) |  | [optional] [default to undefined]
 **maxlength** | **number** | MaxLength may contain the input\&#39;s maximum length. | [optional] [default to undefined]

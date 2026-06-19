@@ -95,6 +95,8 @@ docs/DeviceAuthnIOSAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceUserAuthRequest.md
+docs/ElementsApi.md
+docs/ElementsConfiguration.md
 docs/EmailTemplateData.md
 docs/EmailTemplateDataBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -414,6 +416,7 @@ src/main/java/sh/ory/ServerVariable.java
 src/main/java/sh/ory/StringUtil.java
 src/main/java/sh/ory/api/ApiKeysApi.java
 src/main/java/sh/ory/api/CourierApi.java
+src/main/java/sh/ory/api/ElementsApi.java
 src/main/java/sh/ory/api/EventsApi.java
 src/main/java/sh/ory/api/FrontendApi.java
 src/main/java/sh/ory/api/IdentityApi.java
@@ -522,6 +525,7 @@ src/main/java/sh/ory/model/DeviceAuthnIOSAttestation.java
 src/main/java/sh/ory/model/DeviceAuthnKey.java
 src/main/java/sh/ory/model/DeviceAuthorization.java
 src/main/java/sh/ory/model/DeviceUserAuthRequest.java
+src/main/java/sh/ory/model/ElementsConfiguration.java
 src/main/java/sh/ory/model/EmailTemplateData.java
 src/main/java/sh/ory/model/EmailTemplateDataBody.java
 src/main/java/sh/ory/model/ErrorAuthenticatorAssuranceLevelNotSatisfied.java
@@ -807,6 +811,7 @@ src/main/java/sh/ory/model/WorkspaceApiKey.java
 src/main/java/sh/ory/model/WorkspaceOrganization.java
 src/test/java/sh/ory/api/ApiKeysApiTest.java
 src/test/java/sh/ory/api/CourierApiTest.java
+src/test/java/sh/ory/api/ElementsApiTest.java
 src/test/java/sh/ory/api/EventsApiTest.java
 src/test/java/sh/ory/api/FrontendApiTest.java
 src/test/java/sh/ory/api/IdentityApiTest.java
@@ -906,6 +911,7 @@ src/test/java/sh/ory/model/DeviceAuthnIOSAttestationTest.java
 src/test/java/sh/ory/model/DeviceAuthnKeyTest.java
 src/test/java/sh/ory/model/DeviceAuthorizationTest.java
 src/test/java/sh/ory/model/DeviceUserAuthRequestTest.java
+src/test/java/sh/ory/model/ElementsConfigurationTest.java
 src/test/java/sh/ory/model/EmailTemplateDataBodyTest.java
 src/test/java/sh/ory/model/EmailTemplateDataTest.java
 src/test/java/sh/ory/model/ErrorAuthenticatorAssuranceLevelNotSatisfiedTest.java

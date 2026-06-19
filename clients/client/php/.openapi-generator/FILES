@@ -6,6 +6,7 @@ README.md
 composer.json
 docs/Api/ApiKeysApi.md
 docs/Api/CourierApi.md
+docs/Api/ElementsApi.md
 docs/Api/EventsApi.md
 docs/Api/FrontendApi.md
 docs/Api/IdentityApi.md
@@ -105,6 +106,7 @@ docs/Model/DeviceAuthnIOSAttestation.md
 docs/Model/DeviceAuthnKey.md
 docs/Model/DeviceAuthorization.md
 docs/Model/DeviceUserAuthRequest.md
+docs/Model/ElementsConfiguration.md
 docs/Model/EmailTemplateData.md
 docs/Model/EmailTemplateDataBody.md
 docs/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -391,6 +393,7 @@ docs/Model/WorkspaceOrganization.md
 git_push.sh
 lib/Api/ApiKeysApi.php
 lib/Api/CourierApi.php
+lib/Api/ElementsApi.php
 lib/Api/EventsApi.php
 lib/Api/FrontendApi.php
 lib/Api/IdentityApi.php
@@ -494,6 +497,7 @@ lib/Model/DeviceAuthnIOSAttestation.php
 lib/Model/DeviceAuthnKey.php
 lib/Model/DeviceAuthorization.php
 lib/Model/DeviceUserAuthRequest.php
+lib/Model/ElementsConfiguration.php
 lib/Model/EmailTemplateData.php
 lib/Model/EmailTemplateDataBody.php
 lib/Model/ErrorAuthenticatorAssuranceLevelNotSatisfied.php
@@ -782,6 +786,7 @@ lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/ApiKeysApiTest.php
 test/Api/CourierApiTest.php
+test/Api/ElementsApiTest.php
 test/Api/EventsApiTest.php
 test/Api/FrontendApiTest.php
 test/Api/IdentityApiTest.php
@@ -881,6 +886,7 @@ test/Model/DeviceAuthnIOSAttestationTest.php
 test/Model/DeviceAuthnKeyTest.php
 test/Model/DeviceAuthorizationTest.php
 test/Model/DeviceUserAuthRequestTest.php
+test/Model/ElementsConfigurationTest.php
 test/Model/EmailTemplateDataBodyTest.php
 test/Model/EmailTemplateDataTest.php
 test/Model/ErrorAuthenticatorAssuranceLevelNotSatisfiedTest.php

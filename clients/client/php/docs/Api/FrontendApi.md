@@ -29,6 +29,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**getSettingsFlow()**](FrontendApi.md#getSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow |
 | [**getVerificationFlow()**](FrontendApi.md#getVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow |
 | [**getWebAuthnJavaScript()**](FrontendApi.md#getWebAuthnJavaScript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript |
+| [**getWellKnownChangePassword()**](FrontendApi.md#getWellKnownChangePassword) | **GET** /.well-known/change-password | Change Password URL |
 | [**listMySessions()**](FrontendApi.md#listMySessions) | **GET** /sessions | Get My Active Sessions |
 | [**performNativeLogout()**](FrontendApi.md#performNativeLogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps |
 | [**toSession()**](FrontendApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To |
@@ -1376,6 +1377,59 @@ This endpoint does not need any parameter.
 ### Return type
 
 **string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getWellKnownChangePassword()`
+
+```php
+getWellKnownChangePassword(): \Ory\Client\Model\ErrorGeneric
+```
+
+Change Password URL
+
+This endpoint implements the W3C \"change password URL\" well-known location by redirecting the browser to the configured settings UI. Password managers follow this redirect to take users straight to the page where they can change their password.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Ory\Client\Api\FrontendApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->getWellKnownChangePassword();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FrontendApi->getWellKnownChangePassword: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Ory\Client\Model\ErrorGeneric**](../Model/ErrorGeneric.md)
 
 ### Authorization
 

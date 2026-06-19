@@ -172,6 +172,8 @@ pub mod device_authorization;
 pub use self::device_authorization::DeviceAuthorization;
 pub mod device_user_auth_request;
 pub use self::device_user_auth_request::DeviceUserAuthRequest;
+pub mod elements_configuration;
+pub use self::elements_configuration::ElementsConfiguration;
 pub mod email_template_data;
 pub use self::email_template_data::EmailTemplateData;
 pub mod email_template_data_body;

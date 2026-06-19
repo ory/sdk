@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **DeviceName** | Pointer to **string** | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional] 
 **DeviceType** | Pointer to **string** |  | [optional] 
 **PublicKey** | Pointer to **[]int32** | PublicKey is an EC (in v1) public key, used to verify signatures, stored as uncompressed bytes. The private key resides inside the device and does not exist on the server. | [optional] 
+**RelaxedAttestationExpiresAt** | Pointer to **time.Time** | RelaxedAttestationExpiresAt is set only when the key&#39;s attestation chain validated because relaxed attestation was allowed (software roots, expired certs, software security level) rather than under strict rules. Such keys are second-class: they are refused at login after this time, or immediately if relaxed attestation is turned off. It is nil for hardware-attested keys that pass strict validation. | [optional] 
 **State** | Pointer to **string** |  | [optional] 
 **Version** | Pointer to **int64** | v1 uses SHA256 + EC256. v2 (in the future) may use ML-DSA which is post-quantum resistant. This requires Android/iOS support so we have to wait. We intentionally avoid storing the cryptographic algorithm here a la JWT/TLS to avoid security issues and algorithm negotiation. | [optional] 
 
@@ -181,6 +182,31 @@ SetPublicKey sets PublicKey field to given value.
 `func (o *DeviceAuthnKey) HasPublicKey() bool`
 
 HasPublicKey returns a boolean if a field has been set.
+
+### GetRelaxedAttestationExpiresAt
+
+`func (o *DeviceAuthnKey) GetRelaxedAttestationExpiresAt() time.Time`
+
+GetRelaxedAttestationExpiresAt returns the RelaxedAttestationExpiresAt field if non-nil, zero value otherwise.
+
+### GetRelaxedAttestationExpiresAtOk
+
+`func (o *DeviceAuthnKey) GetRelaxedAttestationExpiresAtOk() (*time.Time, bool)`
+
+GetRelaxedAttestationExpiresAtOk returns a tuple with the RelaxedAttestationExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRelaxedAttestationExpiresAt
+
+`func (o *DeviceAuthnKey) SetRelaxedAttestationExpiresAt(v time.Time)`
+
+SetRelaxedAttestationExpiresAt sets RelaxedAttestationExpiresAt field to given value.
+
+### HasRelaxedAttestationExpiresAt
+
+`func (o *DeviceAuthnKey) HasRelaxedAttestationExpiresAt() bool`
+
+HasRelaxedAttestationExpiresAt returns a boolean if a field has been set.
 
 ### GetState
 

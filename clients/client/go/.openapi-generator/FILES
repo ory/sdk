@@ -5,6 +5,7 @@ README.md
 api/openapi.yaml
 api_api_keys.go
 api_courier.go
+api_elements.go
 api_events.go
 api_frontend.go
 api_identity.go
@@ -108,6 +109,8 @@ docs/DeviceAuthnIOSAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceUserAuthRequest.md
+docs/ElementsAPI.md
+docs/ElementsConfiguration.md
 docs/EmailTemplateData.md
 docs/EmailTemplateDataBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -493,6 +496,7 @@ model_device_authn_ios_attestation.go
 model_device_authn_key.go
 model_device_authorization.go
 model_device_user_auth_request.go
+model_elements_configuration.go
 model_email_template_data.go
 model_email_template_data_body.go
 model_error_authenticator_assurance_level_not_satisfied.go
@@ -779,6 +783,7 @@ model_workspace_organization.go
 response.go
 test/api_api_keys_test.go
 test/api_courier_test.go
+test/api_elements_test.go
 test/api_events_test.go
 test/api_frontend_test.go
 test/api_identity_test.go

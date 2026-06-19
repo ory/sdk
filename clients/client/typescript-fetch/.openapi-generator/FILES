@@ -91,6 +91,8 @@ docs/DeviceAuthnIOSAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceUserAuthRequest.md
+docs/ElementsApi.md
+docs/ElementsConfiguration.md
 docs/EmailTemplateData.md
 docs/EmailTemplateDataBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -389,6 +391,7 @@ docs/WorkspaceOrganization.md
 package.json
 src/apis/ApiKeysApi.ts
 src/apis/CourierApi.ts
+src/apis/ElementsApi.ts
 src/apis/EventsApi.ts
 src/apis/FrontendApi.ts
 src/apis/IdentityApi.ts
@@ -497,6 +500,7 @@ src/models/DeviceAuthnIOSAttestation.ts
 src/models/DeviceAuthnKey.ts
 src/models/DeviceAuthorization.ts
 src/models/DeviceUserAuthRequest.ts
+src/models/ElementsConfiguration.ts
 src/models/EmailTemplateData.ts
 src/models/EmailTemplateDataBody.ts
 src/models/ErrorAuthenticatorAssuranceLevelNotSatisfied.ts

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.52
+API version: v1.22.54
 Contact: support@ory.sh
 */
 
@@ -30,6 +30,8 @@ type NormalizedProjectRevisionHook struct {
 	Hook string `json:"hook"`
 	// ID of the entry
 	Id *string `json:"id,omitempty"`
+	// The recipients to be notified in case of a change of the users verified email addresses. Possible values are: \"all\", \"all_verified\", \"removed\" (only notify about removed email addresses)
+	NotifyPreviousAddressesConfigRecipients *string `json:"notify_previous_addresses_config_recipients,omitempty"`
 	// The Revision's ID this schema belongs to
 	ProjectRevisionId *string `json:"project_revision_id,omitempty"`
 	// Last Time Project's Revision was Updated
@@ -192,6 +194,38 @@ func (o *NormalizedProjectRevisionHook) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *NormalizedProjectRevisionHook) SetId(v string) {
 	o.Id = &v
+}
+
+// GetNotifyPreviousAddressesConfigRecipients returns the NotifyPreviousAddressesConfigRecipients field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionHook) GetNotifyPreviousAddressesConfigRecipients() string {
+	if o == nil || IsNil(o.NotifyPreviousAddressesConfigRecipients) {
+		var ret string
+		return ret
+	}
+	return *o.NotifyPreviousAddressesConfigRecipients
+}
+
+// GetNotifyPreviousAddressesConfigRecipientsOk returns a tuple with the NotifyPreviousAddressesConfigRecipients field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionHook) GetNotifyPreviousAddressesConfigRecipientsOk() (*string, bool) {
+	if o == nil || IsNil(o.NotifyPreviousAddressesConfigRecipients) {
+		return nil, false
+	}
+	return o.NotifyPreviousAddressesConfigRecipients, true
+}
+
+// HasNotifyPreviousAddressesConfigRecipients returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionHook) HasNotifyPreviousAddressesConfigRecipients() bool {
+	if o != nil && !IsNil(o.NotifyPreviousAddressesConfigRecipients) {
+		return true
+	}
+
+	return false
+}
+
+// SetNotifyPreviousAddressesConfigRecipients gets a reference to the given string and assigns it to the NotifyPreviousAddressesConfigRecipients field.
+func (o *NormalizedProjectRevisionHook) SetNotifyPreviousAddressesConfigRecipients(v string) {
+	o.NotifyPreviousAddressesConfigRecipients = &v
 }
 
 // GetProjectRevisionId returns the ProjectRevisionId field value if set, zero value otherwise.
@@ -660,6 +694,9 @@ func (o NormalizedProjectRevisionHook) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+	if !IsNil(o.NotifyPreviousAddressesConfigRecipients) {
+		toSerialize["notify_previous_addresses_config_recipients"] = o.NotifyPreviousAddressesConfigRecipients
+	}
 	if !IsNil(o.ProjectRevisionId) {
 		toSerialize["project_revision_id"] = o.ProjectRevisionId
 	}
@@ -750,6 +787,7 @@ func (o *NormalizedProjectRevisionHook) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "hook")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "notify_previous_addresses_config_recipients")
 		delete(additionalProperties, "project_revision_id")
 		delete(additionalProperties, "updated_at")
 		delete(additionalProperties, "web_hook_config_auth_api_key_in")

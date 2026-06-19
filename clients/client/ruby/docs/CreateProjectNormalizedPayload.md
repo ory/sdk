@@ -110,6 +110,10 @@
 | **kratos_courier_templates_registration_code_valid_email_body_plaintext** | **String** | Configures the Ory Kratos Valid Registration via Code Email Body Plaintext Template  This governs the \&quot;courier.templates.registration_code.valid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_registration_code_valid_email_subject** | **String** | Configures the Ory Kratos Valid Registration via Code Email Subject Template  This governs the \&quot;courier.templates.registration_code.valid.email.subject\&quot; setting. | [optional] |
 | **kratos_courier_templates_registration_code_valid_sms_body_plaintext** | **String** | Configures the Ory Kratos Valid Registration via Code SMS Body Plaintext Template  This governs the \&quot;courier.templates.registration_code.valid.sms.body.plaintext\&quot; setting. | [optional] |
+| **kratos_courier_templates_verifiable_address_changed_email_body_html** | **String** | Configures the Ory Kratos Verifiable Address Changed Email Body HTML Template  This governs the \&quot;courier.templates.verifiable_address_changed.email.body.html\&quot; setting. | [optional] |
+| **kratos_courier_templates_verifiable_address_changed_email_body_plaintext** | **String** | Configures the Ory Kratos Verifiable Address Changed Email Body Plaintext Template  This governs the \&quot;courier.templates.verifiable_address_changed.email.body.plaintext\&quot; setting. | [optional] |
+| **kratos_courier_templates_verifiable_address_changed_email_subject** | **String** | Configures the Ory Kratos Verifiable Address Changed Email Subject Template  This governs the \&quot;courier.templates.verifiable_address_changed.email.subject\&quot; setting. | [optional] |
+| **kratos_courier_templates_verifiable_address_changed_sms_body_plaintext** | **String** | Configures the Ory Kratos Verifiable Address Changed SMS Body Plaintext Template  This governs the \&quot;courier.templates.verifiable_address_changed.sms.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_code_invalid_email_body_html** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Body HTML Template  This governs the \&quot;courier.templates.verification_code.invalid.email.body.html\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_code_invalid_email_body_plaintext** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Body Plaintext Template  This governs the \&quot;courier.templates.verification_code.invalid.email.body.plaintext\&quot; setting. | [optional] |
 | **kratos_courier_templates_verification_code_invalid_email_subject** | **String** | Configures the Ory Kratos Invalid Verification via Code Email Subject Template  This governs the \&quot;courier.templates.verification_code.invalid.email.subject\&quot; setting. | [optional] |
@@ -207,6 +211,7 @@
 | **kratos_selfservice_methods_code_mfa_enabled** | **Boolean** | Configures whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_passwordless_enabled** | **Boolean** | Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_code_passwordless_login_fallback_enabled** | **Boolean** | This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \&quot;selfservice.methods.code.passwordless_login_fallback_enabled\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation** | **Boolean** | Configures whether Ory Kratos Device authentication accepts relaxed attestations for testing  Only allowed on development projects and forced off otherwise. Keys enrolled under relaxation are short-lived and refused once this is turned off.  This governs the \&quot;selfservice.methods.deviceauthn.config.insecure_allow_relaxed_attestation\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_deviceauthn_enabled** | **Boolean** | Configures whether Ory Kratos Device authentication is enabled  This governs the \&quot;selfservice.methods.deviceauthn.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_link_config_base_url** | **String** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_link_config_lifespan** | **String** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] |
@@ -385,6 +390,10 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_courier_templates_registration_code_valid_email_body_plaintext: null,
   kratos_courier_templates_registration_code_valid_email_subject: null,
   kratos_courier_templates_registration_code_valid_sms_body_plaintext: null,
+  kratos_courier_templates_verifiable_address_changed_email_body_html: null,
+  kratos_courier_templates_verifiable_address_changed_email_body_plaintext: null,
+  kratos_courier_templates_verifiable_address_changed_email_subject: null,
+  kratos_courier_templates_verifiable_address_changed_sms_body_plaintext: null,
   kratos_courier_templates_verification_code_invalid_email_body_html: null,
   kratos_courier_templates_verification_code_invalid_email_body_plaintext: null,
   kratos_courier_templates_verification_code_invalid_email_subject: null,
@@ -482,6 +491,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_selfservice_methods_code_mfa_enabled: null,
   kratos_selfservice_methods_code_passwordless_enabled: null,
   kratos_selfservice_methods_code_passwordless_login_fallback_enabled: null,
+  kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation: null,
   kratos_selfservice_methods_deviceauthn_enabled: null,
   kratos_selfservice_methods_link_config_base_url: null,
   kratos_selfservice_methods_link_config_lifespan: null,

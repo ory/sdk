@@ -93,6 +93,8 @@ docs/DeviceAuthnIOSAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceUserAuthRequest.md
+docs/ElementsApi.md
+docs/ElementsConfiguration.md
 docs/EmailTemplateData.md
 docs/EmailTemplateDataBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -393,6 +395,7 @@ ory_client/__init__.py
 ory_client/api/__init__.py
 ory_client/api/api_keys_api.py
 ory_client/api/courier_api.py
+ory_client/api/elements_api.py
 ory_client/api/events_api.py
 ory_client/api/frontend_api.py
 ory_client/api/identity_api.py
@@ -497,6 +500,7 @@ ory_client/models/device_authn_ios_attestation.py
 ory_client/models/device_authn_key.py
 ory_client/models/device_authorization.py
 ory_client/models/device_user_auth_request.py
+ory_client/models/elements_configuration.py
 ory_client/models/email_template_data.py
 ory_client/models/email_template_data_body.py
 ory_client/models/error_authenticator_assurance_level_not_satisfied.py
@@ -877,6 +881,8 @@ test/test_device_authn_ios_attestation.py
 test/test_device_authn_key.py
 test/test_device_authorization.py
 test/test_device_user_auth_request.py
+test/test_elements_api.py
+test/test_elements_configuration.py
 test/test_email_template_data.py
 test/test_email_template_data_body.py
 test/test_error_authenticator_assurance_level_not_satisfied.py

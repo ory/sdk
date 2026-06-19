@@ -87,6 +87,7 @@ export * from './DeviceAuthnIOSAttestation';
 export * from './DeviceAuthnKey';
 export * from './DeviceAuthorization';
 export * from './DeviceUserAuthRequest';
+export * from './ElementsConfiguration';
 export * from './EmailTemplateData';
 export * from './EmailTemplateDataBody';
 export * from './ErrorAuthenticatorAssuranceLevelNotSatisfied';

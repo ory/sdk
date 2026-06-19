@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.52
+API version: v1.22.54
 Contact: support@ory.sh
 */
 
@@ -31,6 +31,8 @@ type DeviceAuthnKey struct {
 	DeviceType *string `json:"device_type,omitempty"`
 	// PublicKey is an EC (in v1) public key, used to verify signatures, stored as uncompressed bytes. The private key resides inside the device and does not exist on the server.
 	PublicKey []int32 `json:"public_key,omitempty"`
+	// RelaxedAttestationExpiresAt is set only when the key's attestation chain validated because relaxed attestation was allowed (software roots, expired certs, software security level) rather than under strict rules. Such keys are second-class: they are refused at login after this time, or immediately if relaxed attestation is turned off. It is nil for hardware-attested keys that pass strict validation.
+	RelaxedAttestationExpiresAt *time.Time `json:"relaxed_attestation_expires_at,omitempty"`
 	State *string `json:"state,omitempty"`
 	// v1 uses SHA256 + EC256. v2 (in the future) may use ML-DSA which is post-quantum resistant. This requires Android/iOS support so we have to wait. We intentionally avoid storing the cryptographic algorithm here a la JWT/TLS to avoid security issues and algorithm negotiation.
 	Version *int64 `json:"version,omitempty"`
@@ -248,6 +250,38 @@ func (o *DeviceAuthnKey) SetPublicKey(v []int32) {
 	o.PublicKey = v
 }
 
+// GetRelaxedAttestationExpiresAt returns the RelaxedAttestationExpiresAt field value if set, zero value otherwise.
+func (o *DeviceAuthnKey) GetRelaxedAttestationExpiresAt() time.Time {
+	if o == nil || IsNil(o.RelaxedAttestationExpiresAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.RelaxedAttestationExpiresAt
+}
+
+// GetRelaxedAttestationExpiresAtOk returns a tuple with the RelaxedAttestationExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceAuthnKey) GetRelaxedAttestationExpiresAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.RelaxedAttestationExpiresAt) {
+		return nil, false
+	}
+	return o.RelaxedAttestationExpiresAt, true
+}
+
+// HasRelaxedAttestationExpiresAt returns a boolean if a field has been set.
+func (o *DeviceAuthnKey) HasRelaxedAttestationExpiresAt() bool {
+	if o != nil && !IsNil(o.RelaxedAttestationExpiresAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetRelaxedAttestationExpiresAt gets a reference to the given time.Time and assigns it to the RelaxedAttestationExpiresAt field.
+func (o *DeviceAuthnKey) SetRelaxedAttestationExpiresAt(v time.Time) {
+	o.RelaxedAttestationExpiresAt = &v
+}
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *DeviceAuthnKey) GetState() string {
 	if o == nil || IsNil(o.State) {
@@ -340,6 +374,9 @@ func (o DeviceAuthnKey) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PublicKey) {
 		toSerialize["public_key"] = o.PublicKey
 	}
+	if !IsNil(o.RelaxedAttestationExpiresAt) {
+		toSerialize["relaxed_attestation_expires_at"] = o.RelaxedAttestationExpiresAt
+	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
@@ -374,6 +411,7 @@ func (o *DeviceAuthnKey) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "device_name")
 		delete(additionalProperties, "device_type")
 		delete(additionalProperties, "public_key")
+		delete(additionalProperties, "relaxed_attestation_expires_at")
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "version")
 		o.AdditionalProperties = additionalProperties

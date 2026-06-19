@@ -92,6 +92,8 @@ docs/DeviceAuthnIosAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceUserAuthRequest.md
+docs/ElementsApi.md
+docs/ElementsConfiguration.md
 docs/EmailTemplateData.md
 docs/EmailTemplateDataBody.md
 docs/ErrorAuthenticatorAssuranceLevelNotSatisfied.md
@@ -391,6 +393,7 @@ git_push.sh
 src/apis/api_keys_api.rs
 src/apis/configuration.rs
 src/apis/courier_api.rs
+src/apis/elements_api.rs
 src/apis/events_api.rs
 src/apis/frontend_api.rs
 src/apis/identity_api.rs
@@ -492,6 +495,7 @@ src/models/device_authn_ios_attestation.rs
 src/models/device_authn_key.rs
 src/models/device_authorization.rs
 src/models/device_user_auth_request.rs
+src/models/elements_configuration.rs
 src/models/email_template_data.rs
 src/models/email_template_data_body.rs
 src/models/error_authenticator_assurance_level_not_satisfied.rs
