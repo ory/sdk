@@ -53,7 +53,6 @@ docs/models/ClientCheckOplSyntaxResult.md
 docs/models/ClientCheckPermissionResult.md
 docs/models/ClientCheckPermissionResultWithError.md
 docs/models/ClientCloudAccount.md
-docs/models/ClientConsistencyRequestParameters.md
 docs/models/ClientContinueWith.md
 docs/models/ClientContinueWithRecoveryUi.md
 docs/models/ClientContinueWithRecoveryUiFlow.md
@@ -338,6 +337,7 @@ docs/models/ClientUpdateFedcmFlowBody.md
 docs/models/ClientUpdateIdentityBody.md
 docs/models/ClientUpdateLoginFlowBody.md
 docs/models/ClientUpdateLoginFlowWithCodeMethod.md
+docs/models/ClientUpdateLoginFlowWithDeviceAuthnMethod.md
 docs/models/ClientUpdateLoginFlowWithIdentifierFirstMethod.md
 docs/models/ClientUpdateLoginFlowWithLookupSecretMethod.md
 docs/models/ClientUpdateLoginFlowWithOidcMethod.md
@@ -359,6 +359,9 @@ docs/models/ClientUpdateRegistrationFlowWithProfileMethod.md
 docs/models/ClientUpdateRegistrationFlowWithSamlMethod.md
 docs/models/ClientUpdateRegistrationFlowWithWebAuthnMethod.md
 docs/models/ClientUpdateSettingsFlowBody.md
+docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethod.md
+docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethodAdd.md
+docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethodDelete.md
 docs/models/ClientUpdateSettingsFlowWithLookupMethod.md
 docs/models/ClientUpdateSettingsFlowWithOidcMethod.md
 docs/models/ClientUpdateSettingsFlowWithPasskeyMethod.md
@@ -443,7 +446,6 @@ src/Ory.Client.Test/Model/ClientCheckOplSyntaxResultTests.cs
 src/Ory.Client.Test/Model/ClientCheckPermissionResultTests.cs
 src/Ory.Client.Test/Model/ClientCheckPermissionResultWithErrorTests.cs
 src/Ory.Client.Test/Model/ClientCloudAccountTests.cs
-src/Ory.Client.Test/Model/ClientConsistencyRequestParametersTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithRecoveryUiFlowTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithRecoveryUiTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithRedirectBrowserToTests.cs
@@ -728,6 +730,7 @@ src/Ory.Client.Test/Model/ClientUpdateFedcmFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateIdentityBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithCodeMethodTests.cs
+src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithDeviceAuthnMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithIdentifierFirstMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithLookupSecretMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateLoginFlowWithOidcMethodTests.cs
@@ -749,6 +752,9 @@ src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowWithProfileMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowWithSamlMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowWithWebAuthnMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowBodyTests.cs
+src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodAddTests.cs
+src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodDeleteTests.cs
+src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithLookupMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithOidcMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithPasskeyMethodTests.cs
@@ -857,7 +863,6 @@ src/Ory.Client/Model/ClientCheckOplSyntaxResult.cs
 src/Ory.Client/Model/ClientCheckPermissionResult.cs
 src/Ory.Client/Model/ClientCheckPermissionResultWithError.cs
 src/Ory.Client/Model/ClientCloudAccount.cs
-src/Ory.Client/Model/ClientConsistencyRequestParameters.cs
 src/Ory.Client/Model/ClientContinueWith.cs
 src/Ory.Client/Model/ClientContinueWithRecoveryUi.cs
 src/Ory.Client/Model/ClientContinueWithRecoveryUiFlow.cs
@@ -1142,6 +1147,7 @@ src/Ory.Client/Model/ClientUpdateFedcmFlowBody.cs
 src/Ory.Client/Model/ClientUpdateIdentityBody.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowBody.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithCodeMethod.cs
+src/Ory.Client/Model/ClientUpdateLoginFlowWithDeviceAuthnMethod.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithIdentifierFirstMethod.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithLookupSecretMethod.cs
 src/Ory.Client/Model/ClientUpdateLoginFlowWithOidcMethod.cs
@@ -1163,6 +1169,9 @@ src/Ory.Client/Model/ClientUpdateRegistrationFlowWithProfileMethod.cs
 src/Ory.Client/Model/ClientUpdateRegistrationFlowWithSamlMethod.cs
 src/Ory.Client/Model/ClientUpdateRegistrationFlowWithWebAuthnMethod.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowBody.cs
+src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethod.cs
+src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodAdd.cs
+src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodDelete.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithLookupMethod.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithOidcMethod.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithPasskeyMethod.cs

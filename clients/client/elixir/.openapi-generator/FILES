@@ -55,7 +55,6 @@ lib/ory/model/check_opl_syntax_result.ex
 lib/ory/model/check_permission_result.ex
 lib/ory/model/check_permission_result_with_error.ex
 lib/ory/model/cloud_account.ex
-lib/ory/model/consistency_request_parameters.ex
 lib/ory/model/continue_with.ex
 lib/ory/model/continue_with_recovery_ui.ex
 lib/ory/model/continue_with_recovery_ui_flow.ex
@@ -340,6 +339,7 @@ lib/ory/model/update_fedcm_flow_body.ex
 lib/ory/model/update_identity_body.ex
 lib/ory/model/update_login_flow_body.ex
 lib/ory/model/update_login_flow_with_code_method.ex
+lib/ory/model/update_login_flow_with_device_authn_method.ex
 lib/ory/model/update_login_flow_with_identifier_first_method.ex
 lib/ory/model/update_login_flow_with_lookup_secret_method.ex
 lib/ory/model/update_login_flow_with_oidc_method.ex
@@ -361,6 +361,9 @@ lib/ory/model/update_registration_flow_with_profile_method.ex
 lib/ory/model/update_registration_flow_with_saml_method.ex
 lib/ory/model/update_registration_flow_with_web_authn_method.ex
 lib/ory/model/update_settings_flow_body.ex
+lib/ory/model/update_settings_flow_with_device_authn_method.ex
+lib/ory/model/update_settings_flow_with_device_authn_method_add.ex
+lib/ory/model/update_settings_flow_with_device_authn_method_delete.ex
 lib/ory/model/update_settings_flow_with_lookup_method.ex
 lib/ory/model/update_settings_flow_with_oidc_method.ex
 lib/ory/model/update_settings_flow_with_passkey_method.ex

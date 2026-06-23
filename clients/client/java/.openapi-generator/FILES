@@ -41,7 +41,6 @@ docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
 docs/CheckPermissionResultWithError.md
 docs/CloudAccount.md
-docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
@@ -338,6 +337,7 @@ docs/UpdateFedcmFlowBody.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
+docs/UpdateLoginFlowWithDeviceAuthnMethod.md
 docs/UpdateLoginFlowWithIdentifierFirstMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
@@ -359,6 +359,9 @@ docs/UpdateRegistrationFlowWithProfileMethod.md
 docs/UpdateRegistrationFlowWithSamlMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
 docs/UpdateSettingsFlowWithPasskeyMethod.md
@@ -472,7 +475,6 @@ src/main/java/sh/ory/model/CheckOplSyntaxResult.java
 src/main/java/sh/ory/model/CheckPermissionResult.java
 src/main/java/sh/ory/model/CheckPermissionResultWithError.java
 src/main/java/sh/ory/model/CloudAccount.java
-src/main/java/sh/ory/model/ConsistencyRequestParameters.java
 src/main/java/sh/ory/model/ContinueWith.java
 src/main/java/sh/ory/model/ContinueWithRecoveryUi.java
 src/main/java/sh/ory/model/ContinueWithRecoveryUiFlow.java
@@ -757,6 +759,7 @@ src/main/java/sh/ory/model/UpdateFedcmFlowBody.java
 src/main/java/sh/ory/model/UpdateIdentityBody.java
 src/main/java/sh/ory/model/UpdateLoginFlowBody.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithCodeMethod.java
+src/main/java/sh/ory/model/UpdateLoginFlowWithDeviceAuthnMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithIdentifierFirstMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithLookupSecretMethod.java
 src/main/java/sh/ory/model/UpdateLoginFlowWithOidcMethod.java
@@ -778,6 +781,9 @@ src/main/java/sh/ory/model/UpdateRegistrationFlowWithProfileMethod.java
 src/main/java/sh/ory/model/UpdateRegistrationFlowWithSamlMethod.java
 src/main/java/sh/ory/model/UpdateRegistrationFlowWithWebAuthnMethod.java
 src/main/java/sh/ory/model/UpdateSettingsFlowBody.java
+src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethod.java
+src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodAdd.java
+src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodDelete.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithLookupMethod.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithOidcMethod.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithPasskeyMethod.java
@@ -858,7 +864,6 @@ src/test/java/sh/ory/model/CheckOplSyntaxResultTest.java
 src/test/java/sh/ory/model/CheckPermissionResultTest.java
 src/test/java/sh/ory/model/CheckPermissionResultWithErrorTest.java
 src/test/java/sh/ory/model/CloudAccountTest.java
-src/test/java/sh/ory/model/ConsistencyRequestParametersTest.java
 src/test/java/sh/ory/model/ContinueWithRecoveryUiFlowTest.java
 src/test/java/sh/ory/model/ContinueWithRecoveryUiTest.java
 src/test/java/sh/ory/model/ContinueWithRedirectBrowserToTest.java
@@ -1143,6 +1148,7 @@ src/test/java/sh/ory/model/UpdateFedcmFlowBodyTest.java
 src/test/java/sh/ory/model/UpdateIdentityBodyTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowBodyTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithCodeMethodTest.java
+src/test/java/sh/ory/model/UpdateLoginFlowWithDeviceAuthnMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithIdentifierFirstMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithLookupSecretMethodTest.java
 src/test/java/sh/ory/model/UpdateLoginFlowWithOidcMethodTest.java
@@ -1164,6 +1170,9 @@ src/test/java/sh/ory/model/UpdateRegistrationFlowWithProfileMethodTest.java
 src/test/java/sh/ory/model/UpdateRegistrationFlowWithSamlMethodTest.java
 src/test/java/sh/ory/model/UpdateRegistrationFlowWithWebAuthnMethodTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowBodyTest.java
+src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodAddTest.java
+src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodDeleteTest.java
+src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithLookupMethodTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithOidcMethodTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithPasskeyMethodTest.java

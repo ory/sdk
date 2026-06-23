@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.56
+  version: v1.22.57
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -14777,40 +14777,6 @@ components:
       - id
       - name
       type: object
-    consistencyRequestParameters:
-      description: Control API consistency guarantees
-      properties:
-        consistency:
-          description: |-
-            Read Consistency Level (preview)
-
-            The read consistency level determines the consistency guarantee for reads:
-
-            strong (slow): The read is guaranteed to return the most recent data committed at the start of the read.
-            eventual (very fast): The result will return data that is about 4.8 seconds old.
-
-            The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with
-            `ory patch project --replace '/previews/default_read_consistency_level="strong"'`.
-
-            Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency
-            controls to more APIs. Currently, the following APIs will be affected by this setting:
-
-            `GET /admin/identities`
-
-            This feature is in preview and only available in Ory Network.
-             ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level.
-            strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level.
-            eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
-          enum:
-          - ""
-          - strong
-          - eventual
-          type: string
-          x-go-enum-desc: |2-
-             ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level.
-            strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level.
-            eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
-      type: object
     continueWith:
       discriminator:
         mapping:
@@ -27953,6 +27919,7 @@ components:
       discriminator:
         mapping:
           code: "#/components/schemas/updateLoginFlowWithCodeMethod"
+          deviceauthn: "#/components/schemas/updateLoginFlowWithDeviceAuthnMethod"
           identifier_first: "#/components/schemas/updateLoginFlowWithIdentifierFirstMethod"
           lookup_secret: "#/components/schemas/updateLoginFlowWithLookupSecretMethod"
           oidc: "#/components/schemas/updateLoginFlowWithOidcMethod"
@@ -27968,6 +27935,7 @@ components:
       - $ref: "#/components/schemas/updateLoginFlowWithSamlMethod"
       - $ref: "#/components/schemas/updateLoginFlowWithTotpMethod"
       - $ref: "#/components/schemas/updateLoginFlowWithWebAuthnMethod"
+      - $ref: "#/components/schemas/updateLoginFlowWithDeviceAuthnMethod"
       - $ref: "#/components/schemas/updateLoginFlowWithLookupSecretMethod"
       - $ref: "#/components/schemas/updateLoginFlowWithCodeMethod"
       - $ref: "#/components/schemas/updateLoginFlowWithPasskeyMethod"
@@ -28004,6 +27972,31 @@ components:
       required:
       - csrf_token
       - method
+      type: object
+    updateLoginFlowWithDeviceAuthnMethod:
+      description: No CSRF token since this method may not be used from the browser.
+      properties:
+        client_key_id:
+          description: |-
+            Login with a DeviceAuthn Security Key.
+
+            This must contain the client ID of the DeviceAuthN key,
+            a.k.a 'key alias' on Android and 'key id' on iOS.
+          type: string
+        method:
+          description: Method should be set to "deviceauthn" when logging in using
+            the DeviceAuthn strategy.
+          type: string
+        signature:
+          description: Signature is a ES256 signature of the server-provided challenge.
+          format: byte
+          type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
+      title: Update Login Flow with DeviceAuthn Method
       type: object
     updateLoginFlowWithIdentifierFirstMethod:
       description: Update Login Flow with Multi-Step Method
@@ -28621,6 +28614,7 @@ components:
       description: Update Settings Flow Request Body
       discriminator:
         mapping:
+          deviceauthn: "#/components/schemas/updateSettingsFlowWithDeviceAuthnMethod"
           lookup_secret: "#/components/schemas/updateSettingsFlowWithLookupMethod"
           oidc: "#/components/schemas/updateSettingsFlowWithOidcMethod"
           passkey: "#/components/schemas/updateSettingsFlowWithPasskeyMethod"
@@ -28639,6 +28633,70 @@ components:
       - $ref: "#/components/schemas/updateSettingsFlowWithWebAuthnMethod"
       - $ref: "#/components/schemas/updateSettingsFlowWithLookupMethod"
       - $ref: "#/components/schemas/updateSettingsFlowWithPasskeyMethod"
+      - $ref: "#/components/schemas/updateSettingsFlowWithDeviceAuthnMethod"
+    updateSettingsFlowWithDeviceAuthnMethod:
+      description: Update Settings Flow with DeviceAuthn Method
+      properties:
+        add:
+          $ref: "#/components/schemas/updateSettingsFlowWithDeviceAuthnMethodAdd"
+        csrf_token:
+          description: |-
+            CSRFToken is the anti-CSRF token
+            It only is required to remove a key from the browser.
+          type: string
+        delete:
+          $ref: "#/components/schemas/updateSettingsFlowWithDeviceAuthnMethodDelete"
+        method:
+          description: |-
+            Method
+
+            Should be set to "deviceauthn" when trying to add or remove a DeviceAuthn key.
+          type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
+      required:
+      - method
+      type: object
+    updateSettingsFlowWithDeviceAuthnMethodAdd:
+      properties:
+        attestation_ios:
+          format: byte
+          type: string
+        certificate_chain_android:
+          description: |-
+            CertificateChainAndroid is a list of base64 strings for creating a key on Android.
+            Each element is a certificate.
+            The first element is the leaf, corresponding to the on-device key, the last is the root (Google CA).
+          items:
+            format: byte
+            type: string
+          type: array
+        client_key_id:
+          description: ClientKeyID is the key id/alias on the device.
+          type: string
+        device_name:
+          description: DeviceName is a human-readable name for the device e.g. 'My
+            work phone'.
+          type: string
+        version:
+          description: |-
+            Version is the version number for the cryptography.
+            For now only `1` is supported which corresponds to SHA256 + EC.
+          format: int64
+          type: integer
+      required:
+      - client_key_id
+      - device_name
+      type: object
+    updateSettingsFlowWithDeviceAuthnMethodDelete:
+      properties:
+        client_key_id:
+          description: ClientKeyID is the key id/alias on the device.
+          type: string
+      required:
+      - client_key_id
+      type: object
     updateSettingsFlowWithLookupMethod:
       description: Update Settings Flow with Lookup Method
       properties:

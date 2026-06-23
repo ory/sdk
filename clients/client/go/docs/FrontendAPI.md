@@ -2257,7 +2257,7 @@ import (
 
 func main() {
 	flow := "flow_example" // string | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-	updateSettingsFlowBody := openapiclient.updateSettingsFlowBody{UpdateSettingsFlowWithLookupMethod: openapiclient.NewUpdateSettingsFlowWithLookupMethod("Method_example")} // UpdateSettingsFlowBody | 
+	updateSettingsFlowBody := openapiclient.updateSettingsFlowBody{UpdateSettingsFlowWithDeviceAuthnMethod: openapiclient.NewUpdateSettingsFlowWithDeviceAuthnMethod("Method_example")} // UpdateSettingsFlowBody | 
 	xSessionToken := "xSessionToken_example" // string | The Session Token of the Identity performing the settings flow. (optional)
 	cookie := "cookie_example" // string | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
 

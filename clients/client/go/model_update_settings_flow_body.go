@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.56
+API version: v1.22.57
 Contact: support@ory.sh
 */
 
@@ -18,6 +18,7 @@ import (
 
 // UpdateSettingsFlowBody - Update Settings Flow Request Body
 type UpdateSettingsFlowBody struct {
+	UpdateSettingsFlowWithDeviceAuthnMethod *UpdateSettingsFlowWithDeviceAuthnMethod
 	UpdateSettingsFlowWithLookupMethod *UpdateSettingsFlowWithLookupMethod
 	UpdateSettingsFlowWithOidcMethod *UpdateSettingsFlowWithOidcMethod
 	UpdateSettingsFlowWithPasskeyMethod *UpdateSettingsFlowWithPasskeyMethod
@@ -26,6 +27,13 @@ type UpdateSettingsFlowBody struct {
 	UpdateSettingsFlowWithSamlMethod *UpdateSettingsFlowWithSamlMethod
 	UpdateSettingsFlowWithTotpMethod *UpdateSettingsFlowWithTotpMethod
 	UpdateSettingsFlowWithWebAuthnMethod *UpdateSettingsFlowWithWebAuthnMethod
+}
+
+// UpdateSettingsFlowWithDeviceAuthnMethodAsUpdateSettingsFlowBody is a convenience function that returns UpdateSettingsFlowWithDeviceAuthnMethod wrapped in UpdateSettingsFlowBody
+func UpdateSettingsFlowWithDeviceAuthnMethodAsUpdateSettingsFlowBody(v *UpdateSettingsFlowWithDeviceAuthnMethod) UpdateSettingsFlowBody {
+	return UpdateSettingsFlowBody{
+		UpdateSettingsFlowWithDeviceAuthnMethod: v,
+	}
 }
 
 // UpdateSettingsFlowWithLookupMethodAsUpdateSettingsFlowBody is a convenience function that returns UpdateSettingsFlowWithLookupMethod wrapped in UpdateSettingsFlowBody
@@ -93,6 +101,18 @@ func (dst *UpdateSettingsFlowBody) UnmarshalJSON(data []byte) error {
 	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'deviceauthn'
+	if jsonDict["method"] == "deviceauthn" {
+		// try to unmarshal JSON data into UpdateSettingsFlowWithDeviceAuthnMethod
+		err = json.Unmarshal(data, &dst.UpdateSettingsFlowWithDeviceAuthnMethod)
+		if err == nil {
+			return nil // data stored in dst.UpdateSettingsFlowWithDeviceAuthnMethod, return on the first match
+		} else {
+			dst.UpdateSettingsFlowWithDeviceAuthnMethod = nil
+			return fmt.Errorf("failed to unmarshal UpdateSettingsFlowBody as UpdateSettingsFlowWithDeviceAuthnMethod: %s", err.Error())
+		}
 	}
 
 	// check if the discriminator value is 'lookup_secret'
@@ -196,6 +216,10 @@ func (dst *UpdateSettingsFlowBody) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src UpdateSettingsFlowBody) MarshalJSON() ([]byte, error) {
+	if src.UpdateSettingsFlowWithDeviceAuthnMethod != nil {
+		return json.Marshal(&src.UpdateSettingsFlowWithDeviceAuthnMethod)
+	}
+
 	if src.UpdateSettingsFlowWithLookupMethod != nil {
 		return json.Marshal(&src.UpdateSettingsFlowWithLookupMethod)
 	}
@@ -236,6 +260,10 @@ func (obj *UpdateSettingsFlowBody) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
+	if obj.UpdateSettingsFlowWithDeviceAuthnMethod != nil {
+		return obj.UpdateSettingsFlowWithDeviceAuthnMethod
+	}
+
 	if obj.UpdateSettingsFlowWithLookupMethod != nil {
 		return obj.UpdateSettingsFlowWithLookupMethod
 	}
@@ -274,6 +302,10 @@ func (obj *UpdateSettingsFlowBody) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj UpdateSettingsFlowBody) GetActualInstanceValue() (interface{}) {
+	if obj.UpdateSettingsFlowWithDeviceAuthnMethod != nil {
+		return *obj.UpdateSettingsFlowWithDeviceAuthnMethod
+	}
+
 	if obj.UpdateSettingsFlowWithLookupMethod != nil {
 		return *obj.UpdateSettingsFlowWithLookupMethod
 	}

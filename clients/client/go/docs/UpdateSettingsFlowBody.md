@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CsrfToken** | Pointer to **string** | CSRFToken is the anti-CSRF token | [optional] 
-**Method** | **string** | Method  Should be set to \&quot;passkey\&quot; when trying to add, update, or remove a webAuthn pairing. | 
+**CsrfToken** | Pointer to **string** | CSRFToken is the anti-CSRF token It only is required to remove a key from the browser. | [optional] 
+**Method** | **string** | Method  Should be set to \&quot;deviceauthn\&quot; when trying to add or remove a DeviceAuthn key. | 
 **Password** | **string** | Password is the updated password | 
 **TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 **Traits** | **map[string]interface{}** | The identity&#39;s traits  in: body | 
@@ -24,6 +24,8 @@ Name | Type | Description | Notes
 **LookupSecretReveal** | Pointer to **bool** | If set to true will reveal the lookup secrets | [optional] 
 **PasskeyRemove** | Pointer to **string** | Remove a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 **PasskeySettingsRegister** | Pointer to **string** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. | [optional] 
+**Add** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodAdd**](UpdateSettingsFlowWithDeviceAuthnMethodAdd.md) |  | [optional] 
+**Delete** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodDelete**](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md) |  | [optional] 
 
 ## Methods
 
@@ -528,6 +530,56 @@ SetPasskeySettingsRegister sets PasskeySettingsRegister field to given value.
 `func (o *UpdateSettingsFlowBody) HasPasskeySettingsRegister() bool`
 
 HasPasskeySettingsRegister returns a boolean if a field has been set.
+
+### GetAdd
+
+`func (o *UpdateSettingsFlowBody) GetAdd() UpdateSettingsFlowWithDeviceAuthnMethodAdd`
+
+GetAdd returns the Add field if non-nil, zero value otherwise.
+
+### GetAddOk
+
+`func (o *UpdateSettingsFlowBody) GetAddOk() (*UpdateSettingsFlowWithDeviceAuthnMethodAdd, bool)`
+
+GetAddOk returns a tuple with the Add field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdd
+
+`func (o *UpdateSettingsFlowBody) SetAdd(v UpdateSettingsFlowWithDeviceAuthnMethodAdd)`
+
+SetAdd sets Add field to given value.
+
+### HasAdd
+
+`func (o *UpdateSettingsFlowBody) HasAdd() bool`
+
+HasAdd returns a boolean if a field has been set.
+
+### GetDelete
+
+`func (o *UpdateSettingsFlowBody) GetDelete() UpdateSettingsFlowWithDeviceAuthnMethodDelete`
+
+GetDelete returns the Delete field if non-nil, zero value otherwise.
+
+### GetDeleteOk
+
+`func (o *UpdateSettingsFlowBody) GetDeleteOk() (*UpdateSettingsFlowWithDeviceAuthnMethodDelete, bool)`
+
+GetDeleteOk returns a tuple with the Delete field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDelete
+
+`func (o *UpdateSettingsFlowBody) SetDelete(v UpdateSettingsFlowWithDeviceAuthnMethodDelete)`
+
+SetDelete sets Delete field to given value.
+
+### HasDelete
+
+`func (o *UpdateSettingsFlowBody) HasDelete() bool`
+
+HasDelete returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

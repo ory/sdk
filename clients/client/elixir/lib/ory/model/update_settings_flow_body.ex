@@ -27,7 +27,9 @@ defmodule Ory.Model.UpdateSettingsFlowBody do
     :lookup_secret_regenerate,
     :lookup_secret_reveal,
     :passkey_remove,
-    :passkey_settings_register
+    :passkey_settings_register,
+    :add,
+    :delete
   ]
 
   @type t :: %__MODULE__{
@@ -50,11 +52,17 @@ defmodule Ory.Model.UpdateSettingsFlowBody do
     :lookup_secret_regenerate => boolean() | nil,
     :lookup_secret_reveal => boolean() | nil,
     :passkey_remove => String.t | nil,
-    :passkey_settings_register => String.t | nil
+    :passkey_settings_register => String.t | nil,
+    :add => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd.t | nil,
+    :delete => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodDelete.t | nil
   }
+
+  alias Ory.Deserializer
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:add, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd)
+     |> Deserializer.deserialize(:delete, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodDelete)
   end
 end
 

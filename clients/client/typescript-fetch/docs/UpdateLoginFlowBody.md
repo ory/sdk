@@ -19,6 +19,8 @@ Name | Type
 `upstream_parameters` | object
 `totp_code` | string
 `webauthn_login` | string
+`client_key_id` | string
+`signature` | string
 `lookup_secret` | string
 `address` | string
 `code` | string
@@ -45,6 +47,8 @@ const example = {
   "upstream_parameters": null,
   "totp_code": null,
   "webauthn_login": null,
+  "client_key_id": null,
+  "signature": null,
   "lookup_secret": null,
   "address": null,
   "code": null,

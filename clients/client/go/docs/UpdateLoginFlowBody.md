@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **UpstreamParameters** | Pointer to **map[string]interface{}** | UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: &#x60;hd&#x60; (string): The &#x60;hd&#x60; parameter limits the login/registration process to a Google Organization, e.g. &#x60;mycollege.edu&#x60;. &#x60;prompt&#x60; (string): The &#x60;prompt&#x60; specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. &#x60;select_account&#x60;. &#x60;acr_values&#x60; (string): The &#x60;acr_values&#x60; specifies the Authentication Context Class Reference values for the authorization request. | [optional] 
 **TotpCode** | **string** | The TOTP code. | 
 **WebauthnLogin** | Pointer to **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
+**ClientKeyId** | Pointer to **string** | Login with a DeviceAuthn Security Key.  This must contain the client ID of the DeviceAuthN key, a.k.a &#39;key alias&#39; on Android and &#39;key id&#39; on iOS. | [optional] 
+**Signature** | Pointer to **string** | Signature is a ES256 signature of the server-provided challenge. | [optional] 
 **LookupSecret** | **string** | The lookup secret. | 
 **Address** | Pointer to **string** | Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows. | [optional] 
 **Code** | Pointer to **string** | Code is the 6 digits code sent to the user | [optional] 
@@ -336,6 +338,56 @@ SetWebauthnLogin sets WebauthnLogin field to given value.
 `func (o *UpdateLoginFlowBody) HasWebauthnLogin() bool`
 
 HasWebauthnLogin returns a boolean if a field has been set.
+
+### GetClientKeyId
+
+`func (o *UpdateLoginFlowBody) GetClientKeyId() string`
+
+GetClientKeyId returns the ClientKeyId field if non-nil, zero value otherwise.
+
+### GetClientKeyIdOk
+
+`func (o *UpdateLoginFlowBody) GetClientKeyIdOk() (*string, bool)`
+
+GetClientKeyIdOk returns a tuple with the ClientKeyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientKeyId
+
+`func (o *UpdateLoginFlowBody) SetClientKeyId(v string)`
+
+SetClientKeyId sets ClientKeyId field to given value.
+
+### HasClientKeyId
+
+`func (o *UpdateLoginFlowBody) HasClientKeyId() bool`
+
+HasClientKeyId returns a boolean if a field has been set.
+
+### GetSignature
+
+`func (o *UpdateLoginFlowBody) GetSignature() string`
+
+GetSignature returns the Signature field if non-nil, zero value otherwise.
+
+### GetSignatureOk
+
+`func (o *UpdateLoginFlowBody) GetSignatureOk() (*string, bool)`
+
+GetSignatureOk returns a tuple with the Signature field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSignature
+
+`func (o *UpdateLoginFlowBody) SetSignature(v string)`
+
+SetSignature sets Signature field to given value.
+
+### HasSignature
+
+`func (o *UpdateLoginFlowBody) HasSignature() bool`
+
+HasSignature returns a boolean if a field has been set.
 
 ### GetLookupSecret
 

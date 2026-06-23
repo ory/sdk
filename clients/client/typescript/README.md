@@ -1,4 +1,4 @@
-## @ory/client@v1.22.56
+## @ory/client@v1.22.57
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.56 --save
+npm install @ory/client@v1.22.57 --save
 ```
 
 _unPublished (not recommended):_
@@ -258,7 +258,6 @@ Class | Method | HTTP request | Description
  - [CheckPermissionResult](docs/CheckPermissionResult.md)
  - [CheckPermissionResultWithError](docs/CheckPermissionResultWithError.md)
  - [CloudAccount](docs/CloudAccount.md)
- - [ConsistencyRequestParameters](docs/ConsistencyRequestParameters.md)
  - [ContinueWith](docs/ContinueWith.md)
  - [ContinueWithRecoveryUi](docs/ContinueWithRecoveryUi.md)
  - [ContinueWithRecoveryUiFlow](docs/ContinueWithRecoveryUiFlow.md)
@@ -543,6 +542,7 @@ Class | Method | HTTP request | Description
  - [UpdateIdentityBody](docs/UpdateIdentityBody.md)
  - [UpdateLoginFlowBody](docs/UpdateLoginFlowBody.md)
  - [UpdateLoginFlowWithCodeMethod](docs/UpdateLoginFlowWithCodeMethod.md)
+ - [UpdateLoginFlowWithDeviceAuthnMethod](docs/UpdateLoginFlowWithDeviceAuthnMethod.md)
  - [UpdateLoginFlowWithIdentifierFirstMethod](docs/UpdateLoginFlowWithIdentifierFirstMethod.md)
  - [UpdateLoginFlowWithLookupSecretMethod](docs/UpdateLoginFlowWithLookupSecretMethod.md)
  - [UpdateLoginFlowWithOidcMethod](docs/UpdateLoginFlowWithOidcMethod.md)
@@ -564,6 +564,9 @@ Class | Method | HTTP request | Description
  - [UpdateRegistrationFlowWithSamlMethod](docs/UpdateRegistrationFlowWithSamlMethod.md)
  - [UpdateRegistrationFlowWithWebAuthnMethod](docs/UpdateRegistrationFlowWithWebAuthnMethod.md)
  - [UpdateSettingsFlowBody](docs/UpdateSettingsFlowBody.md)
+ - [UpdateSettingsFlowWithDeviceAuthnMethod](docs/UpdateSettingsFlowWithDeviceAuthnMethod.md)
+ - [UpdateSettingsFlowWithDeviceAuthnMethodAdd](docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md)
+ - [UpdateSettingsFlowWithDeviceAuthnMethodDelete](docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md)
  - [UpdateSettingsFlowWithLookupMethod](docs/UpdateSettingsFlowWithLookupMethod.md)
  - [UpdateSettingsFlowWithOidcMethod](docs/UpdateSettingsFlowWithOidcMethod.md)
  - [UpdateSettingsFlowWithPasskeyMethod](docs/UpdateSettingsFlowWithPasskeyMethod.md)

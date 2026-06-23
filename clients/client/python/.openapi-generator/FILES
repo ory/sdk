@@ -39,7 +39,6 @@ docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
 docs/CheckPermissionResultWithError.md
 docs/CloudAccount.md
-docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
@@ -336,6 +335,7 @@ docs/UpdateFedcmFlowBody.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
+docs/UpdateLoginFlowWithDeviceAuthnMethod.md
 docs/UpdateLoginFlowWithIdentifierFirstMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
@@ -357,6 +357,9 @@ docs/UpdateRegistrationFlowWithProfileMethod.md
 docs/UpdateRegistrationFlowWithSamlMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
 docs/UpdateSettingsFlowWithPasskeyMethod.md
@@ -447,7 +450,6 @@ ory_client/models/check_opl_syntax_result.py
 ory_client/models/check_permission_result.py
 ory_client/models/check_permission_result_with_error.py
 ory_client/models/cloud_account.py
-ory_client/models/consistency_request_parameters.py
 ory_client/models/continue_with.py
 ory_client/models/continue_with_recovery_ui.py
 ory_client/models/continue_with_recovery_ui_flow.py
@@ -732,6 +734,7 @@ ory_client/models/update_fedcm_flow_body.py
 ory_client/models/update_identity_body.py
 ory_client/models/update_login_flow_body.py
 ory_client/models/update_login_flow_with_code_method.py
+ory_client/models/update_login_flow_with_device_authn_method.py
 ory_client/models/update_login_flow_with_identifier_first_method.py
 ory_client/models/update_login_flow_with_lookup_secret_method.py
 ory_client/models/update_login_flow_with_oidc_method.py
@@ -753,6 +756,9 @@ ory_client/models/update_registration_flow_with_profile_method.py
 ory_client/models/update_registration_flow_with_saml_method.py
 ory_client/models/update_registration_flow_with_web_authn_method.py
 ory_client/models/update_settings_flow_body.py
+ory_client/models/update_settings_flow_with_device_authn_method.py
+ory_client/models/update_settings_flow_with_device_authn_method_add.py
+ory_client/models/update_settings_flow_with_device_authn_method_delete.py
 ory_client/models/update_settings_flow_with_lookup_method.py
 ory_client/models/update_settings_flow_with_oidc_method.py
 ory_client/models/update_settings_flow_with_passkey_method.py
@@ -827,7 +833,6 @@ test/test_check_opl_syntax_result.py
 test/test_check_permission_result.py
 test/test_check_permission_result_with_error.py
 test/test_cloud_account.py
-test/test_consistency_request_parameters.py
 test/test_continue_with.py
 test/test_continue_with_recovery_ui.py
 test/test_continue_with_recovery_ui_flow.py
@@ -1124,6 +1129,7 @@ test/test_update_fedcm_flow_body.py
 test/test_update_identity_body.py
 test/test_update_login_flow_body.py
 test/test_update_login_flow_with_code_method.py
+test/test_update_login_flow_with_device_authn_method.py
 test/test_update_login_flow_with_identifier_first_method.py
 test/test_update_login_flow_with_lookup_secret_method.py
 test/test_update_login_flow_with_oidc_method.py
@@ -1145,6 +1151,9 @@ test/test_update_registration_flow_with_profile_method.py
 test/test_update_registration_flow_with_saml_method.py
 test/test_update_registration_flow_with_web_authn_method.py
 test/test_update_settings_flow_body.py
+test/test_update_settings_flow_with_device_authn_method.py
+test/test_update_settings_flow_with_device_authn_method_add.py
+test/test_update_settings_flow_with_device_authn_method_delete.py
 test/test_update_settings_flow_with_lookup_method.py
 test/test_update_settings_flow_with_oidc_method.py
 test/test_update_settings_flow_with_passkey_method.py

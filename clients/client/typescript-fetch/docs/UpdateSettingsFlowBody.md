@@ -27,6 +27,8 @@ Name | Type
 `lookup_secret_reveal` | boolean
 `passkey_remove` | string
 `passkey_settings_register` | string
+`add` | [UpdateSettingsFlowWithDeviceAuthnMethodAdd](UpdateSettingsFlowWithDeviceAuthnMethodAdd.md)
+`_delete` | [UpdateSettingsFlowWithDeviceAuthnMethodDelete](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md)
 
 ## Example
 
@@ -55,6 +57,8 @@ const example = {
   "lookup_secret_reveal": null,
   "passkey_remove": null,
   "passkey_settings_register": null,
+  "add": null,
+  "_delete": null,
 } satisfies UpdateSettingsFlowBody
 
 console.log(example)

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.56
+API version: v1.22.57
 Contact: support@ory.sh
 */
 
@@ -19,6 +19,7 @@ import (
 // UpdateLoginFlowBody - struct for UpdateLoginFlowBody
 type UpdateLoginFlowBody struct {
 	UpdateLoginFlowWithCodeMethod *UpdateLoginFlowWithCodeMethod
+	UpdateLoginFlowWithDeviceAuthnMethod *UpdateLoginFlowWithDeviceAuthnMethod
 	UpdateLoginFlowWithIdentifierFirstMethod *UpdateLoginFlowWithIdentifierFirstMethod
 	UpdateLoginFlowWithLookupSecretMethod *UpdateLoginFlowWithLookupSecretMethod
 	UpdateLoginFlowWithOidcMethod *UpdateLoginFlowWithOidcMethod
@@ -33,6 +34,13 @@ type UpdateLoginFlowBody struct {
 func UpdateLoginFlowWithCodeMethodAsUpdateLoginFlowBody(v *UpdateLoginFlowWithCodeMethod) UpdateLoginFlowBody {
 	return UpdateLoginFlowBody{
 		UpdateLoginFlowWithCodeMethod: v,
+	}
+}
+
+// UpdateLoginFlowWithDeviceAuthnMethodAsUpdateLoginFlowBody is a convenience function that returns UpdateLoginFlowWithDeviceAuthnMethod wrapped in UpdateLoginFlowBody
+func UpdateLoginFlowWithDeviceAuthnMethodAsUpdateLoginFlowBody(v *UpdateLoginFlowWithDeviceAuthnMethod) UpdateLoginFlowBody {
+	return UpdateLoginFlowBody{
+		UpdateLoginFlowWithDeviceAuthnMethod: v,
 	}
 }
 
@@ -112,6 +120,18 @@ func (dst *UpdateLoginFlowBody) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.UpdateLoginFlowWithCodeMethod = nil
 			return fmt.Errorf("failed to unmarshal UpdateLoginFlowBody as UpdateLoginFlowWithCodeMethod: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'deviceauthn'
+	if jsonDict["method"] == "deviceauthn" {
+		// try to unmarshal JSON data into UpdateLoginFlowWithDeviceAuthnMethod
+		err = json.Unmarshal(data, &dst.UpdateLoginFlowWithDeviceAuthnMethod)
+		if err == nil {
+			return nil // data stored in dst.UpdateLoginFlowWithDeviceAuthnMethod, return on the first match
+		} else {
+			dst.UpdateLoginFlowWithDeviceAuthnMethod = nil
+			return fmt.Errorf("failed to unmarshal UpdateLoginFlowBody as UpdateLoginFlowWithDeviceAuthnMethod: %s", err.Error())
 		}
 	}
 
@@ -220,6 +240,10 @@ func (src UpdateLoginFlowBody) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.UpdateLoginFlowWithCodeMethod)
 	}
 
+	if src.UpdateLoginFlowWithDeviceAuthnMethod != nil {
+		return json.Marshal(&src.UpdateLoginFlowWithDeviceAuthnMethod)
+	}
+
 	if src.UpdateLoginFlowWithIdentifierFirstMethod != nil {
 		return json.Marshal(&src.UpdateLoginFlowWithIdentifierFirstMethod)
 	}
@@ -264,6 +288,10 @@ func (obj *UpdateLoginFlowBody) GetActualInstance() (interface{}) {
 		return obj.UpdateLoginFlowWithCodeMethod
 	}
 
+	if obj.UpdateLoginFlowWithDeviceAuthnMethod != nil {
+		return obj.UpdateLoginFlowWithDeviceAuthnMethod
+	}
+
 	if obj.UpdateLoginFlowWithIdentifierFirstMethod != nil {
 		return obj.UpdateLoginFlowWithIdentifierFirstMethod
 	}
@@ -304,6 +332,10 @@ func (obj *UpdateLoginFlowBody) GetActualInstance() (interface{}) {
 func (obj UpdateLoginFlowBody) GetActualInstanceValue() (interface{}) {
 	if obj.UpdateLoginFlowWithCodeMethod != nil {
 		return *obj.UpdateLoginFlowWithCodeMethod
+	}
+
+	if obj.UpdateLoginFlowWithDeviceAuthnMethod != nil {
+		return *obj.UpdateLoginFlowWithDeviceAuthnMethod
 	}
 
 	if obj.UpdateLoginFlowWithIdentifierFirstMethod != nil {

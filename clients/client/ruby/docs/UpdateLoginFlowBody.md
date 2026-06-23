@@ -15,6 +15,7 @@ OryClient::UpdateLoginFlowBody.openapi_one_of
 # =>
 # [
 #   :'UpdateLoginFlowWithCodeMethod',
+#   :'UpdateLoginFlowWithDeviceAuthnMethod',
 #   :'UpdateLoginFlowWithIdentifierFirstMethod',
 #   :'UpdateLoginFlowWithLookupSecretMethod',
 #   :'UpdateLoginFlowWithOidcMethod',
@@ -52,6 +53,7 @@ OryClient::UpdateLoginFlowBody.openapi_discriminator_mapping
 # =>
 # {
 #   :'code' => :'UpdateLoginFlowWithCodeMethod',
+#   :'deviceauthn' => :'UpdateLoginFlowWithDeviceAuthnMethod',
 #   :'identifier_first' => :'UpdateLoginFlowWithIdentifierFirstMethod',
 #   :'lookup_secret' => :'UpdateLoginFlowWithLookupSecretMethod',
 #   :'oidc' => :'UpdateLoginFlowWithOidcMethod',
@@ -88,6 +90,7 @@ OryClient::UpdateLoginFlowBody.build(data_that_doesnt_match)
 #### Return type
 
 - `UpdateLoginFlowWithCodeMethod`
+- `UpdateLoginFlowWithDeviceAuthnMethod`
 - `UpdateLoginFlowWithIdentifierFirstMethod`
 - `UpdateLoginFlowWithLookupSecretMethod`
 - `UpdateLoginFlowWithOidcMethod`

@@ -37,7 +37,6 @@ docs/CheckOplSyntaxResult.md
 docs/CheckPermissionResult.md
 docs/CheckPermissionResultWithError.md
 docs/CloudAccount.md
-docs/ConsistencyRequestParameters.md
 docs/ContinueWith.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
@@ -334,6 +333,7 @@ docs/UpdateFedcmFlowBody.md
 docs/UpdateIdentityBody.md
 docs/UpdateLoginFlowBody.md
 docs/UpdateLoginFlowWithCodeMethod.md
+docs/UpdateLoginFlowWithDeviceAuthnMethod.md
 docs/UpdateLoginFlowWithIdentifierFirstMethod.md
 docs/UpdateLoginFlowWithLookupSecretMethod.md
 docs/UpdateLoginFlowWithOidcMethod.md
@@ -355,6 +355,9 @@ docs/UpdateRegistrationFlowWithProfileMethod.md
 docs/UpdateRegistrationFlowWithSamlMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
 docs/UpdateSettingsFlowWithPasskeyMethod.md
@@ -447,7 +450,6 @@ src/models/CheckOplSyntaxResult.ts
 src/models/CheckPermissionResult.ts
 src/models/CheckPermissionResultWithError.ts
 src/models/CloudAccount.ts
-src/models/ConsistencyRequestParameters.ts
 src/models/ContinueWith.ts
 src/models/ContinueWithRecoveryUi.ts
 src/models/ContinueWithRecoveryUiFlow.ts
@@ -732,6 +734,7 @@ src/models/UpdateFedcmFlowBody.ts
 src/models/UpdateIdentityBody.ts
 src/models/UpdateLoginFlowBody.ts
 src/models/UpdateLoginFlowWithCodeMethod.ts
+src/models/UpdateLoginFlowWithDeviceAuthnMethod.ts
 src/models/UpdateLoginFlowWithIdentifierFirstMethod.ts
 src/models/UpdateLoginFlowWithLookupSecretMethod.ts
 src/models/UpdateLoginFlowWithOidcMethod.ts
@@ -753,6 +756,9 @@ src/models/UpdateRegistrationFlowWithProfileMethod.ts
 src/models/UpdateRegistrationFlowWithSamlMethod.ts
 src/models/UpdateRegistrationFlowWithWebAuthnMethod.ts
 src/models/UpdateSettingsFlowBody.ts
+src/models/UpdateSettingsFlowWithDeviceAuthnMethod.ts
+src/models/UpdateSettingsFlowWithDeviceAuthnMethodAdd.ts
+src/models/UpdateSettingsFlowWithDeviceAuthnMethodDelete.ts
 src/models/UpdateSettingsFlowWithLookupMethod.ts
 src/models/UpdateSettingsFlowWithOidcMethod.ts
 src/models/UpdateSettingsFlowWithPasskeyMethod.ts

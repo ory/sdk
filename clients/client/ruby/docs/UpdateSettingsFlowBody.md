@@ -14,6 +14,7 @@ require 'ory-client'
 OryClient::UpdateSettingsFlowBody.openapi_one_of
 # =>
 # [
+#   :'UpdateSettingsFlowWithDeviceAuthnMethod',
 #   :'UpdateSettingsFlowWithLookupMethod',
 #   :'UpdateSettingsFlowWithOidcMethod',
 #   :'UpdateSettingsFlowWithPasskeyMethod',
@@ -50,6 +51,7 @@ require 'ory-client'
 OryClient::UpdateSettingsFlowBody.openapi_discriminator_mapping
 # =>
 # {
+#   :'deviceauthn' => :'UpdateSettingsFlowWithDeviceAuthnMethod',
 #   :'lookup_secret' => :'UpdateSettingsFlowWithLookupMethod',
 #   :'oidc' => :'UpdateSettingsFlowWithOidcMethod',
 #   :'passkey' => :'UpdateSettingsFlowWithPasskeyMethod',
@@ -71,7 +73,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'ory-client'
 
 OryClient::UpdateSettingsFlowBody.build(data)
-# => #<UpdateSettingsFlowWithLookupMethod:0x00007fdd4aab02a0>
+# => #<UpdateSettingsFlowWithDeviceAuthnMethod:0x00007fdd4aab02a0>
 
 OryClient::UpdateSettingsFlowBody.build(data_that_doesnt_match)
 # => nil
@@ -85,6 +87,7 @@ OryClient::UpdateSettingsFlowBody.build(data_that_doesnt_match)
 
 #### Return type
 
+- `UpdateSettingsFlowWithDeviceAuthnMethod`
 - `UpdateSettingsFlowWithLookupMethod`
 - `UpdateSettingsFlowWithOidcMethod`
 - `UpdateSettingsFlowWithPasskeyMethod`

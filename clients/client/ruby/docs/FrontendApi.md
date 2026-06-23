@@ -2242,7 +2242,7 @@ require 'ory-client'
 
 api_instance = OryClient::FrontendApi.new
 flow = 'flow_example' # String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
-update_settings_flow_body = OryClient::UpdateSettingsFlowWithLookupMethod.new({method: 'method_example'}) # UpdateSettingsFlowBody | 
+update_settings_flow_body = OryClient::UpdateSettingsFlowWithDeviceAuthnMethod.new({method: 'method_example'}) # UpdateSettingsFlowBody | 
 opts = {
   x_session_token: 'x_session_token_example', # String | The Session Token of the Identity performing the settings flow.
   cookie: 'cookie_example' # String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected.

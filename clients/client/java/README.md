@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.56
-  - Build date: 2026-06-23T00:58:24.293700554Z[Etc/UTC]
+- API version: v1.22.57
+  - Build date: 2026-06-23T11:24:01.790884719Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.56</version>
+  <version>v1.22.57</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.56"
+     implementation "sh.ory:client:v1.22.57"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.56.jar`
+* `target/client-v1.22.57.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -347,7 +347,6 @@ Class | Method | HTTP request | Description
  - [CheckPermissionResult](docs/CheckPermissionResult.md)
  - [CheckPermissionResultWithError](docs/CheckPermissionResultWithError.md)
  - [CloudAccount](docs/CloudAccount.md)
- - [ConsistencyRequestParameters](docs/ConsistencyRequestParameters.md)
  - [ContinueWith](docs/ContinueWith.md)
  - [ContinueWithRecoveryUi](docs/ContinueWithRecoveryUi.md)
  - [ContinueWithRecoveryUiFlow](docs/ContinueWithRecoveryUiFlow.md)
@@ -632,6 +631,7 @@ Class | Method | HTTP request | Description
  - [UpdateIdentityBody](docs/UpdateIdentityBody.md)
  - [UpdateLoginFlowBody](docs/UpdateLoginFlowBody.md)
  - [UpdateLoginFlowWithCodeMethod](docs/UpdateLoginFlowWithCodeMethod.md)
+ - [UpdateLoginFlowWithDeviceAuthnMethod](docs/UpdateLoginFlowWithDeviceAuthnMethod.md)
  - [UpdateLoginFlowWithIdentifierFirstMethod](docs/UpdateLoginFlowWithIdentifierFirstMethod.md)
  - [UpdateLoginFlowWithLookupSecretMethod](docs/UpdateLoginFlowWithLookupSecretMethod.md)
  - [UpdateLoginFlowWithOidcMethod](docs/UpdateLoginFlowWithOidcMethod.md)
@@ -653,6 +653,9 @@ Class | Method | HTTP request | Description
  - [UpdateRegistrationFlowWithSamlMethod](docs/UpdateRegistrationFlowWithSamlMethod.md)
  - [UpdateRegistrationFlowWithWebAuthnMethod](docs/UpdateRegistrationFlowWithWebAuthnMethod.md)
  - [UpdateSettingsFlowBody](docs/UpdateSettingsFlowBody.md)
+ - [UpdateSettingsFlowWithDeviceAuthnMethod](docs/UpdateSettingsFlowWithDeviceAuthnMethod.md)
+ - [UpdateSettingsFlowWithDeviceAuthnMethodAdd](docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md)
+ - [UpdateSettingsFlowWithDeviceAuthnMethodDelete](docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md)
  - [UpdateSettingsFlowWithLookupMethod](docs/UpdateSettingsFlowWithLookupMethod.md)
  - [UpdateSettingsFlowWithOidcMethod](docs/UpdateSettingsFlowWithOidcMethod.md)
  - [UpdateSettingsFlowWithPasskeyMethod](docs/UpdateSettingsFlowWithPasskeyMethod.md)
