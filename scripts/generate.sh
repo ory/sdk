@@ -56,14 +56,6 @@ typescript () {
 
   cat "${file}"
   cp "LICENSE" "clients/${PROJECT}/typescript"
-
-  # The typescript-axios generator does not support `httpUserAgent`, and browsers
-  # forbid setting `User-Agent` from JS. Inject a custom `X-Ory-SDK` header into
-  # the default request headers so every request identifies the SDK for usage
-  # tracking. This mirrors the post-generation patching done elsewhere (jq/sed).
-  config_ts="${dir}/configuration.ts"
-  sed -i "s#\(\.\.\.param\.baseOptions?\.headers,\)#\1\n                \"X-Ory-SDK\": \"${SDK_USER_AGENT_BASE}-typescript/${VERSION}\",#" "${config_ts}"
-  grep -q "X-Ory-SDK" "${config_ts}" # fail loudly if the injection point moved
 }
 
 typescript_fetch () {
@@ -99,14 +91,6 @@ typescript_fetch () {
 
   cat "${file}"
   cp "LICENSE" "clients/${PROJECT}/typescript-fetch"
-
-  # The typescript-fetch generator does not support `httpUserAgent`, and browsers
-  # forbid setting `User-Agent` from JS. Append a custom `X-Ory-SDK` header (last,
-  # so it always wins) to the per-request header merge in runtime.ts to identify
-  # the SDK for usage tracking. Mirrors the post-generation patching done elsewhere.
-  runtime_ts="${dir}/src/runtime.ts"
-  sed -i "s#Object.assign({}, this.configuration.headers, context.headers);#Object.assign({}, this.configuration.headers, context.headers, { \"X-Ory-SDK\": \"${SDK_USER_AGENT_BASE}-typescript-fetch/${VERSION}\" });#" "${runtime_ts}"
-  grep -q "X-Ory-SDK" "${runtime_ts}" # fail loudly if the injection point moved
 }
 
 java () {
