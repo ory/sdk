@@ -398,7 +398,7 @@ defmodule Ory.Api.OAuth2 do
   - `{:ok, Ory.Model.OAuth2LogoutRequest.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_o_auth2_logout_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2LogoutRequest.t} | {:ok, Ory.Model.OAuth2RedirectTo.t} | {:error, Tesla.Env.t}
+  @spec get_o_auth2_logout_request(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2LogoutRequest.t} | {:error, Tesla.Env.t}
   def get_o_auth2_logout_request(connection, logout_challenge, _opts \\ []) do
     request =
       %{}
@@ -411,7 +411,6 @@ defmodule Ory.Api.OAuth2 do
     |> Connection.request(request)
     |> evaluate_response([
       {200, Ory.Model.OAuth2LogoutRequest},
-      {410, Ory.Model.OAuth2RedirectTo},
       {:default, Ory.Model.ErrorOAuth2}
     ])
   end

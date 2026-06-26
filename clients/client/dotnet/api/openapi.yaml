@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.57
+  version: v1.22.58
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -2097,12 +2097,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/oAuth2LogoutRequest"
           description: oAuth2LogoutRequest
-        "410":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/oAuth2RedirectTo"
-          description: oAuth2RedirectTo
         default:
           content:
             application/json:
@@ -10835,7 +10829,7 @@ components:
 
             This governs the "oauth2.grant.jwt.max_ttl" setting.
           example: 30m
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         hydra_oauth2_grant_refresh_token_rotation_grace_period:
           description: |-
@@ -11028,7 +11022,7 @@ components:
           default: 30m
           description: This governs the "ttl.access_token" setting.
           example: 1h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         hydra_ttl_auth_code:
           default: 720h
@@ -11039,13 +11033,13 @@ components:
 
             This governs the "ttl.auth_code" setting.
           example: 30m
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         hydra_ttl_id_token:
           default: 30m
           description: This governs the "ttl.id_token" setting.
           example: 1h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         hydra_ttl_login_consent_request:
           default: 30m
@@ -11054,7 +11048,7 @@ components:
 
             This governs the "ttl.login_consent_request" setting.
           example: 1h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         hydra_ttl_refresh_token:
           default: 720h
@@ -11065,7 +11059,7 @@ components:
 
             This governs the "ttl.refresh_token" setting.
           example: 30m
-          pattern: "^([0-9]+(ns|us|ms|s|m|h)|-1)$"
+          pattern: "^(([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+|-1)$"
           type: string
         hydra_urls_consent:
           description: |-
@@ -12413,17 +12407,17 @@ components:
           description: Talos cache TTL controls how long API key verification results
             are cached.
           example: 5m
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         talos_credentials_api_keys_default_ttl:
           description: Talos API keys default TTL.
           example: 1h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         talos_credentials_api_keys_max_ttl:
           description: Talos API keys max TTL.
           example: 24h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         talos_credentials_api_keys_prefix_current:
           description: Talos API keys prefix (current).
@@ -12453,7 +12447,7 @@ components:
           description: Talos derived tokens default TTL (applies to both JWT and macaroon
             tokens).
           example: 1h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         talos_credentials_derived_tokens_jwt_signing_key_id:
           description: Talos derived tokens JWT signing key ID (kid).
@@ -13460,7 +13454,7 @@ components:
       type: boolean
     NullDuration:
       nullable: true
-      pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+      pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
       type: string
     NullInt:
       nullable: true
@@ -15223,7 +15217,7 @@ components:
 
             The recovery code will expire after that amount of time has passed. Defaults to the configuration value of
             `selfservice.methods.code.config.lifespan`.
-          pattern: "^([0-9]+(ns|us|ms|s|m|h))*$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         flow_type:
           description: The flow type can either be `api` or `browser`.
@@ -15248,7 +15242,7 @@ components:
 
             The recovery link will expire after that amount of time has passed. Defaults to the configuration value of
             `selfservice.methods.code.config.lifespan`.
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         identity_id:
           description: |-
@@ -18995,7 +18989,7 @@ components:
 
             This governs the "oauth2.grant.jwt.max_ttl" setting.
           example: 30m
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         hydra_oauth2_grant_refresh_token_rotation_grace_period:
           description: |-
@@ -19188,7 +19182,7 @@ components:
           default: 30m
           description: This governs the "ttl.access_token" setting.
           example: 1h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         hydra_ttl_auth_code:
           default: 720h
@@ -19199,13 +19193,13 @@ components:
 
             This governs the "ttl.auth_code" setting.
           example: 30m
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         hydra_ttl_id_token:
           default: 30m
           description: This governs the "ttl.id_token" setting.
           example: 1h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         hydra_ttl_login_consent_request:
           default: 30m
@@ -19214,7 +19208,7 @@ components:
 
             This governs the "ttl.login_consent_request" setting.
           example: 1h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         hydra_ttl_refresh_token:
           default: 720h
@@ -19225,7 +19219,7 @@ components:
 
             This governs the "ttl.refresh_token" setting.
           example: 30m
-          pattern: "^([0-9]+(ns|us|ms|s|m|h)|-1)$"
+          pattern: "^(([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+|-1)$"
           type: string
         hydra_urls_consent:
           description: |-
@@ -20573,17 +20567,17 @@ components:
           description: Talos cache TTL controls how long API key verification results
             are cached.
           example: 5m
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         talos_credentials_api_keys_default_ttl:
           description: Talos API keys default TTL.
           example: 1h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         talos_credentials_api_keys_max_ttl:
           description: Talos API keys max TTL.
           example: 24h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         talos_credentials_api_keys_prefix_current:
           description: Talos API keys prefix (current).
@@ -20613,7 +20607,7 @@ components:
           description: Talos derived tokens default TTL (applies to both JWT and macaroon
             tokens).
           example: 1h
-          pattern: ^(\d+(\.\d+)?(ns|us|µs|ms|s|m|h))+$
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         talos_credentials_derived_tokens_jwt_signing_key_id:
           description: Talos derived tokens JWT signing key ID (kid).
@@ -21194,7 +21188,7 @@ components:
           default: 1m
           description: Token time to live
           example: 1h
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         updated_at:
           description: Last Time Project's Revision was Updated
@@ -21213,10 +21207,6 @@ components:
     nullBool:
       nullable: true
       type: boolean
-    nullDuration:
-      nullable: true
-      pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
-      type: string
     nullInt64:
       nullable: true
       type: integer
@@ -21369,15 +21359,15 @@ components:
           type: array
         authorization_code_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         authorization_code_grant_id_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         authorization_code_grant_refresh_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         backchannel_logout_session_required:
           description: |-
@@ -21395,7 +21385,7 @@ components:
           type: string
         client_credentials_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         client_id:
           description: |-
@@ -21451,15 +21441,15 @@ components:
           type: string
         device_authorization_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         device_authorization_grant_id_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         device_authorization_grant_refresh_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         frontchannel_logout_session_required:
           description: |-
@@ -21496,11 +21486,11 @@ components:
           type: array
         implicit_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         implicit_grant_id_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         jwks:
           $ref: "#/components/schemas/jsonWebKeySet"
@@ -21519,7 +21509,7 @@ components:
           type: string
         jwt_bearer_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         logo_uri:
           description: |-
@@ -21565,15 +21555,15 @@ components:
           type: array
         refresh_token_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         refresh_token_grant_id_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         refresh_token_grant_refresh_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         registration_access_token:
           description: |-
@@ -21702,55 +21692,55 @@ components:
       properties:
         authorization_code_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         authorization_code_grant_id_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         authorization_code_grant_refresh_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         client_credentials_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         device_authorization_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         device_authorization_grant_id_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         device_authorization_grant_refresh_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         implicit_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         implicit_grant_id_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         jwt_bearer_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         refresh_token_grant_access_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         refresh_token_grant_id_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
         refresh_token_grant_refresh_token_lifespan:
           nullable: true
-          pattern: "^[0-9]+(ns|us|ms|s|m|h)$"
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
       title: OAuth 2.0 Client Token Lifespans
       type: object
@@ -22517,20 +22507,18 @@ components:
         sid: sid
       properties:
         challenge:
-          description: Challenge is the identifier of the logout authentication request.
+          description: Challenge is used to retrieve/accept/deny the logout request.
           type: string
         client:
           $ref: "#/components/schemas/oAuth2Client"
         expires_at:
           format: date-time
-          title: NullTime implements sql.NullTime functionality.
           type: string
         request_url:
           description: RequestURL is the original Logout URL requested.
           type: string
         requested_at:
           format: date-time
-          title: NullTime implements sql.NullTime functionality.
           type: string
         rp_initiated:
           description: "RPInitiated is set to true if the request was initiated by\
@@ -22541,7 +22529,7 @@ components:
             out.
           type: string
         subject:
-          description: Subject is the user for whom the logout was request.
+          description: Subject is the user for whom the logout was requested.
           type: string
       title: Contains information about an ongoing logout request.
       type: object

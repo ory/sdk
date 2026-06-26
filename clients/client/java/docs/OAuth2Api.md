@@ -857,7 +857,6 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | oAuth2LogoutRequest |  -  |
-| **410** | oAuth2RedirectTo |  -  |
 | **0** | errorOAuth2 |  -  |
 
 <a id="getTrustedOAuth2JwtGrantIssuer"></a>

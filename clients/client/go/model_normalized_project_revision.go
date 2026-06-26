@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.57
+API version: v1.22.58
 Contact: support@ory.sh
 */
 
@@ -63,7 +63,7 @@ type NormalizedProjectRevision struct {
 	// Configures if the JSON Web Token ID (`jti`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `jti` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.jti_optional\" setting.
 	HydraOauth2GrantJwtJtiOptional *bool `json:"hydra_oauth2_grant_jwt_jti_optional,omitempty"`
 	// Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the `exp` claim and `iat` claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \"oauth2.grant.jwt.max_ttl\" setting.
-	HydraOauth2GrantJwtMaxTtl *string `json:"hydra_oauth2_grant_jwt_max_ttl,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	HydraOauth2GrantJwtMaxTtl *string `json:"hydra_oauth2_grant_jwt_max_ttl,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to `null` or `\"0s\"`, the graceful refresh token rotation is disabled.  This governs the \"oauth2.grant.refresh_token.rotation_grace_period\" setting.
 	HydraOauth2GrantRefreshTokenRotationGracePeriod *string `json:"hydra_oauth2_grant_refresh_token_rotation_grace_period,omitempty"`
 	// Configures the OAuth2 Grant Refresh Token Rotation Grace Reuse Count.  The maximum number of times a refresh token can be reused within the grace period. If set to `null` or `0`, the limit is disabled.  This governs the \"oauth2.grant.refresh_token.rotation_grace_reuse_count\" setting.
@@ -107,15 +107,15 @@ type NormalizedProjectRevision struct {
 	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
 	HydraStrategiesScope *string `json:"hydra_strategies_scope,omitempty"`
 	// This governs the \"ttl.access_token\" setting.
-	HydraTtlAccessToken *string `json:"hydra_ttl_access_token,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	HydraTtlAccessToken *string `json:"hydra_ttl_access_token,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
-	HydraTtlAuthCode *string `json:"hydra_ttl_auth_code,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	HydraTtlAuthCode *string `json:"hydra_ttl_auth_code,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// This governs the \"ttl.id_token\" setting.
-	HydraTtlIdToken *string `json:"hydra_ttl_id_token,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	HydraTtlIdToken *string `json:"hydra_ttl_id_token,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Configures how long a user login and consent flow may take.  This governs the \"ttl.login_consent_request\" setting.
-	HydraTtlLoginConsentRequest *string `json:"hydra_ttl_login_consent_request,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	HydraTtlLoginConsentRequest *string `json:"hydra_ttl_login_consent_request,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.refresh_token\" setting.
-	HydraTtlRefreshToken *string `json:"hydra_ttl_refresh_token,omitempty" validate:"regexp=^([0-9]+(ns|us|ms|s|m|h)|-1)$"`
+	HydraTtlRefreshToken *string `json:"hydra_ttl_refresh_token,omitempty" validate:"regexp=^(([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+|-1)$"`
 	// Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.consent\" setting.
 	HydraUrlsConsent *string `json:"hydra_urls_consent,omitempty"`
 	// Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.error\" setting.
@@ -518,11 +518,11 @@ type NormalizedProjectRevision struct {
 	// Talos cache enabled.  When true, API key verification results are cached. Revoked keys may be accepted until the cached entry expires. When false, every verification reads the database and revocations take effect immediately.
 	TalosCacheEnabled *bool `json:"talos_cache_enabled,omitempty"`
 	// Talos cache TTL controls how long API key verification results are cached.
-	TalosCacheTtl *string `json:"talos_cache_ttl,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	TalosCacheTtl *string `json:"talos_cache_ttl,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Talos API keys default TTL.
-	TalosCredentialsApiKeysDefaultTtl *string `json:"talos_credentials_api_keys_default_ttl,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	TalosCredentialsApiKeysDefaultTtl *string `json:"talos_credentials_api_keys_default_ttl,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Talos API keys max TTL.
-	TalosCredentialsApiKeysMaxTtl *string `json:"talos_credentials_api_keys_max_ttl,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	TalosCredentialsApiKeysMaxTtl *string `json:"talos_credentials_api_keys_max_ttl,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Talos API keys prefix (current).
 	TalosCredentialsApiKeysPrefixCurrent *string `json:"talos_credentials_api_keys_prefix_current,omitempty"`
 	// Talos API keys public prefix (current).
@@ -532,7 +532,7 @@ type NormalizedProjectRevision struct {
 	// Talos API keys prefix (retired).  Previously active API key prefixes kept for verification of outstanding tokens. The first element of this list was the most recently retired active prefix.
 	TalosCredentialsApiKeysPrefixRetired []string `json:"talos_credentials_api_keys_prefix_retired,omitempty"`
 	// Talos derived tokens default TTL (applies to both JWT and macaroon tokens).
-	TalosCredentialsDerivedTokensDefaultTtl *string `json:"talos_credentials_derived_tokens_default_ttl,omitempty" validate:"regexp=^(\\\\d+(\\\\.\\\\d+)?(ns|us|µs|ms|s|m|h))+$"`
+	TalosCredentialsDerivedTokensDefaultTtl *string `json:"talos_credentials_derived_tokens_default_ttl,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Talos derived tokens JWT signing key ID (kid).
 	TalosCredentialsDerivedTokensJwtSigningKeyId *string `json:"talos_credentials_derived_tokens_jwt_signing_key_id,omitempty"`
 	// Talos derived tokens JWT signing key URLs.

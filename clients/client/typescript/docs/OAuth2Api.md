@@ -672,7 +672,6 @@ const { status, data } = await apiInstance.getOAuth2LogoutRequest(
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | oAuth2LogoutRequest |  -  |
-|**410** | oAuth2RedirectTo |  -  |
 |**0** | errorOAuth2 |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
