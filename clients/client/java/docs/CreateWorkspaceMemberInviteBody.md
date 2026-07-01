@@ -9,7 +9,7 @@ Create Workspace Invite Request Body
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**inviteeEmail** | **String** | A email to invite |  |
-|**role** | [**RoleEnum**](#RoleEnum) | The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper |  |
+|**role** | [**RoleEnum**](#RoleEnum) | The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper viewer WorkspaceMemberRoleViewer |  |
 
 
 
@@ -19,6 +19,7 @@ Create Workspace Invite Request Body
 |---- | -----|
 | OWNER | &quot;owner&quot; |
 | DEVELOPER | &quot;developer&quot; |
+| VIEWER | &quot;viewer&quot; |
 
 
 

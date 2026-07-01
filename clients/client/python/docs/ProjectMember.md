@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **id** | **str** |  | 
 **name** | **str** |  | 
 **organization_id** | **str** |  | [optional] 
-**role** | **str** |  | 
+**role** | **str** | The member&#39;s role on the project. owner has full control, developer can read and write, viewer is read-only. | 
 **source** | **str** | Whether the member has access through the project directly or through workspace membership. | [optional] 
 
 ## Example

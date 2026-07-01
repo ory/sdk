@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InviteeEmail** | **string** | A email to invite | 
-**Role** | **string** | The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper | 
+**Role** | **string** | The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper viewer WorkspaceMemberRoleViewer | 
 
 ## Methods
 

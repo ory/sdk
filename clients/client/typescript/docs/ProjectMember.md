@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **id** | **string** |  | [default to undefined]
 **name** | **string** |  | [default to undefined]
 **organization_id** | **string** |  | [optional] [default to undefined]
-**role** | **string** |  | [default to undefined]
+**role** | **string** | The member\&#39;s role on the project. owner has full control, developer can read and write, viewer is read-only. | [default to undefined]
 **source** | **string** | Whether the member has access through the project directly or through workspace membership. | [optional] [default to undefined]
 
 ## Example

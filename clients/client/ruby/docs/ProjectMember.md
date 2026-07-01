@@ -10,7 +10,7 @@
 | **id** | **String** |  |  |
 | **name** | **String** |  |  |
 | **organization_id** | **String** |  | [optional] |
-| **role** | **String** |  |  |
+| **role** | **String** | The member&#39;s role on the project. owner has full control, developer can read and write, viewer is read-only. |  |
 | **source** | **String** | Whether the member has access through the project directly or through workspace membership. | [optional] |
 
 ## Example

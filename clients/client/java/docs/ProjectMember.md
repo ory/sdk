@@ -13,8 +13,18 @@
 |**id** | **String** |  |  |
 |**name** | **String** |  |  |
 |**organizationId** | **String** |  |  [optional] |
-|**role** | **String** |  |  |
+|**role** | [**RoleEnum**](#RoleEnum) | The member&#39;s role on the project. owner has full control, developer can read and write, viewer is read-only. |  |
 |**source** | [**SourceEnum**](#SourceEnum) | Whether the member has access through the project directly or through workspace membership. |  [optional] |
+
+
+
+## Enum: RoleEnum
+
+| Name | Value |
+|---- | -----|
+| OWNER | &quot;owner&quot; |
+| DEVELOPER | &quot;developer&quot; |
+| VIEWER | &quot;viewer&quot; |
 
 
 

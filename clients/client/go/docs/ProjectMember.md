@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **OrganizationId** | Pointer to **NullableString** |  | [optional] 
-**Role** | **string** |  | 
+**Role** | **string** | The member&#39;s role on the project. owner has full control, developer can read and write, viewer is read-only. | 
 **Source** | Pointer to **string** | Whether the member has access through the project directly or through workspace membership. | [optional] 
 
 ## Methods

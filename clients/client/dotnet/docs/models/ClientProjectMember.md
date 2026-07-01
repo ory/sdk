@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **EmailVerified** | **bool** |  | 
 **Id** | **string** |  | 
 **Name** | **string** |  | 
-**Role** | **string** |  | 
+**Role** | **string** | The member&#39;s role on the project. owner has full control, developer can read and write, viewer is read-only. | 
 **BreakGlass** | **bool** | BreakGlass is true when the identity&#39;s recovery address has break-glass recovery enabled for the identity&#39;s current organization. | [optional] 
 **OrganizationId** | **string** |  | [optional] 
 **Source** | **string** | Whether the member has access through the project directly or through workspace membership. | [optional] 

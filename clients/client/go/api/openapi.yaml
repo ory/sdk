@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.58
+  version: v1.22.59
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -10701,8 +10701,24 @@ components:
       description: Create Project MemberInvite Request Body
       properties:
         invitee_email:
-          description: A email to invite
+          description: The email address to invite.
           type: string
+        role:
+          default: developer
+          description: |-
+            The role the invited member will hold. Defaults to developer if omitted.
+            Only developer and viewer are valid; project ownership cannot be assigned via invite.
+            developer ProjectMemberRoleDeveloper
+            viewer ProjectMemberRoleViewer
+          enum:
+          - developer
+          - viewer
+          type: string
+          x-go-enum-desc: |-
+            developer ProjectMemberRoleDeveloper
+            viewer ProjectMemberRoleViewer
+      required:
+      - invitee_email
       type: object
     CreateProjectNormalizedPayload:
       description: Create project (normalized) request payload
@@ -12661,13 +12677,16 @@ components:
             The role the user will have in the workspace
             owner WorkspaceMemberRoleOwner
             developer WorkspaceMemberRoleDeveloper
+            viewer WorkspaceMemberRoleViewer
           enum:
           - owner
           - developer
+          - viewer
           type: string
           x-go-enum-desc: |-
             owner WorkspaceMemberRoleOwner
             developer WorkspaceMemberRoleDeveloper
+            viewer WorkspaceMemberRoleViewer
       required:
       - invitee_email
       - role
@@ -24271,7 +24290,7 @@ components:
     projectMember:
       example:
         email_verified: true
-        role: role
+        role: owner
         organization_id: organization_id
         name: name
         break_glass: true
@@ -24298,6 +24317,13 @@ components:
           nullable: true
           type: string
         role:
+          description: |-
+            The member's role on the project.
+            owner has full control, developer can read and write, viewer is read-only.
+          enum:
+          - owner
+          - developer
+          - viewer
           type: string
         source:
           description: |-

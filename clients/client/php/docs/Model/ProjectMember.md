@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **id** | **string** |  |
 **name** | **string** |  |
 **organizationId** | **string** |  | [optional]
-**role** | **string** |  |
+**role** | **string** | The member&#39;s role on the project. owner has full control, developer can read and write, viewer is read-only. |
 **source** | **string** | Whether the member has access through the project directly or through workspace membership. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -8,6 +8,7 @@ Create Project MemberInvite Request Body
 Name | Type
 ------------ | -------------
 `invitee_email` | string
+`role` | string
 
 ## Example
 
@@ -17,6 +18,7 @@ import type { CreateProjectMemberInviteBody } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "invitee_email": null,
+  "role": null,
 } satisfies CreateProjectMemberInviteBody
 
 console.log(example)

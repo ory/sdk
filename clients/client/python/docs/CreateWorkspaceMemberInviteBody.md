@@ -7,7 +7,7 @@ Create Workspace Invite Request Body
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **invitee_email** | **str** | A email to invite | 
-**role** | **str** | The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper | 
+**role** | **str** | The role the user will have in the workspace owner WorkspaceMemberRoleOwner developer WorkspaceMemberRoleDeveloper viewer WorkspaceMemberRoleViewer | 
 
 ## Example
 
