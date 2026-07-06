@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ProxySamlAudienceOverride** | Pointer to **NullableString** |  | [optional] 
 **RawIdpMetadataXml** | Pointer to **string** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] 
 **State** | Pointer to **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
+**UpdateIdentityOnLogin** | Pointer to **string** | UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 **ValidTo** | Pointer to **[]string** | Valid to dates of all signing certs associated with the SAML connection | [optional] [readonly] 
 
@@ -377,6 +378,31 @@ SetState sets State field to given value.
 `func (o *NormalizedProjectRevisionSAMLProvider) HasState() bool`
 
 HasState returns a boolean if a field has been set.
+
+### GetUpdateIdentityOnLogin
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetUpdateIdentityOnLogin() string`
+
+GetUpdateIdentityOnLogin returns the UpdateIdentityOnLogin field if non-nil, zero value otherwise.
+
+### GetUpdateIdentityOnLoginOk
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetUpdateIdentityOnLoginOk() (*string, bool)`
+
+GetUpdateIdentityOnLoginOk returns a tuple with the UpdateIdentityOnLogin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdateIdentityOnLogin
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetUpdateIdentityOnLogin(v string)`
+
+SetUpdateIdentityOnLogin sets UpdateIdentityOnLogin field to given value.
+
+### HasUpdateIdentityOnLogin
+
+`func (o *NormalizedProjectRevisionSAMLProvider) HasUpdateIdentityOnLogin() bool`
+
+HasUpdateIdentityOnLogin returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

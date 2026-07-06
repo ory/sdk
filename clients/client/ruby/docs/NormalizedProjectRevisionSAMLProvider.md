@@ -16,6 +16,7 @@
 | **proxy_saml_audience_override** | **String** |  | [optional] |
 | **raw_idp_metadata_xml** | **String** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] |
 | **state** | **String** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] |
+| **update_identity_on_login** | **String** | UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. | [optional] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
 | **valid_to** | **Array&lt;String&gt;** | Valid to dates of all signing certs associated with the SAML connection | [optional][readonly] |
 
@@ -37,6 +38,7 @@ instance = OryClient::NormalizedProjectRevisionSAMLProvider.new(
   proxy_saml_audience_override: null,
   raw_idp_metadata_xml: null,
   state: null,
+  update_identity_on_login: null,
   updated_at: null,
   valid_to: null
 )

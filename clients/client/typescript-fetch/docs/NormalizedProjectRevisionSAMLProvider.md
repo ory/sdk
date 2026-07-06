@@ -18,6 +18,7 @@ Name | Type
 `proxy_saml_audience_override` | string
 `raw_idp_metadata_xml` | string
 `state` | string
+`update_identity_on_login` | string
 `updated_at` | Date
 `valid_to` | Array&lt;string&gt;
 
@@ -40,6 +41,7 @@ const example = {
   "proxy_saml_audience_override": null,
   "raw_idp_metadata_xml": null,
   "state": null,
+  "update_identity_on_login": null,
   "updated_at": null,
   "valid_to": null,
 } satisfies NormalizedProjectRevisionSAMLProvider

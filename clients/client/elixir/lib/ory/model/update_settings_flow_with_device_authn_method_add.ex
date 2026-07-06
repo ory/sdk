@@ -10,7 +10,6 @@ defmodule Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd do
   defstruct [
     :attestation_ios,
     :certificate_chain_android,
-    :client_key_id,
     :device_name,
     :version
   ]
@@ -18,7 +17,6 @@ defmodule Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd do
   @type t :: %__MODULE__{
     :attestation_ios => binary() | nil,
     :certificate_chain_android => [binary()] | nil,
-    :client_key_id => String.t,
     :device_name => String.t,
     :version => integer() | nil
   }

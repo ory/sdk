@@ -8,7 +8,6 @@ Name | Type
 ------------ | -------------
 `attestation_ios` | string
 `certificate_chain_android` | Array&lt;string&gt;
-`client_key_id` | string
 `device_name` | string
 `version` | number
 
@@ -21,7 +20,6 @@ import type { UpdateSettingsFlowWithDeviceAuthnMethodAdd } from '@ory/client-fet
 const example = {
   "attestation_ios": null,
   "certificate_chain_android": null,
-  "client_key_id": null,
   "device_name": null,
   "version": null,
 } satisfies UpdateSettingsFlowWithDeviceAuthnMethodAdd

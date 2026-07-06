@@ -27,6 +27,7 @@ Name | Type
 `hydra_oauth2_grant_jwt_iat_optional` | boolean
 `hydra_oauth2_grant_jwt_jti_optional` | boolean
 `hydra_oauth2_grant_jwt_max_ttl` | string
+`hydra_oauth2_grant_jwt_omit_assertion_audience` | boolean
 `hydra_oauth2_grant_refresh_token_rotation_grace_period` | string
 `hydra_oauth2_grant_refresh_token_rotation_grace_reuse_count` | number
 `hydra_oauth2_mirror_top_level_claims` | boolean
@@ -135,6 +136,7 @@ Name | Type
 `kratos_feature_flags_legacy_oidc_registration_node_group` | boolean
 `kratos_feature_flags_legacy_require_verified_login_error` | boolean
 `kratos_feature_flags_password_profile_registration_node_group` | boolean
+`kratos_feature_flags_refresh_login_choose_address` | boolean
 `kratos_feature_flags_use_continue_with_transitions` | boolean
 `kratos_identity_schemas` | [Array&lt;NormalizedProjectRevisionIdentitySchema&gt;](NormalizedProjectRevisionIdentitySchema.md)
 `kratos_oauth2_provider_headers` | object
@@ -211,7 +213,9 @@ Name | Type
 `kratos_selfservice_methods_code_mfa_enabled` | boolean
 `kratos_selfservice_methods_code_passwordless_enabled` | boolean
 `kratos_selfservice_methods_code_passwordless_login_fallback_enabled` | boolean
+`kratos_selfservice_methods_deviceauthn_config_android_app_ids` | Array&lt;string&gt;
 `kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation` | boolean
+`kratos_selfservice_methods_deviceauthn_config_ios_app_ids` | Array&lt;string&gt;
 `kratos_selfservice_methods_deviceauthn_enabled` | boolean
 `kratos_selfservice_methods_link_config_base_url` | string
 `kratos_selfservice_methods_link_config_lifespan` | string
@@ -305,6 +309,7 @@ const example = {
   "hydra_oauth2_grant_jwt_iat_optional": null,
   "hydra_oauth2_grant_jwt_jti_optional": null,
   "hydra_oauth2_grant_jwt_max_ttl": 30m,
+  "hydra_oauth2_grant_jwt_omit_assertion_audience": null,
   "hydra_oauth2_grant_refresh_token_rotation_grace_period": null,
   "hydra_oauth2_grant_refresh_token_rotation_grace_reuse_count": null,
   "hydra_oauth2_mirror_top_level_claims": null,
@@ -413,6 +418,7 @@ const example = {
   "kratos_feature_flags_legacy_oidc_registration_node_group": null,
   "kratos_feature_flags_legacy_require_verified_login_error": null,
   "kratos_feature_flags_password_profile_registration_node_group": null,
+  "kratos_feature_flags_refresh_login_choose_address": null,
   "kratos_feature_flags_use_continue_with_transitions": null,
   "kratos_identity_schemas": null,
   "kratos_oauth2_provider_headers": null,
@@ -489,7 +495,9 @@ const example = {
   "kratos_selfservice_methods_code_mfa_enabled": null,
   "kratos_selfservice_methods_code_passwordless_enabled": null,
   "kratos_selfservice_methods_code_passwordless_login_fallback_enabled": null,
+  "kratos_selfservice_methods_deviceauthn_config_android_app_ids": null,
   "kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation": null,
+  "kratos_selfservice_methods_deviceauthn_config_ios_app_ids": null,
   "kratos_selfservice_methods_deviceauthn_enabled": null,
   "kratos_selfservice_methods_link_config_base_url": null,
   "kratos_selfservice_methods_link_config_lifespan": null,

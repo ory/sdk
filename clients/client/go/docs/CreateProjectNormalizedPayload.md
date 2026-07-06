@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **HydraOauth2GrantJwtIatOptional** | Pointer to **bool** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtJtiOptional** | Pointer to **bool** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtMaxTtl** | Pointer to **string** | Configures what the maximum age of a JWT assertion used in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) can be.  This feature uses the &#x60;exp&#x60; claim and &#x60;iat&#x60; claim to calculate assertion age. Assertions exceeding the max age will be denied.  Useful as a safety measure and recommended to keep below 720h.  This governs the \&quot;oauth2.grant.jwt.max_ttl\&quot; setting. | [optional] [default to "720h"]
+**HydraOauth2GrantJwtOmitAssertionAudience** | Pointer to **bool** | Configures whether the audience (&#x60;aud&#x60;) claim from the assertion JSON Web Token (JWT) in the JWT Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523) is omitted from the resulting access token.  When set to &#x60;true&#x60; (the default for new projects), the audience values from the inbound assertion JWT are not granted in the access token. Set to &#x60;false&#x60; to copy the assertion audience into the access token (the legacy behavior).  This governs the \&quot;oauth2.grant.jwt.omit_assertion_audience\&quot; setting. | [optional] 
 **HydraOauth2GrantRefreshTokenRotationGracePeriod** | Pointer to **string** | Configures the OAuth2 Grant Refresh Token Rotation Grace Period  If set to &#x60;null&#x60; or &#x60;\&quot;0s\&quot;&#x60;, the graceful refresh token rotation is disabled.  This governs the \&quot;oauth2.grant.refresh_token.rotation_grace_period\&quot; setting. | [optional] 
 **HydraOauth2GrantRefreshTokenRotationGraceReuseCount** | Pointer to **int64** | Configures the OAuth2 Grant Refresh Token Rotation Grace Reuse Count.  The maximum number of times a refresh token can be reused within the grace period. If set to &#x60;null&#x60; or &#x60;0&#x60;, the limit is disabled.  This governs the \&quot;oauth2.grant.refresh_token.rotation_grace_reuse_count\&quot; setting. | [optional] 
 **HydraOauth2MirrorTopLevelClaims** | Pointer to **bool** | Set to false if you don&#39;t want to mirror custom claims under &#39;ext&#39;.  This governs the \&quot;oauth2.mirror_top_level_claims\&quot; setting. | [optional] 
@@ -135,6 +136,7 @@ Name | Type | Description | Notes
 **KratosFeatureFlagsLegacyOidcRegistrationNodeGroup** | Pointer to **bool** | Controls whether the UI nodes in an OIDC registration flow have group \&quot;oidc\&quot; in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \&quot;oidc\&quot; and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \&quot;feature_flags.legacy_oidc_registration_node_group\&quot; setting. | [optional] 
 **KratosFeatureFlagsLegacyRequireVerifiedLoginError** | Pointer to **bool** | Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the &#x60;continue_with&#x60; array will contain a &#x60;show_verification_ui&#x60; hook instead.  This flag is deprecated and will be removed in the future.  This governs the \&quot;feature_flags.legacy_require_verified_login_error\&quot; setting. | [optional] 
 **KratosFeatureFlagsPasswordProfileRegistrationNodeGroup** | Pointer to **bool** | Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \&quot;password\&quot; if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \&quot;default\&quot;.  This governs the \&quot;feature_flags.password_profile_registration_node_group\&quot; setting. | [optional] 
+**KratosFeatureFlagsRefreshLoginChooseAddress** | Pointer to **bool** | Render an address picker on the code refresh login screen  If true, a code-strategy refresh (privileged re-authentication) login renders a \&quot;Send code to &lt;address&gt;\&quot; button per available code address instead of re-asking for the identifier. The identity is already fixed by the active session, so re-entering the identifier is unnecessary. It is safe to toggle this back and forth.  This governs the \&quot;feature_flags.refresh_login_choose_address\&quot; setting. | [optional] 
 **KratosFeatureFlagsUseContinueWithTransitions** | Pointer to **bool** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional] 
 **KratosIdentitySchemas** | Pointer to [**[]NormalizedProjectRevisionIdentitySchema**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
 **KratosOauth2ProviderHeaders** | Pointer to **map[string]interface{}** | Configures the OAuth2 Provider Integration HTTP Headers  This governs the \&quot;oauth2_provider.headers\&quot; setting. | [optional] 
@@ -211,7 +213,9 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsCodeMfaEnabled** | Pointer to **bool** | Configures whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodePasswordlessEnabled** | Pointer to **bool** | Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled** | Pointer to **bool** | This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \&quot;selfservice.methods.code.passwordless_login_fallback_enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds** | Pointer to **[]string** | Configures the allow-list of Android app signing-certificate digests that a device key may be bound to.  This governs the \&quot;selfservice.methods.deviceauthn.config.android_app_ids\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation** | Pointer to **bool** | Configures whether Ory Kratos Device authentication accepts relaxed attestations for testing  Only allowed on development projects and forced off otherwise. Keys enrolled under relaxation are short-lived and refused once this is turned off.  This governs the \&quot;selfservice.methods.deviceauthn.config.insecure_allow_relaxed_attestation\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsDeviceauthnConfigIosAppIds** | Pointer to **[]string** | Configures the allow-list of Apple App IDs that a device key may be bound to.  This governs the \&quot;selfservice.methods.deviceauthn.config.ios_app_ids\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnEnabled** | Pointer to **bool** | Configures whether Ory Kratos Device authentication is enabled  This governs the \&quot;selfservice.methods.deviceauthn.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigBaseUrl** | Pointer to **string** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] 
@@ -866,6 +870,31 @@ SetHydraOauth2GrantJwtMaxTtl sets HydraOauth2GrantJwtMaxTtl field to given value
 `func (o *CreateProjectNormalizedPayload) HasHydraOauth2GrantJwtMaxTtl() bool`
 
 HasHydraOauth2GrantJwtMaxTtl returns a boolean if a field has been set.
+
+### GetHydraOauth2GrantJwtOmitAssertionAudience
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2GrantJwtOmitAssertionAudience() bool`
+
+GetHydraOauth2GrantJwtOmitAssertionAudience returns the HydraOauth2GrantJwtOmitAssertionAudience field if non-nil, zero value otherwise.
+
+### GetHydraOauth2GrantJwtOmitAssertionAudienceOk
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2GrantJwtOmitAssertionAudienceOk() (*bool, bool)`
+
+GetHydraOauth2GrantJwtOmitAssertionAudienceOk returns a tuple with the HydraOauth2GrantJwtOmitAssertionAudience field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2GrantJwtOmitAssertionAudience
+
+`func (o *CreateProjectNormalizedPayload) SetHydraOauth2GrantJwtOmitAssertionAudience(v bool)`
+
+SetHydraOauth2GrantJwtOmitAssertionAudience sets HydraOauth2GrantJwtOmitAssertionAudience field to given value.
+
+### HasHydraOauth2GrantJwtOmitAssertionAudience
+
+`func (o *CreateProjectNormalizedPayload) HasHydraOauth2GrantJwtOmitAssertionAudience() bool`
+
+HasHydraOauth2GrantJwtOmitAssertionAudience returns a boolean if a field has been set.
 
 ### GetHydraOauth2GrantRefreshTokenRotationGracePeriod
 
@@ -3567,6 +3596,31 @@ SetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup sets KratosFeatureFlag
 
 HasKratosFeatureFlagsPasswordProfileRegistrationNodeGroup returns a boolean if a field has been set.
 
+### GetKratosFeatureFlagsRefreshLoginChooseAddress
+
+`func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsRefreshLoginChooseAddress() bool`
+
+GetKratosFeatureFlagsRefreshLoginChooseAddress returns the KratosFeatureFlagsRefreshLoginChooseAddress field if non-nil, zero value otherwise.
+
+### GetKratosFeatureFlagsRefreshLoginChooseAddressOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsRefreshLoginChooseAddressOk() (*bool, bool)`
+
+GetKratosFeatureFlagsRefreshLoginChooseAddressOk returns a tuple with the KratosFeatureFlagsRefreshLoginChooseAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosFeatureFlagsRefreshLoginChooseAddress
+
+`func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsRefreshLoginChooseAddress(v bool)`
+
+SetKratosFeatureFlagsRefreshLoginChooseAddress sets KratosFeatureFlagsRefreshLoginChooseAddress field to given value.
+
+### HasKratosFeatureFlagsRefreshLoginChooseAddress
+
+`func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsRefreshLoginChooseAddress() bool`
+
+HasKratosFeatureFlagsRefreshLoginChooseAddress returns a boolean if a field has been set.
+
 ### GetKratosFeatureFlagsUseContinueWithTransitions
 
 `func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsUseContinueWithTransitions() bool`
@@ -5467,6 +5521,31 @@ SetKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled sets KratosSelfs
 
 HasKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled returns a boolean if a field has been set.
 
+### GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds() []string`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds returns the KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIdsOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIdsOk() (*[]string, bool)`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIdsOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds
+
+`func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds(v []string)`
+
+SetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds sets KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds field to given value.
+
+### HasKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds
+
+`func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds() bool`
+
+HasKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds returns a boolean if a field has been set.
+
 ### GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation
 
 `func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation() bool`
@@ -5491,6 +5570,31 @@ SetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation sets
 `func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation() bool`
 
 HasKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigIosAppIds
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigIosAppIds() []string`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigIosAppIds returns the KratosSelfserviceMethodsDeviceauthnConfigIosAppIds field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigIosAppIdsOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigIosAppIdsOk() (*[]string, bool)`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigIosAppIdsOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigIosAppIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsDeviceauthnConfigIosAppIds
+
+`func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsDeviceauthnConfigIosAppIds(v []string)`
+
+SetKratosSelfserviceMethodsDeviceauthnConfigIosAppIds sets KratosSelfserviceMethodsDeviceauthnConfigIosAppIds field to given value.
+
+### HasKratosSelfserviceMethodsDeviceauthnConfigIosAppIds
+
+`func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsDeviceauthnConfigIosAppIds() bool`
+
+HasKratosSelfserviceMethodsDeviceauthnConfigIosAppIds returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsDeviceauthnEnabled
 

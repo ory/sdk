@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AttestationIos** | Pointer to **string** |  | [optional] 
 **CertificateChainAndroid** | Pointer to **[]string** | CertificateChainAndroid is a list of base64 strings for creating a key on Android. Each element is a certificate. The first element is the leaf, corresponding to the on-device key, the last is the root (Google CA). | [optional] 
-**ClientKeyId** | **string** | ClientKeyID is the key id/alias on the device. | 
 **DeviceName** | **string** | DeviceName is a human-readable name for the device e.g. &#39;My work phone&#39;. | 
 **Version** | Pointer to **int64** | Version is the version number for the cryptography. For now only &#x60;1&#x60; is supported which corresponds to SHA256 + EC. | [optional] 
 
@@ -14,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateSettingsFlowWithDeviceAuthnMethodAdd
 
-`func NewUpdateSettingsFlowWithDeviceAuthnMethodAdd(clientKeyId string, deviceName string, ) *UpdateSettingsFlowWithDeviceAuthnMethodAdd`
+`func NewUpdateSettingsFlowWithDeviceAuthnMethodAdd(deviceName string, ) *UpdateSettingsFlowWithDeviceAuthnMethodAdd`
 
 NewUpdateSettingsFlowWithDeviceAuthnMethodAdd instantiates a new UpdateSettingsFlowWithDeviceAuthnMethodAdd object
 This constructor will assign default values to properties that have it defined,
@@ -78,26 +77,6 @@ SetCertificateChainAndroid sets CertificateChainAndroid field to given value.
 `func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasCertificateChainAndroid() bool`
 
 HasCertificateChainAndroid returns a boolean if a field has been set.
-
-### GetClientKeyId
-
-`func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetClientKeyId() string`
-
-GetClientKeyId returns the ClientKeyId field if non-nil, zero value otherwise.
-
-### GetClientKeyIdOk
-
-`func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetClientKeyIdOk() (*string, bool)`
-
-GetClientKeyIdOk returns a tuple with the ClientKeyId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClientKeyId
-
-`func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetClientKeyId(v string)`
-
-SetClientKeyId sets ClientKeyId field to given value.
-
 
 ### GetDeviceName
 

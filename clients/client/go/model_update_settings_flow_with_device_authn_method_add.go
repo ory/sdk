@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.59
+API version: v1.22.60
 Contact: support@ory.sh
 */
 
@@ -24,8 +24,6 @@ type UpdateSettingsFlowWithDeviceAuthnMethodAdd struct {
 	AttestationIos *string `json:"attestation_ios,omitempty"`
 	// CertificateChainAndroid is a list of base64 strings for creating a key on Android. Each element is a certificate. The first element is the leaf, corresponding to the on-device key, the last is the root (Google CA).
 	CertificateChainAndroid []string `json:"certificate_chain_android,omitempty"`
-	// ClientKeyID is the key id/alias on the device.
-	ClientKeyId string `json:"client_key_id"`
 	// DeviceName is a human-readable name for the device e.g. 'My work phone'.
 	DeviceName string `json:"device_name"`
 	// Version is the version number for the cryptography. For now only `1` is supported which corresponds to SHA256 + EC.
@@ -39,9 +37,8 @@ type _UpdateSettingsFlowWithDeviceAuthnMethodAdd UpdateSettingsFlowWithDeviceAut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateSettingsFlowWithDeviceAuthnMethodAdd(clientKeyId string, deviceName string) *UpdateSettingsFlowWithDeviceAuthnMethodAdd {
+func NewUpdateSettingsFlowWithDeviceAuthnMethodAdd(deviceName string) *UpdateSettingsFlowWithDeviceAuthnMethodAdd {
 	this := UpdateSettingsFlowWithDeviceAuthnMethodAdd{}
-	this.ClientKeyId = clientKeyId
 	this.DeviceName = deviceName
 	return &this
 }
@@ -118,30 +115,6 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetCertificateChainAndroid(
 	o.CertificateChainAndroid = v
 }
 
-// GetClientKeyId returns the ClientKeyId field value
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetClientKeyId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ClientKeyId
-}
-
-// GetClientKeyIdOk returns a tuple with the ClientKeyId field value
-// and a boolean to check if the value has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetClientKeyIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ClientKeyId, true
-}
-
-// SetClientKeyId sets field value
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetClientKeyId(v string) {
-	o.ClientKeyId = v
-}
-
 // GetDeviceName returns the DeviceName field value
 func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetDeviceName() string {
 	if o == nil {
@@ -214,7 +187,6 @@ func (o UpdateSettingsFlowWithDeviceAuthnMethodAdd) ToMap() (map[string]interfac
 	if !IsNil(o.CertificateChainAndroid) {
 		toSerialize["certificate_chain_android"] = o.CertificateChainAndroid
 	}
-	toSerialize["client_key_id"] = o.ClientKeyId
 	toSerialize["device_name"] = o.DeviceName
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
@@ -232,7 +204,6 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) UnmarshalJSON(data []byte) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"client_key_id",
 		"device_name",
 	}
 
@@ -265,7 +236,6 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) UnmarshalJSON(data []byte) 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "attestation_ios")
 		delete(additionalProperties, "certificate_chain_android")
-		delete(additionalProperties, "client_key_id")
 		delete(additionalProperties, "device_name")
 		delete(additionalProperties, "version")
 		o.AdditionalProperties = additionalProperties

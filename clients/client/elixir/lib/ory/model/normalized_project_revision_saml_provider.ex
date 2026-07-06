@@ -20,6 +20,7 @@ defmodule Ory.Model.NormalizedProjectRevisionSamlProvider do
     :proxy_saml_audience_override,
     :raw_idp_metadata_xml,
     :state,
+    :update_identity_on_login,
     :updated_at,
     :valid_to
   ]
@@ -37,6 +38,7 @@ defmodule Ory.Model.NormalizedProjectRevisionSamlProvider do
     :proxy_saml_audience_override => String.t | nil,
     :raw_idp_metadata_xml => String.t | nil,
     :state => String.t | nil,
+    :update_identity_on_login => String.t | nil,
     :updated_at => DateTime.t | nil,
     :valid_to => [String.t] | nil
   }

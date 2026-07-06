@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attestation_ios** | **bytearray** |  | [optional] 
 **certificate_chain_android** | **List[bytearray]** | CertificateChainAndroid is a list of base64 strings for creating a key on Android. Each element is a certificate. The first element is the leaf, corresponding to the on-device key, the last is the root (Google CA). | [optional] 
-**client_key_id** | **str** | ClientKeyID is the key id/alias on the device. | 
 **device_name** | **str** | DeviceName is a human-readable name for the device e.g. &#39;My work phone&#39;. | 
 **version** | **int** | Version is the version number for the cryptography. For now only &#x60;1&#x60; is supported which corresponds to SHA256 + EC. | [optional] 
 

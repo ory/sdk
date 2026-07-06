@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ProxySamlAudienceOverride** | **string** |  | [optional] 
 **RawIdpMetadataXml** | **string** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] 
 **State** | **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
+**UpdateIdentityOnLogin** | **string** | UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. | [optional] 
 **UpdatedAt** | **DateTime** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 **ValidTo** | **List&lt;string&gt;** | Valid to dates of all signing certs associated with the SAML connection | [optional] [readonly] 
 
