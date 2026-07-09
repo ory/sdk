@@ -54,6 +54,8 @@ docs/models/ClientCheckPermissionResult.md
 docs/models/ClientCheckPermissionResultWithError.md
 docs/models/ClientCloudAccount.md
 docs/models/ClientContinueWith.md
+docs/models/ClientContinueWithDeviceAuthnPinEntryUi.md
+docs/models/ClientContinueWithDeviceAuthnPinEntryUiData.md
 docs/models/ClientContinueWithRecoveryUi.md
 docs/models/ClientContinueWithRecoveryUiFlow.md
 docs/models/ClientContinueWithRedirectBrowserTo.md
@@ -72,7 +74,7 @@ docs/models/ClientCreateInviteResponse.md
 docs/models/ClientCreateJsonWebKeySet.md
 docs/models/ClientCreateOnboardingLinkResponse.md
 docs/models/ClientCreateOrganizationOnboardingPortalLinkBody.md
-docs/models/ClientCreateProjectApiKeyRequest.md
+docs/models/ClientCreateProjectApiKeyBody.md
 docs/models/ClientCreateProjectBody.md
 docs/models/ClientCreateProjectBranding.md
 docs/models/ClientCreateProjectMemberInviteBody.md
@@ -242,6 +244,7 @@ docs/models/ClientOnboardingPortalTestLoginFlow.md
 docs/models/ClientOrganization.md
 docs/models/ClientOrganizationBody.md
 docs/models/ClientOrganizationOnboardingPortalLinksResponse.md
+docs/models/ClientPINConfig.md
 docs/models/ClientParseError.md
 docs/models/ClientPatchIdentitiesBody.md
 docs/models/ClientPatchWorkspaceMemberBody.md
@@ -362,6 +365,7 @@ docs/models/ClientUpdateSettingsFlowBody.md
 docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethod.md
 docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethodAdd.md
 docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/models/ClientUpdateSettingsFlowWithLookupMethod.md
 docs/models/ClientUpdateSettingsFlowWithOidcMethod.md
 docs/models/ClientUpdateSettingsFlowWithPasskeyMethod.md
@@ -376,6 +380,7 @@ docs/models/ClientUpdateVerificationFlowWithCodeMethod.md
 docs/models/ClientUpdateVerificationFlowWithLinkMethod.md
 docs/models/ClientUpdateWorkspaceBody.md
 docs/models/ClientUsage.md
+docs/models/ClientUserVerification.md
 docs/models/ClientValidateBaseURLRewriteRequest.md
 docs/models/ClientValidateBaseURLRewriteResponse.md
 docs/models/ClientVerifiableCredentialPrimingResponse.md
@@ -446,6 +451,8 @@ src/Ory.Client.Test/Model/ClientCheckOplSyntaxResultTests.cs
 src/Ory.Client.Test/Model/ClientCheckPermissionResultTests.cs
 src/Ory.Client.Test/Model/ClientCheckPermissionResultWithErrorTests.cs
 src/Ory.Client.Test/Model/ClientCloudAccountTests.cs
+src/Ory.Client.Test/Model/ClientContinueWithDeviceAuthnPinEntryUiDataTests.cs
+src/Ory.Client.Test/Model/ClientContinueWithDeviceAuthnPinEntryUiTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithRecoveryUiFlowTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithRecoveryUiTests.cs
 src/Ory.Client.Test/Model/ClientContinueWithRedirectBrowserToTests.cs
@@ -465,7 +472,7 @@ src/Ory.Client.Test/Model/ClientCreateInviteResponseTests.cs
 src/Ory.Client.Test/Model/ClientCreateJsonWebKeySetTests.cs
 src/Ory.Client.Test/Model/ClientCreateOnboardingLinkResponseTests.cs
 src/Ory.Client.Test/Model/ClientCreateOrganizationOnboardingPortalLinkBodyTests.cs
-src/Ory.Client.Test/Model/ClientCreateProjectApiKeyRequestTests.cs
+src/Ory.Client.Test/Model/ClientCreateProjectApiKeyBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectBrandingTests.cs
 src/Ory.Client.Test/Model/ClientCreateProjectMemberInviteBodyTests.cs
@@ -635,6 +642,7 @@ src/Ory.Client.Test/Model/ClientOnboardingPortalTestLoginFlowTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationBodyTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationOnboardingPortalLinksResponseTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationTests.cs
+src/Ory.Client.Test/Model/ClientPINConfigTests.cs
 src/Ory.Client.Test/Model/ClientParseErrorTests.cs
 src/Ory.Client.Test/Model/ClientPatchIdentitiesBodyTests.cs
 src/Ory.Client.Test/Model/ClientPatchWorkspaceMemberBodyTests.cs
@@ -754,6 +762,7 @@ src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowWithWebAuthnMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodAddTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodDeleteTests.cs
+src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodRotateSecretTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithLookupMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithOidcMethodTests.cs
@@ -769,6 +778,7 @@ src/Ory.Client.Test/Model/ClientUpdateVerificationFlowWithCodeMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateVerificationFlowWithLinkMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateWorkspaceBodyTests.cs
 src/Ory.Client.Test/Model/ClientUsageTests.cs
+src/Ory.Client.Test/Model/ClientUserVerificationTests.cs
 src/Ory.Client.Test/Model/ClientValidateBaseURLRewriteRequestTests.cs
 src/Ory.Client.Test/Model/ClientValidateBaseURLRewriteResponseTests.cs
 src/Ory.Client.Test/Model/ClientVerifiableCredentialPrimingResponseTests.cs
@@ -864,6 +874,8 @@ src/Ory.Client/Model/ClientCheckPermissionResult.cs
 src/Ory.Client/Model/ClientCheckPermissionResultWithError.cs
 src/Ory.Client/Model/ClientCloudAccount.cs
 src/Ory.Client/Model/ClientContinueWith.cs
+src/Ory.Client/Model/ClientContinueWithDeviceAuthnPinEntryUi.cs
+src/Ory.Client/Model/ClientContinueWithDeviceAuthnPinEntryUiData.cs
 src/Ory.Client/Model/ClientContinueWithRecoveryUi.cs
 src/Ory.Client/Model/ClientContinueWithRecoveryUiFlow.cs
 src/Ory.Client/Model/ClientContinueWithRedirectBrowserTo.cs
@@ -882,7 +894,7 @@ src/Ory.Client/Model/ClientCreateInviteResponse.cs
 src/Ory.Client/Model/ClientCreateJsonWebKeySet.cs
 src/Ory.Client/Model/ClientCreateOnboardingLinkResponse.cs
 src/Ory.Client/Model/ClientCreateOrganizationOnboardingPortalLinkBody.cs
-src/Ory.Client/Model/ClientCreateProjectApiKeyRequest.cs
+src/Ory.Client/Model/ClientCreateProjectApiKeyBody.cs
 src/Ory.Client/Model/ClientCreateProjectBody.cs
 src/Ory.Client/Model/ClientCreateProjectBranding.cs
 src/Ory.Client/Model/ClientCreateProjectMemberInviteBody.cs
@@ -1052,6 +1064,7 @@ src/Ory.Client/Model/ClientOnboardingPortalTestLoginFlow.cs
 src/Ory.Client/Model/ClientOrganization.cs
 src/Ory.Client/Model/ClientOrganizationBody.cs
 src/Ory.Client/Model/ClientOrganizationOnboardingPortalLinksResponse.cs
+src/Ory.Client/Model/ClientPINConfig.cs
 src/Ory.Client/Model/ClientParseError.cs
 src/Ory.Client/Model/ClientPatchIdentitiesBody.cs
 src/Ory.Client/Model/ClientPatchWorkspaceMemberBody.cs
@@ -1172,6 +1185,7 @@ src/Ory.Client/Model/ClientUpdateSettingsFlowBody.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethod.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodAdd.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodDelete.cs
+src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithLookupMethod.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithOidcMethod.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithPasskeyMethod.cs
@@ -1186,6 +1200,7 @@ src/Ory.Client/Model/ClientUpdateVerificationFlowWithCodeMethod.cs
 src/Ory.Client/Model/ClientUpdateVerificationFlowWithLinkMethod.cs
 src/Ory.Client/Model/ClientUpdateWorkspaceBody.cs
 src/Ory.Client/Model/ClientUsage.cs
+src/Ory.Client/Model/ClientUserVerification.cs
 src/Ory.Client/Model/ClientValidateBaseURLRewriteRequest.cs
 src/Ory.Client/Model/ClientValidateBaseURLRewriteResponse.cs
 src/Ory.Client/Model/ClientVerifiableCredentialPrimingResponse.cs

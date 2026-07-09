@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **csrf_token** | **string** | CSRFToken is the anti-CSRF token It only is required to remove a key from the browser. | [optional] [default to undefined]
 **_delete** | [**UpdateSettingsFlowWithDeviceAuthnMethodDelete**](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md) |  | [optional] [default to undefined]
 **method** | **string** | Method  Should be set to \&quot;deviceauthn\&quot; when trying to add or remove a DeviceAuthn key. | [default to undefined]
+**rotate_secret** | [**UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret**](UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md) |  | [optional] [default to undefined]
 **transient_payload** | **object** | Transient data to pass along to any webhooks | [optional] [default to undefined]
 
 ## Example
@@ -22,6 +23,7 @@ const instance: UpdateSettingsFlowWithDeviceAuthnMethod = {
     csrf_token,
     _delete,
     method,
+    rotate_secret,
     transient_payload,
 };
 ```

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClientKeyId** | Pointer to **string** | ClientKeyID identifies the DeviceAuthn key to authenticate with.  It is the key&#39;s deterministic fingerprint — the lowercase-hex SHA-256 of the device public key in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form — which the device recomputes locally after enrollment. Keys enrolled before the server derived the id use their original client-chosen value. | [optional] 
 **Method** | **string** | Method should be set to \&quot;deviceauthn\&quot; when logging in using the DeviceAuthn strategy. | 
+**PinProof** | Pointer to **string** | PINProof is an HMAC the client computes using the pin_secret when the key is PIN-protected. It proves possession of the PIN without revealing it.  Sensitive: a proof of the PIN secret, do not log or transmit. It is marked write-only in the spec via the OpenAPI patch in .schema/openapi/patches/selfservice.yaml. | [optional] 
 **Signature** | Pointer to **string** | Signature is a ES256 signature of the server-provided challenge. | [optional] 
 **TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 
@@ -72,6 +73,31 @@ and a boolean to check if the value has been set.
 
 SetMethod sets Method field to given value.
 
+
+### GetPinProof
+
+`func (o *UpdateLoginFlowWithDeviceAuthnMethod) GetPinProof() string`
+
+GetPinProof returns the PinProof field if non-nil, zero value otherwise.
+
+### GetPinProofOk
+
+`func (o *UpdateLoginFlowWithDeviceAuthnMethod) GetPinProofOk() (*string, bool)`
+
+GetPinProofOk returns a tuple with the PinProof field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPinProof
+
+`func (o *UpdateLoginFlowWithDeviceAuthnMethod) SetPinProof(v string)`
+
+SetPinProof sets PinProof field to given value.
+
+### HasPinProof
+
+`func (o *UpdateLoginFlowWithDeviceAuthnMethod) HasPinProof() bool`
+
+HasPinProof returns a boolean if a field has been set.
 
 ### GetSignature
 

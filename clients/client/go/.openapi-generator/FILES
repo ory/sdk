@@ -56,6 +56,8 @@ docs/CheckPermissionResult.md
 docs/CheckPermissionResultWithError.md
 docs/CloudAccount.md
 docs/ContinueWith.md
+docs/ContinueWithDeviceAuthnPinEntryUi.md
+docs/ContinueWithDeviceAuthnPinEntryUiData.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
 docs/ContinueWithRedirectBrowserTo.md
@@ -75,7 +77,7 @@ docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
 docs/CreateOnboardingLinkResponse.md
 docs/CreateOrganizationOnboardingPortalLinkBody.md
-docs/CreateProjectApiKeyRequest.md
+docs/CreateProjectApiKeyBody.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectMemberInviteBody.md
@@ -253,6 +255,7 @@ docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationOnboardingPortalLinksResponse.md
+docs/PINConfig.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PatchWorkspaceMemberBody.md
@@ -376,6 +379,7 @@ docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
 docs/UpdateSettingsFlowWithPasskeyMethod.md
@@ -390,6 +394,7 @@ docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
 docs/Usage.md
+docs/UserVerification.md
 docs/ValidateBaseURLRewriteRequest.md
 docs/ValidateBaseURLRewriteResponse.md
 docs/VerifiableCredentialPrimingResponse.md
@@ -447,6 +452,8 @@ model_check_permission_result.go
 model_check_permission_result_with_error.go
 model_cloud_account.go
 model_continue_with.go
+model_continue_with_device_authn_pin_entry_ui.go
+model_continue_with_device_authn_pin_entry_ui_data.go
 model_continue_with_recovery_ui.go
 model_continue_with_recovery_ui_flow.go
 model_continue_with_redirect_browser_to.go
@@ -465,7 +472,7 @@ model_create_invite_response.go
 model_create_json_web_key_set.go
 model_create_onboarding_link_response.go
 model_create_organization_onboarding_portal_link_body.go
-model_create_project_api_key_request.go
+model_create_project_api_key_body.go
 model_create_project_body.go
 model_create_project_branding.go
 model_create_project_member_invite_body.go
@@ -640,6 +647,7 @@ model_patch_identities_body.go
 model_patch_workspace_member_body.go
 model_perform_native_logout_body.go
 model_permissions_on_workspace.go
+model_pin_config.go
 model_plan.go
 model_plan_details.go
 model_post_check_permission_body.go
@@ -755,6 +763,7 @@ model_update_settings_flow_body.go
 model_update_settings_flow_with_device_authn_method.go
 model_update_settings_flow_with_device_authn_method_add.go
 model_update_settings_flow_with_device_authn_method_delete.go
+model_update_settings_flow_with_device_authn_method_rotate_secret.go
 model_update_settings_flow_with_lookup_method.go
 model_update_settings_flow_with_oidc_method.go
 model_update_settings_flow_with_passkey_method.go
@@ -769,6 +778,7 @@ model_update_verification_flow_with_code_method.go
 model_update_verification_flow_with_link_method.go
 model_update_workspace_body.go
 model_usage.go
+model_user_verification.go
 model_validate_base_url_rewrite_request.go
 model_validate_base_url_rewrite_response.go
 model_verifiable_credential_priming_response.go

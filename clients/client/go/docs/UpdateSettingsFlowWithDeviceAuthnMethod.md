@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **CsrfToken** | Pointer to **string** | CSRFToken is the anti-CSRF token It only is required to remove a key from the browser. | [optional] 
 **Delete** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodDelete**](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md) |  | [optional] 
 **Method** | **string** | Method  Should be set to \&quot;deviceauthn\&quot; when trying to add or remove a DeviceAuthn key. | 
+**RotateSecret** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret**](UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md) |  | [optional] 
 **TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 
 ## Methods
@@ -123,6 +124,31 @@ and a boolean to check if the value has been set.
 
 SetMethod sets Method field to given value.
 
+
+### GetRotateSecret
+
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetRotateSecret() UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret`
+
+GetRotateSecret returns the RotateSecret field if non-nil, zero value otherwise.
+
+### GetRotateSecretOk
+
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetRotateSecretOk() (*UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret, bool)`
+
+GetRotateSecretOk returns a tuple with the RotateSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRotateSecret
+
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) SetRotateSecret(v UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret)`
+
+SetRotateSecret sets RotateSecret field to given value.
+
+### HasRotateSecret
+
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) HasRotateSecret() bool`
+
+HasRotateSecret returns a boolean if a field has been set.
 
 ### GetTransientPayload
 

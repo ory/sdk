@@ -246,7 +246,7 @@ public class Example {
 
 <a id="createProjectApiKey"></a>
 # **createProjectApiKey**
-> ProjectApiKey createProjectApiKey(project, createProjectApiKeyRequest)
+> ProjectApiKey createProjectApiKey(project, createProjectApiKeyBody)
 
 Create project API key
 
@@ -273,9 +273,9 @@ public class Example {
 
     ProjectApi apiInstance = new ProjectApi(defaultClient);
     String project = "project_example"; // String | The Project ID or Project slug
-    CreateProjectApiKeyRequest createProjectApiKeyRequest = new CreateProjectApiKeyRequest(); // CreateProjectApiKeyRequest | 
+    CreateProjectApiKeyBody createProjectApiKeyBody = new CreateProjectApiKeyBody(); // CreateProjectApiKeyBody | 
     try {
-      ProjectApiKey result = apiInstance.createProjectApiKey(project, createProjectApiKeyRequest);
+      ProjectApiKey result = apiInstance.createProjectApiKey(project, createProjectApiKeyBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ProjectApi#createProjectApiKey");
@@ -293,7 +293,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **project** | **String**| The Project ID or Project slug | |
-| **createProjectApiKeyRequest** | [**CreateProjectApiKeyRequest**](CreateProjectApiKeyRequest.md)|  | [optional] |
+| **createProjectApiKeyBody** | [**CreateProjectApiKeyBody**](CreateProjectApiKeyBody.md)|  | [optional] |
 
 ### Return type
 

@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 ## CreateProjectApiKey
 
-> ProjectApiKey CreateProjectApiKey(ctx, project).CreateProjectApiKeyRequest(createProjectApiKeyRequest).Execute()
+> ProjectApiKey CreateProjectApiKey(ctx, project).CreateProjectApiKeyBody(createProjectApiKeyBody).Execute()
 
 Create project API key
 
@@ -263,11 +263,11 @@ import (
 
 func main() {
 	project := "project_example" // string | The Project ID or Project slug
-	createProjectApiKeyRequest := *openapiclient.NewCreateProjectApiKeyRequest("Name_example") // CreateProjectApiKeyRequest |  (optional)
+	createProjectApiKeyBody := *openapiclient.NewCreateProjectApiKeyBody("Name_example") // CreateProjectApiKeyBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProjectAPI.CreateProjectApiKey(context.Background(), project).CreateProjectApiKeyRequest(createProjectApiKeyRequest).Execute()
+	resp, r, err := apiClient.ProjectAPI.CreateProjectApiKey(context.Background(), project).CreateProjectApiKeyBody(createProjectApiKeyBody).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectApiKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -293,7 +293,7 @@ Other parameters are passed through a pointer to a apiCreateProjectApiKeyRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createProjectApiKeyRequest** | [**CreateProjectApiKeyRequest**](CreateProjectApiKeyRequest.md) |  | 
+ **createProjectApiKeyBody** | [**CreateProjectApiKeyBody**](CreateProjectApiKeyBody.md) |  | 
 
 ### Return type
 

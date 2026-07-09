@@ -42,6 +42,8 @@ docs/CheckPermissionResult.md
 docs/CheckPermissionResultWithError.md
 docs/CloudAccount.md
 docs/ContinueWith.md
+docs/ContinueWithDeviceAuthnPinEntryUi.md
+docs/ContinueWithDeviceAuthnPinEntryUiData.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
 docs/ContinueWithRedirectBrowserTo.md
@@ -61,7 +63,7 @@ docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
 docs/CreateOnboardingLinkResponse.md
 docs/CreateOrganizationOnboardingPortalLinkBody.md
-docs/CreateProjectApiKeyRequest.md
+docs/CreateProjectApiKeyBody.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectMemberInviteBody.md
@@ -239,6 +241,7 @@ docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationOnboardingPortalLinksResponse.md
+docs/PINConfig.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PatchWorkspaceMemberBody.md
@@ -362,6 +365,7 @@ docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
 docs/UpdateSettingsFlowWithPasskeyMethod.md
@@ -376,6 +380,7 @@ docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
 docs/Usage.md
+docs/UserVerification.md
 docs/ValidateBaseURLRewriteRequest.md
 docs/ValidateBaseURLRewriteResponse.md
 docs/VerifiableCredentialPrimingResponse.md
@@ -476,6 +481,8 @@ src/main/java/sh/ory/model/CheckPermissionResult.java
 src/main/java/sh/ory/model/CheckPermissionResultWithError.java
 src/main/java/sh/ory/model/CloudAccount.java
 src/main/java/sh/ory/model/ContinueWith.java
+src/main/java/sh/ory/model/ContinueWithDeviceAuthnPinEntryUi.java
+src/main/java/sh/ory/model/ContinueWithDeviceAuthnPinEntryUiData.java
 src/main/java/sh/ory/model/ContinueWithRecoveryUi.java
 src/main/java/sh/ory/model/ContinueWithRecoveryUiFlow.java
 src/main/java/sh/ory/model/ContinueWithRedirectBrowserTo.java
@@ -494,7 +501,7 @@ src/main/java/sh/ory/model/CreateInviteResponse.java
 src/main/java/sh/ory/model/CreateJsonWebKeySet.java
 src/main/java/sh/ory/model/CreateOnboardingLinkResponse.java
 src/main/java/sh/ory/model/CreateOrganizationOnboardingPortalLinkBody.java
-src/main/java/sh/ory/model/CreateProjectApiKeyRequest.java
+src/main/java/sh/ory/model/CreateProjectApiKeyBody.java
 src/main/java/sh/ory/model/CreateProjectBody.java
 src/main/java/sh/ory/model/CreateProjectBranding.java
 src/main/java/sh/ory/model/CreateProjectMemberInviteBody.java
@@ -664,6 +671,7 @@ src/main/java/sh/ory/model/OnboardingPortalTestLoginFlow.java
 src/main/java/sh/ory/model/Organization.java
 src/main/java/sh/ory/model/OrganizationBody.java
 src/main/java/sh/ory/model/OrganizationOnboardingPortalLinksResponse.java
+src/main/java/sh/ory/model/PINConfig.java
 src/main/java/sh/ory/model/ParseError.java
 src/main/java/sh/ory/model/PatchIdentitiesBody.java
 src/main/java/sh/ory/model/PatchWorkspaceMemberBody.java
@@ -784,6 +792,7 @@ src/main/java/sh/ory/model/UpdateSettingsFlowBody.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethod.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodAdd.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodDelete.java
+src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithLookupMethod.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithOidcMethod.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithPasskeyMethod.java
@@ -798,6 +807,7 @@ src/main/java/sh/ory/model/UpdateVerificationFlowWithCodeMethod.java
 src/main/java/sh/ory/model/UpdateVerificationFlowWithLinkMethod.java
 src/main/java/sh/ory/model/UpdateWorkspaceBody.java
 src/main/java/sh/ory/model/Usage.java
+src/main/java/sh/ory/model/UserVerification.java
 src/main/java/sh/ory/model/ValidateBaseURLRewriteRequest.java
 src/main/java/sh/ory/model/ValidateBaseURLRewriteResponse.java
 src/main/java/sh/ory/model/VerifiableCredentialPrimingResponse.java
@@ -864,6 +874,8 @@ src/test/java/sh/ory/model/CheckOplSyntaxResultTest.java
 src/test/java/sh/ory/model/CheckPermissionResultTest.java
 src/test/java/sh/ory/model/CheckPermissionResultWithErrorTest.java
 src/test/java/sh/ory/model/CloudAccountTest.java
+src/test/java/sh/ory/model/ContinueWithDeviceAuthnPinEntryUiDataTest.java
+src/test/java/sh/ory/model/ContinueWithDeviceAuthnPinEntryUiTest.java
 src/test/java/sh/ory/model/ContinueWithRecoveryUiFlowTest.java
 src/test/java/sh/ory/model/ContinueWithRecoveryUiTest.java
 src/test/java/sh/ory/model/ContinueWithRedirectBrowserToTest.java
@@ -883,7 +895,7 @@ src/test/java/sh/ory/model/CreateInviteResponseTest.java
 src/test/java/sh/ory/model/CreateJsonWebKeySetTest.java
 src/test/java/sh/ory/model/CreateOnboardingLinkResponseTest.java
 src/test/java/sh/ory/model/CreateOrganizationOnboardingPortalLinkBodyTest.java
-src/test/java/sh/ory/model/CreateProjectApiKeyRequestTest.java
+src/test/java/sh/ory/model/CreateProjectApiKeyBodyTest.java
 src/test/java/sh/ory/model/CreateProjectBodyTest.java
 src/test/java/sh/ory/model/CreateProjectBrandingTest.java
 src/test/java/sh/ory/model/CreateProjectMemberInviteBodyTest.java
@@ -1053,6 +1065,7 @@ src/test/java/sh/ory/model/OnboardingPortalTestLoginFlowTest.java
 src/test/java/sh/ory/model/OrganizationBodyTest.java
 src/test/java/sh/ory/model/OrganizationOnboardingPortalLinksResponseTest.java
 src/test/java/sh/ory/model/OrganizationTest.java
+src/test/java/sh/ory/model/PINConfigTest.java
 src/test/java/sh/ory/model/ParseErrorTest.java
 src/test/java/sh/ory/model/PatchIdentitiesBodyTest.java
 src/test/java/sh/ory/model/PatchWorkspaceMemberBodyTest.java
@@ -1172,6 +1185,7 @@ src/test/java/sh/ory/model/UpdateRegistrationFlowWithWebAuthnMethodTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowBodyTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodAddTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodDeleteTest.java
+src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecretTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithLookupMethodTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithOidcMethodTest.java
@@ -1187,6 +1201,7 @@ src/test/java/sh/ory/model/UpdateVerificationFlowWithCodeMethodTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowWithLinkMethodTest.java
 src/test/java/sh/ory/model/UpdateWorkspaceBodyTest.java
 src/test/java/sh/ory/model/UsageTest.java
+src/test/java/sh/ory/model/UserVerificationTest.java
 src/test/java/sh/ory/model/ValidateBaseURLRewriteRequestTest.java
 src/test/java/sh/ory/model/ValidateBaseURLRewriteResponseTest.java
 src/test/java/sh/ory/model/VerifiableCredentialPrimingResponseTest.java

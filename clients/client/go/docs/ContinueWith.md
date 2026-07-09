@@ -4,16 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | **string** | Action will always be &#x60;redirect_browser_to&#x60; redirect_browser_to ContinueWithActionRedirectBrowserToString | 
+**Action** | **string** | Action will always be &#x60;show_pin_entry_ui&#x60; show_pin_entry_ui ContinueWithActionShowPINEntryUIString | 
 **Flow** | [**ContinueWithRecoveryUiFlow**](ContinueWithRecoveryUiFlow.md) |  | 
 **OrySessionToken** | **string** | Token is the token of the session | 
 **RedirectBrowserTo** | **string** | The URL to redirect the browser to | 
+**Data** | [**ContinueWithDeviceAuthnPinEntryUiData**](ContinueWithDeviceAuthnPinEntryUiData.md) | The one-time HPKE-sealed pin_secret material the device opens to bind the user&#39;s PIN after a PIN-protected DeviceAuthn enrollment or secret rotation. | 
 
 ## Methods
 
 ### NewContinueWith
 
-`func NewContinueWith(action string, flow ContinueWithRecoveryUiFlow, orySessionToken string, redirectBrowserTo string, ) *ContinueWith`
+`func NewContinueWith(action string, flow ContinueWithRecoveryUiFlow, orySessionToken string, redirectBrowserTo string, data ContinueWithDeviceAuthnPinEntryUiData, ) *ContinueWith`
 
 NewContinueWith instantiates a new ContinueWith object
 This constructor will assign default values to properties that have it defined,
@@ -106,6 +107,26 @@ and a boolean to check if the value has been set.
 `func (o *ContinueWith) SetRedirectBrowserTo(v string)`
 
 SetRedirectBrowserTo sets RedirectBrowserTo field to given value.
+
+
+### GetData
+
+`func (o *ContinueWith) GetData() ContinueWithDeviceAuthnPinEntryUiData`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *ContinueWith) GetDataOk() (*ContinueWithDeviceAuthnPinEntryUiData, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetData
+
+`func (o *ContinueWith) SetData(v ContinueWithDeviceAuthnPinEntryUiData)`
+
+SetData sets Data field to given value.
 
 
 

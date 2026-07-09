@@ -11,9 +11,11 @@ Name | Type
 `created_at` | Date
 `device_name` | string
 `device_type` | string
+`pin` | [PINConfig](PINConfig.md)
 `public_key` | Array&lt;number&gt;
 `relaxed_attestation_expires_at` | Date
 `state` | string
+`user_verification` | [UserVerification](UserVerification.md)
 `version` | number
 
 ## Example
@@ -28,9 +30,11 @@ const example = {
   "created_at": null,
   "device_name": null,
   "device_type": null,
+  "pin": null,
   "public_key": null,
   "relaxed_attestation_expires_at": null,
   "state": null,
+  "user_verification": null,
   "version": null,
 } satisfies DeviceAuthnKey
 

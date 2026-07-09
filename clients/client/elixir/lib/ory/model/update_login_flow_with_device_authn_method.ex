@@ -10,6 +10,7 @@ defmodule Ory.Model.UpdateLoginFlowWithDeviceAuthnMethod do
   defstruct [
     :client_key_id,
     :method,
+    :pin_proof,
     :signature,
     :transient_payload
   ]
@@ -17,6 +18,7 @@ defmodule Ory.Model.UpdateLoginFlowWithDeviceAuthnMethod do
   @type t :: %__MODULE__{
     :client_key_id => String.t | nil,
     :method => String.t,
+    :pin_proof => binary() | nil,
     :signature => binary() | nil,
     :transient_payload => map() | nil
   }

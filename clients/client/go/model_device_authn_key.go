@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.61
+API version: v1.22.62
 Contact: support@ory.sh
 */
 
@@ -29,11 +29,13 @@ type DeviceAuthnKey struct {
 	// DeviceName is a human readable name for the device, helping the user to distinguish it from others.
 	DeviceName *string `json:"device_name,omitempty"`
 	DeviceType *string `json:"device_type,omitempty"`
+	Pin *PINConfig `json:"pin,omitempty"`
 	// PublicKey is the device's public key (EC P-256 in v1), used to verify signatures. It is stored in PKIX, ASN.1 DER form (the SubjectPublicKeyInfo encoding produced by x509.MarshalPKIXPublicKey). The private key resides inside the device and does not exist on the server.
 	PublicKey []int32 `json:"public_key,omitempty"`
 	// RelaxedAttestationExpiresAt is set only when the key's attestation chain validated because relaxed attestation was allowed (software roots, expired certs, software security level) rather than under strict rules. Such keys are second-class: they are refused at login after this time, or immediately if relaxed attestation is turned off. It is nil for hardware-attested keys that pass strict validation.
 	RelaxedAttestationExpiresAt *time.Time `json:"relaxed_attestation_expires_at,omitempty"`
 	State *string `json:"state,omitempty"`
+	UserVerification *UserVerification `json:"user_verification,omitempty"`
 	// v1 uses SHA256 + EC256. v2 (in the future) may use ML-DSA which is post-quantum resistant. This requires Android/iOS support so we have to wait. We intentionally avoid storing the cryptographic algorithm here a la JWT/TLS to avoid security issues and algorithm negotiation.
 	Version *int64 `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -218,6 +220,38 @@ func (o *DeviceAuthnKey) SetDeviceType(v string) {
 	o.DeviceType = &v
 }
 
+// GetPin returns the Pin field value if set, zero value otherwise.
+func (o *DeviceAuthnKey) GetPin() PINConfig {
+	if o == nil || IsNil(o.Pin) {
+		var ret PINConfig
+		return ret
+	}
+	return *o.Pin
+}
+
+// GetPinOk returns a tuple with the Pin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceAuthnKey) GetPinOk() (*PINConfig, bool) {
+	if o == nil || IsNil(o.Pin) {
+		return nil, false
+	}
+	return o.Pin, true
+}
+
+// HasPin returns a boolean if a field has been set.
+func (o *DeviceAuthnKey) HasPin() bool {
+	if o != nil && !IsNil(o.Pin) {
+		return true
+	}
+
+	return false
+}
+
+// SetPin gets a reference to the given PINConfig and assigns it to the Pin field.
+func (o *DeviceAuthnKey) SetPin(v PINConfig) {
+	o.Pin = &v
+}
+
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *DeviceAuthnKey) GetPublicKey() []int32 {
 	if o == nil || IsNil(o.PublicKey) {
@@ -314,6 +348,38 @@ func (o *DeviceAuthnKey) SetState(v string) {
 	o.State = &v
 }
 
+// GetUserVerification returns the UserVerification field value if set, zero value otherwise.
+func (o *DeviceAuthnKey) GetUserVerification() UserVerification {
+	if o == nil || IsNil(o.UserVerification) {
+		var ret UserVerification
+		return ret
+	}
+	return *o.UserVerification
+}
+
+// GetUserVerificationOk returns a tuple with the UserVerification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceAuthnKey) GetUserVerificationOk() (*UserVerification, bool) {
+	if o == nil || IsNil(o.UserVerification) {
+		return nil, false
+	}
+	return o.UserVerification, true
+}
+
+// HasUserVerification returns a boolean if a field has been set.
+func (o *DeviceAuthnKey) HasUserVerification() bool {
+	if o != nil && !IsNil(o.UserVerification) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserVerification gets a reference to the given UserVerification and assigns it to the UserVerification field.
+func (o *DeviceAuthnKey) SetUserVerification(v UserVerification) {
+	o.UserVerification = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *DeviceAuthnKey) GetVersion() int64 {
 	if o == nil || IsNil(o.Version) {
@@ -371,6 +437,9 @@ func (o DeviceAuthnKey) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DeviceType) {
 		toSerialize["device_type"] = o.DeviceType
 	}
+	if !IsNil(o.Pin) {
+		toSerialize["pin"] = o.Pin
+	}
 	if !IsNil(o.PublicKey) {
 		toSerialize["public_key"] = o.PublicKey
 	}
@@ -379,6 +448,9 @@ func (o DeviceAuthnKey) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
+	}
+	if !IsNil(o.UserVerification) {
+		toSerialize["user_verification"] = o.UserVerification
 	}
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
@@ -410,9 +482,11 @@ func (o *DeviceAuthnKey) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "device_name")
 		delete(additionalProperties, "device_type")
+		delete(additionalProperties, "pin")
 		delete(additionalProperties, "public_key")
 		delete(additionalProperties, "relaxed_attestation_expires_at")
 		delete(additionalProperties, "state")
+		delete(additionalProperties, "user_verification")
 		delete(additionalProperties, "version")
 		o.AdditionalProperties = additionalProperties
 	}

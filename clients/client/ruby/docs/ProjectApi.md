@@ -268,7 +268,7 @@ end
 api_instance = OryClient::ProjectApi.new
 project = 'project_example' # String | The Project ID or Project slug
 opts = {
-  create_project_api_key_request: OryClient::CreateProjectApiKeyRequest.new({name: 'name_example'}) # CreateProjectApiKeyRequest | 
+  create_project_api_key_body: OryClient::CreateProjectApiKeyBody.new({name: 'name_example'}) # CreateProjectApiKeyBody | 
 }
 
 begin
@@ -303,7 +303,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **project** | **String** | The Project ID or Project slug |  |
-| **create_project_api_key_request** | [**CreateProjectApiKeyRequest**](CreateProjectApiKeyRequest.md) |  | [optional] |
+| **create_project_api_key_body** | [**CreateProjectApiKeyBody**](CreateProjectApiKeyBody.md) |  | [optional] |
 
 ### Return type
 

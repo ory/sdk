@@ -13,9 +13,11 @@ defmodule Ory.Model.DeviceAuthnKey do
     :created_at,
     :device_name,
     :device_type,
+    :pin,
     :public_key,
     :relaxed_attestation_expires_at,
     :state,
+    :user_verification,
     :version
   ]
 
@@ -25,9 +27,11 @@ defmodule Ory.Model.DeviceAuthnKey do
     :created_at => DateTime.t | nil,
     :device_name => String.t | nil,
     :device_type => String.t | nil,
+    :pin => Ory.Model.PinConfig.t | nil,
     :public_key => [integer()] | nil,
     :relaxed_attestation_expires_at => DateTime.t | nil,
     :state => String.t | nil,
+    :user_verification => Ory.Model.UserVerification.t | nil,
     :version => integer() | nil
   }
 
@@ -37,7 +41,9 @@ defmodule Ory.Model.DeviceAuthnKey do
     value
      |> Deserializer.deserialize(:attestation, :struct, Ory.Model.DeviceAuthnAttestation)
      |> Deserializer.deserialize(:created_at, :datetime, nil)
+     |> Deserializer.deserialize(:pin, :struct, Ory.Model.PinConfig)
      |> Deserializer.deserialize(:relaxed_attestation_expires_at, :datetime, nil)
+     |> Deserializer.deserialize(:user_verification, :struct, Ory.Model.UserVerification)
   end
 end
 

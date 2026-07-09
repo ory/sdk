@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **totp_code** | **string** | The TOTP code. | [default to undefined]
 **webauthn_login** | **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] [default to undefined]
 **client_key_id** | **string** | ClientKeyID identifies the DeviceAuthn key to authenticate with.  It is the key\&#39;s deterministic fingerprint — the lowercase-hex SHA-256 of the device public key in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form — which the device recomputes locally after enrollment. Keys enrolled before the server derived the id use their original client-chosen value. | [optional] [default to undefined]
+**pin_proof** | **string** | PINProof is an HMAC the client computes using the pin_secret when the key is PIN-protected. It proves possession of the PIN without revealing it.  Sensitive: a proof of the PIN secret, do not log or transmit. It is marked write-only in the spec via the OpenAPI patch in .schema/openapi/patches/selfservice.yaml. | [optional] [default to undefined]
 **signature** | **string** | Signature is a ES256 signature of the server-provided challenge. | [optional] [default to undefined]
 **lookup_secret** | **string** | The lookup secret. | [default to undefined]
 **address** | **string** | Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows. | [optional] [default to undefined]
@@ -46,6 +47,7 @@ const instance: UpdateLoginFlowBody = {
     totp_code,
     webauthn_login,
     client_key_id,
+    pin_proof,
     signature,
     lookup_secret,
     address,

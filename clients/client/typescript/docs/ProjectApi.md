@@ -212,18 +212,18 @@ Create an API key for a project.
 import {
     ProjectApi,
     Configuration,
-    CreateProjectApiKeyRequest
+    CreateProjectApiKeyBody
 } from '@ory/client';
 
 const configuration = new Configuration();
 const apiInstance = new ProjectApi(configuration);
 
 let project: string; //The Project ID or Project slug (default to undefined)
-let createProjectApiKeyRequest: CreateProjectApiKeyRequest; // (optional)
+let createProjectApiKeyBody: CreateProjectApiKeyBody; // (optional)
 
 const { status, data } = await apiInstance.createProjectApiKey(
     project,
-    createProjectApiKeyRequest
+    createProjectApiKeyBody
 );
 ```
 
@@ -231,7 +231,7 @@ const { status, data } = await apiInstance.createProjectApiKey(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **createProjectApiKeyRequest** | **CreateProjectApiKeyRequest**|  | |
+| **createProjectApiKeyBody** | **CreateProjectApiKeyBody**|  | |
 | **project** | [**string**] | The Project ID or Project slug | defaults to undefined|
 
 

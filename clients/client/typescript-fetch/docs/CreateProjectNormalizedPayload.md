@@ -217,8 +217,11 @@ Name | Type
 `kratos_selfservice_methods_code_passwordless_enabled` | boolean
 `kratos_selfservice_methods_code_passwordless_login_fallback_enabled` | boolean
 `kratos_selfservice_methods_deviceauthn_config_android_app_ids` | Array&lt;string&gt;
+`kratos_selfservice_methods_deviceauthn_config_first_factor` | boolean
 `kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation` | boolean
 `kratos_selfservice_methods_deviceauthn_config_ios_app_ids` | Array&lt;string&gt;
+`kratos_selfservice_methods_deviceauthn_config_ios_biometric_first_factor` | boolean
+`kratos_selfservice_methods_deviceauthn_config_pin_max_attempts` | number
 `kratos_selfservice_methods_deviceauthn_enabled` | boolean
 `kratos_selfservice_methods_link_config_base_url` | string
 `kratos_selfservice_methods_link_config_lifespan` | string
@@ -502,8 +505,11 @@ const example = {
   "kratos_selfservice_methods_code_passwordless_enabled": null,
   "kratos_selfservice_methods_code_passwordless_login_fallback_enabled": null,
   "kratos_selfservice_methods_deviceauthn_config_android_app_ids": null,
+  "kratos_selfservice_methods_deviceauthn_config_first_factor": null,
   "kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation": null,
   "kratos_selfservice_methods_deviceauthn_config_ios_app_ids": null,
+  "kratos_selfservice_methods_deviceauthn_config_ios_biometric_first_factor": null,
+  "kratos_selfservice_methods_deviceauthn_config_pin_max_attempts": null,
   "kratos_selfservice_methods_deviceauthn_enabled": null,
   "kratos_selfservice_methods_link_config_base_url": null,
   "kratos_selfservice_methods_link_config_lifespan": null,

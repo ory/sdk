@@ -29,6 +29,7 @@ Name | Type
 `passkey_settings_register` | string
 `add` | [UpdateSettingsFlowWithDeviceAuthnMethodAdd](UpdateSettingsFlowWithDeviceAuthnMethodAdd.md)
 `_delete` | [UpdateSettingsFlowWithDeviceAuthnMethodDelete](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md)
+`rotate_secret` | [UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret](UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md)
 
 ## Example
 
@@ -59,6 +60,7 @@ const example = {
   "passkey_settings_register": null,
   "add": null,
   "_delete": null,
+  "rotate_secret": null,
 } satisfies UpdateSettingsFlowBody
 
 console.log(example)

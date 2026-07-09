@@ -21,6 +21,7 @@
 |**totpCode** | **String** | The TOTP code. |  |
 |**webauthnLogin** | **String** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. |  [optional] |
 |**clientKeyId** | **String** | ClientKeyID identifies the DeviceAuthn key to authenticate with.  It is the key&#39;s deterministic fingerprint — the lowercase-hex SHA-256 of the device public key in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form — which the device recomputes locally after enrollment. Keys enrolled before the server derived the id use their original client-chosen value. |  [optional] |
+|**pinProof** | **byte[]** | PINProof is an HMAC the client computes using the pin_secret when the key is PIN-protected. It proves possession of the PIN without revealing it.  Sensitive: a proof of the PIN secret, do not log or transmit. It is marked write-only in the spec via the OpenAPI patch in .schema/openapi/patches/selfservice.yaml. |  [optional] |
 |**signature** | **byte[]** | Signature is a ES256 signature of the server-provided challenge. |  [optional] |
 |**lookupSecret** | **String** | The lookup secret. |  |
 |**address** | **String** | Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows. |  [optional] |

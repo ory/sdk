@@ -11,6 +11,9 @@ defmodule Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd do
     :attestation_ios,
     :certificate_chain_android,
     :device_name,
+    :pin_protected,
+    :transport_public_key,
+    :user_verification,
     :version
   ]
 
@@ -18,11 +21,17 @@ defmodule Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd do
     :attestation_ios => binary() | nil,
     :certificate_chain_android => [binary()] | nil,
     :device_name => String.t,
+    :pin_protected => boolean() | nil,
+    :transport_public_key => binary() | nil,
+    :user_verification => Ory.Model.UserVerification.t | nil,
     :version => integer() | nil
   }
 
+  alias Ory.Deserializer
+
   def decode(value) do
     value
+     |> Deserializer.deserialize(:user_verification, :struct, Ory.Model.UserVerification)
   end
 end
 

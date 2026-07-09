@@ -123,7 +123,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_project_api_key
 
-> models::ProjectApiKey create_project_api_key(project, create_project_api_key_request)
+> models::ProjectApiKey create_project_api_key(project, create_project_api_key_body)
 Create project API key
 
 Create an API key for a project.
@@ -134,7 +134,7 @@ Create an API key for a project.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **project** | **String** | The Project ID or Project slug | [required] |
-**create_project_api_key_request** | Option<[**CreateProjectApiKeyRequest**](CreateProjectApiKeyRequest.md)> |  |  |
+**create_project_api_key_body** | Option<[**CreateProjectApiKeyBody**](CreateProjectApiKeyBody.md)> |  |  |
 
 ### Return type
 

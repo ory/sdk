@@ -149,7 +149,7 @@ Creates a new project.
 
 <a id="createprojectapikey"></a>
 # **CreateProjectApiKey**
-> ClientProjectApiKey CreateProjectApiKey (string project, ClientCreateProjectApiKeyRequest clientCreateProjectApiKeyRequest = null)
+> ClientProjectApiKey CreateProjectApiKey (string project, ClientCreateProjectApiKeyBody clientCreateProjectApiKeyBody = null)
 
 Create project API key
 
@@ -161,7 +161,7 @@ Create an API key for a project.
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **project** | **string** | The Project ID or Project slug |  |
-| **clientCreateProjectApiKeyRequest** | [**ClientCreateProjectApiKeyRequest**](ClientCreateProjectApiKeyRequest.md) |  | [optional]  |
+| **clientCreateProjectApiKeyBody** | [**ClientCreateProjectApiKeyBody**](ClientCreateProjectApiKeyBody.md) |  | [optional]  |
 
 ### Return type
 

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.61
+API version: v1.22.62
 Contact: support@ory.sh
 */
 
@@ -26,6 +26,12 @@ type UpdateSettingsFlowWithDeviceAuthnMethodAdd struct {
 	CertificateChainAndroid []string `json:"certificate_chain_android,omitempty"`
 	// DeviceName is a human-readable name for the device e.g. 'My work phone'.
 	DeviceName string `json:"device_name"`
+	// PINProtected indicates that the key is protected by a PIN. When true, the server must issue a sealed pin_secret in the response.
+	PinProtected *bool `json:"pin_protected,omitempty"`
+	// TransportPubKey is the transport public key (HPKE) used to seal the returned pin_secret so only this device can open it. It is base64-encoded in JSON and decoded to raw bytes here.
+	TransportPublicKey *string `json:"transport_public_key,omitempty"`
+	// Declares how the key's holder is verified at use time. One of \"pin\", \"platform\", or \"none\" (or empty, which maps to \"none\"). \"pin\" is implied by pin_protected and need not be set explicitly. For \"platform\" the server cross-checks the attestation on Android and trusts the declaration on iOS, since App Attest cannot prove biometric gating.
+	UserVerification *UserVerification `json:"user_verification,omitempty"`
 	// Version is the version number for the cryptography. For now only `1` is supported which corresponds to SHA256 + EC.
 	Version *int64 `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -139,6 +145,102 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetDeviceName(v string) {
 	o.DeviceName = v
 }
 
+// GetPinProtected returns the PinProtected field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetPinProtected() bool {
+	if o == nil || IsNil(o.PinProtected) {
+		var ret bool
+		return ret
+	}
+	return *o.PinProtected
+}
+
+// GetPinProtectedOk returns a tuple with the PinProtected field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetPinProtectedOk() (*bool, bool) {
+	if o == nil || IsNil(o.PinProtected) {
+		return nil, false
+	}
+	return o.PinProtected, true
+}
+
+// HasPinProtected returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasPinProtected() bool {
+	if o != nil && !IsNil(o.PinProtected) {
+		return true
+	}
+
+	return false
+}
+
+// SetPinProtected gets a reference to the given bool and assigns it to the PinProtected field.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetPinProtected(v bool) {
+	o.PinProtected = &v
+}
+
+// GetTransportPublicKey returns the TransportPublicKey field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetTransportPublicKey() string {
+	if o == nil || IsNil(o.TransportPublicKey) {
+		var ret string
+		return ret
+	}
+	return *o.TransportPublicKey
+}
+
+// GetTransportPublicKeyOk returns a tuple with the TransportPublicKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetTransportPublicKeyOk() (*string, bool) {
+	if o == nil || IsNil(o.TransportPublicKey) {
+		return nil, false
+	}
+	return o.TransportPublicKey, true
+}
+
+// HasTransportPublicKey returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasTransportPublicKey() bool {
+	if o != nil && !IsNil(o.TransportPublicKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransportPublicKey gets a reference to the given string and assigns it to the TransportPublicKey field.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetTransportPublicKey(v string) {
+	o.TransportPublicKey = &v
+}
+
+// GetUserVerification returns the UserVerification field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetUserVerification() UserVerification {
+	if o == nil || IsNil(o.UserVerification) {
+		var ret UserVerification
+		return ret
+	}
+	return *o.UserVerification
+}
+
+// GetUserVerificationOk returns a tuple with the UserVerification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetUserVerificationOk() (*UserVerification, bool) {
+	if o == nil || IsNil(o.UserVerification) {
+		return nil, false
+	}
+	return o.UserVerification, true
+}
+
+// HasUserVerification returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) HasUserVerification() bool {
+	if o != nil && !IsNil(o.UserVerification) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserVerification gets a reference to the given UserVerification and assigns it to the UserVerification field.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) SetUserVerification(v UserVerification) {
+	o.UserVerification = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) GetVersion() int64 {
 	if o == nil || IsNil(o.Version) {
@@ -188,6 +290,15 @@ func (o UpdateSettingsFlowWithDeviceAuthnMethodAdd) ToMap() (map[string]interfac
 		toSerialize["certificate_chain_android"] = o.CertificateChainAndroid
 	}
 	toSerialize["device_name"] = o.DeviceName
+	if !IsNil(o.PinProtected) {
+		toSerialize["pin_protected"] = o.PinProtected
+	}
+	if !IsNil(o.TransportPublicKey) {
+		toSerialize["transport_public_key"] = o.TransportPublicKey
+	}
+	if !IsNil(o.UserVerification) {
+		toSerialize["user_verification"] = o.UserVerification
+	}
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
@@ -237,6 +348,9 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodAdd) UnmarshalJSON(data []byte) 
 		delete(additionalProperties, "attestation_ios")
 		delete(additionalProperties, "certificate_chain_android")
 		delete(additionalProperties, "device_name")
+		delete(additionalProperties, "pin_protected")
+		delete(additionalProperties, "transport_public_key")
+		delete(additionalProperties, "user_verification")
 		delete(additionalProperties, "version")
 		o.AdditionalProperties = additionalProperties
 	}

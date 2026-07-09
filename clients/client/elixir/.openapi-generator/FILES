@@ -56,6 +56,8 @@ lib/ory/model/check_permission_result.ex
 lib/ory/model/check_permission_result_with_error.ex
 lib/ory/model/cloud_account.ex
 lib/ory/model/continue_with.ex
+lib/ory/model/continue_with_device_authn_pin_entry_ui.ex
+lib/ory/model/continue_with_device_authn_pin_entry_ui_data.ex
 lib/ory/model/continue_with_recovery_ui.ex
 lib/ory/model/continue_with_recovery_ui_flow.ex
 lib/ory/model/continue_with_redirect_browser_to.ex
@@ -74,7 +76,7 @@ lib/ory/model/create_invite_response.ex
 lib/ory/model/create_json_web_key_set.ex
 lib/ory/model/create_onboarding_link_response.ex
 lib/ory/model/create_organization_onboarding_portal_link_body.ex
-lib/ory/model/create_project_api_key_request.ex
+lib/ory/model/create_project_api_key_body.ex
 lib/ory/model/create_project_body.ex
 lib/ory/model/create_project_branding.ex
 lib/ory/model/create_project_member_invite_body.ex
@@ -249,6 +251,7 @@ lib/ory/model/patch_identities_body.ex
 lib/ory/model/patch_workspace_member_body.ex
 lib/ory/model/perform_native_logout_body.ex
 lib/ory/model/permissions_on_workspace.ex
+lib/ory/model/pin_config.ex
 lib/ory/model/plan.ex
 lib/ory/model/plan_details.ex
 lib/ory/model/post_check_permission_body.ex
@@ -364,6 +367,7 @@ lib/ory/model/update_settings_flow_body.ex
 lib/ory/model/update_settings_flow_with_device_authn_method.ex
 lib/ory/model/update_settings_flow_with_device_authn_method_add.ex
 lib/ory/model/update_settings_flow_with_device_authn_method_delete.ex
+lib/ory/model/update_settings_flow_with_device_authn_method_rotate_secret.ex
 lib/ory/model/update_settings_flow_with_lookup_method.ex
 lib/ory/model/update_settings_flow_with_oidc_method.ex
 lib/ory/model/update_settings_flow_with_passkey_method.ex
@@ -378,6 +382,7 @@ lib/ory/model/update_verification_flow_with_code_method.ex
 lib/ory/model/update_verification_flow_with_link_method.ex
 lib/ory/model/update_workspace_body.ex
 lib/ory/model/usage.ex
+lib/ory/model/user_verification.ex
 lib/ory/model/validate_base_url_rewrite_request.ex
 lib/ory/model/validate_base_url_rewrite_response.ex
 lib/ory/model/verifiable_credential_priming_response.ex

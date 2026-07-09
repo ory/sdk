@@ -214,8 +214,11 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsCodePasswordlessEnabled** | Pointer to **bool** | Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled** | Pointer to **bool** | This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \&quot;selfservice.methods.code.passwordless_login_fallback_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds** | Pointer to **[]string** | Configures the allow-list of Android app signing-certificate digests that a device key may be bound to.  This governs the \&quot;selfservice.methods.deviceauthn.config.android_app_ids\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsDeviceauthnConfigFirstFactor** | Pointer to **bool** | Configures whether device authentication may be used as the sole first factor.  This governs the \&quot;selfservice.methods.deviceauthn.config.first_factor\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation** | Pointer to **bool** | Configures whether Ory Kratos Device authentication accepts relaxed attestations for testing  Only allowed on development projects and forced off otherwise. Keys enrolled under relaxation are short-lived and refused once this is turned off.  This governs the \&quot;selfservice.methods.deviceauthn.config.insecure_allow_relaxed_attestation\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnConfigIosAppIds** | Pointer to **[]string** | Configures the allow-list of Apple App IDs that a device key may be bound to.  This governs the \&quot;selfservice.methods.deviceauthn.config.ios_app_ids\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor** | Pointer to **bool** | Configures whether an iOS biometric device key may be used as the sole first factor.  This governs the \&quot;selfservice.methods.deviceauthn.config.ios_biometric_first_factor\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts** | Pointer to **int64** | Configures the consecutive wrong-PIN limit before a device key is locked.  This governs the \&quot;selfservice.methods.deviceauthn.config.pin_max_attempts\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnEnabled** | Pointer to **bool** | Configures whether Ory Kratos Device authentication is enabled  This governs the \&quot;selfservice.methods.deviceauthn.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigBaseUrl** | Pointer to **string** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] 
@@ -5546,6 +5549,31 @@ SetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds sets KratosSelfservice
 
 HasKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds returns a boolean if a field has been set.
 
+### GetKratosSelfserviceMethodsDeviceauthnConfigFirstFactor
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigFirstFactor() bool`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigFirstFactor returns the KratosSelfserviceMethodsDeviceauthnConfigFirstFactor field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigFirstFactorOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigFirstFactorOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigFirstFactorOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigFirstFactor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsDeviceauthnConfigFirstFactor
+
+`func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsDeviceauthnConfigFirstFactor(v bool)`
+
+SetKratosSelfserviceMethodsDeviceauthnConfigFirstFactor sets KratosSelfserviceMethodsDeviceauthnConfigFirstFactor field to given value.
+
+### HasKratosSelfserviceMethodsDeviceauthnConfigFirstFactor
+
+`func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsDeviceauthnConfigFirstFactor() bool`
+
+HasKratosSelfserviceMethodsDeviceauthnConfigFirstFactor returns a boolean if a field has been set.
+
 ### GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation
 
 `func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation() bool`
@@ -5595,6 +5623,56 @@ SetKratosSelfserviceMethodsDeviceauthnConfigIosAppIds sets KratosSelfserviceMeth
 `func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsDeviceauthnConfigIosAppIds() bool`
 
 HasKratosSelfserviceMethodsDeviceauthnConfigIosAppIds returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor() bool`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor returns the KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactorOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactorOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactorOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor
+
+`func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor(v bool)`
+
+SetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor sets KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor field to given value.
+
+### HasKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor
+
+`func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor() bool`
+
+HasKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts() int64`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts returns the KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttemptsOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttemptsOk() (*int64, bool)`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttemptsOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts
+
+`func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts(v int64)`
+
+SetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts sets KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts field to given value.
+
+### HasKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts
+
+`func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts() bool`
+
+HasKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsDeviceauthnEnabled
 

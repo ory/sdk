@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.61
+API version: v1.22.62
 Contact: support@ory.sh
 */
 
@@ -18,11 +18,19 @@ import (
 
 // ContinueWith - struct for ContinueWith
 type ContinueWith struct {
+	ContinueWithDeviceAuthnPinEntryUi *ContinueWithDeviceAuthnPinEntryUi
 	ContinueWithRecoveryUi *ContinueWithRecoveryUi
 	ContinueWithRedirectBrowserTo *ContinueWithRedirectBrowserTo
 	ContinueWithSetOrySessionToken *ContinueWithSetOrySessionToken
 	ContinueWithSettingsUi *ContinueWithSettingsUi
 	ContinueWithVerificationUi *ContinueWithVerificationUi
+}
+
+// ContinueWithDeviceAuthnPinEntryUiAsContinueWith is a convenience function that returns ContinueWithDeviceAuthnPinEntryUi wrapped in ContinueWith
+func ContinueWithDeviceAuthnPinEntryUiAsContinueWith(v *ContinueWithDeviceAuthnPinEntryUi) ContinueWith {
+	return ContinueWith{
+		ContinueWithDeviceAuthnPinEntryUi: v,
+	}
 }
 
 // ContinueWithRecoveryUiAsContinueWith is a convenience function that returns ContinueWithRecoveryUi wrapped in ContinueWith
@@ -95,6 +103,18 @@ func (dst *ContinueWith) UnmarshalJSON(data []byte) error {
 		}
 	}
 
+	// check if the discriminator value is 'show_pin_entry_ui'
+	if jsonDict["action"] == "show_pin_entry_ui" {
+		// try to unmarshal JSON data into ContinueWithDeviceAuthnPinEntryUi
+		err = json.Unmarshal(data, &dst.ContinueWithDeviceAuthnPinEntryUi)
+		if err == nil {
+			return nil // data stored in dst.ContinueWithDeviceAuthnPinEntryUi, return on the first match
+		} else {
+			dst.ContinueWithDeviceAuthnPinEntryUi = nil
+			return fmt.Errorf("failed to unmarshal ContinueWith as ContinueWithDeviceAuthnPinEntryUi: %s", err.Error())
+		}
+	}
+
 	// check if the discriminator value is 'show_recovery_ui'
 	if jsonDict["action"] == "show_recovery_ui" {
 		// try to unmarshal JSON data into ContinueWithRecoveryUi
@@ -136,6 +156,10 @@ func (dst *ContinueWith) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src ContinueWith) MarshalJSON() ([]byte, error) {
+	if src.ContinueWithDeviceAuthnPinEntryUi != nil {
+		return json.Marshal(&src.ContinueWithDeviceAuthnPinEntryUi)
+	}
+
 	if src.ContinueWithRecoveryUi != nil {
 		return json.Marshal(&src.ContinueWithRecoveryUi)
 	}
@@ -164,6 +188,10 @@ func (obj *ContinueWith) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
+	if obj.ContinueWithDeviceAuthnPinEntryUi != nil {
+		return obj.ContinueWithDeviceAuthnPinEntryUi
+	}
+
 	if obj.ContinueWithRecoveryUi != nil {
 		return obj.ContinueWithRecoveryUi
 	}
@@ -190,6 +218,10 @@ func (obj *ContinueWith) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj ContinueWith) GetActualInstanceValue() (interface{}) {
+	if obj.ContinueWithDeviceAuthnPinEntryUi != nil {
+		return *obj.ContinueWithDeviceAuthnPinEntryUi
+	}
+
 	if obj.ContinueWithRecoveryUi != nil {
 		return *obj.ContinueWithRecoveryUi
 	}

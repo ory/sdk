@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **TotpCode** | **string** | The TOTP code. | 
 **WebauthnLogin** | Pointer to **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 **ClientKeyId** | Pointer to **string** | ClientKeyID identifies the DeviceAuthn key to authenticate with.  It is the key&#39;s deterministic fingerprint — the lowercase-hex SHA-256 of the device public key in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form — which the device recomputes locally after enrollment. Keys enrolled before the server derived the id use their original client-chosen value. | [optional] 
+**PinProof** | Pointer to **string** | PINProof is an HMAC the client computes using the pin_secret when the key is PIN-protected. It proves possession of the PIN without revealing it.  Sensitive: a proof of the PIN secret, do not log or transmit. It is marked write-only in the spec via the OpenAPI patch in .schema/openapi/patches/selfservice.yaml. | [optional] 
 **Signature** | Pointer to **string** | Signature is a ES256 signature of the server-provided challenge. | [optional] 
 **LookupSecret** | **string** | The lookup secret. | 
 **Address** | Pointer to **string** | Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows. | [optional] 
@@ -363,6 +364,31 @@ SetClientKeyId sets ClientKeyId field to given value.
 `func (o *UpdateLoginFlowBody) HasClientKeyId() bool`
 
 HasClientKeyId returns a boolean if a field has been set.
+
+### GetPinProof
+
+`func (o *UpdateLoginFlowBody) GetPinProof() string`
+
+GetPinProof returns the PinProof field if non-nil, zero value otherwise.
+
+### GetPinProofOk
+
+`func (o *UpdateLoginFlowBody) GetPinProofOk() (*string, bool)`
+
+GetPinProofOk returns a tuple with the PinProof field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPinProof
+
+`func (o *UpdateLoginFlowBody) SetPinProof(v string)`
+
+SetPinProof sets PinProof field to given value.
+
+### HasPinProof
+
+`func (o *UpdateLoginFlowBody) HasPinProof() bool`
+
+HasPinProof returns a boolean if a field has been set.
 
 ### GetSignature
 

@@ -20,6 +20,7 @@ Name | Type
 `totp_code` | string
 `webauthn_login` | string
 `client_key_id` | string
+`pin_proof` | string
 `signature` | string
 `lookup_secret` | string
 `address` | string
@@ -48,6 +49,7 @@ const example = {
   "totp_code": null,
   "webauthn_login": null,
   "client_key_id": null,
+  "pin_proof": null,
   "signature": null,
   "lookup_secret": null,
   "address": null,

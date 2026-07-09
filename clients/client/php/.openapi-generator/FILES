@@ -54,6 +54,8 @@ docs/Model/CheckPermissionResult.md
 docs/Model/CheckPermissionResultWithError.md
 docs/Model/CloudAccount.md
 docs/Model/ContinueWith.md
+docs/Model/ContinueWithDeviceAuthnPinEntryUi.md
+docs/Model/ContinueWithDeviceAuthnPinEntryUiData.md
 docs/Model/ContinueWithRecoveryUi.md
 docs/Model/ContinueWithRecoveryUiFlow.md
 docs/Model/ContinueWithRedirectBrowserTo.md
@@ -72,7 +74,7 @@ docs/Model/CreateInviteResponse.md
 docs/Model/CreateJsonWebKeySet.md
 docs/Model/CreateOnboardingLinkResponse.md
 docs/Model/CreateOrganizationOnboardingPortalLinkBody.md
-docs/Model/CreateProjectApiKeyRequest.md
+docs/Model/CreateProjectApiKeyBody.md
 docs/Model/CreateProjectBody.md
 docs/Model/CreateProjectBranding.md
 docs/Model/CreateProjectMemberInviteBody.md
@@ -242,6 +244,7 @@ docs/Model/OnboardingPortalTestLoginFlow.md
 docs/Model/Organization.md
 docs/Model/OrganizationBody.md
 docs/Model/OrganizationOnboardingPortalLinksResponse.md
+docs/Model/PINConfig.md
 docs/Model/ParseError.md
 docs/Model/PatchIdentitiesBody.md
 docs/Model/PatchWorkspaceMemberBody.md
@@ -362,6 +365,7 @@ docs/Model/UpdateSettingsFlowBody.md
 docs/Model/UpdateSettingsFlowWithDeviceAuthnMethod.md
 docs/Model/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
 docs/Model/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/Model/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/Model/UpdateSettingsFlowWithLookupMethod.md
 docs/Model/UpdateSettingsFlowWithOidcMethod.md
 docs/Model/UpdateSettingsFlowWithPasskeyMethod.md
@@ -376,6 +380,7 @@ docs/Model/UpdateVerificationFlowWithCodeMethod.md
 docs/Model/UpdateVerificationFlowWithLinkMethod.md
 docs/Model/UpdateWorkspaceBody.md
 docs/Model/Usage.md
+docs/Model/UserVerification.md
 docs/Model/ValidateBaseURLRewriteRequest.md
 docs/Model/ValidateBaseURLRewriteResponse.md
 docs/Model/VerifiableCredentialPrimingResponse.md
@@ -448,6 +453,8 @@ lib/Model/CheckPermissionResult.php
 lib/Model/CheckPermissionResultWithError.php
 lib/Model/CloudAccount.php
 lib/Model/ContinueWith.php
+lib/Model/ContinueWithDeviceAuthnPinEntryUi.php
+lib/Model/ContinueWithDeviceAuthnPinEntryUiData.php
 lib/Model/ContinueWithRecoveryUi.php
 lib/Model/ContinueWithRecoveryUiFlow.php
 lib/Model/ContinueWithRedirectBrowserTo.php
@@ -466,7 +473,7 @@ lib/Model/CreateInviteResponse.php
 lib/Model/CreateJsonWebKeySet.php
 lib/Model/CreateOnboardingLinkResponse.php
 lib/Model/CreateOrganizationOnboardingPortalLinkBody.php
-lib/Model/CreateProjectApiKeyRequest.php
+lib/Model/CreateProjectApiKeyBody.php
 lib/Model/CreateProjectBody.php
 lib/Model/CreateProjectBranding.php
 lib/Model/CreateProjectMemberInviteBody.php
@@ -637,6 +644,7 @@ lib/Model/OnboardingPortalTestLoginFlow.php
 lib/Model/Organization.php
 lib/Model/OrganizationBody.php
 lib/Model/OrganizationOnboardingPortalLinksResponse.php
+lib/Model/PINConfig.php
 lib/Model/ParseError.php
 lib/Model/PatchIdentitiesBody.php
 lib/Model/PatchWorkspaceMemberBody.php
@@ -757,6 +765,7 @@ lib/Model/UpdateSettingsFlowBody.php
 lib/Model/UpdateSettingsFlowWithDeviceAuthnMethod.php
 lib/Model/UpdateSettingsFlowWithDeviceAuthnMethodAdd.php
 lib/Model/UpdateSettingsFlowWithDeviceAuthnMethodDelete.php
+lib/Model/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.php
 lib/Model/UpdateSettingsFlowWithLookupMethod.php
 lib/Model/UpdateSettingsFlowWithOidcMethod.php
 lib/Model/UpdateSettingsFlowWithPasskeyMethod.php
@@ -771,6 +780,7 @@ lib/Model/UpdateVerificationFlowWithCodeMethod.php
 lib/Model/UpdateVerificationFlowWithLinkMethod.php
 lib/Model/UpdateWorkspaceBody.php
 lib/Model/Usage.php
+lib/Model/UserVerification.php
 lib/Model/ValidateBaseURLRewriteRequest.php
 lib/Model/ValidateBaseURLRewriteResponse.php
 lib/Model/VerifiableCredentialPrimingResponse.php
@@ -839,6 +849,8 @@ test/Model/CheckOplSyntaxResultTest.php
 test/Model/CheckPermissionResultTest.php
 test/Model/CheckPermissionResultWithErrorTest.php
 test/Model/CloudAccountTest.php
+test/Model/ContinueWithDeviceAuthnPinEntryUiDataTest.php
+test/Model/ContinueWithDeviceAuthnPinEntryUiTest.php
 test/Model/ContinueWithRecoveryUiFlowTest.php
 test/Model/ContinueWithRecoveryUiTest.php
 test/Model/ContinueWithRedirectBrowserToTest.php
@@ -858,7 +870,7 @@ test/Model/CreateInviteResponseTest.php
 test/Model/CreateJsonWebKeySetTest.php
 test/Model/CreateOnboardingLinkResponseTest.php
 test/Model/CreateOrganizationOnboardingPortalLinkBodyTest.php
-test/Model/CreateProjectApiKeyRequestTest.php
+test/Model/CreateProjectApiKeyBodyTest.php
 test/Model/CreateProjectBodyTest.php
 test/Model/CreateProjectBrandingTest.php
 test/Model/CreateProjectMemberInviteBodyTest.php
@@ -1028,6 +1040,7 @@ test/Model/OnboardingPortalTestLoginFlowTest.php
 test/Model/OrganizationBodyTest.php
 test/Model/OrganizationOnboardingPortalLinksResponseTest.php
 test/Model/OrganizationTest.php
+test/Model/PINConfigTest.php
 test/Model/ParseErrorTest.php
 test/Model/PatchIdentitiesBodyTest.php
 test/Model/PatchWorkspaceMemberBodyTest.php
@@ -1147,6 +1160,7 @@ test/Model/UpdateRegistrationFlowWithWebAuthnMethodTest.php
 test/Model/UpdateSettingsFlowBodyTest.php
 test/Model/UpdateSettingsFlowWithDeviceAuthnMethodAddTest.php
 test/Model/UpdateSettingsFlowWithDeviceAuthnMethodDeleteTest.php
+test/Model/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecretTest.php
 test/Model/UpdateSettingsFlowWithDeviceAuthnMethodTest.php
 test/Model/UpdateSettingsFlowWithLookupMethodTest.php
 test/Model/UpdateSettingsFlowWithOidcMethodTest.php
@@ -1162,6 +1176,7 @@ test/Model/UpdateVerificationFlowWithCodeMethodTest.php
 test/Model/UpdateVerificationFlowWithLinkMethodTest.php
 test/Model/UpdateWorkspaceBodyTest.php
 test/Model/UsageTest.php
+test/Model/UserVerificationTest.php
 test/Model/ValidateBaseURLRewriteRequestTest.php
 test/Model/ValidateBaseURLRewriteResponseTest.php
 test/Model/VerifiableCredentialPrimingResponseTest.php

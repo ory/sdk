@@ -1,4 +1,4 @@
-## @ory/client@v1.22.61
+## @ory/client@v1.22.62
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.61 --save
+npm install @ory/client@v1.22.62 --save
 ```
 
 _unPublished (not recommended):_
@@ -259,6 +259,8 @@ Class | Method | HTTP request | Description
  - [CheckPermissionResultWithError](docs/CheckPermissionResultWithError.md)
  - [CloudAccount](docs/CloudAccount.md)
  - [ContinueWith](docs/ContinueWith.md)
+ - [ContinueWithDeviceAuthnPinEntryUi](docs/ContinueWithDeviceAuthnPinEntryUi.md)
+ - [ContinueWithDeviceAuthnPinEntryUiData](docs/ContinueWithDeviceAuthnPinEntryUiData.md)
  - [ContinueWithRecoveryUi](docs/ContinueWithRecoveryUi.md)
  - [ContinueWithRecoveryUiFlow](docs/ContinueWithRecoveryUiFlow.md)
  - [ContinueWithRedirectBrowserTo](docs/ContinueWithRedirectBrowserTo.md)
@@ -277,7 +279,7 @@ Class | Method | HTTP request | Description
  - [CreateJsonWebKeySet](docs/CreateJsonWebKeySet.md)
  - [CreateOnboardingLinkResponse](docs/CreateOnboardingLinkResponse.md)
  - [CreateOrganizationOnboardingPortalLinkBody](docs/CreateOrganizationOnboardingPortalLinkBody.md)
- - [CreateProjectApiKeyRequest](docs/CreateProjectApiKeyRequest.md)
+ - [CreateProjectApiKeyBody](docs/CreateProjectApiKeyBody.md)
  - [CreateProjectBody](docs/CreateProjectBody.md)
  - [CreateProjectBranding](docs/CreateProjectBranding.md)
  - [CreateProjectMemberInviteBody](docs/CreateProjectMemberInviteBody.md)
@@ -447,6 +449,7 @@ Class | Method | HTTP request | Description
  - [Organization](docs/Organization.md)
  - [OrganizationBody](docs/OrganizationBody.md)
  - [OrganizationOnboardingPortalLinksResponse](docs/OrganizationOnboardingPortalLinksResponse.md)
+ - [PINConfig](docs/PINConfig.md)
  - [ParseError](docs/ParseError.md)
  - [PatchIdentitiesBody](docs/PatchIdentitiesBody.md)
  - [PatchWorkspaceMemberBody](docs/PatchWorkspaceMemberBody.md)
@@ -567,6 +570,7 @@ Class | Method | HTTP request | Description
  - [UpdateSettingsFlowWithDeviceAuthnMethod](docs/UpdateSettingsFlowWithDeviceAuthnMethod.md)
  - [UpdateSettingsFlowWithDeviceAuthnMethodAdd](docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md)
  - [UpdateSettingsFlowWithDeviceAuthnMethodDelete](docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md)
+ - [UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret](docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md)
  - [UpdateSettingsFlowWithLookupMethod](docs/UpdateSettingsFlowWithLookupMethod.md)
  - [UpdateSettingsFlowWithOidcMethod](docs/UpdateSettingsFlowWithOidcMethod.md)
  - [UpdateSettingsFlowWithPasskeyMethod](docs/UpdateSettingsFlowWithPasskeyMethod.md)
@@ -581,6 +585,7 @@ Class | Method | HTTP request | Description
  - [UpdateVerificationFlowWithLinkMethod](docs/UpdateVerificationFlowWithLinkMethod.md)
  - [UpdateWorkspaceBody](docs/UpdateWorkspaceBody.md)
  - [Usage](docs/Usage.md)
+ - [UserVerification](docs/UserVerification.md)
  - [ValidateBaseURLRewriteRequest](docs/ValidateBaseURLRewriteRequest.md)
  - [ValidateBaseURLRewriteResponse](docs/ValidateBaseURLRewriteResponse.md)
  - [VerifiableCredentialPrimingResponse](docs/VerifiableCredentialPrimingResponse.md)

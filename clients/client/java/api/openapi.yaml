@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.61
+  version: v1.22.62
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -5428,7 +5428,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createProjectApiKey_request'
+              $ref: '#/components/schemas/createProjectApiKeyBody'
         x-originalParamName: Body
       responses:
         "201":
@@ -12628,6 +12628,12 @@ components:
           items:
             type: string
           type: array
+        kratos_selfservice_methods_deviceauthn_config_first_factor:
+          description: |-
+            Configures whether device authentication may be used as the sole first factor.
+
+            This governs the "selfservice.methods.deviceauthn.config.first_factor" setting.
+          type: boolean
         kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation:
           description: |-
             Configures whether Ory Kratos Device authentication accepts relaxed attestations for testing
@@ -12645,6 +12651,19 @@ components:
           items:
             type: string
           type: array
+        kratos_selfservice_methods_deviceauthn_config_ios_biometric_first_factor:
+          description: |-
+            Configures whether an iOS biometric device key may be used as the sole first factor.
+
+            This governs the "selfservice.methods.deviceauthn.config.ios_biometric_first_factor" setting.
+          type: boolean
+        kratos_selfservice_methods_deviceauthn_config_pin_max_attempts:
+          description: |-
+            Configures the consecutive wrong-PIN limit before a device key is locked.
+
+            This governs the "selfservice.methods.deviceauthn.config.pin_max_attempts" setting.
+          format: int64
+          type: integer
         kratos_selfservice_methods_deviceauthn_enabled:
           description: |-
             Configures whether Ory Kratos Device authentication is enabled
@@ -13218,6 +13237,8 @@ components:
           type: string
         device_type:
           type: string
+        pin:
+          $ref: '#/components/schemas/PINConfig'
         public_key:
           description: |-
             PublicKey is the device's public key (EC P-256 in v1), used to verify
@@ -13240,6 +13261,8 @@ components:
           type: string
         state:
           type: string
+        user_verification:
+          $ref: '#/components/schemas/UserVerification'
         version:
           description: |-
             v1 uses SHA256 + EC256.
@@ -14130,6 +14153,36 @@ components:
           example: 24h
           type: string
       type: object
+    PINConfig:
+      description: |-
+        PINConfig is the per-key PIN state. The pin_secret field holds the at-rest
+        ciphertext; the plaintext exists only transiently in memory during
+        verification and is cleared once the key locks.
+      properties:
+        created_at:
+          description: CreatedAt is when the pin_secret was first issued.
+          format: date-time
+          type: string
+        failed_attempts:
+          description: |-
+            FailedAttempts counts consecutive wrong-PIN attempts; the key locks when it
+            reaches the configured maximum.
+          format: uint64
+          type: integer
+        pin_secret:
+          description: |-
+            PINSecret is the at-rest pin_secret ciphertext. Server-internal: never
+            logged or transmitted. Empty once the key locks.
+          type: string
+          writeOnly: true
+        rotated_at:
+          description: |-
+            RotatedAt is when the pin_secret was last rotated; the zero value means
+            never rotated. omitzero (not omitempty) drops the zero timestamp from the
+            JSON, since omitempty never treats a time.Time value as empty.
+          format: date-time
+          type: string
+      type: object
     ParseError:
       example:
         start:
@@ -14648,6 +14701,16 @@ components:
       - type: string
       - type: boolean
       - type: number
+    UserVerification:
+      description: |-
+        The empty value marks a legacy key from before user verification existed;
+        such keys are rejected at login and must be re-enrolled.
+      enum:
+      - pin
+      - platform
+      - none
+      title: UserVerification records how the key's holder is verified at use time.
+      type: string
     VerifiableCredentialProof:
       example:
         proof_type: proof_type
@@ -15239,6 +15302,7 @@ components:
         mapping:
           redirect_browser_to: '#/components/schemas/continueWithRedirectBrowserTo'
           set_ory_session_token: '#/components/schemas/continueWithSetOrySessionToken'
+          show_pin_entry_ui: '#/components/schemas/continueWithDeviceAuthnPinEntryUi'
           show_recovery_ui: '#/components/schemas/continueWithRecoveryUi'
           show_settings_ui: '#/components/schemas/continueWithSettingsUi'
           show_verification_ui: '#/components/schemas/continueWithVerificationUi'
@@ -15249,6 +15313,53 @@ components:
       - $ref: '#/components/schemas/continueWithSettingsUi'
       - $ref: '#/components/schemas/continueWithRecoveryUi'
       - $ref: '#/components/schemas/continueWithRedirectBrowserTo'
+      - $ref: '#/components/schemas/continueWithDeviceAuthnPinEntryUi'
+      type: object
+    continueWithDeviceAuthnPinEntryUi:
+      description: |-
+        The enrolled key's client_key_id is not included: it is the SHA-256 fingerprint
+        of the device's own public key, which the device derives locally. Non-PIN keys
+        need no client action at all and therefore produce no continue_with.
+      properties:
+        action:
+          description: |-
+            Action will always be `show_pin_entry_ui`
+            show_pin_entry_ui ContinueWithActionShowPINEntryUIString
+          enum:
+          - show_pin_entry_ui
+          type: string
+          x-go-enum-desc: show_pin_entry_ui ContinueWithActionShowPINEntryUIString
+        data:
+          allOf:
+          - $ref: '#/components/schemas/continueWithDeviceAuthnPinEntryUiData'
+          description: The one-time HPKE-sealed pin_secret material the device opens
+            to bind the user's PIN after a PIN-protected DeviceAuthn enrollment or
+            secret rotation.
+      required:
+      - action
+      - data
+      title: |-
+        Instructs the client to show its PIN entry UI after a PIN-protected DeviceAuthn
+        enrollment or secret rotation. It carries the one-time HPKE-sealed pin_secret,
+        which the device opens with the transport private key it generated for this
+        enrollment to bind the user's PIN. The plaintext secret never leaves the
+        device; the server only ever stores its at-rest ciphertext.
+      type: object
+    continueWithDeviceAuthnPinEntryUiData:
+      description: |-
+        Carries the one-time HPKE-sealed pin_secret material — the encapsulated key and
+        the sealed ciphertext — that the device opens with the transport private key it
+        generated for this enrollment.
+      properties:
+        ciphertext:
+          description: Ciphertext is the base64-encoded HPKE-sealed pin_secret.
+          type: string
+        enc:
+          description: Enc is the base64-encoded HPKE encapsulated key.
+          type: string
+      required:
+      - ciphertext
+      - enc
       type: object
     continueWithRecoveryUi:
       description: "Indicates, that the UI flow could be continued by showing a recovery\
@@ -15732,6 +15843,20 @@ components:
       required:
       - enable_scim
       - enable_sso
+      type: object
+    createProjectApiKeyBody:
+      properties:
+        expires_at:
+          format: date-time
+          type: string
+        name:
+          description: |-
+            The Token Name
+
+            A descriptive name for the token.
+          type: string
+      required:
+      - name
       type: object
     createProjectBody:
       description: Create Project Request Body
@@ -19201,6 +19326,7 @@ components:
             login_code_valid TypeLoginCodeValid
             registration_code_valid TypeRegistrationCodeValid
             verifiable_address_changed TypeVerifiableAddressChanged
+            authenticator_key_added TypeAuthenticatorKeyAdded
           enum:
           - recovery_invalid
           - recovery_valid
@@ -19214,6 +19340,7 @@ components:
           - login_code_valid
           - registration_code_valid
           - verifiable_address_changed
+          - authenticator_key_added
           type: string
           x-go-enum-desc: |-
             recovery_invalid TypeRecoveryInvalid
@@ -19228,6 +19355,7 @@ components:
             login_code_valid TypeLoginCodeValid
             registration_code_valid TypeRegistrationCodeValid
             verifiable_address_changed TypeVerifiableAddressChanged
+            authenticator_key_added TypeAuthenticatorKeyAdded
         type:
           $ref: '#/components/schemas/courierMessageType'
         updated_at:
@@ -20907,6 +21035,12 @@ components:
           items:
             type: string
           type: array
+        kratos_selfservice_methods_deviceauthn_config_first_factor:
+          description: |-
+            Configures whether device authentication may be used as the sole first factor.
+
+            This governs the "selfservice.methods.deviceauthn.config.first_factor" setting.
+          type: boolean
         kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation:
           description: |-
             Configures whether Ory Kratos Device authentication accepts relaxed attestations for testing
@@ -20924,6 +21058,19 @@ components:
           items:
             type: string
           type: array
+        kratos_selfservice_methods_deviceauthn_config_ios_biometric_first_factor:
+          description: |-
+            Configures whether an iOS biometric device key may be used as the sole first factor.
+
+            This governs the "selfservice.methods.deviceauthn.config.ios_biometric_first_factor" setting.
+          type: boolean
+        kratos_selfservice_methods_deviceauthn_config_pin_max_attempts:
+          description: |-
+            Configures the consecutive wrong-PIN limit before a device key is locked.
+
+            This governs the "selfservice.methods.deviceauthn.config.pin_max_attempts" setting.
+          format: int64
+          type: integer
         kratos_selfservice_methods_deviceauthn_enabled:
           description: |-
             Configures whether Ory Kratos Device authentication is enabled
@@ -25119,6 +25266,7 @@ components:
             graceful_refresh_token_count GracefulRefreshTokenCount
             hydra_token_prefix HydraTokenPrefix
             deviceauthn Deviceauthn
+            allow_insecure_origins AllowInsecureOrigins  AllowInsecureOrigins grandfathers a project past strict wildcard  enforcement (CORS origins + return URLs). Override-only; never sold.
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
             update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
             update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
@@ -25200,6 +25348,7 @@ components:
           - graceful_refresh_token_count
           - hydra_token_prefix
           - deviceauthn
+          - allow_insecure_origins
           - update_self_service_registration_rate_limit_tier
           - update_self_service_recovery_rate_limit_tier
           - update_self_service_settings_rate_limit_tier
@@ -25282,6 +25431,7 @@ components:
             graceful_refresh_token_count GracefulRefreshTokenCount
             hydra_token_prefix HydraTokenPrefix
             deviceauthn Deviceauthn
+            allow_insecure_origins AllowInsecureOrigins  AllowInsecureOrigins grandfathers a project past strict wildcard  enforcement (CORS origins + return URLs). Override-only; never sold.
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
             update_self_service_recovery_rate_limit_tier RateLimitTierUpdateSelfServiceRecovery
             update_self_service_settings_rate_limit_tier RateLimitTierUpdateSelfServiceSettings
@@ -28494,6 +28644,17 @@ components:
           description: Method should be set to "deviceauthn" when logging in using
             the DeviceAuthn strategy.
           type: string
+        pin_proof:
+          description: |-
+            PINProof is an HMAC the client computes using the pin_secret when the key
+            is PIN-protected. It proves possession of the PIN without revealing it.
+
+            Sensitive: a proof of the PIN secret, do not log or transmit. It is marked
+            write-only in the spec via the OpenAPI patch in
+            .schema/openapi/patches/selfservice.yaml.
+          format: byte
+          type: string
+          writeOnly: true
         signature:
           description: Signature is a ES256 signature of the server-provided challenge.
           format: byte
@@ -29159,6 +29320,8 @@ components:
 
             Should be set to "deviceauthn" when trying to add or remove a DeviceAuthn key.
           type: string
+        rotate_secret:
+          $ref: '#/components/schemas/updateSettingsFlowWithDeviceAuthnMethodRotateSecret'
         transient_payload:
           description: Transient data to pass along to any webhooks
           type: object
@@ -29183,6 +29346,27 @@ components:
           description: DeviceName is a human-readable name for the device e.g. 'My
             work phone'.
           type: string
+        pin_protected:
+          description: |-
+            PINProtected indicates that the key is protected by a PIN.
+            When true, the server must issue a sealed pin_secret in the response.
+          type: boolean
+        transport_public_key:
+          description: |-
+            TransportPubKey is the transport public key (HPKE) used to seal the
+            returned pin_secret so only this device can open it. It is base64-encoded in
+            JSON and decoded to raw bytes here.
+          format: byte
+          type: string
+        user_verification:
+          allOf:
+          - $ref: '#/components/schemas/UserVerification'
+          description: "Declares how the key's holder is verified at use time. One\
+            \ of \"pin\", \"platform\", or \"none\" (or empty, which maps to \"none\"\
+            ). \"pin\" is implied by pin_protected and need not be set explicitly.\
+            \ For \"platform\" the server cross-checks the attestation on Android\
+            \ and trusts the declaration on iOS, since App Attest cannot prove biometric\
+            \ gating."
         version:
           description: |-
             Version is the version number for the cryptography.
@@ -29203,6 +29387,44 @@ components:
           type: string
       required:
       - client_key_id
+      type: object
+    updateSettingsFlowWithDeviceAuthnMethodRotateSecret:
+      description: |-
+        Re-issues a fresh pin_secret for an existing PIN-protected DeviceAuthn key
+        without changing the device signing key. It is the recovery path for a
+        forgotten PIN or a locked key. The server returns the new secret sealed to the
+        supplied transport_public_key exactly once.
+      properties:
+        client_key_id:
+          description: |-
+            ClientKeyID identifies the existing PIN key whose pin_secret should be
+            rotated: the lowercase-hex SHA-256 of the device public key in PKIX,
+            ASN.1 DER (SubjectPublicKeyInfo) form. The device signing key is
+            unchanged by the rotation.
+          type: string
+        signature:
+          description: |-
+            Signature proves current possession of the enrolled device signing key: the
+            device signs the concatenation of the settings-flow nonce and the transport
+            public key with the key identified by client_key_id — a plain ECDSA
+            signature over the SHA-256 of that challenge on Android, an App Attest
+            assertion over it on iOS, exactly as at login. Binding the transport key
+            into the signed challenge ensures a session-level attacker (stolen token,
+            XSS) cannot rotate the secret and have it sealed to a transport key they
+            control.
+          format: byte
+          type: string
+        transport_public_key:
+          description: |-
+            TransportPubKey is the transport public key (HPKE) used to seal the
+            returned, freshly issued pin_secret so only this device can open it. It is
+            base64-encoded in JSON and decoded to raw bytes here.
+          format: byte
+          type: string
+      required:
+      - client_key_id
+      - signature
+      title: Update Settings Flow with DeviceAuthn RotateSecret
       type: object
     updateSettingsFlowWithLookupMethod:
       description: Update Settings Flow with Lookup Method
@@ -30219,22 +30441,6 @@ components:
           x-formData-name: refresh_token
       required:
       - grant_type
-      type: object
-    createProjectApiKey_request:
-      properties:
-        expires_at:
-          format: date-time
-          type: string
-        name:
-          description: |-
-            The Token Name
-
-            A descriptive name for the token.
-
-            in: body
-          type: string
-      required:
-      - name
       type: object
     adminUpdateImportedApiKey_request:
       description: |-

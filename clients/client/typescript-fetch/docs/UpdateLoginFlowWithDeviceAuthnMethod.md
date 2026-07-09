@@ -9,6 +9,7 @@ Name | Type
 ------------ | -------------
 `client_key_id` | string
 `method` | string
+`pin_proof` | string
 `signature` | string
 `transient_payload` | object
 
@@ -21,6 +22,7 @@ import type { UpdateLoginFlowWithDeviceAuthnMethod } from '@ory/client-fetch'
 const example = {
   "client_key_id": null,
   "method": null,
+  "pin_proof": null,
   "signature": null,
   "transient_payload": null,
 } satisfies UpdateLoginFlowWithDeviceAuthnMethod

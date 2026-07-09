@@ -239,7 +239,7 @@ try {
 ## `createProjectApiKey()`
 
 ```php
-createProjectApiKey($project, $createProjectApiKeyRequest): \Ory\Client\Model\ProjectApiKey
+createProjectApiKey($project, $createProjectApiKeyBody): \Ory\Client\Model\ProjectApiKey
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
@@ -265,14 +265,14 @@ $apiInstance = new Ory\Client\Api\ProjectApi(
     $config
 );
 $project = 'project_example'; // string | The Project ID or Project slug
-$createProjectApiKeyRequest = new \Ory\Client\Model\CreateProjectApiKeyRequest(); // \Ory\Client\Model\CreateProjectApiKeyRequest
+$createProjectApiKeyBody = new \Ory\Client\Model\CreateProjectApiKeyBody(); // \Ory\Client\Model\CreateProjectApiKeyBody
 
 $hostIndex = 0;
 $variables = [
 ];
 
 try {
-    $result = $apiInstance->createProjectApiKey($project, $createProjectApiKeyRequest, $hostIndex, $variables);
+    $result = $apiInstance->createProjectApiKey($project, $createProjectApiKeyBody, $hostIndex, $variables);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectApi->createProjectApiKey: ', $e->getMessage(), PHP_EOL;
@@ -284,7 +284,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **project** | **string**| The Project ID or Project slug | |
-| **createProjectApiKeyRequest** | [**\Ory\Client\Model\CreateProjectApiKeyRequest**](../Model/CreateProjectApiKeyRequest.md)|  | [optional] |
+| **createProjectApiKeyBody** | [**\Ory\Client\Model\CreateProjectApiKeyBody**](../Model/CreateProjectApiKeyBody.md)|  | [optional] |
 | hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
 | variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
 

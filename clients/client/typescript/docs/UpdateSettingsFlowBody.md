@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **passkey_settings_register** | **string** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. | [optional] [default to undefined]
 **add** | [**UpdateSettingsFlowWithDeviceAuthnMethodAdd**](UpdateSettingsFlowWithDeviceAuthnMethodAdd.md) |  | [optional] [default to undefined]
 **_delete** | [**UpdateSettingsFlowWithDeviceAuthnMethodDelete**](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md) |  | [optional] [default to undefined]
+**rotate_secret** | [**UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret**](UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -57,6 +58,7 @@ const instance: UpdateSettingsFlowBody = {
     passkey_settings_register,
     add,
     _delete,
+    rotate_secret,
 };
 ```
 

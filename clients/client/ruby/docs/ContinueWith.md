@@ -14,6 +14,7 @@ require 'ory-client'
 OryClient::ContinueWith.openapi_one_of
 # =>
 # [
+#   :'ContinueWithDeviceAuthnPinEntryUi',
 #   :'ContinueWithRecoveryUi',
 #   :'ContinueWithRedirectBrowserTo',
 #   :'ContinueWithSetOrySessionToken',
@@ -49,6 +50,7 @@ OryClient::ContinueWith.openapi_discriminator_mapping
 # {
 #   :'redirect_browser_to' => :'ContinueWithRedirectBrowserTo',
 #   :'set_ory_session_token' => :'ContinueWithSetOrySessionToken',
+#   :'show_pin_entry_ui' => :'ContinueWithDeviceAuthnPinEntryUi',
 #   :'show_recovery_ui' => :'ContinueWithRecoveryUi',
 #   :'show_settings_ui' => :'ContinueWithSettingsUi',
 #   :'show_verification_ui' => :'ContinueWithVerificationUi'
@@ -65,7 +67,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'ory-client'
 
 OryClient::ContinueWith.build(data)
-# => #<ContinueWithRecoveryUi:0x00007fdd4aab02a0>
+# => #<ContinueWithDeviceAuthnPinEntryUi:0x00007fdd4aab02a0>
 
 OryClient::ContinueWith.build(data_that_doesnt_match)
 # => nil
@@ -79,6 +81,7 @@ OryClient::ContinueWith.build(data_that_doesnt_match)
 
 #### Return type
 
+- `ContinueWithDeviceAuthnPinEntryUi`
 - `ContinueWithRecoveryUi`
 - `ContinueWithRedirectBrowserTo`
 - `ContinueWithSetOrySessionToken`

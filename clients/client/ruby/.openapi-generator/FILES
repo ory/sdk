@@ -43,6 +43,8 @@ docs/CheckPermissionResult.md
 docs/CheckPermissionResultWithError.md
 docs/CloudAccount.md
 docs/ContinueWith.md
+docs/ContinueWithDeviceAuthnPinEntryUi.md
+docs/ContinueWithDeviceAuthnPinEntryUiData.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
 docs/ContinueWithRedirectBrowserTo.md
@@ -62,7 +64,7 @@ docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
 docs/CreateOnboardingLinkResponse.md
 docs/CreateOrganizationOnboardingPortalLinkBody.md
-docs/CreateProjectApiKeyRequest.md
+docs/CreateProjectApiKeyBody.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectMemberInviteBody.md
@@ -240,6 +242,7 @@ docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationOnboardingPortalLinksResponse.md
+docs/PINConfig.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PatchWorkspaceMemberBody.md
@@ -363,6 +366,7 @@ docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
 docs/UpdateSettingsFlowWithPasskeyMethod.md
@@ -377,6 +381,7 @@ docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
 docs/Usage.md
+docs/UserVerification.md
 docs/ValidateBaseURLRewriteRequest.md
 docs/ValidateBaseURLRewriteResponse.md
 docs/VerifiableCredentialPrimingResponse.md
@@ -452,6 +457,8 @@ lib/ory-client/models/check_permission_result.rb
 lib/ory-client/models/check_permission_result_with_error.rb
 lib/ory-client/models/cloud_account.rb
 lib/ory-client/models/continue_with.rb
+lib/ory-client/models/continue_with_device_authn_pin_entry_ui.rb
+lib/ory-client/models/continue_with_device_authn_pin_entry_ui_data.rb
 lib/ory-client/models/continue_with_recovery_ui.rb
 lib/ory-client/models/continue_with_recovery_ui_flow.rb
 lib/ory-client/models/continue_with_redirect_browser_to.rb
@@ -470,7 +477,7 @@ lib/ory-client/models/create_invite_response.rb
 lib/ory-client/models/create_json_web_key_set.rb
 lib/ory-client/models/create_onboarding_link_response.rb
 lib/ory-client/models/create_organization_onboarding_portal_link_body.rb
-lib/ory-client/models/create_project_api_key_request.rb
+lib/ory-client/models/create_project_api_key_body.rb
 lib/ory-client/models/create_project_body.rb
 lib/ory-client/models/create_project_branding.rb
 lib/ory-client/models/create_project_member_invite_body.rb
@@ -645,6 +652,7 @@ lib/ory-client/models/patch_identities_body.rb
 lib/ory-client/models/patch_workspace_member_body.rb
 lib/ory-client/models/perform_native_logout_body.rb
 lib/ory-client/models/permissions_on_workspace.rb
+lib/ory-client/models/pin_config.rb
 lib/ory-client/models/plan.rb
 lib/ory-client/models/plan_details.rb
 lib/ory-client/models/post_check_permission_body.rb
@@ -760,6 +768,7 @@ lib/ory-client/models/update_settings_flow_body.rb
 lib/ory-client/models/update_settings_flow_with_device_authn_method.rb
 lib/ory-client/models/update_settings_flow_with_device_authn_method_add.rb
 lib/ory-client/models/update_settings_flow_with_device_authn_method_delete.rb
+lib/ory-client/models/update_settings_flow_with_device_authn_method_rotate_secret.rb
 lib/ory-client/models/update_settings_flow_with_lookup_method.rb
 lib/ory-client/models/update_settings_flow_with_oidc_method.rb
 lib/ory-client/models/update_settings_flow_with_passkey_method.rb
@@ -774,6 +783,7 @@ lib/ory-client/models/update_verification_flow_with_code_method.rb
 lib/ory-client/models/update_verification_flow_with_link_method.rb
 lib/ory-client/models/update_workspace_body.rb
 lib/ory-client/models/usage.rb
+lib/ory-client/models/user_verification.rb
 lib/ory-client/models/validate_base_url_rewrite_request.rb
 lib/ory-client/models/validate_base_url_rewrite_response.rb
 lib/ory-client/models/verifiable_credential_priming_response.rb
@@ -842,6 +852,8 @@ spec/models/check_opl_syntax_result_spec.rb
 spec/models/check_permission_result_spec.rb
 spec/models/check_permission_result_with_error_spec.rb
 spec/models/cloud_account_spec.rb
+spec/models/continue_with_device_authn_pin_entry_ui_data_spec.rb
+spec/models/continue_with_device_authn_pin_entry_ui_spec.rb
 spec/models/continue_with_recovery_ui_flow_spec.rb
 spec/models/continue_with_recovery_ui_spec.rb
 spec/models/continue_with_redirect_browser_to_spec.rb
@@ -861,7 +873,7 @@ spec/models/create_invite_response_spec.rb
 spec/models/create_json_web_key_set_spec.rb
 spec/models/create_onboarding_link_response_spec.rb
 spec/models/create_organization_onboarding_portal_link_body_spec.rb
-spec/models/create_project_api_key_request_spec.rb
+spec/models/create_project_api_key_body_spec.rb
 spec/models/create_project_body_spec.rb
 spec/models/create_project_branding_spec.rb
 spec/models/create_project_member_invite_body_spec.rb
@@ -1036,6 +1048,7 @@ spec/models/patch_identities_body_spec.rb
 spec/models/patch_workspace_member_body_spec.rb
 spec/models/perform_native_logout_body_spec.rb
 spec/models/permissions_on_workspace_spec.rb
+spec/models/pin_config_spec.rb
 spec/models/plan_details_spec.rb
 spec/models/plan_spec.rb
 spec/models/post_check_permission_body_spec.rb
@@ -1150,6 +1163,7 @@ spec/models/update_registration_flow_with_web_authn_method_spec.rb
 spec/models/update_settings_flow_body_spec.rb
 spec/models/update_settings_flow_with_device_authn_method_add_spec.rb
 spec/models/update_settings_flow_with_device_authn_method_delete_spec.rb
+spec/models/update_settings_flow_with_device_authn_method_rotate_secret_spec.rb
 spec/models/update_settings_flow_with_device_authn_method_spec.rb
 spec/models/update_settings_flow_with_lookup_method_spec.rb
 spec/models/update_settings_flow_with_oidc_method_spec.rb
@@ -1165,6 +1179,7 @@ spec/models/update_verification_flow_with_code_method_spec.rb
 spec/models/update_verification_flow_with_link_method_spec.rb
 spec/models/update_workspace_body_spec.rb
 spec/models/usage_spec.rb
+spec/models/user_verification_spec.rb
 spec/models/validate_base_url_rewrite_request_spec.rb
 spec/models/validate_base_url_rewrite_response_spec.rb
 spec/models/verifiable_credential_priming_response_spec.rb

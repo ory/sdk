@@ -38,6 +38,8 @@ docs/CheckPermissionResult.md
 docs/CheckPermissionResultWithError.md
 docs/CloudAccount.md
 docs/ContinueWith.md
+docs/ContinueWithDeviceAuthnPinEntryUi.md
+docs/ContinueWithDeviceAuthnPinEntryUiData.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
 docs/ContinueWithRedirectBrowserTo.md
@@ -57,7 +59,7 @@ docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
 docs/CreateOnboardingLinkResponse.md
 docs/CreateOrganizationOnboardingPortalLinkBody.md
-docs/CreateProjectApiKeyRequest.md
+docs/CreateProjectApiKeyBody.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectMemberInviteBody.md
@@ -235,6 +237,7 @@ docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationOnboardingPortalLinksResponse.md
+docs/PINConfig.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PatchWorkspaceMemberBody.md
@@ -358,6 +361,7 @@ docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
 docs/UpdateSettingsFlowWithPasskeyMethod.md
@@ -372,6 +376,7 @@ docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
 docs/Usage.md
+docs/UserVerification.md
 docs/ValidateBaseURLRewriteRequest.md
 docs/ValidateBaseURLRewriteResponse.md
 docs/VerifiableCredentialPrimingResponse.md
@@ -451,6 +456,8 @@ src/models/CheckPermissionResult.ts
 src/models/CheckPermissionResultWithError.ts
 src/models/CloudAccount.ts
 src/models/ContinueWith.ts
+src/models/ContinueWithDeviceAuthnPinEntryUi.ts
+src/models/ContinueWithDeviceAuthnPinEntryUiData.ts
 src/models/ContinueWithRecoveryUi.ts
 src/models/ContinueWithRecoveryUiFlow.ts
 src/models/ContinueWithRedirectBrowserTo.ts
@@ -469,7 +476,7 @@ src/models/CreateInviteResponse.ts
 src/models/CreateJsonWebKeySet.ts
 src/models/CreateOnboardingLinkResponse.ts
 src/models/CreateOrganizationOnboardingPortalLinkBody.ts
-src/models/CreateProjectApiKeyRequest.ts
+src/models/CreateProjectApiKeyBody.ts
 src/models/CreateProjectBody.ts
 src/models/CreateProjectBranding.ts
 src/models/CreateProjectMemberInviteBody.ts
@@ -639,6 +646,7 @@ src/models/OnboardingPortalTestLoginFlow.ts
 src/models/Organization.ts
 src/models/OrganizationBody.ts
 src/models/OrganizationOnboardingPortalLinksResponse.ts
+src/models/PINConfig.ts
 src/models/ParseError.ts
 src/models/PatchIdentitiesBody.ts
 src/models/PatchWorkspaceMemberBody.ts
@@ -759,6 +767,7 @@ src/models/UpdateSettingsFlowBody.ts
 src/models/UpdateSettingsFlowWithDeviceAuthnMethod.ts
 src/models/UpdateSettingsFlowWithDeviceAuthnMethodAdd.ts
 src/models/UpdateSettingsFlowWithDeviceAuthnMethodDelete.ts
+src/models/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.ts
 src/models/UpdateSettingsFlowWithLookupMethod.ts
 src/models/UpdateSettingsFlowWithOidcMethod.ts
 src/models/UpdateSettingsFlowWithPasskeyMethod.ts
@@ -773,6 +782,7 @@ src/models/UpdateVerificationFlowWithCodeMethod.ts
 src/models/UpdateVerificationFlowWithLinkMethod.ts
 src/models/UpdateWorkspaceBody.ts
 src/models/Usage.ts
+src/models/UserVerification.ts
 src/models/ValidateBaseURLRewriteRequest.ts
 src/models/ValidateBaseURLRewriteResponse.ts
 src/models/VerifiableCredentialPrimingResponse.ts

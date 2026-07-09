@@ -29,7 +29,8 @@ defmodule Ory.Model.UpdateSettingsFlowBody do
     :passkey_remove,
     :passkey_settings_register,
     :add,
-    :delete
+    :delete,
+    :rotate_secret
   ]
 
   @type t :: %__MODULE__{
@@ -54,7 +55,8 @@ defmodule Ory.Model.UpdateSettingsFlowBody do
     :passkey_remove => String.t | nil,
     :passkey_settings_register => String.t | nil,
     :add => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd.t | nil,
-    :delete => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodDelete.t | nil
+    :delete => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodDelete.t | nil,
+    :rotate_secret => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.t | nil
   }
 
   alias Ory.Deserializer
@@ -63,6 +65,7 @@ defmodule Ory.Model.UpdateSettingsFlowBody do
     value
      |> Deserializer.deserialize(:add, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd)
      |> Deserializer.deserialize(:delete, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodDelete)
+     |> Deserializer.deserialize(:rotate_secret, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret)
   end
 end
 

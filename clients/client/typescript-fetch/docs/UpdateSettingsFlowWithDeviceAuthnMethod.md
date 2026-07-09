@@ -11,6 +11,7 @@ Name | Type
 `csrf_token` | string
 `_delete` | [UpdateSettingsFlowWithDeviceAuthnMethodDelete](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md)
 `method` | string
+`rotate_secret` | [UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret](UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md)
 `transient_payload` | object
 
 ## Example
@@ -24,6 +25,7 @@ const example = {
   "csrf_token": null,
   "_delete": null,
   "method": null,
+  "rotate_secret": null,
   "transient_payload": null,
 } satisfies UpdateSettingsFlowWithDeviceAuthnMethod
 

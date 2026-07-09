@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.61
+API version: v1.22.62
 Contact: support@ory.sh
 */
 
@@ -25,6 +25,8 @@ type UpdateLoginFlowWithDeviceAuthnMethod struct {
 	ClientKeyId *string `json:"client_key_id,omitempty"`
 	// Method should be set to \"deviceauthn\" when logging in using the DeviceAuthn strategy.
 	Method string `json:"method"`
+	// PINProof is an HMAC the client computes using the pin_secret when the key is PIN-protected. It proves possession of the PIN without revealing it.  Sensitive: a proof of the PIN secret, do not log or transmit. It is marked write-only in the spec via the OpenAPI patch in .schema/openapi/patches/selfservice.yaml.
+	PinProof *string `json:"pin_proof,omitempty"`
 	// Signature is a ES256 signature of the server-provided challenge.
 	Signature *string `json:"signature,omitempty"`
 	// Transient data to pass along to any webhooks
@@ -108,6 +110,38 @@ func (o *UpdateLoginFlowWithDeviceAuthnMethod) SetMethod(v string) {
 	o.Method = v
 }
 
+// GetPinProof returns the PinProof field value if set, zero value otherwise.
+func (o *UpdateLoginFlowWithDeviceAuthnMethod) GetPinProof() string {
+	if o == nil || IsNil(o.PinProof) {
+		var ret string
+		return ret
+	}
+	return *o.PinProof
+}
+
+// GetPinProofOk returns a tuple with the PinProof field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoginFlowWithDeviceAuthnMethod) GetPinProofOk() (*string, bool) {
+	if o == nil || IsNil(o.PinProof) {
+		return nil, false
+	}
+	return o.PinProof, true
+}
+
+// HasPinProof returns a boolean if a field has been set.
+func (o *UpdateLoginFlowWithDeviceAuthnMethod) HasPinProof() bool {
+	if o != nil && !IsNil(o.PinProof) {
+		return true
+	}
+
+	return false
+}
+
+// SetPinProof gets a reference to the given string and assigns it to the PinProof field.
+func (o *UpdateLoginFlowWithDeviceAuthnMethod) SetPinProof(v string) {
+	o.PinProof = &v
+}
+
 // GetSignature returns the Signature field value if set, zero value otherwise.
 func (o *UpdateLoginFlowWithDeviceAuthnMethod) GetSignature() string {
 	if o == nil || IsNil(o.Signature) {
@@ -186,6 +220,9 @@ func (o UpdateLoginFlowWithDeviceAuthnMethod) ToMap() (map[string]interface{}, e
 		toSerialize["client_key_id"] = o.ClientKeyId
 	}
 	toSerialize["method"] = o.Method
+	if !IsNil(o.PinProof) {
+		toSerialize["pin_proof"] = o.PinProof
+	}
 	if !IsNil(o.Signature) {
 		toSerialize["signature"] = o.Signature
 	}
@@ -237,6 +274,7 @@ func (o *UpdateLoginFlowWithDeviceAuthnMethod) UnmarshalJSON(data []byte) (err e
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "client_key_id")
 		delete(additionalProperties, "method")
+		delete(additionalProperties, "pin_proof")
 		delete(additionalProperties, "signature")
 		delete(additionalProperties, "transient_payload")
 		o.AdditionalProperties = additionalProperties

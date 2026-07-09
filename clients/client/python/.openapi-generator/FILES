@@ -40,6 +40,8 @@ docs/CheckPermissionResult.md
 docs/CheckPermissionResultWithError.md
 docs/CloudAccount.md
 docs/ContinueWith.md
+docs/ContinueWithDeviceAuthnPinEntryUi.md
+docs/ContinueWithDeviceAuthnPinEntryUiData.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
 docs/ContinueWithRedirectBrowserTo.md
@@ -59,7 +61,7 @@ docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
 docs/CreateOnboardingLinkResponse.md
 docs/CreateOrganizationOnboardingPortalLinkBody.md
-docs/CreateProjectApiKeyRequest.md
+docs/CreateProjectApiKeyBody.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectMemberInviteBody.md
@@ -237,6 +239,7 @@ docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationOnboardingPortalLinksResponse.md
+docs/PINConfig.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
 docs/PatchWorkspaceMemberBody.md
@@ -360,6 +363,7 @@ docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
 docs/UpdateSettingsFlowWithPasskeyMethod.md
@@ -374,6 +378,7 @@ docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
 docs/Usage.md
+docs/UserVerification.md
 docs/ValidateBaseURLRewriteRequest.md
 docs/ValidateBaseURLRewriteResponse.md
 docs/VerifiableCredentialPrimingResponse.md
@@ -451,6 +456,8 @@ ory_client/models/check_permission_result.py
 ory_client/models/check_permission_result_with_error.py
 ory_client/models/cloud_account.py
 ory_client/models/continue_with.py
+ory_client/models/continue_with_device_authn_pin_entry_ui.py
+ory_client/models/continue_with_device_authn_pin_entry_ui_data.py
 ory_client/models/continue_with_recovery_ui.py
 ory_client/models/continue_with_recovery_ui_flow.py
 ory_client/models/continue_with_redirect_browser_to.py
@@ -469,7 +476,7 @@ ory_client/models/create_invite_response.py
 ory_client/models/create_json_web_key_set.py
 ory_client/models/create_onboarding_link_response.py
 ory_client/models/create_organization_onboarding_portal_link_body.py
-ory_client/models/create_project_api_key_request.py
+ory_client/models/create_project_api_key_body.py
 ory_client/models/create_project_body.py
 ory_client/models/create_project_branding.py
 ory_client/models/create_project_member_invite_body.py
@@ -644,6 +651,7 @@ ory_client/models/patch_identities_body.py
 ory_client/models/patch_workspace_member_body.py
 ory_client/models/perform_native_logout_body.py
 ory_client/models/permissions_on_workspace.py
+ory_client/models/pin_config.py
 ory_client/models/plan.py
 ory_client/models/plan_details.py
 ory_client/models/post_check_permission_body.py
@@ -759,6 +767,7 @@ ory_client/models/update_settings_flow_body.py
 ory_client/models/update_settings_flow_with_device_authn_method.py
 ory_client/models/update_settings_flow_with_device_authn_method_add.py
 ory_client/models/update_settings_flow_with_device_authn_method_delete.py
+ory_client/models/update_settings_flow_with_device_authn_method_rotate_secret.py
 ory_client/models/update_settings_flow_with_lookup_method.py
 ory_client/models/update_settings_flow_with_oidc_method.py
 ory_client/models/update_settings_flow_with_passkey_method.py
@@ -773,6 +782,7 @@ ory_client/models/update_verification_flow_with_code_method.py
 ory_client/models/update_verification_flow_with_link_method.py
 ory_client/models/update_workspace_body.py
 ory_client/models/usage.py
+ory_client/models/user_verification.py
 ory_client/models/validate_base_url_rewrite_request.py
 ory_client/models/validate_base_url_rewrite_response.py
 ory_client/models/verifiable_credential_priming_response.py
@@ -834,6 +844,8 @@ test/test_check_permission_result.py
 test/test_check_permission_result_with_error.py
 test/test_cloud_account.py
 test/test_continue_with.py
+test/test_continue_with_device_authn_pin_entry_ui.py
+test/test_continue_with_device_authn_pin_entry_ui_data.py
 test/test_continue_with_recovery_ui.py
 test/test_continue_with_recovery_ui_flow.py
 test/test_continue_with_redirect_browser_to.py
@@ -853,7 +865,7 @@ test/test_create_invite_response.py
 test/test_create_json_web_key_set.py
 test/test_create_onboarding_link_response.py
 test/test_create_organization_onboarding_portal_link_body.py
-test/test_create_project_api_key_request.py
+test/test_create_project_api_key_body.py
 test/test_create_project_body.py
 test/test_create_project_branding.py
 test/test_create_project_member_invite_body.py
@@ -1037,6 +1049,7 @@ test/test_patch_workspace_member_body.py
 test/test_perform_native_logout_body.py
 test/test_permission_api.py
 test/test_permissions_on_workspace.py
+test/test_pin_config.py
 test/test_plan.py
 test/test_plan_details.py
 test/test_post_check_permission_body.py
@@ -1154,6 +1167,7 @@ test/test_update_settings_flow_body.py
 test/test_update_settings_flow_with_device_authn_method.py
 test/test_update_settings_flow_with_device_authn_method_add.py
 test/test_update_settings_flow_with_device_authn_method_delete.py
+test/test_update_settings_flow_with_device_authn_method_rotate_secret.py
 test/test_update_settings_flow_with_lookup_method.py
 test/test_update_settings_flow_with_oidc_method.py
 test/test_update_settings_flow_with_passkey_method.py
@@ -1168,6 +1182,7 @@ test/test_update_verification_flow_with_code_method.py
 test/test_update_verification_flow_with_link_method.py
 test/test_update_workspace_body.py
 test/test_usage.py
+test/test_user_verification.py
 test/test_validate_base_url_rewrite_request.py
 test/test_validate_base_url_rewrite_response.py
 test/test_verifiable_credential_priming_response.py

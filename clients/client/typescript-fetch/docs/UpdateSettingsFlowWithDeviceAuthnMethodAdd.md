@@ -9,6 +9,9 @@ Name | Type
 `attestation_ios` | string
 `certificate_chain_android` | Array&lt;string&gt;
 `device_name` | string
+`pin_protected` | boolean
+`transport_public_key` | string
+`user_verification` | [UserVerification](UserVerification.md)
 `version` | number
 
 ## Example
@@ -21,6 +24,9 @@ const example = {
   "attestation_ios": null,
   "certificate_chain_android": null,
   "device_name": null,
+  "pin_protected": null,
+  "transport_public_key": null,
+  "user_verification": null,
   "version": null,
 } satisfies UpdateSettingsFlowWithDeviceAuthnMethodAdd
 

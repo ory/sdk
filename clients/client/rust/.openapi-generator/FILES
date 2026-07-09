@@ -39,6 +39,8 @@ docs/CheckPermissionResult.md
 docs/CheckPermissionResultWithError.md
 docs/CloudAccount.md
 docs/ContinueWith.md
+docs/ContinueWithDeviceAuthnPinEntryUi.md
+docs/ContinueWithDeviceAuthnPinEntryUiData.md
 docs/ContinueWithRecoveryUi.md
 docs/ContinueWithRecoveryUiFlow.md
 docs/ContinueWithRedirectBrowserTo.md
@@ -58,7 +60,7 @@ docs/CreateInviteResponse.md
 docs/CreateJsonWebKeySet.md
 docs/CreateOnboardingLinkResponse.md
 docs/CreateOrganizationOnboardingPortalLinkBody.md
-docs/CreateProjectApiKeyRequest.md
+docs/CreateProjectApiKeyBody.md
 docs/CreateProjectBody.md
 docs/CreateProjectBranding.md
 docs/CreateProjectMemberInviteBody.md
@@ -242,6 +244,7 @@ docs/PatchWorkspaceMemberBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
 docs/PermissionsOnWorkspace.md
+docs/PinConfig.md
 docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
@@ -359,6 +362,7 @@ docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
 docs/UpdateSettingsFlowWithPasskeyMethod.md
@@ -373,6 +377,7 @@ docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
 docs/Usage.md
+docs/UserVerification.md
 docs/ValidateBaseUrlRewriteRequest.md
 docs/ValidateBaseUrlRewriteResponse.md
 docs/VerifiableCredentialPrimingResponse.md
@@ -446,6 +451,8 @@ src/models/check_permission_result.rs
 src/models/check_permission_result_with_error.rs
 src/models/cloud_account.rs
 src/models/continue_with.rs
+src/models/continue_with_device_authn_pin_entry_ui.rs
+src/models/continue_with_device_authn_pin_entry_ui_data.rs
 src/models/continue_with_recovery_ui.rs
 src/models/continue_with_recovery_ui_flow.rs
 src/models/continue_with_redirect_browser_to.rs
@@ -464,7 +471,7 @@ src/models/create_invite_response.rs
 src/models/create_json_web_key_set.rs
 src/models/create_onboarding_link_response.rs
 src/models/create_organization_onboarding_portal_link_body.rs
-src/models/create_project_api_key_request.rs
+src/models/create_project_api_key_body.rs
 src/models/create_project_body.rs
 src/models/create_project_branding.rs
 src/models/create_project_member_invite_body.rs
@@ -640,6 +647,7 @@ src/models/patch_identities_body.rs
 src/models/patch_workspace_member_body.rs
 src/models/perform_native_logout_body.rs
 src/models/permissions_on_workspace.rs
+src/models/pin_config.rs
 src/models/plan.rs
 src/models/plan_details.rs
 src/models/post_check_permission_body.rs
@@ -755,6 +763,7 @@ src/models/update_settings_flow_body.rs
 src/models/update_settings_flow_with_device_authn_method.rs
 src/models/update_settings_flow_with_device_authn_method_add.rs
 src/models/update_settings_flow_with_device_authn_method_delete.rs
+src/models/update_settings_flow_with_device_authn_method_rotate_secret.rs
 src/models/update_settings_flow_with_lookup_method.rs
 src/models/update_settings_flow_with_oidc_method.rs
 src/models/update_settings_flow_with_passkey_method.rs
@@ -769,6 +778,7 @@ src/models/update_verification_flow_with_code_method.rs
 src/models/update_verification_flow_with_link_method.rs
 src/models/update_workspace_body.rs
 src/models/usage.rs
+src/models/user_verification.rs
 src/models/validate_base_url_rewrite_request.rs
 src/models/validate_base_url_rewrite_response.rs
 src/models/verifiable_credential_priming_response.rs

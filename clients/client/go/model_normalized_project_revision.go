@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.61
+API version: v1.22.62
 Contact: support@ory.sh
 */
 
@@ -435,10 +435,16 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled *bool `json:"kratos_selfservice_methods_code_passwordless_login_fallback_enabled,omitempty"`
 	// Configures the allow-list of Android app signing-certificate digests that a device key may be bound to.  This governs the \"selfservice.methods.deviceauthn.config.android_app_ids\" setting.
 	KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds []string `json:"kratos_selfservice_methods_deviceauthn_config_android_app_ids,omitempty"`
+	// Configures whether device authentication may be used as the sole first factor.  This governs the \"selfservice.methods.deviceauthn.config.first_factor\" setting.
+	KratosSelfserviceMethodsDeviceauthnConfigFirstFactor *bool `json:"kratos_selfservice_methods_deviceauthn_config_first_factor,omitempty"`
 	// Configures whether Ory Kratos Device authentication accepts relaxed attestations for testing  Only allowed on development projects and forced off otherwise. Keys enrolled under relaxation are short-lived and refused once this is turned off.  This governs the \"selfservice.methods.deviceauthn.config.insecure_allow_relaxed_attestation\" setting.
 	KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation *bool `json:"kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation,omitempty"`
 	// Configures the allow-list of Apple App IDs that a device key may be bound to.  This governs the \"selfservice.methods.deviceauthn.config.ios_app_ids\" setting.
 	KratosSelfserviceMethodsDeviceauthnConfigIosAppIds []string `json:"kratos_selfservice_methods_deviceauthn_config_ios_app_ids,omitempty"`
+	// Configures whether an iOS biometric device key may be used as the sole first factor.  This governs the \"selfservice.methods.deviceauthn.config.ios_biometric_first_factor\" setting.
+	KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor *bool `json:"kratos_selfservice_methods_deviceauthn_config_ios_biometric_first_factor,omitempty"`
+	// Configures the consecutive wrong-PIN limit before a device key is locked.  This governs the \"selfservice.methods.deviceauthn.config.pin_max_attempts\" setting.
+	KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts *int64 `json:"kratos_selfservice_methods_deviceauthn_config_pin_max_attempts,omitempty"`
 	// Configures whether Ory Kratos Device authentication is enabled  This governs the \"selfservice.methods.deviceauthn.enabled\" setting.
 	KratosSelfserviceMethodsDeviceauthnEnabled *bool `json:"kratos_selfservice_methods_deviceauthn_enabled,omitempty"`
 	// Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \"selfservice.methods.link.config.base_url\" setting.
@@ -7288,6 +7294,38 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsDeviceauthnConfig
 	o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds = v
 }
 
+// GetKratosSelfserviceMethodsDeviceauthnConfigFirstFactor returns the KratosSelfserviceMethodsDeviceauthnConfigFirstFactor field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsDeviceauthnConfigFirstFactor() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigFirstFactor) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsDeviceauthnConfigFirstFactor
+}
+
+// GetKratosSelfserviceMethodsDeviceauthnConfigFirstFactorOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigFirstFactor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsDeviceauthnConfigFirstFactorOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigFirstFactor) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsDeviceauthnConfigFirstFactor, true
+}
+
+// HasKratosSelfserviceMethodsDeviceauthnConfigFirstFactor returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsDeviceauthnConfigFirstFactor() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigFirstFactor) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsDeviceauthnConfigFirstFactor gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsDeviceauthnConfigFirstFactor field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsDeviceauthnConfigFirstFactor(v bool) {
+	o.KratosSelfserviceMethodsDeviceauthnConfigFirstFactor = &v
+}
+
 // GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation returns the KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation() bool {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation) {
@@ -7350,6 +7388,70 @@ func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsDeviceauthnConfig
 // SetKratosSelfserviceMethodsDeviceauthnConfigIosAppIds gets a reference to the given []string and assigns it to the KratosSelfserviceMethodsDeviceauthnConfigIosAppIds field.
 func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsDeviceauthnConfigIosAppIds(v []string) {
 	o.KratosSelfserviceMethodsDeviceauthnConfigIosAppIds = v
+}
+
+// GetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor returns the KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor
+}
+
+// GetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactorOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactorOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor, true
+}
+
+// HasKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor(v bool) {
+	o.KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor = &v
+}
+
+// GetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts returns the KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts() int64 {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts) {
+		var ret int64
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts
+}
+
+// GetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttemptsOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttemptsOk() (*int64, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts, true
+}
+
+// HasKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts gets a reference to the given int64 and assigns it to the KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts(v int64) {
+	o.KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts = &v
 }
 
 // GetKratosSelfserviceMethodsDeviceauthnEnabled returns the KratosSelfserviceMethodsDeviceauthnEnabled field value if set, zero value otherwise.
@@ -10026,11 +10128,20 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds) {
 		toSerialize["kratos_selfservice_methods_deviceauthn_config_android_app_ids"] = o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds
 	}
+	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigFirstFactor) {
+		toSerialize["kratos_selfservice_methods_deviceauthn_config_first_factor"] = o.KratosSelfserviceMethodsDeviceauthnConfigFirstFactor
+	}
 	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation) {
 		toSerialize["kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation"] = o.KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation
 	}
 	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigIosAppIds) {
 		toSerialize["kratos_selfservice_methods_deviceauthn_config_ios_app_ids"] = o.KratosSelfserviceMethodsDeviceauthnConfigIosAppIds
+	}
+	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor) {
+		toSerialize["kratos_selfservice_methods_deviceauthn_config_ios_biometric_first_factor"] = o.KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor
+	}
+	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts) {
+		toSerialize["kratos_selfservice_methods_deviceauthn_config_pin_max_attempts"] = o.KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts
 	}
 	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnEnabled) {
 		toSerialize["kratos_selfservice_methods_deviceauthn_enabled"] = o.KratosSelfserviceMethodsDeviceauthnEnabled
@@ -10473,8 +10584,11 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_login_fallback_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_config_android_app_ids")
+		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_config_first_factor")
 		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation")
 		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_config_ios_app_ids")
+		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_config_ios_biometric_first_factor")
+		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_config_pin_max_attempts")
 		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_link_config_base_url")
 		delete(additionalProperties, "kratos_selfservice_methods_link_config_lifespan")

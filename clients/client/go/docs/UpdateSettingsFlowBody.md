@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **PasskeySettingsRegister** | Pointer to **string** | Register a WebAuthn Security Key  It is expected that the JSON returned by the WebAuthn registration process is included here. | [optional] 
 **Add** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodAdd**](UpdateSettingsFlowWithDeviceAuthnMethodAdd.md) |  | [optional] 
 **Delete** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodDelete**](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md) |  | [optional] 
+**RotateSecret** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret**](UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md) |  | [optional] 
 
 ## Methods
 
@@ -580,6 +581,31 @@ SetDelete sets Delete field to given value.
 `func (o *UpdateSettingsFlowBody) HasDelete() bool`
 
 HasDelete returns a boolean if a field has been set.
+
+### GetRotateSecret
+
+`func (o *UpdateSettingsFlowBody) GetRotateSecret() UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret`
+
+GetRotateSecret returns the RotateSecret field if non-nil, zero value otherwise.
+
+### GetRotateSecretOk
+
+`func (o *UpdateSettingsFlowBody) GetRotateSecretOk() (*UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret, bool)`
+
+GetRotateSecretOk returns a tuple with the RotateSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRotateSecret
+
+`func (o *UpdateSettingsFlowBody) SetRotateSecret(v UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret)`
+
+SetRotateSecret sets RotateSecret field to given value.
+
+### HasRotateSecret
+
+`func (o *UpdateSettingsFlowBody) HasRotateSecret() bool`
+
+HasRotateSecret returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

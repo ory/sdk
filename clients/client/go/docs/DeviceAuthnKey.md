@@ -9,9 +9,11 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** | CreatedAt is the timestamp of when the key was created. Only used for troubleshooting/UI. | [optional] 
 **DeviceName** | Pointer to **string** | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional] 
 **DeviceType** | Pointer to **string** |  | [optional] 
+**Pin** | Pointer to [**PINConfig**](PINConfig.md) |  | [optional] 
 **PublicKey** | Pointer to **[]int32** | PublicKey is the device&#39;s public key (EC P-256 in v1), used to verify signatures. It is stored in PKIX, ASN.1 DER form (the SubjectPublicKeyInfo encoding produced by x509.MarshalPKIXPublicKey). The private key resides inside the device and does not exist on the server. | [optional] 
 **RelaxedAttestationExpiresAt** | Pointer to **time.Time** | RelaxedAttestationExpiresAt is set only when the key&#39;s attestation chain validated because relaxed attestation was allowed (software roots, expired certs, software security level) rather than under strict rules. Such keys are second-class: they are refused at login after this time, or immediately if relaxed attestation is turned off. It is nil for hardware-attested keys that pass strict validation. | [optional] 
 **State** | Pointer to **string** |  | [optional] 
+**UserVerification** | Pointer to [**UserVerification**](UserVerification.md) |  | [optional] 
 **Version** | Pointer to **int64** | v1 uses SHA256 + EC256. v2 (in the future) may use ML-DSA which is post-quantum resistant. This requires Android/iOS support so we have to wait. We intentionally avoid storing the cryptographic algorithm here a la JWT/TLS to avoid security issues and algorithm negotiation. | [optional] 
 
 ## Methods
@@ -158,6 +160,31 @@ SetDeviceType sets DeviceType field to given value.
 
 HasDeviceType returns a boolean if a field has been set.
 
+### GetPin
+
+`func (o *DeviceAuthnKey) GetPin() PINConfig`
+
+GetPin returns the Pin field if non-nil, zero value otherwise.
+
+### GetPinOk
+
+`func (o *DeviceAuthnKey) GetPinOk() (*PINConfig, bool)`
+
+GetPinOk returns a tuple with the Pin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPin
+
+`func (o *DeviceAuthnKey) SetPin(v PINConfig)`
+
+SetPin sets Pin field to given value.
+
+### HasPin
+
+`func (o *DeviceAuthnKey) HasPin() bool`
+
+HasPin returns a boolean if a field has been set.
+
 ### GetPublicKey
 
 `func (o *DeviceAuthnKey) GetPublicKey() []int32`
@@ -232,6 +259,31 @@ SetState sets State field to given value.
 `func (o *DeviceAuthnKey) HasState() bool`
 
 HasState returns a boolean if a field has been set.
+
+### GetUserVerification
+
+`func (o *DeviceAuthnKey) GetUserVerification() UserVerification`
+
+GetUserVerification returns the UserVerification field if non-nil, zero value otherwise.
+
+### GetUserVerificationOk
+
+`func (o *DeviceAuthnKey) GetUserVerificationOk() (*UserVerification, bool)`
+
+GetUserVerificationOk returns a tuple with the UserVerification field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUserVerification
+
+`func (o *DeviceAuthnKey) SetUserVerification(v UserVerification)`
+
+SetUserVerification sets UserVerification field to given value.
+
+### HasUserVerification
+
+`func (o *DeviceAuthnKey) HasUserVerification() bool`
+
+HasUserVerification returns a boolean if a field has been set.
 
 ### GetVersion
 

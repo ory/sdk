@@ -10,6 +10,7 @@ Name | Type
 `flow` | [ContinueWithRecoveryUiFlow](ContinueWithRecoveryUiFlow.md)
 `ory_session_token` | string
 `redirect_browser_to` | string
+`data` | [ContinueWithDeviceAuthnPinEntryUiData](ContinueWithDeviceAuthnPinEntryUiData.md)
 
 ## Example
 
@@ -22,6 +23,7 @@ const example = {
   "flow": null,
   "ory_session_token": null,
   "redirect_browser_to": null,
+  "data": null,
 } satisfies ContinueWith
 
 console.log(example)

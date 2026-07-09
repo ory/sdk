@@ -7,7 +7,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**createOrganization**](ProjectApi.md#createorganization) | **POST** /projects/{project_id}/organizations | Create an Enterprise SSO Organization |
 | [**createOrganizationOnboardingPortalLink**](ProjectApi.md#createorganizationonboardingportallink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Create organization onboarding portal link |
 | [**createProject**](ProjectApi.md#createproject) | **POST** /projects | Create a Project |
-| [**createProjectApiKey**](ProjectApi.md#createprojectapikeyoperation) | **POST** /projects/{project}/tokens | Create project API key |
+| [**createProjectApiKey**](ProjectApi.md#createprojectapikey) | **POST** /projects/{project}/tokens | Create project API key |
 | [**deleteOrganization**](ProjectApi.md#deleteorganization) | **DELETE** /projects/{project_id}/organizations/{organization_id} | Delete Enterprise SSO Organization |
 | [**deleteOrganizationOnboardingPortalLink**](ProjectApi.md#deleteorganizationonboardingportallink) | **DELETE** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Delete an organization onboarding portal link |
 | [**deleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key |
@@ -262,7 +262,7 @@ example().catch(console.error);
 
 ## createProjectApiKey
 
-> ProjectApiKey createProjectApiKey(project, createProjectApiKeyRequest)
+> ProjectApiKey createProjectApiKey(project, createProjectApiKeyBody)
 
 Create project API key
 
@@ -275,7 +275,7 @@ import {
   Configuration,
   ProjectApi,
 } from '@ory/client-fetch';
-import type { CreateProjectApiKeyOperationRequest } from '@ory/client-fetch';
+import type { CreateProjectApiKeyRequest } from '@ory/client-fetch';
 
 async function example() {
   console.log("🚀 Testing @ory/client-fetch SDK...");
@@ -288,9 +288,9 @@ async function example() {
   const body = {
     // string | The Project ID or Project slug
     project: project_example,
-    // CreateProjectApiKeyRequest (optional)
-    createProjectApiKeyRequest: ...,
-  } satisfies CreateProjectApiKeyOperationRequest;
+    // CreateProjectApiKeyBody (optional)
+    createProjectApiKeyBody: ...,
+  } satisfies CreateProjectApiKeyRequest;
 
   try {
     const data = await api.createProjectApiKey(body);
@@ -310,7 +310,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **project** | `string` | The Project ID or Project slug | [Defaults to `undefined`] |
-| **createProjectApiKeyRequest** | [CreateProjectApiKeyRequest](CreateProjectApiKeyRequest.md) |  | [Optional] |
+| **createProjectApiKeyBody** | [CreateProjectApiKeyBody](CreateProjectApiKeyBody.md) |  | [Optional] |
 
 ### Return type
 

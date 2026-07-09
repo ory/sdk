@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **sendCount** | **int** |  |
 **status** | [**\Ory\Client\Model\CourierMessageStatus**](CourierMessageStatus.md) |  |
 **subject** | **string** |  |
-**templateType** | **string** | recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid verifiable_address_changed TypeVerifiableAddressChanged |
+**templateType** | **string** | recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid verifiable_address_changed TypeVerifiableAddressChanged authenticator_key_added TypeAuthenticatorKeyAdded |
 **type** | [**\Ory\Client\Model\CourierMessageType**](CourierMessageType.md) |  |
 **updatedAt** | **\DateTime** | UpdatedAt is a helper struct field for gobuffalo.pop. |
 

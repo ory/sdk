@@ -11,14 +11,16 @@ defmodule Ory.Model.ContinueWith do
     :action,
     :flow,
     :ory_session_token,
-    :redirect_browser_to
+    :redirect_browser_to,
+    :data
   ]
 
   @type t :: %__MODULE__{
     :action => String.t,
     :flow => Ory.Model.ContinueWithRecoveryUiFlow.t,
     :ory_session_token => String.t,
-    :redirect_browser_to => String.t
+    :redirect_browser_to => String.t,
+    :data => Ory.Model.ContinueWithDeviceAuthnPinEntryUiData.t
   }
 
   alias Ory.Deserializer
@@ -26,6 +28,7 @@ defmodule Ory.Model.ContinueWith do
   def decode(value) do
     value
      |> Deserializer.deserialize(:flow, :struct, Ory.Model.ContinueWithRecoveryUiFlow)
+     |> Deserializer.deserialize(:data, :struct, Ory.Model.ContinueWithDeviceAuthnPinEntryUiData)
   end
 end
 

@@ -12,6 +12,7 @@ defmodule Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethod do
     :csrf_token,
     :delete,
     :method,
+    :rotate_secret,
     :transient_payload
   ]
 
@@ -20,6 +21,7 @@ defmodule Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethod do
     :csrf_token => String.t | nil,
     :delete => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodDelete.t | nil,
     :method => String.t,
+    :rotate_secret => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.t | nil,
     :transient_payload => map() | nil
   }
 
@@ -29,6 +31,7 @@ defmodule Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethod do
     value
      |> Deserializer.deserialize(:add, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd)
      |> Deserializer.deserialize(:delete, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodDelete)
+     |> Deserializer.deserialize(:rotate_secret, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret)
   end
 end
 

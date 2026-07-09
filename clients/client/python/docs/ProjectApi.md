@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_project_api_key**
-> ProjectApiKey create_project_api_key(project, create_project_api_key_request=create_project_api_key_request)
+> ProjectApiKey create_project_api_key(project, create_project_api_key_body=create_project_api_key_body)
 
 Create project API key
 
@@ -295,7 +295,7 @@ Create an API key for a project.
 
 ```python
 import ory_client
-from ory_client.models.create_project_api_key_request import CreateProjectApiKeyRequest
+from ory_client.models.create_project_api_key_body import CreateProjectApiKeyBody
 from ory_client.models.project_api_key import ProjectApiKey
 from ory_client.rest import ApiException
 from pprint import pprint
@@ -321,11 +321,11 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.ProjectApi(api_client)
     project = 'project_example' # str | The Project ID or Project slug
-    create_project_api_key_request = ory_client.CreateProjectApiKeyRequest() # CreateProjectApiKeyRequest |  (optional)
+    create_project_api_key_body = ory_client.CreateProjectApiKeyBody() # CreateProjectApiKeyBody |  (optional)
 
     try:
         # Create project API key
-        api_response = api_instance.create_project_api_key(project, create_project_api_key_request=create_project_api_key_request)
+        api_response = api_instance.create_project_api_key(project, create_project_api_key_body=create_project_api_key_body)
         print("The response of ProjectApi->create_project_api_key:\n")
         pprint(api_response)
     except Exception as e:
@@ -340,7 +340,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project** | **str**| The Project ID or Project slug | 
- **create_project_api_key_request** | [**CreateProjectApiKeyRequest**](CreateProjectApiKeyRequest.md)|  | [optional] 
+ **create_project_api_key_body** | [**CreateProjectApiKeyBody**](CreateProjectApiKeyBody.md)|  | [optional] 
 
 ### Return type
 

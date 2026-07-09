@@ -139,7 +139,7 @@ defmodule Ory.Api.Project do
   - `connection` (Ory.Connection): Connection to server
   - `project` (String.t): The Project ID or Project slug
   - `opts` (keyword): Optional parameters
-    - `:body` (CreateProjectApiKeyRequest): 
+    - `:body` (CreateProjectApiKeyBody): 
 
   ### Returns
 

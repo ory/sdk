@@ -9,9 +9,11 @@ Name | Type | Description | Notes
 **createdAt** | **\DateTime** | CreatedAt is the timestamp of when the key was created. Only used for troubleshooting/UI. | [optional]
 **deviceName** | **string** | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional]
 **deviceType** | **string** |  | [optional]
+**pin** | [**\Ory\Client\Model\PINConfig**](PINConfig.md) |  | [optional]
 **publicKey** | **int[]** | PublicKey is the device&#39;s public key (EC P-256 in v1), used to verify signatures. It is stored in PKIX, ASN.1 DER form (the SubjectPublicKeyInfo encoding produced by x509.MarshalPKIXPublicKey). The private key resides inside the device and does not exist on the server. | [optional]
 **relaxedAttestationExpiresAt** | **\DateTime** | RelaxedAttestationExpiresAt is set only when the key&#39;s attestation chain validated because relaxed attestation was allowed (software roots, expired certs, software security level) rather than under strict rules. Such keys are second-class: they are refused at login after this time, or immediately if relaxed attestation is turned off. It is nil for hardware-attested keys that pass strict validation. | [optional]
 **state** | **string** |  | [optional]
+**userVerification** | [**\Ory\Client\Model\UserVerification**](UserVerification.md) |  | [optional]
 **version** | **int** | v1 uses SHA256 + EC256. v2 (in the future) may use ML-DSA which is post-quantum resistant. This requires Android/iOS support so we have to wait. We intentionally avoid storing the cryptographic algorithm here a la JWT/TLS to avoid security issues and algorithm negotiation. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
