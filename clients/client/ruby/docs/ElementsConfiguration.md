@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **contact_url** | **String** | The URL to the project&#39;s Contact page. | [optional] |
 | **default_redirect_url** | **String** | The default redirect URL. |  |
 | **error_ui_url** | **String** | The URL for the error UI. |  |
 | **hide_ory_branding** | **Boolean** | Whether to hide the Ory branding badge. |  |
@@ -12,11 +13,13 @@
 | **logo_dark_url** | **String** | The URL for the dark logo. | [optional] |
 | **logo_light_url** | **String** | The URL for the light logo on the auth card. | [optional] |
 | **name** | **String** | The name of the project displayed on the auth card. |  |
+| **privacy_policy_url** | **String** | The URL to the project&#39;s Privacy Policy page. | [optional] |
 | **recovery_enabled** | **Boolean** | Whether recovery is enabled. |  |
 | **recovery_ui_url** | **String** | The URL for the recovery UI. |  |
 | **registration_enabled** | **Boolean** | Whether registration is enabled. |  |
 | **registration_ui_url** | **String** | The URL for the registration UI. |  |
 | **settings_ui_url** | **String** | The URL for the settings UI. |  |
+| **terms_of_service_url** | **String** | The URL to the project&#39;s Terms of Service page. | [optional] |
 | **verification_enabled** | **Boolean** | Whether verification is enabled. |  |
 | **verification_ui_url** | **String** | The URL for the verification UI. |  |
 
@@ -26,6 +29,7 @@
 require 'ory-client'
 
 instance = OryClient::ElementsConfiguration.new(
+  contact_url: null,
   default_redirect_url: null,
   error_ui_url: null,
   hide_ory_branding: null,
@@ -34,11 +38,13 @@ instance = OryClient::ElementsConfiguration.new(
   logo_dark_url: null,
   logo_light_url: null,
   name: null,
+  privacy_policy_url: null,
   recovery_enabled: null,
   recovery_ui_url: null,
   registration_enabled: null,
   registration_ui_url: null,
   settings_ui_url: null,
+  terms_of_service_url: null,
   verification_enabled: null,
   verification_ui_url: null
 )

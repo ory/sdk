@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**contactUrl** | **String** | The URL to the project&#39;s Contact page. |  [optional] |
 |**defaultLocale** | **String** |  |  |
 |**defaultRedirectUrl** | **String** |  |  |
 |**enabledLocales** | **List&lt;String&gt;** |  |  |
@@ -20,12 +21,14 @@
 |**logoDarkUrl** | **String** |  |  [optional] |
 |**logoLightUrl** | **String** |  |  [optional] |
 |**name** | **String** |  |  |
+|**privacyPolicyUrl** | **String** | The URL to the project&#39;s Privacy Policy page. |  [optional] |
 |**recoveryEnabled** | **Boolean** |  |  |
 |**recoveryUiUrl** | **String** |  |  |
 |**registrationEnabled** | **Boolean** |  |  |
 |**registrationUiUrl** | **String** |  |  |
 |**settingsUiUrl** | **String** |  |  |
 |**stylesheet** | **String** |  |  [optional] |
+|**termsOfServiceUrl** | **String** | The URL to the project&#39;s Terms of Service page. |  [optional] |
 |**translations** | [**List&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) |  |  |
 |**verificationEnabled** | **Boolean** |  |  |
 |**verificationUiUrl** | **String** |  |  |

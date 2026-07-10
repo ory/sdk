@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ContactUrl** | Pointer to **string** | The URL to the project&#39;s Contact page. | [optional] 
 **DefaultLocale** | **string** |  | 
 **DefaultRedirectUrl** | **string** |  | 
 **EnabledLocales** | **[]string** |  | 
@@ -17,12 +18,14 @@ Name | Type | Description | Notes
 **LogoDarkUrl** | Pointer to **string** |  | [optional] 
 **LogoLightUrl** | Pointer to **string** |  | [optional] 
 **Name** | **string** |  | 
+**PrivacyPolicyUrl** | Pointer to **string** | The URL to the project&#39;s Privacy Policy page. | [optional] 
 **RecoveryEnabled** | **bool** |  | 
 **RecoveryUiUrl** | **string** |  | 
 **RegistrationEnabled** | **bool** |  | 
 **RegistrationUiUrl** | **string** |  | 
 **SettingsUiUrl** | **string** |  | 
 **Stylesheet** | Pointer to **string** |  | [optional] 
+**TermsOfServiceUrl** | Pointer to **string** | The URL to the project&#39;s Terms of Service page. | [optional] 
 **Translations** | [**[]RevisionAccountExperienceCustomTranslation**](RevisionAccountExperienceCustomTranslation.md) |  | 
 **VerificationEnabled** | **bool** |  | 
 **VerificationUiUrl** | **string** |  | 
@@ -45,6 +48,31 @@ will change when the set of required properties is changed
 NewAccountExperienceConfigurationWithDefaults instantiates a new AccountExperienceConfiguration object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetContactUrl
+
+`func (o *AccountExperienceConfiguration) GetContactUrl() string`
+
+GetContactUrl returns the ContactUrl field if non-nil, zero value otherwise.
+
+### GetContactUrlOk
+
+`func (o *AccountExperienceConfiguration) GetContactUrlOk() (*string, bool)`
+
+GetContactUrlOk returns a tuple with the ContactUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContactUrl
+
+`func (o *AccountExperienceConfiguration) SetContactUrl(v string)`
+
+SetContactUrl sets ContactUrl field to given value.
+
+### HasContactUrl
+
+`func (o *AccountExperienceConfiguration) HasContactUrl() bool`
+
+HasContactUrl returns a boolean if a field has been set.
 
 ### GetDefaultLocale
 
@@ -326,6 +354,31 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetPrivacyPolicyUrl
+
+`func (o *AccountExperienceConfiguration) GetPrivacyPolicyUrl() string`
+
+GetPrivacyPolicyUrl returns the PrivacyPolicyUrl field if non-nil, zero value otherwise.
+
+### GetPrivacyPolicyUrlOk
+
+`func (o *AccountExperienceConfiguration) GetPrivacyPolicyUrlOk() (*string, bool)`
+
+GetPrivacyPolicyUrlOk returns a tuple with the PrivacyPolicyUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrivacyPolicyUrl
+
+`func (o *AccountExperienceConfiguration) SetPrivacyPolicyUrl(v string)`
+
+SetPrivacyPolicyUrl sets PrivacyPolicyUrl field to given value.
+
+### HasPrivacyPolicyUrl
+
+`func (o *AccountExperienceConfiguration) HasPrivacyPolicyUrl() bool`
+
+HasPrivacyPolicyUrl returns a boolean if a field has been set.
+
 ### GetRecoveryEnabled
 
 `func (o *AccountExperienceConfiguration) GetRecoveryEnabled() bool`
@@ -450,6 +503,31 @@ SetStylesheet sets Stylesheet field to given value.
 `func (o *AccountExperienceConfiguration) HasStylesheet() bool`
 
 HasStylesheet returns a boolean if a field has been set.
+
+### GetTermsOfServiceUrl
+
+`func (o *AccountExperienceConfiguration) GetTermsOfServiceUrl() string`
+
+GetTermsOfServiceUrl returns the TermsOfServiceUrl field if non-nil, zero value otherwise.
+
+### GetTermsOfServiceUrlOk
+
+`func (o *AccountExperienceConfiguration) GetTermsOfServiceUrlOk() (*string, bool)`
+
+GetTermsOfServiceUrlOk returns a tuple with the TermsOfServiceUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTermsOfServiceUrl
+
+`func (o *AccountExperienceConfiguration) SetTermsOfServiceUrl(v string)`
+
+SetTermsOfServiceUrl sets TermsOfServiceUrl field to given value.
+
+### HasTermsOfServiceUrl
+
+`func (o *AccountExperienceConfiguration) HasTermsOfServiceUrl() bool`
+
+HasTermsOfServiceUrl returns a boolean if a field has been set.
 
 ### GetTranslations
 

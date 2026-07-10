@@ -8,6 +8,7 @@ defmodule Ory.Model.AccountExperienceConfiguration do
 
   @derive Jason.Encoder
   defstruct [
+    :contact_url,
     :default_locale,
     :default_redirect_url,
     :enabled_locales,
@@ -21,18 +22,21 @@ defmodule Ory.Model.AccountExperienceConfiguration do
     :logo_dark_url,
     :logo_light_url,
     :name,
+    :privacy_policy_url,
     :recovery_enabled,
     :recovery_ui_url,
     :registration_enabled,
     :registration_ui_url,
     :settings_ui_url,
     :stylesheet,
+    :terms_of_service_url,
     :translations,
     :verification_enabled,
     :verification_ui_url
   ]
 
   @type t :: %__MODULE__{
+    :contact_url => String.t | nil,
     :default_locale => String.t,
     :default_redirect_url => String.t,
     :enabled_locales => [String.t],
@@ -46,12 +50,14 @@ defmodule Ory.Model.AccountExperienceConfiguration do
     :logo_dark_url => String.t | nil,
     :logo_light_url => String.t | nil,
     :name => String.t,
+    :privacy_policy_url => String.t | nil,
     :recovery_enabled => boolean(),
     :recovery_ui_url => String.t,
     :registration_enabled => boolean(),
     :registration_ui_url => String.t,
     :settings_ui_url => String.t,
     :stylesheet => String.t | nil,
+    :terms_of_service_url => String.t | nil,
     :translations => [Ory.Model.RevisionAccountExperienceCustomTranslation.t],
     :verification_enabled => boolean(),
     :verification_ui_url => String.t

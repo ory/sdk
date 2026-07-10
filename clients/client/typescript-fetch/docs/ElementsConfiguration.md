@@ -7,6 +7,7 @@ ElementsConfiguration is the subset of a project\'s configuration that Ory Eleme
 
 Name | Type
 ------------ | -------------
+`contact_url` | string
 `default_redirect_url` | string
 `error_ui_url` | string
 `hide_ory_branding` | boolean
@@ -15,11 +16,13 @@ Name | Type
 `logo_dark_url` | string
 `logo_light_url` | string
 `name` | string
+`privacy_policy_url` | string
 `recovery_enabled` | boolean
 `recovery_ui_url` | string
 `registration_enabled` | boolean
 `registration_ui_url` | string
 `settings_ui_url` | string
+`terms_of_service_url` | string
 `verification_enabled` | boolean
 `verification_ui_url` | string
 
@@ -30,6 +33,7 @@ import type { ElementsConfiguration } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "contact_url": null,
   "default_redirect_url": null,
   "error_ui_url": null,
   "hide_ory_branding": null,
@@ -38,11 +42,13 @@ const example = {
   "logo_dark_url": null,
   "logo_light_url": null,
   "name": null,
+  "privacy_policy_url": null,
   "recovery_enabled": null,
   "recovery_ui_url": null,
   "registration_enabled": null,
   "registration_ui_url": null,
   "settings_ui_url": null,
+  "terms_of_service_url": null,
   "verification_enabled": null,
   "verification_ui_url": null,
 } satisfies ElementsConfiguration

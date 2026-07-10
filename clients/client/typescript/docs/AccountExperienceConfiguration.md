@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**contact_url** | **string** | The URL to the project\&#39;s Contact page. | [optional] [default to undefined]
 **default_locale** | **string** |  | [default to undefined]
 **default_redirect_url** | **string** |  | [default to undefined]
 **enabled_locales** | **Array&lt;string&gt;** |  | [default to undefined]
@@ -18,12 +19,14 @@ Name | Type | Description | Notes
 **logo_dark_url** | **string** |  | [optional] [default to undefined]
 **logo_light_url** | **string** |  | [optional] [default to undefined]
 **name** | **string** |  | [default to undefined]
+**privacy_policy_url** | **string** | The URL to the project\&#39;s Privacy Policy page. | [optional] [default to undefined]
 **recovery_enabled** | **boolean** |  | [default to undefined]
 **recovery_ui_url** | **string** |  | [default to undefined]
 **registration_enabled** | **boolean** |  | [default to undefined]
 **registration_ui_url** | **string** |  | [default to undefined]
 **settings_ui_url** | **string** |  | [default to undefined]
 **stylesheet** | **string** |  | [optional] [default to undefined]
+**terms_of_service_url** | **string** | The URL to the project\&#39;s Terms of Service page. | [optional] [default to undefined]
 **translations** | [**Array&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) |  | [default to undefined]
 **verification_enabled** | **boolean** |  | [default to undefined]
 **verification_ui_url** | **string** |  | [default to undefined]
@@ -34,6 +37,7 @@ Name | Type | Description | Notes
 import { AccountExperienceConfiguration } from '@ory/client';
 
 const instance: AccountExperienceConfiguration = {
+    contact_url,
     default_locale,
     default_redirect_url,
     enabled_locales,
@@ -47,12 +51,14 @@ const instance: AccountExperienceConfiguration = {
     logo_dark_url,
     logo_light_url,
     name,
+    privacy_policy_url,
     recovery_enabled,
     recovery_ui_url,
     registration_enabled,
     registration_ui_url,
     settings_ui_url,
     stylesheet,
+    terms_of_service_url,
     translations,
     verification_enabled,
     verification_ui_url,

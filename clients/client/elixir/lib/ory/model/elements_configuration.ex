@@ -8,6 +8,7 @@ defmodule Ory.Model.ElementsConfiguration do
 
   @derive Jason.Encoder
   defstruct [
+    :contact_url,
     :default_redirect_url,
     :error_ui_url,
     :hide_ory_branding,
@@ -16,16 +17,19 @@ defmodule Ory.Model.ElementsConfiguration do
     :logo_dark_url,
     :logo_light_url,
     :name,
+    :privacy_policy_url,
     :recovery_enabled,
     :recovery_ui_url,
     :registration_enabled,
     :registration_ui_url,
     :settings_ui_url,
+    :terms_of_service_url,
     :verification_enabled,
     :verification_ui_url
   ]
 
   @type t :: %__MODULE__{
+    :contact_url => String.t | nil,
     :default_redirect_url => String.t,
     :error_ui_url => String.t,
     :hide_ory_branding => boolean(),
@@ -34,11 +38,13 @@ defmodule Ory.Model.ElementsConfiguration do
     :logo_dark_url => String.t | nil,
     :logo_light_url => String.t | nil,
     :name => String.t,
+    :privacy_policy_url => String.t | nil,
     :recovery_enabled => boolean(),
     :recovery_ui_url => String.t,
     :registration_enabled => boolean(),
     :registration_ui_url => String.t,
     :settings_ui_url => String.t,
+    :terms_of_service_url => String.t | nil,
     :verification_enabled => boolean(),
     :verification_ui_url => String.t
   }

@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`contact_url` | string
 `default_locale` | string
 `default_redirect_url` | string
 `enabled_locales` | Array&lt;string&gt;
@@ -19,12 +20,14 @@ Name | Type
 `logo_dark_url` | string
 `logo_light_url` | string
 `name` | string
+`privacy_policy_url` | string
 `recovery_enabled` | boolean
 `recovery_ui_url` | string
 `registration_enabled` | boolean
 `registration_ui_url` | string
 `settings_ui_url` | string
 `stylesheet` | string
+`terms_of_service_url` | string
 `translations` | [Array&lt;RevisionAccountExperienceCustomTranslation&gt;](RevisionAccountExperienceCustomTranslation.md)
 `verification_enabled` | boolean
 `verification_ui_url` | string
@@ -36,6 +39,7 @@ import type { AccountExperienceConfiguration } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "contact_url": null,
   "default_locale": null,
   "default_redirect_url": null,
   "enabled_locales": null,
@@ -49,12 +53,14 @@ const example = {
   "logo_dark_url": null,
   "logo_light_url": null,
   "name": null,
+  "privacy_policy_url": null,
   "recovery_enabled": null,
   "recovery_ui_url": null,
   "registration_enabled": null,
   "registration_ui_url": null,
   "settings_ui_url": null,
   "stylesheet": null,
+  "terms_of_service_url": null,
   "translations": null,
   "verification_enabled": null,
   "verification_ui_url": null,

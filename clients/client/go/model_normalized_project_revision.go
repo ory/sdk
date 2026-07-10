@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.62
+API version: v1.22.63
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,8 @@ var _ MappedNullable = &NormalizedProjectRevision{}
 
 // NormalizedProjectRevision struct for NormalizedProjectRevision
 type NormalizedProjectRevision struct {
+	// Holds the URL to the account experience's Contact page. This governs the \"contact_url\" setting.
+	AccountExperienceContactUrl *string `json:"account_experience_contact_url,omitempty"`
 	// The Account Experience's Custom Translations  Contains all Custom Translations for this project.
 	AccountExperienceCustomTranslations []RevisionAccountExperienceCustomTranslation `json:"account_experience_custom_translations,omitempty"`
 	// Holds the default locale for the account experience. This governs the \"default_locale\" setting.
@@ -42,6 +44,10 @@ type NormalizedProjectRevision struct {
 	AccountExperienceLogoDark *string `json:"account_experience_logo_dark,omitempty"`
 	// Holds the URL to the account experience's logo. This governs the \"logo_light\" setting.
 	AccountExperienceLogoLight *string `json:"account_experience_logo_light,omitempty"`
+	// Holds the URL to the account experience's Privacy Policy page. This governs the \"privacy_policy_url\" setting.
+	AccountExperiencePrivacyPolicyUrl *string `json:"account_experience_privacy_policy_url,omitempty"`
+	// Holds the URL to the account experience's Terms of Service page. This governs the \"terms_of_service_url\" setting.
+	AccountExperienceTermsOfServiceUrl *string `json:"account_experience_terms_of_service_url,omitempty"`
 	// Holds the URL to the account experience's dark theme variables. This governs the \"theme_variables_dark\" setting.
 	AccountExperienceThemeVariablesDark *string `json:"account_experience_theme_variables_dark,omitempty"`
 	// Holds the URL to the account experience's light theme variables. This governs the \"theme_variables_light\" setting.
@@ -56,6 +62,10 @@ type NormalizedProjectRevision struct {
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
 	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 	HydraOauth2ClientCredentialsDefaultGrantAllowedScope *bool `json:"hydra_oauth2_client_credentials_default_grant_allowed_scope,omitempty"`
+	// Configures how often a non-interactive device should poll the OAuth 2.0 Device Authorization Grant token endpoint. Purely informational — the value is reported to the device in the \"interval\" response field of the device authorization response. Hydra defaults to 5s when this is left empty.  This is an Enterprise feature.  This governs the \"oauth2.device_authorization.token_polling_interval\" setting.
+	HydraOauth2DeviceAuthorizationTokenPollingInterval *string `json:"hydra_oauth2_device_authorization_token_polling_interval,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
+	// Picks a preset for the OAuth 2.0 Device Authorization Grant user_code length and character set. \"high\" produces the longest codes (most resistant to brute force); \"low\" the shortest (easiest for the end user to read and enter). Leave empty to keep Hydra's default preset.  This is an Enterprise feature.  This governs the \"oauth2.device_authorization.user_code.entropy_preset\" setting.
+	HydraOauth2DeviceAuthorizationUserCodeEntropyPreset *string `json:"hydra_oauth2_device_authorization_user_code_entropy_preset,omitempty"`
 	// Set to true if you want to omit the `nbf` (not valid before) claim in the access token.  This governs the \"oauth2.exclude_not_before_claim\" setting.
 	HydraOauth2ExcludeNotBeforeClaim *bool `json:"hydra_oauth2_exclude_not_before_claim,omitempty"`
 	// Configures if the issued at (`iat`) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to `false`, the `iat` claim is required. Set this value to `true` only after careful consideration.  This governs the \"oauth2.grant.jwt.iat_optional\" setting.
@@ -112,6 +122,8 @@ type NormalizedProjectRevision struct {
 	HydraTtlAccessToken *string `json:"hydra_ttl_access_token,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \"ttl.auth_code\" setting.
 	HydraTtlAuthCode *string `json:"hydra_ttl_auth_code,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
+	// Configures how long the device_code and user_code in the OAuth 2.0 Device Authorization Grant remain valid. Larger values mean more database storage; shorter values mean users have less time to complete the second-device verification. Hydra defaults to 10m when this is left empty.  This is an Enterprise feature.  This governs the \"ttl.device_user_code\" setting.
+	HydraTtlDeviceUserCode *string `json:"hydra_ttl_device_user_code,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// This governs the \"ttl.id_token\" setting.
 	HydraTtlIdToken *string `json:"hydra_ttl_id_token,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Configures how long a user login and consent flow may take.  This governs the \"ttl.login_consent_request\" setting.
@@ -120,6 +132,10 @@ type NormalizedProjectRevision struct {
 	HydraTtlRefreshToken *string `json:"hydra_ttl_refresh_token,omitempty" validate:"regexp=^(([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+|-1)$"`
 	// Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.consent\" setting.
 	HydraUrlsConsent *string `json:"hydra_urls_consent,omitempty"`
+	// Sets the URL the user is redirected to after successfully completing the OAuth 2.0 Device Authorization Grant user verification step. Defaults to the Ory Account Experience fallback page if left empty.  This is an Enterprise feature.  This governs the \"urls.device.success\" setting.
+	HydraUrlsDeviceSuccess *string `json:"hydra_urls_device_success,omitempty"`
+	// Sets the URL of the user verification page for the OAuth 2.0 Device Authorization Grant (RFC 8628). End users are redirected to this URL to enter the user_code shown on their device. Defaults to the Ory Account Experience fallback page if left empty.  This is an Enterprise feature.  This governs the \"urls.device.verification\" setting.
+	HydraUrlsDeviceVerification *string `json:"hydra_urls_device_verification,omitempty"`
 	// Sets the OAuth2 Error URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.error\" setting.
 	HydraUrlsError *string `json:"hydra_urls_error,omitempty"`
 	// Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login & Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \"urls.login\" setting.
@@ -138,6 +154,8 @@ type NormalizedProjectRevision struct {
 	HydraWebfingerOidcDiscoveryAuthUrl *string `json:"hydra_webfinger_oidc_discovery_auth_url,omitempty"`
 	// Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \"webfinger.oidc_discovery.client_registration_url\" setting.
 	HydraWebfingerOidcDiscoveryClientRegistrationUrl *string `json:"hydra_webfinger_oidc_discovery_client_registration_url,omitempty"`
+	// Override the OAuth 2.0 Device Authorization Endpoint URL that is advertised in the OpenID Connect discovery document (/.well-known/openid-configuration). Defaults to the project's public base URL + /oauth2/device/auth.  This is an Enterprise feature.  This governs the \"webfinger.oidc_discovery.device_authorization_url\" setting.
+	HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl *string `json:"hydra_webfinger_oidc_discovery_device_authorization_url,omitempty"`
 	// Configures OpenID Connect Discovery and overwrites the JWKS URL.  This governs the \"webfinger.oidc_discovery.jwks_url\" setting.
 	HydraWebfingerOidcDiscoveryJwksUrl *string `json:"hydra_webfinger_oidc_discovery_jwks_url,omitempty"`
 	// Configures OpenID Connect Discovery and overwrites a list of supported claims to be broadcasted. Claim \"sub\" is always included.  This governs the \"webfinger.oidc_discovery.supported_claims\" setting.
@@ -638,6 +656,38 @@ func NewNormalizedProjectRevisionWithDefaults() *NormalizedProjectRevision {
 	return &this
 }
 
+// GetAccountExperienceContactUrl returns the AccountExperienceContactUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetAccountExperienceContactUrl() string {
+	if o == nil || IsNil(o.AccountExperienceContactUrl) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceContactUrl
+}
+
+// GetAccountExperienceContactUrlOk returns a tuple with the AccountExperienceContactUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetAccountExperienceContactUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceContactUrl) {
+		return nil, false
+	}
+	return o.AccountExperienceContactUrl, true
+}
+
+// HasAccountExperienceContactUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasAccountExperienceContactUrl() bool {
+	if o != nil && !IsNil(o.AccountExperienceContactUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceContactUrl gets a reference to the given string and assigns it to the AccountExperienceContactUrl field.
+func (o *NormalizedProjectRevision) SetAccountExperienceContactUrl(v string) {
+	o.AccountExperienceContactUrl = &v
+}
+
 // GetAccountExperienceCustomTranslations returns the AccountExperienceCustomTranslations field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetAccountExperienceCustomTranslations() []RevisionAccountExperienceCustomTranslation {
 	if o == nil || IsNil(o.AccountExperienceCustomTranslations) {
@@ -958,6 +1008,70 @@ func (o *NormalizedProjectRevision) SetAccountExperienceLogoLight(v string) {
 	o.AccountExperienceLogoLight = &v
 }
 
+// GetAccountExperiencePrivacyPolicyUrl returns the AccountExperiencePrivacyPolicyUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetAccountExperiencePrivacyPolicyUrl() string {
+	if o == nil || IsNil(o.AccountExperiencePrivacyPolicyUrl) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperiencePrivacyPolicyUrl
+}
+
+// GetAccountExperiencePrivacyPolicyUrlOk returns a tuple with the AccountExperiencePrivacyPolicyUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetAccountExperiencePrivacyPolicyUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperiencePrivacyPolicyUrl) {
+		return nil, false
+	}
+	return o.AccountExperiencePrivacyPolicyUrl, true
+}
+
+// HasAccountExperiencePrivacyPolicyUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasAccountExperiencePrivacyPolicyUrl() bool {
+	if o != nil && !IsNil(o.AccountExperiencePrivacyPolicyUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperiencePrivacyPolicyUrl gets a reference to the given string and assigns it to the AccountExperiencePrivacyPolicyUrl field.
+func (o *NormalizedProjectRevision) SetAccountExperiencePrivacyPolicyUrl(v string) {
+	o.AccountExperiencePrivacyPolicyUrl = &v
+}
+
+// GetAccountExperienceTermsOfServiceUrl returns the AccountExperienceTermsOfServiceUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetAccountExperienceTermsOfServiceUrl() string {
+	if o == nil || IsNil(o.AccountExperienceTermsOfServiceUrl) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceTermsOfServiceUrl
+}
+
+// GetAccountExperienceTermsOfServiceUrlOk returns a tuple with the AccountExperienceTermsOfServiceUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetAccountExperienceTermsOfServiceUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceTermsOfServiceUrl) {
+		return nil, false
+	}
+	return o.AccountExperienceTermsOfServiceUrl, true
+}
+
+// HasAccountExperienceTermsOfServiceUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasAccountExperienceTermsOfServiceUrl() bool {
+	if o != nil && !IsNil(o.AccountExperienceTermsOfServiceUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceTermsOfServiceUrl gets a reference to the given string and assigns it to the AccountExperienceTermsOfServiceUrl field.
+func (o *NormalizedProjectRevision) SetAccountExperienceTermsOfServiceUrl(v string) {
+	o.AccountExperienceTermsOfServiceUrl = &v
+}
+
 // GetAccountExperienceThemeVariablesDark returns the AccountExperienceThemeVariablesDark field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetAccountExperienceThemeVariablesDark() string {
 	if o == nil || IsNil(o.AccountExperienceThemeVariablesDark) {
@@ -1180,6 +1294,70 @@ func (o *NormalizedProjectRevision) HasHydraOauth2ClientCredentialsDefaultGrantA
 // SetHydraOauth2ClientCredentialsDefaultGrantAllowedScope gets a reference to the given bool and assigns it to the HydraOauth2ClientCredentialsDefaultGrantAllowedScope field.
 func (o *NormalizedProjectRevision) SetHydraOauth2ClientCredentialsDefaultGrantAllowedScope(v bool) {
 	o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope = &v
+}
+
+// GetHydraOauth2DeviceAuthorizationTokenPollingInterval returns the HydraOauth2DeviceAuthorizationTokenPollingInterval field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2DeviceAuthorizationTokenPollingInterval() string {
+	if o == nil || IsNil(o.HydraOauth2DeviceAuthorizationTokenPollingInterval) {
+		var ret string
+		return ret
+	}
+	return *o.HydraOauth2DeviceAuthorizationTokenPollingInterval
+}
+
+// GetHydraOauth2DeviceAuthorizationTokenPollingIntervalOk returns a tuple with the HydraOauth2DeviceAuthorizationTokenPollingInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2DeviceAuthorizationTokenPollingIntervalOk() (*string, bool) {
+	if o == nil || IsNil(o.HydraOauth2DeviceAuthorizationTokenPollingInterval) {
+		return nil, false
+	}
+	return o.HydraOauth2DeviceAuthorizationTokenPollingInterval, true
+}
+
+// HasHydraOauth2DeviceAuthorizationTokenPollingInterval returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2DeviceAuthorizationTokenPollingInterval() bool {
+	if o != nil && !IsNil(o.HydraOauth2DeviceAuthorizationTokenPollingInterval) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2DeviceAuthorizationTokenPollingInterval gets a reference to the given string and assigns it to the HydraOauth2DeviceAuthorizationTokenPollingInterval field.
+func (o *NormalizedProjectRevision) SetHydraOauth2DeviceAuthorizationTokenPollingInterval(v string) {
+	o.HydraOauth2DeviceAuthorizationTokenPollingInterval = &v
+}
+
+// GetHydraOauth2DeviceAuthorizationUserCodeEntropyPreset returns the HydraOauth2DeviceAuthorizationUserCodeEntropyPreset field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraOauth2DeviceAuthorizationUserCodeEntropyPreset() string {
+	if o == nil || IsNil(o.HydraOauth2DeviceAuthorizationUserCodeEntropyPreset) {
+		var ret string
+		return ret
+	}
+	return *o.HydraOauth2DeviceAuthorizationUserCodeEntropyPreset
+}
+
+// GetHydraOauth2DeviceAuthorizationUserCodeEntropyPresetOk returns a tuple with the HydraOauth2DeviceAuthorizationUserCodeEntropyPreset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraOauth2DeviceAuthorizationUserCodeEntropyPresetOk() (*string, bool) {
+	if o == nil || IsNil(o.HydraOauth2DeviceAuthorizationUserCodeEntropyPreset) {
+		return nil, false
+	}
+	return o.HydraOauth2DeviceAuthorizationUserCodeEntropyPreset, true
+}
+
+// HasHydraOauth2DeviceAuthorizationUserCodeEntropyPreset returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraOauth2DeviceAuthorizationUserCodeEntropyPreset() bool {
+	if o != nil && !IsNil(o.HydraOauth2DeviceAuthorizationUserCodeEntropyPreset) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2DeviceAuthorizationUserCodeEntropyPreset gets a reference to the given string and assigns it to the HydraOauth2DeviceAuthorizationUserCodeEntropyPreset field.
+func (o *NormalizedProjectRevision) SetHydraOauth2DeviceAuthorizationUserCodeEntropyPreset(v string) {
+	o.HydraOauth2DeviceAuthorizationUserCodeEntropyPreset = &v
 }
 
 // GetHydraOauth2ExcludeNotBeforeClaim returns the HydraOauth2ExcludeNotBeforeClaim field value if set, zero value otherwise.
@@ -2078,6 +2256,38 @@ func (o *NormalizedProjectRevision) SetHydraTtlAuthCode(v string) {
 	o.HydraTtlAuthCode = &v
 }
 
+// GetHydraTtlDeviceUserCode returns the HydraTtlDeviceUserCode field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraTtlDeviceUserCode() string {
+	if o == nil || IsNil(o.HydraTtlDeviceUserCode) {
+		var ret string
+		return ret
+	}
+	return *o.HydraTtlDeviceUserCode
+}
+
+// GetHydraTtlDeviceUserCodeOk returns a tuple with the HydraTtlDeviceUserCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraTtlDeviceUserCodeOk() (*string, bool) {
+	if o == nil || IsNil(o.HydraTtlDeviceUserCode) {
+		return nil, false
+	}
+	return o.HydraTtlDeviceUserCode, true
+}
+
+// HasHydraTtlDeviceUserCode returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraTtlDeviceUserCode() bool {
+	if o != nil && !IsNil(o.HydraTtlDeviceUserCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraTtlDeviceUserCode gets a reference to the given string and assigns it to the HydraTtlDeviceUserCode field.
+func (o *NormalizedProjectRevision) SetHydraTtlDeviceUserCode(v string) {
+	o.HydraTtlDeviceUserCode = &v
+}
+
 // GetHydraTtlIdToken returns the HydraTtlIdToken field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetHydraTtlIdToken() string {
 	if o == nil || IsNil(o.HydraTtlIdToken) {
@@ -2204,6 +2414,70 @@ func (o *NormalizedProjectRevision) HasHydraUrlsConsent() bool {
 // SetHydraUrlsConsent gets a reference to the given string and assigns it to the HydraUrlsConsent field.
 func (o *NormalizedProjectRevision) SetHydraUrlsConsent(v string) {
 	o.HydraUrlsConsent = &v
+}
+
+// GetHydraUrlsDeviceSuccess returns the HydraUrlsDeviceSuccess field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraUrlsDeviceSuccess() string {
+	if o == nil || IsNil(o.HydraUrlsDeviceSuccess) {
+		var ret string
+		return ret
+	}
+	return *o.HydraUrlsDeviceSuccess
+}
+
+// GetHydraUrlsDeviceSuccessOk returns a tuple with the HydraUrlsDeviceSuccess field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraUrlsDeviceSuccessOk() (*string, bool) {
+	if o == nil || IsNil(o.HydraUrlsDeviceSuccess) {
+		return nil, false
+	}
+	return o.HydraUrlsDeviceSuccess, true
+}
+
+// HasHydraUrlsDeviceSuccess returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraUrlsDeviceSuccess() bool {
+	if o != nil && !IsNil(o.HydraUrlsDeviceSuccess) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraUrlsDeviceSuccess gets a reference to the given string and assigns it to the HydraUrlsDeviceSuccess field.
+func (o *NormalizedProjectRevision) SetHydraUrlsDeviceSuccess(v string) {
+	o.HydraUrlsDeviceSuccess = &v
+}
+
+// GetHydraUrlsDeviceVerification returns the HydraUrlsDeviceVerification field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraUrlsDeviceVerification() string {
+	if o == nil || IsNil(o.HydraUrlsDeviceVerification) {
+		var ret string
+		return ret
+	}
+	return *o.HydraUrlsDeviceVerification
+}
+
+// GetHydraUrlsDeviceVerificationOk returns a tuple with the HydraUrlsDeviceVerification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraUrlsDeviceVerificationOk() (*string, bool) {
+	if o == nil || IsNil(o.HydraUrlsDeviceVerification) {
+		return nil, false
+	}
+	return o.HydraUrlsDeviceVerification, true
+}
+
+// HasHydraUrlsDeviceVerification returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraUrlsDeviceVerification() bool {
+	if o != nil && !IsNil(o.HydraUrlsDeviceVerification) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraUrlsDeviceVerification gets a reference to the given string and assigns it to the HydraUrlsDeviceVerification field.
+func (o *NormalizedProjectRevision) SetHydraUrlsDeviceVerification(v string) {
+	o.HydraUrlsDeviceVerification = &v
 }
 
 // GetHydraUrlsError returns the HydraUrlsError field value if set, zero value otherwise.
@@ -2492,6 +2766,38 @@ func (o *NormalizedProjectRevision) HasHydraWebfingerOidcDiscoveryClientRegistra
 // SetHydraWebfingerOidcDiscoveryClientRegistrationUrl gets a reference to the given string and assigns it to the HydraWebfingerOidcDiscoveryClientRegistrationUrl field.
 func (o *NormalizedProjectRevision) SetHydraWebfingerOidcDiscoveryClientRegistrationUrl(v string) {
 	o.HydraWebfingerOidcDiscoveryClientRegistrationUrl = &v
+}
+
+// GetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl returns the HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl() string {
+	if o == nil || IsNil(o.HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl) {
+		var ret string
+		return ret
+	}
+	return *o.HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl
+}
+
+// GetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrlOk returns a tuple with the HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl) {
+		return nil, false
+	}
+	return o.HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl, true
+}
+
+// HasHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl() bool {
+	if o != nil && !IsNil(o.HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl gets a reference to the given string and assigns it to the HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl field.
+func (o *NormalizedProjectRevision) SetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl(v string) {
+	o.HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl = &v
 }
 
 // GetHydraWebfingerOidcDiscoveryJwksUrl returns the HydraWebfingerOidcDiscoveryJwksUrl field value if set, zero value otherwise.
@@ -9504,6 +9810,9 @@ func (o NormalizedProjectRevision) MarshalJSON() ([]byte, error) {
 
 func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AccountExperienceContactUrl) {
+		toSerialize["account_experience_contact_url"] = o.AccountExperienceContactUrl
+	}
 	if !IsNil(o.AccountExperienceCustomTranslations) {
 		toSerialize["account_experience_custom_translations"] = o.AccountExperienceCustomTranslations
 	}
@@ -9534,6 +9843,12 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccountExperienceLogoLight) {
 		toSerialize["account_experience_logo_light"] = o.AccountExperienceLogoLight
 	}
+	if !IsNil(o.AccountExperiencePrivacyPolicyUrl) {
+		toSerialize["account_experience_privacy_policy_url"] = o.AccountExperiencePrivacyPolicyUrl
+	}
+	if !IsNil(o.AccountExperienceTermsOfServiceUrl) {
+		toSerialize["account_experience_terms_of_service_url"] = o.AccountExperienceTermsOfServiceUrl
+	}
 	if !IsNil(o.AccountExperienceThemeVariablesDark) {
 		toSerialize["account_experience_theme_variables_dark"] = o.AccountExperienceThemeVariablesDark
 	}
@@ -9554,6 +9869,12 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope) {
 		toSerialize["hydra_oauth2_client_credentials_default_grant_allowed_scope"] = o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope
+	}
+	if !IsNil(o.HydraOauth2DeviceAuthorizationTokenPollingInterval) {
+		toSerialize["hydra_oauth2_device_authorization_token_polling_interval"] = o.HydraOauth2DeviceAuthorizationTokenPollingInterval
+	}
+	if !IsNil(o.HydraOauth2DeviceAuthorizationUserCodeEntropyPreset) {
+		toSerialize["hydra_oauth2_device_authorization_user_code_entropy_preset"] = o.HydraOauth2DeviceAuthorizationUserCodeEntropyPreset
 	}
 	if !IsNil(o.HydraOauth2ExcludeNotBeforeClaim) {
 		toSerialize["hydra_oauth2_exclude_not_before_claim"] = o.HydraOauth2ExcludeNotBeforeClaim
@@ -9639,6 +9960,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HydraTtlAuthCode) {
 		toSerialize["hydra_ttl_auth_code"] = o.HydraTtlAuthCode
 	}
+	if !IsNil(o.HydraTtlDeviceUserCode) {
+		toSerialize["hydra_ttl_device_user_code"] = o.HydraTtlDeviceUserCode
+	}
 	if !IsNil(o.HydraTtlIdToken) {
 		toSerialize["hydra_ttl_id_token"] = o.HydraTtlIdToken
 	}
@@ -9650,6 +9974,12 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.HydraUrlsConsent) {
 		toSerialize["hydra_urls_consent"] = o.HydraUrlsConsent
+	}
+	if !IsNil(o.HydraUrlsDeviceSuccess) {
+		toSerialize["hydra_urls_device_success"] = o.HydraUrlsDeviceSuccess
+	}
+	if !IsNil(o.HydraUrlsDeviceVerification) {
+		toSerialize["hydra_urls_device_verification"] = o.HydraUrlsDeviceVerification
 	}
 	if !IsNil(o.HydraUrlsError) {
 		toSerialize["hydra_urls_error"] = o.HydraUrlsError
@@ -9677,6 +10007,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.HydraWebfingerOidcDiscoveryClientRegistrationUrl) {
 		toSerialize["hydra_webfinger_oidc_discovery_client_registration_url"] = o.HydraWebfingerOidcDiscoveryClientRegistrationUrl
+	}
+	if !IsNil(o.HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl) {
+		toSerialize["hydra_webfinger_oidc_discovery_device_authorization_url"] = o.HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl
 	}
 	if !IsNil(o.HydraWebfingerOidcDiscoveryJwksUrl) {
 		toSerialize["hydra_webfinger_oidc_discovery_jwks_url"] = o.HydraWebfingerOidcDiscoveryJwksUrl
@@ -10376,6 +10709,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "account_experience_contact_url")
 		delete(additionalProperties, "account_experience_custom_translations")
 		delete(additionalProperties, "account_experience_default_locale")
 		delete(additionalProperties, "account_experience_enabled_locales")
@@ -10386,6 +10720,8 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "account_experience_locale_behavior")
 		delete(additionalProperties, "account_experience_logo_dark")
 		delete(additionalProperties, "account_experience_logo_light")
+		delete(additionalProperties, "account_experience_privacy_policy_url")
+		delete(additionalProperties, "account_experience_terms_of_service_url")
 		delete(additionalProperties, "account_experience_theme_variables_dark")
 		delete(additionalProperties, "account_experience_theme_variables_light")
 		delete(additionalProperties, "created_at")
@@ -10393,6 +10729,8 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "enable_ax_v2")
 		delete(additionalProperties, "hydra_oauth2_allowed_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_client_credentials_default_grant_allowed_scope")
+		delete(additionalProperties, "hydra_oauth2_device_authorization_token_polling_interval")
+		delete(additionalProperties, "hydra_oauth2_device_authorization_user_code_entropy_preset")
 		delete(additionalProperties, "hydra_oauth2_exclude_not_before_claim")
 		delete(additionalProperties, "hydra_oauth2_grant_jwt_iat_optional")
 		delete(additionalProperties, "hydra_oauth2_grant_jwt_jti_optional")
@@ -10421,10 +10759,13 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "hydra_strategies_scope")
 		delete(additionalProperties, "hydra_ttl_access_token")
 		delete(additionalProperties, "hydra_ttl_auth_code")
+		delete(additionalProperties, "hydra_ttl_device_user_code")
 		delete(additionalProperties, "hydra_ttl_id_token")
 		delete(additionalProperties, "hydra_ttl_login_consent_request")
 		delete(additionalProperties, "hydra_ttl_refresh_token")
 		delete(additionalProperties, "hydra_urls_consent")
+		delete(additionalProperties, "hydra_urls_device_success")
+		delete(additionalProperties, "hydra_urls_device_verification")
 		delete(additionalProperties, "hydra_urls_error")
 		delete(additionalProperties, "hydra_urls_login")
 		delete(additionalProperties, "hydra_urls_logout")
@@ -10434,6 +10775,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "hydra_webfinger_jwks_broadcast_keys")
 		delete(additionalProperties, "hydra_webfinger_oidc_discovery_auth_url")
 		delete(additionalProperties, "hydra_webfinger_oidc_discovery_client_registration_url")
+		delete(additionalProperties, "hydra_webfinger_oidc_discovery_device_authorization_url")
 		delete(additionalProperties, "hydra_webfinger_oidc_discovery_jwks_url")
 		delete(additionalProperties, "hydra_webfinger_oidc_discovery_supported_claims")
 		delete(additionalProperties, "hydra_webfinger_oidc_discovery_supported_scope")

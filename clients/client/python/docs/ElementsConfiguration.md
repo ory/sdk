@@ -6,6 +6,7 @@ ElementsConfiguration is the subset of a project's configuration that Ory Elemen
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**contact_url** | **str** | The URL to the project&#39;s Contact page. | [optional] 
 **default_redirect_url** | **str** | The default redirect URL. | 
 **error_ui_url** | **str** | The URL for the error UI. | 
 **hide_ory_branding** | **bool** | Whether to hide the Ory branding badge. | 
@@ -14,11 +15,13 @@ Name | Type | Description | Notes
 **logo_dark_url** | **str** | The URL for the dark logo. | [optional] 
 **logo_light_url** | **str** | The URL for the light logo on the auth card. | [optional] 
 **name** | **str** | The name of the project displayed on the auth card. | 
+**privacy_policy_url** | **str** | The URL to the project&#39;s Privacy Policy page. | [optional] 
 **recovery_enabled** | **bool** | Whether recovery is enabled. | 
 **recovery_ui_url** | **str** | The URL for the recovery UI. | 
 **registration_enabled** | **bool** | Whether registration is enabled. | 
 **registration_ui_url** | **str** | The URL for the registration UI. | 
 **settings_ui_url** | **str** | The URL for the settings UI. | 
+**terms_of_service_url** | **str** | The URL to the project&#39;s Terms of Service page. | [optional] 
 **verification_enabled** | **bool** | Whether verification is enabled. | 
 **verification_ui_url** | **str** | The URL for the verification UI. | 
 

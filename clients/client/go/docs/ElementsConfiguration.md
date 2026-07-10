@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ContactUrl** | Pointer to **string** | The URL to the project&#39;s Contact page. | [optional] 
 **DefaultRedirectUrl** | **string** | The default redirect URL. | 
 **ErrorUiUrl** | **string** | The URL for the error UI. | 
 **HideOryBranding** | **bool** | Whether to hide the Ory branding badge. | 
@@ -12,11 +13,13 @@ Name | Type | Description | Notes
 **LogoDarkUrl** | Pointer to **string** | The URL for the dark logo. | [optional] 
 **LogoLightUrl** | Pointer to **string** | The URL for the light logo on the auth card. | [optional] 
 **Name** | **string** | The name of the project displayed on the auth card. | 
+**PrivacyPolicyUrl** | Pointer to **string** | The URL to the project&#39;s Privacy Policy page. | [optional] 
 **RecoveryEnabled** | **bool** | Whether recovery is enabled. | 
 **RecoveryUiUrl** | **string** | The URL for the recovery UI. | 
 **RegistrationEnabled** | **bool** | Whether registration is enabled. | 
 **RegistrationUiUrl** | **string** | The URL for the registration UI. | 
 **SettingsUiUrl** | **string** | The URL for the settings UI. | 
+**TermsOfServiceUrl** | Pointer to **string** | The URL to the project&#39;s Terms of Service page. | [optional] 
 **VerificationEnabled** | **bool** | Whether verification is enabled. | 
 **VerificationUiUrl** | **string** | The URL for the verification UI. | 
 
@@ -38,6 +41,31 @@ will change when the set of required properties is changed
 NewElementsConfigurationWithDefaults instantiates a new ElementsConfiguration object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetContactUrl
+
+`func (o *ElementsConfiguration) GetContactUrl() string`
+
+GetContactUrl returns the ContactUrl field if non-nil, zero value otherwise.
+
+### GetContactUrlOk
+
+`func (o *ElementsConfiguration) GetContactUrlOk() (*string, bool)`
+
+GetContactUrlOk returns a tuple with the ContactUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContactUrl
+
+`func (o *ElementsConfiguration) SetContactUrl(v string)`
+
+SetContactUrl sets ContactUrl field to given value.
+
+### HasContactUrl
+
+`func (o *ElementsConfiguration) HasContactUrl() bool`
+
+HasContactUrl returns a boolean if a field has been set.
 
 ### GetDefaultRedirectUrl
 
@@ -209,6 +237,31 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetPrivacyPolicyUrl
+
+`func (o *ElementsConfiguration) GetPrivacyPolicyUrl() string`
+
+GetPrivacyPolicyUrl returns the PrivacyPolicyUrl field if non-nil, zero value otherwise.
+
+### GetPrivacyPolicyUrlOk
+
+`func (o *ElementsConfiguration) GetPrivacyPolicyUrlOk() (*string, bool)`
+
+GetPrivacyPolicyUrlOk returns a tuple with the PrivacyPolicyUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrivacyPolicyUrl
+
+`func (o *ElementsConfiguration) SetPrivacyPolicyUrl(v string)`
+
+SetPrivacyPolicyUrl sets PrivacyPolicyUrl field to given value.
+
+### HasPrivacyPolicyUrl
+
+`func (o *ElementsConfiguration) HasPrivacyPolicyUrl() bool`
+
+HasPrivacyPolicyUrl returns a boolean if a field has been set.
+
 ### GetRecoveryEnabled
 
 `func (o *ElementsConfiguration) GetRecoveryEnabled() bool`
@@ -308,6 +361,31 @@ and a boolean to check if the value has been set.
 
 SetSettingsUiUrl sets SettingsUiUrl field to given value.
 
+
+### GetTermsOfServiceUrl
+
+`func (o *ElementsConfiguration) GetTermsOfServiceUrl() string`
+
+GetTermsOfServiceUrl returns the TermsOfServiceUrl field if non-nil, zero value otherwise.
+
+### GetTermsOfServiceUrlOk
+
+`func (o *ElementsConfiguration) GetTermsOfServiceUrlOk() (*string, bool)`
+
+GetTermsOfServiceUrlOk returns a tuple with the TermsOfServiceUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTermsOfServiceUrl
+
+`func (o *ElementsConfiguration) SetTermsOfServiceUrl(v string)`
+
+SetTermsOfServiceUrl sets TermsOfServiceUrl field to given value.
+
+### HasTermsOfServiceUrl
+
+`func (o *ElementsConfiguration) HasTermsOfServiceUrl() bool`
+
+HasTermsOfServiceUrl returns a boolean if a field has been set.
 
 ### GetVerificationEnabled
 

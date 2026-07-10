@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**contactUrl** | **string** | The URL to the project&#39;s Contact page. | [optional]
 **defaultLocale** | **string** |  |
 **defaultRedirectUrl** | **string** |  |
 **enabledLocales** | **string[]** |  |
@@ -17,12 +18,14 @@ Name | Type | Description | Notes
 **logoDarkUrl** | **string** |  | [optional]
 **logoLightUrl** | **string** |  | [optional]
 **name** | **string** |  |
+**privacyPolicyUrl** | **string** | The URL to the project&#39;s Privacy Policy page. | [optional]
 **recoveryEnabled** | **bool** |  |
 **recoveryUiUrl** | **string** |  |
 **registrationEnabled** | **bool** |  |
 **registrationUiUrl** | **string** |  |
 **settingsUiUrl** | **string** |  |
 **stylesheet** | **string** |  | [optional]
+**termsOfServiceUrl** | **string** | The URL to the project&#39;s Terms of Service page. | [optional]
 **translations** | [**\Ory\Client\Model\RevisionAccountExperienceCustomTranslation[]**](RevisionAccountExperienceCustomTranslation.md) |  |
 **verificationEnabled** | **bool** |  |
 **verificationUiUrl** | **string** |  |

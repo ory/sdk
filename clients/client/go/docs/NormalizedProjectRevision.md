@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AccountExperienceContactUrl** | Pointer to **string** | Holds the URL to the account experience&#39;s Contact page. This governs the \&quot;contact_url\&quot; setting. | [optional] 
 **AccountExperienceCustomTranslations** | Pointer to [**[]RevisionAccountExperienceCustomTranslation**](RevisionAccountExperienceCustomTranslation.md) | The Account Experience&#39;s Custom Translations  Contains all Custom Translations for this project. | [optional] 
 **AccountExperienceDefaultLocale** | Pointer to **string** | Holds the default locale for the account experience. This governs the \&quot;default_locale\&quot; setting. | [optional] 
 **AccountExperienceEnabledLocales** | Pointer to **[]string** | The Account Experience&#39;s Enabled Locales  This governs the locales that are available in the account experience. This governs the \&quot;enabled_locales\&quot; setting. | [optional] 
@@ -14,6 +15,8 @@ Name | Type | Description | Notes
 **AccountExperienceLocaleBehavior** | Pointer to **string** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. This governs the \&quot;locale_behavior\&quot; setting. | [optional] 
 **AccountExperienceLogoDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). This governs the \&quot;logo_dark\&quot; setting. | [optional] 
 **AccountExperienceLogoLight** | Pointer to **string** | Holds the URL to the account experience&#39;s logo. This governs the \&quot;logo_light\&quot; setting. | [optional] 
+**AccountExperiencePrivacyPolicyUrl** | Pointer to **string** | Holds the URL to the account experience&#39;s Privacy Policy page. This governs the \&quot;privacy_policy_url\&quot; setting. | [optional] 
+**AccountExperienceTermsOfServiceUrl** | Pointer to **string** | Holds the URL to the account experience&#39;s Terms of Service page. This governs the \&quot;terms_of_service_url\&quot; setting. | [optional] 
 **AccountExperienceThemeVariablesDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme variables. This governs the \&quot;theme_variables_dark\&quot; setting. | [optional] 
 **AccountExperienceThemeVariablesLight** | Pointer to **string** | Holds the URL to the account experience&#39;s light theme variables. This governs the \&quot;theme_variables_light\&quot; setting. | [optional] 
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
@@ -21,6 +24,8 @@ Name | Type | Description | Notes
 **EnableAxV2** | Pointer to **bool** | Whether the new account experience is enabled and reachable. This governs the \&quot;enable_ax_v2\&quot; setting. | [optional] 
 **HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** | A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.  This governs the \&quot;oauth2.allowed_top_level_claims\&quot; setting. | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
+**HydraOauth2DeviceAuthorizationTokenPollingInterval** | Pointer to **string** | Configures how often a non-interactive device should poll the OAuth 2.0 Device Authorization Grant token endpoint. Purely informational — the value is reported to the device in the \&quot;interval\&quot; response field of the device authorization response. Hydra defaults to 5s when this is left empty.  This is an Enterprise feature.  This governs the \&quot;oauth2.device_authorization.token_polling_interval\&quot; setting. | [optional] 
+**HydraOauth2DeviceAuthorizationUserCodeEntropyPreset** | Pointer to **string** | Picks a preset for the OAuth 2.0 Device Authorization Grant user_code length and character set. \&quot;high\&quot; produces the longest codes (most resistant to brute force); \&quot;low\&quot; the shortest (easiest for the end user to read and enter). Leave empty to keep Hydra&#39;s default preset.  This is an Enterprise feature.  This governs the \&quot;oauth2.device_authorization.user_code.entropy_preset\&quot; setting. | [optional] 
 **HydraOauth2ExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to omit the &#x60;nbf&#x60; (not valid before) claim in the access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtIatOptional** | Pointer to **bool** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. | [optional] 
 **HydraOauth2GrantJwtJtiOptional** | Pointer to **bool** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. | [optional] 
@@ -49,10 +54,13 @@ Name | Type | Description | Notes
 **HydraStrategiesScope** | Pointer to **string** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional] [default to "wildcard"]
 **HydraTtlAccessToken** | Pointer to **string** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional] [default to "30m"]
 **HydraTtlAuthCode** | Pointer to **string** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.auth_code\&quot; setting. | [optional] [default to "720h"]
+**HydraTtlDeviceUserCode** | Pointer to **string** | Configures how long the device_code and user_code in the OAuth 2.0 Device Authorization Grant remain valid. Larger values mean more database storage; shorter values mean users have less time to complete the second-device verification. Hydra defaults to 10m when this is left empty.  This is an Enterprise feature.  This governs the \&quot;ttl.device_user_code\&quot; setting. | [optional] 
 **HydraTtlIdToken** | Pointer to **string** | This governs the \&quot;ttl.id_token\&quot; setting. | [optional] [default to "30m"]
 **HydraTtlLoginConsentRequest** | Pointer to **string** | Configures how long a user login and consent flow may take.  This governs the \&quot;ttl.login_consent_request\&quot; setting. | [optional] [default to "30m"]
 **HydraTtlRefreshToken** | Pointer to **string** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.refresh_token\&quot; setting. | [optional] [default to "720h"]
 **HydraUrlsConsent** | Pointer to **string** | Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.consent\&quot; setting. | [optional] 
+**HydraUrlsDeviceSuccess** | Pointer to **string** | Sets the URL the user is redirected to after successfully completing the OAuth 2.0 Device Authorization Grant user verification step. Defaults to the Ory Account Experience fallback page if left empty.  This is an Enterprise feature.  This governs the \&quot;urls.device.success\&quot; setting. | [optional] 
+**HydraUrlsDeviceVerification** | Pointer to **string** | Sets the URL of the user verification page for the OAuth 2.0 Device Authorization Grant (RFC 8628). End users are redirected to this URL to enter the user_code shown on their device. Defaults to the Ory Account Experience fallback page if left empty.  This is an Enterprise feature.  This governs the \&quot;urls.device.verification\&quot; setting. | [optional] 
 **HydraUrlsError** | Pointer to **string** | Sets the OAuth2 Error URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.error\&quot; setting. | [optional] 
 **HydraUrlsLogin** | Pointer to **string** | Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.login\&quot; setting. | [optional] 
 **HydraUrlsLogout** | Pointer to **string** | Sets the logout endpoint.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.logout\&quot; setting. | [optional] 
@@ -62,6 +70,7 @@ Name | Type | Description | Notes
 **HydraWebfingerJwksBroadcastKeys** | Pointer to **[]string** | A list of JSON Web Keys that should be exposed at that endpoint. This is usually the public key for verifying OpenID Connect ID Tokens. However, you might want to add additional keys here as well.  This governs the \&quot;webfinger.jwks.broadcast_keys\&quot; setting. | [optional] 
 **HydraWebfingerOidcDiscoveryAuthUrl** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \&quot;webfinger.oidc_discovery.auth_url\&quot; setting. | [optional] 
 **HydraWebfingerOidcDiscoveryClientRegistrationUrl** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \&quot;webfinger.oidc_discovery.client_registration_url\&quot; setting. | [optional] 
+**HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl** | Pointer to **string** | Override the OAuth 2.0 Device Authorization Endpoint URL that is advertised in the OpenID Connect discovery document (/.well-known/openid-configuration). Defaults to the project&#39;s public base URL + /oauth2/device/auth.  This is an Enterprise feature.  This governs the \&quot;webfinger.oidc_discovery.device_authorization_url\&quot; setting. | [optional] 
 **HydraWebfingerOidcDiscoveryJwksUrl** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the JWKS URL.  This governs the \&quot;webfinger.oidc_discovery.jwks_url\&quot; setting. | [optional] 
 **HydraWebfingerOidcDiscoverySupportedClaims** | Pointer to **[]string** | Configures OpenID Connect Discovery and overwrites a list of supported claims to be broadcasted. Claim \&quot;sub\&quot; is always included.  This governs the \&quot;webfinger.oidc_discovery.supported_claims\&quot; setting. | [optional] 
 **HydraWebfingerOidcDiscoverySupportedScope** | Pointer to **[]string** | Configures OpenID Connect Discovery and overwrites the scope OAuth 2.0 Clients may request. Scope &#x60;offline&#x60;, &#x60;offline_access&#x60;, and &#x60;openid&#x60; are always included.  This governs the \&quot;webfinger.oidc_discovery.supported_scope\&quot; setting. | [optional] 
@@ -300,6 +309,31 @@ will change when the set of required properties is changed
 NewNormalizedProjectRevisionWithDefaults instantiates a new NormalizedProjectRevision object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAccountExperienceContactUrl
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceContactUrl() string`
+
+GetAccountExperienceContactUrl returns the AccountExperienceContactUrl field if non-nil, zero value otherwise.
+
+### GetAccountExperienceContactUrlOk
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceContactUrlOk() (*string, bool)`
+
+GetAccountExperienceContactUrlOk returns a tuple with the AccountExperienceContactUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceContactUrl
+
+`func (o *NormalizedProjectRevision) SetAccountExperienceContactUrl(v string)`
+
+SetAccountExperienceContactUrl sets AccountExperienceContactUrl field to given value.
+
+### HasAccountExperienceContactUrl
+
+`func (o *NormalizedProjectRevision) HasAccountExperienceContactUrl() bool`
+
+HasAccountExperienceContactUrl returns a boolean if a field has been set.
 
 ### GetAccountExperienceCustomTranslations
 
@@ -551,6 +585,56 @@ SetAccountExperienceLogoLight sets AccountExperienceLogoLight field to given val
 
 HasAccountExperienceLogoLight returns a boolean if a field has been set.
 
+### GetAccountExperiencePrivacyPolicyUrl
+
+`func (o *NormalizedProjectRevision) GetAccountExperiencePrivacyPolicyUrl() string`
+
+GetAccountExperiencePrivacyPolicyUrl returns the AccountExperiencePrivacyPolicyUrl field if non-nil, zero value otherwise.
+
+### GetAccountExperiencePrivacyPolicyUrlOk
+
+`func (o *NormalizedProjectRevision) GetAccountExperiencePrivacyPolicyUrlOk() (*string, bool)`
+
+GetAccountExperiencePrivacyPolicyUrlOk returns a tuple with the AccountExperiencePrivacyPolicyUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperiencePrivacyPolicyUrl
+
+`func (o *NormalizedProjectRevision) SetAccountExperiencePrivacyPolicyUrl(v string)`
+
+SetAccountExperiencePrivacyPolicyUrl sets AccountExperiencePrivacyPolicyUrl field to given value.
+
+### HasAccountExperiencePrivacyPolicyUrl
+
+`func (o *NormalizedProjectRevision) HasAccountExperiencePrivacyPolicyUrl() bool`
+
+HasAccountExperiencePrivacyPolicyUrl returns a boolean if a field has been set.
+
+### GetAccountExperienceTermsOfServiceUrl
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceTermsOfServiceUrl() string`
+
+GetAccountExperienceTermsOfServiceUrl returns the AccountExperienceTermsOfServiceUrl field if non-nil, zero value otherwise.
+
+### GetAccountExperienceTermsOfServiceUrlOk
+
+`func (o *NormalizedProjectRevision) GetAccountExperienceTermsOfServiceUrlOk() (*string, bool)`
+
+GetAccountExperienceTermsOfServiceUrlOk returns a tuple with the AccountExperienceTermsOfServiceUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceTermsOfServiceUrl
+
+`func (o *NormalizedProjectRevision) SetAccountExperienceTermsOfServiceUrl(v string)`
+
+SetAccountExperienceTermsOfServiceUrl sets AccountExperienceTermsOfServiceUrl field to given value.
+
+### HasAccountExperienceTermsOfServiceUrl
+
+`func (o *NormalizedProjectRevision) HasAccountExperienceTermsOfServiceUrl() bool`
+
+HasAccountExperienceTermsOfServiceUrl returns a boolean if a field has been set.
+
 ### GetAccountExperienceThemeVariablesDark
 
 `func (o *NormalizedProjectRevision) GetAccountExperienceThemeVariablesDark() string`
@@ -725,6 +809,56 @@ SetHydraOauth2ClientCredentialsDefaultGrantAllowedScope sets HydraOauth2ClientCr
 `func (o *NormalizedProjectRevision) HasHydraOauth2ClientCredentialsDefaultGrantAllowedScope() bool`
 
 HasHydraOauth2ClientCredentialsDefaultGrantAllowedScope returns a boolean if a field has been set.
+
+### GetHydraOauth2DeviceAuthorizationTokenPollingInterval
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2DeviceAuthorizationTokenPollingInterval() string`
+
+GetHydraOauth2DeviceAuthorizationTokenPollingInterval returns the HydraOauth2DeviceAuthorizationTokenPollingInterval field if non-nil, zero value otherwise.
+
+### GetHydraOauth2DeviceAuthorizationTokenPollingIntervalOk
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2DeviceAuthorizationTokenPollingIntervalOk() (*string, bool)`
+
+GetHydraOauth2DeviceAuthorizationTokenPollingIntervalOk returns a tuple with the HydraOauth2DeviceAuthorizationTokenPollingInterval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2DeviceAuthorizationTokenPollingInterval
+
+`func (o *NormalizedProjectRevision) SetHydraOauth2DeviceAuthorizationTokenPollingInterval(v string)`
+
+SetHydraOauth2DeviceAuthorizationTokenPollingInterval sets HydraOauth2DeviceAuthorizationTokenPollingInterval field to given value.
+
+### HasHydraOauth2DeviceAuthorizationTokenPollingInterval
+
+`func (o *NormalizedProjectRevision) HasHydraOauth2DeviceAuthorizationTokenPollingInterval() bool`
+
+HasHydraOauth2DeviceAuthorizationTokenPollingInterval returns a boolean if a field has been set.
+
+### GetHydraOauth2DeviceAuthorizationUserCodeEntropyPreset
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2DeviceAuthorizationUserCodeEntropyPreset() string`
+
+GetHydraOauth2DeviceAuthorizationUserCodeEntropyPreset returns the HydraOauth2DeviceAuthorizationUserCodeEntropyPreset field if non-nil, zero value otherwise.
+
+### GetHydraOauth2DeviceAuthorizationUserCodeEntropyPresetOk
+
+`func (o *NormalizedProjectRevision) GetHydraOauth2DeviceAuthorizationUserCodeEntropyPresetOk() (*string, bool)`
+
+GetHydraOauth2DeviceAuthorizationUserCodeEntropyPresetOk returns a tuple with the HydraOauth2DeviceAuthorizationUserCodeEntropyPreset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2DeviceAuthorizationUserCodeEntropyPreset
+
+`func (o *NormalizedProjectRevision) SetHydraOauth2DeviceAuthorizationUserCodeEntropyPreset(v string)`
+
+SetHydraOauth2DeviceAuthorizationUserCodeEntropyPreset sets HydraOauth2DeviceAuthorizationUserCodeEntropyPreset field to given value.
+
+### HasHydraOauth2DeviceAuthorizationUserCodeEntropyPreset
+
+`func (o *NormalizedProjectRevision) HasHydraOauth2DeviceAuthorizationUserCodeEntropyPreset() bool`
+
+HasHydraOauth2DeviceAuthorizationUserCodeEntropyPreset returns a boolean if a field has been set.
 
 ### GetHydraOauth2ExcludeNotBeforeClaim
 
@@ -1426,6 +1560,31 @@ SetHydraTtlAuthCode sets HydraTtlAuthCode field to given value.
 
 HasHydraTtlAuthCode returns a boolean if a field has been set.
 
+### GetHydraTtlDeviceUserCode
+
+`func (o *NormalizedProjectRevision) GetHydraTtlDeviceUserCode() string`
+
+GetHydraTtlDeviceUserCode returns the HydraTtlDeviceUserCode field if non-nil, zero value otherwise.
+
+### GetHydraTtlDeviceUserCodeOk
+
+`func (o *NormalizedProjectRevision) GetHydraTtlDeviceUserCodeOk() (*string, bool)`
+
+GetHydraTtlDeviceUserCodeOk returns a tuple with the HydraTtlDeviceUserCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraTtlDeviceUserCode
+
+`func (o *NormalizedProjectRevision) SetHydraTtlDeviceUserCode(v string)`
+
+SetHydraTtlDeviceUserCode sets HydraTtlDeviceUserCode field to given value.
+
+### HasHydraTtlDeviceUserCode
+
+`func (o *NormalizedProjectRevision) HasHydraTtlDeviceUserCode() bool`
+
+HasHydraTtlDeviceUserCode returns a boolean if a field has been set.
+
 ### GetHydraTtlIdToken
 
 `func (o *NormalizedProjectRevision) GetHydraTtlIdToken() string`
@@ -1525,6 +1684,56 @@ SetHydraUrlsConsent sets HydraUrlsConsent field to given value.
 `func (o *NormalizedProjectRevision) HasHydraUrlsConsent() bool`
 
 HasHydraUrlsConsent returns a boolean if a field has been set.
+
+### GetHydraUrlsDeviceSuccess
+
+`func (o *NormalizedProjectRevision) GetHydraUrlsDeviceSuccess() string`
+
+GetHydraUrlsDeviceSuccess returns the HydraUrlsDeviceSuccess field if non-nil, zero value otherwise.
+
+### GetHydraUrlsDeviceSuccessOk
+
+`func (o *NormalizedProjectRevision) GetHydraUrlsDeviceSuccessOk() (*string, bool)`
+
+GetHydraUrlsDeviceSuccessOk returns a tuple with the HydraUrlsDeviceSuccess field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraUrlsDeviceSuccess
+
+`func (o *NormalizedProjectRevision) SetHydraUrlsDeviceSuccess(v string)`
+
+SetHydraUrlsDeviceSuccess sets HydraUrlsDeviceSuccess field to given value.
+
+### HasHydraUrlsDeviceSuccess
+
+`func (o *NormalizedProjectRevision) HasHydraUrlsDeviceSuccess() bool`
+
+HasHydraUrlsDeviceSuccess returns a boolean if a field has been set.
+
+### GetHydraUrlsDeviceVerification
+
+`func (o *NormalizedProjectRevision) GetHydraUrlsDeviceVerification() string`
+
+GetHydraUrlsDeviceVerification returns the HydraUrlsDeviceVerification field if non-nil, zero value otherwise.
+
+### GetHydraUrlsDeviceVerificationOk
+
+`func (o *NormalizedProjectRevision) GetHydraUrlsDeviceVerificationOk() (*string, bool)`
+
+GetHydraUrlsDeviceVerificationOk returns a tuple with the HydraUrlsDeviceVerification field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraUrlsDeviceVerification
+
+`func (o *NormalizedProjectRevision) SetHydraUrlsDeviceVerification(v string)`
+
+SetHydraUrlsDeviceVerification sets HydraUrlsDeviceVerification field to given value.
+
+### HasHydraUrlsDeviceVerification
+
+`func (o *NormalizedProjectRevision) HasHydraUrlsDeviceVerification() bool`
+
+HasHydraUrlsDeviceVerification returns a boolean if a field has been set.
 
 ### GetHydraUrlsError
 
@@ -1750,6 +1959,31 @@ SetHydraWebfingerOidcDiscoveryClientRegistrationUrl sets HydraWebfingerOidcDisco
 `func (o *NormalizedProjectRevision) HasHydraWebfingerOidcDiscoveryClientRegistrationUrl() bool`
 
 HasHydraWebfingerOidcDiscoveryClientRegistrationUrl returns a boolean if a field has been set.
+
+### GetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl
+
+`func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl() string`
+
+GetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl returns the HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl field if non-nil, zero value otherwise.
+
+### GetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrlOk
+
+`func (o *NormalizedProjectRevision) GetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrlOk() (*string, bool)`
+
+GetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrlOk returns a tuple with the HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl
+
+`func (o *NormalizedProjectRevision) SetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl(v string)`
+
+SetHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl sets HydraWebfingerOidcDiscoveryDeviceAuthorizationUrl field to given value.
+
+### HasHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl
+
+`func (o *NormalizedProjectRevision) HasHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl() bool`
+
+HasHydraWebfingerOidcDiscoveryDeviceAuthorizationUrl returns a boolean if a field has been set.
 
 ### GetHydraWebfingerOidcDiscoveryJwksUrl
 

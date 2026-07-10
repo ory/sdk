@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.62
+  version: v1.22.63
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -10660,6 +10660,11 @@ components:
     CreateProjectNormalizedPayload:
       description: Create project (normalized) request payload
       properties:
+        account_experience_contact_url:
+          description: |-
+            Holds the URL to the account experience's Contact page.
+            This governs the "contact_url" setting.
+          type: string
         account_experience_custom_translations:
           description: |-
             The Account Experience's Custom Translations
@@ -10720,6 +10725,16 @@ components:
           description: |-
             Holds the URL to the account experience's logo.
             This governs the "logo_light" setting.
+          type: string
+        account_experience_privacy_policy_url:
+          description: |-
+            Holds the URL to the account experience's Privacy Policy page.
+            This governs the "privacy_policy_url" setting.
+          type: string
+        account_experience_terms_of_service_url:
+          description: |-
+            Holds the URL to the account experience's Terms of Service page.
+            This governs the "terms_of_service_url" setting.
           type: string
         account_experience_theme_variables_dark:
           description: |-
@@ -10812,6 +10827,36 @@ components:
 
             This governs the "oauth2.client_credentials.default_grant_allowed_scope" setting.
           type: boolean
+        hydra_oauth2_device_authorization_token_polling_interval:
+          description: |-
+            Configures how often a non-interactive device should poll the
+            OAuth 2.0 Device Authorization Grant token endpoint. Purely
+            informational — the value is reported to the device in the
+            "interval" response field of the device authorization response.
+            Hydra defaults to 5s when this is left empty.
+
+            This is an Enterprise feature.
+
+            This governs the "oauth2.device_authorization.token_polling_interval" setting.
+          example: 15s
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
+          type: string
+        hydra_oauth2_device_authorization_user_code_entropy_preset:
+          description: |-
+            Picks a preset for the OAuth 2.0 Device Authorization Grant
+            user_code length and character set. "high" produces the longest
+            codes (most resistant to brute force); "low" the shortest (easiest
+            for the end user to read and enter). Leave empty to keep Hydra's
+            default preset.
+
+            This is an Enterprise feature.
+
+            This governs the "oauth2.device_authorization.user_code.entropy_preset" setting.
+          enum:
+          - high
+          - medium
+          - low
+          type: string
         hydra_oauth2_exclude_not_before_claim:
           description: |-
             Set to true if you want to omit the `nbf` (not valid before) claim in the access token.
@@ -11059,6 +11104,20 @@ components:
           example: 30m
           pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
+        hydra_ttl_device_user_code:
+          description: |-
+            Configures how long the device_code and user_code in the OAuth 2.0
+            Device Authorization Grant remain valid. Larger values mean more
+            database storage; shorter values mean users have less time to
+            complete the second-device verification. Hydra defaults to 10m
+            when this is left empty.
+
+            This is an Enterprise feature.
+
+            This governs the "ttl.device_user_code" setting.
+          example: 30m
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
+          type: string
         hydra_ttl_id_token:
           default: 30m
           description: This governs the "ttl.id_token" setting.
@@ -11092,6 +11151,27 @@ components:
             Defaults to the Ory Account Experience if left empty.
 
             This governs the "urls.consent" setting.
+          type: string
+        hydra_urls_device_success:
+          description: |-
+            Sets the URL the user is redirected to after successfully completing
+            the OAuth 2.0 Device Authorization Grant user verification step.
+            Defaults to the Ory Account Experience fallback page if left empty.
+
+            This is an Enterprise feature.
+
+            This governs the "urls.device.success" setting.
+          type: string
+        hydra_urls_device_verification:
+          description: |-
+            Sets the URL of the user verification page for the OAuth 2.0 Device
+            Authorization Grant (RFC 8628). End users are redirected to this URL
+            to enter the user_code shown on their device. Defaults to the Ory
+            Account Experience fallback page if left empty.
+
+            This is an Enterprise feature.
+
+            This governs the "urls.device.verification" setting.
           type: string
         hydra_urls_error:
           description: |-
@@ -11160,6 +11240,17 @@ components:
             Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.
 
             This governs the "webfinger.oidc_discovery.client_registration_url" setting.
+          type: string
+        hydra_webfinger_oidc_discovery_device_authorization_url:
+          description: |-
+            Override the OAuth 2.0 Device Authorization Endpoint URL that is
+            advertised in the OpenID Connect discovery document
+            (/.well-known/openid-configuration). Defaults to the project's
+            public base URL + /oauth2/device/auth.
+
+            This is an Enterprise feature.
+
+            This governs the "webfinger.oidc_discovery.device_authorization_url" setting.
           type: string
         hydra_webfinger_oidc_discovery_jwks_url:
           description: |-
@@ -14428,6 +14519,9 @@ components:
       type: object
     accountExperienceConfiguration:
       properties:
+        contact_url:
+          description: The URL to the project's Contact page.
+          type: string
         default_locale:
           type: string
         default_redirect_url:
@@ -14466,6 +14560,9 @@ components:
           type: string
         name:
           type: string
+        privacy_policy_url:
+          description: The URL to the project's Privacy Policy page.
+          type: string
         recovery_enabled:
           type: boolean
         recovery_ui_url:
@@ -14477,6 +14574,9 @@ components:
         settings_ui_url:
           type: string
         stylesheet:
+          type: string
+        terms_of_service_url:
+          description: The URL to the project's Terms of Service page.
           type: string
         translations:
           items:
@@ -15978,10 +16078,12 @@ components:
         `ProjectConfiguration` type in `@ory/elements-react` and intentionally omits
         account-experience-only fields (stylesheet, locales, translations, favicons).
       example:
+        privacy_policy_url: privacy_policy_url
         verification_ui_url: verification_ui_url
         hide_ory_branding: true
         logo_dark_url: logo_dark_url
         error_ui_url: error_ui_url
+        contact_url: contact_url
         registration_ui_url: registration_ui_url
         settings_ui_url: settings_ui_url
         hide_registration_link: true
@@ -15993,7 +16095,11 @@ components:
         logo_light_url: logo_light_url
         verification_enabled: true
         login_ui_url: login_ui_url
+        terms_of_service_url: terms_of_service_url
       properties:
+        contact_url:
+          description: The URL to the project's Contact page.
+          type: string
         default_redirect_url:
           description: The default redirect URL.
           type: string
@@ -16018,6 +16124,9 @@ components:
         name:
           description: The name of the project displayed on the auth card.
           type: string
+        privacy_policy_url:
+          description: The URL to the project's Privacy Policy page.
+          type: string
         recovery_enabled:
           description: Whether recovery is enabled.
           type: boolean
@@ -16032,6 +16141,9 @@ components:
           type: string
         settings_ui_url:
           description: The URL for the settings UI.
+          type: string
+        terms_of_service_url:
+          description: The URL to the project's Terms of Service page.
           type: string
         verification_enabled:
           description: Whether verification is enabled.
@@ -19036,6 +19148,11 @@ components:
       type: object
     normalizedProjectRevision:
       properties:
+        account_experience_contact_url:
+          description: |-
+            Holds the URL to the account experience's Contact page.
+            This governs the "contact_url" setting.
+          type: string
         account_experience_custom_translations:
           description: |-
             The Account Experience's Custom Translations
@@ -19097,6 +19214,16 @@ components:
             Holds the URL to the account experience's logo.
             This governs the "logo_light" setting.
           type: string
+        account_experience_privacy_policy_url:
+          description: |-
+            Holds the URL to the account experience's Privacy Policy page.
+            This governs the "privacy_policy_url" setting.
+          type: string
+        account_experience_terms_of_service_url:
+          description: |-
+            Holds the URL to the account experience's Terms of Service page.
+            This governs the "terms_of_service_url" setting.
+          type: string
         account_experience_theme_variables_dark:
           description: |-
             Holds the URL to the account experience's dark theme variables.
@@ -19143,6 +19270,36 @@ components:
 
             This governs the "oauth2.client_credentials.default_grant_allowed_scope" setting.
           type: boolean
+        hydra_oauth2_device_authorization_token_polling_interval:
+          description: |-
+            Configures how often a non-interactive device should poll the
+            OAuth 2.0 Device Authorization Grant token endpoint. Purely
+            informational — the value is reported to the device in the
+            "interval" response field of the device authorization response.
+            Hydra defaults to 5s when this is left empty.
+
+            This is an Enterprise feature.
+
+            This governs the "oauth2.device_authorization.token_polling_interval" setting.
+          example: 15s
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
+          type: string
+        hydra_oauth2_device_authorization_user_code_entropy_preset:
+          description: |-
+            Picks a preset for the OAuth 2.0 Device Authorization Grant
+            user_code length and character set. "high" produces the longest
+            codes (most resistant to brute force); "low" the shortest (easiest
+            for the end user to read and enter). Leave empty to keep Hydra's
+            default preset.
+
+            This is an Enterprise feature.
+
+            This governs the "oauth2.device_authorization.user_code.entropy_preset" setting.
+          enum:
+          - high
+          - medium
+          - low
+          type: string
         hydra_oauth2_exclude_not_before_claim:
           description: |-
             Set to true if you want to omit the `nbf` (not valid before) claim in the access token.
@@ -19390,6 +19547,20 @@ components:
           example: 30m
           pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
           type: string
+        hydra_ttl_device_user_code:
+          description: |-
+            Configures how long the device_code and user_code in the OAuth 2.0
+            Device Authorization Grant remain valid. Larger values mean more
+            database storage; shorter values mean users have less time to
+            complete the second-device verification. Hydra defaults to 10m
+            when this is left empty.
+
+            This is an Enterprise feature.
+
+            This governs the "ttl.device_user_code" setting.
+          example: 30m
+          pattern: "^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"
+          type: string
         hydra_ttl_id_token:
           default: 30m
           description: This governs the "ttl.id_token" setting.
@@ -19423,6 +19594,27 @@ components:
             Defaults to the Ory Account Experience if left empty.
 
             This governs the "urls.consent" setting.
+          type: string
+        hydra_urls_device_success:
+          description: |-
+            Sets the URL the user is redirected to after successfully completing
+            the OAuth 2.0 Device Authorization Grant user verification step.
+            Defaults to the Ory Account Experience fallback page if left empty.
+
+            This is an Enterprise feature.
+
+            This governs the "urls.device.success" setting.
+          type: string
+        hydra_urls_device_verification:
+          description: |-
+            Sets the URL of the user verification page for the OAuth 2.0 Device
+            Authorization Grant (RFC 8628). End users are redirected to this URL
+            to enter the user_code shown on their device. Defaults to the Ory
+            Account Experience fallback page if left empty.
+
+            This is an Enterprise feature.
+
+            This governs the "urls.device.verification" setting.
           type: string
         hydra_urls_error:
           description: |-
@@ -19491,6 +19683,17 @@ components:
             Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.
 
             This governs the "webfinger.oidc_discovery.client_registration_url" setting.
+          type: string
+        hydra_webfinger_oidc_discovery_device_authorization_url:
+          description: |-
+            Override the OAuth 2.0 Device Authorization Endpoint URL that is
+            advertised in the OpenID Connect discovery document
+            (/.well-known/openid-configuration). Defaults to the project's
+            public base URL + /oauth2/device/auth.
+
+            This is an Enterprise feature.
+
+            This governs the "webfinger.oidc_discovery.device_authorization_url" setting.
           type: string
         hydra_webfinger_oidc_discovery_jwks_url:
           description: |-
@@ -24722,6 +24925,7 @@ components:
             talos_cache TalosCache
             graceful_refresh_token_count GracefulRefreshTokenCount
             hydra_token_prefix HydraTokenPrefix
+            hydra_device_authorization HydraDeviceAuthorization
             deviceauthn Deviceauthn
             allow_insecure_origins AllowInsecureOrigins  AllowInsecureOrigins grandfathers a project past strict wildcard  enforcement (CORS origins + return URLs). Override-only; never sold.
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits
@@ -24804,6 +25008,7 @@ components:
           - talos_cache
           - graceful_refresh_token_count
           - hydra_token_prefix
+          - hydra_device_authorization
           - deviceauthn
           - allow_insecure_origins
           - update_self_service_registration_rate_limit_tier
@@ -24887,6 +25092,7 @@ components:
             talos_cache TalosCache
             graceful_refresh_token_count GracefulRefreshTokenCount
             hydra_token_prefix HydraTokenPrefix
+            hydra_device_authorization HydraDeviceAuthorization
             deviceauthn Deviceauthn
             allow_insecure_origins AllowInsecureOrigins  AllowInsecureOrigins grandfathers a project past strict wildcard  enforcement (CORS origins + return URLs). Override-only; never sold.
             update_self_service_registration_rate_limit_tier RateLimitTierUpdateSelfServiceRegistration  Self-service rate limits

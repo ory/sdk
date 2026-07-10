@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**contact_url** | **str** | The URL to the project&#39;s Contact page. | [optional] 
 **default_locale** | **str** |  | 
 **default_redirect_url** | **str** |  | 
 **enabled_locales** | **List[str]** |  | 
@@ -18,12 +19,14 @@ Name | Type | Description | Notes
 **logo_dark_url** | **str** |  | [optional] 
 **logo_light_url** | **str** |  | [optional] 
 **name** | **str** |  | 
+**privacy_policy_url** | **str** | The URL to the project&#39;s Privacy Policy page. | [optional] 
 **recovery_enabled** | **bool** |  | 
 **recovery_ui_url** | **str** |  | 
 **registration_enabled** | **bool** |  | 
 **registration_ui_url** | **str** |  | 
 **settings_ui_url** | **str** |  | 
 **stylesheet** | **str** |  | [optional] 
+**terms_of_service_url** | **str** | The URL to the project&#39;s Terms of Service page. | [optional] 
 **translations** | [**List[RevisionAccountExperienceCustomTranslation]**](RevisionAccountExperienceCustomTranslation.md) |  | 
 **verification_enabled** | **bool** |  | 
 **verification_ui_url** | **str** |  | 

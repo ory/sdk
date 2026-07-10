@@ -18,8 +18,11 @@ Name | Type | Description | Notes
 **SettingsUiUrl** | **string** | The URL for the settings UI. | 
 **VerificationEnabled** | **bool** | Whether verification is enabled. | 
 **VerificationUiUrl** | **string** | The URL for the verification UI. | 
+**ContactUrl** | **string** | The URL to the project&#39;s Contact page. | [optional] 
 **LogoDarkUrl** | **string** | The URL for the dark logo. | [optional] 
 **LogoLightUrl** | **string** | The URL for the light logo on the auth card. | [optional] 
+**PrivacyPolicyUrl** | **string** | The URL to the project&#39;s Privacy Policy page. | [optional] 
+**TermsOfServiceUrl** | **string** | The URL to the project&#39;s Terms of Service page. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

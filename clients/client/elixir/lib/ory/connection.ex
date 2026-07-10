@@ -164,7 +164,7 @@ defmodule Ory.Connection do
         Keyword.get(
           tesla_options,
           :user_agent,
-          "ory-client-elixir/v1.22.62"
+          "ory-client-elixir/v1.22.63"
         )
       )
 

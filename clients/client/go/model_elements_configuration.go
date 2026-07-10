@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.62
+API version: v1.22.63
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,8 @@ var _ MappedNullable = &ElementsConfiguration{}
 
 // ElementsConfiguration ElementsConfiguration is the subset of a project's configuration that Ory Elements consumes to customize its behavior and appearance. It mirrors the `ProjectConfiguration` type in `@ory/elements-react` and intentionally omits account-experience-only fields (stylesheet, locales, translations, favicons).
 type ElementsConfiguration struct {
+	// The URL to the project's Contact page.
+	ContactUrl *string `json:"contact_url,omitempty"`
 	// The default redirect URL.
 	DefaultRedirectUrl string `json:"default_redirect_url"`
 	// The URL for the error UI.
@@ -37,6 +39,8 @@ type ElementsConfiguration struct {
 	LogoLightUrl *string `json:"logo_light_url,omitempty"`
 	// The name of the project displayed on the auth card.
 	Name string `json:"name"`
+	// The URL to the project's Privacy Policy page.
+	PrivacyPolicyUrl *string `json:"privacy_policy_url,omitempty"`
 	// Whether recovery is enabled.
 	RecoveryEnabled bool `json:"recovery_enabled"`
 	// The URL for the recovery UI.
@@ -47,6 +51,8 @@ type ElementsConfiguration struct {
 	RegistrationUiUrl string `json:"registration_ui_url"`
 	// The URL for the settings UI.
 	SettingsUiUrl string `json:"settings_ui_url"`
+	// The URL to the project's Terms of Service page.
+	TermsOfServiceUrl *string `json:"terms_of_service_url,omitempty"`
 	// Whether verification is enabled.
 	VerificationEnabled bool `json:"verification_enabled"`
 	// The URL for the verification UI.
@@ -84,6 +90,38 @@ func NewElementsConfiguration(defaultRedirectUrl string, errorUiUrl string, hide
 func NewElementsConfigurationWithDefaults() *ElementsConfiguration {
 	this := ElementsConfiguration{}
 	return &this
+}
+
+// GetContactUrl returns the ContactUrl field value if set, zero value otherwise.
+func (o *ElementsConfiguration) GetContactUrl() string {
+	if o == nil || IsNil(o.ContactUrl) {
+		var ret string
+		return ret
+	}
+	return *o.ContactUrl
+}
+
+// GetContactUrlOk returns a tuple with the ContactUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ElementsConfiguration) GetContactUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.ContactUrl) {
+		return nil, false
+	}
+	return o.ContactUrl, true
+}
+
+// HasContactUrl returns a boolean if a field has been set.
+func (o *ElementsConfiguration) HasContactUrl() bool {
+	if o != nil && !IsNil(o.ContactUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetContactUrl gets a reference to the given string and assigns it to the ContactUrl field.
+func (o *ElementsConfiguration) SetContactUrl(v string) {
+	o.ContactUrl = &v
 }
 
 // GetDefaultRedirectUrl returns the DefaultRedirectUrl field value
@@ -294,6 +332,38 @@ func (o *ElementsConfiguration) SetName(v string) {
 	o.Name = v
 }
 
+// GetPrivacyPolicyUrl returns the PrivacyPolicyUrl field value if set, zero value otherwise.
+func (o *ElementsConfiguration) GetPrivacyPolicyUrl() string {
+	if o == nil || IsNil(o.PrivacyPolicyUrl) {
+		var ret string
+		return ret
+	}
+	return *o.PrivacyPolicyUrl
+}
+
+// GetPrivacyPolicyUrlOk returns a tuple with the PrivacyPolicyUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ElementsConfiguration) GetPrivacyPolicyUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.PrivacyPolicyUrl) {
+		return nil, false
+	}
+	return o.PrivacyPolicyUrl, true
+}
+
+// HasPrivacyPolicyUrl returns a boolean if a field has been set.
+func (o *ElementsConfiguration) HasPrivacyPolicyUrl() bool {
+	if o != nil && !IsNil(o.PrivacyPolicyUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivacyPolicyUrl gets a reference to the given string and assigns it to the PrivacyPolicyUrl field.
+func (o *ElementsConfiguration) SetPrivacyPolicyUrl(v string) {
+	o.PrivacyPolicyUrl = &v
+}
+
 // GetRecoveryEnabled returns the RecoveryEnabled field value
 func (o *ElementsConfiguration) GetRecoveryEnabled() bool {
 	if o == nil {
@@ -414,6 +484,38 @@ func (o *ElementsConfiguration) SetSettingsUiUrl(v string) {
 	o.SettingsUiUrl = v
 }
 
+// GetTermsOfServiceUrl returns the TermsOfServiceUrl field value if set, zero value otherwise.
+func (o *ElementsConfiguration) GetTermsOfServiceUrl() string {
+	if o == nil || IsNil(o.TermsOfServiceUrl) {
+		var ret string
+		return ret
+	}
+	return *o.TermsOfServiceUrl
+}
+
+// GetTermsOfServiceUrlOk returns a tuple with the TermsOfServiceUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ElementsConfiguration) GetTermsOfServiceUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.TermsOfServiceUrl) {
+		return nil, false
+	}
+	return o.TermsOfServiceUrl, true
+}
+
+// HasTermsOfServiceUrl returns a boolean if a field has been set.
+func (o *ElementsConfiguration) HasTermsOfServiceUrl() bool {
+	if o != nil && !IsNil(o.TermsOfServiceUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetTermsOfServiceUrl gets a reference to the given string and assigns it to the TermsOfServiceUrl field.
+func (o *ElementsConfiguration) SetTermsOfServiceUrl(v string) {
+	o.TermsOfServiceUrl = &v
+}
+
 // GetVerificationEnabled returns the VerificationEnabled field value
 func (o *ElementsConfiguration) GetVerificationEnabled() bool {
 	if o == nil {
@@ -472,6 +574,9 @@ func (o ElementsConfiguration) MarshalJSON() ([]byte, error) {
 
 func (o ElementsConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ContactUrl) {
+		toSerialize["contact_url"] = o.ContactUrl
+	}
 	toSerialize["default_redirect_url"] = o.DefaultRedirectUrl
 	toSerialize["error_ui_url"] = o.ErrorUiUrl
 	toSerialize["hide_ory_branding"] = o.HideOryBranding
@@ -484,11 +589,17 @@ func (o ElementsConfiguration) ToMap() (map[string]interface{}, error) {
 		toSerialize["logo_light_url"] = o.LogoLightUrl
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.PrivacyPolicyUrl) {
+		toSerialize["privacy_policy_url"] = o.PrivacyPolicyUrl
+	}
 	toSerialize["recovery_enabled"] = o.RecoveryEnabled
 	toSerialize["recovery_ui_url"] = o.RecoveryUiUrl
 	toSerialize["registration_enabled"] = o.RegistrationEnabled
 	toSerialize["registration_ui_url"] = o.RegistrationUiUrl
 	toSerialize["settings_ui_url"] = o.SettingsUiUrl
+	if !IsNil(o.TermsOfServiceUrl) {
+		toSerialize["terms_of_service_url"] = o.TermsOfServiceUrl
+	}
 	toSerialize["verification_enabled"] = o.VerificationEnabled
 	toSerialize["verification_ui_url"] = o.VerificationUiUrl
 
@@ -546,6 +657,7 @@ func (o *ElementsConfiguration) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "contact_url")
 		delete(additionalProperties, "default_redirect_url")
 		delete(additionalProperties, "error_ui_url")
 		delete(additionalProperties, "hide_ory_branding")
@@ -554,11 +666,13 @@ func (o *ElementsConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "logo_dark_url")
 		delete(additionalProperties, "logo_light_url")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "privacy_policy_url")
 		delete(additionalProperties, "recovery_enabled")
 		delete(additionalProperties, "recovery_ui_url")
 		delete(additionalProperties, "registration_enabled")
 		delete(additionalProperties, "registration_ui_url")
 		delete(additionalProperties, "settings_ui_url")
+		delete(additionalProperties, "terms_of_service_url")
 		delete(additionalProperties, "verification_enabled")
 		delete(additionalProperties, "verification_ui_url")
 		o.AdditionalProperties = additionalProperties

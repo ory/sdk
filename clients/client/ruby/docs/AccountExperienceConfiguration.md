@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **contact_url** | **String** | The URL to the project&#39;s Contact page. | [optional] |
 | **default_locale** | **String** |  |  |
 | **default_redirect_url** | **String** |  |  |
 | **enabled_locales** | **Array&lt;String&gt;** |  |  |
@@ -17,12 +18,14 @@
 | **logo_dark_url** | **String** |  | [optional] |
 | **logo_light_url** | **String** |  | [optional] |
 | **name** | **String** |  |  |
+| **privacy_policy_url** | **String** | The URL to the project&#39;s Privacy Policy page. | [optional] |
 | **recovery_enabled** | **Boolean** |  |  |
 | **recovery_ui_url** | **String** |  |  |
 | **registration_enabled** | **Boolean** |  |  |
 | **registration_ui_url** | **String** |  |  |
 | **settings_ui_url** | **String** |  |  |
 | **stylesheet** | **String** |  | [optional] |
+| **terms_of_service_url** | **String** | The URL to the project&#39;s Terms of Service page. | [optional] |
 | **translations** | [**Array&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) |  |  |
 | **verification_enabled** | **Boolean** |  |  |
 | **verification_ui_url** | **String** |  |  |
@@ -33,6 +36,7 @@
 require 'ory-client'
 
 instance = OryClient::AccountExperienceConfiguration.new(
+  contact_url: null,
   default_locale: null,
   default_redirect_url: null,
   enabled_locales: null,
@@ -46,12 +50,14 @@ instance = OryClient::AccountExperienceConfiguration.new(
   logo_dark_url: null,
   logo_light_url: null,
   name: null,
+  privacy_policy_url: null,
   recovery_enabled: null,
   recovery_ui_url: null,
   registration_enabled: null,
   registration_ui_url: null,
   settings_ui_url: null,
   stylesheet: null,
+  terms_of_service_url: null,
   translations: null,
   verification_enabled: null,
   verification_ui_url: null

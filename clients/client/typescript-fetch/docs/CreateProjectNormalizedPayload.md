@@ -7,6 +7,7 @@ Create project (normalized) request payload
 
 Name | Type
 ------------ | -------------
+`account_experience_contact_url` | string
 `account_experience_custom_translations` | [Array&lt;RevisionAccountExperienceCustomTranslation&gt;](RevisionAccountExperienceCustomTranslation.md)
 `account_experience_default_locale` | string
 `account_experience_enabled_locales` | Array&lt;string&gt;
@@ -17,6 +18,8 @@ Name | Type
 `account_experience_locale_behavior` | string
 `account_experience_logo_dark` | string
 `account_experience_logo_light` | string
+`account_experience_privacy_policy_url` | string
+`account_experience_terms_of_service_url` | string
 `account_experience_theme_variables_dark` | string
 `account_experience_theme_variables_light` | string
 `created_at` | Date
@@ -26,6 +29,8 @@ Name | Type
 `home_region` | string
 `hydra_oauth2_allowed_top_level_claims` | Array&lt;string&gt;
 `hydra_oauth2_client_credentials_default_grant_allowed_scope` | boolean
+`hydra_oauth2_device_authorization_token_polling_interval` | string
+`hydra_oauth2_device_authorization_user_code_entropy_preset` | string
 `hydra_oauth2_exclude_not_before_claim` | boolean
 `hydra_oauth2_grant_jwt_iat_optional` | boolean
 `hydra_oauth2_grant_jwt_jti_optional` | boolean
@@ -54,10 +59,13 @@ Name | Type
 `hydra_strategies_scope` | string
 `hydra_ttl_access_token` | string
 `hydra_ttl_auth_code` | string
+`hydra_ttl_device_user_code` | string
 `hydra_ttl_id_token` | string
 `hydra_ttl_login_consent_request` | string
 `hydra_ttl_refresh_token` | string
 `hydra_urls_consent` | string
+`hydra_urls_device_success` | string
+`hydra_urls_device_verification` | string
 `hydra_urls_error` | string
 `hydra_urls_login` | string
 `hydra_urls_logout` | string
@@ -67,6 +75,7 @@ Name | Type
 `hydra_webfinger_jwks_broadcast_keys` | Array&lt;string&gt;
 `hydra_webfinger_oidc_discovery_auth_url` | string
 `hydra_webfinger_oidc_discovery_client_registration_url` | string
+`hydra_webfinger_oidc_discovery_device_authorization_url` | string
 `hydra_webfinger_oidc_discovery_jwks_url` | string
 `hydra_webfinger_oidc_discovery_supported_claims` | Array&lt;string&gt;
 `hydra_webfinger_oidc_discovery_supported_scope` | Array&lt;string&gt;
@@ -295,6 +304,7 @@ import type { CreateProjectNormalizedPayload } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "account_experience_contact_url": null,
   "account_experience_custom_translations": null,
   "account_experience_default_locale": null,
   "account_experience_enabled_locales": null,
@@ -305,6 +315,8 @@ const example = {
   "account_experience_locale_behavior": null,
   "account_experience_logo_dark": null,
   "account_experience_logo_light": null,
+  "account_experience_privacy_policy_url": null,
+  "account_experience_terms_of_service_url": null,
   "account_experience_theme_variables_dark": null,
   "account_experience_theme_variables_light": null,
   "created_at": null,
@@ -314,6 +326,8 @@ const example = {
   "home_region": null,
   "hydra_oauth2_allowed_top_level_claims": null,
   "hydra_oauth2_client_credentials_default_grant_allowed_scope": null,
+  "hydra_oauth2_device_authorization_token_polling_interval": 15s,
+  "hydra_oauth2_device_authorization_user_code_entropy_preset": null,
   "hydra_oauth2_exclude_not_before_claim": null,
   "hydra_oauth2_grant_jwt_iat_optional": null,
   "hydra_oauth2_grant_jwt_jti_optional": null,
@@ -342,10 +356,13 @@ const example = {
   "hydra_strategies_scope": null,
   "hydra_ttl_access_token": 1h,
   "hydra_ttl_auth_code": 30m,
+  "hydra_ttl_device_user_code": 30m,
   "hydra_ttl_id_token": 1h,
   "hydra_ttl_login_consent_request": 1h,
   "hydra_ttl_refresh_token": 30m,
   "hydra_urls_consent": null,
+  "hydra_urls_device_success": null,
+  "hydra_urls_device_verification": null,
   "hydra_urls_error": null,
   "hydra_urls_login": null,
   "hydra_urls_logout": null,
@@ -355,6 +372,7 @@ const example = {
   "hydra_webfinger_jwks_broadcast_keys": null,
   "hydra_webfinger_oidc_discovery_auth_url": null,
   "hydra_webfinger_oidc_discovery_client_registration_url": null,
+  "hydra_webfinger_oidc_discovery_device_authorization_url": null,
   "hydra_webfinger_oidc_discovery_jwks_url": null,
   "hydra_webfinger_oidc_discovery_supported_claims": null,
   "hydra_webfinger_oidc_discovery_supported_scope": null,

@@ -8,6 +8,7 @@ Create project (normalized) request payload
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**accountExperienceContactUrl** | **String** | Holds the URL to the account experience&#39;s Contact page. This governs the \&quot;contact_url\&quot; setting. |  [optional] |
 |**accountExperienceCustomTranslations** | [**List&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) | The Account Experience&#39;s Custom Translations  Contains all Custom Translations for this project. |  [optional] |
 |**accountExperienceDefaultLocale** | **String** | Holds the default locale for the account experience. This governs the \&quot;default_locale\&quot; setting. |  [optional] |
 |**accountExperienceEnabledLocales** | **List&lt;String&gt;** | The Account Experience&#39;s Enabled Locales  This governs the locales that are available in the account experience. This governs the \&quot;enabled_locales\&quot; setting. |  [optional] |
@@ -18,6 +19,8 @@ Create project (normalized) request payload
 |**accountExperienceLocaleBehavior** | **String** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. This governs the \&quot;locale_behavior\&quot; setting. |  [optional] |
 |**accountExperienceLogoDark** | **String** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). This governs the \&quot;logo_dark\&quot; setting. |  [optional] |
 |**accountExperienceLogoLight** | **String** | Holds the URL to the account experience&#39;s logo. This governs the \&quot;logo_light\&quot; setting. |  [optional] |
+|**accountExperiencePrivacyPolicyUrl** | **String** | Holds the URL to the account experience&#39;s Privacy Policy page. This governs the \&quot;privacy_policy_url\&quot; setting. |  [optional] |
+|**accountExperienceTermsOfServiceUrl** | **String** | Holds the URL to the account experience&#39;s Terms of Service page. This governs the \&quot;terms_of_service_url\&quot; setting. |  [optional] |
 |**accountExperienceThemeVariablesDark** | **String** | Holds the URL to the account experience&#39;s dark theme variables. This governs the \&quot;theme_variables_dark\&quot; setting. |  [optional] |
 |**accountExperienceThemeVariablesLight** | **String** | Holds the URL to the account experience&#39;s light theme variables. This governs the \&quot;theme_variables_light\&quot; setting. |  [optional] |
 |**createdAt** | **OffsetDateTime** | The Project&#39;s Revision Creation Date |  [optional] [readonly] |
@@ -27,6 +30,8 @@ Create project (normalized) request payload
 |**homeRegion** | [**HomeRegionEnum**](#HomeRegionEnum) |  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global |  [optional] |
 |**hydraOauth2AllowedTopLevelClaims** | **List&lt;String&gt;** | A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.  This governs the \&quot;oauth2.allowed_top_level_claims\&quot; setting. |  [optional] |
 |**hydraOauth2ClientCredentialsDefaultGrantAllowedScope** | **Boolean** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. |  [optional] |
+|**hydraOauth2DeviceAuthorizationTokenPollingInterval** | **String** | Configures how often a non-interactive device should poll the OAuth 2.0 Device Authorization Grant token endpoint. Purely informational — the value is reported to the device in the \&quot;interval\&quot; response field of the device authorization response. Hydra defaults to 5s when this is left empty.  This is an Enterprise feature.  This governs the \&quot;oauth2.device_authorization.token_polling_interval\&quot; setting. |  [optional] |
+|**hydraOauth2DeviceAuthorizationUserCodeEntropyPreset** | [**HydraOauth2DeviceAuthorizationUserCodeEntropyPresetEnum**](#HydraOauth2DeviceAuthorizationUserCodeEntropyPresetEnum) | Picks a preset for the OAuth 2.0 Device Authorization Grant user_code length and character set. \&quot;high\&quot; produces the longest codes (most resistant to brute force); \&quot;low\&quot; the shortest (easiest for the end user to read and enter). Leave empty to keep Hydra&#39;s default preset.  This is an Enterprise feature.  This governs the \&quot;oauth2.device_authorization.user_code.entropy_preset\&quot; setting. |  [optional] |
 |**hydraOauth2ExcludeNotBeforeClaim** | **Boolean** | Set to true if you want to omit the &#x60;nbf&#x60; (not valid before) claim in the access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. |  [optional] |
 |**hydraOauth2GrantJwtIatOptional** | **Boolean** | Configures if the issued at (&#x60;iat&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;iat&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.iat_optional\&quot; setting. |  [optional] |
 |**hydraOauth2GrantJwtJtiOptional** | **Boolean** | Configures if the JSON Web Token ID (&#x60;jti&#x60;) claim is required in the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants (RFC7523).  If set to &#x60;false&#x60;, the &#x60;jti&#x60; claim is required. Set this value to &#x60;true&#x60; only after careful consideration.  This governs the \&quot;oauth2.grant.jwt.jti_optional\&quot; setting. |  [optional] |
@@ -55,10 +60,13 @@ Create project (normalized) request payload
 |**hydraStrategiesScope** | [**HydraStrategiesScopeEnum**](#HydraStrategiesScopeEnum) | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard |  [optional] |
 |**hydraTtlAccessToken** | **String** | This governs the \&quot;ttl.access_token\&quot; setting. |  [optional] |
 |**hydraTtlAuthCode** | **String** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.auth_code\&quot; setting. |  [optional] |
+|**hydraTtlDeviceUserCode** | **String** | Configures how long the device_code and user_code in the OAuth 2.0 Device Authorization Grant remain valid. Larger values mean more database storage; shorter values mean users have less time to complete the second-device verification. Hydra defaults to 10m when this is left empty.  This is an Enterprise feature.  This governs the \&quot;ttl.device_user_code\&quot; setting. |  [optional] |
 |**hydraTtlIdToken** | **String** | This governs the \&quot;ttl.id_token\&quot; setting. |  [optional] |
 |**hydraTtlLoginConsentRequest** | **String** | Configures how long a user login and consent flow may take.  This governs the \&quot;ttl.login_consent_request\&quot; setting. |  [optional] |
 |**hydraTtlRefreshToken** | **String** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.refresh_token\&quot; setting. |  [optional] |
 |**hydraUrlsConsent** | **String** | Sets the OAuth2 Consent Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.consent\&quot; setting. |  [optional] |
+|**hydraUrlsDeviceSuccess** | **String** | Sets the URL the user is redirected to after successfully completing the OAuth 2.0 Device Authorization Grant user verification step. Defaults to the Ory Account Experience fallback page if left empty.  This is an Enterprise feature.  This governs the \&quot;urls.device.success\&quot; setting. |  [optional] |
+|**hydraUrlsDeviceVerification** | **String** | Sets the URL of the user verification page for the OAuth 2.0 Device Authorization Grant (RFC 8628). End users are redirected to this URL to enter the user_code shown on their device. Defaults to the Ory Account Experience fallback page if left empty.  This is an Enterprise feature.  This governs the \&quot;urls.device.verification\&quot; setting. |  [optional] |
 |**hydraUrlsError** | **String** | Sets the OAuth2 Error URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.error\&quot; setting. |  [optional] |
 |**hydraUrlsLogin** | **String** | Sets the OAuth2 Login Endpoint URL of the OAuth2 User Login &amp; Consent flow.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.login\&quot; setting. |  [optional] |
 |**hydraUrlsLogout** | **String** | Sets the logout endpoint.  Defaults to the Ory Account Experience if left empty.  This governs the \&quot;urls.logout\&quot; setting. |  [optional] |
@@ -68,6 +76,7 @@ Create project (normalized) request payload
 |**hydraWebfingerJwksBroadcastKeys** | **List&lt;String&gt;** | A list of JSON Web Keys that should be exposed at that endpoint. This is usually the public key for verifying OpenID Connect ID Tokens. However, you might want to add additional keys here as well.  This governs the \&quot;webfinger.jwks.broadcast_keys\&quot; setting. |  [optional] |
 |**hydraWebfingerOidcDiscoveryAuthUrl** | **String** | Configures OpenID Connect Discovery and overwrites the OAuth2 Authorization URL.  This governs the \&quot;webfinger.oidc_discovery.auth_url\&quot; setting. |  [optional] |
 |**hydraWebfingerOidcDiscoveryClientRegistrationUrl** | **String** | Configures OpenID Connect Discovery and overwrites the OpenID Connect Dynamic Client Registration Endpoint.  This governs the \&quot;webfinger.oidc_discovery.client_registration_url\&quot; setting. |  [optional] |
+|**hydraWebfingerOidcDiscoveryDeviceAuthorizationUrl** | **String** | Override the OAuth 2.0 Device Authorization Endpoint URL that is advertised in the OpenID Connect discovery document (/.well-known/openid-configuration). Defaults to the project&#39;s public base URL + /oauth2/device/auth.  This is an Enterprise feature.  This governs the \&quot;webfinger.oidc_discovery.device_authorization_url\&quot; setting. |  [optional] |
 |**hydraWebfingerOidcDiscoveryJwksUrl** | **String** | Configures OpenID Connect Discovery and overwrites the JWKS URL.  This governs the \&quot;webfinger.oidc_discovery.jwks_url\&quot; setting. |  [optional] |
 |**hydraWebfingerOidcDiscoverySupportedClaims** | **List&lt;String&gt;** | Configures OpenID Connect Discovery and overwrites a list of supported claims to be broadcasted. Claim \&quot;sub\&quot; is always included.  This governs the \&quot;webfinger.oidc_discovery.supported_claims\&quot; setting. |  [optional] |
 |**hydraWebfingerOidcDiscoverySupportedScope** | **List&lt;String&gt;** | Configures OpenID Connect Discovery and overwrites the scope OAuth 2.0 Clients may request. Scope &#x60;offline&#x60;, &#x60;offline_access&#x60;, and &#x60;openid&#x60; are always included.  This governs the \&quot;webfinger.oidc_discovery.supported_scope\&quot; setting. |  [optional] |
@@ -313,6 +322,16 @@ Create project (normalized) request payload
 | ASIA | &quot;asia&quot; |
 | US | &quot;us&quot; |
 | GLOBAL | &quot;global&quot; |
+
+
+
+## Enum: HydraOauth2DeviceAuthorizationUserCodeEntropyPresetEnum
+
+| Name | Value |
+|---- | -----|
+| HIGH | &quot;high&quot; |
+| MEDIUM | &quot;medium&quot; |
+| LOW | &quot;low&quot; |
 
 
 

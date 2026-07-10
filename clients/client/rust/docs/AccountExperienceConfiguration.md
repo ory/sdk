@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**contact_url** | Option<**String**> | The URL to the project's Contact page. | [optional]
 **default_locale** | **String** |  | 
 **default_redirect_url** | **String** |  | 
 **enabled_locales** | **Vec<String>** |  | 
@@ -17,12 +18,14 @@ Name | Type | Description | Notes
 **logo_dark_url** | Option<**String**> |  | [optional]
 **logo_light_url** | Option<**String**> |  | [optional]
 **name** | **String** |  | 
+**privacy_policy_url** | Option<**String**> | The URL to the project's Privacy Policy page. | [optional]
 **recovery_enabled** | **bool** |  | 
 **recovery_ui_url** | **String** |  | 
 **registration_enabled** | **bool** |  | 
 **registration_ui_url** | **String** |  | 
 **settings_ui_url** | **String** |  | 
 **stylesheet** | Option<**String**> |  | [optional]
+**terms_of_service_url** | Option<**String**> | The URL to the project's Terms of Service page. | [optional]
 **translations** | [**Vec<models::RevisionAccountExperienceCustomTranslation>**](RevisionAccountExperienceCustomTranslation.md) |  | 
 **verification_enabled** | **bool** |  | 
 **verification_ui_url** | **String** |  | 
