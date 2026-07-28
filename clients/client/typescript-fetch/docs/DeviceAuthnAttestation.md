@@ -1,7 +1,7 @@
 
 # DeviceAuthnAttestation
 
-Exactly one of Android / IOS is set, matching the key\'s DeviceType.
+Exactly one of `android` or `ios` is set, matching the key\'s device_type.
 
 ## Properties
 

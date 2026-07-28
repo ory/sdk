@@ -3,23 +3,23 @@
 
 defmodule Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethod do
   @moduledoc """
-  Update Settings Flow with DeviceAuthn Method
+  Manages the identity's enrolled device keys. Set exactly one of `deviceauthn_register` (enroll a new key), `deviceauthn_remove` (remove a key), or `rotate_secret` (re-issue the pin_secret of a PIN-protected key).
   """
 
   @derive Jason.Encoder
   defstruct [
-    :add,
     :csrf_token,
-    :delete,
+    :deviceauthn_register,
+    :deviceauthn_remove,
     :method,
     :rotate_secret,
     :transient_payload
   ]
 
   @type t :: %__MODULE__{
-    :add => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd.t | nil,
     :csrf_token => String.t | nil,
-    :delete => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodDelete.t | nil,
+    :deviceauthn_register => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRegister.t | nil,
+    :deviceauthn_remove => String.t | nil,
     :method => String.t,
     :rotate_secret => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.t | nil,
     :transient_payload => map() | nil
@@ -29,8 +29,7 @@ defmodule Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethod do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:add, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd)
-     |> Deserializer.deserialize(:delete, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodDelete)
+     |> Deserializer.deserialize(:deviceauthn_register, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRegister)
      |> Deserializer.deserialize(:rotate_secret, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret)
   end
 end

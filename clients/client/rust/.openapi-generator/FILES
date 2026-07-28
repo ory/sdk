@@ -92,6 +92,7 @@ docs/DeviceAuthnIosAttStmt.md
 docs/DeviceAuthnIosAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
+docs/DeviceType.md
 docs/DeviceUserAuthRequest.md
 docs/ElementsApi.md
 docs/ElementsConfiguration.md
@@ -120,6 +121,7 @@ docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md
 docs/GetMetricsEventTypes.md
 docs/GetOrganizationResponse.md
+docs/GetOrganizationsByHostnameResponse.md
 docs/GetProjectEvents.md
 docs/GetProjectEventsBody.md
 docs/GetProjectMetrics.md
@@ -179,6 +181,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/KeyState.md
 docs/KeyStatus.md
 docs/KeyVisibility.md
 docs/KeysetPaginationRequestParameters.md
@@ -237,6 +240,7 @@ docs/OnboardingPortalOrganization.md
 docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
+docs/OrganizationByHostname.md
 docs/OrganizationOnboardingPortalLinksResponse.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
@@ -310,6 +314,7 @@ docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/SuccessfulProjectUpdate.md
+docs/TalosRetiredValue.md
 docs/TaxLineItem.md
 docs/TimeInterval.md
 docs/Token.md
@@ -360,8 +365,7 @@ docs/UpdateRegistrationFlowWithSamlMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRegister.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
@@ -376,6 +380,7 @@ docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
+docs/UpdateWorkspaceOrganizationBody.md
 docs/Usage.md
 docs/UserVerification.md
 docs/ValidateBaseUrlRewriteRequest.md
@@ -503,6 +508,7 @@ src/models/device_authn_ios_att_stmt.rs
 src/models/device_authn_ios_attestation.rs
 src/models/device_authn_key.rs
 src/models/device_authorization.rs
+src/models/device_type.rs
 src/models/device_user_auth_request.rs
 src/models/elements_configuration.rs
 src/models/email_template_data.rs
@@ -528,6 +534,7 @@ src/models/get_metrics_count.rs
 src/models/get_metrics_event_attributes.rs
 src/models/get_metrics_event_types.rs
 src/models/get_organization_response.rs
+src/models/get_organizations_by_hostname_response.rs
 src/models/get_project_events.rs
 src/models/get_project_events_body.rs
 src/models/get_project_metrics.rs
@@ -585,6 +592,7 @@ src/models/json_patch.rs
 src/models/json_web_key.rs
 src/models/json_web_key_set.rs
 src/models/keto_namespace.rs
+src/models/key_state.rs
 src/models/key_status.rs
 src/models/key_visibility.rs
 src/models/keyset_pagination_request_parameters.rs
@@ -641,6 +649,7 @@ src/models/onboarding_portal_organization.rs
 src/models/onboarding_portal_test_login_flow.rs
 src/models/organization.rs
 src/models/organization_body.rs
+src/models/organization_by_hostname.rs
 src/models/organization_onboarding_portal_links_response.rs
 src/models/parse_error.rs
 src/models/patch_identities_body.rs
@@ -711,6 +720,7 @@ src/models/successful_code_exchange_response.rs
 src/models/successful_native_login.rs
 src/models/successful_native_registration.rs
 src/models/successful_project_update.rs
+src/models/talos_retired_value.rs
 src/models/tax_line_item.rs
 src/models/time_interval.rs
 src/models/token.rs
@@ -761,8 +771,7 @@ src/models/update_registration_flow_with_saml_method.rs
 src/models/update_registration_flow_with_web_authn_method.rs
 src/models/update_settings_flow_body.rs
 src/models/update_settings_flow_with_device_authn_method.rs
-src/models/update_settings_flow_with_device_authn_method_add.rs
-src/models/update_settings_flow_with_device_authn_method_delete.rs
+src/models/update_settings_flow_with_device_authn_method_register.rs
 src/models/update_settings_flow_with_device_authn_method_rotate_secret.rs
 src/models/update_settings_flow_with_lookup_method.rs
 src/models/update_settings_flow_with_oidc_method.rs
@@ -777,6 +786,7 @@ src/models/update_verification_flow_body.rs
 src/models/update_verification_flow_with_code_method.rs
 src/models/update_verification_flow_with_link_method.rs
 src/models/update_workspace_body.rs
+src/models/update_workspace_organization_body.rs
 src/models/usage.rs
 src/models/user_verification.rs
 src/models/validate_base_url_rewrite_request.rs

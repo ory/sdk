@@ -11,6 +11,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 |[**createOAuth2Client**](#createoauth2client) | **POST** /admin/clients | Create OAuth 2.0 Client|
 |[**deleteOAuth2Client**](#deleteoauth2client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client|
 |[**deleteOAuth2Token**](#deleteoauth2token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client|
+|[**deleteRotatedOAuth2ClientSecrets**](#deleterotatedoauth2clientsecrets) | **DELETE** /admin/clients/{id}/secrets/rotate | Delete Rotated OAuth 2.0 Client Secrets|
 |[**deleteTrustedOAuth2JwtGrantIssuer**](#deletetrustedoauth2jwtgrantissuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer|
 |[**getOAuth2Client**](#getoauth2client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client|
 |[**getOAuth2ConsentRequest**](#getoauth2consentrequest) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request|
@@ -32,6 +33,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 |[**revokeOAuth2ConsentSessions**](#revokeoauth2consentsessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject|
 |[**revokeOAuth2LoginSessions**](#revokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID|
 |[**revokeOAuth2Token**](#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token|
+|[**rotateOAuth2ClientSecret**](#rotateoauth2clientsecret) | **POST** /admin/clients/{id}/secrets/rotate | Rotate OAuth 2.0 Client Secret|
 |[**setOAuth2Client**](#setoauth2client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client|
 |[**setOAuth2ClientLifespans**](#setoauth2clientlifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans|
 |[**trustOAuth2JwtGrantIssuer**](#trustoauth2jwtgrantissuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer|
@@ -411,6 +413,59 @@ void (empty response body)
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 |**0** | errorOAuth2 |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteRotatedOAuth2ClientSecrets**
+> OAuth2Client deleteRotatedOAuth2ClientSecrets()
+
+Removes all rotated secrets from an OAuth 2.0 client. This should be called after all services have been updated to use the new secret and the old secrets are no longer needed.
+
+### Example
+
+```typescript
+import {
+    OAuth2Api,
+    Configuration
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new OAuth2Api(configuration);
+
+let id: string; //OAuth 2.0 Client ID (default to undefined)
+
+const { status, data } = await apiInstance.deleteRotatedOAuth2ClientSecrets(
+    id
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] | OAuth 2.0 Client ID | defaults to undefined|
+
+
+### Return type
+
+**OAuth2Client**
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | oAuth2Client |  -  |
+|**404** | Not Found Error Response |  -  |
+|**0** | Default Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1120,7 +1175,7 @@ const { status, data } = await apiInstance.oauth2TokenExchange(
 # **patchOAuth2Client**
 > OAuth2Client patchOAuth2Client(jsonPatch)
 
-Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+Patch an existing OAuth 2.0 Client using JSON Patch. If you update `client_secret`, the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret. Passing a new `client_secret` will clear all rotated secrets.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Example
 
@@ -1556,10 +1611,63 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **rotateOAuth2ClientSecret**
+> OAuth2Client rotateOAuth2ClientSecret()
+
+Rotates an OAuth 2.0 client\'s secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.
+
+### Example
+
+```typescript
+import {
+    OAuth2Api,
+    Configuration
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new OAuth2Api(configuration);
+
+let id: string; //OAuth 2.0 Client ID (default to undefined)
+
+const { status, data } = await apiInstance.rotateOAuth2ClientSecret(
+    id
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **id** | [**string**] | OAuth 2.0 Client ID | defaults to undefined|
+
+
+### Return type
+
+**OAuth2Client**
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | oAuth2Client |  -  |
+|**404** | Not Found Error Response |  -  |
+|**0** | Default Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **setOAuth2Client**
 > OAuth2Client setOAuth2Client(oAuth2Client)
 
-Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used. Rotated secrets will be cleared if you pass a new `client_secret`.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Example
 

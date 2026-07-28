@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **ciphertext** | **String** | Ciphertext is the base64-encoded HPKE-sealed pin_secret. |  |
-| **enc** | **String** | Enc is the base64-encoded HPKE encapsulated key. |  |
+| **ciphertext** | **String** | The base64-encoded HPKE ciphertext of the sealed pin_secret. |  |
+| **enc** | **String** | The base64-encoded HPKE encapsulated key (the &#x60;enc&#x60; output of the seal operation). |  |
 
 ## Example
 

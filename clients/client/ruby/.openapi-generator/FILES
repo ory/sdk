@@ -96,6 +96,7 @@ docs/DeviceAuthnIOSAttStmt.md
 docs/DeviceAuthnIOSAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
+docs/DeviceType.md
 docs/DeviceUserAuthRequest.md
 docs/ElementsApi.md
 docs/ElementsConfiguration.md
@@ -124,6 +125,7 @@ docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md
 docs/GetMetricsEventTypes.md
 docs/GetOrganizationResponse.md
+docs/GetOrganizationsByHostnameResponse.md
 docs/GetProjectEvents.md
 docs/GetProjectEventsBody.md
 docs/GetProjectMetrics.md
@@ -183,6 +185,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/KeyState.md
 docs/KeyStatus.md
 docs/KeyVisibility.md
 docs/KeysetPaginationRequestParameters.md
@@ -241,6 +244,7 @@ docs/OnboardingPortalOrganization.md
 docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
+docs/OrganizationByHostname.md
 docs/OrganizationOnboardingPortalLinksResponse.md
 docs/PINConfig.md
 docs/ParseError.md
@@ -314,6 +318,7 @@ docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/SuccessfulProjectUpdate.md
+docs/TalosRetiredValue.md
 docs/TaxLineItem.md
 docs/TimeInterval.md
 docs/Token.md
@@ -364,8 +369,7 @@ docs/UpdateRegistrationFlowWithSamlMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRegister.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
@@ -380,6 +384,7 @@ docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
+docs/UpdateWorkspaceOrganizationBody.md
 docs/Usage.md
 docs/UserVerification.md
 docs/ValidateBaseURLRewriteRequest.md
@@ -509,6 +514,7 @@ lib/ory-client/models/device_authn_ios_att_stmt.rb
 lib/ory-client/models/device_authn_ios_attestation.rb
 lib/ory-client/models/device_authn_key.rb
 lib/ory-client/models/device_authorization.rb
+lib/ory-client/models/device_type.rb
 lib/ory-client/models/device_user_auth_request.rb
 lib/ory-client/models/elements_configuration.rb
 lib/ory-client/models/email_template_data.rb
@@ -534,6 +540,7 @@ lib/ory-client/models/get_metrics_count.rb
 lib/ory-client/models/get_metrics_event_attributes.rb
 lib/ory-client/models/get_metrics_event_types.rb
 lib/ory-client/models/get_organization_response.rb
+lib/ory-client/models/get_organizations_by_hostname_response.rb
 lib/ory-client/models/get_project_events.rb
 lib/ory-client/models/get_project_events_body.rb
 lib/ory-client/models/get_project_metrics.rb
@@ -591,6 +598,7 @@ lib/ory-client/models/json_patch.rb
 lib/ory-client/models/json_web_key.rb
 lib/ory-client/models/json_web_key_set.rb
 lib/ory-client/models/keto_namespace.rb
+lib/ory-client/models/key_state.rb
 lib/ory-client/models/key_status.rb
 lib/ory-client/models/key_visibility.rb
 lib/ory-client/models/keyset_pagination_request_parameters.rb
@@ -646,6 +654,7 @@ lib/ory-client/models/onboarding_portal_organization.rb
 lib/ory-client/models/onboarding_portal_test_login_flow.rb
 lib/ory-client/models/organization.rb
 lib/ory-client/models/organization_body.rb
+lib/ory-client/models/organization_by_hostname.rb
 lib/ory-client/models/organization_onboarding_portal_links_response.rb
 lib/ory-client/models/parse_error.rb
 lib/ory-client/models/patch_identities_body.rb
@@ -716,6 +725,7 @@ lib/ory-client/models/successful_code_exchange_response.rb
 lib/ory-client/models/successful_native_login.rb
 lib/ory-client/models/successful_native_registration.rb
 lib/ory-client/models/successful_project_update.rb
+lib/ory-client/models/talos_retired_value.rb
 lib/ory-client/models/tax_line_item.rb
 lib/ory-client/models/time_interval.rb
 lib/ory-client/models/token.rb
@@ -766,8 +776,7 @@ lib/ory-client/models/update_registration_flow_with_saml_method.rb
 lib/ory-client/models/update_registration_flow_with_web_authn_method.rb
 lib/ory-client/models/update_settings_flow_body.rb
 lib/ory-client/models/update_settings_flow_with_device_authn_method.rb
-lib/ory-client/models/update_settings_flow_with_device_authn_method_add.rb
-lib/ory-client/models/update_settings_flow_with_device_authn_method_delete.rb
+lib/ory-client/models/update_settings_flow_with_device_authn_method_register.rb
 lib/ory-client/models/update_settings_flow_with_device_authn_method_rotate_secret.rb
 lib/ory-client/models/update_settings_flow_with_lookup_method.rb
 lib/ory-client/models/update_settings_flow_with_oidc_method.rb
@@ -782,6 +791,7 @@ lib/ory-client/models/update_verification_flow_body.rb
 lib/ory-client/models/update_verification_flow_with_code_method.rb
 lib/ory-client/models/update_verification_flow_with_link_method.rb
 lib/ory-client/models/update_workspace_body.rb
+lib/ory-client/models/update_workspace_organization_body.rb
 lib/ory-client/models/usage.rb
 lib/ory-client/models/user_verification.rb
 lib/ory-client/models/validate_base_url_rewrite_request.rb
@@ -905,6 +915,7 @@ spec/models/device_authn_ios_att_stmt_spec.rb
 spec/models/device_authn_ios_attestation_spec.rb
 spec/models/device_authn_key_spec.rb
 spec/models/device_authorization_spec.rb
+spec/models/device_type_spec.rb
 spec/models/device_user_auth_request_spec.rb
 spec/models/elements_configuration_spec.rb
 spec/models/email_template_data_body_spec.rb
@@ -930,6 +941,7 @@ spec/models/get_metrics_count_spec.rb
 spec/models/get_metrics_event_attributes_spec.rb
 spec/models/get_metrics_event_types_spec.rb
 spec/models/get_organization_response_spec.rb
+spec/models/get_organizations_by_hostname_response_spec.rb
 spec/models/get_project_events_body_spec.rb
 spec/models/get_project_events_spec.rb
 spec/models/get_project_metrics_spec.rb
@@ -987,6 +999,7 @@ spec/models/json_patch_spec.rb
 spec/models/json_web_key_set_spec.rb
 spec/models/json_web_key_spec.rb
 spec/models/keto_namespace_spec.rb
+spec/models/key_state_spec.rb
 spec/models/key_status_spec.rb
 spec/models/key_visibility_spec.rb
 spec/models/keyset_pagination_request_parameters_spec.rb
@@ -1041,6 +1054,7 @@ spec/models/onboarding_portal_link_spec.rb
 spec/models/onboarding_portal_organization_spec.rb
 spec/models/onboarding_portal_test_login_flow_spec.rb
 spec/models/organization_body_spec.rb
+spec/models/organization_by_hostname_spec.rb
 spec/models/organization_onboarding_portal_links_response_spec.rb
 spec/models/organization_spec.rb
 spec/models/parse_error_spec.rb
@@ -1112,6 +1126,7 @@ spec/models/successful_code_exchange_response_spec.rb
 spec/models/successful_native_login_spec.rb
 spec/models/successful_native_registration_spec.rb
 spec/models/successful_project_update_spec.rb
+spec/models/talos_retired_value_spec.rb
 spec/models/tax_line_item_spec.rb
 spec/models/time_interval_spec.rb
 spec/models/token_algorithm_spec.rb
@@ -1161,8 +1176,7 @@ spec/models/update_registration_flow_with_profile_method_spec.rb
 spec/models/update_registration_flow_with_saml_method_spec.rb
 spec/models/update_registration_flow_with_web_authn_method_spec.rb
 spec/models/update_settings_flow_body_spec.rb
-spec/models/update_settings_flow_with_device_authn_method_add_spec.rb
-spec/models/update_settings_flow_with_device_authn_method_delete_spec.rb
+spec/models/update_settings_flow_with_device_authn_method_register_spec.rb
 spec/models/update_settings_flow_with_device_authn_method_rotate_secret_spec.rb
 spec/models/update_settings_flow_with_device_authn_method_spec.rb
 spec/models/update_settings_flow_with_lookup_method_spec.rb
@@ -1178,6 +1192,7 @@ spec/models/update_verification_flow_body_spec.rb
 spec/models/update_verification_flow_with_code_method_spec.rb
 spec/models/update_verification_flow_with_link_method_spec.rb
 spec/models/update_workspace_body_spec.rb
+spec/models/update_workspace_organization_body_spec.rb
 spec/models/usage_spec.rb
 spec/models/user_verification_spec.rb
 spec/models/validate_base_url_rewrite_request_spec.rb

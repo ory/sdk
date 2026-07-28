@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.PinConfig do
   @moduledoc """
-  PINConfig is the per-key PIN state. The pin_secret field holds the at-rest ciphertext; the plaintext exists only transiently in memory during verification and is cleared once the key locks.
+  The pin_secret field holds only the at-rest ciphertext; the plaintext exists transiently in server memory during verification and is invalidated once the key locks.
   """
 
   @derive Jason.Encoder

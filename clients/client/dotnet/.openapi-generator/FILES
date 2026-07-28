@@ -106,6 +106,7 @@ docs/models/ClientDeviceAuthnIOSAttStmt.md
 docs/models/ClientDeviceAuthnIOSAttestation.md
 docs/models/ClientDeviceAuthnKey.md
 docs/models/ClientDeviceAuthorization.md
+docs/models/ClientDeviceType.md
 docs/models/ClientDeviceUserAuthRequest.md
 docs/models/ClientElementsConfiguration.md
 docs/models/ClientEmailTemplateData.md
@@ -131,6 +132,7 @@ docs/models/ClientGetMetricsCount.md
 docs/models/ClientGetMetricsEventAttributes.md
 docs/models/ClientGetMetricsEventTypes.md
 docs/models/ClientGetOrganizationResponse.md
+docs/models/ClientGetOrganizationsByHostnameResponse.md
 docs/models/ClientGetProjectEvents.md
 docs/models/ClientGetProjectEventsBody.md
 docs/models/ClientGetProjectMetrics.md
@@ -188,6 +190,7 @@ docs/models/ClientJsonPatch.md
 docs/models/ClientJsonWebKey.md
 docs/models/ClientJsonWebKeySet.md
 docs/models/ClientKetoNamespace.md
+docs/models/ClientKeyState.md
 docs/models/ClientKeyStatus.md
 docs/models/ClientKeyVisibility.md
 docs/models/ClientKeysetPaginationRequestParameters.md
@@ -243,6 +246,7 @@ docs/models/ClientOnboardingPortalOrganization.md
 docs/models/ClientOnboardingPortalTestLoginFlow.md
 docs/models/ClientOrganization.md
 docs/models/ClientOrganizationBody.md
+docs/models/ClientOrganizationByHostname.md
 docs/models/ClientOrganizationOnboardingPortalLinksResponse.md
 docs/models/ClientPINConfig.md
 docs/models/ClientParseError.md
@@ -313,6 +317,7 @@ docs/models/ClientSuccessfulCodeExchangeResponse.md
 docs/models/ClientSuccessfulNativeLogin.md
 docs/models/ClientSuccessfulNativeRegistration.md
 docs/models/ClientSuccessfulProjectUpdate.md
+docs/models/ClientTalosRetiredValue.md
 docs/models/ClientTaxLineItem.md
 docs/models/ClientTimeInterval.md
 docs/models/ClientToken.md
@@ -363,8 +368,7 @@ docs/models/ClientUpdateRegistrationFlowWithSamlMethod.md
 docs/models/ClientUpdateRegistrationFlowWithWebAuthnMethod.md
 docs/models/ClientUpdateSettingsFlowBody.md
 docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethod.md
-docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethodAdd.md
-docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethodRegister.md
 docs/models/ClientUpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/models/ClientUpdateSettingsFlowWithLookupMethod.md
 docs/models/ClientUpdateSettingsFlowWithOidcMethod.md
@@ -379,6 +383,7 @@ docs/models/ClientUpdateVerificationFlowBody.md
 docs/models/ClientUpdateVerificationFlowWithCodeMethod.md
 docs/models/ClientUpdateVerificationFlowWithLinkMethod.md
 docs/models/ClientUpdateWorkspaceBody.md
+docs/models/ClientUpdateWorkspaceOrganizationBody.md
 docs/models/ClientUsage.md
 docs/models/ClientUserVerification.md
 docs/models/ClientValidateBaseURLRewriteRequest.md
@@ -504,6 +509,7 @@ src/Ory.Client.Test/Model/ClientDeviceAuthnIOSAttStmtTests.cs
 src/Ory.Client.Test/Model/ClientDeviceAuthnIOSAttestationTests.cs
 src/Ory.Client.Test/Model/ClientDeviceAuthnKeyTests.cs
 src/Ory.Client.Test/Model/ClientDeviceAuthorizationTests.cs
+src/Ory.Client.Test/Model/ClientDeviceTypeTests.cs
 src/Ory.Client.Test/Model/ClientDeviceUserAuthRequestTests.cs
 src/Ory.Client.Test/Model/ClientElementsConfigurationTests.cs
 src/Ory.Client.Test/Model/ClientEmailTemplateDataBodyTests.cs
@@ -529,6 +535,7 @@ src/Ory.Client.Test/Model/ClientGetMetricsCountTests.cs
 src/Ory.Client.Test/Model/ClientGetMetricsEventAttributesTests.cs
 src/Ory.Client.Test/Model/ClientGetMetricsEventTypesTests.cs
 src/Ory.Client.Test/Model/ClientGetOrganizationResponseTests.cs
+src/Ory.Client.Test/Model/ClientGetOrganizationsByHostnameResponseTests.cs
 src/Ory.Client.Test/Model/ClientGetProjectEventsBodyTests.cs
 src/Ory.Client.Test/Model/ClientGetProjectEventsTests.cs
 src/Ory.Client.Test/Model/ClientGetProjectMetricsTests.cs
@@ -586,6 +593,7 @@ src/Ory.Client.Test/Model/ClientJsonPatchTests.cs
 src/Ory.Client.Test/Model/ClientJsonWebKeySetTests.cs
 src/Ory.Client.Test/Model/ClientJsonWebKeyTests.cs
 src/Ory.Client.Test/Model/ClientKetoNamespaceTests.cs
+src/Ory.Client.Test/Model/ClientKeyStateTests.cs
 src/Ory.Client.Test/Model/ClientKeyStatusTests.cs
 src/Ory.Client.Test/Model/ClientKeyVisibilityTests.cs
 src/Ory.Client.Test/Model/ClientKeysetPaginationRequestParametersTests.cs
@@ -640,6 +648,7 @@ src/Ory.Client.Test/Model/ClientOnboardingPortalLinkTests.cs
 src/Ory.Client.Test/Model/ClientOnboardingPortalOrganizationTests.cs
 src/Ory.Client.Test/Model/ClientOnboardingPortalTestLoginFlowTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationBodyTests.cs
+src/Ory.Client.Test/Model/ClientOrganizationByHostnameTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationOnboardingPortalLinksResponseTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationTests.cs
 src/Ory.Client.Test/Model/ClientPINConfigTests.cs
@@ -711,6 +720,7 @@ src/Ory.Client.Test/Model/ClientSuccessfulCodeExchangeResponseTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulNativeLoginTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulNativeRegistrationTests.cs
 src/Ory.Client.Test/Model/ClientSuccessfulProjectUpdateTests.cs
+src/Ory.Client.Test/Model/ClientTalosRetiredValueTests.cs
 src/Ory.Client.Test/Model/ClientTaxLineItemTests.cs
 src/Ory.Client.Test/Model/ClientTimeIntervalTests.cs
 src/Ory.Client.Test/Model/ClientTokenAlgorithmTests.cs
@@ -760,8 +770,7 @@ src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowWithProfileMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowWithSamlMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateRegistrationFlowWithWebAuthnMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowBodyTests.cs
-src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodAddTests.cs
-src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodDeleteTests.cs
+src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodRegisterTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodRotateSecretTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateSettingsFlowWithLookupMethodTests.cs
@@ -777,6 +786,7 @@ src/Ory.Client.Test/Model/ClientUpdateVerificationFlowBodyTests.cs
 src/Ory.Client.Test/Model/ClientUpdateVerificationFlowWithCodeMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateVerificationFlowWithLinkMethodTests.cs
 src/Ory.Client.Test/Model/ClientUpdateWorkspaceBodyTests.cs
+src/Ory.Client.Test/Model/ClientUpdateWorkspaceOrganizationBodyTests.cs
 src/Ory.Client.Test/Model/ClientUsageTests.cs
 src/Ory.Client.Test/Model/ClientUserVerificationTests.cs
 src/Ory.Client.Test/Model/ClientValidateBaseURLRewriteRequestTests.cs
@@ -926,6 +936,7 @@ src/Ory.Client/Model/ClientDeviceAuthnIOSAttStmt.cs
 src/Ory.Client/Model/ClientDeviceAuthnIOSAttestation.cs
 src/Ory.Client/Model/ClientDeviceAuthnKey.cs
 src/Ory.Client/Model/ClientDeviceAuthorization.cs
+src/Ory.Client/Model/ClientDeviceType.cs
 src/Ory.Client/Model/ClientDeviceUserAuthRequest.cs
 src/Ory.Client/Model/ClientElementsConfiguration.cs
 src/Ory.Client/Model/ClientEmailTemplateData.cs
@@ -951,6 +962,7 @@ src/Ory.Client/Model/ClientGetMetricsCount.cs
 src/Ory.Client/Model/ClientGetMetricsEventAttributes.cs
 src/Ory.Client/Model/ClientGetMetricsEventTypes.cs
 src/Ory.Client/Model/ClientGetOrganizationResponse.cs
+src/Ory.Client/Model/ClientGetOrganizationsByHostnameResponse.cs
 src/Ory.Client/Model/ClientGetProjectEvents.cs
 src/Ory.Client/Model/ClientGetProjectEventsBody.cs
 src/Ory.Client/Model/ClientGetProjectMetrics.cs
@@ -1008,6 +1020,7 @@ src/Ory.Client/Model/ClientJsonPatch.cs
 src/Ory.Client/Model/ClientJsonWebKey.cs
 src/Ory.Client/Model/ClientJsonWebKeySet.cs
 src/Ory.Client/Model/ClientKetoNamespace.cs
+src/Ory.Client/Model/ClientKeyState.cs
 src/Ory.Client/Model/ClientKeyStatus.cs
 src/Ory.Client/Model/ClientKeyVisibility.cs
 src/Ory.Client/Model/ClientKeysetPaginationRequestParameters.cs
@@ -1063,6 +1076,7 @@ src/Ory.Client/Model/ClientOnboardingPortalOrganization.cs
 src/Ory.Client/Model/ClientOnboardingPortalTestLoginFlow.cs
 src/Ory.Client/Model/ClientOrganization.cs
 src/Ory.Client/Model/ClientOrganizationBody.cs
+src/Ory.Client/Model/ClientOrganizationByHostname.cs
 src/Ory.Client/Model/ClientOrganizationOnboardingPortalLinksResponse.cs
 src/Ory.Client/Model/ClientPINConfig.cs
 src/Ory.Client/Model/ClientParseError.cs
@@ -1133,6 +1147,7 @@ src/Ory.Client/Model/ClientSuccessfulCodeExchangeResponse.cs
 src/Ory.Client/Model/ClientSuccessfulNativeLogin.cs
 src/Ory.Client/Model/ClientSuccessfulNativeRegistration.cs
 src/Ory.Client/Model/ClientSuccessfulProjectUpdate.cs
+src/Ory.Client/Model/ClientTalosRetiredValue.cs
 src/Ory.Client/Model/ClientTaxLineItem.cs
 src/Ory.Client/Model/ClientTimeInterval.cs
 src/Ory.Client/Model/ClientToken.cs
@@ -1183,8 +1198,7 @@ src/Ory.Client/Model/ClientUpdateRegistrationFlowWithSamlMethod.cs
 src/Ory.Client/Model/ClientUpdateRegistrationFlowWithWebAuthnMethod.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowBody.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethod.cs
-src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodAdd.cs
-src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodDelete.cs
+src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodRegister.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithLookupMethod.cs
 src/Ory.Client/Model/ClientUpdateSettingsFlowWithOidcMethod.cs
@@ -1199,6 +1213,7 @@ src/Ory.Client/Model/ClientUpdateVerificationFlowBody.cs
 src/Ory.Client/Model/ClientUpdateVerificationFlowWithCodeMethod.cs
 src/Ory.Client/Model/ClientUpdateVerificationFlowWithLinkMethod.cs
 src/Ory.Client/Model/ClientUpdateWorkspaceBody.cs
+src/Ory.Client/Model/ClientUpdateWorkspaceOrganizationBody.cs
 src/Ory.Client/Model/ClientUsage.cs
 src/Ory.Client/Model/ClientUserVerification.cs
 src/Ory.Client/Model/ClientValidateBaseURLRewriteRequest.cs

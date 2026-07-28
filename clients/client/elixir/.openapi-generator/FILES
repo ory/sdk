@@ -108,6 +108,7 @@ lib/ory/model/device_authn_ios_att_stmt.ex
 lib/ory/model/device_authn_ios_attestation.ex
 lib/ory/model/device_authn_key.ex
 lib/ory/model/device_authorization.ex
+lib/ory/model/device_type.ex
 lib/ory/model/device_user_auth_request.ex
 lib/ory/model/elements_configuration.ex
 lib/ory/model/email_template_data.ex
@@ -133,6 +134,7 @@ lib/ory/model/get_metrics_count.ex
 lib/ory/model/get_metrics_event_attributes.ex
 lib/ory/model/get_metrics_event_types.ex
 lib/ory/model/get_organization_response.ex
+lib/ory/model/get_organizations_by_hostname_response.ex
 lib/ory/model/get_project_events.ex
 lib/ory/model/get_project_events_body.ex
 lib/ory/model/get_project_metrics.ex
@@ -190,6 +192,7 @@ lib/ory/model/json_patch.ex
 lib/ory/model/json_web_key.ex
 lib/ory/model/json_web_key_set.ex
 lib/ory/model/keto_namespace.ex
+lib/ory/model/key_state.ex
 lib/ory/model/key_status.ex
 lib/ory/model/key_visibility.ex
 lib/ory/model/keyset_pagination_request_parameters.ex
@@ -245,6 +248,7 @@ lib/ory/model/onboarding_portal_organization.ex
 lib/ory/model/onboarding_portal_test_login_flow.ex
 lib/ory/model/organization.ex
 lib/ory/model/organization_body.ex
+lib/ory/model/organization_by_hostname.ex
 lib/ory/model/organization_onboarding_portal_links_response.ex
 lib/ory/model/parse_error.ex
 lib/ory/model/patch_identities_body.ex
@@ -315,6 +319,7 @@ lib/ory/model/successful_code_exchange_response.ex
 lib/ory/model/successful_native_login.ex
 lib/ory/model/successful_native_registration.ex
 lib/ory/model/successful_project_update.ex
+lib/ory/model/talos_retired_value.ex
 lib/ory/model/tax_line_item.ex
 lib/ory/model/time_interval.ex
 lib/ory/model/token.ex
@@ -365,8 +370,7 @@ lib/ory/model/update_registration_flow_with_saml_method.ex
 lib/ory/model/update_registration_flow_with_web_authn_method.ex
 lib/ory/model/update_settings_flow_body.ex
 lib/ory/model/update_settings_flow_with_device_authn_method.ex
-lib/ory/model/update_settings_flow_with_device_authn_method_add.ex
-lib/ory/model/update_settings_flow_with_device_authn_method_delete.ex
+lib/ory/model/update_settings_flow_with_device_authn_method_register.ex
 lib/ory/model/update_settings_flow_with_device_authn_method_rotate_secret.ex
 lib/ory/model/update_settings_flow_with_lookup_method.ex
 lib/ory/model/update_settings_flow_with_oidc_method.ex
@@ -381,6 +385,7 @@ lib/ory/model/update_verification_flow_body.ex
 lib/ory/model/update_verification_flow_with_code_method.ex
 lib/ory/model/update_verification_flow_with_link_method.ex
 lib/ory/model/update_workspace_body.ex
+lib/ory/model/update_workspace_organization_body.ex
 lib/ory/model/usage.ex
 lib/ory/model/user_verification.ex
 lib/ory/model/validate_base_url_rewrite_request.ex

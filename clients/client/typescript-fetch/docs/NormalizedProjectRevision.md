@@ -288,9 +288,11 @@ Name | Type
 `talos_credentials_derived_tokens_macaroon_prefix_retired` | Array&lt;string&gt;
 `talos_credentials_issuer` | string
 `talos_credentials_issuer_retired` | Array&lt;string&gt;
+`talos_credentials_issuer_retired_entries` | [Array&lt;TalosRetiredValue&gt;](TalosRetiredValue.md)
 `talos_rate_limit_enabled` | boolean
 `talos_secrets_hmac_current` | string
 `talos_secrets_hmac_retired` | Array&lt;string&gt;
+`talos_secrets_hmac_retired_entries` | [Array&lt;TalosRetiredValue&gt;](TalosRetiredValue.md)
 `updated_at` | Date
 
 ## Example
@@ -582,9 +584,11 @@ const example = {
   "talos_credentials_derived_tokens_macaroon_prefix_retired": null,
   "talos_credentials_issuer": null,
   "talos_credentials_issuer_retired": null,
+  "talos_credentials_issuer_retired_entries": null,
   "talos_rate_limit_enabled": null,
   "talos_secrets_hmac_current": null,
   "talos_secrets_hmac_retired": null,
+  "talos_secrets_hmac_retired_entries": null,
   "updated_at": null,
 } satisfies NormalizedProjectRevision
 

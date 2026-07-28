@@ -13,6 +13,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**createOAuth2Client()**](OAuth2Api.md#createOAuth2Client) | **POST** /admin/clients | Create OAuth 2.0 Client |
 | [**deleteOAuth2Client()**](OAuth2Api.md#deleteOAuth2Client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client |
 | [**deleteOAuth2Token()**](OAuth2Api.md#deleteOAuth2Token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client |
+| [**deleteRotatedOAuth2ClientSecrets()**](OAuth2Api.md#deleteRotatedOAuth2ClientSecrets) | **DELETE** /admin/clients/{id}/secrets/rotate | Delete Rotated OAuth 2.0 Client Secrets |
 | [**deleteTrustedOAuth2JwtGrantIssuer()**](OAuth2Api.md#deleteTrustedOAuth2JwtGrantIssuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer |
 | [**getOAuth2Client()**](OAuth2Api.md#getOAuth2Client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client |
 | [**getOAuth2ConsentRequest()**](OAuth2Api.md#getOAuth2ConsentRequest) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request |
@@ -34,6 +35,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**revokeOAuth2ConsentSessions()**](OAuth2Api.md#revokeOAuth2ConsentSessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject |
 | [**revokeOAuth2LoginSessions()**](OAuth2Api.md#revokeOAuth2LoginSessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID |
 | [**revokeOAuth2Token()**](OAuth2Api.md#revokeOAuth2Token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token |
+| [**rotateOAuth2ClientSecret()**](OAuth2Api.md#rotateOAuth2ClientSecret) | **POST** /admin/clients/{id}/secrets/rotate | Rotate OAuth 2.0 Client Secret |
 | [**setOAuth2Client()**](OAuth2Api.md#setOAuth2Client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client |
 | [**setOAuth2ClientLifespans()**](OAuth2Api.md#setOAuth2ClientLifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans |
 | [**trustOAuth2JwtGrantIssuer()**](OAuth2Api.md#trustOAuth2JwtGrantIssuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer |
@@ -449,6 +451,66 @@ try {
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteRotatedOAuth2ClientSecrets()`
+
+```php
+deleteRotatedOAuth2ClientSecrets($id): \Ory\Client\Model\OAuth2Client
+```
+
+Delete Rotated OAuth 2.0 Client Secrets
+
+Removes all rotated secrets from an OAuth 2.0 client. This should be called after all services have been updated to use the new secret and the old secrets are no longer needed.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\OAuth2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | OAuth 2.0 Client ID
+
+try {
+    $result = $apiInstance->deleteRotatedOAuth2ClientSecrets($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OAuth2Api->deleteRotatedOAuth2ClientSecrets: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| OAuth 2.0 Client ID | |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
 
 ### Authorization
 
@@ -1267,7 +1329,7 @@ patchOAuth2Client($id, $jsonPatch): \Ory\Client\Model\OAuth2Client
 
 Patch OAuth 2.0 Client
 
-Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+Patch an existing OAuth 2.0 Client using JSON Patch. If you update `client_secret`, the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret. Passing a new `client_secret` will clear all rotated secrets.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Example
 
@@ -1751,6 +1813,66 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `rotateOAuth2ClientSecret()`
+
+```php
+rotateOAuth2ClientSecret($id): \Ory\Client\Model\OAuth2Client
+```
+
+Rotate OAuth 2.0 Client Secret
+
+Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryAccessToken
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\OAuth2Api(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | OAuth 2.0 Client ID
+
+try {
+    $result = $apiInstance->rotateOAuth2ClientSecret($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OAuth2Api->rotateOAuth2ClientSecret: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| OAuth 2.0 Client ID | |
+
+### Return type
+
+[**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)
+
+### Authorization
+
+[oryAccessToken](../../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `setOAuth2Client()`
 
 ```php
@@ -1759,7 +1881,7 @@ setOAuth2Client($id, $oAuth2Client): \Ory\Client\Model\OAuth2Client
 
 Set OAuth 2.0 Client
 
-Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used. Rotated secrets will be cleared if you pass a new `client_secret`.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Example
 

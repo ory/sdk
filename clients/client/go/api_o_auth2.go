@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.63
+API version: v1.22.66
 Contact: support@ory.sh
 */
 
@@ -152,6 +152,22 @@ Make sure that this endpoint is well protected and only callable by first-party 
 
 	// DeleteOAuth2TokenExecute executes the request
 	DeleteOAuth2TokenExecute(r OAuth2APIDeleteOAuth2TokenRequest) (*http.Response, error)
+
+	/*
+	DeleteRotatedOAuth2ClientSecrets Delete Rotated OAuth 2.0 Client Secrets
+
+	Removes all rotated secrets from an OAuth 2.0 client. This should be called after all services
+have been updated to use the new secret and the old secrets are no longer needed.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id OAuth 2.0 Client ID
+	@return OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest
+	*/
+	DeleteRotatedOAuth2ClientSecrets(ctx context.Context, id string) OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest
+
+	// DeleteRotatedOAuth2ClientSecretsExecute executes the request
+	//  @return OAuth2Client
+	DeleteRotatedOAuth2ClientSecretsExecute(r OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest) (*OAuth2Client, *http.Response, error)
 
 	/*
 	DeleteTrustedOAuth2JwtGrantIssuer Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
@@ -381,9 +397,12 @@ Instead, use one of the libraries linked above.
 	/*
 	PatchOAuth2Client Patch OAuth 2.0 Client
 
-	Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret`
-the secret will be updated and returned via the API. This is the
-only time you will be able to retrieve the client secret, so write it down and keep it safe.
+	Patch an existing OAuth 2.0 Client using JSON Patch. If you update
+`client_secret`, the secret will be updated and returned via the API. This is
+the only time you will be able to retrieve the client secret. Passing a new
+`client_secret` will clear all rotated secrets.
+
+To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.
 
 OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
 generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -532,12 +551,35 @@ the client the token was generated for.
 	RevokeOAuth2TokenExecute(r OAuth2APIRevokeOAuth2TokenRequest) (*http.Response, error)
 
 	/*
+	RotateOAuth2ClientSecret Rotate OAuth 2.0 Client Secret
+
+	Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for
+authentication, allowing for zero-downtime secret rotations. A new secret
+will be generated and returned in the response.
+
+Up to five rotated secrets are retained. Use the
+`deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets
+when they are no longer needed.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id OAuth 2.0 Client ID
+	@return OAuth2APIRotateOAuth2ClientSecretRequest
+	*/
+	RotateOAuth2ClientSecret(ctx context.Context, id string) OAuth2APIRotateOAuth2ClientSecretRequest
+
+	// RotateOAuth2ClientSecretExecute executes the request
+	//  @return OAuth2Client
+	RotateOAuth2ClientSecretExecute(r OAuth2APIRotateOAuth2ClientSecretRequest) (*OAuth2Client, *http.Response, error)
+
+	/*
 	SetOAuth2Client Set OAuth 2.0 Client
 
 	Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used,
-otherwise the existing secret is used.
+otherwise the existing secret is used. Rotated secrets will be cleared if you pass a new `client_secret`.
 
 If set, the secret is echoed in the response. It is not possible to retrieve it later on.
+
+To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.
 
 OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
 generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -1450,6 +1492,129 @@ func (a *OAuth2APIService) DeleteOAuth2TokenExecute(r OAuth2APIDeleteOAuth2Token
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest struct {
+	ctx context.Context
+	ApiService OAuth2API
+	id string
+}
+
+func (r OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest) Execute() (*OAuth2Client, *http.Response, error) {
+	return r.ApiService.DeleteRotatedOAuth2ClientSecretsExecute(r)
+}
+
+/*
+DeleteRotatedOAuth2ClientSecrets Delete Rotated OAuth 2.0 Client Secrets
+
+Removes all rotated secrets from an OAuth 2.0 client. This should be called after all services
+have been updated to use the new secret and the old secrets are no longer needed.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id OAuth 2.0 Client ID
+ @return OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest
+*/
+func (a *OAuth2APIService) DeleteRotatedOAuth2ClientSecrets(ctx context.Context, id string) OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest {
+	return OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return OAuth2Client
+func (a *OAuth2APIService) DeleteRotatedOAuth2ClientSecretsExecute(r OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest) (*OAuth2Client, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OAuth2Client
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.DeleteRotatedOAuth2ClientSecrets")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/clients/{id}/secrets/rotate"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorOAuth2
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorOAuth2
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type OAuth2APIDeleteTrustedOAuth2JwtGrantIssuerRequest struct {
@@ -3149,9 +3314,12 @@ func (r OAuth2APIPatchOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Respo
 /*
 PatchOAuth2Client Patch OAuth 2.0 Client
 
-Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret`
-the secret will be updated and returned via the API. This is the
-only time you will be able to retrieve the client secret, so write it down and keep it safe.
+Patch an existing OAuth 2.0 Client using JSON Patch. If you update
+`client_secret`, the secret will be updated and returned via the API. This is
+the only time you will be able to retrieve the client secret. Passing a new
+`client_secret` will clear all rotated secrets.
+
+To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.
 
 OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
 generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -4148,6 +4316,134 @@ func (a *OAuth2APIService) RevokeOAuth2TokenExecute(r OAuth2APIRevokeOAuth2Token
 	return localVarHTTPResponse, nil
 }
 
+type OAuth2APIRotateOAuth2ClientSecretRequest struct {
+	ctx context.Context
+	ApiService OAuth2API
+	id string
+}
+
+func (r OAuth2APIRotateOAuth2ClientSecretRequest) Execute() (*OAuth2Client, *http.Response, error) {
+	return r.ApiService.RotateOAuth2ClientSecretExecute(r)
+}
+
+/*
+RotateOAuth2ClientSecret Rotate OAuth 2.0 Client Secret
+
+Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for
+authentication, allowing for zero-downtime secret rotations. A new secret
+will be generated and returned in the response.
+
+Up to five rotated secrets are retained. Use the
+`deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets
+when they are no longer needed.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id OAuth 2.0 Client ID
+ @return OAuth2APIRotateOAuth2ClientSecretRequest
+*/
+func (a *OAuth2APIService) RotateOAuth2ClientSecret(ctx context.Context, id string) OAuth2APIRotateOAuth2ClientSecretRequest {
+	return OAuth2APIRotateOAuth2ClientSecretRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return OAuth2Client
+func (a *OAuth2APIService) RotateOAuth2ClientSecretExecute(r OAuth2APIRotateOAuth2ClientSecretRequest) (*OAuth2Client, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OAuth2Client
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OAuth2APIService.RotateOAuth2ClientSecret")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/admin/clients/{id}/secrets/rotate"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorOAuth2
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorOAuth2
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type OAuth2APISetOAuth2ClientRequest struct {
 	ctx context.Context
 	ApiService OAuth2API
@@ -4169,9 +4465,11 @@ func (r OAuth2APISetOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Respons
 SetOAuth2Client Set OAuth 2.0 Client
 
 Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used,
-otherwise the existing secret is used.
+otherwise the existing secret is used. Rotated secrets will be cleared if you pass a new `client_secret`.
 
 If set, the secret is echoed in the response. It is not possible to retrieve it later on.
+
+To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.
 
 OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are
 generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.

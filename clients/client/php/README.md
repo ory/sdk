@@ -190,6 +190,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**createOAuth2Client**](docs/Api/OAuth2Api.md#createoauth2client) | **POST** /admin/clients | Create OAuth 2.0 Client
 *OAuth2Api* | [**deleteOAuth2Client**](docs/Api/OAuth2Api.md#deleteoauth2client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
 *OAuth2Api* | [**deleteOAuth2Token**](docs/Api/OAuth2Api.md#deleteoauth2token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
+*OAuth2Api* | [**deleteRotatedOAuth2ClientSecrets**](docs/Api/OAuth2Api.md#deleterotatedoauth2clientsecrets) | **DELETE** /admin/clients/{id}/secrets/rotate | Delete Rotated OAuth 2.0 Client Secrets
 *OAuth2Api* | [**deleteTrustedOAuth2JwtGrantIssuer**](docs/Api/OAuth2Api.md#deletetrustedoauth2jwtgrantissuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
 *OAuth2Api* | [**getOAuth2Client**](docs/Api/OAuth2Api.md#getoauth2client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client
 *OAuth2Api* | [**getOAuth2ConsentRequest**](docs/Api/OAuth2Api.md#getoauth2consentrequest) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request
@@ -211,6 +212,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**revokeOAuth2ConsentSessions**](docs/Api/OAuth2Api.md#revokeoauth2consentsessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
 *OAuth2Api* | [**revokeOAuth2LoginSessions**](docs/Api/OAuth2Api.md#revokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 *OAuth2Api* | [**revokeOAuth2Token**](docs/Api/OAuth2Api.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
+*OAuth2Api* | [**rotateOAuth2ClientSecret**](docs/Api/OAuth2Api.md#rotateoauth2clientsecret) | **POST** /admin/clients/{id}/secrets/rotate | Rotate OAuth 2.0 Client Secret
 *OAuth2Api* | [**setOAuth2Client**](docs/Api/OAuth2Api.md#setoauth2client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
 *OAuth2Api* | [**setOAuth2ClientLifespans**](docs/Api/OAuth2Api.md#setoauth2clientlifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
 *OAuth2Api* | [**trustOAuth2JwtGrantIssuer**](docs/Api/OAuth2Api.md#trustoauth2jwtgrantissuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer
@@ -354,6 +356,7 @@ Class | Method | HTTP request | Description
 - [DeviceAuthnIOSAttestation](docs/Model/DeviceAuthnIOSAttestation.md)
 - [DeviceAuthnKey](docs/Model/DeviceAuthnKey.md)
 - [DeviceAuthorization](docs/Model/DeviceAuthorization.md)
+- [DeviceType](docs/Model/DeviceType.md)
 - [DeviceUserAuthRequest](docs/Model/DeviceUserAuthRequest.md)
 - [ElementsConfiguration](docs/Model/ElementsConfiguration.md)
 - [EmailTemplateData](docs/Model/EmailTemplateData.md)
@@ -379,6 +382,7 @@ Class | Method | HTTP request | Description
 - [GetMetricsEventAttributes](docs/Model/GetMetricsEventAttributes.md)
 - [GetMetricsEventTypes](docs/Model/GetMetricsEventTypes.md)
 - [GetOrganizationResponse](docs/Model/GetOrganizationResponse.md)
+- [GetOrganizationsByHostnameResponse](docs/Model/GetOrganizationsByHostnameResponse.md)
 - [GetProjectEvents](docs/Model/GetProjectEvents.md)
 - [GetProjectEventsBody](docs/Model/GetProjectEventsBody.md)
 - [GetProjectMetrics](docs/Model/GetProjectMetrics.md)
@@ -436,6 +440,7 @@ Class | Method | HTTP request | Description
 - [JsonWebKey](docs/Model/JsonWebKey.md)
 - [JsonWebKeySet](docs/Model/JsonWebKeySet.md)
 - [KetoNamespace](docs/Model/KetoNamespace.md)
+- [KeyState](docs/Model/KeyState.md)
 - [KeyStatus](docs/Model/KeyStatus.md)
 - [KeyVisibility](docs/Model/KeyVisibility.md)
 - [KeysetPaginationRequestParameters](docs/Model/KeysetPaginationRequestParameters.md)
@@ -491,6 +496,7 @@ Class | Method | HTTP request | Description
 - [OnboardingPortalTestLoginFlow](docs/Model/OnboardingPortalTestLoginFlow.md)
 - [Organization](docs/Model/Organization.md)
 - [OrganizationBody](docs/Model/OrganizationBody.md)
+- [OrganizationByHostname](docs/Model/OrganizationByHostname.md)
 - [OrganizationOnboardingPortalLinksResponse](docs/Model/OrganizationOnboardingPortalLinksResponse.md)
 - [PINConfig](docs/Model/PINConfig.md)
 - [ParseError](docs/Model/ParseError.md)
@@ -561,6 +567,7 @@ Class | Method | HTTP request | Description
 - [SuccessfulNativeLogin](docs/Model/SuccessfulNativeLogin.md)
 - [SuccessfulNativeRegistration](docs/Model/SuccessfulNativeRegistration.md)
 - [SuccessfulProjectUpdate](docs/Model/SuccessfulProjectUpdate.md)
+- [TalosRetiredValue](docs/Model/TalosRetiredValue.md)
 - [TaxLineItem](docs/Model/TaxLineItem.md)
 - [TimeInterval](docs/Model/TimeInterval.md)
 - [Token](docs/Model/Token.md)
@@ -611,8 +618,7 @@ Class | Method | HTTP request | Description
 - [UpdateRegistrationFlowWithWebAuthnMethod](docs/Model/UpdateRegistrationFlowWithWebAuthnMethod.md)
 - [UpdateSettingsFlowBody](docs/Model/UpdateSettingsFlowBody.md)
 - [UpdateSettingsFlowWithDeviceAuthnMethod](docs/Model/UpdateSettingsFlowWithDeviceAuthnMethod.md)
-- [UpdateSettingsFlowWithDeviceAuthnMethodAdd](docs/Model/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md)
-- [UpdateSettingsFlowWithDeviceAuthnMethodDelete](docs/Model/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md)
+- [UpdateSettingsFlowWithDeviceAuthnMethodRegister](docs/Model/UpdateSettingsFlowWithDeviceAuthnMethodRegister.md)
 - [UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret](docs/Model/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md)
 - [UpdateSettingsFlowWithLookupMethod](docs/Model/UpdateSettingsFlowWithLookupMethod.md)
 - [UpdateSettingsFlowWithOidcMethod](docs/Model/UpdateSettingsFlowWithOidcMethod.md)
@@ -627,6 +633,7 @@ Class | Method | HTTP request | Description
 - [UpdateVerificationFlowWithCodeMethod](docs/Model/UpdateVerificationFlowWithCodeMethod.md)
 - [UpdateVerificationFlowWithLinkMethod](docs/Model/UpdateVerificationFlowWithLinkMethod.md)
 - [UpdateWorkspaceBody](docs/Model/UpdateWorkspaceBody.md)
+- [UpdateWorkspaceOrganizationBody](docs/Model/UpdateWorkspaceOrganizationBody.md)
 - [Usage](docs/Model/Usage.md)
 - [UserVerification](docs/Model/UserVerification.md)
 - [ValidateBaseURLRewriteRequest](docs/Model/ValidateBaseURLRewriteRequest.md)
@@ -693,6 +700,6 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.22.63`
+- API version: `v1.22.66`
     - Generator version: `7.17.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

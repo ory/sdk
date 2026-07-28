@@ -290,9 +290,11 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :talos_credentials_derived_tokens_macaroon_prefix_retired,
     :talos_credentials_issuer,
     :talos_credentials_issuer_retired,
+    :talos_credentials_issuer_retired_entries,
     :talos_rate_limit_enabled,
     :talos_secrets_hmac_current,
     :talos_secrets_hmac_retired,
+    :talos_secrets_hmac_retired_entries,
     :updated_at
   ]
 
@@ -579,9 +581,11 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :talos_credentials_derived_tokens_macaroon_prefix_retired => [String.t] | nil,
     :talos_credentials_issuer => String.t | nil,
     :talos_credentials_issuer_retired => [String.t] | nil,
+    :talos_credentials_issuer_retired_entries => [Ory.Model.TalosRetiredValue.t] | nil,
     :talos_rate_limit_enabled => boolean() | nil,
     :talos_secrets_hmac_current => String.t | nil,
     :talos_secrets_hmac_retired => [String.t] | nil,
+    :talos_secrets_hmac_retired_entries => [Ory.Model.TalosRetiredValue.t] | nil,
     :updated_at => DateTime.t | nil
   }
 
@@ -600,6 +604,8 @@ defmodule Ory.Model.NormalizedProjectRevision do
      |> Deserializer.deserialize(:organizations, :list, Ory.Model.Organization)
      |> Deserializer.deserialize(:project_revision_hooks, :list, Ory.Model.NormalizedProjectRevisionHook)
      |> Deserializer.deserialize(:scim_clients, :list, Ory.Model.NormalizedProjectRevisionScimClient)
+     |> Deserializer.deserialize(:talos_credentials_issuer_retired_entries, :list, Ory.Model.TalosRetiredValue)
+     |> Deserializer.deserialize(:talos_secrets_hmac_retired_entries, :list, Ory.Model.TalosRetiredValue)
      |> Deserializer.deserialize(:updated_at, :datetime, nil)
   end
 end

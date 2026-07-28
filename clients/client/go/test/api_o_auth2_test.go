@@ -106,6 +106,20 @@ func Test_client_OAuth2APIService(t *testing.T) {
 
 	})
 
+	t.Run("Test OAuth2APIService DeleteRotatedOAuth2ClientSecrets", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.OAuth2API.DeleteRotatedOAuth2ClientSecrets(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test OAuth2APIService DeleteTrustedOAuth2JwtGrantIssuer", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -357,6 +371,20 @@ func Test_client_OAuth2APIService(t *testing.T) {
 		httpRes, err := apiClient.OAuth2API.RevokeOAuth2Token(context.Background()).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test OAuth2APIService RotateOAuth2ClientSecret", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.OAuth2API.RotateOAuth2ClientSecret(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

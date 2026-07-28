@@ -1,6 +1,7 @@
 
 # DeviceAuthnKey
 
+Represents a hardware-backed signing key enrolled from a mobile device. The private key resides inside the device and never exists on the server.  To list the identity\'s enrolled keys, fetch a settings flow: each key\'s remove button (a `ui.nodes` entry named `deviceauthn_remove` in group `deviceauthn`) carries the key, with its PIN state redacted, in the node label\'s `context`.
 
 ## Properties
 
@@ -10,11 +11,11 @@ Name | Type
 `client_key_id` | string
 `created_at` | Date
 `device_name` | string
-`device_type` | string
+`device_type` | [DeviceType](DeviceType.md)
 `pin` | [PINConfig](PINConfig.md)
-`public_key` | Array&lt;number&gt;
+`public_key` | string
 `relaxed_attestation_expires_at` | Date
-`state` | string
+`state` | [KeyState](KeyState.md)
 `user_verification` | [UserVerification](UserVerification.md)
 `version` | number
 

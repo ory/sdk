@@ -223,11 +223,11 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsCodePasswordlessEnabled** | Pointer to **bool** | Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled** | Pointer to **bool** | This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \&quot;selfservice.methods.code.passwordless_login_fallback_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds** | Pointer to **[]string** | Configures the allow-list of Android app signing-certificate digests that a device key may be bound to.  This governs the \&quot;selfservice.methods.deviceauthn.config.android_app_ids\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsDeviceauthnConfigFirstFactor** | Pointer to **bool** | Configures whether device authentication may be used as the sole first factor.  This governs the \&quot;selfservice.methods.deviceauthn.config.first_factor\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsDeviceauthnConfigFirstFactor** | Pointer to **bool** | Configures whether device authentication may be used as the sole first factor.  When enabled, a confirmed device key with PIN or platform user verification can complete an AAL2 login in a single submission, without a password or code. Defaults to false, which keeps device keys usable only as a second factor (step-up).  This governs the \&quot;selfservice.methods.deviceauthn.config.first_factor\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation** | Pointer to **bool** | Configures whether Ory Kratos Device authentication accepts relaxed attestations for testing  Only allowed on development projects and forced off otherwise. Keys enrolled under relaxation are short-lived and refused once this is turned off.  This governs the \&quot;selfservice.methods.deviceauthn.config.insecure_allow_relaxed_attestation\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnConfigIosAppIds** | Pointer to **[]string** | Configures the allow-list of Apple App IDs that a device key may be bound to.  This governs the \&quot;selfservice.methods.deviceauthn.config.ios_app_ids\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor** | Pointer to **bool** | Configures whether an iOS biometric device key may be used as the sole first factor.  This governs the \&quot;selfservice.methods.deviceauthn.config.ios_biometric_first_factor\&quot; setting. | [optional] 
-**KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts** | Pointer to **int64** | Configures the consecutive wrong-PIN limit before a device key is locked.  This governs the \&quot;selfservice.methods.deviceauthn.config.pin_max_attempts\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor** | Pointer to **bool** | Configures whether an iOS biometric device key may be used as the sole first factor.  Apple App Attest cannot prove biometric gating, so iOS keys with \&quot;platform\&quot; user verification count as a first factor only with this explicit opt-in. Android keys are unaffected, as their user verification is attestation-verified. Defaults to false.  This governs the \&quot;selfservice.methods.deviceauthn.config.ios_biometric_first_factor\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts** | Pointer to **int64** | Configures the number of consecutive wrong-PIN attempts before a device key is locked.  Defaults to 5; must be between 1 and 10. Once locked, the key&#39;s pin_secret is invalidated and the key can no longer be used to log in until the user rotates its secret through the fallback login.  This governs the \&quot;selfservice.methods.deviceauthn.config.pin_max_attempts\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnEnabled** | Pointer to **bool** | Configures whether Ory Kratos Device authentication is enabled  This governs the \&quot;selfservice.methods.deviceauthn.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigBaseUrl** | Pointer to **string** | Configures the Base URL which Recovery, Verification, and Login Links Point to  It is recommended to leave this value empty. It will be appropriately configured to the best matching domain (e.g. when using custom domains) automatically.  This governs the \&quot;selfservice.methods.link.config.base_url\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsLinkConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Link Method&#39;s lifespan  This governs the \&quot;selfservice.methods.link.config.lifespan\&quot; setting. | [optional] 
@@ -287,10 +287,12 @@ Name | Type | Description | Notes
 **TalosCredentialsDerivedTokensMacaroonPrefixCurrent** | Pointer to **string** | Talos derived tokens macaroon prefix (current). | [optional] 
 **TalosCredentialsDerivedTokensMacaroonPrefixRetired** | Pointer to **[]string** | Talos derived tokens macaroon prefix (retired).  Previously active macaroon prefixes kept for verification of outstanding tokens. The first element of this list was the most recently retired active prefix. | [optional] 
 **TalosCredentialsIssuer** | Pointer to **string** | Talos credentials issuer URL. | [optional] 
-**TalosCredentialsIssuerRetired** | Pointer to **[]string** | Talos credentials retired issuer URLs.  Previously active issuer URLs kept for verification of outstanding tokens. Tokens signed with these issuers remain valid; new tokens use the current issuer. | [optional] 
+**TalosCredentialsIssuerRetired** | Pointer to **[]string** | Talos credentials retired issuer URLs (deprecated).  Deprecated: values-only view of talos_credentials_issuer_retired_entries, kept so already-released SDKs that decode this field as an array of strings keep working. It is output only: reads are derived from the entries field and writes to it are ignored. Use talos_credentials_issuer_retired_entries instead. | [optional] [readonly] 
+**TalosCredentialsIssuerRetiredEntries** | Pointer to [**[]TalosRetiredValue**](TalosRetiredValue.md) | TalosRetiredValues is the list of retired values — retired HMAC secrets or retired issuer URLs — for a Talos project. A retired value stays valid for verification until its optional expiry passes, so operators can bound how long an old credential keeps working after a rotation instead of keeping it forever. Legacy bare-string entries are accepted on write and normalized to the object form. | [optional] 
 **TalosRateLimitEnabled** | Pointer to **bool** | Talos rate limit enabled.  When true, server-side rate limiting is enforced for API key verifications. | [optional] 
-**TalosSecretsHmacCurrent** | Pointer to **string** | TalosSecretsHMACCurrent stores the current HMAC symmetric key as a plain secret string. Application-layer encryption is handled upstream; SanitizeModel (MarshalJSON) redacts this field from API responses. | [optional] 
-**TalosSecretsHmacRetired** | Pointer to **[]string** | TalosSecretsHMACRetired stores previously active HMAC symmetric keys as a JSON array of plain secret strings. Application-layer encryption is handled upstream; SanitizeModel (MarshalJSON) redacts this field from API responses. The verifier tries all retired secrets when the current key does not produce a matching HMAC. | [optional] 
+**TalosSecretsHmacCurrent** | Pointer to **string** | TalosSecretsHMACCurrent stores the current HMAC symmetric key as a plain secret string. | [optional] 
+**TalosSecretsHmacRetired** | Pointer to **[]string** | TalosSecretsHMACRetired stores previously active HMAC symmetric keys as an array of strings (deprecated).  Deprecated: values-only view of talos_secrets_hmac_retired_entries, kept so already-released SDKs that decode this field as an array of strings keep working. It is output only and writes to it are ignored. HMAC secrets are server-managed and redacted on output, so this field is always empty on the wire. Use talos_secrets_hmac_retired_entries instead. | [optional] [readonly] 
+**TalosSecretsHmacRetiredEntries** | Pointer to [**[]TalosRetiredValue**](TalosRetiredValue.md) | TalosRetiredValues is the list of retired values — retired HMAC secrets or retired issuer URLs — for a Talos project. A retired value stays valid for verification until its optional expiry passes, so operators can bound how long an old credential keeps working after a rotation instead of keeping it forever. Legacy bare-string entries are accepted on write and normalized to the object form. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 **WorkspaceId** | Pointer to **string** |  | [optional] 
 
@@ -7403,6 +7405,31 @@ SetTalosCredentialsIssuerRetired sets TalosCredentialsIssuerRetired field to giv
 
 HasTalosCredentialsIssuerRetired returns a boolean if a field has been set.
 
+### GetTalosCredentialsIssuerRetiredEntries
+
+`func (o *CreateProjectNormalizedPayload) GetTalosCredentialsIssuerRetiredEntries() []TalosRetiredValue`
+
+GetTalosCredentialsIssuerRetiredEntries returns the TalosCredentialsIssuerRetiredEntries field if non-nil, zero value otherwise.
+
+### GetTalosCredentialsIssuerRetiredEntriesOk
+
+`func (o *CreateProjectNormalizedPayload) GetTalosCredentialsIssuerRetiredEntriesOk() (*[]TalosRetiredValue, bool)`
+
+GetTalosCredentialsIssuerRetiredEntriesOk returns a tuple with the TalosCredentialsIssuerRetiredEntries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTalosCredentialsIssuerRetiredEntries
+
+`func (o *CreateProjectNormalizedPayload) SetTalosCredentialsIssuerRetiredEntries(v []TalosRetiredValue)`
+
+SetTalosCredentialsIssuerRetiredEntries sets TalosCredentialsIssuerRetiredEntries field to given value.
+
+### HasTalosCredentialsIssuerRetiredEntries
+
+`func (o *CreateProjectNormalizedPayload) HasTalosCredentialsIssuerRetiredEntries() bool`
+
+HasTalosCredentialsIssuerRetiredEntries returns a boolean if a field has been set.
+
 ### GetTalosRateLimitEnabled
 
 `func (o *CreateProjectNormalizedPayload) GetTalosRateLimitEnabled() bool`
@@ -7477,6 +7504,31 @@ SetTalosSecretsHmacRetired sets TalosSecretsHmacRetired field to given value.
 `func (o *CreateProjectNormalizedPayload) HasTalosSecretsHmacRetired() bool`
 
 HasTalosSecretsHmacRetired returns a boolean if a field has been set.
+
+### GetTalosSecretsHmacRetiredEntries
+
+`func (o *CreateProjectNormalizedPayload) GetTalosSecretsHmacRetiredEntries() []TalosRetiredValue`
+
+GetTalosSecretsHmacRetiredEntries returns the TalosSecretsHmacRetiredEntries field if non-nil, zero value otherwise.
+
+### GetTalosSecretsHmacRetiredEntriesOk
+
+`func (o *CreateProjectNormalizedPayload) GetTalosSecretsHmacRetiredEntriesOk() (*[]TalosRetiredValue, bool)`
+
+GetTalosSecretsHmacRetiredEntriesOk returns a tuple with the TalosSecretsHmacRetiredEntries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTalosSecretsHmacRetiredEntries
+
+`func (o *CreateProjectNormalizedPayload) SetTalosSecretsHmacRetiredEntries(v []TalosRetiredValue)`
+
+SetTalosSecretsHmacRetiredEntries sets TalosSecretsHmacRetiredEntries field to given value.
+
+### HasTalosSecretsHmacRetiredEntries
+
+`func (o *CreateProjectNormalizedPayload) HasTalosSecretsHmacRetiredEntries() bool`
+
+HasTalosSecretsHmacRetiredEntries returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

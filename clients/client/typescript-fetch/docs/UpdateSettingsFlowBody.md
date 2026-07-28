@@ -27,8 +27,8 @@ Name | Type
 `lookup_secret_reveal` | boolean
 `passkey_remove` | string
 `passkey_settings_register` | string
-`add` | [UpdateSettingsFlowWithDeviceAuthnMethodAdd](UpdateSettingsFlowWithDeviceAuthnMethodAdd.md)
-`_delete` | [UpdateSettingsFlowWithDeviceAuthnMethodDelete](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md)
+`deviceauthn_register` | [UpdateSettingsFlowWithDeviceAuthnMethodRegister](UpdateSettingsFlowWithDeviceAuthnMethodRegister.md)
+`deviceauthn_remove` | string
 `rotate_secret` | [UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret](UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md)
 
 ## Example
@@ -58,8 +58,8 @@ const example = {
   "lookup_secret_reveal": null,
   "passkey_remove": null,
   "passkey_settings_register": null,
-  "add": null,
-  "_delete": null,
+  "deviceauthn_register": null,
+  "deviceauthn_remove": null,
   "rotate_secret": null,
 } satisfies UpdateSettingsFlowBody
 

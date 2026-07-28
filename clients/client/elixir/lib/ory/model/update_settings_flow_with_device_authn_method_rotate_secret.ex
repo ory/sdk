@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret do
   @moduledoc """
-  Re-issues a fresh pin_secret for an existing PIN-protected DeviceAuthn key without changing the device signing key. It is the recovery path for a forgotten PIN or a locked key. The server returns the new secret sealed to the supplied transport_public_key exactly once.
+  Re-issues a fresh pin_secret for an existing PIN-protected DeviceAuthn key without changing the device signing key. It is the recovery path for a forgotten PIN or a locked key. The server returns the new secret exactly once, HPKE-sealed to the supplied transport_public_key, in the flow's `continue_with` items (action `show_pin_entry_ui`).
   """
 
   @derive Jason.Encoder
@@ -16,7 +16,7 @@ defmodule Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret do
   @type t :: %__MODULE__{
     :client_key_id => String.t,
     :signature => binary(),
-    :transport_public_key => binary() | nil
+    :transport_public_key => binary()
   }
 
   def decode(value) do

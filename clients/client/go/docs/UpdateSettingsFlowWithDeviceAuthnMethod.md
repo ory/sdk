@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Add** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodAdd**](UpdateSettingsFlowWithDeviceAuthnMethodAdd.md) |  | [optional] 
-**CsrfToken** | Pointer to **string** | CSRFToken is the anti-CSRF token It only is required to remove a key from the browser. | [optional] 
-**Delete** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodDelete**](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md) |  | [optional] 
-**Method** | **string** | Method  Should be set to \&quot;deviceauthn\&quot; when trying to add or remove a DeviceAuthn key. | 
-**RotateSecret** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret**](UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md) |  | [optional] 
+**CsrfToken** | Pointer to **string** | CSRFToken is the anti-CSRF token. It is only required to remove a key from the browser. | [optional] 
+**DeviceauthnRegister** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodRegister**](UpdateSettingsFlowWithDeviceAuthnMethodRegister.md) | Enrolls a new device key. Set exactly one of deviceauthn_register, deviceauthn_remove, or rotate_secret. | [optional] 
+**DeviceauthnRemove** | Pointer to **string** | The client_key_id of the key to remove: the key&#39;s deterministic fingerprint, the lowercase-hex SHA-256 of the device public key in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form. Keys enrolled before the server derived the id use their original client-chosen value. | [optional] 
+**Method** | **string** | Method  Should be set to \&quot;deviceauthn\&quot; when adding, removing, or rotating the secret of a DeviceAuthn key. | 
+**RotateSecret** | Pointer to [**UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret**](UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md) | Re-issues the pin_secret of an existing PIN-protected device key. Set exactly one of deviceauthn_register, deviceauthn_remove, or rotate_secret. | [optional] 
 **TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 
 ## Methods
@@ -29,31 +29,6 @@ will change when the set of required properties is changed
 NewUpdateSettingsFlowWithDeviceAuthnMethodWithDefaults instantiates a new UpdateSettingsFlowWithDeviceAuthnMethod object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAdd
-
-`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetAdd() UpdateSettingsFlowWithDeviceAuthnMethodAdd`
-
-GetAdd returns the Add field if non-nil, zero value otherwise.
-
-### GetAddOk
-
-`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetAddOk() (*UpdateSettingsFlowWithDeviceAuthnMethodAdd, bool)`
-
-GetAddOk returns a tuple with the Add field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAdd
-
-`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) SetAdd(v UpdateSettingsFlowWithDeviceAuthnMethodAdd)`
-
-SetAdd sets Add field to given value.
-
-### HasAdd
-
-`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) HasAdd() bool`
-
-HasAdd returns a boolean if a field has been set.
 
 ### GetCsrfToken
 
@@ -80,30 +55,55 @@ SetCsrfToken sets CsrfToken field to given value.
 
 HasCsrfToken returns a boolean if a field has been set.
 
-### GetDelete
+### GetDeviceauthnRegister
 
-`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDelete() UpdateSettingsFlowWithDeviceAuthnMethodDelete`
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDeviceauthnRegister() UpdateSettingsFlowWithDeviceAuthnMethodRegister`
 
-GetDelete returns the Delete field if non-nil, zero value otherwise.
+GetDeviceauthnRegister returns the DeviceauthnRegister field if non-nil, zero value otherwise.
 
-### GetDeleteOk
+### GetDeviceauthnRegisterOk
 
-`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDeleteOk() (*UpdateSettingsFlowWithDeviceAuthnMethodDelete, bool)`
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDeviceauthnRegisterOk() (*UpdateSettingsFlowWithDeviceAuthnMethodRegister, bool)`
 
-GetDeleteOk returns a tuple with the Delete field if it's non-nil, zero value otherwise
+GetDeviceauthnRegisterOk returns a tuple with the DeviceauthnRegister field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDelete
+### SetDeviceauthnRegister
 
-`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) SetDelete(v UpdateSettingsFlowWithDeviceAuthnMethodDelete)`
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) SetDeviceauthnRegister(v UpdateSettingsFlowWithDeviceAuthnMethodRegister)`
 
-SetDelete sets Delete field to given value.
+SetDeviceauthnRegister sets DeviceauthnRegister field to given value.
 
-### HasDelete
+### HasDeviceauthnRegister
 
-`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) HasDelete() bool`
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) HasDeviceauthnRegister() bool`
 
-HasDelete returns a boolean if a field has been set.
+HasDeviceauthnRegister returns a boolean if a field has been set.
+
+### GetDeviceauthnRemove
+
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDeviceauthnRemove() string`
+
+GetDeviceauthnRemove returns the DeviceauthnRemove field if non-nil, zero value otherwise.
+
+### GetDeviceauthnRemoveOk
+
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDeviceauthnRemoveOk() (*string, bool)`
+
+GetDeviceauthnRemoveOk returns a tuple with the DeviceauthnRemove field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeviceauthnRemove
+
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) SetDeviceauthnRemove(v string)`
+
+SetDeviceauthnRemove sets DeviceauthnRemove field to given value.
+
+### HasDeviceauthnRemove
+
+`func (o *UpdateSettingsFlowWithDeviceAuthnMethod) HasDeviceauthnRemove() bool`
+
+HasDeviceauthnRemove returns a boolean if a field has been set.
 
 ### GetMethod
 

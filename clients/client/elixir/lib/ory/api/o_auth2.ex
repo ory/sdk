@@ -256,6 +256,38 @@ defmodule Ory.Api.OAuth2 do
   end
 
   @doc """
+  Delete Rotated OAuth 2.0 Client Secrets
+  Removes all rotated secrets from an OAuth 2.0 client. This should be called after all services have been updated to use the new secret and the old secrets are no longer needed.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `id` (String.t): OAuth 2.0 Client ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.OAuth2Client.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec delete_rotated_o_auth2_client_secrets(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
+  def delete_rotated_o_auth2_client_secrets(connection, id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:delete)
+      |> url("/admin/clients/#{id}/secrets/rotate")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.OAuth2Client},
+      {404, Ory.Model.ErrorOAuth2},
+      {:default, Ory.Model.ErrorOAuth2}
+    ])
+  end
+
+  @doc """
   Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
   Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.  Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grant.
 
@@ -715,7 +747,7 @@ defmodule Ory.Api.OAuth2 do
 
   @doc """
   Patch OAuth 2.0 Client
-  Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+  Patch an existing OAuth 2.0 Client using JSON Patch. If you update `client_secret`, the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret. Passing a new `client_secret` will clear all rotated secrets.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
   ### Parameters
 
@@ -1009,8 +1041,41 @@ defmodule Ory.Api.OAuth2 do
   end
 
   @doc """
+  Rotate OAuth 2.0 Client Secret
+  Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `id` (String.t): OAuth 2.0 Client ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.OAuth2Client.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec rotate_o_auth2_client_secret(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
+  def rotate_o_auth2_client_secret(connection, id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/admin/clients/#{id}/secrets/rotate")
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.OAuth2Client},
+      {404, Ory.Model.ErrorOAuth2},
+      {:default, Ory.Model.ErrorOAuth2}
+    ])
+  end
+
+  @doc """
   Set OAuth 2.0 Client
-  Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+  Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used. Rotated secrets will be cleared if you pass a new `client_secret`.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
   ### Parameters
 

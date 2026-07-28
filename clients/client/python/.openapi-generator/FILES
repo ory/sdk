@@ -93,6 +93,7 @@ docs/DeviceAuthnIOSAttStmt.md
 docs/DeviceAuthnIOSAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
+docs/DeviceType.md
 docs/DeviceUserAuthRequest.md
 docs/ElementsApi.md
 docs/ElementsConfiguration.md
@@ -121,6 +122,7 @@ docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md
 docs/GetMetricsEventTypes.md
 docs/GetOrganizationResponse.md
+docs/GetOrganizationsByHostnameResponse.md
 docs/GetProjectEvents.md
 docs/GetProjectEventsBody.md
 docs/GetProjectMetrics.md
@@ -180,6 +182,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/KeyState.md
 docs/KeyStatus.md
 docs/KeyVisibility.md
 docs/KeysetPaginationRequestParameters.md
@@ -238,6 +241,7 @@ docs/OnboardingPortalOrganization.md
 docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
+docs/OrganizationByHostname.md
 docs/OrganizationOnboardingPortalLinksResponse.md
 docs/PINConfig.md
 docs/ParseError.md
@@ -311,6 +315,7 @@ docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/SuccessfulProjectUpdate.md
+docs/TalosRetiredValue.md
 docs/TaxLineItem.md
 docs/TimeInterval.md
 docs/Token.md
@@ -361,8 +366,7 @@ docs/UpdateRegistrationFlowWithSamlMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRegister.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
@@ -377,6 +381,7 @@ docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
+docs/UpdateWorkspaceOrganizationBody.md
 docs/Usage.md
 docs/UserVerification.md
 docs/ValidateBaseURLRewriteRequest.md
@@ -508,6 +513,7 @@ ory_client/models/device_authn_ios_att_stmt.py
 ory_client/models/device_authn_ios_attestation.py
 ory_client/models/device_authn_key.py
 ory_client/models/device_authorization.py
+ory_client/models/device_type.py
 ory_client/models/device_user_auth_request.py
 ory_client/models/elements_configuration.py
 ory_client/models/email_template_data.py
@@ -533,6 +539,7 @@ ory_client/models/get_metrics_count.py
 ory_client/models/get_metrics_event_attributes.py
 ory_client/models/get_metrics_event_types.py
 ory_client/models/get_organization_response.py
+ory_client/models/get_organizations_by_hostname_response.py
 ory_client/models/get_project_events.py
 ory_client/models/get_project_events_body.py
 ory_client/models/get_project_metrics.py
@@ -590,6 +597,7 @@ ory_client/models/json_patch.py
 ory_client/models/json_web_key.py
 ory_client/models/json_web_key_set.py
 ory_client/models/keto_namespace.py
+ory_client/models/key_state.py
 ory_client/models/key_status.py
 ory_client/models/key_visibility.py
 ory_client/models/keyset_pagination_request_parameters.py
@@ -645,6 +653,7 @@ ory_client/models/onboarding_portal_organization.py
 ory_client/models/onboarding_portal_test_login_flow.py
 ory_client/models/organization.py
 ory_client/models/organization_body.py
+ory_client/models/organization_by_hostname.py
 ory_client/models/organization_onboarding_portal_links_response.py
 ory_client/models/parse_error.py
 ory_client/models/patch_identities_body.py
@@ -715,6 +724,7 @@ ory_client/models/successful_code_exchange_response.py
 ory_client/models/successful_native_login.py
 ory_client/models/successful_native_registration.py
 ory_client/models/successful_project_update.py
+ory_client/models/talos_retired_value.py
 ory_client/models/tax_line_item.py
 ory_client/models/time_interval.py
 ory_client/models/token.py
@@ -765,8 +775,7 @@ ory_client/models/update_registration_flow_with_saml_method.py
 ory_client/models/update_registration_flow_with_web_authn_method.py
 ory_client/models/update_settings_flow_body.py
 ory_client/models/update_settings_flow_with_device_authn_method.py
-ory_client/models/update_settings_flow_with_device_authn_method_add.py
-ory_client/models/update_settings_flow_with_device_authn_method_delete.py
+ory_client/models/update_settings_flow_with_device_authn_method_register.py
 ory_client/models/update_settings_flow_with_device_authn_method_rotate_secret.py
 ory_client/models/update_settings_flow_with_lookup_method.py
 ory_client/models/update_settings_flow_with_oidc_method.py
@@ -781,6 +790,7 @@ ory_client/models/update_verification_flow_body.py
 ory_client/models/update_verification_flow_with_code_method.py
 ory_client/models/update_verification_flow_with_link_method.py
 ory_client/models/update_workspace_body.py
+ory_client/models/update_workspace_organization_body.py
 ory_client/models/usage.py
 ory_client/models/user_verification.py
 ory_client/models/validate_base_url_rewrite_request.py
@@ -897,6 +907,7 @@ test/test_device_authn_ios_att_stmt.py
 test/test_device_authn_ios_attestation.py
 test/test_device_authn_key.py
 test/test_device_authorization.py
+test/test_device_type.py
 test/test_device_user_auth_request.py
 test/test_elements_api.py
 test/test_elements_configuration.py
@@ -925,6 +936,7 @@ test/test_get_metrics_count.py
 test/test_get_metrics_event_attributes.py
 test/test_get_metrics_event_types.py
 test/test_get_organization_response.py
+test/test_get_organizations_by_hostname_response.py
 test/test_get_project_events.py
 test/test_get_project_events_body.py
 test/test_get_project_metrics.py
@@ -984,6 +996,7 @@ test/test_json_web_key.py
 test/test_json_web_key_set.py
 test/test_jwk_api.py
 test/test_keto_namespace.py
+test/test_key_state.py
 test/test_key_status.py
 test/test_key_visibility.py
 test/test_keyset_pagination_request_parameters.py
@@ -1042,6 +1055,7 @@ test/test_onboarding_portal_organization.py
 test/test_onboarding_portal_test_login_flow.py
 test/test_organization.py
 test/test_organization_body.py
+test/test_organization_by_hostname.py
 test/test_organization_onboarding_portal_links_response.py
 test/test_parse_error.py
 test/test_patch_identities_body.py
@@ -1115,6 +1129,7 @@ test/test_successful_code_exchange_response.py
 test/test_successful_native_login.py
 test/test_successful_native_registration.py
 test/test_successful_project_update.py
+test/test_talos_retired_value.py
 test/test_tax_line_item.py
 test/test_time_interval.py
 test/test_token.py
@@ -1165,8 +1180,7 @@ test/test_update_registration_flow_with_saml_method.py
 test/test_update_registration_flow_with_web_authn_method.py
 test/test_update_settings_flow_body.py
 test/test_update_settings_flow_with_device_authn_method.py
-test/test_update_settings_flow_with_device_authn_method_add.py
-test/test_update_settings_flow_with_device_authn_method_delete.py
+test/test_update_settings_flow_with_device_authn_method_register.py
 test/test_update_settings_flow_with_device_authn_method_rotate_secret.py
 test/test_update_settings_flow_with_lookup_method.py
 test/test_update_settings_flow_with_oidc_method.py
@@ -1181,6 +1195,7 @@ test/test_update_verification_flow_body.py
 test/test_update_verification_flow_with_code_method.py
 test/test_update_verification_flow_with_link_method.py
 test/test_update_workspace_body.py
+test/test_update_workspace_organization_body.py
 test/test_usage.py
 test/test_user_verification.py
 test/test_validate_base_url_rewrite_request.py

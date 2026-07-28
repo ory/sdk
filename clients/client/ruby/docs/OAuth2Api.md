@@ -11,6 +11,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**create_o_auth2_client**](OAuth2Api.md#create_o_auth2_client) | **POST** /admin/clients | Create OAuth 2.0 Client |
 | [**delete_o_auth2_client**](OAuth2Api.md#delete_o_auth2_client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client |
 | [**delete_o_auth2_token**](OAuth2Api.md#delete_o_auth2_token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client |
+| [**delete_rotated_o_auth2_client_secrets**](OAuth2Api.md#delete_rotated_o_auth2_client_secrets) | **DELETE** /admin/clients/{id}/secrets/rotate | Delete Rotated OAuth 2.0 Client Secrets |
 | [**delete_trusted_o_auth2_jwt_grant_issuer**](OAuth2Api.md#delete_trusted_o_auth2_jwt_grant_issuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer |
 | [**get_o_auth2_client**](OAuth2Api.md#get_o_auth2_client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client |
 | [**get_o_auth2_consent_request**](OAuth2Api.md#get_o_auth2_consent_request) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request |
@@ -32,6 +33,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**revoke_o_auth2_consent_sessions**](OAuth2Api.md#revoke_o_auth2_consent_sessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject |
 | [**revoke_o_auth2_login_sessions**](OAuth2Api.md#revoke_o_auth2_login_sessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID |
 | [**revoke_o_auth2_token**](OAuth2Api.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token |
+| [**rotate_o_auth2_client_secret**](OAuth2Api.md#rotate_o_auth2_client_secret) | **POST** /admin/clients/{id}/secrets/rotate | Rotate OAuth 2.0 Client Secret |
 | [**set_o_auth2_client**](OAuth2Api.md#set_o_auth2_client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client |
 | [**set_o_auth2_client_lifespans**](OAuth2Api.md#set_o_auth2_client_lifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans |
 | [**trust_o_auth2_jwt_grant_issuer**](OAuth2Api.md#trust_o_auth2_jwt_grant_issuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer |
@@ -519,6 +521,75 @@ end
 ### Return type
 
 nil (empty response body)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## delete_rotated_o_auth2_client_secrets
+
+> <OAuth2Client> delete_rotated_o_auth2_client_secrets(id)
+
+Delete Rotated OAuth 2.0 Client Secrets
+
+Removes all rotated secrets from an OAuth 2.0 client. This should be called after all services have been updated to use the new secret and the old secrets are no longer needed.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::OAuth2Api.new
+id = 'id_example' # String | OAuth 2.0 Client ID
+
+begin
+  # Delete Rotated OAuth 2.0 Client Secrets
+  result = api_instance.delete_rotated_o_auth2_client_secrets(id)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling OAuth2Api->delete_rotated_o_auth2_client_secrets: #{e}"
+end
+```
+
+#### Using the delete_rotated_o_auth2_client_secrets_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OAuth2Client>, Integer, Hash)> delete_rotated_o_auth2_client_secrets_with_http_info(id)
+
+```ruby
+begin
+  # Delete Rotated OAuth 2.0 Client Secrets
+  data, status_code, headers = api_instance.delete_rotated_o_auth2_client_secrets_with_http_info(id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OAuth2Client>
+rescue OryClient::ApiError => e
+  puts "Error when calling OAuth2Api->delete_rotated_o_auth2_client_secrets_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | OAuth 2.0 Client ID |  |
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
 
 ### Authorization
 
@@ -1456,7 +1527,7 @@ end
 
 Patch OAuth 2.0 Client
 
-Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+Patch an existing OAuth 2.0 Client using JSON Patch. If you update `client_secret`, the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret. Passing a new `client_secret` will clear all rotated secrets.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Examples
 
@@ -2022,13 +2093,82 @@ nil (empty response body)
 - **Accept**: application/json
 
 
+## rotate_o_auth2_client_secret
+
+> <OAuth2Client> rotate_o_auth2_client_secret(id)
+
+Rotate OAuth 2.0 Client Secret
+
+Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryAccessToken
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::OAuth2Api.new
+id = 'id_example' # String | OAuth 2.0 Client ID
+
+begin
+  # Rotate OAuth 2.0 Client Secret
+  result = api_instance.rotate_o_auth2_client_secret(id)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling OAuth2Api->rotate_o_auth2_client_secret: #{e}"
+end
+```
+
+#### Using the rotate_o_auth2_client_secret_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OAuth2Client>, Integer, Hash)> rotate_o_auth2_client_secret_with_http_info(id)
+
+```ruby
+begin
+  # Rotate OAuth 2.0 Client Secret
+  data, status_code, headers = api_instance.rotate_o_auth2_client_secret_with_http_info(id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OAuth2Client>
+rescue OryClient::ApiError => e
+  puts "Error when calling OAuth2Api->rotate_o_auth2_client_secret_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | OAuth 2.0 Client ID |  |
+
+### Return type
+
+[**OAuth2Client**](OAuth2Client.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## set_o_auth2_client
 
 > <OAuth2Client> set_o_auth2_client(id, o_auth2_client)
 
 Set OAuth 2.0 Client
 
-Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used. Rotated secrets will be cleared if you pass a new `client_secret`.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
 ### Examples
 

@@ -1,7 +1,7 @@
 
 # UpdateLoginFlowWithDeviceAuthnMethod
 
-No CSRF token since this method may not be used from the browser.
+Log in by proving possession of an enrolled device key. The device signs the challenge nonce found in the login flow\'s hidden `deviceauthn_nonce` UI node; a PIN-protected key additionally proves knowledge of the PIN via `pin_proof`.  Use it for step-up in a login flow created with `aal=aal2`, or as the sole first factor (a one-step AAL2 login, for keys with \"pin\" or \"platform\" user verification) when the project\'s deviceauthn first_factor setting is enabled. Only API (native) flows support this method.
 
 ## Properties
 

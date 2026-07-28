@@ -1,15 +1,15 @@
 
 # UpdateSettingsFlowWithDeviceAuthnMethod
 
-Update Settings Flow with DeviceAuthn Method
+Manages the identity\'s enrolled device keys. Set exactly one of `deviceauthn_register` (enroll a new key), `deviceauthn_remove` (remove a key), or `rotate_secret` (re-issue the pin_secret of a PIN-protected key).
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`add` | [UpdateSettingsFlowWithDeviceAuthnMethodAdd](UpdateSettingsFlowWithDeviceAuthnMethodAdd.md)
 `csrf_token` | string
-`_delete` | [UpdateSettingsFlowWithDeviceAuthnMethodDelete](UpdateSettingsFlowWithDeviceAuthnMethodDelete.md)
+`deviceauthn_register` | [UpdateSettingsFlowWithDeviceAuthnMethodRegister](UpdateSettingsFlowWithDeviceAuthnMethodRegister.md)
+`deviceauthn_remove` | string
 `method` | string
 `rotate_secret` | [UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret](UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md)
 `transient_payload` | object
@@ -21,9 +21,9 @@ import type { UpdateSettingsFlowWithDeviceAuthnMethod } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
-  "add": null,
   "csrf_token": null,
-  "_delete": null,
+  "deviceauthn_register": null,
+  "deviceauthn_remove": null,
   "method": null,
   "rotate_secret": null,
   "transient_payload": null,
