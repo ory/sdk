@@ -24,7 +24,6 @@ use ory_client::apis::wellknown_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     match wellknown_api::discover_json_web_keys(&configuration).await {
         Ok(response) => println!("WellknownApi::discover_json_web_keys: {:?}", response),
         Err(error) => eprintln!("Error calling WellknownApi::discover_json_web_keys: {:?}", error),

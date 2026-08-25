@@ -630,7 +630,6 @@ use ory_client::apis::identity_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | ID must be set to the ID of schema you want to get
     match identity_api::get_identity_schema(&configuration, id).await {
         Ok(response) => println!("IdentityApi::get_identity_schema: {:?}", response),
@@ -794,7 +793,6 @@ use ory_client::apis::identity_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let per_page = None; // i64 | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)
     let page = None; // i64 | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
     let page_size = None; // i64 | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)

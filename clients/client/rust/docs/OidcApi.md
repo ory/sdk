@@ -31,7 +31,6 @@ use ory_client::apis::oidc_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let o_auth2_client = Default::default(); // OAuth2Client | Dynamic Client Registration Request Body
     match oidc_api::create_oidc_dynamic_client(&configuration, o_auth2_client).await {
         Ok(response) => println!("OidcApi::create_oidc_dynamic_client: {:?}", response),
@@ -79,7 +78,6 @@ use ory_client::apis::oidc_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let create_verifiable_credential_request_body = Some(Default::default()); // CreateVerifiableCredentialRequestBody (optional)
     match oidc_api::create_verifiable_credential(&configuration, create_verifiable_credential_request_body).await {
         Ok(response) => println!("OidcApi::create_verifiable_credential: {:?}", response),
@@ -175,7 +173,6 @@ use ory_client::apis::oidc_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     match oidc_api::discover_oidc_configuration(&configuration).await {
         Ok(response) => println!("OidcApi::discover_oidc_configuration: {:?}", response),
         Err(error) => eprintln!("Error calling OidcApi::discover_oidc_configuration: {:?}", error),
@@ -311,7 +308,6 @@ use ory_client::apis::oidc_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     match oidc_api::revoke_oidc_session(&configuration).await {
         Ok(_) => println!("OidcApi::revoke_oidc_session"),
         Err(error) => eprintln!("Error calling OidcApi::revoke_oidc_session: {:?}", error),

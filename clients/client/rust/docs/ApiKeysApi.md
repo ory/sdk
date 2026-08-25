@@ -839,7 +839,6 @@ use ory_client::apis::api_keys_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     match api_keys_api::get_jwks(&configuration).await {
         Ok(response) => println!("ApiKeysApi::get_jwks: {:?}", response),
         Err(error) => eprintln!("Error calling ApiKeysApi::get_jwks: {:?}", error),
@@ -883,7 +882,6 @@ use ory_client::apis::api_keys_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let self_revoke_api_key_request = Default::default(); // SelfRevokeApiKeyRequest | SelfRevokeApiKeyRequest allows an API key holder to revoke their own key by providing the full key secret as proof of possession.
     match api_keys_api::revoke_api_key(&configuration, self_revoke_api_key_request).await {
         Ok(response) => println!("ApiKeysApi::revoke_api_key: {:?}", response),

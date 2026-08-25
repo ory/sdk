@@ -29,7 +29,8 @@ use {{{externCrateName}}}::apis::{{{classFilename}}};
 async fn main() {
 {{/supportAsync}}{{^supportAsync}}fn main() {
 {{/supportAsync}}    let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+{{#hasAuthMethods}}    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+{{/hasAuthMethods}}
 {{#allParams}}
     let {{{paramName}}} = {{#isBodyParam}}{{^required}}Some({{/required}}Default::default(){{^required}}){{/required}}{{/isBodyParam}}{{^isBodyParam}}{{^required}}None{{/required}}{{#required}}{{#isString}}"{{{example}}}"{{/isString}}{{^isString}}{{#isUuid}}"{{{example}}}"{{/isUuid}}{{^isUuid}}{{#isBoolean}}{{{example}}}{{/isBoolean}}{{#isInteger}}{{{example}}}{{/isInteger}}{{#isNumber}}{{{example}}}{{/isNumber}}{{^isBoolean}}{{^isInteger}}{{^isNumber}}Default::default(){{/isNumber}}{{/isInteger}}{{/isBoolean}}{{/isUuid}}{{/isString}}{{/required}}{{/isBodyParam}}; // {{{dataType}}}{{#description}} | {{{description}}}{{/description}}{{^required}} (optional){{/required}}
 {{/allParams}}

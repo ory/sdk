@@ -57,7 +57,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let refresh = None; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
     let aal = None; // String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional)
     let return_to = None; // String | The URL to return the browser to after the flow was completed. (optional)
@@ -119,7 +118,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let cookie = None; // String | HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. (optional)
     let return_to = None; // String | Return to URL  The URL to which the browser should be redirected to after the logout has been performed. (optional)
     match frontend_api::create_browser_logout_flow(&configuration, cookie, return_to).await {
@@ -169,7 +167,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let return_to = None; // String | The URL to return the browser to after the flow was completed. (optional)
     let skip_settings = None; // String | Skip redirection to the settings UI after the recovery flow was completed. Instead, the user will be redirected to the URL specified in `return_to` query parameter or the default return URL if `return_to` is not set. (optional)
     match frontend_api::create_browser_recovery_flow(&configuration, return_to, skip_settings).await {
@@ -219,7 +216,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let return_to = None; // String | The URL to return the browser to after the flow was completed. (optional)
     let login_challenge = None; // String | Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional)
     let after_verification_return_to = None; // String | The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional)
@@ -275,7 +271,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let return_to = None; // String | The URL to return the browser to after the flow was completed. (optional)
     let cookie = None; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
     let organization = None; // String | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional)
@@ -327,7 +322,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let return_to = None; // String | The URL to return the browser to after the flow was completed. (optional)
     match frontend_api::create_browser_verification_flow(&configuration, return_to).await {
         Ok(response) => println!("FrontendApi::create_browser_verification_flow: {:?}", response),
@@ -375,7 +369,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     match frontend_api::create_fedcm_flow(&configuration).await {
         Ok(response) => println!("FrontendApi::create_fedcm_flow: {:?}", response),
         Err(error) => eprintln!("Error calling FrontendApi::create_fedcm_flow: {:?}", error),
@@ -419,7 +412,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let refresh = None; // bool | Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
     let aal = None; // String | Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional)
     let x_session_token = None; // String | The Session Token of the Identity performing the settings flow. (optional)
@@ -481,7 +473,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     match frontend_api::create_native_recovery_flow(&configuration).await {
         Ok(response) => println!("FrontendApi::create_native_recovery_flow: {:?}", response),
         Err(error) => eprintln!("Error calling FrontendApi::create_native_recovery_flow: {:?}", error),
@@ -525,7 +516,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let return_session_token_exchange_code = None; // bool | EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
     let return_to = None; // String | The URL to return the browser to after the flow was completed. (optional)
     let organization = None; // String | An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
@@ -579,7 +569,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let x_session_token = None; // String | The Session Token of the Identity performing the settings flow. (optional)
     let organization = None; // String | An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional)
     match frontend_api::create_native_settings_flow(&configuration, x_session_token, organization).await {
@@ -629,7 +618,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let return_to = None; // String | A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. (optional)
     match frontend_api::create_native_verification_flow(&configuration, return_to).await {
         Ok(response) => println!("FrontendApi::create_native_verification_flow: {:?}", response),
@@ -677,7 +665,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | ID of the test login flow to delete.
     let cookie = None; // String | HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. (optional)
     match frontend_api::delete_test_login_flow(&configuration, id, cookie).await {
@@ -727,7 +714,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let x_session_token = None; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
     let cookie = None; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
     match frontend_api::disable_my_other_sessions(&configuration, x_session_token, cookie).await {
@@ -777,7 +763,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | ID is the session's ID.
     let x_session_token = None; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
     let cookie = None; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
@@ -827,7 +812,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let init_code = "init_code_example"; // String | The part of the code return when initializing the flow.
     let return_to_code = "return_to_code_example"; // String | The part of the code returned by the return_to URL.
     match frontend_api::exchange_session_token(&configuration, init_code, return_to_code).await {
@@ -877,7 +861,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | Error is the error's ID
     match frontend_api::get_flow_error(&configuration, id).await {
         Ok(response) => println!("FrontendApi::get_flow_error: {:?}", response),
@@ -925,7 +908,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
     let cookie = None; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
     match frontend_api::get_login_flow(&configuration, id, cookie).await {
@@ -975,7 +957,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
     let cookie = None; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
     match frontend_api::get_recovery_flow(&configuration, id, cookie).await {
@@ -1025,7 +1006,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
     let cookie = None; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
     match frontend_api::get_registration_flow(&configuration, id, cookie).await {
@@ -1075,7 +1055,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
     let x_session_token = None; // String | The Session Token  When using the SDK in an app without a browser, please include the session token here. (optional)
     let cookie = None; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
@@ -1127,7 +1106,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
     let cookie = None; // String | HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional)
     match frontend_api::get_verification_flow(&configuration, id, cookie).await {
@@ -1177,7 +1155,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     match frontend_api::get_web_authn_java_script(&configuration).await {
         Ok(response) => println!("FrontendApi::get_web_authn_java_script: {:?}", response),
         Err(error) => eprintln!("Error calling FrontendApi::get_web_authn_java_script: {:?}", error),
@@ -1221,7 +1198,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     match frontend_api::get_well_known_change_password(&configuration).await {
         Ok(response) => println!("FrontendApi::get_well_known_change_password: {:?}", response),
         Err(error) => eprintln!("Error calling FrontendApi::get_well_known_change_password: {:?}", error),
@@ -1265,7 +1241,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let per_page = None; // i64 | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)
     let page = None; // i64 | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
     let page_size = None; // i64 | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
@@ -1323,7 +1298,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let perform_native_logout_body = Default::default(); // PerformNativeLogoutBody
     match frontend_api::perform_native_logout(&configuration, perform_native_logout_body).await {
         Ok(_) => println!("FrontendApi::perform_native_logout"),
@@ -1371,7 +1345,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let x_session_token = None; // String | Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
     let cookie = None; // String | Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
     let tokenize_as = None; // String | Returns the session additionally as a token (such as a JWT)  The value of this parameter has to be a valid, configured Ory Session token template. For more information head over to [the documentation](http://ory.sh/docs/identities/session-to-jwt-cors). (optional)
@@ -1423,7 +1396,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let update_fedcm_flow_body = Default::default(); // UpdateFedcmFlowBody
     match frontend_api::update_fedcm_flow(&configuration, update_fedcm_flow_body).await {
         Ok(response) => println!("FrontendApi::update_fedcm_flow: {:?}", response),
@@ -1471,7 +1443,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let flow = "flow_example"; // String | The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
     let update_login_flow_body = Default::default(); // UpdateLoginFlowBody
     let x_session_token = None; // String | The Session Token of the Identity performing the settings flow. (optional)
@@ -1525,7 +1496,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let token = None; // String | A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint. (optional)
     let return_to = None; // String | The URL to return to after the logout was completed. (optional)
     let cookie = None; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
@@ -1577,7 +1547,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let flow = "flow_example"; // String | The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
     let update_recovery_flow_body = Default::default(); // UpdateRecoveryFlowBody
     let token = None; // String | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)
@@ -1631,7 +1600,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let flow = "flow_example"; // String | The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
     let update_registration_flow_body = Default::default(); // UpdateRegistrationFlowBody
     let cookie = None; // String | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
@@ -1683,7 +1651,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let flow = "flow_example"; // String | The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
     let update_settings_flow_body = Default::default(); // UpdateSettingsFlowBody
     let x_session_token = None; // String | The Session Token of the Identity performing the settings flow. (optional)
@@ -1737,7 +1704,6 @@ use ory_client::apis::frontend_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let flow = "flow_example"; // String | The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
     let update_verification_flow_body = Default::default(); // UpdateVerificationFlowBody
     let token = None; // String | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)

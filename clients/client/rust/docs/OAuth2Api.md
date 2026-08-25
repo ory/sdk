@@ -944,7 +944,6 @@ use ory_client::apis::o_auth2_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     match o_auth2_api::o_auth2_authorize(&configuration).await {
         Ok(response) => println!("OAuth2Api::o_auth2_authorize: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::o_auth2_authorize: {:?}", error),
@@ -988,7 +987,6 @@ use ory_client::apis::o_auth2_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     match o_auth2_api::o_auth2_device_flow(&configuration).await {
         Ok(response) => println!("OAuth2Api::o_auth2_device_flow: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::o_auth2_device_flow: {:?}", error),
@@ -1138,7 +1136,6 @@ use ory_client::apis::o_auth2_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     match o_auth2_api::perform_o_auth2_device_verification_flow(&configuration).await {
         Ok(response) => println!("OAuth2Api::perform_o_auth2_device_verification_flow: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::perform_o_auth2_device_verification_flow: {:?}", error),
