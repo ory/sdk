@@ -35,6 +35,24 @@ Create multiple identities
 
 Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).  You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities), including passwords, social sign-in settings, and multi-factor authentication methods.  If the patch includes hashed passwords you can import up to 1,000 identities per request.  If the patch includes at least one plaintext password you can import up to 200 identities per request.  Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.  If at least one identity is imported successfully, the response status is 200 OK. If all imports fail, the response is one of the following 4xx errors: 400 Bad Request: The request payload is invalid or improperly formatted. 409 Conflict: Duplicate identities or conflicting data were detected.  If you get a 504 Gateway Timeout: Reduce the batch size Avoid duplicate identities Pre-hash passwords with BCrypt  If the issue persists, contact support.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let patch_identities_body = Some(Default::default()); // PatchIdentitiesBody (optional)
+    match identity_api::batch_patch_identities(&configuration, patch_identities_body).await {
+        Ok(response) => println!("IdentityApi::batch_patch_identities: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::batch_patch_identities: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -64,6 +82,24 @@ Name | Type | Description  | Required | Notes
 Create an Identity
 
 Create an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model).  This endpoint can also be used to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities) for instance passwords, social sign in configurations, or multifactor methods.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let create_identity_body = Some(Default::default()); // CreateIdentityBody (optional)
+    match identity_api::create_identity(&configuration, create_identity_body).await {
+        Ok(response) => println!("IdentityApi::create_identity: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::create_identity: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -95,6 +131,24 @@ Create a Recovery Code
 
 This endpoint creates a recovery code which should be given to the user in order for them to recover (or activate) their account.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let create_recovery_code_for_identity_body = Some(Default::default()); // CreateRecoveryCodeForIdentityBody (optional)
+    match identity_api::create_recovery_code_for_identity(&configuration, create_recovery_code_for_identity_body).await {
+        Ok(response) => println!("IdentityApi::create_recovery_code_for_identity: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::create_recovery_code_for_identity: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -124,6 +178,25 @@ Name | Type | Description  | Required | Notes
 Create a Recovery Link
 
 This endpoint creates a recovery link which should be given to the user in order for them to recover (or activate) their account.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let return_to = None; // String (optional)
+    let create_recovery_link_for_identity_body = Some(Default::default()); // CreateRecoveryLinkForIdentityBody (optional)
+    match identity_api::create_recovery_link_for_identity(&configuration, return_to, create_recovery_link_for_identity_body).await {
+        Ok(response) => println!("IdentityApi::create_recovery_link_for_identity: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::create_recovery_link_for_identity: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -156,6 +229,24 @@ Create a test OIDC login flow
 
 Creates a dry-run OIDC test login flow pre-scoped to one provider. The returned flow carries a single-submit UI and a CSRF bearer token. No identity is persisted and no session is issued when the flow completes; the captured debug data is returned in the flow's test_context.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let create_test_login_flow_body = Default::default(); // CreateTestLoginFlowBody
+    match identity_api::create_test_login_flow(&configuration, create_test_login_flow_body).await {
+        Ok(response) => println!("IdentityApi::create_test_login_flow: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::create_test_login_flow: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -186,6 +277,24 @@ Delete an Identity
 
 Calling this endpoint irrecoverably and permanently deletes the [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) given its ID. This action can not be undone. This endpoint returns 204 when the identity was deleted or 404 if the identity was not found.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | ID is the identity's ID.
+    match identity_api::delete_identity(&configuration, id).await {
+        Ok(_) => println!("IdentityApi::delete_identity"),
+        Err(error) => eprintln!("Error calling IdentityApi::delete_identity: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -215,6 +324,26 @@ Name | Type | Description  | Required | Notes
 Delete a credential for a specific identity
 
 Delete an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) credential by its type. You cannot delete passkeys or code auth credentials through this API.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | ID is the identity's ID.
+    let r#type = "r#type_example"; // String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+    let identifier = None; // String | Identifier is the identifier of the credential to delete. It is required for the `oidc`, `saml`, and `deviceauthn` credential types: for `oidc` and `saml` it selects the provider link to remove, for `deviceauthn` it is the `client_key_id` of the device key to revoke. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={type}` endpoint. (optional)
+    match identity_api::delete_identity_credentials(&configuration, id, r#type, identifier).await {
+        Ok(_) => println!("IdentityApi::delete_identity_credentials"),
+        Err(error) => eprintln!("Error calling IdentityApi::delete_identity_credentials: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -248,6 +377,24 @@ Delete & Invalidate an Identity's Sessions
 
 Calling this endpoint irrecoverably and permanently deletes and invalidates all sessions that belong to the given Identity.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | ID is the identity's ID.
+    match identity_api::delete_identity_sessions(&configuration, id).await {
+        Ok(_) => println!("IdentityApi::delete_identity_sessions"),
+        Err(error) => eprintln!("Error calling IdentityApi::delete_identity_sessions: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -277,6 +424,24 @@ Name | Type | Description  | Required | Notes
 Deactivate a Session
 
 Calling this endpoint deactivates the specified session. Session data is not deleted.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | ID is the session's ID.
+    match identity_api::disable_session(&configuration, id).await {
+        Ok(_) => println!("IdentityApi::disable_session"),
+        Err(error) => eprintln!("Error calling IdentityApi::disable_session: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -308,6 +473,24 @@ Extend a Session
 
 Calling this endpoint extends the given session ID. If `session.earliest_possible_extend` is set it will only extend the session after the specified time has passed.  This endpoint returns per default a 204 No Content response on success. Older Ory Network projects may return a 200 OK response with the session in the body. Returning the session as part of the response will be deprecated in the future and should not be relied upon.  This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those scenarios. This endpoint also returns 404 errors if the session does not exist.  Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | ID is the session's ID.
+    match identity_api::extend_session(&configuration, id).await {
+        Ok(response) => println!("IdentityApi::extend_session: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::extend_session: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -337,6 +520,25 @@ Name | Type | Description  | Required | Notes
 Get an Identity
 
 Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | ID must be set to the ID of identity you want to get
+    let include_credential = None; // Vec<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional)
+    match identity_api::get_identity(&configuration, id, include_credential).await {
+        Ok(response) => println!("IdentityApi::get_identity: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::get_identity: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -369,6 +571,25 @@ Get an Identity by its External ID
 
 Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let external_id = "external_id_example"; // String | ExternalID must be set to the ID of identity you want to get
+    let include_credential = None; // Vec<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional)
+    match identity_api::get_identity_by_external_id(&configuration, external_id, include_credential).await {
+        Ok(response) => println!("IdentityApi::get_identity_by_external_id: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::get_identity_by_external_id: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -400,6 +621,24 @@ Get Identity JSON Schema
 
 Return a specific identity schema.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | ID must be set to the ID of schema you want to get
+    match identity_api::get_identity_schema(&configuration, id).await {
+        Ok(response) => println!("IdentityApi::get_identity_schema: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::get_identity_schema: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -429,6 +668,25 @@ No authorization required
 Get Session
 
 This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | ID is the session's ID.
+    let expand = None; // Vec<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. Example - ?expand=Identity&expand=Devices If no value is provided, the expandable properties are skipped. (optional)
+    match identity_api::get_session(&configuration, id, expand).await {
+        Ok(response) => println!("IdentityApi::get_session: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::get_session: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -460,6 +718,33 @@ Name | Type | Description  | Required | Notes
 List Identities
 
 Lists all [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model) in the system. Note: filters cannot be combined.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let per_page = None; // i64 | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)
+    let page = None; // i64 | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
+    let page_size = None; // i64 | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let page_token = None; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let consistency = None; // String | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. (optional)
+    let ids = None; // Vec<String> | Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). (optional)
+    let credentials_identifier = None; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
+    let preview_credentials_identifier_similar = None; // String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
+    let include_credential = None; // Vec<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional)
+    let organization_id = None; // String | List identities that belong to a specific organization. (optional)
+    match identity_api::list_identities(&configuration, per_page, page, page_size, page_token, consistency, ids, credentials_identifier, preview_credentials_identifier_similar, include_credential, organization_id).await {
+        Ok(response) => println!("IdentityApi::list_identities: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::list_identities: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -500,6 +785,27 @@ Get all Identity Schemas
 
 Returns a list of all identity schemas currently in use.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let per_page = None; // i64 | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)
+    let page = None; // i64 | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
+    let page_size = None; // i64 | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let page_token = None; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    match identity_api::list_identity_schemas(&configuration, per_page, page, page_size, page_token).await {
+        Ok(response) => println!("IdentityApi::list_identity_schemas: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::list_identity_schemas: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -532,6 +838,29 @@ No authorization required
 List an Identity's Sessions
 
 This endpoint returns all sessions that belong to the given Identity.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | ID is the identity's ID.
+    let per_page = None; // i64 | Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)
+    let page = None; // i64 | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
+    let page_size = None; // i64 | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let page_token = None; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let active = None; // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
+    match identity_api::list_identity_sessions(&configuration, id, per_page, page, page_size, page_token, active).await {
+        Ok(response) => println!("IdentityApi::list_identity_sessions: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::list_identity_sessions: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -568,6 +897,27 @@ List All Sessions
 
 Listing all sessions that exist.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let page_size = None; // i64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let page_token = None; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let active = None; // bool | Active is a boolean flag that filters out sessions based on the state. If no value is provided, all sessions are returned. (optional)
+    let expand = None; // Vec<String> | ExpandOptions is a query parameter encoded list of all properties that must be expanded in the Session. If no value is provided, the expandable properties are skipped. (optional)
+    match identity_api::list_sessions(&configuration, page_size, page_token, active, expand).await {
+        Ok(response) => println!("IdentityApi::list_sessions: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::list_sessions: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -601,6 +951,24 @@ Manage sessions in bulk
 
 Disable or delete sessions for a list of identities or a list of sessions in a single call. The `action` field selects the operation:  `disable` — deactivate matching sessions (sets `active = false`, preserves audit data). `delete` — permanently delete matching sessions.  Exactly one of `identities` or `sessions` must be provided. To scope the operation to every session in the network, pass `identities: [\"*\"]`; the wildcard is not accepted in the `sessions` field. Up to 500 explicit IDs are accepted per call.  All requests return `200 OK` with `{processed, more}`. `processed` reports how many rows the call affected; for `disable` it counts only sessions that were active before the call. `more` is `true` only when a wildcard request reached the per-call batch limit and additional rows may remain; callers drain the network by re-issuing the same request while `more` is `true`. Explicit-IDs requests always return `more: false`.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let manage_sessions_body = Default::default(); // ManageSessionsBody
+    match identity_api::manage_sessions(&configuration, manage_sessions_body).await {
+        Ok(response) => println!("IdentityApi::manage_sessions: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::manage_sessions: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -630,6 +998,25 @@ Name | Type | Description  | Required | Notes
 Patch an Identity
 
 Partially updates an [identity's](https://www.ory.com/docs/kratos/concepts/identity-user-model) field using [JSON Patch](https://jsonpatch.com/). The fields `id`, `stateChangedAt` and `credentials` can not be updated using this method.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | ID must be set to the ID of identity you want to update
+    let json_patch = Some(Default::default()); // Vec<models::JsonPatch> (optional)
+    match identity_api::patch_identity(&configuration, id, json_patch).await {
+        Ok(response) => println!("IdentityApi::patch_identity: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::patch_identity: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -661,6 +1048,25 @@ Name | Type | Description  | Required | Notes
 Update an Identity
 
 This endpoint updates an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model). The full identity payload (except credentials) is expected.  It is possible to update the identity's credentials as well. Using this operation, credentials will not be overwritten but instead added to the list. For example, if a user has a social sign in connection set up, updating the credentials will keep the social sign in connection and add the new credentials to the list. This prevents accidentally overwriting credentials and locking out users. A complete view of all credential types is here:  `password`: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook. `oidc`, `saml`: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list. `totp`: The existing TOTP credentials will be replaced with the new configuration. `lookup_secret`: The existing Lookup Secret codes will be kept and the new codes will be added to the list. `webauthn`, `passkey`: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new `user_handle` is provided, it's added to the identity's identifiers list while preserving previous user handles. `code`: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (`{\"ory.sh/kratos\":{\"code\":{\"identifier\":true\", \"via\":\"email\"}}}`).
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::identity_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | ID must be set to the ID of identity you want to update
+    let update_identity_body = Some(Default::default()); // UpdateIdentityBody (optional)
+    match identity_api::update_identity(&configuration, id, update_identity_body).await {
+        Ok(response) => println!("IdentityApi::update_identity: {:?}", response),
+        Err(error) => eprintln!("Error calling IdentityApi::update_identity: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 

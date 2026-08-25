@@ -1,0 +1,108 @@
+# {{packageName}}.{{apiPackage}}.{{classname}}{{#description}}
+{{.}}{{/description}}
+
+All URIs are relative to *{{{basePath}}}*
+
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+{{#operations}}
+{{#operation}}
+| [**{{operationId}}**]({{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{summary}} |
+{{/operation}}
+{{/operations}}
+
+{{#operations}}
+{{#operation}}
+<a id="{{{operationIdLowerCase}}}"></a>
+# **{{{operationId}}}**
+> Task&lt;{{interfacePrefix}}{{operationId}}ApiResponse&gt; {{operationId}}Async({{>OperationSignature}})
+
+{{{summary}}}{{#notes}}
+
+{{{.}}}{{/notes}}
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using {{packageName}}.{{apiPackage}};
+using {{packageName}}.Client;
+using {{packageName}}.Extensions;
+using {{packageName}}.{{modelPackage}};
+
+namespace Example
+{
+    public class {{operationId}}Example
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .Configure{{apiName}}((context, services, options) =>
+                {
+                    {{#hasAuthMethods}}
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    {{/hasAuthMethods}}
+                    options.Add{{apiName}}HttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<{{interfacePrefix}}{{classname}}>();
+            {{#allParams}}
+            {{^required}}Option<{{/required}}{{>OperationDataType}}{{^required}}>{{/required}} {{paramName}} = default{{nrt!}}; // {{{description}}}{{^required}} (optional){{/required}}
+            {{/allParams}}
+            {{#responses}}
+            {{#-first}}
+            {{#dataType}}
+            var response = await api.{{operationId}}Async({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
+            {{{.}}}{{nrt?}} model = response.{{vendorExtensions.x-http-status}}();
+            {{/dataType}}
+            {{^dataType}}
+            await api.{{operationId}}Async({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
+            {{/dataType}}
+            {{/-first}}
+            {{/responses}}
+        }
+    }
+}
+```
+
+### Parameters
+{{^allParams}}This endpoint does not need any parameter.{{/allParams}}{{#allParams}}{{#-last}}
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+{{/-last}}
+{{/allParams}}
+{{#allParams}}
+| **{{paramName}}** | {{#isFile}}**{{dataType}}**{{/isFile}}{{#isPrimitiveType}}**{{dataType}}**{{/isPrimitiveType}}{{^isPrimitiveType}}{{^isFile}}[**{{dataType}}**](../models/{{#isContainer}}{{baseType}}{{/isContainer}}{{^isContainer}}{{dataType}}{{/isContainer}}.md){{/isFile}}{{/isPrimitiveType}} | {{description}} | {{^required}}[optional] {{/required}}{{#defaultValue}}[default to {{.}}]{{/defaultValue}} |
+{{/allParams}}
+
+### Return type
+
+{{#returnType}}{{#returnTypeIsPrimitive}}**{{{returnType}}}**{{/returnTypeIsPrimitive}}{{^returnTypeIsPrimitive}}[**{{returnType}}**](../models/{{returnBaseType}}.md){{/returnTypeIsPrimitive}}{{/returnType}}{{^returnType}}void (empty response body){{/returnType}}
+
+### Authorization
+
+{{^authMethods}}No authorization required{{/authMethods}}{{#authMethods}}[{{{name}}}](../../README.md#{{{name}}}){{^-last}}, {{/-last}}{{/authMethods}}
+
+### HTTP request headers
+
+ - **Content-Type**: {{#consumes}}{{{mediaType}}}{{^-last}}, {{/-last}}{{/consumes}}{{^consumes}}Not defined{{/consumes}}
+ - **Accept**: {{#produces}}{{{mediaType}}}{{^-last}}, {{/-last}}{{/produces}}{{^produces}}Not defined{{/produces}}
+
+{{#responses.0}}
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+{{#responses}}
+| **{{code}}** | {{message}} | {{#headers}} * {{baseName}} - {{description}} <br> {{/headers}}{{^headers.0}} - {{/headers.0}} |
+{{/responses}}
+{{/responses.0}}
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+{{/operation}}
+{{/operations}}

@@ -16,6 +16,24 @@ Get a Message
 
 Gets a specific messages by the given ID.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::courier_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | MessageID is the ID of the message.
+    match courier_api::get_courier_message(&configuration, id).await {
+        Ok(response) => println!("CourierApi::get_courier_message: {:?}", response),
+        Err(error) => eprintln!("Error calling CourierApi::get_courier_message: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -45,6 +63,27 @@ Name | Type | Description  | Required | Notes
 List Messages
 
 Lists all messages by given status and recipient.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::courier_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let page_size = None; // i64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let page_token = None; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let status = None; // CourierMessageStatus | Status filters out messages based on status. If no value is provided, it doesn't take effect on filter. (optional)
+    let recipient = None; // String | Recipient filters out messages based on recipient. If no value is provided, it doesn't take effect on filter. (optional)
+    match courier_api::list_courier_messages(&configuration, page_size, page_token, status, recipient).await {
+        Ok(response) => println!("CourierApi::list_courier_messages: {:?}", response),
+        Err(error) => eprintln!("Error calling CourierApi::list_courier_messages: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 

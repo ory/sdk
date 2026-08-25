@@ -283,6 +283,7 @@ rust () {
   npx @openapitools/openapi-generator-cli@2.25.2 version-manager set 7.17.0
   npx @openapitools/openapi-generator-cli@2.25.2 generate -i "${SPEC_FILE}" \
     -g rust \
+    -t ./config/client/rust-templates \
     -o "$dir" \
     --git-user-id ory \
     --git-repo-id sdk \
