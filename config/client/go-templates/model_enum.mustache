@@ -26,6 +26,12 @@ var Allowed{{{classname}}}EnumValues = []{{{classname}}}{
 }
 
 func (v *{{{classname}}}) UnmarshalJSON(src []byte) error {
+	{{! ORY OVERRIDE: reject null, which json.Unmarshal would otherwise accept. }}
+	// A nullable field decodes null before reaching this method, so null here is
+	// invalid. json.Unmarshal would silently leave the zero value instead.
+	if string(src) == "null" {
+		return fmt.Errorf("null is not a valid {{classname}}")
+	}
 	var value {{{format}}}{{^format}}{{dataType}}{{/format}}
 	err := json.Unmarshal(src, &value)
 	if err != nil {
