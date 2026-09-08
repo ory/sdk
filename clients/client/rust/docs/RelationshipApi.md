@@ -20,6 +20,24 @@ Check the syntax of an OPL file
 
 The OPL file is expected in the body of the request.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::relationship_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let body = Some(Default::default()); // String (optional)
+    match relationship_api::check_opl_syntax(&configuration, body).await {
+        Ok(response) => println!("RelationshipApi::check_opl_syntax: {:?}", response),
+        Err(error) => eprintln!("Error calling RelationshipApi::check_opl_syntax: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -50,6 +68,24 @@ Create a Relationship
 
 Use this endpoint to create a relationship.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::relationship_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let create_relationship_body = Some(Default::default()); // CreateRelationshipBody (optional)
+    match relationship_api::create_relationship(&configuration, create_relationship_body).await {
+        Ok(response) => println!("RelationshipApi::create_relationship: {:?}", response),
+        Err(error) => eprintln!("Error calling RelationshipApi::create_relationship: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -79,6 +115,30 @@ Name | Type | Description  | Required | Notes
 Delete Relationships
 
 Use this endpoint to delete relationships
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::relationship_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let namespace = None; // String | Namespace of the Relationship (optional)
+    let object = None; // String | Object of the Relationship (optional)
+    let relation = None; // String | Relation of the Relationship (optional)
+    let subject_id = None; // String | SubjectID of the Relationship (optional)
+    let subject_set_namespace = None; // String | Namespace of the Subject Set (optional)
+    let subject_set_object = None; // String | Object of the Subject Set (optional)
+    let subject_set_relation = None; // String | Relation of the Subject Set (optional)
+    match relationship_api::delete_relationships(&configuration, namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation).await {
+        Ok(_) => println!("RelationshipApi::delete_relationships"),
+        Err(error) => eprintln!("Error calling RelationshipApi::delete_relationships: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -115,6 +175,32 @@ Name | Type | Description  | Required | Notes
 Query relationships
 
 Get all relationships that match the query. Only the namespace field is required.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::relationship_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let page_size = None; // i64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let page_token = None; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let namespace = None; // String | Namespace of the Relationship (optional)
+    let object = None; // String | Object of the Relationship (optional)
+    let relation = None; // String | Relation of the Relationship (optional)
+    let subject_id = None; // String | SubjectID of the Relationship (optional)
+    let subject_set_namespace = None; // String | Namespace of the Subject Set (optional)
+    let subject_set_object = None; // String | Object of the Subject Set (optional)
+    let subject_set_relation = None; // String | Relation of the Subject Set (optional)
+    match relationship_api::get_relationships(&configuration, page_size, page_token, namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation).await {
+        Ok(response) => println!("RelationshipApi::get_relationships: {:?}", response),
+        Err(error) => eprintln!("Error calling RelationshipApi::get_relationships: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -154,6 +240,23 @@ Query namespaces
 
 Get all namespaces
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::relationship_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    match relationship_api::list_relationship_namespaces(&configuration).await {
+        Ok(response) => println!("RelationshipApi::list_relationship_namespaces: {:?}", response),
+        Err(error) => eprintln!("Error calling RelationshipApi::list_relationship_namespaces: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 This endpoint does not need any parameter.
@@ -180,6 +283,24 @@ This endpoint does not need any parameter.
 Patch Multiple Relationships
 
 Use this endpoint to patch one or more relationships.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::relationship_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let relationship_patch = Some(Default::default()); // Vec<models::RelationshipPatch> (optional)
+    match relationship_api::patch_relationships(&configuration, relationship_patch).await {
+        Ok(_) => println!("RelationshipApi::patch_relationships"),
+        Err(error) => eprintln!("Error calling RelationshipApi::patch_relationships: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 

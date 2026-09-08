@@ -35,6 +35,25 @@ Create an Enterprise SSO Organization
 
 Deprecated: use setProject or patchProjectWithRevision instead  Creates an Enterprise SSO Organization in a project.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    let organization_body = Some(Default::default()); // OrganizationBody (optional)
+    match project_api::create_organization(&configuration, project_id, organization_body).await {
+        Ok(response) => println!("ProjectApi::create_organization: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::create_organization: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -65,6 +84,26 @@ Name | Type | Description  | Required | Notes
 Create organization onboarding portal link
 
 Create a onboarding portal link for an organization.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    let organization_id = "organization_id_example"; // String | Organization ID  The Organization's ID.
+    let create_organization_onboarding_portal_link_body = Some(Default::default()); // CreateOrganizationOnboardingPortalLinkBody (optional)
+    match project_api::create_organization_onboarding_portal_link(&configuration, project_id, organization_id, create_organization_onboarding_portal_link_body).await {
+        Ok(response) => println!("ProjectApi::create_organization_onboarding_portal_link: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::create_organization_onboarding_portal_link: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -98,6 +137,24 @@ Create a Project
 
 Creates a new project.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let create_project_body = Some(Default::default()); // CreateProjectBody (optional)
+    match project_api::create_project(&configuration, create_project_body).await {
+        Ok(response) => println!("ProjectApi::create_project: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::create_project: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -127,6 +184,25 @@ Name | Type | Description  | Required | Notes
 Create project API key
 
 Create an API key for a project.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project = "project_example"; // String | The Project ID or Project slug
+    let create_project_api_key_body = Some(Default::default()); // CreateProjectApiKeyBody (optional)
+    match project_api::create_project_api_key(&configuration, project, create_project_api_key_body).await {
+        Ok(response) => println!("ProjectApi::create_project_api_key: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::create_project_api_key: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -159,6 +235,25 @@ Delete Enterprise SSO Organization
 
 Deprecated: use setProject or patchProjectWithRevision instead  Irrecoverably deletes an Enterprise SSO Organization in a project by its ID.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    let organization_id = "organization_id_example"; // String | Organization ID  The Organization's ID.
+    match project_api::delete_organization(&configuration, project_id, organization_id).await {
+        Ok(_) => println!("ProjectApi::delete_organization"),
+        Err(error) => eprintln!("Error calling ProjectApi::delete_organization: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -189,6 +284,26 @@ Name | Type | Description  | Required | Notes
 Delete an organization onboarding portal link
 
 Deletes a onboarding portal link for an organization.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String
+    let organization_id = "organization_id_example"; // String
+    let onboarding_portal_link_id = "onboarding_portal_link_id_example"; // String
+    match project_api::delete_organization_onboarding_portal_link(&configuration, project_id, organization_id, onboarding_portal_link_id).await {
+        Ok(_) => println!("ProjectApi::delete_organization_onboarding_portal_link"),
+        Err(error) => eprintln!("Error calling ProjectApi::delete_organization_onboarding_portal_link: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -222,6 +337,25 @@ Delete project API key
 
 Deletes an API key and immediately removes it.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project = "project_example"; // String | The Project ID or Project slug
+    let token_id = "token_id_example"; // String | The Token ID
+    match project_api::delete_project_api_key(&configuration, project, token_id).await {
+        Ok(_) => println!("ProjectApi::delete_project_api_key"),
+        Err(error) => eprintln!("Error calling ProjectApi::delete_project_api_key: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -252,6 +386,25 @@ Name | Type | Description  | Required | Notes
 Get Enterprise SSO Organization by ID
 
 Deprecated: use getProject instead  Retrieves an Enterprise SSO Organization for a project by its ID
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    let organization_id = "organization_id_example"; // String | Organization ID  The Organization's ID.
+    match project_api::get_organization(&configuration, project_id, organization_id).await {
+        Ok(response) => println!("ProjectApi::get_organization: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::get_organization: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -284,6 +437,25 @@ Get the organization onboarding portal links
 
 Retrieves the organization onboarding portal links.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    let organization_id = "organization_id_example"; // String | Organization ID  The Organization's ID.
+    match project_api::get_organization_onboarding_portal_links(&configuration, project_id, organization_id).await {
+        Ok(response) => println!("ProjectApi::get_organization_onboarding_portal_links: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::get_organization_onboarding_portal_links: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -315,6 +487,24 @@ Get a Project
 
 Get a project you have access to by its ID.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    match project_api::get_project(&configuration, project_id).await {
+        Ok(response) => println!("ProjectApi::get_project: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::get_project: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -345,6 +535,24 @@ Get all members associated with this project
 
 This endpoint requires the user to be a member of the project with the role `OWNER` or `DEVELOPER`.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project = "project_example"; // String
+    match project_api::get_project_members(&configuration, project).await {
+        Ok(response) => println!("ProjectApi::get_project_members: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::get_project_members: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -374,6 +582,27 @@ Name | Type | Description  | Required | Notes
 List all Enterprise SSO organizations
 
 Deprecated: use getProject instead  Lists all Enterprise SSO organizations in a project.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    let page_size = None; // i64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let page_token = None; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let domain = None; // String | Domain  If set, only organizations with that domain will be returned. (optional)
+    match project_api::list_organizations(&configuration, project_id, page_size, page_token, domain).await {
+        Ok(response) => println!("ProjectApi::list_organizations: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::list_organizations: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -408,6 +637,24 @@ List a project's API keys
 
 A list of all the project's API keys.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project = "project_example"; // String | The Project ID or Project slug
+    match project_api::list_project_api_keys(&configuration, project).await {
+        Ok(response) => println!("ProjectApi::list_project_api_keys: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::list_project_api_keys: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -438,6 +685,23 @@ List All Projects
 
 Lists all projects you have access to.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    match project_api::list_projects(&configuration).await {
+        Ok(response) => println!("ProjectApi::list_projects: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::list_projects: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 This endpoint does not need any parameter.
@@ -464,6 +728,25 @@ This endpoint does not need any parameter.
 Patch an Ory Network Project Configuration
 
 Deprecated: Use the `patchProjectWithRevision` endpoint instead to specify the exact revision the patch was generated for.  This endpoints allows you to patch individual Ory Network project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    let json_patch = Some(Default::default()); // Vec<models::JsonPatch> (optional)
+    match project_api::patch_project(&configuration, project_id, json_patch).await {
+        Ok(response) => println!("ProjectApi::patch_project: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::patch_project: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -495,6 +778,26 @@ Name | Type | Description  | Required | Notes
 Patch an Ory Network Project Configuration based on a revision ID
 
 This endpoints allows you to patch individual Ory Network Project configuration keys for Ory's services (identity, permission, ...). The configuration format is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    let revision_id = "revision_id_example"; // String | Revision ID  The revision ID that this patch was generated for.
+    let json_patch = Some(Default::default()); // Vec<models::JsonPatch> (optional)
+    match project_api::patch_project_with_revision(&configuration, project_id, revision_id, json_patch).await {
+        Ok(response) => println!("ProjectApi::patch_project_with_revision: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::patch_project_with_revision: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -528,6 +831,24 @@ Irrecoverably purge a project
 
 !! Use with extreme caution !!  Using this API endpoint you can purge (completely delete) a project and its data. This action can not be undone and will delete ALL your data.  Calling this endpoint will additionally delete custom domains and other related data.  If the project is linked to a subscription, the subscription needs to be unlinked first.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    match project_api::purge_project(&configuration, project_id).await {
+        Ok(_) => println!("ProjectApi::purge_project"),
+        Err(error) => eprintln!("Error calling ProjectApi::purge_project: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -557,6 +878,25 @@ Name | Type | Description  | Required | Notes
 Remove a member associated with this project
 
 This also sets their invite status to `REMOVED`. This endpoint requires the user to be a member of the project with the role `OWNER`.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project = "project_example"; // String
+    let member = "member_example"; // String
+    match project_api::remove_project_member(&configuration, project, member).await {
+        Ok(_) => println!("ProjectApi::remove_project_member"),
+        Err(error) => eprintln!("Error calling ProjectApi::remove_project_member: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -589,6 +929,25 @@ Update an Ory Network Project Configuration
 
 This endpoints allows you to update the Ory Network project configuration for individual services (identity, permission, ...). The configuration is fully compatible with the open source projects for the respective services (e.g. Ory Kratos for Identity, Ory Keto for Permissions).  This endpoint expects the `version` key to be set in the payload. If it is unset, it will try to import the config as if it is from the most recent version.  If you have an older version of a configuration, you should set the version key in the payload!  While this endpoint is able to process all configuration items related to features (e.g. password reset), it does not support operational configuration items (e.g. port, tracing, logging) otherwise available in the open source.  For configuration items that can not be translated to the Ory Network, this endpoint will return a list of warnings to help you understand which parts of your config could not be processed.  Be aware that updating any service's configuration will completely override your current configuration for that service!
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    let set_project = Some(Default::default()); // SetProject (optional)
+    match project_api::set_project(&configuration, project_id, set_project).await {
+        Ok(response) => println!("ProjectApi::set_project: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::set_project: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -619,6 +978,26 @@ Name | Type | Description  | Required | Notes
 Update an Enterprise SSO Organization
 
 Deprecated: use setProject or patchProjectWithRevision instead  Updates an Enterprise SSO Organization in a project by its ID.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    let organization_id = "organization_id_example"; // String | Organization ID  The Organization's ID.
+    let organization_body = Some(Default::default()); // OrganizationBody (optional)
+    match project_api::update_organization(&configuration, project_id, organization_id, organization_body).await {
+        Ok(response) => println!("ProjectApi::update_organization: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::update_organization: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -651,6 +1030,27 @@ Name | Type | Description  | Required | Notes
 Update organization onboarding portal link
 
 Update a onboarding portal link for an organization.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | Project ID  The project's ID.
+    let organization_id = "organization_id_example"; // String | Organization ID  The Organization's ID.
+    let onboarding_portal_link_id = "onboarding_portal_link_id_example"; // String
+    let update_organization_onboarding_portal_link_body = Some(Default::default()); // UpdateOrganizationOnboardingPortalLinkBody (optional)
+    match project_api::update_organization_onboarding_portal_link(&configuration, project_id, organization_id, onboarding_portal_link_id, update_organization_onboarding_portal_link_body).await {
+        Ok(response) => println!("ProjectApi::update_organization_onboarding_portal_link: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::update_organization_onboarding_portal_link: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 

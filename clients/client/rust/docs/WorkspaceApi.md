@@ -20,6 +20,24 @@ Method | HTTP request | Description
 > models::Workspace create_workspace(create_workspace_body)
 Create a new workspace
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::workspace_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let create_workspace_body = Some(Default::default()); // CreateWorkspaceBody (optional)
+    match workspace_api::create_workspace(&configuration, create_workspace_body).await {
+        Ok(response) => println!("WorkspaceApi::create_workspace: {:?}", response),
+        Err(error) => eprintln!("Error calling WorkspaceApi::create_workspace: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -49,6 +67,25 @@ Name | Type | Description  | Required | Notes
 Create workspace API key
 
 Create an API key for a workspace.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::workspace_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let workspace = "workspace_example"; // String | The Workspace ID
+    let create_workspace_api_key_body = Some(Default::default()); // CreateWorkspaceApiKeyBody (optional)
+    match workspace_api::create_workspace_api_key(&configuration, workspace, create_workspace_api_key_body).await {
+        Ok(response) => println!("WorkspaceApi::create_workspace_api_key: {:?}", response),
+        Err(error) => eprintln!("Error calling WorkspaceApi::create_workspace_api_key: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -81,6 +118,25 @@ Delete workspace API key
 
 Deletes an API key and immediately removes it.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::workspace_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let workspace = "workspace_example"; // String | The Workspace ID or Workspace slug
+    let token_id = "token_id_example"; // String | The Token ID
+    match workspace_api::delete_workspace_api_key(&configuration, workspace, token_id).await {
+        Ok(_) => println!("WorkspaceApi::delete_workspace_api_key"),
+        Err(error) => eprintln!("Error calling WorkspaceApi::delete_workspace_api_key: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -112,6 +168,24 @@ Get a workspace
 
 Any workspace member can access this endpoint.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::workspace_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let workspace = "workspace_example"; // String
+    match workspace_api::get_workspace(&configuration, workspace).await {
+        Ok(response) => println!("WorkspaceApi::get_workspace: {:?}", response),
+        Err(error) => eprintln!("Error calling WorkspaceApi::get_workspace: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -141,6 +215,24 @@ Name | Type | Description  | Required | Notes
 List a workspace's API keys
 
 A list of all the workspace's API keys.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::workspace_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let workspace = "workspace_example"; // String | The Workspace ID or Workspace slug
+    match workspace_api::list_workspace_api_keys(&configuration, workspace).await {
+        Ok(response) => println!("WorkspaceApi::list_workspace_api_keys: {:?}", response),
+        Err(error) => eprintln!("Error calling WorkspaceApi::list_workspace_api_keys: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -172,6 +264,24 @@ List all projects of a workspace
 
 Any workspace member can access this endpoint.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::workspace_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let workspace = "workspace_example"; // String
+    match workspace_api::list_workspace_projects(&configuration, workspace).await {
+        Ok(response) => println!("WorkspaceApi::list_workspace_projects: {:?}", response),
+        Err(error) => eprintln!("Error calling WorkspaceApi::list_workspace_projects: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -199,6 +309,25 @@ Name | Type | Description  | Required | Notes
 
 > models::ListWorkspaces list_workspaces(page_size, page_token)
 List workspaces the user is a member of
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::workspace_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let page_size = None; // i64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let page_token = None; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    match workspace_api::list_workspaces(&configuration, page_size, page_token).await {
+        Ok(response) => println!("WorkspaceApi::list_workspaces: {:?}", response),
+        Err(error) => eprintln!("Error calling WorkspaceApi::list_workspaces: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -230,6 +359,25 @@ Name | Type | Description  | Required | Notes
 Update an workspace
 
 Workspace members with the role `OWNER` can access this endpoint.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::workspace_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let workspace = "workspace_example"; // String
+    let update_workspace_body = Some(Default::default()); // UpdateWorkspaceBody (optional)
+    match workspace_api::update_workspace(&configuration, workspace, update_workspace_body).await {
+        Ok(response) => println!("WorkspaceApi::update_workspace: {:?}", response),
+        Err(error) => eprintln!("Error calling WorkspaceApi::update_workspace: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 

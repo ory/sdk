@@ -13,27 +13,62 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 <a id="batchcheckpermission"></a>
 # **BatchCheckPermission**
-> ClientBatchCheckPermissionResult BatchCheckPermission (long maxDepth = null, ClientBatchCheckPermissionBody clientBatchCheckPermissionBody = null)
+> Task&lt;IBatchCheckPermissionApiResponse&gt; BatchCheckPermissionAsync(Option<long> maxDepth = default, Option<ClientBatchCheckPermissionBody> clientBatchCheckPermissionBody = default, System.Threading.CancellationToken cancellationToken = default)
 
 Batch check permissions
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class BatchCheckPermissionExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IPermissionApi>();
+            Option<long> maxDepth = default!; //  (optional)
+            Option<ClientBatchCheckPermissionBody> clientBatchCheckPermissionBody = default!; //  (optional)
+            var response = await api.BatchCheckPermissionAsync(maxDepth, clientBatchCheckPermissionBody);
+            ClientBatchCheckPermissionResult? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **maxDepth** | **long** |  | [optional]  |
-| **clientBatchCheckPermissionBody** | [**ClientBatchCheckPermissionBody**](ClientBatchCheckPermissionBody.md) |  | [optional]  |
+| **clientBatchCheckPermissionBody** | [**ClientBatchCheckPermissionBody**](../models/ClientBatchCheckPermissionBody.md) |  | [optional]  |
 
 ### Return type
 
-[**ClientBatchCheckPermissionResult**](ClientBatchCheckPermissionResult.md)
+[**ClientBatchCheckPermissionResult**](../models/ClientBatchCheckPermissionResult.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -52,12 +87,53 @@ To learn how relationship tuples and the check works, head over to [the document
 
 <a id="checkpermission"></a>
 # **CheckPermission**
-> ClientCheckPermissionResult CheckPermission (string varNamespace = null, string varObject = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null, long maxDepth = null)
+> Task&lt;ICheckPermissionApiResponse&gt; CheckPermissionAsync(Option<string> varNamespace = default, Option<string> varObject = default, Option<string> relation = default, Option<string> subjectId = default, Option<string> subjectSetNamespace = default, Option<string> subjectSetObject = default, Option<string> subjectSetRelation = default, Option<long> maxDepth = default, System.Threading.CancellationToken cancellationToken = default)
 
 Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CheckPermissionExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IPermissionApi>();
+            Option<string> varNamespace = default!; // Namespace of the Relationship (optional)
+            Option<string> varObject = default!; // Object of the Relationship (optional)
+            Option<string> relation = default!; // Relation of the Relationship (optional)
+            Option<string> subjectId = default!; // SubjectID of the Relationship (optional)
+            Option<string> subjectSetNamespace = default!; // Namespace of the Subject Set (optional)
+            Option<string> subjectSetObject = default!; // Object of the Subject Set (optional)
+            Option<string> subjectSetRelation = default!; // Relation of the Subject Set (optional)
+            Option<long> maxDepth = default!; //  (optional)
+            var response = await api.CheckPermissionAsync(varNamespace, varObject, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, maxDepth);
+            ClientCheckPermissionResult? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -74,11 +150,11 @@ To learn how relationship tuples and the check works, head over to [the document
 
 ### Return type
 
-[**ClientCheckPermissionResult**](ClientCheckPermissionResult.md)
+[**ClientCheckPermissionResult**](../models/ClientCheckPermissionResult.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -97,12 +173,53 @@ To learn how relationship tuples and the check works, head over to [the document
 
 <a id="checkpermissionorerror"></a>
 # **CheckPermissionOrError**
-> ClientCheckPermissionResult CheckPermissionOrError (string varNamespace = null, string varObject = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null, long maxDepth = null)
+> Task&lt;ICheckPermissionOrErrorApiResponse&gt; CheckPermissionOrErrorAsync(Option<string> varNamespace = default, Option<string> varObject = default, Option<string> relation = default, Option<string> subjectId = default, Option<string> subjectSetNamespace = default, Option<string> subjectSetObject = default, Option<string> subjectSetRelation = default, Option<long> maxDepth = default, System.Threading.CancellationToken cancellationToken = default)
 
 Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CheckPermissionOrErrorExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IPermissionApi>();
+            Option<string> varNamespace = default!; // Namespace of the Relationship (optional)
+            Option<string> varObject = default!; // Object of the Relationship (optional)
+            Option<string> relation = default!; // Relation of the Relationship (optional)
+            Option<string> subjectId = default!; // SubjectID of the Relationship (optional)
+            Option<string> subjectSetNamespace = default!; // Namespace of the Subject Set (optional)
+            Option<string> subjectSetObject = default!; // Object of the Subject Set (optional)
+            Option<string> subjectSetRelation = default!; // Relation of the Subject Set (optional)
+            Option<long> maxDepth = default!; //  (optional)
+            var response = await api.CheckPermissionOrErrorAsync(varNamespace, varObject, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation, maxDepth);
+            ClientCheckPermissionResult? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -119,11 +236,11 @@ To learn how relationship tuples and the check works, head over to [the document
 
 ### Return type
 
-[**ClientCheckPermissionResult**](ClientCheckPermissionResult.md)
+[**ClientCheckPermissionResult**](../models/ClientCheckPermissionResult.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -143,12 +260,49 @@ To learn how relationship tuples and the check works, head over to [the document
 
 <a id="expandpermissions"></a>
 # **ExpandPermissions**
-> ClientExpandedPermissionTree ExpandPermissions (string varNamespace, string varObject, string relation, long maxDepth = null)
+> Task&lt;IExpandPermissionsApiResponse&gt; ExpandPermissionsAsync(string varNamespace, string varObject, string relation, Option<long> maxDepth = default, System.Threading.CancellationToken cancellationToken = default)
 
 Expand a Relationship into permissions.
 
 Use this endpoint to expand a relationship tuple into permissions.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class ExpandPermissionsExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IPermissionApi>();
+            string varNamespace = default!; // Namespace of the Subject Set
+            string varObject = default!; // Object of the Subject Set
+            string relation = default!; // Relation of the Subject Set
+            Option<long> maxDepth = default!; //  (optional)
+            var response = await api.ExpandPermissionsAsync(varNamespace, varObject, relation, maxDepth);
+            ClientExpandedPermissionTree? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -161,11 +315,11 @@ Use this endpoint to expand a relationship tuple into permissions.
 
 ### Return type
 
-[**ClientExpandedPermissionTree**](ClientExpandedPermissionTree.md)
+[**ClientExpandedPermissionTree**](../models/ClientExpandedPermissionTree.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -185,27 +339,62 @@ Use this endpoint to expand a relationship tuple into permissions.
 
 <a id="postcheckpermission"></a>
 # **PostCheckPermission**
-> ClientCheckPermissionResult PostCheckPermission (long maxDepth = null, ClientPostCheckPermissionBody clientPostCheckPermissionBody = null)
+> Task&lt;IPostCheckPermissionApiResponse&gt; PostCheckPermissionAsync(Option<long> maxDepth = default, Option<ClientPostCheckPermissionBody> clientPostCheckPermissionBody = default, System.Threading.CancellationToken cancellationToken = default)
 
 Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class PostCheckPermissionExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IPermissionApi>();
+            Option<long> maxDepth = default!; //  (optional)
+            Option<ClientPostCheckPermissionBody> clientPostCheckPermissionBody = default!; //  (optional)
+            var response = await api.PostCheckPermissionAsync(maxDepth, clientPostCheckPermissionBody);
+            ClientCheckPermissionResult? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **maxDepth** | **long** |  | [optional]  |
-| **clientPostCheckPermissionBody** | [**ClientPostCheckPermissionBody**](ClientPostCheckPermissionBody.md) |  | [optional]  |
+| **clientPostCheckPermissionBody** | [**ClientPostCheckPermissionBody**](../models/ClientPostCheckPermissionBody.md) |  | [optional]  |
 
 ### Return type
 
-[**ClientCheckPermissionResult**](ClientCheckPermissionResult.md)
+[**ClientCheckPermissionResult**](../models/ClientCheckPermissionResult.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -224,27 +413,62 @@ To learn how relationship tuples and the check works, head over to [the document
 
 <a id="postcheckpermissionorerror"></a>
 # **PostCheckPermissionOrError**
-> ClientCheckPermissionResult PostCheckPermissionOrError (long maxDepth = null, ClientPostCheckPermissionOrErrorBody clientPostCheckPermissionOrErrorBody = null)
+> Task&lt;IPostCheckPermissionOrErrorApiResponse&gt; PostCheckPermissionOrErrorAsync(Option<long> maxDepth = default, Option<ClientPostCheckPermissionOrErrorBody> clientPostCheckPermissionOrErrorBody = default, System.Threading.CancellationToken cancellationToken = default)
 
 Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class PostCheckPermissionOrErrorExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IPermissionApi>();
+            Option<long> maxDepth = default!; //  (optional)
+            Option<ClientPostCheckPermissionOrErrorBody> clientPostCheckPermissionOrErrorBody = default!; //  (optional)
+            var response = await api.PostCheckPermissionOrErrorAsync(maxDepth, clientPostCheckPermissionOrErrorBody);
+            ClientCheckPermissionResult? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **maxDepth** | **long** |  | [optional]  |
-| **clientPostCheckPermissionOrErrorBody** | [**ClientPostCheckPermissionOrErrorBody**](ClientPostCheckPermissionOrErrorBody.md) |  | [optional]  |
+| **clientPostCheckPermissionOrErrorBody** | [**ClientPostCheckPermissionOrErrorBody**](../models/ClientPostCheckPermissionOrErrorBody.md) |  | [optional]  |
 
 ### Return type
 
-[**ClientCheckPermissionResult**](ClientCheckPermissionResult.md)
+[**ClientCheckPermissionResult**](../models/ClientCheckPermissionResult.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 

@@ -15,6 +15,22 @@ Get Ory Elements configuration
 
 Returns a subset of the project's configuration for the given host. The response only contains non-sensitive data that is used to customize the behavior of Ory Elements.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::elements_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    match elements_api::get_configuration(&configuration).await {
+        Ok(response) => println!("ElementsApi::get_configuration: {:?}", response),
+        Err(error) => eprintln!("Error calling ElementsApi::get_configuration: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 This endpoint does not need any parameter.
