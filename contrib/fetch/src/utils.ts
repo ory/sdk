@@ -11,6 +11,7 @@ import {
   isSelfServiceFlowExpiredError,
   isSessionAal2Required,
 } from "./error"
+import { FlowType } from "./flowTypes"
 
 export type ValidationErrorHandler<T> = (body: T) => void
 
@@ -36,6 +37,13 @@ type FlowErrorHandlerProps<T> = {
    * This method is used to redirect the user to a different page.
    */
   onRedirect: OnRedirectHandler
+
+  /**
+   * The type of flow this error handler is used for. Used to handle status
+   * codes that only occur for specific flows, such as 401 on settings flows,
+   * which require a valid session.
+   */
+  flowType?: FlowType
 }
 
 /**
@@ -96,6 +104,18 @@ export const handleFlowError =
           )
         }
 
+        case 401: // The session is missing or expired.
+          if (opts.flowType === FlowType.Settings) {
+            // The settings flow requires a valid session. Restarting the flow
+            // sends the browser to the settings browser init endpoint, which
+            // redirects unauthenticated users to the login flow and carries
+            // over the return_to parameter.
+            opts.onRestartFlow()
+            return
+          }
+        // Other flows do not require a session, so a 401 is unexpected there.
+        // Fall through to the default handling.
+        // eslint-disable-next-line no-fallthrough
         default:
           throw new ResponseError(
             err.response,
