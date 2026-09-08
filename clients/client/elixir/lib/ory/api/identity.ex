@@ -243,7 +243,7 @@ defmodule Ory.Api.Identity do
   - `id` (String.t): ID is the identity's ID.
   - `type` (String.t): Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
   - `opts` (keyword): Optional parameters
-    - `:identifier` (String.t): Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint.
+    - `:identifier` (String.t): Identifier is the identifier of the credential to delete. It is required for the `oidc`, `saml`, and `deviceauthn` credential types: for `oidc` and `saml` it selects the provider link to remove, for `deviceauthn` it is the `client_key_id` of the device key to revoke. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={type}` endpoint.
 
   ### Returns
 
@@ -267,6 +267,7 @@ defmodule Ory.Api.Identity do
     |> Connection.request(request)
     |> evaluate_response([
       {204, false},
+      {400, Ory.Model.ErrorGeneric},
       {404, Ory.Model.ErrorGeneric},
       {:default, Ory.Model.ErrorGeneric}
     ])

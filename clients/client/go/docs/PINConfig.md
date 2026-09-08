@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **time.Time** | CreatedAt is when the pin_secret was first issued. | [optional] 
-**FailedAttempts** | Pointer to **int32** | FailedAttempts counts consecutive wrong-PIN attempts; the key locks when it reaches the configured maximum. | [optional] 
-**PinSecret** | Pointer to **string** | PINSecret is the at-rest pin_secret ciphertext. Server-internal: never logged or transmitted. Empty once the key locks. | [optional] 
-**RotatedAt** | Pointer to **time.Time** | RotatedAt is when the pin_secret was last rotated; the zero value means never rotated. omitzero (not omitempty) drops the zero timestamp from the JSON, since omitempty never treats a time.Time value as empty. | [optional] 
+**CreatedAt** | Pointer to **time.Time** | When the pin_secret was first issued. | [optional] 
+**FailedAttempts** | Pointer to **int32** | The number of consecutive wrong-PIN attempts so far; the key locks when it reaches the configured maximum (pin_max_attempts, default 5). | [optional] 
+**PinSecret** | Pointer to **string** | The at-rest ciphertext of the pin_secret. It never leaves the server and is cleared once the key locks. | [optional] 
+**RotatedAt** | Pointer to **time.Time** | When the pin_secret was last rotated. Omitted if the secret was never rotated. | [optional] 
 
 ## Methods
 

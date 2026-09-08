@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.63
+API version: v1.22.66
 Contact: support@ory.sh
 */
 
@@ -19,14 +19,17 @@ import (
 // checks if the UpdateSettingsFlowWithDeviceAuthnMethod type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateSettingsFlowWithDeviceAuthnMethod{}
 
-// UpdateSettingsFlowWithDeviceAuthnMethod Update Settings Flow with DeviceAuthn Method
+// UpdateSettingsFlowWithDeviceAuthnMethod Manages the identity's enrolled device keys. Set exactly one of `deviceauthn_register` (enroll a new key), `deviceauthn_remove` (remove a key), or `rotate_secret` (re-issue the pin_secret of a PIN-protected key).
 type UpdateSettingsFlowWithDeviceAuthnMethod struct {
-	Add *UpdateSettingsFlowWithDeviceAuthnMethodAdd `json:"add,omitempty"`
-	// CSRFToken is the anti-CSRF token It only is required to remove a key from the browser.
+	// CSRFToken is the anti-CSRF token. It is only required to remove a key from the browser.
 	CsrfToken *string `json:"csrf_token,omitempty"`
-	Delete *UpdateSettingsFlowWithDeviceAuthnMethodDelete `json:"delete,omitempty"`
-	// Method  Should be set to \"deviceauthn\" when trying to add or remove a DeviceAuthn key.
+	// Enrolls a new device key. Set exactly one of deviceauthn_register, deviceauthn_remove, or rotate_secret.
+	DeviceauthnRegister *UpdateSettingsFlowWithDeviceAuthnMethodRegister `json:"deviceauthn_register,omitempty"`
+	// The client_key_id of the key to remove: the key's deterministic fingerprint, the lowercase-hex SHA-256 of the device public key in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form. Keys enrolled before the server derived the id use their original client-chosen value.
+	DeviceauthnRemove *string `json:"deviceauthn_remove,omitempty"`
+	// Method  Should be set to \"deviceauthn\" when adding, removing, or rotating the secret of a DeviceAuthn key.
 	Method string `json:"method"`
+	// Re-issues the pin_secret of an existing PIN-protected device key. Set exactly one of deviceauthn_register, deviceauthn_remove, or rotate_secret.
 	RotateSecret *UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret `json:"rotate_secret,omitempty"`
 	// Transient data to pass along to any webhooks
 	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
@@ -51,38 +54,6 @@ func NewUpdateSettingsFlowWithDeviceAuthnMethod(method string) *UpdateSettingsFl
 func NewUpdateSettingsFlowWithDeviceAuthnMethodWithDefaults() *UpdateSettingsFlowWithDeviceAuthnMethod {
 	this := UpdateSettingsFlowWithDeviceAuthnMethod{}
 	return &this
-}
-
-// GetAdd returns the Add field value if set, zero value otherwise.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetAdd() UpdateSettingsFlowWithDeviceAuthnMethodAdd {
-	if o == nil || IsNil(o.Add) {
-		var ret UpdateSettingsFlowWithDeviceAuthnMethodAdd
-		return ret
-	}
-	return *o.Add
-}
-
-// GetAddOk returns a tuple with the Add field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetAddOk() (*UpdateSettingsFlowWithDeviceAuthnMethodAdd, bool) {
-	if o == nil || IsNil(o.Add) {
-		return nil, false
-	}
-	return o.Add, true
-}
-
-// HasAdd returns a boolean if a field has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethod) HasAdd() bool {
-	if o != nil && !IsNil(o.Add) {
-		return true
-	}
-
-	return false
-}
-
-// SetAdd gets a reference to the given UpdateSettingsFlowWithDeviceAuthnMethodAdd and assigns it to the Add field.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethod) SetAdd(v UpdateSettingsFlowWithDeviceAuthnMethodAdd) {
-	o.Add = &v
 }
 
 // GetCsrfToken returns the CsrfToken field value if set, zero value otherwise.
@@ -117,36 +88,68 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethod) SetCsrfToken(v string) {
 	o.CsrfToken = &v
 }
 
-// GetDelete returns the Delete field value if set, zero value otherwise.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDelete() UpdateSettingsFlowWithDeviceAuthnMethodDelete {
-	if o == nil || IsNil(o.Delete) {
-		var ret UpdateSettingsFlowWithDeviceAuthnMethodDelete
+// GetDeviceauthnRegister returns the DeviceauthnRegister field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDeviceauthnRegister() UpdateSettingsFlowWithDeviceAuthnMethodRegister {
+	if o == nil || IsNil(o.DeviceauthnRegister) {
+		var ret UpdateSettingsFlowWithDeviceAuthnMethodRegister
 		return ret
 	}
-	return *o.Delete
+	return *o.DeviceauthnRegister
 }
 
-// GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
+// GetDeviceauthnRegisterOk returns a tuple with the DeviceauthnRegister field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDeleteOk() (*UpdateSettingsFlowWithDeviceAuthnMethodDelete, bool) {
-	if o == nil || IsNil(o.Delete) {
+func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDeviceauthnRegisterOk() (*UpdateSettingsFlowWithDeviceAuthnMethodRegister, bool) {
+	if o == nil || IsNil(o.DeviceauthnRegister) {
 		return nil, false
 	}
-	return o.Delete, true
+	return o.DeviceauthnRegister, true
 }
 
-// HasDelete returns a boolean if a field has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethod) HasDelete() bool {
-	if o != nil && !IsNil(o.Delete) {
+// HasDeviceauthnRegister returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethod) HasDeviceauthnRegister() bool {
+	if o != nil && !IsNil(o.DeviceauthnRegister) {
 		return true
 	}
 
 	return false
 }
 
-// SetDelete gets a reference to the given UpdateSettingsFlowWithDeviceAuthnMethodDelete and assigns it to the Delete field.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethod) SetDelete(v UpdateSettingsFlowWithDeviceAuthnMethodDelete) {
-	o.Delete = &v
+// SetDeviceauthnRegister gets a reference to the given UpdateSettingsFlowWithDeviceAuthnMethodRegister and assigns it to the DeviceauthnRegister field.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethod) SetDeviceauthnRegister(v UpdateSettingsFlowWithDeviceAuthnMethodRegister) {
+	o.DeviceauthnRegister = &v
+}
+
+// GetDeviceauthnRemove returns the DeviceauthnRemove field value if set, zero value otherwise.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDeviceauthnRemove() string {
+	if o == nil || IsNil(o.DeviceauthnRemove) {
+		var ret string
+		return ret
+	}
+	return *o.DeviceauthnRemove
+}
+
+// GetDeviceauthnRemoveOk returns a tuple with the DeviceauthnRemove field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethod) GetDeviceauthnRemoveOk() (*string, bool) {
+	if o == nil || IsNil(o.DeviceauthnRemove) {
+		return nil, false
+	}
+	return o.DeviceauthnRemove, true
+}
+
+// HasDeviceauthnRemove returns a boolean if a field has been set.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethod) HasDeviceauthnRemove() bool {
+	if o != nil && !IsNil(o.DeviceauthnRemove) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceauthnRemove gets a reference to the given string and assigns it to the DeviceauthnRemove field.
+func (o *UpdateSettingsFlowWithDeviceAuthnMethod) SetDeviceauthnRemove(v string) {
+	o.DeviceauthnRemove = &v
 }
 
 // GetMethod returns the Method field value
@@ -247,14 +250,14 @@ func (o UpdateSettingsFlowWithDeviceAuthnMethod) MarshalJSON() ([]byte, error) {
 
 func (o UpdateSettingsFlowWithDeviceAuthnMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Add) {
-		toSerialize["add"] = o.Add
-	}
 	if !IsNil(o.CsrfToken) {
 		toSerialize["csrf_token"] = o.CsrfToken
 	}
-	if !IsNil(o.Delete) {
-		toSerialize["delete"] = o.Delete
+	if !IsNil(o.DeviceauthnRegister) {
+		toSerialize["deviceauthn_register"] = o.DeviceauthnRegister
+	}
+	if !IsNil(o.DeviceauthnRemove) {
+		toSerialize["deviceauthn_remove"] = o.DeviceauthnRemove
 	}
 	toSerialize["method"] = o.Method
 	if !IsNil(o.RotateSecret) {
@@ -306,9 +309,9 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethod) UnmarshalJSON(data []byte) (er
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "add")
 		delete(additionalProperties, "csrf_token")
-		delete(additionalProperties, "delete")
+		delete(additionalProperties, "deviceauthn_register")
+		delete(additionalProperties, "deviceauthn_remove")
 		delete(additionalProperties, "method")
 		delete(additionalProperties, "rotate_secret")
 		delete(additionalProperties, "transient_payload")

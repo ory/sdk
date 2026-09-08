@@ -1,15 +1,15 @@
 # PINConfig
 
-PINConfig is the per-key PIN state. The pin_secret field holds the at-rest ciphertext; the plaintext exists only transiently in memory during verification and is cleared once the key locks.
+The pin_secret field holds only the at-rest ciphertext; the plaintext exists transiently in server memory during verification and is invalidated once the key locks.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **string** | CreatedAt is when the pin_secret was first issued. | [optional] [default to undefined]
-**failed_attempts** | **number** | FailedAttempts counts consecutive wrong-PIN attempts; the key locks when it reaches the configured maximum. | [optional] [default to undefined]
-**pin_secret** | **string** | PINSecret is the at-rest pin_secret ciphertext. Server-internal: never logged or transmitted. Empty once the key locks. | [optional] [default to undefined]
-**rotated_at** | **string** | RotatedAt is when the pin_secret was last rotated; the zero value means never rotated. omitzero (not omitempty) drops the zero timestamp from the JSON, since omitempty never treats a time.Time value as empty. | [optional] [default to undefined]
+**created_at** | **string** | When the pin_secret was first issued. | [optional] [default to undefined]
+**failed_attempts** | **number** | The number of consecutive wrong-PIN attempts so far; the key locks when it reaches the configured maximum (pin_max_attempts, default 5). | [optional] [default to undefined]
+**pin_secret** | **string** | The at-rest ciphertext of the pin_secret. It never leaves the server and is cleared once the key locks. | [optional] [default to undefined]
+**rotated_at** | **string** | When the pin_secret was last rotated. Omitted if the secret was never rotated. | [optional] [default to undefined]
 
 ## Example
 

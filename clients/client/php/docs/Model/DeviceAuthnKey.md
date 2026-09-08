@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attestation** | [**\Ory\Client\Model\DeviceAuthnAttestation**](DeviceAuthnAttestation.md) |  | [optional]
-**clientKeyId** | **string** | ClientKeyID is the key&#39;s stable, unique-per-identity id, computed as hex(SHA-256(PublicKey)) — the lowercase-hex SHA-256 digest of the public key&#39;s PKIX, ASN.1 DER (SubjectPublicKeyInfo) encoding, exactly the bytes stored in PublicKey. It is a deterministic fingerprint of the enrolled signing key, so the device recomputes the identical value locally instead of receiving it from the server. Keys enrolled before the server derived the id keep their original client-chosen value. | [optional]
-**createdAt** | **\DateTime** | CreatedAt is the timestamp of when the key was created. Only used for troubleshooting/UI. | [optional]
-**deviceName** | **string** | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional]
-**deviceType** | **string** |  | [optional]
+**clientKeyId** | **string** | The key&#39;s stable id, unique per identity. Submit it as the &#x60;client_key_id&#x60; when logging in with the key, deleting it, or rotating its pin_secret.  The device can also compute the id without reading it back from the server: it is the lowercase-hex SHA-256 of &#x60;public_key&#x60; (the key&#39;s PKIX, ASN.1 DER encoding). Keys enrolled before the server derived the id keep their original client-chosen value, so prefer reading this field over recomputing it for older keys. | [optional]
+**createdAt** | **\DateTime** | When the key was enrolled. Only used for troubleshooting and UI. | [optional]
+**deviceName** | **string** | A human-readable name for the device, helping the user tell this key apart from others. | [optional]
+**deviceType** | [**\Ory\Client\Model\DeviceType**](DeviceType.md) |  | [optional]
 **pin** | [**\Ory\Client\Model\PINConfig**](PINConfig.md) |  | [optional]
-**publicKey** | **int[]** | PublicKey is the device&#39;s public key (EC P-256 in v1), used to verify signatures. It is stored in PKIX, ASN.1 DER form (the SubjectPublicKeyInfo encoding produced by x509.MarshalPKIXPublicKey). The private key resides inside the device and does not exist on the server. | [optional]
-**relaxedAttestationExpiresAt** | **\DateTime** | RelaxedAttestationExpiresAt is set only when the key&#39;s attestation chain validated because relaxed attestation was allowed (software roots, expired certs, software security level) rather than under strict rules. Such keys are second-class: they are refused at login after this time, or immediately if relaxed attestation is turned off. It is nil for hardware-attested keys that pass strict validation. | [optional]
-**state** | **string** |  | [optional]
+**publicKey** | **string** | The device&#39;s public key (an elliptic-curve key on P-224, P-256, P-384, or P-521 in version 1) in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form, base64-encoded. Signatures are verified against this key. | [optional]
+**relaxedAttestationExpiresAt** | **\DateTime** | Set only when the key&#39;s attestation chain was accepted under relaxed rules (software roots, expired certificates, software security level) rather than strict hardware attestation. Such keys are refused at login after this time, or immediately once relaxed attestation is turned off. Absent for hardware-attested keys that pass strict validation. | [optional]
+**state** | [**\Ory\Client\Model\KeyState**](KeyState.md) |  | [optional]
 **userVerification** | [**\Ory\Client\Model\UserVerification**](UserVerification.md) |  | [optional]
-**version** | **int** | v1 uses SHA256 + EC256. v2 (in the future) may use ML-DSA which is post-quantum resistant. This requires Android/iOS support so we have to wait. We intentionally avoid storing the cryptographic algorithm here a la JWT/TLS to avoid security issues and algorithm negotiation. | [optional]
+**version** | **int** | The cryptography version of the key. Version 1 uses ECDSA with SHA-256 on an elliptic curve (P-224, P-256, P-384, or P-521); further versions are reserved for future signature suites. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

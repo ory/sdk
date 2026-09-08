@@ -41,12 +41,51 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 <a id="createbrowserloginflow"></a>
 # **CreateBrowserLoginFlow**
-> ClientLoginFlow CreateBrowserLoginFlow (bool refresh = null, string aal = null, string returnTo = null, string cookie = null, string loginChallenge = null, string organization = null, string via = null, string identitySchema = null)
+> Task&lt;ICreateBrowserLoginFlowApiResponse&gt; CreateBrowserLoginFlowAsync(Option<bool> refresh = default, Option<string> aal = default, Option<string> returnTo = default, Option<string> cookie = default, Option<string> loginChallenge = default, Option<string> organization = default, Option<string> via = default, Option<string> identitySchema = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create Login Flow for Browsers
 
 This endpoint initializes a browser-based user login flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.login.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url` unless the query parameter `?refresh=true` was set.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  The optional query parameter login_challenge is set when using Kratos with Hydra in an OAuth2 flow. See the oauth2_provider.url configuration option.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateBrowserLoginFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<bool> refresh = default!; // Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
+            Option<string> aal = default!; // Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional)
+            Option<string> returnTo = default!; // The URL to return the browser to after the flow was completed. (optional)
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            Option<string> loginChallenge = default!; // An optional Hydra login challenge. If present, Kratos will cooperate with Ory Hydra to act as an OAuth2 identity provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/login?login_challenge=abcde`). (optional)
+            Option<string> organization = default!; // An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
+            Option<string> via = default!; // Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
+            Option<string> identitySchema = default!; // An optional identity schema to use for the login flow. (optional)
+            var response = await api.CreateBrowserLoginFlowAsync(refresh, aal, returnTo, cookie, loginChallenge, organization, via, identitySchema);
+            ClientLoginFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -63,7 +102,7 @@ This endpoint initializes a browser-based user login flow. This endpoint will se
 
 ### Return type
 
-[**ClientLoginFlow**](ClientLoginFlow.md)
+[**ClientLoginFlow**](../models/ClientLoginFlow.md)
 
 ### Authorization
 
@@ -87,12 +126,45 @@ No authorization required
 
 <a id="createbrowserlogoutflow"></a>
 # **CreateBrowserLogoutFlow**
-> ClientLogoutFlow CreateBrowserLogoutFlow (string cookie = null, string returnTo = null)
+> Task&lt;ICreateBrowserLogoutFlowApiResponse&gt; CreateBrowserLogoutFlowAsync(Option<string> cookie = default, Option<string> returnTo = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create a Logout URL for Browsers
 
 This endpoint initializes a browser-based user logout flow and a URL which can be used to log out the user.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  The URL is only valid for the currently signed in user. If no user is signed in, this endpoint returns a 401 error.  When calling this endpoint from a backend, please ensure to properly forward the HTTP cookies.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateBrowserLogoutFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<string> cookie = default!; // HTTP Cookies  If you call this endpoint from a backend, please include the original Cookie header in the request. (optional)
+            Option<string> returnTo = default!; // Return to URL  The URL to which the browser should be redirected to after the logout has been performed. (optional)
+            var response = await api.CreateBrowserLogoutFlowAsync(cookie, returnTo);
+            ClientLogoutFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -103,7 +175,7 @@ This endpoint initializes a browser-based user logout flow and a URL which can b
 
 ### Return type
 
-[**ClientLogoutFlow**](ClientLogoutFlow.md)
+[**ClientLogoutFlow**](../models/ClientLogoutFlow.md)
 
 ### Authorization
 
@@ -127,12 +199,45 @@ No authorization required
 
 <a id="createbrowserrecoveryflow"></a>
 # **CreateBrowserRecoveryFlow**
-> ClientRecoveryFlow CreateBrowserRecoveryFlow (string returnTo = null, string skipSettings = null)
+> Task&lt;ICreateBrowserRecoveryFlowApiResponse&gt; CreateBrowserRecoveryFlowAsync(Option<string> returnTo = default, Option<string> skipSettings = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create Recovery Flow for Browsers
 
 This endpoint initializes a browser-based account recovery flow. Once initialized, the browser will be redirected to `selfservice.flows.recovery.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists, the browser is returned to the configured return URL.  If this endpoint is called via an AJAX request, the response contains the recovery flow without any redirects or a 400 bad request error if the user is already authenticated.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateBrowserRecoveryFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<string> returnTo = default!; // The URL to return the browser to after the flow was completed. (optional)
+            Option<string> skipSettings = default!; // Skip redirection to the settings UI after the recovery flow was completed. Instead, the user will be redirected to the URL specified in `return_to` query parameter or the default return URL if `return_to` is not set. (optional)
+            var response = await api.CreateBrowserRecoveryFlowAsync(returnTo, skipSettings);
+            ClientRecoveryFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -143,7 +248,7 @@ This endpoint initializes a browser-based account recovery flow. Once initialize
 
 ### Return type
 
-[**ClientRecoveryFlow**](ClientRecoveryFlow.md)
+[**ClientRecoveryFlow**](../models/ClientRecoveryFlow.md)
 
 ### Authorization
 
@@ -167,12 +272,48 @@ No authorization required
 
 <a id="createbrowserregistrationflow"></a>
 # **CreateBrowserRegistrationFlow**
-> ClientRegistrationFlow CreateBrowserRegistrationFlow (string returnTo = null, string loginChallenge = null, string afterVerificationReturnTo = null, string organization = null, string identitySchema = null)
+> Task&lt;ICreateBrowserRegistrationFlowApiResponse&gt; CreateBrowserRegistrationFlowAsync(Option<string> returnTo = default, Option<string> loginChallenge = default, Option<string> afterVerificationReturnTo = default, Option<string> organization = default, Option<string> identitySchema = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create Registration Flow for Browsers
 
 This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.registration.ui_url` with the flow ID set as the query parameter `?flow=`. If a valid user session exists already, the browser will be redirected to `urls.default_redirect_url`.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateBrowserRegistrationFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<string> returnTo = default!; // The URL to return the browser to after the flow was completed. (optional)
+            Option<string> loginChallenge = default!; // Ory OAuth 2.0 Login Challenge.  If set will cooperate with Ory OAuth2 and OpenID to act as an OAuth2 server / OpenID Provider.  The value for this parameter comes from `login_challenge` URL Query parameter sent to your application (e.g. `/registration?login_challenge=abcde`).  This feature is compatible with Ory Hydra when not running on the Ory Network. (optional)
+            Option<string> afterVerificationReturnTo = default!; // The URL to return the browser to after the verification flow was completed.  After the registration flow is completed, the user will be sent a verification email. Upon completing the verification flow, this URL will be used to override the default `selfservice.flows.verification.after.default_redirect_to` value. (optional)
+            Option<string> organization = default!; // An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
+            Option<string> identitySchema = default!; // An optional identity schema to use for the registration flow. (optional)
+            var response = await api.CreateBrowserRegistrationFlowAsync(returnTo, loginChallenge, afterVerificationReturnTo, organization, identitySchema);
+            ClientRegistrationFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -186,7 +327,7 @@ This endpoint initializes a browser-based user registration flow. This endpoint 
 
 ### Return type
 
-[**ClientRegistrationFlow**](ClientRegistrationFlow.md)
+[**ClientRegistrationFlow**](../models/ClientRegistrationFlow.md)
 
 ### Authorization
 
@@ -209,12 +350,46 @@ No authorization required
 
 <a id="createbrowsersettingsflow"></a>
 # **CreateBrowserSettingsFlow**
-> ClientSettingsFlow CreateBrowserSettingsFlow (string returnTo = null, string cookie = null, string organization = null)
+> Task&lt;ICreateBrowserSettingsFlowApiResponse&gt; CreateBrowserSettingsFlowAsync(Option<string> returnTo = default, Option<string> cookie = default, Option<string> organization = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create Settings Flow for Browsers
 
 This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  If this endpoint is opened as a link in the browser, it will be redirected to `selfservice.flows.settings.ui_url` with the flow ID set as the query parameter `?flow=`. If no valid user session was set, the browser will be redirected to the login endpoint.  If this endpoint is called via an AJAX request, the response contains the settings flow without any redirects or a 401 forbidden error if no valid session was set.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `session_inactive`: No Ory Session was found - sign in a user first. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateBrowserSettingsFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<string> returnTo = default!; // The URL to return the browser to after the flow was completed. (optional)
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            Option<string> organization = default!; // An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional)
+            var response = await api.CreateBrowserSettingsFlowAsync(returnTo, cookie, organization);
+            ClientSettingsFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -226,7 +401,7 @@ This endpoint initializes a browser-based user settings flow. Once initialized, 
 
 ### Return type
 
-[**ClientSettingsFlow**](ClientSettingsFlow.md)
+[**ClientSettingsFlow**](../models/ClientSettingsFlow.md)
 
 ### Authorization
 
@@ -252,12 +427,44 @@ No authorization required
 
 <a id="createbrowserverificationflow"></a>
 # **CreateBrowserVerificationFlow**
-> ClientVerificationFlow CreateBrowserVerificationFlow (string returnTo = null)
+> Task&lt;ICreateBrowserVerificationFlowApiResponse&gt; CreateBrowserVerificationFlowAsync(Option<string> returnTo = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create Verification Flow for Browser Clients
 
 This endpoint initializes a browser-based account verification flow. Once initialized, the browser will be redirected to `selfservice.flows.verification.ui_url` with the flow ID set as the query parameter `?flow=`.  If this endpoint is called via an AJAX request, the response contains the recovery flow without any redirects.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...).  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateBrowserVerificationFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<string> returnTo = default!; // The URL to return the browser to after the flow was completed. (optional)
+            var response = await api.CreateBrowserVerificationFlowAsync(returnTo);
+            ClientVerificationFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -267,7 +474,7 @@ This endpoint initializes a browser-based account verification flow. Once initia
 
 ### Return type
 
-[**ClientVerificationFlow**](ClientVerificationFlow.md)
+[**ClientVerificationFlow**](../models/ClientVerificationFlow.md)
 
 ### Authorization
 
@@ -290,18 +497,49 @@ No authorization required
 
 <a id="createfedcmflow"></a>
 # **CreateFedcmFlow**
-> ClientCreateFedcmFlowResponse CreateFedcmFlow ()
+> Task&lt;ICreateFedcmFlowApiResponse&gt; CreateFedcmFlowAsync(System.Threading.CancellationToken cancellationToken = default)
 
 Get FedCM Parameters
 
 This endpoint returns a list of all available FedCM providers. It is only supported on the Ory Network.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateFedcmFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            var response = await api.CreateFedcmFlowAsync();
+            ClientCreateFedcmFlowResponse? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 This endpoint does not need any parameter.
 ### Return type
 
-[**ClientCreateFedcmFlowResponse**](ClientCreateFedcmFlowResponse.md)
+[**ClientCreateFedcmFlowResponse**](../models/ClientCreateFedcmFlowResponse.md)
 
 ### Authorization
 
@@ -324,12 +562,51 @@ No authorization required
 
 <a id="createnativeloginflow"></a>
 # **CreateNativeLoginFlow**
-> ClientLoginFlow CreateNativeLoginFlow (bool refresh = null, string aal = null, string xSessionToken = null, bool returnSessionTokenExchangeCode = null, string returnTo = null, string organization = null, string via = null, string identitySchema = null)
+> Task&lt;ICreateNativeLoginFlowApiResponse&gt; CreateNativeLoginFlowAsync(Option<bool> refresh = default, Option<string> aal = default, Option<string> xSessionToken = default, Option<bool> returnSessionTokenExchangeCode = default, Option<string> returnTo = default, Option<string> organization = default, Option<string> via = default, Option<string> identitySchema = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create Login Flow for Native Apps
 
 This endpoint initiates a login flow for native apps that do not use a browser, such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing login flow call `/self-service/login/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateNativeLoginFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<bool> refresh = default!; // Refresh a login session  If set to true, this will refresh an existing login session by asking the user to sign in again. This will reset the authenticated_at time of the session. (optional)
+            Option<string> aal = default!; // Request a Specific AuthenticationMethod Assurance Level  Use this parameter to upgrade an existing session's authenticator assurance level (AAL). This allows you to ask for multi-factor authentication. When an identity sign in using e.g. username+password, the AAL is 1. If you wish to \"upgrade\" the session's security by asking the user to perform TOTP / WebAuth/ ... you would set this to \"aal2\". (optional)
+            Option<string> xSessionToken = default!; // The Session Token of the Identity performing the settings flow. (optional)
+            Option<bool> returnSessionTokenExchangeCode = default!; // EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
+            Option<string> returnTo = default!; // The URL to return the browser to after the flow was completed. (optional)
+            Option<string> organization = default!; // An optional organization ID that should be used for logging this user in. This parameter is only effective in the Ory Network. (optional)
+            Option<string> via = default!; // Via should contain the identity's credential the code should be sent to. Only relevant in aal2 flows.  DEPRECATED: This field is deprecated. Please remove it from your requests. The user will now see a choice of MFA credentials to choose from to perform the second factor instead. (optional)
+            Option<string> identitySchema = default!; // An optional identity schema to use for the login flow. (optional)
+            var response = await api.CreateNativeLoginFlowAsync(refresh, aal, xSessionToken, returnSessionTokenExchangeCode, returnTo, organization, via, identitySchema);
+            ClientLoginFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -346,7 +623,7 @@ This endpoint initiates a login flow for native apps that do not use a browser, 
 
 ### Return type
 
-[**ClientLoginFlow**](ClientLoginFlow.md)
+[**ClientLoginFlow**](../models/ClientLoginFlow.md)
 
 ### Authorization
 
@@ -369,18 +646,49 @@ No authorization required
 
 <a id="createnativerecoveryflow"></a>
 # **CreateNativeRecoveryFlow**
-> ClientRecoveryFlow CreateNativeRecoveryFlow ()
+> Task&lt;ICreateNativeRecoveryFlowApiResponse&gt; CreateNativeRecoveryFlowAsync(System.Threading.CancellationToken cancellationToken = default)
 
 Create Recovery Flow for Native Apps
 
 This endpoint initiates a recovery flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error.  On an existing recovery flow, use the `getRecoveryFlow` API endpoint.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateNativeRecoveryFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            var response = await api.CreateNativeRecoveryFlowAsync();
+            ClientRecoveryFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 This endpoint does not need any parameter.
 ### Return type
 
-[**ClientRecoveryFlow**](ClientRecoveryFlow.md)
+[**ClientRecoveryFlow**](../models/ClientRecoveryFlow.md)
 
 ### Authorization
 
@@ -403,12 +711,47 @@ No authorization required
 
 <a id="createnativeregistrationflow"></a>
 # **CreateNativeRegistrationFlow**
-> ClientRegistrationFlow CreateNativeRegistrationFlow (bool returnSessionTokenExchangeCode = null, string returnTo = null, string organization = null, string identitySchema = null)
+> Task&lt;ICreateNativeRegistrationFlowApiResponse&gt; CreateNativeRegistrationFlowAsync(Option<bool> returnSessionTokenExchangeCode = default, Option<string> returnTo = default, Option<string> organization = default, Option<string> identitySchema = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create Registration Flow for Native Apps
 
 This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter `?refresh=true` is set.  To fetch an existing registration flow call `/self-service/registration/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateNativeRegistrationFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<bool> returnSessionTokenExchangeCode = default!; // EnableSessionTokenExchangeCode requests the login flow to include a code that can be used to retrieve the session token after the login flow has been completed. (optional)
+            Option<string> returnTo = default!; // The URL to return the browser to after the flow was completed. (optional)
+            Option<string> organization = default!; // An optional organization ID that should be used to register this user. This parameter is only effective in the Ory Network. (optional)
+            Option<string> identitySchema = default!; // An optional identity schema to use for the registration flow. (optional)
+            var response = await api.CreateNativeRegistrationFlowAsync(returnSessionTokenExchangeCode, returnTo, organization, identitySchema);
+            ClientRegistrationFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -421,7 +764,7 @@ This endpoint initiates a registration flow for API clients such as mobile devic
 
 ### Return type
 
-[**ClientRegistrationFlow**](ClientRegistrationFlow.md)
+[**ClientRegistrationFlow**](../models/ClientRegistrationFlow.md)
 
 ### Authorization
 
@@ -444,12 +787,45 @@ No authorization required
 
 <a id="createnativesettingsflow"></a>
 # **CreateNativeSettingsFlow**
-> ClientSettingsFlow CreateNativeSettingsFlow (string xSessionToken = null, string organization = null)
+> Task&lt;ICreateNativeSettingsFlowApiResponse&gt; CreateNativeSettingsFlowAsync(Option<string> xSessionToken = default, Option<string> organization = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create Settings Flow for Native Apps
 
 This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call `/self-service/settings/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  In the case of an error, the `error.id` of the JSON response body can be one of:  `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `session_inactive`: No Ory Session was found - sign in a user first.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateNativeSettingsFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<string> xSessionToken = default!; // The Session Token of the Identity performing the settings flow. (optional)
+            Option<string> organization = default!; // An optional organization ID that scopes the settings flow to providers of that organization. This parameter is only effective in the Ory Network. (optional)
+            var response = await api.CreateNativeSettingsFlowAsync(xSessionToken, organization);
+            ClientSettingsFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -460,7 +836,7 @@ This endpoint initiates a settings flow for API clients such as mobile devices, 
 
 ### Return type
 
-[**ClientSettingsFlow**](ClientSettingsFlow.md)
+[**ClientSettingsFlow**](../models/ClientSettingsFlow.md)
 
 ### Authorization
 
@@ -483,12 +859,44 @@ No authorization required
 
 <a id="createnativeverificationflow"></a>
 # **CreateNativeVerificationFlow**
-> ClientVerificationFlow CreateNativeVerificationFlow (string returnTo = null)
+> Task&lt;ICreateNativeVerificationFlowApiResponse&gt; CreateNativeVerificationFlowAsync(Option<string> returnTo = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create Verification Flow for Native Apps
 
 This endpoint initiates a verification flow for API clients such as mobile devices, smart TVs, and so on.  To fetch an existing verification flow call `/self-service/verification/flows?flow=<flow_id>`.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateNativeVerificationFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<string> returnTo = default!; // A URL contained in the return_to key of the verification flow. This piece of data has no effect on the actual logic of the flow and is purely informational. (optional)
+            var response = await api.CreateNativeVerificationFlowAsync(returnTo);
+            ClientVerificationFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -498,7 +906,7 @@ This endpoint initiates a verification flow for API clients such as mobile devic
 
 ### Return type
 
-[**ClientVerificationFlow**](ClientVerificationFlow.md)
+[**ClientVerificationFlow**](../models/ClientVerificationFlow.md)
 
 ### Authorization
 
@@ -521,12 +929,44 @@ No authorization required
 
 <a id="deletetestloginflow"></a>
 # **DeleteTestLoginFlow**
-> void DeleteTestLoginFlow (string id, string cookie = null)
+> Task&lt;IDeleteTestLoginFlowApiResponse&gt; DeleteTestLoginFlowAsync(string id, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Delete a test OIDC login flow
 
 Deletes a dry-run OIDC test login flow. A flow whose debug payload has been captured requires the HMAC cookie set by the OIDC callback; a flow still in the initial choose-method state is deletable with just the flow ID (it carries no PII, and the admin may want to abandon it).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class DeleteTestLoginFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string id = default!; // ID of the test login flow to delete.
+            Option<string> cookie = default!; // HTTP Cookies. A captured test flow requires the ory_kratos_test_flow cookie set by the OIDC callback; a flow still in the initial choose-method state does not. (optional)
+            await api.DeleteTestLoginFlowAsync(id, cookie);
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -562,12 +1002,45 @@ No authorization required
 
 <a id="disablemyothersessions"></a>
 # **DisableMyOtherSessions**
-> ClientDeleteMySessionsCount DisableMyOtherSessions (string xSessionToken = null, string cookie = null)
+> Task&lt;IDisableMyOtherSessionsApiResponse&gt; DisableMyOtherSessionsAsync(Option<string> xSessionToken = default, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Disable my other sessions
 
 Calling this endpoint invalidates all except the current session that belong to the logged-in user. Session data are not deleted.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class DisableMyOtherSessionsExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<string> xSessionToken = default!; // Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
+            Option<string> cookie = default!; // Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
+            var response = await api.DisableMyOtherSessionsAsync(xSessionToken, cookie);
+            ClientDeleteMySessionsCount? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -578,7 +1051,7 @@ Calling this endpoint invalidates all except the current session that belong to 
 
 ### Return type
 
-[**ClientDeleteMySessionsCount**](ClientDeleteMySessionsCount.md)
+[**ClientDeleteMySessionsCount**](../models/ClientDeleteMySessionsCount.md)
 
 ### Authorization
 
@@ -602,12 +1075,45 @@ No authorization required
 
 <a id="disablemysession"></a>
 # **DisableMySession**
-> void DisableMySession (string id, string xSessionToken = null, string cookie = null)
+> Task&lt;IDisableMySessionApiResponse&gt; DisableMySessionAsync(string id, Option<string> xSessionToken = default, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Disable one of my sessions
 
 Calling this endpoint invalidates the specified session. The current session cannot be revoked. Session data are not deleted.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class DisableMySessionExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string id = default!; // ID is the session's ID.
+            Option<string> xSessionToken = default!; // Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
+            Option<string> cookie = default!; // Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
+            await api.DisableMySessionAsync(id, xSessionToken, cookie);
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -643,10 +1149,43 @@ No authorization required
 
 <a id="exchangesessiontoken"></a>
 # **ExchangeSessionToken**
-> ClientSuccessfulNativeLogin ExchangeSessionToken (string initCode, string returnToCode)
+> Task&lt;IExchangeSessionTokenApiResponse&gt; ExchangeSessionTokenAsync(string initCode, string returnToCode, System.Threading.CancellationToken cancellationToken = default)
 
 Exchange Session Token
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class ExchangeSessionTokenExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string initCode = default!; // The part of the code return when initializing the flow.
+            string returnToCode = default!; // The part of the code returned by the return_to URL.
+            var response = await api.ExchangeSessionTokenAsync(initCode, returnToCode);
+            ClientSuccessfulNativeLogin? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -657,7 +1196,7 @@ Exchange Session Token
 
 ### Return type
 
-[**ClientSuccessfulNativeLogin**](ClientSuccessfulNativeLogin.md)
+[**ClientSuccessfulNativeLogin**](../models/ClientSuccessfulNativeLogin.md)
 
 ### Authorization
 
@@ -683,12 +1222,44 @@ No authorization required
 
 <a id="getflowerror"></a>
 # **GetFlowError**
-> ClientFlowError GetFlowError (string id)
+> Task&lt;IGetFlowErrorApiResponse&gt; GetFlowErrorAsync(string id, System.Threading.CancellationToken cancellationToken = default)
 
 Get User-Flow Errors
 
 This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  `?id=stub:500` - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-facing-errors).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetFlowErrorExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string id = default!; // Error is the error's ID
+            var response = await api.GetFlowErrorAsync(id);
+            ClientFlowError? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -698,7 +1269,7 @@ This endpoint returns the error associated with a user-facing self service error
 
 ### Return type
 
-[**ClientFlowError**](ClientFlowError.md)
+[**ClientFlowError**](../models/ClientFlowError.md)
 
 ### Authorization
 
@@ -722,12 +1293,45 @@ No authorization required
 
 <a id="getloginflow"></a>
 # **GetLoginFlow**
-> ClientLoginFlow GetLoginFlow (string id, string cookie = null)
+> Task&lt;IGetLoginFlowApiResponse&gt; GetLoginFlowAsync(string id, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Get Login Flow
 
 This endpoint returns a login flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/login', async function (req, res) { const flow = await client.getLoginFlow(req.header('cookie'), req.query['flow'])  res.render('login', flow) }) ```  This request may fail due to several reasons. The `error.id` can be one of:  `session_already_available`: The user is already signed in. `self_service_flow_expired`: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetLoginFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string id = default!; // The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            var response = await api.GetLoginFlowAsync(id, cookie);
+            ClientLoginFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -738,7 +1342,7 @@ This endpoint returns a login flow's context with, for example, error details an
 
 ### Return type
 
-[**ClientLoginFlow**](ClientLoginFlow.md)
+[**ClientLoginFlow**](../models/ClientLoginFlow.md)
 
 ### Authorization
 
@@ -763,12 +1367,45 @@ No authorization required
 
 <a id="getrecoveryflow"></a>
 # **GetRecoveryFlow**
-> ClientRecoveryFlow GetRecoveryFlow (string id, string cookie = null)
+> Task&lt;IGetRecoveryFlowApiResponse&gt; GetRecoveryFlowAsync(string id, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Get Recovery Flow
 
 This endpoint returns a recovery flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getRecoveryFlow(req.header('Cookie'), req.query['flow'])  res.render('recovery', flow) }) ```  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetRecoveryFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string id = default!; // The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            var response = await api.GetRecoveryFlowAsync(id, cookie);
+            ClientRecoveryFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -779,7 +1416,7 @@ This endpoint returns a recovery flow's context with, for example, error details
 
 ### Return type
 
-[**ClientRecoveryFlow**](ClientRecoveryFlow.md)
+[**ClientRecoveryFlow**](../models/ClientRecoveryFlow.md)
 
 ### Authorization
 
@@ -803,12 +1440,45 @@ No authorization required
 
 <a id="getregistrationflow"></a>
 # **GetRegistrationFlow**
-> ClientRegistrationFlow GetRegistrationFlow (string id, string cookie = null)
+> Task&lt;IGetRegistrationFlowApiResponse&gt; GetRegistrationFlowAsync(string id, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Get Registration Flow
 
 This endpoint returns a registration flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/registration', async function (req, res) { const flow = await client.getRegistrationFlow(req.header('cookie'), req.query['flow'])  res.render('registration', flow) }) ```  This request may fail due to several reasons. The `error.id` can be one of:  `session_already_available`: The user is already signed in. `self_service_flow_expired`: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetRegistrationFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string id = default!; // The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            var response = await api.GetRegistrationFlowAsync(id, cookie);
+            ClientRegistrationFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -819,7 +1489,7 @@ This endpoint returns a registration flow's context with, for example, error det
 
 ### Return type
 
-[**ClientRegistrationFlow**](ClientRegistrationFlow.md)
+[**ClientRegistrationFlow**](../models/ClientRegistrationFlow.md)
 
 ### Authorization
 
@@ -844,12 +1514,46 @@ No authorization required
 
 <a id="getsettingsflow"></a>
 # **GetSettingsFlow**
-> ClientSettingsFlow GetSettingsFlow (string id, string xSessionToken = null, string cookie = null)
+> Task&lt;IGetSettingsFlowApiResponse&gt; GetSettingsFlowAsync(string id, Option<string> xSessionToken = default, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Get Settings Flow
 
 When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `session_inactive`: No Ory Session was found - sign in a user first. `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other identity logged in instead.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetSettingsFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string id = default!; // ID is the Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+            Option<string> xSessionToken = default!; // The Session Token  When using the SDK in an app without a browser, please include the session token here. (optional)
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            var response = await api.GetSettingsFlowAsync(id, xSessionToken, cookie);
+            ClientSettingsFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -861,7 +1565,7 @@ When accessing this endpoint through Ory Kratos' Public API you must ensure that
 
 ### Return type
 
-[**ClientSettingsFlow**](ClientSettingsFlow.md)
+[**ClientSettingsFlow**](../models/ClientSettingsFlow.md)
 
 ### Authorization
 
@@ -887,12 +1591,45 @@ No authorization required
 
 <a id="getverificationflow"></a>
 # **GetVerificationFlow**
-> ClientVerificationFlow GetVerificationFlow (string id, string cookie = null)
+> Task&lt;IGetVerificationFlowApiResponse&gt; GetVerificationFlowAsync(string id, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Get Verification Flow
 
 This endpoint returns a verification flow's context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request's HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  ```js pseudo-code example router.get('/recovery', async function (req, res) { const flow = await client.getVerificationFlow(req.header('cookie'), req.query['flow'])  res.render('verification', flow) }) ```  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetVerificationFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string id = default!; // The Flow ID  The value for this parameter comes from `request` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK on the server side you must include the HTTP Cookie Header originally sent to your HTTP handler here. (optional)
+            var response = await api.GetVerificationFlowAsync(id, cookie);
+            ClientVerificationFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -903,7 +1640,7 @@ This endpoint returns a verification flow's context with, for example, error det
 
 ### Return type
 
-[**ClientVerificationFlow**](ClientVerificationFlow.md)
+[**ClientVerificationFlow**](../models/ClientVerificationFlow.md)
 
 ### Authorization
 
@@ -927,12 +1664,43 @@ No authorization required
 
 <a id="getwebauthnjavascript"></a>
 # **GetWebAuthnJavaScript**
-> string GetWebAuthnJavaScript ()
+> Task&lt;IGetWebAuthnJavaScriptApiResponse&gt; GetWebAuthnJavaScriptAsync(System.Threading.CancellationToken cancellationToken = default)
 
 Get WebAuthn JavaScript
 
 This endpoint provides JavaScript which is needed in order to perform WebAuthn login and registration.  If you are building a JavaScript Browser App (e.g. in ReactJS or AngularJS) you will need to load this file:  ```html <script src=\"https://public-kratos.example.org/.well-known/ory/webauthn.js\" type=\"script\" async /> ```  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetWebAuthnJavaScriptExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            var response = await api.GetWebAuthnJavaScriptAsync();
+            string? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -959,18 +1727,48 @@ No authorization required
 
 <a id="getwellknownchangepassword"></a>
 # **GetWellKnownChangePassword**
-> ClientErrorGeneric GetWellKnownChangePassword ()
+> Task&lt;IGetWellKnownChangePasswordApiResponse&gt; GetWellKnownChangePasswordAsync(System.Threading.CancellationToken cancellationToken = default)
 
 Change Password URL
 
 This endpoint implements the W3C \"change password URL\" well-known location by redirecting the browser to the configured settings UI. Password managers follow this redirect to take users straight to the page where they can change their password.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetWellKnownChangePasswordExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            await api.GetWellKnownChangePasswordAsync();
+        }
+    }
+}
+```
 
 ### Parameters
 This endpoint does not need any parameter.
 ### Return type
 
-[**ClientErrorGeneric**](ClientErrorGeneric.md)
+[**ClientErrorGeneric**](../models/ClientErrorGeneric.md)
 
 ### Authorization
 
@@ -992,12 +1790,49 @@ No authorization required
 
 <a id="listmysessions"></a>
 # **ListMySessions**
-> List&lt;ClientSession&gt; ListMySessions (long perPage = null, long page = null, long pageSize = null, string pageToken = null, string xSessionToken = null, string cookie = null)
+> Task&lt;IListMySessionsApiResponse&gt; ListMySessionsAsync(Option<long> perPage = default, Option<long> page = default, Option<long> pageSize = default, Option<string> pageToken = default, Option<string> xSessionToken = default, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Get My Active Sessions
 
 This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class ListMySessionsExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<long> perPage = default!; // Deprecated Items per Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This is the number of items per page. (optional)
+            Option<long> page = default!; // Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
+            Option<long> pageSize = default!; // Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+            Option<string> pageToken = default!; // Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+            Option<string> xSessionToken = default!; // Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
+            Option<string> cookie = default!; // Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
+            var response = await api.ListMySessionsAsync(perPage, page, pageSize, pageToken, xSessionToken, cookie);
+            List<ClientSession>? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -1012,7 +1847,7 @@ This endpoints returns all other active sessions that belong to the logged-in us
 
 ### Return type
 
-[**List&lt;ClientSession&gt;**](ClientSession.md)
+[**List&lt;ClientSession&gt;**](../models/ClientSession.md)
 
 ### Authorization
 
@@ -1036,18 +1871,49 @@ No authorization required
 
 <a id="performnativelogout"></a>
 # **PerformNativeLogout**
-> void PerformNativeLogout (ClientPerformNativeLogoutBody clientPerformNativeLogoutBody)
+> Task&lt;IPerformNativeLogoutApiResponse&gt; PerformNativeLogoutAsync(ClientPerformNativeLogoutBody clientPerformNativeLogoutBody, System.Threading.CancellationToken cancellationToken = default)
 
 Perform Logout for Native Apps
 
 Use this endpoint to log out an identity using an Ory Session Token. If the Ory Session Token was successfully revoked, the server returns a 204 No Content response. A 204 No Content response is also sent when the Ory Session Token has been revoked already before.  If the Ory Session Token is malformed or does not exist a 403 Forbidden response will be returned.  This endpoint does not remove any HTTP Cookies - use the Browser-Based Self-Service Logout Flow instead.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class PerformNativeLogoutExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            ClientPerformNativeLogoutBody clientPerformNativeLogoutBody = default!; // 
+            await api.PerformNativeLogoutAsync(clientPerformNativeLogoutBody);
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **clientPerformNativeLogoutBody** | [**ClientPerformNativeLogoutBody**](ClientPerformNativeLogoutBody.md) |  |  |
+| **clientPerformNativeLogoutBody** | [**ClientPerformNativeLogoutBody**](../models/ClientPerformNativeLogoutBody.md) |  |  |
 
 ### Return type
 
@@ -1074,12 +1940,46 @@ No authorization required
 
 <a id="tosession"></a>
 # **ToSession**
-> ClientSession ToSession (string xSessionToken = null, string cookie = null, string tokenizeAs = null)
+> Task&lt;IToSessionApiResponse&gt; ToSessionAsync(Option<string> xSessionToken = default, Option<string> cookie = default, Option<string> tokenizeAs = default, System.Threading.CancellationToken cancellationToken = default)
 
 Check Who the Current HTTP Session Belongs To
 
 Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  ```js pseudo-code example router.get('/protected-endpoint', async function (req, res) { const session = await client.toSession(undefined, req.header('cookie'))  console.log(session) }) ```  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\")  console.log(session) ```  When using a token template, the token is included in the `tokenized` field of the session.  ```js pseudo-code example ... const session = await client.toSession(\"the-session-token\", { tokenize_as: \"example-jwt-template\" })  console.log(session.tokenized) // The JWT ```  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the `X-Session-Token` header!  This endpoint authenticates users by checking:  if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie; if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token; if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The `error.id` can be one of:  `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class ToSessionExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<string> xSessionToken = default!; // Set the Session Token when calling from non-browser clients. A session token has a format of `MP2YWEMeM8MxjkGKpH4dqOQ4Q4DlSPaj`. (optional)
+            Option<string> cookie = default!; // Set the Cookie Header. This is especially useful when calling this endpoint from a server-side application. In that scenario you must include the HTTP Cookie Header which originally was included in the request to your server. An example of a session in the HTTP Cookie Header is: `ory_kratos_session=a19iOVAbdzdgl70Rq1QZmrKmcjDtdsviCTZx7m9a9yHIUS8Wa9T7hvqyGTsLHi6Qifn2WUfpAKx9DWp0SJGleIn9vh2YF4A16id93kXFTgIgmwIOvbVAScyrx7yVl6bPZnCx27ec4WQDtaTewC1CpgudeDV2jQQnSaCP6ny3xa8qLH-QUgYqdQuoA_LF1phxgRCUfIrCLQOkolX5nv3ze_f==`.  It is ok if more than one cookie are included here as all other cookies will be ignored. (optional)
+            Option<string> tokenizeAs = default!; // Returns the session additionally as a token (such as a JWT)  The value of this parameter has to be a valid, configured Ory Session token template. For more information head over to [the documentation](http://ory.sh/docs/identities/session-to-jwt-cors). (optional)
+            var response = await api.ToSessionAsync(xSessionToken, cookie, tokenizeAs);
+            ClientSession? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -1091,7 +1991,7 @@ Uses the HTTP Headers in the GET request to determine (e.g. by using checking th
 
 ### Return type
 
-[**ClientSession**](ClientSession.md)
+[**ClientSession**](../models/ClientSession.md)
 
 ### Authorization
 
@@ -1115,22 +2015,54 @@ No authorization required
 
 <a id="updatefedcmflow"></a>
 # **UpdateFedcmFlow**
-> ClientSuccessfulNativeLogin UpdateFedcmFlow (ClientUpdateFedcmFlowBody clientUpdateFedcmFlowBody)
+> Task&lt;IUpdateFedcmFlowApiResponse&gt; UpdateFedcmFlowAsync(ClientUpdateFedcmFlowBody clientUpdateFedcmFlowBody, System.Threading.CancellationToken cancellationToken = default)
 
 Submit a FedCM token
 
 Use this endpoint to submit a token from a FedCM provider through `navigator.credentials.get` and log the user in. The parameters from `navigator.credentials.get` must have come from `GET self-service/fed-cm/parameters`.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class UpdateFedcmFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            ClientUpdateFedcmFlowBody clientUpdateFedcmFlowBody = default!; // 
+            var response = await api.UpdateFedcmFlowAsync(clientUpdateFedcmFlowBody);
+            ClientSuccessfulNativeLogin? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **clientUpdateFedcmFlowBody** | [**ClientUpdateFedcmFlowBody**](ClientUpdateFedcmFlowBody.md) |  |  |
+| **clientUpdateFedcmFlowBody** | [**ClientUpdateFedcmFlowBody**](../models/ClientUpdateFedcmFlowBody.md) |  |  |
 
 ### Return type
 
-[**ClientSuccessfulNativeLogin**](ClientSuccessfulNativeLogin.md)
+[**ClientSuccessfulNativeLogin**](../models/ClientSuccessfulNativeLogin.md)
 
 ### Authorization
 
@@ -1156,25 +2088,60 @@ No authorization required
 
 <a id="updateloginflow"></a>
 # **UpdateLoginFlow**
-> ClientSuccessfulNativeLogin UpdateLoginFlow (string flow, ClientUpdateLoginFlowBody clientUpdateLoginFlowBody, string xSessionToken = null, string cookie = null)
+> Task&lt;IUpdateLoginFlowApiResponse&gt; UpdateLoginFlowAsync(string flow, ClientUpdateLoginFlowBody clientUpdateLoginFlowBody, Option<string> xSessionToken = default, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Submit a Login Flow
 
 Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 303 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded; a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class UpdateLoginFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string flow = default!; // The Login Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/login?flow=abcde`).
+            ClientUpdateLoginFlowBody clientUpdateLoginFlowBody = default!; // 
+            Option<string> xSessionToken = default!; // The Session Token of the Identity performing the settings flow. (optional)
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            var response = await api.UpdateLoginFlowAsync(flow, clientUpdateLoginFlowBody, xSessionToken, cookie);
+            ClientSuccessfulNativeLogin? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flow** | **string** | The Login Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/login?flow&#x3D;abcde&#x60;). |  |
-| **clientUpdateLoginFlowBody** | [**ClientUpdateLoginFlowBody**](ClientUpdateLoginFlowBody.md) |  |  |
+| **clientUpdateLoginFlowBody** | [**ClientUpdateLoginFlowBody**](../models/ClientUpdateLoginFlowBody.md) |  |  |
 | **xSessionToken** | **string** | The Session Token of the Identity performing the settings flow. | [optional]  |
 | **cookie** | **string** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]  |
 
 ### Return type
 
-[**ClientSuccessfulNativeLogin**](ClientSuccessfulNativeLogin.md)
+[**ClientSuccessfulNativeLogin**](../models/ClientSuccessfulNativeLogin.md)
 
 ### Authorization
 
@@ -1200,12 +2167,45 @@ No authorization required
 
 <a id="updatelogoutflow"></a>
 # **UpdateLogoutFlow**
-> void UpdateLogoutFlow (string token = null, string returnTo = null, string cookie = null)
+> Task&lt;IUpdateLogoutFlowApiResponse&gt; UpdateLogoutFlowAsync(Option<string> token = default, Option<string> returnTo = default, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Update Logout Flow
 
 This endpoint logs out an identity in a self-service manner.  If the `Accept` HTTP header is not set to `application/json`, the browser will be redirected (HTTP 303 See Other) to the `return_to` parameter of the initial request or fall back to `urls.default_return_to`.  If the `Accept` HTTP header is set to `application/json`, a 204 No Content response will be sent on successful logout instead.  This endpoint is NOT INTENDED for API clients and only works with browsers (Chrome, Firefox, ...). For API clients you can call the `/self-service/logout/api` URL directly with the Ory Session Token.  More information can be found at [Ory Kratos User Logout Documentation](https://www.ory.com/docs/next/kratos/self-service/flows/user-logout).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class UpdateLogoutFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            Option<string> token = default!; // A Valid Logout Token  If you do not have a logout token because you only have a session cookie, call `/self-service/logout/browser` to generate a URL for this endpoint. (optional)
+            Option<string> returnTo = default!; // The URL to return to after the logout was completed. (optional)
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            await api.UpdateLogoutFlowAsync(token, returnTo, cookie);
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -1240,25 +2240,60 @@ No authorization required
 
 <a id="updaterecoveryflow"></a>
 # **UpdateRecoveryFlow**
-> ClientRecoveryFlow UpdateRecoveryFlow (string flow, ClientUpdateRecoveryFlowBody clientUpdateRecoveryFlowBody, string token = null, string cookie = null)
+> Task&lt;IUpdateRecoveryFlowApiResponse&gt; UpdateRecoveryFlowAsync(string flow, ClientUpdateRecoveryFlowBody clientUpdateRecoveryFlowBody, Option<string> token = default, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Update Recovery Flow
 
 Use this endpoint to update a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended. `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a recovery link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class UpdateRecoveryFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string flow = default!; // The Recovery Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/recovery?flow=abcde`).
+            ClientUpdateRecoveryFlowBody clientUpdateRecoveryFlowBody = default!; // 
+            Option<string> token = default!; // Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            var response = await api.UpdateRecoveryFlowAsync(flow, clientUpdateRecoveryFlowBody, token, cookie);
+            ClientRecoveryFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flow** | **string** | The Recovery Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/recovery?flow&#x3D;abcde&#x60;). |  |
-| **clientUpdateRecoveryFlowBody** | [**ClientUpdateRecoveryFlowBody**](ClientUpdateRecoveryFlowBody.md) |  |  |
+| **clientUpdateRecoveryFlowBody** | [**ClientUpdateRecoveryFlowBody**](../models/ClientUpdateRecoveryFlowBody.md) |  |  |
 | **token** | **string** | Recovery Token  The recovery token which completes the recovery request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]  |
 | **cookie** | **string** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]  |
 
 ### Return type
 
-[**ClientRecoveryFlow**](ClientRecoveryFlow.md)
+[**ClientRecoveryFlow**](../models/ClientRecoveryFlow.md)
 
 ### Authorization
 
@@ -1284,24 +2319,58 @@ No authorization required
 
 <a id="updateregistrationflow"></a>
 # **UpdateRegistrationFlow**
-> ClientSuccessfulNativeRegistration UpdateRegistrationFlow (string flow, ClientUpdateRegistrationFlowBody clientUpdateRegistrationFlowBody, string cookie = null)
+> Task&lt;IUpdateRegistrationFlowApiResponse&gt; UpdateRegistrationFlowAsync(string flow, ClientUpdateRegistrationFlowBody clientUpdateRegistrationFlowBody, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Update Registration Flow
 
 Use this endpoint to complete a registration flow by sending an identity's traits and password. This endpoint behaves differently for API and browser flows.  API flows expect `application/json` to be sent in the body and respond with HTTP 200 and a application/json body with the created identity success - if the session hook is configured the `session` and `session_token` will also be included; HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with a HTTP 303 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded; a HTTP 303 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of `application/json` will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_already_available`: The user is already signed in. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class UpdateRegistrationFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string flow = default!; // The Registration Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/registration?flow=abcde`).
+            ClientUpdateRegistrationFlowBody clientUpdateRegistrationFlowBody = default!; // 
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            var response = await api.UpdateRegistrationFlowAsync(flow, clientUpdateRegistrationFlowBody, cookie);
+            ClientSuccessfulNativeRegistration? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flow** | **string** | The Registration Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/registration?flow&#x3D;abcde&#x60;). |  |
-| **clientUpdateRegistrationFlowBody** | [**ClientUpdateRegistrationFlowBody**](ClientUpdateRegistrationFlowBody.md) |  |  |
+| **clientUpdateRegistrationFlowBody** | [**ClientUpdateRegistrationFlowBody**](../models/ClientUpdateRegistrationFlowBody.md) |  |  |
 | **cookie** | **string** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]  |
 
 ### Return type
 
-[**ClientSuccessfulNativeRegistration**](ClientSuccessfulNativeRegistration.md)
+[**ClientSuccessfulNativeRegistration**](../models/ClientSuccessfulNativeRegistration.md)
 
 ### Authorization
 
@@ -1327,25 +2396,60 @@ No authorization required
 
 <a id="updatesettingsflow"></a>
 # **UpdateSettingsFlow**
-> ClientSettingsFlow UpdateSettingsFlow (string flow, ClientUpdateSettingsFlowBody clientUpdateSettingsFlowBody, string xSessionToken = null, string cookie = null)
+> Task&lt;IUpdateSettingsFlowApiResponse&gt; UpdateSettingsFlowAsync(string flow, ClientUpdateSettingsFlowBody clientUpdateSettingsFlowBody, Option<string> xSessionToken = default, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Complete Settings Flow
 
 Use this endpoint to complete a settings flow by sending an identity's updated password. This endpoint behaves differently for API and browser flows.  API-initiated flows expect `application/json` to be sent in the body and respond with HTTP 200 and an application/json body with the session token on success; HTTP 303 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors. HTTP 401 when the endpoint is called without a valid session token. HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low. Implies that the user needs to re-authenticate.  Browser flows without HTTP Header `Accept` or with `Accept: text/_*` respond with a HTTP 303 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded; a HTTP 303 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise. a HTTP 303 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.  Browser flows with HTTP Header `Accept: application/json` respond with HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 401 when the endpoint is called without a valid session cookie. HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low. HTTP 400 on form validation errors.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.  If this endpoint is called with a `Accept: application/json` HTTP header, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  `session_refresh_required`: The identity requested to change something that needs a privileged session. Redirect the identity to the login init endpoint with query parameters `?refresh=true&return_to=<the-current-browser-url>`, or initiate a refresh login flow otherwise. `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. `session_inactive`: No Ory Session was found - sign in a user first. `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other identity logged in instead. `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration! `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class UpdateSettingsFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string flow = default!; // The Settings Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/settings?flow=abcde`).
+            ClientUpdateSettingsFlowBody clientUpdateSettingsFlowBody = default!; // 
+            Option<string> xSessionToken = default!; // The Session Token of the Identity performing the settings flow. (optional)
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            var response = await api.UpdateSettingsFlowAsync(flow, clientUpdateSettingsFlowBody, xSessionToken, cookie);
+            ClientSettingsFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flow** | **string** | The Settings Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/settings?flow&#x3D;abcde&#x60;). |  |
-| **clientUpdateSettingsFlowBody** | [**ClientUpdateSettingsFlowBody**](ClientUpdateSettingsFlowBody.md) |  |  |
+| **clientUpdateSettingsFlowBody** | [**ClientUpdateSettingsFlowBody**](../models/ClientUpdateSettingsFlowBody.md) |  |  |
 | **xSessionToken** | **string** | The Session Token of the Identity performing the settings flow. | [optional]  |
 | **cookie** | **string** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]  |
 
 ### Return type
 
-[**ClientSettingsFlow**](ClientSettingsFlow.md)
+[**ClientSettingsFlow**](../models/ClientSettingsFlow.md)
 
 ### Authorization
 
@@ -1373,25 +2477,60 @@ No authorization required
 
 <a id="updateverificationflow"></a>
 # **UpdateVerificationFlow**
-> ClientVerificationFlow UpdateVerificationFlow (string flow, ClientUpdateVerificationFlowBody clientUpdateVerificationFlowBody, string token = null, string cookie = null)
+> Task&lt;IUpdateVerificationFlowApiResponse&gt; UpdateVerificationFlowAsync(string flow, ClientUpdateVerificationFlowBody clientUpdateVerificationFlowBody, Option<string> token = default, Option<string> cookie = default, System.Threading.CancellationToken cancellationToken = default)
 
 Complete Verification Flow
 
 Use this endpoint to complete a verification flow. This endpoint behaves differently for API and browser flows and has several states:  `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 303 See Other redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header `Accept` or with `Accept: text/_*` it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended. `sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state. `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow (\"sending a verification link\") does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with a new Verification Flow ID which contains an error message that the verification link was invalid.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class UpdateVerificationFlowExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IFrontendApi>();
+            string flow = default!; // The Verification Flow ID  The value for this parameter comes from `flow` URL Query parameter sent to your application (e.g. `/verification?flow=abcde`).
+            ClientUpdateVerificationFlowBody clientUpdateVerificationFlowBody = default!; // 
+            Option<string> token = default!; // Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. (optional)
+            Option<string> cookie = default!; // HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. (optional)
+            var response = await api.UpdateVerificationFlowAsync(flow, clientUpdateVerificationFlowBody, token, cookie);
+            ClientVerificationFlow? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flow** | **string** | The Verification Flow ID  The value for this parameter comes from &#x60;flow&#x60; URL Query parameter sent to your application (e.g. &#x60;/verification?flow&#x3D;abcde&#x60;). |  |
-| **clientUpdateVerificationFlowBody** | [**ClientUpdateVerificationFlowBody**](ClientUpdateVerificationFlowBody.md) |  |  |
+| **clientUpdateVerificationFlowBody** | [**ClientUpdateVerificationFlowBody**](../models/ClientUpdateVerificationFlowBody.md) |  |  |
 | **token** | **string** | Verification Token  The verification token which completes the verification request. If the token is invalid (e.g. expired) an error will be shown to the end-user.  This parameter is usually set in a link and not used by any direct API call. | [optional]  |
 | **cookie** | **string** | HTTP Cookies  When using the SDK in a browser app, on the server side you must include the HTTP Cookie Header sent by the client to your server here. This ensures that CSRF and session cookies are respected. | [optional]  |
 
 ### Return type
 
-[**ClientVerificationFlow**](ClientVerificationFlow.md)
+[**ClientVerificationFlow**](../models/ClientVerificationFlow.md)
 
 ### Authorization
 

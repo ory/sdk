@@ -1,13 +1,13 @@
 # ContinueWithDeviceAuthnPinEntryUiData
 
-Carries the one-time HPKE-sealed pin_secret material — the encapsulated key and the sealed ciphertext — that the device opens with the transport private key it generated for this enrollment.
+Contains the encapsulated key and the sealed ciphertext that the device opens with the X25519 transport private key it generated for this enrollment or rotation. Open it with HPKE (RFC 9180) using the suite DHKEM(X25519, HKDF-SHA256), HKDF-SHA256, AES-128-GCM, the ASCII info string \"ory/deviceauthn/pin-secret/v1\", and the key's client_key_id (its ASCII hex form) as the AAD.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ciphertext** | **str** | Ciphertext is the base64-encoded HPKE-sealed pin_secret. | 
-**enc** | **str** | Enc is the base64-encoded HPKE encapsulated key. | 
+**ciphertext** | **str** | The base64-encoded HPKE ciphertext of the sealed pin_secret. | 
+**enc** | **str** | The base64-encoded HPKE encapsulated key (the &#x60;enc&#x60; output of the seal operation). | 
 
 ## Example
 

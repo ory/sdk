@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.63
+API version: v1.22.66
 Contact: support@ory.sh
 */
 
@@ -19,16 +19,16 @@ import (
 // checks if the UpdateLoginFlowWithDeviceAuthnMethod type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateLoginFlowWithDeviceAuthnMethod{}
 
-// UpdateLoginFlowWithDeviceAuthnMethod No CSRF token since this method may not be used from the browser.
+// UpdateLoginFlowWithDeviceAuthnMethod Log in by proving possession of an enrolled device key. The device signs the challenge nonce found in the login flow's hidden `deviceauthn_nonce` UI node; a PIN-protected key additionally proves knowledge of the PIN via `pin_proof`.  Use it for step-up in a login flow created with `aal=aal2`, or as the sole first factor (a one-step AAL2 login, for keys with \"pin\" or \"platform\" user verification) when the project's deviceauthn first_factor setting is enabled. Only API (native) flows support this method.
 type UpdateLoginFlowWithDeviceAuthnMethod struct {
-	// ClientKeyID identifies the DeviceAuthn key to authenticate with.  It is the key's deterministic fingerprint — the lowercase-hex SHA-256 of the device public key in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form — which the device recomputes locally after enrollment. Keys enrolled before the server derived the id use their original client-chosen value.
-	ClientKeyId *string `json:"client_key_id,omitempty"`
+	// The client_key_id of the enrolled key to authenticate with.  It is the key's deterministic fingerprint: the lowercase-hex SHA-256 of the device public key in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form, which the device can recompute locally after enrollment. Keys enrolled before the server derived the id use their original client-chosen value.
+	ClientKeyId string `json:"client_key_id"`
 	// Method should be set to \"deviceauthn\" when logging in using the DeviceAuthn strategy.
 	Method string `json:"method"`
-	// PINProof is an HMAC the client computes using the pin_secret when the key is PIN-protected. It proves possession of the PIN without revealing it.  Sensitive: a proof of the PIN secret, do not log or transmit. It is marked write-only in the spec via the OpenAPI patch in .schema/openapi/patches/selfservice.yaml.
+	// The proof of the PIN, required if and only if the key is PIN-protected.  To compute it:  1. Recover the 32-byte pin_secret on the device. It was delivered HPKE-sealed exactly once at enrollment or rotation and is bound to the user's PIN locally. 2. Compute HMAC-SHA256, keyed with the pin_secret, over the concatenation of three byte strings: the ASCII domain prefix \"ory/deviceauthn/pin-proof/v1\", the client_key_id exactly as sent (its 64-character lowercase-hex ASCII form, not hex-decoded), and the raw challenge bytes also covered by `signature`. 3. Submit the 32-byte MAC output.  The proof shows knowledge of the PIN without transmitting the PIN or the pin_secret. After too many wrong attempts (pin_max_attempts, default 5) the key locks and can no longer be used to log in.
 	PinProof *string `json:"pin_proof,omitempty"`
-	// Signature is a ES256 signature of the server-provided challenge.
-	Signature *string `json:"signature,omitempty"`
+	// The device's signature over the challenge nonce carried by the login flow's hidden `deviceauthn_nonce` UI node.  To compute it:  1. Base64-decode the `deviceauthn_nonce` node's value and parse the result as JSON. 2. Base64-decode the JSON's `nonce` field. The decoded raw bytes are the challenge. 3. On Android, sign the challenge with the enrolled hardware-backed key using `Signature.getInstance(\"SHA256withECDSA\")` (it hashes internally) and submit the resulting ASN.1 DER-encoded ECDSA signature. On iOS, call `DCAppAttestService.generateAssertion`, passing the raw challenge bytes as the `clientDataHash` argument — do not hash them again — and submit the returned CBOR-encoded App Attest assertion unchanged.
+	Signature string `json:"signature"`
 	// Transient data to pass along to any webhooks
 	TransientPayload map[string]interface{} `json:"transient_payload,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -40,9 +40,11 @@ type _UpdateLoginFlowWithDeviceAuthnMethod UpdateLoginFlowWithDeviceAuthnMethod
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateLoginFlowWithDeviceAuthnMethod(method string) *UpdateLoginFlowWithDeviceAuthnMethod {
+func NewUpdateLoginFlowWithDeviceAuthnMethod(clientKeyId string, method string, signature string) *UpdateLoginFlowWithDeviceAuthnMethod {
 	this := UpdateLoginFlowWithDeviceAuthnMethod{}
+	this.ClientKeyId = clientKeyId
 	this.Method = method
+	this.Signature = signature
 	return &this
 }
 
@@ -54,36 +56,28 @@ func NewUpdateLoginFlowWithDeviceAuthnMethodWithDefaults() *UpdateLoginFlowWithD
 	return &this
 }
 
-// GetClientKeyId returns the ClientKeyId field value if set, zero value otherwise.
+// GetClientKeyId returns the ClientKeyId field value
 func (o *UpdateLoginFlowWithDeviceAuthnMethod) GetClientKeyId() string {
-	if o == nil || IsNil(o.ClientKeyId) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ClientKeyId
+
+	return o.ClientKeyId
 }
 
-// GetClientKeyIdOk returns a tuple with the ClientKeyId field value if set, nil otherwise
+// GetClientKeyIdOk returns a tuple with the ClientKeyId field value
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithDeviceAuthnMethod) GetClientKeyIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ClientKeyId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ClientKeyId, true
+	return &o.ClientKeyId, true
 }
 
-// HasClientKeyId returns a boolean if a field has been set.
-func (o *UpdateLoginFlowWithDeviceAuthnMethod) HasClientKeyId() bool {
-	if o != nil && !IsNil(o.ClientKeyId) {
-		return true
-	}
-
-	return false
-}
-
-// SetClientKeyId gets a reference to the given string and assigns it to the ClientKeyId field.
+// SetClientKeyId sets field value
 func (o *UpdateLoginFlowWithDeviceAuthnMethod) SetClientKeyId(v string) {
-	o.ClientKeyId = &v
+	o.ClientKeyId = v
 }
 
 // GetMethod returns the Method field value
@@ -142,36 +136,28 @@ func (o *UpdateLoginFlowWithDeviceAuthnMethod) SetPinProof(v string) {
 	o.PinProof = &v
 }
 
-// GetSignature returns the Signature field value if set, zero value otherwise.
+// GetSignature returns the Signature field value
 func (o *UpdateLoginFlowWithDeviceAuthnMethod) GetSignature() string {
-	if o == nil || IsNil(o.Signature) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Signature
+
+	return o.Signature
 }
 
-// GetSignatureOk returns a tuple with the Signature field value if set, nil otherwise
+// GetSignatureOk returns a tuple with the Signature field value
 // and a boolean to check if the value has been set.
 func (o *UpdateLoginFlowWithDeviceAuthnMethod) GetSignatureOk() (*string, bool) {
-	if o == nil || IsNil(o.Signature) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Signature, true
+	return &o.Signature, true
 }
 
-// HasSignature returns a boolean if a field has been set.
-func (o *UpdateLoginFlowWithDeviceAuthnMethod) HasSignature() bool {
-	if o != nil && !IsNil(o.Signature) {
-		return true
-	}
-
-	return false
-}
-
-// SetSignature gets a reference to the given string and assigns it to the Signature field.
+// SetSignature sets field value
 func (o *UpdateLoginFlowWithDeviceAuthnMethod) SetSignature(v string) {
-	o.Signature = &v
+	o.Signature = v
 }
 
 // GetTransientPayload returns the TransientPayload field value if set, zero value otherwise.
@@ -216,16 +202,12 @@ func (o UpdateLoginFlowWithDeviceAuthnMethod) MarshalJSON() ([]byte, error) {
 
 func (o UpdateLoginFlowWithDeviceAuthnMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ClientKeyId) {
-		toSerialize["client_key_id"] = o.ClientKeyId
-	}
+	toSerialize["client_key_id"] = o.ClientKeyId
 	toSerialize["method"] = o.Method
 	if !IsNil(o.PinProof) {
 		toSerialize["pin_proof"] = o.PinProof
 	}
-	if !IsNil(o.Signature) {
-		toSerialize["signature"] = o.Signature
-	}
+	toSerialize["signature"] = o.Signature
 	if !IsNil(o.TransientPayload) {
 		toSerialize["transient_payload"] = o.TransientPayload
 	}
@@ -242,7 +224,9 @@ func (o *UpdateLoginFlowWithDeviceAuthnMethod) UnmarshalJSON(data []byte) (err e
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"client_key_id",
 		"method",
+		"signature",
 	}
 
 	allProperties := make(map[string]interface{})

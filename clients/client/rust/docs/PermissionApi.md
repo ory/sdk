@@ -20,6 +20,25 @@ Batch check permissions
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::permission_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let max_depth = None; // i64 (optional)
+    let batch_check_permission_body = Some(Default::default()); // BatchCheckPermissionBody (optional)
+    match permission_api::batch_check_permission(&configuration, max_depth, batch_check_permission_body).await {
+        Ok(response) => println!("PermissionApi::batch_check_permission: {:?}", response),
+        Err(error) => eprintln!("Error calling PermissionApi::batch_check_permission: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -50,6 +69,31 @@ Name | Type | Description  | Required | Notes
 Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::permission_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let namespace = None; // String | Namespace of the Relationship (optional)
+    let object = None; // String | Object of the Relationship (optional)
+    let relation = None; // String | Relation of the Relationship (optional)
+    let subject_id = None; // String | SubjectID of the Relationship (optional)
+    let subject_set_namespace = None; // String | Namespace of the Subject Set (optional)
+    let subject_set_object = None; // String | Object of the Subject Set (optional)
+    let subject_set_relation = None; // String | Relation of the Subject Set (optional)
+    let max_depth = None; // i64 (optional)
+    match permission_api::check_permission(&configuration, namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation, max_depth).await {
+        Ok(response) => println!("PermissionApi::check_permission: {:?}", response),
+        Err(error) => eprintln!("Error calling PermissionApi::check_permission: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -88,6 +132,31 @@ Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::permission_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let namespace = None; // String | Namespace of the Relationship (optional)
+    let object = None; // String | Object of the Relationship (optional)
+    let relation = None; // String | Relation of the Relationship (optional)
+    let subject_id = None; // String | SubjectID of the Relationship (optional)
+    let subject_set_namespace = None; // String | Namespace of the Subject Set (optional)
+    let subject_set_object = None; // String | Object of the Subject Set (optional)
+    let subject_set_relation = None; // String | Relation of the Subject Set (optional)
+    let max_depth = None; // i64 (optional)
+    match permission_api::check_permission_or_error(&configuration, namespace, object, relation, subject_id, subject_set_namespace, subject_set_object, subject_set_relation, max_depth).await {
+        Ok(response) => println!("PermissionApi::check_permission_or_error: {:?}", response),
+        Err(error) => eprintln!("Error calling PermissionApi::check_permission_or_error: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -125,6 +194,27 @@ Expand a Relationship into permissions.
 
 Use this endpoint to expand a relationship tuple into permissions.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::permission_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let namespace = "namespace_example"; // String | Namespace of the Subject Set
+    let object = "object_example"; // String | Object of the Subject Set
+    let relation = "relation_example"; // String | Relation of the Subject Set
+    let max_depth = None; // i64 (optional)
+    match permission_api::expand_permissions(&configuration, namespace, object, relation, max_depth).await {
+        Ok(response) => println!("PermissionApi::expand_permissions: {:?}", response),
+        Err(error) => eprintln!("Error calling PermissionApi::expand_permissions: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -158,6 +248,25 @@ Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::permission_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let max_depth = None; // i64 (optional)
+    let post_check_permission_body = Some(Default::default()); // PostCheckPermissionBody (optional)
+    match permission_api::post_check_permission(&configuration, max_depth, post_check_permission_body).await {
+        Ok(response) => println!("PermissionApi::post_check_permission: {:?}", response),
+        Err(error) => eprintln!("Error calling PermissionApi::post_check_permission: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -188,6 +297,25 @@ Name | Type | Description  | Required | Notes
 Check a permission
 
 To learn how relationship tuples and the check works, head over to [the documentation](https://www.ory.com/docs/keto/concepts/api-overview).
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::permission_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let max_depth = None; // i64 (optional)
+    let post_check_permission_or_error_body = Some(Default::default()); // PostCheckPermissionOrErrorBody (optional)
+    match permission_api::post_check_permission_or_error(&configuration, max_depth, post_check_permission_or_error_body).await {
+        Ok(response) => println!("PermissionApi::post_check_permission_or_error: {:?}", response),
+        Err(error) => eprintln!("Error calling PermissionApi::post_check_permission_or_error: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 

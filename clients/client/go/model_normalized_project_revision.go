@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.63
+API version: v1.22.66
 Contact: support@ory.sh
 */
 
@@ -453,15 +453,15 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled *bool `json:"kratos_selfservice_methods_code_passwordless_login_fallback_enabled,omitempty"`
 	// Configures the allow-list of Android app signing-certificate digests that a device key may be bound to.  This governs the \"selfservice.methods.deviceauthn.config.android_app_ids\" setting.
 	KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds []string `json:"kratos_selfservice_methods_deviceauthn_config_android_app_ids,omitempty"`
-	// Configures whether device authentication may be used as the sole first factor.  This governs the \"selfservice.methods.deviceauthn.config.first_factor\" setting.
+	// Configures whether device authentication may be used as the sole first factor.  When enabled, a confirmed device key with PIN or platform user verification can complete an AAL2 login in a single submission, without a password or code. Defaults to false, which keeps device keys usable only as a second factor (step-up).  This governs the \"selfservice.methods.deviceauthn.config.first_factor\" setting.
 	KratosSelfserviceMethodsDeviceauthnConfigFirstFactor *bool `json:"kratos_selfservice_methods_deviceauthn_config_first_factor,omitempty"`
 	// Configures whether Ory Kratos Device authentication accepts relaxed attestations for testing  Only allowed on development projects and forced off otherwise. Keys enrolled under relaxation are short-lived and refused once this is turned off.  This governs the \"selfservice.methods.deviceauthn.config.insecure_allow_relaxed_attestation\" setting.
 	KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation *bool `json:"kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation,omitempty"`
 	// Configures the allow-list of Apple App IDs that a device key may be bound to.  This governs the \"selfservice.methods.deviceauthn.config.ios_app_ids\" setting.
 	KratosSelfserviceMethodsDeviceauthnConfigIosAppIds []string `json:"kratos_selfservice_methods_deviceauthn_config_ios_app_ids,omitempty"`
-	// Configures whether an iOS biometric device key may be used as the sole first factor.  This governs the \"selfservice.methods.deviceauthn.config.ios_biometric_first_factor\" setting.
+	// Configures whether an iOS biometric device key may be used as the sole first factor.  Apple App Attest cannot prove biometric gating, so iOS keys with \"platform\" user verification count as a first factor only with this explicit opt-in. Android keys are unaffected, as their user verification is attestation-verified. Defaults to false.  This governs the \"selfservice.methods.deviceauthn.config.ios_biometric_first_factor\" setting.
 	KratosSelfserviceMethodsDeviceauthnConfigIosBiometricFirstFactor *bool `json:"kratos_selfservice_methods_deviceauthn_config_ios_biometric_first_factor,omitempty"`
-	// Configures the consecutive wrong-PIN limit before a device key is locked.  This governs the \"selfservice.methods.deviceauthn.config.pin_max_attempts\" setting.
+	// Configures the number of consecutive wrong-PIN attempts before a device key is locked.  Defaults to 5; must be between 1 and 10. Once locked, the key's pin_secret is invalidated and the key can no longer be used to log in until the user rotates its secret through the fallback login.  This governs the \"selfservice.methods.deviceauthn.config.pin_max_attempts\" setting.
 	KratosSelfserviceMethodsDeviceauthnConfigPinMaxAttempts *int64 `json:"kratos_selfservice_methods_deviceauthn_config_pin_max_attempts,omitempty"`
 	// Configures whether Ory Kratos Device authentication is enabled  This governs the \"selfservice.methods.deviceauthn.enabled\" setting.
 	KratosSelfserviceMethodsDeviceauthnEnabled *bool `json:"kratos_selfservice_methods_deviceauthn_enabled,omitempty"`
@@ -575,14 +575,18 @@ type NormalizedProjectRevision struct {
 	TalosCredentialsDerivedTokensMacaroonPrefixRetired []string `json:"talos_credentials_derived_tokens_macaroon_prefix_retired,omitempty"`
 	// Talos credentials issuer URL.
 	TalosCredentialsIssuer *string `json:"talos_credentials_issuer,omitempty"`
-	// Talos credentials retired issuer URLs.  Previously active issuer URLs kept for verification of outstanding tokens. Tokens signed with these issuers remain valid; new tokens use the current issuer.
+	// Talos credentials retired issuer URLs (deprecated).  Deprecated: values-only view of talos_credentials_issuer_retired_entries, kept so already-released SDKs that decode this field as an array of strings keep working. It is output only: reads are derived from the entries field and writes to it are ignored. Use talos_credentials_issuer_retired_entries instead.
 	TalosCredentialsIssuerRetired []string `json:"talos_credentials_issuer_retired,omitempty"`
+	// TalosRetiredValues is the list of retired values — retired HMAC secrets or retired issuer URLs — for a Talos project. A retired value stays valid for verification until its optional expiry passes, so operators can bound how long an old credential keeps working after a rotation instead of keeping it forever. Legacy bare-string entries are accepted on write and normalized to the object form.
+	TalosCredentialsIssuerRetiredEntries []TalosRetiredValue `json:"talos_credentials_issuer_retired_entries,omitempty"`
 	// Talos rate limit enabled.  When true, server-side rate limiting is enforced for API key verifications.
 	TalosRateLimitEnabled *bool `json:"talos_rate_limit_enabled,omitempty"`
-	// TalosSecretsHMACCurrent stores the current HMAC symmetric key as a plain secret string. Application-layer encryption is handled upstream; SanitizeModel (MarshalJSON) redacts this field from API responses.
+	// TalosSecretsHMACCurrent stores the current HMAC symmetric key as a plain secret string.
 	TalosSecretsHmacCurrent *string `json:"talos_secrets_hmac_current,omitempty"`
-	// TalosSecretsHMACRetired stores previously active HMAC symmetric keys as a JSON array of plain secret strings. Application-layer encryption is handled upstream; SanitizeModel (MarshalJSON) redacts this field from API responses. The verifier tries all retired secrets when the current key does not produce a matching HMAC.
+	// TalosSecretsHMACRetired stores previously active HMAC symmetric keys as an array of strings (deprecated).  Deprecated: values-only view of talos_secrets_hmac_retired_entries, kept so already-released SDKs that decode this field as an array of strings keep working. It is output only and writes to it are ignored. HMAC secrets are server-managed and redacted on output, so this field is always empty on the wire. Use talos_secrets_hmac_retired_entries instead.
 	TalosSecretsHmacRetired []string `json:"talos_secrets_hmac_retired,omitempty"`
+	// TalosRetiredValues is the list of retired values — retired HMAC secrets or retired issuer URLs — for a Talos project. A retired value stays valid for verification until its optional expiry passes, so operators can bound how long an old credential keeps working after a rotation instead of keeping it forever. Legacy bare-string entries are accepted on write and normalized to the object form.
+	TalosSecretsHmacRetiredEntries []TalosRetiredValue `json:"talos_secrets_hmac_retired_entries,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -9672,6 +9676,38 @@ func (o *NormalizedProjectRevision) SetTalosCredentialsIssuerRetired(v []string)
 	o.TalosCredentialsIssuerRetired = v
 }
 
+// GetTalosCredentialsIssuerRetiredEntries returns the TalosCredentialsIssuerRetiredEntries field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetTalosCredentialsIssuerRetiredEntries() []TalosRetiredValue {
+	if o == nil || IsNil(o.TalosCredentialsIssuerRetiredEntries) {
+		var ret []TalosRetiredValue
+		return ret
+	}
+	return o.TalosCredentialsIssuerRetiredEntries
+}
+
+// GetTalosCredentialsIssuerRetiredEntriesOk returns a tuple with the TalosCredentialsIssuerRetiredEntries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetTalosCredentialsIssuerRetiredEntriesOk() ([]TalosRetiredValue, bool) {
+	if o == nil || IsNil(o.TalosCredentialsIssuerRetiredEntries) {
+		return nil, false
+	}
+	return o.TalosCredentialsIssuerRetiredEntries, true
+}
+
+// HasTalosCredentialsIssuerRetiredEntries returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasTalosCredentialsIssuerRetiredEntries() bool {
+	if o != nil && !IsNil(o.TalosCredentialsIssuerRetiredEntries) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosCredentialsIssuerRetiredEntries gets a reference to the given []TalosRetiredValue and assigns it to the TalosCredentialsIssuerRetiredEntries field.
+func (o *NormalizedProjectRevision) SetTalosCredentialsIssuerRetiredEntries(v []TalosRetiredValue) {
+	o.TalosCredentialsIssuerRetiredEntries = v
+}
+
 // GetTalosRateLimitEnabled returns the TalosRateLimitEnabled field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetTalosRateLimitEnabled() bool {
 	if o == nil || IsNil(o.TalosRateLimitEnabled) {
@@ -9766,6 +9802,38 @@ func (o *NormalizedProjectRevision) HasTalosSecretsHmacRetired() bool {
 // SetTalosSecretsHmacRetired gets a reference to the given []string and assigns it to the TalosSecretsHmacRetired field.
 func (o *NormalizedProjectRevision) SetTalosSecretsHmacRetired(v []string) {
 	o.TalosSecretsHmacRetired = v
+}
+
+// GetTalosSecretsHmacRetiredEntries returns the TalosSecretsHmacRetiredEntries field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetTalosSecretsHmacRetiredEntries() []TalosRetiredValue {
+	if o == nil || IsNil(o.TalosSecretsHmacRetiredEntries) {
+		var ret []TalosRetiredValue
+		return ret
+	}
+	return o.TalosSecretsHmacRetiredEntries
+}
+
+// GetTalosSecretsHmacRetiredEntriesOk returns a tuple with the TalosSecretsHmacRetiredEntries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetTalosSecretsHmacRetiredEntriesOk() ([]TalosRetiredValue, bool) {
+	if o == nil || IsNil(o.TalosSecretsHmacRetiredEntries) {
+		return nil, false
+	}
+	return o.TalosSecretsHmacRetiredEntries, true
+}
+
+// HasTalosSecretsHmacRetiredEntries returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasTalosSecretsHmacRetiredEntries() bool {
+	if o != nil && !IsNil(o.TalosSecretsHmacRetiredEntries) {
+		return true
+	}
+
+	return false
+}
+
+// SetTalosSecretsHmacRetiredEntries gets a reference to the given []TalosRetiredValue and assigns it to the TalosSecretsHmacRetiredEntries field.
+func (o *NormalizedProjectRevision) SetTalosSecretsHmacRetiredEntries(v []TalosRetiredValue) {
+	o.TalosSecretsHmacRetiredEntries = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -10654,6 +10722,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TalosCredentialsIssuerRetired) {
 		toSerialize["talos_credentials_issuer_retired"] = o.TalosCredentialsIssuerRetired
 	}
+	if !IsNil(o.TalosCredentialsIssuerRetiredEntries) {
+		toSerialize["talos_credentials_issuer_retired_entries"] = o.TalosCredentialsIssuerRetiredEntries
+	}
 	if !IsNil(o.TalosRateLimitEnabled) {
 		toSerialize["talos_rate_limit_enabled"] = o.TalosRateLimitEnabled
 	}
@@ -10662,6 +10733,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.TalosSecretsHmacRetired) {
 		toSerialize["talos_secrets_hmac_retired"] = o.TalosSecretsHmacRetired
+	}
+	if !IsNil(o.TalosSecretsHmacRetiredEntries) {
+		toSerialize["talos_secrets_hmac_retired_entries"] = o.TalosSecretsHmacRetiredEntries
 	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
@@ -10991,9 +11065,11 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "talos_credentials_derived_tokens_macaroon_prefix_retired")
 		delete(additionalProperties, "talos_credentials_issuer")
 		delete(additionalProperties, "talos_credentials_issuer_retired")
+		delete(additionalProperties, "talos_credentials_issuer_retired_entries")
 		delete(additionalProperties, "talos_rate_limit_enabled")
 		delete(additionalProperties, "talos_secrets_hmac_current")
 		delete(additionalProperties, "talos_secrets_hmac_retired")
+		delete(additionalProperties, "talos_secrets_hmac_retired_entries")
 		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}

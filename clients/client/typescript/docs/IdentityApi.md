@@ -375,7 +375,7 @@ const apiInstance = new IdentityApi(configuration);
 
 let id: string; //ID is the identity\'s ID. (default to undefined)
 let type: 'password' | 'oidc' | 'totp' | 'lookup_secret' | 'webauthn' | 'code' | 'passkey' | 'profile' | 'saml' | 'deviceauthn' | 'identifier_first' | 'link_recovery' | 'code_recovery'; //Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode (default to undefined)
-let identifier: string; //Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint. (optional) (default to undefined)
+let identifier: string; //Identifier is the identifier of the credential to delete. It is required for the `oidc`, `saml`, and `deviceauthn` credential types: for `oidc` and `saml` it selects the provider link to remove, for `deviceauthn` it is the `client_key_id` of the device key to revoke. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={type}` endpoint. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.deleteIdentityCredentials(
     id,
@@ -390,7 +390,7 @@ const { status, data } = await apiInstance.deleteIdentityCredentials(
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] | ID is the identity\&#39;s ID. | defaults to undefined|
 | **type** | [**&#39;password&#39; | &#39;oidc&#39; | &#39;totp&#39; | &#39;lookup_secret&#39; | &#39;webauthn&#39; | &#39;code&#39; | &#39;passkey&#39; | &#39;profile&#39; | &#39;saml&#39; | &#39;deviceauthn&#39; | &#39;identifier_first&#39; | &#39;link_recovery&#39; | &#39;code_recovery&#39;**]**Array<&#39;password&#39; &#124; &#39;oidc&#39; &#124; &#39;totp&#39; &#124; &#39;lookup_secret&#39; &#124; &#39;webauthn&#39; &#124; &#39;code&#39; &#124; &#39;passkey&#39; &#124; &#39;profile&#39; &#124; &#39;saml&#39; &#124; &#39;deviceauthn&#39; &#124; &#39;identifier_first&#39; &#124; &#39;link_recovery&#39; &#124; &#39;code_recovery&#39; &#124; &#39;11184809&#39;>** | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | defaults to undefined|
-| **identifier** | [**string**] | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{oidc,saml}&#x60; endpoint. | (optional) defaults to undefined|
+| **identifier** | [**string**] | Identifier is the identifier of the credential to delete. It is required for the &#x60;oidc&#x60;, &#x60;saml&#x60;, and &#x60;deviceauthn&#x60; credential types: for &#x60;oidc&#x60; and &#x60;saml&#x60; it selects the provider link to remove, for &#x60;deviceauthn&#x60; it is the &#x60;client_key_id&#x60; of the device key to revoke. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{type}&#x60; endpoint. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -411,6 +411,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+|**400** | errorGeneric |  -  |
 |**404** | errorGeneric |  -  |
 |**0** | errorGeneric |  -  |
 

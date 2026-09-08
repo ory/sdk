@@ -15,6 +15,22 @@ Discover Well-Known JSON Web Keys
 
 This endpoint returns JSON Web Keys required to verifying OpenID Connect ID Tokens and, if enabled, OAuth 2.0 JWT Access Tokens. This endpoint can be used with client libraries like [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa) among others.  Adding custom keys requires first creating a keyset via the createJsonWebKeySet operation, and then configuring the webfinger.jwks.broadcast_keys configuration value to include the keyset name.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::wellknown_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    match wellknown_api::discover_json_web_keys(&configuration).await {
+        Ok(response) => println!("WellknownApi::discover_json_web_keys: {:?}", response),
+        Err(error) => eprintln!("Error calling WellknownApi::discover_json_web_keys: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 This endpoint does not need any parameter.

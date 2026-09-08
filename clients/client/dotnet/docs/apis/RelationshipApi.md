@@ -13,12 +13,46 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 <a id="checkoplsyntax"></a>
 # **CheckOplSyntax**
-> ClientCheckOplSyntaxResult CheckOplSyntax (string body = null)
+> Task&lt;ICheckOplSyntaxApiResponse&gt; CheckOplSyntaxAsync(Option<string> body = default, System.Threading.CancellationToken cancellationToken = default)
 
 Check the syntax of an OPL file
 
 The OPL file is expected in the body of the request.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CheckOplSyntaxExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IRelationshipApi>();
+            Option<string> body = default!; //  (optional)
+            var response = await api.CheckOplSyntaxAsync(body);
+            ClientCheckOplSyntaxResult? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -28,11 +62,11 @@ The OPL file is expected in the body of the request.
 
 ### Return type
 
-[**ClientCheckOplSyntaxResult**](ClientCheckOplSyntaxResult.md)
+[**ClientCheckOplSyntaxResult**](../models/ClientCheckOplSyntaxResult.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -51,26 +85,60 @@ The OPL file is expected in the body of the request.
 
 <a id="createrelationship"></a>
 # **CreateRelationship**
-> ClientRelationship CreateRelationship (ClientCreateRelationshipBody clientCreateRelationshipBody = null)
+> Task&lt;ICreateRelationshipApiResponse&gt; CreateRelationshipAsync(Option<ClientCreateRelationshipBody> clientCreateRelationshipBody = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create a Relationship
 
 Use this endpoint to create a relationship.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateRelationshipExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IRelationshipApi>();
+            Option<ClientCreateRelationshipBody> clientCreateRelationshipBody = default!; //  (optional)
+            var response = await api.CreateRelationshipAsync(clientCreateRelationshipBody);
+            ClientRelationship? model = response.Created();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **clientCreateRelationshipBody** | [**ClientCreateRelationshipBody**](ClientCreateRelationshipBody.md) |  | [optional]  |
+| **clientCreateRelationshipBody** | [**ClientCreateRelationshipBody**](../models/ClientCreateRelationshipBody.md) |  | [optional]  |
 
 ### Return type
 
-[**ClientRelationship**](ClientRelationship.md)
+[**ClientRelationship**](../models/ClientRelationship.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -89,12 +157,51 @@ Use this endpoint to create a relationship.
 
 <a id="deleterelationships"></a>
 # **DeleteRelationships**
-> void DeleteRelationships (string varNamespace = null, string varObject = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
+> Task&lt;IDeleteRelationshipsApiResponse&gt; DeleteRelationshipsAsync(Option<string> varNamespace = default, Option<string> varObject = default, Option<string> relation = default, Option<string> subjectId = default, Option<string> subjectSetNamespace = default, Option<string> subjectSetObject = default, Option<string> subjectSetRelation = default, System.Threading.CancellationToken cancellationToken = default)
 
 Delete Relationships
 
 Use this endpoint to delete relationships
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class DeleteRelationshipsExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IRelationshipApi>();
+            Option<string> varNamespace = default!; // Namespace of the Relationship (optional)
+            Option<string> varObject = default!; // Object of the Relationship (optional)
+            Option<string> relation = default!; // Relation of the Relationship (optional)
+            Option<string> subjectId = default!; // SubjectID of the Relationship (optional)
+            Option<string> subjectSetNamespace = default!; // Namespace of the Subject Set (optional)
+            Option<string> subjectSetObject = default!; // Object of the Subject Set (optional)
+            Option<string> subjectSetRelation = default!; // Relation of the Subject Set (optional)
+            await api.DeleteRelationshipsAsync(varNamespace, varObject, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -114,7 +221,7 @@ void (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -133,12 +240,54 @@ void (empty response body)
 
 <a id="getrelationships"></a>
 # **GetRelationships**
-> ClientRelationships GetRelationships (long pageSize = null, string pageToken = null, string varNamespace = null, string varObject = null, string relation = null, string subjectId = null, string subjectSetNamespace = null, string subjectSetObject = null, string subjectSetRelation = null)
+> Task&lt;IGetRelationshipsApiResponse&gt; GetRelationshipsAsync(Option<long> pageSize = default, Option<string> pageToken = default, Option<string> varNamespace = default, Option<string> varObject = default, Option<string> relation = default, Option<string> subjectId = default, Option<string> subjectSetNamespace = default, Option<string> subjectSetObject = default, Option<string> subjectSetRelation = default, System.Threading.CancellationToken cancellationToken = default)
 
 Query relationships
 
 Get all relationships that match the query. Only the namespace field is required.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetRelationshipsExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IRelationshipApi>();
+            Option<long> pageSize = default!; // Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+            Option<string> pageToken = default!; // Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+            Option<string> varNamespace = default!; // Namespace of the Relationship (optional)
+            Option<string> varObject = default!; // Object of the Relationship (optional)
+            Option<string> relation = default!; // Relation of the Relationship (optional)
+            Option<string> subjectId = default!; // SubjectID of the Relationship (optional)
+            Option<string> subjectSetNamespace = default!; // Namespace of the Subject Set (optional)
+            Option<string> subjectSetObject = default!; // Object of the Subject Set (optional)
+            Option<string> subjectSetRelation = default!; // Relation of the Subject Set (optional)
+            var response = await api.GetRelationshipsAsync(pageSize, pageToken, varNamespace, varObject, relation, subjectId, subjectSetNamespace, subjectSetObject, subjectSetRelation);
+            ClientRelationships? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -156,11 +305,11 @@ Get all relationships that match the query. Only the namespace field is required
 
 ### Return type
 
-[**ClientRelationships**](ClientRelationships.md)
+[**ClientRelationships**](../models/ClientRelationships.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -179,22 +328,55 @@ Get all relationships that match the query. Only the namespace field is required
 
 <a id="listrelationshipnamespaces"></a>
 # **ListRelationshipNamespaces**
-> ClientRelationshipNamespaces ListRelationshipNamespaces ()
+> Task&lt;IListRelationshipNamespacesApiResponse&gt; ListRelationshipNamespacesAsync(System.Threading.CancellationToken cancellationToken = default)
 
 Query namespaces
 
 Get all namespaces
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class ListRelationshipNamespacesExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IRelationshipApi>();
+            var response = await api.ListRelationshipNamespacesAsync();
+            ClientRelationshipNamespaces? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 This endpoint does not need any parameter.
 ### Return type
 
-[**ClientRelationshipNamespaces**](ClientRelationshipNamespaces.md)
+[**ClientRelationshipNamespaces**](../models/ClientRelationshipNamespaces.md)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 
@@ -212,18 +394,51 @@ This endpoint does not need any parameter.
 
 <a id="patchrelationships"></a>
 # **PatchRelationships**
-> void PatchRelationships (List<ClientRelationshipPatch> clientRelationshipPatch = null)
+> Task&lt;IPatchRelationshipsApiResponse&gt; PatchRelationshipsAsync(Option<List<ClientRelationshipPatch>> clientRelationshipPatch = default, System.Threading.CancellationToken cancellationToken = default)
 
 Patch Multiple Relationships
 
 Use this endpoint to patch one or more relationships.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class PatchRelationshipsExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IRelationshipApi>();
+            Option<List<ClientRelationshipPatch>> clientRelationshipPatch = default!; //  (optional)
+            await api.PatchRelationshipsAsync(clientRelationshipPatch);
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **clientRelationshipPatch** | [**List&lt;ClientRelationshipPatch&gt;**](ClientRelationshipPatch.md) |  | [optional]  |
+| **clientRelationshipPatch** | [**List&lt;ClientRelationshipPatch&gt;**](../models/ClientRelationshipPatch.md) |  | [optional]  |
 
 ### Return type
 
@@ -231,7 +446,7 @@ void (empty response body)
 
 ### Authorization
 
-[oryAccessToken](../README.md#oryAccessToken)
+[oryAccessToken](../../README.md#oryAccessToken)
 
 ### HTTP request headers
 

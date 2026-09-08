@@ -95,6 +95,7 @@ docs/DeviceAuthnIOSAttStmt.md
 docs/DeviceAuthnIOSAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
+docs/DeviceType.md
 docs/DeviceUserAuthRequest.md
 docs/ElementsApi.md
 docs/ElementsConfiguration.md
@@ -123,6 +124,7 @@ docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md
 docs/GetMetricsEventTypes.md
 docs/GetOrganizationResponse.md
+docs/GetOrganizationsByHostnameResponse.md
 docs/GetProjectEvents.md
 docs/GetProjectEventsBody.md
 docs/GetProjectMetrics.md
@@ -182,6 +184,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/KeyState.md
 docs/KeyStatus.md
 docs/KeyVisibility.md
 docs/KeysetPaginationRequestParameters.md
@@ -240,6 +243,7 @@ docs/OnboardingPortalOrganization.md
 docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
+docs/OrganizationByHostname.md
 docs/OrganizationOnboardingPortalLinksResponse.md
 docs/PINConfig.md
 docs/ParseError.md
@@ -313,6 +317,7 @@ docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/SuccessfulProjectUpdate.md
+docs/TalosRetiredValue.md
 docs/TaxLineItem.md
 docs/TimeInterval.md
 docs/Token.md
@@ -363,8 +368,7 @@ docs/UpdateRegistrationFlowWithSamlMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRegister.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
@@ -379,6 +383,7 @@ docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
+docs/UpdateWorkspaceOrganizationBody.md
 docs/Usage.md
 docs/UserVerification.md
 docs/ValidateBaseURLRewriteRequest.md
@@ -533,6 +538,7 @@ src/main/java/sh/ory/model/DeviceAuthnIOSAttStmt.java
 src/main/java/sh/ory/model/DeviceAuthnIOSAttestation.java
 src/main/java/sh/ory/model/DeviceAuthnKey.java
 src/main/java/sh/ory/model/DeviceAuthorization.java
+src/main/java/sh/ory/model/DeviceType.java
 src/main/java/sh/ory/model/DeviceUserAuthRequest.java
 src/main/java/sh/ory/model/ElementsConfiguration.java
 src/main/java/sh/ory/model/EmailTemplateData.java
@@ -558,6 +564,7 @@ src/main/java/sh/ory/model/GetMetricsCount.java
 src/main/java/sh/ory/model/GetMetricsEventAttributes.java
 src/main/java/sh/ory/model/GetMetricsEventTypes.java
 src/main/java/sh/ory/model/GetOrganizationResponse.java
+src/main/java/sh/ory/model/GetOrganizationsByHostnameResponse.java
 src/main/java/sh/ory/model/GetProjectEvents.java
 src/main/java/sh/ory/model/GetProjectEventsBody.java
 src/main/java/sh/ory/model/GetProjectMetrics.java
@@ -615,6 +622,7 @@ src/main/java/sh/ory/model/JsonPatch.java
 src/main/java/sh/ory/model/JsonWebKey.java
 src/main/java/sh/ory/model/JsonWebKeySet.java
 src/main/java/sh/ory/model/KetoNamespace.java
+src/main/java/sh/ory/model/KeyState.java
 src/main/java/sh/ory/model/KeyStatus.java
 src/main/java/sh/ory/model/KeyVisibility.java
 src/main/java/sh/ory/model/KeysetPaginationRequestParameters.java
@@ -670,6 +678,7 @@ src/main/java/sh/ory/model/OnboardingPortalOrganization.java
 src/main/java/sh/ory/model/OnboardingPortalTestLoginFlow.java
 src/main/java/sh/ory/model/Organization.java
 src/main/java/sh/ory/model/OrganizationBody.java
+src/main/java/sh/ory/model/OrganizationByHostname.java
 src/main/java/sh/ory/model/OrganizationOnboardingPortalLinksResponse.java
 src/main/java/sh/ory/model/PINConfig.java
 src/main/java/sh/ory/model/ParseError.java
@@ -740,6 +749,7 @@ src/main/java/sh/ory/model/SuccessfulCodeExchangeResponse.java
 src/main/java/sh/ory/model/SuccessfulNativeLogin.java
 src/main/java/sh/ory/model/SuccessfulNativeRegistration.java
 src/main/java/sh/ory/model/SuccessfulProjectUpdate.java
+src/main/java/sh/ory/model/TalosRetiredValue.java
 src/main/java/sh/ory/model/TaxLineItem.java
 src/main/java/sh/ory/model/TimeInterval.java
 src/main/java/sh/ory/model/Token.java
@@ -790,8 +800,7 @@ src/main/java/sh/ory/model/UpdateRegistrationFlowWithSamlMethod.java
 src/main/java/sh/ory/model/UpdateRegistrationFlowWithWebAuthnMethod.java
 src/main/java/sh/ory/model/UpdateSettingsFlowBody.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethod.java
-src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodAdd.java
-src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodDelete.java
+src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodRegister.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithLookupMethod.java
 src/main/java/sh/ory/model/UpdateSettingsFlowWithOidcMethod.java
@@ -806,6 +815,7 @@ src/main/java/sh/ory/model/UpdateVerificationFlowBody.java
 src/main/java/sh/ory/model/UpdateVerificationFlowWithCodeMethod.java
 src/main/java/sh/ory/model/UpdateVerificationFlowWithLinkMethod.java
 src/main/java/sh/ory/model/UpdateWorkspaceBody.java
+src/main/java/sh/ory/model/UpdateWorkspaceOrganizationBody.java
 src/main/java/sh/ory/model/Usage.java
 src/main/java/sh/ory/model/UserVerification.java
 src/main/java/sh/ory/model/ValidateBaseURLRewriteRequest.java
@@ -927,6 +937,7 @@ src/test/java/sh/ory/model/DeviceAuthnIOSAttStmtTest.java
 src/test/java/sh/ory/model/DeviceAuthnIOSAttestationTest.java
 src/test/java/sh/ory/model/DeviceAuthnKeyTest.java
 src/test/java/sh/ory/model/DeviceAuthorizationTest.java
+src/test/java/sh/ory/model/DeviceTypeTest.java
 src/test/java/sh/ory/model/DeviceUserAuthRequestTest.java
 src/test/java/sh/ory/model/ElementsConfigurationTest.java
 src/test/java/sh/ory/model/EmailTemplateDataBodyTest.java
@@ -952,6 +963,7 @@ src/test/java/sh/ory/model/GetMetricsCountTest.java
 src/test/java/sh/ory/model/GetMetricsEventAttributesTest.java
 src/test/java/sh/ory/model/GetMetricsEventTypesTest.java
 src/test/java/sh/ory/model/GetOrganizationResponseTest.java
+src/test/java/sh/ory/model/GetOrganizationsByHostnameResponseTest.java
 src/test/java/sh/ory/model/GetProjectEventsBodyTest.java
 src/test/java/sh/ory/model/GetProjectEventsTest.java
 src/test/java/sh/ory/model/GetProjectMetricsTest.java
@@ -1009,6 +1021,7 @@ src/test/java/sh/ory/model/JsonPatchTest.java
 src/test/java/sh/ory/model/JsonWebKeySetTest.java
 src/test/java/sh/ory/model/JsonWebKeyTest.java
 src/test/java/sh/ory/model/KetoNamespaceTest.java
+src/test/java/sh/ory/model/KeyStateTest.java
 src/test/java/sh/ory/model/KeyStatusTest.java
 src/test/java/sh/ory/model/KeyVisibilityTest.java
 src/test/java/sh/ory/model/KeysetPaginationRequestParametersTest.java
@@ -1063,6 +1076,7 @@ src/test/java/sh/ory/model/OnboardingPortalLinkTest.java
 src/test/java/sh/ory/model/OnboardingPortalOrganizationTest.java
 src/test/java/sh/ory/model/OnboardingPortalTestLoginFlowTest.java
 src/test/java/sh/ory/model/OrganizationBodyTest.java
+src/test/java/sh/ory/model/OrganizationByHostnameTest.java
 src/test/java/sh/ory/model/OrganizationOnboardingPortalLinksResponseTest.java
 src/test/java/sh/ory/model/OrganizationTest.java
 src/test/java/sh/ory/model/PINConfigTest.java
@@ -1134,6 +1148,7 @@ src/test/java/sh/ory/model/SuccessfulCodeExchangeResponseTest.java
 src/test/java/sh/ory/model/SuccessfulNativeLoginTest.java
 src/test/java/sh/ory/model/SuccessfulNativeRegistrationTest.java
 src/test/java/sh/ory/model/SuccessfulProjectUpdateTest.java
+src/test/java/sh/ory/model/TalosRetiredValueTest.java
 src/test/java/sh/ory/model/TaxLineItemTest.java
 src/test/java/sh/ory/model/TimeIntervalTest.java
 src/test/java/sh/ory/model/TokenAlgorithmTest.java
@@ -1183,8 +1198,7 @@ src/test/java/sh/ory/model/UpdateRegistrationFlowWithProfileMethodTest.java
 src/test/java/sh/ory/model/UpdateRegistrationFlowWithSamlMethodTest.java
 src/test/java/sh/ory/model/UpdateRegistrationFlowWithWebAuthnMethodTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowBodyTest.java
-src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodAddTest.java
-src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodDeleteTest.java
+src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodRegisterTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecretTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithDeviceAuthnMethodTest.java
 src/test/java/sh/ory/model/UpdateSettingsFlowWithLookupMethodTest.java
@@ -1200,6 +1214,7 @@ src/test/java/sh/ory/model/UpdateVerificationFlowBodyTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowWithCodeMethodTest.java
 src/test/java/sh/ory/model/UpdateVerificationFlowWithLinkMethodTest.java
 src/test/java/sh/ory/model/UpdateWorkspaceBodyTest.java
+src/test/java/sh/ory/model/UpdateWorkspaceOrganizationBodyTest.java
 src/test/java/sh/ory/model/UsageTest.java
 src/test/java/sh/ory/model/UserVerificationTest.java
 src/test/java/sh/ory/model/ValidateBaseURLRewriteRequestTest.java

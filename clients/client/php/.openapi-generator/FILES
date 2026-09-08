@@ -106,6 +106,7 @@ docs/Model/DeviceAuthnIOSAttStmt.md
 docs/Model/DeviceAuthnIOSAttestation.md
 docs/Model/DeviceAuthnKey.md
 docs/Model/DeviceAuthorization.md
+docs/Model/DeviceType.md
 docs/Model/DeviceUserAuthRequest.md
 docs/Model/ElementsConfiguration.md
 docs/Model/EmailTemplateData.md
@@ -131,6 +132,7 @@ docs/Model/GetMetricsCount.md
 docs/Model/GetMetricsEventAttributes.md
 docs/Model/GetMetricsEventTypes.md
 docs/Model/GetOrganizationResponse.md
+docs/Model/GetOrganizationsByHostnameResponse.md
 docs/Model/GetProjectEvents.md
 docs/Model/GetProjectEventsBody.md
 docs/Model/GetProjectMetrics.md
@@ -188,6 +190,7 @@ docs/Model/JsonPatch.md
 docs/Model/JsonWebKey.md
 docs/Model/JsonWebKeySet.md
 docs/Model/KetoNamespace.md
+docs/Model/KeyState.md
 docs/Model/KeyStatus.md
 docs/Model/KeyVisibility.md
 docs/Model/KeysetPaginationRequestParameters.md
@@ -243,6 +246,7 @@ docs/Model/OnboardingPortalOrganization.md
 docs/Model/OnboardingPortalTestLoginFlow.md
 docs/Model/Organization.md
 docs/Model/OrganizationBody.md
+docs/Model/OrganizationByHostname.md
 docs/Model/OrganizationOnboardingPortalLinksResponse.md
 docs/Model/PINConfig.md
 docs/Model/ParseError.md
@@ -313,6 +317,7 @@ docs/Model/SuccessfulCodeExchangeResponse.md
 docs/Model/SuccessfulNativeLogin.md
 docs/Model/SuccessfulNativeRegistration.md
 docs/Model/SuccessfulProjectUpdate.md
+docs/Model/TalosRetiredValue.md
 docs/Model/TaxLineItem.md
 docs/Model/TimeInterval.md
 docs/Model/Token.md
@@ -363,8 +368,7 @@ docs/Model/UpdateRegistrationFlowWithSamlMethod.md
 docs/Model/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/Model/UpdateSettingsFlowBody.md
 docs/Model/UpdateSettingsFlowWithDeviceAuthnMethod.md
-docs/Model/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
-docs/Model/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/Model/UpdateSettingsFlowWithDeviceAuthnMethodRegister.md
 docs/Model/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/Model/UpdateSettingsFlowWithLookupMethod.md
 docs/Model/UpdateSettingsFlowWithOidcMethod.md
@@ -379,6 +383,7 @@ docs/Model/UpdateVerificationFlowBody.md
 docs/Model/UpdateVerificationFlowWithCodeMethod.md
 docs/Model/UpdateVerificationFlowWithLinkMethod.md
 docs/Model/UpdateWorkspaceBody.md
+docs/Model/UpdateWorkspaceOrganizationBody.md
 docs/Model/Usage.md
 docs/Model/UserVerification.md
 docs/Model/ValidateBaseURLRewriteRequest.md
@@ -505,6 +510,7 @@ lib/Model/DeviceAuthnIOSAttStmt.php
 lib/Model/DeviceAuthnIOSAttestation.php
 lib/Model/DeviceAuthnKey.php
 lib/Model/DeviceAuthorization.php
+lib/Model/DeviceType.php
 lib/Model/DeviceUserAuthRequest.php
 lib/Model/ElementsConfiguration.php
 lib/Model/EmailTemplateData.php
@@ -530,6 +536,7 @@ lib/Model/GetMetricsCount.php
 lib/Model/GetMetricsEventAttributes.php
 lib/Model/GetMetricsEventTypes.php
 lib/Model/GetOrganizationResponse.php
+lib/Model/GetOrganizationsByHostnameResponse.php
 lib/Model/GetProjectEvents.php
 lib/Model/GetProjectEventsBody.php
 lib/Model/GetProjectMetrics.php
@@ -587,6 +594,7 @@ lib/Model/JsonPatch.php
 lib/Model/JsonWebKey.php
 lib/Model/JsonWebKeySet.php
 lib/Model/KetoNamespace.php
+lib/Model/KeyState.php
 lib/Model/KeyStatus.php
 lib/Model/KeyVisibility.php
 lib/Model/KeysetPaginationRequestParameters.php
@@ -643,6 +651,7 @@ lib/Model/OnboardingPortalOrganization.php
 lib/Model/OnboardingPortalTestLoginFlow.php
 lib/Model/Organization.php
 lib/Model/OrganizationBody.php
+lib/Model/OrganizationByHostname.php
 lib/Model/OrganizationOnboardingPortalLinksResponse.php
 lib/Model/PINConfig.php
 lib/Model/ParseError.php
@@ -713,6 +722,7 @@ lib/Model/SuccessfulCodeExchangeResponse.php
 lib/Model/SuccessfulNativeLogin.php
 lib/Model/SuccessfulNativeRegistration.php
 lib/Model/SuccessfulProjectUpdate.php
+lib/Model/TalosRetiredValue.php
 lib/Model/TaxLineItem.php
 lib/Model/TimeInterval.php
 lib/Model/Token.php
@@ -763,8 +773,7 @@ lib/Model/UpdateRegistrationFlowWithSamlMethod.php
 lib/Model/UpdateRegistrationFlowWithWebAuthnMethod.php
 lib/Model/UpdateSettingsFlowBody.php
 lib/Model/UpdateSettingsFlowWithDeviceAuthnMethod.php
-lib/Model/UpdateSettingsFlowWithDeviceAuthnMethodAdd.php
-lib/Model/UpdateSettingsFlowWithDeviceAuthnMethodDelete.php
+lib/Model/UpdateSettingsFlowWithDeviceAuthnMethodRegister.php
 lib/Model/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.php
 lib/Model/UpdateSettingsFlowWithLookupMethod.php
 lib/Model/UpdateSettingsFlowWithOidcMethod.php
@@ -779,6 +788,7 @@ lib/Model/UpdateVerificationFlowBody.php
 lib/Model/UpdateVerificationFlowWithCodeMethod.php
 lib/Model/UpdateVerificationFlowWithLinkMethod.php
 lib/Model/UpdateWorkspaceBody.php
+lib/Model/UpdateWorkspaceOrganizationBody.php
 lib/Model/Usage.php
 lib/Model/UserVerification.php
 lib/Model/ValidateBaseURLRewriteRequest.php
@@ -902,6 +912,7 @@ test/Model/DeviceAuthnIOSAttStmtTest.php
 test/Model/DeviceAuthnIOSAttestationTest.php
 test/Model/DeviceAuthnKeyTest.php
 test/Model/DeviceAuthorizationTest.php
+test/Model/DeviceTypeTest.php
 test/Model/DeviceUserAuthRequestTest.php
 test/Model/ElementsConfigurationTest.php
 test/Model/EmailTemplateDataBodyTest.php
@@ -927,6 +938,7 @@ test/Model/GetMetricsCountTest.php
 test/Model/GetMetricsEventAttributesTest.php
 test/Model/GetMetricsEventTypesTest.php
 test/Model/GetOrganizationResponseTest.php
+test/Model/GetOrganizationsByHostnameResponseTest.php
 test/Model/GetProjectEventsBodyTest.php
 test/Model/GetProjectEventsTest.php
 test/Model/GetProjectMetricsTest.php
@@ -984,6 +996,7 @@ test/Model/JsonPatchTest.php
 test/Model/JsonWebKeySetTest.php
 test/Model/JsonWebKeyTest.php
 test/Model/KetoNamespaceTest.php
+test/Model/KeyStateTest.php
 test/Model/KeyStatusTest.php
 test/Model/KeyVisibilityTest.php
 test/Model/KeysetPaginationRequestParametersTest.php
@@ -1038,6 +1051,7 @@ test/Model/OnboardingPortalLinkTest.php
 test/Model/OnboardingPortalOrganizationTest.php
 test/Model/OnboardingPortalTestLoginFlowTest.php
 test/Model/OrganizationBodyTest.php
+test/Model/OrganizationByHostnameTest.php
 test/Model/OrganizationOnboardingPortalLinksResponseTest.php
 test/Model/OrganizationTest.php
 test/Model/PINConfigTest.php
@@ -1109,6 +1123,7 @@ test/Model/SuccessfulCodeExchangeResponseTest.php
 test/Model/SuccessfulNativeLoginTest.php
 test/Model/SuccessfulNativeRegistrationTest.php
 test/Model/SuccessfulProjectUpdateTest.php
+test/Model/TalosRetiredValueTest.php
 test/Model/TaxLineItemTest.php
 test/Model/TimeIntervalTest.php
 test/Model/TokenAlgorithmTest.php
@@ -1158,8 +1173,7 @@ test/Model/UpdateRegistrationFlowWithProfileMethodTest.php
 test/Model/UpdateRegistrationFlowWithSamlMethodTest.php
 test/Model/UpdateRegistrationFlowWithWebAuthnMethodTest.php
 test/Model/UpdateSettingsFlowBodyTest.php
-test/Model/UpdateSettingsFlowWithDeviceAuthnMethodAddTest.php
-test/Model/UpdateSettingsFlowWithDeviceAuthnMethodDeleteTest.php
+test/Model/UpdateSettingsFlowWithDeviceAuthnMethodRegisterTest.php
 test/Model/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecretTest.php
 test/Model/UpdateSettingsFlowWithDeviceAuthnMethodTest.php
 test/Model/UpdateSettingsFlowWithLookupMethodTest.php
@@ -1175,6 +1189,7 @@ test/Model/UpdateVerificationFlowBodyTest.php
 test/Model/UpdateVerificationFlowWithCodeMethodTest.php
 test/Model/UpdateVerificationFlowWithLinkMethodTest.php
 test/Model/UpdateWorkspaceBodyTest.php
+test/Model/UpdateWorkspaceOrganizationBodyTest.php
 test/Model/UsageTest.php
 test/Model/UserVerificationTest.php
 test/Model/ValidateBaseURLRewriteRequestTest.php

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.63
+API version: v1.22.66
 Contact: support@ory.sh
 */
 
@@ -19,14 +19,14 @@ import (
 // checks if the UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret{}
 
-// UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret Re-issues a fresh pin_secret for an existing PIN-protected DeviceAuthn key without changing the device signing key. It is the recovery path for a forgotten PIN or a locked key. The server returns the new secret sealed to the supplied transport_public_key exactly once.
+// UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret Re-issues a fresh pin_secret for an existing PIN-protected DeviceAuthn key without changing the device signing key. It is the recovery path for a forgotten PIN or a locked key. The server returns the new secret exactly once, HPKE-sealed to the supplied transport_public_key, in the flow's `continue_with` items (action `show_pin_entry_ui`).
 type UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret struct {
-	// ClientKeyID identifies the existing PIN key whose pin_secret should be rotated: the lowercase-hex SHA-256 of the device public key in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form. The device signing key is unchanged by the rotation.
+	// The client_key_id of the existing PIN-protected key whose pin_secret to rotate: the lowercase-hex SHA-256 of the device public key in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form. The device signing key is unchanged by the rotation.
 	ClientKeyId string `json:"client_key_id"`
-	// Signature proves current possession of the enrolled device signing key: the device signs the concatenation of the settings-flow nonce and the transport public key with the key identified by client_key_id — a plain ECDSA signature over the SHA-256 of that challenge on Android, an App Attest assertion over it on iOS, exactly as at login. Binding the transport key into the signed challenge ensures a session-level attacker (stolen token, XSS) cannot rotate the secret and have it sealed to a transport key they control.
+	// Proves current possession of the enrolled device signing key.  To compute it:  1. Base64-decode the settings flow's hidden `deviceauthn_nonce` UI node value, parse the result as JSON, and base64-decode its `nonce` field. 2. Concatenate the raw nonce bytes and the raw transport_public_key bytes; this is the challenge. 3. Sign the challenge exactly as at login: on Android with `Signature.getInstance(\"SHA256withECDSA\")`, submitting the resulting ASN.1 DER-encoded ECDSA signature; on iOS with `DCAppAttestService.generateAssertion`, passing the challenge bytes as the `clientDataHash` argument — do not hash them again — and submitting the returned CBOR-encoded App Attest assertion unchanged.  Binding the transport key into the signed challenge ensures a hijacked session (stolen token, XSS) cannot rotate the secret and have it sealed to a transport key it controls.
 	Signature string `json:"signature"`
-	// TransportPubKey is the transport public key (HPKE) used to seal the returned, freshly issued pin_secret so only this device can open it. It is base64-encoded in JSON and decoded to raw bytes here.
-	TransportPublicKey *string `json:"transport_public_key,omitempty"`
+	// The device's X25519 transport public key (32 bytes, base64-encoded) used to seal the freshly issued pin_secret so only this device can open it.  Generate a fresh, random X25519 key pair for each rotation — it is a transport-encryption key, distinct from the attested signing key — and submit the raw 32-byte public key. Keep the private key only until the sealed pin_secret from the response has been opened, then discard it. The HPKE suite is DHKEM(X25519, HKDF-SHA256), HKDF-SHA256, AES-128-GCM.
+	TransportPublicKey string `json:"transport_public_key"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,10 +36,11 @@ type _UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret UpdateSettingsFlowWith
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateSettingsFlowWithDeviceAuthnMethodRotateSecret(clientKeyId string, signature string) *UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret {
+func NewUpdateSettingsFlowWithDeviceAuthnMethodRotateSecret(clientKeyId string, signature string, transportPublicKey string) *UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret {
 	this := UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret{}
 	this.ClientKeyId = clientKeyId
 	this.Signature = signature
+	this.TransportPublicKey = transportPublicKey
 	return &this
 }
 
@@ -99,36 +100,28 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret) SetSignature(v str
 	o.Signature = v
 }
 
-// GetTransportPublicKey returns the TransportPublicKey field value if set, zero value otherwise.
+// GetTransportPublicKey returns the TransportPublicKey field value
 func (o *UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret) GetTransportPublicKey() string {
-	if o == nil || IsNil(o.TransportPublicKey) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.TransportPublicKey
+
+	return o.TransportPublicKey
 }
 
-// GetTransportPublicKeyOk returns a tuple with the TransportPublicKey field value if set, nil otherwise
+// GetTransportPublicKeyOk returns a tuple with the TransportPublicKey field value
 // and a boolean to check if the value has been set.
 func (o *UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret) GetTransportPublicKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.TransportPublicKey) {
+	if o == nil {
 		return nil, false
 	}
-	return o.TransportPublicKey, true
+	return &o.TransportPublicKey, true
 }
 
-// HasTransportPublicKey returns a boolean if a field has been set.
-func (o *UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret) HasTransportPublicKey() bool {
-	if o != nil && !IsNil(o.TransportPublicKey) {
-		return true
-	}
-
-	return false
-}
-
-// SetTransportPublicKey gets a reference to the given string and assigns it to the TransportPublicKey field.
+// SetTransportPublicKey sets field value
 func (o *UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret) SetTransportPublicKey(v string) {
-	o.TransportPublicKey = &v
+	o.TransportPublicKey = v
 }
 
 func (o UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret) MarshalJSON() ([]byte, error) {
@@ -143,9 +136,7 @@ func (o UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret) ToMap() (map[string
 	toSerialize := map[string]interface{}{}
 	toSerialize["client_key_id"] = o.ClientKeyId
 	toSerialize["signature"] = o.Signature
-	if !IsNil(o.TransportPublicKey) {
-		toSerialize["transport_public_key"] = o.TransportPublicKey
-	}
+	toSerialize["transport_public_key"] = o.TransportPublicKey
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -161,6 +152,7 @@ func (o *UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret) UnmarshalJSON(data
 	requiredProperties := []string{
 		"client_key_id",
 		"signature",
+		"transport_public_key",
 	}
 
 	allProperties := make(map[string]interface{})

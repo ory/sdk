@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attestation** | Pointer to [**DeviceAuthnAttestation**](DeviceAuthnAttestation.md) |  | [optional] 
-**ClientKeyId** | Pointer to **string** | ClientKeyID is the key&#39;s stable, unique-per-identity id, computed as hex(SHA-256(PublicKey)) — the lowercase-hex SHA-256 digest of the public key&#39;s PKIX, ASN.1 DER (SubjectPublicKeyInfo) encoding, exactly the bytes stored in PublicKey. It is a deterministic fingerprint of the enrolled signing key, so the device recomputes the identical value locally instead of receiving it from the server. Keys enrolled before the server derived the id keep their original client-chosen value. | [optional] 
-**CreatedAt** | Pointer to **time.Time** | CreatedAt is the timestamp of when the key was created. Only used for troubleshooting/UI. | [optional] 
-**DeviceName** | Pointer to **string** | DeviceName is a human readable name for the device, helping the user to distinguish it from others. | [optional] 
-**DeviceType** | Pointer to **string** |  | [optional] 
+**ClientKeyId** | Pointer to **string** | The key&#39;s stable id, unique per identity. Submit it as the &#x60;client_key_id&#x60; when logging in with the key, deleting it, or rotating its pin_secret.  The device can also compute the id without reading it back from the server: it is the lowercase-hex SHA-256 of &#x60;public_key&#x60; (the key&#39;s PKIX, ASN.1 DER encoding). Keys enrolled before the server derived the id keep their original client-chosen value, so prefer reading this field over recomputing it for older keys. | [optional] 
+**CreatedAt** | Pointer to **time.Time** | When the key was enrolled. Only used for troubleshooting and UI. | [optional] 
+**DeviceName** | Pointer to **string** | A human-readable name for the device, helping the user tell this key apart from others. | [optional] 
+**DeviceType** | Pointer to [**DeviceType**](DeviceType.md) |  | [optional] 
 **Pin** | Pointer to [**PINConfig**](PINConfig.md) |  | [optional] 
-**PublicKey** | Pointer to **[]int32** | PublicKey is the device&#39;s public key (EC P-256 in v1), used to verify signatures. It is stored in PKIX, ASN.1 DER form (the SubjectPublicKeyInfo encoding produced by x509.MarshalPKIXPublicKey). The private key resides inside the device and does not exist on the server. | [optional] 
-**RelaxedAttestationExpiresAt** | Pointer to **time.Time** | RelaxedAttestationExpiresAt is set only when the key&#39;s attestation chain validated because relaxed attestation was allowed (software roots, expired certs, software security level) rather than under strict rules. Such keys are second-class: they are refused at login after this time, or immediately if relaxed attestation is turned off. It is nil for hardware-attested keys that pass strict validation. | [optional] 
-**State** | Pointer to **string** |  | [optional] 
+**PublicKey** | Pointer to **string** | The device&#39;s public key (an elliptic-curve key on P-224, P-256, P-384, or P-521 in version 1) in PKIX, ASN.1 DER (SubjectPublicKeyInfo) form, base64-encoded. Signatures are verified against this key. | [optional] 
+**RelaxedAttestationExpiresAt** | Pointer to **time.Time** | Set only when the key&#39;s attestation chain was accepted under relaxed rules (software roots, expired certificates, software security level) rather than strict hardware attestation. Such keys are refused at login after this time, or immediately once relaxed attestation is turned off. Absent for hardware-attested keys that pass strict validation. | [optional] 
+**State** | Pointer to [**KeyState**](KeyState.md) |  | [optional] 
 **UserVerification** | Pointer to [**UserVerification**](UserVerification.md) |  | [optional] 
-**Version** | Pointer to **int64** | v1 uses SHA256 + EC256. v2 (in the future) may use ML-DSA which is post-quantum resistant. This requires Android/iOS support so we have to wait. We intentionally avoid storing the cryptographic algorithm here a la JWT/TLS to avoid security issues and algorithm negotiation. | [optional] 
+**Version** | Pointer to **int64** | The cryptography version of the key. Version 1 uses ECDSA with SHA-256 on an elliptic curve (P-224, P-256, P-384, or P-521); further versions are reserved for future signature suites. | [optional] 
 
 ## Methods
 
@@ -137,20 +137,20 @@ HasDeviceName returns a boolean if a field has been set.
 
 ### GetDeviceType
 
-`func (o *DeviceAuthnKey) GetDeviceType() string`
+`func (o *DeviceAuthnKey) GetDeviceType() DeviceType`
 
 GetDeviceType returns the DeviceType field if non-nil, zero value otherwise.
 
 ### GetDeviceTypeOk
 
-`func (o *DeviceAuthnKey) GetDeviceTypeOk() (*string, bool)`
+`func (o *DeviceAuthnKey) GetDeviceTypeOk() (*DeviceType, bool)`
 
 GetDeviceTypeOk returns a tuple with the DeviceType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDeviceType
 
-`func (o *DeviceAuthnKey) SetDeviceType(v string)`
+`func (o *DeviceAuthnKey) SetDeviceType(v DeviceType)`
 
 SetDeviceType sets DeviceType field to given value.
 
@@ -187,20 +187,20 @@ HasPin returns a boolean if a field has been set.
 
 ### GetPublicKey
 
-`func (o *DeviceAuthnKey) GetPublicKey() []int32`
+`func (o *DeviceAuthnKey) GetPublicKey() string`
 
 GetPublicKey returns the PublicKey field if non-nil, zero value otherwise.
 
 ### GetPublicKeyOk
 
-`func (o *DeviceAuthnKey) GetPublicKeyOk() (*[]int32, bool)`
+`func (o *DeviceAuthnKey) GetPublicKeyOk() (*string, bool)`
 
 GetPublicKeyOk returns a tuple with the PublicKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPublicKey
 
-`func (o *DeviceAuthnKey) SetPublicKey(v []int32)`
+`func (o *DeviceAuthnKey) SetPublicKey(v string)`
 
 SetPublicKey sets PublicKey field to given value.
 
@@ -237,20 +237,20 @@ HasRelaxedAttestationExpiresAt returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *DeviceAuthnKey) GetState() string`
+`func (o *DeviceAuthnKey) GetState() KeyState`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *DeviceAuthnKey) GetStateOk() (*string, bool)`
+`func (o *DeviceAuthnKey) GetStateOk() (*KeyState, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *DeviceAuthnKey) SetState(v string)`
+`func (o *DeviceAuthnKey) SetState(v KeyState)`
 
 SetState sets State field to given value.
 

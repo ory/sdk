@@ -109,6 +109,7 @@ docs/DeviceAuthnIOSAttStmt.md
 docs/DeviceAuthnIOSAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
+docs/DeviceType.md
 docs/DeviceUserAuthRequest.md
 docs/ElementsAPI.md
 docs/ElementsConfiguration.md
@@ -137,6 +138,7 @@ docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md
 docs/GetMetricsEventTypes.md
 docs/GetOrganizationResponse.md
+docs/GetOrganizationsByHostnameResponse.md
 docs/GetProjectEvents.md
 docs/GetProjectEventsBody.md
 docs/GetProjectMetrics.md
@@ -196,6 +198,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkAPI.md
 docs/KetoNamespace.md
+docs/KeyState.md
 docs/KeyStatus.md
 docs/KeyVisibility.md
 docs/KeysetPaginationRequestParameters.md
@@ -254,6 +257,7 @@ docs/OnboardingPortalOrganization.md
 docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
+docs/OrganizationByHostname.md
 docs/OrganizationOnboardingPortalLinksResponse.md
 docs/PINConfig.md
 docs/ParseError.md
@@ -327,6 +331,7 @@ docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/SuccessfulProjectUpdate.md
+docs/TalosRetiredValue.md
 docs/TaxLineItem.md
 docs/TimeInterval.md
 docs/Token.md
@@ -377,8 +382,7 @@ docs/UpdateRegistrationFlowWithSamlMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRegister.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
@@ -393,6 +397,7 @@ docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
+docs/UpdateWorkspaceOrganizationBody.md
 docs/Usage.md
 docs/UserVerification.md
 docs/ValidateBaseURLRewriteRequest.md
@@ -504,6 +509,7 @@ model_device_authn_ios_att_stmt.go
 model_device_authn_ios_attestation.go
 model_device_authn_key.go
 model_device_authorization.go
+model_device_type.go
 model_device_user_auth_request.go
 model_elements_configuration.go
 model_email_template_data.go
@@ -529,6 +535,7 @@ model_get_metrics_count.go
 model_get_metrics_event_attributes.go
 model_get_metrics_event_types.go
 model_get_organization_response.go
+model_get_organizations_by_hostname_response.go
 model_get_project_events.go
 model_get_project_events_body.go
 model_get_project_metrics.go
@@ -586,6 +593,7 @@ model_json_patch.go
 model_json_web_key.go
 model_json_web_key_set.go
 model_keto_namespace.go
+model_key_state.go
 model_key_status.go
 model_key_visibility.go
 model_keyset_pagination_request_parameters.go
@@ -641,6 +649,7 @@ model_onboarding_portal_organization.go
 model_onboarding_portal_test_login_flow.go
 model_organization.go
 model_organization_body.go
+model_organization_by_hostname.go
 model_organization_onboarding_portal_links_response.go
 model_parse_error.go
 model_patch_identities_body.go
@@ -711,6 +720,7 @@ model_successful_code_exchange_response.go
 model_successful_native_login.go
 model_successful_native_registration.go
 model_successful_project_update.go
+model_talos_retired_value.go
 model_tax_line_item.go
 model_time_interval.go
 model_token.go
@@ -761,8 +771,7 @@ model_update_registration_flow_with_saml_method.go
 model_update_registration_flow_with_web_authn_method.go
 model_update_settings_flow_body.go
 model_update_settings_flow_with_device_authn_method.go
-model_update_settings_flow_with_device_authn_method_add.go
-model_update_settings_flow_with_device_authn_method_delete.go
+model_update_settings_flow_with_device_authn_method_register.go
 model_update_settings_flow_with_device_authn_method_rotate_secret.go
 model_update_settings_flow_with_lookup_method.go
 model_update_settings_flow_with_oidc_method.go
@@ -777,6 +786,7 @@ model_update_verification_flow_body.go
 model_update_verification_flow_with_code_method.go
 model_update_verification_flow_with_link_method.go
 model_update_workspace_body.go
+model_update_workspace_organization_body.go
 model_usage.go
 model_user_verification.go
 model_validate_base_url_rewrite_request.go

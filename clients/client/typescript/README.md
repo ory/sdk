@@ -1,4 +1,4 @@
-## @ory/client@v1.22.63
+## @ory/client@v1.22.66
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.63 --save
+npm install @ory/client@v1.22.66 --save
 ```
 
 _unPublished (not recommended):_
@@ -146,6 +146,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**createOAuth2Client**](docs/OAuth2Api.md#createoauth2client) | **POST** /admin/clients | Create OAuth 2.0 Client
 *OAuth2Api* | [**deleteOAuth2Client**](docs/OAuth2Api.md#deleteoauth2client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
 *OAuth2Api* | [**deleteOAuth2Token**](docs/OAuth2Api.md#deleteoauth2token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
+*OAuth2Api* | [**deleteRotatedOAuth2ClientSecrets**](docs/OAuth2Api.md#deleterotatedoauth2clientsecrets) | **DELETE** /admin/clients/{id}/secrets/rotate | Delete Rotated OAuth 2.0 Client Secrets
 *OAuth2Api* | [**deleteTrustedOAuth2JwtGrantIssuer**](docs/OAuth2Api.md#deletetrustedoauth2jwtgrantissuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
 *OAuth2Api* | [**getOAuth2Client**](docs/OAuth2Api.md#getoauth2client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client
 *OAuth2Api* | [**getOAuth2ConsentRequest**](docs/OAuth2Api.md#getoauth2consentrequest) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request
@@ -167,6 +168,7 @@ Class | Method | HTTP request | Description
 *OAuth2Api* | [**revokeOAuth2ConsentSessions**](docs/OAuth2Api.md#revokeoauth2consentsessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
 *OAuth2Api* | [**revokeOAuth2LoginSessions**](docs/OAuth2Api.md#revokeoauth2loginsessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 *OAuth2Api* | [**revokeOAuth2Token**](docs/OAuth2Api.md#revokeoauth2token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
+*OAuth2Api* | [**rotateOAuth2ClientSecret**](docs/OAuth2Api.md#rotateoauth2clientsecret) | **POST** /admin/clients/{id}/secrets/rotate | Rotate OAuth 2.0 Client Secret
 *OAuth2Api* | [**setOAuth2Client**](docs/OAuth2Api.md#setoauth2client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
 *OAuth2Api* | [**setOAuth2ClientLifespans**](docs/OAuth2Api.md#setoauth2clientlifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
 *OAuth2Api* | [**trustOAuth2JwtGrantIssuer**](docs/OAuth2Api.md#trustoauth2jwtgrantissuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer
@@ -311,6 +313,7 @@ Class | Method | HTTP request | Description
  - [DeviceAuthnIOSAttestation](docs/DeviceAuthnIOSAttestation.md)
  - [DeviceAuthnKey](docs/DeviceAuthnKey.md)
  - [DeviceAuthorization](docs/DeviceAuthorization.md)
+ - [DeviceType](docs/DeviceType.md)
  - [DeviceUserAuthRequest](docs/DeviceUserAuthRequest.md)
  - [ElementsConfiguration](docs/ElementsConfiguration.md)
  - [EmailTemplateData](docs/EmailTemplateData.md)
@@ -336,6 +339,7 @@ Class | Method | HTTP request | Description
  - [GetMetricsEventAttributes](docs/GetMetricsEventAttributes.md)
  - [GetMetricsEventTypes](docs/GetMetricsEventTypes.md)
  - [GetOrganizationResponse](docs/GetOrganizationResponse.md)
+ - [GetOrganizationsByHostnameResponse](docs/GetOrganizationsByHostnameResponse.md)
  - [GetProjectEvents](docs/GetProjectEvents.md)
  - [GetProjectEventsBody](docs/GetProjectEventsBody.md)
  - [GetProjectMetrics](docs/GetProjectMetrics.md)
@@ -393,6 +397,7 @@ Class | Method | HTTP request | Description
  - [JsonWebKey](docs/JsonWebKey.md)
  - [JsonWebKeySet](docs/JsonWebKeySet.md)
  - [KetoNamespace](docs/KetoNamespace.md)
+ - [KeyState](docs/KeyState.md)
  - [KeyStatus](docs/KeyStatus.md)
  - [KeyVisibility](docs/KeyVisibility.md)
  - [KeysetPaginationRequestParameters](docs/KeysetPaginationRequestParameters.md)
@@ -448,6 +453,7 @@ Class | Method | HTTP request | Description
  - [OnboardingPortalTestLoginFlow](docs/OnboardingPortalTestLoginFlow.md)
  - [Organization](docs/Organization.md)
  - [OrganizationBody](docs/OrganizationBody.md)
+ - [OrganizationByHostname](docs/OrganizationByHostname.md)
  - [OrganizationOnboardingPortalLinksResponse](docs/OrganizationOnboardingPortalLinksResponse.md)
  - [PINConfig](docs/PINConfig.md)
  - [ParseError](docs/ParseError.md)
@@ -518,6 +524,7 @@ Class | Method | HTTP request | Description
  - [SuccessfulNativeLogin](docs/SuccessfulNativeLogin.md)
  - [SuccessfulNativeRegistration](docs/SuccessfulNativeRegistration.md)
  - [SuccessfulProjectUpdate](docs/SuccessfulProjectUpdate.md)
+ - [TalosRetiredValue](docs/TalosRetiredValue.md)
  - [TaxLineItem](docs/TaxLineItem.md)
  - [TimeInterval](docs/TimeInterval.md)
  - [Token](docs/Token.md)
@@ -568,8 +575,7 @@ Class | Method | HTTP request | Description
  - [UpdateRegistrationFlowWithWebAuthnMethod](docs/UpdateRegistrationFlowWithWebAuthnMethod.md)
  - [UpdateSettingsFlowBody](docs/UpdateSettingsFlowBody.md)
  - [UpdateSettingsFlowWithDeviceAuthnMethod](docs/UpdateSettingsFlowWithDeviceAuthnMethod.md)
- - [UpdateSettingsFlowWithDeviceAuthnMethodAdd](docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md)
- - [UpdateSettingsFlowWithDeviceAuthnMethodDelete](docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md)
+ - [UpdateSettingsFlowWithDeviceAuthnMethodRegister](docs/UpdateSettingsFlowWithDeviceAuthnMethodRegister.md)
  - [UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret](docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md)
  - [UpdateSettingsFlowWithLookupMethod](docs/UpdateSettingsFlowWithLookupMethod.md)
  - [UpdateSettingsFlowWithOidcMethod](docs/UpdateSettingsFlowWithOidcMethod.md)
@@ -584,6 +590,7 @@ Class | Method | HTTP request | Description
  - [UpdateVerificationFlowWithCodeMethod](docs/UpdateVerificationFlowWithCodeMethod.md)
  - [UpdateVerificationFlowWithLinkMethod](docs/UpdateVerificationFlowWithLinkMethod.md)
  - [UpdateWorkspaceBody](docs/UpdateWorkspaceBody.md)
+ - [UpdateWorkspaceOrganizationBody](docs/UpdateWorkspaceOrganizationBody.md)
  - [Usage](docs/Usage.md)
  - [UserVerification](docs/UserVerification.md)
  - [ValidateBaseURLRewriteRequest](docs/ValidateBaseURLRewriteRequest.md)

@@ -419,7 +419,7 @@ $apiInstance = new Ory\Client\Api\IdentityApi(
 );
 $id = 'id_example'; // string | ID is the identity's ID.
 $type = 'type_example'; // string | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
-$identifier = 'identifier_example'; // string | Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={oidc,saml}` endpoint.
+$identifier = 'identifier_example'; // string | Identifier is the identifier of the credential to delete. It is required for the `oidc`, `saml`, and `deviceauthn` credential types: for `oidc` and `saml` it selects the provider link to remove, for `deviceauthn` it is the `client_key_id` of the device key to revoke. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={type}` endpoint.
 
 try {
     $apiInstance->deleteIdentityCredentials($id, $type, $identifier);
@@ -434,7 +434,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| ID is the identity&#39;s ID. | |
 | **type** | **string**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | |
-| **identifier** | **string**| Identifier is the identifier of the OIDC/SAML credential to delete. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{oidc,saml}&#x60; endpoint. | [optional] |
+| **identifier** | **string**| Identifier is the identifier of the credential to delete. It is required for the &#x60;oidc&#x60;, &#x60;saml&#x60;, and &#x60;deviceauthn&#x60; credential types: for &#x60;oidc&#x60; and &#x60;saml&#x60; it selects the provider link to remove, for &#x60;deviceauthn&#x60; it is the &#x60;client_key_id&#x60; of the device key to revoke. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{type}&#x60; endpoint. | [optional] |
 
 ### Return type
 

@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.DeviceAuthnKey do
   @moduledoc """
-  
+  Represents a hardware-backed signing key enrolled from a mobile device. The private key resides inside the device and never exists on the server.  To list the identity's enrolled keys, fetch a settings flow: each key's remove button (a `ui.nodes` entry named `deviceauthn_remove` in group `deviceauthn`) carries the key, with its PIN state redacted, in the node label's `context`.
   """
 
   @derive Jason.Encoder
@@ -26,11 +26,11 @@ defmodule Ory.Model.DeviceAuthnKey do
     :client_key_id => String.t | nil,
     :created_at => DateTime.t | nil,
     :device_name => String.t | nil,
-    :device_type => String.t | nil,
+    :device_type => Ory.Model.DeviceType.t | nil,
     :pin => Ory.Model.PinConfig.t | nil,
-    :public_key => [integer()] | nil,
+    :public_key => binary() | nil,
     :relaxed_attestation_expires_at => DateTime.t | nil,
-    :state => String.t | nil,
+    :state => Ory.Model.KeyState.t | nil,
     :user_verification => Ory.Model.UserVerification.t | nil,
     :version => integer() | nil
   }
@@ -41,8 +41,10 @@ defmodule Ory.Model.DeviceAuthnKey do
     value
      |> Deserializer.deserialize(:attestation, :struct, Ory.Model.DeviceAuthnAttestation)
      |> Deserializer.deserialize(:created_at, :datetime, nil)
+     |> Deserializer.deserialize(:device_type, :struct, Ory.Model.DeviceType)
      |> Deserializer.deserialize(:pin, :struct, Ory.Model.PinConfig)
      |> Deserializer.deserialize(:relaxed_attestation_expires_at, :datetime, nil)
+     |> Deserializer.deserialize(:state, :struct, Ory.Model.KeyState)
      |> Deserializer.deserialize(:user_verification, :struct, Ory.Model.UserVerification)
   end
 end

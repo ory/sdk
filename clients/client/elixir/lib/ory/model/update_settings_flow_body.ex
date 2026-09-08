@@ -28,8 +28,8 @@ defmodule Ory.Model.UpdateSettingsFlowBody do
     :lookup_secret_reveal,
     :passkey_remove,
     :passkey_settings_register,
-    :add,
-    :delete,
+    :deviceauthn_register,
+    :deviceauthn_remove,
     :rotate_secret
   ]
 
@@ -54,8 +54,8 @@ defmodule Ory.Model.UpdateSettingsFlowBody do
     :lookup_secret_reveal => boolean() | nil,
     :passkey_remove => String.t | nil,
     :passkey_settings_register => String.t | nil,
-    :add => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd.t | nil,
-    :delete => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodDelete.t | nil,
+    :deviceauthn_register => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRegister.t | nil,
+    :deviceauthn_remove => String.t | nil,
     :rotate_secret => Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.t | nil
   }
 
@@ -63,8 +63,7 @@ defmodule Ory.Model.UpdateSettingsFlowBody do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:add, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodAdd)
-     |> Deserializer.deserialize(:delete, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodDelete)
+     |> Deserializer.deserialize(:deviceauthn_register, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRegister)
      |> Deserializer.deserialize(:rotate_secret, :struct, Ory.Model.UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret)
   end
 end

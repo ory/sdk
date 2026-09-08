@@ -95,6 +95,7 @@ docs/DeviceAuthnIOSAttStmt.md
 docs/DeviceAuthnIOSAttestation.md
 docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
+docs/DeviceType.md
 docs/DeviceUserAuthRequest.md
 docs/ElementsApi.md
 docs/ElementsConfiguration.md
@@ -123,6 +124,7 @@ docs/GetMetricsCount.md
 docs/GetMetricsEventAttributes.md
 docs/GetMetricsEventTypes.md
 docs/GetOrganizationResponse.md
+docs/GetOrganizationsByHostnameResponse.md
 docs/GetProjectEvents.md
 docs/GetProjectEventsBody.md
 docs/GetProjectMetrics.md
@@ -182,6 +184,7 @@ docs/JsonWebKey.md
 docs/JsonWebKeySet.md
 docs/JwkApi.md
 docs/KetoNamespace.md
+docs/KeyState.md
 docs/KeyStatus.md
 docs/KeyVisibility.md
 docs/KeysetPaginationRequestParameters.md
@@ -240,6 +243,7 @@ docs/OnboardingPortalOrganization.md
 docs/OnboardingPortalTestLoginFlow.md
 docs/Organization.md
 docs/OrganizationBody.md
+docs/OrganizationByHostname.md
 docs/OrganizationOnboardingPortalLinksResponse.md
 docs/PINConfig.md
 docs/ParseError.md
@@ -313,6 +317,7 @@ docs/SuccessfulCodeExchangeResponse.md
 docs/SuccessfulNativeLogin.md
 docs/SuccessfulNativeRegistration.md
 docs/SuccessfulProjectUpdate.md
+docs/TalosRetiredValue.md
 docs/TaxLineItem.md
 docs/TimeInterval.md
 docs/Token.md
@@ -363,8 +368,7 @@ docs/UpdateRegistrationFlowWithSamlMethod.md
 docs/UpdateRegistrationFlowWithWebAuthnMethod.md
 docs/UpdateSettingsFlowBody.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethod.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodAdd.md
-docs/UpdateSettingsFlowWithDeviceAuthnMethodDelete.md
+docs/UpdateSettingsFlowWithDeviceAuthnMethodRegister.md
 docs/UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret.md
 docs/UpdateSettingsFlowWithLookupMethod.md
 docs/UpdateSettingsFlowWithOidcMethod.md
@@ -379,6 +383,7 @@ docs/UpdateVerificationFlowBody.md
 docs/UpdateVerificationFlowWithCodeMethod.md
 docs/UpdateVerificationFlowWithLinkMethod.md
 docs/UpdateWorkspaceBody.md
+docs/UpdateWorkspaceOrganizationBody.md
 docs/Usage.md
 docs/UserVerification.md
 docs/ValidateBaseURLRewriteRequest.md

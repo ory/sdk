@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**create_o_auth2_client**](OAuth2Api.md#create_o_auth2_client) | **POST** /admin/clients | Create OAuth 2.0 Client
 [**delete_o_auth2_client**](OAuth2Api.md#delete_o_auth2_client) | **DELETE** /admin/clients/{id} | Delete OAuth 2.0 Client
 [**delete_o_auth2_token**](OAuth2Api.md#delete_o_auth2_token) | **DELETE** /admin/oauth2/tokens | Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
+[**delete_rotated_o_auth2_client_secrets**](OAuth2Api.md#delete_rotated_o_auth2_client_secrets) | **DELETE** /admin/clients/{id}/secrets/rotate | Delete Rotated OAuth 2.0 Client Secrets
 [**delete_trusted_o_auth2_jwt_grant_issuer**](OAuth2Api.md#delete_trusted_o_auth2_jwt_grant_issuer) | **DELETE** /admin/trust/grants/jwt-bearer/issuers/{id} | Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
 [**get_o_auth2_client**](OAuth2Api.md#get_o_auth2_client) | **GET** /admin/clients/{id} | Get an OAuth 2.0 Client
 [**get_o_auth2_consent_request**](OAuth2Api.md#get_o_auth2_consent_request) | **GET** /admin/oauth2/auth/requests/consent | Get OAuth 2.0 Consent Request
@@ -32,6 +33,7 @@ Method | HTTP request | Description
 [**revoke_o_auth2_consent_sessions**](OAuth2Api.md#revoke_o_auth2_consent_sessions) | **DELETE** /admin/oauth2/auth/sessions/consent | Revoke OAuth 2.0 Consent Sessions of a Subject
 [**revoke_o_auth2_login_sessions**](OAuth2Api.md#revoke_o_auth2_login_sessions) | **DELETE** /admin/oauth2/auth/sessions/login | Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 [**revoke_o_auth2_token**](OAuth2Api.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | Revoke OAuth 2.0 Access or Refresh Token
+[**rotate_o_auth2_client_secret**](OAuth2Api.md#rotate_o_auth2_client_secret) | **POST** /admin/clients/{id}/secrets/rotate | Rotate OAuth 2.0 Client Secret
 [**set_o_auth2_client**](OAuth2Api.md#set_o_auth2_client) | **PUT** /admin/clients/{id} | Set OAuth 2.0 Client
 [**set_o_auth2_client_lifespans**](OAuth2Api.md#set_o_auth2_client_lifespans) | **PUT** /admin/clients/{id}/lifespans | Set OAuth2 Client Token Lifespans
 [**trust_o_auth2_jwt_grant_issuer**](OAuth2Api.md#trust_o_auth2_jwt_grant_issuer) | **POST** /admin/trust/grants/jwt-bearer/issuers | Trust OAuth2 JWT Bearer Grant Type Issuer
@@ -44,6 +46,25 @@ Method | HTTP request | Description
 Accept OAuth 2.0 Consent Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell Ory now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells Ory if the subject accepted or rejected the request.  This endpoint tells Ory that the subject has authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider includes additional information, such as session data for access and ID tokens, and if the consent request should be used as basis for future requests.  The response contains a redirect URL which the consent provider should redirect the user-agent to.  The default consent provider is available via the Ory Managed Account Experience. To customize the consent provider, please head over to the OAuth 2.0 documentation.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let consent_challenge = "consent_challenge_example"; // String | OAuth 2.0 Consent Request Challenge
+    let accept_o_auth2_consent_request = Some(Default::default()); // AcceptOAuth2ConsentRequest (optional)
+    match o_auth2_api::accept_o_auth2_consent_request(&configuration, consent_challenge, accept_o_auth2_consent_request).await {
+        Ok(response) => println!("OAuth2Api::accept_o_auth2_consent_request: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::accept_o_auth2_consent_request: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -76,6 +97,25 @@ Accept OAuth 2.0 Login Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell the Ory OAuth2 Service about it.  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells Ory that the subject has successfully authenticated and includes additional information such as the subject's ID and if Ory should remember the subject's subject agent for future authentication attempts by setting a cookie.  The response contains a redirect URL which the login provider should redirect the user-agent to.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let login_challenge = "login_challenge_example"; // String | OAuth 2.0 Login Request Challenge
+    let accept_o_auth2_login_request = Some(Default::default()); // AcceptOAuth2LoginRequest (optional)
+    match o_auth2_api::accept_o_auth2_login_request(&configuration, login_challenge, accept_o_auth2_login_request).await {
+        Ok(response) => println!("OAuth2Api::accept_o_auth2_login_request: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::accept_o_auth2_login_request: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -107,6 +147,24 @@ Accept OAuth 2.0 Session Logout Request
 
 When a user or an application requests Ory OAuth 2.0 to remove the session state of a subject, this endpoint is used to confirm that logout request.  The response contains a redirect URL which the consent provider should redirect the user-agent to.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let logout_challenge = "logout_challenge_example"; // String | OAuth 2.0 Logout Request Challenge
+    match o_auth2_api::accept_o_auth2_logout_request(&configuration, logout_challenge).await {
+        Ok(response) => println!("OAuth2Api::accept_o_auth2_logout_request: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::accept_o_auth2_logout_request: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -136,6 +194,25 @@ Name | Type | Description  | Required | Notes
 Accepts a device grant user_code request
 
 Accepts a device grant user_code request
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let device_challenge = "device_challenge_example"; // String
+    let accept_device_user_code_request = Some(Default::default()); // AcceptDeviceUserCodeRequest (optional)
+    match o_auth2_api::accept_user_code_request(&configuration, device_challenge, accept_device_user_code_request).await {
+        Ok(response) => println!("OAuth2Api::accept_user_code_request: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::accept_user_code_request: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -168,6 +245,24 @@ Create OAuth 2.0 Client
 
 Create a new OAuth 2.0 client. If you pass `client_secret` the secret is used, otherwise a random secret is generated. The secret is echoed in the response. It is not possible to retrieve it later on.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let o_auth2_client = Default::default(); // OAuth2Client | OAuth 2.0 Client Request Body
+    match o_auth2_api::create_o_auth2_client(&configuration, o_auth2_client).await {
+        Ok(response) => println!("OAuth2Api::create_o_auth2_client: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::create_o_auth2_client: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -197,6 +292,24 @@ Name | Type | Description  | Required | Notes
 Delete OAuth 2.0 Client
 
 Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  Make sure that this endpoint is well protected and only callable by first-party components.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | The id of the OAuth 2.0 Client.
+    match o_auth2_api::delete_o_auth2_client(&configuration, id).await {
+        Ok(_) => println!("OAuth2Api::delete_o_auth2_client"),
+        Err(error) => eprintln!("Error calling OAuth2Api::delete_o_auth2_client: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -228,6 +341,24 @@ Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
 
 This endpoint deletes OAuth2 access tokens issued to an OAuth 2.0 Client from the database.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let client_id = "client_id_example"; // String | OAuth 2.0 Client ID
+    match o_auth2_api::delete_o_auth2_token(&configuration, client_id).await {
+        Ok(_) => println!("OAuth2Api::delete_o_auth2_token"),
+        Err(error) => eprintln!("Error calling OAuth2Api::delete_o_auth2_token: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -251,12 +382,78 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## delete_rotated_o_auth2_client_secrets
+
+> models::OAuth2Client delete_rotated_o_auth2_client_secrets(id)
+Delete Rotated OAuth 2.0 Client Secrets
+
+Removes all rotated secrets from an OAuth 2.0 client. This should be called after all services have been updated to use the new secret and the old secrets are no longer needed.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | OAuth 2.0 Client ID
+    match o_auth2_api::delete_rotated_o_auth2_client_secrets(&configuration, id).await {
+        Ok(response) => println!("OAuth2Api::delete_rotated_o_auth2_client_secrets: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::delete_rotated_o_auth2_client_secrets: {:?}", error),
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **String** | OAuth 2.0 Client ID | [required] |
+
+### Return type
+
+[**models::OAuth2Client**](oAuth2Client.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## delete_trusted_o_auth2_jwt_grant_issuer
 
 > delete_trusted_o_auth2_jwt_grant_issuer(id)
 Delete Trusted OAuth2 JWT Bearer Grant Type Issuer
 
 Use this endpoint to delete trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.  Once deleted, the associated issuer will no longer be able to perform the JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grant.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | The id of the desired grant
+    match o_auth2_api::delete_trusted_o_auth2_jwt_grant_issuer(&configuration, id).await {
+        Ok(_) => println!("OAuth2Api::delete_trusted_o_auth2_jwt_grant_issuer"),
+        Err(error) => eprintln!("Error calling OAuth2Api::delete_trusted_o_auth2_jwt_grant_issuer: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -288,6 +485,24 @@ Get an OAuth 2.0 Client
 
 Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | The id of the OAuth 2.0 Client.
+    match o_auth2_api::get_o_auth2_client(&configuration, id).await {
+        Ok(response) => println!("OAuth2Api::get_o_auth2_client: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::get_o_auth2_client: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -317,6 +532,24 @@ Name | Type | Description  | Required | Notes
 Get OAuth 2.0 Consent Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell Ory now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells Ory if the subject accepted or rejected the request.  The default consent provider is available via the Ory Managed Account Experience. To customize the consent provider, please head over to the OAuth 2.0 documentation.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let consent_challenge = "consent_challenge_example"; // String | OAuth 2.0 Consent Request Challenge
+    match o_auth2_api::get_o_auth2_consent_request(&configuration, consent_challenge).await {
+        Ok(response) => println!("OAuth2Api::get_o_auth2_consent_request: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::get_o_auth2_consent_request: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -348,6 +581,24 @@ Get OAuth 2.0 Login Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell the Ory OAuth2 Service about it.  Per default, the login provider is Ory itself. You may use a different login provider which needs to be a web-app you write and host, and it must be able to authenticate (\"show the subject a login screen\") a subject (in OAuth2 the proper name for subject is \"resource owner\").  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let login_challenge = "login_challenge_example"; // String | OAuth 2.0 Login Request Challenge
+    match o_auth2_api::get_o_auth2_login_request(&configuration, login_challenge).await {
+        Ok(response) => println!("OAuth2Api::get_o_auth2_login_request: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::get_o_auth2_login_request: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -377,6 +628,24 @@ Name | Type | Description  | Required | Notes
 Get OAuth 2.0 Session Logout Request
 
 Use this endpoint to fetch an Ory OAuth 2.0 logout request.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let logout_challenge = "logout_challenge_example"; // String
+    match o_auth2_api::get_o_auth2_logout_request(&configuration, logout_challenge).await {
+        Ok(response) => println!("OAuth2Api::get_o_auth2_logout_request: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::get_o_auth2_logout_request: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -408,6 +677,24 @@ Get Trusted OAuth2 JWT Bearer Grant Type Issuer
 
 Use this endpoint to get a trusted JWT Bearer Grant Type Issuer. The ID is the one returned when you created the trust relationship.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | The id of the desired grant
+    match o_auth2_api::get_trusted_o_auth2_jwt_grant_issuer(&configuration, id).await {
+        Ok(response) => println!("OAuth2Api::get_trusted_o_auth2_jwt_grant_issuer: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::get_trusted_o_auth2_jwt_grant_issuer: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -437,6 +724,25 @@ Name | Type | Description  | Required | Notes
 Introspect OAuth2 Access and Refresh Tokens
 
 The introspection endpoint allows to check if a token (both refresh and access) is active or not. An active token is neither expired nor revoked. If a token is active, additional information on the token will be included. You can set additional data for a token by setting `session.access_token` during the consent flow.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let token = "token_example"; // String | The string value of the token. For access tokens, this is the \\\"access_token\\\" value returned from the token endpoint defined in OAuth 2.0. For refresh tokens, this is the \\\"refresh_token\\\" value returned.
+    let scope = None; // String | An optional, space separated list of required scopes. If the access token was not granted one of the scopes, the result of active will be false. (optional)
+    match o_auth2_api::introspect_o_auth2_token(&configuration, token, scope).await {
+        Ok(response) => println!("OAuth2Api::introspect_o_auth2_token: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::introspect_o_auth2_token: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -468,6 +774,27 @@ Name | Type | Description  | Required | Notes
 List OAuth 2.0 Clients
 
 This endpoint lists all clients in the database, and never returns client secrets. As a default it lists the first 100 clients.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let page_size = None; // i64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let page_token = None; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let client_name = None; // String | The name of the clients to filter by. (optional)
+    let owner = None; // String | The owner of the clients to filter by. (optional)
+    match o_auth2_api::list_o_auth2_clients(&configuration, page_size, page_token, client_name, owner).await {
+        Ok(response) => println!("OAuth2Api::list_o_auth2_clients: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::list_o_auth2_clients: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -502,6 +829,27 @@ List OAuth 2.0 Consent Sessions of a Subject
 
 This endpoint lists all subject's granted consent sessions, including client and granted scope. If the subject is unknown or has not granted any consent sessions yet, the endpoint returns an empty JSON array with status code 200 OK.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let subject = "subject_example"; // String | The subject to list the consent sessions for.
+    let page_size = None; // i64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let page_token = None; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let login_session_id = None; // String | The login session id to list the consent sessions for. (optional)
+    match o_auth2_api::list_o_auth2_consent_sessions(&configuration, subject, page_size, page_token, login_session_id).await {
+        Ok(response) => println!("OAuth2Api::list_o_auth2_consent_sessions: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::list_o_auth2_consent_sessions: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -535,6 +883,26 @@ List Trusted OAuth2 JWT Bearer Grant Type Issuers
 
 Use this endpoint to list all trusted JWT Bearer Grant Type Issuers.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let page_size = None; // i64 | Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let page_token = None; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+    let issuer = None; // String | If optional \"issuer\" is supplied, only jwt-bearer grants with this issuer will be returned. (optional)
+    match o_auth2_api::list_trusted_o_auth2_jwt_grant_issuers(&configuration, page_size, page_token, issuer).await {
+        Ok(response) => println!("OAuth2Api::list_trusted_o_auth2_jwt_grant_issuers: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::list_trusted_o_auth2_jwt_grant_issuers: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -567,6 +935,22 @@ OAuth 2.0 Authorize Endpoint
 
 Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    match o_auth2_api::o_auth2_authorize(&configuration).await {
+        Ok(response) => println!("OAuth2Api::o_auth2_authorize: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::o_auth2_authorize: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 This endpoint does not need any parameter.
@@ -594,6 +978,22 @@ The OAuth 2.0 Device Authorize Endpoint
 
 This endpoint is not documented here because you should never use your own implementation to perform OAuth2 flows. OAuth2 is a very popular protocol and a library for your programming language will exist.  To learn more about this flow please refer to the specification: https://tools.ietf.org/html/rfc8628
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    match o_auth2_api::o_auth2_device_flow(&configuration).await {
+        Ok(response) => println!("OAuth2Api::o_auth2_device_flow: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::o_auth2_device_flow: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 This endpoint does not need any parameter.
@@ -620,6 +1020,28 @@ No authorization required
 The OAuth 2.0 Token Endpoint
 
 Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let grant_type = "grant_type_example"; // String
+    let client_id = None; // String (optional)
+    let code = None; // String (optional)
+    let redirect_uri = None; // String (optional)
+    let refresh_token = None; // String (optional)
+    match o_auth2_api::oauth2_token_exchange(&configuration, grant_type, client_id, code, redirect_uri, refresh_token).await {
+        Ok(response) => println!("OAuth2Api::oauth2_token_exchange: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::oauth2_token_exchange: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -653,7 +1075,26 @@ Name | Type | Description  | Required | Notes
 > models::OAuth2Client patch_o_auth2_client(id, json_patch)
 Patch OAuth 2.0 Client
 
-Patch an existing OAuth 2.0 Client using JSON Patch. If you pass `client_secret` the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret, so write it down and keep it safe.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+Patch an existing OAuth 2.0 Client using JSON Patch. If you update `client_secret`, the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret. Passing a new `client_secret` will clear all rotated secrets.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | The id of the OAuth 2.0 Client.
+    let json_patch = Default::default(); // Vec<models::JsonPatch> | OAuth 2.0 Client JSON Patch Body
+    match o_auth2_api::patch_o_auth2_client(&configuration, id, json_patch).await {
+        Ok(response) => println!("OAuth2Api::patch_o_auth2_client: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::patch_o_auth2_client: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -686,6 +1127,22 @@ OAuth 2.0 Device Verification Endpoint
 
 This is the device user verification endpoint. The user is redirected here when trying to log in using the device flow.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    match o_auth2_api::perform_o_auth2_device_verification_flow(&configuration).await {
+        Ok(response) => println!("OAuth2Api::perform_o_auth2_device_verification_flow: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::perform_o_auth2_device_verification_flow: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 This endpoint does not need any parameter.
@@ -712,6 +1169,25 @@ No authorization required
 Reject OAuth 2.0 Consent Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell Ory now about it. If the subject authenticated, he/she must now be asked if the OAuth 2.0 Client which initiated the flow should be allowed to access the resources on the subject's behalf.  The consent challenge is appended to the consent provider's URL to which the subject's user-agent (browser) is redirected to. The consent provider uses that challenge to fetch information on the OAuth2 request and then tells Ory if the subject accepted or rejected the request.  This endpoint tells Ory that the subject has not authorized the OAuth 2.0 client to access resources on his/her behalf. The consent provider must include a reason why the consent was not granted.  The response contains a redirect URL which the consent provider should redirect the user-agent to.  The default consent provider is available via the Ory Managed Account Experience. To customize the consent provider, please head over to the OAuth 2.0 documentation.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let consent_challenge = "consent_challenge_example"; // String | OAuth 2.0 Consent Request Challenge
+    let reject_o_auth2_request = Some(Default::default()); // RejectOAuth2Request (optional)
+    match o_auth2_api::reject_o_auth2_consent_request(&configuration, consent_challenge, reject_o_auth2_request).await {
+        Ok(response) => println!("OAuth2Api::reject_o_auth2_consent_request: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::reject_o_auth2_consent_request: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -744,6 +1220,25 @@ Reject OAuth 2.0 Login Request
 
 When an authorization code, hybrid, or implicit OAuth 2.0 Flow is initiated, Ory asks the login provider to authenticate the subject and then tell the Ory OAuth2 Service about it.  The authentication challenge is appended to the login provider URL to which the subject's user-agent (browser) is redirected to. The login provider uses that challenge to fetch information on the OAuth2 request and then accept or reject the requested authentication process.  This endpoint tells Ory that the subject has not authenticated and includes a reason why the authentication was denied.  The response contains a redirect URL which the login provider should redirect the user-agent to.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let login_challenge = "login_challenge_example"; // String | OAuth 2.0 Login Request Challenge
+    let reject_o_auth2_request = Some(Default::default()); // RejectOAuth2Request (optional)
+    match o_auth2_api::reject_o_auth2_login_request(&configuration, login_challenge, reject_o_auth2_request).await {
+        Ok(response) => println!("OAuth2Api::reject_o_auth2_login_request: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::reject_o_auth2_login_request: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -775,6 +1270,24 @@ Reject OAuth 2.0 Session Logout Request
 
 When a user or an application requests Ory OAuth 2.0 to remove the session state of a subject, this endpoint is used to deny that logout request. No HTTP request body is required.  The response is empty as the logout provider has to chose what action to perform next.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let logout_challenge = "logout_challenge_example"; // String
+    match o_auth2_api::reject_o_auth2_logout_request(&configuration, logout_challenge).await {
+        Ok(_) => println!("OAuth2Api::reject_o_auth2_logout_request"),
+        Err(error) => eprintln!("Error calling OAuth2Api::reject_o_auth2_logout_request: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -804,6 +1317,27 @@ Name | Type | Description  | Required | Notes
 Revoke OAuth 2.0 Consent Sessions of a Subject
 
 This endpoint revokes a subject's granted consent sessions and invalidates all associated OAuth 2.0 Access Tokens. You may also only revoke sessions for a specific OAuth 2.0 Client ID.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let subject = None; // String | OAuth 2.0 Consent Subject  The subject whose consent sessions should be deleted. (optional)
+    let client = None; // String | OAuth 2.0 Client ID  If set, deletes only those consent sessions that have been granted to the specified OAuth 2.0 Client ID. (optional)
+    let consent_request_id = None; // String | Consent Request ID  If set, revoke all token chains derived from this particular consent request ID. (optional)
+    let all = None; // bool | Revoke All Consent Sessions  If set to `true` deletes all consent sessions by the Subject that have been granted. (optional)
+    match o_auth2_api::revoke_o_auth2_consent_sessions(&configuration, subject, client, consent_request_id, all).await {
+        Ok(_) => println!("OAuth2Api::revoke_o_auth2_consent_sessions"),
+        Err(error) => eprintln!("Error calling OAuth2Api::revoke_o_auth2_consent_sessions: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -838,6 +1372,25 @@ Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
 
 This endpoint invalidates authentication sessions. After revoking the authentication session(s), the subject has to re-authenticate at the Ory OAuth2 Provider. This endpoint does not invalidate any tokens.  If you send the subject in a query param, all authentication sessions that belong to that subject are revoked. No OpenID Connect Front- or Back-channel logout is performed in this case.  Alternatively, you can send a SessionID via `sid` query param, in which case, only the session that is connected to that SessionID is revoked. OpenID Connect Back-channel logout is performed in this case.  When using Ory for the identity provider, the login provider will also invalidate the session cookie.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let subject = None; // String | OAuth 2.0 Subject  The subject to revoke authentication sessions for. (optional)
+    let sid = None; // String | Login Session ID  The login session to revoke. (optional)
+    match o_auth2_api::revoke_o_auth2_login_sessions(&configuration, subject, sid).await {
+        Ok(_) => println!("OAuth2Api::revoke_o_auth2_login_sessions"),
+        Err(error) => eprintln!("Error calling OAuth2Api::revoke_o_auth2_login_sessions: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -869,6 +1422,26 @@ Revoke OAuth 2.0 Access or Refresh Token
 
 Revoking a token (both access and refresh) means that the tokens will be invalid. A revoked access token can no longer be used to make access requests, and a revoked refresh token can no longer be used to refresh an access token. Revoking a refresh token also invalidates the access token that was created with it. A token may only be revoked by the client the token was generated for.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let token = "token_example"; // String
+    let client_id = None; // String (optional)
+    let client_secret = None; // String (optional)
+    match o_auth2_api::revoke_o_auth2_token(&configuration, token, client_id, client_secret).await {
+        Ok(_) => println!("OAuth2Api::revoke_o_auth2_token"),
+        Err(error) => eprintln!("Error calling OAuth2Api::revoke_o_auth2_token: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -894,12 +1467,79 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## rotate_o_auth2_client_secret
+
+> models::OAuth2Client rotate_o_auth2_client_secret(id)
+Rotate OAuth 2.0 Client Secret
+
+Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | OAuth 2.0 Client ID
+    match o_auth2_api::rotate_o_auth2_client_secret(&configuration, id).await {
+        Ok(response) => println!("OAuth2Api::rotate_o_auth2_client_secret: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::rotate_o_auth2_client_secret: {:?}", error),
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **String** | OAuth 2.0 Client ID | [required] |
+
+### Return type
+
+[**models::OAuth2Client**](oAuth2Client.md)
+
+### Authorization
+
+[oryAccessToken](../README.md#oryAccessToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## set_o_auth2_client
 
 > models::OAuth2Client set_o_auth2_client(id, o_auth2_client)
 Set OAuth 2.0 Client
 
-Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used. Rotated secrets will be cleared if you pass a new `client_secret`.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | OAuth 2.0 Client ID
+    let o_auth2_client = Default::default(); // OAuth2Client | OAuth 2.0 Client Request Body
+    match o_auth2_api::set_o_auth2_client(&configuration, id, o_auth2_client).await {
+        Ok(response) => println!("OAuth2Api::set_o_auth2_client: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::set_o_auth2_client: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 
@@ -932,6 +1572,25 @@ Set OAuth2 Client Token Lifespans
 
 Set lifespans of different token types issued for this OAuth 2.0 client. Does not modify other fields.
 
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let id = "id_example"; // String | OAuth 2.0 Client ID
+    let o_auth2_client_token_lifespans = Some(Default::default()); // OAuth2ClientTokenLifespans (optional)
+    match o_auth2_api::set_o_auth2_client_lifespans(&configuration, id, o_auth2_client_token_lifespans).await {
+        Ok(response) => println!("OAuth2Api::set_o_auth2_client_lifespans: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::set_o_auth2_client_lifespans: {:?}", error),
+    }
+}
+```
+
 ### Parameters
 
 
@@ -962,6 +1621,24 @@ Name | Type | Description  | Required | Notes
 Trust OAuth2 JWT Bearer Grant Type Issuer
 
 Use this endpoint to establish a trust relationship for a JWT issuer to perform JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [RFC7523](https://datatracker.ietf.org/doc/html/rfc7523).
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::o_auth2_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let trust_o_auth2_jwt_grant_issuer = Some(Default::default()); // TrustOAuth2JwtGrantIssuer (optional)
+    match o_auth2_api::trust_o_auth2_jwt_grant_issuer(&configuration, trust_o_auth2_jwt_grant_issuer).await {
+        Ok(response) => println!("OAuth2Api::trust_o_auth2_jwt_grant_issuer: {:?}", response),
+        Err(error) => eprintln!("Error calling OAuth2Api::trust_o_auth2_jwt_grant_issuer: {:?}", error),
+    }
+}
+```
 
 ### Parameters
 

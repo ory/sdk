@@ -1,7 +1,7 @@
 
 # UpdateSettingsFlowWithDeviceAuthnMethodRotateSecret
 
-Re-issues a fresh pin_secret for an existing PIN-protected DeviceAuthn key without changing the device signing key. It is the recovery path for a forgotten PIN or a locked key. The server returns the new secret sealed to the supplied transport_public_key exactly once.
+Re-issues a fresh pin_secret for an existing PIN-protected DeviceAuthn key without changing the device signing key. It is the recovery path for a forgotten PIN or a locked key. The server returns the new secret exactly once, HPKE-sealed to the supplied transport_public_key, in the flow\'s `continue_with` items (action `show_pin_entry_ui`).
 
 ## Properties
 

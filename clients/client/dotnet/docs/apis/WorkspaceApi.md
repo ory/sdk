@@ -15,24 +15,58 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 <a id="createworkspace"></a>
 # **CreateWorkspace**
-> ClientWorkspace CreateWorkspace (ClientCreateWorkspaceBody clientCreateWorkspaceBody = null)
+> Task&lt;ICreateWorkspaceApiResponse&gt; CreateWorkspaceAsync(Option<ClientCreateWorkspaceBody> clientCreateWorkspaceBody = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create a new workspace
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateWorkspaceExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IWorkspaceApi>();
+            Option<ClientCreateWorkspaceBody> clientCreateWorkspaceBody = default!; //  (optional)
+            var response = await api.CreateWorkspaceAsync(clientCreateWorkspaceBody);
+            ClientWorkspace? model = response.Created();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **clientCreateWorkspaceBody** | [**ClientCreateWorkspaceBody**](ClientCreateWorkspaceBody.md) |  | [optional]  |
+| **clientCreateWorkspaceBody** | [**ClientCreateWorkspaceBody**](../models/ClientCreateWorkspaceBody.md) |  | [optional]  |
 
 ### Return type
 
-[**ClientWorkspace**](ClientWorkspace.md)
+[**ClientWorkspace**](../models/ClientWorkspace.md)
 
 ### Authorization
 
-[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -54,27 +88,62 @@ Create a new workspace
 
 <a id="createworkspaceapikey"></a>
 # **CreateWorkspaceApiKey**
-> ClientWorkspaceApiKey CreateWorkspaceApiKey (string workspace, ClientCreateWorkspaceApiKeyBody clientCreateWorkspaceApiKeyBody = null)
+> Task&lt;ICreateWorkspaceApiKeyApiResponse&gt; CreateWorkspaceApiKeyAsync(string workspace, Option<ClientCreateWorkspaceApiKeyBody> clientCreateWorkspaceApiKeyBody = default, System.Threading.CancellationToken cancellationToken = default)
 
 Create workspace API key
 
 Create an API key for a workspace.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class CreateWorkspaceApiKeyExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IWorkspaceApi>();
+            string workspace = default!; // The Workspace ID
+            Option<ClientCreateWorkspaceApiKeyBody> clientCreateWorkspaceApiKeyBody = default!; //  (optional)
+            var response = await api.CreateWorkspaceApiKeyAsync(workspace, clientCreateWorkspaceApiKeyBody);
+            ClientWorkspaceApiKey? model = response.Created();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **workspace** | **string** | The Workspace ID |  |
-| **clientCreateWorkspaceApiKeyBody** | [**ClientCreateWorkspaceApiKeyBody**](ClientCreateWorkspaceApiKeyBody.md) |  | [optional]  |
+| **clientCreateWorkspaceApiKeyBody** | [**ClientCreateWorkspaceApiKeyBody**](../models/ClientCreateWorkspaceApiKeyBody.md) |  | [optional]  |
 
 ### Return type
 
-[**ClientWorkspaceApiKey**](ClientWorkspaceApiKey.md)
+[**ClientWorkspaceApiKey**](../models/ClientWorkspaceApiKey.md)
 
 ### Authorization
 
-[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -92,12 +161,46 @@ Create an API key for a workspace.
 
 <a id="deleteworkspaceapikey"></a>
 # **DeleteWorkspaceApiKey**
-> void DeleteWorkspaceApiKey (string workspace, string tokenId)
+> Task&lt;IDeleteWorkspaceApiKeyApiResponse&gt; DeleteWorkspaceApiKeyAsync(string workspace, string tokenId, System.Threading.CancellationToken cancellationToken = default)
 
 Delete workspace API key
 
 Deletes an API key and immediately removes it.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class DeleteWorkspaceApiKeyExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IWorkspaceApi>();
+            string workspace = default!; // The Workspace ID or Workspace slug
+            string tokenId = default!; // The Token ID
+            await api.DeleteWorkspaceApiKeyAsync(workspace, tokenId);
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -112,7 +215,7 @@ void (empty response body)
 
 ### Authorization
 
-[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -130,12 +233,46 @@ void (empty response body)
 
 <a id="getworkspace"></a>
 # **GetWorkspace**
-> ClientWorkspace GetWorkspace (string workspace)
+> Task&lt;IGetWorkspaceApiResponse&gt; GetWorkspaceAsync(string workspace, System.Threading.CancellationToken cancellationToken = default)
 
 Get a workspace
 
 Any workspace member can access this endpoint.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class GetWorkspaceExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IWorkspaceApi>();
+            string workspace = default!; // 
+            var response = await api.GetWorkspaceAsync(workspace);
+            ClientWorkspace? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -145,11 +282,11 @@ Any workspace member can access this endpoint.
 
 ### Return type
 
-[**ClientWorkspace**](ClientWorkspace.md)
+[**ClientWorkspace**](../models/ClientWorkspace.md)
 
 ### Authorization
 
-[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -171,12 +308,46 @@ Any workspace member can access this endpoint.
 
 <a id="listworkspaceapikeys"></a>
 # **ListWorkspaceApiKeys**
-> List&lt;ClientWorkspaceApiKey&gt; ListWorkspaceApiKeys (string workspace)
+> Task&lt;IListWorkspaceApiKeysApiResponse&gt; ListWorkspaceApiKeysAsync(string workspace, System.Threading.CancellationToken cancellationToken = default)
 
 List a workspace's API keys
 
 A list of all the workspace's API keys.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class ListWorkspaceApiKeysExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IWorkspaceApi>();
+            string workspace = default!; // The Workspace ID or Workspace slug
+            var response = await api.ListWorkspaceApiKeysAsync(workspace);
+            List<ClientWorkspaceApiKey>? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -186,11 +357,11 @@ A list of all the workspace's API keys.
 
 ### Return type
 
-[**List&lt;ClientWorkspaceApiKey&gt;**](ClientWorkspaceApiKey.md)
+[**List&lt;ClientWorkspaceApiKey&gt;**](../models/ClientWorkspaceApiKey.md)
 
 ### Authorization
 
-[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -208,12 +379,46 @@ A list of all the workspace's API keys.
 
 <a id="listworkspaceprojects"></a>
 # **ListWorkspaceProjects**
-> ClientListWorkspaceProjects ListWorkspaceProjects (string workspace)
+> Task&lt;IListWorkspaceProjectsApiResponse&gt; ListWorkspaceProjectsAsync(string workspace, System.Threading.CancellationToken cancellationToken = default)
 
 List all projects of a workspace
 
 Any workspace member can access this endpoint.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class ListWorkspaceProjectsExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IWorkspaceApi>();
+            string workspace = default!; // 
+            var response = await api.ListWorkspaceProjectsAsync(workspace);
+            ClientListWorkspaceProjects? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -223,11 +428,11 @@ Any workspace member can access this endpoint.
 
 ### Return type
 
-[**ClientListWorkspaceProjects**](ClientListWorkspaceProjects.md)
+[**ClientListWorkspaceProjects**](../models/ClientListWorkspaceProjects.md)
 
 ### Authorization
 
-[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -249,10 +454,45 @@ Any workspace member can access this endpoint.
 
 <a id="listworkspaces"></a>
 # **ListWorkspaces**
-> ClientListWorkspaces ListWorkspaces (long pageSize = null, string pageToken = null)
+> Task&lt;IListWorkspacesApiResponse&gt; ListWorkspacesAsync(Option<long> pageSize = default, Option<string> pageToken = default, System.Threading.CancellationToken cancellationToken = default)
 
 List workspaces the user is a member of
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class ListWorkspacesExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IWorkspaceApi>();
+            Option<long> pageSize = default!; // Items per Page  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+            Option<string> pageToken = default!; // Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
+            var response = await api.ListWorkspacesAsync(pageSize, pageToken);
+            ClientListWorkspaces? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
@@ -263,11 +503,11 @@ List workspaces the user is a member of
 
 ### Return type
 
-[**ClientListWorkspaces**](ClientListWorkspaces.md)
+[**ClientListWorkspaces**](../models/ClientListWorkspaces.md)
 
 ### Authorization
 
-[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 
@@ -289,27 +529,62 @@ List workspaces the user is a member of
 
 <a id="updateworkspace"></a>
 # **UpdateWorkspace**
-> ClientWorkspace UpdateWorkspace (string workspace, ClientUpdateWorkspaceBody clientUpdateWorkspaceBody = null)
+> Task&lt;IUpdateWorkspaceApiResponse&gt; UpdateWorkspaceAsync(string workspace, Option<ClientUpdateWorkspaceBody> clientUpdateWorkspaceBody = default, System.Threading.CancellationToken cancellationToken = default)
 
 Update an workspace
 
 Workspace members with the role `OWNER` can access this endpoint.
 
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class UpdateWorkspaceExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IWorkspaceApi>();
+            string workspace = default!; // 
+            Option<ClientUpdateWorkspaceBody> clientUpdateWorkspaceBody = default!; //  (optional)
+            var response = await api.UpdateWorkspaceAsync(workspace, clientUpdateWorkspaceBody);
+            ClientWorkspace? model = response.Ok();
+        }
+    }
+}
+```
 
 ### Parameters
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **workspace** | **string** |  |  |
-| **clientUpdateWorkspaceBody** | [**ClientUpdateWorkspaceBody**](ClientUpdateWorkspaceBody.md) |  | [optional]  |
+| **clientUpdateWorkspaceBody** | [**ClientUpdateWorkspaceBody**](../models/ClientUpdateWorkspaceBody.md) |  | [optional]  |
 
 ### Return type
 
-[**ClientWorkspace**](ClientWorkspace.md)
+[**ClientWorkspace**](../models/ClientWorkspace.md)
 
 ### Authorization
 
-[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
 
 ### HTTP request headers
 

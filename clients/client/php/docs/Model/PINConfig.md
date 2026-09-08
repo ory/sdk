@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**createdAt** | **\DateTime** | CreatedAt is when the pin_secret was first issued. | [optional]
-**failedAttempts** | **int** | FailedAttempts counts consecutive wrong-PIN attempts; the key locks when it reaches the configured maximum. | [optional]
-**pinSecret** | **string** | PINSecret is the at-rest pin_secret ciphertext. Server-internal: never logged or transmitted. Empty once the key locks. | [optional]
-**rotatedAt** | **\DateTime** | RotatedAt is when the pin_secret was last rotated; the zero value means never rotated. omitzero (not omitempty) drops the zero timestamp from the JSON, since omitempty never treats a time.Time value as empty. | [optional]
+**createdAt** | **\DateTime** | When the pin_secret was first issued. | [optional]
+**failedAttempts** | **int** | The number of consecutive wrong-PIN attempts so far; the key locks when it reaches the configured maximum (pin_max_attempts, default 5). | [optional]
+**pinSecret** | **string** | The at-rest ciphertext of the pin_secret. It never leaves the server and is cleared once the key locks. | [optional]
+**rotatedAt** | **\DateTime** | When the pin_secret was last rotated. Omitted if the secret was never rotated. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
