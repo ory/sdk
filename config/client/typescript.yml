@@ -8,3 +8,4 @@ disallowAdditionalPropertiesIfNotPresent: false
 withInterfaces: false
 useSingleRequestParameter: true
 enumUnknownDefaultCase: true
+axiosVersion: "~1.18.1"
