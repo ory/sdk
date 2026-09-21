@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **ActiveLink** | Pointer to [**OnboardingPortalLink**](OnboardingPortalLink.md) |  | [optional] 
 **CreatedAt** | **time.Time** |  | 
 **DefaultRegion** | Pointer to **string** | DefaultRegion sets the default region for identities provisioned into this organization, when the identity does not specify a region explictly. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] 
+**DomainVerifications** | Pointer to [**[]DomainVerificationStatus**](DomainVerificationStatus.md) | The verification status of each organization domain, including the DNS TXT record the customer must publish to prove control. A domain that has no verification started yet still appears, with the TXT record name set and an empty status. | [optional] 
 **Domains** | **[]string** | The list of organization&#39;s domains. | 
 **Id** | **string** | The organization&#39;s ID. | 
 **Label** | **string** | The organization&#39;s human-readable label. | 
@@ -101,6 +102,31 @@ SetDefaultRegion sets DefaultRegion field to given value.
 `func (o *WorkspaceOrganization) HasDefaultRegion() bool`
 
 HasDefaultRegion returns a boolean if a field has been set.
+
+### GetDomainVerifications
+
+`func (o *WorkspaceOrganization) GetDomainVerifications() []DomainVerificationStatus`
+
+GetDomainVerifications returns the DomainVerifications field if non-nil, zero value otherwise.
+
+### GetDomainVerificationsOk
+
+`func (o *WorkspaceOrganization) GetDomainVerificationsOk() (*[]DomainVerificationStatus, bool)`
+
+GetDomainVerificationsOk returns a tuple with the DomainVerifications field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomainVerifications
+
+`func (o *WorkspaceOrganization) SetDomainVerifications(v []DomainVerificationStatus)`
+
+SetDomainVerifications sets DomainVerifications field to given value.
+
+### HasDomainVerifications
+
+`func (o *WorkspaceOrganization) HasDomainVerifications() bool`
+
+HasDomainVerifications returns a boolean if a field has been set.
 
 ### GetDomains
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExpiresAt** | Pointer to **time.Time** |  | [optional] 
+**ExpiresAt** | Pointer to **NullableTime** |  | [optional] 
 **Name** | **string** | The API Key Name  A descriptive name for the API key. | 
 
 ## Methods
@@ -51,6 +51,16 @@ SetExpiresAt sets ExpiresAt field to given value.
 
 HasExpiresAt returns a boolean if a field has been set.
 
+### SetExpiresAtNil
+
+`func (o *CreateWorkspaceApiKeyBody) SetExpiresAtNil(b bool)`
+
+ SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+
+### UnsetExpiresAt
+`func (o *CreateWorkspaceApiKeyBody) UnsetExpiresAt()`
+
+UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
 ### GetName
 
 `func (o *CreateWorkspaceApiKeyBody) GetName() string`

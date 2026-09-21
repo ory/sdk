@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key
 [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 [**get_organization_onboarding_portal_links**](ProjectApi.md#get_organization_onboarding_portal_links) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links
-[**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project
+[**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get an Ory Network Project Configuration
 [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project
 [**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
 [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project's API keys
@@ -25,6 +25,7 @@ Method | HTTP request | Description
 [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 [**update_organization**](ProjectApi.md#update_organization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
 [**update_organization_onboarding_portal_link**](ProjectApi.md#update_organization_onboarding_portal_link) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link
+[**validate_opl**](ProjectApi.md#validate_opl) | **POST** /projects/{project_id}/opl/validate | Validate an Ory Permission Language document
 
 
 
@@ -483,9 +484,9 @@ Name | Type | Description  | Required | Notes
 ## get_project
 
 > models::Project get_project(project_id)
-Get a Project
+Get an Ory Network Project Configuration
 
-Get a project you have access to by its ID.
+Returns the project rendered into the configuration format the open source projects use (e.g. Ory Kratos for Identity, Ory Keto for Permissions), including the values Ory fills in for the project, such as the resolved base URLs.  The rendered configuration does not carry the operational configuration items (e.g. port, tracing, logging) available in the open source.
 
 ### Example
 
@@ -1073,6 +1074,56 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## validate_opl
+
+> models::OplValidateResult validate_opl(project_id, body)
+Validate an Ory Permission Language document
+
+Parses an OPL document using the same product limits and subscription entitlements applied when the project's configuration is saved.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::project_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    configuration.bearer_access_token = Some("ory_pat_...".to_owned());
+    let project_id = "project_id_example"; // String | The project's ID.
+    let body = Some(Default::default()); // String (optional)
+    match project_api::validate_opl(&configuration, project_id, body).await {
+        Ok(response) => println!("ProjectApi::validate_opl: {:?}", response),
+        Err(error) => eprintln!("Error calling ProjectApi::validate_opl: {:?}", error),
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**project_id** | **String** | The project's ID. | [required] |
+**body** | Option<**String**> |  |  |
+
+### Return type
+
+[**models::OplValidateResult**](oplValidateResult.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: text/plain
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

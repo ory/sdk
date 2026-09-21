@@ -3,7 +3,7 @@
 
 defmodule Ory.Model.CourierMessageType do
   @moduledoc """
-  It can either be `email` or `phone`
+  It can either be `email` or `sms`
   """
 
   @derive Jason.Encoder

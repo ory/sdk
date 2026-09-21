@@ -11,6 +11,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**createBrowserSettingsFlow**](FrontendApi.md#createBrowserSettingsFlow) | **GET** /self-service/settings/browser | Create Settings Flow for Browsers |
 | [**createBrowserVerificationFlow**](FrontendApi.md#createBrowserVerificationFlow) | **GET** /self-service/verification/browser | Create Verification Flow for Browser Clients |
 | [**createFedcmFlow**](FrontendApi.md#createFedcmFlow) | **GET** /self-service/fed-cm/parameters | Get FedCM Parameters |
+| [**createIdPInitiatedSamlBrowserLoginFlow**](FrontendApi.md#createIdPInitiatedSamlBrowserLoginFlow) | **GET** /self-service/methods/saml/idp-initiated/{provider} | Complete IdP-Initiated SAML Login for Browsers |
 | [**createNativeLoginFlow**](FrontendApi.md#createNativeLoginFlow) | **GET** /self-service/login/api | Create Login Flow for Native Apps |
 | [**createNativeRecoveryFlow**](FrontendApi.md#createNativeRecoveryFlow) | **GET** /self-service/recovery/api | Create Recovery Flow for Native Apps |
 | [**createNativeRegistrationFlow**](FrontendApi.md#createNativeRegistrationFlow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps |
@@ -27,6 +28,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**getSettingsFlow**](FrontendApi.md#getSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow |
 | [**getVerificationFlow**](FrontendApi.md#getVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow |
 | [**getWebAuthnJavaScript**](FrontendApi.md#getWebAuthnJavaScript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript |
+| [**getWebAuthnRelatedOrigins**](FrontendApi.md#getWebAuthnRelatedOrigins) | **GET** /.well-known/webauthn | Get WebAuthn Related Origins |
 | [**getWellKnownChangePassword**](FrontendApi.md#getWellKnownChangePassword) | **GET** /.well-known/change-password | Change Password URL |
 | [**listMySessions**](FrontendApi.md#listMySessions) | **GET** /sessions | Get My Active Sessions |
 | [**performNativeLogout**](FrontendApi.md#performNativeLogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps |
@@ -46,7 +48,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Create Login Flow for Browsers
 
-This endpoint initializes a browser-based user login flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to &#x60;selfservice.flows.login.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60; unless the query parameter &#x60;?refresh&#x3D;true&#x60; was set.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  &#x60;session_already_available&#x60;: The user is already signed in. &#x60;session_aal1_required&#x60;: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration!  The optional query parameter login_challenge is set when using Kratos with Hydra in an OAuth2 flow. See the oauth2_provider.url configuration option.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
+This endpoint initializes a browser-based user login flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to &#x60;selfservice.flows.login.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60; unless the query parameter &#x60;?refresh&#x3D;true&#x60; was set.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  - &#x60;session_already_available&#x60;: The user is already signed in. - &#x60;session_aal1_required&#x60;: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. - &#x60;session_aal2_enrollment_required&#x60;: Second-factor auth is required but the identity has no second factor enrolled. Follow &#x60;redirect_browser_to&#x60; to the settings flow to enroll one. - &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. - &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration!  The optional query parameter login_challenge is set when using Kratos with Hydra in an OAuth2 flow. See the oauth2_provider.url configuration option.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
 ### Example
 ```java
@@ -114,10 +116,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | loginFlow |  -  |
+| **200** | Login Flow |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createBrowserLogoutFlow"></a>
 # **createBrowserLogoutFlow**
@@ -181,10 +184,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | logoutFlow |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **500** | errorGeneric |  -  |
+| **200** | Logout Flow |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **500** | JSON API Error Response |  -  |
 
 <a id="createBrowserRecoveryFlow"></a>
 # **createBrowserRecoveryFlow**
@@ -248,10 +251,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | recoveryFlow |  -  |
+| **200** | A Recovery Flow |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createBrowserRegistrationFlow"></a>
 # **createBrowserRegistrationFlow**
@@ -259,7 +262,7 @@ No authorization required
 
 Create Registration Flow for Browsers
 
-This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to &#x60;selfservice.flows.registration.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60;.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  &#x60;session_already_available&#x60;: The user is already signed in. &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration!  If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
+This endpoint initializes a browser-based user registration flow. This endpoint will set the appropriate cookies and anti-CSRF measures required for browser-based flows.  If this endpoint is opened as a link in the browser, it will be redirected to &#x60;selfservice.flows.registration.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If a valid user session exists already, the browser will be redirected to &#x60;urls.default_redirect_url&#x60;.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  - &#x60;session_already_available&#x60;: The user is already signed in. - &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. - &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration!  If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
 ### Example
 ```java
@@ -321,9 +324,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | registrationFlow |  -  |
+| **200** | OK |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorGeneric |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createBrowserSettingsFlow"></a>
 # **createBrowserSettingsFlow**
@@ -331,7 +334,7 @@ No authorization required
 
 Create Settings Flow for Browsers
 
-This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.settings.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  If this endpoint is opened as a link in the browser, it will be redirected to &#x60;selfservice.flows.settings.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If no valid user session was set, the browser will be redirected to the login endpoint.  If this endpoint is called via an AJAX request, the response contains the settings flow without any redirects or a 401 forbidden error if no valid session was set.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. &#x60;session_inactive&#x60;: No Ory Session was found - sign in a user first. &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration!  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
+This endpoint initializes a browser-based user settings flow. Once initialized, the browser will be redirected to &#x60;selfservice.flows.settings.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If no valid Ory Kratos Session Cookie is included in the request, a login flow will be initialized.  If this endpoint is opened as a link in the browser, it will be redirected to &#x60;selfservice.flows.settings.ui_url&#x60; with the flow ID set as the query parameter &#x60;?flow&#x3D;&#x60;. If no valid user session was set, the browser will be redirected to the login endpoint.  If this endpoint is called via an AJAX request, the response contains the settings flow without any redirects or a 401 forbidden error if no valid session was set.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  - &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. - &#x60;session_inactive&#x60;: No Ory Session was found - sign in a user first. - &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration!  This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example
 ```java
@@ -389,12 +392,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | settingsFlow |  -  |
+| **200** | Flow represents a Settings Flow |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createBrowserVerificationFlow"></a>
 # **createBrowserVerificationFlow**
@@ -456,9 +459,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | verificationFlow |  -  |
+| **200** | A Verification Flow |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorGeneric |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createFedcmFlow"></a>
 # **createFedcmFlow**
@@ -516,9 +519,74 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | createFedcmFlowResponse |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | CreateFedcmFlowResponse |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
+
+<a id="createIdPInitiatedSamlBrowserLoginFlow"></a>
+# **createIdPInitiatedSamlBrowserLoginFlow**
+> ErrorGeneric createIdPInitiatedSamlBrowserLoginFlow(provider, code)
+
+Complete IdP-Initiated SAML Login for Browsers
+
+This endpoint is the entry point for IdP-initiated login through Ory Polis. Ory Polis redirects the browser here with a single-use authorization code after validating an unsolicited SAML response; Kratos then starts a regular browser login flow and forwards the code as a &#x60;code_hint&#x60; so Polis can complete the flow without a second round-trip to the identity provider.  The provider must be a &#x60;jackson&#x60; provider with &#x60;idp_initiated_login_enabled&#x60; set to &#x60;true&#x60; in its configuration.  This endpoint is NOT INTENDED for API clients and only works with browsers.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    String provider = "provider_example"; // String | The SAML provider ID as configured in the Ory Kratos configuration.
+    String code = "code_example"; // String | The single-use authorization code issued by Ory Polis for the unsolicited SAML response.
+    try {
+      ErrorGeneric result = apiInstance.createIdPInitiatedSamlBrowserLoginFlow(provider, code);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#createIdPInitiatedSamlBrowserLoginFlow");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **provider** | **String**| The SAML provider ID as configured in the Ory Kratos configuration. | |
+| **code** | **String**| The single-use authorization code issued by Ory Polis for the unsolicited SAML response. | |
+
+### Return type
+
+[**ErrorGeneric**](ErrorGeneric.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createNativeLoginFlow"></a>
 # **createNativeLoginFlow**
@@ -526,7 +594,7 @@ No authorization required
 
 Create Login Flow for Native Apps
 
-This endpoint initiates a login flow for native apps that do not use a browser, such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter &#x60;?refresh&#x3D;true&#x60; is set.  To fetch an existing login flow call &#x60;/self-service/login/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  &#x60;session_already_available&#x60;: The user is already signed in. &#x60;session_aal1_required&#x60;: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
+This endpoint initiates a login flow for native apps that do not use a browser, such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter &#x60;?refresh&#x3D;true&#x60; is set.  To fetch an existing login flow call &#x60;/self-service/login/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks, including CSRF login attacks.  In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  - &#x60;session_already_available&#x60;: The user is already signed in. - &#x60;session_aal1_required&#x60;: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet. - &#x60;session_aal2_enrollment_required&#x60;: Second-factor auth is required but the identity has no second factor enrolled. Follow &#x60;redirect_browser_to&#x60; to the settings flow to enroll one. - &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
 ### Example
 ```java
@@ -594,9 +662,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | loginFlow |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Login Flow |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createNativeRecoveryFlow"></a>
 # **createNativeRecoveryFlow**
@@ -654,9 +723,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | recoveryFlow |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | A Recovery Flow |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createNativeRegistrationFlow"></a>
 # **createNativeRegistrationFlow**
@@ -664,7 +733,7 @@ No authorization required
 
 Create Registration Flow for Native Apps
 
-This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter &#x60;?refresh&#x3D;true&#x60; is set.  To fetch an existing registration flow call &#x60;/self-service/registration/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  &#x60;session_already_available&#x60;: The user is already signed in. &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
+This endpoint initiates a registration flow for API clients such as mobile devices, smart TVs, and so on.  If a valid provided session cookie or session token is provided, a 400 Bad Request error will be returned unless the URL query parameter &#x60;?refresh&#x3D;true&#x60; is set.  To fetch an existing registration flow call &#x60;/self-service/registration/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  - &#x60;session_already_available&#x60;: The user is already signed in. - &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
 ### Example
 ```java
@@ -724,9 +793,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | registrationFlow |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createNativeSettingsFlow"></a>
 # **createNativeSettingsFlow**
@@ -734,7 +803,7 @@ No authorization required
 
 Create Settings Flow for Native Apps
 
-This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call &#x60;/self-service/settings/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. &#x60;session_inactive&#x60;: No Ory Session was found - sign in a user first.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
+This endpoint initiates a settings flow for API clients such as mobile devices, smart TVs, and so on. You must provide a valid Ory Kratos Session Token for this endpoint to respond with HTTP 200 OK.  To fetch an existing settings flow call &#x60;/self-service/settings/flows?flow&#x3D;&lt;flow_id&gt;&#x60;.  You MUST NOT use this endpoint in client-side (Single Page Apps, ReactJS, AngularJS) nor server-side (Java Server Pages, NodeJS, PHP, Golang, ...) browser applications. Using this endpoint in these applications will make you vulnerable to a variety of CSRF attacks.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  - &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. - &#x60;session_inactive&#x60;: No Ory Session was found - sign in a user first.  This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example
 ```java
@@ -790,9 +859,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | settingsFlow |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Flow represents a Settings Flow |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createNativeVerificationFlow"></a>
 # **createNativeVerificationFlow**
@@ -854,9 +923,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | verificationFlow |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | A Verification Flow |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="deleteTestLoginFlow"></a>
 # **deleteTestLoginFlow**
@@ -920,10 +989,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="disableMyOtherSessions"></a>
 # **disableMyOtherSessions**
@@ -987,10 +1056,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | deleteMySessionsCount |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Deleted Session Count |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="disableMySession"></a>
 # **disableMySession**
@@ -1056,9 +1125,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="exchangeSessionToken"></a>
 # **exchangeSessionToken**
@@ -1120,12 +1189,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successfulNativeLogin |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **410** | errorGeneric |  -  |
-| **422** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | The Response for Login Flows via API |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **410** | JSON API Error Response |  -  |
+| **422** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="getFlowError"></a>
 # **getFlowError**
@@ -1133,7 +1202,7 @@ No authorization required
 
 Get User-Flow Errors
 
-This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  &#x60;?id&#x3D;stub:500&#x60; - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-facing-errors).
+This endpoint returns the error associated with a user-facing self service errors.  This endpoint supports stub values to help you implement the error UI:  - &#x60;?id&#x3D;stub:500&#x60; - returns a stub 500 (Internal Server Error) error.  More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-facing-errors).
 
 ### Example
 ```java
@@ -1187,10 +1256,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | flowError |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **500** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **500** | JSON API Error Response |  -  |
 
 <a id="getLoginFlow"></a>
 # **getLoginFlow**
@@ -1198,7 +1267,7 @@ No authorization required
 
 Get Login Flow
 
-This endpoint returns a login flow&#39;s context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request&#39;s HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  &#x60;&#x60;&#x60;js pseudo-code example router.get(&#39;/login&#39;, async function (req, res) { const flow &#x3D; await client.getLoginFlow(req.header(&#39;cookie&#39;), req.query[&#39;flow&#39;])  res.render(&#39;login&#39;, flow) }) &#x60;&#x60;&#x60;  This request may fail due to several reasons. The &#x60;error.id&#x60; can be one of:  &#x60;session_already_available&#x60;: The user is already signed in. &#x60;self_service_flow_expired&#x60;: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
+This endpoint returns a login flow&#39;s context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request&#39;s HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  &#x60;&#x60;&#x60;js pseudo-code example router.get(&#39;/login&#39;, async function (req, res) { const flow &#x3D; await client.getLoginFlow(req.header(&#39;cookie&#39;), req.query[&#39;flow&#39;])  res.render(&#39;login&#39;, flow) }) &#x60;&#x60;&#x60;  This request may fail due to several reasons. The &#x60;error.id&#x60; can be one of:  - &#x60;session_already_available&#x60;: The user is already signed in. - &#x60;self_service_flow_expired&#x60;: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
 ### Example
 ```java
@@ -1254,11 +1323,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | loginFlow |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **410** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Login Flow |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **410** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="getRecoveryFlow"></a>
 # **getRecoveryFlow**
@@ -1322,10 +1391,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | recoveryFlow |  -  |
-| **404** | errorGeneric |  -  |
-| **410** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | A Recovery Flow |  -  |
+| **404** | JSON API Error Response |  -  |
+| **410** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="getRegistrationFlow"></a>
 # **getRegistrationFlow**
@@ -1333,7 +1402,7 @@ No authorization required
 
 Get Registration Flow
 
-This endpoint returns a registration flow&#39;s context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request&#39;s HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  &#x60;&#x60;&#x60;js pseudo-code example router.get(&#39;/registration&#39;, async function (req, res) { const flow &#x3D; await client.getRegistrationFlow(req.header(&#39;cookie&#39;), req.query[&#39;flow&#39;])  res.render(&#39;registration&#39;, flow) }) &#x60;&#x60;&#x60;  This request may fail due to several reasons. The &#x60;error.id&#x60; can be one of:  &#x60;session_already_available&#x60;: The user is already signed in. &#x60;self_service_flow_expired&#x60;: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
+This endpoint returns a registration flow&#39;s context with, for example, error details and other information.  Browser flows expect the anti-CSRF cookie to be included in the request&#39;s HTTP Cookie Header. For AJAX requests you must ensure that cookies are included in the request or requests will fail.  If you use the browser-flow for server-side apps, the services need to run on a common top-level-domain and you need to forward the incoming HTTP Cookie header to this endpoint:  &#x60;&#x60;&#x60;js pseudo-code example router.get(&#39;/registration&#39;, async function (req, res) { const flow &#x3D; await client.getRegistrationFlow(req.header(&#39;cookie&#39;), req.query[&#39;flow&#39;])  res.render(&#39;registration&#39;, flow) }) &#x60;&#x60;&#x60;  This request may fail due to several reasons. The &#x60;error.id&#x60; can be one of:  - &#x60;session_already_available&#x60;: The user is already signed in. - &#x60;self_service_flow_expired&#x60;: The flow is expired and you should request a new one.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
 ### Example
 ```java
@@ -1389,11 +1458,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | registrationFlow |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **410** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **410** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="getSettingsFlow"></a>
 # **getSettingsFlow**
@@ -1401,7 +1470,7 @@ No authorization required
 
 Get Settings Flow
 
-When accessing this endpoint through Ory Kratos&#39; Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  You can access this endpoint without credentials when using Ory Kratos&#39; Admin API.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. &#x60;session_inactive&#x60;: No Ory Session was found - sign in a user first. &#x60;security_identity_mismatch&#x60;: The flow was interrupted with &#x60;session_refresh_required&#x60; but apparently some other identity logged in instead.  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
+When accessing this endpoint through Ory Kratos&#39; Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  You can access this endpoint without credentials when using Ory Kratos&#39; Admin API.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  - &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. - &#x60;session_inactive&#x60;: No Ory Session was found - sign in a user first. - &#x60;security_identity_mismatch&#x60;: The flow was interrupted with &#x60;session_refresh_required&#x60; but apparently some other identity logged in instead.  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example
 ```java
@@ -1459,12 +1528,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | settingsFlow |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **410** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Flow represents a Settings Flow |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **410** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="getVerificationFlow"></a>
 # **getVerificationFlow**
@@ -1528,10 +1597,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | verificationFlow |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | A Verification Flow |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="getWebAuthnJavaScript"></a>
 # **getWebAuthnJavaScript**
@@ -1589,7 +1658,65 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | webAuthnJavaScript |  -  |
+| **200** | OK |  -  |
+
+<a id="getWebAuthnRelatedOrigins"></a>
+# **getWebAuthnRelatedOrigins**
+> WebAuthnRelatedOrigins getWebAuthnRelatedOrigins()
+
+Get WebAuthn Related Origins
+
+This endpoint serves the WebAuthn Related Origin Requests document specified in https://www.w3.org/TR/webauthn-3/#sctn-related-origins. It lists the web origins allowed to use this domain as their WebAuthn relying party ID. Browsers fetch it when a page requests a relying party ID that does not match the page&#39;s own origin.  The document contains the relying party origins configured for the enabled WebAuthn and passkey methods.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    try {
+      WebAuthnRelatedOrigins result = apiInstance.getWebAuthnRelatedOrigins();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#getWebAuthnRelatedOrigins");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**WebAuthnRelatedOrigins**](WebAuthnRelatedOrigins.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | WebAuthn Related Origins |  -  |
 
 <a id="getWellKnownChangePassword"></a>
 # **getWellKnownChangePassword**
@@ -1648,7 +1775,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorGeneric |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="listMySessions"></a>
 # **listMySessions**
@@ -1721,9 +1848,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List My Session Response |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="performNativeLogout"></a>
 # **performNativeLogout**
@@ -1785,8 +1913,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="toSession"></a>
 # **toSession**
@@ -1794,7 +1922,7 @@ No authorization required
 
 Check Who the Current HTTP Session Belongs To
 
-Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the &#39;X-Kratos-Authenticated-Identity-Id&#39; header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  &#x60;&#x60;&#x60;js pseudo-code example router.get(&#39;/protected-endpoint&#39;, async function (req, res) { const session &#x3D; await client.toSession(undefined, req.header(&#39;cookie&#39;))  console.log(session) }) &#x60;&#x60;&#x60;  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  &#x60;&#x60;&#x60;js pseudo-code example ... const session &#x3D; await client.toSession(\&quot;the-session-token\&quot;)  console.log(session) &#x60;&#x60;&#x60;  When using a token template, the token is included in the &#x60;tokenized&#x60; field of the session.  &#x60;&#x60;&#x60;js pseudo-code example ... const session &#x3D; await client.toSession(\&quot;the-session-token\&quot;, { tokenize_as: \&quot;example-jwt-template\&quot; })  console.log(session.tokenized) // The JWT &#x60;&#x60;&#x60;  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  AJAX calls. Remember to send credentials and set up CORS correctly! Reverse proxies and API Gateways Server-side calls - use the &#x60;X-Session-Token&#x60; header!  This endpoint authenticates users by checking:  if the &#x60;Cookie&#x60; HTTP header was set containing an Ory Kratos Session Cookie; if the &#x60;Authorization: bearer &lt;ory-session-token&gt;&#x60; HTTP header was set with a valid Ory Kratos Session Token; if the &#x60;X-Session-Token&#x60; HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The &#x60;error.id&#x60; can be one of:  &#x60;session_inactive&#x60;: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). &#x60;session_aal2_required&#x60;: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+Uses the HTTP Headers in the GET request to determine (e.g. by using checking the cookies) who is authenticated. Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent. When the request it successful it adds the user ID to the &#39;X-Kratos-Authenticated-Identity-Id&#39; header in the response.  If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:  &#x60;&#x60;&#x60;js pseudo-code example router.get(&#39;/protected-endpoint&#39;, async function (req, res) { const session &#x3D; await client.toSession(undefined, req.header(&#39;cookie&#39;))  console.log(session) }) &#x60;&#x60;&#x60;  When calling this endpoint from a non-browser application (e.g. mobile app) you must include the session token:  &#x60;&#x60;&#x60;js pseudo-code example ... const session &#x3D; await client.toSession(\&quot;the-session-token\&quot;)  console.log(session) &#x60;&#x60;&#x60;  When using a token template, the token is included in the &#x60;tokenized&#x60; field of the session.  &#x60;&#x60;&#x60;js pseudo-code example ... const session &#x3D; await client.toSession(\&quot;the-session-token\&quot;, { tokenize_as: \&quot;example-jwt-template\&quot; })  console.log(session.tokenized) // The JWT &#x60;&#x60;&#x60;  Depending on your configuration this endpoint might return a 403 status code if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  This endpoint is useful for:  - AJAX calls. Remember to send credentials and set up CORS correctly! - Reverse proxies and API Gateways - Server-side calls - use the &#x60;X-Session-Token&#x60; header!  This endpoint authenticates users by checking:  - if the &#x60;Cookie&#x60; HTTP header was set containing an Ory Kratos Session Cookie; - if the &#x60;Authorization: bearer &lt;ory-session-token&gt;&#x60; HTTP header was set with a valid Ory Kratos Session Token; - if the &#x60;X-Session-Token&#x60; HTTP header was set with a valid Ory Kratos Session Token.  If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.  As explained above, this request may fail due to several reasons. The &#x60;error.id&#x60; can be one of:  - &#x60;session_inactive&#x60;: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token). - &#x60;session_aal2_required&#x60;: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor. - &#x60;session_aal2_enrollment_required&#x60;: An active session was found but the required Authenticator Assurance Level can not be reached because the identity has no second factor enrolled. Follow &#x60;redirect_browser_to&#x60; to the settings flow to enroll one.
 
 ### Example
 ```java
@@ -1852,10 +1980,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | session |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | A Session |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="updateFedcmFlow"></a>
 # **updateFedcmFlow**
@@ -1917,12 +2045,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successfulNativeLogin |  -  |
+| **200** | The Response for Login Flows via API |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | loginFlow |  -  |
-| **410** | errorGeneric |  -  |
-| **422** | errorBrowserLocationChangeRequired |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | Login Flow |  -  |
+| **410** | JSON API Error Response |  -  |
+| **422** | Is sent when a flow requires a browser to change its location. |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="updateLoginFlow"></a>
 # **updateLoginFlow**
@@ -1930,7 +2058,7 @@ No authorization required
 
 Submit a Login Flow
 
-Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect &#x60;application/json&#x60; to be sent in the body and responds with HTTP 200 and a application/json body with the session token on success; HTTP 410 if the original flow expired with the appropriate error messages set and optionally a &#x60;use_flow_id&#x60; parameter in the body; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of &#x60;application/x-www-form-urlencoded&#x60; or &#x60;application/json&#x60; to be sent in the body and respond with a HTTP 303 redirect to the post/after login URL or the &#x60;return_to&#x60; value if it was set and if the login succeeded; a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of &#x60;application/json&#x60; will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a &#x60;Set-Cookie&#x60; header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with &#x60;Accept: application/json&#x60; in the header, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  &#x60;session_already_available&#x60;: The user is already signed in. &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration! &#x60;browser_location_change_required&#x60;: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
+Use this endpoint to complete a login flow. This endpoint behaves differently for API and browser flows.  API flows expect &#x60;application/json&#x60; to be sent in the body and responds with - HTTP 200 and a application/json body with the session token on success; - HTTP 410 if the original flow expired with the appropriate error messages set and optionally a &#x60;use_flow_id&#x60; parameter in the body; - HTTP 400 on form validation errors.  Browser flows expect a Content-Type of &#x60;application/x-www-form-urlencoded&#x60; or &#x60;application/json&#x60; to be sent in the body and respond with - a HTTP 303 redirect to the post/after login URL or the &#x60;return_to&#x60; value if it was set and if the login succeeded; - a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of &#x60;application/json&#x60; will not redirect but instead respond with - HTTP 200 and a application/json body with the signed in identity and a &#x60;Set-Cookie&#x60; header on success; - HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; - HTTP 400 on form validation errors.  If this endpoint is called with &#x60;Accept: application/json&#x60; in the header, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  - &#x60;session_already_available&#x60;: The user is already signed in. - &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. - &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration! - &#x60;browser_location_change_required&#x60;: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
 ### Example
 ```java
@@ -1990,12 +2118,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successfulNativeLogin |  -  |
+| **200** | The Response for Login Flows via API |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | loginFlow |  -  |
-| **410** | errorGeneric |  -  |
-| **422** | errorBrowserLocationChangeRequired |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | Login Flow |  -  |
+| **410** | JSON API Error Response |  -  |
+| **422** | Is sent when a flow requires a browser to change its location. |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="updateLogoutFlow"></a>
 # **updateLogoutFlow**
@@ -2062,7 +2190,7 @@ No authorization required
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorGeneric |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="updateRecoveryFlow"></a>
 # **updateRecoveryFlow**
@@ -2070,7 +2198,7 @@ No authorization required
 
 Update Recovery Flow
 
-Use this endpoint to update a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  &#x60;choose_method&#x60; expects &#x60;flow&#x60; (in the URL query) and &#x60;email&#x60; (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header &#x60;Accept: application/json&#x60; it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header &#x60;Accept&#x60; or with &#x60;Accept: text/_*&#x60; it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended. &#x60;sent_email&#x60; is the success state after &#x60;choose_method&#x60; for the &#x60;link&#x60; method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in &#x60;choose_method&#x60; state. &#x60;passed_challenge&#x60; expects a &#x60;token&#x60; to be sent in the URL query and given the nature of the flow (\&quot;sending a recovery link\&quot;) does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
+Use this endpoint to update a recovery flow. This endpoint behaves differently for API and browser flows and has several states:  - &#x60;choose_method&#x60; expects &#x60;flow&#x60; (in the URL query) and &#x60;email&#x60; (in the body) to be sent and works with API- and Browser-initiated flows. - For API clients and Browser clients with HTTP Header &#x60;Accept: application/json&#x60; it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid. and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired). - For Browser clients without HTTP Header &#x60;Accept&#x60; or with &#x60;Accept: text/_*&#x60; it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended. - &#x60;sent_email&#x60; is the success state after &#x60;choose_method&#x60; for the &#x60;link&#x60; method and allows the user to request another recovery email. It works for both API and Browser-initiated flows and returns the same responses as the flow in &#x60;choose_method&#x60; state. - &#x60;passed_challenge&#x60; expects a &#x60;token&#x60; to be sent in the URL query and given the nature of the flow (\&quot;sending a recovery link\&quot;) does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with a new Recovery Flow ID which contains an error message that the recovery link was invalid.  More information can be found at [Ory Kratos Account Recovery Documentation](../self-service/flows/account-recovery).
 
 ### Example
 ```java
@@ -2130,12 +2258,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | recoveryFlow |  -  |
+| **200** | A Recovery Flow |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | recoveryFlow |  -  |
-| **410** | errorGeneric |  -  |
-| **422** | errorBrowserLocationChangeRequired |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | A Recovery Flow |  -  |
+| **410** | JSON API Error Response |  -  |
+| **422** | Is sent when a flow requires a browser to change its location. |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="updateRegistrationFlow"></a>
 # **updateRegistrationFlow**
@@ -2143,7 +2271,7 @@ No authorization required
 
 Update Registration Flow
 
-Use this endpoint to complete a registration flow by sending an identity&#39;s traits and password. This endpoint behaves differently for API and browser flows.  API flows expect &#x60;application/json&#x60; to be sent in the body and respond with HTTP 200 and a application/json body with the created identity success - if the session hook is configured the &#x60;session&#x60; and &#x60;session_token&#x60; will also be included; HTTP 410 if the original flow expired with the appropriate error messages set and optionally a &#x60;use_flow_id&#x60; parameter in the body; HTTP 400 on form validation errors.  Browser flows expect a Content-Type of &#x60;application/x-www-form-urlencoded&#x60; or &#x60;application/json&#x60; to be sent in the body and respond with a HTTP 303 redirect to the post/after registration URL or the &#x60;return_to&#x60; value if it was set and if the registration succeeded; a HTTP 303 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of &#x60;application/json&#x60; will not redirect but instead respond with HTTP 200 and a application/json body with the signed in identity and a &#x60;Set-Cookie&#x60; header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors.  If this endpoint is called with &#x60;Accept: application/json&#x60; in the header, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  &#x60;session_already_available&#x60;: The user is already signed in. &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration! &#x60;browser_location_change_required&#x60;: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
+Use this endpoint to complete a registration flow by sending an identity&#39;s traits and password. This endpoint behaves differently for API and browser flows.  API flows expect &#x60;application/json&#x60; to be sent in the body and respond with - HTTP 200 and a application/json body with the created identity success - if the session hook is configured the &#x60;session&#x60; and &#x60;session_token&#x60; will also be included; - HTTP 410 if the original flow expired with the appropriate error messages set and optionally a &#x60;use_flow_id&#x60; parameter in the body; - HTTP 400 on form validation errors.  Browser flows expect a Content-Type of &#x60;application/x-www-form-urlencoded&#x60; or &#x60;application/json&#x60; to be sent in the body and respond with - a HTTP 303 redirect to the post/after registration URL or the &#x60;return_to&#x60; value if it was set and if the registration succeeded; - a HTTP 303 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.  Browser flows with an accept header of &#x60;application/json&#x60; will not redirect but instead respond with - HTTP 200 and a application/json body with the signed in identity and a &#x60;Set-Cookie&#x60; header on success; - HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; - HTTP 400 on form validation errors.  If this endpoint is called with &#x60;Accept: application/json&#x60; in the header, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  - &#x60;session_already_available&#x60;: The user is already signed in. - &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. - &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration! - &#x60;browser_location_change_required&#x60;: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
 ### Example
 ```java
@@ -2201,12 +2329,12 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successfulNativeRegistration |  -  |
+| **200** | The Response for Registration Flows via API |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | registrationFlow |  -  |
-| **410** | errorGeneric |  -  |
-| **422** | errorBrowserLocationChangeRequired |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | Bad Request |  -  |
+| **410** | JSON API Error Response |  -  |
+| **422** | Is sent when a flow requires a browser to change its location. |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="updateSettingsFlow"></a>
 # **updateSettingsFlow**
@@ -2214,7 +2342,7 @@ No authorization required
 
 Complete Settings Flow
 
-Use this endpoint to complete a settings flow by sending an identity&#39;s updated password. This endpoint behaves differently for API and browser flows.  API-initiated flows expect &#x60;application/json&#x60; to be sent in the body and respond with HTTP 200 and an application/json body with the session token on success; HTTP 303 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set; HTTP 400 on form validation errors. HTTP 401 when the endpoint is called without a valid session token. HTTP 403 when &#x60;selfservice.flows.settings.privileged_session_max_age&#x60; was reached or the session&#39;s AAL is too low. Implies that the user needs to re-authenticate.  Browser flows without HTTP Header &#x60;Accept&#x60; or with &#x60;Accept: text/_*&#x60; respond with a HTTP 303 redirect to the post/after settings URL or the &#x60;return_to&#x60; value if it was set and if the flow succeeded; a HTTP 303 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise. a HTTP 303 redirect to the login endpoint when &#x60;selfservice.flows.settings.privileged_session_max_age&#x60; was reached or the session&#39;s AAL is too low.  Browser flows with HTTP Header &#x60;Accept: application/json&#x60; respond with HTTP 200 and a application/json body with the signed in identity and a &#x60;Set-Cookie&#x60; header on success; HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; HTTP 401 when the endpoint is called without a valid session cookie. HTTP 403 when the page is accessed without a session cookie or the session&#39;s AAL is too low. HTTP 400 on form validation errors.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.  If this endpoint is called with a &#x60;Accept: application/json&#x60; HTTP header, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  &#x60;session_refresh_required&#x60;: The identity requested to change something that needs a privileged session. Redirect the identity to the login init endpoint with query parameters &#x60;?refresh&#x3D;true&amp;return_to&#x3D;&lt;the-current-browser-url&gt;&#x60;, or initiate a refresh login flow otherwise. &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. &#x60;session_inactive&#x60;: No Ory Session was found - sign in a user first. &#x60;security_identity_mismatch&#x60;: The flow was interrupted with &#x60;session_refresh_required&#x60; but apparently some other identity logged in instead. &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration! &#x60;browser_location_change_required&#x60;: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
+Use this endpoint to complete a settings flow by sending an identity&#39;s updated password. This endpoint behaves differently for API and browser flows.  API-initiated flows expect &#x60;application/json&#x60; to be sent in the body and respond with - HTTP 200 and an application/json body with the session token on success; - HTTP 303 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set; - HTTP 400 on form validation errors. - HTTP 401 when the endpoint is called without a valid session token. - HTTP 403 when &#x60;selfservice.flows.settings.privileged_session_max_age&#x60; was reached or the session&#39;s AAL is too low. Implies that the user needs to re-authenticate.  Browser flows without HTTP Header &#x60;Accept&#x60; or with &#x60;Accept: text/_*&#x60; respond with - a HTTP 303 redirect to the post/after settings URL or the &#x60;return_to&#x60; value if it was set and if the flow succeeded; - a HTTP 303 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise. - a HTTP 303 redirect to the login endpoint when &#x60;selfservice.flows.settings.privileged_session_max_age&#x60; was reached or the session&#39;s AAL is too low.  Browser flows with HTTP Header &#x60;Accept: application/json&#x60; respond with - HTTP 200 and a application/json body with the signed in identity and a &#x60;Set-Cookie&#x60; header on success; - HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set; - HTTP 401 when the endpoint is called without a valid session cookie. - HTTP 403 when the page is accessed without a session cookie or the session&#39;s AAL is too low. - HTTP 400 on form validation errors.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor (happens automatically for server-side browser flows) or change the configuration.  If this endpoint is called with a &#x60;Accept: application/json&#x60; HTTP header, the response contains the flow without a redirect. In the case of an error, the &#x60;error.id&#x60; of the JSON response body can be one of:  - &#x60;session_refresh_required&#x60;: The identity requested to change something that needs a privileged session. Redirect the identity to the login init endpoint with query parameters &#x60;?refresh&#x3D;true&amp;return_to&#x3D;&lt;the-current-browser-url&gt;&#x60;, or initiate a refresh login flow otherwise. - &#x60;security_csrf_violation&#x60;: Unable to fetch the flow because a CSRF violation occurred. - &#x60;session_inactive&#x60;: No Ory Session was found - sign in a user first. - &#x60;security_identity_mismatch&#x60;: The flow was interrupted with &#x60;session_refresh_required&#x60; but apparently some other identity logged in instead. - &#x60;security_identity_mismatch&#x60;: The requested &#x60;?return_to&#x60; address is not allowed to be used. Adjust this in the configuration! - &#x60;browser_location_change_required&#x60;: Usually sent when an AJAX request indicates that the browser needs to open a specific URL. Most likely used in Social Sign In flows.  More information can be found at [Ory Kratos User Settings &amp; Profile Management Documentation](../self-service/flows/user-settings).
 
 ### Example
 ```java
@@ -2274,14 +2402,14 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | settingsFlow |  -  |
+| **200** | Flow represents a Settings Flow |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | settingsFlow |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **410** | errorGeneric |  -  |
-| **422** | errorBrowserLocationChangeRequired |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | Flow represents a Settings Flow |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **410** | JSON API Error Response |  -  |
+| **422** | Is sent when a flow requires a browser to change its location. |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="updateVerificationFlow"></a>
 # **updateVerificationFlow**
@@ -2289,7 +2417,7 @@ No authorization required
 
 Complete Verification Flow
 
-Use this endpoint to complete a verification flow. This endpoint behaves differently for API and browser flows and has several states:  &#x60;choose_method&#x60; expects &#x60;flow&#x60; (in the URL query) and &#x60;email&#x60; (in the body) to be sent and works with API- and Browser-initiated flows. For API clients and Browser clients with HTTP Header &#x60;Accept: application/json&#x60; it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 303 See Other redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired). For Browser clients without HTTP Header &#x60;Accept&#x60; or with &#x60;Accept: text/_*&#x60; it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended. &#x60;sent_email&#x60; is the success state after &#x60;choose_method&#x60; when using the &#x60;link&#x60; method and allows the user to request another verification email. It works for both API and Browser-initiated flows and returns the same responses as the flow in &#x60;choose_method&#x60; state. &#x60;passed_challenge&#x60; expects a &#x60;token&#x60; to be sent in the URL query and given the nature of the flow (\&quot;sending a verification link\&quot;) does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with a new Verification Flow ID which contains an error message that the verification link was invalid.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
+Use this endpoint to complete a verification flow. This endpoint behaves differently for API and browser flows and has several states:  - &#x60;choose_method&#x60; expects &#x60;flow&#x60; (in the URL query) and &#x60;email&#x60; (in the body) to be sent and works with API- and Browser-initiated flows. - For API clients and Browser clients with HTTP Header &#x60;Accept: application/json&#x60; it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid and a HTTP 303 See Other redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired). - For Browser clients without HTTP Header &#x60;Accept&#x60; or with &#x60;Accept: text/_*&#x60; it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended. - &#x60;sent_email&#x60; is the success state after &#x60;choose_method&#x60; when using the &#x60;link&#x60; method and allows the user to request another verification email. It works for both API and Browser-initiated flows and returns the same responses as the flow in &#x60;choose_method&#x60; state. - &#x60;passed_challenge&#x60; expects a &#x60;token&#x60; to be sent in the URL query and given the nature of the flow (\&quot;sending a verification link\&quot;) does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with a new Verification Flow ID which contains an error message that the verification link was invalid.  More information can be found at [Ory Kratos Email and Phone Verification Documentation](https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation).
 
 ### Example
 ```java
@@ -2349,9 +2477,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | verificationFlow |  -  |
+| **200** | A Verification Flow |  -  |
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | verificationFlow |  -  |
-| **410** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | A Verification Flow |  -  |
+| **410** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 

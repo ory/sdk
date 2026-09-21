@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**DeleteProjectApiKey**](ProjectAPI.md#DeleteProjectApiKey) | **Delete** /projects/{project}/tokens/{token_id} | Delete project API key
 [**GetOrganization**](ProjectAPI.md#GetOrganization) | **Get** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 [**GetOrganizationOnboardingPortalLinks**](ProjectAPI.md#GetOrganizationOnboardingPortalLinks) | **Get** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links
-[**GetProject**](ProjectAPI.md#GetProject) | **Get** /projects/{project_id} | Get a Project
+[**GetProject**](ProjectAPI.md#GetProject) | **Get** /projects/{project_id} | Get an Ory Network Project Configuration
 [**GetProjectMembers**](ProjectAPI.md#GetProjectMembers) | **Get** /projects/{project}/members | Get all members associated with this project
 [**ListOrganizations**](ProjectAPI.md#ListOrganizations) | **Get** /projects/{project_id}/organizations | List all Enterprise SSO organizations
 [**ListProjectApiKeys**](ProjectAPI.md#ListProjectApiKeys) | **Get** /projects/{project}/tokens | List a project&#39;s API keys
@@ -25,6 +25,7 @@ Method | HTTP request | Description
 [**SetProject**](ProjectAPI.md#SetProject) | **Put** /projects/{project_id} | Update an Ory Network Project Configuration
 [**UpdateOrganization**](ProjectAPI.md#UpdateOrganization) | **Put** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
 [**UpdateOrganizationOnboardingPortalLink**](ProjectAPI.md#UpdateOrganizationOnboardingPortalLink) | **Post** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link
+[**ValidateOpl**](ProjectAPI.md#ValidateOpl) | **Post** /projects/{project_id}/opl/validate | Validate an Ory Permission Language document
 
 
 
@@ -679,7 +680,7 @@ Name | Type | Description  | Notes
 
 > Project GetProject(ctx, projectId).Execute()
 
-Get a Project
+Get an Ory Network Project Configuration
 
 
 
@@ -1526,6 +1527,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateOpl
+
+> OplValidateResult ValidateOpl(ctx, projectId).Body(body).Execute()
+
+Validate an Ory Permission Language document
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	projectId := "projectId_example" // string | The project's ID.
+	body := "body_example" // string |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ProjectAPI.ValidateOpl(context.Background(), projectId).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ValidateOpl``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateOpl`: OplValidateResult
+	fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.ValidateOpl`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | The project&#39;s ID. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateOplRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | **string** |  | 
+
+### Return type
+
+[**OplValidateResult**](OplValidateResult.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: text/plain
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

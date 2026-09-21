@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Interval** | **string** |  monthly Monthly yearly Yearly | 
+**Interval** | **string** | monthly Monthly yearly Yearly | 
 **Plan** | **string** |  | 
 **ReturnTo** | Pointer to **string** |  | [optional] 
 

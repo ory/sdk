@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** | The token&#39;s creation date | [optional] [readonly] 
-**ExpiresAt** | Pointer to **time.Time** |  | [optional] 
+**ExpiresAt** | Pointer to **NullableTime** |  | [optional] 
 **Id** | **string** | The token&#39;s ID. | [readonly] 
 **LastCharacters** | Pointer to **string** | The last characters of the token&#39;s value.  Lets you tell API keys apart in the UI without revealing the full value. Empty for keys created before this was introduced. | [optional] [readonly] 
 **Name** | **string** | The Token&#39;s Name  Set this to help you remember, for example, where you use the token. | 
@@ -83,6 +83,16 @@ SetExpiresAt sets ExpiresAt field to given value.
 
 HasExpiresAt returns a boolean if a field has been set.
 
+### SetExpiresAtNil
+
+`func (o *ProjectApiKey) SetExpiresAtNil(b bool)`
+
+ SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+
+### UnsetExpiresAt
+`func (o *ProjectApiKey) UnsetExpiresAt()`
+
+UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
 ### GetId
 
 `func (o *ProjectApiKey) GetId() string`

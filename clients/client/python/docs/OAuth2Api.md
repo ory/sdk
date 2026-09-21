@@ -131,8 +131,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2RedirectTo |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | OAuth 2.0 Redirect Browser To |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -223,8 +223,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2RedirectTo |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | OAuth 2.0 Redirect Browser To |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -304,8 +304,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2RedirectTo |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | OAuth 2.0 Redirect Browser To |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -386,8 +386,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2RedirectTo |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | OAuth 2.0 Redirect Browser To |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -466,7 +466,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | oAuth2Client |  -  |
+**201** | OAuth 2.0 Client |  -  |
 **400** | Bad Request Error Response |  -  |
 **0** | Default Error Response |  -  |
 
@@ -549,7 +549,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | genericError |  -  |
+**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -625,7 +625,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | errorOAuth2 |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -704,7 +704,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
+**200** | OAuth 2.0 Client |  -  |
 **404** | Not Found Error Response |  -  |
 **0** | Default Error Response |  -  |
 
@@ -786,7 +786,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | genericError |  -  |
+**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -867,7 +867,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
+**200** | OAuth 2.0 Client |  -  |
 **0** | Default Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -955,9 +955,9 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2ConsentRequest |  -  |
-**410** | oAuth2RedirectTo |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | Contains information on an ongoing consent request. |  -  |
+**410** | OAuth 2.0 Redirect Browser To |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1043,9 +1043,9 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2LoginRequest |  -  |
-**410** | oAuth2RedirectTo |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | Contains information on an ongoing login request. |  -  |
+**410** | OAuth 2.0 Redirect Browser To |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1123,8 +1123,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2LogoutRequest |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | Contains information about an ongoing logout request. |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1203,8 +1203,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | trustedOAuth2JwtGrantIssuer |  -  |
-**0** | genericError |  -  |
+**200** | OAuth2 JWT Bearer Grant Type Issuer Trust Relationship |  -  |
+**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1286,8 +1286,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | introspectedOAuth2Token |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | Introspection contains an access token&#39;s session data as specified by [IETF RFC 7662](https://tools.ietf.org/html/rfc7662) |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1459,8 +1459,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2ConsentSessions |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | List of OAuth 2.0 Consent Sessions |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1542,8 +1542,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | trustedOAuth2JwtGrantIssuers |  -  |
-**0** | genericError |  -  |
+**200** | OAuth2 JWT Bearer Grant Type Issuer Trust Relationships |  -  |
+**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1612,7 +1612,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | errorOAuth2 |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1679,8 +1679,8 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | deviceAuthorization |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | OAuth2 Device Flow |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1774,8 +1774,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2TokenExchange |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | OAuth2 Token Exchange Result |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1864,7 +1864,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
+**200** | OAuth 2.0 Client |  -  |
 **404** | Not Found Error Response |  -  |
 **0** | Default Error Response |  -  |
 
@@ -1931,7 +1931,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | errorOAuth2 |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2026,8 +2026,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2RedirectTo |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | OAuth 2.0 Redirect Browser To |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2117,8 +2117,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2RedirectTo |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | OAuth 2.0 Redirect Browser To |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2197,7 +2197,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | errorOAuth2 |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2280,7 +2280,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | errorOAuth2 |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2367,7 +2367,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | errorOAuth2 |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2454,12 +2454,12 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | errorOAuth2 |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **rotate_o_auth2_client_secret**
-> OAuth2Client rotate_o_auth2_client_secret(id)
+> OAuth2Client rotate_o_auth2_client_secret(id, rotate_o_auth2_client_secret_body=rotate_o_auth2_client_secret_body)
 
 Rotate OAuth 2.0 Client Secret
 
@@ -2471,6 +2471,9 @@ Up to five rotated secrets are retained. Use the
 `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets
 when they are no longer needed.
 
+Supply `client_secret` in the request body to rotate to a specific value
+instead of a generated one. The request body is optional.
+
 ### Example
 
 * Bearer Authentication (oryAccessToken):
@@ -2478,6 +2481,7 @@ when they are no longer needed.
 ```python
 import ory_client
 from ory_client.models.o_auth2_client import OAuth2Client
+from ory_client.models.rotate_o_auth2_client_secret_body import RotateOAuth2ClientSecretBody
 from ory_client.rest import ApiException
 from pprint import pprint
 
@@ -2502,10 +2506,11 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.OAuth2Api(api_client)
     id = 'id_example' # str | OAuth 2.0 Client ID
+    rotate_o_auth2_client_secret_body = ory_client.RotateOAuth2ClientSecretBody() # RotateOAuth2ClientSecretBody |  (optional)
 
     try:
         # Rotate OAuth 2.0 Client Secret
-        api_response = api_instance.rotate_o_auth2_client_secret(id)
+        api_response = api_instance.rotate_o_auth2_client_secret(id, rotate_o_auth2_client_secret_body=rotate_o_auth2_client_secret_body)
         print("The response of OAuth2Api->rotate_o_auth2_client_secret:\n")
         pprint(api_response)
     except Exception as e:
@@ -2520,6 +2525,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| OAuth 2.0 Client ID | 
+ **rotate_o_auth2_client_secret_body** | [**RotateOAuth2ClientSecretBody**](RotateOAuth2ClientSecretBody.md)|  | [optional] 
 
 ### Return type
 
@@ -2531,14 +2537,15 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
+**200** | OAuth 2.0 Client |  -  |
+**400** | Bad Request Error Response |  -  |
 **404** | Not Found Error Response |  -  |
 **0** | Default Error Response |  -  |
 
@@ -2628,7 +2635,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
+**200** | OAuth 2.0 Client |  -  |
 **400** | Bad Request Error Response |  -  |
 **404** | Not Found Error Response |  -  |
 **0** | Default Error Response |  -  |
@@ -2712,8 +2719,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
-**0** | genericError |  -  |
+**200** | OAuth 2.0 Client |  -  |
+**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2794,8 +2801,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | trustedOAuth2JwtGrantIssuer |  -  |
-**0** | genericError |  -  |
+**201** | OAuth2 JWT Bearer Grant Type Issuer Trust Relationship |  -  |
+**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

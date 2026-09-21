@@ -33,7 +33,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 
 Create multiple identities
 
-Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).  You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities), including passwords, social sign-in settings, and multi-factor authentication methods.  If the patch includes hashed passwords you can import up to 1,000 identities per request.  If the patch includes at least one plaintext password you can import up to 200 identities per request.  Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.  If at least one identity is imported successfully, the response status is 200 OK. If all imports fail, the response is one of the following 4xx errors: 400 Bad Request: The request payload is invalid or improperly formatted. 409 Conflict: Duplicate identities or conflicting data were detected.  If you get a 504 Gateway Timeout: Reduce the batch size Avoid duplicate identities Pre-hash passwords with BCrypt  If the issue persists, contact support.
+Creates multiple [identities](https://www.ory.com/docs/kratos/concepts/identity-user-model).  You can also use this endpoint to [import credentials](https://www.ory.com/docs/kratos/manage-identities/import-user-accounts-identities), including passwords, social sign-in settings, and multi-factor authentication methods.  If the patch includes hashed passwords you can import up to 1,000 identities per request.  If the patch includes at least one plaintext password you can import up to 200 identities per request.  Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.  If at least one identity is imported successfully, the response status is 200 OK. If all imports fail, the response is one of the following 4xx errors: - 400 Bad Request: The request payload is invalid or improperly formatted. - 409 Conflict: Duplicate identities or conflicting data were detected.  This applies while &#x60;with_partial_inserts&#x60; is true, which is the default. Set it to false to import the batch as a single unit instead: one conflict then fails the whole request with 409 Conflict and no identity is created, in exchange for a considerably faster import.  If you get a 504 Gateway Timeout: - Reduce the batch size - Avoid duplicate identities - Pre-hash passwords with BCrypt  If the issue persists, contact support.
 
 ### Example
 ```java
@@ -92,10 +92,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | batchPatchIdentitiesResponse |  -  |
-| **400** | errorGeneric |  -  |
-| **409** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Patch identities response |  -  |
+| **400** | JSON API Error Response |  -  |
+| **409** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createIdentity"></a>
 # **createIdentity**
@@ -162,10 +162,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | identity |  -  |
-| **400** | errorGeneric |  -  |
-| **409** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **201** | Identity represents an Ory Kratos identity |  -  |
+| **400** | JSON API Error Response |  -  |
+| **409** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createRecoveryCodeForIdentity"></a>
 # **createRecoveryCodeForIdentity**
@@ -232,10 +232,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | recoveryCodeForIdentity |  -  |
-| **400** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **201** | Recovery Code for Identity |  -  |
+| **400** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createRecoveryLinkForIdentity"></a>
 # **createRecoveryLinkForIdentity**
@@ -304,10 +304,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | recoveryLinkForIdentity |  -  |
-| **400** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Identity Recovery Link |  -  |
+| **400** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createTestLoginFlow"></a>
 # **createTestLoginFlow**
@@ -374,10 +374,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | loginFlow |  -  |
-| **400** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **201** | Login Flow |  -  |
+| **400** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="deleteIdentity"></a>
 # **deleteIdentity**
@@ -444,8 +444,8 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="deleteIdentityCredentials"></a>
 # **deleteIdentityCredentials**
@@ -476,7 +476,7 @@ public class Example {
 
     IdentityApi apiInstance = new IdentityApi(defaultClient);
     String id = "id_example"; // String | ID is the identity's ID.
-    String type = "password"; // String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+    String type = "password"; // String | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
     String identifier = "identifier_example"; // String | Identifier is the identifier of the credential to delete. It is required for the `oidc`, `saml`, and `deviceauthn` credential types: for `oidc` and `saml` it selects the provider link to remove, for `deviceauthn` it is the `client_key_id` of the device key to revoke. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={type}` endpoint.
     try {
       apiInstance.deleteIdentityCredentials(id, type, identifier);
@@ -496,7 +496,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| ID is the identity&#39;s ID. | |
-| **type** | **String**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, deviceauthn, identifier_first, link_recovery, code_recovery] |
+| **type** | **String**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | [enum: password, oidc, totp, lookup_secret, webauthn, code, passkey, profile, saml, deviceauthn, identifier_first, link_recovery, code_recovery] |
 | **identifier** | **String**| Identifier is the identifier of the credential to delete. It is required for the &#x60;oidc&#x60;, &#x60;saml&#x60;, and &#x60;deviceauthn&#x60; credential types: for &#x60;oidc&#x60; and &#x60;saml&#x60; it selects the provider link to remove, for &#x60;deviceauthn&#x60; it is the &#x60;client_key_id&#x60; of the device key to revoke. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{type}&#x60; endpoint. | [optional] |
 
 ### Return type
@@ -516,9 +516,9 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="deleteIdentitySessions"></a>
 # **deleteIdentitySessions**
@@ -585,10 +585,10 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="disableSession"></a>
 # **disableSession**
@@ -655,9 +655,9 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="extendSession"></a>
 # **extendSession**
@@ -724,11 +724,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | session |  -  |
+| **200** | A Session |  -  |
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="getIdentity"></a>
 # **getIdentity**
@@ -797,9 +797,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | identity |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Identity represents an Ory Kratos identity |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="getIdentityByExternalID"></a>
 # **getIdentityByExternalID**
@@ -868,9 +868,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | identity |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Identity represents an Ory Kratos identity |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="getIdentitySchema"></a>
 # **getIdentitySchema**
@@ -932,9 +932,9 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | identitySchema |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Raw JSON Schema |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="getSession"></a>
 # **getSession**
@@ -942,7 +942,7 @@ No authorization required
 
 Get Session
 
-This endpoint is useful for:  Getting a session object with all specified expandables that exist in an administrative context.
+This endpoint is useful for:  - Getting a session object with all specified expandables that exist in an administrative context.
 
 ### Example
 ```java
@@ -1003,9 +1003,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | session |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | A Session |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="listIdentities"></a>
 # **listIdentities**
@@ -1039,8 +1039,8 @@ public class Example {
     Long page = 56L; // Long | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header.
     Long pageSize = 250L; // Long | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
     String pageToken = "pageToken_example"; // String | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
-    String consistency = ""; // String | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
-    List<String> ids = Arrays.asList(); // List<String> | Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
+    String consistency = ""; // String | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  - strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. - eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  - `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+    List<String> ids = Arrays.asList(); // List<String> | Retrieve multiple identities by their IDs.  This parameter has the following limitations:  - Duplicate or non-existent IDs are ignored. - The order of returned IDs may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
     String credentialsIdentifier = "credentialsIdentifier_example"; // String | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     String previewCredentialsIdentifierSimilar = "previewCredentialsIdentifierSimilar_example"; // String | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     List<String> includeCredential = Arrays.asList(); // List<String> | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available.
@@ -1067,8 +1067,8 @@ public class Example {
 | **page** | **Long**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] |
 | **pageSize** | **Long**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [optional] [default to 250] |
 | **pageToken** | **String**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [optional] |
-| **consistency** | **String**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional] [enum: , strong, eventual] |
-| **ids** | [**List&lt;String&gt;**](String.md)| Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). | [optional] |
+| **consistency** | **String**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  - strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. - eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  - &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional] [enum: , strong, eventual] |
+| **ids** | [**List&lt;String&gt;**](String.md)| Retrieve multiple identities by their IDs.  This parameter has the following limitations:  - Duplicate or non-existent IDs are ignored. - The order of returned IDs may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). | [optional] |
 | **credentialsIdentifier** | **String**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **previewCredentialsIdentifierSimilar** | **String**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] |
 | **includeCredential** | [**List&lt;String&gt;**](String.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | [optional] |
@@ -1091,7 +1091,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated Identity List Response |  -  |
-| **0** | errorGeneric |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="listIdentitySchemas"></a>
 # **listIdentitySchemas**
@@ -1160,7 +1160,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List Identity JSON Schemas Response |  -  |
-| **0** | errorGeneric |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="listIdentitySessions"></a>
 # **listIdentitySessions**
@@ -1238,9 +1238,9 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List Identity Sessions Response |  -  |
-| **400** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="listSessions"></a>
 # **listSessions**
@@ -1314,8 +1314,8 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Session List Response  The response given when listing sessions in an administrative context. |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="manageSessions"></a>
 # **manageSessions**
@@ -1323,7 +1323,7 @@ public class Example {
 
 Manage sessions in bulk
 
-Disable or delete sessions for a list of identities or a list of sessions in a single call. The &#x60;action&#x60; field selects the operation:  &#x60;disable&#x60; — deactivate matching sessions (sets &#x60;active &#x3D; false&#x60;, preserves audit data). &#x60;delete&#x60; — permanently delete matching sessions.  Exactly one of &#x60;identities&#x60; or &#x60;sessions&#x60; must be provided. To scope the operation to every session in the network, pass &#x60;identities: [\&quot;*\&quot;]&#x60;; the wildcard is not accepted in the &#x60;sessions&#x60; field. Up to 500 explicit IDs are accepted per call.  All requests return &#x60;200 OK&#x60; with &#x60;{processed, more}&#x60;. &#x60;processed&#x60; reports how many rows the call affected; for &#x60;disable&#x60; it counts only sessions that were active before the call. &#x60;more&#x60; is &#x60;true&#x60; only when a wildcard request reached the per-call batch limit and additional rows may remain; callers drain the network by re-issuing the same request while &#x60;more&#x60; is &#x60;true&#x60;. Explicit-IDs requests always return &#x60;more: false&#x60;.
+Disable or delete sessions for a list of identities or a list of sessions in a single call. The &#x60;action&#x60; field selects the operation:  - &#x60;disable&#x60; — deactivate matching sessions (sets &#x60;active &#x3D; false&#x60;, preserves audit data). - &#x60;delete&#x60; — permanently delete matching sessions.  Exactly one of &#x60;identities&#x60; or &#x60;sessions&#x60; must be provided. To scope the operation to every session in the network, pass &#x60;identities: [\&quot;*\&quot;]&#x60;; the wildcard is not accepted in the &#x60;sessions&#x60; field. Up to 500 explicit IDs are accepted per call.  All requests return &#x60;200 OK&#x60; with &#x60;{processed, more}&#x60;. &#x60;processed&#x60; reports how many rows the call affected; for &#x60;disable&#x60; it counts only sessions that were active before the call. &#x60;more&#x60; is &#x60;true&#x60; only when a wildcard request reached the per-call batch limit and additional rows may remain; callers drain the network by re-issuing the same request while &#x60;more&#x60; is &#x60;true&#x60;. Explicit-IDs requests always return &#x60;more: false&#x60;.
 
 ### Example
 ```java
@@ -1382,10 +1382,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | manageSessionsResponse |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Manage Sessions Response |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="patchIdentity"></a>
 # **patchIdentity**
@@ -1454,11 +1454,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | identity |  -  |
-| **400** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **409** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Identity represents an Ory Kratos identity |  -  |
+| **400** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **409** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="updateIdentity"></a>
 # **updateIdentity**
@@ -1466,7 +1466,7 @@ public class Example {
 
 Update an Identity
 
-This endpoint updates an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model). The full identity payload (except credentials) is expected.  It is possible to update the identity&#39;s credentials as well. Using this operation, credentials will not be overwritten but instead added to the list. For example, if a user has a social sign in connection set up, updating the credentials will keep the social sign in connection and add the new credentials to the list. This prevents accidentally overwriting credentials and locking out users. A complete view of all credential types is here:  &#x60;password&#x60;: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook. &#x60;oidc&#x60;, &#x60;saml&#x60;: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list. &#x60;totp&#x60;: The existing TOTP credentials will be replaced with the new configuration. &#x60;lookup_secret&#x60;: The existing Lookup Secret codes will be kept and the new codes will be added to the list. &#x60;webauthn&#x60;, &#x60;passkey&#x60;: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new &#x60;user_handle&#x60; is provided, it&#39;s added to the identity&#39;s identifiers list while preserving previous user handles. &#x60;code&#x60;: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (&#x60;{\&quot;ory.sh/kratos\&quot;:{\&quot;code\&quot;:{\&quot;identifier\&quot;:true\&quot;, \&quot;via\&quot;:\&quot;email\&quot;}}}&#x60;).
+This endpoint updates an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model). The full identity payload (except credentials) is expected.  It is possible to update the identity&#39;s credentials as well. Using this operation, credentials will not be overwritten but instead added to the list. For example, if a user has a social sign in connection set up, updating the credentials will keep the social sign in connection and add the new credentials to the list. This prevents accidentally overwriting credentials and locking out users. A complete view of all credential types is here:  - &#x60;password&#x60;: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook. - &#x60;oidc&#x60;, &#x60;saml&#x60;: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list. - &#x60;totp&#x60;: The existing TOTP credentials will be replaced with the new configuration. - &#x60;lookup_secret&#x60;: The existing Lookup Secret codes will be kept and the new codes will be added to the list. - &#x60;webauthn&#x60;, &#x60;passkey&#x60;: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new &#x60;user_handle&#x60; is provided, it&#39;s added to the identity&#39;s identifiers list while preserving previous user handles. - &#x60;code&#x60;: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (&#x60;{\&quot;ory.sh/kratos\&quot;:{\&quot;code\&quot;:{\&quot;identifier\&quot;:true\&quot;, \&quot;via\&quot;:\&quot;email\&quot;}}}&#x60;).
 
 ### Example
 ```java
@@ -1527,9 +1527,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | identity |  -  |
-| **400** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **409** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Identity represents an Ory Kratos identity |  -  |
+| **400** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **409** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 

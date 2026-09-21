@@ -14,7 +14,7 @@
 require 'ory-client'
 
 instance = OryClient::CreateRecoveryCodeForIdentityBody.new(
-  expires_in: null,
+  expires_in: 1h,
   flow_type: null,
   identity_id: null
 )

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**link** | **str** | The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).  in: header | [optional] 
-**x_total_count** | **str** | The total number of clients.  in: header | [optional] 
+**link** | **str** | The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [optional] 
+**x_total_count** | **str** | The total number of clients. | [optional] 
 
 ## Example
 

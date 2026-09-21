@@ -15,7 +15,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**deleteProjectApiKey()**](ProjectApi.md#deleteProjectApiKey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key |
 | [**getOrganization()**](ProjectApi.md#getOrganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
 | [**getOrganizationOnboardingPortalLinks()**](ProjectApi.md#getOrganizationOnboardingPortalLinks) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links |
-| [**getProject()**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get a Project |
+| [**getProject()**](ProjectApi.md#getProject) | **GET** /projects/{project_id} | Get an Ory Network Project Configuration |
 | [**getProjectMembers()**](ProjectApi.md#getProjectMembers) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**listOrganizations()**](ProjectApi.md#listOrganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
 | [**listProjectApiKeys()**](ProjectApi.md#listProjectApiKeys) | **GET** /projects/{project}/tokens | List a project&#39;s API keys |
@@ -27,6 +27,7 @@ All URIs are relative to https://playground.projects.oryapis.com, except if the 
 | [**setProject()**](ProjectApi.md#setProject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
 | [**updateOrganization()**](ProjectApi.md#updateOrganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization |
 | [**updateOrganizationOnboardingPortalLink()**](ProjectApi.md#updateOrganizationOnboardingPortalLink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link |
+| [**validateOpl()**](ProjectApi.md#validateOpl) | **POST** /projects/{project_id}/opl/validate | Validate an Ory Permission Language document |
 
 
 ## `createOrganization()`
@@ -656,9 +657,9 @@ getProject($projectId): \Ory\Client\Model\Project
 ```
 ### URI(s):
 - https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
-Get a Project
+Get an Ory Network Project Configuration
 
-Get a project you have access to by its ID.
+Returns the project rendered into the configuration format the open source projects use (e.g. Ory Kratos for Identity, Ory Keto for Permissions), including the values Ory fills in for the project, such as the resolved base URLs.  The rendered configuration does not carry the operational configuration items (e.g. port, tracing, logging) available in the open source.
 
 ### Example
 
@@ -1468,6 +1469,75 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `validateOpl()`
+
+```php
+validateOpl($projectId, $body): \Ory\Client\Model\OplValidateResult
+```
+### URI(s):
+- https://api.console.ory.sh The Ory Network control plane API which is used to manage your Ory Network projects and workspaces.
+Validate an Ory Permission Language document
+
+Parses an OPL document using the same product limits and subscription entitlements applied when the project's configuration is saved.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: oryWorkspaceApiKey
+$config = Ory\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Ory\Client\Api\ProjectApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$projectId = 'projectId_example'; // string | The project's ID.
+$body = 'body_example'; // string
+
+$hostIndex = 0;
+$variables = [
+];
+
+try {
+    $result = $apiInstance->validateOpl($projectId, $body, $hostIndex, $variables);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProjectApi->validateOpl: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| The project&#39;s ID. | |
+| **body** | **string**|  | [optional] |
+| hostIndex | null|int | Host index. Defaults to null. If null, then the library will use $this->hostIndex instead | [optional] |
+| variables | array | Associative array of variables to pass to the host. Defaults to empty array. | [optional] |
+
+### Return type
+
+[**\Ory\Client\Model\OplValidateResult**](../Model/OplValidateResult.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `text/plain`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **active_link** | [**OnboardingPortalLink**](OnboardingPortalLink.md) |  | [optional] [default to undefined]
 **created_at** | **string** |  | [default to undefined]
 **default_region** | **string** | DefaultRegion sets the default region for identities provisioned into this organization, when the identity does not specify a region explictly. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] [default to undefined]
+**domain_verifications** | [**Array&lt;DomainVerificationStatus&gt;**](DomainVerificationStatus.md) | The verification status of each organization domain, including the DNS TXT record the customer must publish to prove control. A domain that has no verification started yet still appears, with the TXT record name set and an empty status. | [optional] [default to undefined]
 **domains** | **Array&lt;string&gt;** | The list of organization\&#39;s domains. | [default to undefined]
 **id** | **string** | The organization\&#39;s ID. | [default to undefined]
 **label** | **string** | The organization\&#39;s human-readable label. | [default to undefined]
@@ -23,6 +24,7 @@ const instance: WorkspaceOrganization = {
     active_link,
     created_at,
     default_region,
+    domain_verifications,
     domains,
     id,
     label,

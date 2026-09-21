@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attribute** | Pointer to **string** |  | [optional] 
-**Condition** | Pointer to **string** |  | [optional] 
+**Condition** | Pointer to **string** | equals ConditionEquals not_equals ConditionNotEquals contains ConditionContains not_contains ConditionNotContains regex ConditionRegex not_regex ConditionNotRegex set ConditionSet not_set ConditionNotSet | [optional] 
 **Value** | Pointer to **string** |  | [optional] 
 
 ## Methods

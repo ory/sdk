@@ -62,11 +62,11 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | elementsConfiguration |  -  |
-| **400** | genericError |  -  |
-| **401** | genericError |  -  |
-| **403** | genericError |  -  |
-| **0** | genericError |  -  |
+| **200** | ElementsConfiguration is the subset of a project\&#39;s configuration that Ory Elements consumes to customize its behavior and appearance. It mirrors the &#x60;ProjectConfiguration&#x60; type in &#x60;@ory/elements-react&#x60; and intentionally omits account-experience-only fields (stylesheet, locales, translations, favicons). |  -  |
+| **400** | Error response |  -  |
+| **401** | Error response |  -  |
+| **403** | Error response |  -  |
+| **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

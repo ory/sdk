@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **organization_id** | **string** |  | [optional] [default to undefined]
 **request_url** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL\&#39;s path or query for example. | [default to undefined]
 **return_to** | **string** | ReturnTo contains the requested return_to URL. | [optional] [default to undefined]
-**state** | **any** | State represents the state of this flow. It knows two states:  show_form: No user data has been collected, or it is invalid, and thus the form should be shown. success: Indicates that the settings flow has been updated successfully with the provided data. Done will stay true when repeatedly checking. If set to true, done will revert back to false only when a flow with invalid (e.g. \&quot;please use a valid phone number\&quot;) data was sent. | [default to undefined]
+**state** | [**SettingsFlowState**](SettingsFlowState.md) |  | [default to undefined]
 **transient_payload** | **object** | TransientPayload is used to pass data from the settings flow to hooks and email templates | [optional] [default to undefined]
 **type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | [default to undefined]
 **ui** | [**UiContainer**](UiContainer.md) |  | [default to undefined]

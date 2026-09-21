@@ -21,7 +21,7 @@ Name | Type
 `requested_aal` | [AuthenticatorAssuranceLevel](AuthenticatorAssuranceLevel.md)
 `return_to` | string
 `session_token_exchange_code` | string
-`state` | any
+`state` | [LoginFlowState](LoginFlowState.md)
 `test_context` | [LoginFlowTestContext](LoginFlowTestContext.md)
 `transient_payload` | object
 `type` | string

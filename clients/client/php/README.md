@@ -127,6 +127,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**createBrowserSettingsFlow**](docs/Api/FrontendApi.md#createbrowsersettingsflow) | **GET** /self-service/settings/browser | Create Settings Flow for Browsers
 *FrontendApi* | [**createBrowserVerificationFlow**](docs/Api/FrontendApi.md#createbrowserverificationflow) | **GET** /self-service/verification/browser | Create Verification Flow for Browser Clients
 *FrontendApi* | [**createFedcmFlow**](docs/Api/FrontendApi.md#createfedcmflow) | **GET** /self-service/fed-cm/parameters | Get FedCM Parameters
+*FrontendApi* | [**createIdPInitiatedSamlBrowserLoginFlow**](docs/Api/FrontendApi.md#createidpinitiatedsamlbrowserloginflow) | **GET** /self-service/methods/saml/idp-initiated/{provider} | Complete IdP-Initiated SAML Login for Browsers
 *FrontendApi* | [**createNativeLoginFlow**](docs/Api/FrontendApi.md#createnativeloginflow) | **GET** /self-service/login/api | Create Login Flow for Native Apps
 *FrontendApi* | [**createNativeRecoveryFlow**](docs/Api/FrontendApi.md#createnativerecoveryflow) | **GET** /self-service/recovery/api | Create Recovery Flow for Native Apps
 *FrontendApi* | [**createNativeRegistrationFlow**](docs/Api/FrontendApi.md#createnativeregistrationflow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps
@@ -143,6 +144,7 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**getSettingsFlow**](docs/Api/FrontendApi.md#getsettingsflow) | **GET** /self-service/settings/flows | Get Settings Flow
 *FrontendApi* | [**getVerificationFlow**](docs/Api/FrontendApi.md#getverificationflow) | **GET** /self-service/verification/flows | Get Verification Flow
 *FrontendApi* | [**getWebAuthnJavaScript**](docs/Api/FrontendApi.md#getwebauthnjavascript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+*FrontendApi* | [**getWebAuthnRelatedOrigins**](docs/Api/FrontendApi.md#getwebauthnrelatedorigins) | **GET** /.well-known/webauthn | Get WebAuthn Related Origins
 *FrontendApi* | [**getWellKnownChangePassword**](docs/Api/FrontendApi.md#getwellknownchangepassword) | **GET** /.well-known/change-password | Change Password URL
 *FrontendApi* | [**listMySessions**](docs/Api/FrontendApi.md#listmysessions) | **GET** /sessions | Get My Active Sessions
 *FrontendApi* | [**performNativeLogout**](docs/Api/FrontendApi.md#performnativelogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
@@ -239,7 +241,7 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**deleteProjectApiKey**](docs/Api/ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key
 *ProjectApi* | [**getOrganization**](docs/Api/ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID
 *ProjectApi* | [**getOrganizationOnboardingPortalLinks**](docs/Api/ProjectApi.md#getorganizationonboardingportallinks) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links
-*ProjectApi* | [**getProject**](docs/Api/ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project
+*ProjectApi* | [**getProject**](docs/Api/ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get an Ory Network Project Configuration
 *ProjectApi* | [**getProjectMembers**](docs/Api/ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project
 *ProjectApi* | [**listOrganizations**](docs/Api/ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations
 *ProjectApi* | [**listProjectApiKeys**](docs/Api/ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API keys
@@ -251,6 +253,7 @@ Class | Method | HTTP request | Description
 *ProjectApi* | [**setProject**](docs/Api/ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration
 *ProjectApi* | [**updateOrganization**](docs/Api/ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization
 *ProjectApi* | [**updateOrganizationOnboardingPortalLink**](docs/Api/ProjectApi.md#updateorganizationonboardingportallink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link
+*ProjectApi* | [**validateOpl**](docs/Api/ProjectApi.md#validateopl) | **POST** /projects/{project_id}/opl/validate | Validate an Ory Permission Language document
 *RelationshipApi* | [**checkOplSyntax**](docs/Api/RelationshipApi.md#checkoplsyntax) | **POST** /opl/syntax/check | Check the syntax of an OPL file
 *RelationshipApi* | [**createRelationship**](docs/Api/RelationshipApi.md#createrelationship) | **PUT** /admin/relation-tuples | Create a Relationship
 *RelationshipApi* | [**deleteRelationships**](docs/Api/RelationshipApi.md#deleterelationships) | **DELETE** /admin/relation-tuples | Delete Relationships
@@ -276,6 +279,7 @@ Class | Method | HTTP request | Description
 - [AccountExperienceColors](docs/Model/AccountExperienceColors.md)
 - [AccountExperienceConfiguration](docs/Model/AccountExperienceConfiguration.md)
 - [AddProjectToWorkspaceBody](docs/Model/AddProjectToWorkspaceBody.md)
+- [AddWorkspaceOrganizationDomainBody](docs/Model/AddWorkspaceOrganizationDomainBody.md)
 - [AdminIdentityImportCredentialsLookupSecret](docs/Model/AdminIdentityImportCredentialsLookupSecret.md)
 - [AdminIdentityImportCredentialsLookupSecretConfig](docs/Model/AdminIdentityImportCredentialsLookupSecretConfig.md)
 - [AdminRevokeImportedApiKeyBody](docs/Model/AdminRevokeImportedApiKeyBody.md)
@@ -283,6 +287,7 @@ Class | Method | HTTP request | Description
 - [AdminRotateIssuedApiKeyBody](docs/Model/AdminRotateIssuedApiKeyBody.md)
 - [AdminUpdateImportedApiKeyRequest](docs/Model/AdminUpdateImportedApiKeyRequest.md)
 - [AdminUpdateIssuedApiKeyRequest](docs/Model/AdminUpdateIssuedApiKeyRequest.md)
+- [AiAssistantSessionToken](docs/Model/AiAssistantSessionToken.md)
 - [Any](docs/Model/Any.md)
 - [Attribute](docs/Model/Attribute.md)
 - [AttributeFilter](docs/Model/AttributeFilter.md)
@@ -339,6 +344,7 @@ Class | Method | HTTP request | Description
 - [CreateVerifiableCredentialRequestBody](docs/Model/CreateVerifiableCredentialRequestBody.md)
 - [CreateWorkspaceApiKeyBody](docs/Model/CreateWorkspaceApiKeyBody.md)
 - [CreateWorkspaceBody](docs/Model/CreateWorkspaceBody.md)
+- [CreateWorkspaceContactBody](docs/Model/CreateWorkspaceContactBody.md)
 - [CreateWorkspaceMemberInviteBody](docs/Model/CreateWorkspaceMemberInviteBody.md)
 - [CreateWorkspaceOrganizationBody](docs/Model/CreateWorkspaceOrganizationBody.md)
 - [CreateWorkspaceSubscriptionBody](docs/Model/CreateWorkspaceSubscriptionBody.md)
@@ -358,6 +364,7 @@ Class | Method | HTTP request | Description
 - [DeviceAuthorization](docs/Model/DeviceAuthorization.md)
 - [DeviceType](docs/Model/DeviceType.md)
 - [DeviceUserAuthRequest](docs/Model/DeviceUserAuthRequest.md)
+- [DomainVerificationStatus](docs/Model/DomainVerificationStatus.md)
 - [ElementsConfiguration](docs/Model/ElementsConfiguration.md)
 - [EmailTemplateData](docs/Model/EmailTemplateData.md)
 - [EmailTemplateDataBody](docs/Model/EmailTemplateDataBody.md)
@@ -368,6 +375,7 @@ Class | Method | HTTP request | Description
 - [ErrorOAuth2](docs/Model/ErrorOAuth2.md)
 - [EventStream](docs/Model/EventStream.md)
 - [ExpandedPermissionTree](docs/Model/ExpandedPermissionTree.md)
+- [FeatureFlagsCatalogEntry](docs/Model/FeatureFlagsCatalogEntry.md)
 - [FlowError](docs/Model/FlowError.md)
 - [GenericError](docs/Model/GenericError.md)
 - [GenericErrorContent](docs/Model/GenericErrorContent.md)
@@ -451,6 +459,7 @@ Class | Method | HTTP request | Description
 - [ListInvoicesResponse](docs/Model/ListInvoicesResponse.md)
 - [ListIssuedApiKeysResponse](docs/Model/ListIssuedApiKeysResponse.md)
 - [ListOrganizationsResponse](docs/Model/ListOrganizationsResponse.md)
+- [ListWorkspaceContacts](docs/Model/ListWorkspaceContacts.md)
 - [ListWorkspaceProjects](docs/Model/ListWorkspaceProjects.md)
 - [ListWorkspaces](docs/Model/ListWorkspaces.md)
 - [LoginFlow](docs/Model/LoginFlow.md)
@@ -494,6 +503,9 @@ Class | Method | HTTP request | Description
 - [OnboardingPortalLink](docs/Model/OnboardingPortalLink.md)
 - [OnboardingPortalOrganization](docs/Model/OnboardingPortalOrganization.md)
 - [OnboardingPortalTestLoginFlow](docs/Model/OnboardingPortalTestLoginFlow.md)
+- [OplParseError](docs/Model/OplParseError.md)
+- [OplSourcePosition](docs/Model/OplSourcePosition.md)
+- [OplValidateResult](docs/Model/OplValidateResult.md)
 - [Organization](docs/Model/Organization.md)
 - [OrganizationBody](docs/Model/OrganizationBody.md)
 - [OrganizationByHostname](docs/Model/OrganizationByHostname.md)
@@ -501,10 +513,10 @@ Class | Method | HTTP request | Description
 - [PINConfig](docs/Model/PINConfig.md)
 - [ParseError](docs/Model/ParseError.md)
 - [PatchIdentitiesBody](docs/Model/PatchIdentitiesBody.md)
+- [PatchWorkspaceContactBody](docs/Model/PatchWorkspaceContactBody.md)
 - [PatchWorkspaceMemberBody](docs/Model/PatchWorkspaceMemberBody.md)
 - [PerformNativeLogoutBody](docs/Model/PerformNativeLogoutBody.md)
 - [PermissionsOnWorkspace](docs/Model/PermissionsOnWorkspace.md)
-- [Plan](docs/Model/Plan.md)
 - [PlanDetails](docs/Model/PlanDetails.md)
 - [PostCheckPermissionBody](docs/Model/PostCheckPermissionBody.md)
 - [PostCheckPermissionOrErrorBody](docs/Model/PostCheckPermissionOrErrorBody.md)
@@ -544,6 +556,7 @@ Class | Method | HTTP request | Description
 - [RevisionAccountExperienceCustomTranslation](docs/Model/RevisionAccountExperienceCustomTranslation.md)
 - [RevocationReason](docs/Model/RevocationReason.md)
 - [RotateIssuedApiKeyResponse](docs/Model/RotateIssuedApiKeyResponse.md)
+- [RotateOAuth2ClientSecretBody](docs/Model/RotateOAuth2ClientSecretBody.md)
 - [RotateTalosKeyBody](docs/Model/RotateTalosKeyBody.md)
 - [SchemaPatch](docs/Model/SchemaPatch.md)
 - [SelfRevokeApiKeyRequest](docs/Model/SelfRevokeApiKeyRequest.md)
@@ -650,8 +663,12 @@ Class | Method | HTTP request | Description
 - [VerifyUserCodeRequest](docs/Model/VerifyUserCodeRequest.md)
 - [Version](docs/Model/Version.md)
 - [Warning](docs/Model/Warning.md)
+- [WebAuthnRelatedOrigins](docs/Model/WebAuthnRelatedOrigins.md)
 - [Workspace](docs/Model/Workspace.md)
 - [WorkspaceApiKey](docs/Model/WorkspaceApiKey.md)
+- [WorkspaceContact](docs/Model/WorkspaceContact.md)
+- [WorkspaceContactRecipient](docs/Model/WorkspaceContactRecipient.md)
+- [WorkspaceContactRecipientInput](docs/Model/WorkspaceContactRecipientInput.md)
 - [WorkspaceOrganization](docs/Model/WorkspaceOrganization.md)
 
 ## Authorization
@@ -700,6 +717,6 @@ support@ory.sh
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `v1.22.66`
+- API version: `v1.22.78`
     - Generator version: `7.17.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

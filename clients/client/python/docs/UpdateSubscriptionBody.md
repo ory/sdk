@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**interval** | **str** |  monthly Monthly yearly Yearly | 
+**interval** | **str** | monthly Monthly yearly Yearly | 
 **plan** | **str** |  | 
 **return_to** | **str** |  | [optional] 
 

@@ -13,7 +13,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**delete_project_api_key**](ProjectApi.md#delete_project_api_key) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key |
 | [**get_organization**](ProjectApi.md#get_organization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
 | [**get_organization_onboarding_portal_links**](ProjectApi.md#get_organization_onboarding_portal_links) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links |
-| [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get a Project |
+| [**get_project**](ProjectApi.md#get_project) | **GET** /projects/{project_id} | Get an Ory Network Project Configuration |
 | [**get_project_members**](ProjectApi.md#get_project_members) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**list_organizations**](ProjectApi.md#list_organizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
 | [**list_project_api_keys**](ProjectApi.md#list_project_api_keys) | **GET** /projects/{project}/tokens | List a project&#39;s API keys |
@@ -25,6 +25,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**set_project**](ProjectApi.md#set_project) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
 | [**update_organization**](ProjectApi.md#update_organization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization |
 | [**update_organization_onboarding_portal_link**](ProjectApi.md#update_organization_onboarding_portal_link) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link |
+| [**validate_opl**](ProjectApi.md#validate_opl) | **POST** /projects/{project_id}/opl/validate | Validate an Ory Permission Language document |
 
 
 ## create_organization
@@ -677,9 +678,9 @@ end
 
 > <Project> get_project(project_id)
 
-Get a Project
+Get an Ory Network Project Configuration
 
-Get a project you have access to by its ID.
+Returns the project rendered into the configuration format the open source projects use (e.g. Ory Kratos for Identity, Ory Keto for Permissions), including the values Ory fills in for the project, such as the resolved base URLs.  The rendered configuration does not carry the operational configuration items (e.g. port, tracing, logging) available in the open source.
 
 ### Examples
 
@@ -696,7 +697,7 @@ api_instance = OryClient::ProjectApi.new
 project_id = 'project_id_example' # String | Project ID  The project's ID.
 
 begin
-  # Get a Project
+  # Get an Ory Network Project Configuration
   result = api_instance.get_project(project_id)
   p result
 rescue OryClient::ApiError => e
@@ -712,7 +713,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Get a Project
+  # Get an Ory Network Project Configuration
   data, status_code, headers = api_instance.get_project_with_http_info(project_id)
   p status_code # => 2xx
   p headers # => { ... }
@@ -1531,5 +1532,78 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## validate_opl
+
+> <OplValidateResult> validate_opl(project_id, opts)
+
+Validate an Ory Permission Language document
+
+Parses an OPL document using the same product limits and subscription entitlements applied when the project's configuration is saved.
+
+### Examples
+
+```ruby
+require 'time'
+require 'ory-client'
+# setup authorization
+OryClient.configure do |config|
+  # Configure Bearer authorization: oryWorkspaceApiKey
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = OryClient::ProjectApi.new
+project_id = 'project_id_example' # String | The project's ID.
+opts = {
+  body: 'body_example' # String | 
+}
+
+begin
+  # Validate an Ory Permission Language document
+  result = api_instance.validate_opl(project_id, opts)
+  p result
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->validate_opl: #{e}"
+end
+```
+
+#### Using the validate_opl_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OplValidateResult>, Integer, Hash)> validate_opl_with_http_info(project_id, opts)
+
+```ruby
+begin
+  # Validate an Ory Permission Language document
+  data, status_code, headers = api_instance.validate_opl_with_http_info(project_id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OplValidateResult>
+rescue OryClient::ApiError => e
+  puts "Error when calling ProjectApi->validate_opl_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **project_id** | **String** | The project&#39;s ID. |  |
+| **body** | **String** |  | [optional] |
+
+### Return type
+
+[**OplValidateResult**](OplValidateResult.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+- **Content-Type**: text/plain
 - **Accept**: application/json
 

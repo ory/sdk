@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **active_link** | Option<[**models::OnboardingPortalLink**](onboardingPortalLink.md)> |  | [optional]
 **created_at** | **String** |  | 
 **default_region** | Option<**String**> | DefaultRegion sets the default region for identities provisioned into this organization, when the identity does not specify a region explictly. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional]
+**domain_verifications** | Option<[**Vec<models::DomainVerificationStatus>**](domainVerificationStatus.md)> | The verification status of each organization domain, including the DNS TXT record the customer must publish to prove control. A domain that has no verification started yet still appears, with the TXT record name set and an empty status. | [optional]
 **domains** | **Vec<String>** | The list of organization's domains. | 
 **id** | **String** | The organization's ID. | 
 **label** | **String** | The organization's human-readable label. | 

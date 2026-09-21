@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Quota** | Pointer to **string** | quota is the number of requests allowed per window. | [optional] 
-**Unit** | Pointer to **string** |  | [optional] 
-**Window** | Pointer to **string** | window is the time window for the quota. Common values: 60s (1 minute), 3600s (1 hour), 86400s (1 day). | [optional] 
+**Unit** | Pointer to **string** | unit must be \&quot;requests\&quot; when specified. If omitted, it defaults to \&quot;requests\&quot;. All other values are rejected. | [optional] 
+**Window** | Pointer to **string** | window is the time window for the quota. Common values: 60s (1 minute), 3600s (1 hour), 86400s (1 day). Fractional-second values are rejected. | [optional] 
 
 ## Methods
 

@@ -8,6 +8,7 @@ Patch Identities Body
 Name | Type
 ------------ | -------------
 `identities` | [Array&lt;IdentityPatch&gt;](IdentityPatch.md)
+`with_partial_inserts` | boolean
 
 ## Example
 
@@ -17,6 +18,7 @@ import type { PatchIdentitiesBody } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "identities": null,
+  "with_partial_inserts": null,
 } satisfies PatchIdentitiesBody
 
 console.log(example)

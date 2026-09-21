@@ -2095,11 +2095,11 @@ nil (empty response body)
 
 ## rotate_o_auth2_client_secret
 
-> <OAuth2Client> rotate_o_auth2_client_secret(id)
+> <OAuth2Client> rotate_o_auth2_client_secret(id, opts)
 
 Rotate OAuth 2.0 Client Secret
 
-Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.
+Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.  Supply `client_secret` in the request body to rotate to a specific value instead of a generated one. The request body is optional.
 
 ### Examples
 
@@ -2114,10 +2114,13 @@ end
 
 api_instance = OryClient::OAuth2Api.new
 id = 'id_example' # String | OAuth 2.0 Client ID
+opts = {
+  rotate_o_auth2_client_secret_body: OryClient::RotateOAuth2ClientSecretBody.new # RotateOAuth2ClientSecretBody | 
+}
 
 begin
   # Rotate OAuth 2.0 Client Secret
-  result = api_instance.rotate_o_auth2_client_secret(id)
+  result = api_instance.rotate_o_auth2_client_secret(id, opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling OAuth2Api->rotate_o_auth2_client_secret: #{e}"
@@ -2128,12 +2131,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> rotate_o_auth2_client_secret_with_http_info(id)
+> <Array(<OAuth2Client>, Integer, Hash)> rotate_o_auth2_client_secret_with_http_info(id, opts)
 
 ```ruby
 begin
   # Rotate OAuth 2.0 Client Secret
-  data, status_code, headers = api_instance.rotate_o_auth2_client_secret_with_http_info(id)
+  data, status_code, headers = api_instance.rotate_o_auth2_client_secret_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -2147,6 +2150,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | OAuth 2.0 Client ID |  |
+| **rotate_o_auth2_client_secret_body** | [**RotateOAuth2ClientSecretBody**](RotateOAuth2ClientSecretBody.md) |  | [optional] |
 
 ### Return type
 
@@ -2158,7 +2162,7 @@ end
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 

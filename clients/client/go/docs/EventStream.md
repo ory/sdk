@@ -5,11 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**HttpsEndpoint** | Pointer to **NullableString** |  | [optional] 
+**HttpProtocolMajorVersion** | Pointer to **NullableInt64** | The major version of the HTTP protocol the endpoint negotiated during the most recent successful connectivity test: 1 for HTTP/1.x, 2 for HTTP/2. Null when the endpoint has not been verified, for example on a paused stream or a non-HTTPS stream. | [optional] [readonly] 
+**HttpsEndpoint** | Pointer to **NullableString** | The HTTPS endpoint, if type is HTTPS.  Returned with its userinfo and query values masked. Omit it on write to keep the stored endpoint; sending the masked form back overwrites it. | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**RoleArn** | Pointer to **string** |  | [optional] 
+**RoleArn** | Pointer to **string** | The AWS IAM role ARN assumed when publishing to the SNS topic, if type is SNS. | [optional] 
 **Status** | Pointer to **string** | The status of the event stream. A paused event stream does not forward any events until it is set back to active. | [optional] 
-**TopicArn** | Pointer to **string** |  | [optional] 
+**TopicArn** | Pointer to **string** | The AWS SNS topic ARN, if type is SNS. | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
@@ -57,6 +58,41 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
+### GetHttpProtocolMajorVersion
+
+`func (o *EventStream) GetHttpProtocolMajorVersion() int64`
+
+GetHttpProtocolMajorVersion returns the HttpProtocolMajorVersion field if non-nil, zero value otherwise.
+
+### GetHttpProtocolMajorVersionOk
+
+`func (o *EventStream) GetHttpProtocolMajorVersionOk() (*int64, bool)`
+
+GetHttpProtocolMajorVersionOk returns a tuple with the HttpProtocolMajorVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttpProtocolMajorVersion
+
+`func (o *EventStream) SetHttpProtocolMajorVersion(v int64)`
+
+SetHttpProtocolMajorVersion sets HttpProtocolMajorVersion field to given value.
+
+### HasHttpProtocolMajorVersion
+
+`func (o *EventStream) HasHttpProtocolMajorVersion() bool`
+
+HasHttpProtocolMajorVersion returns a boolean if a field has been set.
+
+### SetHttpProtocolMajorVersionNil
+
+`func (o *EventStream) SetHttpProtocolMajorVersionNil(b bool)`
+
+ SetHttpProtocolMajorVersionNil sets the value for HttpProtocolMajorVersion to be an explicit nil
+
+### UnsetHttpProtocolMajorVersion
+`func (o *EventStream) UnsetHttpProtocolMajorVersion()`
+
+UnsetHttpProtocolMajorVersion ensures that no value is present for HttpProtocolMajorVersion, not even an explicit nil
 ### GetHttpsEndpoint
 
 `func (o *EventStream) GetHttpsEndpoint() string`

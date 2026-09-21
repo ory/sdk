@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **DefaultRedirectUrl** | **string** |  | 
 **EnabledLocales** | **List&lt;string&gt;** |  | 
 **ErrorUiUrl** | **string** |  | 
-**HideOryBranding** | **bool** |  | 
+**HideOryBranding** | **bool** |  Whether to hide the Ory branding badge on the account experience. | 
 **HideRegistrationLink** | **bool** |  | 
-**LocaleBehavior** | **string** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
+**LocaleBehavior** | **string** | force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
 **LoginUiUrl** | **string** |  | 
 **Name** | **string** |  | 
 **RecoveryEnabled** | **bool** |  | 

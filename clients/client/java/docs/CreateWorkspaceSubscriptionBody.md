@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**currency** | [**CurrencyEnum**](#CurrencyEnum) |  usd USD eur Euro |  [optional] |
-|**interval** | [**IntervalEnum**](#IntervalEnum) |  monthly Monthly yearly Yearly |  |
+|**currency** | [**CurrencyEnum**](#CurrencyEnum) | usd USD eur Euro |  [optional] |
+|**interval** | [**IntervalEnum**](#IntervalEnum) | monthly Monthly yearly Yearly |  |
 |**plan** | **String** |  |  |
 |**returnTo** | **String** |  |  [optional] |
 

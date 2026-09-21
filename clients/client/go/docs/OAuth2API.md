@@ -2001,7 +2001,7 @@ Name | Type | Description  | Notes
 
 ## RotateOAuth2ClientSecret
 
-> OAuth2Client RotateOAuth2ClientSecret(ctx, id).Execute()
+> OAuth2Client RotateOAuth2ClientSecret(ctx, id).RotateOAuth2ClientSecretBody(rotateOAuth2ClientSecretBody).Execute()
 
 Rotate OAuth 2.0 Client Secret
 
@@ -2021,10 +2021,11 @@ import (
 
 func main() {
 	id := "id_example" // string | OAuth 2.0 Client ID
+	rotateOAuth2ClientSecretBody := *openapiclient.NewRotateOAuth2ClientSecretBody() // RotateOAuth2ClientSecretBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OAuth2API.RotateOAuth2ClientSecret(context.Background(), id).Execute()
+	resp, r, err := apiClient.OAuth2API.RotateOAuth2ClientSecret(context.Background(), id).RotateOAuth2ClientSecretBody(rotateOAuth2ClientSecretBody).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.RotateOAuth2ClientSecret``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2050,6 +2051,7 @@ Other parameters are passed through a pointer to a apiRotateOAuth2ClientSecretRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **rotateOAuth2ClientSecretBody** | [**RotateOAuth2ClientSecretBody**](RotateOAuth2ClientSecretBody.md) |  | 
 
 ### Return type
 
@@ -2061,7 +2063,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -73,9 +73,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | message |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="listCourierMessages"></a>
 # **listCourierMessages**
@@ -149,6 +149,6 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated Courier Message List Response |  -  |
-| **400** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 

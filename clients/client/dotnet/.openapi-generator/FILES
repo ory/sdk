@@ -26,6 +26,7 @@ docs/models/ClientAcceptOAuth2LoginRequest.md
 docs/models/ClientAccountExperienceColors.md
 docs/models/ClientAccountExperienceConfiguration.md
 docs/models/ClientAddProjectToWorkspaceBody.md
+docs/models/ClientAddWorkspaceOrganizationDomainBody.md
 docs/models/ClientAdminIdentityImportCredentialsLookupSecret.md
 docs/models/ClientAdminIdentityImportCredentialsLookupSecretConfig.md
 docs/models/ClientAdminRevokeImportedApiKeyBody.md
@@ -33,6 +34,7 @@ docs/models/ClientAdminRevokeIssuedApiKeyBody.md
 docs/models/ClientAdminRotateIssuedApiKeyBody.md
 docs/models/ClientAdminUpdateImportedApiKeyRequest.md
 docs/models/ClientAdminUpdateIssuedApiKeyRequest.md
+docs/models/ClientAiAssistantSessionToken.md
 docs/models/ClientAny.md
 docs/models/ClientAttribute.md
 docs/models/ClientAttributeFilter.md
@@ -89,6 +91,7 @@ docs/models/ClientCreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/models/ClientCreateVerifiableCredentialRequestBody.md
 docs/models/ClientCreateWorkspaceApiKeyBody.md
 docs/models/ClientCreateWorkspaceBody.md
+docs/models/ClientCreateWorkspaceContactBody.md
 docs/models/ClientCreateWorkspaceMemberInviteBody.md
 docs/models/ClientCreateWorkspaceOrganizationBody.md
 docs/models/ClientCreateWorkspaceSubscriptionBody.md
@@ -108,6 +111,7 @@ docs/models/ClientDeviceAuthnKey.md
 docs/models/ClientDeviceAuthorization.md
 docs/models/ClientDeviceType.md
 docs/models/ClientDeviceUserAuthRequest.md
+docs/models/ClientDomainVerificationStatus.md
 docs/models/ClientElementsConfiguration.md
 docs/models/ClientEmailTemplateData.md
 docs/models/ClientEmailTemplateDataBody.md
@@ -118,6 +122,7 @@ docs/models/ClientErrorGeneric.md
 docs/models/ClientErrorOAuth2.md
 docs/models/ClientEventStream.md
 docs/models/ClientExpandedPermissionTree.md
+docs/models/ClientFeatureFlagsCatalogEntry.md
 docs/models/ClientFlowError.md
 docs/models/ClientGenericError.md
 docs/models/ClientGenericErrorContent.md
@@ -201,6 +206,7 @@ docs/models/ClientListImportedApiKeysResponse.md
 docs/models/ClientListInvoicesResponse.md
 docs/models/ClientListIssuedApiKeysResponse.md
 docs/models/ClientListOrganizationsResponse.md
+docs/models/ClientListWorkspaceContacts.md
 docs/models/ClientListWorkspaceProjects.md
 docs/models/ClientListWorkspaces.md
 docs/models/ClientLoginFlow.md
@@ -244,6 +250,9 @@ docs/models/ClientOidcUserInfo.md
 docs/models/ClientOnboardingPortalLink.md
 docs/models/ClientOnboardingPortalOrganization.md
 docs/models/ClientOnboardingPortalTestLoginFlow.md
+docs/models/ClientOplParseError.md
+docs/models/ClientOplSourcePosition.md
+docs/models/ClientOplValidateResult.md
 docs/models/ClientOrganization.md
 docs/models/ClientOrganizationBody.md
 docs/models/ClientOrganizationByHostname.md
@@ -251,10 +260,10 @@ docs/models/ClientOrganizationOnboardingPortalLinksResponse.md
 docs/models/ClientPINConfig.md
 docs/models/ClientParseError.md
 docs/models/ClientPatchIdentitiesBody.md
+docs/models/ClientPatchWorkspaceContactBody.md
 docs/models/ClientPatchWorkspaceMemberBody.md
 docs/models/ClientPerformNativeLogoutBody.md
 docs/models/ClientPermissionsOnWorkspace.md
-docs/models/ClientPlan.md
 docs/models/ClientPlanDetails.md
 docs/models/ClientPostCheckPermissionBody.md
 docs/models/ClientPostCheckPermissionOrErrorBody.md
@@ -294,6 +303,7 @@ docs/models/ClientRelationships.md
 docs/models/ClientRevisionAccountExperienceCustomTranslation.md
 docs/models/ClientRevocationReason.md
 docs/models/ClientRotateIssuedApiKeyResponse.md
+docs/models/ClientRotateOAuth2ClientSecretBody.md
 docs/models/ClientRotateTalosKeyBody.md
 docs/models/ClientSchemaPatch.md
 docs/models/ClientSelfRevokeApiKeyRequest.md
@@ -400,8 +410,12 @@ docs/models/ClientVerifyApiKeyResponse.md
 docs/models/ClientVerifyUserCodeRequest.md
 docs/models/ClientVersion.md
 docs/models/ClientWarning.md
+docs/models/ClientWebAuthnRelatedOrigins.md
 docs/models/ClientWorkspace.md
 docs/models/ClientWorkspaceApiKey.md
+docs/models/ClientWorkspaceContact.md
+docs/models/ClientWorkspaceContactRecipient.md
+docs/models/ClientWorkspaceContactRecipientInput.md
 docs/models/ClientWorkspaceOrganization.md
 docs/scripts/git_push.ps1
 docs/scripts/git_push.sh
@@ -429,6 +443,7 @@ src/Ory.Client.Test/Model/ClientAcceptOAuth2LoginRequestTests.cs
 src/Ory.Client.Test/Model/ClientAccountExperienceColorsTests.cs
 src/Ory.Client.Test/Model/ClientAccountExperienceConfigurationTests.cs
 src/Ory.Client.Test/Model/ClientAddProjectToWorkspaceBodyTests.cs
+src/Ory.Client.Test/Model/ClientAddWorkspaceOrganizationDomainBodyTests.cs
 src/Ory.Client.Test/Model/ClientAdminIdentityImportCredentialsLookupSecretConfigTests.cs
 src/Ory.Client.Test/Model/ClientAdminIdentityImportCredentialsLookupSecretTests.cs
 src/Ory.Client.Test/Model/ClientAdminRevokeImportedApiKeyBodyTests.cs
@@ -436,6 +451,7 @@ src/Ory.Client.Test/Model/ClientAdminRevokeIssuedApiKeyBodyTests.cs
 src/Ory.Client.Test/Model/ClientAdminRotateIssuedApiKeyBodyTests.cs
 src/Ory.Client.Test/Model/ClientAdminUpdateImportedApiKeyRequestTests.cs
 src/Ory.Client.Test/Model/ClientAdminUpdateIssuedApiKeyRequestTests.cs
+src/Ory.Client.Test/Model/ClientAiAssistantSessionTokenTests.cs
 src/Ory.Client.Test/Model/ClientAnyTests.cs
 src/Ory.Client.Test/Model/ClientAttributeFilterTests.cs
 src/Ory.Client.Test/Model/ClientAttributeTests.cs
@@ -492,6 +508,7 @@ src/Ory.Client.Test/Model/ClientCreateTestLoginFlowFromOnboardingPortalLinkBodyT
 src/Ory.Client.Test/Model/ClientCreateVerifiableCredentialRequestBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceApiKeyBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceBodyTests.cs
+src/Ory.Client.Test/Model/ClientCreateWorkspaceContactBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceMemberInviteBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceOrganizationBodyTests.cs
 src/Ory.Client.Test/Model/ClientCreateWorkspaceSubscriptionBodyTests.cs
@@ -511,6 +528,7 @@ src/Ory.Client.Test/Model/ClientDeviceAuthnKeyTests.cs
 src/Ory.Client.Test/Model/ClientDeviceAuthorizationTests.cs
 src/Ory.Client.Test/Model/ClientDeviceTypeTests.cs
 src/Ory.Client.Test/Model/ClientDeviceUserAuthRequestTests.cs
+src/Ory.Client.Test/Model/ClientDomainVerificationStatusTests.cs
 src/Ory.Client.Test/Model/ClientElementsConfigurationTests.cs
 src/Ory.Client.Test/Model/ClientEmailTemplateDataBodyTests.cs
 src/Ory.Client.Test/Model/ClientEmailTemplateDataTests.cs
@@ -521,6 +539,7 @@ src/Ory.Client.Test/Model/ClientErrorGenericTests.cs
 src/Ory.Client.Test/Model/ClientErrorOAuth2Tests.cs
 src/Ory.Client.Test/Model/ClientEventStreamTests.cs
 src/Ory.Client.Test/Model/ClientExpandedPermissionTreeTests.cs
+src/Ory.Client.Test/Model/ClientFeatureFlagsCatalogEntryTests.cs
 src/Ory.Client.Test/Model/ClientFlowErrorTests.cs
 src/Ory.Client.Test/Model/ClientGenericErrorContentTests.cs
 src/Ory.Client.Test/Model/ClientGenericErrorTests.cs
@@ -604,6 +623,7 @@ src/Ory.Client.Test/Model/ClientListImportedApiKeysResponseTests.cs
 src/Ory.Client.Test/Model/ClientListInvoicesResponseTests.cs
 src/Ory.Client.Test/Model/ClientListIssuedApiKeysResponseTests.cs
 src/Ory.Client.Test/Model/ClientListOrganizationsResponseTests.cs
+src/Ory.Client.Test/Model/ClientListWorkspaceContactsTests.cs
 src/Ory.Client.Test/Model/ClientListWorkspaceProjectsTests.cs
 src/Ory.Client.Test/Model/ClientListWorkspacesTests.cs
 src/Ory.Client.Test/Model/ClientLoginFlowStateTests.cs
@@ -647,6 +667,9 @@ src/Ory.Client.Test/Model/ClientOidcUserInfoTests.cs
 src/Ory.Client.Test/Model/ClientOnboardingPortalLinkTests.cs
 src/Ory.Client.Test/Model/ClientOnboardingPortalOrganizationTests.cs
 src/Ory.Client.Test/Model/ClientOnboardingPortalTestLoginFlowTests.cs
+src/Ory.Client.Test/Model/ClientOplParseErrorTests.cs
+src/Ory.Client.Test/Model/ClientOplSourcePositionTests.cs
+src/Ory.Client.Test/Model/ClientOplValidateResultTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationBodyTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationByHostnameTests.cs
 src/Ory.Client.Test/Model/ClientOrganizationOnboardingPortalLinksResponseTests.cs
@@ -654,11 +677,11 @@ src/Ory.Client.Test/Model/ClientOrganizationTests.cs
 src/Ory.Client.Test/Model/ClientPINConfigTests.cs
 src/Ory.Client.Test/Model/ClientParseErrorTests.cs
 src/Ory.Client.Test/Model/ClientPatchIdentitiesBodyTests.cs
+src/Ory.Client.Test/Model/ClientPatchWorkspaceContactBodyTests.cs
 src/Ory.Client.Test/Model/ClientPatchWorkspaceMemberBodyTests.cs
 src/Ory.Client.Test/Model/ClientPerformNativeLogoutBodyTests.cs
 src/Ory.Client.Test/Model/ClientPermissionsOnWorkspaceTests.cs
 src/Ory.Client.Test/Model/ClientPlanDetailsTests.cs
-src/Ory.Client.Test/Model/ClientPlanTests.cs
 src/Ory.Client.Test/Model/ClientPostCheckPermissionBodyTests.cs
 src/Ory.Client.Test/Model/ClientPostCheckPermissionOrErrorBodyTests.cs
 src/Ory.Client.Test/Model/ClientProjectApiKeyTests.cs
@@ -697,6 +720,7 @@ src/Ory.Client.Test/Model/ClientRelationshipsTests.cs
 src/Ory.Client.Test/Model/ClientRevisionAccountExperienceCustomTranslationTests.cs
 src/Ory.Client.Test/Model/ClientRevocationReasonTests.cs
 src/Ory.Client.Test/Model/ClientRotateIssuedApiKeyResponseTests.cs
+src/Ory.Client.Test/Model/ClientRotateOAuth2ClientSecretBodyTests.cs
 src/Ory.Client.Test/Model/ClientRotateTalosKeyBodyTests.cs
 src/Ory.Client.Test/Model/ClientSchemaPatchTests.cs
 src/Ory.Client.Test/Model/ClientSelfRevokeApiKeyRequestTests.cs
@@ -803,7 +827,11 @@ src/Ory.Client.Test/Model/ClientVerifyApiKeyResponseTests.cs
 src/Ory.Client.Test/Model/ClientVerifyUserCodeRequestTests.cs
 src/Ory.Client.Test/Model/ClientVersionTests.cs
 src/Ory.Client.Test/Model/ClientWarningTests.cs
+src/Ory.Client.Test/Model/ClientWebAuthnRelatedOriginsTests.cs
 src/Ory.Client.Test/Model/ClientWorkspaceApiKeyTests.cs
+src/Ory.Client.Test/Model/ClientWorkspaceContactRecipientInputTests.cs
+src/Ory.Client.Test/Model/ClientWorkspaceContactRecipientTests.cs
+src/Ory.Client.Test/Model/ClientWorkspaceContactTests.cs
 src/Ory.Client.Test/Model/ClientWorkspaceOrganizationTests.cs
 src/Ory.Client.Test/Model/ClientWorkspaceTests.cs
 src/Ory.Client.Test/Ory.Client.Test.csproj
@@ -856,6 +884,7 @@ src/Ory.Client/Model/ClientAcceptOAuth2LoginRequest.cs
 src/Ory.Client/Model/ClientAccountExperienceColors.cs
 src/Ory.Client/Model/ClientAccountExperienceConfiguration.cs
 src/Ory.Client/Model/ClientAddProjectToWorkspaceBody.cs
+src/Ory.Client/Model/ClientAddWorkspaceOrganizationDomainBody.cs
 src/Ory.Client/Model/ClientAdminIdentityImportCredentialsLookupSecret.cs
 src/Ory.Client/Model/ClientAdminIdentityImportCredentialsLookupSecretConfig.cs
 src/Ory.Client/Model/ClientAdminRevokeImportedApiKeyBody.cs
@@ -863,6 +892,7 @@ src/Ory.Client/Model/ClientAdminRevokeIssuedApiKeyBody.cs
 src/Ory.Client/Model/ClientAdminRotateIssuedApiKeyBody.cs
 src/Ory.Client/Model/ClientAdminUpdateImportedApiKeyRequest.cs
 src/Ory.Client/Model/ClientAdminUpdateIssuedApiKeyRequest.cs
+src/Ory.Client/Model/ClientAiAssistantSessionToken.cs
 src/Ory.Client/Model/ClientAny.cs
 src/Ory.Client/Model/ClientAttribute.cs
 src/Ory.Client/Model/ClientAttributeFilter.cs
@@ -919,6 +949,7 @@ src/Ory.Client/Model/ClientCreateTestLoginFlowFromOnboardingPortalLinkBody.cs
 src/Ory.Client/Model/ClientCreateVerifiableCredentialRequestBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceApiKeyBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceBody.cs
+src/Ory.Client/Model/ClientCreateWorkspaceContactBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceMemberInviteBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceOrganizationBody.cs
 src/Ory.Client/Model/ClientCreateWorkspaceSubscriptionBody.cs
@@ -938,6 +969,7 @@ src/Ory.Client/Model/ClientDeviceAuthnKey.cs
 src/Ory.Client/Model/ClientDeviceAuthorization.cs
 src/Ory.Client/Model/ClientDeviceType.cs
 src/Ory.Client/Model/ClientDeviceUserAuthRequest.cs
+src/Ory.Client/Model/ClientDomainVerificationStatus.cs
 src/Ory.Client/Model/ClientElementsConfiguration.cs
 src/Ory.Client/Model/ClientEmailTemplateData.cs
 src/Ory.Client/Model/ClientEmailTemplateDataBody.cs
@@ -948,6 +980,7 @@ src/Ory.Client/Model/ClientErrorGeneric.cs
 src/Ory.Client/Model/ClientErrorOAuth2.cs
 src/Ory.Client/Model/ClientEventStream.cs
 src/Ory.Client/Model/ClientExpandedPermissionTree.cs
+src/Ory.Client/Model/ClientFeatureFlagsCatalogEntry.cs
 src/Ory.Client/Model/ClientFlowError.cs
 src/Ory.Client/Model/ClientGenericError.cs
 src/Ory.Client/Model/ClientGenericErrorContent.cs
@@ -1031,6 +1064,7 @@ src/Ory.Client/Model/ClientListImportedApiKeysResponse.cs
 src/Ory.Client/Model/ClientListInvoicesResponse.cs
 src/Ory.Client/Model/ClientListIssuedApiKeysResponse.cs
 src/Ory.Client/Model/ClientListOrganizationsResponse.cs
+src/Ory.Client/Model/ClientListWorkspaceContacts.cs
 src/Ory.Client/Model/ClientListWorkspaceProjects.cs
 src/Ory.Client/Model/ClientListWorkspaces.cs
 src/Ory.Client/Model/ClientLoginFlow.cs
@@ -1074,6 +1108,9 @@ src/Ory.Client/Model/ClientOidcUserInfo.cs
 src/Ory.Client/Model/ClientOnboardingPortalLink.cs
 src/Ory.Client/Model/ClientOnboardingPortalOrganization.cs
 src/Ory.Client/Model/ClientOnboardingPortalTestLoginFlow.cs
+src/Ory.Client/Model/ClientOplParseError.cs
+src/Ory.Client/Model/ClientOplSourcePosition.cs
+src/Ory.Client/Model/ClientOplValidateResult.cs
 src/Ory.Client/Model/ClientOrganization.cs
 src/Ory.Client/Model/ClientOrganizationBody.cs
 src/Ory.Client/Model/ClientOrganizationByHostname.cs
@@ -1081,10 +1118,10 @@ src/Ory.Client/Model/ClientOrganizationOnboardingPortalLinksResponse.cs
 src/Ory.Client/Model/ClientPINConfig.cs
 src/Ory.Client/Model/ClientParseError.cs
 src/Ory.Client/Model/ClientPatchIdentitiesBody.cs
+src/Ory.Client/Model/ClientPatchWorkspaceContactBody.cs
 src/Ory.Client/Model/ClientPatchWorkspaceMemberBody.cs
 src/Ory.Client/Model/ClientPerformNativeLogoutBody.cs
 src/Ory.Client/Model/ClientPermissionsOnWorkspace.cs
-src/Ory.Client/Model/ClientPlan.cs
 src/Ory.Client/Model/ClientPlanDetails.cs
 src/Ory.Client/Model/ClientPostCheckPermissionBody.cs
 src/Ory.Client/Model/ClientPostCheckPermissionOrErrorBody.cs
@@ -1124,6 +1161,7 @@ src/Ory.Client/Model/ClientRelationships.cs
 src/Ory.Client/Model/ClientRevisionAccountExperienceCustomTranslation.cs
 src/Ory.Client/Model/ClientRevocationReason.cs
 src/Ory.Client/Model/ClientRotateIssuedApiKeyResponse.cs
+src/Ory.Client/Model/ClientRotateOAuth2ClientSecretBody.cs
 src/Ory.Client/Model/ClientRotateTalosKeyBody.cs
 src/Ory.Client/Model/ClientSchemaPatch.cs
 src/Ory.Client/Model/ClientSelfRevokeApiKeyRequest.cs
@@ -1230,8 +1268,12 @@ src/Ory.Client/Model/ClientVerifyApiKeyResponse.cs
 src/Ory.Client/Model/ClientVerifyUserCodeRequest.cs
 src/Ory.Client/Model/ClientVersion.cs
 src/Ory.Client/Model/ClientWarning.cs
+src/Ory.Client/Model/ClientWebAuthnRelatedOrigins.cs
 src/Ory.Client/Model/ClientWorkspace.cs
 src/Ory.Client/Model/ClientWorkspaceApiKey.cs
+src/Ory.Client/Model/ClientWorkspaceContact.cs
+src/Ory.Client/Model/ClientWorkspaceContactRecipient.cs
+src/Ory.Client/Model/ClientWorkspaceContactRecipientInput.cs
 src/Ory.Client/Model/ClientWorkspaceOrganization.cs
 src/Ory.Client/Ory.Client.csproj
 src/Ory.Client/README.md

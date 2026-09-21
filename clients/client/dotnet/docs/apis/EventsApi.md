@@ -75,11 +75,11 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | eventStream |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **409** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **201** | Event Stream |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **409** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -151,10 +151,10 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **409** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **409** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -222,10 +222,10 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | listEventStreams |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Event Stream List |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -297,11 +297,11 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | eventStream |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **409** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | Event Stream |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **409** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

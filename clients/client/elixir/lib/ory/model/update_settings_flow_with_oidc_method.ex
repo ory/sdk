@@ -8,6 +8,7 @@ defmodule Ory.Model.UpdateSettingsFlowWithOidcMethod do
 
   @derive Jason.Encoder
   defstruct [
+    :csrf_token,
     :flow,
     :link,
     :method,
@@ -18,6 +19,7 @@ defmodule Ory.Model.UpdateSettingsFlowWithOidcMethod do
   ]
 
   @type t :: %__MODULE__{
+    :csrf_token => String.t | nil,
     :flow => String.t | nil,
     :link => String.t | nil,
     :method => String.t,

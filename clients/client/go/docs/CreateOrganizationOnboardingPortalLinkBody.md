@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **CustomHostnameId** | Pointer to **NullableString** |  | [optional] 
 **EnableScim** | **bool** | Feature flag to enable SCIM configuration | 
 **EnableSso** | **bool** | Feature flag to enable SSO configuration | 
-**ExpiresAt** | Pointer to **time.Time** |  | [optional] 
+**ExpiresAt** | Pointer to **NullableTime** |  | [optional] 
 **FacebookMapperUrl** | Pointer to **string** | FacebookMapper specifies the JSONNet code snippet which uses Facebook&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
 **GenericOidcMapperUrl** | Pointer to **string** | GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
 **GithubMapperUrl** | Pointer to **string** | GithubMapper specifies the JSONNet code snippet which uses GitHub&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
@@ -193,6 +193,16 @@ SetExpiresAt sets ExpiresAt field to given value.
 
 HasExpiresAt returns a boolean if a field has been set.
 
+### SetExpiresAtNil
+
+`func (o *CreateOrganizationOnboardingPortalLinkBody) SetExpiresAtNil(b bool)`
+
+ SetExpiresAtNil sets the value for ExpiresAt to be an explicit nil
+
+### UnsetExpiresAt
+`func (o *CreateOrganizationOnboardingPortalLinkBody) UnsetExpiresAt()`
+
+UnsetExpiresAt ensures that no value is present for ExpiresAt, not even an explicit nil
 ### GetFacebookMapperUrl
 
 `func (o *CreateOrganizationOnboardingPortalLinkBody) GetFacebookMapperUrl() string`

@@ -21,7 +21,7 @@ Is Owner For Project By Slug Request Body
 | Name | Value |
 |---- | -----|
 | USER | &quot;User&quot; |
-| _API_KEY | &quot; ApiKey&quot; |
+| API_KEY | &quot;ApiKey&quot; |
 
 
 

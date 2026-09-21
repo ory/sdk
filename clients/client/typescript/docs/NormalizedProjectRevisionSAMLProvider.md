@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **audience_override_base_url** | **string** |  | [optional] [default to undefined]
 **created_at** | **string** | The Project\&#39;s Revision Creation Date | [optional] [readonly] [default to undefined]
 **id** | **string** |  | [optional] [default to undefined]
+**idp_initiated_login_enabled** | **boolean** | IdPInitiatedLoginEnabled enables IdP-initiated login for this provider.  When enabled, users can start a login from their identity provider\&#39;s app launcher. The Polis connection\&#39;s default redirect URL then points at the Kratos IdP-initiated login entry point instead of the SAML callback. | [optional] [default to undefined]
 **label** | **string** | Label represents an optional label which can be used in the UI generation. | [optional] [default to undefined]
 **mapper_url** | **string** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider\&#39;s data (e.g. GitHub or Google profile information) to hydrate the identity\&#39;s data. | [optional] [default to undefined]
 **organization_id** | **string** |  | [optional] [default to undefined]
@@ -17,7 +18,7 @@ Name | Type | Description | Notes
 **proxy_saml_audience_override** | **string** |  | [optional] [default to undefined]
 **raw_idp_metadata_xml** | **string** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] [default to undefined]
 **state** | **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] [default to undefined]
-**update_identity_on_login** | **string** | UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity\&#39;s traits and metadata automatically. | [optional] [default to undefined]
+**update_identity_on_login** | **string** | UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity\&#39;s traits and metadata automatically. | [optional] [default to undefined]
 **updated_at** | **string** | Last Time Project\&#39;s Revision was Updated | [optional] [readonly] [default to undefined]
 **valid_to** | **Array&lt;string&gt;** | Valid to dates of all signing certs associated with the SAML connection | [optional] [readonly] [default to undefined]
 
@@ -30,6 +31,7 @@ const instance: NormalizedProjectRevisionSAMLProvider = {
     audience_override_base_url,
     created_at,
     id,
+    idp_initiated_login_enabled,
     label,
     mapper_url,
     organization_id,

@@ -17,7 +17,7 @@ Name | Type
 `request_url` | string
 `return_to` | string
 `session_token_exchange_code` | string
-`state` | any
+`state` | [RegistrationFlowState](RegistrationFlowState.md)
 `transient_payload` | object
 `type` | string
 `ui` | [UiContainer](UiContainer.md)

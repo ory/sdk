@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **aal2_acr_values** | **Array&lt;String&gt;** | AAL2ACRValues lists upstream OIDC &#x60;acr&#x60; claim values that should elevate the resulting Kratos session to AAL2. Empty means the upstream &#x60;acr&#x60; claim is ignored when deciding session AAL. | [optional] |
 | **aal2_amr_values** | **Array&lt;String&gt;** | AAL2AMRValues lists upstream OIDC &#x60;amr&#x60; claim values that should elevate the resulting Kratos session to AAL2 when any of them appears in the upstream &#x60;amr&#x60; array. Empty means the upstream &#x60;amr&#x60; claim is ignored when deciding session AAL. | [optional] |
-| **account_linking_mode** | **String** | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are &#x60;confirm_with_existing_credential&#x60; (default) and &#x60;automatic&#x60;. &#x60;automatic&#x60; silently links accounts when the provider verifies email ownership. Only supported for &#x60;apple&#x60; and &#x60;google&#x60; providers. automatic AccountLinkingModeAutomatic  AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential  AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional] |
+| **account_linking_mode** | **String** | AccountLinkingMode controls how account conflicts are resolved for this provider.  Possible values are &#x60;confirm_with_existing_credential&#x60; (default) and &#x60;automatic&#x60;. &#x60;automatic&#x60; silently links accounts when the provider verifies email ownership. Only supported for &#x60;apple&#x60; and &#x60;google&#x60; providers. automatic AccountLinkingModeAutomatic silently links accounts if the provider verifies email ownership. confirm_with_existing_credential AccountLinkingModeConfirmWithExistingCredential requires the user to confirm the account linking by providing an existing credential. | [optional] |
 | **additional_id_token_audiences** | **Array&lt;String&gt;** | AdditionalIDTokenAudiences is a list of additional audiences allowed in the ID Token.  This is only relevant in OIDC flows that submit an IDToken instead of using the callback from the OIDC provider. | [optional] |
 | **apple_private_key** | **String** |  | [optional] |
 | **apple_private_key_id** | **String** | Apple Private Key Identifier  Sign In with Apple Private Key Identifier needed for generating a JWT token for client secret | [optional] |
@@ -26,7 +26,7 @@
 | **organization_id** | **String** |  | [optional] |
 | **pkce** | **String** |  | [optional] |
 | **project_revision_id** | **String** | The Revision&#39;s ID this provider belongs to | [optional] |
-| **provider** | **String** | Provider is either \&quot;generic\&quot; for a generic OAuth 2.0 / OpenID Connect Provider or one of: generic google github gitlab microsoft discord slack facebook vk yandex apple | [optional] |
+| **provider** | **String** | Provider is either \&quot;generic\&quot; for a generic OAuth 2.0 / OpenID Connect Provider or one of: - generic - google - github - gitlab - microsoft - discord - slack - facebook - vk - yandex - apple | [optional] |
 | **provider_id** | **String** | ID is the provider&#39;s ID | [optional] |
 | **proxy_oidc_redirect_url** | **String** | Proxy OIDC Redirect URL if overriding with a customer-controlled URL | [optional][readonly] |
 | **requested_claims** | **Object** |  | [optional] |
@@ -34,7 +34,7 @@
 | **state** | **String** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] |
 | **subject_source** | **String** |  | [optional] |
 | **token_url** | **String** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] |
-| **update_identity_on_login** | **String** | UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. | [optional] |
+| **update_identity_on_login** | **String** | UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. | [optional] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
 
 ## Example

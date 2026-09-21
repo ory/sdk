@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** | Action to perform on the matching sessions. disable ManageSessionsActionDisable delete ManageSessionsActionDelete | 
+**action** | **String** | Action to perform on the matching sessions. | 
 **identities** | Option<**Vec<String>**> | Identity IDs whose sessions should be disabled or deleted, or `[\"*\"]` to operate on every session in the network. Mutually exclusive with `sessions`. | [optional]
 **sessions** | Option<**Vec<String>**> | Session IDs to disable or delete. Mutually exclusive with `identities`. The wildcard `[\"*\"]` is not accepted in this field — pass `identities: [\"*\"]` to scope the operation to every session in the network. | [optional]
 

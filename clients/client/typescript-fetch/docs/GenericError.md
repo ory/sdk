@@ -25,12 +25,12 @@ import type { GenericError } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "code": 404,
-  "debug": SQL field "foo" is not a bool.,
+  "debug": SQL field "foo" is not a bool,
   "details": null,
   "error": null,
   "id": null,
   "message": The resource could not be found,
-  "reason": User with ID 1234 does not exist.,
+  "reason": User with ID 1234 does not exist,
   "request": d7ef54b1-ec15-46e6-bccb-524b82c035e6,
   "status": Not Found,
 } satisfies GenericError

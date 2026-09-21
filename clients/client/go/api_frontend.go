@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.66
+API version: v1.22.78
 Contact: support@ory.sh
 */
 
@@ -37,10 +37,11 @@ exists already, the browser will be redirected to `urls.default_redirect_url` un
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `session_already_available`: The user is already signed in.
+- `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+- `session_aal2_enrollment_required`: Second-factor auth is required but the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 The optional query parameter login_challenge is set when using Kratos with
 Hydra in an OAuth2 flow. See the oauth2_provider.url configuration
@@ -118,9 +119,9 @@ exists already, the browser will be redirected to `urls.default_redirect_url`.
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.
 
@@ -159,9 +160,9 @@ to sign in with the second factor (happens automatically for server-side browser
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
@@ -212,6 +213,30 @@ More information can be found at [Ory Kratos Email and Phone Verification Docume
 	CreateFedcmFlowExecute(r FrontendAPICreateFedcmFlowRequest) (*CreateFedcmFlowResponse, *http.Response, error)
 
 	/*
+	CreateIdPInitiatedSamlBrowserLoginFlow Complete IdP-Initiated SAML Login for Browsers
+
+	This endpoint is the entry point for IdP-initiated login through Ory Polis.
+Ory Polis redirects the browser here with a single-use authorization code
+after validating an unsolicited SAML response; Kratos then starts a regular
+browser login flow and forwards the code as a `code_hint` so Polis can
+complete the flow without a second round-trip to the identity provider.
+
+The provider must be a `jackson` provider with
+`idp_initiated_login_enabled` set to `true` in its configuration.
+
+This endpoint is NOT INTENDED for API clients and only works with browsers.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param provider The SAML provider ID as configured in the Ory Kratos configuration.
+	@return FrontendAPICreateIdPInitiatedSamlBrowserLoginFlowRequest
+	*/
+	CreateIdPInitiatedSamlBrowserLoginFlow(ctx context.Context, provider string) FrontendAPICreateIdPInitiatedSamlBrowserLoginFlowRequest
+
+	// CreateIdPInitiatedSamlBrowserLoginFlowExecute executes the request
+	//  @return ErrorGeneric
+	CreateIdPInitiatedSamlBrowserLoginFlowExecute(r FrontendAPICreateIdPInitiatedSamlBrowserLoginFlowRequest) (*ErrorGeneric, *http.Response, error)
+
+	/*
 	CreateNativeLoginFlow Create Login Flow for Native Apps
 
 	This endpoint initiates a login flow for native apps that do not use a browser, such as mobile devices, smart TVs, and so on.
@@ -227,9 +252,10 @@ you vulnerable to a variety of CSRF attacks, including CSRF login attacks.
 
 In the case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_already_available`: The user is already signed in.
+- `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+- `session_aal2_enrollment_required`: Second-factor auth is required but the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -286,8 +312,8 @@ you vulnerable to a variety of CSRF attacks.
 
 In the case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -321,8 +347,8 @@ to sign in with the second factor or change the configuration.
 
 In the case of an error, the `error.id` of the JSON response body can be one of:
 
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -426,7 +452,7 @@ Session data are not deleted.
 
 This endpoint supports stub values to help you implement the error UI:
 
-`?id=stub:500` - returns a stub 500 (Internal Server Error) error.
+- `?id=stub:500` - returns a stub 500 (Internal Server Error) error.
 
 More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-facing-errors).
 
@@ -461,8 +487,8 @@ res.render('login', flow)
 
 This request may fail due to several reasons. The `error.id` can be one of:
 
-`session_already_available`: The user is already signed in.
-`self_service_flow_expired`: The flow is expired and you should request a new one.
+- `session_already_available`: The user is already signed in.
+- `self_service_flow_expired`: The flow is expired and you should request a new one.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
@@ -528,8 +554,8 @@ res.render('registration', flow)
 
 This request may fail due to several reasons. The `error.id` can be one of:
 
-`session_already_available`: The user is already signed in.
-`self_service_flow_expired`: The flow is expired and you should request a new one.
+- `session_already_available`: The user is already signed in.
+- `self_service_flow_expired`: The flow is expired and you should request a new one.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
@@ -558,9 +584,9 @@ You can access this endpoint without credentials when using Ory Kratos' Admin AP
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
-`security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
+- `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
 
 More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
@@ -626,6 +652,26 @@ More information can be found at [Ory Kratos User Login](https://www.ory.com/doc
 	// GetWebAuthnJavaScriptExecute executes the request
 	//  @return string
 	GetWebAuthnJavaScriptExecute(r FrontendAPIGetWebAuthnJavaScriptRequest) (string, *http.Response, error)
+
+	/*
+	GetWebAuthnRelatedOrigins Get WebAuthn Related Origins
+
+	This endpoint serves the WebAuthn Related Origin Requests document specified in
+https://www.w3.org/TR/webauthn-3/#sctn-related-origins. It lists the web origins
+allowed to use this domain as their WebAuthn relying party ID. Browsers fetch it
+when a page requests a relying party ID that does not match the page's own origin.
+
+The document contains the relying party origins configured for the enabled
+WebAuthn and passkey methods.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return FrontendAPIGetWebAuthnRelatedOriginsRequest
+	*/
+	GetWebAuthnRelatedOrigins(ctx context.Context) FrontendAPIGetWebAuthnRelatedOriginsRequest
+
+	// GetWebAuthnRelatedOriginsExecute executes the request
+	//  @return WebAuthnRelatedOrigins
+	GetWebAuthnRelatedOriginsExecute(r FrontendAPIGetWebAuthnRelatedOriginsRequest) (*WebAuthnRelatedOrigins, *http.Response, error)
 
 	/*
 	GetWellKnownChangePassword Change Password URL
@@ -725,22 +771,23 @@ to sign in with the second factor or change the configuration.
 
 This endpoint is useful for:
 
-AJAX calls. Remember to send credentials and set up CORS correctly!
-Reverse proxies and API Gateways
-Server-side calls - use the `X-Session-Token` header!
+- AJAX calls. Remember to send credentials and set up CORS correctly!
+- Reverse proxies and API Gateways
+- Server-side calls - use the `X-Session-Token` header!
 
 This endpoint authenticates users by checking:
 
-if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie;
-if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
-if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
+- if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie;
+- if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
+- if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
 
 If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.
 
 As explained above, this request may fail due to several reasons. The `error.id` can be one of:
 
-`session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
-`session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+- `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
+- `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+- `session_aal2_enrollment_required`: An active session was found but the required Authenticator Assurance Level can not be reached because the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return FrontendAPIToSessionRequest
@@ -775,26 +822,26 @@ self-service/fed-cm/parameters`.
 behaves differently for API and browser flows.
 
 API flows expect `application/json` to be sent in the body and responds with
-HTTP 200 and a application/json body with the session token on success;
-HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the session token on success;
+- HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
+- HTTP 400 on form validation errors.
 
 Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with
-a HTTP 303 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded;
-a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.
+- a HTTP 303 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded;
+- a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.
 
 Browser flows with an accept header of `application/json` will not redirect but instead respond with
-HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
-HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
+- HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+- HTTP 400 on form validation errors.
 
 If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
-`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
 Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
@@ -839,14 +886,14 @@ More information can be found at [Ory Kratos User Logout Documentation](https://
 	Use this endpoint to update a recovery flow. This endpoint
 behaves differently for API and browser flows and has several states:
 
-`choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
+- `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
 and works with API- and Browser-initiated flows.
-For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid.
+- For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid.
 and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired).
-For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended.
-`sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It
+- For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended.
+- `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It
 works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state.
-`passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a recovery link")
+- `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a recovery link")
 does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL
 (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with
 a new Recovery Flow ID which contains an error message that the recovery link was invalid.
@@ -869,27 +916,27 @@ More information can be found at [Ory Kratos Account Recovery Documentation](../
 behaves differently for API and browser flows.
 
 API flows expect `application/json` to be sent in the body and respond with
-HTTP 200 and a application/json body with the created identity success - if the session hook is configured the
+- HTTP 200 and a application/json body with the created identity success - if the session hook is configured the
 `session` and `session_token` will also be included;
-HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
-HTTP 400 on form validation errors.
+- HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
+- HTTP 400 on form validation errors.
 
 Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with
-a HTTP 303 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded;
-a HTTP 303 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.
+- a HTTP 303 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded;
+- a HTTP 303 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.
 
 Browser flows with an accept header of `application/json` will not redirect but instead respond with
-HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
-HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
+- HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+- HTTP 400 on form validation errors.
 
 If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
-`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
 Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
@@ -910,24 +957,24 @@ More information can be found at [Ory Kratos User Login](https://www.ory.com/doc
 behaves differently for API and browser flows.
 
 API-initiated flows expect `application/json` to be sent in the body and respond with
-HTTP 200 and an application/json body with the session token on success;
-HTTP 303 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set;
-HTTP 400 on form validation errors.
-HTTP 401 when the endpoint is called without a valid session token.
-HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
+- HTTP 200 and an application/json body with the session token on success;
+- HTTP 303 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set;
+- HTTP 400 on form validation errors.
+- HTTP 401 when the endpoint is called without a valid session token.
+- HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
 Implies that the user needs to re-authenticate.
 
 Browser flows without HTTP Header `Accept` or with `Accept: text/*` respond with
-a HTTP 303 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded;
-a HTTP 303 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise.
-a HTTP 303 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
+- a HTTP 303 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded;
+- a HTTP 303 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise.
+- a HTTP 303 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
 
 Browser flows with HTTP Header `Accept: application/json` respond with
-HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
-HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
-HTTP 401 when the endpoint is called without a valid session cookie.
-HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low.
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
+- HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+- HTTP 401 when the endpoint is called without a valid session cookie.
+- HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low.
+- HTTP 400 on form validation errors.
 
 Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
@@ -937,15 +984,15 @@ to sign in with the second factor (happens automatically for server-side browser
 If this endpoint is called with a `Accept: application/json` HTTP header, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_refresh_required`: The identity requested to change something that needs a privileged session. Redirect
+- `session_refresh_required`: The identity requested to change something that needs a privileged session. Redirect
 the identity to the login init endpoint with query parameters `?refresh=true&return_to=<the-current-browser-url>`,
 or initiate a refresh login flow otherwise.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
-`security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
+- `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
-`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
 Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
@@ -965,14 +1012,14 @@ More information can be found at [Ory Kratos User Settings & Profile Management 
 	Use this endpoint to complete a verification flow. This endpoint
 behaves differently for API and browser flows and has several states:
 
-`choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
+- `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
 and works with API- and Browser-initiated flows.
-For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid
+- For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid
 and a HTTP 303 See Other redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired).
-For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended.
-`sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It
+- For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended.
+- `sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It
 works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state.
-`passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a verification link")
+- `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a verification link")
 does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL
 (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with
 a new Verification Flow ID which contains an error message that the verification link was invalid.
@@ -1071,10 +1118,11 @@ exists already, the browser will be redirected to `urls.default_redirect_url` un
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `session_already_available`: The user is already signed in.
+- `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+- `session_aal2_enrollment_required`: Second-factor auth is required but the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 The optional query parameter login_challenge is set when using Kratos with
 Hydra in an OAuth2 flow. See the oauth2_provider.url configuration
@@ -1179,6 +1227,17 @@ func (a *FrontendAPIService) CreateBrowserLoginFlowExecute(r FrontendAPICreateBr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorGeneric
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1576,9 +1635,9 @@ exists already, the browser will be redirected to `urls.default_redirect_url`.
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.
 
@@ -1746,9 +1805,9 @@ to sign in with the second factor (happens automatically for server-side browser
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
@@ -2131,6 +2190,137 @@ func (a *FrontendAPIService) CreateFedcmFlowExecute(r FrontendAPICreateFedcmFlow
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type FrontendAPICreateIdPInitiatedSamlBrowserLoginFlowRequest struct {
+	ctx context.Context
+	ApiService FrontendAPI
+	provider string
+	code *string
+}
+
+// The single-use authorization code issued by Ory Polis for the unsolicited SAML response.
+func (r FrontendAPICreateIdPInitiatedSamlBrowserLoginFlowRequest) Code(code string) FrontendAPICreateIdPInitiatedSamlBrowserLoginFlowRequest {
+	r.code = &code
+	return r
+}
+
+func (r FrontendAPICreateIdPInitiatedSamlBrowserLoginFlowRequest) Execute() (*ErrorGeneric, *http.Response, error) {
+	return r.ApiService.CreateIdPInitiatedSamlBrowserLoginFlowExecute(r)
+}
+
+/*
+CreateIdPInitiatedSamlBrowserLoginFlow Complete IdP-Initiated SAML Login for Browsers
+
+This endpoint is the entry point for IdP-initiated login through Ory Polis.
+Ory Polis redirects the browser here with a single-use authorization code
+after validating an unsolicited SAML response; Kratos then starts a regular
+browser login flow and forwards the code as a `code_hint` so Polis can
+complete the flow without a second round-trip to the identity provider.
+
+The provider must be a `jackson` provider with
+`idp_initiated_login_enabled` set to `true` in its configuration.
+
+This endpoint is NOT INTENDED for API clients and only works with browsers.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param provider The SAML provider ID as configured in the Ory Kratos configuration.
+ @return FrontendAPICreateIdPInitiatedSamlBrowserLoginFlowRequest
+*/
+func (a *FrontendAPIService) CreateIdPInitiatedSamlBrowserLoginFlow(ctx context.Context, provider string) FrontendAPICreateIdPInitiatedSamlBrowserLoginFlowRequest {
+	return FrontendAPICreateIdPInitiatedSamlBrowserLoginFlowRequest{
+		ApiService: a,
+		ctx: ctx,
+		provider: provider,
+	}
+}
+
+// Execute executes the request
+//  @return ErrorGeneric
+func (a *FrontendAPIService) CreateIdPInitiatedSamlBrowserLoginFlowExecute(r FrontendAPICreateIdPInitiatedSamlBrowserLoginFlowRequest) (*ErrorGeneric, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ErrorGeneric
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrontendAPIService.CreateIdPInitiatedSamlBrowserLoginFlow")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/self-service/methods/saml/idp-initiated/{provider}"
+	localVarPath = strings.Replace(localVarPath, "{"+"provider"+"}", url.PathEscape(parameterValueToString(r.provider, "provider")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.code == nil {
+		return localVarReturnValue, nil, reportError("code is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "code", r.code, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type FrontendAPICreateNativeLoginFlowRequest struct {
 	ctx context.Context
 	ApiService FrontendAPI
@@ -2212,9 +2402,10 @@ you vulnerable to a variety of CSRF attacks, including CSRF login attacks.
 
 In the case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_already_available`: The user is already signed in.
+- `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+- `session_aal2_enrollment_required`: Second-factor auth is required but the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -2315,6 +2506,17 @@ func (a *FrontendAPIService) CreateNativeLoginFlowExecute(r FrontendAPICreateNat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorGeneric
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2531,8 +2733,8 @@ you vulnerable to a variety of CSRF attacks.
 
 In the case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -2696,8 +2898,8 @@ to sign in with the second factor or change the configuration.
 
 In the case of an error, the `error.id` of the JSON response body can be one of:
 
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -3591,7 +3793,7 @@ This endpoint returns the error associated with a user-facing self service error
 
 This endpoint supports stub values to help you implement the error UI:
 
-`?id=stub:500` - returns a stub 500 (Internal Server Error) error.
+- `?id=stub:500` - returns a stub 500 (Internal Server Error) error.
 
 More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-facing-errors).
 
@@ -3761,8 +3963,8 @@ res.render('login', flow)
 
 This request may fail due to several reasons. The `error.id` can be one of:
 
-`session_already_available`: The user is already signed in.
-`self_service_flow_expired`: The flow is expired and you should request a new one.
+- `session_already_available`: The user is already signed in.
+- `self_service_flow_expired`: The flow is expired and you should request a new one.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
@@ -4111,8 +4313,8 @@ res.render('registration', flow)
 
 This request may fail due to several reasons. The `error.id` can be one of:
 
-`session_already_available`: The user is already signed in.
-`self_service_flow_expired`: The flow is expired and you should request a new one.
+- `session_already_available`: The user is already signed in.
+- `self_service_flow_expired`: The flow is expired and you should request a new one.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
@@ -4295,9 +4497,9 @@ You can access this endpoint without credentials when using Ory Kratos' Admin AP
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
-`security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
+- `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
 
 More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
@@ -4547,7 +4749,7 @@ func (a *FrontendAPIService) GetVerificationFlowExecute(r FrontendAPIGetVerifica
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.cookie != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "cookie", r.cookie, "simple", "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Cookie", r.cookie, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -4664,6 +4866,111 @@ func (a *FrontendAPIService) GetWebAuthnJavaScriptExecute(r FrontendAPIGetWebAut
 	}
 
 	localVarPath := localBasePath + "/.well-known/ory/webauthn.js"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type FrontendAPIGetWebAuthnRelatedOriginsRequest struct {
+	ctx context.Context
+	ApiService FrontendAPI
+}
+
+func (r FrontendAPIGetWebAuthnRelatedOriginsRequest) Execute() (*WebAuthnRelatedOrigins, *http.Response, error) {
+	return r.ApiService.GetWebAuthnRelatedOriginsExecute(r)
+}
+
+/*
+GetWebAuthnRelatedOrigins Get WebAuthn Related Origins
+
+This endpoint serves the WebAuthn Related Origin Requests document specified in
+https://www.w3.org/TR/webauthn-3/#sctn-related-origins. It lists the web origins
+allowed to use this domain as their WebAuthn relying party ID. Browsers fetch it
+when a page requests a relying party ID that does not match the page's own origin.
+
+The document contains the relying party origins configured for the enabled
+WebAuthn and passkey methods.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return FrontendAPIGetWebAuthnRelatedOriginsRequest
+*/
+func (a *FrontendAPIService) GetWebAuthnRelatedOrigins(ctx context.Context) FrontendAPIGetWebAuthnRelatedOriginsRequest {
+	return FrontendAPIGetWebAuthnRelatedOriginsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return WebAuthnRelatedOrigins
+func (a *FrontendAPIService) GetWebAuthnRelatedOriginsExecute(r FrontendAPIGetWebAuthnRelatedOriginsRequest) (*WebAuthnRelatedOrigins, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *WebAuthnRelatedOrigins
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrontendAPIService.GetWebAuthnRelatedOrigins")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/.well-known/webauthn"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -5008,6 +5315,17 @@ func (a *FrontendAPIService) ListMySessionsExecute(r FrontendAPIListMySessionsRe
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 			var v ErrorGeneric
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -5232,22 +5550,23 @@ to sign in with the second factor or change the configuration.
 
 This endpoint is useful for:
 
-AJAX calls. Remember to send credentials and set up CORS correctly!
-Reverse proxies and API Gateways
-Server-side calls - use the `X-Session-Token` header!
+- AJAX calls. Remember to send credentials and set up CORS correctly!
+- Reverse proxies and API Gateways
+- Server-side calls - use the `X-Session-Token` header!
 
 This endpoint authenticates users by checking:
 
-if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie;
-if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
-if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
+- if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie;
+- if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
+- if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
 
 If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.
 
 As explained above, this request may fail due to several reasons. The `error.id` can be one of:
 
-`session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
-`session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+- `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
+- `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+- `session_aal2_enrollment_required`: An active session was found but the required Authenticator Assurance Level can not be reached because the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return FrontendAPIToSessionRequest
@@ -5570,26 +5889,26 @@ Use this endpoint to complete a login flow. This endpoint
 behaves differently for API and browser flows.
 
 API flows expect `application/json` to be sent in the body and responds with
-HTTP 200 and a application/json body with the session token on success;
-HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the session token on success;
+- HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
+- HTTP 400 on form validation errors.
 
 Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with
-a HTTP 303 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded;
-a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.
+- a HTTP 303 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded;
+- a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.
 
 Browser flows with an accept header of `application/json` will not redirect but instead respond with
-HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
-HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
+- HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+- HTTP 400 on form validation errors.
 
 If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
-`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
 Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
@@ -5915,14 +6234,14 @@ UpdateRecoveryFlow Update Recovery Flow
 Use this endpoint to update a recovery flow. This endpoint
 behaves differently for API and browser flows and has several states:
 
-`choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
+- `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
 and works with API- and Browser-initiated flows.
-For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid.
+- For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid.
 and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired).
-For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended.
-`sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It
+- For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended.
+- `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It
 works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state.
-`passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a recovery link")
+- `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a recovery link")
 does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL
 (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with
 a new Recovery Flow ID which contains an error message that the recovery link was invalid.
@@ -6106,27 +6425,27 @@ Use this endpoint to complete a registration flow by sending an identity's trait
 behaves differently for API and browser flows.
 
 API flows expect `application/json` to be sent in the body and respond with
-HTTP 200 and a application/json body with the created identity success - if the session hook is configured the
+- HTTP 200 and a application/json body with the created identity success - if the session hook is configured the
 `session` and `session_token` will also be included;
-HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
-HTTP 400 on form validation errors.
+- HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
+- HTTP 400 on form validation errors.
 
 Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with
-a HTTP 303 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded;
-a HTTP 303 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.
+- a HTTP 303 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded;
+- a HTTP 303 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.
 
 Browser flows with an accept header of `application/json` will not redirect but instead respond with
-HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
-HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
+- HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+- HTTP 400 on form validation errors.
 
 If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
-`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
 Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
@@ -6312,24 +6631,24 @@ Use this endpoint to complete a settings flow by sending an identity's updated p
 behaves differently for API and browser flows.
 
 API-initiated flows expect `application/json` to be sent in the body and respond with
-HTTP 200 and an application/json body with the session token on success;
-HTTP 303 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set;
-HTTP 400 on form validation errors.
-HTTP 401 when the endpoint is called without a valid session token.
-HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
+- HTTP 200 and an application/json body with the session token on success;
+- HTTP 303 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set;
+- HTTP 400 on form validation errors.
+- HTTP 401 when the endpoint is called without a valid session token.
+- HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
 Implies that the user needs to re-authenticate.
 
 Browser flows without HTTP Header `Accept` or with `Accept: text/*` respond with
-a HTTP 303 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded;
-a HTTP 303 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise.
-a HTTP 303 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
+- a HTTP 303 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded;
+- a HTTP 303 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise.
+- a HTTP 303 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
 
 Browser flows with HTTP Header `Accept: application/json` respond with
-HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
-HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
-HTTP 401 when the endpoint is called without a valid session cookie.
-HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low.
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
+- HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+- HTTP 401 when the endpoint is called without a valid session cookie.
+- HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low.
+- HTTP 400 on form validation errors.
 
 Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
@@ -6339,15 +6658,15 @@ to sign in with the second factor (happens automatically for server-side browser
 If this endpoint is called with a `Accept: application/json` HTTP header, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_refresh_required`: The identity requested to change something that needs a privileged session. Redirect
+- `session_refresh_required`: The identity requested to change something that needs a privileged session. Redirect
 the identity to the login init endpoint with query parameters `?refresh=true&return_to=<the-current-browser-url>`,
 or initiate a refresh login flow otherwise.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
-`security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
+- `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
-`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
 Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
@@ -6557,14 +6876,14 @@ UpdateVerificationFlow Complete Verification Flow
 Use this endpoint to complete a verification flow. This endpoint
 behaves differently for API and browser flows and has several states:
 
-`choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
+- `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
 and works with API- and Browser-initiated flows.
-For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid
+- For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid
 and a HTTP 303 See Other redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired).
-For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended.
-`sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It
+- For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended.
+- `sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It
 works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state.
-`passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a verification link")
+- `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a verification link")
 does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL
 (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with
 a new Verification Flow ID which contains an error message that the verification link was invalid.

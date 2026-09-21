@@ -11,6 +11,7 @@ defmodule Ory.Model.WorkspaceOrganization do
     :active_link,
     :created_at,
     :default_region,
+    :domain_verifications,
     :domains,
     :id,
     :label,
@@ -22,6 +23,7 @@ defmodule Ory.Model.WorkspaceOrganization do
     :active_link => Ory.Model.OnboardingPortalLink.t | nil,
     :created_at => DateTime.t,
     :default_region => String.t | nil,
+    :domain_verifications => [Ory.Model.DomainVerificationStatus.t] | nil,
     :domains => [String.t],
     :id => String.t,
     :label => String.t,
@@ -35,6 +37,7 @@ defmodule Ory.Model.WorkspaceOrganization do
     value
      |> Deserializer.deserialize(:active_link, :struct, Ory.Model.OnboardingPortalLink)
      |> Deserializer.deserialize(:created_at, :datetime, nil)
+     |> Deserializer.deserialize(:domain_verifications, :list, Ory.Model.DomainVerificationStatus)
   end
 end
 

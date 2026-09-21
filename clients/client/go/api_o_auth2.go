@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.66
+API version: v1.22.78
 Contact: support@ory.sh
 */
 
@@ -560,6 +560,9 @@ will be generated and returned in the response.
 Up to five rotated secrets are retained. Use the
 `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets
 when they are no longer needed.
+
+Supply `client_secret` in the request body to rotate to a specific value
+instead of a generated one. The request body is optional.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id OAuth 2.0 Client ID
@@ -4320,6 +4323,12 @@ type OAuth2APIRotateOAuth2ClientSecretRequest struct {
 	ctx context.Context
 	ApiService OAuth2API
 	id string
+	rotateOAuth2ClientSecretBody *RotateOAuth2ClientSecretBody
+}
+
+func (r OAuth2APIRotateOAuth2ClientSecretRequest) RotateOAuth2ClientSecretBody(rotateOAuth2ClientSecretBody RotateOAuth2ClientSecretBody) OAuth2APIRotateOAuth2ClientSecretRequest {
+	r.rotateOAuth2ClientSecretBody = &rotateOAuth2ClientSecretBody
+	return r
 }
 
 func (r OAuth2APIRotateOAuth2ClientSecretRequest) Execute() (*OAuth2Client, *http.Response, error) {
@@ -4336,6 +4345,9 @@ will be generated and returned in the response.
 Up to five rotated secrets are retained. Use the
 `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets
 when they are no longer needed.
+
+Supply `client_secret` in the request body to rotate to a specific value
+instead of a generated one. The request body is optional.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id OAuth 2.0 Client ID
@@ -4372,7 +4384,7 @@ func (a *OAuth2APIService) RotateOAuth2ClientSecretExecute(r OAuth2APIRotateOAut
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -4388,6 +4400,8 @@ func (a *OAuth2APIService) RotateOAuth2ClientSecretExecute(r OAuth2APIRotateOAut
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.rotateOAuth2ClientSecretBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4409,6 +4423,17 @@ func (a *OAuth2APIService) RotateOAuth2ClientSecretExecute(r OAuth2APIRotateOAut
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorOAuth2
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorOAuth2

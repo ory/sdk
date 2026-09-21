@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **AccountExperienceFaviconLight** | Pointer to **string** | Holds the URL to the account experience&#39;s favicon. This governs the \&quot;favicon_light\&quot; setting. | [optional] 
 **AccountExperienceHideOryBranding** | Pointer to **bool** | Whether to hide the Ory branding badge on the account experience. This governs the \&quot;hide_ory_branding\&quot; setting. | [optional] 
 **AccountExperienceHideRegistrationLink** | Pointer to **bool** | Whether to hide the registration link on the account experience login card. This governs the \&quot;hide_registration_link\&quot; setting. | [optional] 
-**AccountExperienceLocaleBehavior** | Pointer to **string** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. &#x60;force_default&#x60;: Force the default language. This governs the \&quot;locale_behavior\&quot; setting. | [optional] 
+**AccountExperienceLocaleBehavior** | Pointer to **string** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: - &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. - &#x60;force_default&#x60;: Force the default language. This governs the \&quot;locale_behavior\&quot; setting. | [optional] 
 **AccountExperienceLogoDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). This governs the \&quot;logo_dark\&quot; setting. | [optional] 
 **AccountExperienceLogoLight** | Pointer to **string** | Holds the URL to the account experience&#39;s logo. This governs the \&quot;logo_light\&quot; setting. | [optional] 
 **AccountExperiencePrivacyPolicyUrl** | Pointer to **string** | Holds the URL to the account experience&#39;s Privacy Policy page. This governs the \&quot;privacy_policy_url\&quot; setting. | [optional] 
@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **DisableAccountExperienceWelcomeScreen** | Pointer to **bool** | Whether to disable the account experience welcome screen, which is hosted under &#x60;/ui/welcome&#x60;. This governs the \&quot;disable_welcome_screen\&quot; setting. | [optional] 
 **EnableAxV2** | Pointer to **bool** | Whether the new account experience is enabled and reachable. This governs the \&quot;enable_ax_v2\&quot; setting. | [optional] 
+**FeatureFlags** | Pointer to **map[string]bool** | The project&#39;s feature flags. Keys are catalog flag keys such as &#x60;kratos.choose_recovery_address&#x60;. Responses contain every flag with its effective value; requests may set any subset. | [optional] 
 **HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** | A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.  This governs the \&quot;oauth2.allowed_top_level_claims\&quot; setting. | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
 **HydraOauth2DeviceAuthorizationTokenPollingInterval** | Pointer to **string** | Configures how often a non-interactive device should poll the OAuth 2.0 Device Authorization Grant token endpoint. Purely informational — the value is reported to the device in the \&quot;interval\&quot; response field of the device authorization response. Hydra defaults to 5s when this is left empty.  This is an Enterprise feature.  This governs the \&quot;oauth2.device_authorization.token_polling_interval\&quot; setting. | [optional] 
@@ -50,7 +51,7 @@ Name | Type | Description | Notes
 **HydraServeCookiesSameSiteLegacyWorkaround** | Pointer to **bool** | Configures the Ory Hydra Cookie Same Site Legacy Workaround  This governs the \&quot;serve.cookies.same_site_legacy_workaround\&quot; setting. | [optional] 
 **HydraServeCookiesSameSiteMode** | Pointer to **string** | Configures the Ory Hydra Cookie Same Site Mode  This governs the \&quot;serve.cookies.same_site_mode\&quot; setting. | [optional] 
 **HydraStrategiesAccessToken** | Pointer to **string** | Defines access token type  This governs the \&quot;strategies.access_token\&quot; setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt | [optional] [default to "opaque"]
-**HydraStrategiesJwtScopeClaim** | Pointer to **string** | Define the claim to use as the scope in the access token.  This governs the \&quot;strategies.jwt.scope_claim\&quot; setting.  list: The scope claim is an array of strings named &#x60;scope&#x60;: &#x60;{ \&quot;scope\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;] }&#x60; string: The scope claim is a space delimited list of strings named &#x60;scp&#x60;: &#x60;{ \&quot;scp\&quot;: \&quot;read write\&quot; }&#x60; both: The scope claim is both a space delimited list and an array of strings named &#x60;scope&#x60; and &#x60;scp&#x60;: &#x60;{ \&quot;scope\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;], \&quot;scp\&quot;: \&quot;read write\&quot; }&#x60; list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth | [optional] [default to "list"]
+**HydraStrategiesJwtScopeClaim** | Pointer to **string** | Define the claim to use as the scope in the access token.  This governs the \&quot;strategies.jwt.scope_claim\&quot; setting.  - list: The scope claim is an array of strings named &#x60;scope&#x60;: &#x60;{ \&quot;scope\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;] }&#x60; - string: The scope claim is a space delimited list of strings named &#x60;scp&#x60;: &#x60;{ \&quot;scp\&quot;: \&quot;read write\&quot; }&#x60; - both: The scope claim is both a space delimited list and an array of strings named &#x60;scope&#x60; and &#x60;scp&#x60;: &#x60;{ \&quot;scope\&quot;: [\&quot;read\&quot;, \&quot;write\&quot;], \&quot;scp\&quot;: \&quot;read write\&quot; }&#x60; list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth | [optional] [default to "list"]
 **HydraStrategiesScope** | Pointer to **string** | Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \&quot;strategies.scope\&quot; setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard | [optional] [default to "wildcard"]
 **HydraTtlAccessToken** | Pointer to **string** | This governs the \&quot;ttl.access_token\&quot; setting. | [optional] [default to "30m"]
 **HydraTtlAuthCode** | Pointer to **string** | Configures how long refresh tokens are valid.  Set to -1 for refresh tokens to never expire. This is not recommended!  This governs the \&quot;ttl.auth_code\&quot; setting. | [optional] [default to "720h"]
@@ -77,18 +78,20 @@ Name | Type | Description | Notes
 **HydraWebfingerOidcDiscoveryTokenUrl** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the OAuth2 Token URL.  This governs the \&quot;webfinger.oidc_discovery.token_url\&quot; setting. | [optional] 
 **HydraWebfingerOidcDiscoveryUserinfoUrl** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites userinfo endpoint to be advertised at the OpenID Connect Discovery endpoint /.well-known/openid-configuration. Defaults to Ory Hydra&#39;s userinfo endpoint at /userinfo. Set this value if you want to handle this endpoint yourself.  This governs the \&quot;webfinger.oidc_discovery.userinfo_url\&quot; setting. | [optional] 
 **Id** | Pointer to **string** | The revision ID. | [optional] [readonly] 
+**KetoFeatureFlagsStrictMode** | Pointer to **bool** | Configures Keto&#39;s strict mode.  This governs the \&quot;feature_flags.strict_mode\&quot; setting. | [optional] 
 **KetoNamespaceConfiguration** | Pointer to **string** | The Revisions&#39; Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.  This governs the \&quot;namespaces.location\&quot; setting. | [optional] 
 **KetoNamespaces** | Pointer to [**[]KetoNamespace**](KetoNamespace.md) |  | [optional] 
 **KetoSecretsPagination** | Pointer to **[]string** | Configures Keto&#39;s pagination secrets.  This governs the \&quot;secrets.pagination\&quot; setting. | [optional] 
+**KetoStrictModeReadonly** | Pointer to **bool** | When true, strict mode is locked: changes to it are rejected from any client (API, Console, config import), and the Console hides the toggle. NULL and false mean strict mode can be changed (existing projects during migration). New projects are created with this set to true, permanently enabling strict mode. This flag is backoffice metadata and is not part of the rendered Keto configuration. | [optional] 
 **KratosCookiesSameSite** | Pointer to **string** | Configures the Ory Kratos Cookie SameSite Attribute  This governs the \&quot;cookies.same_site\&quot; setting. | [optional] 
 **KratosCourierChannels** | Pointer to [**[]NormalizedProjectRevisionCourierChannel**](NormalizedProjectRevisionCourierChannel.md) |  | [optional] 
-**KratosCourierDeliveryStrategy** | Pointer to **string** | The delivery strategy to use when sending emails  This governs the \&quot;courier.delivery_strategy\&quot; setting.  &#x60;smtp&#x60;: Use SMTP server &#x60;http&#x60;: Use the built in HTTP client to send the email to some remote service | [optional] [default to "smtp"]
-**KratosCourierHttpRequestConfigAuthApiKeyIn** | Pointer to **string** | The location of the API key to use in the HTTP email sending service&#39;s authentication  &#x60;header&#x60;: Send the key value pair as a header &#x60;cookie&#x60;: Send the key value pair as a cookie This governs the \&quot;courier.http.request_config.auth.config.in\&quot; setting. | [optional] 
+**KratosCourierDeliveryStrategy** | Pointer to **string** | The delivery strategy to use when sending emails  This governs the \&quot;courier.delivery_strategy\&quot; setting.  - &#x60;smtp&#x60;: Use SMTP server - &#x60;http&#x60;: Use the built in HTTP client to send the email to some remote service | [optional] [default to "smtp"]
+**KratosCourierHttpRequestConfigAuthApiKeyIn** | Pointer to **string** | The location of the API key to use in the HTTP email sending service&#39;s authentication  - &#x60;header&#x60;: Send the key value pair as a header - &#x60;cookie&#x60;: Send the key value pair as a cookie This governs the \&quot;courier.http.request_config.auth.config.in\&quot; setting. | [optional] 
 **KratosCourierHttpRequestConfigAuthApiKeyName** | Pointer to **string** | The name of the API key to use in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.request_config.auth.config.name\&quot; setting. | [optional] 
 **KratosCourierHttpRequestConfigAuthApiKeyValue** | Pointer to **string** | The value of the API key to use in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.request_config.auth.config.value\&quot; setting. | [optional] 
 **KratosCourierHttpRequestConfigAuthBasicAuthPassword** | Pointer to **string** | The password to use for basic auth in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.request_config.auth.config.password\&quot; setting. | [optional] 
 **KratosCourierHttpRequestConfigAuthBasicAuthUser** | Pointer to **string** | The user to use for basic auth in the HTTP email sending service&#39;s authentication  This governs the \&quot;courier.http.request_config.auth.config.user\&quot; setting. | [optional] 
-**KratosCourierHttpRequestConfigAuthType** | Pointer to **string** | The authentication type to use while contacting the remote HTTP email sending service  This governs the \&quot;courier.http.request_config.auth.type\&quot; setting.  &#x60;basic_auth&#x60;: Use Basic Authentication &#x60;api_key&#x60;: Use API Key Authentication in a header or cookie | [optional] [default to "empty (no authentication)"]
+**KratosCourierHttpRequestConfigAuthType** | Pointer to **string** | The authentication type to use while contacting the remote HTTP email sending service  This governs the \&quot;courier.http.request_config.auth.type\&quot; setting.  - &#x60;basic_auth&#x60;: Use Basic Authentication - &#x60;api_key&#x60;: Use API Key Authentication in a header or cookie | [optional] [default to "empty (no authentication)"]
 **KratosCourierHttpRequestConfigBody** | Pointer to **string** | The Jsonnet template to generate the body to send to the remote HTTP email sending service  Should be valid Jsonnet and base64 encoded  This governs the \&quot;courier.http.request_config.body\&quot; setting. | [optional] 
 **KratosCourierHttpRequestConfigHeaders** | Pointer to **map[string]interface{}** | Any additional headers to send to the remote HTTP email sending service  This governs the \&quot;courier.http.request_config.headers\&quot; setting. | [optional] 
 **KratosCourierHttpRequestConfigMethod** | Pointer to **string** | The http METHOD to use when calling the remote HTTP email sending service  This governs the \&quot;courier.http.request_config.method\&quot; setting. | [optional] [default to "POST"]
@@ -138,6 +141,7 @@ Name | Type | Description | Notes
 **KratosFeatureFlagsCacheableSessions** | Pointer to **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] 
 **KratosFeatureFlagsCacheableSessionsMaxAge** | Pointer to **string** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional] 
 **KratosFeatureFlagsChooseRecoveryAddress** | Pointer to **bool** | This governs the \&quot;feature_flags.choose_recovery_address\&quot; setting. | [optional] 
+**KratosFeatureFlagsEnforceIdentitySchemaGuards** | Pointer to **bool** | Configures whether Ory Kratos enforces the identity schema guards  If enabled, an identity schema that does not pass the identity schema guards is rejected. If disabled, the result is logged and the schema is used.  This governs the \&quot;feature_flags.enforce_identity_schema_guards\&quot; setting. | [optional] 
 **KratosFeatureFlagsFasterSessionExtend** | Pointer to **bool** | Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \&quot;feature_flags.faster_session_extend\&quot; setting. | [optional] 
 **KratosFeatureFlagsLegacyContinueWithVerificationUi** | Pointer to **bool** | Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including &#x60;show_verification_ui&#x60; in the registration flow&#39;s &#x60;continue_with&#x60; when verification is enabled. If set to false, &#x60;show_verification_ui&#x60; is only set in &#x60;continue_with&#x60; if the &#x60;show_verification_ui&#x60; hook is used. This flag will be removed in the future.  This governs the \&quot;feature_flags.legacy_continue_with_verification_ui\&quot; setting. | [optional] 
 **KratosFeatureFlagsLegacyOidcRegistrationNodeGroup** | Pointer to **bool** | Controls whether the UI nodes in an OIDC registration flow have group \&quot;oidc\&quot; in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \&quot;oidc\&quot; and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \&quot;feature_flags.legacy_oidc_registration_node_group\&quot; setting. | [optional] 
@@ -145,11 +149,12 @@ Name | Type | Description | Notes
 **KratosFeatureFlagsPasswordProfileRegistrationNodeGroup** | Pointer to **bool** | Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \&quot;password\&quot; if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \&quot;default\&quot;.  This governs the \&quot;feature_flags.password_profile_registration_node_group\&quot; setting. | [optional] 
 **KratosFeatureFlagsRefreshLoginChooseAddress** | Pointer to **bool** | Render an address picker on the code refresh login screen  If true, a code-strategy refresh (privileged re-authentication) login renders a \&quot;Send code to &lt;address&gt;\&quot; button per available code address instead of re-asking for the identifier. The identity is already fixed by the active session, so re-entering the identifier is unnecessary. It is safe to toggle this back and forth.  This governs the \&quot;feature_flags.refresh_login_choose_address\&quot; setting. | [optional] 
 **KratosFeatureFlagsUseContinueWithTransitions** | Pointer to **bool** | Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \&quot;feature_flags.use_continue_with_transitions\&quot; setting. | [optional] 
+**KratosFeatureFlagsWebhookResponseDirectives** | Pointer to **bool** | Honor flow directives in web hook responses  If true, a login &#x60;after&#x60; web hook whose &#x60;response.parse&#x60; is enabled may return &#x60;{\&quot;required_aal\&quot;:\&quot;aal2\&quot;}&#x60; to require step-up for that login. Identities without a second factor are routed to enrollment. Off by default, because a web hook that already returns a &#x60;required_aal&#x60; field has it ignored today and enabling that silently would change how existing logins end.  This governs the \&quot;feature_flags.webhook_response_directives\&quot; setting. | [optional] 
 **KratosIdentitySchemas** | Pointer to [**[]NormalizedProjectRevisionIdentitySchema**](NormalizedProjectRevisionIdentitySchema.md) |  | [optional] 
 **KratosOauth2ProviderHeaders** | Pointer to **map[string]interface{}** | Configures the OAuth2 Provider Integration HTTP Headers  This governs the \&quot;oauth2_provider.headers\&quot; setting. | [optional] 
 **KratosOauth2ProviderOverrideReturnTo** | Pointer to **bool** | Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.  This governs the \&quot;oauth2_provider.override_return_to\&quot; setting. | [optional] 
 **KratosOauth2ProviderUrl** | Pointer to **string** | The Revisions&#39; OAuth2 Provider Integration URL  This governs the \&quot;oauth2_provider.url\&quot; setting. | [optional] 
-**KratosPreviewDefaultReadConsistencyLevel** | Pointer to **string** | Configures the default read consistency level for identity APIs  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  Defaults to \&quot;strong\&quot; for new and existing projects. This feature is in preview. Use with caution. This governs the \&quot;preview.default_read_consistency_level\&quot; setting. | [optional] 
+**KratosPreviewDefaultReadConsistencyLevel** | Pointer to **string** | Configures the default read consistency level for identity APIs  The read consistency level determines the consistency guarantee for reads:  - strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. - eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  - &#x60;GET /admin/identities&#x60;  Defaults to \&quot;strong\&quot; for new and existing projects. This feature is in preview. Use with caution. This governs the \&quot;preview.default_read_consistency_level\&quot; setting. | [optional] 
 **KratosSecretsCipher** | Pointer to **[]string** | Configures the Ory Kratos Cipher Secret  This governs the \&quot;secrets.cipher\&quot; setting. | [optional] 
 **KratosSecretsCookie** | Pointer to **[]string** | Configures the Ory Kratos Cookie Secret  This governs the \&quot;secrets.cookie\&quot; setting. | [optional] 
 **KratosSecretsDefault** | Pointer to **[]string** | Configures the Ory Kratos Default Secret  This governs the \&quot;secrets.default\&quot; setting. | [optional] 
@@ -220,6 +225,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsCodeMfaEnabled** | Pointer to **bool** | Configures whether the code method can be used to fulfil MFA flows  This governs the \&quot;selfservice.methods.code.mfa_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodePasswordlessEnabled** | Pointer to **bool** | Configures whether Ory Kratos Passwordless should use the Code Method  This governs the \&quot;selfservice.methods.code.passwordless_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled** | Pointer to **bool** | This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \&quot;selfservice.methods.code.passwordless_login_fallback_enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates** | Pointer to **bool** | Configures whether Ory Kratos Device authentication accepts expired certificates in Android factory attestation chains  When enabled, Android enrollment accepts expired CA certificates in factory-provisioned attestation chains that lead to a pinned Google root key. Devices launched before 2021 ship factory keyboxes whose certificates have expired but that Google documents as still trustworthy unless revoked. Revocation, signature, and leaf-validity checks still apply, and keys enrolled this way are first-class hardware-attested keys. Defaults to false.  This governs the \&quot;selfservice.methods.deviceauthn.config.android_allow_expired_factory_certificates\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds** | Pointer to **[]string** | Configures the allow-list of Android app signing-certificate digests that a device key may be bound to.  This governs the \&quot;selfservice.methods.deviceauthn.config.android_app_ids\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnConfigFirstFactor** | Pointer to **bool** | Configures whether device authentication may be used as the sole first factor.  When enabled, a confirmed device key with PIN or platform user verification can complete an AAL2 login in a single submission, without a password or code. Defaults to false, which keeps device keys usable only as a second factor (step-up).  This governs the \&quot;selfservice.methods.deviceauthn.config.first_factor\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsDeviceauthnConfigInsecureAllowRelaxedAttestation** | Pointer to **bool** | Configures whether Ory Kratos Device authentication accepts relaxed attestations for testing  Only allowed on development projects and forced off otherwise. Keys enrolled under relaxation are short-lived and refused once this is turned off.  This governs the \&quot;selfservice.methods.deviceauthn.config.insecure_allow_relaxed_attestation\&quot; setting. | [optional] 
@@ -761,6 +767,31 @@ SetEnableAxV2 sets EnableAxV2 field to given value.
 `func (o *NormalizedProjectRevision) HasEnableAxV2() bool`
 
 HasEnableAxV2 returns a boolean if a field has been set.
+
+### GetFeatureFlags
+
+`func (o *NormalizedProjectRevision) GetFeatureFlags() map[string]bool`
+
+GetFeatureFlags returns the FeatureFlags field if non-nil, zero value otherwise.
+
+### GetFeatureFlagsOk
+
+`func (o *NormalizedProjectRevision) GetFeatureFlagsOk() (*map[string]bool, bool)`
+
+GetFeatureFlagsOk returns a tuple with the FeatureFlags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFeatureFlags
+
+`func (o *NormalizedProjectRevision) SetFeatureFlags(v map[string]bool)`
+
+SetFeatureFlags sets FeatureFlags field to given value.
+
+### HasFeatureFlags
+
+`func (o *NormalizedProjectRevision) HasFeatureFlags() bool`
+
+HasFeatureFlags returns a boolean if a field has been set.
 
 ### GetHydraOauth2AllowedTopLevelClaims
 
@@ -2137,6 +2168,31 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### GetKetoFeatureFlagsStrictMode
+
+`func (o *NormalizedProjectRevision) GetKetoFeatureFlagsStrictMode() bool`
+
+GetKetoFeatureFlagsStrictMode returns the KetoFeatureFlagsStrictMode field if non-nil, zero value otherwise.
+
+### GetKetoFeatureFlagsStrictModeOk
+
+`func (o *NormalizedProjectRevision) GetKetoFeatureFlagsStrictModeOk() (*bool, bool)`
+
+GetKetoFeatureFlagsStrictModeOk returns a tuple with the KetoFeatureFlagsStrictMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKetoFeatureFlagsStrictMode
+
+`func (o *NormalizedProjectRevision) SetKetoFeatureFlagsStrictMode(v bool)`
+
+SetKetoFeatureFlagsStrictMode sets KetoFeatureFlagsStrictMode field to given value.
+
+### HasKetoFeatureFlagsStrictMode
+
+`func (o *NormalizedProjectRevision) HasKetoFeatureFlagsStrictMode() bool`
+
+HasKetoFeatureFlagsStrictMode returns a boolean if a field has been set.
+
 ### GetKetoNamespaceConfiguration
 
 `func (o *NormalizedProjectRevision) GetKetoNamespaceConfiguration() string`
@@ -2211,6 +2267,31 @@ SetKetoSecretsPagination sets KetoSecretsPagination field to given value.
 `func (o *NormalizedProjectRevision) HasKetoSecretsPagination() bool`
 
 HasKetoSecretsPagination returns a boolean if a field has been set.
+
+### GetKetoStrictModeReadonly
+
+`func (o *NormalizedProjectRevision) GetKetoStrictModeReadonly() bool`
+
+GetKetoStrictModeReadonly returns the KetoStrictModeReadonly field if non-nil, zero value otherwise.
+
+### GetKetoStrictModeReadonlyOk
+
+`func (o *NormalizedProjectRevision) GetKetoStrictModeReadonlyOk() (*bool, bool)`
+
+GetKetoStrictModeReadonlyOk returns a tuple with the KetoStrictModeReadonly field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKetoStrictModeReadonly
+
+`func (o *NormalizedProjectRevision) SetKetoStrictModeReadonly(v bool)`
+
+SetKetoStrictModeReadonly sets KetoStrictModeReadonly field to given value.
+
+### HasKetoStrictModeReadonly
+
+`func (o *NormalizedProjectRevision) HasKetoStrictModeReadonly() bool`
+
+HasKetoStrictModeReadonly returns a boolean if a field has been set.
 
 ### GetKratosCookiesSameSite
 
@@ -3662,6 +3743,31 @@ SetKratosFeatureFlagsChooseRecoveryAddress sets KratosFeatureFlagsChooseRecovery
 
 HasKratosFeatureFlagsChooseRecoveryAddress returns a boolean if a field has been set.
 
+### GetKratosFeatureFlagsEnforceIdentitySchemaGuards
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsEnforceIdentitySchemaGuards() bool`
+
+GetKratosFeatureFlagsEnforceIdentitySchemaGuards returns the KratosFeatureFlagsEnforceIdentitySchemaGuards field if non-nil, zero value otherwise.
+
+### GetKratosFeatureFlagsEnforceIdentitySchemaGuardsOk
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsEnforceIdentitySchemaGuardsOk() (*bool, bool)`
+
+GetKratosFeatureFlagsEnforceIdentitySchemaGuardsOk returns a tuple with the KratosFeatureFlagsEnforceIdentitySchemaGuards field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosFeatureFlagsEnforceIdentitySchemaGuards
+
+`func (o *NormalizedProjectRevision) SetKratosFeatureFlagsEnforceIdentitySchemaGuards(v bool)`
+
+SetKratosFeatureFlagsEnforceIdentitySchemaGuards sets KratosFeatureFlagsEnforceIdentitySchemaGuards field to given value.
+
+### HasKratosFeatureFlagsEnforceIdentitySchemaGuards
+
+`func (o *NormalizedProjectRevision) HasKratosFeatureFlagsEnforceIdentitySchemaGuards() bool`
+
+HasKratosFeatureFlagsEnforceIdentitySchemaGuards returns a boolean if a field has been set.
+
 ### GetKratosFeatureFlagsFasterSessionExtend
 
 `func (o *NormalizedProjectRevision) GetKratosFeatureFlagsFasterSessionExtend() bool`
@@ -3836,6 +3942,31 @@ SetKratosFeatureFlagsUseContinueWithTransitions sets KratosFeatureFlagsUseContin
 `func (o *NormalizedProjectRevision) HasKratosFeatureFlagsUseContinueWithTransitions() bool`
 
 HasKratosFeatureFlagsUseContinueWithTransitions returns a boolean if a field has been set.
+
+### GetKratosFeatureFlagsWebhookResponseDirectives
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsWebhookResponseDirectives() bool`
+
+GetKratosFeatureFlagsWebhookResponseDirectives returns the KratosFeatureFlagsWebhookResponseDirectives field if non-nil, zero value otherwise.
+
+### GetKratosFeatureFlagsWebhookResponseDirectivesOk
+
+`func (o *NormalizedProjectRevision) GetKratosFeatureFlagsWebhookResponseDirectivesOk() (*bool, bool)`
+
+GetKratosFeatureFlagsWebhookResponseDirectivesOk returns a tuple with the KratosFeatureFlagsWebhookResponseDirectives field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosFeatureFlagsWebhookResponseDirectives
+
+`func (o *NormalizedProjectRevision) SetKratosFeatureFlagsWebhookResponseDirectives(v bool)`
+
+SetKratosFeatureFlagsWebhookResponseDirectives sets KratosFeatureFlagsWebhookResponseDirectives field to given value.
+
+### HasKratosFeatureFlagsWebhookResponseDirectives
+
+`func (o *NormalizedProjectRevision) HasKratosFeatureFlagsWebhookResponseDirectives() bool`
+
+HasKratosFeatureFlagsWebhookResponseDirectives returns a boolean if a field has been set.
 
 ### GetKratosIdentitySchemas
 
@@ -5711,6 +5842,31 @@ SetKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled sets KratosSelfs
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled() bool`
 
 HasKratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates() bool`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates returns the KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificatesOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificatesOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificatesOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates(v bool)`
+
+SetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates sets KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates field to given value.
+
+### HasKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates() bool`
+
+HasKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds
 

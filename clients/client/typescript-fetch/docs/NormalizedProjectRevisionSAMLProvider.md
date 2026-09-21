@@ -9,6 +9,7 @@ Name | Type
 `audience_override_base_url` | string
 `created_at` | Date
 `id` | string
+`idp_initiated_login_enabled` | boolean
 `label` | string
 `mapper_url` | string
 `organization_id` | string
@@ -32,6 +33,7 @@ const example = {
   "audience_override_base_url": null,
   "created_at": null,
   "id": null,
+  "idp_initiated_login_enabled": null,
   "label": null,
   "mapper_url": null,
   "organization_id": null,

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The ID of the invoice. | [readonly] 
-**InvoicedAt** | **DateTime** |  | 
 **Type** | **string** | Type is the type of the invoice. usage InvoiceTypeUsage base InvoiceTypeBase | [readonly] 
+**InvoicedAt** | **DateTime** |  | 
 **UpdatedAt** | **DateTime** |  | [optional] 
 **V1** | [**ClientInvoiceDataV1**](ClientInvoiceDataV1.md) |  | [optional] 
 

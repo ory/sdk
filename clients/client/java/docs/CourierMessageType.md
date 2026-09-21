@@ -7,7 +7,7 @@
 
 * `EMAIL` (value: `"email"`)
 
-* `PHONE` (value: `"phone"`)
+* `SMS` (value: `"sms"`)
 
 
 

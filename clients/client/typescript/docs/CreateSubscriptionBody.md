@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**currency** | **string** |  usd USD eur Euro | [optional] [default to undefined]
-**interval** | **string** |  monthly Monthly yearly Yearly | [default to undefined]
+**currency** | **string** | usd USD eur Euro | [optional] [default to undefined]
+**interval** | **string** | monthly Monthly yearly Yearly | [default to undefined]
 **plan** | **string** |  | [default to undefined]
 **provision_first_project** | **string** |  | [default to undefined]
 **return_to** | **string** |  | [optional] [default to undefined]

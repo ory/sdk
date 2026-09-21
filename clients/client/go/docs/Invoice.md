@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The ID of the invoice. | [readonly] 
-**InvoicedAt** | **time.Time** |  | 
+**InvoicedAt** | **NullableTime** |  | 
 **Type** | **string** | Type is the type of the invoice. usage InvoiceTypeUsage base InvoiceTypeBase | [readonly] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **V1** | Pointer to [**InvoiceDataV1**](InvoiceDataV1.md) |  | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewInvoice
 
-`func NewInvoice(id string, invoicedAt time.Time, type_ string, ) *Invoice`
+`func NewInvoice(id string, invoicedAt NullableTime, type_ string, ) *Invoice`
 
 NewInvoice instantiates a new Invoice object
 This constructor will assign default values to properties that have it defined,
@@ -69,6 +69,16 @@ and a boolean to check if the value has been set.
 SetInvoicedAt sets InvoicedAt field to given value.
 
 
+### SetInvoicedAtNil
+
+`func (o *Invoice) SetInvoicedAtNil(b bool)`
+
+ SetInvoicedAtNil sets the value for InvoicedAt to be an explicit nil
+
+### UnsetInvoicedAt
+`func (o *Invoice) UnsetInvoicedAt()`
+
+UnsetInvoicedAt ensures that no value is present for InvoicedAt, not even an explicit nil
 ### GetType
 
 `func (o *Invoice) GetType() string`

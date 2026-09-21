@@ -63,6 +63,6 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | jsonWebKeySet |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | JSON Web Key Set |  -  |
+| **0** | Error |  -  |
 

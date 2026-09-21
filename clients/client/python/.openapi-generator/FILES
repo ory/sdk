@@ -11,6 +11,7 @@ docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
 docs/AddProjectToWorkspaceBody.md
+docs/AddWorkspaceOrganizationDomainBody.md
 docs/AdminIdentityImportCredentialsLookupSecret.md
 docs/AdminIdentityImportCredentialsLookupSecretConfig.md
 docs/AdminRevokeImportedApiKeyBody.md
@@ -18,6 +19,7 @@ docs/AdminRevokeIssuedApiKeyBody.md
 docs/AdminRotateIssuedApiKeyBody.md
 docs/AdminUpdateImportedApiKeyRequest.md
 docs/AdminUpdateIssuedApiKeyRequest.md
+docs/AiAssistantSessionToken.md
 docs/Any.md
 docs/ApiKeysApi.md
 docs/Attribute.md
@@ -76,6 +78,7 @@ docs/CreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
+docs/CreateWorkspaceContactBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
@@ -95,6 +98,7 @@ docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceType.md
 docs/DeviceUserAuthRequest.md
+docs/DomainVerificationStatus.md
 docs/ElementsApi.md
 docs/ElementsConfiguration.md
 docs/EmailTemplateData.md
@@ -107,6 +111,7 @@ docs/ErrorOAuth2.md
 docs/EventStream.md
 docs/EventsApi.md
 docs/ExpandedPermissionTree.md
+docs/FeatureFlagsCatalogEntry.md
 docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
@@ -193,6 +198,7 @@ docs/ListImportedApiKeysResponse.md
 docs/ListInvoicesResponse.md
 docs/ListIssuedApiKeysResponse.md
 docs/ListOrganizationsResponse.md
+docs/ListWorkspaceContacts.md
 docs/ListWorkspaceProjects.md
 docs/ListWorkspaces.md
 docs/LoginFlow.md
@@ -239,6 +245,9 @@ docs/OidcUserInfo.md
 docs/OnboardingPortalLink.md
 docs/OnboardingPortalOrganization.md
 docs/OnboardingPortalTestLoginFlow.md
+docs/OplParseError.md
+docs/OplSourcePosition.md
+docs/OplValidateResult.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationByHostname.md
@@ -246,11 +255,11 @@ docs/OrganizationOnboardingPortalLinksResponse.md
 docs/PINConfig.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
+docs/PatchWorkspaceContactBody.md
 docs/PatchWorkspaceMemberBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
 docs/PermissionsOnWorkspace.md
-docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
 docs/PostCheckPermissionOrErrorBody.md
@@ -292,6 +301,7 @@ docs/Relationships.md
 docs/RevisionAccountExperienceCustomTranslation.md
 docs/RevocationReason.md
 docs/RotateIssuedApiKeyResponse.md
+docs/RotateOAuth2ClientSecretBody.md
 docs/RotateTalosKeyBody.md
 docs/SchemaPatch.md
 docs/SelfRevokeApiKeyRequest.md
@@ -398,10 +408,14 @@ docs/VerifyApiKeyResponse.md
 docs/VerifyUserCodeRequest.md
 docs/Version.md
 docs/Warning.md
+docs/WebAuthnRelatedOrigins.md
 docs/WellknownApi.md
 docs/Workspace.md
 docs/WorkspaceApi.md
 docs/WorkspaceApiKey.md
+docs/WorkspaceContact.md
+docs/WorkspaceContactRecipient.md
+docs/WorkspaceContactRecipientInput.md
 docs/WorkspaceOrganization.md
 git_push.sh
 ory_client/__init__.py
@@ -433,6 +447,7 @@ ory_client/models/accept_o_auth2_login_request.py
 ory_client/models/account_experience_colors.py
 ory_client/models/account_experience_configuration.py
 ory_client/models/add_project_to_workspace_body.py
+ory_client/models/add_workspace_organization_domain_body.py
 ory_client/models/admin_identity_import_credentials_lookup_secret.py
 ory_client/models/admin_identity_import_credentials_lookup_secret_config.py
 ory_client/models/admin_revoke_imported_api_key_body.py
@@ -440,6 +455,7 @@ ory_client/models/admin_revoke_issued_api_key_body.py
 ory_client/models/admin_rotate_issued_api_key_body.py
 ory_client/models/admin_update_imported_api_key_request.py
 ory_client/models/admin_update_issued_api_key_request.py
+ory_client/models/ai_assistant_session_token.py
 ory_client/models/any.py
 ory_client/models/attribute.py
 ory_client/models/attribute_filter.py
@@ -496,6 +512,7 @@ ory_client/models/create_test_login_flow_from_onboarding_portal_link_body.py
 ory_client/models/create_verifiable_credential_request_body.py
 ory_client/models/create_workspace_api_key_body.py
 ory_client/models/create_workspace_body.py
+ory_client/models/create_workspace_contact_body.py
 ory_client/models/create_workspace_member_invite_body.py
 ory_client/models/create_workspace_organization_body.py
 ory_client/models/create_workspace_subscription_body.py
@@ -515,6 +532,7 @@ ory_client/models/device_authn_key.py
 ory_client/models/device_authorization.py
 ory_client/models/device_type.py
 ory_client/models/device_user_auth_request.py
+ory_client/models/domain_verification_status.py
 ory_client/models/elements_configuration.py
 ory_client/models/email_template_data.py
 ory_client/models/email_template_data_body.py
@@ -525,6 +543,7 @@ ory_client/models/error_generic.py
 ory_client/models/error_o_auth2.py
 ory_client/models/event_stream.py
 ory_client/models/expanded_permission_tree.py
+ory_client/models/feature_flags_catalog_entry.py
 ory_client/models/flow_error.py
 ory_client/models/generic_error.py
 ory_client/models/generic_error_content.py
@@ -608,6 +627,7 @@ ory_client/models/list_imported_api_keys_response.py
 ory_client/models/list_invoices_response.py
 ory_client/models/list_issued_api_keys_response.py
 ory_client/models/list_organizations_response.py
+ory_client/models/list_workspace_contacts.py
 ory_client/models/list_workspace_projects.py
 ory_client/models/list_workspaces.py
 ory_client/models/login_flow.py
@@ -651,17 +671,20 @@ ory_client/models/oidc_user_info.py
 ory_client/models/onboarding_portal_link.py
 ory_client/models/onboarding_portal_organization.py
 ory_client/models/onboarding_portal_test_login_flow.py
+ory_client/models/opl_parse_error.py
+ory_client/models/opl_source_position.py
+ory_client/models/opl_validate_result.py
 ory_client/models/organization.py
 ory_client/models/organization_body.py
 ory_client/models/organization_by_hostname.py
 ory_client/models/organization_onboarding_portal_links_response.py
 ory_client/models/parse_error.py
 ory_client/models/patch_identities_body.py
+ory_client/models/patch_workspace_contact_body.py
 ory_client/models/patch_workspace_member_body.py
 ory_client/models/perform_native_logout_body.py
 ory_client/models/permissions_on_workspace.py
 ory_client/models/pin_config.py
-ory_client/models/plan.py
 ory_client/models/plan_details.py
 ory_client/models/post_check_permission_body.py
 ory_client/models/post_check_permission_or_error_body.py
@@ -701,6 +724,7 @@ ory_client/models/revision_account_experience_custom_translation.py
 ory_client/models/revocation_reason.py
 ory_client/models/rfc6749_error_json.py
 ory_client/models/rotate_issued_api_key_response.py
+ory_client/models/rotate_o_auth2_client_secret_body.py
 ory_client/models/rotate_talos_key_body.py
 ory_client/models/schema_patch.py
 ory_client/models/self_revoke_api_key_request.py
@@ -807,8 +831,12 @@ ory_client/models/verify_api_key_response.py
 ory_client/models/verify_user_code_request.py
 ory_client/models/version.py
 ory_client/models/warning.py
+ory_client/models/web_authn_related_origins.py
 ory_client/models/workspace.py
 ory_client/models/workspace_api_key.py
+ory_client/models/workspace_contact.py
+ory_client/models/workspace_contact_recipient.py
+ory_client/models/workspace_contact_recipient_input.py
 ory_client/models/workspace_organization.py
 ory_client/py.typed
 ory_client/rest.py
@@ -825,6 +853,7 @@ test/test_accept_o_auth2_login_request.py
 test/test_account_experience_colors.py
 test/test_account_experience_configuration.py
 test/test_add_project_to_workspace_body.py
+test/test_add_workspace_organization_domain_body.py
 test/test_admin_identity_import_credentials_lookup_secret.py
 test/test_admin_identity_import_credentials_lookup_secret_config.py
 test/test_admin_revoke_imported_api_key_body.py
@@ -832,6 +861,7 @@ test/test_admin_revoke_issued_api_key_body.py
 test/test_admin_rotate_issued_api_key_body.py
 test/test_admin_update_imported_api_key_request.py
 test/test_admin_update_issued_api_key_request.py
+test/test_ai_assistant_session_token.py
 test/test_any.py
 test/test_api_keys_api.py
 test/test_attribute.py
@@ -890,6 +920,7 @@ test/test_create_test_login_flow_from_onboarding_portal_link_body.py
 test/test_create_verifiable_credential_request_body.py
 test/test_create_workspace_api_key_body.py
 test/test_create_workspace_body.py
+test/test_create_workspace_contact_body.py
 test/test_create_workspace_member_invite_body.py
 test/test_create_workspace_organization_body.py
 test/test_create_workspace_subscription_body.py
@@ -909,6 +940,7 @@ test/test_device_authn_key.py
 test/test_device_authorization.py
 test/test_device_type.py
 test/test_device_user_auth_request.py
+test/test_domain_verification_status.py
 test/test_elements_api.py
 test/test_elements_configuration.py
 test/test_email_template_data.py
@@ -921,6 +953,7 @@ test/test_error_o_auth2.py
 test/test_event_stream.py
 test/test_events_api.py
 test/test_expanded_permission_tree.py
+test/test_feature_flags_catalog_entry.py
 test/test_flow_error.py
 test/test_frontend_api.py
 test/test_generic_error.py
@@ -1007,6 +1040,7 @@ test/test_list_imported_api_keys_response.py
 test/test_list_invoices_response.py
 test/test_list_issued_api_keys_response.py
 test/test_list_organizations_response.py
+test/test_list_workspace_contacts.py
 test/test_list_workspace_projects.py
 test/test_list_workspaces.py
 test/test_login_flow.py
@@ -1053,18 +1087,21 @@ test/test_oidc_user_info.py
 test/test_onboarding_portal_link.py
 test/test_onboarding_portal_organization.py
 test/test_onboarding_portal_test_login_flow.py
+test/test_opl_parse_error.py
+test/test_opl_source_position.py
+test/test_opl_validate_result.py
 test/test_organization.py
 test/test_organization_body.py
 test/test_organization_by_hostname.py
 test/test_organization_onboarding_portal_links_response.py
 test/test_parse_error.py
 test/test_patch_identities_body.py
+test/test_patch_workspace_contact_body.py
 test/test_patch_workspace_member_body.py
 test/test_perform_native_logout_body.py
 test/test_permission_api.py
 test/test_permissions_on_workspace.py
 test/test_pin_config.py
-test/test_plan.py
 test/test_plan_details.py
 test/test_post_check_permission_body.py
 test/test_post_check_permission_or_error_body.py
@@ -1106,6 +1143,7 @@ test/test_revision_account_experience_custom_translation.py
 test/test_revocation_reason.py
 test/test_rfc6749_error_json.py
 test/test_rotate_issued_api_key_response.py
+test/test_rotate_o_auth2_client_secret_body.py
 test/test_rotate_talos_key_body.py
 test/test_schema_patch.py
 test/test_self_revoke_api_key_request.py
@@ -1212,9 +1250,13 @@ test/test_verify_api_key_response.py
 test/test_verify_user_code_request.py
 test/test_version.py
 test/test_warning.py
+test/test_web_authn_related_origins.py
 test/test_wellknown_api.py
 test/test_workspace.py
 test/test_workspace_api.py
 test/test_workspace_api_key.py
+test/test_workspace_contact.py
+test/test_workspace_contact_recipient.py
+test/test_workspace_contact_recipient_input.py
 test/test_workspace_organization.py
 tox.ini

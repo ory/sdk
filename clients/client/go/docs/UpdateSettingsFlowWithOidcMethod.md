@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Flow** | Pointer to **string** | Flow ID is the flow&#39;s ID.  in: query | [optional] 
-**Link** | Pointer to **string** | Link this provider  Either this or &#x60;unlink&#x60; must be set.  type: string in: body | [optional] 
+**CsrfToken** | Pointer to **string** | The CSRF Token | [optional] 
+**Flow** | Pointer to **string** | Flow ID is the flow&#39;s ID. | [optional] 
+**Link** | Pointer to **string** | Link this provider  Either this or &#x60;unlink&#x60; must be set.  type: string | [optional] 
 **Method** | **string** | Method  Should be set to profile when trying to update a profile. | 
-**Traits** | Pointer to **map[string]interface{}** | The identity&#39;s traits  in: body | [optional] 
+**Traits** | Pointer to **map[string]interface{}** | The identity&#39;s traits | [optional] 
 **TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
-**Unlink** | Pointer to **string** | Unlink this provider  Either this or &#x60;link&#x60; must be set.  type: string in: body | [optional] 
-**UpstreamParameters** | Pointer to **map[string]interface{}** | UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: &#x60;hd&#x60; (string): The &#x60;hd&#x60; parameter limits the login/registration process to a Google Organization, e.g. &#x60;mycollege.edu&#x60;. &#x60;prompt&#x60; (string): The &#x60;prompt&#x60; specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. &#x60;select_account&#x60;. &#x60;acr_values&#x60; (string): The &#x60;acr_values&#x60; specifies the Authentication Context Class Reference values for the authorization request. | [optional] 
+**Unlink** | Pointer to **string** | Unlink this provider  Either this or &#x60;link&#x60; must be set.  type: string | [optional] 
+**UpstreamParameters** | Pointer to **map[string]interface{}** | UpstreamParameters are the parameters that are passed to the upstream identity provider.  These parameters are optional and depend on what the upstream identity provider supports. Supported parameters are: - &#x60;hd&#x60; (string): The &#x60;hd&#x60; parameter limits the login/registration process to a Google Organization, e.g. &#x60;mycollege.edu&#x60;. - &#x60;prompt&#x60; (string): The &#x60;prompt&#x60; specifies whether the Authorization Server prompts the End-User for reauthentication and consent, e.g. &#x60;select_account&#x60;. - &#x60;acr_values&#x60; (string): The &#x60;acr_values&#x60; specifies the Authentication Context Class Reference values for the authorization request. | [optional] 
 
 ## Methods
 
@@ -30,6 +31,31 @@ will change when the set of required properties is changed
 NewUpdateSettingsFlowWithOidcMethodWithDefaults instantiates a new UpdateSettingsFlowWithOidcMethod object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCsrfToken
+
+`func (o *UpdateSettingsFlowWithOidcMethod) GetCsrfToken() string`
+
+GetCsrfToken returns the CsrfToken field if non-nil, zero value otherwise.
+
+### GetCsrfTokenOk
+
+`func (o *UpdateSettingsFlowWithOidcMethod) GetCsrfTokenOk() (*string, bool)`
+
+GetCsrfTokenOk returns a tuple with the CsrfToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCsrfToken
+
+`func (o *UpdateSettingsFlowWithOidcMethod) SetCsrfToken(v string)`
+
+SetCsrfToken sets CsrfToken field to given value.
+
+### HasCsrfToken
+
+`func (o *UpdateSettingsFlowWithOidcMethod) HasCsrfToken() bool`
+
+HasCsrfToken returns a boolean if a field has been set.
 
 ### GetFlow
 

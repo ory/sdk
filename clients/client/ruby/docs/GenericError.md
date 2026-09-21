@@ -21,12 +21,12 @@ require 'ory-client'
 
 instance = OryClient::GenericError.new(
   code: 404,
-  debug: SQL field &quot;foo&quot; is not a bool.,
+  debug: SQL field &quot;foo&quot; is not a bool,
   details: null,
   error: null,
   id: null,
   message: The resource could not be found,
-  reason: User with ID 1234 does not exist.,
+  reason: User with ID 1234 does not exist,
   request: d7ef54b1-ec15-46e6-bccb-524b82c035e6,
   status: Not Found
 )

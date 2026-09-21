@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**create_browser_settings_flow**](FrontendApi.md#create_browser_settings_flow) | **GET** /self-service/settings/browser | Create Settings Flow for Browsers
 [**create_browser_verification_flow**](FrontendApi.md#create_browser_verification_flow) | **GET** /self-service/verification/browser | Create Verification Flow for Browser Clients
 [**create_fedcm_flow**](FrontendApi.md#create_fedcm_flow) | **GET** /self-service/fed-cm/parameters | Get FedCM Parameters
+[**create_id_p_initiated_saml_browser_login_flow**](FrontendApi.md#create_id_p_initiated_saml_browser_login_flow) | **GET** /self-service/methods/saml/idp-initiated/{provider} | Complete IdP-Initiated SAML Login for Browsers
 [**create_native_login_flow**](FrontendApi.md#create_native_login_flow) | **GET** /self-service/login/api | Create Login Flow for Native Apps
 [**create_native_recovery_flow**](FrontendApi.md#create_native_recovery_flow) | **GET** /self-service/recovery/api | Create Recovery Flow for Native Apps
 [**create_native_registration_flow**](FrontendApi.md#create_native_registration_flow) | **GET** /self-service/registration/api | Create Registration Flow for Native Apps
@@ -27,6 +28,7 @@ Method | HTTP request | Description
 [**get_settings_flow**](FrontendApi.md#get_settings_flow) | **GET** /self-service/settings/flows | Get Settings Flow
 [**get_verification_flow**](FrontendApi.md#get_verification_flow) | **GET** /self-service/verification/flows | Get Verification Flow
 [**get_web_authn_java_script**](FrontendApi.md#get_web_authn_java_script) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+[**get_web_authn_related_origins**](FrontendApi.md#get_web_authn_related_origins) | **GET** /.well-known/webauthn | Get WebAuthn Related Origins
 [**get_well_known_change_password**](FrontendApi.md#get_well_known_change_password) | **GET** /.well-known/change-password | Change Password URL
 [**list_my_sessions**](FrontendApi.md#list_my_sessions) | **GET** /sessions | Get My Active Sessions
 [**perform_native_logout**](FrontendApi.md#perform_native_logout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
@@ -56,10 +58,11 @@ exists already, the browser will be redirected to `urls.default_redirect_url` un
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `session_already_available`: The user is already signed in.
+- `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+- `session_aal2_enrollment_required`: Second-factor auth is required but the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 The optional query parameter login_challenge is set when using Kratos with
 Hydra in an OAuth2 flow. See the oauth2_provider.url configuration
@@ -140,10 +143,11 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | loginFlow |  -  |
+**200** | Login Flow |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**403** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -222,10 +226,10 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | logoutFlow |  -  |
-**400** | errorGeneric |  -  |
-**401** | errorGeneric |  -  |
-**500** | errorGeneric |  -  |
+**200** | Logout Flow |  -  |
+**400** | JSON API Error Response |  -  |
+**401** | JSON API Error Response |  -  |
+**500** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -304,10 +308,10 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | recoveryFlow |  -  |
+**200** | A Recovery Flow |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -326,9 +330,9 @@ exists already, the browser will be redirected to `urls.default_redirect_url`.
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 If this endpoint is called via an AJAX request, the response contains the registration flow without a redirect.
 
@@ -401,9 +405,9 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | registrationFlow |  -  |
+**200** | OK |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | errorGeneric |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -431,9 +435,9 @@ to sign in with the second factor (happens automatically for server-side browser
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
 
@@ -500,12 +504,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | settingsFlow |  -  |
+**200** | Flow represents a Settings Flow |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | errorGeneric |  -  |
-**401** | errorGeneric |  -  |
-**403** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**401** | JSON API Error Response |  -  |
+**403** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -580,9 +584,9 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | verificationFlow |  -  |
+**200** | A Verification Flow |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | errorGeneric |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -646,9 +650,89 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | createFedcmFlowResponse |  -  |
-**400** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | CreateFedcmFlowResponse |  -  |
+**400** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_id_p_initiated_saml_browser_login_flow**
+> ErrorGeneric create_id_p_initiated_saml_browser_login_flow(provider, code)
+
+Complete IdP-Initiated SAML Login for Browsers
+
+This endpoint is the entry point for IdP-initiated login through Ory Polis.
+Ory Polis redirects the browser here with a single-use authorization code
+after validating an unsolicited SAML response; Kratos then starts a regular
+browser login flow and forwards the code as a `code_hint` so Polis can
+complete the flow without a second round-trip to the identity provider.
+
+The provider must be a `jackson` provider with
+`idp_initiated_login_enabled` set to `true` in its configuration.
+
+This endpoint is NOT INTENDED for API clients and only works with browsers.
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.models.error_generic import ErrorGeneric
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.FrontendApi(api_client)
+    provider = 'provider_example' # str | The SAML provider ID as configured in the Ory Kratos configuration.
+    code = 'code_example' # str | The single-use authorization code issued by Ory Polis for the unsolicited SAML response.
+
+    try:
+        # Complete IdP-Initiated SAML Login for Browsers
+        api_response = api_instance.create_id_p_initiated_saml_browser_login_flow(provider, code)
+        print("The response of FrontendApi->create_id_p_initiated_saml_browser_login_flow:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FrontendApi->create_id_p_initiated_saml_browser_login_flow: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **provider** | **str**| The SAML provider ID as configured in the Ory Kratos configuration. | 
+ **code** | **str**| The single-use authorization code issued by Ory Polis for the unsolicited SAML response. | 
+
+### Return type
+
+[**ErrorGeneric**](ErrorGeneric.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -670,9 +754,10 @@ you vulnerable to a variety of CSRF attacks, including CSRF login attacks.
 
 In the case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_already_available`: The user is already signed in.
+- `session_aal1_required`: Multi-factor auth (e.g. 2fa) was requested but the user has no session yet.
+- `session_aal2_enrollment_required`: Second-factor auth is required but the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -749,9 +834,10 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | loginFlow |  -  |
-**400** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Login Flow |  -  |
+**400** | JSON API Error Response |  -  |
+**403** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -827,9 +913,9 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | recoveryFlow |  -  |
-**400** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | A Recovery Flow |  -  |
+**400** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -851,8 +937,8 @@ you vulnerable to a variety of CSRF attacks.
 
 In the case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -921,9 +1007,9 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | registrationFlow |  -  |
-**400** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | OK |  -  |
+**400** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -948,8 +1034,8 @@ to sign in with the second factor or change the configuration.
 
 In the case of an error, the `error.id` of the JSON response body can be one of:
 
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -1014,9 +1100,9 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | settingsFlow |  -  |
-**400** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Flow represents a Settings Flow |  -  |
+**400** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1094,9 +1180,9 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | verificationFlow |  -  |
-**400** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | A Verification Flow |  -  |
+**400** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1167,10 +1253,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | errorGeneric |  -  |
-**403** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**403** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1241,10 +1327,10 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | deleteMySessionsCount |  -  |
-**400** | errorGeneric |  -  |
-**401** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Deleted Session Count |  -  |
+**400** | JSON API Error Response |  -  |
+**401** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1315,9 +1401,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | errorGeneric |  -  |
-**401** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**401** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1385,12 +1471,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | successfulNativeLogin |  -  |
-**403** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**410** | errorGeneric |  -  |
-**422** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | The Response for Login Flows via API |  -  |
+**403** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**410** | JSON API Error Response |  -  |
+**422** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1403,7 +1489,7 @@ This endpoint returns the error associated with a user-facing self service error
 
 This endpoint supports stub values to help you implement the error UI:
 
-`?id=stub:500` - returns a stub 500 (Internal Server Error) error.
+- `?id=stub:500` - returns a stub 500 (Internal Server Error) error.
 
 More information can be found at [Ory Kratos User User Facing Error Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-facing-errors).
 
@@ -1464,10 +1550,10 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | flowError |  -  |
-**403** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**500** | errorGeneric |  -  |
+**200** | OK |  -  |
+**403** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**500** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1495,8 +1581,8 @@ res.render('login', flow)
 
 This request may fail due to several reasons. The `error.id` can be one of:
 
-`session_already_available`: The user is already signed in.
-`self_service_flow_expired`: The flow is expired and you should request a new one.
+- `session_already_available`: The user is already signed in.
+- `self_service_flow_expired`: The flow is expired and you should request a new one.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
@@ -1559,11 +1645,11 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | loginFlow |  -  |
-**403** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**410** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Login Flow |  -  |
+**403** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**410** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1650,10 +1736,10 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | recoveryFlow |  -  |
-**404** | errorGeneric |  -  |
-**410** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | A Recovery Flow |  -  |
+**404** | JSON API Error Response |  -  |
+**410** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1681,8 +1767,8 @@ res.render('registration', flow)
 
 This request may fail due to several reasons. The `error.id` can be one of:
 
-`session_already_available`: The user is already signed in.
-`self_service_flow_expired`: The flow is expired and you should request a new one.
+- `session_already_available`: The user is already signed in.
+- `self_service_flow_expired`: The flow is expired and you should request a new one.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
 
@@ -1745,11 +1831,11 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | registrationFlow |  -  |
-**403** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**410** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | OK |  -  |
+**403** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**410** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1771,9 +1857,9 @@ You can access this endpoint without credentials when using Ory Kratos' Admin AP
 If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
-`security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
+- `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
 
 More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
@@ -1839,12 +1925,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | settingsFlow |  -  |
-**401** | errorGeneric |  -  |
-**403** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**410** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Flow represents a Settings Flow |  -  |
+**401** | JSON API Error Response |  -  |
+**403** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**410** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1931,10 +2017,10 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | verificationFlow |  -  |
-**403** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | A Verification Flow |  -  |
+**403** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2005,7 +2091,77 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | webAuthnJavaScript |  -  |
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_web_authn_related_origins**
+> WebAuthnRelatedOrigins get_web_authn_related_origins()
+
+Get WebAuthn Related Origins
+
+This endpoint serves the WebAuthn Related Origin Requests document specified in
+https://www.w3.org/TR/webauthn-3/#sctn-related-origins. It lists the web origins
+allowed to use this domain as their WebAuthn relying party ID. Browsers fetch it
+when a page requests a relying party ID that does not match the page's own origin.
+
+The document contains the relying party origins configured for the enabled
+WebAuthn and passkey methods.
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.models.web_authn_related_origins import WebAuthnRelatedOrigins
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.FrontendApi(api_client)
+
+    try:
+        # Get WebAuthn Related Origins
+        api_response = api_instance.get_web_authn_related_origins()
+        print("The response of FrontendApi->get_web_authn_related_origins:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FrontendApi->get_web_authn_related_origins: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**WebAuthnRelatedOrigins**](WebAuthnRelatedOrigins.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | WebAuthn Related Origins |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2073,7 +2229,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | errorGeneric |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2153,9 +2309,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List My Session Response |  -  |
-**400** | errorGeneric |  -  |
-**401** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**401** | JSON API Error Response |  -  |
+**403** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2229,8 +2386,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2282,22 +2439,23 @@ to sign in with the second factor or change the configuration.
 
 This endpoint is useful for:
 
-AJAX calls. Remember to send credentials and set up CORS correctly!
-Reverse proxies and API Gateways
-Server-side calls - use the `X-Session-Token` header!
+- AJAX calls. Remember to send credentials and set up CORS correctly!
+- Reverse proxies and API Gateways
+- Server-side calls - use the `X-Session-Token` header!
 
 This endpoint authenticates users by checking:
 
-if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie;
-if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
-if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
+- if the `Cookie` HTTP header was set containing an Ory Kratos Session Cookie;
+- if the `Authorization: bearer <ory-session-token>` HTTP header was set with a valid Ory Kratos Session Token;
+- if the `X-Session-Token` HTTP header was set with a valid Ory Kratos Session Token.
 
 If none of these headers are set or the cookie or token are invalid, the endpoint returns a HTTP 401 status code.
 
 As explained above, this request may fail due to several reasons. The `error.id` can be one of:
 
-`session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
-`session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+- `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
+- `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
+- `session_aal2_enrollment_required`: An active session was found but the required Authenticator Assurance Level can not be reached because the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
 
 ### Example
 
@@ -2360,10 +2518,10 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | session |  -  |
-**401** | errorGeneric |  -  |
-**403** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | A Session |  -  |
+**401** | JSON API Error Response |  -  |
+**403** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2435,12 +2593,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | successfulNativeLogin |  -  |
+**200** | The Response for Login Flows via API |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | loginFlow |  -  |
-**410** | errorGeneric |  -  |
-**422** | errorBrowserLocationChangeRequired |  -  |
-**0** | errorGeneric |  -  |
+**400** | Login Flow |  -  |
+**410** | JSON API Error Response |  -  |
+**422** | Is sent when a flow requires a browser to change its location. |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2453,26 +2611,26 @@ Use this endpoint to complete a login flow. This endpoint
 behaves differently for API and browser flows.
 
 API flows expect `application/json` to be sent in the body and responds with
-HTTP 200 and a application/json body with the session token on success;
-HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the session token on success;
+- HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
+- HTTP 400 on form validation errors.
 
 Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with
-a HTTP 303 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded;
-a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.
+- a HTTP 303 redirect to the post/after login URL or the `return_to` value if it was set and if the login succeeded;
+- a HTTP 303 redirect to the login UI URL with the flow ID containing the validation errors otherwise.
 
 Browser flows with an accept header of `application/json` will not redirect but instead respond with
-HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
-HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
+- HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+- HTTP 400 on form validation errors.
 
 If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
-`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
 Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
@@ -2541,12 +2699,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | successfulNativeLogin |  -  |
+**200** | The Response for Login Flows via API |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | loginFlow |  -  |
-**410** | errorGeneric |  -  |
-**422** | errorBrowserLocationChangeRequired |  -  |
-**0** | errorGeneric |  -  |
+**400** | Login Flow |  -  |
+**410** | JSON API Error Response |  -  |
+**422** | Is sent when a flow requires a browser to change its location. |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2629,7 +2787,7 @@ No authorization required
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | errorGeneric |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2641,14 +2799,14 @@ Update Recovery Flow
 Use this endpoint to update a recovery flow. This endpoint
 behaves differently for API and browser flows and has several states:
 
-`choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
+- `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
 and works with API- and Browser-initiated flows.
-For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid.
+- For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid.
 and a HTTP 303 See Other redirect with a fresh recovery flow if the flow was otherwise invalid (e.g. expired).
-For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended.
-`sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It
+- For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Recovery UI URL with the Recovery Flow ID appended.
+- `sent_email` is the success state after `choose_method` for the `link` method and allows the user to request another recovery email. It
 works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state.
-`passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a recovery link")
+- `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a recovery link")
 does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL
 (if the link was valid) and instructs the user to update their password, or a redirect to the Recover UI URL with
 a new Recovery Flow ID which contains an error message that the recovery link was invalid.
@@ -2719,12 +2877,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | recoveryFlow |  -  |
+**200** | A Recovery Flow |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | recoveryFlow |  -  |
-**410** | errorGeneric |  -  |
-**422** | errorBrowserLocationChangeRequired |  -  |
-**0** | errorGeneric |  -  |
+**400** | A Recovery Flow |  -  |
+**410** | JSON API Error Response |  -  |
+**422** | Is sent when a flow requires a browser to change its location. |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2737,27 +2895,27 @@ Use this endpoint to complete a registration flow by sending an identity's trait
 behaves differently for API and browser flows.
 
 API flows expect `application/json` to be sent in the body and respond with
-HTTP 200 and a application/json body with the created identity success - if the session hook is configured the
+- HTTP 200 and a application/json body with the created identity success - if the session hook is configured the
 `session` and `session_token` will also be included;
-HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
-HTTP 400 on form validation errors.
+- HTTP 410 if the original flow expired with the appropriate error messages set and optionally a `use_flow_id` parameter in the body;
+- HTTP 400 on form validation errors.
 
 Browser flows expect a Content-Type of `application/x-www-form-urlencoded` or `application/json` to be sent in the body and respond with
-a HTTP 303 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded;
-a HTTP 303 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.
+- a HTTP 303 redirect to the post/after registration URL or the `return_to` value if it was set and if the registration succeeded;
+- a HTTP 303 redirect to the registration UI URL with the flow ID containing the validation errors otherwise.
 
 Browser flows with an accept header of `application/json` will not redirect but instead respond with
-HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
-HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
+- HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+- HTTP 400 on form validation errors.
 
 If this endpoint is called with `Accept: application/json` in the header, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_already_available`: The user is already signed in.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
-`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+- `session_already_available`: The user is already signed in.
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
 Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Login](https://www.ory.com/docs/kratos/self-service/flows/user-login) and [User Registration Documentation](https://www.ory.com/docs/kratos/self-service/flows/user-registration).
@@ -2824,12 +2982,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | successfulNativeRegistration |  -  |
+**200** | The Response for Registration Flows via API |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | registrationFlow |  -  |
-**410** | errorGeneric |  -  |
-**422** | errorBrowserLocationChangeRequired |  -  |
-**0** | errorGeneric |  -  |
+**400** | Bad Request |  -  |
+**410** | JSON API Error Response |  -  |
+**422** | Is sent when a flow requires a browser to change its location. |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2842,24 +3000,24 @@ Use this endpoint to complete a settings flow by sending an identity's updated p
 behaves differently for API and browser flows.
 
 API-initiated flows expect `application/json` to be sent in the body and respond with
-HTTP 200 and an application/json body with the session token on success;
-HTTP 303 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set;
-HTTP 400 on form validation errors.
-HTTP 401 when the endpoint is called without a valid session token.
-HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
+- HTTP 200 and an application/json body with the session token on success;
+- HTTP 303 redirect to a fresh settings flow if the original flow expired with the appropriate error messages set;
+- HTTP 400 on form validation errors.
+- HTTP 401 when the endpoint is called without a valid session token.
+- HTTP 403 when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
 Implies that the user needs to re-authenticate.
 
 Browser flows without HTTP Header `Accept` or with `Accept: text/*` respond with
-a HTTP 303 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded;
-a HTTP 303 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise.
-a HTTP 303 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
+- a HTTP 303 redirect to the post/after settings URL or the `return_to` value if it was set and if the flow succeeded;
+- a HTTP 303 redirect to the Settings UI URL with the flow ID containing the validation errors otherwise.
+- a HTTP 303 redirect to the login endpoint when `selfservice.flows.settings.privileged_session_max_age` was reached or the session's AAL is too low.
 
 Browser flows with HTTP Header `Accept: application/json` respond with
-HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
-HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
-HTTP 401 when the endpoint is called without a valid session cookie.
-HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low.
-HTTP 400 on form validation errors.
+- HTTP 200 and a application/json body with the signed in identity and a `Set-Cookie` header on success;
+- HTTP 303 redirect to a fresh login flow if the original flow expired with the appropriate error messages set;
+- HTTP 401 when the endpoint is called without a valid session cookie.
+- HTTP 403 when the page is accessed without a session cookie or the session's AAL is too low.
+- HTTP 400 on form validation errors.
 
 Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator
 Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn
@@ -2869,15 +3027,15 @@ to sign in with the second factor (happens automatically for server-side browser
 If this endpoint is called with a `Accept: application/json` HTTP header, the response contains the flow without a redirect. In the
 case of an error, the `error.id` of the JSON response body can be one of:
 
-`session_refresh_required`: The identity requested to change something that needs a privileged session. Redirect
+- `session_refresh_required`: The identity requested to change something that needs a privileged session. Redirect
 the identity to the login init endpoint with query parameters `?refresh=true&return_to=<the-current-browser-url>`,
 or initiate a refresh login flow otherwise.
-`security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
-`session_inactive`: No Ory Session was found - sign in a user first.
-`security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
+- `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
+- `session_inactive`: No Ory Session was found - sign in a user first.
+- `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
-`security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
-`browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
+- `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
+- `browser_location_change_required`: Usually sent when an AJAX request indicates that the browser needs to open a specific URL.
 Most likely used in Social Sign In flows.
 
 More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
@@ -2946,14 +3104,14 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | settingsFlow |  -  |
+**200** | Flow represents a Settings Flow |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | settingsFlow |  -  |
-**401** | errorGeneric |  -  |
-**403** | errorGeneric |  -  |
-**410** | errorGeneric |  -  |
-**422** | errorBrowserLocationChangeRequired |  -  |
-**0** | errorGeneric |  -  |
+**400** | Flow represents a Settings Flow |  -  |
+**401** | JSON API Error Response |  -  |
+**403** | JSON API Error Response |  -  |
+**410** | JSON API Error Response |  -  |
+**422** | Is sent when a flow requires a browser to change its location. |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2965,14 +3123,14 @@ Complete Verification Flow
 Use this endpoint to complete a verification flow. This endpoint
 behaves differently for API and browser flows and has several states:
 
-`choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
+- `choose_method` expects `flow` (in the URL query) and `email` (in the body) to be sent
 and works with API- and Browser-initiated flows.
-For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid
+- For API clients and Browser clients with HTTP Header `Accept: application/json` it either returns a HTTP 200 OK when the form is valid and HTTP 400 OK when the form is invalid
 and a HTTP 303 See Other redirect with a fresh verification flow if the flow was otherwise invalid (e.g. expired).
-For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended.
-`sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It
+- For Browser clients without HTTP Header `Accept` or with `Accept: text/*` it returns a HTTP 303 See Other redirect to the Verification UI URL with the Verification Flow ID appended.
+- `sent_email` is the success state after `choose_method` when using the `link` method and allows the user to request another verification email. It
 works for both API and Browser-initiated flows and returns the same responses as the flow in `choose_method` state.
-`passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a verification link")
+- `passed_challenge` expects a `token` to be sent in the URL query and given the nature of the flow ("sending a verification link")
 does not have any API capabilities. The server responds with a HTTP 303 See Other redirect either to the Settings UI URL
 (if the link was valid) and instructs the user to update their password, or a redirect to the Verification UI URL with
 a new Verification Flow ID which contains an error message that the verification link was invalid.
@@ -3043,11 +3201,11 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | verificationFlow |  -  |
+**200** | A Verification Flow |  -  |
 **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | verificationFlow |  -  |
-**410** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | A Verification Flow |  -  |
+**410** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

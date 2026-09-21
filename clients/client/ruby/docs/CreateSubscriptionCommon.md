@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **currency** | **String** |  usd USD eur Euro | [optional] |
-| **interval** | **String** |  monthly Monthly yearly Yearly |  |
+| **currency** | **String** | usd USD eur Euro | [optional] |
+| **interval** | **String** | monthly Monthly yearly Yearly |  |
 | **plan** | **String** |  |  |
 | **return_to** | **String** |  | [optional] |
 

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.66
+API version: v1.22.78
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,8 @@ var _ MappedNullable = &PatchIdentitiesBody{}
 type PatchIdentitiesBody struct {
 	// Identities holds the list of patches to apply  required
 	Identities []IdentityPatch `json:"identities,omitempty"`
+	// WithPartialInserts controls how the batch handles an identity that conflicts with one that already exists.  When true (the default), every identity is applied on its own: the ones that do not conflict are created, and the response reports the conflicting ones individually.  When false, the batch is written in one transaction and is all-or-nothing. A single conflict fails the whole request with 409 Conflict and no identity is created, but the import is considerably faster.
+	WithPartialInserts *bool `json:"with_partial_inserts,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -76,6 +78,38 @@ func (o *PatchIdentitiesBody) SetIdentities(v []IdentityPatch) {
 	o.Identities = v
 }
 
+// GetWithPartialInserts returns the WithPartialInserts field value if set, zero value otherwise.
+func (o *PatchIdentitiesBody) GetWithPartialInserts() bool {
+	if o == nil || IsNil(o.WithPartialInserts) {
+		var ret bool
+		return ret
+	}
+	return *o.WithPartialInserts
+}
+
+// GetWithPartialInsertsOk returns a tuple with the WithPartialInserts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchIdentitiesBody) GetWithPartialInsertsOk() (*bool, bool) {
+	if o == nil || IsNil(o.WithPartialInserts) {
+		return nil, false
+	}
+	return o.WithPartialInserts, true
+}
+
+// HasWithPartialInserts returns a boolean if a field has been set.
+func (o *PatchIdentitiesBody) HasWithPartialInserts() bool {
+	if o != nil && !IsNil(o.WithPartialInserts) {
+		return true
+	}
+
+	return false
+}
+
+// SetWithPartialInserts gets a reference to the given bool and assigns it to the WithPartialInserts field.
+func (o *PatchIdentitiesBody) SetWithPartialInserts(v bool) {
+	o.WithPartialInserts = &v
+}
+
 func (o PatchIdentitiesBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -88,6 +122,9 @@ func (o PatchIdentitiesBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Identities) {
 		toSerialize["identities"] = o.Identities
+	}
+	if !IsNil(o.WithPartialInserts) {
+		toSerialize["with_partial_inserts"] = o.WithPartialInserts
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -112,6 +149,7 @@ func (o *PatchIdentitiesBody) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "identities")
+		delete(additionalProperties, "with_partial_inserts")
 		o.AdditionalProperties = additionalProperties
 	}
 

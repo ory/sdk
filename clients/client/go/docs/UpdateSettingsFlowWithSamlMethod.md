@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CsrfToken** | Pointer to **string** | The CSRF Token | [optional] 
-**Flow** | Pointer to **string** | Flow ID is the flow&#39;s ID.  in: query | [optional] 
-**Link** | Pointer to **string** | Link this provider  Either this or &#x60;unlink&#x60; must be set.  type: string in: body | [optional] 
+**Flow** | Pointer to **string** | Flow ID is the flow&#39;s ID. | [optional] 
+**Link** | Pointer to **string** | Link this provider  Either this or &#x60;unlink&#x60; must be set.  type: string | [optional] 
 **Method** | **string** | Method  Should be set to saml when trying to update a profile. | 
-**Traits** | Pointer to **map[string]interface{}** | The identity&#39;s traits  in: body | [optional] 
+**Traits** | Pointer to **map[string]interface{}** | The identity&#39;s traits | [optional] 
 **TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
-**Unlink** | Pointer to **string** | Unlink this provider  Either this or &#x60;link&#x60; must be set.  type: string in: body | [optional] 
+**Unlink** | Pointer to **string** | Unlink this provider  Either this or &#x60;link&#x60; must be set.  type: string | [optional] 
 
 ## Methods
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Link** | Pointer to **string** | The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).  in: header | [optional] 
-**XTotalCount** | Pointer to **string** | The total number of clients.  in: header | [optional] 
+**Link** | Pointer to **string** | The link header contains pagination links.  For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [optional] 
+**XTotalCount** | Pointer to **string** | The total number of clients. | [optional] 
 
 ## Methods
 

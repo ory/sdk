@@ -1816,12 +1816,12 @@ void (empty response body)
 ## `rotateOAuth2ClientSecret()`
 
 ```php
-rotateOAuth2ClientSecret($id): \Ory\Client\Model\OAuth2Client
+rotateOAuth2ClientSecret($id, $rotateOAuth2ClientSecretBody): \Ory\Client\Model\OAuth2Client
 ```
 
 Rotate OAuth 2.0 Client Secret
 
-Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.
+Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.  Supply `client_secret` in the request body to rotate to a specific value instead of a generated one. The request body is optional.
 
 ### Example
 
@@ -1841,9 +1841,10 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
     $config
 );
 $id = 'id_example'; // string | OAuth 2.0 Client ID
+$rotateOAuth2ClientSecretBody = new \Ory\Client\Model\RotateOAuth2ClientSecretBody(); // \Ory\Client\Model\RotateOAuth2ClientSecretBody
 
 try {
-    $result = $apiInstance->rotateOAuth2ClientSecret($id);
+    $result = $apiInstance->rotateOAuth2ClientSecret($id, $rotateOAuth2ClientSecretBody);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->rotateOAuth2ClientSecret: ', $e->getMessage(), PHP_EOL;
@@ -1855,6 +1856,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| OAuth 2.0 Client ID | |
+| **rotateOAuth2ClientSecretBody** | [**\Ory\Client\Model\RotateOAuth2ClientSecretBody**](../Model/RotateOAuth2ClientSecretBody.md)|  | [optional] |
 
 ### Return type
 
@@ -1866,7 +1868,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

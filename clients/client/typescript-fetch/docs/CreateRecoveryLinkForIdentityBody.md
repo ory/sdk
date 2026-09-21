@@ -17,7 +17,7 @@ import type { CreateRecoveryLinkForIdentityBody } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
-  "expires_in": null,
+  "expires_in": 1h,
   "identity_id": null,
 } satisfies CreateRecoveryLinkForIdentityBody
 

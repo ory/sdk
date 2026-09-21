@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Currency** | Pointer to **string** |  usd USD eur Euro | [optional] 
-**Interval** | **string** |  monthly Monthly yearly Yearly | 
+**Currency** | Pointer to **string** | usd USD eur Euro | [optional] 
+**Interval** | **string** | monthly Monthly yearly Yearly | 
 **Plan** | **string** |  | 
 **ProvisionFirstProject** | **string** |  | 
 **ReturnTo** | Pointer to **string** |  | [optional] 

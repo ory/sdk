@@ -30,7 +30,7 @@ const example = {
   "identity_schema": null,
   "identity_schema_id": null,
   "import_id": null,
-  "import_url": base64://ey...,
+  "import_url": base64://ey..,
   "is_default": null,
   "preset": null,
   "project_revision_id": null,

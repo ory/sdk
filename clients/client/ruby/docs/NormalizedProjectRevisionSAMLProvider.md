@@ -7,6 +7,7 @@
 | **audience_override_base_url** | **String** |  | [optional] |
 | **created_at** | **Time** | The Project&#39;s Revision Creation Date | [optional][readonly] |
 | **id** | **String** |  | [optional] |
+| **idp_initiated_login_enabled** | **Boolean** | IdPInitiatedLoginEnabled enables IdP-initiated login for this provider.  When enabled, users can start a login from their identity provider&#39;s app launcher. The Polis connection&#39;s default redirect URL then points at the Kratos IdP-initiated login entry point instead of the SAML callback. | [optional] |
 | **label** | **String** | Label represents an optional label which can be used in the UI generation. | [optional] |
 | **mapper_url** | **String** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider&#39;s data (e.g. GitHub or Google profile information) to hydrate the identity&#39;s data. | [optional] |
 | **organization_id** | **String** |  | [optional] |
@@ -16,7 +17,7 @@
 | **proxy_saml_audience_override** | **String** |  | [optional] |
 | **raw_idp_metadata_xml** | **String** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] |
 | **state** | **String** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] |
-| **update_identity_on_login** | **String** | UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. | [optional] |
+| **update_identity_on_login** | **String** | UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. | [optional] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
 | **valid_to** | **Array&lt;String&gt;** | Valid to dates of all signing certs associated with the SAML connection | [optional][readonly] |
 
@@ -29,6 +30,7 @@ instance = OryClient::NormalizedProjectRevisionSAMLProvider.new(
   audience_override_base_url: null,
   created_at: null,
   id: null,
+  idp_initiated_login_enabled: null,
   label: null,
   mapper_url: null,
   organization_id: null,

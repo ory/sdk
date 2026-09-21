@@ -13,7 +13,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**DeleteProjectApiKey**](ProjectApi.md#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key |
 | [**GetOrganization**](ProjectApi.md#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID |
 | [**GetOrganizationOnboardingPortalLinks**](ProjectApi.md#getorganizationonboardingportallinks) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links |
-| [**GetProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get a Project |
+| [**GetProject**](ProjectApi.md#getproject) | **GET** /projects/{project_id} | Get an Ory Network Project Configuration |
 | [**GetProjectMembers**](ProjectApi.md#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project |
 | [**ListOrganizations**](ProjectApi.md#listorganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations |
 | [**ListProjectApiKeys**](ProjectApi.md#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project&#39;s API keys |
@@ -25,6 +25,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**SetProject**](ProjectApi.md#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration |
 | [**UpdateOrganization**](ProjectApi.md#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization |
 | [**UpdateOrganizationOnboardingPortalLink**](ProjectApi.md#updateorganizationonboardingportallink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link |
+| [**ValidateOpl**](ProjectApi.md#validateopl) | **POST** /projects/{project_id}/opl/validate | Validate an Ory Permission Language document |
 
 <a id="createorganization"></a>
 # **CreateOrganization**
@@ -94,11 +95,11 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | organization |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **409** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **201** | B2B SSO Organization |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **409** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -172,8 +173,8 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | onboardingPortalLink |  -  |
-| **0** | errorGeneric |  -  |
+| **201** | Created |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -243,12 +244,12 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | project |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **201** | Created |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -320,8 +321,8 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | projectApiKey |  -  |
-| **0** | errorGeneric |  -  |
+| **201** | Created |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -393,11 +394,11 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **409** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **409** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -471,9 +472,9 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -545,7 +546,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorGeneric |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -617,11 +618,11 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | getOrganizationResponse |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | getOrganizationResponse represents a B2B SSO Organization. |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -693,10 +694,10 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | organizationOnboardingPortalLinksResponse |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -704,9 +705,9 @@ namespace Example
 # **GetProject**
 > Task&lt;IGetProjectApiResponse&gt; GetProjectAsync(string projectId, System.Threading.CancellationToken cancellationToken = default)
 
-Get a Project
+Get an Ory Network Project Configuration
 
-Get a project you have access to by its ID.
+Returns the project rendered into the configuration format the open source projects use (e.g. Ory Kratos for Identity, Ory Keto for Permissions), including the values Ory fills in for the project, such as the resolved base URLs.  The rendered configuration does not carry the operational configuration items (e.g. port, tracing, logging) available in the open source.
 
 ### Example
 ```csharp
@@ -766,11 +767,11 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | project |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -840,10 +841,10 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | projectMembers |  -  |
-| **401** | genericError |  -  |
-| **406** | genericError |  -  |
-| **0** | genericError |  -  |
+| **200** | OK |  -  |
+| **401** | Error response |  -  |
+| **406** | Error response |  -  |
+| **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -919,10 +920,10 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | listOrganizationsResponse |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | B2B SSO Organization List |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -992,8 +993,8 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | projectApiKeys |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -1058,11 +1059,11 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | projectMetadataList |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -1134,12 +1135,12 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successfulProjectUpdate |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -1213,13 +1214,13 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successfulProjectUpdate |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **409** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **409** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -1289,10 +1290,10 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **401** | genericError |  -  |
-| **403** | genericError |  -  |
-| **404** | genericError |  -  |
-| **0** | genericError |  -  |
+| **401** | Error response |  -  |
+| **403** | Error response |  -  |
+| **404** | Error response |  -  |
+| **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -1364,9 +1365,9 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **401** | genericError |  -  |
-| **406** | genericError |  -  |
-| **0** | genericError |  -  |
+| **401** | Error response |  -  |
+| **406** | Error response |  -  |
+| **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -1438,12 +1439,12 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successfulProjectUpdate |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -1517,12 +1518,12 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | organization |  -  |
-| **400** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **404** | errorGeneric |  -  |
-| **409** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | B2B SSO Organization |  -  |
+| **400** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **409** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -1598,8 +1599,85 @@ namespace Example
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | onboardingPortalLink |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+<a id="validateopl"></a>
+# **ValidateOpl**
+> Task&lt;IValidateOplApiResponse&gt; ValidateOplAsync(string projectId, Option<string> body = default, System.Threading.CancellationToken cancellationToken = default)
+
+Validate an Ory Permission Language document
+
+Parses an OPL document using the same product limits and subscription entitlements applied when the project's configuration is saved.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ory.Client.Api;
+using Ory.Client.Client;
+using Ory.Client.Extensions;
+using Ory.Client.Model;
+
+namespace Example
+{
+    public class ValidateOplExample
+    {
+        public static async Task Main()
+        {
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureApi((context, services, options) =>
+                {
+                    // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+                    options.AddTokens(new BearerToken("<your token>"));
+                    options.AddApiHttpClients();
+                })
+                .Build();
+
+            var api = host.Services.GetRequiredService<IProjectApi>();
+            string projectId = default!; // The project's ID.
+            Option<string> body = default!; //  (optional)
+            var response = await api.ValidateOplAsync(projectId, body);
+            ClientOplValidateResult? model = response.Ok();
+        }
+    }
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **projectId** | **string** | The project&#39;s ID. |  |
+| **body** | **string** |  | [optional]  |
+
+### Return type
+
+[**ClientOplValidateResult**](../models/ClientOplValidateResult.md)
+
+### Authorization
+
+[oryWorkspaceApiKey](../../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | oplValidateResult is returned by OPL validation. |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

@@ -1042,13 +1042,14 @@ defmodule Ory.Api.OAuth2 do
 
   @doc """
   Rotate OAuth 2.0 Client Secret
-  Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.
+  Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.  Supply `client_secret` in the request body to rotate to a specific value instead of a generated one. The request body is optional.
 
   ### Parameters
 
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): OAuth 2.0 Client ID
   - `opts` (keyword): Optional parameters
+    - `:body` (RotateOAuth2ClientSecretBody): 
 
   ### Returns
 
@@ -1056,11 +1057,16 @@ defmodule Ory.Api.OAuth2 do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec rotate_o_auth2_client_secret(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def rotate_o_auth2_client_secret(connection, id, _opts \\ []) do
+  def rotate_o_auth2_client_secret(connection, id, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+
     request =
       %{}
       |> method(:post)
       |> url("/admin/clients/#{id}/secrets/rotate")
+      |> add_optional_params(optional_params, opts)
       |> ensure_body()
       |> Enum.into([])
 
@@ -1068,6 +1074,7 @@ defmodule Ory.Api.OAuth2 do
     |> Connection.request(request)
     |> evaluate_response([
       {200, Ory.Model.OAuth2Client},
+      {400, Ory.Model.ErrorOAuth2},
       {404, Ory.Model.ErrorOAuth2},
       {:default, Ory.Model.ErrorOAuth2}
     ])

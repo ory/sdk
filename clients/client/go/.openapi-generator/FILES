@@ -27,6 +27,7 @@ docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
 docs/AddProjectToWorkspaceBody.md
+docs/AddWorkspaceOrganizationDomainBody.md
 docs/AdminIdentityImportCredentialsLookupSecret.md
 docs/AdminIdentityImportCredentialsLookupSecretConfig.md
 docs/AdminRevokeImportedApiKeyBody.md
@@ -34,6 +35,7 @@ docs/AdminRevokeIssuedApiKeyBody.md
 docs/AdminRotateIssuedApiKeyBody.md
 docs/AdminUpdateImportedApiKeyRequest.md
 docs/AdminUpdateIssuedApiKeyRequest.md
+docs/AiAssistantSessionToken.md
 docs/Any.md
 docs/ApiKeysAPI.md
 docs/Attribute.md
@@ -92,6 +94,7 @@ docs/CreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
+docs/CreateWorkspaceContactBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
@@ -111,6 +114,7 @@ docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceType.md
 docs/DeviceUserAuthRequest.md
+docs/DomainVerificationStatus.md
 docs/ElementsAPI.md
 docs/ElementsConfiguration.md
 docs/EmailTemplateData.md
@@ -123,6 +127,7 @@ docs/ErrorOAuth2.md
 docs/EventStream.md
 docs/EventsAPI.md
 docs/ExpandedPermissionTree.md
+docs/FeatureFlagsCatalogEntry.md
 docs/FlowError.md
 docs/FrontendAPI.md
 docs/GenericError.md
@@ -209,6 +214,7 @@ docs/ListImportedApiKeysResponse.md
 docs/ListInvoicesResponse.md
 docs/ListIssuedApiKeysResponse.md
 docs/ListOrganizationsResponse.md
+docs/ListWorkspaceContacts.md
 docs/ListWorkspaceProjects.md
 docs/ListWorkspaces.md
 docs/LoginFlow.md
@@ -255,6 +261,9 @@ docs/OidcUserInfo.md
 docs/OnboardingPortalLink.md
 docs/OnboardingPortalOrganization.md
 docs/OnboardingPortalTestLoginFlow.md
+docs/OplParseError.md
+docs/OplSourcePosition.md
+docs/OplValidateResult.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationByHostname.md
@@ -262,11 +271,11 @@ docs/OrganizationOnboardingPortalLinksResponse.md
 docs/PINConfig.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
+docs/PatchWorkspaceContactBody.md
 docs/PatchWorkspaceMemberBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionAPI.md
 docs/PermissionsOnWorkspace.md
-docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
 docs/PostCheckPermissionOrErrorBody.md
@@ -308,6 +317,7 @@ docs/Relationships.md
 docs/RevisionAccountExperienceCustomTranslation.md
 docs/RevocationReason.md
 docs/RotateIssuedApiKeyResponse.md
+docs/RotateOAuth2ClientSecretBody.md
 docs/RotateTalosKeyBody.md
 docs/SchemaPatch.md
 docs/SelfRevokeApiKeyRequest.md
@@ -414,10 +424,14 @@ docs/VerifyApiKeyResponse.md
 docs/VerifyUserCodeRequest.md
 docs/Version.md
 docs/Warning.md
+docs/WebAuthnRelatedOrigins.md
 docs/WellknownAPI.md
 docs/Workspace.md
 docs/WorkspaceAPI.md
 docs/WorkspaceApiKey.md
+docs/WorkspaceContact.md
+docs/WorkspaceContactRecipient.md
+docs/WorkspaceContactRecipientInput.md
 docs/WorkspaceOrganization.md
 git_push.sh
 go.mod
@@ -429,6 +443,7 @@ model_accept_o_auth2_login_request.go
 model_account_experience_colors.go
 model_account_experience_configuration.go
 model_add_project_to_workspace_body.go
+model_add_workspace_organization_domain_body.go
 model_admin_identity_import_credentials_lookup_secret.go
 model_admin_identity_import_credentials_lookup_secret_config.go
 model_admin_revoke_imported_api_key_body.go
@@ -436,6 +451,7 @@ model_admin_revoke_issued_api_key_body.go
 model_admin_rotate_issued_api_key_body.go
 model_admin_update_imported_api_key_request.go
 model_admin_update_issued_api_key_request.go
+model_ai_assistant_session_token.go
 model_any.go
 model_attribute.go
 model_attribute_filter.go
@@ -492,6 +508,7 @@ model_create_test_login_flow_from_onboarding_portal_link_body.go
 model_create_verifiable_credential_request_body.go
 model_create_workspace_api_key_body.go
 model_create_workspace_body.go
+model_create_workspace_contact_body.go
 model_create_workspace_member_invite_body.go
 model_create_workspace_organization_body.go
 model_create_workspace_subscription_body.go
@@ -511,6 +528,7 @@ model_device_authn_key.go
 model_device_authorization.go
 model_device_type.go
 model_device_user_auth_request.go
+model_domain_verification_status.go
 model_elements_configuration.go
 model_email_template_data.go
 model_email_template_data_body.go
@@ -521,6 +539,7 @@ model_error_generic.go
 model_error_o_auth2.go
 model_event_stream.go
 model_expanded_permission_tree.go
+model_feature_flags_catalog_entry.go
 model_flow_error.go
 model_generic_error.go
 model_generic_error_content.go
@@ -604,6 +623,7 @@ model_list_imported_api_keys_response.go
 model_list_invoices_response.go
 model_list_issued_api_keys_response.go
 model_list_organizations_response.go
+model_list_workspace_contacts.go
 model_list_workspace_projects.go
 model_list_workspaces.go
 model_login_flow.go
@@ -647,17 +667,20 @@ model_oidc_user_info.go
 model_onboarding_portal_link.go
 model_onboarding_portal_organization.go
 model_onboarding_portal_test_login_flow.go
+model_opl_parse_error.go
+model_opl_source_position.go
+model_opl_validate_result.go
 model_organization.go
 model_organization_body.go
 model_organization_by_hostname.go
 model_organization_onboarding_portal_links_response.go
 model_parse_error.go
 model_patch_identities_body.go
+model_patch_workspace_contact_body.go
 model_patch_workspace_member_body.go
 model_perform_native_logout_body.go
 model_permissions_on_workspace.go
 model_pin_config.go
-model_plan.go
 model_plan_details.go
 model_post_check_permission_body.go
 model_post_check_permission_or_error_body.go
@@ -697,6 +720,7 @@ model_revision_account_experience_custom_translation.go
 model_revocation_reason.go
 model_rfc6749_error_json.go
 model_rotate_issued_api_key_response.go
+model_rotate_o_auth2_client_secret_body.go
 model_rotate_talos_key_body.go
 model_schema_patch.go
 model_self_revoke_api_key_request.go
@@ -803,8 +827,12 @@ model_verify_api_key_response.go
 model_verify_user_code_request.go
 model_version.go
 model_warning.go
+model_web_authn_related_origins.go
 model_workspace.go
 model_workspace_api_key.go
+model_workspace_contact.go
+model_workspace_contact_recipient.go
+model_workspace_contact_recipient_input.go
 model_workspace_organization.go
 response.go
 test/api_api_keys_test.go

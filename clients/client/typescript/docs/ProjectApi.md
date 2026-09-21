@@ -13,7 +13,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 |[**deleteProjectApiKey**](#deleteprojectapikey) | **DELETE** /projects/{project}/tokens/{token_id} | Delete project API key|
 |[**getOrganization**](#getorganization) | **GET** /projects/{project_id}/organizations/{organization_id} | Get Enterprise SSO Organization by ID|
 |[**getOrganizationOnboardingPortalLinks**](#getorganizationonboardingportallinks) | **GET** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links | Get the organization onboarding portal links|
-|[**getProject**](#getproject) | **GET** /projects/{project_id} | Get a Project|
+|[**getProject**](#getproject) | **GET** /projects/{project_id} | Get an Ory Network Project Configuration|
 |[**getProjectMembers**](#getprojectmembers) | **GET** /projects/{project}/members | Get all members associated with this project|
 |[**listOrganizations**](#listorganizations) | **GET** /projects/{project_id}/organizations | List all Enterprise SSO organizations|
 |[**listProjectApiKeys**](#listprojectapikeys) | **GET** /projects/{project}/tokens | List a project\&#39;s API keys|
@@ -25,6 +25,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 |[**setProject**](#setproject) | **PUT** /projects/{project_id} | Update an Ory Network Project Configuration|
 |[**updateOrganization**](#updateorganization) | **PUT** /projects/{project_id}/organizations/{organization_id} | Update an Enterprise SSO Organization|
 |[**updateOrganizationOnboardingPortalLink**](#updateorganizationonboardingportallink) | **POST** /projects/{project_id}/organizations/{organization_id}/onboarding-portal-links/{onboarding_portal_link_id} | Update organization onboarding portal link|
+|[**validateOpl**](#validateopl) | **POST** /projects/{project_id}/opl/validate | Validate an Ory Permission Language document|
 
 # **createOrganization**
 > Organization createOrganization()
@@ -77,11 +78,11 @@ const { status, data } = await apiInstance.createOrganization(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**201** | organization |  -  |
-|**400** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**409** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**201** | B2B SSO Organization |  -  |
+|**400** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**409** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -139,8 +140,8 @@ const { status, data } = await apiInstance.createOrganizationOnboardingPortalLin
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**201** | onboardingPortalLink |  -  |
-|**0** | errorGeneric |  -  |
+|**201** | Created |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -192,12 +193,12 @@ const { status, data } = await apiInstance.createProject(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**201** | project |  -  |
-|**400** | errorGeneric |  -  |
-|**401** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**404** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**201** | Created |  -  |
+|**400** | JSON API Error Response |  -  |
+|**401** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -252,8 +253,8 @@ const { status, data } = await apiInstance.createProjectApiKey(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**201** | projectApiKey |  -  |
-|**0** | errorGeneric |  -  |
+|**201** | Created |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -308,11 +309,11 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**400** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**404** | errorGeneric |  -  |
-|**409** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**400** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**409** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -370,9 +371,9 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**400** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**400** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -427,7 +428,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | errorGeneric |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -481,11 +482,11 @@ const { status, data } = await apiInstance.getOrganization(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | getOrganizationResponse |  -  |
-|**400** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**404** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**200** | getOrganizationResponse represents a B2B SSO Organization. |  -  |
+|**400** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -539,17 +540,17 @@ const { status, data } = await apiInstance.getOrganizationOnboardingPortalLinks(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | organizationOnboardingPortalLinksResponse |  -  |
-|**400** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**200** | OK |  -  |
+|**400** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getProject**
 > Project getProject()
 
-Get a project you have access to by its ID.
+Returns the project rendered into the configuration format the open source projects use (e.g. Ory Kratos for Identity, Ory Keto for Permissions), including the values Ory fills in for the project, such as the resolved base URLs.  The rendered configuration does not carry the operational configuration items (e.g. port, tracing, logging) available in the open source.
 
 ### Example
 
@@ -593,11 +594,11 @@ const { status, data } = await apiInstance.getProject(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | project |  -  |
-|**401** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**404** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**200** | OK |  -  |
+|**401** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -648,10 +649,10 @@ const { status, data } = await apiInstance.getProjectMembers(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | projectMembers |  -  |
-|**401** | genericError |  -  |
-|**406** | genericError |  -  |
-|**0** | genericError |  -  |
+|**200** | OK |  -  |
+|**401** | Error response |  -  |
+|**406** | Error response |  -  |
+|**0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -711,10 +712,10 @@ const { status, data } = await apiInstance.listOrganizations(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | listOrganizationsResponse |  -  |
-|**400** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**200** | B2B SSO Organization List |  -  |
+|**400** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -765,8 +766,8 @@ const { status, data } = await apiInstance.listProjectApiKeys(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | projectApiKeys |  -  |
-|**0** | errorGeneric |  -  |
+|**200** | OK |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -810,11 +811,11 @@ This endpoint does not have any parameters.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | projectMetadataList |  -  |
-|**401** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**404** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**200** | OK |  -  |
+|**401** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -868,12 +869,12 @@ const { status, data } = await apiInstance.patchProject(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | successfulProjectUpdate |  -  |
-|**400** | errorGeneric |  -  |
-|**401** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**404** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**200** | OK |  -  |
+|**400** | JSON API Error Response |  -  |
+|**401** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -930,13 +931,13 @@ const { status, data } = await apiInstance.patchProjectWithRevision(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | successfulProjectUpdate |  -  |
-|**400** | errorGeneric |  -  |
-|**401** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**404** | errorGeneric |  -  |
-|**409** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**200** | OK |  -  |
+|**400** | JSON API Error Response |  -  |
+|**401** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**409** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -988,10 +989,10 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**401** | genericError |  -  |
-|**403** | genericError |  -  |
-|**404** | genericError |  -  |
-|**0** | genericError |  -  |
+|**401** | Error response |  -  |
+|**403** | Error response |  -  |
+|**404** | Error response |  -  |
+|**0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1046,9 +1047,9 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**401** | genericError |  -  |
-|**406** | genericError |  -  |
-|**0** | genericError |  -  |
+|**401** | Error response |  -  |
+|**406** | Error response |  -  |
+|**0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1103,12 +1104,12 @@ const { status, data } = await apiInstance.setProject(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | successfulProjectUpdate |  -  |
-|**400** | errorGeneric |  -  |
-|**401** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**404** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**200** | OK |  -  |
+|**400** | JSON API Error Response |  -  |
+|**401** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1166,12 +1167,12 @@ const { status, data } = await apiInstance.updateOrganization(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | organization |  -  |
-|**400** | errorGeneric |  -  |
-|**403** | errorGeneric |  -  |
-|**404** | errorGeneric |  -  |
-|**409** | errorGeneric |  -  |
-|**0** | errorGeneric |  -  |
+|**200** | B2B SSO Organization |  -  |
+|**400** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**409** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1232,8 +1233,67 @@ const { status, data } = await apiInstance.updateOrganizationOnboardingPortalLin
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | onboardingPortalLink |  -  |
-|**0** | errorGeneric |  -  |
+|**200** | OK |  -  |
+|**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **validateOpl**
+> OplValidateResult validateOpl()
+
+Parses an OPL document using the same product limits and subscription entitlements applied when the project\'s configuration is saved.
+
+### Example
+
+```typescript
+import {
+    ProjectApi,
+    Configuration
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new ProjectApi(configuration);
+
+let projectId: string; //The project\'s ID. (default to undefined)
+let body: string; // (optional)
+
+const { status, data } = await apiInstance.validateOpl(
+    projectId,
+    body
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **body** | **string**|  | |
+| **projectId** | [**string**] | The project\&#39;s ID. | defaults to undefined|
+
+
+### Return type
+
+**OplValidateResult**
+
+### Authorization
+
+[oryWorkspaceApiKey](../README.md#oryWorkspaceApiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | oplValidateResult is returned by OPL validation. |  -  |
+|**400** | JSON API Error Response |  -  |
+|**401** | JSON API Error Response |  -  |
+|**403** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

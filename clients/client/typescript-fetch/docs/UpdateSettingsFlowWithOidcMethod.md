@@ -7,6 +7,7 @@ Update Settings Flow with OpenID Connect Method
 
 Name | Type
 ------------ | -------------
+`csrf_token` | string
 `flow` | string
 `link` | string
 `method` | string
@@ -22,6 +23,7 @@ import type { UpdateSettingsFlowWithOidcMethod } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "csrf_token": null,
   "flow": null,
   "link": null,
   "method": null,

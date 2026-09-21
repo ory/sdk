@@ -106,8 +106,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2RedirectTo |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | OAuth 2.0 Redirect Browser To |  -  |
+| **0** | Error |  -  |
 
 <a id="acceptOAuth2LoginRequest"></a>
 # **acceptOAuth2LoginRequest**
@@ -176,8 +176,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2RedirectTo |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | OAuth 2.0 Redirect Browser To |  -  |
+| **0** | Error |  -  |
 
 <a id="acceptOAuth2LogoutRequest"></a>
 # **acceptOAuth2LogoutRequest**
@@ -244,8 +244,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2RedirectTo |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | OAuth 2.0 Redirect Browser To |  -  |
+| **0** | Error |  -  |
 
 <a id="acceptUserCodeRequest"></a>
 # **acceptUserCodeRequest**
@@ -314,8 +314,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2RedirectTo |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | OAuth 2.0 Redirect Browser To |  -  |
+| **0** | Error |  -  |
 
 <a id="createOAuth2Client"></a>
 # **createOAuth2Client**
@@ -382,7 +382,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | oAuth2Client |  -  |
+| **201** | OAuth 2.0 Client |  -  |
 | **400** | Bad Request Error Response |  -  |
 | **0** | Default Error Response |  -  |
 
@@ -451,7 +451,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | genericError |  -  |
+| **0** | Default response |  -  |
 
 <a id="deleteOAuth2Token"></a>
 # **deleteOAuth2Token**
@@ -518,7 +518,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorOAuth2 |  -  |
+| **0** | Error |  -  |
 
 <a id="deleteRotatedOAuth2ClientSecrets"></a>
 # **deleteRotatedOAuth2ClientSecrets**
@@ -585,7 +585,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2Client |  -  |
+| **200** | OAuth 2.0 Client |  -  |
 | **404** | Not Found Error Response |  -  |
 | **0** | Default Error Response |  -  |
 
@@ -654,7 +654,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | genericError |  -  |
+| **0** | Default response |  -  |
 
 <a id="getOAuth2Client"></a>
 # **getOAuth2Client**
@@ -721,7 +721,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2Client |  -  |
+| **200** | OAuth 2.0 Client |  -  |
 | **0** | Default Error Response |  -  |
 
 <a id="getOAuth2ConsentRequest"></a>
@@ -789,9 +789,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2ConsentRequest |  -  |
-| **410** | oAuth2RedirectTo |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | Contains information on an ongoing consent request. |  -  |
+| **410** | OAuth 2.0 Redirect Browser To |  -  |
+| **0** | Error |  -  |
 
 <a id="getOAuth2LoginRequest"></a>
 # **getOAuth2LoginRequest**
@@ -858,9 +858,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2LoginRequest |  -  |
-| **410** | oAuth2RedirectTo |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | Contains information on an ongoing login request. |  -  |
+| **410** | OAuth 2.0 Redirect Browser To |  -  |
+| **0** | Error |  -  |
 
 <a id="getOAuth2LogoutRequest"></a>
 # **getOAuth2LogoutRequest**
@@ -927,8 +927,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2LogoutRequest |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | Contains information about an ongoing logout request. |  -  |
+| **0** | Error |  -  |
 
 <a id="getTrustedOAuth2JwtGrantIssuer"></a>
 # **getTrustedOAuth2JwtGrantIssuer**
@@ -995,8 +995,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | trustedOAuth2JwtGrantIssuer |  -  |
-| **0** | genericError |  -  |
+| **200** | OAuth2 JWT Bearer Grant Type Issuer Trust Relationship |  -  |
+| **0** | Default response |  -  |
 
 <a id="introspectOAuth2Token"></a>
 # **introspectOAuth2Token**
@@ -1065,8 +1065,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | introspectedOAuth2Token |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | Introspection contains an access token&#39;s session data as specified by [IETF RFC 7662](https://tools.ietf.org/html/rfc7662) |  -  |
+| **0** | Error |  -  |
 
 <a id="listOAuth2Clients"></a>
 # **listOAuth2Clients**
@@ -1213,8 +1213,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2ConsentSessions |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | List of OAuth 2.0 Consent Sessions |  -  |
+| **0** | Error |  -  |
 
 <a id="listTrustedOAuth2JwtGrantIssuers"></a>
 # **listTrustedOAuth2JwtGrantIssuers**
@@ -1285,8 +1285,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | trustedOAuth2JwtGrantIssuers |  -  |
-| **0** | genericError |  -  |
+| **200** | OAuth2 JWT Bearer Grant Type Issuer Trust Relationships |  -  |
+| **0** | Default response |  -  |
 
 <a id="oAuth2Authorize"></a>
 # **oAuth2Authorize**
@@ -1345,7 +1345,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorOAuth2 |  -  |
+| **0** | Error |  -  |
 
 <a id="oAuth2DeviceFlow"></a>
 # **oAuth2DeviceFlow**
@@ -1403,8 +1403,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | deviceAuthorization |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | OAuth2 Device Flow |  -  |
+| **0** | Error |  -  |
 
 <a id="oauth2TokenExchange"></a>
 # **oauth2TokenExchange**
@@ -1484,8 +1484,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2TokenExchange |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | OAuth2 Token Exchange Result |  -  |
+| **0** | Error |  -  |
 
 <a id="patchOAuth2Client"></a>
 # **patchOAuth2Client**
@@ -1554,7 +1554,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2Client |  -  |
+| **200** | OAuth 2.0 Client |  -  |
 | **404** | Not Found Error Response |  -  |
 | **0** | Default Error Response |  -  |
 
@@ -1615,7 +1615,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorOAuth2 |  -  |
+| **0** | Error |  -  |
 
 <a id="rejectOAuth2ConsentRequest"></a>
 # **rejectOAuth2ConsentRequest**
@@ -1684,8 +1684,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2RedirectTo |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | OAuth 2.0 Redirect Browser To |  -  |
+| **0** | Error |  -  |
 
 <a id="rejectOAuth2LoginRequest"></a>
 # **rejectOAuth2LoginRequest**
@@ -1754,8 +1754,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2RedirectTo |  -  |
-| **0** | errorOAuth2 |  -  |
+| **200** | OAuth 2.0 Redirect Browser To |  -  |
+| **0** | Error |  -  |
 
 <a id="rejectOAuth2LogoutRequest"></a>
 # **rejectOAuth2LogoutRequest**
@@ -1822,7 +1822,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorOAuth2 |  -  |
+| **0** | Error |  -  |
 
 <a id="revokeOAuth2ConsentSessions"></a>
 # **revokeOAuth2ConsentSessions**
@@ -1895,7 +1895,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorOAuth2 |  -  |
+| **0** | Error |  -  |
 
 <a id="revokeOAuth2LoginSessions"></a>
 # **revokeOAuth2LoginSessions**
@@ -1964,7 +1964,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorOAuth2 |  -  |
+| **0** | Error |  -  |
 
 <a id="revokeOAuth2Token"></a>
 # **revokeOAuth2Token**
@@ -2040,15 +2040,15 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorOAuth2 |  -  |
+| **0** | Error |  -  |
 
 <a id="rotateOAuth2ClientSecret"></a>
 # **rotateOAuth2ClientSecret**
-> OAuth2Client rotateOAuth2ClientSecret(id)
+> OAuth2Client rotateOAuth2ClientSecret(id, rotateOAuth2ClientSecretBody)
 
 Rotate OAuth 2.0 Client Secret
 
-Rotates an OAuth 2.0 client&#39;s secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the &#x60;deleteRotatedOAuth2ClientSecrets&#x60; endpoint to remove old rotated secrets when they are no longer needed.
+Rotates an OAuth 2.0 client&#39;s secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the &#x60;deleteRotatedOAuth2ClientSecrets&#x60; endpoint to remove old rotated secrets when they are no longer needed.  Supply &#x60;client_secret&#x60; in the request body to rotate to a specific value instead of a generated one. The request body is optional.
 
 ### Example
 ```java
@@ -2071,8 +2071,9 @@ public class Example {
 
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String id = "id_example"; // String | OAuth 2.0 Client ID
+    RotateOAuth2ClientSecretBody rotateOAuth2ClientSecretBody = new RotateOAuth2ClientSecretBody(); // RotateOAuth2ClientSecretBody | 
     try {
-      OAuth2Client result = apiInstance.rotateOAuth2ClientSecret(id);
+      OAuth2Client result = apiInstance.rotateOAuth2ClientSecret(id, rotateOAuth2ClientSecretBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#rotateOAuth2ClientSecret");
@@ -2090,6 +2091,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| OAuth 2.0 Client ID | |
+| **rotateOAuth2ClientSecretBody** | [**RotateOAuth2ClientSecretBody**](RotateOAuth2ClientSecretBody.md)|  | [optional] |
 
 ### Return type
 
@@ -2101,13 +2103,14 @@ public class Example {
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2Client |  -  |
+| **200** | OAuth 2.0 Client |  -  |
+| **400** | Bad Request Error Response |  -  |
 | **404** | Not Found Error Response |  -  |
 | **0** | Default Error Response |  -  |
 
@@ -2178,7 +2181,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2Client |  -  |
+| **200** | OAuth 2.0 Client |  -  |
 | **400** | Bad Request Error Response |  -  |
 | **404** | Not Found Error Response |  -  |
 | **0** | Default Error Response |  -  |
@@ -2250,8 +2253,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | oAuth2Client |  -  |
-| **0** | genericError |  -  |
+| **200** | OAuth 2.0 Client |  -  |
+| **0** | Default response |  -  |
 
 <a id="trustOAuth2JwtGrantIssuer"></a>
 # **trustOAuth2JwtGrantIssuer**
@@ -2318,6 +2321,6 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | trustedOAuth2JwtGrantIssuer |  -  |
-| **0** | genericError |  -  |
+| **201** | OAuth2 JWT Bearer Grant Type Issuer Trust Relationship |  -  |
+| **0** | Default response |  -  |
 

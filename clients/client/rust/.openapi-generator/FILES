@@ -10,6 +10,7 @@ docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
 docs/AddProjectToWorkspaceBody.md
+docs/AddWorkspaceOrganizationDomainBody.md
 docs/AdminIdentityImportCredentialsLookupSecret.md
 docs/AdminIdentityImportCredentialsLookupSecretConfig.md
 docs/AdminRevokeImportedApiKeyBody.md
@@ -17,6 +18,7 @@ docs/AdminRevokeIssuedApiKeyBody.md
 docs/AdminRotateIssuedApiKeyBody.md
 docs/AdminUpdateImportedApiKeyRequest.md
 docs/AdminUpdateIssuedApiKeyRequest.md
+docs/AiAssistantSessionToken.md
 docs/Any.md
 docs/ApiKeysApi.md
 docs/Attribute.md
@@ -75,6 +77,7 @@ docs/CreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
+docs/CreateWorkspaceContactBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
@@ -94,6 +97,7 @@ docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceType.md
 docs/DeviceUserAuthRequest.md
+docs/DomainVerificationStatus.md
 docs/ElementsApi.md
 docs/ElementsConfiguration.md
 docs/EmailTemplateData.md
@@ -106,6 +110,7 @@ docs/ErrorOAuth2.md
 docs/EventStream.md
 docs/EventsApi.md
 docs/ExpandedPermissionTree.md
+docs/FeatureFlagsCatalogEntry.md
 docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
@@ -192,6 +197,7 @@ docs/ListImportedApiKeysResponse.md
 docs/ListInvoicesResponse.md
 docs/ListIssuedApiKeysResponse.md
 docs/ListOrganizationsResponse.md
+docs/ListWorkspaceContacts.md
 docs/ListWorkspaceProjects.md
 docs/ListWorkspaces.md
 docs/LoginFlow.md
@@ -238,18 +244,21 @@ docs/OidcUserInfo.md
 docs/OnboardingPortalLink.md
 docs/OnboardingPortalOrganization.md
 docs/OnboardingPortalTestLoginFlow.md
+docs/OplParseError.md
+docs/OplSourcePosition.md
+docs/OplValidateResult.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationByHostname.md
 docs/OrganizationOnboardingPortalLinksResponse.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
+docs/PatchWorkspaceContactBody.md
 docs/PatchWorkspaceMemberBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
 docs/PermissionsOnWorkspace.md
 docs/PinConfig.md
-docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
 docs/PostCheckPermissionOrErrorBody.md
@@ -291,6 +300,7 @@ docs/RevisionAccountExperienceCustomTranslation.md
 docs/RevocationReason.md
 docs/Rfc6749ErrorJson.md
 docs/RotateIssuedApiKeyResponse.md
+docs/RotateOAuth2ClientSecretBody.md
 docs/RotateTalosKeyBody.md
 docs/SchemaPatch.md
 docs/SelfRevokeApiKeyRequest.md
@@ -397,10 +407,14 @@ docs/VerifyApiKeyResponse.md
 docs/VerifyUserCodeRequest.md
 docs/Version.md
 docs/Warning.md
+docs/WebAuthnRelatedOrigins.md
 docs/WellknownApi.md
 docs/Workspace.md
 docs/WorkspaceApi.md
 docs/WorkspaceApiKey.md
+docs/WorkspaceContact.md
+docs/WorkspaceContactRecipient.md
+docs/WorkspaceContactRecipientInput.md
 docs/WorkspaceOrganization.md
 git_push.sh
 src/apis/api_keys_api.rs
@@ -428,6 +442,7 @@ src/models/accept_o_auth2_login_request.rs
 src/models/account_experience_colors.rs
 src/models/account_experience_configuration.rs
 src/models/add_project_to_workspace_body.rs
+src/models/add_workspace_organization_domain_body.rs
 src/models/admin_identity_import_credentials_lookup_secret.rs
 src/models/admin_identity_import_credentials_lookup_secret_config.rs
 src/models/admin_revoke_imported_api_key_body.rs
@@ -435,6 +450,7 @@ src/models/admin_revoke_issued_api_key_body.rs
 src/models/admin_rotate_issued_api_key_body.rs
 src/models/admin_update_imported_api_key_request.rs
 src/models/admin_update_issued_api_key_request.rs
+src/models/ai_assistant_session_token.rs
 src/models/any.rs
 src/models/attribute.rs
 src/models/attribute_filter.rs
@@ -491,6 +507,7 @@ src/models/create_test_login_flow_from_onboarding_portal_link_body.rs
 src/models/create_verifiable_credential_request_body.rs
 src/models/create_workspace_api_key_body.rs
 src/models/create_workspace_body.rs
+src/models/create_workspace_contact_body.rs
 src/models/create_workspace_member_invite_body.rs
 src/models/create_workspace_organization_body.rs
 src/models/create_workspace_subscription_body.rs
@@ -510,6 +527,7 @@ src/models/device_authn_key.rs
 src/models/device_authorization.rs
 src/models/device_type.rs
 src/models/device_user_auth_request.rs
+src/models/domain_verification_status.rs
 src/models/elements_configuration.rs
 src/models/email_template_data.rs
 src/models/email_template_data_body.rs
@@ -520,6 +538,7 @@ src/models/error_generic.rs
 src/models/error_o_auth2.rs
 src/models/event_stream.rs
 src/models/expanded_permission_tree.rs
+src/models/feature_flags_catalog_entry.rs
 src/models/flow_error.rs
 src/models/generic_error.rs
 src/models/generic_error_content.rs
@@ -603,6 +622,7 @@ src/models/list_imported_api_keys_response.rs
 src/models/list_invoices_response.rs
 src/models/list_issued_api_keys_response.rs
 src/models/list_organizations_response.rs
+src/models/list_workspace_contacts.rs
 src/models/list_workspace_projects.rs
 src/models/list_workspaces.rs
 src/models/login_flow.rs
@@ -647,17 +667,20 @@ src/models/oidc_user_info.rs
 src/models/onboarding_portal_link.rs
 src/models/onboarding_portal_organization.rs
 src/models/onboarding_portal_test_login_flow.rs
+src/models/opl_parse_error.rs
+src/models/opl_source_position.rs
+src/models/opl_validate_result.rs
 src/models/organization.rs
 src/models/organization_body.rs
 src/models/organization_by_hostname.rs
 src/models/organization_onboarding_portal_links_response.rs
 src/models/parse_error.rs
 src/models/patch_identities_body.rs
+src/models/patch_workspace_contact_body.rs
 src/models/patch_workspace_member_body.rs
 src/models/perform_native_logout_body.rs
 src/models/permissions_on_workspace.rs
 src/models/pin_config.rs
-src/models/plan.rs
 src/models/plan_details.rs
 src/models/post_check_permission_body.rs
 src/models/post_check_permission_or_error_body.rs
@@ -697,6 +720,7 @@ src/models/revision_account_experience_custom_translation.rs
 src/models/revocation_reason.rs
 src/models/rfc6749_error_json.rs
 src/models/rotate_issued_api_key_response.rs
+src/models/rotate_o_auth2_client_secret_body.rs
 src/models/rotate_talos_key_body.rs
 src/models/schema_patch.rs
 src/models/self_revoke_api_key_request.rs
@@ -803,6 +827,10 @@ src/models/verify_api_key_response.rs
 src/models/verify_user_code_request.rs
 src/models/version.rs
 src/models/warning.rs
+src/models/web_authn_related_origins.rs
 src/models/workspace.rs
 src/models/workspace_api_key.rs
+src/models/workspace_contact.rs
+src/models/workspace_contact_recipient.rs
+src/models/workspace_contact_recipient_input.rs
 src/models/workspace_organization.rs

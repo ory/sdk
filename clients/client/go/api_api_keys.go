@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.66
+API version: v1.22.78
 Contact: support@ory.sh
 */
 
@@ -104,14 +104,14 @@ DELETE /v2alpha1/admin/importedApiKeys/{key_id}
 	/*
 	AdminDeriveToken Derive Token
 
-	Mints a short-lived JWT or Macaroon token from an API key. Works with both
-issued and imported keys. The derived token inherits the permissions of the
-parent API key.
+	Mints a short-lived JWT or Macaroon token from an issued or imported root
+API key. Derived JWTs and Macaroons cannot mint successor tokens. The
+derived token inherits the permissions of the parent API key.
 
 ```http
 POST /v2alpha1/admin/apiKeys:derive
 {
-  "credential": "eyJhbGciOiJFZERTQSI...",
+  "credential": "ory_ak_v1_...",
   "ttl": "1h"
 }
 ```
@@ -450,10 +450,11 @@ GET /v2alpha1/derivedKeys/jwks.json
 request/response messages disambiguates from the admin variants
 (`AdminRevokeIssuedApiKey` / `AdminRevokeImportedApiKey`).
 
-Allows an API key holder to revoke their own key. The caller must provide
-the full API key secret as proof of possession. Supports issued API keys
-and imported keys. JWT and macaroon tokens cannot be self-revoked (they
-are stateless).
+Allows an API key holder to revoke their own non-public issued or imported
+key by providing the full secret as proof of possession. Active public
+keys require an admin revocation endpoint and return PermissionDenied
+(HTTP 403 Forbidden) here. Already-revoked keys return success. JWT and
+macaroon tokens cannot be self-revoked (they are stateless).
 
 The PRIVILEGE_WITHDRAWN reason is not allowed for self-revocation
 (admin-only).
@@ -890,14 +891,14 @@ func (r ApiKeysAPIAdminDeriveTokenRequest) Execute() (*DeriveTokenResponse, *htt
 /*
 AdminDeriveToken Derive Token
 
-Mints a short-lived JWT or Macaroon token from an API key. Works with both
-issued and imported keys. The derived token inherits the permissions of the
-parent API key.
+Mints a short-lived JWT or Macaroon token from an issued or imported root
+API key. Derived JWTs and Macaroons cannot mint successor tokens. The
+derived token inherits the permissions of the parent API key.
 
 ```http
 POST /v2alpha1/admin/apiKeys:derive
 {
-  "credential": "eyJhbGciOiJFZERTQSI...",
+  "credential": "ory_ak_v1_...",
   "ttl": "1h"
 }
 ```
@@ -2740,10 +2741,11 @@ Proof-of-possession variant of revocation. The `Self*` prefix on the
 request/response messages disambiguates from the admin variants
 (`AdminRevokeIssuedApiKey` / `AdminRevokeImportedApiKey`).
 
-Allows an API key holder to revoke their own key. The caller must provide
-the full API key secret as proof of possession. Supports issued API keys
-and imported keys. JWT and macaroon tokens cannot be self-revoked (they
-are stateless).
+Allows an API key holder to revoke their own non-public issued or imported
+key by providing the full secret as proof of possession. Active public
+keys require an admin revocation endpoint and return PermissionDenied
+(HTTP 403 Forbidden) here. Already-revoked keys return success. JWT and
+macaroon tokens cannot be self-revoked (they are stateless).
 
 The PRIVILEGE_WITHDRAWN reason is not allowed for self-revocation
 (admin-only).

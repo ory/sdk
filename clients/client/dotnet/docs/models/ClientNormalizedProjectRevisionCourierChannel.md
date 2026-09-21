@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **RequestConfigBody** | **string** | URI pointing to the JsonNet template used for HTTP body payload generation. | 
 **RequestConfigMethod** | **string** | The HTTP method to use (GET, POST, etc) for the HTTP call | 
 **CreatedAt** | **DateTime** | The creation date | [optional] [readonly] 
-**RequestConfigAuthConfigApiKeyIn** | **string** | API key location  Can either be \&quot;header\&quot; or \&quot;query\&quot; | [optional] 
+**RequestConfigAuthConfigApiKeyIn** | **string** | API key location  Can either be \&quot;header\&quot; or \&quot;query\&quot;  Only used if the auth type is api_key | [optional] 
 **RequestConfigAuthConfigApiKeyName** | **string** | API key name  Only used if the auth type is api_key | [optional] 
 **RequestConfigAuthConfigApiKeyValue** | **string** | API key value  Only used if the auth type is api_key | [optional] 
 **RequestConfigAuthConfigBasicAuthPassword** | **string** | Basic Auth Password  Only used if the auth type is basic_auth | [optional] 

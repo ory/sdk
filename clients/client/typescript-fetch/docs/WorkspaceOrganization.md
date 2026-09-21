@@ -9,6 +9,7 @@ Name | Type
 `active_link` | [OnboardingPortalLink](OnboardingPortalLink.md)
 `created_at` | Date
 `default_region` | string
+`domain_verifications` | [Array&lt;DomainVerificationStatus&gt;](DomainVerificationStatus.md)
 `domains` | Array&lt;string&gt;
 `id` | string
 `label` | string
@@ -25,6 +26,7 @@ const example = {
   "active_link": null,
   "created_at": null,
   "default_region": null,
+  "domain_verifications": null,
   "domains": null,
   "id": null,
   "label": null,

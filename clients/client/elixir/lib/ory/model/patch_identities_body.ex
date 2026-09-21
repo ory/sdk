@@ -8,11 +8,13 @@ defmodule Ory.Model.PatchIdentitiesBody do
 
   @derive Jason.Encoder
   defstruct [
-    :identities
+    :identities,
+    :with_partial_inserts
   ]
 
   @type t :: %__MODULE__{
-    :identities => [Ory.Model.IdentityPatch.t] | nil
+    :identities => [Ory.Model.IdentityPatch.t] | nil,
+    :with_partial_inserts => boolean() | nil
   }
 
   alias Ory.Deserializer

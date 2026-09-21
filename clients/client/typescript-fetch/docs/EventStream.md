@@ -8,6 +8,7 @@ Event Stream
 Name | Type
 ------------ | -------------
 `created_at` | Date
+`http_protocol_major_version` | number
 `https_endpoint` | string
 `id` | string
 `role_arn` | string
@@ -24,6 +25,7 @@ import type { EventStream } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "created_at": null,
+  "http_protocol_major_version": null,
   "https_endpoint": null,
   "id": null,
   "role_arn": null,

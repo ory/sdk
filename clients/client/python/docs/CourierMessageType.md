@@ -1,12 +1,12 @@
 # CourierMessageType
 
-It can either be `email` or `phone`
+It can either be `email` or `sms`
 
 ## Enum
 
 * `EMAIL` (value: `'email'`)
 
-* `PHONE` (value: `'phone'`)
+* `SMS` (value: `'sms'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

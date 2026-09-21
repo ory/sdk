@@ -341,8 +341,8 @@ defmodule Ory.Api.Project do
   end
 
   @doc """
-  Get a Project
-  Get a project you have access to by its ID.
+  Get an Ory Network Project Configuration
+  Returns the project rendered into the configuration format the open source projects use (e.g. Ory Kratos for Identity, Ory Keto for Permissions), including the values Ory fills in for the project, such as the resolved base URLs.  The rendered configuration does not carry the operational configuration items (e.g. port, tracing, logging) available in the open source.
 
   ### Parameters
 
@@ -789,6 +789,48 @@ defmodule Ory.Api.Project do
     |> Connection.request(request)
     |> evaluate_response([
       {200, Ory.Model.OnboardingPortalLink},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
+  Validate an Ory Permission Language document
+  Parses an OPL document using the same product limits and subscription entitlements applied when the project's configuration is saved.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `project_id` (String.t): The project's ID.
+  - `opts` (keyword): Optional parameters
+    - `:body` (String.t): 
+
+  ### Returns
+
+  - `{:ok, Ory.Model.OplValidateResult.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec validate_opl(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, Ory.Model.OplValidateResult.t} | {:error, Tesla.Env.t}
+  def validate_opl(connection, project_id, opts \\ []) do
+    optional_params = %{
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:post)
+      |> url("/projects/#{project_id}/opl/validate")
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Ory.Model.OplValidateResult},
+      {400, Ory.Model.ErrorGeneric},
+      {401, Ory.Model.ErrorGeneric},
+      {403, Ory.Model.ErrorGeneric},
+      {404, Ory.Model.ErrorGeneric},
       {:default, Ory.Model.ErrorGeneric}
     ])
   end

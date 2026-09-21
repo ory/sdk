@@ -17,7 +17,7 @@ defmodule Ory.Model.Invoice do
 
   @type t :: %__MODULE__{
     :id => String.t,
-    :invoiced_at => DateTime.t,
+    :invoiced_at => DateTime.t | nil,
     :type => String.t,
     :updated_at => DateTime.t | nil,
     :v1 => Ory.Model.InvoiceDataV1.t | nil

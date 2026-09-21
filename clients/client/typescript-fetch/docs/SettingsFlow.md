@@ -16,7 +16,7 @@ Name | Type
 `organization_id` | string
 `request_url` | string
 `return_to` | string
-`state` | any
+`state` | [SettingsFlowState](SettingsFlowState.md)
 `transient_payload` | object
 `type` | string
 `ui` | [UiContainer](UiContainer.md)

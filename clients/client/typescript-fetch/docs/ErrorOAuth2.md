@@ -23,7 +23,7 @@ const example = {
   "error": null,
   "error_debug": null,
   "error_description": null,
-  "error_hint": The redirect URL is not allowed.,
+  "error_hint": The redirect URL is not allowed,
   "status_code": 401,
 } satisfies ErrorOAuth2
 

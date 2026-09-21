@@ -88,7 +88,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | oAuth2Client |  -  |
+**201** | OAuth 2.0 Client |  -  |
 **400** | Bad Request Error Response |  -  |
 **0** | Default Error Response |  -  |
 
@@ -164,9 +164,9 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | verifiableCredentialResponse |  -  |
-**400** | verifiableCredentialPrimingResponse |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | VerifiableCredentialResponse contains the verifiable credential. |  -  |
+**400** | VerifiableCredentialPrimingResponse contains the nonce to include in the proof-of-possession JWT. |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -252,7 +252,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**0** | genericError |  -  |
+**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -319,8 +319,8 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oidcConfiguration |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | OpenID Connect Discovery Metadata |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -404,7 +404,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
+**200** | OAuth 2.0 Client |  -  |
 **0** | Default Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -481,8 +481,8 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oidcUserInfo |  -  |
-**0** | errorOAuth2 |  -  |
+**200** | OpenID Connect Userinfo |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -493,8 +493,8 @@ OpenID Connect Front- and Back-channel Enabled Logout
 
 This endpoint initiates and completes user logout at the Ory OAuth2 & OpenID provider and initiates OpenID Connect Front- / Back-channel logout:
 
-https://openid.net/specs/openid-connect-frontchannel-1_0.html
-https://openid.net/specs/openid-connect-backchannel-1_0.html
+- https://openid.net/specs/openid-connect-frontchannel-1_0.html
+- https://openid.net/specs/openid-connect-backchannel-1_0.html
 
 Back-channel logout is performed asynchronously and does not affect logout flow.
 
@@ -642,7 +642,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | oAuth2Client |  -  |
+**200** | OAuth 2.0 Client |  -  |
 **404** | Not Found Error Response |  -  |
 **0** | Default Error Response |  -  |
 

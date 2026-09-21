@@ -33,7 +33,7 @@ defmodule Ory.Model.SettingsFlow do
     :organization_id => String.t | nil,
     :request_url => String.t,
     :return_to => String.t | nil,
-    :state => any() | nil,
+    :state => Ory.Model.SettingsFlowState.t,
     :transient_payload => map() | nil,
     :type => String.t,
     :ui => Ory.Model.UiContainer.t
@@ -47,6 +47,7 @@ defmodule Ory.Model.SettingsFlow do
      |> Deserializer.deserialize(:expires_at, :datetime, nil)
      |> Deserializer.deserialize(:identity, :struct, Ory.Model.Identity)
      |> Deserializer.deserialize(:issued_at, :datetime, nil)
+     |> Deserializer.deserialize(:state, :struct, Ory.Model.SettingsFlowState)
      |> Deserializer.deserialize(:ui, :struct, Ory.Model.UiContainer)
   end
 end

@@ -11,9 +11,9 @@ Name | Type | Description | Notes
 **ErrorUiUrl** | **string** |  | 
 **FaviconDarkUrl** | Pointer to **string** |  | [optional] 
 **FaviconLightUrl** | Pointer to **string** |  | [optional] 
-**HideOryBranding** | **bool** |  | 
+**HideOryBranding** | **bool** |  Whether to hide the Ory branding badge on the account experience. | 
 **HideRegistrationLink** | **bool** |  | 
-**LocaleBehavior** | **string** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
+**LocaleBehavior** | **string** | force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage | 
 **LoginUiUrl** | **string** |  | 
 **LogoDarkUrl** | Pointer to **string** |  | [optional] 
 **LogoLightUrl** | Pointer to **string** |  | [optional] 

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.66
+API version: v1.22.78
 Contact: support@ory.sh
 */
 
@@ -31,6 +31,8 @@ type JwkAPI interface {
 If the set already exists, the newly generated key is added to it and all existing keys are kept. This allows you to rotate keys: tokens signed with an older key in the set remain verifiable. Exception: when Ory Hydra is configured to use a Hardware Security Module (HSM), generating a key replaces the set, which then contains only the new key. To replace a set and all of its keys instead, use the `setJsonWebKeySet` operation (`PUT /admin/keys/{set}`).
 
 A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+While `jwks.admin_api.expose_private_keys` is disabled, responses contain public key material only, and a key with no public representation is omitted. The generated key is stored in full either way.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set The JSON Web Key Set ID
@@ -83,6 +85,9 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 
 	This endpoint returns a singular JSON Web Key contained in a set. It is identified by the set and the specific key ID (kid).
 
+While `jwks.admin_api.expose_private_keys` is disabled, responses contain public key material only, and a key with no public
+representation is omitted.
+
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set JSON Web Key Set ID
 	@param kid JSON Web Key ID
@@ -100,6 +105,8 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 	This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.
 
 A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+While `jwks.admin_api.expose_private_keys` is disabled, responses contain public key material only, and a key with no public representation is omitted.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set JSON Web Key Set ID
@@ -120,6 +127,10 @@ Warning: the key is created or updated under the `kid` given in the request body
 
 A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
 
+The response echoes the key as it was stored, including any private key material the request carried. `jwks.admin_api.expose_private_keys` governs what a read discloses and does not apply here, because this response returns only what the request already contained.
+
+While that setting is disabled, writing a public key over the last private key of a set is rejected with `400`, because reading the set returns public keys only and writing that response back would discard the key it signs with.
+
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set The JSON Web Key Set ID
 	@param kid JSON Web Key ID
@@ -139,6 +150,10 @@ A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that 
 This operation replaces the entire JSON Web Key Set: keys that exist in the set but are not part of the request body are deleted. To add a newly generated key to the set while keeping the existing keys, use the `createJsonWebKeySet` operation (`POST /admin/keys/{set}`).
 
 A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+The response echoes the key set as it was stored, including any private key material the request carried. `jwks.admin_api.expose_private_keys` governs what a read discloses and does not apply here, because this response returns only what the request already contained.
+
+While that setting is disabled, a request that would leave the key set without a private key is rejected with `400`. Reading a key set returns public keys only, so writing that response back would discard the private keys the set signs with. Retiring one key to its public half stays possible as long as the set keeps another private key, and a key set is removed with the `deleteJsonWebKeySet` operation.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param set The JSON Web Key Set ID
@@ -178,6 +193,8 @@ This endpoint is capable of generating JSON Web Key Sets for you. There are diff
 If the set already exists, the newly generated key is added to it and all existing keys are kept. This allows you to rotate keys: tokens signed with an older key in the set remain verifiable. Exception: when Ory Hydra is configured to use a Hardware Security Module (HSM), generating a key replaces the set, which then contains only the new key. To replace a set and all of its keys instead, use the `setJsonWebKeySet` operation (`PUT /admin/keys/{set}`).
 
 A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+While `jwks.admin_api.expose_private_keys` is disabled, responses contain public key material only, and a key with no public representation is omitted. The generated key is stored in full either way.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set The JSON Web Key Set ID
@@ -507,6 +524,9 @@ GetJsonWebKey Get JSON Web Key
 
 This endpoint returns a singular JSON Web Key contained in a set. It is identified by the set and the specific key ID (kid).
 
+While `jwks.admin_api.expose_private_keys` is disabled, responses contain public key material only, and a key with no public
+representation is omitted.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set JSON Web Key Set ID
  @param kid JSON Web Key ID
@@ -622,6 +642,8 @@ GetJsonWebKeySet Retrieve a JSON Web Key Set
 This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.
 
 A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+While `jwks.admin_api.expose_private_keys` is disabled, responses contain public key material only, and a key with no public representation is omitted.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set JSON Web Key Set ID
@@ -745,6 +767,10 @@ Warning: the key is created or updated under the `kid` given in the request body
 
 A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
 
+The response echoes the key as it was stored, including any private key material the request carried. `jwks.admin_api.expose_private_keys` governs what a read discloses and does not apply here, because this response returns only what the request already contained.
+
+While that setting is disabled, writing a public key over the last private key of a set is rejected with `400`, because reading the set returns public keys only and writing that response back would discard the key it signs with.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set The JSON Web Key Set ID
  @param kid JSON Web Key ID
@@ -823,6 +849,17 @@ func (a *JwkAPIService) SetJsonWebKeyExecute(r JwkAPISetJsonWebKeyRequest) (*Jso
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorOAuth2
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 			var v ErrorOAuth2
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -870,6 +907,10 @@ Use this method if you do not want to let Hydra generate the JWKs for you, but i
 This operation replaces the entire JSON Web Key Set: keys that exist in the set but are not part of the request body are deleted. To add a newly generated key to the set while keeping the existing keys, use the `createJsonWebKeySet` operation (`POST /admin/keys/{set}`).
 
 A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+
+The response echoes the key set as it was stored, including any private key material the request carried. `jwks.admin_api.expose_private_keys` governs what a read discloses and does not apply here, because this response returns only what the request already contained.
+
+While that setting is disabled, a request that would leave the key set without a private key is rejected with `400`. Reading a key set returns public keys only, so writing that response back would discard the private keys the set signs with. Retiring one key to its public half stays possible as long as the set keeps another private key, and a key set is removed with the `deleteJsonWebKeySet` operation.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param set The JSON Web Key Set ID
@@ -945,6 +986,17 @@ func (a *JwkAPIService) SetJsonWebKeySetExecute(r JwkAPISetJsonWebKeySetRequest)
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorOAuth2
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v ErrorOAuth2
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))

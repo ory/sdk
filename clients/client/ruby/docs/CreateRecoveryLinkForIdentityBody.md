@@ -13,7 +13,7 @@
 require 'ory-client'
 
 instance = OryClient::CreateRecoveryLinkForIdentityBody.new(
-  expires_in: null,
+  expires_in: 1h,
   identity_id: null
 )
 ```

@@ -11,5 +11,13 @@
 
 * `PASSED_CHALLENGE` (value: `"passed_challenge"`)
 
+* `RECOVERY_AWAITING_ADDRESS` (value: `"recovery_awaiting_address"`)
+
+* `RECOVERY_AWAITING_ADDRESS_CHOICE` (value: `"recovery_awaiting_address_choice"`)
+
+* `RECOVERY_CONFIRMING_ADDRESS` (value: `"recovery_confirming_address"`)
+
+* `RECOVERY_AWAITING_CODE` (value: `"recovery_awaiting_code"`)
+
 
 

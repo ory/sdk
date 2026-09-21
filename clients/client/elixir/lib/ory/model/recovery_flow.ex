@@ -29,7 +29,7 @@ defmodule Ory.Model.RecoveryFlow do
     :issued_at => DateTime.t,
     :request_url => String.t,
     :return_to => String.t | nil,
-    :state => any() | nil,
+    :state => Ory.Model.RecoveryFlowState.t,
     :transient_payload => map() | nil,
     :type => String.t,
     :ui => Ory.Model.UiContainer.t
@@ -42,6 +42,7 @@ defmodule Ory.Model.RecoveryFlow do
      |> Deserializer.deserialize(:continue_with, :list, Ory.Model.ContinueWith)
      |> Deserializer.deserialize(:expires_at, :datetime, nil)
      |> Deserializer.deserialize(:issued_at, :datetime, nil)
+     |> Deserializer.deserialize(:state, :struct, Ory.Model.RecoveryFlowState)
      |> Deserializer.deserialize(:ui, :struct, Ory.Model.UiContainer)
   end
 end

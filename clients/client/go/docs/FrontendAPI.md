@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**CreateBrowserSettingsFlow**](FrontendAPI.md#CreateBrowserSettingsFlow) | **Get** /self-service/settings/browser | Create Settings Flow for Browsers
 [**CreateBrowserVerificationFlow**](FrontendAPI.md#CreateBrowserVerificationFlow) | **Get** /self-service/verification/browser | Create Verification Flow for Browser Clients
 [**CreateFedcmFlow**](FrontendAPI.md#CreateFedcmFlow) | **Get** /self-service/fed-cm/parameters | Get FedCM Parameters
+[**CreateIdPInitiatedSamlBrowserLoginFlow**](FrontendAPI.md#CreateIdPInitiatedSamlBrowserLoginFlow) | **Get** /self-service/methods/saml/idp-initiated/{provider} | Complete IdP-Initiated SAML Login for Browsers
 [**CreateNativeLoginFlow**](FrontendAPI.md#CreateNativeLoginFlow) | **Get** /self-service/login/api | Create Login Flow for Native Apps
 [**CreateNativeRecoveryFlow**](FrontendAPI.md#CreateNativeRecoveryFlow) | **Get** /self-service/recovery/api | Create Recovery Flow for Native Apps
 [**CreateNativeRegistrationFlow**](FrontendAPI.md#CreateNativeRegistrationFlow) | **Get** /self-service/registration/api | Create Registration Flow for Native Apps
@@ -27,6 +28,7 @@ Method | HTTP request | Description
 [**GetSettingsFlow**](FrontendAPI.md#GetSettingsFlow) | **Get** /self-service/settings/flows | Get Settings Flow
 [**GetVerificationFlow**](FrontendAPI.md#GetVerificationFlow) | **Get** /self-service/verification/flows | Get Verification Flow
 [**GetWebAuthnJavaScript**](FrontendAPI.md#GetWebAuthnJavaScript) | **Get** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
+[**GetWebAuthnRelatedOrigins**](FrontendAPI.md#GetWebAuthnRelatedOrigins) | **Get** /.well-known/webauthn | Get WebAuthn Related Origins
 [**GetWellKnownChangePassword**](FrontendAPI.md#GetWellKnownChangePassword) | **Get** /.well-known/change-password | Change Password URL
 [**ListMySessions**](FrontendAPI.md#ListMySessions) | **Get** /sessions | Get My Active Sessions
 [**PerformNativeLogout**](FrontendAPI.md#PerformNativeLogout) | **Delete** /self-service/logout/api | Perform Logout for Native Apps
@@ -513,6 +515,78 @@ Other parameters are passed through a pointer to a apiCreateFedcmFlowRequest str
 ### Return type
 
 [**CreateFedcmFlowResponse**](CreateFedcmFlowResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateIdPInitiatedSamlBrowserLoginFlow
+
+> ErrorGeneric CreateIdPInitiatedSamlBrowserLoginFlow(ctx, provider).Code(code).Execute()
+
+Complete IdP-Initiated SAML Login for Browsers
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	provider := "provider_example" // string | The SAML provider ID as configured in the Ory Kratos configuration.
+	code := "code_example" // string | The single-use authorization code issued by Ory Polis for the unsolicited SAML response.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrontendAPI.CreateIdPInitiatedSamlBrowserLoginFlow(context.Background(), provider).Code(code).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.CreateIdPInitiatedSamlBrowserLoginFlow``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateIdPInitiatedSamlBrowserLoginFlow`: ErrorGeneric
+	fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.CreateIdPInitiatedSamlBrowserLoginFlow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**provider** | **string** | The SAML provider ID as configured in the Ory Kratos configuration. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateIdPInitiatedSamlBrowserLoginFlowRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **code** | **string** | The single-use authorization code issued by Ory Polis for the unsolicited SAML response. | 
+
+### Return type
+
+[**ErrorGeneric**](ErrorGeneric.md)
 
 ### Authorization
 
@@ -1601,6 +1675,67 @@ Other parameters are passed through a pointer to a apiGetWebAuthnJavaScriptReque
 ### Return type
 
 **string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetWebAuthnRelatedOrigins
+
+> WebAuthnRelatedOrigins GetWebAuthnRelatedOrigins(ctx).Execute()
+
+Get WebAuthn Related Origins
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrontendAPI.GetWebAuthnRelatedOrigins(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.GetWebAuthnRelatedOrigins``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWebAuthnRelatedOrigins`: WebAuthnRelatedOrigins
+	fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.GetWebAuthnRelatedOrigins`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetWebAuthnRelatedOriginsRequest struct via the builder pattern
+
+
+### Return type
+
+[**WebAuthnRelatedOrigins**](WebAuthnRelatedOrigins.md)
 
 ### Authorization
 

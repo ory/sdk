@@ -27,7 +27,7 @@ defmodule Ory.Model.VerificationFlow do
     :issued_at => DateTime.t | nil,
     :request_url => String.t | nil,
     :return_to => String.t | nil,
-    :state => any() | nil,
+    :state => Ory.Model.VerificationFlowState.t,
     :transient_payload => map() | nil,
     :type => String.t,
     :ui => Ory.Model.UiContainer.t
@@ -39,6 +39,7 @@ defmodule Ory.Model.VerificationFlow do
     value
      |> Deserializer.deserialize(:expires_at, :datetime, nil)
      |> Deserializer.deserialize(:issued_at, :datetime, nil)
+     |> Deserializer.deserialize(:state, :struct, Ory.Model.VerificationFlowState)
      |> Deserializer.deserialize(:ui, :struct, Ory.Model.UiContainer)
   end
 end

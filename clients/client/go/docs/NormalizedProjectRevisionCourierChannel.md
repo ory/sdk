@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ChannelId** | **string** | The Channel&#39;s public ID | 
 **CreatedAt** | Pointer to **time.Time** | The creation date | [optional] [readonly] 
-**RequestConfigAuthConfigApiKeyIn** | Pointer to **string** | API key location  Can either be \&quot;header\&quot; or \&quot;query\&quot; | [optional] 
+**RequestConfigAuthConfigApiKeyIn** | Pointer to **string** | API key location  Can either be \&quot;header\&quot; or \&quot;query\&quot;  Only used if the auth type is api_key | [optional] 
 **RequestConfigAuthConfigApiKeyName** | Pointer to **string** | API key name  Only used if the auth type is api_key | [optional] 
 **RequestConfigAuthConfigApiKeyValue** | Pointer to **string** | API key value  Only used if the auth type is api_key | [optional] 
 **RequestConfigAuthConfigBasicAuthPassword** | Pointer to **string** | Basic Auth Password  Only used if the auth type is basic_auth | [optional] 

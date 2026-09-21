@@ -45,13 +45,17 @@ Avoid importing large batches with plaintext passwords. They can cause timeouts 
 
 If at least one identity is imported successfully, the response status is 200 OK.
 If all imports fail, the response is one of the following 4xx errors:
-400 Bad Request: The request payload is invalid or improperly formatted.
-409 Conflict: Duplicate identities or conflicting data were detected.
+- 400 Bad Request: The request payload is invalid or improperly formatted.
+- 409 Conflict: Duplicate identities or conflicting data were detected.
+
+This applies while `with_partial_inserts` is true, which is the default. Set it to false to import the batch as a single
+unit instead: one conflict then fails the whole request with 409 Conflict and no identity is created, in exchange for a
+considerably faster import.
 
 If you get a 504 Gateway Timeout:
-Reduce the batch size
-Avoid duplicate identities
-Pre-hash passwords with BCrypt
+- Reduce the batch size
+- Avoid duplicate identities
+- Pre-hash passwords with BCrypt
 
 If the issue persists, contact support.
 
@@ -123,10 +127,10 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | batchPatchIdentitiesResponse |  -  |
-**400** | errorGeneric |  -  |
-**409** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Patch identities response |  -  |
+**400** | JSON API Error Response |  -  |
+**409** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -207,10 +211,10 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | identity |  -  |
-**400** | errorGeneric |  -  |
-**409** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**201** | Identity represents an Ory Kratos identity |  -  |
+**400** | JSON API Error Response |  -  |
+**409** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -290,10 +294,10 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | recoveryCodeForIdentity |  -  |
-**400** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**201** | Recovery Code for Identity |  -  |
+**400** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -375,10 +379,10 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | recoveryLinkForIdentity |  -  |
-**400** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Identity Recovery Link |  -  |
+**400** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -460,10 +464,10 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | loginFlow |  -  |
-**400** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**201** | Login Flow |  -  |
+**400** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -540,8 +544,8 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -583,7 +587,7 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.IdentityApi(api_client)
     id = 'id_example' # str | ID is the identity's ID.
-    type = 'type_example' # str | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+    type = 'type_example' # str | Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
     identifier = 'identifier_example' # str | Identifier is the identifier of the credential to delete. It is required for the `oidc`, `saml`, and `deviceauthn` credential types: for `oidc` and `saml` it selects the provider link to remove, for `deviceauthn` it is the `client_key_id` of the device key to revoke. Find the identifier by calling the `GET /admin/identities/{id}?include_credential={type}` endpoint. (optional)
 
     try:
@@ -601,7 +605,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| ID is the identity&#39;s ID. | 
- **type** | **str**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
+ **type** | **str**| Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode | 
  **identifier** | **str**| Identifier is the identifier of the credential to delete. It is required for the &#x60;oidc&#x60;, &#x60;saml&#x60;, and &#x60;deviceauthn&#x60; credential types: for &#x60;oidc&#x60; and &#x60;saml&#x60; it selects the provider link to remove, for &#x60;deviceauthn&#x60; it is the &#x60;client_key_id&#x60; of the device key to revoke. Find the identifier by calling the &#x60;GET /admin/identities/{id}?include_credential&#x3D;{type}&#x60; endpoint. | [optional] 
 
 ### Return type
@@ -622,9 +626,9 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -700,10 +704,10 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | errorGeneric |  -  |
-**401** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**401** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -779,9 +783,9 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | errorGeneric |  -  |
-**401** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**401** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -869,11 +873,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | session |  -  |
+**200** | A Session |  -  |
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-**400** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -954,9 +958,9 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identity |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Identity represents an Ory Kratos identity |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1037,9 +1041,9 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identity |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Identity represents an Ory Kratos identity |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1106,9 +1110,9 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identitySchema |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Raw JSON Schema |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1119,7 +1123,7 @@ Get Session
 
 This endpoint is useful for:
 
-Getting a session object with all specified expandables that exist in an administrative context.
+- Getting a session object with all specified expandables that exist in an administrative context.
 
 ### Example
 
@@ -1190,9 +1194,9 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | session |  -  |
-**400** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | A Session |  -  |
+**400** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1237,8 +1241,8 @@ with ory_client.ApiClient(configuration) as api_client:
     page = 56 # int | Deprecated Pagination Page  DEPRECATED: Please use `page_token` instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the `Link` header. (optional)
     page_size = 250 # int | Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional) (default to 250)
     page_token = 'page_token_example' # str | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). (optional)
-    consistency = 'consistency_example' # str | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. (optional)
-    ids = ['ids_example'] # List[str] | Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). (optional)
+    consistency = 'consistency_example' # str | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  - strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. - eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  - `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. (optional)
+    ids = ['ids_example'] # List[str] | Retrieve multiple identities by their IDs.  This parameter has the following limitations:  - Duplicate or non-existent IDs are ignored. - The order of returned IDs may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). (optional)
     credentials_identifier = 'credentials_identifier_example' # str | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
     preview_credentials_identifier_similar = 'preview_credentials_identifier_similar_example' # str | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
     include_credential = ['include_credential_example'] # List[str] | Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. (optional)
@@ -1264,8 +1268,8 @@ Name | Type | Description  | Notes
  **page** | **int**| Deprecated Pagination Page  DEPRECATED: Please use &#x60;page_token&#x60; instead. This parameter will be removed in the future.  This value is currently an integer, but it is not sequential. The value is not the page number, but a reference. The next page can be any number and some numbers might return an empty list.  For example, page 2 might not follow after page 1. And even if page 3 and 5 exist, but page 4 might not exist. The first page can be retrieved by omitting this parameter. Following page pointers will be returned in the &#x60;Link&#x60; header. | [optional] 
  **page_size** | **int**| Page Size  This is the number of items per page to return. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [optional] [default to 250]
  **page_token** | **str**| Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [optional] 
- **consistency** | **str**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional] 
- **ids** | [**List[str]**](str.md)| Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). | [optional] 
+ **consistency** | **str**| Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  - strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. - eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  - &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [optional] 
+ **ids** | [**List[str]**](str.md)| Retrieve multiple identities by their IDs.  This parameter has the following limitations:  - Duplicate or non-existent IDs are ignored. - The order of returned IDs may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). | [optional] 
  **credentials_identifier** | **str**| CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
  **preview_credentials_identifier_similar** | **str**| This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [optional] 
  **include_credential** | [**List[str]**](str.md)| Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | [optional] 
@@ -1289,7 +1293,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Paginated Identity List Response |  -  |
-**0** | errorGeneric |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1364,7 +1368,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List Identity JSON Schemas Response |  -  |
-**0** | errorGeneric |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1453,9 +1457,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List Identity Sessions Response |  -  |
-**400** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1540,8 +1544,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Session List Response  The response given when listing sessions in an administrative context. |  -  |
-**400** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**400** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1553,9 +1557,9 @@ Manage sessions in bulk
 Disable or delete sessions for a list of identities or a list of sessions in
 a single call. The `action` field selects the operation:
 
-`disable` — deactivate matching sessions (sets `active = false`, preserves
+- `disable` — deactivate matching sessions (sets `active = false`, preserves
 audit data).
-`delete` — permanently delete matching sessions.
+- `delete` — permanently delete matching sessions.
 
 Exactly one of `identities` or `sessions` must be provided. To scope the
 operation to every session in the network, pass `identities: ["*"]`; the
@@ -1637,10 +1641,10 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | manageSessionsResponse |  -  |
-**400** | errorGeneric |  -  |
-**401** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Manage Sessions Response |  -  |
+**400** | JSON API Error Response |  -  |
+**401** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1722,11 +1726,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identity |  -  |
-**400** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**409** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Identity represents an Ory Kratos identity |  -  |
+**400** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**409** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1743,12 +1747,12 @@ but instead added to the list. For example, if a user has a social sign in conne
 will keep the social sign in connection and add the new credentials to the list. This prevents accidentally overwriting
 credentials and locking out users. A complete view of all credential types is here:
 
-`password`: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook.
-`oidc`, `saml`: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list.
-`totp`: The existing TOTP credentials will be replaced with the new configuration.
-`lookup_secret`: The existing Lookup Secret codes will be kept and the new codes will be added to the list.
-`webauthn`, `passkey`: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new `user_handle` is provided, it's added to the identity's identifiers list while preserving previous user handles.
-`code`: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (`{"ory.sh/kratos":{"code":{"identifier":true", "via":"email"}}}`).
+- `password`: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook.
+- `oidc`, `saml`: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list.
+- `totp`: The existing TOTP credentials will be replaced with the new configuration.
+- `lookup_secret`: The existing Lookup Secret codes will be kept and the new codes will be added to the list.
+- `webauthn`, `passkey`: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new `user_handle` is provided, it's added to the identity's identifiers list while preserving previous user handles.
+- `code`: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (`{"ory.sh/kratos":{"code":{"identifier":true", "via":"email"}}}`).
 
 ### Example
 
@@ -1820,11 +1824,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | identity |  -  |
-**400** | errorGeneric |  -  |
-**404** | errorGeneric |  -  |
-**409** | errorGeneric |  -  |
-**0** | errorGeneric |  -  |
+**200** | Identity represents an Ory Kratos identity |  -  |
+**400** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**409** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

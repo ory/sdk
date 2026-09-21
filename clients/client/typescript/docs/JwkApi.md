@@ -15,7 +15,7 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 # **createJsonWebKeySet**
 > JsonWebKeySet createJsonWebKeySet(createJsonWebKeySet)
 
-This endpoint is capable of generating JSON Web Key Sets for you. There are different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymmetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  If the set already exists, the newly generated key is added to it and all existing keys are kept. This allows you to rotate keys: tokens signed with an older key in the set remain verifiable. Exception: when Ory Hydra is configured to use a Hardware Security Module (HSM), generating a key replaces the set, which then contains only the new key. To replace a set and all of its keys instead, use the `setJsonWebKeySet` operation (`PUT /admin/keys/{set}`).  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+This endpoint is capable of generating JSON Web Key Sets for you. There are different strategies available, such as symmetric cryptographic keys (HS256, HS512) and asymmetric cryptographic keys (RS256, ECDSA). If the specified JSON Web Key Set does not exist, it will be created.  If the set already exists, the newly generated key is added to it and all existing keys are kept. This allows you to rotate keys: tokens signed with an older key in the set remain verifiable. Exception: when Ory Hydra is configured to use a Hardware Security Module (HSM), generating a key replaces the set, which then contains only the new key. To replace a set and all of its keys instead, use the `setJsonWebKeySet` operation (`PUT /admin/keys/{set}`).  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.  While `jwks.admin_api.expose_private_keys` is disabled, responses contain public key material only, and a key with no public representation is omitted. The generated key is stored in full either way.
 
 ### Example
 
@@ -63,8 +63,8 @@ const { status, data } = await apiInstance.createJsonWebKeySet(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**201** | jsonWebKeySet |  -  |
-|**0** | errorOAuth2 |  -  |
+|**201** | JSON Web Key Set |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -119,7 +119,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | errorOAuth2 |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -171,14 +171,14 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | errorOAuth2 |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getJsonWebKey**
 > JsonWebKeySet getJsonWebKey()
 
-This endpoint returns a singular JSON Web Key contained in a set. It is identified by the set and the specific key ID (kid).
+This endpoint returns a singular JSON Web Key contained in a set. It is identified by the set and the specific key ID (kid).  While `jwks.admin_api.expose_private_keys` is disabled, responses contain public key material only, and a key with no public representation is omitted.
 
 ### Example
 
@@ -225,15 +225,15 @@ const { status, data } = await apiInstance.getJsonWebKey(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | jsonWebKeySet |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | JSON Web Key Set |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getJsonWebKeySet**
 > JsonWebKeySet getJsonWebKeySet()
 
-This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+This endpoint can be used to retrieve JWK Sets stored in ORY Hydra.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.  While `jwks.admin_api.expose_private_keys` is disabled, responses contain public key material only, and a key with no public representation is omitted.
 
 ### Example
 
@@ -277,15 +277,15 @@ const { status, data } = await apiInstance.getJsonWebKeySet(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | jsonWebKeySet |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | JSON Web Key Set |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **setJsonWebKey**
 > JsonWebKey setJsonWebKey()
 
-Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  Warning: the key is created or updated under the `kid` given in the request body. The `{kid}` path parameter exists for historical reasons only: it is ignored and not validated against the body.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  Warning: the key is created or updated under the `kid` given in the request body. The `{kid}` path parameter exists for historical reasons only: it is ignored and not validated against the body.  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.  The response echoes the key as it was stored, including any private key material the request carried. `jwks.admin_api.expose_private_keys` governs what a read discloses and does not apply here, because this response returns only what the request already contained.  While that setting is disabled, writing a public key over the last private key of a set is rejected with `400`, because reading the set returns public keys only and writing that response back would discard the key it signs with.
 
 ### Example
 
@@ -336,15 +336,16 @@ const { status, data } = await apiInstance.setJsonWebKey(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | jsonWebKey |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | OK |  -  |
+|**400** | Error |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **setJsonWebKeySet**
 > JsonWebKeySet setJsonWebKeySet()
 
-Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  This operation replaces the entire JSON Web Key Set: keys that exist in the set but are not part of the request body are deleted. To add a newly generated key to the set while keeping the existing keys, use the `createJsonWebKeySet` operation (`POST /admin/keys/{set}`).  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
+Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.  This operation replaces the entire JSON Web Key Set: keys that exist in the set but are not part of the request body are deleted. To add a newly generated key to the set while keeping the existing keys, use the `createJsonWebKeySet` operation (`POST /admin/keys/{set}`).  A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.  The response echoes the key set as it was stored, including any private key material the request carried. `jwks.admin_api.expose_private_keys` governs what a read discloses and does not apply here, because this response returns only what the request already contained.  While that setting is disabled, a request that would leave the key set without a private key is rejected with `400`. Reading a key set returns public keys only, so writing that response back would discard the private keys the set signs with. Retiring one key to its public half stays possible as long as the set keeps another private key, and a key set is removed with the `deleteJsonWebKeySet` operation.
 
 ### Example
 
@@ -392,8 +393,9 @@ const { status, data } = await apiInstance.setJsonWebKeySet(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | jsonWebKeySet |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | JSON Web Key Set |  -  |
+|**400** | Error |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

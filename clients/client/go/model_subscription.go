@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.66
+API version: v1.22.78
 Contact: support@ory.sh
 */
 
@@ -38,11 +38,11 @@ type Subscription struct {
 	OngoingStripeCheckoutId NullableString `json:"ongoing_stripe_checkout_id,omitempty"`
 	// Until when the subscription is payed
 	PayedUntil time.Time `json:"payed_until"`
-	PlanChangesAt *time.Time `json:"plan_changes_at,omitempty"`
+	PlanChangesAt NullableTime `json:"plan_changes_at,omitempty"`
 	PlanChangesTo NullableString `json:"plan_changes_to"`
 	// For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this status can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` status. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal status, the open invoice will be voided and no further invoices will be generated.  A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.  A subscription can only enter a `paused` status [when a trial ends without a payment method](https://stripe.com/billing/subscriptions/trials#create-free-trials-without-payment). A `paused` subscription doesn't generate invoices and can be resumed after your customer adds their payment method. The `paused` status is different from [pausing collection](https://stripe.com/billing/subscriptions/pause-payment), which still generates invoices and leaves the subscription's status unchanged.  If subscription `collection_method=charge_automatically`, it becomes `past_due` when payment is required but cannot be paid (due to failed payment or awaiting additional user actions). Once Stripe has exhausted all payment retry attempts, the subscription will become `canceled` or `unpaid` (depending on your subscriptions settings).  If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
 	Status string `json:"status"`
-	StripeCheckoutExpiresAt *time.Time `json:"stripe_checkout_expires_at,omitempty"`
+	StripeCheckoutExpiresAt NullableTime `json:"stripe_checkout_expires_at,omitempty"`
 	UpdatedAt time.Time `json:"updated_at"`
 	AdditionalProperties map[string]interface{}
 }
@@ -345,36 +345,46 @@ func (o *Subscription) SetPayedUntil(v time.Time) {
 	o.PayedUntil = v
 }
 
-// GetPlanChangesAt returns the PlanChangesAt field value if set, zero value otherwise.
+// GetPlanChangesAt returns the PlanChangesAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Subscription) GetPlanChangesAt() time.Time {
-	if o == nil || IsNil(o.PlanChangesAt) {
+	if o == nil || IsNil(o.PlanChangesAt.Get()) {
 		var ret time.Time
 		return ret
 	}
-	return *o.PlanChangesAt
+	return *o.PlanChangesAt.Get()
 }
 
 // GetPlanChangesAtOk returns a tuple with the PlanChangesAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Subscription) GetPlanChangesAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.PlanChangesAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.PlanChangesAt, true
+	return o.PlanChangesAt.Get(), o.PlanChangesAt.IsSet()
 }
 
 // HasPlanChangesAt returns a boolean if a field has been set.
 func (o *Subscription) HasPlanChangesAt() bool {
-	if o != nil && !IsNil(o.PlanChangesAt) {
+	if o != nil && o.PlanChangesAt.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPlanChangesAt gets a reference to the given time.Time and assigns it to the PlanChangesAt field.
+// SetPlanChangesAt gets a reference to the given NullableTime and assigns it to the PlanChangesAt field.
 func (o *Subscription) SetPlanChangesAt(v time.Time) {
-	o.PlanChangesAt = &v
+	o.PlanChangesAt.Set(&v)
+}
+// SetPlanChangesAtNil sets the value for PlanChangesAt to be an explicit nil
+func (o *Subscription) SetPlanChangesAtNil() {
+	o.PlanChangesAt.Set(nil)
+}
+
+// UnsetPlanChangesAt ensures that no value is present for PlanChangesAt, not even an explicit nil
+func (o *Subscription) UnsetPlanChangesAt() {
+	o.PlanChangesAt.Unset()
 }
 
 // GetPlanChangesTo returns the PlanChangesTo field value
@@ -427,36 +437,46 @@ func (o *Subscription) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetStripeCheckoutExpiresAt returns the StripeCheckoutExpiresAt field value if set, zero value otherwise.
+// GetStripeCheckoutExpiresAt returns the StripeCheckoutExpiresAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Subscription) GetStripeCheckoutExpiresAt() time.Time {
-	if o == nil || IsNil(o.StripeCheckoutExpiresAt) {
+	if o == nil || IsNil(o.StripeCheckoutExpiresAt.Get()) {
 		var ret time.Time
 		return ret
 	}
-	return *o.StripeCheckoutExpiresAt
+	return *o.StripeCheckoutExpiresAt.Get()
 }
 
 // GetStripeCheckoutExpiresAtOk returns a tuple with the StripeCheckoutExpiresAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Subscription) GetStripeCheckoutExpiresAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.StripeCheckoutExpiresAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.StripeCheckoutExpiresAt, true
+	return o.StripeCheckoutExpiresAt.Get(), o.StripeCheckoutExpiresAt.IsSet()
 }
 
 // HasStripeCheckoutExpiresAt returns a boolean if a field has been set.
 func (o *Subscription) HasStripeCheckoutExpiresAt() bool {
-	if o != nil && !IsNil(o.StripeCheckoutExpiresAt) {
+	if o != nil && o.StripeCheckoutExpiresAt.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetStripeCheckoutExpiresAt gets a reference to the given time.Time and assigns it to the StripeCheckoutExpiresAt field.
+// SetStripeCheckoutExpiresAt gets a reference to the given NullableTime and assigns it to the StripeCheckoutExpiresAt field.
 func (o *Subscription) SetStripeCheckoutExpiresAt(v time.Time) {
-	o.StripeCheckoutExpiresAt = &v
+	o.StripeCheckoutExpiresAt.Set(&v)
+}
+// SetStripeCheckoutExpiresAtNil sets the value for StripeCheckoutExpiresAt to be an explicit nil
+func (o *Subscription) SetStripeCheckoutExpiresAtNil() {
+	o.StripeCheckoutExpiresAt.Set(nil)
+}
+
+// UnsetStripeCheckoutExpiresAt ensures that no value is present for StripeCheckoutExpiresAt, not even an explicit nil
+func (o *Subscription) UnsetStripeCheckoutExpiresAt() {
+	o.StripeCheckoutExpiresAt.Unset()
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
@@ -507,13 +527,13 @@ func (o Subscription) ToMap() (map[string]interface{}, error) {
 		toSerialize["ongoing_stripe_checkout_id"] = o.OngoingStripeCheckoutId.Get()
 	}
 	toSerialize["payed_until"] = o.PayedUntil
-	if !IsNil(o.PlanChangesAt) {
-		toSerialize["plan_changes_at"] = o.PlanChangesAt
+	if o.PlanChangesAt.IsSet() {
+		toSerialize["plan_changes_at"] = o.PlanChangesAt.Get()
 	}
 	toSerialize["plan_changes_to"] = o.PlanChangesTo.Get()
 	toSerialize["status"] = o.Status
-	if !IsNil(o.StripeCheckoutExpiresAt) {
-		toSerialize["stripe_checkout_expires_at"] = o.StripeCheckoutExpiresAt
+	if o.StripeCheckoutExpiresAt.IsSet() {
+		toSerialize["stripe_checkout_expires_at"] = o.StripeCheckoutExpiresAt.Get()
 	}
 	toSerialize["updated_at"] = o.UpdatedAt
 

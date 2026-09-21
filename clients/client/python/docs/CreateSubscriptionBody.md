@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**currency** | **str** |  usd USD eur Euro | [optional] 
-**interval** | **str** |  monthly Monthly yearly Yearly | 
+**currency** | **str** | usd USD eur Euro | [optional] 
+**interval** | **str** | monthly Monthly yearly Yearly | 
 **plan** | **str** |  | 
 **provision_first_project** | **str** |  | 
 **return_to** | **str** |  | [optional] 

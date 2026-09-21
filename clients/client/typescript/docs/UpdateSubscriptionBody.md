@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**interval** | **string** |  monthly Monthly yearly Yearly | [default to undefined]
+**interval** | **string** | monthly Monthly yearly Yearly | [default to undefined]
 **plan** | **string** |  | [default to undefined]
 **return_to** | **string** |  | [optional] [default to undefined]
 

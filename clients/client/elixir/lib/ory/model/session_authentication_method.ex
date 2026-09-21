@@ -9,6 +9,7 @@ defmodule Ory.Model.SessionAuthenticationMethod do
   @derive Jason.Encoder
   defstruct [
     :aal,
+    :channel,
     :completed_at,
     :method,
     :organization,
@@ -19,6 +20,7 @@ defmodule Ory.Model.SessionAuthenticationMethod do
 
   @type t :: %__MODULE__{
     :aal => Ory.Model.AuthenticatorAssuranceLevel.t | nil,
+    :channel => String.t | nil,
     :completed_at => DateTime.t | nil,
     :method => String.t | nil,
     :organization => String.t | nil,

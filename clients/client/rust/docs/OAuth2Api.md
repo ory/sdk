@@ -1469,10 +1469,10 @@ Name | Type | Description  | Required | Notes
 
 ## rotate_o_auth2_client_secret
 
-> models::OAuth2Client rotate_o_auth2_client_secret(id)
+> models::OAuth2Client rotate_o_auth2_client_secret(id, rotate_o_auth2_client_secret_body)
 Rotate OAuth 2.0 Client Secret
 
-Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.
+Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.  Supply `client_secret` in the request body to rotate to a specific value instead of a generated one. The request body is optional.
 
 ### Example
 
@@ -1485,7 +1485,8 @@ async fn main() {
     let mut configuration = Configuration::new();
     configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | OAuth 2.0 Client ID
-    match o_auth2_api::rotate_o_auth2_client_secret(&configuration, id).await {
+    let rotate_o_auth2_client_secret_body = Some(Default::default()); // RotateOAuth2ClientSecretBody (optional)
+    match o_auth2_api::rotate_o_auth2_client_secret(&configuration, id, rotate_o_auth2_client_secret_body).await {
         Ok(response) => println!("OAuth2Api::rotate_o_auth2_client_secret: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::rotate_o_auth2_client_secret: {:?}", error),
     }
@@ -1498,6 +1499,7 @@ async fn main() {
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | OAuth 2.0 Client ID | [required] |
+**rotate_o_auth2_client_secret_body** | Option<[**RotateOAuth2ClientSecretBody**](RotateOAuth2ClientSecretBody.md)> |  |  |
 
 ### Return type
 
@@ -1509,7 +1511,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

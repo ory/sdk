@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.66
+API version: v1.22.78
 Contact: support@ory.sh
 */
 
@@ -25,6 +25,8 @@ type NormalizedProjectRevisionSAMLProvider struct {
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
+	// IdPInitiatedLoginEnabled enables IdP-initiated login for this provider.  When enabled, users can start a login from their identity provider's app launcher. The Polis connection's default redirect URL then points at the Kratos IdP-initiated login entry point instead of the SAML callback.
+	IdpInitiatedLoginEnabled *bool `json:"idp_initiated_login_enabled,omitempty"`
 	// Label represents an optional label which can be used in the UI generation.
 	Label *string `json:"label,omitempty"`
 	// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
@@ -40,7 +42,7 @@ type NormalizedProjectRevisionSAMLProvider struct {
 	RawIdpMetadataXml *string `json:"raw_idp_metadata_xml,omitempty"`
 	// State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
 	State *string `json:"state,omitempty"`
-	// UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \"never\" (default) and \"automatic\". never UpdateIdentityOnLoginNever  UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic  UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity's traits and metadata automatically.
+	// UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \"never\" (default) and \"automatic\". never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity's traits and metadata automatically.
 	UpdateIdentityOnLogin *string `json:"update_identity_on_login,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
@@ -172,6 +174,38 @@ func (o *NormalizedProjectRevisionSAMLProvider) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *NormalizedProjectRevisionSAMLProvider) SetId(v string) {
 	o.Id = &v
+}
+
+// GetIdpInitiatedLoginEnabled returns the IdpInitiatedLoginEnabled field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionSAMLProvider) GetIdpInitiatedLoginEnabled() bool {
+	if o == nil || IsNil(o.IdpInitiatedLoginEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.IdpInitiatedLoginEnabled
+}
+
+// GetIdpInitiatedLoginEnabledOk returns a tuple with the IdpInitiatedLoginEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) GetIdpInitiatedLoginEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.IdpInitiatedLoginEnabled) {
+		return nil, false
+	}
+	return o.IdpInitiatedLoginEnabled, true
+}
+
+// HasIdpInitiatedLoginEnabled returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasIdpInitiatedLoginEnabled() bool {
+	if o != nil && !IsNil(o.IdpInitiatedLoginEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetIdpInitiatedLoginEnabled gets a reference to the given bool and assigns it to the IdpInitiatedLoginEnabled field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetIdpInitiatedLoginEnabled(v bool) {
+	o.IdpInitiatedLoginEnabled = &v
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
@@ -607,6 +641,9 @@ func (o NormalizedProjectRevisionSAMLProvider) ToMap() (map[string]interface{}, 
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+	if !IsNil(o.IdpInitiatedLoginEnabled) {
+		toSerialize["idp_initiated_login_enabled"] = o.IdpInitiatedLoginEnabled
+	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
 	}
@@ -668,6 +705,7 @@ func (o *NormalizedProjectRevisionSAMLProvider) UnmarshalJSON(data []byte) (err 
 		delete(additionalProperties, "audience_override_base_url")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "idp_initiated_login_enabled")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "mapper_url")
 		delete(additionalProperties, "organization_id")

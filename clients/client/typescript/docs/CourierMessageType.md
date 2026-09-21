@@ -1,12 +1,12 @@
 # CourierMessageType
 
-It can either be `email` or `phone`
+It can either be `email` or `sms`
 
 ## Enum
 
 * `Email` (value: `'email'`)
 
-* `Phone` (value: `'phone'`)
+* `Sms` (value: `'sms'`)
 
 * `UnknownDefaultOpenApi` (value: `'11184809'`)
 

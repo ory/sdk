@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**interval** | **String** |  monthly Monthly yearly Yearly | 
+**interval** | **String** | monthly Monthly yearly Yearly | 
 **plan** | **String** |  | 
 **return_to** | Option<**String**> |  | [optional]
 

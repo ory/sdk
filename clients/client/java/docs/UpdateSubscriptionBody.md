@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**interval** | [**IntervalEnum**](#IntervalEnum) |  monthly Monthly yearly Yearly |  |
+|**interval** | [**IntervalEnum**](#IntervalEnum) | monthly Monthly yearly Yearly |  |
 |**plan** | **String** |  |  |
 |**returnTo** | **String** |  |  [optional] |
 

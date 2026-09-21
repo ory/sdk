@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **channel_id** | **String** | The Channel's public ID | 
 **created_at** | Option<**String**> | The creation date | [optional][readonly]
-**request_config_auth_config_api_key_in** | Option<**String**> | API key location  Can either be \"header\" or \"query\" | [optional]
+**request_config_auth_config_api_key_in** | Option<**String**> | API key location  Can either be \"header\" or \"query\"  Only used if the auth type is api_key | [optional]
 **request_config_auth_config_api_key_name** | Option<**String**> | API key name  Only used if the auth type is api_key | [optional]
 **request_config_auth_config_api_key_value** | Option<**String**> | API key value  Only used if the auth type is api_key | [optional]
 **request_config_auth_config_basic_auth_password** | Option<**String**> | Basic Auth Password  Only used if the auth type is basic_auth | [optional]

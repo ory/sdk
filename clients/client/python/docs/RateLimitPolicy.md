@@ -7,8 +7,8 @@ RateLimitPolicy describes the rate limit policy for an API key.  In OSS mode, th
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **quota** | **str** | quota is the number of requests allowed per window. | [optional] 
-**unit** | **str** |  | [optional] 
-**window** | **str** | window is the time window for the quota. Common values: 60s (1 minute), 3600s (1 hour), 86400s (1 day). | [optional] 
+**unit** | **str** | unit must be \&quot;requests\&quot; when specified. If omitted, it defaults to \&quot;requests\&quot;. All other values are rejected. | [optional] 
+**window** | **str** | window is the time window for the quota. Common values: 60s (1 minute), 3600s (1 hour), 86400s (1 day). Fractional-second values are rejected. | [optional] 
 
 ## Example
 

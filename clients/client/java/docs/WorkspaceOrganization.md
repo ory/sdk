@@ -10,6 +10,7 @@
 |**activeLink** | [**OnboardingPortalLink**](OnboardingPortalLink.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**defaultRegion** | [**DefaultRegionEnum**](#DefaultRegionEnum) | DefaultRegion sets the default region for identities provisioned into this organization, when the identity does not specify a region explictly. eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global |  [optional] |
+|**domainVerifications** | [**List&lt;DomainVerificationStatus&gt;**](DomainVerificationStatus.md) | The verification status of each organization domain, including the DNS TXT record the customer must publish to prove control. A domain that has no verification started yet still appears, with the TXT record name set and an empty status. |  [optional] |
 |**domains** | **List&lt;String&gt;** | The list of organization&#39;s domains. |  |
 |**id** | **String** | The organization&#39;s ID. |  |
 |**label** | **String** | The organization&#39;s human-readable label. |  |

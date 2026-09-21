@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | The ID of the invoice. | [readonly]
-**invoiced_at** | **String** |  | 
+**invoiced_at** | Option<**String**> |  | 
 **r#type** | **String** | Type is the type of the invoice. usage InvoiceTypeUsage base InvoiceTypeBase | [readonly]
 **updated_at** | Option<**String**> |  | [optional]
 **v1** | Option<[**models::InvoiceDataV1**](InvoiceDataV1.md)> |  | [optional]

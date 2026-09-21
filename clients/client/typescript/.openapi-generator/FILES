@@ -13,6 +13,7 @@ docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
 docs/AddProjectToWorkspaceBody.md
+docs/AddWorkspaceOrganizationDomainBody.md
 docs/AdminIdentityImportCredentialsLookupSecret.md
 docs/AdminIdentityImportCredentialsLookupSecretConfig.md
 docs/AdminRevokeImportedApiKeyBody.md
@@ -20,6 +21,7 @@ docs/AdminRevokeIssuedApiKeyBody.md
 docs/AdminRotateIssuedApiKeyBody.md
 docs/AdminUpdateImportedApiKeyRequest.md
 docs/AdminUpdateIssuedApiKeyRequest.md
+docs/AiAssistantSessionToken.md
 docs/Any.md
 docs/ApiKeysApi.md
 docs/Attribute.md
@@ -78,6 +80,7 @@ docs/CreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
+docs/CreateWorkspaceContactBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
@@ -97,6 +100,7 @@ docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceType.md
 docs/DeviceUserAuthRequest.md
+docs/DomainVerificationStatus.md
 docs/ElementsApi.md
 docs/ElementsConfiguration.md
 docs/EmailTemplateData.md
@@ -109,6 +113,7 @@ docs/ErrorOAuth2.md
 docs/EventStream.md
 docs/EventsApi.md
 docs/ExpandedPermissionTree.md
+docs/FeatureFlagsCatalogEntry.md
 docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
@@ -195,6 +200,7 @@ docs/ListImportedApiKeysResponse.md
 docs/ListInvoicesResponse.md
 docs/ListIssuedApiKeysResponse.md
 docs/ListOrganizationsResponse.md
+docs/ListWorkspaceContacts.md
 docs/ListWorkspaceProjects.md
 docs/ListWorkspaces.md
 docs/LoginFlow.md
@@ -241,6 +247,9 @@ docs/OidcUserInfo.md
 docs/OnboardingPortalLink.md
 docs/OnboardingPortalOrganization.md
 docs/OnboardingPortalTestLoginFlow.md
+docs/OplParseError.md
+docs/OplSourcePosition.md
+docs/OplValidateResult.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationByHostname.md
@@ -248,11 +257,11 @@ docs/OrganizationOnboardingPortalLinksResponse.md
 docs/PINConfig.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
+docs/PatchWorkspaceContactBody.md
 docs/PatchWorkspaceMemberBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
 docs/PermissionsOnWorkspace.md
-docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
 docs/PostCheckPermissionOrErrorBody.md
@@ -294,6 +303,7 @@ docs/Relationships.md
 docs/RevisionAccountExperienceCustomTranslation.md
 docs/RevocationReason.md
 docs/RotateIssuedApiKeyResponse.md
+docs/RotateOAuth2ClientSecretBody.md
 docs/RotateTalosKeyBody.md
 docs/SchemaPatch.md
 docs/SelfRevokeApiKeyRequest.md
@@ -400,10 +410,14 @@ docs/VerifyApiKeyResponse.md
 docs/VerifyUserCodeRequest.md
 docs/Version.md
 docs/Warning.md
+docs/WebAuthnRelatedOrigins.md
 docs/WellknownApi.md
 docs/Workspace.md
 docs/WorkspaceApi.md
 docs/WorkspaceApiKey.md
+docs/WorkspaceContact.md
+docs/WorkspaceContactRecipient.md
+docs/WorkspaceContactRecipientInput.md
 docs/WorkspaceOrganization.md
 git_push.sh
 index.ts

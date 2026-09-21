@@ -11,9 +11,9 @@
 | **error_ui_url** | **String** |  |  |
 | **favicon_dark_url** | **String** |  | [optional] |
 | **favicon_light_url** | **String** |  | [optional] |
-| **hide_ory_branding** | **Boolean** |  |  |
+| **hide_ory_branding** | **Boolean** |  Whether to hide the Ory branding badge on the account experience. |  |
 | **hide_registration_link** | **Boolean** |  |  |
-| **locale_behavior** | **String** |  force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage |  |
+| **locale_behavior** | **String** | force_default AccountExperienceLocaleBehaviorForceDefault respect_accept_language AccountExperienceLocaleBehaviorRespectAcceptLanguage |  |
 | **login_ui_url** | **String** |  |  |
 | **logo_dark_url** | **String** |  | [optional] |
 | **logo_light_url** | **String** |  | [optional] |

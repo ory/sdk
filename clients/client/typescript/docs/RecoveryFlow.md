@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **issued_at** | **string** | IssuedAt is the time (UTC) when the request occurred. | [default to undefined]
 **request_url** | **string** | RequestURL is the initial URL that was requested from Ory Kratos. It can be used to forward information contained in the URL\&#39;s path or query for example. | [default to undefined]
 **return_to** | **string** | ReturnTo contains the requested return_to URL. | [optional] [default to undefined]
-**state** | **any** | State represents the state of this request:  choose_method: ask the user to choose a method (e.g. recover account via email) sent_email: the email has been sent to the user passed_challenge: the request was successful and the recovery challenge was passed. | [default to undefined]
+**state** | [**RecoveryFlowState**](RecoveryFlowState.md) |  | [default to undefined]
 **transient_payload** | **object** | TransientPayload is used to pass data from the recovery flow to hooks and email templates | [optional] [default to undefined]
 **type** | **string** | The flow type can either be &#x60;api&#x60; or &#x60;browser&#x60;. | [default to undefined]
 **ui** | [**UiContainer**](UiContainer.md) |  | [default to undefined]

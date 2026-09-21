@@ -26,6 +26,7 @@ docs/Model/AcceptOAuth2LoginRequest.md
 docs/Model/AccountExperienceColors.md
 docs/Model/AccountExperienceConfiguration.md
 docs/Model/AddProjectToWorkspaceBody.md
+docs/Model/AddWorkspaceOrganizationDomainBody.md
 docs/Model/AdminIdentityImportCredentialsLookupSecret.md
 docs/Model/AdminIdentityImportCredentialsLookupSecretConfig.md
 docs/Model/AdminRevokeImportedApiKeyBody.md
@@ -33,6 +34,7 @@ docs/Model/AdminRevokeIssuedApiKeyBody.md
 docs/Model/AdminRotateIssuedApiKeyBody.md
 docs/Model/AdminUpdateImportedApiKeyRequest.md
 docs/Model/AdminUpdateIssuedApiKeyRequest.md
+docs/Model/AiAssistantSessionToken.md
 docs/Model/Any.md
 docs/Model/Attribute.md
 docs/Model/AttributeFilter.md
@@ -89,6 +91,7 @@ docs/Model/CreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/Model/CreateVerifiableCredentialRequestBody.md
 docs/Model/CreateWorkspaceApiKeyBody.md
 docs/Model/CreateWorkspaceBody.md
+docs/Model/CreateWorkspaceContactBody.md
 docs/Model/CreateWorkspaceMemberInviteBody.md
 docs/Model/CreateWorkspaceOrganizationBody.md
 docs/Model/CreateWorkspaceSubscriptionBody.md
@@ -108,6 +111,7 @@ docs/Model/DeviceAuthnKey.md
 docs/Model/DeviceAuthorization.md
 docs/Model/DeviceType.md
 docs/Model/DeviceUserAuthRequest.md
+docs/Model/DomainVerificationStatus.md
 docs/Model/ElementsConfiguration.md
 docs/Model/EmailTemplateData.md
 docs/Model/EmailTemplateDataBody.md
@@ -118,6 +122,7 @@ docs/Model/ErrorGeneric.md
 docs/Model/ErrorOAuth2.md
 docs/Model/EventStream.md
 docs/Model/ExpandedPermissionTree.md
+docs/Model/FeatureFlagsCatalogEntry.md
 docs/Model/FlowError.md
 docs/Model/GenericError.md
 docs/Model/GenericErrorContent.md
@@ -201,6 +206,7 @@ docs/Model/ListImportedApiKeysResponse.md
 docs/Model/ListInvoicesResponse.md
 docs/Model/ListIssuedApiKeysResponse.md
 docs/Model/ListOrganizationsResponse.md
+docs/Model/ListWorkspaceContacts.md
 docs/Model/ListWorkspaceProjects.md
 docs/Model/ListWorkspaces.md
 docs/Model/LoginFlow.md
@@ -244,6 +250,9 @@ docs/Model/OidcUserInfo.md
 docs/Model/OnboardingPortalLink.md
 docs/Model/OnboardingPortalOrganization.md
 docs/Model/OnboardingPortalTestLoginFlow.md
+docs/Model/OplParseError.md
+docs/Model/OplSourcePosition.md
+docs/Model/OplValidateResult.md
 docs/Model/Organization.md
 docs/Model/OrganizationBody.md
 docs/Model/OrganizationByHostname.md
@@ -251,10 +260,10 @@ docs/Model/OrganizationOnboardingPortalLinksResponse.md
 docs/Model/PINConfig.md
 docs/Model/ParseError.md
 docs/Model/PatchIdentitiesBody.md
+docs/Model/PatchWorkspaceContactBody.md
 docs/Model/PatchWorkspaceMemberBody.md
 docs/Model/PerformNativeLogoutBody.md
 docs/Model/PermissionsOnWorkspace.md
-docs/Model/Plan.md
 docs/Model/PlanDetails.md
 docs/Model/PostCheckPermissionBody.md
 docs/Model/PostCheckPermissionOrErrorBody.md
@@ -294,6 +303,7 @@ docs/Model/Relationships.md
 docs/Model/RevisionAccountExperienceCustomTranslation.md
 docs/Model/RevocationReason.md
 docs/Model/RotateIssuedApiKeyResponse.md
+docs/Model/RotateOAuth2ClientSecretBody.md
 docs/Model/RotateTalosKeyBody.md
 docs/Model/SchemaPatch.md
 docs/Model/SelfRevokeApiKeyRequest.md
@@ -400,8 +410,12 @@ docs/Model/VerifyApiKeyResponse.md
 docs/Model/VerifyUserCodeRequest.md
 docs/Model/Version.md
 docs/Model/Warning.md
+docs/Model/WebAuthnRelatedOrigins.md
 docs/Model/Workspace.md
 docs/Model/WorkspaceApiKey.md
+docs/Model/WorkspaceContact.md
+docs/Model/WorkspaceContactRecipient.md
+docs/Model/WorkspaceContactRecipientInput.md
 docs/Model/WorkspaceOrganization.md
 git_push.sh
 lib/Api/ApiKeysApi.php
@@ -430,6 +444,7 @@ lib/Model/AcceptOAuth2LoginRequest.php
 lib/Model/AccountExperienceColors.php
 lib/Model/AccountExperienceConfiguration.php
 lib/Model/AddProjectToWorkspaceBody.php
+lib/Model/AddWorkspaceOrganizationDomainBody.php
 lib/Model/AdminIdentityImportCredentialsLookupSecret.php
 lib/Model/AdminIdentityImportCredentialsLookupSecretConfig.php
 lib/Model/AdminRevokeImportedApiKeyBody.php
@@ -437,6 +452,7 @@ lib/Model/AdminRevokeIssuedApiKeyBody.php
 lib/Model/AdminRotateIssuedApiKeyBody.php
 lib/Model/AdminUpdateImportedApiKeyRequest.php
 lib/Model/AdminUpdateIssuedApiKeyRequest.php
+lib/Model/AiAssistantSessionToken.php
 lib/Model/Any.php
 lib/Model/Attribute.php
 lib/Model/AttributeFilter.php
@@ -493,6 +509,7 @@ lib/Model/CreateTestLoginFlowFromOnboardingPortalLinkBody.php
 lib/Model/CreateVerifiableCredentialRequestBody.php
 lib/Model/CreateWorkspaceApiKeyBody.php
 lib/Model/CreateWorkspaceBody.php
+lib/Model/CreateWorkspaceContactBody.php
 lib/Model/CreateWorkspaceMemberInviteBody.php
 lib/Model/CreateWorkspaceOrganizationBody.php
 lib/Model/CreateWorkspaceSubscriptionBody.php
@@ -512,6 +529,7 @@ lib/Model/DeviceAuthnKey.php
 lib/Model/DeviceAuthorization.php
 lib/Model/DeviceType.php
 lib/Model/DeviceUserAuthRequest.php
+lib/Model/DomainVerificationStatus.php
 lib/Model/ElementsConfiguration.php
 lib/Model/EmailTemplateData.php
 lib/Model/EmailTemplateDataBody.php
@@ -522,6 +540,7 @@ lib/Model/ErrorGeneric.php
 lib/Model/ErrorOAuth2.php
 lib/Model/EventStream.php
 lib/Model/ExpandedPermissionTree.php
+lib/Model/FeatureFlagsCatalogEntry.php
 lib/Model/FlowError.php
 lib/Model/GenericError.php
 lib/Model/GenericErrorContent.php
@@ -605,6 +624,7 @@ lib/Model/ListImportedApiKeysResponse.php
 lib/Model/ListInvoicesResponse.php
 lib/Model/ListIssuedApiKeysResponse.php
 lib/Model/ListOrganizationsResponse.php
+lib/Model/ListWorkspaceContacts.php
 lib/Model/ListWorkspaceProjects.php
 lib/Model/ListWorkspaces.php
 lib/Model/LoginFlow.php
@@ -649,6 +669,9 @@ lib/Model/OidcUserInfo.php
 lib/Model/OnboardingPortalLink.php
 lib/Model/OnboardingPortalOrganization.php
 lib/Model/OnboardingPortalTestLoginFlow.php
+lib/Model/OplParseError.php
+lib/Model/OplSourcePosition.php
+lib/Model/OplValidateResult.php
 lib/Model/Organization.php
 lib/Model/OrganizationBody.php
 lib/Model/OrganizationByHostname.php
@@ -656,10 +679,10 @@ lib/Model/OrganizationOnboardingPortalLinksResponse.php
 lib/Model/PINConfig.php
 lib/Model/ParseError.php
 lib/Model/PatchIdentitiesBody.php
+lib/Model/PatchWorkspaceContactBody.php
 lib/Model/PatchWorkspaceMemberBody.php
 lib/Model/PerformNativeLogoutBody.php
 lib/Model/PermissionsOnWorkspace.php
-lib/Model/Plan.php
 lib/Model/PlanDetails.php
 lib/Model/PostCheckPermissionBody.php
 lib/Model/PostCheckPermissionOrErrorBody.php
@@ -699,6 +722,7 @@ lib/Model/Relationships.php
 lib/Model/RevisionAccountExperienceCustomTranslation.php
 lib/Model/RevocationReason.php
 lib/Model/RotateIssuedApiKeyResponse.php
+lib/Model/RotateOAuth2ClientSecretBody.php
 lib/Model/RotateTalosKeyBody.php
 lib/Model/SchemaPatch.php
 lib/Model/SelfRevokeApiKeyRequest.php
@@ -805,8 +829,12 @@ lib/Model/VerifyApiKeyResponse.php
 lib/Model/VerifyUserCodeRequest.php
 lib/Model/Version.php
 lib/Model/Warning.php
+lib/Model/WebAuthnRelatedOrigins.php
 lib/Model/Workspace.php
 lib/Model/WorkspaceApiKey.php
+lib/Model/WorkspaceContact.php
+lib/Model/WorkspaceContactRecipient.php
+lib/Model/WorkspaceContactRecipientInput.php
 lib/Model/WorkspaceOrganization.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
@@ -832,6 +860,7 @@ test/Model/AcceptOAuth2LoginRequestTest.php
 test/Model/AccountExperienceColorsTest.php
 test/Model/AccountExperienceConfigurationTest.php
 test/Model/AddProjectToWorkspaceBodyTest.php
+test/Model/AddWorkspaceOrganizationDomainBodyTest.php
 test/Model/AdminIdentityImportCredentialsLookupSecretConfigTest.php
 test/Model/AdminIdentityImportCredentialsLookupSecretTest.php
 test/Model/AdminRevokeImportedApiKeyBodyTest.php
@@ -839,6 +868,7 @@ test/Model/AdminRevokeIssuedApiKeyBodyTest.php
 test/Model/AdminRotateIssuedApiKeyBodyTest.php
 test/Model/AdminUpdateImportedApiKeyRequestTest.php
 test/Model/AdminUpdateIssuedApiKeyRequestTest.php
+test/Model/AiAssistantSessionTokenTest.php
 test/Model/AnyTest.php
 test/Model/AttributeFilterTest.php
 test/Model/AttributeTest.php
@@ -895,6 +925,7 @@ test/Model/CreateTestLoginFlowFromOnboardingPortalLinkBodyTest.php
 test/Model/CreateVerifiableCredentialRequestBodyTest.php
 test/Model/CreateWorkspaceApiKeyBodyTest.php
 test/Model/CreateWorkspaceBodyTest.php
+test/Model/CreateWorkspaceContactBodyTest.php
 test/Model/CreateWorkspaceMemberInviteBodyTest.php
 test/Model/CreateWorkspaceOrganizationBodyTest.php
 test/Model/CreateWorkspaceSubscriptionBodyTest.php
@@ -914,6 +945,7 @@ test/Model/DeviceAuthnKeyTest.php
 test/Model/DeviceAuthorizationTest.php
 test/Model/DeviceTypeTest.php
 test/Model/DeviceUserAuthRequestTest.php
+test/Model/DomainVerificationStatusTest.php
 test/Model/ElementsConfigurationTest.php
 test/Model/EmailTemplateDataBodyTest.php
 test/Model/EmailTemplateDataTest.php
@@ -924,6 +956,7 @@ test/Model/ErrorGenericTest.php
 test/Model/ErrorOAuth2Test.php
 test/Model/EventStreamTest.php
 test/Model/ExpandedPermissionTreeTest.php
+test/Model/FeatureFlagsCatalogEntryTest.php
 test/Model/FlowErrorTest.php
 test/Model/GenericErrorContentTest.php
 test/Model/GenericErrorTest.php
@@ -1007,6 +1040,7 @@ test/Model/ListImportedApiKeysResponseTest.php
 test/Model/ListInvoicesResponseTest.php
 test/Model/ListIssuedApiKeysResponseTest.php
 test/Model/ListOrganizationsResponseTest.php
+test/Model/ListWorkspaceContactsTest.php
 test/Model/ListWorkspaceProjectsTest.php
 test/Model/ListWorkspacesTest.php
 test/Model/LoginFlowStateTest.php
@@ -1050,6 +1084,9 @@ test/Model/OidcUserInfoTest.php
 test/Model/OnboardingPortalLinkTest.php
 test/Model/OnboardingPortalOrganizationTest.php
 test/Model/OnboardingPortalTestLoginFlowTest.php
+test/Model/OplParseErrorTest.php
+test/Model/OplSourcePositionTest.php
+test/Model/OplValidateResultTest.php
 test/Model/OrganizationBodyTest.php
 test/Model/OrganizationByHostnameTest.php
 test/Model/OrganizationOnboardingPortalLinksResponseTest.php
@@ -1057,11 +1094,11 @@ test/Model/OrganizationTest.php
 test/Model/PINConfigTest.php
 test/Model/ParseErrorTest.php
 test/Model/PatchIdentitiesBodyTest.php
+test/Model/PatchWorkspaceContactBodyTest.php
 test/Model/PatchWorkspaceMemberBodyTest.php
 test/Model/PerformNativeLogoutBodyTest.php
 test/Model/PermissionsOnWorkspaceTest.php
 test/Model/PlanDetailsTest.php
-test/Model/PlanTest.php
 test/Model/PostCheckPermissionBodyTest.php
 test/Model/PostCheckPermissionOrErrorBodyTest.php
 test/Model/ProjectApiKeyTest.php
@@ -1100,6 +1137,7 @@ test/Model/RelationshipsTest.php
 test/Model/RevisionAccountExperienceCustomTranslationTest.php
 test/Model/RevocationReasonTest.php
 test/Model/RotateIssuedApiKeyResponseTest.php
+test/Model/RotateOAuth2ClientSecretBodyTest.php
 test/Model/RotateTalosKeyBodyTest.php
 test/Model/SchemaPatchTest.php
 test/Model/SelfRevokeApiKeyRequestTest.php
@@ -1206,6 +1244,10 @@ test/Model/VerifyApiKeyResponseTest.php
 test/Model/VerifyUserCodeRequestTest.php
 test/Model/VersionTest.php
 test/Model/WarningTest.php
+test/Model/WebAuthnRelatedOriginsTest.php
 test/Model/WorkspaceApiKeyTest.php
+test/Model/WorkspaceContactRecipientInputTest.php
+test/Model/WorkspaceContactRecipientTest.php
+test/Model/WorkspaceContactTest.php
 test/Model/WorkspaceOrganizationTest.php
 test/Model/WorkspaceTest.php

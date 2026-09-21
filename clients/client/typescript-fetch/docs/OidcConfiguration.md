@@ -73,7 +73,7 @@ const example = {
   "response_types_supported": null,
   "revocation_endpoint": null,
   "scopes_supported": null,
-  "subject_types_supported": null,
+  "subject_types_supported": ["public","pairwise"],
   "token_endpoint": https://playground.ory.sh/ory-hydra/public/oauth2/token,
   "token_endpoint_auth_methods_supported": null,
   "userinfo_endpoint": null,

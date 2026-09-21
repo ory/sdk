@@ -37,7 +37,7 @@ defmodule Ory.Model.RegistrationFlow do
     :request_url => String.t,
     :return_to => String.t | nil,
     :session_token_exchange_code => String.t | nil,
-    :state => any() | nil,
+    :state => Ory.Model.RegistrationFlowState.t,
     :transient_payload => map() | nil,
     :type => String.t,
     :ui => Ory.Model.UiContainer.t
@@ -50,6 +50,7 @@ defmodule Ory.Model.RegistrationFlow do
      |> Deserializer.deserialize(:expires_at, :datetime, nil)
      |> Deserializer.deserialize(:issued_at, :datetime, nil)
      |> Deserializer.deserialize(:oauth2_login_request, :struct, Ory.Model.OAuth2LoginRequest)
+     |> Deserializer.deserialize(:state, :struct, Ory.Model.RegistrationFlowState)
      |> Deserializer.deserialize(:ui, :struct, Ory.Model.UiContainer)
   end
 end

@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attribute** | **string** |  | [optional] [default to undefined]
-**condition** | **string** |  | [optional] [default to undefined]
+**condition** | **string** | equals ConditionEquals not_equals ConditionNotEquals contains ConditionContains not_contains ConditionNotContains regex ConditionRegex not_regex ConditionNotRegex set ConditionSet not_set ConditionNotSet | [optional] [default to undefined]
 **value** | **string** |  | [optional] [default to undefined]
 
 ## Example

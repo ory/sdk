@@ -8,6 +8,7 @@ A singular authenticator used during authentication / login.
 Name | Type
 ------------ | -------------
 `aal` | [AuthenticatorAssuranceLevel](AuthenticatorAssuranceLevel.md)
+`channel` | string
 `completed_at` | Date
 `method` | string
 `organization` | string
@@ -23,6 +24,7 @@ import type { SessionAuthenticationMethod } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "aal": null,
+  "channel": null,
   "completed_at": null,
   "method": null,
   "organization": null,

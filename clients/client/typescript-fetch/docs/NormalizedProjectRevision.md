@@ -24,6 +24,7 @@ Name | Type
 `created_at` | Date
 `disable_account_experience_welcome_screen` | boolean
 `enable_ax_v2` | boolean
+`feature_flags` | { [key: string]: boolean; }
 `hydra_oauth2_allowed_top_level_claims` | Array&lt;string&gt;
 `hydra_oauth2_client_credentials_default_grant_allowed_scope` | boolean
 `hydra_oauth2_device_authorization_token_polling_interval` | string
@@ -79,9 +80,11 @@ Name | Type
 `hydra_webfinger_oidc_discovery_token_url` | string
 `hydra_webfinger_oidc_discovery_userinfo_url` | string
 `id` | string
+`keto_feature_flags_strict_mode` | boolean
 `keto_namespace_configuration` | string
 `keto_namespaces` | [Array&lt;KetoNamespace&gt;](KetoNamespace.md)
 `keto_secrets_pagination` | Array&lt;string&gt;
+`keto_strict_mode_readonly` | boolean
 `kratos_cookies_same_site` | string
 `kratos_courier_channels` | [Array&lt;NormalizedProjectRevisionCourierChannel&gt;](NormalizedProjectRevisionCourierChannel.md)
 `kratos_courier_delivery_strategy` | string
@@ -140,6 +143,7 @@ Name | Type
 `kratos_feature_flags_cacheable_sessions` | boolean
 `kratos_feature_flags_cacheable_sessions_max_age` | string
 `kratos_feature_flags_choose_recovery_address` | boolean
+`kratos_feature_flags_enforce_identity_schema_guards` | boolean
 `kratos_feature_flags_faster_session_extend` | boolean
 `kratos_feature_flags_legacy_continue_with_verification_ui` | boolean
 `kratos_feature_flags_legacy_oidc_registration_node_group` | boolean
@@ -147,6 +151,7 @@ Name | Type
 `kratos_feature_flags_password_profile_registration_node_group` | boolean
 `kratos_feature_flags_refresh_login_choose_address` | boolean
 `kratos_feature_flags_use_continue_with_transitions` | boolean
+`kratos_feature_flags_webhook_response_directives` | boolean
 `kratos_identity_schemas` | [Array&lt;NormalizedProjectRevisionIdentitySchema&gt;](NormalizedProjectRevisionIdentitySchema.md)
 `kratos_oauth2_provider_headers` | object
 `kratos_oauth2_provider_override_return_to` | boolean
@@ -222,6 +227,7 @@ Name | Type
 `kratos_selfservice_methods_code_mfa_enabled` | boolean
 `kratos_selfservice_methods_code_passwordless_enabled` | boolean
 `kratos_selfservice_methods_code_passwordless_login_fallback_enabled` | boolean
+`kratos_selfservice_methods_deviceauthn_config_android_allow_expired_factory_certificates` | boolean
 `kratos_selfservice_methods_deviceauthn_config_android_app_ids` | Array&lt;string&gt;
 `kratos_selfservice_methods_deviceauthn_config_first_factor` | boolean
 `kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation` | boolean
@@ -320,6 +326,7 @@ const example = {
   "created_at": null,
   "disable_account_experience_welcome_screen": null,
   "enable_ax_v2": null,
+  "feature_flags": null,
   "hydra_oauth2_allowed_top_level_claims": null,
   "hydra_oauth2_client_credentials_default_grant_allowed_scope": null,
   "hydra_oauth2_device_authorization_token_polling_interval": 15s,
@@ -375,9 +382,11 @@ const example = {
   "hydra_webfinger_oidc_discovery_token_url": null,
   "hydra_webfinger_oidc_discovery_userinfo_url": null,
   "id": null,
+  "keto_feature_flags_strict_mode": null,
   "keto_namespace_configuration": null,
   "keto_namespaces": null,
   "keto_secrets_pagination": null,
+  "keto_strict_mode_readonly": null,
   "kratos_cookies_same_site": null,
   "kratos_courier_channels": null,
   "kratos_courier_delivery_strategy": null,
@@ -436,6 +445,7 @@ const example = {
   "kratos_feature_flags_cacheable_sessions": null,
   "kratos_feature_flags_cacheable_sessions_max_age": null,
   "kratos_feature_flags_choose_recovery_address": null,
+  "kratos_feature_flags_enforce_identity_schema_guards": null,
   "kratos_feature_flags_faster_session_extend": null,
   "kratos_feature_flags_legacy_continue_with_verification_ui": null,
   "kratos_feature_flags_legacy_oidc_registration_node_group": null,
@@ -443,6 +453,7 @@ const example = {
   "kratos_feature_flags_password_profile_registration_node_group": null,
   "kratos_feature_flags_refresh_login_choose_address": null,
   "kratos_feature_flags_use_continue_with_transitions": null,
+  "kratos_feature_flags_webhook_response_directives": null,
   "kratos_identity_schemas": null,
   "kratos_oauth2_provider_headers": null,
   "kratos_oauth2_provider_override_return_to": null,
@@ -518,6 +529,7 @@ const example = {
   "kratos_selfservice_methods_code_mfa_enabled": null,
   "kratos_selfservice_methods_code_passwordless_enabled": null,
   "kratos_selfservice_methods_code_passwordless_login_fallback_enabled": null,
+  "kratos_selfservice_methods_deviceauthn_config_android_allow_expired_factory_certificates": null,
   "kratos_selfservice_methods_deviceauthn_config_android_app_ids": null,
   "kratos_selfservice_methods_deviceauthn_config_first_factor": null,
   "kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation": null,

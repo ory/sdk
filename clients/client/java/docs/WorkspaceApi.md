@@ -77,12 +77,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | workspace |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **500** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **201** | Created |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **500** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="createWorkspaceApiKey"></a>
 # **createWorkspaceApiKey**
@@ -151,8 +151,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | workspaceApiKey |  -  |
-| **0** | errorGeneric |  -  |
+| **201** | Created |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="deleteWorkspaceApiKey"></a>
 # **deleteWorkspaceApiKey**
@@ -221,7 +221,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-| **0** | errorGeneric |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="getWorkspace"></a>
 # **getWorkspace**
@@ -288,12 +288,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | workspace |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **500** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **500** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="listWorkspaceApiKeys"></a>
 # **listWorkspaceApiKeys**
@@ -360,8 +360,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | workspaceApiKeys |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="listWorkspaceProjects"></a>
 # **listWorkspaceProjects**
@@ -428,12 +428,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | listWorkspaceProjects |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **500** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **500** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="listWorkspaces"></a>
 # **listWorkspaces**
@@ -500,12 +500,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | listWorkspaces |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **500** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **500** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 
 <a id="updateWorkspace"></a>
 # **updateWorkspace**
@@ -574,10 +574,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | workspace |  -  |
-| **400** | errorGeneric |  -  |
-| **401** | errorGeneric |  -  |
-| **403** | errorGeneric |  -  |
-| **500** | errorGeneric |  -  |
-| **0** | errorGeneric |  -  |
+| **200** | OK |  -  |
+| **400** | JSON API Error Response |  -  |
+| **401** | JSON API Error Response |  -  |
+| **403** | JSON API Error Response |  -  |
+| **500** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
 

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.66
+API version: v1.22.78
 Contact: support@ory.sh
 */
 
@@ -38,7 +38,7 @@ type CreateProjectNormalizedPayload struct {
 	AccountExperienceHideOryBranding *bool `json:"account_experience_hide_ory_branding,omitempty"`
 	// Whether to hide the registration link on the account experience login card. This governs the \"hide_registration_link\" setting.
 	AccountExperienceHideRegistrationLink *bool `json:"account_experience_hide_registration_link,omitempty"`
-	// Holds the URL to the account experience's language behavior.  Can be one of: `respect_accept_language`: Respect the `Accept-Language` header. `force_default`: Force the default language. This governs the \"locale_behavior\" setting.
+	// Holds the URL to the account experience's language behavior.  Can be one of: - `respect_accept_language`: Respect the `Accept-Language` header. - `force_default`: Force the default language. This governs the \"locale_behavior\" setting.
 	AccountExperienceLocaleBehavior *string `json:"account_experience_locale_behavior,omitempty"`
 	// Holds the URL to the account experience's dark theme logo (currently unused). This governs the \"logo_dark\" setting.
 	AccountExperienceLogoDark *string `json:"account_experience_logo_dark,omitempty"`
@@ -58,9 +58,11 @@ type CreateProjectNormalizedPayload struct {
 	DisableAccountExperienceWelcomeScreen *bool `json:"disable_account_experience_welcome_screen,omitempty"`
 	// Whether the new account experience is enabled and reachable. This governs the \"enable_ax_v2\" setting.
 	EnableAxV2 *bool `json:"enable_ax_v2,omitempty"`
-	//  prod Production stage Staging dev Development
+	// prod Production stage Staging dev Development
 	Environment string `json:"environment"`
-	//  eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global
+	// The project's feature flags. Keys are catalog flag keys such as `kratos.choose_recovery_address`. Responses contain every flag with its effective value; requests may set any subset.
+	FeatureFlags *map[string]bool `json:"feature_flags,omitempty"`
+	// eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global
 	HomeRegion *string `json:"home_region,omitempty"`
 	// A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.  This governs the \"oauth2.allowed_top_level_claims\" setting.
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
@@ -118,7 +120,7 @@ type CreateProjectNormalizedPayload struct {
 	HydraServeCookiesSameSiteMode *string `json:"hydra_serve_cookies_same_site_mode,omitempty"`
 	// Defines access token type  This governs the \"strategies.access_token\" setting. opaque Oauth2AccessTokenStrategyOpaque jwt Oauth2AccessTokenStrategyJwt
 	HydraStrategiesAccessToken *string `json:"hydra_strategies_access_token,omitempty"`
-	// Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting.  list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
+	// Define the claim to use as the scope in the access token.  This governs the \"strategies.jwt.scope_claim\" setting.  - list: The scope claim is an array of strings named `scope`: `{ \"scope\": [\"read\", \"write\"] }` - string: The scope claim is a space delimited list of strings named `scp`: `{ \"scp\": \"read write\" }` - both: The scope claim is both a space delimited list and an array of strings named `scope` and `scp`: `{ \"scope\": [\"read\", \"write\"], \"scp\": \"read write\" }` list OAuth2JWTScopeClaimList string OAuth2JWTScopeClaimString both OAuth2JWTScopeClaimBoth
 	HydraStrategiesJwtScopeClaim *string `json:"hydra_strategies_jwt_scope_claim,omitempty"`
 	// Defines how scopes are matched. For more details have a look at https://github.com/ory/fosite#scopes  This governs the \"strategies.scope\" setting. exact Oauth2ScopeStrategyExact wildcard Oauth2ScopeStrategyWildcard
 	HydraStrategiesScope *string `json:"hydra_strategies_scope,omitempty"`
@@ -172,17 +174,21 @@ type CreateProjectNormalizedPayload struct {
 	HydraWebfingerOidcDiscoveryUserinfoUrl *string `json:"hydra_webfinger_oidc_discovery_userinfo_url,omitempty"`
 	// The revision ID.
 	Id *string `json:"id,omitempty"`
+	// Configures Keto's strict mode.  This governs the \"feature_flags.strict_mode\" setting.
+	KetoFeatureFlagsStrictMode *bool `json:"keto_feature_flags_strict_mode,omitempty"`
 	// The Revisions' Keto Namespace Configuration  The string is a URL pointing to an OPL file with the configuration.  This governs the \"namespaces.location\" setting.
 	KetoNamespaceConfiguration *string `json:"keto_namespace_configuration,omitempty"`
 	KetoNamespaces []KetoNamespace `json:"keto_namespaces,omitempty"`
 	// Configures Keto's pagination secrets.  This governs the \"secrets.pagination\" setting.
 	KetoSecretsPagination []string `json:"keto_secrets_pagination,omitempty"`
+	// When true, strict mode is locked: changes to it are rejected from any client (API, Console, config import), and the Console hides the toggle. NULL and false mean strict mode can be changed (existing projects during migration). New projects are created with this set to true, permanently enabling strict mode. This flag is backoffice metadata and is not part of the rendered Keto configuration.
+	KetoStrictModeReadonly *bool `json:"keto_strict_mode_readonly,omitempty"`
 	// Configures the Ory Kratos Cookie SameSite Attribute  This governs the \"cookies.same_site\" setting.
 	KratosCookiesSameSite *string `json:"kratos_cookies_same_site,omitempty"`
 	KratosCourierChannels []NormalizedProjectRevisionCourierChannel `json:"kratos_courier_channels,omitempty"`
-	// The delivery strategy to use when sending emails  This governs the \"courier.delivery_strategy\" setting.  `smtp`: Use SMTP server `http`: Use the built in HTTP client to send the email to some remote service
+	// The delivery strategy to use when sending emails  This governs the \"courier.delivery_strategy\" setting.  - `smtp`: Use SMTP server - `http`: Use the built in HTTP client to send the email to some remote service
 	KratosCourierDeliveryStrategy *string `json:"kratos_courier_delivery_strategy,omitempty"`
-	// The location of the API key to use in the HTTP email sending service's authentication  `header`: Send the key value pair as a header `cookie`: Send the key value pair as a cookie This governs the \"courier.http.request_config.auth.config.in\" setting.
+	// The location of the API key to use in the HTTP email sending service's authentication  - `header`: Send the key value pair as a header - `cookie`: Send the key value pair as a cookie This governs the \"courier.http.request_config.auth.config.in\" setting.
 	KratosCourierHttpRequestConfigAuthApiKeyIn *string `json:"kratos_courier_http_request_config_auth_api_key_in,omitempty"`
 	// The name of the API key to use in the HTTP email sending service's authentication  This governs the \"courier.http.request_config.auth.config.name\" setting.
 	KratosCourierHttpRequestConfigAuthApiKeyName *string `json:"kratos_courier_http_request_config_auth_api_key_name,omitempty"`
@@ -192,7 +198,7 @@ type CreateProjectNormalizedPayload struct {
 	KratosCourierHttpRequestConfigAuthBasicAuthPassword *string `json:"kratos_courier_http_request_config_auth_basic_auth_password,omitempty"`
 	// The user to use for basic auth in the HTTP email sending service's authentication  This governs the \"courier.http.request_config.auth.config.user\" setting.
 	KratosCourierHttpRequestConfigAuthBasicAuthUser *string `json:"kratos_courier_http_request_config_auth_basic_auth_user,omitempty"`
-	// The authentication type to use while contacting the remote HTTP email sending service  This governs the \"courier.http.request_config.auth.type\" setting.  `basic_auth`: Use Basic Authentication `api_key`: Use API Key Authentication in a header or cookie
+	// The authentication type to use while contacting the remote HTTP email sending service  This governs the \"courier.http.request_config.auth.type\" setting.  - `basic_auth`: Use Basic Authentication - `api_key`: Use API Key Authentication in a header or cookie
 	KratosCourierHttpRequestConfigAuthType *string `json:"kratos_courier_http_request_config_auth_type,omitempty"`
 	// The Jsonnet template to generate the body to send to the remote HTTP email sending service  Should be valid Jsonnet and base64 encoded  This governs the \"courier.http.request_config.body\" setting.
 	KratosCourierHttpRequestConfigBody *string `json:"kratos_courier_http_request_config_body,omitempty"`
@@ -292,6 +298,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosFeatureFlagsCacheableSessionsMaxAge *string `json:"kratos_feature_flags_cacheable_sessions_max_age,omitempty"`
 	// This governs the \"feature_flags.choose_recovery_address\" setting.
 	KratosFeatureFlagsChooseRecoveryAddress *bool `json:"kratos_feature_flags_choose_recovery_address,omitempty"`
+	// Configures whether Ory Kratos enforces the identity schema guards  If enabled, an identity schema that does not pass the identity schema guards is rejected. If disabled, the result is logged and the schema is used.  This governs the \"feature_flags.enforce_identity_schema_guards\" setting.
+	KratosFeatureFlagsEnforceIdentitySchemaGuards *bool `json:"kratos_feature_flags_enforce_identity_schema_guards,omitempty"`
 	// Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
 	KratosFeatureFlagsFasterSessionExtend *bool `json:"kratos_feature_flags_faster_session_extend,omitempty"`
 	// Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.  This governs the \"feature_flags.legacy_continue_with_verification_ui\" setting.
@@ -306,6 +314,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosFeatureFlagsRefreshLoginChooseAddress *bool `json:"kratos_feature_flags_refresh_login_choose_address,omitempty"`
 	// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
 	KratosFeatureFlagsUseContinueWithTransitions *bool `json:"kratos_feature_flags_use_continue_with_transitions,omitempty"`
+	// Honor flow directives in web hook responses  If true, a login `after` web hook whose `response.parse` is enabled may return `{\"required_aal\":\"aal2\"}` to require step-up for that login. Identities without a second factor are routed to enrollment. Off by default, because a web hook that already returns a `required_aal` field has it ignored today and enabling that silently would change how existing logins end.  This governs the \"feature_flags.webhook_response_directives\" setting.
+	KratosFeatureFlagsWebhookResponseDirectives *bool `json:"kratos_feature_flags_webhook_response_directives,omitempty"`
 	KratosIdentitySchemas []NormalizedProjectRevisionIdentitySchema `json:"kratos_identity_schemas,omitempty"`
 	// Configures the OAuth2 Provider Integration HTTP Headers  This governs the \"oauth2_provider.headers\" setting.
 	KratosOauth2ProviderHeaders map[string]interface{} `json:"kratos_oauth2_provider_headers,omitempty"`
@@ -313,7 +323,7 @@ type CreateProjectNormalizedPayload struct {
 	KratosOauth2ProviderOverrideReturnTo *bool `json:"kratos_oauth2_provider_override_return_to,omitempty"`
 	// The Revisions' OAuth2 Provider Integration URL  This governs the \"oauth2_provider.url\" setting.
 	KratosOauth2ProviderUrl *string `json:"kratos_oauth2_provider_url,omitempty"`
-	// Configures the default read consistency level for identity APIs  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  `GET /admin/identities`  Defaults to \"strong\" for new and existing projects. This feature is in preview. Use with caution. This governs the \"preview.default_read_consistency_level\" setting.
+	// Configures the default read consistency level for identity APIs  The read consistency level determines the consistency guarantee for reads:  - strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. - eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  - `GET /admin/identities`  Defaults to \"strong\" for new and existing projects. This feature is in preview. Use with caution. This governs the \"preview.default_read_consistency_level\" setting.
 	KratosPreviewDefaultReadConsistencyLevel *string `json:"kratos_preview_default_read_consistency_level,omitempty"`
 	// Configures the Ory Kratos Cipher Secret  This governs the \"secrets.cipher\" setting.
 	KratosSecretsCipher []string `json:"kratos_secrets_cipher,omitempty"`
@@ -455,6 +465,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceMethodsCodePasswordlessEnabled *bool `json:"kratos_selfservice_methods_code_passwordless_enabled,omitempty"`
 	// This setting allows the code method to always login a user with code if they have registered with another authentication method such as password or social sign in.  This governs the \"selfservice.methods.code.passwordless_login_fallback_enabled\" setting.
 	KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled *bool `json:"kratos_selfservice_methods_code_passwordless_login_fallback_enabled,omitempty"`
+	// Configures whether Ory Kratos Device authentication accepts expired certificates in Android factory attestation chains  When enabled, Android enrollment accepts expired CA certificates in factory-provisioned attestation chains that lead to a pinned Google root key. Devices launched before 2021 ship factory keyboxes whose certificates have expired but that Google documents as still trustworthy unless revoked. Revocation, signature, and leaf-validity checks still apply, and keys enrolled this way are first-class hardware-attested keys. Defaults to false.  This governs the \"selfservice.methods.deviceauthn.config.android_allow_expired_factory_certificates\" setting.
+	KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates *bool `json:"kratos_selfservice_methods_deviceauthn_config_android_allow_expired_factory_certificates,omitempty"`
 	// Configures the allow-list of Android app signing-certificate digests that a device key may be bound to.  This governs the \"selfservice.methods.deviceauthn.config.android_app_ids\" setting.
 	KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds []string `json:"kratos_selfservice_methods_deviceauthn_config_android_app_ids,omitempty"`
 	// Configures whether device authentication may be used as the sole first factor.  When enabled, a confirmed device key with PIN or platform user verification can complete an AAL2 login in a single submission, without a password or code. Defaults to false, which keeps device keys usable only as a second factor (step-up).  This governs the \"selfservice.methods.deviceauthn.config.first_factor\" setting.
@@ -1264,6 +1276,38 @@ func (o *CreateProjectNormalizedPayload) GetEnvironmentOk() (*string, bool) {
 // SetEnvironment sets field value
 func (o *CreateProjectNormalizedPayload) SetEnvironment(v string) {
 	o.Environment = v
+}
+
+// GetFeatureFlags returns the FeatureFlags field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetFeatureFlags() map[string]bool {
+	if o == nil || IsNil(o.FeatureFlags) {
+		var ret map[string]bool
+		return ret
+	}
+	return *o.FeatureFlags
+}
+
+// GetFeatureFlagsOk returns a tuple with the FeatureFlags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetFeatureFlagsOk() (*map[string]bool, bool) {
+	if o == nil || IsNil(o.FeatureFlags) {
+		return nil, false
+	}
+	return o.FeatureFlags, true
+}
+
+// HasFeatureFlags returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasFeatureFlags() bool {
+	if o != nil && !IsNil(o.FeatureFlags) {
+		return true
+	}
+
+	return false
+}
+
+// SetFeatureFlags gets a reference to the given map[string]bool and assigns it to the FeatureFlags field.
+func (o *CreateProjectNormalizedPayload) SetFeatureFlags(v map[string]bool) {
+	o.FeatureFlags = &v
 }
 
 // GetHomeRegion returns the HomeRegion field value if set, zero value otherwise.
@@ -3058,6 +3102,38 @@ func (o *CreateProjectNormalizedPayload) SetId(v string) {
 	o.Id = &v
 }
 
+// GetKetoFeatureFlagsStrictMode returns the KetoFeatureFlagsStrictMode field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKetoFeatureFlagsStrictMode() bool {
+	if o == nil || IsNil(o.KetoFeatureFlagsStrictMode) {
+		var ret bool
+		return ret
+	}
+	return *o.KetoFeatureFlagsStrictMode
+}
+
+// GetKetoFeatureFlagsStrictModeOk returns a tuple with the KetoFeatureFlagsStrictMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKetoFeatureFlagsStrictModeOk() (*bool, bool) {
+	if o == nil || IsNil(o.KetoFeatureFlagsStrictMode) {
+		return nil, false
+	}
+	return o.KetoFeatureFlagsStrictMode, true
+}
+
+// HasKetoFeatureFlagsStrictMode returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKetoFeatureFlagsStrictMode() bool {
+	if o != nil && !IsNil(o.KetoFeatureFlagsStrictMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetKetoFeatureFlagsStrictMode gets a reference to the given bool and assigns it to the KetoFeatureFlagsStrictMode field.
+func (o *CreateProjectNormalizedPayload) SetKetoFeatureFlagsStrictMode(v bool) {
+	o.KetoFeatureFlagsStrictMode = &v
+}
+
 // GetKetoNamespaceConfiguration returns the KetoNamespaceConfiguration field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKetoNamespaceConfiguration() string {
 	if o == nil || IsNil(o.KetoNamespaceConfiguration) {
@@ -3152,6 +3228,38 @@ func (o *CreateProjectNormalizedPayload) HasKetoSecretsPagination() bool {
 // SetKetoSecretsPagination gets a reference to the given []string and assigns it to the KetoSecretsPagination field.
 func (o *CreateProjectNormalizedPayload) SetKetoSecretsPagination(v []string) {
 	o.KetoSecretsPagination = v
+}
+
+// GetKetoStrictModeReadonly returns the KetoStrictModeReadonly field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKetoStrictModeReadonly() bool {
+	if o == nil || IsNil(o.KetoStrictModeReadonly) {
+		var ret bool
+		return ret
+	}
+	return *o.KetoStrictModeReadonly
+}
+
+// GetKetoStrictModeReadonlyOk returns a tuple with the KetoStrictModeReadonly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKetoStrictModeReadonlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.KetoStrictModeReadonly) {
+		return nil, false
+	}
+	return o.KetoStrictModeReadonly, true
+}
+
+// HasKetoStrictModeReadonly returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKetoStrictModeReadonly() bool {
+	if o != nil && !IsNil(o.KetoStrictModeReadonly) {
+		return true
+	}
+
+	return false
+}
+
+// SetKetoStrictModeReadonly gets a reference to the given bool and assigns it to the KetoStrictModeReadonly field.
+func (o *CreateProjectNormalizedPayload) SetKetoStrictModeReadonly(v bool) {
+	o.KetoStrictModeReadonly = &v
 }
 
 // GetKratosCookiesSameSite returns the KratosCookiesSameSite field value if set, zero value otherwise.
@@ -5010,6 +5118,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsChooseRecoveryAddr
 	o.KratosFeatureFlagsChooseRecoveryAddress = &v
 }
 
+// GetKratosFeatureFlagsEnforceIdentitySchemaGuards returns the KratosFeatureFlagsEnforceIdentitySchemaGuards field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsEnforceIdentitySchemaGuards() bool {
+	if o == nil || IsNil(o.KratosFeatureFlagsEnforceIdentitySchemaGuards) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosFeatureFlagsEnforceIdentitySchemaGuards
+}
+
+// GetKratosFeatureFlagsEnforceIdentitySchemaGuardsOk returns a tuple with the KratosFeatureFlagsEnforceIdentitySchemaGuards field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsEnforceIdentitySchemaGuardsOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosFeatureFlagsEnforceIdentitySchemaGuards) {
+		return nil, false
+	}
+	return o.KratosFeatureFlagsEnforceIdentitySchemaGuards, true
+}
+
+// HasKratosFeatureFlagsEnforceIdentitySchemaGuards returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsEnforceIdentitySchemaGuards() bool {
+	if o != nil && !IsNil(o.KratosFeatureFlagsEnforceIdentitySchemaGuards) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosFeatureFlagsEnforceIdentitySchemaGuards gets a reference to the given bool and assigns it to the KratosFeatureFlagsEnforceIdentitySchemaGuards field.
+func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsEnforceIdentitySchemaGuards(v bool) {
+	o.KratosFeatureFlagsEnforceIdentitySchemaGuards = &v
+}
+
 // GetKratosFeatureFlagsFasterSessionExtend returns the KratosFeatureFlagsFasterSessionExtend field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsFasterSessionExtend() bool {
 	if o == nil || IsNil(o.KratosFeatureFlagsFasterSessionExtend) {
@@ -5232,6 +5372,38 @@ func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsUseContinueWithTra
 // SetKratosFeatureFlagsUseContinueWithTransitions gets a reference to the given bool and assigns it to the KratosFeatureFlagsUseContinueWithTransitions field.
 func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsUseContinueWithTransitions(v bool) {
 	o.KratosFeatureFlagsUseContinueWithTransitions = &v
+}
+
+// GetKratosFeatureFlagsWebhookResponseDirectives returns the KratosFeatureFlagsWebhookResponseDirectives field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsWebhookResponseDirectives() bool {
+	if o == nil || IsNil(o.KratosFeatureFlagsWebhookResponseDirectives) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosFeatureFlagsWebhookResponseDirectives
+}
+
+// GetKratosFeatureFlagsWebhookResponseDirectivesOk returns a tuple with the KratosFeatureFlagsWebhookResponseDirectives field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsWebhookResponseDirectivesOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosFeatureFlagsWebhookResponseDirectives) {
+		return nil, false
+	}
+	return o.KratosFeatureFlagsWebhookResponseDirectives, true
+}
+
+// HasKratosFeatureFlagsWebhookResponseDirectives returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsWebhookResponseDirectives() bool {
+	if o != nil && !IsNil(o.KratosFeatureFlagsWebhookResponseDirectives) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosFeatureFlagsWebhookResponseDirectives gets a reference to the given bool and assigns it to the KratosFeatureFlagsWebhookResponseDirectives field.
+func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsWebhookResponseDirectives(v bool) {
+	o.KratosFeatureFlagsWebhookResponseDirectives = &v
 }
 
 // GetKratosIdentitySchemas returns the KratosIdentitySchemas field value if set, zero value otherwise.
@@ -7634,6 +7806,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsCodePassword
 	o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled = &v
 }
 
+// GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates returns the KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates
+}
+
+// GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificatesOk returns a tuple with the KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificatesOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates, true
+}
+
+// HasKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates(v bool) {
+	o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates = &v
+}
+
 // GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds returns the KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds() []string {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds) {
@@ -10027,6 +10231,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 		toSerialize["enable_ax_v2"] = o.EnableAxV2
 	}
 	toSerialize["environment"] = o.Environment
+	if !IsNil(o.FeatureFlags) {
+		toSerialize["feature_flags"] = o.FeatureFlags
+	}
 	if !IsNil(o.HomeRegion) {
 		toSerialize["home_region"] = o.HomeRegion
 	}
@@ -10195,6 +10402,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+	if !IsNil(o.KetoFeatureFlagsStrictMode) {
+		toSerialize["keto_feature_flags_strict_mode"] = o.KetoFeatureFlagsStrictMode
+	}
 	if !IsNil(o.KetoNamespaceConfiguration) {
 		toSerialize["keto_namespace_configuration"] = o.KetoNamespaceConfiguration
 	}
@@ -10203,6 +10413,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.KetoSecretsPagination) {
 		toSerialize["keto_secrets_pagination"] = o.KetoSecretsPagination
+	}
+	if !IsNil(o.KetoStrictModeReadonly) {
+		toSerialize["keto_strict_mode_readonly"] = o.KetoStrictModeReadonly
 	}
 	if !IsNil(o.KratosCookiesSameSite) {
 		toSerialize["kratos_cookies_same_site"] = o.KratosCookiesSameSite
@@ -10378,6 +10591,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosFeatureFlagsChooseRecoveryAddress) {
 		toSerialize["kratos_feature_flags_choose_recovery_address"] = o.KratosFeatureFlagsChooseRecoveryAddress
 	}
+	if !IsNil(o.KratosFeatureFlagsEnforceIdentitySchemaGuards) {
+		toSerialize["kratos_feature_flags_enforce_identity_schema_guards"] = o.KratosFeatureFlagsEnforceIdentitySchemaGuards
+	}
 	if !IsNil(o.KratosFeatureFlagsFasterSessionExtend) {
 		toSerialize["kratos_feature_flags_faster_session_extend"] = o.KratosFeatureFlagsFasterSessionExtend
 	}
@@ -10398,6 +10614,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.KratosFeatureFlagsUseContinueWithTransitions) {
 		toSerialize["kratos_feature_flags_use_continue_with_transitions"] = o.KratosFeatureFlagsUseContinueWithTransitions
+	}
+	if !IsNil(o.KratosFeatureFlagsWebhookResponseDirectives) {
+		toSerialize["kratos_feature_flags_webhook_response_directives"] = o.KratosFeatureFlagsWebhookResponseDirectives
 	}
 	if !IsNil(o.KratosIdentitySchemas) {
 		toSerialize["kratos_identity_schemas"] = o.KratosIdentitySchemas
@@ -10623,6 +10842,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled) {
 		toSerialize["kratos_selfservice_methods_code_passwordless_login_fallback_enabled"] = o.KratosSelfserviceMethodsCodePasswordlessLoginFallbackEnabled
+	}
+	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates) {
+		toSerialize["kratos_selfservice_methods_deviceauthn_config_android_allow_expired_factory_certificates"] = o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAllowExpiredFactoryCertificates
 	}
 	if !IsNil(o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds) {
 		toSerialize["kratos_selfservice_methods_deviceauthn_config_android_app_ids"] = o.KratosSelfserviceMethodsDeviceauthnConfigAndroidAppIds
@@ -10904,6 +11126,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "disable_account_experience_welcome_screen")
 		delete(additionalProperties, "enable_ax_v2")
 		delete(additionalProperties, "environment")
+		delete(additionalProperties, "feature_flags")
 		delete(additionalProperties, "home_region")
 		delete(additionalProperties, "hydra_oauth2_allowed_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_client_credentials_default_grant_allowed_scope")
@@ -10960,9 +11183,11 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "hydra_webfinger_oidc_discovery_token_url")
 		delete(additionalProperties, "hydra_webfinger_oidc_discovery_userinfo_url")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "keto_feature_flags_strict_mode")
 		delete(additionalProperties, "keto_namespace_configuration")
 		delete(additionalProperties, "keto_namespaces")
 		delete(additionalProperties, "keto_secrets_pagination")
+		delete(additionalProperties, "keto_strict_mode_readonly")
 		delete(additionalProperties, "kratos_cookies_same_site")
 		delete(additionalProperties, "kratos_courier_channels")
 		delete(additionalProperties, "kratos_courier_delivery_strategy")
@@ -11021,6 +11246,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions")
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions_max_age")
 		delete(additionalProperties, "kratos_feature_flags_choose_recovery_address")
+		delete(additionalProperties, "kratos_feature_flags_enforce_identity_schema_guards")
 		delete(additionalProperties, "kratos_feature_flags_faster_session_extend")
 		delete(additionalProperties, "kratos_feature_flags_legacy_continue_with_verification_ui")
 		delete(additionalProperties, "kratos_feature_flags_legacy_oidc_registration_node_group")
@@ -11028,6 +11254,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_feature_flags_password_profile_registration_node_group")
 		delete(additionalProperties, "kratos_feature_flags_refresh_login_choose_address")
 		delete(additionalProperties, "kratos_feature_flags_use_continue_with_transitions")
+		delete(additionalProperties, "kratos_feature_flags_webhook_response_directives")
 		delete(additionalProperties, "kratos_identity_schemas")
 		delete(additionalProperties, "kratos_oauth2_provider_headers")
 		delete(additionalProperties, "kratos_oauth2_provider_override_return_to")
@@ -11103,6 +11330,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_selfservice_methods_code_mfa_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_code_passwordless_login_fallback_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_config_android_allow_expired_factory_certificates")
 		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_config_android_app_ids")
 		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_config_first_factor")
 		delete(additionalProperties, "kratos_selfservice_methods_deviceauthn_config_insecure_allow_relaxed_attestation")

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.66
+API version: v1.22.78
 Contact: support@ory.sh
 */
 
@@ -40,13 +40,17 @@ Avoid importing large batches with plaintext passwords. They can cause timeouts 
 
 If at least one identity is imported successfully, the response status is 200 OK.
 If all imports fail, the response is one of the following 4xx errors:
-400 Bad Request: The request payload is invalid or improperly formatted.
-409 Conflict: Duplicate identities or conflicting data were detected.
+- 400 Bad Request: The request payload is invalid or improperly formatted.
+- 409 Conflict: Duplicate identities or conflicting data were detected.
+
+This applies while `with_partial_inserts` is true, which is the default. Set it to false to import the batch as a single
+unit instead: one conflict then fails the whole request with 409 Conflict and no identity is created, in exchange for a
+considerably faster import.
 
 If you get a 504 Gateway Timeout:
-Reduce the batch size
-Avoid duplicate identities
-Pre-hash passwords with BCrypt
+- Reduce the batch size
+- Avoid duplicate identities
+- Pre-hash passwords with BCrypt
 
 If the issue persists, contact support.
 
@@ -145,7 +149,7 @@ You cannot delete passkeys or code auth credentials through this API.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID is the identity's ID.
-	@param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+	@param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
 	@return IdentityAPIDeleteIdentityCredentialsRequest
 	*/
 	DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest
@@ -258,7 +262,7 @@ include credentials (e.g. social sign in connections) in the response by using t
 
 	This endpoint is useful for:
 
-Getting a session object with all specified expandables that exist in an administrative context.
+- Getting a session object with all specified expandables that exist in an administrative context.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID is the session's ID.
@@ -333,9 +337,9 @@ Getting a session object with all specified expandables that exist in an adminis
 	Disable or delete sessions for a list of identities or a list of sessions in
 a single call. The `action` field selects the operation:
 
-`disable` — deactivate matching sessions (sets `active = false`, preserves
+- `disable` — deactivate matching sessions (sets `active = false`, preserves
 audit data).
-`delete` — permanently delete matching sessions.
+- `delete` — permanently delete matching sessions.
 
 Exactly one of `identities` or `sessions` must be provided. To scope the
 operation to every session in the network, pass `identities: ["*"]`; the
@@ -385,12 +389,12 @@ but instead added to the list. For example, if a user has a social sign in conne
 will keep the social sign in connection and add the new credentials to the list. This prevents accidentally overwriting
 credentials and locking out users. A complete view of all credential types is here:
 
-`password`: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook.
-`oidc`, `saml`: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list.
-`totp`: The existing TOTP credentials will be replaced with the new configuration.
-`lookup_secret`: The existing Lookup Secret codes will be kept and the new codes will be added to the list.
-`webauthn`, `passkey`: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new `user_handle` is provided, it's added to the identity's identifiers list while preserving previous user handles.
-`code`: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (`{"ory.sh/kratos":{"code":{"identifier":true", "via":"email"}}}`).
+- `password`: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook.
+- `oidc`, `saml`: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list.
+- `totp`: The existing TOTP credentials will be replaced with the new configuration.
+- `lookup_secret`: The existing Lookup Secret codes will be kept and the new codes will be added to the list.
+- `webauthn`, `passkey`: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new `user_handle` is provided, it's added to the identity's identifiers list while preserving previous user handles.
+- `code`: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (`{"ory.sh/kratos":{"code":{"identifier":true", "via":"email"}}}`).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id ID must be set to the ID of identity you want to update
@@ -437,13 +441,17 @@ Avoid importing large batches with plaintext passwords. They can cause timeouts 
 
 If at least one identity is imported successfully, the response status is 200 OK.
 If all imports fail, the response is one of the following 4xx errors:
-400 Bad Request: The request payload is invalid or improperly formatted.
-409 Conflict: Duplicate identities or conflicting data were detected.
+- 400 Bad Request: The request payload is invalid or improperly formatted.
+- 409 Conflict: Duplicate identities or conflicting data were detected.
+
+This applies while `with_partial_inserts` is true, which is the default. Set it to false to import the batch as a single
+unit instead: one conflict then fails the whole request with 409 Conflict and no identity is created, in exchange for a
+considerably faster import.
 
 If you get a 504 Gateway Timeout:
-Reduce the batch size
-Avoid duplicate identities
-Pre-hash passwords with BCrypt
+- Reduce the batch size
+- Avoid duplicate identities
+- Pre-hash passwords with BCrypt
 
 If the issue persists, contact support.
 
@@ -1269,7 +1277,7 @@ You cannot delete passkeys or code auth credentials through this API.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID is the identity's ID.
- @param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink  CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
+ @param type_ Type is the type of credentials to delete. password CredentialsTypePassword oidc CredentialsTypeOIDC totp CredentialsTypeTOTP lookup_secret CredentialsTypeLookup webauthn CredentialsTypeWebAuthn code CredentialsTypeCodeAuth passkey CredentialsTypePasskey profile CredentialsTypeProfile saml CredentialsTypeSAML deviceauthn CredentialsTypeDeviceAuthn identifier_first CredentialsTypeIdentifierFirst link_recovery CredentialsTypeRecoveryLink is a special credential type linked to the link strategy (recovery flow).  It is not used within the credentials object itself. code_recovery CredentialsTypeRecoveryCode
  @return IdentityAPIDeleteIdentityCredentialsRequest
 */
 func (a *IdentityAPIService) DeleteIdentityCredentials(ctx context.Context, id string, type_ string) IdentityAPIDeleteIdentityCredentialsRequest {
@@ -2204,7 +2212,7 @@ GetSession Get Session
 
 This endpoint is useful for:
 
-Getting a session object with all specified expandables that exist in an administrative context.
+- Getting a session object with all specified expandables that exist in an administrative context.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID is the session's ID.
@@ -2363,13 +2371,13 @@ func (r IdentityAPIListIdentitiesRequest) PageToken(pageToken string) IdentityAP
 	return r
 }
 
-// Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong  ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual  ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
+// Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  - strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. - eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace &#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  - &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
 func (r IdentityAPIListIdentitiesRequest) Consistency(consistency string) IdentityAPIListIdentitiesRequest {
 	r.consistency = &consistency
 	return r
 }
 
-// Retrieve multiple identities by their IDs.  This parameter has the following limitations:  Duplicate or non-existent IDs are ignored. The order of returned IDs may be different from the request. This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
+// Retrieve multiple identities by their IDs.  This parameter has the following limitations:  - Duplicate or non-existent IDs are ignored. - The order of returned IDs may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
 func (r IdentityAPIListIdentitiesRequest) Ids(ids []string) IdentityAPIListIdentitiesRequest {
 	r.ids = &ids
 	return r
@@ -3092,9 +3100,9 @@ ManageSessions Manage sessions in bulk
 Disable or delete sessions for a list of identities or a list of sessions in
 a single call. The `action` field selects the operation:
 
-`disable` — deactivate matching sessions (sets `active = false`, preserves
+- `disable` — deactivate matching sessions (sets `active = false`, preserves
 audit data).
-`delete` — permanently delete matching sessions.
+- `delete` — permanently delete matching sessions.
 
 Exactly one of `identities` or `sessions` must be provided. To scope the
 operation to every session in the network, pass `identities: ["*"]`; the
@@ -3408,12 +3416,12 @@ but instead added to the list. For example, if a user has a social sign in conne
 will keep the social sign in connection and add the new credentials to the list. This prevents accidentally overwriting
 credentials and locking out users. A complete view of all credential types is here:
 
-`password`: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook.
-`oidc`, `saml`: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list.
-`totp`: The existing TOTP credentials will be replaced with the new configuration.
-`lookup_secret`: The existing Lookup Secret codes will be kept and the new codes will be added to the list.
-`webauthn`, `passkey`: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new `user_handle` is provided, it's added to the identity's identifiers list while preserving previous user handles.
-`code`: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (`{"ory.sh/kratos":{"code":{"identifier":true", "via":"email"}}}`).
+- `password`: The existing password credential will be completely replaced with the new configuration. You can provide either a hashed password, a plaintext password (which will be hashed), or enable the password migration hook.
+- `oidc`, `saml`: The existing OIDC and SAML credentials will be kept and the new credentials will be added to the list.
+- `totp`: The existing TOTP credentials will be replaced with the new configuration.
+- `lookup_secret`: The existing Lookup Secret codes will be kept and the new codes will be added to the list.
+- `webauthn`, `passkey`: The existing credentials are preserved, new credentials are added, and credentials with matching IDs are updated with new values. If a new `user_handle` is provided, it's added to the identity's identifiers list while preserving previous user handles.
+- `code`: To import code credentials, configure your identity schema to use one of the identity traits as an identifier source (`{"ory.sh/kratos":{"code":{"identifier":true", "via":"email"}}}`).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id ID must be set to the ID of identity you want to update

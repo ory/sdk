@@ -28,6 +28,7 @@ lib/ory/model/accept_o_auth2_login_request.ex
 lib/ory/model/account_experience_colors.ex
 lib/ory/model/account_experience_configuration.ex
 lib/ory/model/add_project_to_workspace_body.ex
+lib/ory/model/add_workspace_organization_domain_body.ex
 lib/ory/model/admin_identity_import_credentials_lookup_secret.ex
 lib/ory/model/admin_identity_import_credentials_lookup_secret_config.ex
 lib/ory/model/admin_revoke_imported_api_key_body.ex
@@ -35,6 +36,7 @@ lib/ory/model/admin_revoke_issued_api_key_body.ex
 lib/ory/model/admin_rotate_issued_api_key_body.ex
 lib/ory/model/admin_update_imported_api_key_request.ex
 lib/ory/model/admin_update_issued_api_key_request.ex
+lib/ory/model/ai_assistant_session_token.ex
 lib/ory/model/any.ex
 lib/ory/model/attribute.ex
 lib/ory/model/attribute_filter.ex
@@ -91,6 +93,7 @@ lib/ory/model/create_test_login_flow_from_onboarding_portal_link_body.ex
 lib/ory/model/create_verifiable_credential_request_body.ex
 lib/ory/model/create_workspace_api_key_body.ex
 lib/ory/model/create_workspace_body.ex
+lib/ory/model/create_workspace_contact_body.ex
 lib/ory/model/create_workspace_member_invite_body.ex
 lib/ory/model/create_workspace_organization_body.ex
 lib/ory/model/create_workspace_subscription_body.ex
@@ -110,6 +113,7 @@ lib/ory/model/device_authn_key.ex
 lib/ory/model/device_authorization.ex
 lib/ory/model/device_type.ex
 lib/ory/model/device_user_auth_request.ex
+lib/ory/model/domain_verification_status.ex
 lib/ory/model/elements_configuration.ex
 lib/ory/model/email_template_data.ex
 lib/ory/model/email_template_data_body.ex
@@ -120,6 +124,7 @@ lib/ory/model/error_generic.ex
 lib/ory/model/error_o_auth2.ex
 lib/ory/model/event_stream.ex
 lib/ory/model/expanded_permission_tree.ex
+lib/ory/model/feature_flags_catalog_entry.ex
 lib/ory/model/flow_error.ex
 lib/ory/model/generic_error.ex
 lib/ory/model/generic_error_content.ex
@@ -203,6 +208,7 @@ lib/ory/model/list_imported_api_keys_response.ex
 lib/ory/model/list_invoices_response.ex
 lib/ory/model/list_issued_api_keys_response.ex
 lib/ory/model/list_organizations_response.ex
+lib/ory/model/list_workspace_contacts.ex
 lib/ory/model/list_workspace_projects.ex
 lib/ory/model/list_workspaces.ex
 lib/ory/model/login_flow.ex
@@ -246,17 +252,20 @@ lib/ory/model/oidc_user_info.ex
 lib/ory/model/onboarding_portal_link.ex
 lib/ory/model/onboarding_portal_organization.ex
 lib/ory/model/onboarding_portal_test_login_flow.ex
+lib/ory/model/opl_parse_error.ex
+lib/ory/model/opl_source_position.ex
+lib/ory/model/opl_validate_result.ex
 lib/ory/model/organization.ex
 lib/ory/model/organization_body.ex
 lib/ory/model/organization_by_hostname.ex
 lib/ory/model/organization_onboarding_portal_links_response.ex
 lib/ory/model/parse_error.ex
 lib/ory/model/patch_identities_body.ex
+lib/ory/model/patch_workspace_contact_body.ex
 lib/ory/model/patch_workspace_member_body.ex
 lib/ory/model/perform_native_logout_body.ex
 lib/ory/model/permissions_on_workspace.ex
 lib/ory/model/pin_config.ex
-lib/ory/model/plan.ex
 lib/ory/model/plan_details.ex
 lib/ory/model/post_check_permission_body.ex
 lib/ory/model/post_check_permission_or_error_body.ex
@@ -296,6 +305,7 @@ lib/ory/model/revision_account_experience_custom_translation.ex
 lib/ory/model/revocation_reason.ex
 lib/ory/model/rfc6749_error_json.ex
 lib/ory/model/rotate_issued_api_key_response.ex
+lib/ory/model/rotate_o_auth2_client_secret_body.ex
 lib/ory/model/rotate_talos_key_body.ex
 lib/ory/model/schema_patch.ex
 lib/ory/model/self_revoke_api_key_request.ex
@@ -402,8 +412,12 @@ lib/ory/model/verify_api_key_response.ex
 lib/ory/model/verify_user_code_request.ex
 lib/ory/model/version.ex
 lib/ory/model/warning.ex
+lib/ory/model/web_authn_related_origins.ex
 lib/ory/model/workspace.ex
 lib/ory/model/workspace_api_key.ex
+lib/ory/model/workspace_contact.ex
+lib/ory/model/workspace_contact_recipient.ex
+lib/ory/model/workspace_contact_recipient_input.ex
 lib/ory/model/workspace_organization.ex
 lib/ory/request_builder.ex
 mix.exs

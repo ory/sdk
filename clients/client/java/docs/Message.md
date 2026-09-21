@@ -16,7 +16,7 @@
 |**sendCount** | **Long** |  |  |
 |**status** | **CourierMessageStatus** |  |  |
 |**subject** | **String** |  |  |
-|**templateType** | [**TemplateTypeEnum**](#TemplateTypeEnum) |  recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid verifiable_address_changed TypeVerifiableAddressChanged authenticator_key_added TypeAuthenticatorKeyAdded |  |
+|**templateType** | [**TemplateTypeEnum**](#TemplateTypeEnum) | recovery_invalid TypeRecoveryInvalid recovery_valid TypeRecoveryValid recovery_code_invalid TypeRecoveryCodeInvalid recovery_code_valid TypeRecoveryCodeValid verification_invalid TypeVerificationInvalid verification_valid TypeVerificationValid verification_code_invalid TypeVerificationCodeInvalid verification_code_valid TypeVerificationCodeValid stub TypeTestStub login_code_valid TypeLoginCodeValid registration_code_valid TypeRegistrationCodeValid verifiable_address_changed TypeVerifiableAddressChanged authenticator_key_added TypeAuthenticatorKeyAdded |  |
 |**type** | **CourierMessageType** |  |  |
 |**updatedAt** | **OffsetDateTime** | UpdatedAt is a helper struct field for gobuffalo.pop. |  |
 

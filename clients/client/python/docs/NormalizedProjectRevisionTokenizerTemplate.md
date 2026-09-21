@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **claims_mapper_url** | **str** | Claims mapper URL | [optional] 
 **created_at** | **datetime** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **id** | **str** | The revision ID. | [optional] [readonly] 
-**jwks_url** | **str** | JSON Web Key URL | [optional] 
+**jwks_url** | **str** | JSON Web Key URL  The key set signs the tokens this template issues. It is write only and the value will not be returned in response to a read request. An update that leaves this field empty keeps the stored key set; supply a new one to rotate. | [optional] 
 **key** | **str** | The unique key of the template | [optional] 
 **project_revision_id** | **str** | The Revision&#39;s ID this schema belongs to | [optional] 
 **subject_source** | **str** | Subject source for the tokenizer  Can be either id or external_id or empty | [optional] [default to 'id']

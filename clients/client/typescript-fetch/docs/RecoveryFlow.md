@@ -14,7 +14,7 @@ Name | Type
 `issued_at` | Date
 `request_url` | string
 `return_to` | string
-`state` | any
+`state` | [RecoveryFlowState](RecoveryFlowState.md)
 `transient_payload` | object
 `type` | string
 `ui` | [UiContainer](UiContainer.md)

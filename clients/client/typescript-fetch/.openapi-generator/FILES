@@ -9,6 +9,7 @@ docs/AcceptOAuth2LoginRequest.md
 docs/AccountExperienceColors.md
 docs/AccountExperienceConfiguration.md
 docs/AddProjectToWorkspaceBody.md
+docs/AddWorkspaceOrganizationDomainBody.md
 docs/AdminIdentityImportCredentialsLookupSecret.md
 docs/AdminIdentityImportCredentialsLookupSecretConfig.md
 docs/AdminRevokeImportedApiKeyBody.md
@@ -16,6 +17,7 @@ docs/AdminRevokeIssuedApiKeyBody.md
 docs/AdminRotateIssuedApiKeyBody.md
 docs/AdminUpdateImportedApiKeyRequest.md
 docs/AdminUpdateIssuedApiKeyRequest.md
+docs/AiAssistantSessionToken.md
 docs/Any.md
 docs/ApiKeysApi.md
 docs/Attribute.md
@@ -74,6 +76,7 @@ docs/CreateTestLoginFlowFromOnboardingPortalLinkBody.md
 docs/CreateVerifiableCredentialRequestBody.md
 docs/CreateWorkspaceApiKeyBody.md
 docs/CreateWorkspaceBody.md
+docs/CreateWorkspaceContactBody.md
 docs/CreateWorkspaceMemberInviteBody.md
 docs/CreateWorkspaceOrganizationBody.md
 docs/CreateWorkspaceSubscriptionBody.md
@@ -93,6 +96,7 @@ docs/DeviceAuthnKey.md
 docs/DeviceAuthorization.md
 docs/DeviceType.md
 docs/DeviceUserAuthRequest.md
+docs/DomainVerificationStatus.md
 docs/ElementsApi.md
 docs/ElementsConfiguration.md
 docs/EmailTemplateData.md
@@ -105,6 +109,7 @@ docs/ErrorOAuth2.md
 docs/EventStream.md
 docs/EventsApi.md
 docs/ExpandedPermissionTree.md
+docs/FeatureFlagsCatalogEntry.md
 docs/FlowError.md
 docs/FrontendApi.md
 docs/GenericError.md
@@ -191,6 +196,7 @@ docs/ListImportedApiKeysResponse.md
 docs/ListInvoicesResponse.md
 docs/ListIssuedApiKeysResponse.md
 docs/ListOrganizationsResponse.md
+docs/ListWorkspaceContacts.md
 docs/ListWorkspaceProjects.md
 docs/ListWorkspaces.md
 docs/LoginFlow.md
@@ -237,6 +243,9 @@ docs/OidcUserInfo.md
 docs/OnboardingPortalLink.md
 docs/OnboardingPortalOrganization.md
 docs/OnboardingPortalTestLoginFlow.md
+docs/OplParseError.md
+docs/OplSourcePosition.md
+docs/OplValidateResult.md
 docs/Organization.md
 docs/OrganizationBody.md
 docs/OrganizationByHostname.md
@@ -244,11 +253,11 @@ docs/OrganizationOnboardingPortalLinksResponse.md
 docs/PINConfig.md
 docs/ParseError.md
 docs/PatchIdentitiesBody.md
+docs/PatchWorkspaceContactBody.md
 docs/PatchWorkspaceMemberBody.md
 docs/PerformNativeLogoutBody.md
 docs/PermissionApi.md
 docs/PermissionsOnWorkspace.md
-docs/Plan.md
 docs/PlanDetails.md
 docs/PostCheckPermissionBody.md
 docs/PostCheckPermissionOrErrorBody.md
@@ -290,6 +299,7 @@ docs/Relationships.md
 docs/RevisionAccountExperienceCustomTranslation.md
 docs/RevocationReason.md
 docs/RotateIssuedApiKeyResponse.md
+docs/RotateOAuth2ClientSecretBody.md
 docs/RotateTalosKeyBody.md
 docs/SchemaPatch.md
 docs/SelfRevokeApiKeyRequest.md
@@ -396,10 +406,14 @@ docs/VerifyApiKeyResponse.md
 docs/VerifyUserCodeRequest.md
 docs/Version.md
 docs/Warning.md
+docs/WebAuthnRelatedOrigins.md
 docs/WellknownApi.md
 docs/Workspace.md
 docs/WorkspaceApi.md
 docs/WorkspaceApiKey.md
+docs/WorkspaceContact.md
+docs/WorkspaceContactRecipient.md
+docs/WorkspaceContactRecipientInput.md
 docs/WorkspaceOrganization.md
 package.json
 src/apis/ApiKeysApi.ts
@@ -433,6 +447,7 @@ src/models/AcceptOAuth2LoginRequest.ts
 src/models/AccountExperienceColors.ts
 src/models/AccountExperienceConfiguration.ts
 src/models/AddProjectToWorkspaceBody.ts
+src/models/AddWorkspaceOrganizationDomainBody.ts
 src/models/AdminIdentityImportCredentialsLookupSecret.ts
 src/models/AdminIdentityImportCredentialsLookupSecretConfig.ts
 src/models/AdminRevokeImportedApiKeyBody.ts
@@ -440,6 +455,7 @@ src/models/AdminRevokeIssuedApiKeyBody.ts
 src/models/AdminRotateIssuedApiKeyBody.ts
 src/models/AdminUpdateImportedApiKeyRequest.ts
 src/models/AdminUpdateIssuedApiKeyRequest.ts
+src/models/AiAssistantSessionToken.ts
 src/models/Any.ts
 src/models/Attribute.ts
 src/models/AttributeFilter.ts
@@ -496,6 +512,7 @@ src/models/CreateTestLoginFlowFromOnboardingPortalLinkBody.ts
 src/models/CreateVerifiableCredentialRequestBody.ts
 src/models/CreateWorkspaceApiKeyBody.ts
 src/models/CreateWorkspaceBody.ts
+src/models/CreateWorkspaceContactBody.ts
 src/models/CreateWorkspaceMemberInviteBody.ts
 src/models/CreateWorkspaceOrganizationBody.ts
 src/models/CreateWorkspaceSubscriptionBody.ts
@@ -515,6 +532,7 @@ src/models/DeviceAuthnKey.ts
 src/models/DeviceAuthorization.ts
 src/models/DeviceType.ts
 src/models/DeviceUserAuthRequest.ts
+src/models/DomainVerificationStatus.ts
 src/models/ElementsConfiguration.ts
 src/models/EmailTemplateData.ts
 src/models/EmailTemplateDataBody.ts
@@ -525,6 +543,7 @@ src/models/ErrorGeneric.ts
 src/models/ErrorOAuth2.ts
 src/models/EventStream.ts
 src/models/ExpandedPermissionTree.ts
+src/models/FeatureFlagsCatalogEntry.ts
 src/models/FlowError.ts
 src/models/GenericError.ts
 src/models/GenericErrorContent.ts
@@ -608,6 +627,7 @@ src/models/ListImportedApiKeysResponse.ts
 src/models/ListInvoicesResponse.ts
 src/models/ListIssuedApiKeysResponse.ts
 src/models/ListOrganizationsResponse.ts
+src/models/ListWorkspaceContacts.ts
 src/models/ListWorkspaceProjects.ts
 src/models/ListWorkspaces.ts
 src/models/LoginFlow.ts
@@ -651,6 +671,9 @@ src/models/OidcUserInfo.ts
 src/models/OnboardingPortalLink.ts
 src/models/OnboardingPortalOrganization.ts
 src/models/OnboardingPortalTestLoginFlow.ts
+src/models/OplParseError.ts
+src/models/OplSourcePosition.ts
+src/models/OplValidateResult.ts
 src/models/Organization.ts
 src/models/OrganizationBody.ts
 src/models/OrganizationByHostname.ts
@@ -658,10 +681,10 @@ src/models/OrganizationOnboardingPortalLinksResponse.ts
 src/models/PINConfig.ts
 src/models/ParseError.ts
 src/models/PatchIdentitiesBody.ts
+src/models/PatchWorkspaceContactBody.ts
 src/models/PatchWorkspaceMemberBody.ts
 src/models/PerformNativeLogoutBody.ts
 src/models/PermissionsOnWorkspace.ts
-src/models/Plan.ts
 src/models/PlanDetails.ts
 src/models/PostCheckPermissionBody.ts
 src/models/PostCheckPermissionOrErrorBody.ts
@@ -701,6 +724,7 @@ src/models/Relationships.ts
 src/models/RevisionAccountExperienceCustomTranslation.ts
 src/models/RevocationReason.ts
 src/models/RotateIssuedApiKeyResponse.ts
+src/models/RotateOAuth2ClientSecretBody.ts
 src/models/RotateTalosKeyBody.ts
 src/models/SchemaPatch.ts
 src/models/SelfRevokeApiKeyRequest.ts
@@ -807,8 +831,12 @@ src/models/VerifyApiKeyResponse.ts
 src/models/VerifyUserCodeRequest.ts
 src/models/Version.ts
 src/models/Warning.ts
+src/models/WebAuthnRelatedOrigins.ts
 src/models/Workspace.ts
 src/models/WorkspaceApiKey.ts
+src/models/WorkspaceContact.ts
+src/models/WorkspaceContactRecipient.ts
+src/models/WorkspaceContactRecipientInput.ts
 src/models/WorkspaceOrganization.ts
 src/models/index.ts
 src/runtime.ts

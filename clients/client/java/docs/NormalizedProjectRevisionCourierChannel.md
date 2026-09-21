@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**channelId** | **String** | The Channel&#39;s public ID |  |
 |**createdAt** | **OffsetDateTime** | The creation date |  [optional] [readonly] |
-|**requestConfigAuthConfigApiKeyIn** | **String** | API key location  Can either be \&quot;header\&quot; or \&quot;query\&quot; |  [optional] |
+|**requestConfigAuthConfigApiKeyIn** | **String** | API key location  Can either be \&quot;header\&quot; or \&quot;query\&quot;  Only used if the auth type is api_key |  [optional] |
 |**requestConfigAuthConfigApiKeyName** | **String** | API key name  Only used if the auth type is api_key |  [optional] |
 |**requestConfigAuthConfigApiKeyValue** | **String** | API key value  Only used if the auth type is api_key |  [optional] |
 |**requestConfigAuthConfigBasicAuthPassword** | **String** | Basic Auth Password  Only used if the auth type is basic_auth |  [optional] |

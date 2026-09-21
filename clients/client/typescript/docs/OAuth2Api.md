@@ -89,8 +89,8 @@ const { status, data } = await apiInstance.acceptOAuth2ConsentRequest(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2RedirectTo |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | OAuth 2.0 Redirect Browser To |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -145,8 +145,8 @@ const { status, data } = await apiInstance.acceptOAuth2LoginRequest(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2RedirectTo |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | OAuth 2.0 Redirect Browser To |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -197,8 +197,8 @@ const { status, data } = await apiInstance.acceptOAuth2LogoutRequest(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2RedirectTo |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | OAuth 2.0 Redirect Browser To |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -253,8 +253,8 @@ const { status, data } = await apiInstance.acceptUserCodeRequest(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2RedirectTo |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | OAuth 2.0 Redirect Browser To |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -306,7 +306,7 @@ const { status, data } = await apiInstance.createOAuth2Client(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**201** | oAuth2Client |  -  |
+|**201** | OAuth 2.0 Client |  -  |
 |**400** | Bad Request Error Response |  -  |
 |**0** | Default Error Response |  -  |
 
@@ -360,7 +360,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | genericError |  -  |
+|**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -412,7 +412,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | errorOAuth2 |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -463,7 +463,7 @@ const { status, data } = await apiInstance.deleteRotatedOAuth2ClientSecrets(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2Client |  -  |
+|**200** | OAuth 2.0 Client |  -  |
 |**404** | Not Found Error Response |  -  |
 |**0** | Default Error Response |  -  |
 
@@ -517,7 +517,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | genericError |  -  |
+|**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -568,7 +568,7 @@ const { status, data } = await apiInstance.getOAuth2Client(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2Client |  -  |
+|**200** | OAuth 2.0 Client |  -  |
 |**0** | Default Error Response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -620,9 +620,9 @@ const { status, data } = await apiInstance.getOAuth2ConsentRequest(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2ConsentRequest |  -  |
-|**410** | oAuth2RedirectTo |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | Contains information on an ongoing consent request. |  -  |
+|**410** | OAuth 2.0 Redirect Browser To |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -673,9 +673,9 @@ const { status, data } = await apiInstance.getOAuth2LoginRequest(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2LoginRequest |  -  |
-|**410** | oAuth2RedirectTo |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | Contains information on an ongoing login request. |  -  |
+|**410** | OAuth 2.0 Redirect Browser To |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -726,8 +726,8 @@ const { status, data } = await apiInstance.getOAuth2LogoutRequest(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2LogoutRequest |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | Contains information about an ongoing logout request. |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -778,8 +778,8 @@ const { status, data } = await apiInstance.getTrustedOAuth2JwtGrantIssuer(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | trustedOAuth2JwtGrantIssuer |  -  |
-|**0** | genericError |  -  |
+|**200** | OAuth2 JWT Bearer Grant Type Issuer Trust Relationship |  -  |
+|**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -833,8 +833,8 @@ const { status, data } = await apiInstance.introspectOAuth2Token(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | introspectedOAuth2Token |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | Introspection contains an access token\&#39;s session data as specified by [IETF RFC 7662](https://tools.ietf.org/html/rfc7662) |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -955,8 +955,8 @@ const { status, data } = await apiInstance.listOAuth2ConsentSessions(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2ConsentSessions |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | List of OAuth 2.0 Consent Sessions |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1013,8 +1013,8 @@ const { status, data } = await apiInstance.listTrustedOAuth2JwtGrantIssuers(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | trustedOAuth2JwtGrantIssuers |  -  |
-|**0** | genericError |  -  |
+|**200** | OAuth2 JWT Bearer Grant Type Issuer Trust Relationships |  -  |
+|**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1059,7 +1059,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | errorOAuth2 |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1103,8 +1103,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | deviceAuthorization |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | OAuth2 Device Flow |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1167,8 +1167,8 @@ const { status, data } = await apiInstance.oauth2TokenExchange(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2TokenExchange |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | OAuth2 Token Exchange Result |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1222,7 +1222,7 @@ const { status, data } = await apiInstance.patchOAuth2Client(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2Client |  -  |
+|**200** | OAuth 2.0 Client |  -  |
 |**404** | Not Found Error Response |  -  |
 |**0** | Default Error Response |  -  |
 
@@ -1269,7 +1269,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | errorOAuth2 |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1324,8 +1324,8 @@ const { status, data } = await apiInstance.rejectOAuth2ConsentRequest(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2RedirectTo |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | OAuth 2.0 Redirect Browser To |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1380,8 +1380,8 @@ const { status, data } = await apiInstance.rejectOAuth2LoginRequest(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2RedirectTo |  -  |
-|**0** | errorOAuth2 |  -  |
+|**200** | OAuth 2.0 Redirect Browser To |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1433,7 +1433,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | errorOAuth2 |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1494,7 +1494,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | errorOAuth2 |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1549,7 +1549,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | errorOAuth2 |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1607,30 +1607,33 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
-|**0** | errorOAuth2 |  -  |
+|**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **rotateOAuth2ClientSecret**
 > OAuth2Client rotateOAuth2ClientSecret()
 
-Rotates an OAuth 2.0 client\'s secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.
+Rotates an OAuth 2.0 client\'s secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.  Supply `client_secret` in the request body to rotate to a specific value instead of a generated one. The request body is optional.
 
 ### Example
 
 ```typescript
 import {
     OAuth2Api,
-    Configuration
+    Configuration,
+    RotateOAuth2ClientSecretBody
 } from '@ory/client';
 
 const configuration = new Configuration();
 const apiInstance = new OAuth2Api(configuration);
 
 let id: string; //OAuth 2.0 Client ID (default to undefined)
+let rotateOAuth2ClientSecretBody: RotateOAuth2ClientSecretBody; // (optional)
 
 const { status, data } = await apiInstance.rotateOAuth2ClientSecret(
-    id
+    id,
+    rotateOAuth2ClientSecretBody
 );
 ```
 
@@ -1638,6 +1641,7 @@ const { status, data } = await apiInstance.rotateOAuth2ClientSecret(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
+| **rotateOAuth2ClientSecretBody** | **RotateOAuth2ClientSecretBody**|  | |
 | **id** | [**string**] | OAuth 2.0 Client ID | defaults to undefined|
 
 
@@ -1651,14 +1655,15 @@ const { status, data } = await apiInstance.rotateOAuth2ClientSecret(
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2Client |  -  |
+|**200** | OAuth 2.0 Client |  -  |
+|**400** | Bad Request Error Response |  -  |
 |**404** | Not Found Error Response |  -  |
 |**0** | Default Error Response |  -  |
 
@@ -1715,7 +1720,7 @@ const { status, data } = await apiInstance.setOAuth2Client(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2Client |  -  |
+|**200** | OAuth 2.0 Client |  -  |
 |**400** | Bad Request Error Response |  -  |
 |**404** | Not Found Error Response |  -  |
 |**0** | Default Error Response |  -  |
@@ -1773,8 +1778,8 @@ const { status, data } = await apiInstance.setOAuth2ClientLifespans(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | oAuth2Client |  -  |
-|**0** | genericError |  -  |
+|**200** | OAuth 2.0 Client |  -  |
+|**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1826,8 +1831,8 @@ const { status, data } = await apiInstance.trustOAuth2JwtGrantIssuer(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**201** | trustedOAuth2JwtGrantIssuer |  -  |
-|**0** | genericError |  -  |
+|**201** | OAuth2 JWT Bearer Grant Type Issuer Trust Relationship |  -  |
+|**0** | Default response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

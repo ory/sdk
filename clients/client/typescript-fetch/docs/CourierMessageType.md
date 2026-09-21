@@ -1,7 +1,7 @@
 
 # CourierMessageType
 
-It can either be `email` or `phone`
+It can either be `email` or `sms`
 
 ## Properties
 

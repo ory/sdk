@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-client (1.22.66)
+    ory-client (1.22.78)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -16,7 +16,7 @@ GEM
       ffi (>= 1.15.0)
       logger
     ffi (1.17.4-x86_64-linux-gnu)
-    io-console (0.8.2)
+    io-console (0.9.4)
     jaro_winkler (1.5.6)
     logger (1.7.0)
     method_source (1.1.0)
@@ -36,7 +36,7 @@ GEM
     racc (1.8.1)
     rainbow (3.1.1)
     rake (13.0.6)
-    reline (0.6.3)
+    reline (0.7.0)
       io-console (~> 0.5)
     rspec (3.13.2)
       rspec-core (~> 3.13.0)
