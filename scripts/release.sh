@@ -171,7 +171,7 @@ golang() {
 
 python() {
   dir="clients/${PROJECT}/python"
-  (cd "${dir}"; rm -rf "dist" || true; pip install wheel; python3 setup.py sdist bdist_wheel; twine upload "dist/*")
+  (cd "${dir}"; rm -rf "dist" && pip install setuptools wheel && python3 setup.py sdist bdist_wheel && twine upload "dist/*") || return 1
   to_git "python" "yes"
 }
 
