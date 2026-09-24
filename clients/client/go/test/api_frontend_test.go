@@ -276,6 +276,32 @@ func Test_client_FrontendAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test FrontendAPIService GetSamlMetadata", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.FrontendAPI.GetSamlMetadata(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test FrontendAPIService GetSamlProviderMetadata", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var provider string
+
+		resp, httpRes, err := apiClient.FrontendAPI.GetSamlProviderMetadata(context.Background(), provider).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test FrontendAPIService GetSettingsFlow", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -336,6 +362,34 @@ func Test_client_FrontendAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test FrontendAPIService InitSamlLogin", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var provider string
+
+		resp, httpRes, err := apiClient.FrontendAPI.InitSamlLogin(context.Background(), provider).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test FrontendAPIService InitSamlLoginRequest", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var provider string
+
+		resp, httpRes, err := apiClient.FrontendAPI.InitSamlLoginRequest(context.Background(), provider).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test FrontendAPIService ListMySessions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -355,6 +409,20 @@ func Test_client_FrontendAPIService(t *testing.T) {
 		httpRes, err := apiClient.FrontendAPI.PerformNativeLogout(context.Background()).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test FrontendAPIService SubmitSamlAssertion", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var provider string
+
+		resp, httpRes, err := apiClient.FrontendAPI.SubmitSamlAssertion(context.Background(), provider).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

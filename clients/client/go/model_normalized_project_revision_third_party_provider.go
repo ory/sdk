@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.78
+API version: v1.22.79
 Contact: support@ory.sh
 */
 
@@ -45,6 +45,8 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	FedcmConfigUrl NullableString `json:"fedcm_config_url,omitempty"`
+	// FrontChannelLogout enables OpenID Connect Front-Channel Logout for this provider: a login issues a companion cookie that lets the provider end the resulting Ory session from its own sign-out page.  Requires the provider to return the `sid` claim in the ID token.
+	FrontChannelLogout *bool `json:"front_channel_logout,omitempty"`
 	Id *string `json:"id,omitempty"`
 	// IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required.
 	IssuerUrl *string `json:"issuer_url,omitempty"`
@@ -583,6 +585,38 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) SetFedcmConfigUrlNil() {
 // UnsetFedcmConfigUrl ensures that no value is present for FedcmConfigUrl, not even an explicit nil
 func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetFedcmConfigUrl() {
 	o.FedcmConfigUrl.Unset()
+}
+
+// GetFrontChannelLogout returns the FrontChannelLogout field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetFrontChannelLogout() bool {
+	if o == nil || IsNil(o.FrontChannelLogout) {
+		var ret bool
+		return ret
+	}
+	return *o.FrontChannelLogout
+}
+
+// GetFrontChannelLogoutOk returns a tuple with the FrontChannelLogout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetFrontChannelLogoutOk() (*bool, bool) {
+	if o == nil || IsNil(o.FrontChannelLogout) {
+		return nil, false
+	}
+	return o.FrontChannelLogout, true
+}
+
+// HasFrontChannelLogout returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasFrontChannelLogout() bool {
+	if o != nil && !IsNil(o.FrontChannelLogout) {
+		return true
+	}
+
+	return false
+}
+
+// SetFrontChannelLogout gets a reference to the given bool and assigns it to the FrontChannelLogout field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetFrontChannelLogout(v bool) {
+	o.FrontChannelLogout = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -1253,6 +1287,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) ToMap() (map[string]interfa
 	if o.FedcmConfigUrl.IsSet() {
 		toSerialize["fedcm_config_url"] = o.FedcmConfigUrl.Get()
 	}
+	if !IsNil(o.FrontChannelLogout) {
+		toSerialize["front_channel_logout"] = o.FrontChannelLogout
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
@@ -1343,6 +1380,7 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(data []byte)
 		delete(additionalProperties, "client_secret")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "fedcm_config_url")
+		delete(additionalProperties, "front_channel_logout")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "issuer_url")
 		delete(additionalProperties, "label")

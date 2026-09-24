@@ -25,13 +25,18 @@ Method | HTTP request | Description
 [**GetLoginFlow**](FrontendAPI.md#GetLoginFlow) | **Get** /self-service/login/flows | Get Login Flow
 [**GetRecoveryFlow**](FrontendAPI.md#GetRecoveryFlow) | **Get** /self-service/recovery/flows | Get Recovery Flow
 [**GetRegistrationFlow**](FrontendAPI.md#GetRegistrationFlow) | **Get** /self-service/registration/flows | Get Registration Flow
+[**GetSamlMetadata**](FrontendAPI.md#GetSamlMetadata) | **Get** /self-service/methods/saml/metadata | Get SAML SP Metadata
+[**GetSamlProviderMetadata**](FrontendAPI.md#GetSamlProviderMetadata) | **Get** /self-service/methods/saml/metadata/{provider} | Get Per-Connection SAML SP Metadata
 [**GetSettingsFlow**](FrontendAPI.md#GetSettingsFlow) | **Get** /self-service/settings/flows | Get Settings Flow
 [**GetVerificationFlow**](FrontendAPI.md#GetVerificationFlow) | **Get** /self-service/verification/flows | Get Verification Flow
 [**GetWebAuthnJavaScript**](FrontendAPI.md#GetWebAuthnJavaScript) | **Get** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
 [**GetWebAuthnRelatedOrigins**](FrontendAPI.md#GetWebAuthnRelatedOrigins) | **Get** /.well-known/webauthn | Get WebAuthn Related Origins
 [**GetWellKnownChangePassword**](FrontendAPI.md#GetWellKnownChangePassword) | **Get** /.well-known/change-password | Change Password URL
+[**InitSamlLogin**](FrontendAPI.md#InitSamlLogin) | **Get** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In
+[**InitSamlLoginRequest**](FrontendAPI.md#InitSamlLoginRequest) | **Post** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In (Direct POST)
 [**ListMySessions**](FrontendAPI.md#ListMySessions) | **Get** /sessions | Get My Active Sessions
 [**PerformNativeLogout**](FrontendAPI.md#PerformNativeLogout) | **Delete** /self-service/logout/api | Perform Logout for Native Apps
+[**SubmitSamlAssertion**](FrontendAPI.md#SubmitSamlAssertion) | **Post** /self-service/methods/saml/acs/{provider} | Native SAML Assertion Consumer Service (ACS)
 [**ToSession**](FrontendAPI.md#ToSession) | **Get** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 [**UpdateFedcmFlow**](FrontendAPI.md#UpdateFedcmFlow) | **Post** /self-service/fed-cm/token | Submit a FedCM token
 [**UpdateLoginFlow**](FrontendAPI.md#UpdateLoginFlow) | **Post** /self-service/login | Submit a Login Flow
@@ -1491,6 +1496,137 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## GetSamlMetadata
+
+> string GetSamlMetadata(ctx).Execute()
+
+Get SAML SP Metadata
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrontendAPI.GetSamlMetadata(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.GetSamlMetadata``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSamlMetadata`: string
+	fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.GetSamlMetadata`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSamlMetadataRequest struct via the builder pattern
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSamlProviderMetadata
+
+> string GetSamlProviderMetadata(ctx, provider).Execute()
+
+Get Per-Connection SAML SP Metadata
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	provider := "provider_example" // string | The SAML connection ID to get metadata for.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrontendAPI.GetSamlProviderMetadata(context.Background(), provider).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.GetSamlProviderMetadata``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSamlProviderMetadata`: string
+	fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.GetSamlProviderMetadata`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**provider** | **string** | The SAML connection ID to get metadata for. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSamlProviderMetadataRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetSettingsFlow
 
 > SettingsFlow GetSettingsFlow(ctx).Id(id).XSessionToken(xSessionToken).Cookie(cookie).Execute()
@@ -1812,6 +1948,154 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## InitSamlLogin
+
+> string InitSamlLogin(ctx, provider).Flow(flow).Purpose(purpose).Execute()
+
+Initiate Native SAML Sign-In
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	provider := "provider_example" // string | The SAML connection ID to start a native SP-initiated sign-in for.
+	flow := "flow_example" // string | The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+	purpose := "purpose_example" // string | The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrontendAPI.InitSamlLogin(context.Background(), provider).Flow(flow).Purpose(purpose).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.InitSamlLogin``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `InitSamlLogin`: string
+	fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.InitSamlLogin`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**provider** | **string** | The SAML connection ID to start a native SP-initiated sign-in for. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInitSamlLoginRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **flow** | **string** | The Login, Registration, or Settings Flow ID this SAML sign-in continues. | 
+ **purpose** | **string** | The kind of flow &#x60;flow&#x60; names: &#x60;login&#x60;, &#x60;registration&#x60;, or &#x60;settings-link&#x60; (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## InitSamlLoginRequest
+
+> string InitSamlLoginRequest(ctx, provider).Flow(flow).Purpose(purpose).Execute()
+
+Initiate Native SAML Sign-In (Direct POST)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	provider := "provider_example" // string | The SAML connection ID to start a native SP-initiated sign-in for.
+	flow := "flow_example" // string | The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+	purpose := "purpose_example" // string | The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrontendAPI.InitSamlLoginRequest(context.Background(), provider).Flow(flow).Purpose(purpose).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.InitSamlLoginRequest``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `InitSamlLoginRequest`: string
+	fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.InitSamlLoginRequest`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**provider** | **string** | The SAML connection ID to start a native SP-initiated sign-in for. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInitSamlLoginRequestRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **flow** | **string** | The Login, Registration, or Settings Flow ID this SAML sign-in continues. | 
+ **purpose** | **string** | The kind of flow &#x60;flow&#x60; names: &#x60;login&#x60;, &#x60;registration&#x60;, or &#x60;settings-link&#x60; (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListMySessions
 
 > []Session ListMySessions(ctx).PerPage(perPage).Page(page).PageSize(pageSize).PageToken(pageToken).XSessionToken(xSessionToken).Cookie(cookie).Execute()
@@ -1945,6 +2229,80 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SubmitSamlAssertion
+
+> ErrorGeneric SubmitSamlAssertion(ctx, provider).RelayState(relayState).SAMLResponse(sAMLResponse).Execute()
+
+Native SAML Assertion Consumer Service (ACS)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/ory/client-go"
+)
+
+func main() {
+	provider := "provider_example" // string | The SAML connection ID this assertion is delivered for.
+	relayState := "relayState_example" // string | The opaque token that correlates this response with the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `RelayState` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+	sAMLResponse := "sAMLResponse_example" // string | The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `SAMLResponse` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrontendAPI.SubmitSamlAssertion(context.Background(), provider).RelayState(relayState).SAMLResponse(sAMLResponse).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrontendAPI.SubmitSamlAssertion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubmitSamlAssertion`: ErrorGeneric
+	fmt.Fprintf(os.Stdout, "Response from `FrontendAPI.SubmitSamlAssertion`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**provider** | **string** | The SAML connection ID this assertion is delivered for. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSubmitSamlAssertionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **relayState** | **string** | The opaque token that correlates this response with the AuthnRequest issued by &#x60;POST /self-service/methods/saml/init/{provider}&#x60;.  The PascalCase property name deliberately violates this API&#39;s snake_case convention: &#x60;RelayState&#x60; is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. | 
+ **sAMLResponse** | **string** | The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by &#x60;POST /self-service/methods/saml/init/{provider}&#x60;.  The PascalCase property name deliberately violates this API&#39;s snake_case convention: &#x60;SAMLResponse&#x60; is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. | 
+
+### Return type
+
+[**ErrorGeneric**](ErrorGeneric.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

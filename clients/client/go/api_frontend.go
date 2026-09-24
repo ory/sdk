@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.78
+API version: v1.22.79
 Contact: support@ory.sh
 */
 
@@ -569,6 +569,56 @@ More information can be found at [Ory Kratos User Login](https://www.ory.com/doc
 	GetRegistrationFlowExecute(r FrontendAPIGetRegistrationFlowRequest) (*RegistrationFlow, *http.Response, error)
 
 	/*
+	GetSamlMetadata Get SAML SP Metadata
+
+	This endpoint serves the per-project SAML Service Provider metadata
+document: the SP entity ID and certificates this Ory Network project
+presents to every SAML identity provider by default. It is a public,
+unauthenticated, cacheable endpoint and never contains a private key.
+
+By SAML SP convention, the returned entity ID is this endpoint's own URL.
+The native engine derives and uses it automatically as the default SP entity
+ID for every connection, so there is nothing to copy; share it with an
+identity provider administrator setting up SSO. A connection can present a
+different SP entity ID via `sp_entity_id_override`.
+
+This endpoint 404s if no native SAML connection has been configured for
+this project yet (no SP signing key exists to publish).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return FrontendAPIGetSamlMetadataRequest
+	*/
+	GetSamlMetadata(ctx context.Context) FrontendAPIGetSamlMetadataRequest
+
+	// GetSamlMetadataExecute executes the request
+	//  @return string
+	GetSamlMetadataExecute(r FrontendAPIGetSamlMetadataRequest) (string, *http.Response, error)
+
+	/*
+	GetSamlProviderMetadata Get Per-Connection SAML SP Metadata
+
+	This endpoint serves per-connection SAML Service Provider metadata: the
+identity and certificate a single native connection presents to its identity
+provider, including the connection's own Assertion Consumer Service (ACS)
+URL. It serves a document for any native connection; when the connection sets
+`sp_entity_id_override` the SP entity ID is that value, otherwise it is the
+project default.
+
+It 404s -- with the identical generic response -- for an unknown connection
+ID, a connection disabled by invalid configuration, and a non-native
+connection, which manages its SP identity out of band.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param provider The SAML connection ID to get metadata for.
+	@return FrontendAPIGetSamlProviderMetadataRequest
+	*/
+	GetSamlProviderMetadata(ctx context.Context, provider string) FrontendAPIGetSamlProviderMetadataRequest
+
+	// GetSamlProviderMetadataExecute executes the request
+	//  @return string
+	GetSamlProviderMetadataExecute(r FrontendAPIGetSamlProviderMetadataRequest) (string, *http.Response, error)
+
+	/*
 	GetSettingsFlow Get Settings Flow
 
 	When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie
@@ -691,6 +741,48 @@ password.
 	GetWellKnownChangePasswordExecute(r FrontendAPIGetWellKnownChangePasswordRequest) (*ErrorGeneric, *http.Response, error)
 
 	/*
+	InitSamlLogin Initiate Native SAML Sign-In
+
+	This endpoint starts a native SP-initiated SAML sign-in for the given
+connection. It checks that the flow named by the `flow` query parameter
+exists as the kind named by `purpose`, builds a SAML AuthnRequest, and
+forwards the browser to the identity provider's Single Sign-On endpoint -- either with
+an HTTP 302 redirect (HTTP-Redirect binding) or by returning a
+self-submitting HTML form (HTTP-POST binding).
+
+A login, registration, or settings flow redirects here as a browser
+navigation once a SAML connection has been selected. This endpoint is NOT
+INTENDED to be called directly by API clients: it is a browser navigation
+target, not a JSON API.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param provider The SAML connection ID to start a native SP-initiated sign-in for.
+	@return FrontendAPIInitSamlLoginRequest
+	*/
+	InitSamlLogin(ctx context.Context, provider string) FrontendAPIInitSamlLoginRequest
+
+	// InitSamlLoginExecute executes the request
+	//  @return string
+	InitSamlLoginExecute(r FrontendAPIInitSamlLoginRequest) (string, *http.Response, error)
+
+	/*
+	InitSamlLoginRequest Initiate Native SAML Sign-In (Direct POST)
+
+	Identical to `GET /self-service/methods/saml/init/{provider}`, except the
+caller POSTs directly to this endpoint -- validated by the anti-CSRF
+middleware -- instead of being redirected here as a GET.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param provider The SAML connection ID to start a native SP-initiated sign-in for.
+	@return FrontendAPIInitSamlLoginRequestRequest
+	*/
+	InitSamlLoginRequest(ctx context.Context, provider string) FrontendAPIInitSamlLoginRequestRequest
+
+	// InitSamlLoginRequestExecute executes the request
+	//  @return string
+	InitSamlLoginRequestExecute(r FrontendAPIInitSamlLoginRequestRequest) (string, *http.Response, error)
+
+	/*
 	ListMySessions Get My Active Sessions
 
 	This endpoints returns all other active sessions that belong to the logged-in user.
@@ -724,6 +816,35 @@ Cookies - use the Browser-Based Self-Service Logout Flow instead.
 
 	// PerformNativeLogoutExecute executes the request
 	PerformNativeLogoutExecute(r FrontendAPIPerformNativeLogoutRequest) (*http.Response, error)
+
+	/*
+	SubmitSamlAssertion Native SAML Assertion Consumer Service (ACS)
+
+	This is the Assertion Consumer Service (ACS) for the native SAML engine.
+The identity provider delivers its SAML Response here via the HTTP-POST
+binding, carrying the RelayState token that correlates it with the
+AuthnRequest issued by the init endpoint. On success the browser is
+redirected to complete the login, registration, or settings-link flow that
+started the sign-in.
+
+This endpoint is posted to directly by the identity provider's browser and
+is NOT INTENDED to be called by API clients.
+
+Every failure -- a replayed or unknown token, a malformed request, a
+provider mismatch, a response delivered to a browser other than the one
+that started the flow, or a signature/assertion validation failure -- is
+reported with the identical generic error, so the response body cannot be
+used to probe which check failed.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param provider The SAML connection ID this assertion is delivered for.
+	@return FrontendAPISubmitSamlAssertionRequest
+	*/
+	SubmitSamlAssertion(ctx context.Context, provider string) FrontendAPISubmitSamlAssertionRequest
+
+	// SubmitSamlAssertionExecute executes the request
+	//  @return ErrorGeneric
+	SubmitSamlAssertionExecute(r FrontendAPISubmitSamlAssertionRequest) (*ErrorGeneric, *http.Response, error)
 
 	/*
 	ToSession Check Who the Current HTTP Session Belongs To
@@ -4451,6 +4572,267 @@ func (a *FrontendAPIService) GetRegistrationFlowExecute(r FrontendAPIGetRegistra
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type FrontendAPIGetSamlMetadataRequest struct {
+	ctx context.Context
+	ApiService FrontendAPI
+}
+
+func (r FrontendAPIGetSamlMetadataRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.GetSamlMetadataExecute(r)
+}
+
+/*
+GetSamlMetadata Get SAML SP Metadata
+
+This endpoint serves the per-project SAML Service Provider metadata
+document: the SP entity ID and certificates this Ory Network project
+presents to every SAML identity provider by default. It is a public,
+unauthenticated, cacheable endpoint and never contains a private key.
+
+By SAML SP convention, the returned entity ID is this endpoint's own URL.
+The native engine derives and uses it automatically as the default SP entity
+ID for every connection, so there is nothing to copy; share it with an
+identity provider administrator setting up SSO. A connection can present a
+different SP entity ID via `sp_entity_id_override`.
+
+This endpoint 404s if no native SAML connection has been configured for
+this project yet (no SP signing key exists to publish).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return FrontendAPIGetSamlMetadataRequest
+*/
+func (a *FrontendAPIService) GetSamlMetadata(ctx context.Context) FrontendAPIGetSamlMetadataRequest {
+	return FrontendAPIGetSamlMetadataRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return string
+func (a *FrontendAPIService) GetSamlMetadataExecute(r FrontendAPIGetSamlMetadataRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrontendAPIService.GetSamlMetadata")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/self-service/methods/saml/metadata"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type FrontendAPIGetSamlProviderMetadataRequest struct {
+	ctx context.Context
+	ApiService FrontendAPI
+	provider string
+}
+
+func (r FrontendAPIGetSamlProviderMetadataRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.GetSamlProviderMetadataExecute(r)
+}
+
+/*
+GetSamlProviderMetadata Get Per-Connection SAML SP Metadata
+
+This endpoint serves per-connection SAML Service Provider metadata: the
+identity and certificate a single native connection presents to its identity
+provider, including the connection's own Assertion Consumer Service (ACS)
+URL. It serves a document for any native connection; when the connection sets
+`sp_entity_id_override` the SP entity ID is that value, otherwise it is the
+project default.
+
+It 404s -- with the identical generic response -- for an unknown connection
+ID, a connection disabled by invalid configuration, and a non-native
+connection, which manages its SP identity out of band.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param provider The SAML connection ID to get metadata for.
+ @return FrontendAPIGetSamlProviderMetadataRequest
+*/
+func (a *FrontendAPIService) GetSamlProviderMetadata(ctx context.Context, provider string) FrontendAPIGetSamlProviderMetadataRequest {
+	return FrontendAPIGetSamlProviderMetadataRequest{
+		ApiService: a,
+		ctx: ctx,
+		provider: provider,
+	}
+}
+
+// Execute executes the request
+//  @return string
+func (a *FrontendAPIService) GetSamlProviderMetadataExecute(r FrontendAPIGetSamlProviderMetadataRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrontendAPIService.GetSamlProviderMetadata")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/self-service/methods/saml/metadata/{provider}"
+	localVarPath = strings.Replace(localVarPath, "{"+"provider"+"}", url.PathEscape(parameterValueToString(r.provider, "provider")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type FrontendAPIGetSettingsFlowRequest struct {
 	ctx context.Context
 	ApiService FrontendAPI
@@ -5140,6 +5522,328 @@ func (a *FrontendAPIService) GetWellKnownChangePasswordExecute(r FrontendAPIGetW
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type FrontendAPIInitSamlLoginRequest struct {
+	ctx context.Context
+	ApiService FrontendAPI
+	provider string
+	flow *string
+	purpose *string
+}
+
+// The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+func (r FrontendAPIInitSamlLoginRequest) Flow(flow string) FrontendAPIInitSamlLoginRequest {
+	r.flow = &flow
+	return r
+}
+
+// The kind of flow &#x60;flow&#x60; names: &#x60;login&#x60;, &#x60;registration&#x60;, or &#x60;settings-link&#x60; (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+func (r FrontendAPIInitSamlLoginRequest) Purpose(purpose string) FrontendAPIInitSamlLoginRequest {
+	r.purpose = &purpose
+	return r
+}
+
+func (r FrontendAPIInitSamlLoginRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.InitSamlLoginExecute(r)
+}
+
+/*
+InitSamlLogin Initiate Native SAML Sign-In
+
+This endpoint starts a native SP-initiated SAML sign-in for the given
+connection. It checks that the flow named by the `flow` query parameter
+exists as the kind named by `purpose`, builds a SAML AuthnRequest, and
+forwards the browser to the identity provider's Single Sign-On endpoint -- either with
+an HTTP 302 redirect (HTTP-Redirect binding) or by returning a
+self-submitting HTML form (HTTP-POST binding).
+
+A login, registration, or settings flow redirects here as a browser
+navigation once a SAML connection has been selected. This endpoint is NOT
+INTENDED to be called directly by API clients: it is a browser navigation
+target, not a JSON API.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param provider The SAML connection ID to start a native SP-initiated sign-in for.
+ @return FrontendAPIInitSamlLoginRequest
+*/
+func (a *FrontendAPIService) InitSamlLogin(ctx context.Context, provider string) FrontendAPIInitSamlLoginRequest {
+	return FrontendAPIInitSamlLoginRequest{
+		ApiService: a,
+		ctx: ctx,
+		provider: provider,
+	}
+}
+
+// Execute executes the request
+//  @return string
+func (a *FrontendAPIService) InitSamlLoginExecute(r FrontendAPIInitSamlLoginRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrontendAPIService.InitSamlLogin")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/self-service/methods/saml/init/{provider}"
+	localVarPath = strings.Replace(localVarPath, "{"+"provider"+"}", url.PathEscape(parameterValueToString(r.provider, "provider")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.flow == nil {
+		return localVarReturnValue, nil, reportError("flow is required and must be specified")
+	}
+	if r.purpose == nil {
+		return localVarReturnValue, nil, reportError("purpose is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "flow", r.flow, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "purpose", r.purpose, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type FrontendAPIInitSamlLoginRequestRequest struct {
+	ctx context.Context
+	ApiService FrontendAPI
+	provider string
+	flow *string
+	purpose *string
+}
+
+// The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+func (r FrontendAPIInitSamlLoginRequestRequest) Flow(flow string) FrontendAPIInitSamlLoginRequestRequest {
+	r.flow = &flow
+	return r
+}
+
+// The kind of flow &#x60;flow&#x60; names: &#x60;login&#x60;, &#x60;registration&#x60;, or &#x60;settings-link&#x60; (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+func (r FrontendAPIInitSamlLoginRequestRequest) Purpose(purpose string) FrontendAPIInitSamlLoginRequestRequest {
+	r.purpose = &purpose
+	return r
+}
+
+func (r FrontendAPIInitSamlLoginRequestRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.InitSamlLoginRequestExecute(r)
+}
+
+/*
+InitSamlLoginRequest Initiate Native SAML Sign-In (Direct POST)
+
+Identical to `GET /self-service/methods/saml/init/{provider}`, except the
+caller POSTs directly to this endpoint -- validated by the anti-CSRF
+middleware -- instead of being redirected here as a GET.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param provider The SAML connection ID to start a native SP-initiated sign-in for.
+ @return FrontendAPIInitSamlLoginRequestRequest
+*/
+func (a *FrontendAPIService) InitSamlLoginRequest(ctx context.Context, provider string) FrontendAPIInitSamlLoginRequestRequest {
+	return FrontendAPIInitSamlLoginRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+		provider: provider,
+	}
+}
+
+// Execute executes the request
+//  @return string
+func (a *FrontendAPIService) InitSamlLoginRequestExecute(r FrontendAPIInitSamlLoginRequestRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrontendAPIService.InitSamlLoginRequest")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/self-service/methods/saml/init/{provider}"
+	localVarPath = strings.Replace(localVarPath, "{"+"provider"+"}", url.PathEscape(parameterValueToString(r.provider, "provider")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.flow == nil {
+		return localVarReturnValue, nil, reportError("flow is required and must be specified")
+	}
+	if r.purpose == nil {
+		return localVarReturnValue, nil, reportError("purpose is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "flow", r.flow, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "purpose", r.purpose, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type FrontendAPIListMySessionsRequest struct {
 	ctx context.Context
 	ApiService FrontendAPI
@@ -5472,6 +6176,164 @@ func (a *FrontendAPIService) PerformNativeLogoutExecute(r FrontendAPIPerformNati
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type FrontendAPISubmitSamlAssertionRequest struct {
+	ctx context.Context
+	ApiService FrontendAPI
+	provider string
+	relayState *string
+	sAMLResponse *string
+}
+
+// The opaque token that correlates this response with the AuthnRequest issued by &#x60;POST /self-service/methods/saml/init/{provider}&#x60;.  The PascalCase property name deliberately violates this API&#39;s snake_case convention: &#x60;RelayState&#x60; is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+func (r FrontendAPISubmitSamlAssertionRequest) RelayState(relayState string) FrontendAPISubmitSamlAssertionRequest {
+	r.relayState = &relayState
+	return r
+}
+
+// The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by &#x60;POST /self-service/methods/saml/init/{provider}&#x60;.  The PascalCase property name deliberately violates this API&#39;s snake_case convention: &#x60;SAMLResponse&#x60; is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+func (r FrontendAPISubmitSamlAssertionRequest) SAMLResponse(sAMLResponse string) FrontendAPISubmitSamlAssertionRequest {
+	r.sAMLResponse = &sAMLResponse
+	return r
+}
+
+func (r FrontendAPISubmitSamlAssertionRequest) Execute() (*ErrorGeneric, *http.Response, error) {
+	return r.ApiService.SubmitSamlAssertionExecute(r)
+}
+
+/*
+SubmitSamlAssertion Native SAML Assertion Consumer Service (ACS)
+
+This is the Assertion Consumer Service (ACS) for the native SAML engine.
+The identity provider delivers its SAML Response here via the HTTP-POST
+binding, carrying the RelayState token that correlates it with the
+AuthnRequest issued by the init endpoint. On success the browser is
+redirected to complete the login, registration, or settings-link flow that
+started the sign-in.
+
+This endpoint is posted to directly by the identity provider's browser and
+is NOT INTENDED to be called by API clients.
+
+Every failure -- a replayed or unknown token, a malformed request, a
+provider mismatch, a response delivered to a browser other than the one
+that started the flow, or a signature/assertion validation failure -- is
+reported with the identical generic error, so the response body cannot be
+used to probe which check failed.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param provider The SAML connection ID this assertion is delivered for.
+ @return FrontendAPISubmitSamlAssertionRequest
+*/
+func (a *FrontendAPIService) SubmitSamlAssertion(ctx context.Context, provider string) FrontendAPISubmitSamlAssertionRequest {
+	return FrontendAPISubmitSamlAssertionRequest{
+		ApiService: a,
+		ctx: ctx,
+		provider: provider,
+	}
+}
+
+// Execute executes the request
+//  @return ErrorGeneric
+func (a *FrontendAPIService) SubmitSamlAssertionExecute(r FrontendAPISubmitSamlAssertionRequest) (*ErrorGeneric, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ErrorGeneric
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrontendAPIService.SubmitSamlAssertion")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/self-service/methods/saml/acs/{provider}"
+	localVarPath = strings.Replace(localVarPath, "{"+"provider"+"}", url.PathEscape(parameterValueToString(r.provider, "provider")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.relayState == nil {
+		return localVarReturnValue, nil, reportError("relayState is required and must be specified")
+	}
+	if r.sAMLResponse == nil {
+		return localVarReturnValue, nil, reportError("sAMLResponse is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	parameterAddToHeaderOrQuery(localVarFormParams, "RelayState", r.relayState, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "SAMLResponse", r.sAMLResponse, "", "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type FrontendAPIToSessionRequest struct {

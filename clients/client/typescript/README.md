@@ -1,4 +1,4 @@
-## @ory/client@v1.22.78
+## @ory/client@v1.22.79
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.78 --save
+npm install @ory/client@v1.22.79 --save
 ```
 
 _unPublished (not recommended):_
@@ -97,13 +97,18 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**getLoginFlow**](docs/FrontendApi.md#getloginflow) | **GET** /self-service/login/flows | Get Login Flow
 *FrontendApi* | [**getRecoveryFlow**](docs/FrontendApi.md#getrecoveryflow) | **GET** /self-service/recovery/flows | Get Recovery Flow
 *FrontendApi* | [**getRegistrationFlow**](docs/FrontendApi.md#getregistrationflow) | **GET** /self-service/registration/flows | Get Registration Flow
+*FrontendApi* | [**getSamlMetadata**](docs/FrontendApi.md#getsamlmetadata) | **GET** /self-service/methods/saml/metadata | Get SAML SP Metadata
+*FrontendApi* | [**getSamlProviderMetadata**](docs/FrontendApi.md#getsamlprovidermetadata) | **GET** /self-service/methods/saml/metadata/{provider} | Get Per-Connection SAML SP Metadata
 *FrontendApi* | [**getSettingsFlow**](docs/FrontendApi.md#getsettingsflow) | **GET** /self-service/settings/flows | Get Settings Flow
 *FrontendApi* | [**getVerificationFlow**](docs/FrontendApi.md#getverificationflow) | **GET** /self-service/verification/flows | Get Verification Flow
 *FrontendApi* | [**getWebAuthnJavaScript**](docs/FrontendApi.md#getwebauthnjavascript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
 *FrontendApi* | [**getWebAuthnRelatedOrigins**](docs/FrontendApi.md#getwebauthnrelatedorigins) | **GET** /.well-known/webauthn | Get WebAuthn Related Origins
 *FrontendApi* | [**getWellKnownChangePassword**](docs/FrontendApi.md#getwellknownchangepassword) | **GET** /.well-known/change-password | Change Password URL
+*FrontendApi* | [**initSamlLogin**](docs/FrontendApi.md#initsamllogin) | **GET** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In
+*FrontendApi* | [**initSamlLoginRequest**](docs/FrontendApi.md#initsamlloginrequest) | **POST** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In (Direct POST)
 *FrontendApi* | [**listMySessions**](docs/FrontendApi.md#listmysessions) | **GET** /sessions | Get My Active Sessions
 *FrontendApi* | [**performNativeLogout**](docs/FrontendApi.md#performnativelogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
+*FrontendApi* | [**submitSamlAssertion**](docs/FrontendApi.md#submitsamlassertion) | **POST** /self-service/methods/saml/acs/{provider} | Native SAML Assertion Consumer Service (ACS)
 *FrontendApi* | [**toSession**](docs/FrontendApi.md#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 *FrontendApi* | [**updateFedcmFlow**](docs/FrontendApi.md#updatefedcmflow) | **POST** /self-service/fed-cm/token | Submit a FedCM token
 *FrontendApi* | [**updateLoginFlow**](docs/FrontendApi.md#updateloginflow) | **POST** /self-service/login | Submit a Login Flow

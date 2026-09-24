@@ -25,13 +25,18 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 |[**getLoginFlow**](#getloginflow) | **GET** /self-service/login/flows | Get Login Flow|
 |[**getRecoveryFlow**](#getrecoveryflow) | **GET** /self-service/recovery/flows | Get Recovery Flow|
 |[**getRegistrationFlow**](#getregistrationflow) | **GET** /self-service/registration/flows | Get Registration Flow|
+|[**getSamlMetadata**](#getsamlmetadata) | **GET** /self-service/methods/saml/metadata | Get SAML SP Metadata|
+|[**getSamlProviderMetadata**](#getsamlprovidermetadata) | **GET** /self-service/methods/saml/metadata/{provider} | Get Per-Connection SAML SP Metadata|
 |[**getSettingsFlow**](#getsettingsflow) | **GET** /self-service/settings/flows | Get Settings Flow|
 |[**getVerificationFlow**](#getverificationflow) | **GET** /self-service/verification/flows | Get Verification Flow|
 |[**getWebAuthnJavaScript**](#getwebauthnjavascript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript|
 |[**getWebAuthnRelatedOrigins**](#getwebauthnrelatedorigins) | **GET** /.well-known/webauthn | Get WebAuthn Related Origins|
 |[**getWellKnownChangePassword**](#getwellknownchangepassword) | **GET** /.well-known/change-password | Change Password URL|
+|[**initSamlLogin**](#initsamllogin) | **GET** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In|
+|[**initSamlLoginRequest**](#initsamlloginrequest) | **POST** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In (Direct POST)|
 |[**listMySessions**](#listmysessions) | **GET** /sessions | Get My Active Sessions|
 |[**performNativeLogout**](#performnativelogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps|
+|[**submitSamlAssertion**](#submitsamlassertion) | **POST** /self-service/methods/saml/acs/{provider} | Native SAML Assertion Consumer Service (ACS)|
 |[**toSession**](#tosession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To|
 |[**updateFedcmFlow**](#updatefedcmflow) | **POST** /self-service/fed-cm/token | Submit a FedCM token|
 |[**updateLoginFlow**](#updateloginflow) | **POST** /self-service/login | Submit a Login Flow|
@@ -1264,6 +1269,105 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getSamlMetadata**
+> string getSamlMetadata()
+
+This endpoint serves the per-project SAML Service Provider metadata document: the SP entity ID and certificates this Ory Network project presents to every SAML identity provider by default. It is a public, unauthenticated, cacheable endpoint and never contains a private key.  By SAML SP convention, the returned entity ID is this endpoint\'s own URL. The native engine derives and uses it automatically as the default SP entity ID for every connection, so there is nothing to copy; share it with an identity provider administrator setting up SSO. A connection can present a different SP entity ID via `sp_entity_id_override`.  This endpoint 404s if no native SAML connection has been configured for this project yet (no SP signing key exists to publish).
+
+### Example
+
+```typescript
+import {
+    FrontendApi,
+    Configuration
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new FrontendApi(configuration);
+
+const { status, data } = await apiInstance.getSamlMetadata();
+```
+
+### Parameters
+This endpoint does not have any parameters.
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | The SP metadata document (a SAML EntityDescriptor, serialized as XML). It never contains a private key -- see SPMetadataSigningCertificates\&#39;s doc comment -- so it is safe to serve publicly and cache. |  -  |
+|**404** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getSamlProviderMetadata**
+> string getSamlProviderMetadata()
+
+This endpoint serves per-connection SAML Service Provider metadata: the identity and certificate a single native connection presents to its identity provider, including the connection\'s own Assertion Consumer Service (ACS) URL. It serves a document for any native connection; when the connection sets `sp_entity_id_override` the SP entity ID is that value, otherwise it is the project default.  It 404s -- with the identical generic response -- for an unknown connection ID, a connection disabled by invalid configuration, and a non-native connection, which manages its SP identity out of band.
+
+### Example
+
+```typescript
+import {
+    FrontendApi,
+    Configuration
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new FrontendApi(configuration);
+
+let provider: string; //The SAML connection ID to get metadata for. (default to undefined)
+
+const { status, data } = await apiInstance.getSamlProviderMetadata(
+    provider
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **provider** | [**string**] | The SAML connection ID to get metadata for. | defaults to undefined|
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | The SP metadata document (a SAML EntityDescriptor, serialized as XML). It never contains a private key -- see SPMetadataSigningCertificates\&#39;s doc comment -- so it is safe to serve publicly and cache. |  -  |
+|**404** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getSettingsFlow**
 > SettingsFlow getSettingsFlow()
 
@@ -1516,6 +1620,128 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **initSamlLogin**
+> string initSamlLogin()
+
+This endpoint starts a native SP-initiated SAML sign-in for the given connection. It checks that the flow named by the `flow` query parameter exists as the kind named by `purpose`, builds a SAML AuthnRequest, and forwards the browser to the identity provider\'s Single Sign-On endpoint -- either with an HTTP 302 redirect (HTTP-Redirect binding) or by returning a self-submitting HTML form (HTTP-POST binding).  A login, registration, or settings flow redirects here as a browser navigation once a SAML connection has been selected. This endpoint is NOT INTENDED to be called directly by API clients: it is a browser navigation target, not a JSON API.
+
+### Example
+
+```typescript
+import {
+    FrontendApi,
+    Configuration
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new FrontendApi(configuration);
+
+let provider: string; //The SAML connection ID to start a native SP-initiated sign-in for. (default to undefined)
+let flow: string; //The Login, Registration, or Settings Flow ID this SAML sign-in continues. (default to undefined)
+let purpose: 'login' | 'registration' | 'settings-link'; //The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. (default to undefined)
+
+const { status, data } = await apiInstance.initSamlLogin(
+    provider,
+    flow,
+    purpose
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **provider** | [**string**] | The SAML connection ID to start a native SP-initiated sign-in for. | defaults to undefined|
+| **flow** | [**string**] | The Login, Registration, or Settings Flow ID this SAML sign-in continues. | defaults to undefined|
+| **purpose** | [**&#39;login&#39; | &#39;registration&#39; | &#39;settings-link&#39;**]**Array<&#39;login&#39; &#124; &#39;registration&#39; &#124; &#39;settings-link&#39; &#124; &#39;11184809&#39;>** | The kind of flow &#x60;flow&#x60; names: &#x60;login&#x60;, &#x60;registration&#x60;, or &#x60;settings-link&#x60; (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. | defaults to undefined|
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | The self-submitting HTML form the HTTP-POST binding renders to deliver the AuthnRequest to the identity provider. It is never parsed by an API client: the browser executes its onload handler and submits it automatically. |  -  |
+|**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+|**400** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **initSamlLoginRequest**
+> string initSamlLoginRequest()
+
+Identical to `GET /self-service/methods/saml/init/{provider}`, except the caller POSTs directly to this endpoint -- validated by the anti-CSRF middleware -- instead of being redirected here as a GET.
+
+### Example
+
+```typescript
+import {
+    FrontendApi,
+    Configuration
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new FrontendApi(configuration);
+
+let provider: string; //The SAML connection ID to start a native SP-initiated sign-in for. (default to undefined)
+let flow: string; //The Login, Registration, or Settings Flow ID this SAML sign-in continues. (default to undefined)
+let purpose: 'login' | 'registration' | 'settings-link'; //The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. (default to undefined)
+
+const { status, data } = await apiInstance.initSamlLoginRequest(
+    provider,
+    flow,
+    purpose
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **provider** | [**string**] | The SAML connection ID to start a native SP-initiated sign-in for. | defaults to undefined|
+| **flow** | [**string**] | The Login, Registration, or Settings Flow ID this SAML sign-in continues. | defaults to undefined|
+| **purpose** | [**&#39;login&#39; | &#39;registration&#39; | &#39;settings-link&#39;**]**Array<&#39;login&#39; &#124; &#39;registration&#39; &#124; &#39;settings-link&#39; &#124; &#39;11184809&#39;>** | The kind of flow &#x60;flow&#x60; names: &#x60;login&#x60;, &#x60;registration&#x60;, or &#x60;settings-link&#x60; (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. | defaults to undefined|
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | The self-submitting HTML form the HTTP-POST binding renders to deliver the AuthnRequest to the identity provider. It is never parsed by an API client: the browser executes its onload handler and submits it automatically. |  -  |
+|**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+|**400** | JSON API Error Response |  -  |
+|**404** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **listMySessions**
 > Array<Session> listMySessions()
 
@@ -1635,6 +1861,65 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+|**400** | JSON API Error Response |  -  |
+|**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **submitSamlAssertion**
+> ErrorGeneric submitSamlAssertion()
+
+This is the Assertion Consumer Service (ACS) for the native SAML engine. The identity provider delivers its SAML Response here via the HTTP-POST binding, carrying the RelayState token that correlates it with the AuthnRequest issued by the init endpoint. On success the browser is redirected to complete the login, registration, or settings-link flow that started the sign-in.  This endpoint is posted to directly by the identity provider\'s browser and is NOT INTENDED to be called by API clients.  Every failure -- a replayed or unknown token, a malformed request, a provider mismatch, a response delivered to a browser other than the one that started the flow, or a signature/assertion validation failure -- is reported with the identical generic error, so the response body cannot be used to probe which check failed.
+
+### Example
+
+```typescript
+import {
+    FrontendApi,
+    Configuration
+} from '@ory/client';
+
+const configuration = new Configuration();
+const apiInstance = new FrontendApi(configuration);
+
+let provider: string; //The SAML connection ID this assertion is delivered for. (default to undefined)
+let relayState: string; //The opaque token that correlates this response with the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API\\\'s snake_case convention: `RelayState` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. (default to undefined)
+let sAMLResponse: string; //The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API\\\'s snake_case convention: `SAMLResponse` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. (default to undefined)
+
+const { status, data } = await apiInstance.submitSamlAssertion(
+    provider,
+    relayState,
+    sAMLResponse
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **provider** | [**string**] | The SAML connection ID this assertion is delivered for. | defaults to undefined|
+| **relayState** | [**string**] | The opaque token that correlates this response with the AuthnRequest issued by &#x60;POST /self-service/methods/saml/init/{provider}&#x60;.  The PascalCase property name deliberately violates this API\\\&#39;s snake_case convention: &#x60;RelayState&#x60; is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. | defaults to undefined|
+| **sAMLResponse** | [**string**] | The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by &#x60;POST /self-service/methods/saml/init/{provider}&#x60;.  The PascalCase property name deliberately violates this API\\\&#39;s snake_case convention: &#x60;SAMLResponse&#x60; is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. | defaults to undefined|
+
+
+### Return type
+
+**ErrorGeneric**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 |**400** | JSON API Error Response |  -  |
 |**0** | JSON API Error Response |  -  |
 

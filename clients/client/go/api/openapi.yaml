@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.78
+  version: v1.22.79
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -7017,6 +7017,62 @@ paths:
       tags:
       - frontend
       x-ory-ratelimit-bucket: kratos-public-medium
+  /self-service/methods/saml/acs/{provider}:
+    post:
+      description: |-
+        This is the Assertion Consumer Service (ACS) for the native SAML engine.
+        The identity provider delivers its SAML Response here via the HTTP-POST
+        binding, carrying the RelayState token that correlates it with the
+        AuthnRequest issued by the init endpoint. On success the browser is
+        redirected to complete the login, registration, or settings-link flow that
+        started the sign-in.
+
+        This endpoint is posted to directly by the identity provider's browser and
+        is NOT INTENDED to be called by API clients.
+
+        Every failure -- a replayed or unknown token, a malformed request, a
+        provider mismatch, a response delivered to a browser other than the one
+        that started the flow, or a signature/assertion validation failure -- is
+        reported with the identical generic error, so the response body cannot be
+        used to probe which check failed.
+      operationId: submitSamlAssertion
+      parameters:
+      - description: The SAML connection ID this assertion is delivered for.
+        explode: false
+        in: path
+        name: provider
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/submitSamlAssertionBody"
+        required: true
+        x-originalParamName: Body
+      responses:
+        "303":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+      summary: Native SAML Assertion Consumer Service (ACS)
+      tags:
+      - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
   /self-service/methods/saml/idp-initiated/{provider}:
     get:
       description: |-
@@ -7065,6 +7121,261 @@ paths:
       tags:
       - frontend
       x-ory-ratelimit-bucket: kratos-public-medium
+  /self-service/methods/saml/init/{provider}:
+    get:
+      description: |-
+        This endpoint starts a native SP-initiated SAML sign-in for the given
+        connection. It checks that the flow named by the `flow` query parameter
+        exists as the kind named by `purpose`, builds a SAML AuthnRequest, and
+        forwards the browser to the identity provider's Single Sign-On endpoint -- either with
+        an HTTP 302 redirect (HTTP-Redirect binding) or by returning a
+        self-submitting HTML form (HTTP-POST binding).
+
+        A login, registration, or settings flow redirects here as a browser
+        navigation once a SAML connection has been selected. This endpoint is NOT
+        INTENDED to be called directly by API clients: it is a browser navigation
+        target, not a JSON API.
+      operationId: initSamlLogin
+      parameters:
+      - description: The SAML connection ID to start a native SP-initiated sign-in
+          for.
+        explode: false
+        in: path
+        name: provider
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          The Login, Registration, or Settings Flow ID this SAML sign-in
+          continues.
+        explode: true
+        in: query
+        name: flow
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: |-
+          The kind of flow `flow` names: `login`, `registration`, or
+          `settings-link` (a settings flow linking a new SAML credential). The
+          flow must exist in the named kind, or the request is not found.
+        explode: true
+        in: query
+        name: purpose
+        required: true
+        schema:
+          enum:
+          - login
+          - registration
+          - settings-link
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/samlAuthnRequestForm"
+          description: |-
+            The self-submitting HTML form the HTTP-POST binding renders to deliver the
+            AuthnRequest to the identity provider. It is never parsed by an API client:
+            the browser executes its onload handler and submits it automatically.
+        "302":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+      summary: Initiate Native SAML Sign-In
+      tags:
+      - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
+    post:
+      description: |-
+        Identical to `GET /self-service/methods/saml/init/{provider}`, except the
+        caller POSTs directly to this endpoint -- validated by the anti-CSRF
+        middleware -- instead of being redirected here as a GET.
+      operationId: initSamlLoginRequest
+      parameters:
+      - description: The SAML connection ID to start a native SP-initiated sign-in
+          for.
+        explode: false
+        in: path
+        name: provider
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          The Login, Registration, or Settings Flow ID this SAML sign-in
+          continues.
+        explode: true
+        in: query
+        name: flow
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: |-
+          The kind of flow `flow` names: `login`, `registration`, or
+          `settings-link` (a settings flow linking a new SAML credential). The
+          flow must exist in the named kind, or the request is not found.
+        explode: true
+        in: query
+        name: purpose
+        required: true
+        schema:
+          enum:
+          - login
+          - registration
+          - settings-link
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/samlAuthnRequestForm"
+          description: |-
+            The self-submitting HTML form the HTTP-POST binding renders to deliver the
+            AuthnRequest to the identity provider. It is never parsed by an API client:
+            the browser executes its onload handler and submits it automatically.
+        "302":
+          description: |-
+            Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is
+            typically 201.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+      summary: Initiate Native SAML Sign-In (Direct POST)
+      tags:
+      - frontend
+      x-ory-ratelimit-bucket: kratos-public-medium
+  /self-service/methods/saml/metadata:
+    get:
+      description: |-
+        This endpoint serves the per-project SAML Service Provider metadata
+        document: the SP entity ID and certificates this Ory Network project
+        presents to every SAML identity provider by default. It is a public,
+        unauthenticated, cacheable endpoint and never contains a private key.
+
+        By SAML SP convention, the returned entity ID is this endpoint's own URL.
+        The native engine derives and uses it automatically as the default SP entity
+        ID for every connection, so there is nothing to copy; share it with an
+        identity provider administrator setting up SSO. A connection can present a
+        different SP entity ID via `sp_entity_id_override`.
+
+        This endpoint 404s if no native SAML connection has been configured for
+        this project yet (no SP signing key exists to publish).
+      operationId: getSamlMetadata
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/samlSpMetadata"
+          description: |-
+            The SP metadata document (a SAML EntityDescriptor, serialized as XML). It
+            never contains a private key -- see SPMetadataSigningCertificates's doc
+            comment -- so it is safe to serve publicly and cache.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+      summary: Get SAML SP Metadata
+      tags:
+      - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
+  /self-service/methods/saml/metadata/{provider}:
+    get:
+      description: |-
+        This endpoint serves per-connection SAML Service Provider metadata: the
+        identity and certificate a single native connection presents to its identity
+        provider, including the connection's own Assertion Consumer Service (ACS)
+        URL. It serves a document for any native connection; when the connection sets
+        `sp_entity_id_override` the SP entity ID is that value, otherwise it is the
+        project default.
+
+        It 404s -- with the identical generic response -- for an unknown connection
+        ID, a connection disabled by invalid configuration, and a non-native
+        connection, which manages its SP identity out of band.
+      operationId: getSamlProviderMetadata
+      parameters:
+      - description: The SAML connection ID to get metadata for.
+        explode: false
+        in: path
+        name: provider
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/samlSpMetadata"
+          description: |-
+            The SP metadata document (a SAML EntityDescriptor, serialized as XML). It
+            never contains a private key -- see SPMetadataSigningCertificates's doc
+            comment -- so it is safe to serve publicly and cache.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorGeneric"
+          description: JSON API Error Response
+      summary: Get Per-Connection SAML SP Metadata
+      tags:
+      - frontend
+      x-ory-ratelimit-bucket: kratos-public-high
   /self-service/recovery:
     post:
       description: |-
@@ -22387,6 +22698,14 @@ components:
         fedcm_config_url:
           nullable: true
           type: string
+        front_channel_logout:
+          description: |-
+            FrontChannelLogout enables OpenID Connect Front-Channel Logout for this
+            provider: a login issues a companion cookie that lets the provider end
+            the resulting Ory session from its own sign-out page.
+
+            Requires the provider to return the `sid` claim in the ID token.
+          type: boolean
         id:
           format: uuid
           type: string
@@ -25933,6 +26252,7 @@ components:
             graceful_refresh_token_count GracefulRefreshTokenCount
             hydra_token_prefix HydraTokenPrefix
             hydra_device_authorization HydraDeviceAuthorization
+            kratos_oidc_front_channel_logout KratosOIDCFrontChannelLogout
             deviceauthn Deviceauthn
             keto_allow_opl_permit_relation_collision KetoAllowOPLPermitRelationCollision exempts a subscription from rejecting OPL  that declares the same name as both a relation and a permit.
             keto_allow_opl_traverse_subject_set KetoAllowOPLTraverseSubjectSet exempts a subscription from rejecting OPL  that traverses a relation declared as a subject set. Override-only, for  legacy configurations; see the OPL reference for the supported shape.
@@ -26019,6 +26339,7 @@ components:
           - graceful_refresh_token_count
           - hydra_token_prefix
           - hydra_device_authorization
+          - kratos_oidc_front_channel_logout
           - deviceauthn
           - keto_allow_opl_permit_relation_collision
           - keto_allow_opl_traverse_subject_set
@@ -26106,6 +26427,7 @@ components:
             graceful_refresh_token_count GracefulRefreshTokenCount
             hydra_token_prefix HydraTokenPrefix
             hydra_device_authorization HydraDeviceAuthorization
+            kratos_oidc_front_channel_logout KratosOIDCFrontChannelLogout
             deviceauthn Deviceauthn
             keto_allow_opl_permit_relation_collision KetoAllowOPLPermitRelationCollision exempts a subscription from rejecting OPL  that declares the same name as both a relation and a permit.
             keto_allow_opl_traverse_subject_set KetoAllowOPLTraverseSubjectSet exempts a subscription from rejecting OPL  that traverses a relation declared as a subject set. Override-only, for  legacy configurations; see the OPL reference for the supported shape.
@@ -26964,6 +27286,18 @@ components:
           - revoke
           type: string
       type: object
+    samlAuthnRequestForm:
+      description: |-
+        The self-submitting HTML form the HTTP-POST binding renders to deliver the
+        AuthnRequest to the identity provider. It is never parsed by an API client:
+        the browser executes its onload handler and submits it automatically.
+      type: string
+    samlSpMetadata:
+      description: |-
+        The SP metadata document (a SAML EntityDescriptor, serialized as XML). It
+        never contains a private key -- see SPMetadataSigningCertificates's doc
+        comment -- so it is safe to serve publicly and cache.
+      type: string
     schemaPatch:
       properties:
         data:
@@ -27663,6 +27997,37 @@ components:
       - namespace
       - object
       - relation
+      type: object
+    submitSamlAssertionBody:
+      description: |-
+        The SAML Response delivered by the identity provider via the HTTP-POST
+        binding, plus the RelayState token that correlates it with the AuthnRequest
+        issued by the init endpoint.
+      properties:
+        RelayState:
+          description: |-
+            The opaque token that correlates this response with the AuthnRequest
+            issued by `POST /self-service/methods/saml/init/{provider}`.
+
+            The PascalCase property name deliberately violates this API's snake_case
+            convention: `RelayState` is the literal form-field name mandated by the
+            SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity
+            provider posts exactly this name. Do not rename it.
+          type: string
+        SAMLResponse:
+          description: |-
+            The base64-encoded, XML-serialized samlp:Response the identity provider
+            produced for the AuthnRequest issued by
+            `POST /self-service/methods/saml/init/{provider}`.
+
+            The PascalCase property name deliberately violates this API's snake_case
+            convention: `SAMLResponse` is the literal form-field name mandated by the
+            SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity
+            provider posts exactly this name. Do not rename it.
+          type: string
+      required:
+      - RelayState
+      - SAMLResponse
       type: object
     subscription:
       properties:

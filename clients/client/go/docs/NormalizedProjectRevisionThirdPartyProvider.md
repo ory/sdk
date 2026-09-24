@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **ClientSecret** | Pointer to **NullableString** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **FedcmConfigUrl** | Pointer to **NullableString** |  | [optional] 
+**FrontChannelLogout** | Pointer to **bool** | FrontChannelLogout enables OpenID Connect Front-Channel Logout for this provider: a login issues a companion cookie that lets the provider end the resulting Ory session from its own sign-out page.  Requires the provider to return the &#x60;sid&#x60; claim in the ID token. | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IssuerUrl** | Pointer to **string** | IssuerURL is the OpenID Connect Server URL. You can leave this empty if &#x60;provider&#x60; is not set to &#x60;generic&#x60;. If set, neither &#x60;auth_url&#x60; nor &#x60;token_url&#x60; are required. | [optional] 
 **Label** | Pointer to **string** | Label represents an optional label which can be used in the UI generation. | [optional] 
@@ -446,6 +447,31 @@ HasFedcmConfigUrl returns a boolean if a field has been set.
 `func (o *NormalizedProjectRevisionThirdPartyProvider) UnsetFedcmConfigUrl()`
 
 UnsetFedcmConfigUrl ensures that no value is present for FedcmConfigUrl, not even an explicit nil
+### GetFrontChannelLogout
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetFrontChannelLogout() bool`
+
+GetFrontChannelLogout returns the FrontChannelLogout field if non-nil, zero value otherwise.
+
+### GetFrontChannelLogoutOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetFrontChannelLogoutOk() (*bool, bool)`
+
+GetFrontChannelLogoutOk returns a tuple with the FrontChannelLogout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFrontChannelLogout
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetFrontChannelLogout(v bool)`
+
+SetFrontChannelLogout sets FrontChannelLogout field to given value.
+
+### HasFrontChannelLogout
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasFrontChannelLogout() bool`
+
+HasFrontChannelLogout returns a boolean if a field has been set.
+
 ### GetId
 
 `func (o *NormalizedProjectRevisionThirdPartyProvider) GetId() string`

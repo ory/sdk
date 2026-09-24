@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **client_secret** | Option<**String**> |  | [optional]
 **created_at** | Option<**String**> | The Project's Revision Creation Date | [optional][readonly]
 **fedcm_config_url** | Option<**String**> |  | [optional]
+**front_channel_logout** | Option<**bool**> | FrontChannelLogout enables OpenID Connect Front-Channel Logout for this provider: a login issues a companion cookie that lets the provider end the resulting Ory session from its own sign-out page.  Requires the provider to return the `sid` claim in the ID token. | [optional]
 **id** | Option<**String**> |  | [optional]
 **issuer_url** | Option<**String**> | IssuerURL is the OpenID Connect Server URL. You can leave this empty if `provider` is not set to `generic`. If set, neither `auth_url` nor `token_url` are required. | [optional]
 **label** | Option<**String**> | Label represents an optional label which can be used in the UI generation. | [optional]

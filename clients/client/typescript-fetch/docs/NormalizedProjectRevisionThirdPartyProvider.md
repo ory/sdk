@@ -20,6 +20,7 @@ Name | Type
 `client_secret` | string
 `created_at` | Date
 `fedcm_config_url` | string
+`front_channel_logout` | boolean
 `id` | string
 `issuer_url` | string
 `label` | string
@@ -60,6 +61,7 @@ const example = {
   "client_secret": null,
   "created_at": null,
   "fedcm_config_url": null,
+  "front_channel_logout": null,
   "id": null,
   "issuer_url": https://accounts.google.com,
   "label": null,

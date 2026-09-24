@@ -25,13 +25,18 @@ All URIs are relative to *https://playground.projects.oryapis.com*
 | [**getLoginFlow**](FrontendApi.md#getLoginFlow) | **GET** /self-service/login/flows | Get Login Flow |
 | [**getRecoveryFlow**](FrontendApi.md#getRecoveryFlow) | **GET** /self-service/recovery/flows | Get Recovery Flow |
 | [**getRegistrationFlow**](FrontendApi.md#getRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow |
+| [**getSamlMetadata**](FrontendApi.md#getSamlMetadata) | **GET** /self-service/methods/saml/metadata | Get SAML SP Metadata |
+| [**getSamlProviderMetadata**](FrontendApi.md#getSamlProviderMetadata) | **GET** /self-service/methods/saml/metadata/{provider} | Get Per-Connection SAML SP Metadata |
 | [**getSettingsFlow**](FrontendApi.md#getSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow |
 | [**getVerificationFlow**](FrontendApi.md#getVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow |
 | [**getWebAuthnJavaScript**](FrontendApi.md#getWebAuthnJavaScript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript |
 | [**getWebAuthnRelatedOrigins**](FrontendApi.md#getWebAuthnRelatedOrigins) | **GET** /.well-known/webauthn | Get WebAuthn Related Origins |
 | [**getWellKnownChangePassword**](FrontendApi.md#getWellKnownChangePassword) | **GET** /.well-known/change-password | Change Password URL |
+| [**initSamlLogin**](FrontendApi.md#initSamlLogin) | **GET** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In |
+| [**initSamlLoginRequest**](FrontendApi.md#initSamlLoginRequest) | **POST** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In (Direct POST) |
 | [**listMySessions**](FrontendApi.md#listMySessions) | **GET** /sessions | Get My Active Sessions |
 | [**performNativeLogout**](FrontendApi.md#performNativeLogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps |
+| [**submitSamlAssertion**](FrontendApi.md#submitSamlAssertion) | **POST** /self-service/methods/saml/acs/{provider} | Native SAML Assertion Consumer Service (ACS) |
 | [**toSession**](FrontendApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To |
 | [**updateFedcmFlow**](FrontendApi.md#updateFedcmFlow) | **POST** /self-service/fed-cm/token | Submit a FedCM token |
 | [**updateLoginFlow**](FrontendApi.md#updateLoginFlow) | **POST** /self-service/login | Submit a Login Flow |
@@ -1464,6 +1469,130 @@ No authorization required
 | **410** | JSON API Error Response |  -  |
 | **0** | JSON API Error Response |  -  |
 
+<a id="getSamlMetadata"></a>
+# **getSamlMetadata**
+> String getSamlMetadata()
+
+Get SAML SP Metadata
+
+This endpoint serves the per-project SAML Service Provider metadata document: the SP entity ID and certificates this Ory Network project presents to every SAML identity provider by default. It is a public, unauthenticated, cacheable endpoint and never contains a private key.  By SAML SP convention, the returned entity ID is this endpoint&#39;s own URL. The native engine derives and uses it automatically as the default SP entity ID for every connection, so there is nothing to copy; share it with an identity provider administrator setting up SSO. A connection can present a different SP entity ID via &#x60;sp_entity_id_override&#x60;.  This endpoint 404s if no native SAML connection has been configured for this project yet (no SP signing key exists to publish).
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    try {
+      String result = apiInstance.getSamlMetadata();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#getSamlMetadata");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The SP metadata document (a SAML EntityDescriptor, serialized as XML). It never contains a private key -- see SPMetadataSigningCertificates&#39;s doc comment -- so it is safe to serve publicly and cache. |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
+
+<a id="getSamlProviderMetadata"></a>
+# **getSamlProviderMetadata**
+> String getSamlProviderMetadata(provider)
+
+Get Per-Connection SAML SP Metadata
+
+This endpoint serves per-connection SAML Service Provider metadata: the identity and certificate a single native connection presents to its identity provider, including the connection&#39;s own Assertion Consumer Service (ACS) URL. It serves a document for any native connection; when the connection sets &#x60;sp_entity_id_override&#x60; the SP entity ID is that value, otherwise it is the project default.  It 404s -- with the identical generic response -- for an unknown connection ID, a connection disabled by invalid configuration, and a non-native connection, which manages its SP identity out of band.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    String provider = "provider_example"; // String | The SAML connection ID to get metadata for.
+    try {
+      String result = apiInstance.getSamlProviderMetadata(provider);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#getSamlProviderMetadata");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **provider** | **String**| The SAML connection ID to get metadata for. | |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The SP metadata document (a SAML EntityDescriptor, serialized as XML). It never contains a private key -- see SPMetadataSigningCertificates&#39;s doc comment -- so it is safe to serve publicly and cache. |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
+
 <a id="getSettingsFlow"></a>
 # **getSettingsFlow**
 > SettingsFlow getSettingsFlow(id, xSessionToken, cookie)
@@ -1777,6 +1906,146 @@ No authorization required
 | **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **0** | JSON API Error Response |  -  |
 
+<a id="initSamlLogin"></a>
+# **initSamlLogin**
+> String initSamlLogin(provider, flow, purpose)
+
+Initiate Native SAML Sign-In
+
+This endpoint starts a native SP-initiated SAML sign-in for the given connection. It checks that the flow named by the &#x60;flow&#x60; query parameter exists as the kind named by &#x60;purpose&#x60;, builds a SAML AuthnRequest, and forwards the browser to the identity provider&#39;s Single Sign-On endpoint -- either with an HTTP 302 redirect (HTTP-Redirect binding) or by returning a self-submitting HTML form (HTTP-POST binding).  A login, registration, or settings flow redirects here as a browser navigation once a SAML connection has been selected. This endpoint is NOT INTENDED to be called directly by API clients: it is a browser navigation target, not a JSON API.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    String provider = "provider_example"; // String | The SAML connection ID to start a native SP-initiated sign-in for.
+    String flow = "flow_example"; // String | The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+    String purpose = "login"; // String | The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+    try {
+      String result = apiInstance.initSamlLogin(provider, flow, purpose);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#initSamlLogin");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **provider** | **String**| The SAML connection ID to start a native SP-initiated sign-in for. | |
+| **flow** | **String**| The Login, Registration, or Settings Flow ID this SAML sign-in continues. | |
+| **purpose** | **String**| The kind of flow &#x60;flow&#x60; names: &#x60;login&#x60;, &#x60;registration&#x60;, or &#x60;settings-link&#x60; (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. | [enum: login, registration, settings-link] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The self-submitting HTML form the HTTP-POST binding renders to deliver the AuthnRequest to the identity provider. It is never parsed by an API client: the browser executes its onload handler and submits it automatically. |  -  |
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
+
+<a id="initSamlLoginRequest"></a>
+# **initSamlLoginRequest**
+> String initSamlLoginRequest(provider, flow, purpose)
+
+Initiate Native SAML Sign-In (Direct POST)
+
+Identical to &#x60;GET /self-service/methods/saml/init/{provider}&#x60;, except the caller POSTs directly to this endpoint -- validated by the anti-CSRF middleware -- instead of being redirected here as a GET.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    String provider = "provider_example"; // String | The SAML connection ID to start a native SP-initiated sign-in for.
+    String flow = "flow_example"; // String | The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+    String purpose = "login"; // String | The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+    try {
+      String result = apiInstance.initSamlLoginRequest(provider, flow, purpose);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#initSamlLoginRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **provider** | **String**| The SAML connection ID to start a native SP-initiated sign-in for. | |
+| **flow** | **String**| The Login, Registration, or Settings Flow ID this SAML sign-in continues. | |
+| **purpose** | **String**| The kind of flow &#x60;flow&#x60; names: &#x60;login&#x60;, &#x60;registration&#x60;, or &#x60;settings-link&#x60; (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. | [enum: login, registration, settings-link] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The self-submitting HTML form the HTTP-POST binding renders to deliver the AuthnRequest to the identity provider. It is never parsed by an API client: the browser executes its onload handler and submits it automatically. |  -  |
+| **302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | JSON API Error Response |  -  |
+| **404** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
+
 <a id="listMySessions"></a>
 # **listMySessions**
 > List&lt;Session&gt; listMySessions(perPage, page, pageSize, pageToken, xSessionToken, cookie)
@@ -1913,6 +2182,74 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+| **400** | JSON API Error Response |  -  |
+| **0** | JSON API Error Response |  -  |
+
+<a id="submitSamlAssertion"></a>
+# **submitSamlAssertion**
+> ErrorGeneric submitSamlAssertion(provider, relayState, saMLResponse)
+
+Native SAML Assertion Consumer Service (ACS)
+
+This is the Assertion Consumer Service (ACS) for the native SAML engine. The identity provider delivers its SAML Response here via the HTTP-POST binding, carrying the RelayState token that correlates it with the AuthnRequest issued by the init endpoint. On success the browser is redirected to complete the login, registration, or settings-link flow that started the sign-in.  This endpoint is posted to directly by the identity provider&#39;s browser and is NOT INTENDED to be called by API clients.  Every failure -- a replayed or unknown token, a malformed request, a provider mismatch, a response delivered to a browser other than the one that started the flow, or a signature/assertion validation failure -- is reported with the identical generic error, so the response body cannot be used to probe which check failed.
+
+### Example
+```java
+// Import classes:
+import sh.ory.ApiClient;
+import sh.ory.ApiException;
+import sh.ory.Configuration;
+import sh.ory.models.*;
+import sh.ory.api.FrontendApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://playground.projects.oryapis.com");
+
+    FrontendApi apiInstance = new FrontendApi(defaultClient);
+    String provider = "provider_example"; // String | The SAML connection ID this assertion is delivered for.
+    String relayState = "relayState_example"; // String | The opaque token that correlates this response with the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `RelayState` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+    String saMLResponse = "saMLResponse_example"; // String | The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `SAMLResponse` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+    try {
+      ErrorGeneric result = apiInstance.submitSamlAssertion(provider, relayState, saMLResponse);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FrontendApi#submitSamlAssertion");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **provider** | **String**| The SAML connection ID this assertion is delivered for. | |
+| **relayState** | **String**| The opaque token that correlates this response with the AuthnRequest issued by &#x60;POST /self-service/methods/saml/init/{provider}&#x60;.  The PascalCase property name deliberately violates this API&#39;s snake_case convention: &#x60;RelayState&#x60; is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. | |
+| **saMLResponse** | **String**| The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by &#x60;POST /self-service/methods/saml/init/{provider}&#x60;.  The PascalCase property name deliberately violates this API&#39;s snake_case convention: &#x60;SAMLResponse&#x60; is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. | |
+
+### Return type
+
+[**ErrorGeneric**](ErrorGeneric.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 | **400** | JSON API Error Response |  -  |
 | **0** | JSON API Error Response |  -  |
 

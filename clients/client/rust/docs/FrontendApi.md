@@ -25,13 +25,18 @@ Method | HTTP request | Description
 [**get_login_flow**](FrontendApi.md#get_login_flow) | **GET** /self-service/login/flows | Get Login Flow
 [**get_recovery_flow**](FrontendApi.md#get_recovery_flow) | **GET** /self-service/recovery/flows | Get Recovery Flow
 [**get_registration_flow**](FrontendApi.md#get_registration_flow) | **GET** /self-service/registration/flows | Get Registration Flow
+[**get_saml_metadata**](FrontendApi.md#get_saml_metadata) | **GET** /self-service/methods/saml/metadata | Get SAML SP Metadata
+[**get_saml_provider_metadata**](FrontendApi.md#get_saml_provider_metadata) | **GET** /self-service/methods/saml/metadata/{provider} | Get Per-Connection SAML SP Metadata
 [**get_settings_flow**](FrontendApi.md#get_settings_flow) | **GET** /self-service/settings/flows | Get Settings Flow
 [**get_verification_flow**](FrontendApi.md#get_verification_flow) | **GET** /self-service/verification/flows | Get Verification Flow
 [**get_web_authn_java_script**](FrontendApi.md#get_web_authn_java_script) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
 [**get_web_authn_related_origins**](FrontendApi.md#get_web_authn_related_origins) | **GET** /.well-known/webauthn | Get WebAuthn Related Origins
 [**get_well_known_change_password**](FrontendApi.md#get_well_known_change_password) | **GET** /.well-known/change-password | Change Password URL
+[**init_saml_login**](FrontendApi.md#init_saml_login) | **GET** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In
+[**init_saml_login_request**](FrontendApi.md#init_saml_login_request) | **POST** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In (Direct POST)
 [**list_my_sessions**](FrontendApi.md#list_my_sessions) | **GET** /sessions | Get My Active Sessions
 [**perform_native_logout**](FrontendApi.md#perform_native_logout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
+[**submit_saml_assertion**](FrontendApi.md#submit_saml_assertion) | **POST** /self-service/methods/saml/acs/{provider} | Native SAML Assertion Consumer Service (ACS)
 [**to_session**](FrontendApi.md#to_session) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 [**update_fedcm_flow**](FrontendApi.md#update_fedcm_flow) | **POST** /self-service/fed-cm/token | Submit a FedCM token
 [**update_login_flow**](FrontendApi.md#update_login_flow) | **POST** /self-service/login | Submit a Login Flow
@@ -1090,6 +1095,96 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_saml_metadata
+
+> String get_saml_metadata()
+Get SAML SP Metadata
+
+This endpoint serves the per-project SAML Service Provider metadata document: the SP entity ID and certificates this Ory Network project presents to every SAML identity provider by default. It is a public, unauthenticated, cacheable endpoint and never contains a private key.  By SAML SP convention, the returned entity ID is this endpoint's own URL. The native engine derives and uses it automatically as the default SP entity ID for every connection, so there is nothing to copy; share it with an identity provider administrator setting up SSO. A connection can present a different SP entity ID via `sp_entity_id_override`.  This endpoint 404s if no native SAML connection has been configured for this project yet (no SP signing key exists to publish).
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::frontend_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    match frontend_api::get_saml_metadata(&configuration).await {
+        Ok(response) => println!("FrontendApi::get_saml_metadata: {:?}", response),
+        Err(error) => eprintln!("Error calling FrontendApi::get_saml_metadata: {:?}", error),
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_saml_provider_metadata
+
+> String get_saml_provider_metadata(provider)
+Get Per-Connection SAML SP Metadata
+
+This endpoint serves per-connection SAML Service Provider metadata: the identity and certificate a single native connection presents to its identity provider, including the connection's own Assertion Consumer Service (ACS) URL. It serves a document for any native connection; when the connection sets `sp_entity_id_override` the SP entity ID is that value, otherwise it is the project default.  It 404s -- with the identical generic response -- for an unknown connection ID, a connection disabled by invalid configuration, and a non-native connection, which manages its SP identity out of band.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::frontend_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    let provider = "provider_example"; // String | The SAML connection ID to get metadata for.
+    match frontend_api::get_saml_provider_metadata(&configuration, provider).await {
+        Ok(response) => println!("FrontendApi::get_saml_provider_metadata: {:?}", response),
+        Err(error) => eprintln!("Error calling FrontendApi::get_saml_provider_metadata: {:?}", error),
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**provider** | **String** | The SAML connection ID to get metadata for. | [required] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_settings_flow
 
 > models::SettingsFlow get_settings_flow(id, x_session_token, cookie)
@@ -1319,6 +1414,108 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## init_saml_login
+
+> String init_saml_login(provider, flow, purpose)
+Initiate Native SAML Sign-In
+
+This endpoint starts a native SP-initiated SAML sign-in for the given connection. It checks that the flow named by the `flow` query parameter exists as the kind named by `purpose`, builds a SAML AuthnRequest, and forwards the browser to the identity provider's Single Sign-On endpoint -- either with an HTTP 302 redirect (HTTP-Redirect binding) or by returning a self-submitting HTML form (HTTP-POST binding).  A login, registration, or settings flow redirects here as a browser navigation once a SAML connection has been selected. This endpoint is NOT INTENDED to be called directly by API clients: it is a browser navigation target, not a JSON API.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::frontend_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    let provider = "provider_example"; // String | The SAML connection ID to start a native SP-initiated sign-in for.
+    let flow = "flow_example"; // String | The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+    let purpose = "purpose_example"; // String | The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+    match frontend_api::init_saml_login(&configuration, provider, flow, purpose).await {
+        Ok(response) => println!("FrontendApi::init_saml_login: {:?}", response),
+        Err(error) => eprintln!("Error calling FrontendApi::init_saml_login: {:?}", error),
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**provider** | **String** | The SAML connection ID to start a native SP-initiated sign-in for. | [required] |
+**flow** | **String** | The Login, Registration, or Settings Flow ID this SAML sign-in continues. | [required] |
+**purpose** | **String** | The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. | [required] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## init_saml_login_request
+
+> String init_saml_login_request(provider, flow, purpose)
+Initiate Native SAML Sign-In (Direct POST)
+
+Identical to `GET /self-service/methods/saml/init/{provider}`, except the caller POSTs directly to this endpoint -- validated by the anti-CSRF middleware -- instead of being redirected here as a GET.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::frontend_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    let provider = "provider_example"; // String | The SAML connection ID to start a native SP-initiated sign-in for.
+    let flow = "flow_example"; // String | The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+    let purpose = "purpose_example"; // String | The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+    match frontend_api::init_saml_login_request(&configuration, provider, flow, purpose).await {
+        Ok(response) => println!("FrontendApi::init_saml_login_request: {:?}", response),
+        Err(error) => eprintln!("Error calling FrontendApi::init_saml_login_request: {:?}", error),
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**provider** | **String** | The SAML connection ID to start a native SP-initiated sign-in for. | [required] |
+**flow** | **String** | The Login, Registration, or Settings Flow ID this SAML sign-in continues. | [required] |
+**purpose** | **String** | The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. | [required] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## list_my_sessions
 
 > Vec<models::Session> list_my_sessions(per_page, page, page_size, page_token, x_session_token, cookie)
@@ -1418,6 +1615,57 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## submit_saml_assertion
+
+> models::ErrorGeneric submit_saml_assertion(provider, relay_state, saml_response)
+Native SAML Assertion Consumer Service (ACS)
+
+This is the Assertion Consumer Service (ACS) for the native SAML engine. The identity provider delivers its SAML Response here via the HTTP-POST binding, carrying the RelayState token that correlates it with the AuthnRequest issued by the init endpoint. On success the browser is redirected to complete the login, registration, or settings-link flow that started the sign-in.  This endpoint is posted to directly by the identity provider's browser and is NOT INTENDED to be called by API clients.  Every failure -- a replayed or unknown token, a malformed request, a provider mismatch, a response delivered to a browser other than the one that started the flow, or a signature/assertion validation failure -- is reported with the identical generic error, so the response body cannot be used to probe which check failed.
+
+### Example
+
+```rust
+use ory_client::apis::configuration::Configuration;
+use ory_client::apis::frontend_api;
+
+#[tokio::main]
+async fn main() {
+    let mut configuration = Configuration::new();
+    let provider = "provider_example"; // String | The SAML connection ID this assertion is delivered for.
+    let relay_state = "relay_state_example"; // String | The opaque token that correlates this response with the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `RelayState` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+    let saml_response = "saml_response_example"; // String | The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `SAMLResponse` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+    match frontend_api::submit_saml_assertion(&configuration, provider, relay_state, saml_response).await {
+        Ok(response) => println!("FrontendApi::submit_saml_assertion: {:?}", response),
+        Err(error) => eprintln!("Error calling FrontendApi::submit_saml_assertion: {:?}", error),
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**provider** | **String** | The SAML connection ID this assertion is delivered for. | [required] |
+**relay_state** | **String** | The opaque token that correlates this response with the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `RelayState` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. | [required] |
+**saml_response** | **String** | The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `SAMLResponse` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. | [required] |
+
+### Return type
+
+[**models::ErrorGeneric**](errorGeneric.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

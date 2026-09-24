@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.78
-  - Build date: 2026-09-21T13:58:55.557790985Z[Etc/UTC]
+- API version: v1.22.79
+  - Build date: 2026-09-24T12:16:41.823957200Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.78</version>
+  <version>v1.22.79</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.78"
+     implementation "sh.ory:client:v1.22.79"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.78.jar`
+* `target/client-v1.22.79.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -186,13 +186,18 @@ Class | Method | HTTP request | Description
 *FrontendApi* | [**getLoginFlow**](docs/FrontendApi.md#getLoginFlow) | **GET** /self-service/login/flows | Get Login Flow
 *FrontendApi* | [**getRecoveryFlow**](docs/FrontendApi.md#getRecoveryFlow) | **GET** /self-service/recovery/flows | Get Recovery Flow
 *FrontendApi* | [**getRegistrationFlow**](docs/FrontendApi.md#getRegistrationFlow) | **GET** /self-service/registration/flows | Get Registration Flow
+*FrontendApi* | [**getSamlMetadata**](docs/FrontendApi.md#getSamlMetadata) | **GET** /self-service/methods/saml/metadata | Get SAML SP Metadata
+*FrontendApi* | [**getSamlProviderMetadata**](docs/FrontendApi.md#getSamlProviderMetadata) | **GET** /self-service/methods/saml/metadata/{provider} | Get Per-Connection SAML SP Metadata
 *FrontendApi* | [**getSettingsFlow**](docs/FrontendApi.md#getSettingsFlow) | **GET** /self-service/settings/flows | Get Settings Flow
 *FrontendApi* | [**getVerificationFlow**](docs/FrontendApi.md#getVerificationFlow) | **GET** /self-service/verification/flows | Get Verification Flow
 *FrontendApi* | [**getWebAuthnJavaScript**](docs/FrontendApi.md#getWebAuthnJavaScript) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
 *FrontendApi* | [**getWebAuthnRelatedOrigins**](docs/FrontendApi.md#getWebAuthnRelatedOrigins) | **GET** /.well-known/webauthn | Get WebAuthn Related Origins
 *FrontendApi* | [**getWellKnownChangePassword**](docs/FrontendApi.md#getWellKnownChangePassword) | **GET** /.well-known/change-password | Change Password URL
+*FrontendApi* | [**initSamlLogin**](docs/FrontendApi.md#initSamlLogin) | **GET** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In
+*FrontendApi* | [**initSamlLoginRequest**](docs/FrontendApi.md#initSamlLoginRequest) | **POST** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In (Direct POST)
 *FrontendApi* | [**listMySessions**](docs/FrontendApi.md#listMySessions) | **GET** /sessions | Get My Active Sessions
 *FrontendApi* | [**performNativeLogout**](docs/FrontendApi.md#performNativeLogout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
+*FrontendApi* | [**submitSamlAssertion**](docs/FrontendApi.md#submitSamlAssertion) | **POST** /self-service/methods/saml/acs/{provider} | Native SAML Assertion Consumer Service (ACS)
 *FrontendApi* | [**toSession**](docs/FrontendApi.md#toSession) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 *FrontendApi* | [**updateFedcmFlow**](docs/FrontendApi.md#updateFedcmFlow) | **POST** /self-service/fed-cm/token | Submit a FedCM token
 *FrontendApi* | [**updateLoginFlow**](docs/FrontendApi.md#updateLoginFlow) | **POST** /self-service/login | Submit a Login Flow

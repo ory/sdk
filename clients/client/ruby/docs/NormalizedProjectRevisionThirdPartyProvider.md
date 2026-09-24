@@ -18,6 +18,7 @@
 | **client_secret** | **String** |  | [optional] |
 | **created_at** | **Time** | The Project&#39;s Revision Creation Date | [optional][readonly] |
 | **fedcm_config_url** | **String** |  | [optional] |
+| **front_channel_logout** | **Boolean** | FrontChannelLogout enables OpenID Connect Front-Channel Logout for this provider: a login issues a companion cookie that lets the provider end the resulting Ory session from its own sign-out page.  Requires the provider to return the &#x60;sid&#x60; claim in the ID token. | [optional] |
 | **id** | **String** |  | [optional] |
 | **issuer_url** | **String** | IssuerURL is the OpenID Connect Server URL. You can leave this empty if &#x60;provider&#x60; is not set to &#x60;generic&#x60;. If set, neither &#x60;auth_url&#x60; nor &#x60;token_url&#x60; are required. | [optional] |
 | **label** | **String** | Label represents an optional label which can be used in the UI generation. | [optional] |
@@ -57,6 +58,7 @@ instance = OryClient::NormalizedProjectRevisionThirdPartyProvider.new(
   client_secret: null,
   created_at: null,
   fedcm_config_url: null,
+  front_channel_logout: null,
   id: null,
   issuer_url: https://accounts.google.com,
   label: null,

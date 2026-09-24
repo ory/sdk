@@ -850,6 +850,69 @@ defmodule Ory.Api.Frontend do
   end
 
   @doc """
+  Get SAML SP Metadata
+  This endpoint serves the per-project SAML Service Provider metadata document: the SP entity ID and certificates this Ory Network project presents to every SAML identity provider by default. It is a public, unauthenticated, cacheable endpoint and never contains a private key.  By SAML SP convention, the returned entity ID is this endpoint's own URL. The native engine derives and uses it automatically as the default SP entity ID for every connection, so there is nothing to copy; share it with an identity provider administrator setting up SSO. A connection can present a different SP entity ID via `sp_entity_id_override`.  This endpoint 404s if no native SAML connection has been configured for this project yet (no SP signing key exists to publish).
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, String.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_saml_metadata(Tesla.Env.client, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, String.t} | {:error, Tesla.Env.t}
+  def get_saml_metadata(connection, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/self-service/methods/saml/metadata")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, false},
+      {404, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
+  Get Per-Connection SAML SP Metadata
+  This endpoint serves per-connection SAML Service Provider metadata: the identity and certificate a single native connection presents to its identity provider, including the connection's own Assertion Consumer Service (ACS) URL. It serves a document for any native connection; when the connection sets `sp_entity_id_override` the SP entity ID is that value, otherwise it is the project default.  It 404s -- with the identical generic response -- for an unknown connection ID, a connection disabled by invalid configuration, and a non-native connection, which manages its SP identity out of band.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `provider` (String.t): The SAML connection ID to get metadata for.
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, String.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_saml_provider_metadata(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorGeneric.t} | {:ok, String.t} | {:error, Tesla.Env.t}
+  def get_saml_provider_metadata(connection, provider, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/self-service/methods/saml/metadata/#{provider}")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, false},
+      {404, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
   Get Settings Flow
   When accessing this endpoint through Ory Kratos' Public API you must ensure that either the Ory Kratos Session Cookie or the Ory Kratos Session Token are set.  Depending on your configuration this endpoint might return a 403 error if the session has a lower Authenticator Assurance Level (AAL) than is possible for the identity. This can happen if the identity has password + webauthn credentials (which would result in AAL2) but the session has only AAL1. If this error occurs, ask the user to sign in with the second factor or change the configuration.  You can access this endpoint without credentials when using Ory Kratos' Admin API.  If this endpoint is called via an AJAX request, the response contains the flow without a redirect. In the case of an error, the `error.id` of the JSON response body can be one of:  - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred. - `session_inactive`: No Ory Session was found - sign in a user first. - `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other identity logged in instead.  More information can be found at [Ory Kratos User Settings & Profile Management Documentation](../self-service/flows/user-settings).
 
@@ -1022,6 +1085,83 @@ defmodule Ory.Api.Frontend do
   end
 
   @doc """
+  Initiate Native SAML Sign-In
+  This endpoint starts a native SP-initiated SAML sign-in for the given connection. It checks that the flow named by the `flow` query parameter exists as the kind named by `purpose`, builds a SAML AuthnRequest, and forwards the browser to the identity provider's Single Sign-On endpoint -- either with an HTTP 302 redirect (HTTP-Redirect binding) or by returning a self-submitting HTML form (HTTP-POST binding).  A login, registration, or settings flow redirects here as a browser navigation once a SAML connection has been selected. This endpoint is NOT INTENDED to be called directly by API clients: it is a browser navigation target, not a JSON API.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `provider` (String.t): The SAML connection ID to start a native SP-initiated sign-in for.
+  - `flow` (String.t): The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+  - `purpose` (String.t): The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, String.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec init_saml_login(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:ok, String.t} | {:error, Tesla.Env.t}
+  def init_saml_login(connection, provider, flow, purpose, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/self-service/methods/saml/init/#{provider}")
+      |> add_param(:query, :flow, flow)
+      |> add_param(:query, :purpose, purpose)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, false},
+      {302, false},
+      {400, Ory.Model.ErrorGeneric},
+      {404, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
+  Initiate Native SAML Sign-In (Direct POST)
+  Identical to `GET /self-service/methods/saml/init/{provider}`, except the caller POSTs directly to this endpoint -- validated by the anti-CSRF middleware -- instead of being redirected here as a GET.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `provider` (String.t): The SAML connection ID to start a native SP-initiated sign-in for.
+  - `flow` (String.t): The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+  - `purpose` (String.t): The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, String.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec init_saml_login_request(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:ok, String.t} | {:error, Tesla.Env.t}
+  def init_saml_login_request(connection, provider, flow, purpose, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/self-service/methods/saml/init/#{provider}")
+      |> add_param(:query, :flow, flow)
+      |> add_param(:query, :purpose, purpose)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, false},
+      {302, false},
+      {400, Ory.Model.ErrorGeneric},
+      {404, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
   Get My Active Sessions
   This endpoints returns all other active sessions that belong to the logged-in user. The current session can be retrieved by calling the `/sessions/whoami` endpoint.
 
@@ -1098,6 +1238,42 @@ defmodule Ory.Api.Frontend do
     |> Connection.request(request)
     |> evaluate_response([
       {204, false},
+      {400, Ory.Model.ErrorGeneric},
+      {:default, Ory.Model.ErrorGeneric}
+    ])
+  end
+
+  @doc """
+  Native SAML Assertion Consumer Service (ACS)
+  This is the Assertion Consumer Service (ACS) for the native SAML engine. The identity provider delivers its SAML Response here via the HTTP-POST binding, carrying the RelayState token that correlates it with the AuthnRequest issued by the init endpoint. On success the browser is redirected to complete the login, registration, or settings-link flow that started the sign-in.  This endpoint is posted to directly by the identity provider's browser and is NOT INTENDED to be called by API clients.  Every failure -- a replayed or unknown token, a malformed request, a provider mismatch, a response delivered to a browser other than the one that started the flow, or a signature/assertion validation failure -- is reported with the identical generic error, so the response body cannot be used to probe which check failed.
+
+  ### Parameters
+
+  - `connection` (Ory.Connection): Connection to server
+  - `provider` (String.t): The SAML connection ID this assertion is delivered for.
+  - `relay_state` (String.t): The opaque token that correlates this response with the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `RelayState` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+  - `s_aml_response` (String.t): The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `SAMLResponse` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Ory.Model.ErrorGeneric.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec submit_saml_assertion(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorGeneric.t} | {:error, Tesla.Env.t}
+  def submit_saml_assertion(connection, provider, relay_state, s_aml_response, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/self-service/methods/saml/acs/#{provider}")
+      |> add_param(:form, :RelayState, relay_state)
+      |> add_param(:form, :SAMLResponse, s_aml_response)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {303, false},
       {400, Ory.Model.ErrorGeneric},
       {:default, Ory.Model.ErrorGeneric}
     ])

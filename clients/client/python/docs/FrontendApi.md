@@ -25,13 +25,18 @@ Method | HTTP request | Description
 [**get_login_flow**](FrontendApi.md#get_login_flow) | **GET** /self-service/login/flows | Get Login Flow
 [**get_recovery_flow**](FrontendApi.md#get_recovery_flow) | **GET** /self-service/recovery/flows | Get Recovery Flow
 [**get_registration_flow**](FrontendApi.md#get_registration_flow) | **GET** /self-service/registration/flows | Get Registration Flow
+[**get_saml_metadata**](FrontendApi.md#get_saml_metadata) | **GET** /self-service/methods/saml/metadata | Get SAML SP Metadata
+[**get_saml_provider_metadata**](FrontendApi.md#get_saml_provider_metadata) | **GET** /self-service/methods/saml/metadata/{provider} | Get Per-Connection SAML SP Metadata
 [**get_settings_flow**](FrontendApi.md#get_settings_flow) | **GET** /self-service/settings/flows | Get Settings Flow
 [**get_verification_flow**](FrontendApi.md#get_verification_flow) | **GET** /self-service/verification/flows | Get Verification Flow
 [**get_web_authn_java_script**](FrontendApi.md#get_web_authn_java_script) | **GET** /.well-known/ory/webauthn.js | Get WebAuthn JavaScript
 [**get_web_authn_related_origins**](FrontendApi.md#get_web_authn_related_origins) | **GET** /.well-known/webauthn | Get WebAuthn Related Origins
 [**get_well_known_change_password**](FrontendApi.md#get_well_known_change_password) | **GET** /.well-known/change-password | Change Password URL
+[**init_saml_login**](FrontendApi.md#init_saml_login) | **GET** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In
+[**init_saml_login_request**](FrontendApi.md#init_saml_login_request) | **POST** /self-service/methods/saml/init/{provider} | Initiate Native SAML Sign-In (Direct POST)
 [**list_my_sessions**](FrontendApi.md#list_my_sessions) | **GET** /sessions | Get My Active Sessions
 [**perform_native_logout**](FrontendApi.md#perform_native_logout) | **DELETE** /self-service/logout/api | Perform Logout for Native Apps
+[**submit_saml_assertion**](FrontendApi.md#submit_saml_assertion) | **POST** /self-service/methods/saml/acs/{provider} | Native SAML Assertion Consumer Service (ACS)
 [**to_session**](FrontendApi.md#to_session) | **GET** /sessions/whoami | Check Who the Current HTTP Session Belongs To
 [**update_fedcm_flow**](FrontendApi.md#update_fedcm_flow) | **POST** /self-service/fed-cm/token | Submit a FedCM token
 [**update_login_flow**](FrontendApi.md#update_login_flow) | **POST** /self-service/login | Submit a Login Flow
@@ -1839,6 +1844,161 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_saml_metadata**
+> str get_saml_metadata()
+
+Get SAML SP Metadata
+
+This endpoint serves the per-project SAML Service Provider metadata
+document: the SP entity ID and certificates this Ory Network project
+presents to every SAML identity provider by default. It is a public,
+unauthenticated, cacheable endpoint and never contains a private key.
+
+By SAML SP convention, the returned entity ID is this endpoint's own URL.
+The native engine derives and uses it automatically as the default SP entity
+ID for every connection, so there is nothing to copy; share it with an
+identity provider administrator setting up SSO. A connection can present a
+different SP entity ID via `sp_entity_id_override`.
+
+This endpoint 404s if no native SAML connection has been configured for
+this project yet (no SP signing key exists to publish).
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.FrontendApi(api_client)
+
+    try:
+        # Get SAML SP Metadata
+        api_response = api_instance.get_saml_metadata()
+        print("The response of FrontendApi->get_saml_metadata:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FrontendApi->get_saml_metadata: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**str**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The SP metadata document (a SAML EntityDescriptor, serialized as XML). It never contains a private key -- see SPMetadataSigningCertificates&#39;s doc comment -- so it is safe to serve publicly and cache. |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_saml_provider_metadata**
+> str get_saml_provider_metadata(provider)
+
+Get Per-Connection SAML SP Metadata
+
+This endpoint serves per-connection SAML Service Provider metadata: the
+identity and certificate a single native connection presents to its identity
+provider, including the connection's own Assertion Consumer Service (ACS)
+URL. It serves a document for any native connection; when the connection sets
+`sp_entity_id_override` the SP entity ID is that value, otherwise it is the
+project default.
+
+It 404s -- with the identical generic response -- for an unknown connection
+ID, a connection disabled by invalid configuration, and a non-native
+connection, which manages its SP identity out of band.
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.FrontendApi(api_client)
+    provider = 'provider_example' # str | The SAML connection ID to get metadata for.
+
+    try:
+        # Get Per-Connection SAML SP Metadata
+        api_response = api_instance.get_saml_provider_metadata(provider)
+        print("The response of FrontendApi->get_saml_provider_metadata:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FrontendApi->get_saml_provider_metadata: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **provider** | **str**| The SAML connection ID to get metadata for. | 
+
+### Return type
+
+**str**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The SP metadata document (a SAML EntityDescriptor, serialized as XML). It never contains a private key -- see SPMetadataSigningCertificates&#39;s doc comment -- so it is safe to serve publicly and cache. |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_settings_flow**
 > SettingsFlow get_settings_flow(id, x_session_token=x_session_token, cookie=cookie)
 
@@ -2233,6 +2393,168 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **init_saml_login**
+> str init_saml_login(provider, flow, purpose)
+
+Initiate Native SAML Sign-In
+
+This endpoint starts a native SP-initiated SAML sign-in for the given
+connection. It checks that the flow named by the `flow` query parameter
+exists as the kind named by `purpose`, builds a SAML AuthnRequest, and
+forwards the browser to the identity provider's Single Sign-On endpoint -- either with
+an HTTP 302 redirect (HTTP-Redirect binding) or by returning a
+self-submitting HTML form (HTTP-POST binding).
+
+A login, registration, or settings flow redirects here as a browser
+navigation once a SAML connection has been selected. This endpoint is NOT
+INTENDED to be called directly by API clients: it is a browser navigation
+target, not a JSON API.
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.FrontendApi(api_client)
+    provider = 'provider_example' # str | The SAML connection ID to start a native SP-initiated sign-in for.
+    flow = 'flow_example' # str | The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+    purpose = 'purpose_example' # str | The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+
+    try:
+        # Initiate Native SAML Sign-In
+        api_response = api_instance.init_saml_login(provider, flow, purpose)
+        print("The response of FrontendApi->init_saml_login:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FrontendApi->init_saml_login: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **provider** | **str**| The SAML connection ID to start a native SP-initiated sign-in for. | 
+ **flow** | **str**| The Login, Registration, or Settings Flow ID this SAML sign-in continues. | 
+ **purpose** | **str**| The kind of flow &#x60;flow&#x60; names: &#x60;login&#x60;, &#x60;registration&#x60;, or &#x60;settings-link&#x60; (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. | 
+
+### Return type
+
+**str**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The self-submitting HTML form the HTTP-POST binding renders to deliver the AuthnRequest to the identity provider. It is never parsed by an API client: the browser executes its onload handler and submits it automatically. |  -  |
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**400** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **init_saml_login_request**
+> str init_saml_login_request(provider, flow, purpose)
+
+Initiate Native SAML Sign-In (Direct POST)
+
+Identical to `GET /self-service/methods/saml/init/{provider}`, except the
+caller POSTs directly to this endpoint -- validated by the anti-CSRF
+middleware -- instead of being redirected here as a GET.
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.FrontendApi(api_client)
+    provider = 'provider_example' # str | The SAML connection ID to start a native SP-initiated sign-in for.
+    flow = 'flow_example' # str | The Login, Registration, or Settings Flow ID this SAML sign-in continues.
+    purpose = 'purpose_example' # str | The kind of flow `flow` names: `login`, `registration`, or `settings-link` (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found.
+
+    try:
+        # Initiate Native SAML Sign-In (Direct POST)
+        api_response = api_instance.init_saml_login_request(provider, flow, purpose)
+        print("The response of FrontendApi->init_saml_login_request:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FrontendApi->init_saml_login_request: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **provider** | **str**| The SAML connection ID to start a native SP-initiated sign-in for. | 
+ **flow** | **str**| The Login, Registration, or Settings Flow ID this SAML sign-in continues. | 
+ **purpose** | **str**| The kind of flow &#x60;flow&#x60; names: &#x60;login&#x60;, &#x60;registration&#x60;, or &#x60;settings-link&#x60; (a settings flow linking a new SAML credential). The flow must exist in the named kind, or the request is not found. | 
+
+### Return type
+
+**str**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The self-submitting HTML form the HTTP-POST binding renders to deliver the AuthnRequest to the identity provider. It is never parsed by an API client: the browser executes its onload handler and submits it automatically. |  -  |
+**302** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**400** | JSON API Error Response |  -  |
+**404** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_my_sessions**
 > List[Session] list_my_sessions(per_page=per_page, page=page, page_size=page_size, page_token=page_token, x_session_token=x_session_token, cookie=cookie)
 
@@ -2386,6 +2708,94 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
+**400** | JSON API Error Response |  -  |
+**0** | JSON API Error Response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **submit_saml_assertion**
+> ErrorGeneric submit_saml_assertion(provider, relay_state, saml_response)
+
+Native SAML Assertion Consumer Service (ACS)
+
+This is the Assertion Consumer Service (ACS) for the native SAML engine.
+The identity provider delivers its SAML Response here via the HTTP-POST
+binding, carrying the RelayState token that correlates it with the
+AuthnRequest issued by the init endpoint. On success the browser is
+redirected to complete the login, registration, or settings-link flow that
+started the sign-in.
+
+This endpoint is posted to directly by the identity provider's browser and
+is NOT INTENDED to be called by API clients.
+
+Every failure -- a replayed or unknown token, a malformed request, a
+provider mismatch, a response delivered to a browser other than the one
+that started the flow, or a signature/assertion validation failure -- is
+reported with the identical generic error, so the response body cannot be
+used to probe which check failed.
+
+### Example
+
+
+```python
+import ory_client
+from ory_client.models.error_generic import ErrorGeneric
+from ory_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://playground.projects.oryapis.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ory_client.Configuration(
+    host = "https://playground.projects.oryapis.com"
+)
+
+
+# Enter a context with an instance of the API client
+with ory_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ory_client.FrontendApi(api_client)
+    provider = 'provider_example' # str | The SAML connection ID this assertion is delivered for.
+    relay_state = 'relay_state_example' # str | The opaque token that correlates this response with the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `RelayState` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+    saml_response = 'saml_response_example' # str | The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by `POST /self-service/methods/saml/init/{provider}`.  The PascalCase property name deliberately violates this API's snake_case convention: `SAMLResponse` is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it.
+
+    try:
+        # Native SAML Assertion Consumer Service (ACS)
+        api_response = api_instance.submit_saml_assertion(provider, relay_state, saml_response)
+        print("The response of FrontendApi->submit_saml_assertion:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FrontendApi->submit_saml_assertion: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **provider** | **str**| The SAML connection ID this assertion is delivered for. | 
+ **relay_state** | **str**| The opaque token that correlates this response with the AuthnRequest issued by &#x60;POST /self-service/methods/saml/init/{provider}&#x60;.  The PascalCase property name deliberately violates this API&#39;s snake_case convention: &#x60;RelayState&#x60; is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. | 
+ **saml_response** | **str**| The base64-encoded, XML-serialized samlp:Response the identity provider produced for the AuthnRequest issued by &#x60;POST /self-service/methods/saml/init/{provider}&#x60;.  The PascalCase property name deliberately violates this API&#39;s snake_case convention: &#x60;SAMLResponse&#x60; is the literal form-field name mandated by the SAML 2.0 HTTP-POST binding (OASIS SAML bindings spec), and every identity provider posts exactly this name. Do not rename it. | 
+
+### Return type
+
+[**ErrorGeneric**](ErrorGeneric.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**303** | Empty responses are sent when, for example, resources are deleted. The HTTP status code for empty responses is typically 201. |  -  |
 **400** | JSON API Error Response |  -  |
 **0** | JSON API Error Response |  -  |
 
