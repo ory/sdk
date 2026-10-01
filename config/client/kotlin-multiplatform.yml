@@ -1,0 +1,11 @@
+packageName: ${KOTLIN_MULTIPLATFORM_PACKAGE_NAME}
+
+artifactId: ${KOTLIN_MULTIPLATFORM_ARTIFACT_ID}
+artifactVersion: $VERSION
+library: multiplatform
+dateLibrary: kotlinx-datetime
+
+#disallowAdditionalPropertiesIfNotPresent: false
+#enumClassPrefix: true
+#useOneOfDiscriminatorLookup: true
+#failOnUnknownProperties: false
