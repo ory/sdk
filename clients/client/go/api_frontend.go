@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.79
+API version: v1.22.80
 Contact: support@ory.sh
 */
 
@@ -162,6 +162,7 @@ case of an error, the `error.id` of the JSON response body can be one of:
 
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 - `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
@@ -349,6 +350,7 @@ In the case of an error, the `error.id` of the JSON response body can be one of:
 
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -636,6 +638,7 @@ case of an error, the `error.id` of the JSON response body can be one of:
 
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 - `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
 
@@ -853,6 +856,8 @@ used to probe which check failed.
 Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent.
 When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header
 in the response.
+For requests from an origin in `security.restricted_origins`, the response contains only the
+session ID and `active`, and `tokenize_as` is rejected with a 400.
 
 If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:
 
@@ -909,6 +914,7 @@ As explained above, this request may fail due to several reasons. The `error.id`
 - `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
 - `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
 - `session_aal2_enrollment_required`: An active session was found but the required Authenticator Assurance Level can not be reached because the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
+- `session_credential_required`: An active session was found but it must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return FrontendAPIToSessionRequest
@@ -1110,6 +1116,7 @@ the identity to the login init endpoint with query parameters `?refresh=true&ret
 or initiate a refresh login flow otherwise.
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 - `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
 - `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
@@ -1928,6 +1935,7 @@ case of an error, the `error.id` of the JSON response body can be one of:
 
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 - `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
@@ -3021,6 +3029,7 @@ In the case of an error, the `error.id` of the JSON response body can be one of:
 
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -4881,6 +4890,7 @@ case of an error, the `error.id` of the JSON response body can be one of:
 
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 - `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
 
@@ -6373,6 +6383,8 @@ Uses the HTTP Headers in the GET request to determine (e.g. by using checking th
 Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent.
 When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header
 in the response.
+For requests from an origin in `security.restricted_origins`, the response contains only the
+session ID and `active`, and `tokenize_as` is rejected with a 400.
 
 If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:
 
@@ -6429,6 +6441,7 @@ As explained above, this request may fail due to several reasons. The `error.id`
 - `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
 - `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
 - `session_aal2_enrollment_required`: An active session was found but the required Authenticator Assurance Level can not be reached because the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
+- `session_credential_required`: An active session was found but it must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return FrontendAPIToSessionRequest
@@ -6508,6 +6521,17 @@ func (a *FrontendAPIService) ToSessionExecute(r FrontendAPIToSessionRequest) (*S
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorGeneric
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorGeneric
@@ -7525,6 +7549,7 @@ the identity to the login init endpoint with query parameters `?refresh=true&ret
 or initiate a refresh login flow otherwise.
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 - `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
 - `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.79
+API version: v1.22.80
 Contact: support@ory.sh
 */
 
@@ -21,12 +21,27 @@ var _ MappedNullable = &NormalizedProjectRevisionSAMLProvider{}
 
 // NormalizedProjectRevisionSAMLProvider struct for NormalizedProjectRevisionSAMLProvider
 type NormalizedProjectRevisionSAMLProvider struct {
+	// The digest algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only).
+	AllowedDigestAlgorithms []string `json:"allowed_digest_algorithms,omitempty"`
+	// The NameID formats accepted from the IdP; empty means any (native engine only).
+	AllowedNameIdFormats []string `json:"allowed_name_id_formats,omitempty"`
+	// The signature algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only).
+	AllowedSignatureAlgorithms []string `json:"allowed_signature_algorithms,omitempty"`
 	AudienceOverrideBaseUrl NullableString `json:"audience_override_base_url,omitempty"`
+	// The SAML binding used to send authentication requests to the IdP (native engine only): \"http-post\" or \"http-redirect\". http-post SAMLBindingHTTPPost sends the AuthnRequest to the IdP via an auto-submitting HTML form. http-redirect SAMLBindingHTTPRedirect sends the AuthnRequest to the IdP via an HTTP redirect.
+	Binding NullableString `json:"binding,omitempty"`
+	// The maximum allowed clock skew in seconds when validating assertion time conditions, between 0 and 300 (native engine only).
+	ClockSkewSeconds *int64 `json:"clock_skew_seconds,omitempty"`
 	// The Project's Revision Creation Date
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// The SAML engine serving this provider: \"jackson\" (default) or \"native\". jackson SAMLEngineJackson routes the provider through the jackson (Polis) proxy. native SAMLEngineNative routes the provider through the native Kratos SAML engine.
+	Engine NullableString `json:"engine,omitempty"`
+	// Require the IdP to re-authenticate the subject even if it has an existing session (native engine only).
+	ForceAuthn *bool `json:"force_authn,omitempty"`
 	Id *string `json:"id,omitempty"`
 	// IdPInitiatedLoginEnabled enables IdP-initiated login for this provider.  When enabled, users can start a login from their identity provider's app launcher. The Polis connection's default redirect URL then points at the Kratos IdP-initiated login entry point instead of the SAML callback.
 	IdpInitiatedLoginEnabled *bool `json:"idp_initiated_login_enabled,omitempty"`
+	IdpMetadataUrl NullableString `json:"idp_metadata_url,omitempty"`
 	// Label represents an optional label which can be used in the UI generation.
 	Label *string `json:"label,omitempty"`
 	// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
@@ -40,6 +55,11 @@ type NormalizedProjectRevisionSAMLProvider struct {
 	ProxySamlAudienceOverride NullableString `json:"proxy_saml_audience_override,omitempty"`
 	// RawIDPMetadataXML is the raw XML metadata of the IDP.
 	RawIdpMetadataXml *string `json:"raw_idp_metadata_xml,omitempty"`
+	// Reject SAML responses whose assertion is not encrypted (native engine only).
+	RequireEncryptedAssertion *bool `json:"require_encrypted_assertion,omitempty"`
+	// Sign SAML authentication requests sent to the IdP (native engine only).
+	SignAuthnRequests *bool `json:"sign_authn_requests,omitempty"`
+	SpEntityIdOverride NullableString `json:"sp_entity_id_override,omitempty"`
 	// State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
 	State *string `json:"state,omitempty"`
 	// UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \"never\" (default) and \"automatic\". never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity's traits and metadata automatically.
@@ -68,6 +88,102 @@ func NewNormalizedProjectRevisionSAMLProvider() *NormalizedProjectRevisionSAMLPr
 func NewNormalizedProjectRevisionSAMLProviderWithDefaults() *NormalizedProjectRevisionSAMLProvider {
 	this := NormalizedProjectRevisionSAMLProvider{}
 	return &this
+}
+
+// GetAllowedDigestAlgorithms returns the AllowedDigestAlgorithms field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionSAMLProvider) GetAllowedDigestAlgorithms() []string {
+	if o == nil || IsNil(o.AllowedDigestAlgorithms) {
+		var ret []string
+		return ret
+	}
+	return o.AllowedDigestAlgorithms
+}
+
+// GetAllowedDigestAlgorithmsOk returns a tuple with the AllowedDigestAlgorithms field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) GetAllowedDigestAlgorithmsOk() ([]string, bool) {
+	if o == nil || IsNil(o.AllowedDigestAlgorithms) {
+		return nil, false
+	}
+	return o.AllowedDigestAlgorithms, true
+}
+
+// HasAllowedDigestAlgorithms returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasAllowedDigestAlgorithms() bool {
+	if o != nil && !IsNil(o.AllowedDigestAlgorithms) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowedDigestAlgorithms gets a reference to the given []string and assigns it to the AllowedDigestAlgorithms field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetAllowedDigestAlgorithms(v []string) {
+	o.AllowedDigestAlgorithms = v
+}
+
+// GetAllowedNameIdFormats returns the AllowedNameIdFormats field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionSAMLProvider) GetAllowedNameIdFormats() []string {
+	if o == nil || IsNil(o.AllowedNameIdFormats) {
+		var ret []string
+		return ret
+	}
+	return o.AllowedNameIdFormats
+}
+
+// GetAllowedNameIdFormatsOk returns a tuple with the AllowedNameIdFormats field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) GetAllowedNameIdFormatsOk() ([]string, bool) {
+	if o == nil || IsNil(o.AllowedNameIdFormats) {
+		return nil, false
+	}
+	return o.AllowedNameIdFormats, true
+}
+
+// HasAllowedNameIdFormats returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasAllowedNameIdFormats() bool {
+	if o != nil && !IsNil(o.AllowedNameIdFormats) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowedNameIdFormats gets a reference to the given []string and assigns it to the AllowedNameIdFormats field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetAllowedNameIdFormats(v []string) {
+	o.AllowedNameIdFormats = v
+}
+
+// GetAllowedSignatureAlgorithms returns the AllowedSignatureAlgorithms field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionSAMLProvider) GetAllowedSignatureAlgorithms() []string {
+	if o == nil || IsNil(o.AllowedSignatureAlgorithms) {
+		var ret []string
+		return ret
+	}
+	return o.AllowedSignatureAlgorithms
+}
+
+// GetAllowedSignatureAlgorithmsOk returns a tuple with the AllowedSignatureAlgorithms field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) GetAllowedSignatureAlgorithmsOk() ([]string, bool) {
+	if o == nil || IsNil(o.AllowedSignatureAlgorithms) {
+		return nil, false
+	}
+	return o.AllowedSignatureAlgorithms, true
+}
+
+// HasAllowedSignatureAlgorithms returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasAllowedSignatureAlgorithms() bool {
+	if o != nil && !IsNil(o.AllowedSignatureAlgorithms) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowedSignatureAlgorithms gets a reference to the given []string and assigns it to the AllowedSignatureAlgorithms field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetAllowedSignatureAlgorithms(v []string) {
+	o.AllowedSignatureAlgorithms = v
 }
 
 // GetAudienceOverrideBaseUrl returns the AudienceOverrideBaseUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -112,6 +228,80 @@ func (o *NormalizedProjectRevisionSAMLProvider) UnsetAudienceOverrideBaseUrl() {
 	o.AudienceOverrideBaseUrl.Unset()
 }
 
+// GetBinding returns the Binding field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionSAMLProvider) GetBinding() string {
+	if o == nil || IsNil(o.Binding.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Binding.Get()
+}
+
+// GetBindingOk returns a tuple with the Binding field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevisionSAMLProvider) GetBindingOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Binding.Get(), o.Binding.IsSet()
+}
+
+// HasBinding returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasBinding() bool {
+	if o != nil && o.Binding.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBinding gets a reference to the given NullableString and assigns it to the Binding field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetBinding(v string) {
+	o.Binding.Set(&v)
+}
+// SetBindingNil sets the value for Binding to be an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) SetBindingNil() {
+	o.Binding.Set(nil)
+}
+
+// UnsetBinding ensures that no value is present for Binding, not even an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) UnsetBinding() {
+	o.Binding.Unset()
+}
+
+// GetClockSkewSeconds returns the ClockSkewSeconds field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionSAMLProvider) GetClockSkewSeconds() int64 {
+	if o == nil || IsNil(o.ClockSkewSeconds) {
+		var ret int64
+		return ret
+	}
+	return *o.ClockSkewSeconds
+}
+
+// GetClockSkewSecondsOk returns a tuple with the ClockSkewSeconds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) GetClockSkewSecondsOk() (*int64, bool) {
+	if o == nil || IsNil(o.ClockSkewSeconds) {
+		return nil, false
+	}
+	return o.ClockSkewSeconds, true
+}
+
+// HasClockSkewSeconds returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasClockSkewSeconds() bool {
+	if o != nil && !IsNil(o.ClockSkewSeconds) {
+		return true
+	}
+
+	return false
+}
+
+// SetClockSkewSeconds gets a reference to the given int64 and assigns it to the ClockSkewSeconds field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetClockSkewSeconds(v int64) {
+	o.ClockSkewSeconds = &v
+}
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionSAMLProvider) GetCreatedAt() time.Time {
 	if o == nil || IsNil(o.CreatedAt) {
@@ -142,6 +332,80 @@ func (o *NormalizedProjectRevisionSAMLProvider) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *NormalizedProjectRevisionSAMLProvider) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetEngine returns the Engine field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionSAMLProvider) GetEngine() string {
+	if o == nil || IsNil(o.Engine.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Engine.Get()
+}
+
+// GetEngineOk returns a tuple with the Engine field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevisionSAMLProvider) GetEngineOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Engine.Get(), o.Engine.IsSet()
+}
+
+// HasEngine returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasEngine() bool {
+	if o != nil && o.Engine.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEngine gets a reference to the given NullableString and assigns it to the Engine field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetEngine(v string) {
+	o.Engine.Set(&v)
+}
+// SetEngineNil sets the value for Engine to be an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) SetEngineNil() {
+	o.Engine.Set(nil)
+}
+
+// UnsetEngine ensures that no value is present for Engine, not even an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) UnsetEngine() {
+	o.Engine.Unset()
+}
+
+// GetForceAuthn returns the ForceAuthn field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionSAMLProvider) GetForceAuthn() bool {
+	if o == nil || IsNil(o.ForceAuthn) {
+		var ret bool
+		return ret
+	}
+	return *o.ForceAuthn
+}
+
+// GetForceAuthnOk returns a tuple with the ForceAuthn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) GetForceAuthnOk() (*bool, bool) {
+	if o == nil || IsNil(o.ForceAuthn) {
+		return nil, false
+	}
+	return o.ForceAuthn, true
+}
+
+// HasForceAuthn returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasForceAuthn() bool {
+	if o != nil && !IsNil(o.ForceAuthn) {
+		return true
+	}
+
+	return false
+}
+
+// SetForceAuthn gets a reference to the given bool and assigns it to the ForceAuthn field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetForceAuthn(v bool) {
+	o.ForceAuthn = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -206,6 +470,48 @@ func (o *NormalizedProjectRevisionSAMLProvider) HasIdpInitiatedLoginEnabled() bo
 // SetIdpInitiatedLoginEnabled gets a reference to the given bool and assigns it to the IdpInitiatedLoginEnabled field.
 func (o *NormalizedProjectRevisionSAMLProvider) SetIdpInitiatedLoginEnabled(v bool) {
 	o.IdpInitiatedLoginEnabled = &v
+}
+
+// GetIdpMetadataUrl returns the IdpMetadataUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionSAMLProvider) GetIdpMetadataUrl() string {
+	if o == nil || IsNil(o.IdpMetadataUrl.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.IdpMetadataUrl.Get()
+}
+
+// GetIdpMetadataUrlOk returns a tuple with the IdpMetadataUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevisionSAMLProvider) GetIdpMetadataUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IdpMetadataUrl.Get(), o.IdpMetadataUrl.IsSet()
+}
+
+// HasIdpMetadataUrl returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasIdpMetadataUrl() bool {
+	if o != nil && o.IdpMetadataUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIdpMetadataUrl gets a reference to the given NullableString and assigns it to the IdpMetadataUrl field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetIdpMetadataUrl(v string) {
+	o.IdpMetadataUrl.Set(&v)
+}
+// SetIdpMetadataUrlNil sets the value for IdpMetadataUrl to be an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) SetIdpMetadataUrlNil() {
+	o.IdpMetadataUrl.Set(nil)
+}
+
+// UnsetIdpMetadataUrl ensures that no value is present for IdpMetadataUrl, not even an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) UnsetIdpMetadataUrl() {
+	o.IdpMetadataUrl.Unset()
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
@@ -494,6 +800,112 @@ func (o *NormalizedProjectRevisionSAMLProvider) SetRawIdpMetadataXml(v string) {
 	o.RawIdpMetadataXml = &v
 }
 
+// GetRequireEncryptedAssertion returns the RequireEncryptedAssertion field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionSAMLProvider) GetRequireEncryptedAssertion() bool {
+	if o == nil || IsNil(o.RequireEncryptedAssertion) {
+		var ret bool
+		return ret
+	}
+	return *o.RequireEncryptedAssertion
+}
+
+// GetRequireEncryptedAssertionOk returns a tuple with the RequireEncryptedAssertion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) GetRequireEncryptedAssertionOk() (*bool, bool) {
+	if o == nil || IsNil(o.RequireEncryptedAssertion) {
+		return nil, false
+	}
+	return o.RequireEncryptedAssertion, true
+}
+
+// HasRequireEncryptedAssertion returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasRequireEncryptedAssertion() bool {
+	if o != nil && !IsNil(o.RequireEncryptedAssertion) {
+		return true
+	}
+
+	return false
+}
+
+// SetRequireEncryptedAssertion gets a reference to the given bool and assigns it to the RequireEncryptedAssertion field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetRequireEncryptedAssertion(v bool) {
+	o.RequireEncryptedAssertion = &v
+}
+
+// GetSignAuthnRequests returns the SignAuthnRequests field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionSAMLProvider) GetSignAuthnRequests() bool {
+	if o == nil || IsNil(o.SignAuthnRequests) {
+		var ret bool
+		return ret
+	}
+	return *o.SignAuthnRequests
+}
+
+// GetSignAuthnRequestsOk returns a tuple with the SignAuthnRequests field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) GetSignAuthnRequestsOk() (*bool, bool) {
+	if o == nil || IsNil(o.SignAuthnRequests) {
+		return nil, false
+	}
+	return o.SignAuthnRequests, true
+}
+
+// HasSignAuthnRequests returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasSignAuthnRequests() bool {
+	if o != nil && !IsNil(o.SignAuthnRequests) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignAuthnRequests gets a reference to the given bool and assigns it to the SignAuthnRequests field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetSignAuthnRequests(v bool) {
+	o.SignAuthnRequests = &v
+}
+
+// GetSpEntityIdOverride returns the SpEntityIdOverride field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionSAMLProvider) GetSpEntityIdOverride() string {
+	if o == nil || IsNil(o.SpEntityIdOverride.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SpEntityIdOverride.Get()
+}
+
+// GetSpEntityIdOverrideOk returns a tuple with the SpEntityIdOverride field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NormalizedProjectRevisionSAMLProvider) GetSpEntityIdOverrideOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SpEntityIdOverride.Get(), o.SpEntityIdOverride.IsSet()
+}
+
+// HasSpEntityIdOverride returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasSpEntityIdOverride() bool {
+	if o != nil && o.SpEntityIdOverride.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSpEntityIdOverride gets a reference to the given NullableString and assigns it to the SpEntityIdOverride field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetSpEntityIdOverride(v string) {
+	o.SpEntityIdOverride.Set(&v)
+}
+// SetSpEntityIdOverrideNil sets the value for SpEntityIdOverride to be an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) SetSpEntityIdOverrideNil() {
+	o.SpEntityIdOverride.Set(nil)
+}
+
+// UnsetSpEntityIdOverride ensures that no value is present for SpEntityIdOverride, not even an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) UnsetSpEntityIdOverride() {
+	o.SpEntityIdOverride.Unset()
+}
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionSAMLProvider) GetState() string {
 	if o == nil || IsNil(o.State) {
@@ -632,17 +1044,41 @@ func (o NormalizedProjectRevisionSAMLProvider) MarshalJSON() ([]byte, error) {
 
 func (o NormalizedProjectRevisionSAMLProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AllowedDigestAlgorithms) {
+		toSerialize["allowed_digest_algorithms"] = o.AllowedDigestAlgorithms
+	}
+	if !IsNil(o.AllowedNameIdFormats) {
+		toSerialize["allowed_name_id_formats"] = o.AllowedNameIdFormats
+	}
+	if !IsNil(o.AllowedSignatureAlgorithms) {
+		toSerialize["allowed_signature_algorithms"] = o.AllowedSignatureAlgorithms
+	}
 	if o.AudienceOverrideBaseUrl.IsSet() {
 		toSerialize["audience_override_base_url"] = o.AudienceOverrideBaseUrl.Get()
 	}
+	if o.Binding.IsSet() {
+		toSerialize["binding"] = o.Binding.Get()
+	}
+	if !IsNil(o.ClockSkewSeconds) {
+		toSerialize["clock_skew_seconds"] = o.ClockSkewSeconds
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.Engine.IsSet() {
+		toSerialize["engine"] = o.Engine.Get()
+	}
+	if !IsNil(o.ForceAuthn) {
+		toSerialize["force_authn"] = o.ForceAuthn
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
 	if !IsNil(o.IdpInitiatedLoginEnabled) {
 		toSerialize["idp_initiated_login_enabled"] = o.IdpInitiatedLoginEnabled
+	}
+	if o.IdpMetadataUrl.IsSet() {
+		toSerialize["idp_metadata_url"] = o.IdpMetadataUrl.Get()
 	}
 	if !IsNil(o.Label) {
 		toSerialize["label"] = o.Label
@@ -667,6 +1103,15 @@ func (o NormalizedProjectRevisionSAMLProvider) ToMap() (map[string]interface{}, 
 	}
 	if !IsNil(o.RawIdpMetadataXml) {
 		toSerialize["raw_idp_metadata_xml"] = o.RawIdpMetadataXml
+	}
+	if !IsNil(o.RequireEncryptedAssertion) {
+		toSerialize["require_encrypted_assertion"] = o.RequireEncryptedAssertion
+	}
+	if !IsNil(o.SignAuthnRequests) {
+		toSerialize["sign_authn_requests"] = o.SignAuthnRequests
+	}
+	if o.SpEntityIdOverride.IsSet() {
+		toSerialize["sp_entity_id_override"] = o.SpEntityIdOverride.Get()
 	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
@@ -702,10 +1147,18 @@ func (o *NormalizedProjectRevisionSAMLProvider) UnmarshalJSON(data []byte) (err 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowed_digest_algorithms")
+		delete(additionalProperties, "allowed_name_id_formats")
+		delete(additionalProperties, "allowed_signature_algorithms")
 		delete(additionalProperties, "audience_override_base_url")
+		delete(additionalProperties, "binding")
+		delete(additionalProperties, "clock_skew_seconds")
 		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "engine")
+		delete(additionalProperties, "force_authn")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "idp_initiated_login_enabled")
+		delete(additionalProperties, "idp_metadata_url")
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "mapper_url")
 		delete(additionalProperties, "organization_id")
@@ -714,6 +1167,9 @@ func (o *NormalizedProjectRevisionSAMLProvider) UnmarshalJSON(data []byte) (err 
 		delete(additionalProperties, "proxy_acs_url")
 		delete(additionalProperties, "proxy_saml_audience_override")
 		delete(additionalProperties, "raw_idp_metadata_xml")
+		delete(additionalProperties, "require_encrypted_assertion")
+		delete(additionalProperties, "sign_authn_requests")
+		delete(additionalProperties, "sp_entity_id_override")
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "update_identity_on_login")
 		delete(additionalProperties, "updated_at")

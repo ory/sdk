@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**error** | [**ErrorGeneric**](ErrorGeneric.md) |  |  [optional] |
+|**error** | [**GenericError**](GenericError.md) |  |  [optional] |
 |**redirectBrowserTo** | **String** | Points to where to redirect the user to next. |  [optional] |
 
 

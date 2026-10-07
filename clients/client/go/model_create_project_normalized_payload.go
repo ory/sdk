@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.79
+API version: v1.22.80
 Contact: support@ory.sh
 */
 
@@ -325,6 +325,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosOauth2ProviderUrl *string `json:"kratos_oauth2_provider_url,omitempty"`
 	// Configures the default read consistency level for identity APIs  The read consistency level determines the consistency guarantee for reads:  - strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. - eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  - `GET /admin/identities`  Defaults to \"strong\" for new and existing projects. This feature is in preview. Use with caution. This governs the \"preview.default_read_consistency_level\" setting.
 	KratosPreviewDefaultReadConsistencyLevel *string `json:"kratos_preview_default_read_consistency_level,omitempty"`
+	// Configures whether the native Ory Kratos SAML engine is enabled (preview).  This is the preview flag that gates the native SAML engine. While it is false or unset, native SAML providers are inert and the native endpoints respond with 404. In Ory Network, turning it on requires the native_saml_engine feature.  This governs the \"preview.enable_native_saml_engine\" setting.
+	KratosPreviewEnableNativeSamlEngine *bool `json:"kratos_preview_enable_native_saml_engine,omitempty"`
 	// Configures the Ory Kratos Cipher Secret  This governs the \"secrets.cipher\" setting.
 	KratosSecretsCipher []string `json:"kratos_secrets_cipher,omitempty"`
 	// Configures the Ory Kratos Cookie Secret  This governs the \"secrets.cookie\" setting.
@@ -335,6 +337,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosSecretsPagination []string `json:"kratos_secrets_pagination,omitempty"`
 	// Configures if account enumeration should be mitigated when using identifier first login.  This governs the \"security.account_enumeration.mitigate\" setting.
 	KratosSecurityAccountEnumerationMitigate *bool `json:"kratos_security_account_enumeration_mitigate,omitempty"`
+	// Configures the Restricted Origins  Origins that may only check the session, use FedCM, and log out, such as pages that run third-party scripts. Responses to these origins never contain identity data. To let these origins read responses, also add them to the CORS allowed origins.  This governs the \"security.restricted_origins\" setting.
+	KratosSecurityRestrictedOrigins []string `json:"kratos_security_restricted_origins,omitempty"`
 	// Configures the Ory Kratos Allowed Return URLs  This governs the \"selfservice.allowed_return_urls\" setting.
 	KratosSelfserviceAllowedReturnUrls []string `json:"kratos_selfservice_allowed_return_urls,omitempty"`
 	// Configures the Ory Kratos Default Return URL  This governs the \"selfservice.default_browser_return_url\" setting.
@@ -496,12 +500,24 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceMethodsOidcEnableAutoLinkPolicy *bool `json:"kratos_selfservice_methods_oidc_enable_auto_link_policy,omitempty"`
 	// Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \"selfservice.methods.oidc.enabled\" setting.
 	KratosSelfserviceMethodsOidcEnabled *bool `json:"kratos_selfservice_methods_oidc_enabled,omitempty"`
+	// Configures the attestation conveyance preference for passkey registration.  This governs the \"selfservice.methods.passkey.config.attestation.preference\" setting.
+	KratosSelfserviceMethodsPasskeyConfigAttestationPreference *string `json:"kratos_selfservice_methods_passkey_config_attestation_preference,omitempty"`
+	// Configures which authenticator attachment modality is eligible for passkey registration.  This governs the \"selfservice.methods.passkey.config.authenticator_selection.attachment\" setting.
+	KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment *string `json:"kratos_selfservice_methods_passkey_config_authenticator_selection_attachment,omitempty"`
+	// Configures whether the authenticator must create a client-side discoverable passkey.  This governs the \"selfservice.methods.passkey.config.authenticator_selection.resident_key\" setting.
+	KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey *string `json:"kratos_selfservice_methods_passkey_config_authenticator_selection_resident_key,omitempty"`
+	// Configures whether passkey ceremonies require user verification such as biometrics or a PIN.  This governs the \"selfservice.methods.passkey.config.authenticator_selection.user_verification\" setting.
+	KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification *string `json:"kratos_selfservice_methods_passkey_config_authenticator_selection_user_verification,omitempty"`
 	// Configures the Ory Kratos Passkey RP Display Name  This governs the \"selfservice.methods.passkey.config.rp.display_name\" setting.
 	KratosSelfserviceMethodsPasskeyConfigRpDisplayName *string `json:"kratos_selfservice_methods_passkey_config_rp_display_name,omitempty"`
 	// Configures the Ory Kratos Passkey RP ID  This governs the \"selfservice.methods.passkey.config.rp.id\" setting.
 	KratosSelfserviceMethodsPasskeyConfigRpId *string `json:"kratos_selfservice_methods_passkey_config_rp_id,omitempty"`
 	// Configures the Ory Kratos Passkey RP Origins  This governs the \"selfservice.methods.passkey.config.rp.origins\" setting.
 	KratosSelfserviceMethodsPasskeyConfigRpOrigins []string `json:"kratos_selfservice_methods_passkey_config_rp_origins,omitempty"`
+	// Configures the passkey login ceremony timeout.  This governs the \"selfservice.methods.passkey.config.timeouts.login\" setting.
+	KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin *string `json:"kratos_selfservice_methods_passkey_config_timeouts_login,omitempty"`
+	// Configures the passkey registration ceremony timeout.  This governs the \"selfservice.methods.passkey.config.timeouts.registration\" setting.
+	KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration *string `json:"kratos_selfservice_methods_passkey_config_timeouts_registration,omitempty"`
 	// Configures whether Ory Kratos Passkey authentication is enabled  This governs the \"selfservice.methods.passkey.enabled\" setting.
 	KratosSelfserviceMethodsPasskeyEnabled *bool `json:"kratos_selfservice_methods_passkey_enabled,omitempty"`
 	// Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
@@ -5566,6 +5582,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosPreviewDefaultReadConsistencyL
 	o.KratosPreviewDefaultReadConsistencyLevel = &v
 }
 
+// GetKratosPreviewEnableNativeSamlEngine returns the KratosPreviewEnableNativeSamlEngine field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosPreviewEnableNativeSamlEngine() bool {
+	if o == nil || IsNil(o.KratosPreviewEnableNativeSamlEngine) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosPreviewEnableNativeSamlEngine
+}
+
+// GetKratosPreviewEnableNativeSamlEngineOk returns a tuple with the KratosPreviewEnableNativeSamlEngine field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosPreviewEnableNativeSamlEngineOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosPreviewEnableNativeSamlEngine) {
+		return nil, false
+	}
+	return o.KratosPreviewEnableNativeSamlEngine, true
+}
+
+// HasKratosPreviewEnableNativeSamlEngine returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosPreviewEnableNativeSamlEngine() bool {
+	if o != nil && !IsNil(o.KratosPreviewEnableNativeSamlEngine) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosPreviewEnableNativeSamlEngine gets a reference to the given bool and assigns it to the KratosPreviewEnableNativeSamlEngine field.
+func (o *CreateProjectNormalizedPayload) SetKratosPreviewEnableNativeSamlEngine(v bool) {
+	o.KratosPreviewEnableNativeSamlEngine = &v
+}
+
 // GetKratosSecretsCipher returns the KratosSecretsCipher field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSecretsCipher() []string {
 	if o == nil || IsNil(o.KratosSecretsCipher) {
@@ -5724,6 +5772,38 @@ func (o *CreateProjectNormalizedPayload) HasKratosSecurityAccountEnumerationMiti
 // SetKratosSecurityAccountEnumerationMitigate gets a reference to the given bool and assigns it to the KratosSecurityAccountEnumerationMitigate field.
 func (o *CreateProjectNormalizedPayload) SetKratosSecurityAccountEnumerationMitigate(v bool) {
 	o.KratosSecurityAccountEnumerationMitigate = &v
+}
+
+// GetKratosSecurityRestrictedOrigins returns the KratosSecurityRestrictedOrigins field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSecurityRestrictedOrigins() []string {
+	if o == nil || IsNil(o.KratosSecurityRestrictedOrigins) {
+		var ret []string
+		return ret
+	}
+	return o.KratosSecurityRestrictedOrigins
+}
+
+// GetKratosSecurityRestrictedOriginsOk returns a tuple with the KratosSecurityRestrictedOrigins field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSecurityRestrictedOriginsOk() ([]string, bool) {
+	if o == nil || IsNil(o.KratosSecurityRestrictedOrigins) {
+		return nil, false
+	}
+	return o.KratosSecurityRestrictedOrigins, true
+}
+
+// HasKratosSecurityRestrictedOrigins returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSecurityRestrictedOrigins() bool {
+	if o != nil && !IsNil(o.KratosSecurityRestrictedOrigins) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSecurityRestrictedOrigins gets a reference to the given []string and assigns it to the KratosSecurityRestrictedOrigins field.
+func (o *CreateProjectNormalizedPayload) SetKratosSecurityRestrictedOrigins(v []string) {
+	o.KratosSecurityRestrictedOrigins = v
 }
 
 // GetKratosSelfserviceAllowedReturnUrls returns the KratosSelfserviceAllowedReturnUrls field value if set, zero value otherwise.
@@ -8318,6 +8398,134 @@ func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsOidcEnabled(
 	o.KratosSelfserviceMethodsOidcEnabled = &v
 }
 
+// GetKratosSelfserviceMethodsPasskeyConfigAttestationPreference returns the KratosSelfserviceMethodsPasskeyConfigAttestationPreference field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigAttestationPreference() string {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigAttestationPreference) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasskeyConfigAttestationPreference
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigAttestationPreferenceOk returns a tuple with the KratosSelfserviceMethodsPasskeyConfigAttestationPreference field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigAttestationPreferenceOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigAttestationPreference) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasskeyConfigAttestationPreference, true
+}
+
+// HasKratosSelfserviceMethodsPasskeyConfigAttestationPreference returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasskeyConfigAttestationPreference() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsPasskeyConfigAttestationPreference) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasskeyConfigAttestationPreference gets a reference to the given string and assigns it to the KratosSelfserviceMethodsPasskeyConfigAttestationPreference field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasskeyConfigAttestationPreference(v string) {
+	o.KratosSelfserviceMethodsPasskeyConfigAttestationPreference = &v
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment returns the KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment() string {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachmentOk returns a tuple with the KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachmentOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment, true
+}
+
+// HasKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment gets a reference to the given string and assigns it to the KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment(v string) {
+	o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment = &v
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey returns the KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey() string {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKeyOk returns a tuple with the KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKeyOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey, true
+}
+
+// HasKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey gets a reference to the given string and assigns it to the KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey(v string) {
+	o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey = &v
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification returns the KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification() string {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerificationOk returns a tuple with the KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerificationOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification, true
+}
+
+// HasKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification gets a reference to the given string and assigns it to the KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification(v string) {
+	o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification = &v
+}
+
 // GetKratosSelfserviceMethodsPasskeyConfigRpDisplayName returns the KratosSelfserviceMethodsPasskeyConfigRpDisplayName field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigRpDisplayName() string {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpDisplayName) {
@@ -8412,6 +8620,70 @@ func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasskeyConfi
 // SetKratosSelfserviceMethodsPasskeyConfigRpOrigins gets a reference to the given []string and assigns it to the KratosSelfserviceMethodsPasskeyConfigRpOrigins field.
 func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasskeyConfigRpOrigins(v []string) {
 	o.KratosSelfserviceMethodsPasskeyConfigRpOrigins = v
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigTimeoutsLogin returns the KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigTimeoutsLogin() string {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigTimeoutsLoginOk returns a tuple with the KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigTimeoutsLoginOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin, true
+}
+
+// HasKratosSelfserviceMethodsPasskeyConfigTimeoutsLogin returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasskeyConfigTimeoutsLogin() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasskeyConfigTimeoutsLogin gets a reference to the given string and assigns it to the KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasskeyConfigTimeoutsLogin(v string) {
+	o.KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin = &v
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration returns the KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration() string {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration
+}
+
+// GetKratosSelfserviceMethodsPasskeyConfigTimeoutsRegistrationOk returns a tuple with the KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasskeyConfigTimeoutsRegistrationOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration, true
+}
+
+// HasKratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration gets a reference to the given string and assigns it to the KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration(v string) {
+	o.KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration = &v
 }
 
 // GetKratosSelfserviceMethodsPasskeyEnabled returns the KratosSelfserviceMethodsPasskeyEnabled field value if set, zero value otherwise.
@@ -10633,6 +10905,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosPreviewDefaultReadConsistencyLevel) {
 		toSerialize["kratos_preview_default_read_consistency_level"] = o.KratosPreviewDefaultReadConsistencyLevel
 	}
+	if !IsNil(o.KratosPreviewEnableNativeSamlEngine) {
+		toSerialize["kratos_preview_enable_native_saml_engine"] = o.KratosPreviewEnableNativeSamlEngine
+	}
 	if !IsNil(o.KratosSecretsCipher) {
 		toSerialize["kratos_secrets_cipher"] = o.KratosSecretsCipher
 	}
@@ -10647,6 +10922,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.KratosSecurityAccountEnumerationMitigate) {
 		toSerialize["kratos_security_account_enumeration_mitigate"] = o.KratosSecurityAccountEnumerationMitigate
+	}
+	if !IsNil(o.KratosSecurityRestrictedOrigins) {
+		toSerialize["kratos_security_restricted_origins"] = o.KratosSecurityRestrictedOrigins
 	}
 	if !IsNil(o.KratosSelfserviceAllowedReturnUrls) {
 		toSerialize["kratos_selfservice_allowed_return_urls"] = o.KratosSelfserviceAllowedReturnUrls
@@ -10891,6 +11169,18 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSelfserviceMethodsOidcEnabled) {
 		toSerialize["kratos_selfservice_methods_oidc_enabled"] = o.KratosSelfserviceMethodsOidcEnabled
 	}
+	if !IsNil(o.KratosSelfserviceMethodsPasskeyConfigAttestationPreference) {
+		toSerialize["kratos_selfservice_methods_passkey_config_attestation_preference"] = o.KratosSelfserviceMethodsPasskeyConfigAttestationPreference
+	}
+	if !IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment) {
+		toSerialize["kratos_selfservice_methods_passkey_config_authenticator_selection_attachment"] = o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionAttachment
+	}
+	if !IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey) {
+		toSerialize["kratos_selfservice_methods_passkey_config_authenticator_selection_resident_key"] = o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionResidentKey
+	}
+	if !IsNil(o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification) {
+		toSerialize["kratos_selfservice_methods_passkey_config_authenticator_selection_user_verification"] = o.KratosSelfserviceMethodsPasskeyConfigAuthenticatorSelectionUserVerification
+	}
 	if !IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpDisplayName) {
 		toSerialize["kratos_selfservice_methods_passkey_config_rp_display_name"] = o.KratosSelfserviceMethodsPasskeyConfigRpDisplayName
 	}
@@ -10899,6 +11189,12 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.KratosSelfserviceMethodsPasskeyConfigRpOrigins) {
 		toSerialize["kratos_selfservice_methods_passkey_config_rp_origins"] = o.KratosSelfserviceMethodsPasskeyConfigRpOrigins
+	}
+	if !IsNil(o.KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin) {
+		toSerialize["kratos_selfservice_methods_passkey_config_timeouts_login"] = o.KratosSelfserviceMethodsPasskeyConfigTimeoutsLogin
+	}
+	if !IsNil(o.KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration) {
+		toSerialize["kratos_selfservice_methods_passkey_config_timeouts_registration"] = o.KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration
 	}
 	if !IsNil(o.KratosSelfserviceMethodsPasskeyEnabled) {
 		toSerialize["kratos_selfservice_methods_passkey_enabled"] = o.KratosSelfserviceMethodsPasskeyEnabled
@@ -11260,11 +11556,13 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_oauth2_provider_override_return_to")
 		delete(additionalProperties, "kratos_oauth2_provider_url")
 		delete(additionalProperties, "kratos_preview_default_read_consistency_level")
+		delete(additionalProperties, "kratos_preview_enable_native_saml_engine")
 		delete(additionalProperties, "kratos_secrets_cipher")
 		delete(additionalProperties, "kratos_secrets_cookie")
 		delete(additionalProperties, "kratos_secrets_default")
 		delete(additionalProperties, "kratos_secrets_pagination")
 		delete(additionalProperties, "kratos_security_account_enumeration_mitigate")
+		delete(additionalProperties, "kratos_security_restricted_origins")
 		delete(additionalProperties, "kratos_selfservice_allowed_return_urls")
 		delete(additionalProperties, "kratos_selfservice_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_error_ui_url")
@@ -11346,9 +11644,15 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_selfservice_methods_oidc_config_providers")
 		delete(additionalProperties, "kratos_selfservice_methods_oidc_enable_auto_link_policy")
 		delete(additionalProperties, "kratos_selfservice_methods_oidc_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_attestation_preference")
+		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_authenticator_selection_attachment")
+		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_authenticator_selection_resident_key")
+		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_authenticator_selection_user_verification")
 		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_rp_display_name")
 		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_rp_id")
 		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_rp_origins")
+		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_timeouts_login")
+		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_timeouts_registration")
 		delete(additionalProperties, "kratos_selfservice_methods_passkey_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_password_config_haveibeenpwned_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_password_config_identifier_similarity_check_enabled")

@@ -6,7 +6,7 @@
 
 Name | Type
 ------------ | -------------
-`error` | [ErrorGeneric](ErrorGeneric.md)
+`error` | [GenericError](GenericError.md)
 `redirect_browser_to` | string
 
 ## Example

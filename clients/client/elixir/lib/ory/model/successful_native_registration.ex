@@ -16,7 +16,7 @@ defmodule Ory.Model.SuccessfulNativeRegistration do
 
   @type t :: %__MODULE__{
     :continue_with => [Ory.Model.ContinueWith.t] | nil,
-    :identity => Ory.Model.Identity.t,
+    :identity => Ory.Model.Identity.t | nil,
     :session => Ory.Model.Session.t | nil,
     :session_token => String.t | nil
   }

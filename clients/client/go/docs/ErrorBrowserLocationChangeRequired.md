@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Error** | Pointer to [**ErrorGeneric**](ErrorGeneric.md) |  | [optional] 
+**Error** | Pointer to [**GenericError**](GenericError.md) |  | [optional] 
 **RedirectBrowserTo** | Pointer to **string** | Points to where to redirect the user to next. | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetError
 
-`func (o *ErrorBrowserLocationChangeRequired) GetError() ErrorGeneric`
+`func (o *ErrorBrowserLocationChangeRequired) GetError() GenericError`
 
 GetError returns the Error field if non-nil, zero value otherwise.
 
 ### GetErrorOk
 
-`func (o *ErrorBrowserLocationChangeRequired) GetErrorOk() (*ErrorGeneric, bool)`
+`func (o *ErrorBrowserLocationChangeRequired) GetErrorOk() (*GenericError, bool)`
 
 GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetError
 
-`func (o *ErrorBrowserLocationChangeRequired) SetError(v ErrorGeneric)`
+`func (o *ErrorBrowserLocationChangeRequired) SetError(v GenericError)`
 
 SetError sets Error field to given value.
 

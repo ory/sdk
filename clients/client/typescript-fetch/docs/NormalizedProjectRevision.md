@@ -157,11 +157,13 @@ Name | Type
 `kratos_oauth2_provider_override_return_to` | boolean
 `kratos_oauth2_provider_url` | string
 `kratos_preview_default_read_consistency_level` | string
+`kratos_preview_enable_native_saml_engine` | boolean
 `kratos_secrets_cipher` | Array&lt;string&gt;
 `kratos_secrets_cookie` | Array&lt;string&gt;
 `kratos_secrets_default` | Array&lt;string&gt;
 `kratos_secrets_pagination` | Array&lt;string&gt;
 `kratos_security_account_enumeration_mitigate` | boolean
+`kratos_security_restricted_origins` | Array&lt;string&gt;
 `kratos_selfservice_allowed_return_urls` | Array&lt;string&gt;
 `kratos_selfservice_default_browser_return_url` | string
 `kratos_selfservice_flows_error_ui_url` | string
@@ -243,9 +245,15 @@ Name | Type
 `kratos_selfservice_methods_oidc_config_providers` | [Array&lt;NormalizedProjectRevisionThirdPartyProvider&gt;](NormalizedProjectRevisionThirdPartyProvider.md)
 `kratos_selfservice_methods_oidc_enable_auto_link_policy` | boolean
 `kratos_selfservice_methods_oidc_enabled` | boolean
+`kratos_selfservice_methods_passkey_config_attestation_preference` | string
+`kratos_selfservice_methods_passkey_config_authenticator_selection_attachment` | string
+`kratos_selfservice_methods_passkey_config_authenticator_selection_resident_key` | string
+`kratos_selfservice_methods_passkey_config_authenticator_selection_user_verification` | string
 `kratos_selfservice_methods_passkey_config_rp_display_name` | string
 `kratos_selfservice_methods_passkey_config_rp_id` | string
 `kratos_selfservice_methods_passkey_config_rp_origins` | Array&lt;string&gt;
+`kratos_selfservice_methods_passkey_config_timeouts_login` | string
+`kratos_selfservice_methods_passkey_config_timeouts_registration` | string
 `kratos_selfservice_methods_passkey_enabled` | boolean
 `kratos_selfservice_methods_password_config_haveibeenpwned_enabled` | boolean
 `kratos_selfservice_methods_password_config_identifier_similarity_check_enabled` | boolean
@@ -459,11 +467,13 @@ const example = {
   "kratos_oauth2_provider_override_return_to": null,
   "kratos_oauth2_provider_url": null,
   "kratos_preview_default_read_consistency_level": null,
+  "kratos_preview_enable_native_saml_engine": null,
   "kratos_secrets_cipher": null,
   "kratos_secrets_cookie": null,
   "kratos_secrets_default": null,
   "kratos_secrets_pagination": null,
   "kratos_security_account_enumeration_mitigate": null,
+  "kratos_security_restricted_origins": null,
   "kratos_selfservice_allowed_return_urls": null,
   "kratos_selfservice_default_browser_return_url": null,
   "kratos_selfservice_flows_error_ui_url": null,
@@ -545,9 +555,15 @@ const example = {
   "kratos_selfservice_methods_oidc_config_providers": null,
   "kratos_selfservice_methods_oidc_enable_auto_link_policy": null,
   "kratos_selfservice_methods_oidc_enabled": null,
+  "kratos_selfservice_methods_passkey_config_attestation_preference": null,
+  "kratos_selfservice_methods_passkey_config_authenticator_selection_attachment": null,
+  "kratos_selfservice_methods_passkey_config_authenticator_selection_resident_key": null,
+  "kratos_selfservice_methods_passkey_config_authenticator_selection_user_verification": null,
   "kratos_selfservice_methods_passkey_config_rp_display_name": null,
   "kratos_selfservice_methods_passkey_config_rp_id": null,
   "kratos_selfservice_methods_passkey_config_rp_origins": null,
+  "kratos_selfservice_methods_passkey_config_timeouts_login": null,
+  "kratos_selfservice_methods_passkey_config_timeouts_registration": null,
   "kratos_selfservice_methods_passkey_enabled": null,
   "kratos_selfservice_methods_password_config_haveibeenpwned_enabled": null,
   "kratos_selfservice_methods_password_config_identifier_similarity_check_enabled": null,

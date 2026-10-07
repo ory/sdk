@@ -442,6 +442,7 @@ case of an error, the `error.id` of the JSON response body can be one of:
 
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 - `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!
 
 This endpoint is NOT INTENDED for clients that do not have a browser (Chrome, Firefox, ...) as cookies are needed.
@@ -1041,6 +1042,7 @@ In the case of an error, the `error.id` of the JSON response body can be one of:
 
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 
 This endpoint MUST ONLY be used in scenarios such as native mobile apps (React Native, Objective C, Swift, Java, ...).
 
@@ -2019,6 +2021,7 @@ case of an error, the `error.id` of the JSON response body can be one of:
 
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 - `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
 
@@ -2810,6 +2813,8 @@ Uses the HTTP Headers in the GET request to determine (e.g. by using checking th
 Returns a session object in the body or 401 if the credentials are invalid or no credentials were sent.
 When the request it successful it adds the user ID to the 'X-Kratos-Authenticated-Identity-Id' header
 in the response.
+For requests from an origin in `security.restricted_origins`, the response contains only the
+session ID and `active`, and `tokenize_as` is rejected with a 400.
 
 If you call this endpoint from a server-side application, you must forward the HTTP Cookie Header to this endpoint:
 
@@ -2866,6 +2871,7 @@ As explained above, this request may fail due to several reasons. The `error.id`
 - `session_inactive`: No active session was found in the request (e.g. no Ory Session Cookie / Ory Session Token).
 - `session_aal2_required`: An active session was found but it does not fulfil the Authenticator Assurance Level, implying that the session must (e.g.) authenticate the second factor.
 - `session_aal2_enrollment_required`: An active session was found but the required Authenticator Assurance Level can not be reached because the identity has no second factor enrolled. Follow `redirect_browser_to` to the settings flow to enroll one.
+- `session_credential_required`: An active session was found but it must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 
 ### Example
 
@@ -2928,7 +2934,8 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A Session |  -  |
+**200** | A Session. For requests from an origin in &#x60;security.restricted_origins&#x60;, public endpoints return only &#x60;id&#x60; and &#x60;active&#x60;. |  -  |
+**400** | JSON API Error Response |  -  |
 **401** | JSON API Error Response |  -  |
 **403** | JSON API Error Response |  -  |
 **0** | JSON API Error Response |  -  |
@@ -3442,6 +3449,7 @@ the identity to the login init endpoint with query parameters `?refresh=true&ret
 or initiate a refresh login flow otherwise.
 - `security_csrf_violation`: Unable to fetch the flow because a CSRF violation occurred.
 - `session_inactive`: No Ory Session was found - sign in a user first.
+- `session_credential_required`: The session must be authenticated with a specific credential first. Follow `redirect_browser_to` to the login flow to sign in with it.
 - `security_identity_mismatch`: The flow was interrupted with `session_refresh_required` but apparently some other
 identity logged in instead.
 - `security_identity_mismatch`: The requested `?return_to` address is not allowed to be used. Adjust this in the configuration!

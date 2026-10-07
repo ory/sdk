@@ -159,11 +159,13 @@ Name | Type | Description | Notes
 **kratos_oauth2_provider_override_return_to** | **boolean** | Kratos OAuth2 Provider Override Return To  Enabling this allows Kratos to set the return_to parameter automatically to the OAuth2 request URL on the login flow, allowing complex flows such as recovery to continue to the initial OAuth2 flow.  This governs the \&quot;oauth2_provider.override_return_to\&quot; setting. | [optional] [default to undefined]
 **kratos_oauth2_provider_url** | **string** | The Revisions\&#39; OAuth2 Provider Integration URL  This governs the \&quot;oauth2_provider.url\&quot; setting. | [optional] [default to undefined]
 **kratos_preview_default_read_consistency_level** | **string** | Configures the default read consistency level for identity APIs  The read consistency level determines the consistency guarantee for reads:  - strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. - eventual (very fast): The result will return data that is about 4.8 seconds old.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  - &#x60;GET /admin/identities&#x60;  Defaults to \&quot;strong\&quot; for new and existing projects. This feature is in preview. Use with caution. This governs the \&quot;preview.default_read_consistency_level\&quot; setting. | [optional] [default to undefined]
+**kratos_preview_enable_native_saml_engine** | **boolean** | Configures whether the native Ory Kratos SAML engine is enabled (preview).  This is the preview flag that gates the native SAML engine. While it is false or unset, native SAML providers are inert and the native endpoints respond with 404. In Ory Network, turning it on requires the native_saml_engine feature.  This governs the \&quot;preview.enable_native_saml_engine\&quot; setting. | [optional] [default to undefined]
 **kratos_secrets_cipher** | **Array&lt;string&gt;** | Configures the Ory Kratos Cipher Secret  This governs the \&quot;secrets.cipher\&quot; setting. | [optional] [default to undefined]
 **kratos_secrets_cookie** | **Array&lt;string&gt;** | Configures the Ory Kratos Cookie Secret  This governs the \&quot;secrets.cookie\&quot; setting. | [optional] [default to undefined]
 **kratos_secrets_default** | **Array&lt;string&gt;** | Configures the Ory Kratos Default Secret  This governs the \&quot;secrets.default\&quot; setting. | [optional] [default to undefined]
 **kratos_secrets_pagination** | **Array&lt;string&gt;** | Configures the Ory Kratos Pagination Secret  This governs the \&quot;secrets.pagination\&quot; setting. | [optional] [default to undefined]
 **kratos_security_account_enumeration_mitigate** | **boolean** | Configures if account enumeration should be mitigated when using identifier first login.  This governs the \&quot;security.account_enumeration.mitigate\&quot; setting. | [optional] [default to undefined]
+**kratos_security_restricted_origins** | **Array&lt;string&gt;** | Configures the Restricted Origins  Origins that may only check the session, use FedCM, and log out, such as pages that run third-party scripts. Responses to these origins never contain identity data. To let these origins read responses, also add them to the CORS allowed origins.  This governs the \&quot;security.restricted_origins\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_allowed_return_urls** | **Array&lt;string&gt;** | Configures the Ory Kratos Allowed Return URLs  This governs the \&quot;selfservice.allowed_return_urls\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_default_browser_return_url** | **string** | Configures the Ory Kratos Default Return URL  This governs the \&quot;selfservice.default_browser_return_url\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_flows_error_ui_url** | **string** | Configures the Ory Kratos Error UI URL  This governs the \&quot;selfservice.flows.error.ui_url\&quot; setting. | [optional] [default to undefined]
@@ -245,9 +247,15 @@ Name | Type | Description | Notes
 **kratos_selfservice_methods_oidc_config_providers** | [**Array&lt;NormalizedProjectRevisionThirdPartyProvider&gt;**](NormalizedProjectRevisionThirdPartyProvider.md) |  | [optional] [default to undefined]
 **kratos_selfservice_methods_oidc_enable_auto_link_policy** | **boolean** | Configures whether Ory Kratos allows auto-linking of OIDC credentials without a subject  This governs the \&quot;selfservice.methods.oidc.enable_auto_link_policy\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_oidc_enabled** | **boolean** | Configures whether Ory Kratos Third Party / OpenID Connect Login is enabled  This governs the \&quot;selfservice.methods.oidc.enabled\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_methods_passkey_config_attestation_preference** | **string** | Configures the attestation conveyance preference for passkey registration.  This governs the \&quot;selfservice.methods.passkey.config.attestation.preference\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_methods_passkey_config_authenticator_selection_attachment** | **string** | Configures which authenticator attachment modality is eligible for passkey registration.  This governs the \&quot;selfservice.methods.passkey.config.authenticator_selection.attachment\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_methods_passkey_config_authenticator_selection_resident_key** | **string** | Configures whether the authenticator must create a client-side discoverable passkey.  This governs the \&quot;selfservice.methods.passkey.config.authenticator_selection.resident_key\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_methods_passkey_config_authenticator_selection_user_verification** | **string** | Configures whether passkey ceremonies require user verification such as biometrics or a PIN.  This governs the \&quot;selfservice.methods.passkey.config.authenticator_selection.user_verification\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_passkey_config_rp_display_name** | **string** | Configures the Ory Kratos Passkey RP Display Name  This governs the \&quot;selfservice.methods.passkey.config.rp.display_name\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_passkey_config_rp_id** | **string** | Configures the Ory Kratos Passkey RP ID  This governs the \&quot;selfservice.methods.passkey.config.rp.id\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_passkey_config_rp_origins** | **Array&lt;string&gt;** | Configures the Ory Kratos Passkey RP Origins  This governs the \&quot;selfservice.methods.passkey.config.rp.origins\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_methods_passkey_config_timeouts_login** | **string** | Configures the passkey login ceremony timeout.  This governs the \&quot;selfservice.methods.passkey.config.timeouts.login\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_methods_passkey_config_timeouts_registration** | **string** | Configures the passkey registration ceremony timeout.  This governs the \&quot;selfservice.methods.passkey.config.timeouts.registration\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_passkey_enabled** | **boolean** | Configures whether Ory Kratos Passkey authentication is enabled  This governs the \&quot;selfservice.methods.passkey.enabled\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_password_config_haveibeenpwned_enabled** | **boolean** | Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \&quot;selfservice.methods.password.config.haveibeenpwned_enabled\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_password_config_identifier_similarity_check_enabled** | **boolean** | Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \&quot;selfservice.methods.password.config.identifier_similarity_check_enabled\&quot; setting. | [optional] [default to undefined]
@@ -463,11 +471,13 @@ const instance: CreateProjectNormalizedPayload = {
     kratos_oauth2_provider_override_return_to,
     kratos_oauth2_provider_url,
     kratos_preview_default_read_consistency_level,
+    kratos_preview_enable_native_saml_engine,
     kratos_secrets_cipher,
     kratos_secrets_cookie,
     kratos_secrets_default,
     kratos_secrets_pagination,
     kratos_security_account_enumeration_mitigate,
+    kratos_security_restricted_origins,
     kratos_selfservice_allowed_return_urls,
     kratos_selfservice_default_browser_return_url,
     kratos_selfservice_flows_error_ui_url,
@@ -549,9 +559,15 @@ const instance: CreateProjectNormalizedPayload = {
     kratos_selfservice_methods_oidc_config_providers,
     kratos_selfservice_methods_oidc_enable_auto_link_policy,
     kratos_selfservice_methods_oidc_enabled,
+    kratos_selfservice_methods_passkey_config_attestation_preference,
+    kratos_selfservice_methods_passkey_config_authenticator_selection_attachment,
+    kratos_selfservice_methods_passkey_config_authenticator_selection_resident_key,
+    kratos_selfservice_methods_passkey_config_authenticator_selection_user_verification,
     kratos_selfservice_methods_passkey_config_rp_display_name,
     kratos_selfservice_methods_passkey_config_rp_id,
     kratos_selfservice_methods_passkey_config_rp_origins,
+    kratos_selfservice_methods_passkey_config_timeouts_login,
+    kratos_selfservice_methods_passkey_config_timeouts_registration,
     kratos_selfservice_methods_passkey_enabled,
     kratos_selfservice_methods_password_config_haveibeenpwned_enabled,
     kratos_selfservice_methods_password_config_identifier_similarity_check_enabled,

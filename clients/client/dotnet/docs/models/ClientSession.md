@@ -1,5 +1,5 @@
 # Ory.Client.Model.ClientSession
-A Session
+A Session. For requests from an origin in `security.restricted_origins`, public endpoints return only `id` and `active`.
 
 ## Properties
 

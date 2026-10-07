@@ -13,7 +13,7 @@ defmodule Ory.Model.ErrorBrowserLocationChangeRequired do
   ]
 
   @type t :: %__MODULE__{
-    :error => Ory.Model.ErrorGeneric.t | nil,
+    :error => Ory.Model.GenericError.t | nil,
     :redirect_browser_to => String.t | nil
   }
 
@@ -21,7 +21,7 @@ defmodule Ory.Model.ErrorBrowserLocationChangeRequired do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:error, :struct, Ory.Model.ErrorGeneric)
+     |> Deserializer.deserialize(:error, :struct, Ory.Model.GenericError)
   end
 end
 

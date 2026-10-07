@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error** | [**ErrorGeneric**](ErrorGeneric.md) |  | [optional] [default to undefined]
+**error** | [**GenericError**](GenericError.md) |  | [optional] [default to undefined]
 **redirect_browser_to** | **string** | Points to where to redirect the user to next. | [optional] [default to undefined]
 
 ## Example

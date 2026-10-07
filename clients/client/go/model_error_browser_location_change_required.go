@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.79
+API version: v1.22.80
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,7 @@ var _ MappedNullable = &ErrorBrowserLocationChangeRequired{}
 
 // ErrorBrowserLocationChangeRequired struct for ErrorBrowserLocationChangeRequired
 type ErrorBrowserLocationChangeRequired struct {
-	Error *ErrorGeneric `json:"error,omitempty"`
+	Error *GenericError `json:"error,omitempty"`
 	// Points to where to redirect the user to next.
 	RedirectBrowserTo *string `json:"redirect_browser_to,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -46,9 +46,9 @@ func NewErrorBrowserLocationChangeRequiredWithDefaults() *ErrorBrowserLocationCh
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *ErrorBrowserLocationChangeRequired) GetError() ErrorGeneric {
+func (o *ErrorBrowserLocationChangeRequired) GetError() GenericError {
 	if o == nil || IsNil(o.Error) {
-		var ret ErrorGeneric
+		var ret GenericError
 		return ret
 	}
 	return *o.Error
@@ -56,7 +56,7 @@ func (o *ErrorBrowserLocationChangeRequired) GetError() ErrorGeneric {
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorBrowserLocationChangeRequired) GetErrorOk() (*ErrorGeneric, bool) {
+func (o *ErrorBrowserLocationChangeRequired) GetErrorOk() (*GenericError, bool) {
 	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
@@ -72,8 +72,8 @@ func (o *ErrorBrowserLocationChangeRequired) HasError() bool {
 	return false
 }
 
-// SetError gets a reference to the given ErrorGeneric and assigns it to the Error field.
-func (o *ErrorBrowserLocationChangeRequired) SetError(v ErrorGeneric) {
+// SetError gets a reference to the given GenericError and assigns it to the Error field.
+func (o *ErrorBrowserLocationChangeRequired) SetError(v GenericError) {
 	o.Error = &v
 }
 
