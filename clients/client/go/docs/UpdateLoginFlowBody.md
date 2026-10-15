@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **Signature** | **string** | The device&#39;s signature over the challenge nonce carried by the login flow&#39;s hidden &#x60;deviceauthn_nonce&#x60; UI node.  To compute it:  1. Base64-decode the &#x60;deviceauthn_nonce&#x60; node&#39;s value and parse the result as JSON. 2. Base64-decode the JSON&#39;s &#x60;nonce&#x60; field. The decoded raw bytes are the challenge. 3. On Android, sign the challenge with the enrolled hardware-backed key using &#x60;Signature.getInstance(\&quot;SHA256withECDSA\&quot;)&#x60; (it hashes internally) and submit the resulting ASN.1 DER-encoded ECDSA signature. On iOS, call &#x60;DCAppAttestService.generateAssertion&#x60;, passing the raw challenge bytes as the &#x60;clientDataHash&#x60; argument — do not hash them again — and submit the returned CBOR-encoded App Attest assertion unchanged. | 
 **LookupSecret** | **string** | The lookup secret. | 
 **Address** | Pointer to **string** | Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows. | [optional] 
-**Code** | Pointer to **string** | Code is the 6 digits code sent to the user | [optional] 
+**Code** | Pointer to **string** | Code is the one-time code sent to the user | [optional] 
 **Resend** | Pointer to **string** | Resend is set when the user wants to resend the code | [optional] 
 **PasskeyLogin** | Pointer to **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
 

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Autocomplete** | Pointer to **string** | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username InputAttributeAutocompleteUsername username webauthn InputAttributeAutocompleteUsernameWebauthn | [optional] 
 **Disabled** | **bool** | Sets the input&#39;s disabled field to true or false. | 
+**Inputmode** | Pointer to **string** | The inputmode attribute for the input, which hints at the virtual keyboard to show. numeric InputAttributeInputModeNumeric text InputAttributeInputModeText | [optional] 
 **Label** | Pointer to [**UiText**](UiText.md) |  | [optional] 
 **Maxlength** | Pointer to **int64** | MaxLength may contain the input&#39;s maximum length. | [optional] 
 **Name** | **string** | The input&#39;s element name. | 
@@ -97,6 +98,31 @@ and a boolean to check if the value has been set.
 
 SetDisabled sets Disabled field to given value.
 
+
+### GetInputmode
+
+`func (o *UiNodeAttributes) GetInputmode() string`
+
+GetInputmode returns the Inputmode field if non-nil, zero value otherwise.
+
+### GetInputmodeOk
+
+`func (o *UiNodeAttributes) GetInputmodeOk() (*string, bool)`
+
+GetInputmodeOk returns a tuple with the Inputmode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInputmode
+
+`func (o *UiNodeAttributes) SetInputmode(v string)`
+
+SetInputmode sets Inputmode field to given value.
+
+### HasInputmode
+
+`func (o *UiNodeAttributes) HasInputmode() bool`
+
+HasInputmode returns a boolean if a field has been set.
 
 ### GetLabel
 

@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **ProxySamlAudienceOverride** | **string** | SAML Audience Override if overriding with a customer-controlled one | [optional] 
 **ProxyScimServerUrl** | **string** | Proxy SCIM Server URL if overriding with a customer-controlled URL | [optional] 
 **SamlMapperUrl** | **string** | SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
+**SamlPerProviderAcsUrlEnabled** | **bool** | Whether a new SAML provider gets its own ACS URL, the shared ACS URL followed by its provider ID. | [optional] 
 **SamlSsoEnabled** | **bool** |  | [optional] 
 **ScimMapperUrl** | **string** | SCIMMapper specifies the JSONNet code snippet which uses the SCIM Provider&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
 

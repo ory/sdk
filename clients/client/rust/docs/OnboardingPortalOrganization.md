@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **proxy_scim_server_url** | Option<**String**> | Proxy SCIM Server URL if overriding with a customer-controlled URL | [optional]
 **revision_id** | **String** |  | 
 **saml_mapper_url** | Option<**String**> | SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider's profile information to hydrate the identity's data. | [optional]
+**saml_per_provider_acs_url_enabled** | Option<**bool**> | Whether a new SAML provider gets its own ACS URL, the shared ACS URL followed by its provider ID. | [optional]
 **saml_sso_enabled** | Option<**bool**> |  | [optional]
 **scim_clients** | [**Vec<models::NormalizedProjectRevisionScimClient>**](normalizedProjectRevisionScimClient.md) |  | 
 **scim_enabled** | **bool** |  | 

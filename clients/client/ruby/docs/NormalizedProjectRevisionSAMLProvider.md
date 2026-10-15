@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **acs_url** | **String** |  | [optional] |
 | **allowed_digest_algorithms** | **Array&lt;String&gt;** | The digest algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional] |
 | **allowed_name_id_formats** | **Array&lt;String&gt;** | The NameID formats accepted from the IdP; empty means any (native engine only). | [optional] |
 | **allowed_signature_algorithms** | **Array&lt;String&gt;** | The signature algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional] |
@@ -38,6 +39,7 @@
 require 'ory-client'
 
 instance = OryClient::NormalizedProjectRevisionSAMLProvider.new(
+  acs_url: null,
   allowed_digest_algorithms: null,
   allowed_name_id_formats: null,
   allowed_signature_algorithms: null,

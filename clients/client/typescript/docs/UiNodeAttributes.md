@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **autocomplete** | **string** | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username InputAttributeAutocompleteUsername username webauthn InputAttributeAutocompleteUsernameWebauthn | [optional] [default to undefined]
 **disabled** | **boolean** | Sets the input\&#39;s disabled field to true or false. | [default to undefined]
+**inputmode** | **string** | The inputmode attribute for the input, which hints at the virtual keyboard to show. numeric InputAttributeInputModeNumeric text InputAttributeInputModeText | [optional] [default to undefined]
 **label** | [**UiText**](UiText.md) |  | [optional] [default to undefined]
 **maxlength** | **number** | MaxLength may contain the input\&#39;s maximum length. | [optional] [default to undefined]
 **name** | **string** | The input\&#39;s element name. | [default to undefined]
@@ -43,6 +44,7 @@ import { UiNodeAttributes } from '@ory/client';
 const instance: UiNodeAttributes = {
     autocomplete,
     disabled,
+    inputmode,
     label,
     maxlength,
     name,

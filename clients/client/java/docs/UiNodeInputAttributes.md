@@ -10,6 +10,7 @@ InputAttributes represents the attributes of an input node
 |------------ | ------------- | ------------- | -------------|
 |**autocomplete** | [**AutocompleteEnum**](#AutocompleteEnum) | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username InputAttributeAutocompleteUsername username webauthn InputAttributeAutocompleteUsernameWebauthn |  [optional] |
 |**disabled** | **Boolean** | Sets the input&#39;s disabled field to true or false. |  |
+|**inputmode** | [**InputmodeEnum**](#InputmodeEnum) | The inputmode attribute for the input, which hints at the virtual keyboard to show. numeric InputAttributeInputModeNumeric text InputAttributeInputModeText |  [optional] |
 |**label** | [**UiText**](UiText.md) |  |  [optional] |
 |**maxlength** | **Long** | MaxLength may contain the input&#39;s maximum length. |  [optional] |
 |**name** | **String** | The input&#39;s element name. |  |
@@ -38,6 +39,15 @@ InputAttributes represents the attributes of an input node
 | ONE_TIME_CODE | &quot;one-time-code&quot; |
 | USERNAME | &quot;username&quot; |
 | USERNAME_WEBAUTHN | &quot;username webauthn&quot; |
+
+
+
+## Enum: InputmodeEnum
+
+| Name | Value |
+|---- | -----|
+| NUMERIC | &quot;numeric&quot; |
+| TEXT | &quot;text&quot; |
 
 
 

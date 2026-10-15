@@ -220,6 +220,8 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsCaptchaConfigCfTurnstileSitekey** | Pointer to **string** | Configures the Cloudflare Turnstile site key for managed CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.  This governs the \&quot;selfservice.methods.captcha.config.cf_turnstile.sitekey\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCaptchaConfigLegacyInjectNode** | Pointer to **bool** | Configures legacy CAPTCHA node injection behavior  Reach out to your account manager to enable this feature.  This governs the \&quot;selfservice.methods.captcha.config.legacy_inject_node\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCaptchaEnabled** | Pointer to **bool** | Configures the Ory Kratos Self-Service Methods&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature.  This governs the \&quot;selfservice.methods.captcha.enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsCodeConfigAlphabet** | Pointer to **string** | Configures the characters that one-time codes sent by the code method are made of.  This governs the \&quot;selfservice.methods.code.config.alphabet\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsCodeConfigLength** | Pointer to **int64** | Configures the number of characters in one-time codes sent by the code method.  This governs the \&quot;selfservice.methods.code.config.length\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodeConfigLifespan** | Pointer to **string** | Configures the Ory Kratos Code Method&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodeConfigMaxSubmissions** | Pointer to **int64** | Configures the maximum number of attempts to submit a one-time code in kratos.  This governs the \&quot;selfservice.methods.code.max_submissions\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsCodeConfigMissingCredentialFallbackEnabled** | Pointer to **bool** | Enables a fallback method required in certain legacy use cases.  This governs the \&quot;selfservice.methods.code.config.missing_credential_fallback_enabled\&quot; setting. | [optional] 
@@ -5725,6 +5727,56 @@ SetKratosSelfserviceMethodsCaptchaEnabled sets KratosSelfserviceMethodsCaptchaEn
 `func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCaptchaEnabled() bool`
 
 HasKratosSelfserviceMethodsCaptchaEnabled returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCodeConfigAlphabet
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigAlphabet() string`
+
+GetKratosSelfserviceMethodsCodeConfigAlphabet returns the KratosSelfserviceMethodsCodeConfigAlphabet field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCodeConfigAlphabetOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigAlphabetOk() (*string, bool)`
+
+GetKratosSelfserviceMethodsCodeConfigAlphabetOk returns a tuple with the KratosSelfserviceMethodsCodeConfigAlphabet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCodeConfigAlphabet
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodeConfigAlphabet(v string)`
+
+SetKratosSelfserviceMethodsCodeConfigAlphabet sets KratosSelfserviceMethodsCodeConfigAlphabet field to given value.
+
+### HasKratosSelfserviceMethodsCodeConfigAlphabet
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeConfigAlphabet() bool`
+
+HasKratosSelfserviceMethodsCodeConfigAlphabet returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsCodeConfigLength
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigLength() int64`
+
+GetKratosSelfserviceMethodsCodeConfigLength returns the KratosSelfserviceMethodsCodeConfigLength field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsCodeConfigLengthOk
+
+`func (o *NormalizedProjectRevision) GetKratosSelfserviceMethodsCodeConfigLengthOk() (*int64, bool)`
+
+GetKratosSelfserviceMethodsCodeConfigLengthOk returns a tuple with the KratosSelfserviceMethodsCodeConfigLength field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsCodeConfigLength
+
+`func (o *NormalizedProjectRevision) SetKratosSelfserviceMethodsCodeConfigLength(v int64)`
+
+SetKratosSelfserviceMethodsCodeConfigLength sets KratosSelfserviceMethodsCodeConfigLength field to given value.
+
+### HasKratosSelfserviceMethodsCodeConfigLength
+
+`func (o *NormalizedProjectRevision) HasKratosSelfserviceMethodsCodeConfigLength() bool`
+
+HasKratosSelfserviceMethodsCodeConfigLength returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsCodeConfigLifespan
 

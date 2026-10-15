@@ -6,6 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **autocomplete** | **String** | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username InputAttributeAutocompleteUsername username webauthn InputAttributeAutocompleteUsernameWebauthn | [optional] |
 | **disabled** | **Boolean** | Sets the input&#39;s disabled field to true or false. |  |
+| **inputmode** | **String** | The inputmode attribute for the input, which hints at the virtual keyboard to show. numeric InputAttributeInputModeNumeric text InputAttributeInputModeText | [optional] |
 | **label** | [**UiText**](UiText.md) |  | [optional] |
 | **maxlength** | **Integer** | MaxLength may contain the input&#39;s maximum length. | [optional] |
 | **name** | **String** | The input&#39;s element name. |  |
@@ -28,6 +29,7 @@ require 'ory-client'
 instance = OryClient::UiNodeInputAttributes.new(
   autocomplete: null,
   disabled: null,
+  inputmode: null,
   label: null,
   maxlength: null,
   name: null,

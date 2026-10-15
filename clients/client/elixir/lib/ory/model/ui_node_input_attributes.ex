@@ -10,6 +10,7 @@ defmodule Ory.Model.UiNodeInputAttributes do
   defstruct [
     :autocomplete,
     :disabled,
+    :inputmode,
     :label,
     :maxlength,
     :name,
@@ -28,6 +29,7 @@ defmodule Ory.Model.UiNodeInputAttributes do
   @type t :: %__MODULE__{
     :autocomplete => String.t | nil,
     :disabled => boolean(),
+    :inputmode => String.t | nil,
     :label => Ory.Model.UiText.t | nil,
     :maxlength => integer() | nil,
     :name => String.t,

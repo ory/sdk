@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | Pointer to **string** | Address is the address to send the code to, in case that there are multiple addresses. This field is only used in two-factor flows and is ineffective for passwordless flows. | [optional] 
-**Code** | Pointer to **string** | Code is the 6 digits code sent to the user | [optional] 
+**Code** | Pointer to **string** | Code is the one-time code sent to the user | [optional] 
 **CsrfToken** | **string** | CSRFToken is the anti-CSRF token | 
 **Identifier** | Pointer to **string** | Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow. | [optional] 
 **Method** | **string** | Method should be set to \&quot;code\&quot; when logging in using the code strategy. | 

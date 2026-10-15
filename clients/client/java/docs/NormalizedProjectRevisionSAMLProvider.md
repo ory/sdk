@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**acsUrl** | **String** |  |  [optional] |
 |**allowedDigestAlgorithms** | **List&lt;String&gt;** | The digest algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). |  [optional] |
 |**allowedNameIdFormats** | **List&lt;String&gt;** | The NameID formats accepted from the IdP; empty means any (native engine only). |  [optional] |
 |**allowedSignatureAlgorithms** | **List&lt;String&gt;** | The signature algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). |  [optional] |

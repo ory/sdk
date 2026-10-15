@@ -25,6 +25,7 @@
 | **proxy_scim_server_url** | **String** | Proxy SCIM Server URL if overriding with a customer-controlled URL | [optional] |
 | **revision_id** | **String** |  |  |
 | **saml_mapper_url** | **String** | SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider&#39;s profile information to hydrate the identity&#39;s data. | [optional] |
+| **saml_per_provider_acs_url_enabled** | **Boolean** | Whether a new SAML provider gets its own ACS URL, the shared ACS URL followed by its provider ID. | [optional] |
 | **saml_sso_enabled** | **Boolean** |  | [optional] |
 | **scim_clients** | [**Array&lt;NormalizedProjectRevisionScimClient&gt;**](NormalizedProjectRevisionScimClient.md) |  |  |
 | **scim_enabled** | **Boolean** |  |  |
@@ -58,6 +59,7 @@ instance = OryClient::OnboardingPortalOrganization.new(
   proxy_scim_server_url: null,
   revision_id: null,
   saml_mapper_url: null,
+  saml_per_provider_acs_url_enabled: null,
   saml_sso_enabled: null,
   scim_clients: null,
   scim_enabled: null,

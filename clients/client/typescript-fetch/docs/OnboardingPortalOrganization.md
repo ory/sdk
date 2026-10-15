@@ -27,6 +27,7 @@ Name | Type
 `proxy_scim_server_url` | string
 `revision_id` | string
 `saml_mapper_url` | string
+`saml_per_provider_acs_url_enabled` | boolean
 `saml_sso_enabled` | boolean
 `scim_clients` | [Array&lt;NormalizedProjectRevisionScimClient&gt;](NormalizedProjectRevisionScimClient.md)
 `scim_enabled` | boolean
@@ -61,6 +62,7 @@ const example = {
   "proxy_scim_server_url": null,
   "revision_id": null,
   "saml_mapper_url": null,
+  "saml_per_provider_acs_url_enabled": null,
   "saml_sso_enabled": null,
   "scim_clients": null,
   "scim_enabled": null,

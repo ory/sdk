@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**acs_url** | Option<**String**> |  | [optional]
 **allowed_digest_algorithms** | Option<**Vec<String>**> | The digest algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional]
 **allowed_name_id_formats** | Option<**Vec<String>**> | The NameID formats accepted from the IdP; empty means any (native engine only). | [optional]
 **allowed_signature_algorithms** | Option<**Vec<String>**> | The signature algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional]

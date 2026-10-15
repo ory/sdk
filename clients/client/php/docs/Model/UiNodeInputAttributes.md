@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **autocomplete** | **string** | The autocomplete attribute for the input. email InputAttributeAutocompleteEmail tel InputAttributeAutocompleteTel url InputAttributeAutocompleteUrl current-password InputAttributeAutocompleteCurrentPassword new-password InputAttributeAutocompleteNewPassword one-time-code InputAttributeAutocompleteOneTimeCode username InputAttributeAutocompleteUsername username webauthn InputAttributeAutocompleteUsernameWebauthn | [optional]
 **disabled** | **bool** | Sets the input&#39;s disabled field to true or false. |
+**inputmode** | **string** | The inputmode attribute for the input, which hints at the virtual keyboard to show. numeric InputAttributeInputModeNumeric text InputAttributeInputModeText | [optional]
 **label** | [**\Ory\Client\Model\UiText**](UiText.md) |  | [optional]
 **maxlength** | **int** | MaxLength may contain the input&#39;s maximum length. | [optional]
 **name** | **string** | The input&#39;s element name. |

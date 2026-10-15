@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.82
+  version: v1.22.83
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -12925,6 +12925,19 @@ components:
 
             This governs the "selfservice.methods.captcha.enabled" setting.
           type: boolean
+        kratos_selfservice_methods_code_config_alphabet:
+          description: |-
+            Configures the characters that one-time codes sent by the code method are made of.
+
+            This governs the "selfservice.methods.code.config.alphabet" setting.
+          type: string
+        kratos_selfservice_methods_code_config_length:
+          description: |-
+            Configures the number of characters in one-time codes sent by the code method.
+
+            This governs the "selfservice.methods.code.config.length" setting.
+          format: int64
+          type: integer
         kratos_selfservice_methods_code_config_lifespan:
           description: |-
             Configures the Ory Kratos Code Method's lifespan
@@ -19296,6 +19309,7 @@ components:
               text: text
               type: info
             attributes:
+              inputmode: numeric
               autocomplete: email
               maxlength: 6
               onclick: onclick
@@ -19335,6 +19349,7 @@ components:
               text: text
               type: info
             attributes:
+              inputmode: numeric
               autocomplete: email
               maxlength: 6
               onclick: onclick
@@ -21754,6 +21769,19 @@ components:
 
             This governs the "selfservice.methods.captcha.enabled" setting.
           type: boolean
+        kratos_selfservice_methods_code_config_alphabet:
+          description: |-
+            Configures the characters that one-time codes sent by the code method are made of.
+
+            This governs the "selfservice.methods.code.config.alphabet" setting.
+          type: string
+        kratos_selfservice_methods_code_config_length:
+          description: |-
+            Configures the number of characters in one-time codes sent by the code method.
+
+            This governs the "selfservice.methods.code.config.length" setting.
+          format: int64
+          type: integer
         kratos_selfservice_methods_code_config_lifespan:
           description: |-
             Configures the Ory Kratos Code Method's lifespan
@@ -22460,6 +22488,9 @@ components:
       type: array
     normalizedProjectRevisionSAMLProvider:
       properties:
+        acs_url:
+          nullable: true
+          type: string
         allowed_digest_algorithms:
           description: The digest algorithms accepted when validating signed SAML
             messages; empty means engine defaults (native engine only).
@@ -25033,6 +25064,10 @@ components:
             SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider's
             profile information to hydrate the identity's data.
           type: string
+        saml_per_provider_acs_url_enabled:
+          description: "Whether a new SAML provider gets its own ACS URL, the shared\
+            \ ACS URL followed by its provider ID."
+          type: boolean
         saml_sso_enabled:
           type: boolean
         scim_clients:
@@ -26618,6 +26653,7 @@ components:
               text: text
               type: info
             attributes:
+              inputmode: numeric
               autocomplete: email
               maxlength: 6
               onclick: onclick
@@ -26657,6 +26693,7 @@ components:
               text: text
               type: info
             attributes:
+              inputmode: numeric
               autocomplete: email
               maxlength: 6
               onclick: onclick
@@ -26987,6 +27024,7 @@ components:
               text: text
               type: info
             attributes:
+              inputmode: numeric
               autocomplete: email
               maxlength: 6
               onclick: onclick
@@ -27026,6 +27064,7 @@ components:
               text: text
               type: info
             attributes:
+              inputmode: numeric
               autocomplete: email
               maxlength: 6
               onclick: onclick
@@ -27849,6 +27888,7 @@ components:
               text: text
               type: info
             attributes:
+              inputmode: numeric
               autocomplete: email
               maxlength: 6
               onclick: onclick
@@ -27888,6 +27928,7 @@ components:
               text: text
               type: info
             attributes:
+              inputmode: numeric
               autocomplete: email
               maxlength: 6
               onclick: onclick
@@ -28877,6 +28918,7 @@ components:
             text: text
             type: info
           attributes:
+            inputmode: numeric
             autocomplete: email
             maxlength: 6
             onclick: onclick
@@ -28916,6 +28958,7 @@ components:
             text: text
             type: info
           attributes:
+            inputmode: numeric
             autocomplete: email
             maxlength: 6
             onclick: onclick
@@ -28992,6 +29035,7 @@ components:
           text: text
           type: info
         attributes:
+          inputmode: numeric
           autocomplete: email
           maxlength: 6
           onclick: onclick
@@ -29257,6 +29301,7 @@ components:
     uiNodeInputAttributes:
       description: InputAttributes represents the attributes of an input node
       example:
+        inputmode: numeric
         autocomplete: email
         maxlength: 6
         onclick: onclick
@@ -29312,6 +29357,18 @@ components:
         disabled:
           description: Sets the input's disabled field to true or false.
           type: boolean
+        inputmode:
+          description: |-
+            The inputmode attribute for the input, which hints at the virtual keyboard to show.
+            numeric InputAttributeInputModeNumeric
+            text InputAttributeInputModeText
+          enum:
+          - numeric
+          - text
+          type: string
+          x-go-enum-desc: |-
+            numeric InputAttributeInputModeNumeric
+            text InputAttributeInputModeText
         label:
           $ref: "#/components/schemas/uiText"
         maxlength:
@@ -29761,7 +29818,7 @@ components:
             is only used in two-factor flows and is ineffective for passwordless flows.
           type: string
         code:
-          description: Code is the 6 digits code sent to the user
+          description: Code is the one-time code sent to the user
           type: string
         csrf_token:
           description: CSRFToken is the anti-CSRF token
@@ -31279,6 +31336,7 @@ components:
               text: text
               type: info
             attributes:
+              inputmode: numeric
               autocomplete: email
               maxlength: 6
               onclick: onclick
@@ -31318,6 +31376,7 @@ components:
               text: text
               type: info
             attributes:
+              inputmode: numeric
               autocomplete: email
               maxlength: 6
               onclick: onclick

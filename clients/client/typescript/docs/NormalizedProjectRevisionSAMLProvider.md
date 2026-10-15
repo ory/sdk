@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**acs_url** | **string** |  | [optional] [default to undefined]
 **allowed_digest_algorithms** | **Array&lt;string&gt;** | The digest algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional] [default to undefined]
 **allowed_name_id_formats** | **Array&lt;string&gt;** | The NameID formats accepted from the IdP; empty means any (native engine only). | [optional] [default to undefined]
 **allowed_signature_algorithms** | **Array&lt;string&gt;** | The signature algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional] [default to undefined]
@@ -39,6 +40,7 @@ Name | Type | Description | Notes
 import { NormalizedProjectRevisionSAMLProvider } from '@ory/client';
 
 const instance: NormalizedProjectRevisionSAMLProvider = {
+    acs_url,
     allowed_digest_algorithms,
     allowed_name_id_formats,
     allowed_signature_algorithms,

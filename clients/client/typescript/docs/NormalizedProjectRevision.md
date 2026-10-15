@@ -221,6 +221,8 @@ Name | Type | Description | Notes
 **kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey** | **string** | Configures the Cloudflare Turnstile site key for managed CAPTCHA protection  The site key is public and will be shared with the client.  Reach out to your account manager to enable this feature.  This governs the \&quot;selfservice.methods.captcha.config.cf_turnstile.sitekey\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_captcha_config_legacy_inject_node** | **boolean** | Configures legacy CAPTCHA node injection behavior  Reach out to your account manager to enable this feature.  This governs the \&quot;selfservice.methods.captcha.config.legacy_inject_node\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_captcha_enabled** | **boolean** | Configures the Ory Kratos Self-Service Methods\&#39; Captcha Enabled Setting  Reach out to your account manager to enable this feature.  This governs the \&quot;selfservice.methods.captcha.enabled\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_methods_code_config_alphabet** | **string** | Configures the characters that one-time codes sent by the code method are made of.  This governs the \&quot;selfservice.methods.code.config.alphabet\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_methods_code_config_length** | **number** | Configures the number of characters in one-time codes sent by the code method.  This governs the \&quot;selfservice.methods.code.config.length\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_code_config_lifespan** | **string** | Configures the Ory Kratos Code Method\&#39;s lifespan  This governs the \&quot;selfservice.methods.code.config.lifespan\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_code_config_max_submissions** | **number** | Configures the maximum number of attempts to submit a one-time code in kratos.  This governs the \&quot;selfservice.methods.code.max_submissions\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_code_config_missing_credential_fallback_enabled** | **boolean** | Enables a fallback method required in certain legacy use cases.  This governs the \&quot;selfservice.methods.code.config.missing_credential_fallback_enabled\&quot; setting. | [optional] [default to undefined]
@@ -530,6 +532,8 @@ const instance: NormalizedProjectRevision = {
     kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey,
     kratos_selfservice_methods_captcha_config_legacy_inject_node,
     kratos_selfservice_methods_captcha_enabled,
+    kratos_selfservice_methods_code_config_alphabet,
+    kratos_selfservice_methods_code_config_length,
     kratos_selfservice_methods_code_config_lifespan,
     kratos_selfservice_methods_code_config_max_submissions,
     kratos_selfservice_methods_code_config_missing_credential_fallback_enabled,

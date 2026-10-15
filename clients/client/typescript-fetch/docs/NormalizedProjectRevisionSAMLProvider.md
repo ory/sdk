@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`acs_url` | string
 `allowed_digest_algorithms` | Array&lt;string&gt;
 `allowed_name_id_formats` | Array&lt;string&gt;
 `allowed_signature_algorithms` | Array&lt;string&gt;
@@ -41,6 +42,7 @@ import type { NormalizedProjectRevisionSAMLProvider } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "acs_url": null,
   "allowed_digest_algorithms": null,
   "allowed_name_id_formats": null,
   "allowed_signature_algorithms": null,

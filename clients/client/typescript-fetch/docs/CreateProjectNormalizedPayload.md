@@ -225,6 +225,8 @@ Name | Type
 `kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey` | string
 `kratos_selfservice_methods_captcha_config_legacy_inject_node` | boolean
 `kratos_selfservice_methods_captcha_enabled` | boolean
+`kratos_selfservice_methods_code_config_alphabet` | string
+`kratos_selfservice_methods_code_config_length` | number
 `kratos_selfservice_methods_code_config_lifespan` | string
 `kratos_selfservice_methods_code_config_max_submissions` | number
 `kratos_selfservice_methods_code_config_missing_credential_fallback_enabled` | boolean
@@ -538,6 +540,8 @@ const example = {
   "kratos_selfservice_methods_captcha_config_cf_turnstile_sitekey": null,
   "kratos_selfservice_methods_captcha_config_legacy_inject_node": null,
   "kratos_selfservice_methods_captcha_enabled": null,
+  "kratos_selfservice_methods_code_config_alphabet": null,
+  "kratos_selfservice_methods_code_config_length": null,
   "kratos_selfservice_methods_code_config_lifespan": null,
   "kratos_selfservice_methods_code_config_max_submissions": null,
   "kratos_selfservice_methods_code_config_missing_credential_fallback_enabled": null,

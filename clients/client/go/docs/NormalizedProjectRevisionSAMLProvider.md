@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AcsUrl** | Pointer to **NullableString** |  | [optional] 
 **AllowedDigestAlgorithms** | Pointer to **[]string** | The digest algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional] 
 **AllowedNameIdFormats** | Pointer to **[]string** | The NameID formats accepted from the IdP; empty means any (native engine only). | [optional] 
 **AllowedSignatureAlgorithms** | Pointer to **[]string** | The signature algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional] 
@@ -51,6 +52,41 @@ NewNormalizedProjectRevisionSAMLProviderWithDefaults instantiates a new Normaliz
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetAcsUrl
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetAcsUrl() string`
+
+GetAcsUrl returns the AcsUrl field if non-nil, zero value otherwise.
+
+### GetAcsUrlOk
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetAcsUrlOk() (*string, bool)`
+
+GetAcsUrlOk returns a tuple with the AcsUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAcsUrl
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetAcsUrl(v string)`
+
+SetAcsUrl sets AcsUrl field to given value.
+
+### HasAcsUrl
+
+`func (o *NormalizedProjectRevisionSAMLProvider) HasAcsUrl() bool`
+
+HasAcsUrl returns a boolean if a field has been set.
+
+### SetAcsUrlNil
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetAcsUrlNil(b bool)`
+
+ SetAcsUrlNil sets the value for AcsUrl to be an explicit nil
+
+### UnsetAcsUrl
+`func (o *NormalizedProjectRevisionSAMLProvider) UnsetAcsUrl()`
+
+UnsetAcsUrl ensures that no value is present for AcsUrl, not even an explicit nil
 ### GetAllowedDigestAlgorithms
 
 `func (o *NormalizedProjectRevisionSAMLProvider) GetAllowedDigestAlgorithms() []string`

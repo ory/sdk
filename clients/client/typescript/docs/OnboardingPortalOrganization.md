@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **proxy_scim_server_url** | **string** | Proxy SCIM Server URL if overriding with a customer-controlled URL | [optional] [default to undefined]
 **revision_id** | **string** |  | [default to undefined]
 **saml_mapper_url** | **string** | SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider\&#39;s profile information to hydrate the identity\&#39;s data. | [optional] [default to undefined]
+**saml_per_provider_acs_url_enabled** | **boolean** | Whether a new SAML provider gets its own ACS URL, the shared ACS URL followed by its provider ID. | [optional] [default to undefined]
 **saml_sso_enabled** | **boolean** |  | [optional] [default to undefined]
 **scim_clients** | [**Array&lt;NormalizedProjectRevisionScimClient&gt;**](NormalizedProjectRevisionScimClient.md) |  | [default to undefined]
 **scim_enabled** | **boolean** |  | [default to undefined]
@@ -59,6 +60,7 @@ const instance: OnboardingPortalOrganization = {
     proxy_scim_server_url,
     revision_id,
     saml_mapper_url,
+    saml_per_provider_acs_url_enabled,
     saml_sso_enabled,
     scim_clients,
     scim_enabled,

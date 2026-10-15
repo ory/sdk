@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.82
+API version: v1.22.83
 Contact: support@ory.sh
 */
 
@@ -57,6 +57,8 @@ type OnboardingPortalOrganization struct {
 	RevisionId string `json:"revision_id"`
 	// SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider's profile information to hydrate the identity's data.
 	SamlMapperUrl *string `json:"saml_mapper_url,omitempty"`
+	// Whether a new SAML provider gets its own ACS URL, the shared ACS URL followed by its provider ID.
+	SamlPerProviderAcsUrlEnabled *bool `json:"saml_per_provider_acs_url_enabled,omitempty"`
 	SamlSsoEnabled *bool `json:"saml_sso_enabled,omitempty"`
 	ScimClients []NormalizedProjectRevisionScimClient `json:"scim_clients"`
 	ScimEnabled bool `json:"scim_enabled"`
@@ -725,6 +727,38 @@ func (o *OnboardingPortalOrganization) SetSamlMapperUrl(v string) {
 	o.SamlMapperUrl = &v
 }
 
+// GetSamlPerProviderAcsUrlEnabled returns the SamlPerProviderAcsUrlEnabled field value if set, zero value otherwise.
+func (o *OnboardingPortalOrganization) GetSamlPerProviderAcsUrlEnabled() bool {
+	if o == nil || IsNil(o.SamlPerProviderAcsUrlEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.SamlPerProviderAcsUrlEnabled
+}
+
+// GetSamlPerProviderAcsUrlEnabledOk returns a tuple with the SamlPerProviderAcsUrlEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OnboardingPortalOrganization) GetSamlPerProviderAcsUrlEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.SamlPerProviderAcsUrlEnabled) {
+		return nil, false
+	}
+	return o.SamlPerProviderAcsUrlEnabled, true
+}
+
+// HasSamlPerProviderAcsUrlEnabled returns a boolean if a field has been set.
+func (o *OnboardingPortalOrganization) HasSamlPerProviderAcsUrlEnabled() bool {
+	if o != nil && !IsNil(o.SamlPerProviderAcsUrlEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetSamlPerProviderAcsUrlEnabled gets a reference to the given bool and assigns it to the SamlPerProviderAcsUrlEnabled field.
+func (o *OnboardingPortalOrganization) SetSamlPerProviderAcsUrlEnabled(v bool) {
+	o.SamlPerProviderAcsUrlEnabled = &v
+}
+
 // GetSamlSsoEnabled returns the SamlSsoEnabled field value if set, zero value otherwise.
 func (o *OnboardingPortalOrganization) GetSamlSsoEnabled() bool {
 	if o == nil || IsNil(o.SamlSsoEnabled) {
@@ -924,6 +958,9 @@ func (o OnboardingPortalOrganization) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SamlMapperUrl) {
 		toSerialize["saml_mapper_url"] = o.SamlMapperUrl
 	}
+	if !IsNil(o.SamlPerProviderAcsUrlEnabled) {
+		toSerialize["saml_per_provider_acs_url_enabled"] = o.SamlPerProviderAcsUrlEnabled
+	}
 	if !IsNil(o.SamlSsoEnabled) {
 		toSerialize["saml_sso_enabled"] = o.SamlSsoEnabled
 	}
@@ -1004,6 +1041,7 @@ func (o *OnboardingPortalOrganization) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "proxy_scim_server_url")
 		delete(additionalProperties, "revision_id")
 		delete(additionalProperties, "saml_mapper_url")
+		delete(additionalProperties, "saml_per_provider_acs_url_enabled")
 		delete(additionalProperties, "saml_sso_enabled")
 		delete(additionalProperties, "scim_clients")
 		delete(additionalProperties, "scim_enabled")

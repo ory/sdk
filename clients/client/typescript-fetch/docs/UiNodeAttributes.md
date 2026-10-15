@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `autocomplete` | string
 `disabled` | boolean
+`inputmode` | string
 `label` | [UiText](UiText.md)
 `maxlength` | number
 `name` | string
@@ -45,6 +46,7 @@ import type { UiNodeAttributes } from '@ory/client-fetch'
 const example = {
   "autocomplete": null,
   "disabled": null,
+  "inputmode": null,
   "label": null,
   "maxlength": null,
   "name": null,

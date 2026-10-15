@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **ProxyScimServerUrl** | Pointer to **string** | Proxy SCIM Server URL if overriding with a customer-controlled URL | [optional] 
 **RevisionId** | **string** |  | 
 **SamlMapperUrl** | Pointer to **string** | SAMLMapper specifies the JSONNet code snippet which uses the SAML Provider&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
+**SamlPerProviderAcsUrlEnabled** | Pointer to **bool** | Whether a new SAML provider gets its own ACS URL, the shared ACS URL followed by its provider ID. | [optional] 
 **SamlSsoEnabled** | Pointer to **bool** |  | [optional] 
 **ScimClients** | [**[]NormalizedProjectRevisionScimClient**](NormalizedProjectRevisionScimClient.md) |  | 
 **ScimEnabled** | **bool** |  | 
@@ -549,6 +550,31 @@ SetSamlMapperUrl sets SamlMapperUrl field to given value.
 `func (o *OnboardingPortalOrganization) HasSamlMapperUrl() bool`
 
 HasSamlMapperUrl returns a boolean if a field has been set.
+
+### GetSamlPerProviderAcsUrlEnabled
+
+`func (o *OnboardingPortalOrganization) GetSamlPerProviderAcsUrlEnabled() bool`
+
+GetSamlPerProviderAcsUrlEnabled returns the SamlPerProviderAcsUrlEnabled field if non-nil, zero value otherwise.
+
+### GetSamlPerProviderAcsUrlEnabledOk
+
+`func (o *OnboardingPortalOrganization) GetSamlPerProviderAcsUrlEnabledOk() (*bool, bool)`
+
+GetSamlPerProviderAcsUrlEnabledOk returns a tuple with the SamlPerProviderAcsUrlEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSamlPerProviderAcsUrlEnabled
+
+`func (o *OnboardingPortalOrganization) SetSamlPerProviderAcsUrlEnabled(v bool)`
+
+SetSamlPerProviderAcsUrlEnabled sets SamlPerProviderAcsUrlEnabled field to given value.
+
+### HasSamlPerProviderAcsUrlEnabled
+
+`func (o *OnboardingPortalOrganization) HasSamlPerProviderAcsUrlEnabled() bool`
+
+HasSamlPerProviderAcsUrlEnabled returns a boolean if a field has been set.
 
 ### GetSamlSsoEnabled
 
