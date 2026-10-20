@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.83
+  version: v1.22.84
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -1862,7 +1862,7 @@ paths:
       description: |-
         Use this method if you do not want to let Hydra generate the JWKs for you, but instead save your own.
 
-        Warning: the key is created or updated under the `kid` given in the request body. The `{kid}` path parameter exists for historical reasons only: it is ignored and not validated against the body.
+        The key is created or updated under the `{kid}` path parameter. If the request body carries a `kid`, it must equal the path parameter, or the request is rejected with `400`. A body without a `kid` takes the path parameter as its `kid`.
 
         A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key. A JWK Set is a JSON data structure that represents a set of JWKs. A JSON Web Key is identified by its set and key id. ORY Hydra uses this functionality to store cryptographic keys used for TLS and JSON Web Tokens (such as OpenID Connect ID tokens), and allows storing user-defined keys as well.
 
@@ -26445,6 +26445,18 @@ components:
           $ref: "#/components/schemas/projectServicePermission"
         talos:
           $ref: "#/components/schemas/projectServiceTalos"
+      type: object
+    publicMemberInvite:
+      properties:
+        invitee_email:
+          description: The invitee's email
+          type: string
+        linked:
+          description: Whether the invite is linked to a user.
+          type: boolean
+      required:
+      - invitee_email
+      - linked
       type: object
     quotaUsage:
       properties:

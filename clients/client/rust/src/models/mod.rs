@@ -528,6 +528,8 @@ pub mod project_services;
 pub use self::project_services::ProjectServices;
 pub mod provider;
 pub use self::provider::Provider;
+pub mod public_member_invite;
+pub use self::public_member_invite::PublicMemberInvite;
 pub mod quota_usage;
 pub use self::quota_usage::QuotaUsage;
 pub mod rate_limit_policy;

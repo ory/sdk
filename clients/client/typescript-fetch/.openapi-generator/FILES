@@ -279,6 +279,7 @@ docs/ProjectServicePermission.md
 docs/ProjectServiceTalos.md
 docs/ProjectServices.md
 docs/Provider.md
+docs/PublicMemberInvite.md
 docs/QuotaUsage.md
 docs/RFC6749ErrorJson.md
 docs/RateLimitPolicy.md
@@ -705,6 +706,7 @@ src/models/ProjectServicePermission.ts
 src/models/ProjectServiceTalos.ts
 src/models/ProjectServices.ts
 src/models/Provider.ts
+src/models/PublicMemberInvite.ts
 src/models/QuotaUsage.ts
 src/models/RFC6749ErrorJson.ts
 src/models/RateLimitPolicy.ts

@@ -280,6 +280,7 @@ docs/ProjectServicePermission.md
 docs/ProjectServiceTalos.md
 docs/ProjectServices.md
 docs/Provider.md
+docs/PublicMemberInvite.md
 docs/QuotaUsage.md
 docs/RateLimitPolicy.md
 docs/RecoveryCodeForIdentity.md
@@ -701,6 +702,7 @@ src/models/project_service_permission.rs
 src/models/project_service_talos.rs
 src/models/project_services.rs
 src/models/provider.rs
+src/models/public_member_invite.rs
 src/models/quota_usage.rs
 src/models/rate_limit_policy.rs
 src/models/recovery_code_for_identity.rs

@@ -281,6 +281,7 @@ docs/ProjectServicePermission.md
 docs/ProjectServiceTalos.md
 docs/ProjectServices.md
 docs/Provider.md
+docs/PublicMemberInvite.md
 docs/QuotaUsage.md
 docs/RFC6749ErrorJson.md
 docs/RateLimitPolicy.md
@@ -705,6 +706,7 @@ ory_client/models/project_service_permission.py
 ory_client/models/project_service_talos.py
 ory_client/models/project_services.py
 ory_client/models/provider.py
+ory_client/models/public_member_invite.py
 ory_client/models/quota_usage.py
 ory_client/models/rate_limit_policy.py
 ory_client/models/recovery_code_for_identity.py
@@ -1123,6 +1125,7 @@ test/test_project_service_permission.py
 test/test_project_service_talos.py
 test/test_project_services.py
 test/test_provider.py
+test/test_public_member_invite.py
 test/test_quota_usage.py
 test/test_rate_limit_policy.py
 test/test_recovery_code_for_identity.py

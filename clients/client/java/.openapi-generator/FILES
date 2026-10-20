@@ -283,6 +283,7 @@ docs/ProjectServicePermission.md
 docs/ProjectServiceTalos.md
 docs/ProjectServices.md
 docs/Provider.md
+docs/PublicMemberInvite.md
 docs/QuotaUsage.md
 docs/RFC6749ErrorJson.md
 docs/RateLimitPolicy.md
@@ -730,6 +731,7 @@ src/main/java/sh/ory/model/ProjectServicePermission.java
 src/main/java/sh/ory/model/ProjectServiceTalos.java
 src/main/java/sh/ory/model/ProjectServices.java
 src/main/java/sh/ory/model/Provider.java
+src/main/java/sh/ory/model/PublicMemberInvite.java
 src/main/java/sh/ory/model/QuotaUsage.java
 src/main/java/sh/ory/model/RFC6749ErrorJson.java
 src/main/java/sh/ory/model/RateLimitPolicy.java
@@ -1143,6 +1145,7 @@ src/test/java/sh/ory/model/ProjectServiceTalosTest.java
 src/test/java/sh/ory/model/ProjectServicesTest.java
 src/test/java/sh/ory/model/ProjectTest.java
 src/test/java/sh/ory/model/ProviderTest.java
+src/test/java/sh/ory/model/PublicMemberInviteTest.java
 src/test/java/sh/ory/model/QuotaUsageTest.java
 src/test/java/sh/ory/model/RFC6749ErrorJsonTest.java
 src/test/java/sh/ory/model/RateLimitPolicyTest.java

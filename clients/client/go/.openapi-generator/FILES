@@ -297,6 +297,7 @@ docs/ProjectServicePermission.md
 docs/ProjectServiceTalos.md
 docs/ProjectServices.md
 docs/Provider.md
+docs/PublicMemberInvite.md
 docs/QuotaUsage.md
 docs/RFC6749ErrorJson.md
 docs/RateLimitPolicy.md
@@ -701,6 +702,7 @@ model_project_service_permission.go
 model_project_service_talos.go
 model_project_services.go
 model_provider.go
+model_public_member_invite.go
 model_quota_usage.go
 model_rate_limit_policy.go
 model_recovery_code_for_identity.go

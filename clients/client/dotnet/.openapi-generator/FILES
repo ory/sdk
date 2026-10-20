@@ -284,6 +284,7 @@ docs/models/ClientProjectServicePermission.md
 docs/models/ClientProjectServiceTalos.md
 docs/models/ClientProjectServices.md
 docs/models/ClientProvider.md
+docs/models/ClientPublicMemberInvite.md
 docs/models/ClientQuotaUsage.md
 docs/models/ClientRFC6749ErrorJson.md
 docs/models/ClientRateLimitPolicy.md
@@ -701,6 +702,7 @@ src/Ory.Client.Test/Model/ClientProjectServiceTalosTests.cs
 src/Ory.Client.Test/Model/ClientProjectServicesTests.cs
 src/Ory.Client.Test/Model/ClientProjectTests.cs
 src/Ory.Client.Test/Model/ClientProviderTests.cs
+src/Ory.Client.Test/Model/ClientPublicMemberInviteTests.cs
 src/Ory.Client.Test/Model/ClientQuotaUsageTests.cs
 src/Ory.Client.Test/Model/ClientRFC6749ErrorJsonTests.cs
 src/Ory.Client.Test/Model/ClientRateLimitPolicyTests.cs
@@ -1142,6 +1144,7 @@ src/Ory.Client/Model/ClientProjectServicePermission.cs
 src/Ory.Client/Model/ClientProjectServiceTalos.cs
 src/Ory.Client/Model/ClientProjectServices.cs
 src/Ory.Client/Model/ClientProvider.cs
+src/Ory.Client/Model/ClientPublicMemberInvite.cs
 src/Ory.Client/Model/ClientQuotaUsage.cs
 src/Ory.Client/Model/ClientRFC6749ErrorJson.cs
 src/Ory.Client/Model/ClientRateLimitPolicy.cs

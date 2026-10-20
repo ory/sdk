@@ -286,6 +286,7 @@ lib/ory/model/project_service_permission.ex
 lib/ory/model/project_service_talos.ex
 lib/ory/model/project_services.ex
 lib/ory/model/provider.ex
+lib/ory/model/public_member_invite.ex
 lib/ory/model/quota_usage.ex
 lib/ory/model/rate_limit_policy.ex
 lib/ory/model/recovery_code_for_identity.ex

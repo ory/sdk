@@ -284,6 +284,7 @@ docs/Model/ProjectServicePermission.md
 docs/Model/ProjectServiceTalos.md
 docs/Model/ProjectServices.md
 docs/Model/Provider.md
+docs/Model/PublicMemberInvite.md
 docs/Model/QuotaUsage.md
 docs/Model/RFC6749ErrorJson.md
 docs/Model/RateLimitPolicy.md
@@ -703,6 +704,7 @@ lib/Model/ProjectServicePermission.php
 lib/Model/ProjectServiceTalos.php
 lib/Model/ProjectServices.php
 lib/Model/Provider.php
+lib/Model/PublicMemberInvite.php
 lib/Model/QuotaUsage.php
 lib/Model/RFC6749ErrorJson.php
 lib/Model/RateLimitPolicy.php
@@ -1118,6 +1120,7 @@ test/Model/ProjectServiceTalosTest.php
 test/Model/ProjectServicesTest.php
 test/Model/ProjectTest.php
 test/Model/ProviderTest.php
+test/Model/PublicMemberInviteTest.php
 test/Model/QuotaUsageTest.php
 test/Model/RFC6749ErrorJsonTest.php
 test/Model/RateLimitPolicyTest.php

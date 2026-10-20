@@ -265,6 +265,7 @@ export * from './ProjectServicePermission';
 export * from './ProjectServiceTalos';
 export * from './ProjectServices';
 export * from './Provider';
+export * from './PublicMemberInvite';
 export * from './QuotaUsage';
 export * from './RFC6749ErrorJson';
 export * from './RateLimitPolicy';
