@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.84
+  version: v1.22.85
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -3118,8 +3118,9 @@ paths:
         return a 200 OK response with the session in the body. Returning the session as part of the response
         will be deprecated in the future and should not be relied upon.
 
-        This endpoint ignores consecutive requests to extend the same session and returns a 404 error in those
-        scenarios. This endpoint also returns 404 errors if the session does not exist.
+        This endpoint returns a success response without extending the session if the session is not yet due for an
+        extension, including when a consecutive or concurrent request already extended it. This endpoint returns a 404
+        error if the session does not exist.
 
         Retrieve the session ID from the `/sessions/whoami` endpoint / `toSession` SDK method.
       operationId: extendSession
@@ -14100,6 +14101,8 @@ components:
             $ref: "#/components/schemas/LineItemV1"
           readOnly: true
           type: array
+        manual:
+          type: boolean
         plan:
           description: "The plan that this invoice is based on, in the format \"Name@version\"\
             ."

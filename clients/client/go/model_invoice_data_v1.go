@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.84
+API version: v1.22.85
 Contact: support@ory.sh
 */
 
@@ -28,6 +28,7 @@ type InvoiceDataV1 struct {
 	Deleted *bool `json:"deleted,omitempty"`
 	// The items that are part of this invoice.
 	Items []LineItemV1 `json:"items"`
+	Manual *bool `json:"manual,omitempty"`
 	// The plan that this invoice is based on, in the format \"Name@version\".
 	Plan *string `json:"plan,omitempty"`
 	StripeInvoiceItem *string `json:"stripe_invoice_item,omitempty"`
@@ -170,6 +171,38 @@ func (o *InvoiceDataV1) GetItemsOk() ([]LineItemV1, bool) {
 // SetItems sets field value
 func (o *InvoiceDataV1) SetItems(v []LineItemV1) {
 	o.Items = v
+}
+
+// GetManual returns the Manual field value if set, zero value otherwise.
+func (o *InvoiceDataV1) GetManual() bool {
+	if o == nil || IsNil(o.Manual) {
+		var ret bool
+		return ret
+	}
+	return *o.Manual
+}
+
+// GetManualOk returns a tuple with the Manual field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InvoiceDataV1) GetManualOk() (*bool, bool) {
+	if o == nil || IsNil(o.Manual) {
+		return nil, false
+	}
+	return o.Manual, true
+}
+
+// HasManual returns a boolean if a field has been set.
+func (o *InvoiceDataV1) HasManual() bool {
+	if o != nil && !IsNil(o.Manual) {
+		return true
+	}
+
+	return false
+}
+
+// SetManual gets a reference to the given bool and assigns it to the Manual field.
+func (o *InvoiceDataV1) SetManual(v bool) {
+	o.Manual = &v
 }
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
@@ -428,6 +461,9 @@ func (o InvoiceDataV1) ToMap() (map[string]interface{}, error) {
 		toSerialize["deleted"] = o.Deleted
 	}
 	toSerialize["items"] = o.Items
+	if !IsNil(o.Manual) {
+		toSerialize["manual"] = o.Manual
+	}
 	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
@@ -499,6 +535,7 @@ func (o *InvoiceDataV1) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "currency")
 		delete(additionalProperties, "deleted")
 		delete(additionalProperties, "items")
+		delete(additionalProperties, "manual")
 		delete(additionalProperties, "plan")
 		delete(additionalProperties, "stripe_invoice_item")
 		delete(additionalProperties, "stripe_invoice_status")

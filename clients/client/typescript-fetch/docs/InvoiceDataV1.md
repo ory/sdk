@@ -10,6 +10,7 @@ Name | Type
 `currency` | string
 `deleted` | boolean
 `items` | [Array&lt;LineItemV1&gt;](LineItemV1.md)
+`manual` | boolean
 `plan` | string
 `stripe_invoice_item` | string
 `stripe_invoice_status` | string
@@ -30,6 +31,7 @@ const example = {
   "currency": null,
   "deleted": null,
   "items": null,
+  "manual": null,
   "plan": null,
   "stripe_invoice_item": null,
   "stripe_invoice_status": null,

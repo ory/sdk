@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Title** | **string** | The title of the invoice. | [readonly] 
 **TotalInCent** | **long** |  | 
 **Deleted** | **bool** | Deleted is true if the invoice has been soft-deleted. | [optional] [readonly] 
+**Manual** | **bool** |  | [optional] 
 **Plan** | **string** | The plan that this invoice is based on, in the format \&quot;Name@version\&quot;. | [optional] [readonly] 
 **StripeInvoiceItem** | **string** |  | [optional] 
 **StripeInvoiceStatus** | **string** | The status of the invoice, one of &#x60;draft&#x60;, &#x60;open&#x60;, &#x60;paid&#x60;, &#x60;uncollectible&#x60;, or &#x60;void&#x60;. [Learn more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview) | [optional] 

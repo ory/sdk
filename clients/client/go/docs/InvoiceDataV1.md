@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Currency** | **string** | The currency of the invoice. | [readonly] 
 **Deleted** | Pointer to **bool** | Deleted is true if the invoice has been soft-deleted. | [optional] [readonly] 
 **Items** | [**[]LineItemV1**](LineItemV1.md) | The items that are part of this invoice. | [readonly] 
+**Manual** | Pointer to **bool** |  | [optional] 
 **Plan** | Pointer to **string** | The plan that this invoice is based on, in the format \&quot;Name@version\&quot;. | [optional] [readonly] 
 **StripeInvoiceItem** | Pointer to **string** |  | [optional] 
 **StripeInvoiceStatus** | Pointer to **string** | The status of the invoice, one of &#x60;draft&#x60;, &#x60;open&#x60;, &#x60;paid&#x60;, &#x60;uncollectible&#x60;, or &#x60;void&#x60;. [Learn more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview) | [optional] 
@@ -120,6 +121,31 @@ and a boolean to check if the value has been set.
 
 SetItems sets Items field to given value.
 
+
+### GetManual
+
+`func (o *InvoiceDataV1) GetManual() bool`
+
+GetManual returns the Manual field if non-nil, zero value otherwise.
+
+### GetManualOk
+
+`func (o *InvoiceDataV1) GetManualOk() (*bool, bool)`
+
+GetManualOk returns a tuple with the Manual field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManual
+
+`func (o *InvoiceDataV1) SetManual(v bool)`
+
+SetManual sets Manual field to given value.
+
+### HasManual
+
+`func (o *InvoiceDataV1) HasManual() bool`
+
+HasManual returns a boolean if a field has been set.
 
 ### GetPlan
 

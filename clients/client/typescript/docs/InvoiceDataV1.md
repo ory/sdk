@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **currency** | **string** | The currency of the invoice. | [readonly] [default to undefined]
 **deleted** | **boolean** | Deleted is true if the invoice has been soft-deleted. | [optional] [readonly] [default to undefined]
 **items** | [**Array&lt;LineItemV1&gt;**](LineItemV1.md) | The items that are part of this invoice. | [readonly] [default to undefined]
+**manual** | **boolean** |  | [optional] [default to undefined]
 **plan** | **string** | The plan that this invoice is based on, in the format \&quot;Name@version\&quot;. | [optional] [readonly] [default to undefined]
 **stripe_invoice_item** | **string** |  | [optional] [default to undefined]
 **stripe_invoice_status** | **string** | The status of the invoice, one of &#x60;draft&#x60;, &#x60;open&#x60;, &#x60;paid&#x60;, &#x60;uncollectible&#x60;, or &#x60;void&#x60;. [Learn more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview) | [optional] [default to undefined]
@@ -28,6 +29,7 @@ const instance: InvoiceDataV1 = {
     currency,
     deleted,
     items,
+    manual,
     plan,
     stripe_invoice_item,
     stripe_invoice_status,
