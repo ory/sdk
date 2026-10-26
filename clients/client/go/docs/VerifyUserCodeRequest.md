@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **DeviceCodeRequestId** | Pointer to **string** |  | [optional] 
 **RequestUrl** | Pointer to **string** | RequestURL is the original Device Authorization URL requested. | [optional] 
 **RequestedAccessTokenAudience** | Pointer to **[]string** | RequestedAudience contains the access token audience as requested by the OAuth 2.0 Client. | [optional] 
+**RequestedResources** | Pointer to **[]string** | RequestedResources contains RFC 8707 resource indicators for this device authorization request. | [optional] 
 **RequestedScope** | Pointer to **[]string** | RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client. | [optional] 
 
 ## Methods
@@ -128,6 +129,31 @@ SetRequestedAccessTokenAudience sets RequestedAccessTokenAudience field to given
 `func (o *VerifyUserCodeRequest) HasRequestedAccessTokenAudience() bool`
 
 HasRequestedAccessTokenAudience returns a boolean if a field has been set.
+
+### GetRequestedResources
+
+`func (o *VerifyUserCodeRequest) GetRequestedResources() []string`
+
+GetRequestedResources returns the RequestedResources field if non-nil, zero value otherwise.
+
+### GetRequestedResourcesOk
+
+`func (o *VerifyUserCodeRequest) GetRequestedResourcesOk() (*[]string, bool)`
+
+GetRequestedResourcesOk returns a tuple with the RequestedResources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestedResources
+
+`func (o *VerifyUserCodeRequest) SetRequestedResources(v []string)`
+
+SetRequestedResources sets RequestedResources field to given value.
+
+### HasRequestedResources
+
+`func (o *VerifyUserCodeRequest) HasRequestedResources() bool`
+
+HasRequestedResources returns a boolean if a field has been set.
 
 ### GetRequestedScope
 

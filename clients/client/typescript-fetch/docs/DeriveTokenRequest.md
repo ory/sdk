@@ -7,6 +7,7 @@
 Name | Type
 ------------ | -------------
 `algorithm` | [TokenAlgorithm](TokenAlgorithm.md)
+`audiences` | Array&lt;string&gt;
 `credential` | string
 `custom_claims` | object
 `scopes` | Array&lt;string&gt;
@@ -20,6 +21,7 @@ import type { DeriveTokenRequest } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "algorithm": null,
+  "audiences": null,
   "credential": null,
   "custom_claims": null,
   "scopes": null,

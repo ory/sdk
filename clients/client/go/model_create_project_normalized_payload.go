@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.86
+API version: v1.22.87
 Contact: support@ory.sh
 */
 
@@ -100,6 +100,8 @@ type CreateProjectNormalizedPayload struct {
 	HydraOauth2TokenHook *string `json:"hydra_oauth2_token_hook,omitempty"`
 	// Sets a per-project Access Token, Refresh Token, and Authorization Code prefix. The literal \"%s\" is replaced at issuance time with the token kind: \"at\" (access token), \"rt\" (refresh token), or \"ac\" (authorization code). For example, \"acme_%s_\" yields \"acme_at_…\", \"acme_rt_…\", and \"acme_ac_…\".  Must be a fmt.Sprintf template with exactly one \"%s\" substitution. The rendered prefix may contain only ASCII letters, digits, and underscores — no other \"%\" directives (\"%d\", \"%%\", positional or width-flagged verbs), no hyphens, dots, slashes, whitespace, quotes, or non-ASCII characters. Leave empty to keep the default \"ory_%s_\" prefix.  This is an Enterprise feature.  This governs the \"oauth2.token_prefix\" setting.
 	HydraOauth2TokenPrefix *string `json:"hydra_oauth2_token_prefix,omitempty"`
+	// The audience allow list assigned during OpenID Connect Dynamic Client Registration when audience is omitted or null. An explicit audience, including an empty list, takes precedence. Defaults apply only during registration.  This governs the \"oidc.dynamic_client_registration.default_audience\" setting.
+	HydraOidcDynamicClientRegistrationDefaultAudience []string `json:"hydra_oidc_dynamic_client_registration_default_audience,omitempty"`
 	// The OpenID Connect Dynamic Client Registration specification has no concept of whitelisting OAuth 2.0 Scope. If you want to expose Dynamic Client Registration, you should set the default scope enabled for newly registered clients. Keep in mind that users can overwrite this default by setting the \"scope\" key in the registration payload, effectively disabling the concept of whitelisted scopes.  This governs the \"oidc.dynamic_client_registration.default_scope\" setting.
 	HydraOidcDynamicClientRegistrationDefaultScope []string `json:"hydra_oidc_dynamic_client_registration_default_scope,omitempty"`
 	// Configures OpenID Connect Dynamic Client Registration.  This governs the \"oidc.dynamic_client_registration.enabled\" setting.
@@ -1936,6 +1938,38 @@ func (o *CreateProjectNormalizedPayload) HasHydraOauth2TokenPrefix() bool {
 // SetHydraOauth2TokenPrefix gets a reference to the given string and assigns it to the HydraOauth2TokenPrefix field.
 func (o *CreateProjectNormalizedPayload) SetHydraOauth2TokenPrefix(v string) {
 	o.HydraOauth2TokenPrefix = &v
+}
+
+// GetHydraOidcDynamicClientRegistrationDefaultAudience returns the HydraOidcDynamicClientRegistrationDefaultAudience field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetHydraOidcDynamicClientRegistrationDefaultAudience() []string {
+	if o == nil || IsNil(o.HydraOidcDynamicClientRegistrationDefaultAudience) {
+		var ret []string
+		return ret
+	}
+	return o.HydraOidcDynamicClientRegistrationDefaultAudience
+}
+
+// GetHydraOidcDynamicClientRegistrationDefaultAudienceOk returns a tuple with the HydraOidcDynamicClientRegistrationDefaultAudience field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetHydraOidcDynamicClientRegistrationDefaultAudienceOk() ([]string, bool) {
+	if o == nil || IsNil(o.HydraOidcDynamicClientRegistrationDefaultAudience) {
+		return nil, false
+	}
+	return o.HydraOidcDynamicClientRegistrationDefaultAudience, true
+}
+
+// HasHydraOidcDynamicClientRegistrationDefaultAudience returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasHydraOidcDynamicClientRegistrationDefaultAudience() bool {
+	if o != nil && !IsNil(o.HydraOidcDynamicClientRegistrationDefaultAudience) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOidcDynamicClientRegistrationDefaultAudience gets a reference to the given []string and assigns it to the HydraOidcDynamicClientRegistrationDefaultAudience field.
+func (o *CreateProjectNormalizedPayload) SetHydraOidcDynamicClientRegistrationDefaultAudience(v []string) {
+	o.HydraOidcDynamicClientRegistrationDefaultAudience = v
 }
 
 // GetHydraOidcDynamicClientRegistrationDefaultScope returns the HydraOidcDynamicClientRegistrationDefaultScope field value if set, zero value otherwise.
@@ -10631,6 +10665,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.HydraOauth2TokenPrefix) {
 		toSerialize["hydra_oauth2_token_prefix"] = o.HydraOauth2TokenPrefix
 	}
+	if !IsNil(o.HydraOidcDynamicClientRegistrationDefaultAudience) {
+		toSerialize["hydra_oidc_dynamic_client_registration_default_audience"] = o.HydraOidcDynamicClientRegistrationDefaultAudience
+	}
 	if !IsNil(o.HydraOidcDynamicClientRegistrationDefaultScope) {
 		toSerialize["hydra_oidc_dynamic_client_registration_default_scope"] = o.HydraOidcDynamicClientRegistrationDefaultScope
 	}
@@ -11516,6 +11553,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "hydra_oauth2_refresh_token_hook")
 		delete(additionalProperties, "hydra_oauth2_token_hook")
 		delete(additionalProperties, "hydra_oauth2_token_prefix")
+		delete(additionalProperties, "hydra_oidc_dynamic_client_registration_default_audience")
 		delete(additionalProperties, "hydra_oidc_dynamic_client_registration_default_scope")
 		delete(additionalProperties, "hydra_oidc_dynamic_client_registration_enabled")
 		delete(additionalProperties, "hydra_oidc_subject_identifiers_pairwise_salt")

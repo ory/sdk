@@ -9,6 +9,7 @@ defmodule Ory.Model.DeriveTokenRequest do
   @derive Jason.Encoder
   defstruct [
     :algorithm,
+    :audiences,
     :credential,
     :custom_claims,
     :scopes,
@@ -17,6 +18,7 @@ defmodule Ory.Model.DeriveTokenRequest do
 
   @type t :: %__MODULE__{
     :algorithm => Ory.Model.TokenAlgorithm.t | nil,
+    :audiences => [String.t] | nil,
     :credential => String.t | nil,
     :custom_claims => map() | nil,
     :scopes => [String.t] | nil,

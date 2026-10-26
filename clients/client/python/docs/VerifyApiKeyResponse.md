@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **actor_id** | **str** |  | [optional] 
+**audiences** | **List[str]** | audiences lists the recipients the verified credential names. Empty for credentials that name none, including every API key. | [optional] 
 **error_code** | [**VerificationErrorCode**](VerificationErrorCode.md) |  | [optional] [default to VerificationErrorCode.VERIFICATION_ERROR_UNSPECIFIED]
 **error_message** | **str** |  | [optional] 
 **expire_time** | **datetime** |  | [optional] 

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.86
+API version: v1.22.87
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,8 @@ var _ MappedNullable = &Token{}
 
 // Token struct for Token
 type Token struct {
+	// audiences lists the recipients the token names (the \"aud\" claim). Empty when the token names none, in which case verification accepts it only for callers that state no audience expectation.
+	Audiences []string `json:"audiences,omitempty"`
 	// claims is the decoded token payload. For JWT, this contains the standard claims (iss, sub, aud, exp, iat, jti) plus custom claims. For macaroons, this lists the caveats. The shape is backend-dependent and should be treated as opaque diagnostic data.
 	Claims map[string]interface{} `json:"claims,omitempty"`
 	ExpireTime *time.Time `json:"expire_time,omitempty"`
@@ -47,6 +49,38 @@ func NewToken() *Token {
 func NewTokenWithDefaults() *Token {
 	this := Token{}
 	return &this
+}
+
+// GetAudiences returns the Audiences field value if set, zero value otherwise.
+func (o *Token) GetAudiences() []string {
+	if o == nil || IsNil(o.Audiences) {
+		var ret []string
+		return ret
+	}
+	return o.Audiences
+}
+
+// GetAudiencesOk returns a tuple with the Audiences field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Token) GetAudiencesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Audiences) {
+		return nil, false
+	}
+	return o.Audiences, true
+}
+
+// HasAudiences returns a boolean if a field has been set.
+func (o *Token) HasAudiences() bool {
+	if o != nil && !IsNil(o.Audiences) {
+		return true
+	}
+
+	return false
+}
+
+// SetAudiences gets a reference to the given []string and assigns it to the Audiences field.
+func (o *Token) SetAudiences(v []string) {
+	o.Audiences = v
 }
 
 // GetClaims returns the Claims field value if set, zero value otherwise.
@@ -187,6 +221,9 @@ func (o Token) MarshalJSON() ([]byte, error) {
 
 func (o Token) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Audiences) {
+		toSerialize["audiences"] = o.Audiences
+	}
 	if !IsNil(o.Claims) {
 		toSerialize["claims"] = o.Claims
 	}
@@ -221,6 +258,7 @@ func (o *Token) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "audiences")
 		delete(additionalProperties, "claims")
 		delete(additionalProperties, "expire_time")
 		delete(additionalProperties, "scopes")

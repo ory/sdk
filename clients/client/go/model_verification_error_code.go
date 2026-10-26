@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.86
+API version: v1.22.87
 Contact: support@ory.sh
 */
 
@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// VerificationErrorCode - VERIFICATION_ERROR_UNSPECIFIED: No error (key is valid)  - VERIFICATION_ERROR_INVALID_FORMAT: Credential format is invalid  - VERIFICATION_ERROR_EXPIRED: Credential has expired  - VERIFICATION_ERROR_REVOKED: Credential has been revoked  - VERIFICATION_ERROR_NOT_FOUND: Credential not found in database  - VERIFICATION_ERROR_SIGNATURE_INVALID: Cryptographic signature verification failed  - VERIFICATION_ERROR_INTERNAL: Internal server error during verification  - VERIFICATION_ERROR_IP_NOT_ALLOWED: Request IP is not in the key's allowed CIDR ranges  - VERIFICATION_ERROR_RATE_LIMITED: Rate limit quota exhausted (commercial-only)
+// VerificationErrorCode - VERIFICATION_ERROR_UNSPECIFIED: No error (key is valid)  - VERIFICATION_ERROR_INVALID_FORMAT: Credential format is invalid  - VERIFICATION_ERROR_EXPIRED: Credential has expired  - VERIFICATION_ERROR_REVOKED: Credential has been revoked  - VERIFICATION_ERROR_NOT_FOUND: Credential not found in database  - VERIFICATION_ERROR_SIGNATURE_INVALID: Cryptographic signature verification failed  - VERIFICATION_ERROR_INTERNAL: Internal server error during verification  - VERIFICATION_ERROR_IP_NOT_ALLOWED: Request IP is not in the key's allowed CIDR ranges  - VERIFICATION_ERROR_RATE_LIMITED: Rate limit quota exhausted (commercial-only)  - VERIFICATION_ERROR_AUDIENCE_MISMATCH: Credential audience does not match the caller's expectation
 type VerificationErrorCode string
 
 // List of VerificationErrorCode
@@ -30,6 +30,7 @@ const (
 	VERIFICATIONERRORCODE_VERIFICATION_ERROR_INTERNAL VerificationErrorCode = "VERIFICATION_ERROR_INTERNAL"
 	VERIFICATIONERRORCODE_VERIFICATION_ERROR_IP_NOT_ALLOWED VerificationErrorCode = "VERIFICATION_ERROR_IP_NOT_ALLOWED"
 	VERIFICATIONERRORCODE_VERIFICATION_ERROR_RATE_LIMITED VerificationErrorCode = "VERIFICATION_ERROR_RATE_LIMITED"
+	VERIFICATIONERRORCODE_VERIFICATION_ERROR_AUDIENCE_MISMATCH VerificationErrorCode = "VERIFICATION_ERROR_AUDIENCE_MISMATCH"
 )
 
 // All allowed values of VerificationErrorCode enum
@@ -43,6 +44,7 @@ var AllowedVerificationErrorCodeEnumValues = []VerificationErrorCode{
 	"VERIFICATION_ERROR_INTERNAL",
 	"VERIFICATION_ERROR_IP_NOT_ALLOWED",
 	"VERIFICATION_ERROR_RATE_LIMITED",
+	"VERIFICATION_ERROR_AUDIENCE_MISMATCH",
 }
 
 func (v *VerificationErrorCode) UnmarshalJSON(src []byte) error {

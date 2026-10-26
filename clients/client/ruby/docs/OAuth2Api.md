@@ -1318,7 +1318,7 @@ end
 
 ## o_auth2_authorize
 
-> <ErrorOAuth2> o_auth2_authorize
+> <ErrorOAuth2> o_auth2_authorize(opts)
 
 OAuth 2.0 Authorize Endpoint
 
@@ -1331,10 +1331,13 @@ require 'time'
 require 'ory-client'
 
 api_instance = OryClient::OAuth2Api.new
+opts = {
+  resource: ['inner_example'] # Array<String> | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client's audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter.
+}
 
 begin
   # OAuth 2.0 Authorize Endpoint
-  result = api_instance.o_auth2_authorize
+  result = api_instance.o_auth2_authorize(opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling OAuth2Api->o_auth2_authorize: #{e}"
@@ -1345,12 +1348,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<ErrorOAuth2>, Integer, Hash)> o_auth2_authorize_with_http_info
+> <Array(<ErrorOAuth2>, Integer, Hash)> o_auth2_authorize_with_http_info(opts)
 
 ```ruby
 begin
   # OAuth 2.0 Authorize Endpoint
-  data, status_code, headers = api_instance.o_auth2_authorize_with_http_info
+  data, status_code, headers = api_instance.o_auth2_authorize_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <ErrorOAuth2>
@@ -1361,7 +1364,9 @@ end
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **resource** | [**Array&lt;String&gt;**](String.md) | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client&#39;s audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. | [optional] |
 
 ### Return type
 
@@ -1467,7 +1472,8 @@ opts = {
   client_id: 'client_id_example', # String | 
   code: 'code_example', # String | 
   redirect_uri: 'redirect_uri_example', # String | 
-  refresh_token: 'refresh_token_example' # String | 
+  refresh_token: 'refresh_token_example', # String | 
+  resource: ['inner_example'] # Array<String> | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint.
 }
 
 begin
@@ -1506,6 +1512,7 @@ end
 | **code** | **String** |  | [optional] |
 | **redirect_uri** | **String** |  | [optional] |
 | **refresh_token** | **String** |  | [optional] |
+| **resource** | [**Array&lt;String&gt;**](String.md) | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The &#x60;@ory/client&#x60; TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. | [optional] |
 
 ### Return type
 

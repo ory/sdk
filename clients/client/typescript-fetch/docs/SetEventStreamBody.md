@@ -1,12 +1,15 @@
 
 # SetEventStreamBody
 
-All fields are optional. Omitted fields keep their current value, so a caller can change only the status (pause/resume) without resubmitting the destination. This matters because secrets such as the password in an HTTPS endpoint URL are redacted in API responses, and resubmitting the redacted value would overwrite the real one.
+All fields are optional. Omitted fields keep their current value, so a caller can change only the status (pause/resume) without resubmitting the destination. API responses mask secrets; a masked value sent back is rejected, so omit the field to keep the stored value.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
+`https_auth_header_name` | string
+`https_auth_secret` | string
+`https_auth_type` | string
 `https_endpoint` | string
 `role_arn` | string
 `status` | string
@@ -20,6 +23,9 @@ import type { SetEventStreamBody } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "https_auth_header_name": null,
+  "https_auth_secret": null,
+  "https_auth_type": null,
   "https_endpoint": null,
   "role_arn": null,
   "status": null,

@@ -2,7 +2,7 @@
 
 # IPRestriction
 
-IPRestriction defines IP-based access controls for an API key. When allowed_cidrs is non-empty, only requests from IPs matching at least one CIDR range are permitted. Empty allowed_cidrs means no IP restriction (all IPs allowed). IP restrictions apply to root API key and imported key verification only; derived tokens (JWT/macaroon) are stateless and not subject to IP checks.
+IPRestriction defines IP-based access controls for an API key. When allowed_cidrs is non-empty, only requests from IPs matching at least one CIDR range are permitted. Empty allowed_cidrs means no IP restriction (all IPs allowed). IP restrictions apply to issued and imported key verification. Derived tokens (JWT/macaroon) carry the parent key's allowlist and are checked against it.
 
 ## Properties
 

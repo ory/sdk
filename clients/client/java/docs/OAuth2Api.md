@@ -1290,7 +1290,7 @@ public class Example {
 
 <a id="oAuth2Authorize"></a>
 # **oAuth2Authorize**
-> ErrorOAuth2 oAuth2Authorize()
+> ErrorOAuth2 oAuth2Authorize(resource)
 
 OAuth 2.0 Authorize Endpoint
 
@@ -1311,8 +1311,9 @@ public class Example {
     defaultClient.setBasePath("https://playground.projects.oryapis.com");
 
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
+    List<String> resource = Arrays.asList(); // List<String> | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client's audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter.
     try {
-      ErrorOAuth2 result = apiInstance.oAuth2Authorize();
+      ErrorOAuth2 result = apiInstance.oAuth2Authorize(resource);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#oAuth2Authorize");
@@ -1326,7 +1327,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **resource** | [**List&lt;String&gt;**](String.md)| Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client&#39;s audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. | [optional] |
 
 ### Return type
 
@@ -1408,7 +1412,7 @@ No authorization required
 
 <a id="oauth2TokenExchange"></a>
 # **oauth2TokenExchange**
-> OAuth2TokenExchange oauth2TokenExchange(grantType, clientId, code, redirectUri, refreshToken)
+> OAuth2TokenExchange oauth2TokenExchange(grantType, clientId, code, redirectUri, refreshToken, resource)
 
 The OAuth 2.0 Token Endpoint
 
@@ -1444,8 +1448,9 @@ public class Example {
     String code = "code_example"; // String | 
     String redirectUri = "redirectUri_example"; // String | 
     String refreshToken = "refreshToken_example"; // String | 
+    List<String> resource = Arrays.asList(); // List<String> | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint.
     try {
-      OAuth2TokenExchange result = apiInstance.oauth2TokenExchange(grantType, clientId, code, redirectUri, refreshToken);
+      OAuth2TokenExchange result = apiInstance.oauth2TokenExchange(grantType, clientId, code, redirectUri, refreshToken, resource);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#oauth2TokenExchange");
@@ -1467,6 +1472,7 @@ public class Example {
 | **code** | **String**|  | [optional] |
 | **redirectUri** | **String**|  | [optional] |
 | **refreshToken** | **String**|  | [optional] |
+| **resource** | [**List&lt;String&gt;**](String.md)| Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The &#x60;@ory/client&#x60; TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. | [optional] |
 
 ### Return type
 

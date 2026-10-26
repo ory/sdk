@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ConsentRequest** | Pointer to [**OAuth2ConsentRequest**](OAuth2ConsentRequest.md) |  | [optional] 
 **ConsentRequestId** | Pointer to **string** | ConsentRequestID is the identifier of the consent request that initiated this consent session. | [optional] 
 **Context** | Pointer to **map[string]interface{}** |  | [optional] 
-**GrantAccessTokenAudience** | Pointer to **[]string** | Audience Granted  GrantedAudience sets the audience the user authorized the client to use. Should be a subset of &#x60;requested_access_token_audience&#x60;. | [optional] 
+**GrantAccessTokenAudience** | Pointer to **[]string** | Audience Granted  GrantedAudience contains the access token audiences approved by the user, including resource URIs. | [optional] 
 **GrantScope** | Pointer to **[]string** | Scope Granted  GrantScope sets the scope the user authorized the client to use. Should be a subset of &#x60;requested_scope&#x60;. | [optional] 
 **HandledAt** | Pointer to **time.Time** |  | [optional] 
 **Remember** | Pointer to **bool** | Remember Consent  Remember, if set to true, tells ORY Hydra to remember this consent authorization and reuse it if the same client asks the same user for the same, or a subset of, scope. | [optional] 

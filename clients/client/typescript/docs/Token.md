@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**audiences** | **Array&lt;string&gt;** | audiences lists the recipients the token names (the \&quot;aud\&quot; claim). Empty when the token names none, in which case verification accepts it only for callers that state no audience expectation. | [optional] [default to undefined]
 **claims** | **object** | claims is the decoded token payload. For JWT, this contains the standard claims (iss, sub, aud, exp, iat, jti) plus custom claims. For macaroons, this lists the caveats. The shape is backend-dependent and should be treated as opaque diagnostic data. | [optional] [default to undefined]
 **expire_time** | **string** |  | [optional] [default to undefined]
 **scopes** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
@@ -16,6 +17,7 @@ Name | Type | Description | Notes
 import { Token } from '@ory/client';
 
 const instance: Token = {
+    audiences,
     claims,
     expire_time,
     scopes,

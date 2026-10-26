@@ -1548,7 +1548,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **o_auth2_authorize**
-> ErrorOAuth2 o_auth2_authorize()
+> ErrorOAuth2 o_auth2_authorize(resource=resource)
 
 OAuth 2.0 Authorize Endpoint
 
@@ -1578,10 +1578,11 @@ configuration = ory_client.Configuration(
 with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.OAuth2Api(api_client)
+    resource = ['resource_example'] # List[str] | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client's audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. (optional)
 
     try:
         # OAuth 2.0 Authorize Endpoint
-        api_response = api_instance.o_auth2_authorize()
+        api_response = api_instance.o_auth2_authorize(resource=resource)
         print("The response of OAuth2Api->o_auth2_authorize:\n")
         pprint(api_response)
     except Exception as e:
@@ -1592,7 +1593,10 @@ with ory_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource** | [**List[str]**](str.md)| Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client&#39;s audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. | [optional] 
 
 ### Return type
 
@@ -1685,7 +1689,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **oauth2_token_exchange**
-> OAuth2TokenExchange oauth2_token_exchange(grant_type, client_id=client_id, code=code, redirect_uri=redirect_uri, refresh_token=refresh_token)
+> OAuth2TokenExchange oauth2_token_exchange(grant_type, client_id=client_id, code=code, redirect_uri=redirect_uri, refresh_token=refresh_token, resource=resource)
 
 The OAuth 2.0 Token Endpoint
 
@@ -1734,10 +1738,11 @@ with ory_client.ApiClient(configuration) as api_client:
     code = 'code_example' # str |  (optional)
     redirect_uri = 'redirect_uri_example' # str |  (optional)
     refresh_token = 'refresh_token_example' # str |  (optional)
+    resource = ['resource_example'] # List[str] | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. (optional)
 
     try:
         # The OAuth 2.0 Token Endpoint
-        api_response = api_instance.oauth2_token_exchange(grant_type, client_id=client_id, code=code, redirect_uri=redirect_uri, refresh_token=refresh_token)
+        api_response = api_instance.oauth2_token_exchange(grant_type, client_id=client_id, code=code, redirect_uri=redirect_uri, refresh_token=refresh_token, resource=resource)
         print("The response of OAuth2Api->oauth2_token_exchange:\n")
         pprint(api_response)
     except Exception as e:
@@ -1756,6 +1761,7 @@ Name | Type | Description  | Notes
  **code** | **str**|  | [optional] 
  **redirect_uri** | **str**|  | [optional] 
  **refresh_token** | **str**|  | [optional] 
+ **resource** | [**List[str]**](str.md)| Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The &#x60;@ory/client&#x60; TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. | [optional] 
 
 ### Return type
 

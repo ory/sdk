@@ -10,6 +10,9 @@ defmodule Ory.Model.EventStream do
   defstruct [
     :created_at,
     :http_protocol_major_version,
+    :https_auth_header_name,
+    :https_auth_secret,
+    :https_auth_type,
     :https_endpoint,
     :id,
     :role_arn,
@@ -22,6 +25,9 @@ defmodule Ory.Model.EventStream do
   @type t :: %__MODULE__{
     :created_at => DateTime.t | nil,
     :http_protocol_major_version => integer() | nil,
+    :https_auth_header_name => String.t | nil,
+    :https_auth_secret => String.t | nil,
+    :https_auth_type => String.t | nil,
     :https_endpoint => String.t | nil,
     :id => String.t | nil,
     :role_arn => String.t | nil,

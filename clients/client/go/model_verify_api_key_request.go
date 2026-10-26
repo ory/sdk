@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.86
+API version: v1.22.87
 Contact: support@ory.sh
 */
 
@@ -20,7 +20,10 @@ var _ MappedNullable = &VerifyApiKeyRequest{}
 
 // VerifyApiKeyRequest struct for VerifyApiKeyRequest
 type VerifyApiKeyRequest struct {
+	// credential is the API key or derived token to verify (any format: issued key, imported key, JWT, or macaroon). At most 8,192 bytes of UTF-8, counted over the complete encoded credential.
 	Credential *string `json:"credential,omitempty"`
+	// expected_audiences lists the recipients the caller accepts. Verification succeeds only when the credential names at least one of them, matched exactly and case-sensitively; a credential that names no audience fails. Omit the field to accept only credentials that name no audience: a credential bound to one is rejected unless the caller identifies itself as a recipient (RFC 7519 section 4.1.3).
+	ExpectedAudiences []string `json:"expected_audiences,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -75,6 +78,38 @@ func (o *VerifyApiKeyRequest) SetCredential(v string) {
 	o.Credential = &v
 }
 
+// GetExpectedAudiences returns the ExpectedAudiences field value if set, zero value otherwise.
+func (o *VerifyApiKeyRequest) GetExpectedAudiences() []string {
+	if o == nil || IsNil(o.ExpectedAudiences) {
+		var ret []string
+		return ret
+	}
+	return o.ExpectedAudiences
+}
+
+// GetExpectedAudiencesOk returns a tuple with the ExpectedAudiences field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VerifyApiKeyRequest) GetExpectedAudiencesOk() ([]string, bool) {
+	if o == nil || IsNil(o.ExpectedAudiences) {
+		return nil, false
+	}
+	return o.ExpectedAudiences, true
+}
+
+// HasExpectedAudiences returns a boolean if a field has been set.
+func (o *VerifyApiKeyRequest) HasExpectedAudiences() bool {
+	if o != nil && !IsNil(o.ExpectedAudiences) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpectedAudiences gets a reference to the given []string and assigns it to the ExpectedAudiences field.
+func (o *VerifyApiKeyRequest) SetExpectedAudiences(v []string) {
+	o.ExpectedAudiences = v
+}
+
 func (o VerifyApiKeyRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -87,6 +122,9 @@ func (o VerifyApiKeyRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Credential) {
 		toSerialize["credential"] = o.Credential
+	}
+	if !IsNil(o.ExpectedAudiences) {
+		toSerialize["expected_audiences"] = o.ExpectedAudiences
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -111,6 +149,7 @@ func (o *VerifyApiKeyRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "credential")
+		delete(additionalProperties, "expected_audiences")
 		o.AdditionalProperties = additionalProperties
 	}
 

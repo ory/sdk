@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**actorId** | **String** |  |  [optional] |
+|**audiences** | **List&lt;String&gt;** | audiences lists the recipients the verified credential names. Empty for credentials that name none, including every API key. |  [optional] |
 |**errorCode** | **VerificationErrorCode** |  |  [optional] |
 |**errorMessage** | **String** |  |  [optional] |
 |**expireTime** | **OffsetDateTime** |  |  [optional] |

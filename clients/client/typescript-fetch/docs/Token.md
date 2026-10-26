@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`audiences` | Array&lt;string&gt;
 `claims` | object
 `expire_time` | Date
 `scopes` | Array&lt;string&gt;
@@ -18,6 +19,7 @@ import type { Token } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "audiences": null,
   "claims": null,
   "expire_time": null,
   "scopes": null,

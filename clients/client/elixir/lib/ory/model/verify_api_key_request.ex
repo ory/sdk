@@ -8,11 +8,13 @@ defmodule Ory.Model.VerifyApiKeyRequest do
 
   @derive Jason.Encoder
   defstruct [
-    :credential
+    :credential,
+    :expected_audiences
   ]
 
   @type t :: %__MODULE__{
-    :credential => String.t | nil
+    :credential => String.t | nil,
+    :expected_audiences => [String.t] | nil
   }
 
   def decode(value) do

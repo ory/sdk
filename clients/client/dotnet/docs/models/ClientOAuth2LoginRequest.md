@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Subject** | **string** | Subject is the user ID of the end-user that authenticated. Now, that end user needs to grant or deny the scope requested by the OAuth 2.0 client. If this value is set and &#x60;skip&#x60; is true, you MUST include this subject type when accepting the login request, or the request will fail. | 
 **OidcContext** | [**ClientOAuth2ConsentRequestOpenIDConnectContext**](ClientOAuth2ConsentRequestOpenIDConnectContext.md) |  | [optional] 
 **RequestedAccessTokenAudience** | **List&lt;string&gt;** | RequestedAudience contains the access token audience as requested by the OAuth 2.0 Client. | [optional] 
+**RequestedResources** | **List&lt;string&gt;** | RequestedResources contains RFC 8707 resource indicators. | [optional] 
 **RequestedScope** | **List&lt;string&gt;** | RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client. | [optional] 
 **SessionId** | **string** | SessionID is the login session ID. If the user-agent reuses a login session (via cookie / remember flag) this ID will remain the same. If the user-agent did not have an existing authentication session (e.g. remember is false) this will be a new random value. This value is used as the \&quot;sid\&quot; parameter in the ID Token and in OIDC Front-/Back- channel logout. It&#39;s value can generally be used to associate consecutive login requests by a certain user. | [optional] 
 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ActorId** | Pointer to **string** |  | [optional] 
+**Audiences** | Pointer to **[]string** | audiences lists the recipients the verified credential names. Empty for credentials that name none, including every API key. | [optional] 
 **ErrorCode** | Pointer to [**VerificationErrorCode**](VerificationErrorCode.md) |  | [optional] [default to VERIFICATIONERRORCODE_VERIFICATION_ERROR_UNSPECIFIED]
 **ErrorMessage** | Pointer to **string** |  | [optional] 
 **ExpireTime** | Pointer to **time.Time** |  | [optional] 
@@ -62,6 +63,31 @@ SetActorId sets ActorId field to given value.
 `func (o *VerifyApiKeyResponse) HasActorId() bool`
 
 HasActorId returns a boolean if a field has been set.
+
+### GetAudiences
+
+`func (o *VerifyApiKeyResponse) GetAudiences() []string`
+
+GetAudiences returns the Audiences field if non-nil, zero value otherwise.
+
+### GetAudiencesOk
+
+`func (o *VerifyApiKeyResponse) GetAudiencesOk() (*[]string, bool)`
+
+GetAudiencesOk returns a tuple with the Audiences field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAudiences
+
+`func (o *VerifyApiKeyResponse) SetAudiences(v []string)`
+
+SetAudiences sets Audiences field to given value.
+
+### HasAudiences
+
+`func (o *VerifyApiKeyResponse) HasAudiences() bool`
+
+HasAudiences returns a boolean if a field has been set.
 
 ### GetErrorCode
 

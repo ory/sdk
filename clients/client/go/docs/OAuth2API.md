@@ -1268,7 +1268,7 @@ Name | Type | Description  | Notes
 
 ## OAuth2Authorize
 
-> ErrorOAuth2 OAuth2Authorize(ctx).Execute()
+> ErrorOAuth2 OAuth2Authorize(ctx).Resource(resource).Execute()
 
 OAuth 2.0 Authorize Endpoint
 
@@ -1287,10 +1287,11 @@ import (
 )
 
 func main() {
+	resource := []string{"Inner_example"} // []string | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client's audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OAuth2API.OAuth2Authorize(context.Background()).Execute()
+	resp, r, err := apiClient.OAuth2API.OAuth2Authorize(context.Background()).Resource(resource).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.OAuth2Authorize``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1302,12 +1303,16 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiOAuth2AuthorizeRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resource** | **[]string** | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client&#39;s audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. | 
 
 ### Return type
 
@@ -1390,7 +1395,7 @@ No authorization required
 
 ## Oauth2TokenExchange
 
-> OAuth2TokenExchange Oauth2TokenExchange(ctx).GrantType(grantType).ClientId(clientId).Code(code).RedirectUri(redirectUri).RefreshToken(refreshToken).Execute()
+> OAuth2TokenExchange Oauth2TokenExchange(ctx).GrantType(grantType).ClientId(clientId).Code(code).RedirectUri(redirectUri).RefreshToken(refreshToken).Resource(resource).Execute()
 
 The OAuth 2.0 Token Endpoint
 
@@ -1414,10 +1419,11 @@ func main() {
 	code := "code_example" // string |  (optional)
 	redirectUri := "redirectUri_example" // string |  (optional)
 	refreshToken := "refreshToken_example" // string |  (optional)
+	resource := []string{"Inner_example"} // []string | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OAuth2API.Oauth2TokenExchange(context.Background()).GrantType(grantType).ClientId(clientId).Code(code).RedirectUri(redirectUri).RefreshToken(refreshToken).Execute()
+	resp, r, err := apiClient.OAuth2API.Oauth2TokenExchange(context.Background()).GrantType(grantType).ClientId(clientId).Code(code).RedirectUri(redirectUri).RefreshToken(refreshToken).Resource(resource).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.Oauth2TokenExchange``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1443,6 +1449,7 @@ Name | Type | Description  | Notes
  **code** | **string** |  | 
  **redirectUri** | **string** |  | 
  **refreshToken** | **string** |  | 
+ **resource** | **[]string** | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The &#x60;@ory/client&#x60; TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. | 
 
 ### Return type
 

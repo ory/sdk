@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ActorId** | **string** |  | [optional] 
 **IpRestriction** | [**ClientIPRestriction**](ClientIPRestriction.md) |  | [optional] 
-**Metadata** | **Object** | metadata is a free-form JSON object for caller-defined attributes (e.g., source, environment, tags). Values may be strings, numbers, booleans, arrays, objects, or null. Total serialized size is capped at 4KB. AIP-148 metadata field. | [optional] 
+**Metadata** | **Object** | metadata is a free-form JSON object for caller-defined attributes (e.g., source, environment, tags). Values may be strings, numbers, booleans, arrays, objects, or null. Total serialized size is capped at 64 KiB. AIP-148 metadata field. | [optional] 
 **Name** | **string** |  | [optional] 
 **RateLimitPolicy** | [**ClientRateLimitPolicy**](ClientRateLimitPolicy.md) |  | [optional] 
 **RequestId** | **string** |  | [optional] 

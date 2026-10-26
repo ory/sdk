@@ -7,6 +7,7 @@
 Name | Type
 ------------ | -------------
 `credential` | string
+`expected_audiences` | Array&lt;string&gt;
 
 ## Example
 
@@ -16,6 +17,7 @@ import type { VerifyApiKeyRequest } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "credential": null,
+  "expected_audiences": null,
 } satisfies VerifyApiKeyRequest
 
 console.log(example)

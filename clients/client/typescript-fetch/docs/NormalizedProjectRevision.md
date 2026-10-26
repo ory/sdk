@@ -43,6 +43,7 @@ Name | Type
 `hydra_oauth2_refresh_token_hook` | string
 `hydra_oauth2_token_hook` | string
 `hydra_oauth2_token_prefix` | string
+`hydra_oidc_dynamic_client_registration_default_audience` | Array&lt;string&gt;
 `hydra_oidc_dynamic_client_registration_default_scope` | Array&lt;string&gt;
 `hydra_oidc_dynamic_client_registration_enabled` | boolean
 `hydra_oidc_subject_identifiers_pairwise_salt` | string
@@ -355,6 +356,7 @@ const example = {
   "hydra_oauth2_refresh_token_hook": null,
   "hydra_oauth2_token_hook": null,
   "hydra_oauth2_token_prefix": null,
+  "hydra_oidc_dynamic_client_registration_default_audience": null,
   "hydra_oidc_dynamic_client_registration_default_scope": null,
   "hydra_oidc_dynamic_client_registration_enabled": null,
   "hydra_oidc_subject_identifiers_pairwise_salt": null,

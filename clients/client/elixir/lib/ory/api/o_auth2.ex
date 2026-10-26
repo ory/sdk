@@ -648,6 +648,7 @@ defmodule Ory.Api.OAuth2 do
 
   - `connection` (Ory.Connection): Connection to server
   - `opts` (keyword): Optional parameters
+    - `:resource` ([String.t]): Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client's audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter.
 
   ### Returns
 
@@ -655,11 +656,16 @@ defmodule Ory.Api.OAuth2 do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec o_auth2_authorize(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, Ory.Model.ErrorOAuth2.t} | {:error, Tesla.Env.t}
-  def o_auth2_authorize(connection, _opts \\ []) do
+  def o_auth2_authorize(connection, opts \\ []) do
+    optional_params = %{
+      :resource => :query
+    }
+
     request =
       %{}
       |> method(:get)
       |> url("/oauth2/auth")
+      |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
     connection
@@ -714,6 +720,7 @@ defmodule Ory.Api.OAuth2 do
     - `:code` (String.t): 
     - `:redirect_uri` (String.t): 
     - `:refresh_token` (String.t): 
+    - `:resource` ([String.t]): Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint.
 
   ### Returns
 
@@ -726,7 +733,8 @@ defmodule Ory.Api.OAuth2 do
       :client_id => :form,
       :code => :form,
       :redirect_uri => :form,
-      :refresh_token => :form
+      :refresh_token => :form,
+      :resource => :form
     }
 
     request =

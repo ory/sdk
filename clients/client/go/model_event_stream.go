@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.86
+API version: v1.22.87
 Contact: support@ory.sh
 */
 
@@ -24,7 +24,13 @@ type EventStream struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The major version of the HTTP protocol the endpoint negotiated during the most recent successful connectivity test: 1 for HTTP/1.x, 2 for HTTP/2. Null when the endpoint has not been verified, for example on a paused stream or a non-HTTPS stream.
 	HttpProtocolMajorVersion NullableInt64 `json:"http_protocol_major_version,omitempty"`
-	// The HTTPS endpoint, if type is HTTPS.  Returned with its userinfo and query values masked. Omit it on write to keep the stored endpoint; sending the masked form back overwrites it.
+	// The header that carries the API key, if https_auth_type is api_key.
+	HttpsAuthHeaderName *string `json:"https_auth_header_name,omitempty"`
+	// The API key or bearer token, if https_auth_type is api_key or bearer.  Returned masked. Omit it on write to keep the stored secret.
+	HttpsAuthSecret *string `json:"https_auth_secret,omitempty"`
+	// How deliveries to the HTTPS endpoint authenticate, if type is HTTPS. `api_key` sends the secret in the header named by https_auth_header_name. `bearer` sends it as `Authorization: Bearer`. Credentials in the endpoint URL are sent as Basic auth either way.
+	HttpsAuthType *string `json:"https_auth_type,omitempty"`
+	// The HTTPS endpoint, if type is HTTPS.  Returned with its userinfo and query values masked. Omit it on write to keep the stored endpoint.
 	HttpsEndpoint NullableString `json:"https_endpoint,omitempty"`
 	Id *string `json:"id,omitempty"`
 	// The AWS IAM role ARN assumed when publishing to the SNS topic, if type is SNS.
@@ -129,6 +135,102 @@ func (o *EventStream) SetHttpProtocolMajorVersionNil() {
 // UnsetHttpProtocolMajorVersion ensures that no value is present for HttpProtocolMajorVersion, not even an explicit nil
 func (o *EventStream) UnsetHttpProtocolMajorVersion() {
 	o.HttpProtocolMajorVersion.Unset()
+}
+
+// GetHttpsAuthHeaderName returns the HttpsAuthHeaderName field value if set, zero value otherwise.
+func (o *EventStream) GetHttpsAuthHeaderName() string {
+	if o == nil || IsNil(o.HttpsAuthHeaderName) {
+		var ret string
+		return ret
+	}
+	return *o.HttpsAuthHeaderName
+}
+
+// GetHttpsAuthHeaderNameOk returns a tuple with the HttpsAuthHeaderName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventStream) GetHttpsAuthHeaderNameOk() (*string, bool) {
+	if o == nil || IsNil(o.HttpsAuthHeaderName) {
+		return nil, false
+	}
+	return o.HttpsAuthHeaderName, true
+}
+
+// HasHttpsAuthHeaderName returns a boolean if a field has been set.
+func (o *EventStream) HasHttpsAuthHeaderName() bool {
+	if o != nil && !IsNil(o.HttpsAuthHeaderName) {
+		return true
+	}
+
+	return false
+}
+
+// SetHttpsAuthHeaderName gets a reference to the given string and assigns it to the HttpsAuthHeaderName field.
+func (o *EventStream) SetHttpsAuthHeaderName(v string) {
+	o.HttpsAuthHeaderName = &v
+}
+
+// GetHttpsAuthSecret returns the HttpsAuthSecret field value if set, zero value otherwise.
+func (o *EventStream) GetHttpsAuthSecret() string {
+	if o == nil || IsNil(o.HttpsAuthSecret) {
+		var ret string
+		return ret
+	}
+	return *o.HttpsAuthSecret
+}
+
+// GetHttpsAuthSecretOk returns a tuple with the HttpsAuthSecret field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventStream) GetHttpsAuthSecretOk() (*string, bool) {
+	if o == nil || IsNil(o.HttpsAuthSecret) {
+		return nil, false
+	}
+	return o.HttpsAuthSecret, true
+}
+
+// HasHttpsAuthSecret returns a boolean if a field has been set.
+func (o *EventStream) HasHttpsAuthSecret() bool {
+	if o != nil && !IsNil(o.HttpsAuthSecret) {
+		return true
+	}
+
+	return false
+}
+
+// SetHttpsAuthSecret gets a reference to the given string and assigns it to the HttpsAuthSecret field.
+func (o *EventStream) SetHttpsAuthSecret(v string) {
+	o.HttpsAuthSecret = &v
+}
+
+// GetHttpsAuthType returns the HttpsAuthType field value if set, zero value otherwise.
+func (o *EventStream) GetHttpsAuthType() string {
+	if o == nil || IsNil(o.HttpsAuthType) {
+		var ret string
+		return ret
+	}
+	return *o.HttpsAuthType
+}
+
+// GetHttpsAuthTypeOk returns a tuple with the HttpsAuthType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventStream) GetHttpsAuthTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.HttpsAuthType) {
+		return nil, false
+	}
+	return o.HttpsAuthType, true
+}
+
+// HasHttpsAuthType returns a boolean if a field has been set.
+func (o *EventStream) HasHttpsAuthType() bool {
+	if o != nil && !IsNil(o.HttpsAuthType) {
+		return true
+	}
+
+	return false
+}
+
+// SetHttpsAuthType gets a reference to the given string and assigns it to the HttpsAuthType field.
+func (o *EventStream) SetHttpsAuthType(v string) {
+	o.HttpsAuthType = &v
 }
 
 // GetHttpsEndpoint returns the HttpsEndpoint field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -381,6 +483,15 @@ func (o EventStream) ToMap() (map[string]interface{}, error) {
 	if o.HttpProtocolMajorVersion.IsSet() {
 		toSerialize["http_protocol_major_version"] = o.HttpProtocolMajorVersion.Get()
 	}
+	if !IsNil(o.HttpsAuthHeaderName) {
+		toSerialize["https_auth_header_name"] = o.HttpsAuthHeaderName
+	}
+	if !IsNil(o.HttpsAuthSecret) {
+		toSerialize["https_auth_secret"] = o.HttpsAuthSecret
+	}
+	if !IsNil(o.HttpsAuthType) {
+		toSerialize["https_auth_type"] = o.HttpsAuthType
+	}
 	if o.HttpsEndpoint.IsSet() {
 		toSerialize["https_endpoint"] = o.HttpsEndpoint.Get()
 	}
@@ -426,6 +537,9 @@ func (o *EventStream) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "http_protocol_major_version")
+		delete(additionalProperties, "https_auth_header_name")
+		delete(additionalProperties, "https_auth_secret")
+		delete(additionalProperties, "https_auth_type")
 		delete(additionalProperties, "https_endpoint")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "role_arn")

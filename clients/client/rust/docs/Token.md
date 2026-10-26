@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**audiences** | Option<**Vec<String>**> | audiences lists the recipients the token names (the \"aud\" claim). Empty when the token names none, in which case verification accepts it only for callers that state no audience expectation. | [optional]
 **claims** | Option<[**serde_json::Value**](.md)> | claims is the decoded token payload. For JWT, this contains the standard claims (iss, sub, aud, exp, iat, jti) plus custom claims. For macaroons, this lists the caveats. The shape is backend-dependent and should be treated as opaque diagnostic data. | [optional]
 **expire_time** | Option<**String**> |  | [optional]
 **scopes** | Option<**Vec<String>**> |  | [optional]

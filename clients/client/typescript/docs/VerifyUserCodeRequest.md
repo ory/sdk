@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **device_code_request_id** | **string** |  | [optional] [default to undefined]
 **request_url** | **string** | RequestURL is the original Device Authorization URL requested. | [optional] [default to undefined]
 **requested_access_token_audience** | **Array&lt;string&gt;** | RequestedAudience contains the access token audience as requested by the OAuth 2.0 Client. | [optional] [default to undefined]
+**requested_resources** | **Array&lt;string&gt;** | RequestedResources contains RFC 8707 resource indicators for this device authorization request. | [optional] [default to undefined]
 **requested_scope** | **Array&lt;string&gt;** | RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client. | [optional] [default to undefined]
 
 ## Example
@@ -21,6 +22,7 @@ const instance: VerifyUserCodeRequest = {
     device_code_request_id,
     request_url,
     requested_access_token_audience,
+    requested_resources,
     requested_scope,
 };
 ```

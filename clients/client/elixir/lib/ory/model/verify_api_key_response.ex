@@ -9,6 +9,7 @@ defmodule Ory.Model.VerifyApiKeyResponse do
   @derive Jason.Encoder
   defstruct [
     :actor_id,
+    :audiences,
     :error_code,
     :error_message,
     :expire_time,
@@ -26,6 +27,7 @@ defmodule Ory.Model.VerifyApiKeyResponse do
 
   @type t :: %__MODULE__{
     :actor_id => String.t | nil,
+    :audiences => [String.t] | nil,
     :error_code => Ory.Model.VerificationErrorCode.t | nil,
     :error_message => String.t | nil,
     :expire_time => DateTime.t | nil,

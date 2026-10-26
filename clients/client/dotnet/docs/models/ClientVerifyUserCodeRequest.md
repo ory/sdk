@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **DeviceCodeRequestId** | **string** |  | [optional] 
 **RequestUrl** | **string** | RequestURL is the original Device Authorization URL requested. | [optional] 
 **RequestedAccessTokenAudience** | **List&lt;string&gt;** | RequestedAudience contains the access token audience as requested by the OAuth 2.0 Client. | [optional] 
+**RequestedResources** | **List&lt;string&gt;** | RequestedResources contains RFC 8707 resource indicators for this device authorization request. | [optional] 
 **RequestedScope** | **List&lt;string&gt;** | RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

@@ -3,11 +3,14 @@
 
 defmodule Ory.Model.SetEventStreamBody do
   @moduledoc """
-  All fields are optional. Omitted fields keep their current value, so a caller can change only the status (pause/resume) without resubmitting the destination. This matters because secrets such as the password in an HTTPS endpoint URL are redacted in API responses, and resubmitting the redacted value would overwrite the real one.
+  All fields are optional. Omitted fields keep their current value, so a caller can change only the status (pause/resume) without resubmitting the destination. API responses mask secrets; a masked value sent back is rejected, so omit the field to keep the stored value.
   """
 
   @derive Jason.Encoder
   defstruct [
+    :https_auth_header_name,
+    :https_auth_secret,
+    :https_auth_type,
     :https_endpoint,
     :role_arn,
     :status,
@@ -16,6 +19,9 @@ defmodule Ory.Model.SetEventStreamBody do
   ]
 
   @type t :: %__MODULE__{
+    :https_auth_header_name => String.t | nil,
+    :https_auth_secret => String.t | nil,
+    :https_auth_type => String.t | nil,
     :https_endpoint => String.t | nil,
     :role_arn => String.t | nil,
     :status => String.t | nil,

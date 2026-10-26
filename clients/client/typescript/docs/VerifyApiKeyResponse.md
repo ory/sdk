@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **actor_id** | **string** |  | [optional] [default to undefined]
+**audiences** | **Array&lt;string&gt;** | audiences lists the recipients the verified credential names. Empty for credentials that name none, including every API key. | [optional] [default to undefined]
 **error_code** | [**VerificationErrorCode**](VerificationErrorCode.md) |  | [optional] [default to undefined]
 **error_message** | **string** |  | [optional] [default to undefined]
 **expire_time** | **string** |  | [optional] [default to undefined]
@@ -27,6 +28,7 @@ import { VerifyApiKeyResponse } from '@ory/client';
 
 const instance: VerifyApiKeyResponse = {
     actor_id,
+    audiences,
     error_code,
     error_message,
     expire_time,

@@ -1145,7 +1145,7 @@ try {
 ## `oAuth2Authorize()`
 
 ```php
-oAuth2Authorize(): \Ory\Client\Model\ErrorOAuth2
+oAuth2Authorize($resource): \Ory\Client\Model\ErrorOAuth2
 ```
 
 OAuth 2.0 Authorize Endpoint
@@ -1165,9 +1165,10 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$resource = array('resource_example'); // string[] | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client's audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter.
 
 try {
-    $result = $apiInstance->oAuth2Authorize();
+    $result = $apiInstance->oAuth2Authorize($resource);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->oAuth2Authorize: ', $e->getMessage(), PHP_EOL;
@@ -1176,7 +1177,9 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **resource** | [**string[]**](../Model/string.md)| Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client&#39;s audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. | [optional] |
 
 ### Return type
 
@@ -1251,7 +1254,7 @@ No authorization required
 ## `oauth2TokenExchange()`
 
 ```php
-oauth2TokenExchange($grantType, $clientId, $code, $redirectUri, $refreshToken): \Ory\Client\Model\OAuth2TokenExchange
+oauth2TokenExchange($grantType, $clientId, $code, $redirectUri, $refreshToken, $resource): \Ory\Client\Model\OAuth2TokenExchange
 ```
 
 The OAuth 2.0 Token Endpoint
@@ -1285,9 +1288,10 @@ $clientId = 'clientId_example'; // string
 $code = 'code_example'; // string
 $redirectUri = 'redirectUri_example'; // string
 $refreshToken = 'refreshToken_example'; // string
+$resource = array('resource_example'); // string[] | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint.
 
 try {
-    $result = $apiInstance->oauth2TokenExchange($grantType, $clientId, $code, $redirectUri, $refreshToken);
+    $result = $apiInstance->oauth2TokenExchange($grantType, $clientId, $code, $redirectUri, $refreshToken, $resource);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->oauth2TokenExchange: ', $e->getMessage(), PHP_EOL;
@@ -1303,6 +1307,7 @@ try {
 | **code** | **string**|  | [optional] |
 | **redirectUri** | **string**|  | [optional] |
 | **refreshToken** | **string**|  | [optional] |
+| **resource** | [**string[]**](../Model/string.md)| Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The &#x60;@ory/client&#x60; TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. | [optional] |
 
 ### Return type
 

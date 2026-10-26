@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **OidcContext** | Pointer to [**OAuth2ConsentRequestOpenIDConnectContext**](OAuth2ConsentRequestOpenIDConnectContext.md) |  | [optional] 
 **RequestUrl** | Pointer to **string** | RequestURL is the original OAuth 2.0 Authorization URL requested by the OAuth 2.0 client. It is the URL which initiates the OAuth 2.0 Authorization Code or OAuth 2.0 Implicit flow. This URL is typically not needed, but might come in handy if you want to deal with additional request parameters. | [optional] 
 **RequestedAccessTokenAudience** | Pointer to **[]string** | RequestedAudience contains the access token audience as requested by the OAuth 2.0 Client. | [optional] 
+**RequestedResources** | Pointer to **[]string** | RequestedResources contains the RFC 8707 resource indicators requested by the OAuth 2.0 Client. Approve a resource by including its exact URI in grant_access_token_audience. | [optional] 
 **RequestedScope** | Pointer to **[]string** | RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client. | [optional] 
 **Skip** | Pointer to **bool** | Skip, if true, implies that the client has requested the same scopes from the same user previously. If true, you must not ask the user to grant the requested scopes. You must however either allow or deny the consent request using the usual API call. | [optional] 
 **Subject** | Pointer to **string** | Subject is the user ID of the end-user that authenticated. Now, that end user needs to grant or deny the scope requested by the OAuth 2.0 client. | [optional] 
@@ -307,6 +308,31 @@ SetRequestedAccessTokenAudience sets RequestedAccessTokenAudience field to given
 `func (o *OAuth2ConsentRequest) HasRequestedAccessTokenAudience() bool`
 
 HasRequestedAccessTokenAudience returns a boolean if a field has been set.
+
+### GetRequestedResources
+
+`func (o *OAuth2ConsentRequest) GetRequestedResources() []string`
+
+GetRequestedResources returns the RequestedResources field if non-nil, zero value otherwise.
+
+### GetRequestedResourcesOk
+
+`func (o *OAuth2ConsentRequest) GetRequestedResourcesOk() (*[]string, bool)`
+
+GetRequestedResourcesOk returns a tuple with the RequestedResources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestedResources
+
+`func (o *OAuth2ConsentRequest) SetRequestedResources(v []string)`
+
+SetRequestedResources sets RequestedResources field to given value.
+
+### HasRequestedResources
+
+`func (o *OAuth2ConsentRequest) HasRequestedResources() bool`
+
+HasRequestedResources returns a boolean if a field has been set.
 
 ### GetRequestedScope
 

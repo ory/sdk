@@ -4,7 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HttpsEndpoint** | Pointer to **string** | The HTTPS endpoint URL to send events to. When omitted, the current value is kept. | [optional] 
+**HttpsAuthHeaderName** | Pointer to **string** | The header that carries the API key. When omitted, the current value is kept. | [optional] 
+**HttpsAuthSecret** | Pointer to **string** | The API key or bearer token. When omitted, the current secret is kept as long as the scheme and the endpoint stay the same. The masked value from an API response is rejected. | [optional] 
+**HttpsAuthType** | Pointer to **string** | How deliveries to the HTTPS endpoint authenticate. When omitted, the current scheme and its secret are kept. &#x60;none&#x60; removes the header name and secret. Changing the scheme requires a new secret. | [optional] 
+**HttpsEndpoint** | Pointer to **string** | The HTTPS endpoint URL to send events to. When omitted, the current value is kept. Changing it requires https_auth_secret in the same update when deliveries authenticate with an API key or bearer token. | [optional] 
 **RoleArn** | Pointer to **string** | The AWS IAM role ARN to assume when publishing to the SNS topic. When omitted, the current value is kept. | [optional] 
 **Status** | Pointer to **string** | The desired status of the event stream. When omitted, the current status is kept. | [optional] 
 **TopicArn** | Pointer to **string** | The AWS SNS topic ARN. When omitted, the current value is kept. | [optional] 
@@ -28,6 +31,81 @@ will change when the set of required properties is changed
 NewSetEventStreamBodyWithDefaults instantiates a new SetEventStreamBody object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetHttpsAuthHeaderName
+
+`func (o *SetEventStreamBody) GetHttpsAuthHeaderName() string`
+
+GetHttpsAuthHeaderName returns the HttpsAuthHeaderName field if non-nil, zero value otherwise.
+
+### GetHttpsAuthHeaderNameOk
+
+`func (o *SetEventStreamBody) GetHttpsAuthHeaderNameOk() (*string, bool)`
+
+GetHttpsAuthHeaderNameOk returns a tuple with the HttpsAuthHeaderName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttpsAuthHeaderName
+
+`func (o *SetEventStreamBody) SetHttpsAuthHeaderName(v string)`
+
+SetHttpsAuthHeaderName sets HttpsAuthHeaderName field to given value.
+
+### HasHttpsAuthHeaderName
+
+`func (o *SetEventStreamBody) HasHttpsAuthHeaderName() bool`
+
+HasHttpsAuthHeaderName returns a boolean if a field has been set.
+
+### GetHttpsAuthSecret
+
+`func (o *SetEventStreamBody) GetHttpsAuthSecret() string`
+
+GetHttpsAuthSecret returns the HttpsAuthSecret field if non-nil, zero value otherwise.
+
+### GetHttpsAuthSecretOk
+
+`func (o *SetEventStreamBody) GetHttpsAuthSecretOk() (*string, bool)`
+
+GetHttpsAuthSecretOk returns a tuple with the HttpsAuthSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttpsAuthSecret
+
+`func (o *SetEventStreamBody) SetHttpsAuthSecret(v string)`
+
+SetHttpsAuthSecret sets HttpsAuthSecret field to given value.
+
+### HasHttpsAuthSecret
+
+`func (o *SetEventStreamBody) HasHttpsAuthSecret() bool`
+
+HasHttpsAuthSecret returns a boolean if a field has been set.
+
+### GetHttpsAuthType
+
+`func (o *SetEventStreamBody) GetHttpsAuthType() string`
+
+GetHttpsAuthType returns the HttpsAuthType field if non-nil, zero value otherwise.
+
+### GetHttpsAuthTypeOk
+
+`func (o *SetEventStreamBody) GetHttpsAuthTypeOk() (*string, bool)`
+
+GetHttpsAuthTypeOk returns a tuple with the HttpsAuthType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttpsAuthType
+
+`func (o *SetEventStreamBody) SetHttpsAuthType(v string)`
+
+SetHttpsAuthType sets HttpsAuthType field to given value.
+
+### HasHttpsAuthType
+
+`func (o *SetEventStreamBody) HasHttpsAuthType() bool`
+
+HasHttpsAuthType returns a boolean if a field has been set.
 
 ### GetHttpsEndpoint
 

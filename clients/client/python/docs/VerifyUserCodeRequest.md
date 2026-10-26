@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **device_code_request_id** | **str** |  | [optional] 
 **request_url** | **str** | RequestURL is the original Device Authorization URL requested. | [optional] 
 **requested_access_token_audience** | **List[str]** | RequestedAudience contains the access token audience as requested by the OAuth 2.0 Client. | [optional] 
+**requested_resources** | **List[str]** | RequestedResources contains RFC 8707 resource indicators for this device authorization request. | [optional] 
 **requested_scope** | **List[str]** | RequestedScope contains the OAuth 2.0 Scope requested by the OAuth 2.0 Client. | [optional] 
 
 ## Example

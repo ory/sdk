@@ -9,6 +9,9 @@ Name | Type
 ------------ | -------------
 `created_at` | Date
 `http_protocol_major_version` | number
+`https_auth_header_name` | string
+`https_auth_secret` | string
+`https_auth_type` | string
 `https_endpoint` | string
 `id` | string
 `role_arn` | string
@@ -26,6 +29,9 @@ import type { EventStream } from '@ory/client-fetch'
 const example = {
   "created_at": null,
   "http_protocol_major_version": null,
+  "https_auth_header_name": null,
+  "https_auth_secret": null,
+  "https_auth_type": null,
   "https_endpoint": null,
   "id": null,
   "role_arn": null,

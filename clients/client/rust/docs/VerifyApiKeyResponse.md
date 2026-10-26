@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **actor_id** | Option<**String**> |  | [optional]
+**audiences** | Option<**Vec<String>**> | audiences lists the recipients the verified credential names. Empty for credentials that name none, including every API key. | [optional]
 **error_code** | Option<[**models::VerificationErrorCode**](VerificationErrorCode.md)> |  | [optional]
 **error_message** | Option<**String**> |  | [optional]
 **expire_time** | Option<**String**> |  | [optional]

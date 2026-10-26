@@ -1034,11 +1034,18 @@ import {
 const configuration = new Configuration();
 const apiInstance = new OAuth2Api(configuration);
 
-const { status, data } = await apiInstance.oAuth2Authorize();
+let resource: Array<string>; //Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client\'s audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. (optional) (default to undefined)
+
+const { status, data } = await apiInstance.oAuth2Authorize(
+    resource
+);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **resource** | **Array&lt;string&gt;** | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client\&#39;s audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -1129,13 +1136,15 @@ let clientId: string; // (optional) (default to undefined)
 let code: string; // (optional) (default to undefined)
 let redirectUri: string; // (optional) (default to undefined)
 let refreshToken: string; // (optional) (default to undefined)
+let resource: Array<string>; //Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.oauth2TokenExchange(
     grantType,
     clientId,
     code,
     redirectUri,
-    refreshToken
+    refreshToken,
+    resource
 );
 ```
 
@@ -1148,6 +1157,7 @@ const { status, data } = await apiInstance.oauth2TokenExchange(
 | **code** | [**string**] |  | (optional) defaults to undefined|
 | **redirectUri** | [**string**] |  | (optional) defaults to undefined|
 | **refreshToken** | [**string**] |  | (optional) defaults to undefined|
+| **resource** | **Array&lt;string&gt;** | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The &#x60;@ory/client&#x60; TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. | (optional) defaults to undefined|
 
 
 ### Return type

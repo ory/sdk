@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.86
+API version: v1.22.87
 Contact: support@ory.sh
 */
 
@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -2922,6 +2923,13 @@ func (a *OAuth2APIService) ListTrustedOAuth2JwtGrantIssuersExecute(r OAuth2APILi
 type OAuth2APIOAuth2AuthorizeRequest struct {
 	ctx context.Context
 	ApiService OAuth2API
+	resource *[]string
+}
+
+// Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client&#39;s audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter.
+func (r OAuth2APIOAuth2AuthorizeRequest) Resource(resource []string) OAuth2APIOAuth2AuthorizeRequest {
+	r.resource = &resource
+	return r
 }
 
 func (r OAuth2APIOAuth2AuthorizeRequest) Execute() (*ErrorOAuth2, *http.Response, error) {
@@ -2968,6 +2976,17 @@ func (a *OAuth2APIService) OAuth2AuthorizeExecute(r OAuth2APIOAuth2AuthorizeRequ
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.resource != nil {
+		t := *r.resource
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "resource", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "resource", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3148,6 +3167,7 @@ type OAuth2APIOauth2TokenExchangeRequest struct {
 	code *string
 	redirectUri *string
 	refreshToken *string
+	resource *[]string
 }
 
 func (r OAuth2APIOauth2TokenExchangeRequest) GrantType(grantType string) OAuth2APIOauth2TokenExchangeRequest {
@@ -3172,6 +3192,12 @@ func (r OAuth2APIOauth2TokenExchangeRequest) RedirectUri(redirectUri string) OAu
 
 func (r OAuth2APIOauth2TokenExchangeRequest) RefreshToken(refreshToken string) OAuth2APIOauth2TokenExchangeRequest {
 	r.refreshToken = &refreshToken
+	return r
+}
+
+// Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The &#x60;@ory/client&#x60; TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint.
+func (r OAuth2APIOauth2TokenExchangeRequest) Resource(resource []string) OAuth2APIOauth2TokenExchangeRequest {
+	r.resource = &resource
 	return r
 }
 
@@ -3251,6 +3277,9 @@ func (a *OAuth2APIService) Oauth2TokenExchangeExecute(r OAuth2APIOauth2TokenExch
 	}
 	if r.refreshToken != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "refresh_token", r.refreshToken, "", "")
+	}
+	if r.resource != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "resource", r.resource, "form", "multi")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **actorId** | **string** |  | [optional]
+**audiences** | **string[]** | audiences lists the recipients the verified credential names. Empty for credentials that name none, including every API key. | [optional]
 **errorCode** | [**\Ory\Client\Model\VerificationErrorCode**](VerificationErrorCode.md) |  | [optional]
 **errorMessage** | **string** |  | [optional]
 **expireTime** | **\DateTime** |  | [optional]

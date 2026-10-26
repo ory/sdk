@@ -8,6 +8,7 @@ defmodule Ory.Model.Token do
 
   @derive Jason.Encoder
   defstruct [
+    :audiences,
     :claims,
     :expire_time,
     :scopes,
@@ -15,6 +16,7 @@ defmodule Ory.Model.Token do
   ]
 
   @type t :: %__MODULE__{
+    :audiences => [String.t] | nil,
     :claims => map() | nil,
     :expire_time => DateTime.t | nil,
     :scopes => [String.t] | nil,

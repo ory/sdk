@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.86
+  version: v1.22.87
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -3492,6 +3492,22 @@ paths:
         This endpoint should not be used via the Ory SDK and is only included for technical reasons.
         Instead, use one of the libraries linked above.
       operationId: oAuth2Authorize
+      parameters:
+      - description: |-
+          Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each
+          value must be an absolute URI without a fragment that is listed in the client's audience, and is
+          exposed separately to consent. Other values return invalid_target. Resource indicators are
+          enabled when feature_flags.resource_indicators_enabled is true. Otherwise,
+          resource is an extension parameter.
+        explode: true
+        in: query
+        name: resource
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "302":
           description: |-
@@ -3800,6 +3816,10 @@ paths:
       requestBody:
         content:
           application/x-www-form-urlencoded:
+            encoding:
+              resource:
+                explode: true
+                style: form
             schema:
               $ref: "#/components/schemas/oauth2TokenExchange_request"
       responses:
@@ -11286,7 +11306,13 @@ components:
       example:
         requests:
         - credential: credential
+          expected_audiences:
+          - expected_audiences
+          - expected_audiences
         - credential: credential
+          expected_audiences:
+          - expected_audiences
+          - expected_audiences
       properties:
         requests:
           items:
@@ -11308,6 +11334,9 @@ components:
           expire_time: 2000-01-23T04:56:07.000+00:00
           issuer: issuer
           is_valid: true
+          audiences:
+          - audiences
+          - audiences
           rate_limit_remaining: rate_limit_remaining
           error_code: VERIFICATION_ERROR_UNSPECIFIED
           actor_id: actor_id
@@ -11327,6 +11356,9 @@ components:
           expire_time: 2000-01-23T04:56:07.000+00:00
           issuer: issuer
           is_valid: true
+          audiences:
+          - audiences
+          - audiences
           rate_limit_remaining: rate_limit_remaining
           error_code: VERIFICATION_ERROR_UNSPECIFIED
           actor_id: actor_id
@@ -11709,6 +11741,14 @@ components:
 
             This governs the "oauth2.token_prefix" setting.
           type: string
+        hydra_oidc_dynamic_client_registration_default_audience:
+          description: |-
+            The audience allow list assigned during OpenID Connect Dynamic Client Registration when audience is omitted or null. An explicit audience, including an empty list, takes precedence. Defaults apply only during registration.
+
+            This governs the "oidc.dynamic_client_registration.default_audience" setting.
+          items:
+            type: string
+          type: array
         hydra_oidc_dynamic_client_registration_default_scope:
           description: |-
             The OpenID Connect Dynamic Client Registration specification has no concept of whitelisting OAuth 2.0 Scope. If you want to expose Dynamic Client Registration, you should set the default scope enabled for newly registered clients. Keep in mind that users can overwrite this default by setting the "scope" key in the registration payload, effectively disabling the concept of whitelisted scopes.
@@ -13681,6 +13721,9 @@ components:
     DeriveTokenRequest:
       example:
         credential: credential
+        audiences:
+        - audiences
+        - audiences
         scopes:
         - scopes
         - scopes
@@ -13690,15 +13733,28 @@ components:
       properties:
         algorithm:
           $ref: "#/components/schemas/TokenAlgorithm"
+        audiences:
+          description: |-
+            audiences binds the derived token to the named recipients (the "aud"
+            claim). A verifier that expects an audience accepts the token only when at
+            least one value matches exactly. Omit to leave the token unbound, which
+            every audience-expecting verification then rejects.
+          items:
+            type: string
+          type: array
         credential:
-          title: The API key secret (issued or imported) to derive a token from
+          description: |-
+            credential is the API key secret (issued or imported) to derive a token
+            from. At most 8,192 bytes of UTF-8.
           type: string
         custom_claims:
           description: |-
             custom_claims is a JSON object whose entries are merged into the JWT
-            payload (or macaroon caveats) at signing time. Reserved JWT claims
-            (iss, sub, aud, exp, nbf, iat, jti) are rejected. Total serialized
-            size is capped at 4KB.
+            payload (or macaroon caveats) at signing time. Entries named after a
+            reserved claim (the standard JWT claims and the claims Talos sets, listed
+            in the derived tokens guide) are removed before signing. The complete
+            signed token, including its signature and any macaroon prefix, must not
+            exceed 8,192 bytes; larger tokens are rejected, never truncated.
           type: object
         scopes:
           items:
@@ -13721,6 +13777,9 @@ components:
       example:
         token:
           claims: "{}"
+          audiences:
+          - audiences
+          - audiences
           expire_time: 2000-01-23T04:56:07.000+00:00
           scopes:
           - scopes
@@ -13913,8 +13972,8 @@ components:
         IPRestriction defines IP-based access controls for an API key.
         When allowed_cidrs is non-empty, only requests from IPs matching at least one
         CIDR range are permitted. Empty allowed_cidrs means no IP restriction (all IPs allowed).
-        IP restrictions apply to root API key and imported key verification only;
-        derived tokens (JWT/macaroon) are stateless and not subject to IP checks.
+        IP restrictions apply to issued and imported key verification. Derived tokens
+        (JWT/macaroon) carry the parent key's allowlist and are checked against it.
       example:
         allowed_cidrs:
         - allowed_cidrs
@@ -13972,7 +14031,7 @@ components:
           description: |-
             metadata is a free-form JSON object for caller-defined attributes (e.g.,
             source, environment, tags). Values may be strings, numbers, booleans,
-            arrays, objects, or null. Total serialized size is capped at 4KB.
+            arrays, objects, or null. Total serialized size is capped at 64 KiB.
             AIP-148 metadata field.
           type: object
         name:
@@ -13981,7 +14040,9 @@ components:
         rate_limit_policy:
           $ref: "#/components/schemas/RateLimitPolicy"
         raw_key:
-          title: The actual key string to import (REQUIRED)
+          description: |-
+            raw_key is the key string to import (REQUIRED). At most 8,192 bytes of
+            UTF-8; multibyte characters count once per byte.
           type: string
         request_id:
           title: Client-controlled idempotency key (AIP-155)
@@ -14056,7 +14117,7 @@ components:
             metadata is a free-form JSON object for caller-defined attributes
             (e.g., source, environment, tags). Values may be strings, numbers,
             booleans, arrays, objects, or null. Total serialized size is capped
-            at 4KB. AIP-148 metadata field.
+            at 64 KiB. AIP-148 metadata field.
           type: object
         name:
           type: string
@@ -14175,7 +14236,7 @@ components:
             metadata is a free-form JSON object for caller-defined attributes
             (e.g., source, environment, tags). Values may be strings, numbers,
             booleans, arrays, objects, or null. Total serialized size is capped
-            at 4KB. AIP-148 metadata field.
+            at 64 KiB. AIP-148 metadata field.
           type: object
         name:
           type: string
@@ -14286,7 +14347,7 @@ components:
             metadata is a free-form JSON object for caller-defined attributes
             (e.g., source, environment, tags). Values may be strings, numbers,
             booleans, arrays, objects, or null. Total serialized size is capped
-            at 4KB. AIP-148 metadata field.
+            at 64 KiB. AIP-148 metadata field.
           type: object
         name:
           type: string
@@ -15052,7 +15113,9 @@ components:
         credential: credential
       properties:
         credential:
-          title: Full API key secret or imported key (REQUIRED)
+          description: |-
+            credential is the full API key secret or imported key (REQUIRED). At
+            most 8,192 bytes of UTF-8.
           type: string
         reason:
           $ref: "#/components/schemas/RevocationReason"
@@ -15153,12 +15216,23 @@ components:
     Token:
       example:
         claims: "{}"
+        audiences:
+        - audiences
+        - audiences
         expire_time: 2000-01-23T04:56:07.000+00:00
         scopes:
         - scopes
         - scopes
         token: token
       properties:
+        audiences:
+          description: |-
+            audiences lists the recipients the token names (the "aud" claim). Empty
+            when the token names none, in which case verification accepts it only for
+            callers that state no audience expectation.
+          items:
+            type: string
+          type: array
         claims:
           description: |-
             claims is the decoded token payload. For JWT, this contains the
@@ -15265,6 +15339,7 @@ components:
          - VERIFICATION_ERROR_INTERNAL: Internal server error during verification
          - VERIFICATION_ERROR_IP_NOT_ALLOWED: Request IP is not in the key's allowed CIDR ranges
          - VERIFICATION_ERROR_RATE_LIMITED: Rate limit quota exhausted (commercial-only)
+         - VERIFICATION_ERROR_AUDIENCE_MISMATCH: Credential audience does not match the caller's expectation
       enum:
       - VERIFICATION_ERROR_UNSPECIFIED
       - VERIFICATION_ERROR_INVALID_FORMAT
@@ -15275,16 +15350,34 @@ components:
       - VERIFICATION_ERROR_INTERNAL
       - VERIFICATION_ERROR_IP_NOT_ALLOWED
       - VERIFICATION_ERROR_RATE_LIMITED
+      - VERIFICATION_ERROR_AUDIENCE_MISMATCH
       title: VerificationErrorCode provides type-safe error codes for verification
         failures
       type: string
     VerifyApiKeyRequest:
       example:
         credential: credential
+        expected_audiences:
+        - expected_audiences
+        - expected_audiences
       properties:
         credential:
-          title: "API key or derived token (any format: sk_*, JWT, macaroon)"
+          description: |-
+            credential is the API key or derived token to verify (any format: issued
+            key, imported key, JWT, or macaroon). At most 8,192 bytes of UTF-8,
+            counted over the complete encoded credential.
           type: string
+        expected_audiences:
+          description: |-
+            expected_audiences lists the recipients the caller accepts. Verification
+            succeeds only when the credential names at least one of them, matched
+            exactly and case-sensitively; a credential that names no audience fails.
+            Omit the field to accept only credentials that name no audience: a
+            credential bound to one is rejected unless the caller identifies itself as
+            a recipient (RFC 7519 section 4.1.3).
+          items:
+            type: string
+          type: array
       type: object
     VerifyApiKeyResponse:
       example:
@@ -15300,6 +15393,9 @@ components:
         expire_time: 2000-01-23T04:56:07.000+00:00
         issuer: issuer
         is_valid: true
+        audiences:
+        - audiences
+        - audiences
         rate_limit_remaining: rate_limit_remaining
         error_code: VERIFICATION_ERROR_UNSPECIFIED
         actor_id: actor_id
@@ -15310,6 +15406,13 @@ components:
       properties:
         actor_id:
           type: string
+        audiences:
+          description: |-
+            audiences lists the recipients the verified credential names. Empty for
+            credentials that name none, including every API key.
+          items:
+            type: string
+          type: array
         error_code:
           $ref: "#/components/schemas/VerificationErrorCode"
         error_message:
@@ -15385,8 +15488,9 @@ components:
             \ JSON, SQL, and Swagger."
           type: object
         grant_access_token_audience:
-          description: GrantedAudience sets the audience the user authorized the client
-            to use. Should be a subset of `requested_access_token_audience`.
+          description: |-
+            GrantedAudience sets the access token audiences approved by the user, including exact URIs from requested_resources.
+            When resources are requested, grant at least one of them to accept consent.
           items:
             type: string
           type: array
@@ -16132,6 +16236,28 @@ components:
     createEventStreamBody:
       description: Create Event Stream Request Body
       properties:
+        https_auth_header_name:
+          description: |-
+            The header that carries the API key. Required if https_auth_type is
+            api_key. It must not be a header Ory sets itself, or a connection-specific
+            header such as Connection, Keep-Alive, Upgrade, or TE, which HTTP/2 does
+            not allow.
+          type: string
+        https_auth_secret:
+          description: |-
+            The API key or bearer token. Required if https_auth_type is api_key or
+            bearer. At most 4096 bytes.
+          type: string
+        https_auth_type:
+          description: |-
+            How deliveries to the HTTPS endpoint authenticate. Defaults to none.
+            `api_key` sends https_auth_secret in the header named by
+            https_auth_header_name. `bearer` sends it as `Authorization: Bearer`.
+          enum:
+          - none
+          - api_key
+          - bearer
+          type: string
         https_endpoint:
           description: The HTTPS endpoint URL to send events to. Required if type
             is https.
@@ -17423,9 +17549,12 @@ components:
       description: Event Stream
       example:
         http_protocol_major_version: 0
+        https_auth_header_name: https_auth_header_name
+        https_auth_secret: https_auth_secret
         role_arn: role_arn
         updated_at: 2000-01-23T04:56:07.000+00:00
         topic_arn: topic_arn
+        https_auth_type: none
         created_at: 2000-01-23T04:56:07.000+00:00
         https_endpoint: https_endpoint
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -17445,12 +17574,33 @@ components:
           nullable: true
           readOnly: true
           type: integer
+        https_auth_header_name:
+          description: "The header that carries the API key, if https_auth_type is\
+            \ api_key."
+          type: string
+        https_auth_secret:
+          description: |-
+            The API key or bearer token, if https_auth_type is api_key or bearer.
+
+            Returned masked. Omit it on write to keep the stored secret.
+          type: string
+        https_auth_type:
+          description: |-
+            How deliveries to the HTTPS endpoint authenticate, if type is HTTPS.
+            `api_key` sends the secret in the header named by
+            https_auth_header_name. `bearer` sends it as `Authorization: Bearer`.
+            Credentials in the endpoint URL are sent as Basic auth either way.
+          enum:
+          - none
+          - api_key
+          - bearer
+          type: string
         https_endpoint:
           description: |-
             The HTTPS endpoint, if type is HTTPS.
 
             Returned with its userinfo and query values masked. Omit it on write to
-            keep the stored endpoint; sending the masked form back overwrites it.
+            keep the stored endpoint.
           nullable: true
           type: string
         id:
@@ -19078,18 +19228,24 @@ components:
       example:
         event_streams:
         - http_protocol_major_version: 0
+          https_auth_header_name: https_auth_header_name
+          https_auth_secret: https_auth_secret
           role_arn: role_arn
           updated_at: 2000-01-23T04:56:07.000+00:00
           topic_arn: topic_arn
+          https_auth_type: none
           created_at: 2000-01-23T04:56:07.000+00:00
           https_endpoint: https_endpoint
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
           status: active
         - http_protocol_major_version: 0
+          https_auth_header_name: https_auth_header_name
+          https_auth_secret: https_auth_secret
           role_arn: role_arn
           updated_at: 2000-01-23T04:56:07.000+00:00
           topic_arn: topic_arn
+          https_auth_type: none
           created_at: 2000-01-23T04:56:07.000+00:00
           https_endpoint: https_endpoint
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -19427,6 +19583,9 @@ components:
             jwks_uri: jwks_uri
             contacts: help@example.org
           session_id: session_id
+          requested_resources:
+          - requested_resources
+          - requested_resources
           skip: true
           request_url: request_url
           requested_scope:
@@ -20631,6 +20790,14 @@ components:
 
             This governs the "oauth2.token_prefix" setting.
           type: string
+        hydra_oidc_dynamic_client_registration_default_audience:
+          description: |-
+            The audience allow list assigned during OpenID Connect Dynamic Client Registration when audience is omitted or null. An explicit audience, including an empty list, takes precedence. Defaults apply only during registration.
+
+            This governs the "oidc.dynamic_client_registration.default_audience" setting.
+          items:
+            type: string
+          type: array
         hydra_oidc_dynamic_client_registration_default_scope:
           description: |-
             The OpenID Connect Dynamic Client Registration specification has no concept of whitelisting OAuth 2.0 Scope. If you want to expose Dynamic Client Registration, you should set the default scope enabled for newly registered clients. Keep in mind that users can overwrite this default by setting the "scope" key in the registration payload, effectively disabling the concept of whitelisted scopes.
@@ -23685,6 +23852,9 @@ components:
           - acr_values
           - acr_values
           display: display
+        requested_resources:
+        - requested_resources
+        - requested_resources
         skip: true
         request_url: request_url
         acr: acr
@@ -23848,6 +24018,13 @@ components:
           items:
             type: string
           type: array
+        requested_resources:
+          description: |-
+            RequestedResources contains the RFC 8707 resource indicators requested by the OAuth 2.0 Client.
+            Approve a resource by including its exact URI in grant_access_token_audience.
+          items:
+            type: string
+          type: array
         requested_scope:
           description: RequestedScope contains the OAuth 2.0 Scope requested by the
             OAuth 2.0 Client.
@@ -23958,6 +24135,9 @@ components:
             - acr_values
             - acr_values
             display: display
+          requested_resources:
+          - requested_resources
+          - requested_resources
           skip: true
           request_url: request_url
           acr: acr
@@ -24095,7 +24275,7 @@ components:
           description: |-
             Audience Granted
 
-            GrantedAudience sets the audience the user authorized the client to use. Should be a subset of `requested_access_token_audience`.
+            GrantedAudience contains the access token audiences approved by the user, including resource URIs.
           items:
             type: string
           type: array
@@ -24255,6 +24435,9 @@ components:
           jwks_uri: jwks_uri
           contacts: help@example.org
         session_id: session_id
+        requested_resources:
+        - requested_resources
+        - requested_resources
         skip: true
         request_url: request_url
         requested_scope:
@@ -24277,6 +24460,11 @@ components:
         requested_access_token_audience:
           description: RequestedAudience contains the access token audience as requested
             by the OAuth 2.0 Client.
+          items:
+            type: string
+          type: array
+        requested_resources:
+          description: RequestedResources contains RFC 8707 resource indicators.
           items:
             type: string
           type: array
@@ -27154,6 +27342,9 @@ components:
             jwks_uri: jwks_uri
             contacts: help@example.org
           session_id: session_id
+          requested_resources:
+          - requested_resources
+          - requested_resources
           skip: true
           request_url: request_url
           requested_scope:
@@ -27901,13 +28092,34 @@ components:
       description: |-
         All fields are optional. Omitted fields keep their current value, so a caller
         can change only the status (pause/resume) without resubmitting the
-        destination. This matters because secrets such as the password in an HTTPS
-        endpoint URL are redacted in API responses, and resubmitting the redacted
-        value would overwrite the real one.
+        destination. API responses mask secrets; a masked value sent back is
+        rejected, so omit the field to keep the stored value.
       properties:
+        https_auth_header_name:
+          description: "The header that carries the API key. When omitted, the current\
+            \ value is kept."
+          type: string
+        https_auth_secret:
+          description: |-
+            The API key or bearer token. When omitted, the current secret is kept as
+            long as the scheme and the endpoint stay the same. The masked value from
+            an API response is rejected.
+          type: string
+        https_auth_type:
+          description: |-
+            How deliveries to the HTTPS endpoint authenticate. When omitted, the
+            current scheme and its secret are kept. `none` removes the header name
+            and secret. Changing the scheme requires a new secret.
+          enum:
+          - none
+          - api_key
+          - bearer
+          type: string
         https_endpoint:
-          description: "The HTTPS endpoint URL to send events to. When omitted, the\
-            \ current value is kept."
+          description: |-
+            The HTTPS endpoint URL to send events to. When omitted, the current value
+            is kept. Changing it requires https_auth_secret in the same update when
+            deliveries authenticate with an API key or bearer token.
           type: string
         role_arn:
           description: "The AWS IAM role ARN to assume when publishing to the SNS\
@@ -31648,6 +31860,12 @@ components:
           items:
             type: string
           type: array
+        requested_resources:
+          description: RequestedResources contains RFC 8707 resource indicators for
+            this device authorization request.
+          items:
+            type: string
+          type: array
         requested_scope:
           description: RequestedScope contains the OAuth 2.0 Scope requested by the
             OAuth 2.0 Client.
@@ -31985,6 +32203,17 @@ components:
         refresh_token:
           type: string
           x-formData-name: refresh_token
+        resource:
+          description: |-
+            Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled,
+            each value must be an absolute URI without a fragment. The access token audience is narrowed
+            to the exact authorized resource values. Invalid or unauthorized values return invalid_target.
+            The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP
+            client to request several resources at the token endpoint.
+          items:
+            type: string
+          type: array
+          x-formData-name: resource
       required:
       - grant_type
       type: object
@@ -32011,7 +32240,7 @@ components:
             metadata is a free-form JSON object for caller-defined attributes
             (e.g., source, environment, tags). Values may be strings, numbers,
             booleans, arrays, objects, or null. Total serialized size is capped
-            at 4KB. AIP-148 metadata field.
+            at 64 KiB. AIP-148 metadata field.
           type: object
         name:
           type: string
@@ -32062,7 +32291,7 @@ components:
             metadata is a free-form JSON object for caller-defined attributes
             (e.g., source, environment, tags). Values may be strings, numbers,
             booleans, arrays, objects, or null. Total serialized size is capped
-            at 4KB. AIP-148 metadata field.
+            at 64 KiB. AIP-148 metadata field.
           type: object
         name:
           type: string

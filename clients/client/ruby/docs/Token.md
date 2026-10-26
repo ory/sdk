@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **audiences** | **Array&lt;String&gt;** | audiences lists the recipients the token names (the \&quot;aud\&quot; claim). Empty when the token names none, in which case verification accepts it only for callers that state no audience expectation. | [optional] |
 | **claims** | **Object** | claims is the decoded token payload. For JWT, this contains the standard claims (iss, sub, aud, exp, iat, jti) plus custom claims. For macaroons, this lists the caveats. The shape is backend-dependent and should be treated as opaque diagnostic data. | [optional] |
 | **expire_time** | **Time** |  | [optional] |
 | **scopes** | **Array&lt;String&gt;** |  | [optional] |
@@ -15,6 +16,7 @@
 require 'ory-client'
 
 instance = OryClient::Token.new(
+  audiences: null,
   claims: null,
   expire_time: null,
   scopes: null,

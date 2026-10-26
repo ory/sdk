@@ -13,6 +13,7 @@
 | VerificationErrorInternal | VERIFICATION_ERROR_INTERNAL |
 | VerificationErrorIpNotAllowed | VERIFICATION_ERROR_IP_NOT_ALLOWED |
 | VerificationErrorRateLimited | VERIFICATION_ERROR_RATE_LIMITED |
+| VerificationErrorAudienceMismatch | VERIFICATION_ERROR_AUDIENCE_MISMATCH |
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

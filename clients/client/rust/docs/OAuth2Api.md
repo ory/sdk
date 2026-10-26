@@ -930,7 +930,7 @@ Name | Type | Description  | Required | Notes
 
 ## o_auth2_authorize
 
-> models::ErrorOAuth2 o_auth2_authorize()
+> models::ErrorOAuth2 o_auth2_authorize(resource)
 OAuth 2.0 Authorize Endpoint
 
 Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries at https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
@@ -944,7 +944,8 @@ use ory_client::apis::o_auth2_api;
 #[tokio::main]
 async fn main() {
     let mut configuration = Configuration::new();
-    match o_auth2_api::o_auth2_authorize(&configuration).await {
+    let resource = None; // Vec<String> | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client's audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. (optional)
+    match o_auth2_api::o_auth2_authorize(&configuration, resource).await {
         Ok(response) => println!("OAuth2Api::o_auth2_authorize: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::o_auth2_authorize: {:?}", error),
     }
@@ -953,7 +954,10 @@ async fn main() {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**resource** | Option<[**Vec<String>**](String.md)> | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client's audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. |  |
 
 ### Return type
 
@@ -1016,7 +1020,7 @@ No authorization required
 
 ## oauth2_token_exchange
 
-> models::OAuth2TokenExchange oauth2_token_exchange(grant_type, client_id, code, redirect_uri, refresh_token)
+> models::OAuth2TokenExchange oauth2_token_exchange(grant_type, client_id, code, redirect_uri, refresh_token, resource)
 The OAuth 2.0 Token Endpoint
 
 Use open source libraries to perform OAuth 2.0 and OpenID Connect available for any programming language. You can find a list of libraries here https://oauth.net/code/  This endpoint should not be used via the Ory SDK and is only included for technical reasons. Instead, use one of the libraries linked above.
@@ -1036,7 +1040,8 @@ async fn main() {
     let code = None; // String (optional)
     let redirect_uri = None; // String (optional)
     let refresh_token = None; // String (optional)
-    match o_auth2_api::oauth2_token_exchange(&configuration, grant_type, client_id, code, redirect_uri, refresh_token).await {
+    let resource = None; // Vec<String> | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. (optional)
+    match o_auth2_api::oauth2_token_exchange(&configuration, grant_type, client_id, code, redirect_uri, refresh_token, resource).await {
         Ok(response) => println!("OAuth2Api::oauth2_token_exchange: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::oauth2_token_exchange: {:?}", error),
     }
@@ -1053,6 +1058,7 @@ Name | Type | Description  | Required | Notes
 **code** | Option<**String**> |  |  |
 **redirect_uri** | Option<**String**> |  |  |
 **refresh_token** | Option<**String**> |  |  |
+**resource** | Option<[**Vec<String>**](String.md)> | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. |  |
 
 ### Return type
 

@@ -6,7 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **HttpProtocolMajorVersion** | Pointer to **NullableInt64** | The major version of the HTTP protocol the endpoint negotiated during the most recent successful connectivity test: 1 for HTTP/1.x, 2 for HTTP/2. Null when the endpoint has not been verified, for example on a paused stream or a non-HTTPS stream. | [optional] [readonly] 
-**HttpsEndpoint** | Pointer to **NullableString** | The HTTPS endpoint, if type is HTTPS.  Returned with its userinfo and query values masked. Omit it on write to keep the stored endpoint; sending the masked form back overwrites it. | [optional] 
+**HttpsAuthHeaderName** | Pointer to **string** | The header that carries the API key, if https_auth_type is api_key. | [optional] 
+**HttpsAuthSecret** | Pointer to **string** | The API key or bearer token, if https_auth_type is api_key or bearer.  Returned masked. Omit it on write to keep the stored secret. | [optional] 
+**HttpsAuthType** | Pointer to **string** | How deliveries to the HTTPS endpoint authenticate, if type is HTTPS. &#x60;api_key&#x60; sends the secret in the header named by https_auth_header_name. &#x60;bearer&#x60; sends it as &#x60;Authorization: Bearer&#x60;. Credentials in the endpoint URL are sent as Basic auth either way. | [optional] 
+**HttpsEndpoint** | Pointer to **NullableString** | The HTTPS endpoint, if type is HTTPS.  Returned with its userinfo and query values masked. Omit it on write to keep the stored endpoint. | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **RoleArn** | Pointer to **string** | The AWS IAM role ARN assumed when publishing to the SNS topic, if type is SNS. | [optional] 
 **Status** | Pointer to **string** | The status of the event stream. A paused event stream does not forward any events until it is set back to active. | [optional] 
@@ -93,6 +96,81 @@ HasHttpProtocolMajorVersion returns a boolean if a field has been set.
 `func (o *EventStream) UnsetHttpProtocolMajorVersion()`
 
 UnsetHttpProtocolMajorVersion ensures that no value is present for HttpProtocolMajorVersion, not even an explicit nil
+### GetHttpsAuthHeaderName
+
+`func (o *EventStream) GetHttpsAuthHeaderName() string`
+
+GetHttpsAuthHeaderName returns the HttpsAuthHeaderName field if non-nil, zero value otherwise.
+
+### GetHttpsAuthHeaderNameOk
+
+`func (o *EventStream) GetHttpsAuthHeaderNameOk() (*string, bool)`
+
+GetHttpsAuthHeaderNameOk returns a tuple with the HttpsAuthHeaderName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttpsAuthHeaderName
+
+`func (o *EventStream) SetHttpsAuthHeaderName(v string)`
+
+SetHttpsAuthHeaderName sets HttpsAuthHeaderName field to given value.
+
+### HasHttpsAuthHeaderName
+
+`func (o *EventStream) HasHttpsAuthHeaderName() bool`
+
+HasHttpsAuthHeaderName returns a boolean if a field has been set.
+
+### GetHttpsAuthSecret
+
+`func (o *EventStream) GetHttpsAuthSecret() string`
+
+GetHttpsAuthSecret returns the HttpsAuthSecret field if non-nil, zero value otherwise.
+
+### GetHttpsAuthSecretOk
+
+`func (o *EventStream) GetHttpsAuthSecretOk() (*string, bool)`
+
+GetHttpsAuthSecretOk returns a tuple with the HttpsAuthSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttpsAuthSecret
+
+`func (o *EventStream) SetHttpsAuthSecret(v string)`
+
+SetHttpsAuthSecret sets HttpsAuthSecret field to given value.
+
+### HasHttpsAuthSecret
+
+`func (o *EventStream) HasHttpsAuthSecret() bool`
+
+HasHttpsAuthSecret returns a boolean if a field has been set.
+
+### GetHttpsAuthType
+
+`func (o *EventStream) GetHttpsAuthType() string`
+
+GetHttpsAuthType returns the HttpsAuthType field if non-nil, zero value otherwise.
+
+### GetHttpsAuthTypeOk
+
+`func (o *EventStream) GetHttpsAuthTypeOk() (*string, bool)`
+
+GetHttpsAuthTypeOk returns a tuple with the HttpsAuthType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttpsAuthType
+
+`func (o *EventStream) SetHttpsAuthType(v string)`
+
+SetHttpsAuthType sets HttpsAuthType field to given value.
+
+### HasHttpsAuthType
+
+`func (o *EventStream) HasHttpsAuthType() bool`
+
+HasHttpsAuthType returns a boolean if a field has been set.
+
 ### GetHttpsEndpoint
 
 `func (o *EventStream) GetHttpsEndpoint() string`

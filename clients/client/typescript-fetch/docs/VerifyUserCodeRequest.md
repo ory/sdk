@@ -10,6 +10,7 @@ Name | Type
 `device_code_request_id` | string
 `request_url` | string
 `requested_access_token_audience` | Array&lt;string&gt;
+`requested_resources` | Array&lt;string&gt;
 `requested_scope` | Array&lt;string&gt;
 
 ## Example
@@ -23,6 +24,7 @@ const example = {
   "device_code_request_id": null,
   "request_url": null,
   "requested_access_token_audience": null,
+  "requested_resources": null,
   "requested_scope": null,
 } satisfies VerifyUserCodeRequest
 

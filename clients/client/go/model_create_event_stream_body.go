@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.86
+API version: v1.22.87
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,12 @@ var _ MappedNullable = &CreateEventStreamBody{}
 
 // CreateEventStreamBody Create Event Stream Request Body
 type CreateEventStreamBody struct {
+	// The header that carries the API key. Required if https_auth_type is api_key. It must not be a header Ory sets itself, or a connection-specific header such as Connection, Keep-Alive, Upgrade, or TE, which HTTP/2 does not allow.
+	HttpsAuthHeaderName *string `json:"https_auth_header_name,omitempty"`
+	// The API key or bearer token. Required if https_auth_type is api_key or bearer. At most 4096 bytes.
+	HttpsAuthSecret *string `json:"https_auth_secret,omitempty"`
+	// How deliveries to the HTTPS endpoint authenticate. Defaults to none. `api_key` sends https_auth_secret in the header named by https_auth_header_name. `bearer` sends it as `Authorization: Bearer`.
+	HttpsAuthType *string `json:"https_auth_type,omitempty"`
 	// The HTTPS endpoint URL to send events to. Required if type is https.
 	HttpsEndpoint *string `json:"https_endpoint,omitempty"`
 	// The AWS IAM role ARN to assume when publishing to the SNS topic. Required if type is sns.
@@ -52,6 +58,102 @@ func NewCreateEventStreamBody(type_ string) *CreateEventStreamBody {
 func NewCreateEventStreamBodyWithDefaults() *CreateEventStreamBody {
 	this := CreateEventStreamBody{}
 	return &this
+}
+
+// GetHttpsAuthHeaderName returns the HttpsAuthHeaderName field value if set, zero value otherwise.
+func (o *CreateEventStreamBody) GetHttpsAuthHeaderName() string {
+	if o == nil || IsNil(o.HttpsAuthHeaderName) {
+		var ret string
+		return ret
+	}
+	return *o.HttpsAuthHeaderName
+}
+
+// GetHttpsAuthHeaderNameOk returns a tuple with the HttpsAuthHeaderName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEventStreamBody) GetHttpsAuthHeaderNameOk() (*string, bool) {
+	if o == nil || IsNil(o.HttpsAuthHeaderName) {
+		return nil, false
+	}
+	return o.HttpsAuthHeaderName, true
+}
+
+// HasHttpsAuthHeaderName returns a boolean if a field has been set.
+func (o *CreateEventStreamBody) HasHttpsAuthHeaderName() bool {
+	if o != nil && !IsNil(o.HttpsAuthHeaderName) {
+		return true
+	}
+
+	return false
+}
+
+// SetHttpsAuthHeaderName gets a reference to the given string and assigns it to the HttpsAuthHeaderName field.
+func (o *CreateEventStreamBody) SetHttpsAuthHeaderName(v string) {
+	o.HttpsAuthHeaderName = &v
+}
+
+// GetHttpsAuthSecret returns the HttpsAuthSecret field value if set, zero value otherwise.
+func (o *CreateEventStreamBody) GetHttpsAuthSecret() string {
+	if o == nil || IsNil(o.HttpsAuthSecret) {
+		var ret string
+		return ret
+	}
+	return *o.HttpsAuthSecret
+}
+
+// GetHttpsAuthSecretOk returns a tuple with the HttpsAuthSecret field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEventStreamBody) GetHttpsAuthSecretOk() (*string, bool) {
+	if o == nil || IsNil(o.HttpsAuthSecret) {
+		return nil, false
+	}
+	return o.HttpsAuthSecret, true
+}
+
+// HasHttpsAuthSecret returns a boolean if a field has been set.
+func (o *CreateEventStreamBody) HasHttpsAuthSecret() bool {
+	if o != nil && !IsNil(o.HttpsAuthSecret) {
+		return true
+	}
+
+	return false
+}
+
+// SetHttpsAuthSecret gets a reference to the given string and assigns it to the HttpsAuthSecret field.
+func (o *CreateEventStreamBody) SetHttpsAuthSecret(v string) {
+	o.HttpsAuthSecret = &v
+}
+
+// GetHttpsAuthType returns the HttpsAuthType field value if set, zero value otherwise.
+func (o *CreateEventStreamBody) GetHttpsAuthType() string {
+	if o == nil || IsNil(o.HttpsAuthType) {
+		var ret string
+		return ret
+	}
+	return *o.HttpsAuthType
+}
+
+// GetHttpsAuthTypeOk returns a tuple with the HttpsAuthType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEventStreamBody) GetHttpsAuthTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.HttpsAuthType) {
+		return nil, false
+	}
+	return o.HttpsAuthType, true
+}
+
+// HasHttpsAuthType returns a boolean if a field has been set.
+func (o *CreateEventStreamBody) HasHttpsAuthType() bool {
+	if o != nil && !IsNil(o.HttpsAuthType) {
+		return true
+	}
+
+	return false
+}
+
+// SetHttpsAuthType gets a reference to the given string and assigns it to the HttpsAuthType field.
+func (o *CreateEventStreamBody) SetHttpsAuthType(v string) {
+	o.HttpsAuthType = &v
 }
 
 // GetHttpsEndpoint returns the HttpsEndpoint field value if set, zero value otherwise.
@@ -216,6 +318,15 @@ func (o CreateEventStreamBody) MarshalJSON() ([]byte, error) {
 
 func (o CreateEventStreamBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.HttpsAuthHeaderName) {
+		toSerialize["https_auth_header_name"] = o.HttpsAuthHeaderName
+	}
+	if !IsNil(o.HttpsAuthSecret) {
+		toSerialize["https_auth_secret"] = o.HttpsAuthSecret
+	}
+	if !IsNil(o.HttpsAuthType) {
+		toSerialize["https_auth_type"] = o.HttpsAuthType
+	}
 	if !IsNil(o.HttpsEndpoint) {
 		toSerialize["https_endpoint"] = o.HttpsEndpoint
 	}
@@ -272,6 +383,9 @@ func (o *CreateEventStreamBody) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "https_auth_header_name")
+		delete(additionalProperties, "https_auth_secret")
+		delete(additionalProperties, "https_auth_type")
 		delete(additionalProperties, "https_endpoint")
 		delete(additionalProperties, "role_arn")
 		delete(additionalProperties, "status")

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Credential** | Pointer to **string** |  | [optional] 
+**Credential** | Pointer to **string** | credential is the full API key secret or imported key (REQUIRED). At most 8,192 bytes of UTF-8. | [optional] 
 **Reason** | Pointer to [**RevocationReason**](RevocationReason.md) |  | [optional] [default to REVOCATIONREASON_REVOCATION_REASON_UNSPECIFIED]
 
 ## Methods

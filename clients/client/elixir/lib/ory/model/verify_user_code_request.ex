@@ -12,6 +12,7 @@ defmodule Ory.Model.VerifyUserCodeRequest do
     :device_code_request_id,
     :request_url,
     :requested_access_token_audience,
+    :requested_resources,
     :requested_scope
   ]
 
@@ -20,6 +21,7 @@ defmodule Ory.Model.VerifyUserCodeRequest do
     :device_code_request_id => String.t | nil,
     :request_url => String.t | nil,
     :requested_access_token_audience => [String.t] | nil,
+    :requested_resources => [String.t] | nil,
     :requested_scope => [String.t] | nil
   }
 

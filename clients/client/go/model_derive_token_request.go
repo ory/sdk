@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.86
+API version: v1.22.87
 Contact: support@ory.sh
 */
 
@@ -21,8 +21,11 @@ var _ MappedNullable = &DeriveTokenRequest{}
 // DeriveTokenRequest struct for DeriveTokenRequest
 type DeriveTokenRequest struct {
 	Algorithm *TokenAlgorithm `json:"algorithm,omitempty"`
+	// audiences binds the derived token to the named recipients (the \"aud\" claim). A verifier that expects an audience accepts the token only when at least one value matches exactly. Omit to leave the token unbound, which every audience-expecting verification then rejects.
+	Audiences []string `json:"audiences,omitempty"`
+	// credential is the API key secret (issued or imported) to derive a token from. At most 8,192 bytes of UTF-8.
 	Credential *string `json:"credential,omitempty"`
-	// custom_claims is a JSON object whose entries are merged into the JWT payload (or macaroon caveats) at signing time. Reserved JWT claims (iss, sub, aud, exp, nbf, iat, jti) are rejected. Total serialized size is capped at 4KB.
+	// custom_claims is a JSON object whose entries are merged into the JWT payload (or macaroon caveats) at signing time. Entries named after a reserved claim (the standard JWT claims and the claims Talos sets, listed in the derived tokens guide) are removed before signing. The complete signed token, including its signature and any macaroon prefix, must not exceed 8,192 bytes; larger tokens are rejected, never truncated.
 	CustomClaims map[string]interface{} `json:"custom_claims,omitempty"`
 	Scopes []string `json:"scopes,omitempty"`
 	// ttl sets the expiry as a duration from now. Encoded as a google.protobuf.Duration (string ending in \"s\", e.g. \"3600s\"). Accepted bounds: 1s to 315360000s (~10 years). If unset or zero, the project default TTL applies. For convenience, the server also accepts Go-style duration strings (\"24h\", \"30m\", \"1h30m\") and an extended unit set (\"1d\", \"1w\", \"1mo\", \"1y\"; approximations: 1mo = 30d, 1y = 365d). Clients should prefer the standard Duration encoding for portability.
@@ -83,6 +86,38 @@ func (o *DeriveTokenRequest) HasAlgorithm() bool {
 // SetAlgorithm gets a reference to the given TokenAlgorithm and assigns it to the Algorithm field.
 func (o *DeriveTokenRequest) SetAlgorithm(v TokenAlgorithm) {
 	o.Algorithm = &v
+}
+
+// GetAudiences returns the Audiences field value if set, zero value otherwise.
+func (o *DeriveTokenRequest) GetAudiences() []string {
+	if o == nil || IsNil(o.Audiences) {
+		var ret []string
+		return ret
+	}
+	return o.Audiences
+}
+
+// GetAudiencesOk returns a tuple with the Audiences field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeriveTokenRequest) GetAudiencesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Audiences) {
+		return nil, false
+	}
+	return o.Audiences, true
+}
+
+// HasAudiences returns a boolean if a field has been set.
+func (o *DeriveTokenRequest) HasAudiences() bool {
+	if o != nil && !IsNil(o.Audiences) {
+		return true
+	}
+
+	return false
+}
+
+// SetAudiences gets a reference to the given []string and assigns it to the Audiences field.
+func (o *DeriveTokenRequest) SetAudiences(v []string) {
+	o.Audiences = v
 }
 
 // GetCredential returns the Credential field value if set, zero value otherwise.
@@ -226,6 +261,9 @@ func (o DeriveTokenRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Algorithm) {
 		toSerialize["algorithm"] = o.Algorithm
 	}
+	if !IsNil(o.Audiences) {
+		toSerialize["audiences"] = o.Audiences
+	}
 	if !IsNil(o.Credential) {
 		toSerialize["credential"] = o.Credential
 	}
@@ -261,6 +299,7 @@ func (o *DeriveTokenRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "algorithm")
+		delete(additionalProperties, "audiences")
 		delete(additionalProperties, "credential")
 		delete(additionalProperties, "custom_claims")
 		delete(additionalProperties, "scopes")

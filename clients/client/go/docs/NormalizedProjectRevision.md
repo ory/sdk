@@ -41,6 +41,7 @@ Name | Type | Description | Notes
 **HydraOauth2RefreshTokenHook** | Pointer to **string** | Sets the Refresh Token Hook Endpoint. If set this endpoint will be called during the OAuth2 Token Refresh grant update the OAuth2 Access Token claims.  This governs the \&quot;oauth2.refresh_token_hook\&quot; setting. | [optional] 
 **HydraOauth2TokenHook** | Pointer to **string** | Sets the token hook endpoint for all grant types. If set it will be called while providing token to customize claims.  This governs the \&quot;oauth2.token_hook.url\&quot; setting. | [optional] 
 **HydraOauth2TokenPrefix** | Pointer to **string** | Sets a per-project Access Token, Refresh Token, and Authorization Code prefix. The literal \&quot;%s\&quot; is replaced at issuance time with the token kind: \&quot;at\&quot; (access token), \&quot;rt\&quot; (refresh token), or \&quot;ac\&quot; (authorization code). For example, \&quot;acme_%s_\&quot; yields \&quot;acme_at_…\&quot;, \&quot;acme_rt_…\&quot;, and \&quot;acme_ac_…\&quot;.  Must be a fmt.Sprintf template with exactly one \&quot;%s\&quot; substitution. The rendered prefix may contain only ASCII letters, digits, and underscores — no other \&quot;%\&quot; directives (\&quot;%d\&quot;, \&quot;%%\&quot;, positional or width-flagged verbs), no hyphens, dots, slashes, whitespace, quotes, or non-ASCII characters. Leave empty to keep the default \&quot;ory_%s_\&quot; prefix.  This is an Enterprise feature.  This governs the \&quot;oauth2.token_prefix\&quot; setting. | [optional] 
+**HydraOidcDynamicClientRegistrationDefaultAudience** | Pointer to **[]string** | The audience allow list assigned during OpenID Connect Dynamic Client Registration when audience is omitted or null. An explicit audience, including an empty list, takes precedence. Defaults apply only during registration.  This governs the \&quot;oidc.dynamic_client_registration.default_audience\&quot; setting. | [optional] 
 **HydraOidcDynamicClientRegistrationDefaultScope** | Pointer to **[]string** | The OpenID Connect Dynamic Client Registration specification has no concept of whitelisting OAuth 2.0 Scope. If you want to expose Dynamic Client Registration, you should set the default scope enabled for newly registered clients. Keep in mind that users can overwrite this default by setting the \&quot;scope\&quot; key in the registration payload, effectively disabling the concept of whitelisted scopes.  This governs the \&quot;oidc.dynamic_client_registration.default_scope\&quot; setting. | [optional] 
 **HydraOidcDynamicClientRegistrationEnabled** | Pointer to **bool** | Configures OpenID Connect Dynamic Client Registration.  This governs the \&quot;oidc.dynamic_client_registration.enabled\&quot; setting. | [optional] 
 **HydraOidcSubjectIdentifiersPairwiseSalt** | Pointer to **string** | Configures OpenID Connect Discovery and overwrites the pairwise algorithm  This governs the \&quot;oidc.subject_identifiers.pairwise_salt\&quot; setting. | [optional] 
@@ -1252,6 +1253,31 @@ SetHydraOauth2TokenPrefix sets HydraOauth2TokenPrefix field to given value.
 `func (o *NormalizedProjectRevision) HasHydraOauth2TokenPrefix() bool`
 
 HasHydraOauth2TokenPrefix returns a boolean if a field has been set.
+
+### GetHydraOidcDynamicClientRegistrationDefaultAudience
+
+`func (o *NormalizedProjectRevision) GetHydraOidcDynamicClientRegistrationDefaultAudience() []string`
+
+GetHydraOidcDynamicClientRegistrationDefaultAudience returns the HydraOidcDynamicClientRegistrationDefaultAudience field if non-nil, zero value otherwise.
+
+### GetHydraOidcDynamicClientRegistrationDefaultAudienceOk
+
+`func (o *NormalizedProjectRevision) GetHydraOidcDynamicClientRegistrationDefaultAudienceOk() (*[]string, bool)`
+
+GetHydraOidcDynamicClientRegistrationDefaultAudienceOk returns a tuple with the HydraOidcDynamicClientRegistrationDefaultAudience field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOidcDynamicClientRegistrationDefaultAudience
+
+`func (o *NormalizedProjectRevision) SetHydraOidcDynamicClientRegistrationDefaultAudience(v []string)`
+
+SetHydraOidcDynamicClientRegistrationDefaultAudience sets HydraOidcDynamicClientRegistrationDefaultAudience field to given value.
+
+### HasHydraOidcDynamicClientRegistrationDefaultAudience
+
+`func (o *NormalizedProjectRevision) HasHydraOidcDynamicClientRegistrationDefaultAudience() bool`
+
+HasHydraOidcDynamicClientRegistrationDefaultAudience returns a boolean if a field has been set.
 
 ### GetHydraOidcDynamicClientRegistrationDefaultScope
 

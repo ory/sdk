@@ -6,7 +6,7 @@ SelfRevokeApiKeyRequest allows an API key holder to revoke their own key by prov
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**credential** | **str** |  | [optional] 
+**credential** | **str** | credential is the full API key secret or imported key (REQUIRED). At most 8,192 bytes of UTF-8. | [optional] 
 **reason** | [**RevocationReason**](RevocationReason.md) |  | [optional] [default to RevocationReason.REVOCATION_REASON_UNSPECIFIED]
 
 ## Example

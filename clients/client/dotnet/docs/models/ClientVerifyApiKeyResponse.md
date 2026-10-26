@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ActorId** | **string** |  | [optional] 
+**Audiences** | **List&lt;string&gt;** | audiences lists the recipients the verified credential names. Empty for credentials that name none, including every API key. | [optional] 
 **ErrorCode** | **ClientVerificationErrorCode** |  | [optional] 
 **ErrorMessage** | **string** |  | [optional] 
 **ExpireTime** | **DateTime** |  | [optional] 

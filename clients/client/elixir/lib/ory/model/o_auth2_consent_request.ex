@@ -19,6 +19,7 @@ defmodule Ory.Model.OAuth2ConsentRequest do
     :oidc_context,
     :request_url,
     :requested_access_token_audience,
+    :requested_resources,
     :requested_scope,
     :skip,
     :subject
@@ -36,6 +37,7 @@ defmodule Ory.Model.OAuth2ConsentRequest do
     :oidc_context => Ory.Model.OAuth2ConsentRequestOpenIdConnectContext.t | nil,
     :request_url => String.t | nil,
     :requested_access_token_audience => [String.t] | nil,
+    :requested_resources => [String.t] | nil,
     :requested_scope => [String.t] | nil,
     :skip => boolean() | nil,
     :subject => String.t | nil

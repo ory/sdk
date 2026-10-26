@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **actor_id** | **String** |  | [optional] |
+| **audiences** | **Array&lt;String&gt;** | audiences lists the recipients the verified credential names. Empty for credentials that name none, including every API key. | [optional] |
 | **error_code** | [**VerificationErrorCode**](VerificationErrorCode.md) |  | [optional][default to &#39;VERIFICATION_ERROR_UNSPECIFIED&#39;] |
 | **error_message** | **String** |  | [optional] |
 | **expire_time** | **Time** |  | [optional] |
@@ -26,6 +27,7 @@ require 'ory-client'
 
 instance = OryClient::VerifyApiKeyResponse.new(
   actor_id: null,
+  audiences: null,
   error_code: null,
   error_message: null,
   expire_time: null,

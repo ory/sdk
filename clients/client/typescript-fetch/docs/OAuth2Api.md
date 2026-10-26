@@ -1378,7 +1378,7 @@ example().catch(console.error);
 
 ## oAuth2Authorize
 
-> ErrorOAuth2 oAuth2Authorize()
+> ErrorOAuth2 oAuth2Authorize(resource)
 
 OAuth 2.0 Authorize Endpoint
 
@@ -1397,8 +1397,13 @@ async function example() {
   console.log("🚀 Testing @ory/client-fetch SDK...");
   const api = new OAuth2Api();
 
+  const body = {
+    // Array<string> | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client\'s audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. (optional)
+    resource: ...,
+  } satisfies OAuth2AuthorizeRequest;
+
   try {
-    const data = await api.oAuth2Authorize();
+    const data = await api.oAuth2Authorize(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1411,7 +1416,10 @@ example().catch(console.error);
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **resource** | `Array<string>` | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client\&#39;s audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. | [Optional] |
 
 ### Return type
 
@@ -1498,7 +1506,7 @@ No authorization required
 
 ## oauth2TokenExchange
 
-> OAuth2TokenExchange oauth2TokenExchange(grantType, clientId, code, redirectUri, refreshToken)
+> OAuth2TokenExchange oauth2TokenExchange(grantType, clientId, code, redirectUri, refreshToken, resource)
 
 The OAuth 2.0 Token Endpoint
 
@@ -1535,6 +1543,8 @@ async function example() {
     redirectUri: redirectUri_example,
     // string (optional)
     refreshToken: refreshToken_example,
+    // Array<string> | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. (optional)
+    resource: ...,
   } satisfies Oauth2TokenExchangeRequest;
 
   try {
@@ -1559,6 +1569,7 @@ example().catch(console.error);
 | **code** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **redirectUri** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **refreshToken** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **resource** | `Array<string>` | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The &#x60;@ory/client&#x60; TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. | [Optional] |
 
 ### Return type
 

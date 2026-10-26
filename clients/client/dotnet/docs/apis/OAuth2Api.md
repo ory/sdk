@@ -1343,7 +1343,7 @@ namespace Example
 
 <a id="oauth2authorize"></a>
 # **OAuth2Authorize**
-> Task&lt;IOAuth2AuthorizeApiResponse&gt; OAuth2AuthorizeAsync(System.Threading.CancellationToken cancellationToken = default)
+> Task&lt;IOAuth2AuthorizeApiResponse&gt; OAuth2AuthorizeAsync(Option<List<string>> resource = default, System.Threading.CancellationToken cancellationToken = default)
 
 OAuth 2.0 Authorize Endpoint
 
@@ -1374,14 +1374,19 @@ namespace Example
                 .Build();
 
             var api = host.Services.GetRequiredService<IOAuth2Api>();
-            await api.OAuth2AuthorizeAsync();
+            Option<List<string>> resource = default!; // Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client's audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. (optional)
+            await api.OAuth2AuthorizeAsync(resource);
         }
     }
 }
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **resource** | [**List&lt;string&gt;**](../models/string.md) | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment that is listed in the client&#39;s audience, and is exposed separately to consent. Other values return invalid_target. Resource indicators are enabled when feature_flags.resource_indicators_enabled is true. Otherwise, resource is an extension parameter. | [optional]  |
+
 ### Return type
 
 [**ClientErrorOAuth2**](../models/ClientErrorOAuth2.md)
@@ -1470,7 +1475,7 @@ No authorization required
 
 <a id="oauth2tokenexchange"></a>
 # **Oauth2TokenExchange**
-> Task&lt;IOauth2TokenExchangeApiResponse&gt; Oauth2TokenExchangeAsync(string grantType, Option<string> clientId = default, Option<string> code = default, Option<string> redirectUri = default, Option<string> refreshToken = default, System.Threading.CancellationToken cancellationToken = default)
+> Task&lt;IOauth2TokenExchangeApiResponse&gt; Oauth2TokenExchangeAsync(string grantType, Option<string> clientId = default, Option<string> code = default, Option<string> redirectUri = default, Option<string> refreshToken = default, Option<List<string>> resource = default, System.Threading.CancellationToken cancellationToken = default)
 
 The OAuth 2.0 Token Endpoint
 
@@ -1508,7 +1513,8 @@ namespace Example
             Option<string> code = default!; //  (optional)
             Option<string> redirectUri = default!; //  (optional)
             Option<string> refreshToken = default!; //  (optional)
-            var response = await api.Oauth2TokenExchangeAsync(grantType, clientId, code, redirectUri, refreshToken);
+            Option<List<string>> resource = default!; // Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The `@ory/client` TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. (optional)
+            var response = await api.Oauth2TokenExchangeAsync(grantType, clientId, code, redirectUri, refreshToken, resource);
             ClientOAuth2TokenExchange? model = response.Ok();
         }
     }
@@ -1524,6 +1530,7 @@ namespace Example
 | **code** | **string** |  | [optional]  |
 | **redirectUri** | **string** |  | [optional]  |
 | **refreshToken** | **string** |  | [optional]  |
+| **resource** | [**List&lt;string&gt;**](../models/string.md) | Resource is a repeated RFC 8707 resource indicator. When resource indicators are enabled, each value must be an absolute URI without a fragment. The access token audience is narrowed to the exact authorized resource values. Invalid or unauthorized values return invalid_target. The &#x60;@ory/client&#x60; TypeScript SDK sends only the last value of this array, so use another HTTP client to request several resources at the token endpoint. | [optional]  |
 
 ### Return type
 

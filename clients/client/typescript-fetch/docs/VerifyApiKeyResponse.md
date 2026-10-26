@@ -7,6 +7,7 @@
 Name | Type
 ------------ | -------------
 `actor_id` | string
+`audiences` | Array&lt;string&gt;
 `error_code` | [VerificationErrorCode](VerificationErrorCode.md)
 `error_message` | string
 `expire_time` | Date
@@ -29,6 +30,7 @@ import type { VerifyApiKeyResponse } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "actor_id": null,
+  "audiences": null,
   "error_code": null,
   "error_message": null,
   "expire_time": null,

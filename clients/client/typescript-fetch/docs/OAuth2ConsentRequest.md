@@ -17,6 +17,7 @@ Name | Type
 `oidc_context` | [OAuth2ConsentRequestOpenIDConnectContext](OAuth2ConsentRequestOpenIDConnectContext.md)
 `request_url` | string
 `requested_access_token_audience` | Array&lt;string&gt;
+`requested_resources` | Array&lt;string&gt;
 `requested_scope` | Array&lt;string&gt;
 `skip` | boolean
 `subject` | string
@@ -39,6 +40,7 @@ const example = {
   "oidc_context": null,
   "request_url": null,
   "requested_access_token_audience": null,
+  "requested_resources": null,
   "requested_scope": null,
   "skip": null,
   "subject": null,

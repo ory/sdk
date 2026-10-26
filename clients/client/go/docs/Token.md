@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Audiences** | Pointer to **[]string** | audiences lists the recipients the token names (the \&quot;aud\&quot; claim). Empty when the token names none, in which case verification accepts it only for callers that state no audience expectation. | [optional] 
 **Claims** | Pointer to **map[string]interface{}** | claims is the decoded token payload. For JWT, this contains the standard claims (iss, sub, aud, exp, iat, jti) plus custom claims. For macaroons, this lists the caveats. The shape is backend-dependent and should be treated as opaque diagnostic data. | [optional] 
 **ExpireTime** | Pointer to **time.Time** |  | [optional] 
 **Scopes** | Pointer to **[]string** |  | [optional] 
@@ -27,6 +28,31 @@ will change when the set of required properties is changed
 NewTokenWithDefaults instantiates a new Token object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAudiences
+
+`func (o *Token) GetAudiences() []string`
+
+GetAudiences returns the Audiences field if non-nil, zero value otherwise.
+
+### GetAudiencesOk
+
+`func (o *Token) GetAudiencesOk() (*[]string, bool)`
+
+GetAudiencesOk returns a tuple with the Audiences field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAudiences
+
+`func (o *Token) SetAudiences(v []string)`
+
+SetAudiences sets Audiences field to given value.
+
+### HasAudiences
+
+`func (o *Token) HasAudiences() bool`
+
+HasAudiences returns a boolean if a field has been set.
 
 ### GetClaims
 
