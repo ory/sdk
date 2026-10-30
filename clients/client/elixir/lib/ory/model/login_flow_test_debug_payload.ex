@@ -14,6 +14,7 @@ defmodule Ory.Model.LoginFlowTestDebugPayload do
     :jsonnet_mapper_url,
     :jsonnet_output,
     :jsonnet_stderr,
+    :missing_required_traits,
     :schema_validation_errors,
     :userinfo
   ]
@@ -25,6 +26,7 @@ defmodule Ory.Model.LoginFlowTestDebugPayload do
     :jsonnet_mapper_url => String.t | nil,
     :jsonnet_output => %{optional(String.t) => any()} | nil,
     :jsonnet_stderr => String.t | nil,
+    :missing_required_traits => [String.t] | nil,
     :schema_validation_errors => [Ory.Model.LoginFlowTestSchemaValidationError.t] | nil,
     :userinfo => %{optional(String.t) => any()} | nil
   }

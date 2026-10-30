@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.87
+API version: v1.22.88
 Contact: support@ory.sh
 */
 
@@ -31,6 +31,8 @@ type LoginFlowTestDebugPayload struct {
 	JsonnetOutput map[string]interface{} `json:"jsonnet_output,omitempty"`
 	// Anything the Jsonnet mapper wrote to standard error.
 	JsonnetStderr *string `json:"jsonnet_stderr,omitempty"`
+	// JSON pointers to required identity traits the Jsonnet mapper did not set. The test still succeeds, because on first sign-in the user is asked to provide these fields before the identity is created.
+	MissingRequiredTraits []string `json:"missing_required_traits,omitempty"`
 	// Identity-schema validation errors produced from the mapped traits.
 	SchemaValidationErrors []LoginFlowTestSchemaValidationError `json:"schema_validation_errors,omitempty"`
 	// Claims returned from the provider's userinfo endpoint, if any.
@@ -249,6 +251,38 @@ func (o *LoginFlowTestDebugPayload) SetJsonnetStderr(v string) {
 	o.JsonnetStderr = &v
 }
 
+// GetMissingRequiredTraits returns the MissingRequiredTraits field value if set, zero value otherwise.
+func (o *LoginFlowTestDebugPayload) GetMissingRequiredTraits() []string {
+	if o == nil || IsNil(o.MissingRequiredTraits) {
+		var ret []string
+		return ret
+	}
+	return o.MissingRequiredTraits
+}
+
+// GetMissingRequiredTraitsOk returns a tuple with the MissingRequiredTraits field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LoginFlowTestDebugPayload) GetMissingRequiredTraitsOk() ([]string, bool) {
+	if o == nil || IsNil(o.MissingRequiredTraits) {
+		return nil, false
+	}
+	return o.MissingRequiredTraits, true
+}
+
+// HasMissingRequiredTraits returns a boolean if a field has been set.
+func (o *LoginFlowTestDebugPayload) HasMissingRequiredTraits() bool {
+	if o != nil && !IsNil(o.MissingRequiredTraits) {
+		return true
+	}
+
+	return false
+}
+
+// SetMissingRequiredTraits gets a reference to the given []string and assigns it to the MissingRequiredTraits field.
+func (o *LoginFlowTestDebugPayload) SetMissingRequiredTraits(v []string) {
+	o.MissingRequiredTraits = v
+}
+
 // GetSchemaValidationErrors returns the SchemaValidationErrors field value if set, zero value otherwise.
 func (o *LoginFlowTestDebugPayload) GetSchemaValidationErrors() []LoginFlowTestSchemaValidationError {
 	if o == nil || IsNil(o.SchemaValidationErrors) {
@@ -341,6 +375,9 @@ func (o LoginFlowTestDebugPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.JsonnetStderr) {
 		toSerialize["jsonnet_stderr"] = o.JsonnetStderr
 	}
+	if !IsNil(o.MissingRequiredTraits) {
+		toSerialize["missing_required_traits"] = o.MissingRequiredTraits
+	}
 	if !IsNil(o.SchemaValidationErrors) {
 		toSerialize["schema_validation_errors"] = o.SchemaValidationErrors
 	}
@@ -375,6 +412,7 @@ func (o *LoginFlowTestDebugPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "jsonnet_mapper_url")
 		delete(additionalProperties, "jsonnet_output")
 		delete(additionalProperties, "jsonnet_stderr")
+		delete(additionalProperties, "missing_required_traits")
 		delete(additionalProperties, "schema_validation_errors")
 		delete(additionalProperties, "userinfo")
 		o.AdditionalProperties = additionalProperties

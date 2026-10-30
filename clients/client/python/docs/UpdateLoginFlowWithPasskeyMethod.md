@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **csrf_token** | **str** | Sending the anti-csrf token is only required for browser login flows. | [optional] 
 **method** | **str** | Method should be set to \&quot;passkey\&quot; when logging in using the Passkey strategy. | 
 **passkey_login** | **str** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
+**transient_payload** | **object** | Transient data to pass along to any webhooks | [optional] 
 
 ## Example
 

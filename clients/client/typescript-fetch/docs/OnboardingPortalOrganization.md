@@ -9,6 +9,7 @@ Name | Type
 `apple_mapper_url` | string
 `auth0_mapper_url` | string
 `base_url` | string
+`domains` | Array&lt;string&gt;
 `facebook_mapper_url` | string
 `generic_oidc_mapper_url` | string
 `github_mapper_url` | string
@@ -44,6 +45,7 @@ const example = {
   "apple_mapper_url": null,
   "auth0_mapper_url": null,
   "base_url": null,
+  "domains": null,
   "facebook_mapper_url": null,
   "generic_oidc_mapper_url": null,
   "github_mapper_url": null,

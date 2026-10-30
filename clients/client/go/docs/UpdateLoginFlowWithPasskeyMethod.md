@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CsrfToken** | Pointer to **string** | Sending the anti-csrf token is only required for browser login flows. | [optional] 
 **Method** | **string** | Method should be set to \&quot;passkey\&quot; when logging in using the Passkey strategy. | 
 **PasskeyLogin** | Pointer to **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] 
+**TransientPayload** | Pointer to **map[string]interface{}** | Transient data to pass along to any webhooks | [optional] 
 
 ## Methods
 
@@ -96,6 +97,31 @@ SetPasskeyLogin sets PasskeyLogin field to given value.
 `func (o *UpdateLoginFlowWithPasskeyMethod) HasPasskeyLogin() bool`
 
 HasPasskeyLogin returns a boolean if a field has been set.
+
+### GetTransientPayload
+
+`func (o *UpdateLoginFlowWithPasskeyMethod) GetTransientPayload() map[string]interface{}`
+
+GetTransientPayload returns the TransientPayload field if non-nil, zero value otherwise.
+
+### GetTransientPayloadOk
+
+`func (o *UpdateLoginFlowWithPasskeyMethod) GetTransientPayloadOk() (*map[string]interface{}, bool)`
+
+GetTransientPayloadOk returns a tuple with the TransientPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransientPayload
+
+`func (o *UpdateLoginFlowWithPasskeyMethod) SetTransientPayload(v map[string]interface{})`
+
+SetTransientPayload sets TransientPayload field to given value.
+
+### HasTransientPayload
+
+`func (o *UpdateLoginFlowWithPasskeyMethod) HasTransientPayload() bool`
+
+HasTransientPayload returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

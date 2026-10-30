@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **AppleMapperUrl** | Pointer to **string** | AppleMapper specifies the JSONNet code snippet which uses Apple&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
 **Auth0MapperUrl** | Pointer to **string** | Auth0Mapper specifies the JSONNet code snippet which uses Auth0&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
 **BaseUrl** | **string** |  | 
+**Domains** | **[]string** | The organization&#39;s domains that sign-ins are routed by. When domain verification is enforced, only trusted domains are listed. | 
 **FacebookMapperUrl** | Pointer to **string** | FacebookMapper specifies the JSONNet code snippet which uses Facebook&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
 **GenericOidcMapperUrl** | Pointer to **string** | GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
 **GithubMapperUrl** | Pointer to **string** | GithubMapper specifies the JSONNet code snippet which uses GitHub&#39;s profile information to hydrate the identity&#39;s data. | [optional] 
@@ -36,7 +37,7 @@ Name | Type | Description | Notes
 
 ### NewOnboardingPortalOrganization
 
-`func NewOnboardingPortalOrganization(baseUrl string, kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, organizationId string, revisionId string, scimClients []NormalizedProjectRevisionScimClient, scimEnabled bool, ssoEnabled bool, ) *OnboardingPortalOrganization`
+`func NewOnboardingPortalOrganization(baseUrl string, domains []string, kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, organizationId string, revisionId string, scimClients []NormalizedProjectRevisionScimClient, scimEnabled bool, ssoEnabled bool, ) *OnboardingPortalOrganization`
 
 NewOnboardingPortalOrganization instantiates a new OnboardingPortalOrganization object
 This constructor will assign default values to properties that have it defined,
@@ -119,6 +120,26 @@ and a boolean to check if the value has been set.
 `func (o *OnboardingPortalOrganization) SetBaseUrl(v string)`
 
 SetBaseUrl sets BaseUrl field to given value.
+
+
+### GetDomains
+
+`func (o *OnboardingPortalOrganization) GetDomains() []string`
+
+GetDomains returns the Domains field if non-nil, zero value otherwise.
+
+### GetDomainsOk
+
+`func (o *OnboardingPortalOrganization) GetDomainsOk() (*[]string, bool)`
+
+GetDomainsOk returns a tuple with the Domains field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomains
+
+`func (o *OnboardingPortalOrganization) SetDomains(v []string)`
+
+SetDomains sets Domains field to given value.
 
 
 ### GetFacebookMapperUrl

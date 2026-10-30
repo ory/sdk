@@ -179,6 +179,15 @@ Name | Type
 `kratos_selfservice_flows_login_after_password_default_browser_return_url` | string
 `kratos_selfservice_flows_login_after_totp_default_browser_return_url` | string
 `kratos_selfservice_flows_login_after_webauthn_default_browser_return_url` | string
+`kratos_selfservice_flows_login_brute_force_protection_enabled` | boolean
+`kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_initial` | string
+`kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_max` | string
+`kratos_selfservice_flows_login_brute_force_protection_identifier_max_failures` | number
+`kratos_selfservice_flows_login_brute_force_protection_identifier_window` | string
+`kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_initial` | string
+`kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_max` | string
+`kratos_selfservice_flows_login_brute_force_protection_ip_max_failures` | number
+`kratos_selfservice_flows_login_brute_force_protection_ip_window` | string
 `kratos_selfservice_flows_login_lifespan` | string
 `kratos_selfservice_flows_login_style` | string
 `kratos_selfservice_flows_login_ui_url` | string
@@ -495,6 +504,15 @@ const example = {
   "kratos_selfservice_flows_login_after_password_default_browser_return_url": null,
   "kratos_selfservice_flows_login_after_totp_default_browser_return_url": null,
   "kratos_selfservice_flows_login_after_webauthn_default_browser_return_url": null,
+  "kratos_selfservice_flows_login_brute_force_protection_enabled": null,
+  "kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_initial": null,
+  "kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_max": null,
+  "kratos_selfservice_flows_login_brute_force_protection_identifier_max_failures": null,
+  "kratos_selfservice_flows_login_brute_force_protection_identifier_window": null,
+  "kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_initial": null,
+  "kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_max": null,
+  "kratos_selfservice_flows_login_brute_force_protection_ip_max_failures": null,
+  "kratos_selfservice_flows_login_brute_force_protection_ip_window": null,
   "kratos_selfservice_flows_login_lifespan": null,
   "kratos_selfservice_flows_login_style": null,
   "kratos_selfservice_flows_login_ui_url": null,

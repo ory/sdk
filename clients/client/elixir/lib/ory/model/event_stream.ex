@@ -9,6 +9,7 @@ defmodule Ory.Model.EventStream do
   @derive Jason.Encoder
   defstruct [
     :created_at,
+    :event_types,
     :http_protocol_major_version,
     :https_auth_header_name,
     :https_auth_secret,
@@ -24,6 +25,7 @@ defmodule Ory.Model.EventStream do
 
   @type t :: %__MODULE__{
     :created_at => DateTime.t | nil,
+    :event_types => [String.t] | nil,
     :http_protocol_major_version => integer() | nil,
     :https_auth_header_name => String.t | nil,
     :https_auth_secret => String.t | nil,

@@ -10,13 +10,15 @@ defmodule Ory.Model.UpdateLoginFlowWithLookupSecretMethod do
   defstruct [
     :csrf_token,
     :lookup_secret,
-    :method
+    :method,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
     :lookup_secret => String.t,
-    :method => String.t
+    :method => String.t,
+    :transient_payload => map() | nil
   }
 
   def decode(value) do

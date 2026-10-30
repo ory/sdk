@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | **\DateTime** |  | [optional]
+**eventTypes** | **string[]** | The events the stream delivers, sorted. An entry is an exact event name or a pattern such as Session* or *Failed, in which * matches any characters. An empty list delivers every event. | [optional]
 **httpProtocolMajorVersion** | **int** | The major version of the HTTP protocol the endpoint negotiated during the most recent successful connectivity test: 1 for HTTP/1.x, 2 for HTTP/2. Null when the endpoint has not been verified, for example on a paused stream or a non-HTTPS stream. | [optional] [readonly]
 **httpsAuthHeaderName** | **string** | The header that carries the API key, if https_auth_type is api_key. | [optional]
 **httpsAuthSecret** | **string** | The API key or bearer token, if https_auth_type is api_key or bearer.  Returned masked. Omit it on write to keep the stored secret. | [optional]

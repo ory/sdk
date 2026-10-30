@@ -13,6 +13,7 @@ Name | Type
 `jsonnet_mapper_url` | string
 `jsonnet_output` | { [key: string]: any; }
 `jsonnet_stderr` | string
+`missing_required_traits` | Array&lt;string&gt;
 `schema_validation_errors` | [Array&lt;LoginFlowTestSchemaValidationError&gt;](LoginFlowTestSchemaValidationError.md)
 `userinfo` | { [key: string]: any; }
 
@@ -29,6 +30,7 @@ const example = {
   "jsonnet_mapper_url": null,
   "jsonnet_output": null,
   "jsonnet_stderr": null,
+  "missing_required_traits": null,
   "schema_validation_errors": null,
   "userinfo": null,
 } satisfies LoginFlowTestDebugPayload

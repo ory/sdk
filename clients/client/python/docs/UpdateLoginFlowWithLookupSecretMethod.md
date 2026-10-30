@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **csrf_token** | **str** | Sending the anti-csrf token is only required for browser login flows. | [optional] 
 **lookup_secret** | **str** | The lookup secret. | 
 **method** | **str** | Method should be set to \&quot;lookup_secret\&quot; when logging in using the lookup_secret strategy. | 
+**transient_payload** | **object** | Transient data to pass along to any webhooks | [optional] 
 
 ## Example
 

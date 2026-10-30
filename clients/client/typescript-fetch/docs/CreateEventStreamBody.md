@@ -7,6 +7,7 @@ Create Event Stream Request Body
 
 Name | Type
 ------------ | -------------
+`event_types` | Array&lt;string&gt;
 `https_auth_header_name` | string
 `https_auth_secret` | string
 `https_auth_type` | string
@@ -23,6 +24,7 @@ import type { CreateEventStreamBody } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "event_types": null,
   "https_auth_header_name": null,
   "https_auth_secret": null,
   "https_auth_type": null,

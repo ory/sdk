@@ -7,6 +7,7 @@
 | **apple_mapper_url** | **String** | AppleMapper specifies the JSONNet code snippet which uses Apple&#39;s profile information to hydrate the identity&#39;s data. | [optional] |
 | **auth0_mapper_url** | **String** | Auth0Mapper specifies the JSONNet code snippet which uses Auth0&#39;s profile information to hydrate the identity&#39;s data. | [optional] |
 | **base_url** | **String** |  |  |
+| **domains** | **Array&lt;String&gt;** | The organization&#39;s domains that sign-ins are routed by. When domain verification is enforced, only trusted domains are listed. |  |
 | **facebook_mapper_url** | **String** | FacebookMapper specifies the JSONNet code snippet which uses Facebook&#39;s profile information to hydrate the identity&#39;s data. | [optional] |
 | **generic_oidc_mapper_url** | **String** | GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider&#39;s profile information to hydrate the identity&#39;s data. | [optional] |
 | **github_mapper_url** | **String** | GithubMapper specifies the JSONNet code snippet which uses GitHub&#39;s profile information to hydrate the identity&#39;s data. | [optional] |
@@ -41,6 +42,7 @@ instance = OryClient::OnboardingPortalOrganization.new(
   apple_mapper_url: null,
   auth0_mapper_url: null,
   base_url: null,
+  domains: null,
   facebook_mapper_url: null,
   generic_oidc_mapper_url: null,
   github_mapper_url: null,

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BaseUrl** | **string** |  | 
+**Domains** | **List&lt;string&gt;** | The organization&#39;s domains that sign-ins are routed by. When domain verification is enforced, only trusted domains are listed. | 
 **KratosSelfserviceMethodsOidcConfigProviders** | [**List&lt;ClientNormalizedProjectRevisionThirdPartyProvider&gt;**](ClientNormalizedProjectRevisionThirdPartyProvider.md) |  | 
 **KratosSelfserviceMethodsSamlConfigProviders** | [**List&lt;ClientNormalizedProjectRevisionSAMLProvider&gt;**](ClientNormalizedProjectRevisionSAMLProvider.md) |  | 
 **OrganizationId** | **string** |  | 

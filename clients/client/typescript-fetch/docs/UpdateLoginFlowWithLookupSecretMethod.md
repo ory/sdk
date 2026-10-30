@@ -10,6 +10,7 @@ Name | Type
 `csrf_token` | string
 `lookup_secret` | string
 `method` | string
+`transient_payload` | object
 
 ## Example
 
@@ -21,6 +22,7 @@ const example = {
   "csrf_token": null,
   "lookup_secret": null,
   "method": null,
+  "transient_payload": null,
 } satisfies UpdateLoginFlowWithLookupSecretMethod
 
 console.log(example)

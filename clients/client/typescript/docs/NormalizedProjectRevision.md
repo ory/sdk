@@ -175,6 +175,15 @@ Name | Type | Description | Notes
 **kratos_selfservice_flows_login_after_password_default_browser_return_url** | **string** | Configures the Ory Kratos Login After Password Default Return URL  This governs the \&quot;selfservice.flows.login.after.password.default_browser_return_url\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_flows_login_after_totp_default_browser_return_url** | **string** | Configures the Ory Kratos Login After TOTP Default Return URL  This governs the \&quot;selfservice.flows.login.after.totp.default_browser_return_url\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_flows_login_after_webauthn_default_browser_return_url** | **string** | Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \&quot;selfservice.flows.login.after.webauthn.default_browser_return_url\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_flows_login_brute_force_protection_enabled** | **boolean** | Configures whether failed sign-ins are throttled with exponential backoff  Turning it off keeps the thresholds, so it can be turned back on without entering them again. Requires an Enterprise plan.  This governs the \&quot;selfservice.flows.login.brute_force_protection.enabled\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_initial** | **string** | Configures the first delay for an identifier once its threshold is exceeded, for example \&quot;1s\&quot;  The delay doubles with every further failure.  This governs the \&quot;selfservice.flows.login.brute_force_protection.identifier.exponential_backoff.initial\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_max** | **string** | Configures the longest delay for an identifier, for example \&quot;15m\&quot;, at most \&quot;8760h\&quot;  This governs the \&quot;selfservice.flows.login.brute_force_protection.identifier.exponential_backoff.max\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_flows_login_brute_force_protection_identifier_max_failures** | **number** | Configures how many failed sign-ins per identifier the window tolerates before delays start  This governs the \&quot;selfservice.flows.login.brute_force_protection.identifier.max_failures\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_flows_login_brute_force_protection_identifier_window** | **string** | Configures how long the failure count of an identifier lives after its first failure, for example \&quot;5m\&quot;  This governs the \&quot;selfservice.flows.login.brute_force_protection.identifier.window\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_initial** | **string** | Configures the first delay for a client IP once its threshold is exceeded, for example \&quot;1s\&quot;  The delay doubles with every further failure.  This governs the \&quot;selfservice.flows.login.brute_force_protection.ip.exponential_backoff.initial\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_max** | **string** | Configures the longest delay for a client IP, for example \&quot;15m\&quot;, at most \&quot;8760h\&quot;  This governs the \&quot;selfservice.flows.login.brute_force_protection.ip.exponential_backoff.max\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_flows_login_brute_force_protection_ip_max_failures** | **number** | Configures how many failed sign-ins per client IP the window tolerates before delays start  This governs the \&quot;selfservice.flows.login.brute_force_protection.ip.max_failures\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_flows_login_brute_force_protection_ip_window** | **string** | Configures how long the failure count of a client IP lives after its first failure, for example \&quot;1m\&quot;  This governs the \&quot;selfservice.flows.login.brute_force_protection.ip.window\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_flows_login_lifespan** | **string** | Configures the Ory Kratos Login Lifespan  This governs the \&quot;selfservice.flows.login.lifespan\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_flows_login_style** | **string** | Configures the Ory Kratos Login Flow Style  This governs the \&quot;selfservice.flows.login.style\&quot; setting. Possible values are \&quot;unified\&quot; and \&quot;identifier_first\&quot;. | [optional] [default to undefined]
 **kratos_selfservice_flows_login_ui_url** | **string** | Configures the Ory Kratos Login UI URL  This governs the \&quot;selfservice.flows.login.ui_url\&quot; setting. | [optional] [default to undefined]
@@ -487,6 +496,15 @@ const instance: NormalizedProjectRevision = {
     kratos_selfservice_flows_login_after_password_default_browser_return_url,
     kratos_selfservice_flows_login_after_totp_default_browser_return_url,
     kratos_selfservice_flows_login_after_webauthn_default_browser_return_url,
+    kratos_selfservice_flows_login_brute_force_protection_enabled,
+    kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_initial,
+    kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_max,
+    kratos_selfservice_flows_login_brute_force_protection_identifier_max_failures,
+    kratos_selfservice_flows_login_brute_force_protection_identifier_window,
+    kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_initial,
+    kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_max,
+    kratos_selfservice_flows_login_brute_force_protection_ip_max_failures,
+    kratos_selfservice_flows_login_brute_force_protection_ip_window,
     kratos_selfservice_flows_login_lifespan,
     kratos_selfservice_flows_login_style,
     kratos_selfservice_flows_login_ui_url,

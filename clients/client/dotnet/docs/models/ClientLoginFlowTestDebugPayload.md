@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **JsonnetMapperUrl** | **string** | URL of the Jsonnet mapper that was executed on the claims. | [optional] 
 **JsonnetOutput** | **Dictionary&lt;string, Object&gt;** | Output JSON returned by the Jsonnet mapper. | [optional] 
 **JsonnetStderr** | **string** | Anything the Jsonnet mapper wrote to standard error. | [optional] 
+**MissingRequiredTraits** | **List&lt;string&gt;** | JSON pointers to required identity traits the Jsonnet mapper did not set. The test still succeeds, because on first sign-in the user is asked to provide these fields before the identity is created. | [optional] 
 **SchemaValidationErrors** | [**List&lt;ClientLoginFlowTestSchemaValidationError&gt;**](ClientLoginFlowTestSchemaValidationError.md) | Identity-schema validation errors produced from the mapped traits. | [optional] 
 **Userinfo** | **Dictionary&lt;string, Object&gt;** | Claims returned from the provider&#39;s userinfo endpoint, if any. | [optional] 
 

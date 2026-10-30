@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.87
+API version: v1.22.88
 Contact: support@ory.sh
 */
 
@@ -26,6 +26,8 @@ type OnboardingPortalOrganization struct {
 	// Auth0Mapper specifies the JSONNet code snippet which uses Auth0's profile information to hydrate the identity's data.
 	Auth0MapperUrl *string `json:"auth0_mapper_url,omitempty"`
 	BaseUrl string `json:"base_url"`
+	// The organization's domains that sign-ins are routed by. When domain verification is enforced, only trusted domains are listed.
+	Domains []string `json:"domains"`
 	// FacebookMapper specifies the JSONNet code snippet which uses Facebook's profile information to hydrate the identity's data.
 	FacebookMapperUrl *string `json:"facebook_mapper_url,omitempty"`
 	// GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider's profile information to hydrate the identity's data.
@@ -74,9 +76,10 @@ type _OnboardingPortalOrganization OnboardingPortalOrganization
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOnboardingPortalOrganization(baseUrl string, kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, organizationId string, revisionId string, scimClients []NormalizedProjectRevisionScimClient, scimEnabled bool, ssoEnabled bool) *OnboardingPortalOrganization {
+func NewOnboardingPortalOrganization(baseUrl string, domains []string, kratosSelfserviceMethodsOidcConfigProviders []NormalizedProjectRevisionThirdPartyProvider, kratosSelfserviceMethodsSamlConfigProviders []NormalizedProjectRevisionSAMLProvider, organizationId string, revisionId string, scimClients []NormalizedProjectRevisionScimClient, scimEnabled bool, ssoEnabled bool) *OnboardingPortalOrganization {
 	this := OnboardingPortalOrganization{}
 	this.BaseUrl = baseUrl
+	this.Domains = domains
 	this.KratosSelfserviceMethodsOidcConfigProviders = kratosSelfserviceMethodsOidcConfigProviders
 	this.KratosSelfserviceMethodsSamlConfigProviders = kratosSelfserviceMethodsSamlConfigProviders
 	this.OrganizationId = organizationId
@@ -181,6 +184,30 @@ func (o *OnboardingPortalOrganization) GetBaseUrlOk() (*string, bool) {
 // SetBaseUrl sets field value
 func (o *OnboardingPortalOrganization) SetBaseUrl(v string) {
 	o.BaseUrl = v
+}
+
+// GetDomains returns the Domains field value
+func (o *OnboardingPortalOrganization) GetDomains() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Domains
+}
+
+// GetDomainsOk returns a tuple with the Domains field value
+// and a boolean to check if the value has been set.
+func (o *OnboardingPortalOrganization) GetDomainsOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Domains, true
+}
+
+// SetDomains sets field value
+func (o *OnboardingPortalOrganization) SetDomains(v []string) {
+	o.Domains = v
 }
 
 // GetFacebookMapperUrl returns the FacebookMapperUrl field value if set, zero value otherwise.
@@ -912,6 +939,7 @@ func (o OnboardingPortalOrganization) ToMap() (map[string]interface{}, error) {
 		toSerialize["auth0_mapper_url"] = o.Auth0MapperUrl
 	}
 	toSerialize["base_url"] = o.BaseUrl
+	toSerialize["domains"] = o.Domains
 	if !IsNil(o.FacebookMapperUrl) {
 		toSerialize["facebook_mapper_url"] = o.FacebookMapperUrl
 	}
@@ -984,6 +1012,7 @@ func (o *OnboardingPortalOrganization) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"base_url",
+		"domains",
 		"kratos_selfservice_methods_oidc_config_providers",
 		"kratos_selfservice_methods_saml_config_providers",
 		"organization_id",
@@ -1023,6 +1052,7 @@ func (o *OnboardingPortalOrganization) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "apple_mapper_url")
 		delete(additionalProperties, "auth0_mapper_url")
 		delete(additionalProperties, "base_url")
+		delete(additionalProperties, "domains")
 		delete(additionalProperties, "facebook_mapper_url")
 		delete(additionalProperties, "generic_oidc_mapper_url")
 		delete(additionalProperties, "github_mapper_url")

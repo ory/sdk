@@ -8,6 +8,7 @@ Event Stream
 Name | Type
 ------------ | -------------
 `created_at` | Date
+`event_types` | Array&lt;string&gt;
 `http_protocol_major_version` | number
 `https_auth_header_name` | string
 `https_auth_secret` | string
@@ -28,6 +29,7 @@ import type { EventStream } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "created_at": null,
+  "event_types": null,
   "http_protocol_major_version": null,
   "https_auth_header_name": null,
   "https_auth_secret": null,

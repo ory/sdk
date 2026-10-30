@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.87
+API version: v1.22.88
 Contact: support@ory.sh
 */
 
@@ -359,6 +359,24 @@ type NormalizedProjectRevision struct {
 	KratosSelfserviceFlowsLoginAfterTotpDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_totp_default_browser_return_url,omitempty"`
 	// Configures the Ory Kratos Login After WebAuthn Default Return URL  This governs the \"selfservice.flows.login.after.webauthn.default_browser_return_url\" setting.
 	KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl *string `json:"kratos_selfservice_flows_login_after_webauthn_default_browser_return_url,omitempty"`
+	// Configures whether failed sign-ins are throttled with exponential backoff  Turning it off keeps the thresholds, so it can be turned back on without entering them again. Requires an Enterprise plan.  This governs the \"selfservice.flows.login.brute_force_protection.enabled\" setting.
+	KratosSelfserviceFlowsLoginBruteForceProtectionEnabled *bool `json:"kratos_selfservice_flows_login_brute_force_protection_enabled,omitempty"`
+	// Configures the first delay for an identifier once its threshold is exceeded, for example \"1s\"  The delay doubles with every further failure.  This governs the \"selfservice.flows.login.brute_force_protection.identifier.exponential_backoff.initial\" setting.
+	KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial *string `json:"kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_initial,omitempty"`
+	// Configures the longest delay for an identifier, for example \"15m\", at most \"8760h\"  This governs the \"selfservice.flows.login.brute_force_protection.identifier.exponential_backoff.max\" setting.
+	KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax *string `json:"kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_max,omitempty"`
+	// Configures how many failed sign-ins per identifier the window tolerates before delays start  This governs the \"selfservice.flows.login.brute_force_protection.identifier.max_failures\" setting.
+	KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures *int64 `json:"kratos_selfservice_flows_login_brute_force_protection_identifier_max_failures,omitempty"`
+	// Configures how long the failure count of an identifier lives after its first failure, for example \"5m\"  This governs the \"selfservice.flows.login.brute_force_protection.identifier.window\" setting.
+	KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow *string `json:"kratos_selfservice_flows_login_brute_force_protection_identifier_window,omitempty"`
+	// Configures the first delay for a client IP once its threshold is exceeded, for example \"1s\"  The delay doubles with every further failure.  This governs the \"selfservice.flows.login.brute_force_protection.ip.exponential_backoff.initial\" setting.
+	KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial *string `json:"kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_initial,omitempty"`
+	// Configures the longest delay for a client IP, for example \"15m\", at most \"8760h\"  This governs the \"selfservice.flows.login.brute_force_protection.ip.exponential_backoff.max\" setting.
+	KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax *string `json:"kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_max,omitempty"`
+	// Configures how many failed sign-ins per client IP the window tolerates before delays start  This governs the \"selfservice.flows.login.brute_force_protection.ip.max_failures\" setting.
+	KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures *int64 `json:"kratos_selfservice_flows_login_brute_force_protection_ip_max_failures,omitempty"`
+	// Configures how long the failure count of a client IP lives after its first failure, for example \"1m\"  This governs the \"selfservice.flows.login.brute_force_protection.ip.window\" setting.
+	KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow *string `json:"kratos_selfservice_flows_login_brute_force_protection_ip_window,omitempty"`
 	// Configures the Ory Kratos Login Lifespan  This governs the \"selfservice.flows.login.lifespan\" setting.
 	KratosSelfserviceFlowsLoginLifespan *string `json:"kratos_selfservice_flows_login_lifespan,omitempty"`
 	// Configures the Ory Kratos Login Flow Style  This governs the \"selfservice.flows.login.style\" setting. Possible values are \"unified\" and \"identifier_first\".
@@ -6134,6 +6152,294 @@ func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginAfterWebauthnD
 	o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl = &v
 }
 
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionEnabled returns the KratosSelfserviceFlowsLoginBruteForceProtectionEnabled field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionEnabled() bool {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginBruteForceProtectionEnabled
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionEnabledOk returns a tuple with the KratosSelfserviceFlowsLoginBruteForceProtectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionEnabled) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginBruteForceProtectionEnabled, true
+}
+
+// HasKratosSelfserviceFlowsLoginBruteForceProtectionEnabled returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginBruteForceProtectionEnabled() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginBruteForceProtectionEnabled gets a reference to the given bool and assigns it to the KratosSelfserviceFlowsLoginBruteForceProtectionEnabled field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginBruteForceProtectionEnabled(v bool) {
+	o.KratosSelfserviceFlowsLoginBruteForceProtectionEnabled = &v
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial returns the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial() string {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitialOk returns a tuple with the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitialOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial, true
+}
+
+// HasKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial(v string) {
+	o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial = &v
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax returns the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax() string {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMaxOk returns a tuple with the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMaxOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax, true
+}
+
+// HasKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax(v string) {
+	o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax = &v
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures returns the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures() int64 {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures) {
+		var ret int64
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailuresOk returns a tuple with the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailuresOk() (*int64, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures, true
+}
+
+// HasKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures gets a reference to the given int64 and assigns it to the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures(v int64) {
+	o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures = &v
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow returns the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow() string {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindowOk returns a tuple with the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindowOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow, true
+}
+
+// HasKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow(v string) {
+	o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow = &v
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial returns the KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial() string {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitialOk returns a tuple with the KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitialOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial, true
+}
+
+// HasKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial(v string) {
+	o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial = &v
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax returns the KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax() string {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMaxOk returns a tuple with the KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMaxOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax, true
+}
+
+// HasKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax(v string) {
+	o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax = &v
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures returns the KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures() int64 {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures) {
+		var ret int64
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailuresOk returns a tuple with the KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailuresOk() (*int64, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures, true
+}
+
+// HasKratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures gets a reference to the given int64 and assigns it to the KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures(v int64) {
+	o.KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures = &v
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIpWindow returns the KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIpWindow() string {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow) {
+		var ret string
+		return ret
+	}
+	return *o.KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow
+}
+
+// GetKratosSelfserviceFlowsLoginBruteForceProtectionIpWindowOk returns a tuple with the KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginBruteForceProtectionIpWindowOk() (*string, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow) {
+		return nil, false
+	}
+	return o.KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow, true
+}
+
+// HasKratosSelfserviceFlowsLoginBruteForceProtectionIpWindow returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSelfserviceFlowsLoginBruteForceProtectionIpWindow() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceFlowsLoginBruteForceProtectionIpWindow gets a reference to the given string and assigns it to the KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow field.
+func (o *NormalizedProjectRevision) SetKratosSelfserviceFlowsLoginBruteForceProtectionIpWindow(v string) {
+	o.KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow = &v
+}
+
 // GetKratosSelfserviceFlowsLoginLifespan returns the KratosSelfserviceFlowsLoginLifespan field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSelfserviceFlowsLoginLifespan() string {
 	if o == nil || IsNil(o.KratosSelfserviceFlowsLoginLifespan) {
@@ -10966,6 +11272,33 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl) {
 		toSerialize["kratos_selfservice_flows_login_after_webauthn_default_browser_return_url"] = o.KratosSelfserviceFlowsLoginAfterWebauthnDefaultBrowserReturnUrl
 	}
+	if !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionEnabled) {
+		toSerialize["kratos_selfservice_flows_login_brute_force_protection_enabled"] = o.KratosSelfserviceFlowsLoginBruteForceProtectionEnabled
+	}
+	if !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial) {
+		toSerialize["kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_initial"] = o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffInitial
+	}
+	if !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax) {
+		toSerialize["kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_max"] = o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierExponentialBackoffMax
+	}
+	if !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures) {
+		toSerialize["kratos_selfservice_flows_login_brute_force_protection_identifier_max_failures"] = o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierMaxFailures
+	}
+	if !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow) {
+		toSerialize["kratos_selfservice_flows_login_brute_force_protection_identifier_window"] = o.KratosSelfserviceFlowsLoginBruteForceProtectionIdentifierWindow
+	}
+	if !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial) {
+		toSerialize["kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_initial"] = o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffInitial
+	}
+	if !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax) {
+		toSerialize["kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_max"] = o.KratosSelfserviceFlowsLoginBruteForceProtectionIpExponentialBackoffMax
+	}
+	if !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures) {
+		toSerialize["kratos_selfservice_flows_login_brute_force_protection_ip_max_failures"] = o.KratosSelfserviceFlowsLoginBruteForceProtectionIpMaxFailures
+	}
+	if !IsNil(o.KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow) {
+		toSerialize["kratos_selfservice_flows_login_brute_force_protection_ip_window"] = o.KratosSelfserviceFlowsLoginBruteForceProtectionIpWindow
+	}
 	if !IsNil(o.KratosSelfserviceFlowsLoginLifespan) {
 		toSerialize["kratos_selfservice_flows_login_lifespan"] = o.KratosSelfserviceFlowsLoginLifespan
 	}
@@ -11582,6 +11915,15 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_password_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_totp_default_browser_return_url")
 		delete(additionalProperties, "kratos_selfservice_flows_login_after_webauthn_default_browser_return_url")
+		delete(additionalProperties, "kratos_selfservice_flows_login_brute_force_protection_enabled")
+		delete(additionalProperties, "kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_initial")
+		delete(additionalProperties, "kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_max")
+		delete(additionalProperties, "kratos_selfservice_flows_login_brute_force_protection_identifier_max_failures")
+		delete(additionalProperties, "kratos_selfservice_flows_login_brute_force_protection_identifier_window")
+		delete(additionalProperties, "kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_initial")
+		delete(additionalProperties, "kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_max")
+		delete(additionalProperties, "kratos_selfservice_flows_login_brute_force_protection_ip_max_failures")
+		delete(additionalProperties, "kratos_selfservice_flows_login_brute_force_protection_ip_window")
 		delete(additionalProperties, "kratos_selfservice_flows_login_lifespan")
 		delete(additionalProperties, "kratos_selfservice_flows_login_style")
 		delete(additionalProperties, "kratos_selfservice_flows_login_ui_url")

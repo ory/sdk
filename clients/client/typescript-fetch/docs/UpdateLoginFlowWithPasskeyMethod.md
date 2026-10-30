@@ -10,6 +10,7 @@ Name | Type
 `csrf_token` | string
 `method` | string
 `passkey_login` | string
+`transient_payload` | object
 
 ## Example
 
@@ -21,6 +22,7 @@ const example = {
   "csrf_token": null,
   "method": null,
   "passkey_login": null,
+  "transient_payload": null,
 } satisfies UpdateLoginFlowWithPasskeyMethod
 
 console.log(example)

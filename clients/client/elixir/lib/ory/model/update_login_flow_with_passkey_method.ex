@@ -10,13 +10,15 @@ defmodule Ory.Model.UpdateLoginFlowWithPasskeyMethod do
   defstruct [
     :csrf_token,
     :method,
-    :passkey_login
+    :passkey_login,
+    :transient_payload
   ]
 
   @type t :: %__MODULE__{
     :csrf_token => String.t | nil,
     :method => String.t,
-    :passkey_login => String.t | nil
+    :passkey_login => String.t | nil,
+    :transient_payload => map() | nil
   }
 
   def decode(value) do

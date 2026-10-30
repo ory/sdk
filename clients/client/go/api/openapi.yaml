@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.87
+  version: v1.22.88
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -157,7 +157,7 @@ paths:
       summary: Get WebAuthn JavaScript
       tags:
       - frontend
-      x-ory-ratelimit-bucket: hydra-public-high
+      x-ory-ratelimit-bucket: kratos-public-high
   /.well-known/webauthn:
     get:
       description: |-
@@ -179,7 +179,7 @@ paths:
       summary: Get WebAuthn Related Origins
       tags:
       - frontend
-      x-ory-ratelimit-bucket: hydra-public-high
+      x-ory-ratelimit-bucket: kratos-public-high
   /admin/clients:
     get:
       description: |-
@@ -553,7 +553,7 @@ paths:
       summary: Delete Rotated OAuth 2.0 Client Secrets
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
     post:
       description: |-
         Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for
@@ -612,7 +612,7 @@ paths:
       summary: Rotate OAuth 2.0 Client Secret
       tags:
       - oAuth2
-      x-ory-ratelimit-bucket: hydra-admin-high
+      x-ory-ratelimit-bucket: hydra-admin-low
   /admin/courier/messages:
     get:
       description: Lists all messages by given status and recipient.
@@ -12700,6 +12700,69 @@ components:
 
             This governs the "selfservice.flows.login.after.webauthn.default_browser_return_url" setting.
           type: string
+        kratos_selfservice_flows_login_brute_force_protection_enabled:
+          description: |-
+            Configures whether failed sign-ins are throttled with exponential backoff
+
+            Turning it off keeps the thresholds, so it can be turned back on without
+            entering them again. Requires an Enterprise plan.
+
+            This governs the "selfservice.flows.login.brute_force_protection.enabled" setting.
+          type: boolean
+        kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_initial:
+          description: |-
+            Configures the first delay for an identifier once its threshold is exceeded, for example "1s"
+
+            The delay doubles with every further failure.
+
+            This governs the "selfservice.flows.login.brute_force_protection.identifier.exponential_backoff.initial" setting.
+          type: string
+        kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_max:
+          description: |-
+            Configures the longest delay for an identifier, for example "15m", at most "8760h"
+
+            This governs the "selfservice.flows.login.brute_force_protection.identifier.exponential_backoff.max" setting.
+          type: string
+        kratos_selfservice_flows_login_brute_force_protection_identifier_max_failures:
+          description: |-
+            Configures how many failed sign-ins per identifier the window tolerates before delays start
+
+            This governs the "selfservice.flows.login.brute_force_protection.identifier.max_failures" setting.
+          format: int64
+          type: integer
+        kratos_selfservice_flows_login_brute_force_protection_identifier_window:
+          description: |-
+            Configures how long the failure count of an identifier lives after its first failure, for example "5m"
+
+            This governs the "selfservice.flows.login.brute_force_protection.identifier.window" setting.
+          type: string
+        kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_initial:
+          description: |-
+            Configures the first delay for a client IP once its threshold is exceeded, for example "1s"
+
+            The delay doubles with every further failure.
+
+            This governs the "selfservice.flows.login.brute_force_protection.ip.exponential_backoff.initial" setting.
+          type: string
+        kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_max:
+          description: |-
+            Configures the longest delay for a client IP, for example "15m", at most "8760h"
+
+            This governs the "selfservice.flows.login.brute_force_protection.ip.exponential_backoff.max" setting.
+          type: string
+        kratos_selfservice_flows_login_brute_force_protection_ip_max_failures:
+          description: |-
+            Configures how many failed sign-ins per client IP the window tolerates before delays start
+
+            This governs the "selfservice.flows.login.brute_force_protection.ip.max_failures" setting.
+          format: int64
+          type: integer
+        kratos_selfservice_flows_login_brute_force_protection_ip_window:
+          description: |-
+            Configures how long the failure count of a client IP lives after its first failure, for example "1m"
+
+            This governs the "selfservice.flows.login.brute_force_protection.ip.window" setting.
+          type: string
         kratos_selfservice_flows_login_lifespan:
           description: |-
             Configures the Ory Kratos Login Lifespan
@@ -16236,6 +16299,15 @@ components:
     createEventStreamBody:
       description: Create Event Stream Request Body
       properties:
+        event_types:
+          description: |-
+            The events to deliver, as exact event names or patterns such as Session*
+            or *Failed, in which * matches any characters, using the names listed in
+            the event streams documentation. Omit it or send an empty list to deliver
+            every event.
+          items:
+            type: string
+          type: array
         https_auth_header_name:
           description: |-
             The header that carries the API key. Required if https_auth_type is
@@ -17548,22 +17620,33 @@ components:
     eventStream:
       description: Event Stream
       example:
-        http_protocol_major_version: 0
         https_auth_header_name: https_auth_header_name
         https_auth_secret: https_auth_secret
+        topic_arn: topic_arn
+        created_at: 2000-01-23T04:56:07.000+00:00
+        type: type
+        http_protocol_major_version: 0
+        event_types:
+        - event_types
+        - event_types
         role_arn: role_arn
         updated_at: 2000-01-23T04:56:07.000+00:00
-        topic_arn: topic_arn
         https_auth_type: none
-        created_at: 2000-01-23T04:56:07.000+00:00
         https_endpoint: https_endpoint
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        type: type
         status: active
       properties:
         created_at:
           format: date-time
           type: string
+        event_types:
+          description: |-
+            The events the stream delivers, sorted. An entry is an exact event name
+            or a pattern such as Session* or *Failed, in which * matches any
+            characters. An empty list delivers every event.
+          items:
+            type: string
+          type: array
         http_protocol_major_version:
           description: |-
             The major version of the HTTP protocol the endpoint negotiated during the
@@ -19227,29 +19310,35 @@ components:
       description: Event Stream List
       example:
         event_streams:
-        - http_protocol_major_version: 0
-          https_auth_header_name: https_auth_header_name
+        - https_auth_header_name: https_auth_header_name
           https_auth_secret: https_auth_secret
+          topic_arn: topic_arn
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          http_protocol_major_version: 0
+          event_types:
+          - event_types
+          - event_types
           role_arn: role_arn
           updated_at: 2000-01-23T04:56:07.000+00:00
-          topic_arn: topic_arn
           https_auth_type: none
-          created_at: 2000-01-23T04:56:07.000+00:00
           https_endpoint: https_endpoint
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
           status: active
-        - http_protocol_major_version: 0
-          https_auth_header_name: https_auth_header_name
+        - https_auth_header_name: https_auth_header_name
           https_auth_secret: https_auth_secret
+          topic_arn: topic_arn
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          http_protocol_major_version: 0
+          event_types:
+          - event_types
+          - event_types
           role_arn: role_arn
           updated_at: 2000-01-23T04:56:07.000+00:00
-          topic_arn: topic_arn
           https_auth_type: none
-          created_at: 2000-01-23T04:56:07.000+00:00
           https_endpoint: https_endpoint
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          type: type
           status: active
       properties:
         event_streams:
@@ -19438,6 +19527,9 @@ components:
               message: message
             - path: path
               message: message
+            missing_required_traits:
+            - missing_required_traits
+            - missing_required_traits
             id_token_claims:
               key: ""
             error:
@@ -19846,6 +19938,9 @@ components:
             message: message
           - path: path
             message: message
+          missing_required_traits:
+          - missing_required_traits
+          - missing_required_traits
           id_token_claims:
             key: ""
           error:
@@ -19882,6 +19977,9 @@ components:
           message: message
         - path: path
           message: message
+        missing_required_traits:
+        - missing_required_traits
+        - missing_required_traits
         id_token_claims:
           key: ""
         error:
@@ -19917,6 +20015,14 @@ components:
         jsonnet_stderr:
           description: Anything the Jsonnet mapper wrote to standard error.
           type: string
+        missing_required_traits:
+          description: |-
+            JSON pointers to required identity traits the Jsonnet mapper did not
+            set. The test still succeeds, because on first sign-in the user is
+            asked to provide these fields before the identity is created.
+          items:
+            type: string
+          type: array
         schema_validation_errors:
           description: Identity-schema validation errors produced from the mapped
             traits.
@@ -21748,6 +21854,69 @@ components:
             Configures the Ory Kratos Login After WebAuthn Default Return URL
 
             This governs the "selfservice.flows.login.after.webauthn.default_browser_return_url" setting.
+          type: string
+        kratos_selfservice_flows_login_brute_force_protection_enabled:
+          description: |-
+            Configures whether failed sign-ins are throttled with exponential backoff
+
+            Turning it off keeps the thresholds, so it can be turned back on without
+            entering them again. Requires an Enterprise plan.
+
+            This governs the "selfservice.flows.login.brute_force_protection.enabled" setting.
+          type: boolean
+        kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_initial:
+          description: |-
+            Configures the first delay for an identifier once its threshold is exceeded, for example "1s"
+
+            The delay doubles with every further failure.
+
+            This governs the "selfservice.flows.login.brute_force_protection.identifier.exponential_backoff.initial" setting.
+          type: string
+        kratos_selfservice_flows_login_brute_force_protection_identifier_exponential_backoff_max:
+          description: |-
+            Configures the longest delay for an identifier, for example "15m", at most "8760h"
+
+            This governs the "selfservice.flows.login.brute_force_protection.identifier.exponential_backoff.max" setting.
+          type: string
+        kratos_selfservice_flows_login_brute_force_protection_identifier_max_failures:
+          description: |-
+            Configures how many failed sign-ins per identifier the window tolerates before delays start
+
+            This governs the "selfservice.flows.login.brute_force_protection.identifier.max_failures" setting.
+          format: int64
+          type: integer
+        kratos_selfservice_flows_login_brute_force_protection_identifier_window:
+          description: |-
+            Configures how long the failure count of an identifier lives after its first failure, for example "5m"
+
+            This governs the "selfservice.flows.login.brute_force_protection.identifier.window" setting.
+          type: string
+        kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_initial:
+          description: |-
+            Configures the first delay for a client IP once its threshold is exceeded, for example "1s"
+
+            The delay doubles with every further failure.
+
+            This governs the "selfservice.flows.login.brute_force_protection.ip.exponential_backoff.initial" setting.
+          type: string
+        kratos_selfservice_flows_login_brute_force_protection_ip_exponential_backoff_max:
+          description: |-
+            Configures the longest delay for a client IP, for example "15m", at most "8760h"
+
+            This governs the "selfservice.flows.login.brute_force_protection.ip.exponential_backoff.max" setting.
+          type: string
+        kratos_selfservice_flows_login_brute_force_protection_ip_max_failures:
+          description: |-
+            Configures how many failed sign-ins per client IP the window tolerates before delays start
+
+            This governs the "selfservice.flows.login.brute_force_protection.ip.max_failures" setting.
+          format: int64
+          type: integer
+        kratos_selfservice_flows_login_brute_force_protection_ip_window:
+          description: |-
+            Configures how long the failure count of a client IP lives after its first failure, for example "1m"
+
+            This governs the "selfservice.flows.login.brute_force_protection.ip.window" setting.
           type: string
         kratos_selfservice_flows_login_lifespan:
           description: |-
@@ -25320,6 +25489,13 @@ components:
           type: string
         base_url:
           type: string
+        domains:
+          description: |-
+            The organization's domains that sign-ins are routed by. When domain
+            verification is enforced, only trusted domains are listed.
+          items:
+            type: string
+          type: array
         facebook_mapper_url:
           description: |-
             FacebookMapper specifies the JSONNet code snippet which uses Facebook's
@@ -25415,6 +25591,7 @@ components:
           type: boolean
       required:
       - base_url
+      - domains
       - kratos_selfservice_methods_oidc_config_providers
       - kratos_selfservice_methods_saml_config_providers
       - organization_id
@@ -26703,6 +26880,7 @@ components:
             hydra_token_prefix HydraTokenPrefix
             hydra_device_authorization HydraDeviceAuthorization
             kratos_oidc_front_channel_logout KratosOIDCFrontChannelLogout
+            kratos_brute_force_protection KratosBruteForceProtection
             deviceauthn Deviceauthn
             keto_allow_opl_permit_relation_collision KetoAllowOPLPermitRelationCollision exempts a subscription from rejecting OPL  that declares the same name as both a relation and a permit.
             keto_allow_opl_traverse_subject_set KetoAllowOPLTraverseSubjectSet exempts a subscription from rejecting OPL  that traverses a relation declared as a subject set. Override-only, for  legacy configurations; see the OPL reference for the supported shape.
@@ -26791,6 +26969,7 @@ components:
           - hydra_token_prefix
           - hydra_device_authorization
           - kratos_oidc_front_channel_logout
+          - kratos_brute_force_protection
           - deviceauthn
           - keto_allow_opl_permit_relation_collision
           - keto_allow_opl_traverse_subject_set
@@ -26880,6 +27059,7 @@ components:
             hydra_token_prefix HydraTokenPrefix
             hydra_device_authorization HydraDeviceAuthorization
             kratos_oidc_front_channel_logout KratosOIDCFrontChannelLogout
+            kratos_brute_force_protection KratosBruteForceProtection
             deviceauthn Deviceauthn
             keto_allow_opl_permit_relation_collision KetoAllowOPLPermitRelationCollision exempts a subscription from rejecting OPL  that declares the same name as both a relation and a permit.
             keto_allow_opl_traverse_subject_set KetoAllowOPLTraverseSubjectSet exempts a subscription from rejecting OPL  that traverses a relation declared as a subject set. Override-only, for  legacy configurations; see the OPL reference for the supported shape.
@@ -28095,6 +28275,15 @@ components:
         destination. API responses mask secrets; a masked value sent back is
         rejected, so omit the field to keep the stored value.
       properties:
+        event_types:
+          description: |-
+            The events to deliver, as exact event names or patterns such as Session*
+            or *Failed, in which * matches any characters, using the names listed in
+            the event streams documentation. When omitted, the current list is kept.
+            An empty list delivers every event.
+          items:
+            type: string
+          type: array
         https_auth_header_name:
           description: "The header that carries the API key. When omitted, the current\
             \ value is kept."
@@ -30319,6 +30508,9 @@ components:
           description: Method should be set to "lookup_secret" when logging in using
             the lookup_secret strategy.
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - lookup_secret
       - method
@@ -30394,6 +30586,9 @@ components:
 
             This must contain the ID of the WebAuthN connection.
           type: string
+        transient_payload:
+          description: Transient data to pass along to any webhooks
+          type: object
       required:
       - method
       type: object

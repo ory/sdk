@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**EventTypes** | Pointer to **[]string** | The events the stream delivers, sorted. An entry is an exact event name or a pattern such as Session* or *Failed, in which * matches any characters. An empty list delivers every event. | [optional] 
 **HttpProtocolMajorVersion** | Pointer to **NullableInt64** | The major version of the HTTP protocol the endpoint negotiated during the most recent successful connectivity test: 1 for HTTP/1.x, 2 for HTTP/2. Null when the endpoint has not been verified, for example on a paused stream or a non-HTTPS stream. | [optional] [readonly] 
 **HttpsAuthHeaderName** | Pointer to **string** | The header that carries the API key, if https_auth_type is api_key. | [optional] 
 **HttpsAuthSecret** | Pointer to **string** | The API key or bearer token, if https_auth_type is api_key or bearer.  Returned masked. Omit it on write to keep the stored secret. | [optional] 
@@ -60,6 +61,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *EventStream) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetEventTypes
+
+`func (o *EventStream) GetEventTypes() []string`
+
+GetEventTypes returns the EventTypes field if non-nil, zero value otherwise.
+
+### GetEventTypesOk
+
+`func (o *EventStream) GetEventTypesOk() (*[]string, bool)`
+
+GetEventTypesOk returns a tuple with the EventTypes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEventTypes
+
+`func (o *EventStream) SetEventTypes(v []string)`
+
+SetEventTypes sets EventTypes field to given value.
+
+### HasEventTypes
+
+`func (o *EventStream) HasEventTypes() bool`
+
+HasEventTypes returns a boolean if a field has been set.
 
 ### GetHttpProtocolMajorVersion
 

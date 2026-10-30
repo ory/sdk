@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **apple_mapper_url** | **string** | AppleMapper specifies the JSONNet code snippet which uses Apple\&#39;s profile information to hydrate the identity\&#39;s data. | [optional] [default to undefined]
 **auth0_mapper_url** | **string** | Auth0Mapper specifies the JSONNet code snippet which uses Auth0\&#39;s profile information to hydrate the identity\&#39;s data. | [optional] [default to undefined]
 **base_url** | **string** |  | [default to undefined]
+**domains** | **Array&lt;string&gt;** | The organization\&#39;s domains that sign-ins are routed by. When domain verification is enforced, only trusted domains are listed. | [default to undefined]
 **facebook_mapper_url** | **string** | FacebookMapper specifies the JSONNet code snippet which uses Facebook\&#39;s profile information to hydrate the identity\&#39;s data. | [optional] [default to undefined]
 **generic_oidc_mapper_url** | **string** | GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider\&#39;s profile information to hydrate the identity\&#39;s data. | [optional] [default to undefined]
 **github_mapper_url** | **string** | GithubMapper specifies the JSONNet code snippet which uses GitHub\&#39;s profile information to hydrate the identity\&#39;s data. | [optional] [default to undefined]
@@ -42,6 +43,7 @@ const instance: OnboardingPortalOrganization = {
     apple_mapper_url,
     auth0_mapper_url,
     base_url,
+    domains,
     facebook_mapper_url,
     generic_oidc_mapper_url,
     github_mapper_url,

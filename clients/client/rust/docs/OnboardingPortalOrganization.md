@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **apple_mapper_url** | Option<**String**> | AppleMapper specifies the JSONNet code snippet which uses Apple's profile information to hydrate the identity's data. | [optional]
 **auth0_mapper_url** | Option<**String**> | Auth0Mapper specifies the JSONNet code snippet which uses Auth0's profile information to hydrate the identity's data. | [optional]
 **base_url** | **String** |  | 
+**domains** | **Vec<String>** | The organization's domains that sign-ins are routed by. When domain verification is enforced, only trusted domains are listed. | 
 **facebook_mapper_url** | Option<**String**> | FacebookMapper specifies the JSONNet code snippet which uses Facebook's profile information to hydrate the identity's data. | [optional]
 **generic_oidc_mapper_url** | Option<**String**> | GenericOIDCMapper specifies the JSONNet code snippet which uses the OIDC Provider's profile information to hydrate the identity's data. | [optional]
 **github_mapper_url** | Option<**String**> | GithubMapper specifies the JSONNet code snippet which uses GitHub's profile information to hydrate the identity's data. | [optional]

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **JsonnetMapperUrl** | Pointer to **string** | URL of the Jsonnet mapper that was executed on the claims. | [optional] 
 **JsonnetOutput** | Pointer to **map[string]interface{}** | Output JSON returned by the Jsonnet mapper. | [optional] 
 **JsonnetStderr** | Pointer to **string** | Anything the Jsonnet mapper wrote to standard error. | [optional] 
+**MissingRequiredTraits** | Pointer to **[]string** | JSON pointers to required identity traits the Jsonnet mapper did not set. The test still succeeds, because on first sign-in the user is asked to provide these fields before the identity is created. | [optional] 
 **SchemaValidationErrors** | Pointer to [**[]LoginFlowTestSchemaValidationError**](LoginFlowTestSchemaValidationError.md) | Identity-schema validation errors produced from the mapped traits. | [optional] 
 **Userinfo** | Pointer to **map[string]interface{}** | Claims returned from the provider&#39;s userinfo endpoint, if any. | [optional] 
 
@@ -181,6 +182,31 @@ SetJsonnetStderr sets JsonnetStderr field to given value.
 `func (o *LoginFlowTestDebugPayload) HasJsonnetStderr() bool`
 
 HasJsonnetStderr returns a boolean if a field has been set.
+
+### GetMissingRequiredTraits
+
+`func (o *LoginFlowTestDebugPayload) GetMissingRequiredTraits() []string`
+
+GetMissingRequiredTraits returns the MissingRequiredTraits field if non-nil, zero value otherwise.
+
+### GetMissingRequiredTraitsOk
+
+`func (o *LoginFlowTestDebugPayload) GetMissingRequiredTraitsOk() (*[]string, bool)`
+
+GetMissingRequiredTraitsOk returns a tuple with the MissingRequiredTraits field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMissingRequiredTraits
+
+`func (o *LoginFlowTestDebugPayload) SetMissingRequiredTraits(v []string)`
+
+SetMissingRequiredTraits sets MissingRequiredTraits field to given value.
+
+### HasMissingRequiredTraits
+
+`func (o *LoginFlowTestDebugPayload) HasMissingRequiredTraits() bool`
+
+HasMissingRequiredTraits returns a boolean if a field has been set.
 
 ### GetSchemaValidationErrors
 

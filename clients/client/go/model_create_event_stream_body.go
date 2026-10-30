@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.87
+API version: v1.22.88
 Contact: support@ory.sh
 */
 
@@ -21,6 +21,8 @@ var _ MappedNullable = &CreateEventStreamBody{}
 
 // CreateEventStreamBody Create Event Stream Request Body
 type CreateEventStreamBody struct {
+	// The events to deliver, as exact event names or patterns such as Session* or *Failed, in which * matches any characters, using the names listed in the event streams documentation. Omit it or send an empty list to deliver every event.
+	EventTypes []string `json:"event_types,omitempty"`
 	// The header that carries the API key. Required if https_auth_type is api_key. It must not be a header Ory sets itself, or a connection-specific header such as Connection, Keep-Alive, Upgrade, or TE, which HTTP/2 does not allow.
 	HttpsAuthHeaderName *string `json:"https_auth_header_name,omitempty"`
 	// The API key or bearer token. Required if https_auth_type is api_key or bearer. At most 4096 bytes.
@@ -58,6 +60,38 @@ func NewCreateEventStreamBody(type_ string) *CreateEventStreamBody {
 func NewCreateEventStreamBodyWithDefaults() *CreateEventStreamBody {
 	this := CreateEventStreamBody{}
 	return &this
+}
+
+// GetEventTypes returns the EventTypes field value if set, zero value otherwise.
+func (o *CreateEventStreamBody) GetEventTypes() []string {
+	if o == nil || IsNil(o.EventTypes) {
+		var ret []string
+		return ret
+	}
+	return o.EventTypes
+}
+
+// GetEventTypesOk returns a tuple with the EventTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEventStreamBody) GetEventTypesOk() ([]string, bool) {
+	if o == nil || IsNil(o.EventTypes) {
+		return nil, false
+	}
+	return o.EventTypes, true
+}
+
+// HasEventTypes returns a boolean if a field has been set.
+func (o *CreateEventStreamBody) HasEventTypes() bool {
+	if o != nil && !IsNil(o.EventTypes) {
+		return true
+	}
+
+	return false
+}
+
+// SetEventTypes gets a reference to the given []string and assigns it to the EventTypes field.
+func (o *CreateEventStreamBody) SetEventTypes(v []string) {
+	o.EventTypes = v
 }
 
 // GetHttpsAuthHeaderName returns the HttpsAuthHeaderName field value if set, zero value otherwise.
@@ -318,6 +352,9 @@ func (o CreateEventStreamBody) MarshalJSON() ([]byte, error) {
 
 func (o CreateEventStreamBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.EventTypes) {
+		toSerialize["event_types"] = o.EventTypes
+	}
 	if !IsNil(o.HttpsAuthHeaderName) {
 		toSerialize["https_auth_header_name"] = o.HttpsAuthHeaderName
 	}
@@ -383,6 +420,7 @@ func (o *CreateEventStreamBody) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "event_types")
 		delete(additionalProperties, "https_auth_header_name")
 		delete(additionalProperties, "https_auth_secret")
 		delete(additionalProperties, "https_auth_type")

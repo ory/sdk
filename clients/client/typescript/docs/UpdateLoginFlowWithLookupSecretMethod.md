@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **csrf_token** | **string** | Sending the anti-csrf token is only required for browser login flows. | [optional] [default to undefined]
 **lookup_secret** | **string** | The lookup secret. | [default to undefined]
 **method** | **string** | Method should be set to \&quot;lookup_secret\&quot; when logging in using the lookup_secret strategy. | [default to undefined]
+**transient_payload** | **object** | Transient data to pass along to any webhooks | [optional] [default to undefined]
 
 ## Example
 
@@ -19,6 +20,7 @@ const instance: UpdateLoginFlowWithLookupSecretMethod = {
     csrf_token,
     lookup_secret,
     method,
+    transient_payload,
 };
 ```
 

@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **event_types** | **Array&lt;String&gt;** | The events to deliver, as exact event names or patterns such as Session* or *Failed, in which * matches any characters, using the names listed in the event streams documentation. When omitted, the current list is kept. An empty list delivers every event. | [optional] |
 | **https_auth_header_name** | **String** | The header that carries the API key. When omitted, the current value is kept. | [optional] |
 | **https_auth_secret** | **String** | The API key or bearer token. When omitted, the current secret is kept as long as the scheme and the endpoint stay the same. The masked value from an API response is rejected. | [optional] |
 | **https_auth_type** | **String** | How deliveries to the HTTPS endpoint authenticate. When omitted, the current scheme and its secret are kept. &#x60;none&#x60; removes the header name and secret. Changing the scheme requires a new secret. | [optional] |
@@ -19,6 +20,7 @@
 require 'ory-client'
 
 instance = OryClient::SetEventStreamBody.new(
+  event_types: null,
   https_auth_header_name: null,
   https_auth_secret: null,
   https_auth_type: null,

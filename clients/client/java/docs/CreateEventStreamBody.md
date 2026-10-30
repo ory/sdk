@@ -8,6 +8,7 @@ Create Event Stream Request Body
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**eventTypes** | **List&lt;String&gt;** | The events to deliver, as exact event names or patterns such as Session* or *Failed, in which * matches any characters, using the names listed in the event streams documentation. Omit it or send an empty list to deliver every event. |  [optional] |
 |**httpsAuthHeaderName** | **String** | The header that carries the API key. Required if https_auth_type is api_key. It must not be a header Ory sets itself, or a connection-specific header such as Connection, Keep-Alive, Upgrade, or TE, which HTTP/2 does not allow. |  [optional] |
 |**httpsAuthSecret** | **String** | The API key or bearer token. Required if https_auth_type is api_key or bearer. At most 4096 bytes. |  [optional] |
 |**httpsAuthType** | [**HttpsAuthTypeEnum**](#HttpsAuthTypeEnum) | How deliveries to the HTTPS endpoint authenticate. Defaults to none. &#x60;api_key&#x60; sends https_auth_secret in the header named by https_auth_header_name. &#x60;bearer&#x60; sends it as &#x60;Authorization: Bearer&#x60;. |  [optional] |

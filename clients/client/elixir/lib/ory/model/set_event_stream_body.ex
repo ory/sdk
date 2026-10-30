@@ -8,6 +8,7 @@ defmodule Ory.Model.SetEventStreamBody do
 
   @derive Jason.Encoder
   defstruct [
+    :event_types,
     :https_auth_header_name,
     :https_auth_secret,
     :https_auth_type,
@@ -19,6 +20,7 @@ defmodule Ory.Model.SetEventStreamBody do
   ]
 
   @type t :: %__MODULE__{
+    :event_types => [String.t] | nil,
     :https_auth_header_name => String.t | nil,
     :https_auth_secret => String.t | nil,
     :https_auth_type => String.t | nil,

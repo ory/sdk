@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **csrf_token** | **string** | Sending the anti-csrf token is only required for browser login flows. | [optional] [default to undefined]
 **method** | **string** | Method should be set to \&quot;passkey\&quot; when logging in using the Passkey strategy. | [default to undefined]
 **passkey_login** | **string** | Login a WebAuthn Security Key  This must contain the ID of the WebAuthN connection. | [optional] [default to undefined]
+**transient_payload** | **object** | Transient data to pass along to any webhooks | [optional] [default to undefined]
 
 ## Example
 
@@ -19,6 +20,7 @@ const instance: UpdateLoginFlowWithPasskeyMethod = {
     csrf_token,
     method,
     passkey_login,
+    transient_payload,
 };
 ```
 
