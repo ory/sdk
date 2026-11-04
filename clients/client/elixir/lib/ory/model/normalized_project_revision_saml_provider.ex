@@ -9,6 +9,7 @@ defmodule Ory.Model.NormalizedProjectRevisionSamlProvider do
   @derive Jason.Encoder
   defstruct [
     :acs_url,
+    :additional_acs_urls,
     :allowed_digest_algorithms,
     :allowed_name_id_formats,
     :allowed_signature_algorithms,
@@ -40,6 +41,7 @@ defmodule Ory.Model.NormalizedProjectRevisionSamlProvider do
 
   @type t :: %__MODULE__{
     :acs_url => String.t | nil,
+    :additional_acs_urls => [String.t] | nil,
     :allowed_digest_algorithms => [String.t] | nil,
     :allowed_name_id_formats => [String.t] | nil,
     :allowed_signature_algorithms => [String.t] | nil,

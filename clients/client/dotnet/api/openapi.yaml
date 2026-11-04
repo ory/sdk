@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.90
+  version: v1.22.91
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -14669,12 +14669,16 @@ components:
             us US
             global Global
         domains:
-          description: Domains contains the list of organization's domains.
+          description: |-
+            Domains contains the list of organization's domains. Omit to leave the
+            existing value unchanged on update; send an empty list to clear it.
           items:
             type: string
           type: array
         label:
-          description: Label contains the organization's label.
+          description: |-
+            Label contains the organization's label. Omit to leave the existing
+            value unchanged on update.
           type: string
         session_lifespan:
           description: |-
@@ -15610,9 +15614,7 @@ components:
       properties:
         environment:
           description: |-
-            The environment of the project in the workspace. Can be one of "prod" or
-            "dev". Note that the number of projects in the "prod" environment is limited
-            depending on the subscription.
+            Deprecated: ignored. The project keeps its current environment.
             prod Production
             stage Staging
             dev Development
@@ -15621,6 +15623,7 @@ components:
           - stage
           - dev
           type: string
+          x-deprecated: true
           x-go-enum-desc: |-
             prod Production
             stage Staging
@@ -15640,7 +15643,6 @@ components:
             migrate ProjectSubscriptionActionMigrate will migrate the project subscription to the  workspace.
             ignore ProjectSubscriptionActionIgnore will ignore the project subscription.
       required:
-      - environment
       - project_subscription
       title: AddProjectToWorkspaceBody contains the options for migrating a project
         to a workspace.
@@ -22832,6 +22834,21 @@ components:
         acs_url:
           nullable: true
           type: string
+        additional_acs_urls:
+          description: |-
+            Further ACS URLs that the provider's Polis connection accepts as the
+            Recipient, at most 10. Polis checks them only on the provider's own ACS
+            URL route, so they apply only to a provider with a connection-specific
+            ACS URL.
+
+            A save that leaves the field out, or sends null, keeps the provider's
+            stored list, and an empty list removes it. A JSON Patch remove of the
+            field removes the list, like an empty list. Switching the provider to
+            the native engine removes its list. The onboarding portal keeps a
+            provider's stored list.
+          items:
+            type: string
+          type: array
         allowed_digest_algorithms:
           description: The digest algorithms accepted when validating signed SAML
             messages; empty means engine defaults (native engine only).
@@ -31566,6 +31583,7 @@ components:
         access_policy:
           description: |-
             The access policy of the workspace.
+            If omitted or empty, the current access policy is kept.
             If the workspace is not linked to an organization, this field is ignored and
             the access policy is set to "INVITED_MEMBERS", which allows all invited members
             to access the workspace.
@@ -31594,6 +31612,11 @@ components:
             the field is omitted, the stored value is left unchanged.
           example: 24h
           type: string
+      type: object
+    validateAddProjectToWorkspace:
+      description: |-
+        ValidateAddProjectToWorkspaceResponse is the result of validating that a
+        project can be added to a workspace.
       type: object
     validateBaseURLRewriteRequest:
       description: |-

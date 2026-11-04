@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **acs_url** | **String** |  | [optional] |
+| **additional_acs_urls** | **Array&lt;String&gt;** | Further ACS URLs that the provider&#39;s Polis connection accepts as the Recipient, at most 10. Polis checks them only on the provider&#39;s own ACS URL route, so they apply only to a provider with a connection-specific ACS URL.  A save that leaves the field out, or sends null, keeps the provider&#39;s stored list, and an empty list removes it. A JSON Patch remove of the field removes the list, like an empty list. Switching the provider to the native engine removes its list. The onboarding portal keeps a provider&#39;s stored list. | [optional] |
 | **allowed_digest_algorithms** | **Array&lt;String&gt;** | The digest algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional] |
 | **allowed_name_id_formats** | **Array&lt;String&gt;** | The NameID formats accepted from the IdP; empty means any (native engine only). | [optional] |
 | **allowed_signature_algorithms** | **Array&lt;String&gt;** | The signature algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional] |
@@ -40,6 +41,7 @@ require 'ory-client'
 
 instance = OryClient::NormalizedProjectRevisionSAMLProvider.new(
   acs_url: null,
+  additional_acs_urls: null,
   allowed_digest_algorithms: null,
   allowed_name_id_formats: null,
   allowed_signature_algorithms: null,

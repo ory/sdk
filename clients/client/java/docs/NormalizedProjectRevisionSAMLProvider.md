@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**acsUrl** | **String** |  |  [optional] |
+|**additionalAcsUrls** | **List&lt;String&gt;** | Further ACS URLs that the provider&#39;s Polis connection accepts as the Recipient, at most 10. Polis checks them only on the provider&#39;s own ACS URL route, so they apply only to a provider with a connection-specific ACS URL.  A save that leaves the field out, or sends null, keeps the provider&#39;s stored list, and an empty list removes it. A JSON Patch remove of the field removes the list, like an empty list. Switching the provider to the native engine removes its list. The onboarding portal keeps a provider&#39;s stored list. |  [optional] |
 |**allowedDigestAlgorithms** | **List&lt;String&gt;** | The digest algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). |  [optional] |
 |**allowedNameIdFormats** | **List&lt;String&gt;** | The NameID formats accepted from the IdP; empty means any (native engine only). |  [optional] |
 |**allowedSignatureAlgorithms** | **List&lt;String&gt;** | The signature algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). |  [optional] |

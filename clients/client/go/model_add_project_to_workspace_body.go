@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.90
+API version: v1.22.91
 Contact: support@ory.sh
 */
 
@@ -21,8 +21,8 @@ var _ MappedNullable = &AddProjectToWorkspaceBody{}
 
 // AddProjectToWorkspaceBody struct for AddProjectToWorkspaceBody
 type AddProjectToWorkspaceBody struct {
-	// The environment of the project in the workspace. Can be one of \"prod\" or \"dev\". Note that the number of projects in the \"prod\" environment is limited depending on the subscription. prod Production stage Staging dev Development
-	Environment string `json:"environment"`
+	// Deprecated: ignored. The project keeps its current environment. prod Production stage Staging dev Development
+	Environment *string `json:"environment,omitempty"`
 	// The action to take with the project subscription. Can be one of \"migrate\", and \"ignore\". \"migrate\" will migrate the project subscription to the workspace. \"ignore\" will ignore the project subscription. migrate ProjectSubscriptionActionMigrate will migrate the project subscription to the  workspace. ignore ProjectSubscriptionActionIgnore will ignore the project subscription.
 	ProjectSubscription string `json:"project_subscription"`
 	AdditionalProperties map[string]interface{}
@@ -34,9 +34,8 @@ type _AddProjectToWorkspaceBody AddProjectToWorkspaceBody
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddProjectToWorkspaceBody(environment string, projectSubscription string) *AddProjectToWorkspaceBody {
+func NewAddProjectToWorkspaceBody(projectSubscription string) *AddProjectToWorkspaceBody {
 	this := AddProjectToWorkspaceBody{}
-	this.Environment = environment
 	this.ProjectSubscription = projectSubscription
 	return &this
 }
@@ -49,28 +48,36 @@ func NewAddProjectToWorkspaceBodyWithDefaults() *AddProjectToWorkspaceBody {
 	return &this
 }
 
-// GetEnvironment returns the Environment field value
+// GetEnvironment returns the Environment field value if set, zero value otherwise.
 func (o *AddProjectToWorkspaceBody) GetEnvironment() string {
-	if o == nil {
+	if o == nil || IsNil(o.Environment) {
 		var ret string
 		return ret
 	}
-
-	return o.Environment
+	return *o.Environment
 }
 
-// GetEnvironmentOk returns a tuple with the Environment field value
+// GetEnvironmentOk returns a tuple with the Environment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AddProjectToWorkspaceBody) GetEnvironmentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Environment) {
 		return nil, false
 	}
-	return &o.Environment, true
+	return o.Environment, true
 }
 
-// SetEnvironment sets field value
+// HasEnvironment returns a boolean if a field has been set.
+func (o *AddProjectToWorkspaceBody) HasEnvironment() bool {
+	if o != nil && !IsNil(o.Environment) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnvironment gets a reference to the given string and assigns it to the Environment field.
 func (o *AddProjectToWorkspaceBody) SetEnvironment(v string) {
-	o.Environment = v
+	o.Environment = &v
 }
 
 // GetProjectSubscription returns the ProjectSubscription field value
@@ -107,7 +114,9 @@ func (o AddProjectToWorkspaceBody) MarshalJSON() ([]byte, error) {
 
 func (o AddProjectToWorkspaceBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["environment"] = o.Environment
+	if !IsNil(o.Environment) {
+		toSerialize["environment"] = o.Environment
+	}
 	toSerialize["project_subscription"] = o.ProjectSubscription
 
 	for key, value := range o.AdditionalProperties {
@@ -122,7 +131,6 @@ func (o *AddProjectToWorkspaceBody) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"environment",
 		"project_subscription",
 	}
 

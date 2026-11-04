@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AcsUrl** | Pointer to **NullableString** |  | [optional] 
+**AdditionalAcsUrls** | Pointer to **[]string** | Further ACS URLs that the provider&#39;s Polis connection accepts as the Recipient, at most 10. Polis checks them only on the provider&#39;s own ACS URL route, so they apply only to a provider with a connection-specific ACS URL.  A save that leaves the field out, or sends null, keeps the provider&#39;s stored list, and an empty list removes it. A JSON Patch remove of the field removes the list, like an empty list. Switching the provider to the native engine removes its list. The onboarding portal keeps a provider&#39;s stored list. | [optional] 
 **AllowedDigestAlgorithms** | Pointer to **[]string** | The digest algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional] 
 **AllowedNameIdFormats** | Pointer to **[]string** | The NameID formats accepted from the IdP; empty means any (native engine only). | [optional] 
 **AllowedSignatureAlgorithms** | Pointer to **[]string** | The signature algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional] 
@@ -87,6 +88,31 @@ HasAcsUrl returns a boolean if a field has been set.
 `func (o *NormalizedProjectRevisionSAMLProvider) UnsetAcsUrl()`
 
 UnsetAcsUrl ensures that no value is present for AcsUrl, not even an explicit nil
+### GetAdditionalAcsUrls
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetAdditionalAcsUrls() []string`
+
+GetAdditionalAcsUrls returns the AdditionalAcsUrls field if non-nil, zero value otherwise.
+
+### GetAdditionalAcsUrlsOk
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetAdditionalAcsUrlsOk() (*[]string, bool)`
+
+GetAdditionalAcsUrlsOk returns a tuple with the AdditionalAcsUrls field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdditionalAcsUrls
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetAdditionalAcsUrls(v []string)`
+
+SetAdditionalAcsUrls sets AdditionalAcsUrls field to given value.
+
+### HasAdditionalAcsUrls
+
+`func (o *NormalizedProjectRevisionSAMLProvider) HasAdditionalAcsUrls() bool`
+
+HasAdditionalAcsUrls returns a boolean if a field has been set.
+
 ### GetAllowedDigestAlgorithms
 
 `func (o *NormalizedProjectRevisionSAMLProvider) GetAllowedDigestAlgorithms() []string`

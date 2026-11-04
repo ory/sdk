@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.90
+API version: v1.22.91
 Contact: support@ory.sh
 */
 
@@ -22,6 +22,8 @@ var _ MappedNullable = &NormalizedProjectRevisionSAMLProvider{}
 // NormalizedProjectRevisionSAMLProvider struct for NormalizedProjectRevisionSAMLProvider
 type NormalizedProjectRevisionSAMLProvider struct {
 	AcsUrl NullableString `json:"acs_url,omitempty"`
+	// Further ACS URLs that the provider's Polis connection accepts as the Recipient, at most 10. Polis checks them only on the provider's own ACS URL route, so they apply only to a provider with a connection-specific ACS URL.  A save that leaves the field out, or sends null, keeps the provider's stored list, and an empty list removes it. A JSON Patch remove of the field removes the list, like an empty list. Switching the provider to the native engine removes its list. The onboarding portal keeps a provider's stored list.
+	AdditionalAcsUrls []string `json:"additional_acs_urls,omitempty"`
 	// The digest algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only).
 	AllowedDigestAlgorithms []string `json:"allowed_digest_algorithms,omitempty"`
 	// The NameID formats accepted from the IdP; empty means any (native engine only).
@@ -131,6 +133,38 @@ func (o *NormalizedProjectRevisionSAMLProvider) SetAcsUrlNil() {
 // UnsetAcsUrl ensures that no value is present for AcsUrl, not even an explicit nil
 func (o *NormalizedProjectRevisionSAMLProvider) UnsetAcsUrl() {
 	o.AcsUrl.Unset()
+}
+
+// GetAdditionalAcsUrls returns the AdditionalAcsUrls field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionSAMLProvider) GetAdditionalAcsUrls() []string {
+	if o == nil || IsNil(o.AdditionalAcsUrls) {
+		var ret []string
+		return ret
+	}
+	return o.AdditionalAcsUrls
+}
+
+// GetAdditionalAcsUrlsOk returns a tuple with the AdditionalAcsUrls field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) GetAdditionalAcsUrlsOk() ([]string, bool) {
+	if o == nil || IsNil(o.AdditionalAcsUrls) {
+		return nil, false
+	}
+	return o.AdditionalAcsUrls, true
+}
+
+// HasAdditionalAcsUrls returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasAdditionalAcsUrls() bool {
+	if o != nil && !IsNil(o.AdditionalAcsUrls) {
+		return true
+	}
+
+	return false
+}
+
+// SetAdditionalAcsUrls gets a reference to the given []string and assigns it to the AdditionalAcsUrls field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetAdditionalAcsUrls(v []string) {
+	o.AdditionalAcsUrls = v
 }
 
 // GetAllowedDigestAlgorithms returns the AllowedDigestAlgorithms field value if set, zero value otherwise.
@@ -1090,6 +1124,9 @@ func (o NormalizedProjectRevisionSAMLProvider) ToMap() (map[string]interface{}, 
 	if o.AcsUrl.IsSet() {
 		toSerialize["acs_url"] = o.AcsUrl.Get()
 	}
+	if !IsNil(o.AdditionalAcsUrls) {
+		toSerialize["additional_acs_urls"] = o.AdditionalAcsUrls
+	}
 	if !IsNil(o.AllowedDigestAlgorithms) {
 		toSerialize["allowed_digest_algorithms"] = o.AllowedDigestAlgorithms
 	}
@@ -1194,6 +1231,7 @@ func (o *NormalizedProjectRevisionSAMLProvider) UnmarshalJSON(data []byte) (err 
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "acs_url")
+		delete(additionalProperties, "additional_acs_urls")
 		delete(additionalProperties, "allowed_digest_algorithms")
 		delete(additionalProperties, "allowed_name_id_formats")
 		delete(additionalProperties, "allowed_signature_algorithms")

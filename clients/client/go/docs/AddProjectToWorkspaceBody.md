@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Environment** | **string** | The environment of the project in the workspace. Can be one of \&quot;prod\&quot; or \&quot;dev\&quot;. Note that the number of projects in the \&quot;prod\&quot; environment is limited depending on the subscription. prod Production stage Staging dev Development | 
+**Environment** | Pointer to **string** | Deprecated: ignored. The project keeps its current environment. prod Production stage Staging dev Development | [optional] 
 **ProjectSubscription** | **string** | The action to take with the project subscription. Can be one of \&quot;migrate\&quot;, and \&quot;ignore\&quot;. \&quot;migrate\&quot; will migrate the project subscription to the workspace. \&quot;ignore\&quot; will ignore the project subscription. migrate ProjectSubscriptionActionMigrate will migrate the project subscription to the  workspace. ignore ProjectSubscriptionActionIgnore will ignore the project subscription. | 
 
 ## Methods
 
 ### NewAddProjectToWorkspaceBody
 
-`func NewAddProjectToWorkspaceBody(environment string, projectSubscription string, ) *AddProjectToWorkspaceBody`
+`func NewAddProjectToWorkspaceBody(projectSubscription string, ) *AddProjectToWorkspaceBody`
 
 NewAddProjectToWorkspaceBody instantiates a new AddProjectToWorkspaceBody object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetEnvironment sets Environment field to given value.
 
+### HasEnvironment
+
+`func (o *AddProjectToWorkspaceBody) HasEnvironment() bool`
+
+HasEnvironment returns a boolean if a field has been set.
 
 ### GetProjectSubscription
 

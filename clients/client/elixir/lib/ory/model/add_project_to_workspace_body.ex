@@ -13,7 +13,7 @@ defmodule Ory.Model.AddProjectToWorkspaceBody do
   ]
 
   @type t :: %__MODULE__{
-    :environment => String.t,
+    :environment => String.t | nil,
     :project_subscription => String.t
   }
 
