@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **https_auth_secret** | **string** | The API key or bearer token. Required if https_auth_type is api_key or bearer. At most 4096 bytes. | [optional] [default to undefined]
 **https_auth_type** | **string** | How deliveries to the HTTPS endpoint authenticate. Defaults to none. &#x60;api_key&#x60; sends https_auth_secret in the header named by https_auth_header_name. &#x60;bearer&#x60; sends it as &#x60;Authorization: Bearer&#x60;. | [optional] [default to undefined]
 **https_endpoint** | **string** | The HTTPS endpoint URL to send events to. Required if type is https. | [optional] [default to undefined]
+**include_security_context** | **boolean** | Whether events include the security context of the request that caused them: the client IP address, user agent, HTTP method, host, and path. Defaults to false. | [optional] [default to undefined]
 **role_arn** | **string** | The AWS IAM role ARN to assume when publishing to the SNS topic. Required if type is sns. | [optional] [default to undefined]
 **status** | **string** | The status of the event stream. Defaults to active. A paused stream is created but does not forward any events until it is set to active. | [optional] [default to undefined]
 **topic_arn** | **string** | The AWS SNS topic ARN. Required if type is sns. | [optional] [default to undefined]
@@ -27,6 +28,7 @@ const instance: CreateEventStreamBody = {
     https_auth_secret,
     https_auth_type,
     https_endpoint,
+    include_security_context,
     role_arn,
     status,
     topic_arn,

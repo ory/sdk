@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **HttpsAuthType** | Pointer to **string** | How deliveries to the HTTPS endpoint authenticate, if type is HTTPS. &#x60;api_key&#x60; sends the secret in the header named by https_auth_header_name. &#x60;bearer&#x60; sends it as &#x60;Authorization: Bearer&#x60;. Credentials in the endpoint URL are sent as Basic auth either way. | [optional] 
 **HttpsEndpoint** | Pointer to **NullableString** | The HTTPS endpoint, if type is HTTPS.  Returned with its userinfo and query values masked. Omit it on write to keep the stored endpoint. | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
+**IncludeSecurityContext** | Pointer to **bool** | Whether events include the security context of the request that caused them: the client IP address, user agent, HTTP method, host, and path. | [optional] 
 **RoleArn** | Pointer to **string** | The AWS IAM role ARN assumed when publishing to the SNS topic, if type is SNS. | [optional] 
 **Status** | Pointer to **string** | The status of the event stream. A paused event stream does not forward any events until it is set back to active. | [optional] 
 **TopicArn** | Pointer to **string** | The AWS SNS topic ARN, if type is SNS. | [optional] 
@@ -256,6 +257,31 @@ SetId sets Id field to given value.
 `func (o *EventStream) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetIncludeSecurityContext
+
+`func (o *EventStream) GetIncludeSecurityContext() bool`
+
+GetIncludeSecurityContext returns the IncludeSecurityContext field if non-nil, zero value otherwise.
+
+### GetIncludeSecurityContextOk
+
+`func (o *EventStream) GetIncludeSecurityContextOk() (*bool, bool)`
+
+GetIncludeSecurityContextOk returns a tuple with the IncludeSecurityContext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIncludeSecurityContext
+
+`func (o *EventStream) SetIncludeSecurityContext(v bool)`
+
+SetIncludeSecurityContext sets IncludeSecurityContext field to given value.
+
+### HasIncludeSecurityContext
+
+`func (o *EventStream) HasIncludeSecurityContext() bool`
+
+HasIncludeSecurityContext returns a boolean if a field has been set.
 
 ### GetRoleArn
 

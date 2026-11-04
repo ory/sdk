@@ -12,6 +12,7 @@ Name | Type
 `backchannel_logout_supported` | boolean
 `claims_parameter_supported` | boolean
 `claims_supported` | Array&lt;string&gt;
+`client_id_metadata_document_supported` | boolean
 `code_challenge_methods_supported` | Array&lt;string&gt;
 `credentials_endpoint_draft_00` | string
 `credentials_supported_draft_00` | [Array&lt;CredentialSupportedDraft00&gt;](CredentialSupportedDraft00.md)
@@ -52,6 +53,7 @@ const example = {
   "backchannel_logout_supported": null,
   "claims_parameter_supported": null,
   "claims_supported": null,
+  "client_id_metadata_document_supported": null,
   "code_challenge_methods_supported": null,
   "credentials_endpoint_draft_00": null,
   "credentials_supported_draft_00": null,

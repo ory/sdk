@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **BackchannelLogoutSupported** | Pointer to **bool** | OpenID Connect Back-Channel Logout Supported  Boolean value specifying whether the OP supports back-channel logout, with true indicating support. | [optional] 
 **ClaimsParameterSupported** | Pointer to **bool** | OpenID Connect Claims Parameter Parameter Supported  Boolean value specifying whether the OP supports use of the claims parameter, with true indicating support. | [optional] 
 **ClaimsSupported** | Pointer to **[]string** | OpenID Connect Supported Claims  JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply values for. Note that for privacy or other reasons, this might not be an exhaustive list. | [optional] 
+**ClientIdMetadataDocumentSupported** | Pointer to **bool** | Whether this server resolves a client_id that is the URL of a Client ID Metadata Document, as draft-ietf-oauth-client-id-metadata-document section 6 describes. Absent when it does not. | [optional] 
 **CodeChallengeMethodsSupported** | Pointer to **[]string** | OAuth 2.0 PKCE Supported Code Challenge Methods  JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server. | [optional] 
 **CredentialsEndpointDraft00** | Pointer to **string** | OpenID Connect Verifiable Credentials Endpoint  Contains the URL of the Verifiable Credentials Endpoint. | [optional] 
 **CredentialsSupportedDraft00** | Pointer to [**[]CredentialSupportedDraft00**](CredentialSupportedDraft00.md) | OpenID Connect Verifiable Credentials Supported  JSON array containing a list of the Verifiable Credentials supported by this authorization server. | [optional] 
@@ -175,6 +176,31 @@ SetClaimsSupported sets ClaimsSupported field to given value.
 `func (o *OidcConfiguration) HasClaimsSupported() bool`
 
 HasClaimsSupported returns a boolean if a field has been set.
+
+### GetClientIdMetadataDocumentSupported
+
+`func (o *OidcConfiguration) GetClientIdMetadataDocumentSupported() bool`
+
+GetClientIdMetadataDocumentSupported returns the ClientIdMetadataDocumentSupported field if non-nil, zero value otherwise.
+
+### GetClientIdMetadataDocumentSupportedOk
+
+`func (o *OidcConfiguration) GetClientIdMetadataDocumentSupportedOk() (*bool, bool)`
+
+GetClientIdMetadataDocumentSupportedOk returns a tuple with the ClientIdMetadataDocumentSupported field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientIdMetadataDocumentSupported
+
+`func (o *OidcConfiguration) SetClientIdMetadataDocumentSupported(v bool)`
+
+SetClientIdMetadataDocumentSupported sets ClientIdMetadataDocumentSupported field to given value.
+
+### HasClientIdMetadataDocumentSupported
+
+`func (o *OidcConfiguration) HasClientIdMetadataDocumentSupported() bool`
+
+HasClientIdMetadataDocumentSupported returns a boolean if a field has been set.
 
 ### GetCodeChallengeMethodsSupported
 

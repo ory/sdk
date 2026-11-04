@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.89
+  version: v1.22.90
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -16183,6 +16183,12 @@ components:
           description: The HTTPS endpoint URL to send events to. Required if type
             is https.
           type: string
+        include_security_context:
+          description: |-
+            Whether events include the security context of the request that caused
+            them: the client IP address, user agent, HTTP method, host, and path.
+            Defaults to false.
+          type: boolean
         role_arn:
           description: The AWS IAM role ARN to assume when publishing to the SNS topic.
             Required if type is sns.
@@ -17482,6 +17488,7 @@ components:
         updated_at: 2000-01-23T04:56:07.000+00:00
         https_auth_type: none
         https_endpoint: https_endpoint
+        include_security_context: true
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         status: active
       properties:
@@ -17538,6 +17545,11 @@ components:
         id:
           format: uuid
           type: string
+        include_security_context:
+          description: |-
+            Whether events include the security context of the request that caused
+            them: the client IP address, user agent, HTTP method, host, and path.
+          type: boolean
         role_arn:
           description: "The AWS IAM role ARN assumed when publishing to the SNS topic,\
             \ if type is SNS."
@@ -19172,6 +19184,7 @@ components:
           updated_at: 2000-01-23T04:56:07.000+00:00
           https_auth_type: none
           https_endpoint: https_endpoint
+          include_security_context: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           status: active
         - https_auth_header_name: https_auth_header_name
@@ -19187,6 +19200,7 @@ components:
           updated_at: 2000-01-23T04:56:07.000+00:00
           https_auth_type: none
           https_endpoint: https_endpoint
+          include_security_context: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           status: active
       properties:
@@ -24714,6 +24728,7 @@ components:
       example:
         request_parameter_supported: true
         claims_parameter_supported: true
+        client_id_metadata_document_supported: true
         backchannel_logout_supported: true
         scopes_supported:
         - scopes_supported
@@ -24823,6 +24838,12 @@ components:
           items:
             type: string
           type: array
+        client_id_metadata_document_supported:
+          description: |-
+            Whether this server resolves a client_id that is the URL of a Client ID
+            Metadata Document, as draft-ietf-oauth-client-id-metadata-document
+            section 6 describes. Absent when it does not.
+          type: boolean
         code_challenge_methods_supported:
           description: |-
             OAuth 2.0 PKCE Supported Code Challenge Methods
@@ -28159,6 +28180,12 @@ components:
             is kept. Changing it requires https_auth_secret in the same update when
             deliveries authenticate with an API key or bearer token.
           type: string
+        include_security_context:
+          description: |-
+            Whether events include the security context of the request that caused
+            them: the client IP address, user agent, HTTP method, host, and path.
+            When omitted, the current value is kept.
+          type: boolean
         role_arn:
           description: "The AWS IAM role ARN to assume when publishing to the SNS\
             \ topic. When omitted, the current value is kept."

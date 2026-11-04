@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.89
+API version: v1.22.90
 Contact: support@ory.sh
 */
 
@@ -31,6 +31,8 @@ type OidcConfiguration struct {
 	ClaimsParameterSupported *bool `json:"claims_parameter_supported,omitempty"`
 	// OpenID Connect Supported Claims  JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply values for. Note that for privacy or other reasons, this might not be an exhaustive list.
 	ClaimsSupported []string `json:"claims_supported,omitempty"`
+	// Whether this server resolves a client_id that is the URL of a Client ID Metadata Document, as draft-ietf-oauth-client-id-metadata-document section 6 describes. Absent when it does not.
+	ClientIdMetadataDocumentSupported *bool `json:"client_id_metadata_document_supported,omitempty"`
 	// OAuth 2.0 PKCE Supported Code Challenge Methods  JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server.
 	CodeChallengeMethodsSupported []string `json:"code_challenge_methods_supported,omitempty"`
 	// OpenID Connect Verifiable Credentials Endpoint  Contains the URL of the Verifiable Credentials Endpoint.
@@ -267,6 +269,38 @@ func (o *OidcConfiguration) HasClaimsSupported() bool {
 // SetClaimsSupported gets a reference to the given []string and assigns it to the ClaimsSupported field.
 func (o *OidcConfiguration) SetClaimsSupported(v []string) {
 	o.ClaimsSupported = v
+}
+
+// GetClientIdMetadataDocumentSupported returns the ClientIdMetadataDocumentSupported field value if set, zero value otherwise.
+func (o *OidcConfiguration) GetClientIdMetadataDocumentSupported() bool {
+	if o == nil || IsNil(o.ClientIdMetadataDocumentSupported) {
+		var ret bool
+		return ret
+	}
+	return *o.ClientIdMetadataDocumentSupported
+}
+
+// GetClientIdMetadataDocumentSupportedOk returns a tuple with the ClientIdMetadataDocumentSupported field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcConfiguration) GetClientIdMetadataDocumentSupportedOk() (*bool, bool) {
+	if o == nil || IsNil(o.ClientIdMetadataDocumentSupported) {
+		return nil, false
+	}
+	return o.ClientIdMetadataDocumentSupported, true
+}
+
+// HasClientIdMetadataDocumentSupported returns a boolean if a field has been set.
+func (o *OidcConfiguration) HasClientIdMetadataDocumentSupported() bool {
+	if o != nil && !IsNil(o.ClientIdMetadataDocumentSupported) {
+		return true
+	}
+
+	return false
+}
+
+// SetClientIdMetadataDocumentSupported gets a reference to the given bool and assigns it to the ClientIdMetadataDocumentSupported field.
+func (o *OidcConfiguration) SetClientIdMetadataDocumentSupported(v bool) {
+	o.ClientIdMetadataDocumentSupported = &v
 }
 
 // GetCodeChallengeMethodsSupported returns the CodeChallengeMethodsSupported field value if set, zero value otherwise.
@@ -1084,6 +1118,9 @@ func (o OidcConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ClaimsSupported) {
 		toSerialize["claims_supported"] = o.ClaimsSupported
 	}
+	if !IsNil(o.ClientIdMetadataDocumentSupported) {
+		toSerialize["client_id_metadata_document_supported"] = o.ClientIdMetadataDocumentSupported
+	}
 	if !IsNil(o.CodeChallengeMethodsSupported) {
 		toSerialize["code_challenge_methods_supported"] = o.CodeChallengeMethodsSupported
 	}
@@ -1204,6 +1241,7 @@ func (o *OidcConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "backchannel_logout_supported")
 		delete(additionalProperties, "claims_parameter_supported")
 		delete(additionalProperties, "claims_supported")
+		delete(additionalProperties, "client_id_metadata_document_supported")
 		delete(additionalProperties, "code_challenge_methods_supported")
 		delete(additionalProperties, "credentials_endpoint_draft_00")
 		delete(additionalProperties, "credentials_supported_draft_00")

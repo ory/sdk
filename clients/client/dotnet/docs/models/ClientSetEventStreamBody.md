@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **HttpsAuthSecret** | **string** | The API key or bearer token. When omitted, the current secret is kept as long as the scheme and the endpoint stay the same. The masked value from an API response is rejected. | [optional] 
 **HttpsAuthType** | **string** | How deliveries to the HTTPS endpoint authenticate. When omitted, the current scheme and its secret are kept. &#x60;none&#x60; removes the header name and secret. Changing the scheme requires a new secret. | [optional] 
 **HttpsEndpoint** | **string** | The HTTPS endpoint URL to send events to. When omitted, the current value is kept. Changing it requires https_auth_secret in the same update when deliveries authenticate with an API key or bearer token. | [optional] 
+**IncludeSecurityContext** | **bool** | Whether events include the security context of the request that caused them: the client IP address, user agent, HTTP method, host, and path. When omitted, the current value is kept. | [optional] 
 **RoleArn** | **string** | The AWS IAM role ARN to assume when publishing to the SNS topic. When omitted, the current value is kept. | [optional] 
 **Status** | **string** | The desired status of the event stream. When omitted, the current status is kept. | [optional] 
 **TopicArn** | **string** | The AWS SNS topic ARN. When omitted, the current value is kept. | [optional] 

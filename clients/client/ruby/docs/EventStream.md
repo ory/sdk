@@ -12,6 +12,7 @@
 | **https_auth_type** | **String** | How deliveries to the HTTPS endpoint authenticate, if type is HTTPS. &#x60;api_key&#x60; sends the secret in the header named by https_auth_header_name. &#x60;bearer&#x60; sends it as &#x60;Authorization: Bearer&#x60;. Credentials in the endpoint URL are sent as Basic auth either way. | [optional] |
 | **https_endpoint** | **String** | The HTTPS endpoint, if type is HTTPS.  Returned with its userinfo and query values masked. Omit it on write to keep the stored endpoint. | [optional] |
 | **id** | **String** |  | [optional] |
+| **include_security_context** | **Boolean** | Whether events include the security context of the request that caused them: the client IP address, user agent, HTTP method, host, and path. | [optional] |
 | **role_arn** | **String** | The AWS IAM role ARN assumed when publishing to the SNS topic, if type is SNS. | [optional] |
 | **status** | **String** | The status of the event stream. A paused event stream does not forward any events until it is set back to active. | [optional] |
 | **topic_arn** | **String** | The AWS SNS topic ARN, if type is SNS. | [optional] |
@@ -32,6 +33,7 @@ instance = OryClient::EventStream.new(
   https_auth_type: null,
   https_endpoint: null,
   id: null,
+  include_security_context: null,
   role_arn: null,
   status: null,
   topic_arn: null,

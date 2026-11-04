@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **backchannel_logout_supported** | **boolean** | OpenID Connect Back-Channel Logout Supported  Boolean value specifying whether the OP supports back-channel logout, with true indicating support. | [optional] [default to undefined]
 **claims_parameter_supported** | **boolean** | OpenID Connect Claims Parameter Parameter Supported  Boolean value specifying whether the OP supports use of the claims parameter, with true indicating support. | [optional] [default to undefined]
 **claims_supported** | **Array&lt;string&gt;** | OpenID Connect Supported Claims  JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply values for. Note that for privacy or other reasons, this might not be an exhaustive list. | [optional] [default to undefined]
+**client_id_metadata_document_supported** | **boolean** | Whether this server resolves a client_id that is the URL of a Client ID Metadata Document, as draft-ietf-oauth-client-id-metadata-document section 6 describes. Absent when it does not. | [optional] [default to undefined]
 **code_challenge_methods_supported** | **Array&lt;string&gt;** | OAuth 2.0 PKCE Supported Code Challenge Methods  JSON array containing a list of Proof Key for Code Exchange (PKCE) [RFC7636] code challenge methods supported by this authorization server. | [optional] [default to undefined]
 **credentials_endpoint_draft_00** | **string** | OpenID Connect Verifiable Credentials Endpoint  Contains the URL of the Verifiable Credentials Endpoint. | [optional] [default to undefined]
 **credentials_supported_draft_00** | [**Array&lt;CredentialSupportedDraft00&gt;**](CredentialSupportedDraft00.md) | OpenID Connect Verifiable Credentials Supported  JSON array containing a list of the Verifiable Credentials supported by this authorization server. | [optional] [default to undefined]
@@ -50,6 +51,7 @@ const instance: OidcConfiguration = {
     backchannel_logout_supported,
     claims_parameter_supported,
     claims_supported,
+    client_id_metadata_document_supported,
     code_challenge_methods_supported,
     credentials_endpoint_draft_00,
     credentials_supported_draft_00,

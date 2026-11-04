@@ -15,6 +15,7 @@ Name | Type
 `https_auth_type` | string
 `https_endpoint` | string
 `id` | string
+`include_security_context` | boolean
 `role_arn` | string
 `status` | string
 `topic_arn` | string
@@ -36,6 +37,7 @@ const example = {
   "https_auth_type": null,
   "https_endpoint": null,
   "id": null,
+  "include_security_context": null,
   "role_arn": null,
   "status": null,
   "topic_arn": null,

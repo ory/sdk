@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **https_auth_type** | **str** | How deliveries to the HTTPS endpoint authenticate, if type is HTTPS. &#x60;api_key&#x60; sends the secret in the header named by https_auth_header_name. &#x60;bearer&#x60; sends it as &#x60;Authorization: Bearer&#x60;. Credentials in the endpoint URL are sent as Basic auth either way. | [optional] 
 **https_endpoint** | **str** | The HTTPS endpoint, if type is HTTPS.  Returned with its userinfo and query values masked. Omit it on write to keep the stored endpoint. | [optional] 
 **id** | **str** |  | [optional] 
+**include_security_context** | **bool** | Whether events include the security context of the request that caused them: the client IP address, user agent, HTTP method, host, and path. | [optional] 
 **role_arn** | **str** | The AWS IAM role ARN assumed when publishing to the SNS topic, if type is SNS. | [optional] 
 **status** | **str** | The status of the event stream. A paused event stream does not forward any events until it is set back to active. | [optional] 
 **topic_arn** | **str** | The AWS SNS topic ARN, if type is SNS. | [optional] 
