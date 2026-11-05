@@ -11,7 +11,7 @@ Body of the getProjectEvents endpoint
 |**eventName** | **String** | The event name to query for |  [optional] |
 |**filters** | [**List&lt;AttributeFilter&gt;**](AttributeFilter.md) | Event attribute filters |  [optional] |
 |**from** | **OffsetDateTime** | The start RFC3339 date of the time window |  |
-|**pageSize** | **Long** | Maximum number of events to return |  [optional] |
+|**pageSize** | **Long** | Maximum number of events to return, at most 1000 |  [optional] |
 |**pageToken** | **String** | Pagination token to fetch next page, empty if first page |  [optional] |
 |**to** | **OffsetDateTime** | The end RFC3339 date of the time window |  |
 

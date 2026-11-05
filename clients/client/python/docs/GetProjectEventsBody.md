@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **event_name** | **str** | The event name to query for | [optional] 
 **filters** | [**List[AttributeFilter]**](AttributeFilter.md) | Event attribute filters | [optional] [default to []]
 **var_from** | **datetime** | The start RFC3339 date of the time window | 
-**page_size** | **int** | Maximum number of events to return | [optional] [default to 25]
+**page_size** | **int** | Maximum number of events to return, at most 1000 | [optional] [default to 25]
 **page_token** | **str** | Pagination token to fetch next page, empty if first page | [optional] 
 **to** | **datetime** | The end RFC3339 date of the time window | 
 

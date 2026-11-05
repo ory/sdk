@@ -1610,7 +1610,7 @@ No authorization required
 
 Get SAML SP Metadata
 
-This endpoint serves the per-project SAML Service Provider metadata document: the SP entity ID and certificates this Ory Network project presents to every SAML identity provider by default. It is a public, unauthenticated, cacheable endpoint and never contains a private key.  By SAML SP convention, the returned entity ID is this endpoint\&#39;s own URL. The native engine derives and uses it automatically as the default SP entity ID for every connection, so there is nothing to copy; share it with an identity provider administrator setting up SSO. A connection can present a different SP entity ID via &#x60;sp_entity_id_override&#x60;.  This endpoint 404s if no native SAML connection has been configured for this project yet (no SP signing key exists to publish).
+This endpoint serves the per-project SAML Service Provider metadata document: the SP entity ID and certificates this Ory Network project presents to every SAML identity provider by default. It is a public, unauthenticated, cacheable endpoint and never contains a private key.  By SAML SP convention, the returned entity ID is this endpoint\&#39;s own URL. The native engine derives and uses it automatically as the default SP entity ID for every connection, so there is nothing to copy; share it with an identity provider administrator setting up SSO. A connection can present a different SP entity ID via &#x60;sp_entity_id&#x60;.  This endpoint 404s if no native SAML connection has been configured for this project yet (no SP signing key exists to publish).
 
 ### Example
 
@@ -1671,7 +1671,7 @@ No authorization required
 
 Get Per-Connection SAML SP Metadata
 
-This endpoint serves per-connection SAML Service Provider metadata: the identity and certificate a single native connection presents to its identity provider, including the connection\&#39;s own Assertion Consumer Service (ACS) URL. It serves a document for any native connection; when the connection sets &#x60;sp_entity_id_override&#x60; the SP entity ID is that value, otherwise it is the project default.  It 404s -- with the identical generic response -- for an unknown connection ID, a connection disabled by invalid configuration, and a non-native connection, which manages its SP identity out of band.
+This endpoint serves per-connection SAML Service Provider metadata: the identity and certificate a single native connection presents to its identity provider, including the connection\&#39;s own Assertion Consumer Service (ACS) URL. It serves a document for any native connection; when the connection sets &#x60;sp_entity_id&#x60; the SP entity ID is that value, otherwise it is the project default.  It 404s -- with the identical generic response -- for an unknown connection ID, a connection disabled by invalid configuration, and a non-native connection, which manages its SP identity out of band.
 
 ### Example
 

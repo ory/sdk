@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **raw_idp_metadata_xml** | **string** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] [default to undefined]
 **require_encrypted_assertion** | **boolean** | Reject SAML responses whose assertion is not encrypted (native engine only). | [optional] [default to undefined]
 **sign_authn_requests** | **boolean** | Sign SAML authentication requests sent to the IdP (native engine only). | [optional] [default to undefined]
-**sp_entity_id_override** | **string** |  | [optional] [default to undefined]
+**sp_entity_id** | **string** |  | [optional] [default to undefined]
 **state** | **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] [default to undefined]
 **update_identity_on_login** | **string** | UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity\&#39;s traits and metadata automatically. | [optional] [default to undefined]
 **updated_at** | **string** | Last Time Project\&#39;s Revision was Updated | [optional] [readonly] [default to undefined]
@@ -65,7 +65,7 @@ const instance: NormalizedProjectRevisionSAMLProvider = {
     raw_idp_metadata_xml,
     require_encrypted_assertion,
     sign_authn_requests,
-    sp_entity_id_override,
+    sp_entity_id,
     state,
     update_identity_on_login,
     updated_at,

@@ -1860,7 +1860,7 @@ By SAML SP convention, the returned entity ID is this endpoint's own URL.
 The native engine derives and uses it automatically as the default SP entity
 ID for every connection, so there is nothing to copy; share it with an
 identity provider administrator setting up SSO. A connection can present a
-different SP entity ID via `sp_entity_id_override`.
+different SP entity ID via `sp_entity_id`.
 
 This endpoint 404s if no native SAML connection has been configured for
 this project yet (no SP signing key exists to publish).
@@ -1932,8 +1932,8 @@ This endpoint serves per-connection SAML Service Provider metadata: the
 identity and certificate a single native connection presents to its identity
 provider, including the connection's own Assertion Consumer Service (ACS)
 URL. It serves a document for any native connection; when the connection sets
-`sp_entity_id_override` the SP entity ID is that value, otherwise it is the
-project default.
+`sp_entity_id` the SP entity ID is that value, otherwise it is the project
+default.
 
 It 404s -- with the identical generic response -- for an unknown connection
 ID, a connection disabled by invalid configuration, and a non-native

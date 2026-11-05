@@ -28,7 +28,7 @@
 | **raw_idp_metadata_xml** | **String** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] |
 | **require_encrypted_assertion** | **Boolean** | Reject SAML responses whose assertion is not encrypted (native engine only). | [optional] |
 | **sign_authn_requests** | **Boolean** | Sign SAML authentication requests sent to the IdP (native engine only). | [optional] |
-| **sp_entity_id_override** | **String** |  | [optional] |
+| **sp_entity_id** | **String** |  | [optional] |
 | **state** | **String** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] |
 | **update_identity_on_login** | **String** | UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. | [optional] |
 | **updated_at** | **Time** | Last Time Project&#39;s Revision was Updated | [optional][readonly] |
@@ -64,7 +64,7 @@ instance = OryClient::NormalizedProjectRevisionSAMLProvider.new(
   raw_idp_metadata_xml: null,
   require_encrypted_assertion: null,
   sign_authn_requests: null,
-  sp_entity_id_override: null,
+  sp_entity_id: null,
   state: null,
   update_identity_on_login: null,
   updated_at: null,

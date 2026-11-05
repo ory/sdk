@@ -30,7 +30,7 @@ Name | Type
 `raw_idp_metadata_xml` | string
 `require_encrypted_assertion` | boolean
 `sign_authn_requests` | boolean
-`sp_entity_id_override` | string
+`sp_entity_id` | string
 `state` | string
 `update_identity_on_login` | string
 `updated_at` | Date
@@ -67,7 +67,7 @@ const example = {
   "raw_idp_metadata_xml": null,
   "require_encrypted_assertion": null,
   "sign_authn_requests": null,
-  "sp_entity_id_override": null,
+  "sp_entity_id": null,
   "state": null,
   "update_identity_on_login": null,
   "updated_at": null,

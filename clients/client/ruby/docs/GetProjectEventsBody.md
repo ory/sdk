@@ -7,7 +7,7 @@
 | **event_name** | **String** | The event name to query for | [optional] |
 | **filters** | [**Array&lt;AttributeFilter&gt;**](AttributeFilter.md) | Event attribute filters | [optional] |
 | **from** | **Time** | The start RFC3339 date of the time window |  |
-| **page_size** | **Integer** | Maximum number of events to return | [optional][default to 25] |
+| **page_size** | **Integer** | Maximum number of events to return, at most 1000 | [optional][default to 25] |
 | **page_token** | **String** | Pagination token to fetch next page, empty if first page | [optional] |
 | **to** | **Time** | The end RFC3339 date of the time window |  |
 

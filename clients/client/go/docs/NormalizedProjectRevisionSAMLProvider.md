@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **RawIdpMetadataXml** | Pointer to **string** | RawIDPMetadataXML is the raw XML metadata of the IDP. | [optional] 
 **RequireEncryptedAssertion** | Pointer to **bool** | Reject SAML responses whose assertion is not encrypted (native engine only). | [optional] 
 **SignAuthnRequests** | Pointer to **bool** | Sign SAML authentication requests sent to the IdP (native engine only). | [optional] 
-**SpEntityIdOverride** | Pointer to **NullableString** |  | [optional] 
+**SpEntityId** | Pointer to **NullableString** |  | [optional] 
 **State** | Pointer to **string** | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled | [optional] 
 **UpdateIdentityOnLogin** | Pointer to **string** | UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
@@ -733,41 +733,41 @@ SetSignAuthnRequests sets SignAuthnRequests field to given value.
 
 HasSignAuthnRequests returns a boolean if a field has been set.
 
-### GetSpEntityIdOverride
+### GetSpEntityId
 
-`func (o *NormalizedProjectRevisionSAMLProvider) GetSpEntityIdOverride() string`
+`func (o *NormalizedProjectRevisionSAMLProvider) GetSpEntityId() string`
 
-GetSpEntityIdOverride returns the SpEntityIdOverride field if non-nil, zero value otherwise.
+GetSpEntityId returns the SpEntityId field if non-nil, zero value otherwise.
 
-### GetSpEntityIdOverrideOk
+### GetSpEntityIdOk
 
-`func (o *NormalizedProjectRevisionSAMLProvider) GetSpEntityIdOverrideOk() (*string, bool)`
+`func (o *NormalizedProjectRevisionSAMLProvider) GetSpEntityIdOk() (*string, bool)`
 
-GetSpEntityIdOverrideOk returns a tuple with the SpEntityIdOverride field if it's non-nil, zero value otherwise
+GetSpEntityIdOk returns a tuple with the SpEntityId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSpEntityIdOverride
+### SetSpEntityId
 
-`func (o *NormalizedProjectRevisionSAMLProvider) SetSpEntityIdOverride(v string)`
+`func (o *NormalizedProjectRevisionSAMLProvider) SetSpEntityId(v string)`
 
-SetSpEntityIdOverride sets SpEntityIdOverride field to given value.
+SetSpEntityId sets SpEntityId field to given value.
 
-### HasSpEntityIdOverride
+### HasSpEntityId
 
-`func (o *NormalizedProjectRevisionSAMLProvider) HasSpEntityIdOverride() bool`
+`func (o *NormalizedProjectRevisionSAMLProvider) HasSpEntityId() bool`
 
-HasSpEntityIdOverride returns a boolean if a field has been set.
+HasSpEntityId returns a boolean if a field has been set.
 
-### SetSpEntityIdOverrideNil
+### SetSpEntityIdNil
 
-`func (o *NormalizedProjectRevisionSAMLProvider) SetSpEntityIdOverrideNil(b bool)`
+`func (o *NormalizedProjectRevisionSAMLProvider) SetSpEntityIdNil(b bool)`
 
- SetSpEntityIdOverrideNil sets the value for SpEntityIdOverride to be an explicit nil
+ SetSpEntityIdNil sets the value for SpEntityId to be an explicit nil
 
-### UnsetSpEntityIdOverride
-`func (o *NormalizedProjectRevisionSAMLProvider) UnsetSpEntityIdOverride()`
+### UnsetSpEntityId
+`func (o *NormalizedProjectRevisionSAMLProvider) UnsetSpEntityId()`
 
-UnsetSpEntityIdOverride ensures that no value is present for SpEntityIdOverride, not even an explicit nil
+UnsetSpEntityId ensures that no value is present for SpEntityId, not even an explicit nil
 ### GetState
 
 `func (o *NormalizedProjectRevisionSAMLProvider) GetState() string`

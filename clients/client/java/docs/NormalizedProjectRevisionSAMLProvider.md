@@ -31,7 +31,7 @@
 |**rawIdpMetadataXml** | **String** | RawIDPMetadataXML is the raw XML metadata of the IDP. |  [optional] |
 |**requireEncryptedAssertion** | **Boolean** | Reject SAML responses whose assertion is not encrypted (native engine only). |  [optional] |
 |**signAuthnRequests** | **Boolean** | Sign SAML authentication requests sent to the IdP (native engine only). |  [optional] |
-|**spEntityIdOverride** | **String** |  |  [optional] |
+|**spEntityId** | **String** |  |  [optional] |
 |**state** | [**StateEnum**](#StateEnum) | State indicates the state of the provider  Only providers with state &#x60;enabled&#x60; will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled |  [optional] |
 |**updateIdentityOnLogin** | [**UpdateIdentityOnLoginEnum**](#UpdateIdentityOnLoginEnum) | UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. |  [optional] |
 |**updatedAt** | **OffsetDateTime** | Last Time Project&#39;s Revision was Updated |  [optional] [readonly] |

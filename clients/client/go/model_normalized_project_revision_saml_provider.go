@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.91
+API version: v1.22.92
 Contact: support@ory.sh
 */
 
@@ -62,7 +62,7 @@ type NormalizedProjectRevisionSAMLProvider struct {
 	RequireEncryptedAssertion *bool `json:"require_encrypted_assertion,omitempty"`
 	// Sign SAML authentication requests sent to the IdP (native engine only).
 	SignAuthnRequests *bool `json:"sign_authn_requests,omitempty"`
-	SpEntityIdOverride NullableString `json:"sp_entity_id_override,omitempty"`
+	SpEntityId NullableString `json:"sp_entity_id,omitempty"`
 	// State indicates the state of the provider  Only providers with state `enabled` will be used for authentication enabled ThirdPartyProviderStateEnabled disabled ThirdPartyProviderStateDisabled
 	State *string `json:"state,omitempty"`
 	// UpdateIdentityOnLogin controls whether the identity is updated from SAML claims on each login.  Possible values are \"never\" (default) and \"automatic\". never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity's traits and metadata automatically.
@@ -941,46 +941,46 @@ func (o *NormalizedProjectRevisionSAMLProvider) SetSignAuthnRequests(v bool) {
 	o.SignAuthnRequests = &v
 }
 
-// GetSpEntityIdOverride returns the SpEntityIdOverride field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NormalizedProjectRevisionSAMLProvider) GetSpEntityIdOverride() string {
-	if o == nil || IsNil(o.SpEntityIdOverride.Get()) {
+// GetSpEntityId returns the SpEntityId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NormalizedProjectRevisionSAMLProvider) GetSpEntityId() string {
+	if o == nil || IsNil(o.SpEntityId.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.SpEntityIdOverride.Get()
+	return *o.SpEntityId.Get()
 }
 
-// GetSpEntityIdOverrideOk returns a tuple with the SpEntityIdOverride field value if set, nil otherwise
+// GetSpEntityIdOk returns a tuple with the SpEntityId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NormalizedProjectRevisionSAMLProvider) GetSpEntityIdOverrideOk() (*string, bool) {
+func (o *NormalizedProjectRevisionSAMLProvider) GetSpEntityIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.SpEntityIdOverride.Get(), o.SpEntityIdOverride.IsSet()
+	return o.SpEntityId.Get(), o.SpEntityId.IsSet()
 }
 
-// HasSpEntityIdOverride returns a boolean if a field has been set.
-func (o *NormalizedProjectRevisionSAMLProvider) HasSpEntityIdOverride() bool {
-	if o != nil && o.SpEntityIdOverride.IsSet() {
+// HasSpEntityId returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasSpEntityId() bool {
+	if o != nil && o.SpEntityId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSpEntityIdOverride gets a reference to the given NullableString and assigns it to the SpEntityIdOverride field.
-func (o *NormalizedProjectRevisionSAMLProvider) SetSpEntityIdOverride(v string) {
-	o.SpEntityIdOverride.Set(&v)
+// SetSpEntityId gets a reference to the given NullableString and assigns it to the SpEntityId field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetSpEntityId(v string) {
+	o.SpEntityId.Set(&v)
 }
-// SetSpEntityIdOverrideNil sets the value for SpEntityIdOverride to be an explicit nil
-func (o *NormalizedProjectRevisionSAMLProvider) SetSpEntityIdOverrideNil() {
-	o.SpEntityIdOverride.Set(nil)
+// SetSpEntityIdNil sets the value for SpEntityId to be an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) SetSpEntityIdNil() {
+	o.SpEntityId.Set(nil)
 }
 
-// UnsetSpEntityIdOverride ensures that no value is present for SpEntityIdOverride, not even an explicit nil
-func (o *NormalizedProjectRevisionSAMLProvider) UnsetSpEntityIdOverride() {
-	o.SpEntityIdOverride.Unset()
+// UnsetSpEntityId ensures that no value is present for SpEntityId, not even an explicit nil
+func (o *NormalizedProjectRevisionSAMLProvider) UnsetSpEntityId() {
+	o.SpEntityId.Unset()
 }
 
 // GetState returns the State field value if set, zero value otherwise.
@@ -1193,8 +1193,8 @@ func (o NormalizedProjectRevisionSAMLProvider) ToMap() (map[string]interface{}, 
 	if !IsNil(o.SignAuthnRequests) {
 		toSerialize["sign_authn_requests"] = o.SignAuthnRequests
 	}
-	if o.SpEntityIdOverride.IsSet() {
-		toSerialize["sp_entity_id_override"] = o.SpEntityIdOverride.Get()
+	if o.SpEntityId.IsSet() {
+		toSerialize["sp_entity_id"] = o.SpEntityId.Get()
 	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
@@ -1254,7 +1254,7 @@ func (o *NormalizedProjectRevisionSAMLProvider) UnmarshalJSON(data []byte) (err 
 		delete(additionalProperties, "raw_idp_metadata_xml")
 		delete(additionalProperties, "require_encrypted_assertion")
 		delete(additionalProperties, "sign_authn_requests")
-		delete(additionalProperties, "sp_entity_id_override")
+		delete(additionalProperties, "sp_entity_id")
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "update_identity_on_login")
 		delete(additionalProperties, "updated_at")
