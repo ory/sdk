@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **OwnerEmail** | **string** | The invite owner&#39;s email Usually the project&#39;s owner email | 
 **OwnerId** | **string** | The invite owner&#39;s ID Usually the project&#39;s owner | 
 **ProjectId** | Pointer to **NullableString** |  | [optional] 
+**RequiredOrganizationId** | Pointer to **string** | Set in the response to accepting an invite when the workspace allows access only to members of its organization and the invitee is not one. The invite is accepted, but the invitee cannot access the workspace or project until they sign in through this organization&#39;s single sign-on. | [optional] [readonly] 
 **Role** | Pointer to **NullableString** |  | [optional] 
 **Status** | **string** | The invite&#39;s status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED | 
 **UpdatedAt** | **time.Time** | Last Time Project&#39;s Revision was Updated | [readonly] 
@@ -205,6 +206,31 @@ HasProjectId returns a boolean if a field has been set.
 `func (o *MemberInvite) UnsetProjectId()`
 
 UnsetProjectId ensures that no value is present for ProjectId, not even an explicit nil
+### GetRequiredOrganizationId
+
+`func (o *MemberInvite) GetRequiredOrganizationId() string`
+
+GetRequiredOrganizationId returns the RequiredOrganizationId field if non-nil, zero value otherwise.
+
+### GetRequiredOrganizationIdOk
+
+`func (o *MemberInvite) GetRequiredOrganizationIdOk() (*string, bool)`
+
+GetRequiredOrganizationIdOk returns a tuple with the RequiredOrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequiredOrganizationId
+
+`func (o *MemberInvite) SetRequiredOrganizationId(v string)`
+
+SetRequiredOrganizationId sets RequiredOrganizationId field to given value.
+
+### HasRequiredOrganizationId
+
+`func (o *MemberInvite) HasRequiredOrganizationId() bool`
+
+HasRequiredOrganizationId returns a boolean if a field has been set.
+
 ### GetRole
 
 `func (o *MemberInvite) GetRole() string`

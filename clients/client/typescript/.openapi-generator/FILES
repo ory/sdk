@@ -228,6 +228,7 @@ docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionSAMLProvider.md
 docs/NormalizedProjectRevisionScimClient.md
+docs/NormalizedProjectRevisionSessionRiskRule.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
 docs/NormalizedProjectRevisionTokenizerTemplate.md
 docs/NullValue.md

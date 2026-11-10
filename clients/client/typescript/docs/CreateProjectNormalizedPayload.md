@@ -290,6 +290,7 @@ Name | Type | Description | Notes
 **kratos_session_cookie_same_site** | **string** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \&quot;session.cookie.same_site\&quot; setting. | [optional] [default to undefined]
 **kratos_session_lifespan** | **string** | Configures the Ory Kratos Session Lifespan  This governs the \&quot;session.lifespan\&quot; setting. | [optional] [default to undefined]
 **kratos_session_whoami_required_aal** | **string** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] [default to undefined]
+**kratos_session_whoami_rules** | [**Array&lt;NormalizedProjectRevisionSessionRiskRule&gt;**](NormalizedProjectRevisionSessionRiskRule.md) | Rules evaluated on every session check. When several rules match, the strongest action wins. | [optional] [default to undefined]
 **kratos_session_whoami_tokenizer_templates** | [**Array&lt;NormalizedProjectRevisionTokenizerTemplate&gt;**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional] [default to undefined]
 **name** | **string** | The project\&#39;s name. | [default to undefined]
 **organizations** | [**Array&lt;Organization&gt;**](Organization.md) |  | [optional] [default to undefined]
@@ -614,6 +615,7 @@ const instance: CreateProjectNormalizedPayload = {
     kratos_session_cookie_same_site,
     kratos_session_lifespan,
     kratos_session_whoami_required_aal,
+    kratos_session_whoami_rules,
     kratos_session_whoami_tokenizer_templates,
     name,
     organizations,

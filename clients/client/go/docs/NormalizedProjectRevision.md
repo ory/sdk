@@ -286,6 +286,7 @@ Name | Type | Description | Notes
 **KratosSessionCookieSameSite** | Pointer to **string** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \&quot;session.cookie.same_site\&quot; setting. | [optional] 
 **KratosSessionLifespan** | Pointer to **string** | Configures the Ory Kratos Session Lifespan  This governs the \&quot;session.lifespan\&quot; setting. | [optional] 
 **KratosSessionWhoamiRequiredAal** | Pointer to **string** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] 
+**KratosSessionWhoamiRules** | Pointer to [**[]NormalizedProjectRevisionSessionRiskRule**](NormalizedProjectRevisionSessionRiskRule.md) | Rules evaluated on every session check. When several rules match, the strongest action wins. | [optional] 
 **KratosSessionWhoamiTokenizerTemplates** | Pointer to [**[]NormalizedProjectRevisionTokenizerTemplate**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional] 
 **Name** | **string** | The project&#39;s name. | 
 **Organizations** | Pointer to [**[]Organization**](Organization.md) |  | [optional] 
@@ -7387,6 +7388,31 @@ SetKratosSessionWhoamiRequiredAal sets KratosSessionWhoamiRequiredAal field to g
 `func (o *NormalizedProjectRevision) HasKratosSessionWhoamiRequiredAal() bool`
 
 HasKratosSessionWhoamiRequiredAal returns a boolean if a field has been set.
+
+### GetKratosSessionWhoamiRules
+
+`func (o *NormalizedProjectRevision) GetKratosSessionWhoamiRules() []NormalizedProjectRevisionSessionRiskRule`
+
+GetKratosSessionWhoamiRules returns the KratosSessionWhoamiRules field if non-nil, zero value otherwise.
+
+### GetKratosSessionWhoamiRulesOk
+
+`func (o *NormalizedProjectRevision) GetKratosSessionWhoamiRulesOk() (*[]NormalizedProjectRevisionSessionRiskRule, bool)`
+
+GetKratosSessionWhoamiRulesOk returns a tuple with the KratosSessionWhoamiRules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSessionWhoamiRules
+
+`func (o *NormalizedProjectRevision) SetKratosSessionWhoamiRules(v []NormalizedProjectRevisionSessionRiskRule)`
+
+SetKratosSessionWhoamiRules sets KratosSessionWhoamiRules field to given value.
+
+### HasKratosSessionWhoamiRules
+
+`func (o *NormalizedProjectRevision) HasKratosSessionWhoamiRules() bool`
+
+HasKratosSessionWhoamiRules returns a boolean if a field has been set.
 
 ### GetKratosSessionWhoamiTokenizerTemplates
 

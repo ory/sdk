@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **owner_email** | **string** | The invite owner\&#39;s email Usually the project\&#39;s owner email | [default to undefined]
 **owner_id** | **string** | The invite owner\&#39;s ID Usually the project\&#39;s owner | [default to undefined]
 **project_id** | **string** |  | [optional] [default to undefined]
+**required_organization_id** | **string** | Set in the response to accepting an invite when the workspace allows access only to members of its organization and the invitee is not one. The invite is accepted, but the invitee cannot access the workspace or project until they sign in through this organization\&#39;s single sign-on. | [optional] [readonly] [default to undefined]
 **role** | **string** |  | [optional] [default to undefined]
 **status** | **string** | The invite\&#39;s status Keeps track of the invites status such as pending, accepted, declined, expired pending PENDING accepted ACCEPTED declined DECLINED expired EXPIRED cancelled CANCELLED removed REMOVED | [default to undefined]
 **updated_at** | **string** | Last Time Project\&#39;s Revision was Updated | [readonly] [default to undefined]
@@ -30,6 +31,7 @@ const instance: MemberInvite = {
     owner_email,
     owner_id,
     project_id,
+    required_organization_id,
     role,
     status,
     updated_at,

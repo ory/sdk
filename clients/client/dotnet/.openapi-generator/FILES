@@ -233,6 +233,7 @@ docs/models/ClientNormalizedProjectRevisionHook.md
 docs/models/ClientNormalizedProjectRevisionIdentitySchema.md
 docs/models/ClientNormalizedProjectRevisionSAMLProvider.md
 docs/models/ClientNormalizedProjectRevisionScimClient.md
+docs/models/ClientNormalizedProjectRevisionSessionRiskRule.md
 docs/models/ClientNormalizedProjectRevisionThirdPartyProvider.md
 docs/models/ClientNormalizedProjectRevisionTokenizerTemplate.md
 docs/models/ClientNullValue.md
@@ -649,6 +650,7 @@ src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionHookTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionIdentitySchemaTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionSAMLProviderTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionScimClientTests.cs
+src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionSessionRiskRuleTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionThirdPartyProviderTests.cs
 src/Ory.Client.Test/Model/ClientNormalizedProjectRevisionTokenizerTemplateTests.cs
@@ -1093,6 +1095,7 @@ src/Ory.Client/Model/ClientNormalizedProjectRevisionHook.cs
 src/Ory.Client/Model/ClientNormalizedProjectRevisionIdentitySchema.cs
 src/Ory.Client/Model/ClientNormalizedProjectRevisionSAMLProvider.cs
 src/Ory.Client/Model/ClientNormalizedProjectRevisionScimClient.cs
+src/Ory.Client/Model/ClientNormalizedProjectRevisionSessionRiskRule.cs
 src/Ory.Client/Model/ClientNormalizedProjectRevisionThirdPartyProvider.cs
 src/Ory.Client/Model/ClientNormalizedProjectRevisionTokenizerTemplate.cs
 src/Ory.Client/Model/ClientNullValue.cs

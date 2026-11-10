@@ -288,6 +288,7 @@ Name | Type | Description | Notes
 **kratos_session_cookie_same_site** | Option<**String**> | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \"session.cookie.same_site\" setting. | [optional]
 **kratos_session_lifespan** | Option<**String**> | Configures the Ory Kratos Session Lifespan  This governs the \"session.lifespan\" setting. | [optional]
 **kratos_session_whoami_required_aal** | Option<**String**> | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting. | [optional]
+**kratos_session_whoami_rules** | Option<[**Vec<models::NormalizedProjectRevisionSessionRiskRule>**](normalizedProjectRevisionSessionRiskRule.md)> | Rules evaluated on every session check. When several rules match, the strongest action wins. | [optional]
 **kratos_session_whoami_tokenizer_templates** | Option<[**Vec<models::NormalizedProjectRevisionTokenizerTemplate>**](normalizedProjectRevisionTokenizerTemplate.md)> |  | [optional]
 **name** | **String** | The project's name. | 
 **organizations** | Option<[**Vec<models::Organization>**](organization.md)> |  | [optional]

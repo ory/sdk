@@ -290,6 +290,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_session_cookie_same_site,
     :kratos_session_lifespan,
     :kratos_session_whoami_required_aal,
+    :kratos_session_whoami_rules,
     :kratos_session_whoami_tokenizer_templates,
     :name,
     :organizations,
@@ -607,6 +608,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
     :kratos_session_cookie_same_site => String.t | nil,
     :kratos_session_lifespan => String.t | nil,
     :kratos_session_whoami_required_aal => String.t | nil,
+    :kratos_session_whoami_rules => [Ory.Model.NormalizedProjectRevisionSessionRiskRule.t] | nil,
     :kratos_session_whoami_tokenizer_templates => [Ory.Model.NormalizedProjectRevisionTokenizerTemplate.t] | nil,
     :name => String.t,
     :organizations => [Ory.Model.Organization.t] | nil,
@@ -652,6 +654,7 @@ defmodule Ory.Model.NormalizedProjectRevision do
      |> Deserializer.deserialize(:kratos_identity_schemas, :list, Ory.Model.NormalizedProjectRevisionIdentitySchema)
      |> Deserializer.deserialize(:kratos_selfservice_methods_oidc_config_providers, :list, Ory.Model.NormalizedProjectRevisionThirdPartyProvider)
      |> Deserializer.deserialize(:kratos_selfservice_methods_saml_config_providers, :list, Ory.Model.NormalizedProjectRevisionSamlProvider)
+     |> Deserializer.deserialize(:kratos_session_whoami_rules, :list, Ory.Model.NormalizedProjectRevisionSessionRiskRule)
      |> Deserializer.deserialize(:kratos_session_whoami_tokenizer_templates, :list, Ory.Model.NormalizedProjectRevisionTokenizerTemplate)
      |> Deserializer.deserialize(:organizations, :list, Ory.Model.Organization)
      |> Deserializer.deserialize(:project_revision_hooks, :list, Ory.Model.NormalizedProjectRevisionHook)

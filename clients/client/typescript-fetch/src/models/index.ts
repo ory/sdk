@@ -214,6 +214,7 @@ export * from './NormalizedProjectRevisionHook';
 export * from './NormalizedProjectRevisionIdentitySchema';
 export * from './NormalizedProjectRevisionSAMLProvider';
 export * from './NormalizedProjectRevisionScimClient';
+export * from './NormalizedProjectRevisionSessionRiskRule';
 export * from './NormalizedProjectRevisionThirdPartyProvider';
 export * from './NormalizedProjectRevisionTokenizerTemplate';
 export * from './NullValue';

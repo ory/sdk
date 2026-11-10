@@ -228,6 +228,7 @@ docs/NormalizedProjectRevisionHook.md
 docs/NormalizedProjectRevisionIdentitySchema.md
 docs/NormalizedProjectRevisionSAMLProvider.md
 docs/NormalizedProjectRevisionScimClient.md
+docs/NormalizedProjectRevisionSessionRiskRule.md
 docs/NormalizedProjectRevisionThirdPartyProvider.md
 docs/NormalizedProjectRevisionTokenizerTemplate.md
 docs/NullValue.md
@@ -680,6 +681,7 @@ src/main/java/sh/ory/model/NormalizedProjectRevisionHook.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionIdentitySchema.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionSAMLProvider.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionScimClient.java
+src/main/java/sh/ory/model/NormalizedProjectRevisionSessionRiskRule.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionThirdPartyProvider.java
 src/main/java/sh/ory/model/NormalizedProjectRevisionTokenizerTemplate.java
 src/main/java/sh/ory/model/NullValue.java
@@ -1092,6 +1094,7 @@ src/test/java/sh/ory/model/NormalizedProjectRevisionHookTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionIdentitySchemaTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionSAMLProviderTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionScimClientTest.java
+src/test/java/sh/ory/model/NormalizedProjectRevisionSessionRiskRuleTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionThirdPartyProviderTest.java
 src/test/java/sh/ory/model/NormalizedProjectRevisionTokenizerTemplateTest.java

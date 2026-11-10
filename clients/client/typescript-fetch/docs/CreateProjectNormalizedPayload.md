@@ -291,6 +291,7 @@ Name | Type
 `kratos_session_cookie_same_site` | string
 `kratos_session_lifespan` | string
 `kratos_session_whoami_required_aal` | string
+`kratos_session_whoami_rules` | [Array&lt;NormalizedProjectRevisionSessionRiskRule&gt;](NormalizedProjectRevisionSessionRiskRule.md)
 `kratos_session_whoami_tokenizer_templates` | [Array&lt;NormalizedProjectRevisionTokenizerTemplate&gt;](NormalizedProjectRevisionTokenizerTemplate.md)
 `name` | string
 `organizations` | [Array&lt;Organization&gt;](Organization.md)
@@ -616,6 +617,7 @@ const example = {
   "kratos_session_cookie_same_site": null,
   "kratos_session_lifespan": null,
   "kratos_session_whoami_required_aal": null,
+  "kratos_session_whoami_rules": null,
   "kratos_session_whoami_tokenizer_templates": null,
   "name": null,
   "organizations": null,

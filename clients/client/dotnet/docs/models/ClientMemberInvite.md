@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **UpdatedAt** | **DateTime** | Last Time Project&#39;s Revision was Updated | [readonly] 
 **InviteeId** | **string** |  | [optional] 
 **ProjectId** | **string** |  | [optional] 
+**RequiredOrganizationId** | **string** | Set in the response to accepting an invite when the workspace allows access only to members of its organization and the invitee is not one. The invite is accepted, but the invitee cannot access the workspace or project until they sign in through this organization&#39;s single sign-on. | [optional] [readonly] 
 **Role** | **string** |  | [optional] 
 **WorkspaceId** | **string** |  | [optional] 
 

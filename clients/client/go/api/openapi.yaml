@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.92
+  version: v1.22.93
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -13466,6 +13466,15 @@ components:
 
             This governs the "session.whoami.required_aal" setting.
           type: string
+        kratos_session_whoami_rules:
+          description: |-
+            Rules evaluated on every session check. When several rules match, the
+            strongest action wins.
+          items:
+            $ref: "#/components/schemas/normalizedProjectRevisionSessionRiskRule"
+          maxItems: 5
+          title: Session risk rules
+          type: array
         kratos_session_whoami_tokenizer_templates:
           items:
             $ref: "#/components/schemas/normalizedProjectRevisionTokenizerTemplate"
@@ -20267,6 +20276,15 @@ components:
           format: uuid4
           nullable: true
           type: string
+        required_organization_id:
+          description: |-
+            Set in the response to accepting an invite when the workspace allows
+            access only to members of its organization and the invitee is not one.
+            The invite is accepted, but the invitee cannot access the workspace or
+            project until they sign in through this organization's single sign-on.
+          format: uuid
+          readOnly: true
+          type: string
         role:
           nullable: true
           type: string
@@ -22637,6 +22655,15 @@ components:
 
             This governs the "session.whoami.required_aal" setting.
           type: string
+        kratos_session_whoami_rules:
+          description: |-
+            Rules evaluated on every session check. When several rules match, the
+            strongest action wins.
+          items:
+            $ref: "#/components/schemas/normalizedProjectRevisionSessionRiskRule"
+          maxItems: 5
+          title: Session risk rules
+          type: array
         kratos_session_whoami_tokenizer_templates:
           items:
             $ref: "#/components/schemas/normalizedProjectRevisionTokenizerTemplate"
@@ -23218,6 +23245,52 @@ components:
       - mapper_url
       - organization_id
       type: object
+    normalizedProjectRevisionSessionRiskRule:
+      properties:
+        action:
+          description: |-
+            The rule's action
+
+            `require_aal2` requires AAL2 for the rest of the session, and `revoke`
+            revokes the session.
+            require_aal2 SessionRiskRuleActionRequireAAL2
+            revoke SessionRiskRuleActionRevoke
+          enum:
+          - require_aal2
+          - revoke
+          type: string
+          x-go-enum-desc: |-
+            require_aal2 SessionRiskRuleActionRequireAAL2
+            revoke SessionRiskRuleActionRevoke
+        condition:
+          description: |-
+            The rule's condition
+
+            A CEL expression over `session` and `request` that evaluates to a bool.
+          maxLength: 512
+          minLength: 1
+          type: string
+        id:
+          description: |-
+            The rule's ID
+
+            Names the rule in logs, events, and error messages.
+          pattern: "^[a-z0-9][a-z0-9_-]{0,63}$"
+          type: string
+      required:
+      - action
+      - condition
+      - id
+      type: object
+    normalizedProjectRevisionSessionRiskRules:
+      description: |-
+        Rules evaluated on every session check. When several rules match, the
+        strongest action wins.
+      items:
+        $ref: "#/components/schemas/normalizedProjectRevisionSessionRiskRule"
+      maxItems: 5
+      title: Session risk rules
+      type: array
     normalizedProjectRevisionThirdPartyProvider:
       properties:
         aal2_acr_values:
@@ -26919,6 +26992,7 @@ components:
             hydra_device_authorization HydraDeviceAuthorization
             kratos_oidc_front_channel_logout KratosOIDCFrontChannelLogout
             kratos_brute_force_protection KratosBruteForceProtection
+            kratos_session_risk_rules KratosSessionRiskRules
             deviceauthn Deviceauthn
             keto_allow_opl_permit_relation_collision KetoAllowOPLPermitRelationCollision exempts a subscription from rejecting OPL  that declares the same name as both a relation and a permit.
             keto_allow_opl_traverse_subject_set KetoAllowOPLTraverseSubjectSet exempts a subscription from rejecting OPL  that traverses a relation declared as a subject set. Override-only, for  legacy configurations; see the OPL reference for the supported shape.
@@ -27008,6 +27082,7 @@ components:
           - hydra_device_authorization
           - kratos_oidc_front_channel_logout
           - kratos_brute_force_protection
+          - kratos_session_risk_rules
           - deviceauthn
           - keto_allow_opl_permit_relation_collision
           - keto_allow_opl_traverse_subject_set
@@ -27098,6 +27173,7 @@ components:
             hydra_device_authorization HydraDeviceAuthorization
             kratos_oidc_front_channel_logout KratosOIDCFrontChannelLogout
             kratos_brute_force_protection KratosBruteForceProtection
+            kratos_session_risk_rules KratosSessionRiskRules
             deviceauthn Deviceauthn
             keto_allow_opl_permit_relation_collision KetoAllowOPLPermitRelationCollision exempts a subscription from rejecting OPL  that declares the same name as both a relation and a permit.
             keto_allow_opl_traverse_subject_set KetoAllowOPLTraverseSubjectSet exempts a subscription from rejecting OPL  that traverses a relation declared as a subject set. Override-only, for  legacy configurations; see the OPL reference for the supported shape.

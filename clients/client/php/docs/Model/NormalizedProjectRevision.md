@@ -286,6 +286,7 @@ Name | Type | Description | Notes
 **kratosSessionCookieSameSite** | **string** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \&quot;session.cookie.same_site\&quot; setting. | [optional]
 **kratosSessionLifespan** | **string** | Configures the Ory Kratos Session Lifespan  This governs the \&quot;session.lifespan\&quot; setting. | [optional]
 **kratosSessionWhoamiRequiredAal** | **string** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional]
+**kratosSessionWhoamiRules** | [**\Ory\Client\Model\NormalizedProjectRevisionSessionRiskRule[]**](NormalizedProjectRevisionSessionRiskRule.md) | Rules evaluated on every session check. When several rules match, the strongest action wins. | [optional]
 **kratosSessionWhoamiTokenizerTemplates** | [**\Ory\Client\Model\NormalizedProjectRevisionTokenizerTemplate[]**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional]
 **name** | **string** | The project&#39;s name. |
 **organizations** | [**\Ory\Client\Model\Organization[]**](Organization.md) |  | [optional]

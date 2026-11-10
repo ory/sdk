@@ -426,6 +426,8 @@ pub mod normalized_project_revision_saml_provider;
 pub use self::normalized_project_revision_saml_provider::NormalizedProjectRevisionSamlProvider;
 pub mod normalized_project_revision_scim_client;
 pub use self::normalized_project_revision_scim_client::NormalizedProjectRevisionScimClient;
+pub mod normalized_project_revision_session_risk_rule;
+pub use self::normalized_project_revision_session_risk_rule::NormalizedProjectRevisionSessionRiskRule;
 pub mod normalized_project_revision_third_party_provider;
 pub use self::normalized_project_revision_third_party_provider::NormalizedProjectRevisionThirdPartyProvider;
 pub mod normalized_project_revision_tokenizer_template;

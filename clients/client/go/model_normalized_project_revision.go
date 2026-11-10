@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.92
+API version: v1.22.93
 Contact: support@ory.sh
 */
 
@@ -581,6 +581,8 @@ type NormalizedProjectRevision struct {
 	KratosSessionLifespan *string `json:"kratos_session_lifespan,omitempty"`
 	// Configures the Ory Kratos Session Whoami AAL requirement  This governs the \"session.whoami.required_aal\" setting.
 	KratosSessionWhoamiRequiredAal *string `json:"kratos_session_whoami_required_aal,omitempty"`
+	// Rules evaluated on every session check. When several rules match, the strongest action wins.
+	KratosSessionWhoamiRules []NormalizedProjectRevisionSessionRiskRule `json:"kratos_session_whoami_rules,omitempty"`
 	KratosSessionWhoamiTokenizerTemplates []NormalizedProjectRevisionTokenizerTemplate `json:"kratos_session_whoami_tokenizer_templates,omitempty"`
 	// The project's name.
 	Name string `json:"name"`
@@ -9736,6 +9738,38 @@ func (o *NormalizedProjectRevision) SetKratosSessionWhoamiRequiredAal(v string) 
 	o.KratosSessionWhoamiRequiredAal = &v
 }
 
+// GetKratosSessionWhoamiRules returns the KratosSessionWhoamiRules field value if set, zero value otherwise.
+func (o *NormalizedProjectRevision) GetKratosSessionWhoamiRules() []NormalizedProjectRevisionSessionRiskRule {
+	if o == nil || IsNil(o.KratosSessionWhoamiRules) {
+		var ret []NormalizedProjectRevisionSessionRiskRule
+		return ret
+	}
+	return o.KratosSessionWhoamiRules
+}
+
+// GetKratosSessionWhoamiRulesOk returns a tuple with the KratosSessionWhoamiRules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevision) GetKratosSessionWhoamiRulesOk() ([]NormalizedProjectRevisionSessionRiskRule, bool) {
+	if o == nil || IsNil(o.KratosSessionWhoamiRules) {
+		return nil, false
+	}
+	return o.KratosSessionWhoamiRules, true
+}
+
+// HasKratosSessionWhoamiRules returns a boolean if a field has been set.
+func (o *NormalizedProjectRevision) HasKratosSessionWhoamiRules() bool {
+	if o != nil && !IsNil(o.KratosSessionWhoamiRules) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSessionWhoamiRules gets a reference to the given []NormalizedProjectRevisionSessionRiskRule and assigns it to the KratosSessionWhoamiRules field.
+func (o *NormalizedProjectRevision) SetKratosSessionWhoamiRules(v []NormalizedProjectRevisionSessionRiskRule) {
+	o.KratosSessionWhoamiRules = v
+}
+
 // GetKratosSessionWhoamiTokenizerTemplates returns the KratosSessionWhoamiTokenizerTemplates field value if set, zero value otherwise.
 func (o *NormalizedProjectRevision) GetKratosSessionWhoamiTokenizerTemplates() []NormalizedProjectRevisionTokenizerTemplate {
 	if o == nil || IsNil(o.KratosSessionWhoamiTokenizerTemplates) {
@@ -11608,6 +11642,9 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KratosSessionWhoamiRequiredAal) {
 		toSerialize["kratos_session_whoami_required_aal"] = o.KratosSessionWhoamiRequiredAal
 	}
+	if !IsNil(o.KratosSessionWhoamiRules) {
+		toSerialize["kratos_session_whoami_rules"] = o.KratosSessionWhoamiRules
+	}
 	if !IsNil(o.KratosSessionWhoamiTokenizerTemplates) {
 		toSerialize["kratos_session_whoami_tokenizer_templates"] = o.KratosSessionWhoamiTokenizerTemplates
 	}
@@ -12027,6 +12064,7 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kratos_session_cookie_same_site")
 		delete(additionalProperties, "kratos_session_lifespan")
 		delete(additionalProperties, "kratos_session_whoami_required_aal")
+		delete(additionalProperties, "kratos_session_whoami_rules")
 		delete(additionalProperties, "kratos_session_whoami_tokenizer_templates")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "organizations")

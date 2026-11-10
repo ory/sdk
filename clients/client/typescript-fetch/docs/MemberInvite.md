@@ -13,6 +13,7 @@ Name | Type
 `owner_email` | string
 `owner_id` | string
 `project_id` | string
+`required_organization_id` | string
 `role` | string
 `status` | string
 `updated_at` | Date
@@ -32,6 +33,7 @@ const example = {
   "owner_email": null,
   "owner_id": null,
   "project_id": null,
+  "required_organization_id": null,
   "role": null,
   "status": null,
   "updated_at": null,

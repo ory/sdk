@@ -286,6 +286,7 @@
 | **kratos_session_cookie_same_site** | **String** | Configures the Ory Kratos Session Cookie SameSite Attribute  This governs the \&quot;session.cookie.same_site\&quot; setting. | [optional] |
 | **kratos_session_lifespan** | **String** | Configures the Ory Kratos Session Lifespan  This governs the \&quot;session.lifespan\&quot; setting. | [optional] |
 | **kratos_session_whoami_required_aal** | **String** | Configures the Ory Kratos Session Whoami AAL requirement  This governs the \&quot;session.whoami.required_aal\&quot; setting. | [optional] |
+| **kratos_session_whoami_rules** | [**Array&lt;NormalizedProjectRevisionSessionRiskRule&gt;**](NormalizedProjectRevisionSessionRiskRule.md) | Rules evaluated on every session check. When several rules match, the strongest action wins. | [optional] |
 | **kratos_session_whoami_tokenizer_templates** | [**Array&lt;NormalizedProjectRevisionTokenizerTemplate&gt;**](NormalizedProjectRevisionTokenizerTemplate.md) |  | [optional] |
 | **name** | **String** | The project&#39;s name. |  |
 | **organizations** | [**Array&lt;Organization&gt;**](Organization.md) |  | [optional] |
@@ -607,6 +608,7 @@ instance = OryClient::NormalizedProjectRevision.new(
   kratos_session_cookie_same_site: null,
   kratos_session_lifespan: null,
   kratos_session_whoami_required_aal: null,
+  kratos_session_whoami_rules: null,
   kratos_session_whoami_tokenizer_templates: null,
   name: null,
   organizations: null,
