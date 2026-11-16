@@ -392,6 +392,8 @@ pub mod login_flow_test_step_error;
 pub use self::login_flow_test_step_error::LoginFlowTestStepError;
 pub mod logout_flow;
 pub use self::logout_flow::LogoutFlow;
+pub mod lookup_secret_usage;
+pub use self::lookup_secret_usage::LookupSecretUsage;
 pub mod manage_sessions_body;
 pub use self::manage_sessions_body::ManageSessionsBody;
 pub mod manage_sessions_response;

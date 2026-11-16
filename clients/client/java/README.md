@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.93
-  - Build date: 2026-11-10T11:39:40.867919870Z[Etc/UTC]
+- API version: v1.22.94
+  - Build date: 2026-11-16T14:02:27.701853118Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.93</version>
+  <version>v1.22.94</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.93"
+     implementation "sh.ory:client:v1.22.94"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.93.jar`
+* `target/client-v1.22.94.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -520,6 +520,7 @@ Class | Method | HTTP request | Description
  - [LoginFlowTestSchemaValidationError](docs/LoginFlowTestSchemaValidationError.md)
  - [LoginFlowTestStepError](docs/LoginFlowTestStepError.md)
  - [LogoutFlow](docs/LogoutFlow.md)
+ - [LookupSecretUsage](docs/LookupSecretUsage.md)
  - [ManageSessionsBody](docs/ManageSessionsBody.md)
  - [ManageSessionsResponse](docs/ManageSessionsResponse.md)
  - [ManagedIdentitySchema](docs/ManagedIdentitySchema.md)

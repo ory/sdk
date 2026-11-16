@@ -208,6 +208,7 @@ docs/LoginFlowTestDebugPayload.md
 docs/LoginFlowTestSchemaValidationError.md
 docs/LoginFlowTestStepError.md
 docs/LogoutFlow.md
+docs/LookupSecretUsage.md
 docs/ManageSessionsBody.md
 docs/ManageSessionsResponse.md
 docs/ManagedIdentitySchema.md
@@ -639,6 +640,7 @@ ory_client/models/login_flow_test_debug_payload.py
 ory_client/models/login_flow_test_schema_validation_error.py
 ory_client/models/login_flow_test_step_error.py
 ory_client/models/logout_flow.py
+ory_client/models/lookup_secret_usage.py
 ory_client/models/manage_sessions_body.py
 ory_client/models/manage_sessions_response.py
 ory_client/models/managed_identity_schema.py
@@ -1054,6 +1056,7 @@ test/test_login_flow_test_debug_payload.py
 test/test_login_flow_test_schema_validation_error.py
 test/test_login_flow_test_step_error.py
 test/test_logout_flow.py
+test/test_lookup_secret_usage.py
 test/test_manage_sessions_body.py
 test/test_manage_sessions_response.py
 test/test_managed_identity_schema.py

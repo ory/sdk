@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **CurrentPlanDetails** | [**ClientPlanDetails**](ClientPlanDetails.md) |  | [optional] 
 **IntervalChangesTo** | **string** |  | 
 **OngoingStripeCheckoutId** | **string** |  | [optional] 
+**OngoingStripeCheckoutUrl** | **string** | The Stripe-hosted URL for completing an ongoing checkout, including any configured custom domain. | [optional] [readonly] 
 **PlanChangesAt** | **DateTime** |  | [optional] 
 **PlanChangesTo** | **string** |  | 
 **StripeCheckoutExpiresAt** | **DateTime** |  | [optional] 

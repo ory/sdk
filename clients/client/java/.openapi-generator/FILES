@@ -210,6 +210,7 @@ docs/LoginFlowTestDebugPayload.md
 docs/LoginFlowTestSchemaValidationError.md
 docs/LoginFlowTestStepError.md
 docs/LogoutFlow.md
+docs/LookupSecretUsage.md
 docs/ManageSessionsBody.md
 docs/ManageSessionsResponse.md
 docs/ManagedIdentitySchema.md
@@ -664,6 +665,7 @@ src/main/java/sh/ory/model/LoginFlowTestDebugPayload.java
 src/main/java/sh/ory/model/LoginFlowTestSchemaValidationError.java
 src/main/java/sh/ory/model/LoginFlowTestStepError.java
 src/main/java/sh/ory/model/LogoutFlow.java
+src/main/java/sh/ory/model/LookupSecretUsage.java
 src/main/java/sh/ory/model/ManageSessionsBody.java
 src/main/java/sh/ory/model/ManageSessionsResponse.java
 src/main/java/sh/ory/model/ManagedIdentitySchema.java
@@ -1079,6 +1081,7 @@ src/test/java/sh/ory/model/LoginFlowTestDebugPayloadTest.java
 src/test/java/sh/ory/model/LoginFlowTestSchemaValidationErrorTest.java
 src/test/java/sh/ory/model/LoginFlowTestStepErrorTest.java
 src/test/java/sh/ory/model/LogoutFlowTest.java
+src/test/java/sh/ory/model/LookupSecretUsageTest.java
 src/test/java/sh/ory/model/ManageSessionsBodyTest.java
 src/test/java/sh/ory/model/ManageSessionsResponseTest.java
 src/test/java/sh/ory/model/ManagedIdentitySchemaTest.java

@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **RegistrationEnabled** | **bool** | Whether registration is enabled. | 
 **RegistrationUiUrl** | **string** | The URL for the registration UI. | 
 **SettingsUiUrl** | **string** | The URL for the settings UI. | 
+**ShowLastUsedMethod** | **bool** | Whether to show a \&quot;Last used\&quot; badge on the social sign-in or SSO button a user chose last time on this device. | 
 **TermsOfServiceUrl** | Pointer to **string** | The URL to the project&#39;s Terms of Service page. | [optional] 
 **VerificationEnabled** | **bool** | Whether verification is enabled. | 
 **VerificationUiUrl** | **string** | The URL for the verification UI. | 
@@ -27,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewElementsConfiguration
 
-`func NewElementsConfiguration(defaultRedirectUrl string, errorUiUrl string, hideOryBranding bool, hideRegistrationLink bool, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, verificationEnabled bool, verificationUiUrl string, ) *ElementsConfiguration`
+`func NewElementsConfiguration(defaultRedirectUrl string, errorUiUrl string, hideOryBranding bool, hideRegistrationLink bool, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, showLastUsedMethod bool, verificationEnabled bool, verificationUiUrl string, ) *ElementsConfiguration`
 
 NewElementsConfiguration instantiates a new ElementsConfiguration object
 This constructor will assign default values to properties that have it defined,
@@ -360,6 +361,26 @@ and a boolean to check if the value has been set.
 `func (o *ElementsConfiguration) SetSettingsUiUrl(v string)`
 
 SetSettingsUiUrl sets SettingsUiUrl field to given value.
+
+
+### GetShowLastUsedMethod
+
+`func (o *ElementsConfiguration) GetShowLastUsedMethod() bool`
+
+GetShowLastUsedMethod returns the ShowLastUsedMethod field if non-nil, zero value otherwise.
+
+### GetShowLastUsedMethodOk
+
+`func (o *ElementsConfiguration) GetShowLastUsedMethodOk() (*bool, bool)`
+
+GetShowLastUsedMethodOk returns a tuple with the ShowLastUsedMethod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShowLastUsedMethod
+
+`func (o *ElementsConfiguration) SetShowLastUsedMethod(v bool)`
+
+SetShowLastUsedMethod sets ShowLastUsedMethod field to given value.
 
 
 ### GetTermsOfServiceUrl

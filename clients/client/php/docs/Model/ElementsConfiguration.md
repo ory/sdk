@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **registrationEnabled** | **bool** | Whether registration is enabled. |
 **registrationUiUrl** | **string** | The URL for the registration UI. |
 **settingsUiUrl** | **string** | The URL for the settings UI. |
+**showLastUsedMethod** | **bool** | Whether to show a \&quot;Last used\&quot; badge on the social sign-in or SSO button a user chose last time on this device. |
 **termsOfServiceUrl** | **string** | The URL to the project&#39;s Terms of Service page. | [optional]
 **verificationEnabled** | **bool** | Whether verification is enabled. |
 **verificationUiUrl** | **string** | The URL for the verification UI. |

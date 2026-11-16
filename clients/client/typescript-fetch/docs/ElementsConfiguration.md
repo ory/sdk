@@ -22,6 +22,7 @@ Name | Type
 `registration_enabled` | boolean
 `registration_ui_url` | string
 `settings_ui_url` | string
+`show_last_used_method` | boolean
 `terms_of_service_url` | string
 `verification_enabled` | boolean
 `verification_ui_url` | string
@@ -48,6 +49,7 @@ const example = {
   "registration_enabled": null,
   "registration_ui_url": null,
   "settings_ui_url": null,
+  "show_last_used_method": null,
   "terms_of_service_url": null,
   "verification_enabled": null,
   "verification_ui_url": null,

@@ -1,4 +1,4 @@
-## @ory/client@v1.22.93
+## @ory/client@v1.22.94
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.93 --save
+npm install @ory/client@v1.22.94 --save
 ```
 
 _unPublished (not recommended):_
@@ -431,6 +431,7 @@ Class | Method | HTTP request | Description
  - [LoginFlowTestSchemaValidationError](docs/LoginFlowTestSchemaValidationError.md)
  - [LoginFlowTestStepError](docs/LoginFlowTestStepError.md)
  - [LogoutFlow](docs/LogoutFlow.md)
+ - [LookupSecretUsage](docs/LookupSecretUsage.md)
  - [ManageSessionsBody](docs/ManageSessionsBody.md)
  - [ManageSessionsResponse](docs/ManageSessionsResponse.md)
  - [ManagedIdentitySchema](docs/ManagedIdentitySchema.md)

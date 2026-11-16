@@ -8,6 +8,7 @@ The Response for Login Flows via API
 Name | Type
 ------------ | -------------
 `continue_with` | [Array&lt;ContinueWith&gt;](ContinueWith.md)
+`lookup_secret` | [LookupSecretUsage](LookupSecretUsage.md)
 `session` | [Session](Session.md)
 `session_token` | string
 
@@ -19,6 +20,7 @@ import type { SuccessfulNativeLogin } from '@ory/client-fetch'
 // TODO: Update the object below with actual values
 const example = {
   "continue_with": null,
+  "lookup_secret": null,
   "session": null,
   "session_token": null,
 } satisfies SuccessfulNativeLogin

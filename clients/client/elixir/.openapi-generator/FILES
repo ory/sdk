@@ -218,6 +218,7 @@ lib/ory/model/login_flow_test_debug_payload.ex
 lib/ory/model/login_flow_test_schema_validation_error.ex
 lib/ory/model/login_flow_test_step_error.ex
 lib/ory/model/logout_flow.ex
+lib/ory/model/lookup_secret_usage.ex
 lib/ory/model/manage_sessions_body.ex
 lib/ory/model/manage_sessions_response.ex
 lib/ory/model/managed_identity_schema.ex

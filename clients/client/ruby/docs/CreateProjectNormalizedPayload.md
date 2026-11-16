@@ -12,10 +12,13 @@
 | **account_experience_favicon_light** | **String** | Holds the URL to the account experience&#39;s favicon. This governs the \&quot;favicon_light\&quot; setting. | [optional] |
 | **account_experience_hide_ory_branding** | **Boolean** | Whether to hide the Ory branding badge on the account experience. This governs the \&quot;hide_ory_branding\&quot; setting. | [optional] |
 | **account_experience_hide_registration_link** | **Boolean** | Whether to hide the registration link on the account experience login card. This governs the \&quot;hide_registration_link\&quot; setting. | [optional] |
+| **account_experience_index_route_mode** | **String** | Controls what the project&#39;s domains serve at their index route \&quot;/\&quot;.  Leave empty to answer \&quot;/\&quot; with a 404 error. Set to \&quot;default_browser_return_url\&quot; to redirect to &#x60;kratos_selfservice_default_browser_return_url&#x60;, or to \&quot;redirect\&quot; to redirect to &#x60;account_experience_index_route_redirect_url&#x60;. This governs the \&quot;index_route.mode\&quot; setting. | [optional] |
+| **account_experience_index_route_redirect_url** | **String** | The target of the index route redirect.  An absolute http(s) URL, or a path on the project&#39;s domain such as &#x60;/ui/login&#x60;. Used when &#x60;account_experience_index_route_mode&#x60; is \&quot;redirect\&quot;. This governs the \&quot;index_route.redirect_url\&quot; setting. | [optional] |
 | **account_experience_locale_behavior** | **String** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: - &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. - &#x60;force_default&#x60;: Force the default language. This governs the \&quot;locale_behavior\&quot; setting. | [optional] |
 | **account_experience_logo_dark** | **String** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). This governs the \&quot;logo_dark\&quot; setting. | [optional] |
 | **account_experience_logo_light** | **String** | Holds the URL to the account experience&#39;s logo. This governs the \&quot;logo_light\&quot; setting. | [optional] |
 | **account_experience_privacy_policy_url** | **String** | Holds the URL to the account experience&#39;s Privacy Policy page. This governs the \&quot;privacy_policy_url\&quot; setting. | [optional] |
+| **account_experience_show_last_used_method** | **Boolean** | Whether to show a \&quot;Last used\&quot; badge on the social sign-in or SSO button a user chose last time on this device. This governs the \&quot;show_last_used_method\&quot; setting. | [optional] |
 | **account_experience_terms_of_service_url** | **String** | Holds the URL to the account experience&#39;s Terms of Service page. This governs the \&quot;terms_of_service_url\&quot; setting. | [optional] |
 | **account_experience_theme_variables_dark** | **String** | Holds the URL to the account experience&#39;s dark theme variables. This governs the \&quot;theme_variables_dark\&quot; setting. | [optional] |
 | **account_experience_theme_variables_light** | **String** | Holds the URL to the account experience&#39;s light theme variables. This governs the \&quot;theme_variables_light\&quot; setting. | [optional] |
@@ -337,10 +340,13 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   account_experience_favicon_light: null,
   account_experience_hide_ory_branding: null,
   account_experience_hide_registration_link: null,
+  account_experience_index_route_mode: null,
+  account_experience_index_route_redirect_url: null,
   account_experience_locale_behavior: null,
   account_experience_logo_dark: null,
   account_experience_logo_light: null,
   account_experience_privacy_policy_url: null,
+  account_experience_show_last_used_method: null,
   account_experience_terms_of_service_url: null,
   account_experience_theme_variables_dark: null,
   account_experience_theme_variables_light: null,

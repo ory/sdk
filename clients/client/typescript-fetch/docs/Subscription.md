@@ -15,6 +15,7 @@ Name | Type
 `id` | string
 `interval_changes_to` | string
 `ongoing_stripe_checkout_id` | string
+`ongoing_stripe_checkout_url` | string
 `payed_until` | Date
 `plan_changes_at` | Date
 `plan_changes_to` | string
@@ -38,6 +39,7 @@ const example = {
   "id": null,
   "interval_changes_to": null,
   "ongoing_stripe_checkout_id": null,
+  "ongoing_stripe_checkout_url": null,
   "payed_until": null,
   "plan_changes_at": null,
   "plan_changes_to": null,

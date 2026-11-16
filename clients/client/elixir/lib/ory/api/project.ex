@@ -636,7 +636,7 @@ defmodule Ory.Api.Project do
 
   @doc """
   Remove a member associated with this project
-  This also sets their invite status to `REMOVED`. This endpoint requires the user to be a member of the project with the role `OWNER`.
+  This also closes their open invites to this project: accepted invites become `removed` and pending invites become `cancelled`. This endpoint requires the user to be a member of the project with the role `OWNER`.
 
   ### Parameters
 

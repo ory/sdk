@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **registration_enabled** | **bool** |  | 
 **registration_ui_url** | **String** |  | 
 **settings_ui_url** | **String** |  | 
+**show_last_used_method** | **bool** |  | 
 **stylesheet** | Option<**String**> |  | [optional]
 **terms_of_service_url** | Option<**String**> | The URL to the project's Terms of Service page. | [optional]
 **translations** | [**Vec<models::RevisionAccountExperienceCustomTranslation>**](RevisionAccountExperienceCustomTranslation.md) |  | 

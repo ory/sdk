@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **AllowedSignatureAlgorithms** | Pointer to **[]string** | The signature algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional] 
 **AudienceOverrideBaseUrl** | Pointer to **NullableString** |  | [optional] 
 **Binding** | Pointer to **NullableString** | The SAML binding used to send authentication requests to the IdP (native engine only): \&quot;http-post\&quot; or \&quot;http-redirect\&quot;. http-post SAMLBindingHTTPPost sends the AuthnRequest to the IdP via an auto-submitting HTML form. http-redirect SAMLBindingHTTPRedirect sends the AuthnRequest to the IdP via an HTTP redirect. | [optional] 
-**ClockSkewSeconds** | Pointer to **int64** | The maximum allowed clock skew in seconds when validating assertion time conditions, between 0 and 300 (native engine only). | [optional] 
 **CreatedAt** | Pointer to **time.Time** | The Project&#39;s Revision Creation Date | [optional] [readonly] 
 **Engine** | Pointer to **NullableString** | The SAML engine serving this provider: \&quot;jackson\&quot; (default) or \&quot;native\&quot;. jackson SAMLEngineJackson routes the provider through the jackson (Polis) proxy. native SAMLEngineNative routes the provider through the native Kratos SAML engine. | [optional] 
 **ForceAuthn** | Pointer to **bool** | Require the IdP to re-authenticate the subject even if it has an existing session (native engine only). | [optional] 
@@ -258,31 +257,6 @@ HasBinding returns a boolean if a field has been set.
 `func (o *NormalizedProjectRevisionSAMLProvider) UnsetBinding()`
 
 UnsetBinding ensures that no value is present for Binding, not even an explicit nil
-### GetClockSkewSeconds
-
-`func (o *NormalizedProjectRevisionSAMLProvider) GetClockSkewSeconds() int64`
-
-GetClockSkewSeconds returns the ClockSkewSeconds field if non-nil, zero value otherwise.
-
-### GetClockSkewSecondsOk
-
-`func (o *NormalizedProjectRevisionSAMLProvider) GetClockSkewSecondsOk() (*int64, bool)`
-
-GetClockSkewSecondsOk returns a tuple with the ClockSkewSeconds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClockSkewSeconds
-
-`func (o *NormalizedProjectRevisionSAMLProvider) SetClockSkewSeconds(v int64)`
-
-SetClockSkewSeconds sets ClockSkewSeconds field to given value.
-
-### HasClockSkewSeconds
-
-`func (o *NormalizedProjectRevisionSAMLProvider) HasClockSkewSeconds() bool`
-
-HasClockSkewSeconds returns a boolean if a field has been set.
-
 ### GetCreatedAt
 
 `func (o *NormalizedProjectRevisionSAMLProvider) GetCreatedAt() time.Time`

@@ -216,6 +216,7 @@ docs/models/ClientLoginFlowTestDebugPayload.md
 docs/models/ClientLoginFlowTestSchemaValidationError.md
 docs/models/ClientLoginFlowTestStepError.md
 docs/models/ClientLogoutFlow.md
+docs/models/ClientLookupSecretUsage.md
 docs/models/ClientManageSessionsBody.md
 docs/models/ClientManageSessionsResponse.md
 docs/models/ClientManagedIdentitySchema.md
@@ -635,6 +636,7 @@ src/Ory.Client.Test/Model/ClientLoginFlowTestSchemaValidationErrorTests.cs
 src/Ory.Client.Test/Model/ClientLoginFlowTestStepErrorTests.cs
 src/Ory.Client.Test/Model/ClientLoginFlowTests.cs
 src/Ory.Client.Test/Model/ClientLogoutFlowTests.cs
+src/Ory.Client.Test/Model/ClientLookupSecretUsageTests.cs
 src/Ory.Client.Test/Model/ClientManageSessionsBodyTests.cs
 src/Ory.Client.Test/Model/ClientManageSessionsResponseTests.cs
 src/Ory.Client.Test/Model/ClientManagedIdentitySchemaTests.cs
@@ -1078,6 +1080,7 @@ src/Ory.Client/Model/ClientLoginFlowTestDebugPayload.cs
 src/Ory.Client/Model/ClientLoginFlowTestSchemaValidationError.cs
 src/Ory.Client/Model/ClientLoginFlowTestStepError.cs
 src/Ory.Client/Model/ClientLogoutFlow.cs
+src/Ory.Client/Model/ClientLookupSecretUsage.cs
 src/Ory.Client/Model/ClientManageSessionsBody.cs
 src/Ory.Client/Model/ClientManageSessionsResponse.cs
 src/Ory.Client/Model/ClientManagedIdentitySchema.cs

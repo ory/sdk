@@ -16,6 +16,7 @@
 |**id** | **String** | The ID of the subscription |  [readonly] |
 |**intervalChangesTo** | **String** |  |  |
 |**ongoingStripeCheckoutId** | **String** |  |  [optional] |
+|**ongoingStripeCheckoutUrl** | **String** | The Stripe-hosted URL for completing an ongoing checkout, including any configured custom domain. |  [optional] [readonly] |
 |**payedUntil** | **OffsetDateTime** | Until when the subscription is payed |  [readonly] |
 |**planChangesAt** | **OffsetDateTime** |  |  [optional] |
 |**planChangesTo** | **String** |  |  |

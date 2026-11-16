@@ -13,7 +13,6 @@ Name | Type
 `allowed_signature_algorithms` | Array&lt;string&gt;
 `audience_override_base_url` | string
 `binding` | string
-`clock_skew_seconds` | number
 `created_at` | Date
 `engine` | string
 `force_authn` | boolean
@@ -50,7 +49,6 @@ const example = {
   "allowed_signature_algorithms": null,
   "audience_override_base_url": null,
   "binding": null,
-  "clock_skew_seconds": null,
   "created_at": null,
   "engine": null,
   "force_authn": null,

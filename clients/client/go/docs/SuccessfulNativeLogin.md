@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ContinueWith** | Pointer to [**[]ContinueWith**](ContinueWith.md) | Contains a list of actions, that could follow this flow  It can, for example, this will contain a reference to the verification flow, created as part of the user&#39;s registration or the token of the session. | [optional] 
+**LookupSecret** | Pointer to [**LookupSecretUsage**](LookupSecretUsage.md) |  | [optional] 
 **Session** | [**Session**](Session.md) |  | 
 **SessionToken** | Pointer to **string** | The Session Token  A session token is equivalent to a session cookie, but it can be sent in the HTTP Authorization Header:  Authorization: bearer ${session-token}  The session token is only issued for API flows, not for Browser flows! | [optional] 
 
@@ -51,6 +52,31 @@ SetContinueWith sets ContinueWith field to given value.
 `func (o *SuccessfulNativeLogin) HasContinueWith() bool`
 
 HasContinueWith returns a boolean if a field has been set.
+
+### GetLookupSecret
+
+`func (o *SuccessfulNativeLogin) GetLookupSecret() LookupSecretUsage`
+
+GetLookupSecret returns the LookupSecret field if non-nil, zero value otherwise.
+
+### GetLookupSecretOk
+
+`func (o *SuccessfulNativeLogin) GetLookupSecretOk() (*LookupSecretUsage, bool)`
+
+GetLookupSecretOk returns a tuple with the LookupSecret field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLookupSecret
+
+`func (o *SuccessfulNativeLogin) SetLookupSecret(v LookupSecretUsage)`
+
+SetLookupSecret sets LookupSecret field to given value.
+
+### HasLookupSecret
+
+`func (o *SuccessfulNativeLogin) HasLookupSecret() bool`
+
+HasLookupSecret returns a boolean if a field has been set.
 
 ### GetSession
 

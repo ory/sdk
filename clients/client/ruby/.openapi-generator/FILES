@@ -211,6 +211,7 @@ docs/LoginFlowTestDebugPayload.md
 docs/LoginFlowTestSchemaValidationError.md
 docs/LoginFlowTestStepError.md
 docs/LogoutFlow.md
+docs/LookupSecretUsage.md
 docs/ManageSessionsBody.md
 docs/ManageSessionsResponse.md
 docs/ManagedIdentitySchema.md
@@ -640,6 +641,7 @@ lib/ory-client/models/login_flow_test_debug_payload.rb
 lib/ory-client/models/login_flow_test_schema_validation_error.rb
 lib/ory-client/models/login_flow_test_step_error.rb
 lib/ory-client/models/logout_flow.rb
+lib/ory-client/models/lookup_secret_usage.rb
 lib/ory-client/models/manage_sessions_body.rb
 lib/ory-client/models/manage_sessions_response.rb
 lib/ory-client/models/managed_identity_schema.rb
@@ -1057,6 +1059,7 @@ spec/models/login_flow_test_debug_payload_spec.rb
 spec/models/login_flow_test_schema_validation_error_spec.rb
 spec/models/login_flow_test_step_error_spec.rb
 spec/models/logout_flow_spec.rb
+spec/models/lookup_secret_usage_spec.rb
 spec/models/manage_sessions_body_spec.rb
 spec/models/manage_sessions_response_spec.rb
 spec/models/managed_identity_schema_spec.rb

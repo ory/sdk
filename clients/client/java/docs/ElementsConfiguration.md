@@ -23,6 +23,7 @@ ElementsConfiguration is the subset of a project's configuration that Ory Elemen
 |**registrationEnabled** | **Boolean** | Whether registration is enabled. |  |
 |**registrationUiUrl** | **String** | The URL for the registration UI. |  |
 |**settingsUiUrl** | **String** | The URL for the settings UI. |  |
+|**showLastUsedMethod** | **Boolean** | Whether to show a \&quot;Last used\&quot; badge on the social sign-in or SSO button a user chose last time on this device. |  |
 |**termsOfServiceUrl** | **String** | The URL to the project&#39;s Terms of Service page. |  [optional] |
 |**verificationEnabled** | **Boolean** | Whether verification is enabled. |  |
 |**verificationUiUrl** | **String** | The URL for the verification UI. |  |

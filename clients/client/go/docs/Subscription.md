@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The ID of the subscription | [readonly] 
 **IntervalChangesTo** | **NullableString** |  | 
 **OngoingStripeCheckoutId** | Pointer to **NullableString** |  | [optional] 
+**OngoingStripeCheckoutUrl** | Pointer to **string** | The Stripe-hosted URL for completing an ongoing checkout, including any configured custom domain. | [optional] [readonly] 
 **PayedUntil** | **time.Time** | Until when the subscription is payed | [readonly] 
 **PlanChangesAt** | Pointer to **NullableTime** |  | [optional] 
 **PlanChangesTo** | **NullableString** |  | 
@@ -249,6 +250,31 @@ HasOngoingStripeCheckoutId returns a boolean if a field has been set.
 `func (o *Subscription) UnsetOngoingStripeCheckoutId()`
 
 UnsetOngoingStripeCheckoutId ensures that no value is present for OngoingStripeCheckoutId, not even an explicit nil
+### GetOngoingStripeCheckoutUrl
+
+`func (o *Subscription) GetOngoingStripeCheckoutUrl() string`
+
+GetOngoingStripeCheckoutUrl returns the OngoingStripeCheckoutUrl field if non-nil, zero value otherwise.
+
+### GetOngoingStripeCheckoutUrlOk
+
+`func (o *Subscription) GetOngoingStripeCheckoutUrlOk() (*string, bool)`
+
+GetOngoingStripeCheckoutUrlOk returns a tuple with the OngoingStripeCheckoutUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOngoingStripeCheckoutUrl
+
+`func (o *Subscription) SetOngoingStripeCheckoutUrl(v string)`
+
+SetOngoingStripeCheckoutUrl sets OngoingStripeCheckoutUrl field to given value.
+
+### HasOngoingStripeCheckoutUrl
+
+`func (o *Subscription) HasOngoingStripeCheckoutUrl() bool`
+
+HasOngoingStripeCheckoutUrl returns a boolean if a field has been set.
+
 ### GetPayedUntil
 
 `func (o *Subscription) GetPayedUntil() time.Time`

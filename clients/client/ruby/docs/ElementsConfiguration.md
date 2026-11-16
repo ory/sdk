@@ -19,6 +19,7 @@
 | **registration_enabled** | **Boolean** | Whether registration is enabled. |  |
 | **registration_ui_url** | **String** | The URL for the registration UI. |  |
 | **settings_ui_url** | **String** | The URL for the settings UI. |  |
+| **show_last_used_method** | **Boolean** | Whether to show a \&quot;Last used\&quot; badge on the social sign-in or SSO button a user chose last time on this device. |  |
 | **terms_of_service_url** | **String** | The URL to the project&#39;s Terms of Service page. | [optional] |
 | **verification_enabled** | **Boolean** | Whether verification is enabled. |  |
 | **verification_ui_url** | **String** | The URL for the verification UI. |  |
@@ -44,6 +45,7 @@ instance = OryClient::ElementsConfiguration.new(
   registration_enabled: null,
   registration_ui_url: null,
   settings_ui_url: null,
+  show_last_used_method: null,
   terms_of_service_url: null,
   verification_enabled: null,
   verification_ui_url: null

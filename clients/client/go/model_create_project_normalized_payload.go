@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.93
+API version: v1.22.94
 Contact: support@ory.sh
 */
 
@@ -38,6 +38,10 @@ type CreateProjectNormalizedPayload struct {
 	AccountExperienceHideOryBranding *bool `json:"account_experience_hide_ory_branding,omitempty"`
 	// Whether to hide the registration link on the account experience login card. This governs the \"hide_registration_link\" setting.
 	AccountExperienceHideRegistrationLink *bool `json:"account_experience_hide_registration_link,omitempty"`
+	// Controls what the project's domains serve at their index route \"/\".  Leave empty to answer \"/\" with a 404 error. Set to \"default_browser_return_url\" to redirect to `kratos_selfservice_default_browser_return_url`, or to \"redirect\" to redirect to `account_experience_index_route_redirect_url`. This governs the \"index_route.mode\" setting.
+	AccountExperienceIndexRouteMode *string `json:"account_experience_index_route_mode,omitempty"`
+	// The target of the index route redirect.  An absolute http(s) URL, or a path on the project's domain such as `/ui/login`. Used when `account_experience_index_route_mode` is \"redirect\". This governs the \"index_route.redirect_url\" setting.
+	AccountExperienceIndexRouteRedirectUrl *string `json:"account_experience_index_route_redirect_url,omitempty"`
 	// Holds the URL to the account experience's language behavior.  Can be one of: - `respect_accept_language`: Respect the `Accept-Language` header. - `force_default`: Force the default language. This governs the \"locale_behavior\" setting.
 	AccountExperienceLocaleBehavior *string `json:"account_experience_locale_behavior,omitempty"`
 	// Holds the URL to the account experience's dark theme logo (currently unused). This governs the \"logo_dark\" setting.
@@ -46,6 +50,8 @@ type CreateProjectNormalizedPayload struct {
 	AccountExperienceLogoLight *string `json:"account_experience_logo_light,omitempty"`
 	// Holds the URL to the account experience's Privacy Policy page. This governs the \"privacy_policy_url\" setting.
 	AccountExperiencePrivacyPolicyUrl *string `json:"account_experience_privacy_policy_url,omitempty"`
+	// Whether to show a \"Last used\" badge on the social sign-in or SSO button a user chose last time on this device. This governs the \"show_last_used_method\" setting.
+	AccountExperienceShowLastUsedMethod *bool `json:"account_experience_show_last_used_method,omitempty"`
 	// Holds the URL to the account experience's Terms of Service page. This governs the \"terms_of_service_url\" setting.
 	AccountExperienceTermsOfServiceUrl *string `json:"account_experience_terms_of_service_url,omitempty"`
 	// Holds the URL to the account experience's dark theme variables. This governs the \"theme_variables_dark\" setting.
@@ -976,6 +982,70 @@ func (o *CreateProjectNormalizedPayload) SetAccountExperienceHideRegistrationLin
 	o.AccountExperienceHideRegistrationLink = &v
 }
 
+// GetAccountExperienceIndexRouteMode returns the AccountExperienceIndexRouteMode field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceIndexRouteMode() string {
+	if o == nil || IsNil(o.AccountExperienceIndexRouteMode) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceIndexRouteMode
+}
+
+// GetAccountExperienceIndexRouteModeOk returns a tuple with the AccountExperienceIndexRouteMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceIndexRouteModeOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceIndexRouteMode) {
+		return nil, false
+	}
+	return o.AccountExperienceIndexRouteMode, true
+}
+
+// HasAccountExperienceIndexRouteMode returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasAccountExperienceIndexRouteMode() bool {
+	if o != nil && !IsNil(o.AccountExperienceIndexRouteMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceIndexRouteMode gets a reference to the given string and assigns it to the AccountExperienceIndexRouteMode field.
+func (o *CreateProjectNormalizedPayload) SetAccountExperienceIndexRouteMode(v string) {
+	o.AccountExperienceIndexRouteMode = &v
+}
+
+// GetAccountExperienceIndexRouteRedirectUrl returns the AccountExperienceIndexRouteRedirectUrl field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceIndexRouteRedirectUrl() string {
+	if o == nil || IsNil(o.AccountExperienceIndexRouteRedirectUrl) {
+		var ret string
+		return ret
+	}
+	return *o.AccountExperienceIndexRouteRedirectUrl
+}
+
+// GetAccountExperienceIndexRouteRedirectUrlOk returns a tuple with the AccountExperienceIndexRouteRedirectUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceIndexRouteRedirectUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountExperienceIndexRouteRedirectUrl) {
+		return nil, false
+	}
+	return o.AccountExperienceIndexRouteRedirectUrl, true
+}
+
+// HasAccountExperienceIndexRouteRedirectUrl returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasAccountExperienceIndexRouteRedirectUrl() bool {
+	if o != nil && !IsNil(o.AccountExperienceIndexRouteRedirectUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceIndexRouteRedirectUrl gets a reference to the given string and assigns it to the AccountExperienceIndexRouteRedirectUrl field.
+func (o *CreateProjectNormalizedPayload) SetAccountExperienceIndexRouteRedirectUrl(v string) {
+	o.AccountExperienceIndexRouteRedirectUrl = &v
+}
+
 // GetAccountExperienceLocaleBehavior returns the AccountExperienceLocaleBehavior field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetAccountExperienceLocaleBehavior() string {
 	if o == nil || IsNil(o.AccountExperienceLocaleBehavior) {
@@ -1102,6 +1172,38 @@ func (o *CreateProjectNormalizedPayload) HasAccountExperiencePrivacyPolicyUrl() 
 // SetAccountExperiencePrivacyPolicyUrl gets a reference to the given string and assigns it to the AccountExperiencePrivacyPolicyUrl field.
 func (o *CreateProjectNormalizedPayload) SetAccountExperiencePrivacyPolicyUrl(v string) {
 	o.AccountExperiencePrivacyPolicyUrl = &v
+}
+
+// GetAccountExperienceShowLastUsedMethod returns the AccountExperienceShowLastUsedMethod field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceShowLastUsedMethod() bool {
+	if o == nil || IsNil(o.AccountExperienceShowLastUsedMethod) {
+		var ret bool
+		return ret
+	}
+	return *o.AccountExperienceShowLastUsedMethod
+}
+
+// GetAccountExperienceShowLastUsedMethodOk returns a tuple with the AccountExperienceShowLastUsedMethod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetAccountExperienceShowLastUsedMethodOk() (*bool, bool) {
+	if o == nil || IsNil(o.AccountExperienceShowLastUsedMethod) {
+		return nil, false
+	}
+	return o.AccountExperienceShowLastUsedMethod, true
+}
+
+// HasAccountExperienceShowLastUsedMethod returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasAccountExperienceShowLastUsedMethod() bool {
+	if o != nil && !IsNil(o.AccountExperienceShowLastUsedMethod) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountExperienceShowLastUsedMethod gets a reference to the given bool and assigns it to the AccountExperienceShowLastUsedMethod field.
+func (o *CreateProjectNormalizedPayload) SetAccountExperienceShowLastUsedMethod(v bool) {
+	o.AccountExperienceShowLastUsedMethod = &v
 }
 
 // GetAccountExperienceTermsOfServiceUrl returns the AccountExperienceTermsOfServiceUrl field value if set, zero value otherwise.
@@ -10914,6 +11016,12 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.AccountExperienceHideRegistrationLink) {
 		toSerialize["account_experience_hide_registration_link"] = o.AccountExperienceHideRegistrationLink
 	}
+	if !IsNil(o.AccountExperienceIndexRouteMode) {
+		toSerialize["account_experience_index_route_mode"] = o.AccountExperienceIndexRouteMode
+	}
+	if !IsNil(o.AccountExperienceIndexRouteRedirectUrl) {
+		toSerialize["account_experience_index_route_redirect_url"] = o.AccountExperienceIndexRouteRedirectUrl
+	}
 	if !IsNil(o.AccountExperienceLocaleBehavior) {
 		toSerialize["account_experience_locale_behavior"] = o.AccountExperienceLocaleBehavior
 	}
@@ -10925,6 +11033,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.AccountExperiencePrivacyPolicyUrl) {
 		toSerialize["account_experience_privacy_policy_url"] = o.AccountExperiencePrivacyPolicyUrl
+	}
+	if !IsNil(o.AccountExperienceShowLastUsedMethod) {
+		toSerialize["account_experience_show_last_used_method"] = o.AccountExperienceShowLastUsedMethod
 	}
 	if !IsNil(o.AccountExperienceTermsOfServiceUrl) {
 		toSerialize["account_experience_terms_of_service_url"] = o.AccountExperienceTermsOfServiceUrl
@@ -11892,10 +12003,13 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "account_experience_favicon_light")
 		delete(additionalProperties, "account_experience_hide_ory_branding")
 		delete(additionalProperties, "account_experience_hide_registration_link")
+		delete(additionalProperties, "account_experience_index_route_mode")
+		delete(additionalProperties, "account_experience_index_route_redirect_url")
 		delete(additionalProperties, "account_experience_locale_behavior")
 		delete(additionalProperties, "account_experience_logo_dark")
 		delete(additionalProperties, "account_experience_logo_light")
 		delete(additionalProperties, "account_experience_privacy_policy_url")
+		delete(additionalProperties, "account_experience_show_last_used_method")
 		delete(additionalProperties, "account_experience_terms_of_service_url")
 		delete(additionalProperties, "account_experience_theme_variables_dark")
 		delete(additionalProperties, "account_experience_theme_variables_light")

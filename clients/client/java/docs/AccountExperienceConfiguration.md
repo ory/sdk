@@ -27,6 +27,7 @@
 |**registrationEnabled** | **Boolean** |  |  |
 |**registrationUiUrl** | **String** |  |  |
 |**settingsUiUrl** | **String** |  |  |
+|**showLastUsedMethod** | **Boolean** |  |  |
 |**stylesheet** | **String** |  |  [optional] |
 |**termsOfServiceUrl** | **String** | The URL to the project&#39;s Terms of Service page. |  [optional] |
 |**translations** | [**List&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) |  |  |

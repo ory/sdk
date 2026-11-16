@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-client (1.22.93)
+    ory-client (1.22.94)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -12,7 +12,7 @@ GEM
       reline (>= 0.6.0)
     coderay (1.1.3)
     diff-lcs (1.6.2)
-    ethon (0.19.1)
+    ethon (0.19.2)
       ffi (>= 1.15.0)
       logger
     ffi (1.17.4-x86_64-linux-gnu)

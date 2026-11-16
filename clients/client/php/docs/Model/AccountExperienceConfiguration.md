@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **registrationEnabled** | **bool** |  |
 **registrationUiUrl** | **string** |  |
 **settingsUiUrl** | **string** |  |
+**showLastUsedMethod** | **bool** |  |
 **stylesheet** | **string** |  | [optional]
 **termsOfServiceUrl** | **string** | The URL to the project&#39;s Terms of Service page. | [optional]
 **translations** | [**\Ory\Client\Model\RevisionAccountExperienceCustomTranslation[]**](RevisionAccountExperienceCustomTranslation.md) |  |

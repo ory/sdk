@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **allowed_signature_algorithms** | Option<**Vec<String>**> | The signature algorithms accepted when validating signed SAML messages; empty means engine defaults (native engine only). | [optional]
 **audience_override_base_url** | Option<**String**> |  | [optional]
 **binding** | Option<**String**> | The SAML binding used to send authentication requests to the IdP (native engine only): \"http-post\" or \"http-redirect\". http-post SAMLBindingHTTPPost sends the AuthnRequest to the IdP via an auto-submitting HTML form. http-redirect SAMLBindingHTTPRedirect sends the AuthnRequest to the IdP via an HTTP redirect. | [optional]
-**clock_skew_seconds** | Option<**i64**> | The maximum allowed clock skew in seconds when validating assertion time conditions, between 0 and 300 (native engine only). | [optional]
 **created_at** | Option<**String**> | The Project's Revision Creation Date | [optional][readonly]
 **engine** | Option<**String**> | The SAML engine serving this provider: \"jackson\" (default) or \"native\". jackson SAMLEngineJackson routes the provider through the jackson (Polis) proxy. native SAMLEngineNative routes the provider through the native Kratos SAML engine. | [optional]
 **force_authn** | Option<**bool**> | Require the IdP to re-authenticate the subject even if it has an existing session (native engine only). | [optional]

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **RegistrationEnabled** | **bool** |  | 
 **RegistrationUiUrl** | **string** |  | 
 **SettingsUiUrl** | **string** |  | 
+**ShowLastUsedMethod** | **bool** |  | 
 **Translations** | [**List&lt;ClientRevisionAccountExperienceCustomTranslation&gt;**](ClientRevisionAccountExperienceCustomTranslation.md) |  | 
 **VerificationEnabled** | **bool** |  | 
 **VerificationUiUrl** | **string** |  | 

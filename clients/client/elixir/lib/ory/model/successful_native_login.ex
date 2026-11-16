@@ -9,12 +9,14 @@ defmodule Ory.Model.SuccessfulNativeLogin do
   @derive Jason.Encoder
   defstruct [
     :continue_with,
+    :lookup_secret,
     :session,
     :session_token
   ]
 
   @type t :: %__MODULE__{
     :continue_with => [Ory.Model.ContinueWith.t] | nil,
+    :lookup_secret => Ory.Model.LookupSecretUsage.t | nil,
     :session => Ory.Model.Session.t,
     :session_token => String.t | nil
   }
@@ -24,6 +26,7 @@ defmodule Ory.Model.SuccessfulNativeLogin do
   def decode(value) do
     value
      |> Deserializer.deserialize(:continue_with, :list, Ory.Model.ContinueWith)
+     |> Deserializer.deserialize(:lookup_secret, :struct, Ory.Model.LookupSecretUsage)
      |> Deserializer.deserialize(:session, :struct, Ory.Model.Session)
   end
 end

@@ -197,6 +197,7 @@ export * from './LoginFlowTestDebugPayload';
 export * from './LoginFlowTestSchemaValidationError';
 export * from './LoginFlowTestStepError';
 export * from './LogoutFlow';
+export * from './LookupSecretUsage';
 export * from './ManageSessionsBody';
 export * from './ManageSessionsResponse';
 export * from './ManagedIdentitySchema';

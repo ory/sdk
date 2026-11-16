@@ -13,6 +13,7 @@
 | **id** | **String** | The ID of the subscription | [readonly] |
 | **interval_changes_to** | **String** |  |  |
 | **ongoing_stripe_checkout_id** | **String** |  | [optional] |
+| **ongoing_stripe_checkout_url** | **String** | The Stripe-hosted URL for completing an ongoing checkout, including any configured custom domain. | [optional][readonly] |
 | **payed_until** | **Time** | Until when the subscription is payed | [readonly] |
 | **plan_changes_at** | **Time** |  | [optional] |
 | **plan_changes_to** | **String** |  |  |
@@ -35,6 +36,7 @@ instance = OryClient::Subscription.new(
   id: null,
   interval_changes_to: null,
   ongoing_stripe_checkout_id: null,
+  ongoing_stripe_checkout_url: null,
   payed_until: null,
   plan_changes_at: null,
   plan_changes_to: null,

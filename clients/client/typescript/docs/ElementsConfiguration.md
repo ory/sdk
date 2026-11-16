@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **registration_enabled** | **boolean** | Whether registration is enabled. | [default to undefined]
 **registration_ui_url** | **string** | The URL for the registration UI. | [default to undefined]
 **settings_ui_url** | **string** | The URL for the settings UI. | [default to undefined]
+**show_last_used_method** | **boolean** | Whether to show a \&quot;Last used\&quot; badge on the social sign-in or SSO button a user chose last time on this device. | [default to undefined]
 **terms_of_service_url** | **string** | The URL to the project\&#39;s Terms of Service page. | [optional] [default to undefined]
 **verification_enabled** | **boolean** | Whether verification is enabled. | [default to undefined]
 **verification_ui_url** | **string** | The URL for the verification UI. | [default to undefined]
@@ -46,6 +47,7 @@ const instance: ElementsConfiguration = {
     registration_enabled,
     registration_ui_url,
     settings_ui_url,
+    show_last_used_method,
     terms_of_service_url,
     verification_enabled,
     verification_ui_url,

@@ -207,6 +207,7 @@ docs/LoginFlowTestDebugPayload.md
 docs/LoginFlowTestSchemaValidationError.md
 docs/LoginFlowTestStepError.md
 docs/LogoutFlow.md
+docs/LookupSecretUsage.md
 docs/ManageSessionsBody.md
 docs/ManageSessionsResponse.md
 docs/ManagedIdentitySchema.md
@@ -634,6 +635,7 @@ src/models/login_flow_test_debug_payload.rs
 src/models/login_flow_test_schema_validation_error.rs
 src/models/login_flow_test_step_error.rs
 src/models/logout_flow.rs
+src/models/lookup_secret_usage.rs
 src/models/manage_sessions_body.rs
 src/models/manage_sessions_response.rs
 src/models/managed_identity_schema.rs

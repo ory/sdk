@@ -1,6 +1,6 @@
 # UpdateLoginFlowWithDeviceAuthnMethod
 
-Log in by proving possession of an enrolled device key. The device signs the challenge nonce found in the login flow's hidden `deviceauthn_nonce` UI node; a PIN-protected key additionally proves knowledge of the PIN via `pin_proof`.  Use it for step-up in a login flow created with `aal=aal2`, or as the sole first factor (a one-step AAL2 login, for keys with \"pin\" or \"platform\" user verification) when the project's deviceauthn first_factor setting is enabled. Only API (native) flows support this method.
+Log in by proving possession of an enrolled device key. The device signs the challenge nonce found in the login flow's hidden `deviceauthn_nonce` UI node; a PIN-protected key additionally proves knowledge of the PIN via `pin_proof`.  Use it for step-up in a login flow created with `aal=aal2`, or as the sole first factor (a one-step AAL2 login, for keys with \"pin\" or \"platform\" user verification) when the project's deviceauthn first_factor setting is enabled. Only API (native) flows support this method.  The hidden `deviceauthn_options` node's JSON carries `first_factor_user_verification`: for each device type (`iOS`, `Android`), the user verifications (`pin`, `platform`) of keys that can sign in without a password. An iOS `platform` key is listed only when the project's ios_biometric_first_factor setting is enabled. Offer passwordless device sign-in only for a key whose user verification is listed for its device type; every enrolled key can still serve as a second factor.
 
 ## Properties
 

@@ -216,6 +216,7 @@ docs/Model/LoginFlowTestDebugPayload.md
 docs/Model/LoginFlowTestSchemaValidationError.md
 docs/Model/LoginFlowTestStepError.md
 docs/Model/LogoutFlow.md
+docs/Model/LookupSecretUsage.md
 docs/Model/ManageSessionsBody.md
 docs/Model/ManageSessionsResponse.md
 docs/Model/ManagedIdentitySchema.md
@@ -636,6 +637,7 @@ lib/Model/LoginFlowTestDebugPayload.php
 lib/Model/LoginFlowTestSchemaValidationError.php
 lib/Model/LoginFlowTestStepError.php
 lib/Model/LogoutFlow.php
+lib/Model/LookupSecretUsage.php
 lib/Model/ManageSessionsBody.php
 lib/Model/ManageSessionsResponse.php
 lib/Model/ManagedIdentitySchema.php
@@ -1054,6 +1056,7 @@ test/Model/LoginFlowTestDebugPayloadTest.php
 test/Model/LoginFlowTestSchemaValidationErrorTest.php
 test/Model/LoginFlowTestStepErrorTest.php
 test/Model/LogoutFlowTest.php
+test/Model/LookupSecretUsageTest.php
 test/Model/ManageSessionsBodyTest.php
 test/Model/ManageSessionsResponseTest.php
 test/Model/ManagedIdentitySchemaTest.php

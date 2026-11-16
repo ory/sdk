@@ -1339,7 +1339,7 @@ example().catch(console.error);
 
 Remove a member associated with this project
 
-This also sets their invite status to &#x60;REMOVED&#x60;. This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60;.
+This also closes their open invites to this project: accepted invites become &#x60;removed&#x60; and pending invites become &#x60;cancelled&#x60;. This endpoint requires the user to be a member of the project with the role &#x60;OWNER&#x60;.
 
 ### Example
 

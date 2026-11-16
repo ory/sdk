@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **id** | **string** | The ID of the subscription | [readonly] [default to undefined]
 **interval_changes_to** | **string** |  | [default to undefined]
 **ongoing_stripe_checkout_id** | **string** |  | [optional] [default to undefined]
+**ongoing_stripe_checkout_url** | **string** | The Stripe-hosted URL for completing an ongoing checkout, including any configured custom domain. | [optional] [readonly] [default to undefined]
 **payed_until** | **string** | Until when the subscription is payed | [readonly] [default to undefined]
 **plan_changes_at** | **string** |  | [optional] [default to undefined]
 **plan_changes_to** | **string** |  | [default to undefined]
@@ -36,6 +37,7 @@ const instance: Subscription = {
     id,
     interval_changes_to,
     ongoing_stripe_checkout_id,
+    ongoing_stripe_checkout_url,
     payed_until,
     plan_changes_at,
     plan_changes_to,

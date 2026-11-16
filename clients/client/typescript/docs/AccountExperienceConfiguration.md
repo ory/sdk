@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **registration_enabled** | **boolean** |  | [default to undefined]
 **registration_ui_url** | **string** |  | [default to undefined]
 **settings_ui_url** | **string** |  | [default to undefined]
+**show_last_used_method** | **boolean** |  | [default to undefined]
 **stylesheet** | **string** |  | [optional] [default to undefined]
 **terms_of_service_url** | **string** | The URL to the project\&#39;s Terms of Service page. | [optional] [default to undefined]
 **translations** | [**Array&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) |  | [default to undefined]
@@ -57,6 +58,7 @@ const instance: AccountExperienceConfiguration = {
     registration_enabled,
     registration_ui_url,
     settings_ui_url,
+    show_last_used_method,
     stylesheet,
     terms_of_service_url,
     translations,

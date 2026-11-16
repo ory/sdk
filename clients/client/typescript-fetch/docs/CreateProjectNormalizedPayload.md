@@ -15,10 +15,13 @@ Name | Type
 `account_experience_favicon_light` | string
 `account_experience_hide_ory_branding` | boolean
 `account_experience_hide_registration_link` | boolean
+`account_experience_index_route_mode` | string
+`account_experience_index_route_redirect_url` | string
 `account_experience_locale_behavior` | string
 `account_experience_logo_dark` | string
 `account_experience_logo_light` | string
 `account_experience_privacy_policy_url` | string
+`account_experience_show_last_used_method` | boolean
 `account_experience_terms_of_service_url` | string
 `account_experience_theme_variables_dark` | string
 `account_experience_theme_variables_light` | string
@@ -341,10 +344,13 @@ const example = {
   "account_experience_favicon_light": null,
   "account_experience_hide_ory_branding": null,
   "account_experience_hide_registration_link": null,
+  "account_experience_index_route_mode": null,
+  "account_experience_index_route_redirect_url": null,
   "account_experience_locale_behavior": null,
   "account_experience_logo_dark": null,
   "account_experience_logo_light": null,
   "account_experience_privacy_policy_url": null,
+  "account_experience_show_last_used_method": null,
   "account_experience_terms_of_service_url": null,
   "account_experience_theme_variables_dark": null,
   "account_experience_theme_variables_light": null,

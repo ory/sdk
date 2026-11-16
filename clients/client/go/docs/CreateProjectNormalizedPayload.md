@@ -12,10 +12,13 @@ Name | Type | Description | Notes
 **AccountExperienceFaviconLight** | Pointer to **string** | Holds the URL to the account experience&#39;s favicon. This governs the \&quot;favicon_light\&quot; setting. | [optional] 
 **AccountExperienceHideOryBranding** | Pointer to **bool** | Whether to hide the Ory branding badge on the account experience. This governs the \&quot;hide_ory_branding\&quot; setting. | [optional] 
 **AccountExperienceHideRegistrationLink** | Pointer to **bool** | Whether to hide the registration link on the account experience login card. This governs the \&quot;hide_registration_link\&quot; setting. | [optional] 
+**AccountExperienceIndexRouteMode** | Pointer to **string** | Controls what the project&#39;s domains serve at their index route \&quot;/\&quot;.  Leave empty to answer \&quot;/\&quot; with a 404 error. Set to \&quot;default_browser_return_url\&quot; to redirect to &#x60;kratos_selfservice_default_browser_return_url&#x60;, or to \&quot;redirect\&quot; to redirect to &#x60;account_experience_index_route_redirect_url&#x60;. This governs the \&quot;index_route.mode\&quot; setting. | [optional] 
+**AccountExperienceIndexRouteRedirectUrl** | Pointer to **string** | The target of the index route redirect.  An absolute http(s) URL, or a path on the project&#39;s domain such as &#x60;/ui/login&#x60;. Used when &#x60;account_experience_index_route_mode&#x60; is \&quot;redirect\&quot;. This governs the \&quot;index_route.redirect_url\&quot; setting. | [optional] 
 **AccountExperienceLocaleBehavior** | Pointer to **string** | Holds the URL to the account experience&#39;s language behavior.  Can be one of: - &#x60;respect_accept_language&#x60;: Respect the &#x60;Accept-Language&#x60; header. - &#x60;force_default&#x60;: Force the default language. This governs the \&quot;locale_behavior\&quot; setting. | [optional] 
 **AccountExperienceLogoDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme logo (currently unused). This governs the \&quot;logo_dark\&quot; setting. | [optional] 
 **AccountExperienceLogoLight** | Pointer to **string** | Holds the URL to the account experience&#39;s logo. This governs the \&quot;logo_light\&quot; setting. | [optional] 
 **AccountExperiencePrivacyPolicyUrl** | Pointer to **string** | Holds the URL to the account experience&#39;s Privacy Policy page. This governs the \&quot;privacy_policy_url\&quot; setting. | [optional] 
+**AccountExperienceShowLastUsedMethod** | Pointer to **bool** | Whether to show a \&quot;Last used\&quot; badge on the social sign-in or SSO button a user chose last time on this device. This governs the \&quot;show_last_used_method\&quot; setting. | [optional] 
 **AccountExperienceTermsOfServiceUrl** | Pointer to **string** | Holds the URL to the account experience&#39;s Terms of Service page. This governs the \&quot;terms_of_service_url\&quot; setting. | [optional] 
 **AccountExperienceThemeVariablesDark** | Pointer to **string** | Holds the URL to the account experience&#39;s dark theme variables. This governs the \&quot;theme_variables_dark\&quot; setting. | [optional] 
 **AccountExperienceThemeVariablesLight** | Pointer to **string** | Holds the URL to the account experience&#39;s light theme variables. This governs the \&quot;theme_variables_light\&quot; setting. | [optional] 
@@ -542,6 +545,56 @@ SetAccountExperienceHideRegistrationLink sets AccountExperienceHideRegistrationL
 
 HasAccountExperienceHideRegistrationLink returns a boolean if a field has been set.
 
+### GetAccountExperienceIndexRouteMode
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceIndexRouteMode() string`
+
+GetAccountExperienceIndexRouteMode returns the AccountExperienceIndexRouteMode field if non-nil, zero value otherwise.
+
+### GetAccountExperienceIndexRouteModeOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceIndexRouteModeOk() (*string, bool)`
+
+GetAccountExperienceIndexRouteModeOk returns a tuple with the AccountExperienceIndexRouteMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceIndexRouteMode
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceIndexRouteMode(v string)`
+
+SetAccountExperienceIndexRouteMode sets AccountExperienceIndexRouteMode field to given value.
+
+### HasAccountExperienceIndexRouteMode
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceIndexRouteMode() bool`
+
+HasAccountExperienceIndexRouteMode returns a boolean if a field has been set.
+
+### GetAccountExperienceIndexRouteRedirectUrl
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceIndexRouteRedirectUrl() string`
+
+GetAccountExperienceIndexRouteRedirectUrl returns the AccountExperienceIndexRouteRedirectUrl field if non-nil, zero value otherwise.
+
+### GetAccountExperienceIndexRouteRedirectUrlOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceIndexRouteRedirectUrlOk() (*string, bool)`
+
+GetAccountExperienceIndexRouteRedirectUrlOk returns a tuple with the AccountExperienceIndexRouteRedirectUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceIndexRouteRedirectUrl
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceIndexRouteRedirectUrl(v string)`
+
+SetAccountExperienceIndexRouteRedirectUrl sets AccountExperienceIndexRouteRedirectUrl field to given value.
+
+### HasAccountExperienceIndexRouteRedirectUrl
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceIndexRouteRedirectUrl() bool`
+
+HasAccountExperienceIndexRouteRedirectUrl returns a boolean if a field has been set.
+
 ### GetAccountExperienceLocaleBehavior
 
 `func (o *CreateProjectNormalizedPayload) GetAccountExperienceLocaleBehavior() string`
@@ -641,6 +694,31 @@ SetAccountExperiencePrivacyPolicyUrl sets AccountExperiencePrivacyPolicyUrl fiel
 `func (o *CreateProjectNormalizedPayload) HasAccountExperiencePrivacyPolicyUrl() bool`
 
 HasAccountExperiencePrivacyPolicyUrl returns a boolean if a field has been set.
+
+### GetAccountExperienceShowLastUsedMethod
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceShowLastUsedMethod() bool`
+
+GetAccountExperienceShowLastUsedMethod returns the AccountExperienceShowLastUsedMethod field if non-nil, zero value otherwise.
+
+### GetAccountExperienceShowLastUsedMethodOk
+
+`func (o *CreateProjectNormalizedPayload) GetAccountExperienceShowLastUsedMethodOk() (*bool, bool)`
+
+GetAccountExperienceShowLastUsedMethodOk returns a tuple with the AccountExperienceShowLastUsedMethod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountExperienceShowLastUsedMethod
+
+`func (o *CreateProjectNormalizedPayload) SetAccountExperienceShowLastUsedMethod(v bool)`
+
+SetAccountExperienceShowLastUsedMethod sets AccountExperienceShowLastUsedMethod field to given value.
+
+### HasAccountExperienceShowLastUsedMethod
+
+`func (o *CreateProjectNormalizedPayload) HasAccountExperienceShowLastUsedMethod() bool`
+
+HasAccountExperienceShowLastUsedMethod returns a boolean if a field has been set.
 
 ### GetAccountExperienceTermsOfServiceUrl
 

@@ -23,6 +23,7 @@ defmodule Ory.Model.ElementsConfiguration do
     :registration_enabled,
     :registration_ui_url,
     :settings_ui_url,
+    :show_last_used_method,
     :terms_of_service_url,
     :verification_enabled,
     :verification_ui_url
@@ -44,6 +45,7 @@ defmodule Ory.Model.ElementsConfiguration do
     :registration_enabled => boolean(),
     :registration_ui_url => String.t,
     :settings_ui_url => String.t,
+    :show_last_used_method => boolean(),
     :terms_of_service_url => String.t | nil,
     :verification_enabled => boolean(),
     :verification_ui_url => String.t

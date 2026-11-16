@@ -24,6 +24,7 @@
 | **registration_enabled** | **Boolean** |  |  |
 | **registration_ui_url** | **String** |  |  |
 | **settings_ui_url** | **String** |  |  |
+| **show_last_used_method** | **Boolean** |  |  |
 | **stylesheet** | **String** |  | [optional] |
 | **terms_of_service_url** | **String** | The URL to the project&#39;s Terms of Service page. | [optional] |
 | **translations** | [**Array&lt;RevisionAccountExperienceCustomTranslation&gt;**](RevisionAccountExperienceCustomTranslation.md) |  |  |
@@ -56,6 +57,7 @@ instance = OryClient::AccountExperienceConfiguration.new(
   registration_enabled: null,
   registration_ui_url: null,
   settings_ui_url: null,
+  show_last_used_method: null,
   stylesheet: null,
   terms_of_service_url: null,
   translations: null,

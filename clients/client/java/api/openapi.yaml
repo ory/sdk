@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.93
+  version: v1.22.94
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -5613,7 +5613,7 @@ paths:
   /projects/{project}/members/{member}:
     delete:
       description: |-
-        This also sets their invite status to `REMOVED`.
+        This also closes their open invites to this project: accepted invites become `removed` and pending invites become `cancelled`.
         This endpoint requires the user to be a member of the project with the role `OWNER`.
       operationId: removeProjectMember
       parameters:
@@ -11898,6 +11898,24 @@ components:
             Whether to hide the registration link on the account experience login card.
             This governs the "hide_registration_link" setting.
           type: boolean
+        account_experience_index_route_mode:
+          description: |-
+            Controls what the project's domains serve at their index route "/".
+
+            Leave empty to answer "/" with a 404 error. Set to
+            "default_browser_return_url" to redirect to
+            `kratos_selfservice_default_browser_return_url`, or to "redirect" to
+            redirect to `account_experience_index_route_redirect_url`.
+            This governs the "index_route.mode" setting.
+          type: string
+        account_experience_index_route_redirect_url:
+          description: |-
+            The target of the index route redirect.
+
+            An absolute http(s) URL, or a path on the project's domain such as
+            `/ui/login`. Used when `account_experience_index_route_mode` is "redirect".
+            This governs the "index_route.redirect_url" setting.
+          type: string
         account_experience_locale_behavior:
           description: |-
             Holds the URL to the account experience's language behavior.
@@ -11922,6 +11940,11 @@ components:
             Holds the URL to the account experience's Privacy Policy page.
             This governs the "privacy_policy_url" setting.
           type: string
+        account_experience_show_last_used_method:
+          description: |-
+            Whether to show a "Last used" badge on the social sign-in or SSO button a user chose last time on this device.
+            This governs the "show_last_used_method" setting.
+          type: boolean
         account_experience_terms_of_service_url:
           description: |-
             Holds the URL to the account experience's Terms of Service page.
@@ -16165,6 +16188,8 @@ components:
           type: string
         settings_ui_url:
           type: string
+        show_last_used_method:
+          type: boolean
         stylesheet:
           type: string
         terms_of_service_url:
@@ -16193,6 +16218,7 @@ components:
       - registration_enabled
       - registration_ui_url
       - settings_ui_url
+      - show_last_used_method
       - translations
       - verification_enabled
       - verification_ui_url
@@ -17859,6 +17885,7 @@ components:
         contact_url: contact_url
         registration_ui_url: registration_ui_url
         settings_ui_url: settings_ui_url
+        show_last_used_method: true
         hide_registration_link: true
         default_redirect_url: default_redirect_url
         recovery_ui_url: recovery_ui_url
@@ -17915,6 +17942,10 @@ components:
         settings_ui_url:
           description: The URL for the settings UI.
           type: string
+        show_last_used_method:
+          description: Whether to show a "Last used" badge on the social sign-in or
+            SSO button a user chose last time on this device.
+          type: boolean
         terms_of_service_url:
           description: The URL to the project's Terms of Service page.
           type: string
@@ -17936,6 +17967,7 @@ components:
       - registration_enabled
       - registration_ui_url
       - settings_ui_url
+      - show_last_used_method
       - verification_enabled
       - verification_ui_url
       type: object
@@ -20546,6 +20578,27 @@ components:
       - logout_token
       - logout_url
       type: object
+    lookupSecretUsage:
+      description: |-
+        How many of the identity's lookup secrets (recovery codes) are left after a login. The login
+        response includes it only when the login completed with a lookup secret.
+      example:
+        total_codes: 6
+        remaining_codes: 0
+      properties:
+        remaining_codes:
+          description: The number of lookup secrets that have not been used yet.
+          format: int64
+          type: integer
+        total_codes:
+          description: "The total number of lookup secrets, used and unused."
+          format: int64
+          type: integer
+      required:
+      - remaining_codes
+      - total_codes
+      title: Lookup Secret Usage
+      type: object
     manageSessionsBody:
       description: |-
         Body for the bulk session management endpoint. Exactly one of `identities`
@@ -21130,6 +21183,24 @@ components:
             Whether to hide the registration link on the account experience login card.
             This governs the "hide_registration_link" setting.
           type: boolean
+        account_experience_index_route_mode:
+          description: |-
+            Controls what the project's domains serve at their index route "/".
+
+            Leave empty to answer "/" with a 404 error. Set to
+            "default_browser_return_url" to redirect to
+            `kratos_selfservice_default_browser_return_url`, or to "redirect" to
+            redirect to `account_experience_index_route_redirect_url`.
+            This governs the "index_route.mode" setting.
+          type: string
+        account_experience_index_route_redirect_url:
+          description: |-
+            The target of the index route redirect.
+
+            An absolute http(s) URL, or a path on the project's domain such as
+            `/ui/login`. Used when `account_experience_index_route_mode` is "redirect".
+            This governs the "index_route.redirect_url" setting.
+          type: string
         account_experience_locale_behavior:
           description: |-
             Holds the URL to the account experience's language behavior.
@@ -21154,6 +21225,11 @@ components:
             Holds the URL to the account experience's Privacy Policy page.
             This governs the "privacy_policy_url" setting.
           type: string
+        account_experience_show_last_used_method:
+          description: |-
+            Whether to show a "Last used" badge on the social sign-in or SSO button a user chose last time on this device.
+            This governs the "show_last_used_method" setting.
+          type: boolean
         account_experience_terms_of_service_url:
           description: |-
             Holds the URL to the account experience's Terms of Service page.
@@ -23488,11 +23564,6 @@ components:
           x-go-enum-desc: |-
             http-post SAMLBindingHTTPPost sends the AuthnRequest to the IdP via an auto-submitting HTML form.
             http-redirect SAMLBindingHTTPRedirect sends the AuthnRequest to the IdP via an HTTP redirect.
-        clock_skew_seconds:
-          description: "The maximum allowed clock skew in seconds when validating\
-            \ assertion time conditions, between 0 and 300 (native engine only)."
-          format: int64
-          type: integer
         created_at:
           description: The Project's Revision Creation Date
           format: date-time
@@ -29302,6 +29373,11 @@ components:
         ongoing_stripe_checkout_id:
           nullable: true
           type: string
+        ongoing_stripe_checkout_url:
+          description: "The Stripe-hosted URL for completing an ongoing checkout,\
+            \ including any configured custom domain."
+          readOnly: true
+          type: string
         payed_until:
           description: Until when the subscription is payed
           format: date-time
@@ -29475,6 +29551,9 @@ components:
             verifiable_address: verifiable_address
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             url: url
+        lookup_secret:
+          total_codes: 6
+          remaining_codes: 0
       properties:
         continue_with:
           description: |-
@@ -29485,6 +29564,8 @@ components:
           items:
             $ref: '#/components/schemas/continueWith'
           type: array
+        lookup_secret:
+          $ref: '#/components/schemas/lookupSecretUsage'
         session:
           $ref: '#/components/schemas/session'
         session_token:
@@ -30955,6 +31036,15 @@ components:
         first factor (a one-step AAL2 login, for keys with "pin" or "platform" user
         verification) when the project's deviceauthn first_factor setting is
         enabled. Only API (native) flows support this method.
+
+        The hidden `deviceauthn_options` node's JSON carries
+        `first_factor_user_verification`: for each device type (`iOS`, `Android`),
+        the user verifications (`pin`, `platform`) of keys that can sign in without
+        a password. An iOS `platform`
+        key is listed only when the project's ios_biometric_first_factor setting is
+        enabled. Offer passwordless device sign-in only for a key whose user
+        verification is listed for its device type; every enrolled key can still
+        serve as a second factor.
       properties:
         client_key_id:
           description: |-
@@ -31720,6 +31810,12 @@ components:
 
         For a PIN-protected key the server returns a one-time sealed pin_secret in
         the flow's `continue_with` items (action `show_pin_entry_ui`).
+
+        The hidden `deviceauthn_options` node's JSON carries
+        `first_factor_user_verification`: for each device type (`iOS`, `Android`),
+        the user verifications (`pin`, `platform`) of keys that can sign in without
+        a password. Use it to tell the user before enrolling whether the chosen
+        protection replaces the password or only serves as a second factor.
       properties:
         attestation_ios:
           description: |-

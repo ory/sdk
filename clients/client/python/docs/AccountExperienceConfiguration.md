@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **registration_enabled** | **bool** |  | 
 **registration_ui_url** | **str** |  | 
 **settings_ui_url** | **str** |  | 
+**show_last_used_method** | **bool** |  | 
 **stylesheet** | **str** |  | [optional] 
 **terms_of_service_url** | **str** | The URL to the project&#39;s Terms of Service page. | [optional] 
 **translations** | [**List[RevisionAccountExperienceCustomTranslation]**](RevisionAccountExperienceCustomTranslation.md) |  | 

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.93
+API version: v1.22.94
 Contact: support@ory.sh
 */
 
@@ -51,6 +51,8 @@ type ElementsConfiguration struct {
 	RegistrationUiUrl string `json:"registration_ui_url"`
 	// The URL for the settings UI.
 	SettingsUiUrl string `json:"settings_ui_url"`
+	// Whether to show a \"Last used\" badge on the social sign-in or SSO button a user chose last time on this device.
+	ShowLastUsedMethod bool `json:"show_last_used_method"`
 	// The URL to the project's Terms of Service page.
 	TermsOfServiceUrl *string `json:"terms_of_service_url,omitempty"`
 	// Whether verification is enabled.
@@ -66,7 +68,7 @@ type _ElementsConfiguration ElementsConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewElementsConfiguration(defaultRedirectUrl string, errorUiUrl string, hideOryBranding bool, hideRegistrationLink bool, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, verificationEnabled bool, verificationUiUrl string) *ElementsConfiguration {
+func NewElementsConfiguration(defaultRedirectUrl string, errorUiUrl string, hideOryBranding bool, hideRegistrationLink bool, loginUiUrl string, name string, recoveryEnabled bool, recoveryUiUrl string, registrationEnabled bool, registrationUiUrl string, settingsUiUrl string, showLastUsedMethod bool, verificationEnabled bool, verificationUiUrl string) *ElementsConfiguration {
 	this := ElementsConfiguration{}
 	this.DefaultRedirectUrl = defaultRedirectUrl
 	this.ErrorUiUrl = errorUiUrl
@@ -79,6 +81,7 @@ func NewElementsConfiguration(defaultRedirectUrl string, errorUiUrl string, hide
 	this.RegistrationEnabled = registrationEnabled
 	this.RegistrationUiUrl = registrationUiUrl
 	this.SettingsUiUrl = settingsUiUrl
+	this.ShowLastUsedMethod = showLastUsedMethod
 	this.VerificationEnabled = verificationEnabled
 	this.VerificationUiUrl = verificationUiUrl
 	return &this
@@ -484,6 +487,30 @@ func (o *ElementsConfiguration) SetSettingsUiUrl(v string) {
 	o.SettingsUiUrl = v
 }
 
+// GetShowLastUsedMethod returns the ShowLastUsedMethod field value
+func (o *ElementsConfiguration) GetShowLastUsedMethod() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ShowLastUsedMethod
+}
+
+// GetShowLastUsedMethodOk returns a tuple with the ShowLastUsedMethod field value
+// and a boolean to check if the value has been set.
+func (o *ElementsConfiguration) GetShowLastUsedMethodOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ShowLastUsedMethod, true
+}
+
+// SetShowLastUsedMethod sets field value
+func (o *ElementsConfiguration) SetShowLastUsedMethod(v bool) {
+	o.ShowLastUsedMethod = v
+}
+
 // GetTermsOfServiceUrl returns the TermsOfServiceUrl field value if set, zero value otherwise.
 func (o *ElementsConfiguration) GetTermsOfServiceUrl() string {
 	if o == nil || IsNil(o.TermsOfServiceUrl) {
@@ -597,6 +624,7 @@ func (o ElementsConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize["registration_enabled"] = o.RegistrationEnabled
 	toSerialize["registration_ui_url"] = o.RegistrationUiUrl
 	toSerialize["settings_ui_url"] = o.SettingsUiUrl
+	toSerialize["show_last_used_method"] = o.ShowLastUsedMethod
 	if !IsNil(o.TermsOfServiceUrl) {
 		toSerialize["terms_of_service_url"] = o.TermsOfServiceUrl
 	}
@@ -626,6 +654,7 @@ func (o *ElementsConfiguration) UnmarshalJSON(data []byte) (err error) {
 		"registration_enabled",
 		"registration_ui_url",
 		"settings_ui_url",
+		"show_last_used_method",
 		"verification_enabled",
 		"verification_ui_url",
 	}
@@ -672,6 +701,7 @@ func (o *ElementsConfiguration) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "registration_enabled")
 		delete(additionalProperties, "registration_ui_url")
 		delete(additionalProperties, "settings_ui_url")
+		delete(additionalProperties, "show_last_used_method")
 		delete(additionalProperties, "terms_of_service_url")
 		delete(additionalProperties, "verification_enabled")
 		delete(additionalProperties, "verification_ui_url")
