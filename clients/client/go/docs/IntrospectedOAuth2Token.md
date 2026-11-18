@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Active** | **bool** | Active is a boolean indicator of whether or not the presented token is currently active.  The specifics of a token&#39;s \&quot;active\&quot; state will vary depending on the implementation of the authorization server and the information it keeps about its tokens, but a \&quot;true\&quot; value return for the \&quot;active\&quot; property will generally indicate that a given token has been issued by this authorization server, has not been revoked by the resource owner, and is within its given time window of validity (e.g., after its issuance time and before its expiration time). | 
 **Aud** | Pointer to **[]string** | Audience contains a list of the token&#39;s intended audiences. | [optional] 
 **ClientId** | Pointer to **string** | ID is a client identifier for the OAuth 2.0 client that requested this token. | [optional] 
+**Cnf** | Pointer to [**IntrospectedOAuth2TokenConfirmation**](IntrospectedOAuth2TokenConfirmation.md) |  | [optional] 
 **Exp** | Pointer to **int64** | Expires at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire. | [optional] 
 **Ext** | Pointer to **map[string]interface{}** | Extra is arbitrary data set by the session. | [optional] 
 **Iat** | Pointer to **int64** | Issued at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued. | [optional] 
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 **ObfuscatedSubject** | Pointer to **string** | ObfuscatedSubject is set when the subject identifier algorithm was set to \&quot;pairwise\&quot; during authorization. It is the &#x60;sub&#x60; value of the ID Token that was issued. | [optional] 
 **Scope** | Pointer to **string** | Scope is a JSON string containing a space-separated list of scopes associated with this token. | [optional] 
 **Sub** | Pointer to **string** | Subject of the token, as defined in JWT [RFC7519]. Usually a machine-readable identifier of the resource owner who authorized this token. | [optional] 
-**TokenType** | Pointer to **string** | TokenType is the introspected token&#39;s type, typically &#x60;Bearer&#x60;. | [optional] 
+**TokenType** | Pointer to **string** | TokenType is the introspected token&#39;s type: &#x60;DPoP&#x60; for a token bound to a DPoP key (RFC 9449), otherwise &#x60;Bearer&#x60;. | [optional] 
 **TokenUse** | Pointer to **string** | TokenUse is the introspected token&#39;s use, for example &#x60;access_token&#x60; or &#x60;refresh_token&#x60;. | [optional] 
 **Username** | Pointer to **string** | Username is a human-readable identifier for the resource owner who authorized this token. | [optional] 
 
@@ -107,6 +108,31 @@ SetClientId sets ClientId field to given value.
 `func (o *IntrospectedOAuth2Token) HasClientId() bool`
 
 HasClientId returns a boolean if a field has been set.
+
+### GetCnf
+
+`func (o *IntrospectedOAuth2Token) GetCnf() IntrospectedOAuth2TokenConfirmation`
+
+GetCnf returns the Cnf field if non-nil, zero value otherwise.
+
+### GetCnfOk
+
+`func (o *IntrospectedOAuth2Token) GetCnfOk() (*IntrospectedOAuth2TokenConfirmation, bool)`
+
+GetCnfOk returns a tuple with the Cnf field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCnf
+
+`func (o *IntrospectedOAuth2Token) SetCnf(v IntrospectedOAuth2TokenConfirmation)`
+
+SetCnf sets Cnf field to given value.
+
+### HasCnf
+
+`func (o *IntrospectedOAuth2Token) HasCnf() bool`
+
+HasCnf returns a boolean if a field has been set.
 
 ### GetExp
 

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **preset** | **string** | Use a preset instead of a custom identity schema. | [optional] [default to undefined]
 **project_revision_id** | **string** | The Revision\&#39;s ID this schema belongs to | [optional] [default to undefined]
 **selfservice_selectable** | **boolean** |  | [optional] [default to undefined]
+**slug** | **string** | The slug of the identity schema  A readable, public name for this schema version, for example &#x60;customer_v2&#x60;. It starts with a lowercase letter, followed by up to 63 lowercase letters, digits, or underscores. Once set, a slug can\&#39;t be changed, removed, or used by another identity schema of the project. If you omit it on an update, the schema keeps its slug. | [optional] [default to undefined]
 **updated_at** | **string** | Last Time Project\&#39;s Revision was Updated | [optional] [readonly] [default to undefined]
 
 ## Example
@@ -33,6 +34,7 @@ const instance: NormalizedProjectRevisionIdentitySchema = {
     preset,
     project_revision_id,
     selfservice_selectable,
+    slug,
     updated_at,
 };
 ```

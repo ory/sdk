@@ -175,6 +175,7 @@ docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlug.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/IntrospectedOAuth2Token.md
+docs/IntrospectedOAuth2TokenConfirmation.md
 docs/InviteTokenBody.md
 docs/Invoice.md
 docs/InvoiceDataV1.md
@@ -607,6 +608,7 @@ ory_client/models/internal_is_ax_welcome_screen_enabled_for_project_body.py
 ory_client/models/internal_is_owner_for_project_by_slug.py
 ory_client/models/internal_is_owner_for_project_by_slug_body.py
 ory_client/models/introspected_o_auth2_token.py
+ory_client/models/introspected_o_auth2_token_confirmation.py
 ory_client/models/invite_token_body.py
 ory_client/models/invoice.py
 ory_client/models/invoice_data_v1.py
@@ -1022,6 +1024,7 @@ test/test_internal_is_ax_welcome_screen_enabled_for_project_body.py
 test/test_internal_is_owner_for_project_by_slug.py
 test/test_internal_is_owner_for_project_by_slug_body.py
 test/test_introspected_o_auth2_token.py
+test/test_introspected_o_auth2_token_confirmation.py
 test/test_invite_token_body.py
 test/test_invoice.py
 test/test_invoice_data_v1.py

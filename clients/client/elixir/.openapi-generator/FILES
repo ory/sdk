@@ -185,6 +185,7 @@ lib/ory/model/internal_is_ax_welcome_screen_enabled_for_project_body.ex
 lib/ory/model/internal_is_owner_for_project_by_slug.ex
 lib/ory/model/internal_is_owner_for_project_by_slug_body.ex
 lib/ory/model/introspected_o_auth2_token.ex
+lib/ory/model/introspected_o_auth2_token_confirmation.ex
 lib/ory/model/invite_token_body.ex
 lib/ory/model/invoice.ex
 lib/ory/model/invoice_data_v1.ex

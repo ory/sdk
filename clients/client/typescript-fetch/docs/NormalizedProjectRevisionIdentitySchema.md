@@ -16,6 +16,7 @@ Name | Type
 `preset` | string
 `project_revision_id` | string
 `selfservice_selectable` | boolean
+`slug` | string
 `updated_at` | Date
 
 ## Example
@@ -35,6 +36,7 @@ const example = {
   "preset": null,
   "project_revision_id": null,
   "selfservice_selectable": null,
+  "slug": customer_v2,
   "updated_at": null,
 } satisfies NormalizedProjectRevisionIdentitySchema
 

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.94
+API version: v1.22.95
 Contact: support@ory.sh
 */
 
@@ -27,6 +27,7 @@ type IntrospectedOAuth2Token struct {
 	Aud []string `json:"aud,omitempty"`
 	// ID is a client identifier for the OAuth 2.0 client that requested this token.
 	ClientId *string `json:"client_id,omitempty"`
+	Cnf *IntrospectedOAuth2TokenConfirmation `json:"cnf,omitempty"`
 	// Expires at is an integer timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire.
 	Exp *int64 `json:"exp,omitempty"`
 	// Extra is arbitrary data set by the session.
@@ -43,7 +44,7 @@ type IntrospectedOAuth2Token struct {
 	Scope *string `json:"scope,omitempty"`
 	// Subject of the token, as defined in JWT [RFC7519]. Usually a machine-readable identifier of the resource owner who authorized this token.
 	Sub *string `json:"sub,omitempty"`
-	// TokenType is the introspected token's type, typically `Bearer`.
+	// TokenType is the introspected token's type: `DPoP` for a token bound to a DPoP key (RFC 9449), otherwise `Bearer`.
 	TokenType *string `json:"token_type,omitempty"`
 	// TokenUse is the introspected token's use, for example `access_token` or `refresh_token`.
 	TokenUse *string `json:"token_use,omitempty"`
@@ -158,6 +159,38 @@ func (o *IntrospectedOAuth2Token) HasClientId() bool {
 // SetClientId gets a reference to the given string and assigns it to the ClientId field.
 func (o *IntrospectedOAuth2Token) SetClientId(v string) {
 	o.ClientId = &v
+}
+
+// GetCnf returns the Cnf field value if set, zero value otherwise.
+func (o *IntrospectedOAuth2Token) GetCnf() IntrospectedOAuth2TokenConfirmation {
+	if o == nil || IsNil(o.Cnf) {
+		var ret IntrospectedOAuth2TokenConfirmation
+		return ret
+	}
+	return *o.Cnf
+}
+
+// GetCnfOk returns a tuple with the Cnf field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntrospectedOAuth2Token) GetCnfOk() (*IntrospectedOAuth2TokenConfirmation, bool) {
+	if o == nil || IsNil(o.Cnf) {
+		return nil, false
+	}
+	return o.Cnf, true
+}
+
+// HasCnf returns a boolean if a field has been set.
+func (o *IntrospectedOAuth2Token) HasCnf() bool {
+	if o != nil && !IsNil(o.Cnf) {
+		return true
+	}
+
+	return false
+}
+
+// SetCnf gets a reference to the given IntrospectedOAuth2TokenConfirmation and assigns it to the Cnf field.
+func (o *IntrospectedOAuth2Token) SetCnf(v IntrospectedOAuth2TokenConfirmation) {
+	o.Cnf = &v
 }
 
 // GetExp returns the Exp field value if set, zero value otherwise.
@@ -529,6 +562,9 @@ func (o IntrospectedOAuth2Token) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ClientId) {
 		toSerialize["client_id"] = o.ClientId
 	}
+	if !IsNil(o.Cnf) {
+		toSerialize["cnf"] = o.Cnf
+	}
 	if !IsNil(o.Exp) {
 		toSerialize["exp"] = o.Exp
 	}
@@ -608,6 +644,7 @@ func (o *IntrospectedOAuth2Token) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "active")
 		delete(additionalProperties, "aud")
 		delete(additionalProperties, "client_id")
+		delete(additionalProperties, "cnf")
 		delete(additionalProperties, "exp")
 		delete(additionalProperties, "ext")
 		delete(additionalProperties, "iat")

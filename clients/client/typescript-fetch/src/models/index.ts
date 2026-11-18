@@ -165,6 +165,7 @@ export * from './InternalIsAXWelcomeScreenEnabledForProjectBody';
 export * from './InternalIsOwnerForProjectBySlug';
 export * from './InternalIsOwnerForProjectBySlugBody';
 export * from './IntrospectedOAuth2Token';
+export * from './IntrospectedOAuth2TokenConfirmation';
 export * from './InviteTokenBody';
 export * from './Invoice';
 export * from './InvoiceDataV1';

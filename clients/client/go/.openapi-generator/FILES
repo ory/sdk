@@ -191,6 +191,7 @@ docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlug.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/IntrospectedOAuth2Token.md
+docs/IntrospectedOAuth2TokenConfirmation.md
 docs/InviteTokenBody.md
 docs/Invoice.md
 docs/InvoiceDataV1.md
@@ -603,6 +604,7 @@ model_internal_is_ax_welcome_screen_enabled_for_project_body.go
 model_internal_is_owner_for_project_by_slug.go
 model_internal_is_owner_for_project_by_slug_body.go
 model_introspected_o_auth2_token.go
+model_introspected_o_auth2_token_confirmation.go
 model_invite_token_body.go
 model_invoice.go
 model_invoice_data_v1.go

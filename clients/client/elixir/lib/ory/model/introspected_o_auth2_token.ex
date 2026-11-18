@@ -11,6 +11,7 @@ defmodule Ory.Model.IntrospectedOAuth2Token do
     :active,
     :aud,
     :client_id,
+    :cnf,
     :exp,
     :ext,
     :iat,
@@ -28,6 +29,7 @@ defmodule Ory.Model.IntrospectedOAuth2Token do
     :active => boolean(),
     :aud => [String.t] | nil,
     :client_id => String.t | nil,
+    :cnf => Ory.Model.IntrospectedOAuth2TokenConfirmation.t | nil,
     :exp => integer() | nil,
     :ext => %{optional(String.t) => any()} | nil,
     :iat => integer() | nil,
@@ -41,8 +43,11 @@ defmodule Ory.Model.IntrospectedOAuth2Token do
     :username => String.t | nil
   }
 
+  alias Ory.Deserializer
+
   def decode(value) do
     value
+     |> Deserializer.deserialize(:cnf, :struct, Ory.Model.IntrospectedOAuth2TokenConfirmation)
   end
 end
 

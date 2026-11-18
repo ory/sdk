@@ -9,6 +9,7 @@ Name | Type
 ------------ | -------------
 `id` | string
 `schema` | object
+`slug` | string
 
 ## Example
 
@@ -19,6 +20,7 @@ import type { IdentitySchemaContainer } from '@ory/client-fetch'
 const example = {
   "id": null,
   "schema": null,
+  "slug": null,
 } satisfies IdentitySchemaContainer
 
 console.log(example)

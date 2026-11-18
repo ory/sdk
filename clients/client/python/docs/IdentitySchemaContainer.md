@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The ID of the Identity JSON Schema | 
 **var_schema** | **object** | The actual Identity JSON Schema | 
+**slug** | **str** | The slug of the Identity JSON Schema  A readable, public name for this schema version. Absent when the schema has no slug. | [optional] 
 
 ## Example
 

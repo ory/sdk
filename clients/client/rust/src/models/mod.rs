@@ -326,6 +326,8 @@ pub mod internal_is_owner_for_project_by_slug_body;
 pub use self::internal_is_owner_for_project_by_slug_body::InternalIsOwnerForProjectBySlugBody;
 pub mod introspected_o_auth2_token;
 pub use self::introspected_o_auth2_token::IntrospectedOAuth2Token;
+pub mod introspected_o_auth2_token_confirmation;
+pub use self::introspected_o_auth2_token_confirmation::IntrospectedOAuth2TokenConfirmation;
 pub mod invite_token_body;
 pub use self::invite_token_body::InviteTokenBody;
 pub mod invoice;

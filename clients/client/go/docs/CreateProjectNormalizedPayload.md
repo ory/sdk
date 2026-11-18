@@ -30,6 +30,10 @@ Name | Type | Description | Notes
 **HomeRegion** | Pointer to **string** | eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global | [optional] 
 **HydraOauth2AllowedTopLevelClaims** | Pointer to **[]string** | A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.  This governs the \&quot;oauth2.allowed_top_level_claims\&quot; setting. | [optional] 
 **HydraOauth2ClientCredentialsDefaultGrantAllowedScope** | Pointer to **bool** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. | [optional] 
+**HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns** | Pointer to **[]string** | Configures the client ID metadata document URLs Ory Hydra accepts, for example \&quot;https://app.example.com/oauth/client.json\&quot;. The host and the path match exactly, except that the last path segment may be \&quot;*\&quot; for one segment or \&quot;**\&quot; for one or more.  This governs the \&quot;oauth2.client_id_metadata_document.allowed_url_patterns\&quot; setting. | [optional] 
+**HydraOauth2ClientIdMetadataDocumentAudience** | Pointer to **[]string** | Configures the audiences an OAuth2 client resolved from a client ID metadata document may request, for example the URL of an MCP server.  This governs the \&quot;oauth2.client_id_metadata_document.audience\&quot; setting. | [optional] 
+**HydraOauth2ClientIdMetadataDocumentMode** | Pointer to **string** | Configures which client ID metadata document URLs Ory Hydra accepts as OAuth2 client IDs. \&quot;allowlist\&quot; accepts the URLs matching the allowed URL patterns, and \&quot;open\&quot; accepts any valid URL. Leave empty or \&quot;disabled\&quot; to accept none.  This governs the \&quot;oauth2.client_id_metadata_document.mode\&quot; setting. | [optional] 
+**HydraOauth2ClientIdMetadataDocumentScope** | Pointer to **[]string** | Configures the scopes an OAuth2 client resolved from a client ID metadata document may request. Leave empty to keep Ory Hydra&#39;s default, \&quot;openid\&quot; and \&quot;offline_access\&quot;.  This governs the \&quot;oauth2.client_id_metadata_document.scope\&quot; setting. | [optional] 
 **HydraOauth2DeviceAuthorizationTokenPollingInterval** | Pointer to **string** | Configures how often a non-interactive device should poll the OAuth 2.0 Device Authorization Grant token endpoint. Purely informational — the value is reported to the device in the \&quot;interval\&quot; response field of the device authorization response. Hydra defaults to 5s when this is left empty.  This is an Enterprise feature.  This governs the \&quot;oauth2.device_authorization.token_polling_interval\&quot; setting. | [optional] 
 **HydraOauth2DeviceAuthorizationUserCodeEntropyPreset** | Pointer to **string** | Picks a preset for the OAuth 2.0 Device Authorization Grant user_code length and character set. \&quot;high\&quot; produces the longest codes (most resistant to brute force); \&quot;low\&quot; the shortest (easiest for the end user to read and enter). Leave empty to keep Hydra&#39;s default preset.  This is an Enterprise feature.  This governs the \&quot;oauth2.device_authorization.user_code.entropy_preset\&quot; setting. | [optional] 
 **HydraOauth2ExcludeNotBeforeClaim** | Pointer to **bool** | Set to true if you want to omit the &#x60;nbf&#x60; (not valid before) claim in the access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. | [optional] 
@@ -989,6 +993,106 @@ SetHydraOauth2ClientCredentialsDefaultGrantAllowedScope sets HydraOauth2ClientCr
 `func (o *CreateProjectNormalizedPayload) HasHydraOauth2ClientCredentialsDefaultGrantAllowedScope() bool`
 
 HasHydraOauth2ClientCredentialsDefaultGrantAllowedScope returns a boolean if a field has been set.
+
+### GetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns() []string`
+
+GetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns returns the HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns field if non-nil, zero value otherwise.
+
+### GetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatternsOk
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatternsOk() (*[]string, bool)`
+
+GetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatternsOk returns a tuple with the HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns
+
+`func (o *CreateProjectNormalizedPayload) SetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns(v []string)`
+
+SetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns sets HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns field to given value.
+
+### HasHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns
+
+`func (o *CreateProjectNormalizedPayload) HasHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns() bool`
+
+HasHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns returns a boolean if a field has been set.
+
+### GetHydraOauth2ClientIdMetadataDocumentAudience
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentAudience() []string`
+
+GetHydraOauth2ClientIdMetadataDocumentAudience returns the HydraOauth2ClientIdMetadataDocumentAudience field if non-nil, zero value otherwise.
+
+### GetHydraOauth2ClientIdMetadataDocumentAudienceOk
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentAudienceOk() (*[]string, bool)`
+
+GetHydraOauth2ClientIdMetadataDocumentAudienceOk returns a tuple with the HydraOauth2ClientIdMetadataDocumentAudience field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2ClientIdMetadataDocumentAudience
+
+`func (o *CreateProjectNormalizedPayload) SetHydraOauth2ClientIdMetadataDocumentAudience(v []string)`
+
+SetHydraOauth2ClientIdMetadataDocumentAudience sets HydraOauth2ClientIdMetadataDocumentAudience field to given value.
+
+### HasHydraOauth2ClientIdMetadataDocumentAudience
+
+`func (o *CreateProjectNormalizedPayload) HasHydraOauth2ClientIdMetadataDocumentAudience() bool`
+
+HasHydraOauth2ClientIdMetadataDocumentAudience returns a boolean if a field has been set.
+
+### GetHydraOauth2ClientIdMetadataDocumentMode
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentMode() string`
+
+GetHydraOauth2ClientIdMetadataDocumentMode returns the HydraOauth2ClientIdMetadataDocumentMode field if non-nil, zero value otherwise.
+
+### GetHydraOauth2ClientIdMetadataDocumentModeOk
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentModeOk() (*string, bool)`
+
+GetHydraOauth2ClientIdMetadataDocumentModeOk returns a tuple with the HydraOauth2ClientIdMetadataDocumentMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2ClientIdMetadataDocumentMode
+
+`func (o *CreateProjectNormalizedPayload) SetHydraOauth2ClientIdMetadataDocumentMode(v string)`
+
+SetHydraOauth2ClientIdMetadataDocumentMode sets HydraOauth2ClientIdMetadataDocumentMode field to given value.
+
+### HasHydraOauth2ClientIdMetadataDocumentMode
+
+`func (o *CreateProjectNormalizedPayload) HasHydraOauth2ClientIdMetadataDocumentMode() bool`
+
+HasHydraOauth2ClientIdMetadataDocumentMode returns a boolean if a field has been set.
+
+### GetHydraOauth2ClientIdMetadataDocumentScope
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentScope() []string`
+
+GetHydraOauth2ClientIdMetadataDocumentScope returns the HydraOauth2ClientIdMetadataDocumentScope field if non-nil, zero value otherwise.
+
+### GetHydraOauth2ClientIdMetadataDocumentScopeOk
+
+`func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentScopeOk() (*[]string, bool)`
+
+GetHydraOauth2ClientIdMetadataDocumentScopeOk returns a tuple with the HydraOauth2ClientIdMetadataDocumentScope field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHydraOauth2ClientIdMetadataDocumentScope
+
+`func (o *CreateProjectNormalizedPayload) SetHydraOauth2ClientIdMetadataDocumentScope(v []string)`
+
+SetHydraOauth2ClientIdMetadataDocumentScope sets HydraOauth2ClientIdMetadataDocumentScope field to given value.
+
+### HasHydraOauth2ClientIdMetadataDocumentScope
+
+`func (o *CreateProjectNormalizedPayload) HasHydraOauth2ClientIdMetadataDocumentScope() bool`
+
+HasHydraOauth2ClientIdMetadataDocumentScope returns a boolean if a field has been set.
 
 ### GetHydraOauth2DeviceAuthorizationTokenPollingInterval
 

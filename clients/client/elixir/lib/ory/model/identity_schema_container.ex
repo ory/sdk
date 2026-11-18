@@ -9,12 +9,14 @@ defmodule Ory.Model.IdentitySchemaContainer do
   @derive Jason.Encoder
   defstruct [
     :id,
-    :schema
+    :schema,
+    :slug
   ]
 
   @type t :: %__MODULE__{
     :id => String.t,
-    :schema => map()
+    :schema => map(),
+    :slug => String.t | nil
   }
 
   def decode(value) do

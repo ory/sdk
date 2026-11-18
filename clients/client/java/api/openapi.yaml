@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.94
+  version: v1.22.95
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -12047,6 +12047,49 @@ components:
 
             This governs the "oauth2.client_credentials.default_grant_allowed_scope" setting.
           type: boolean
+        hydra_oauth2_client_id_metadata_document_allowed_url_patterns:
+          description: |-
+            Configures the client ID metadata document URLs Ory Hydra accepts, for
+            example "https://app.example.com/oauth/client.json". The host and the
+            path match exactly, except that the last path segment may be "*" for one
+            segment or "**" for one or more.
+
+            This governs the "oauth2.client_id_metadata_document.allowed_url_patterns" setting.
+          items:
+            type: string
+          type: array
+        hydra_oauth2_client_id_metadata_document_audience:
+          description: |-
+            Configures the audiences an OAuth2 client resolved from a client ID
+            metadata document may request, for example the URL of an MCP server.
+
+            This governs the "oauth2.client_id_metadata_document.audience" setting.
+          items:
+            type: string
+          type: array
+        hydra_oauth2_client_id_metadata_document_mode:
+          description: |-
+            Configures which client ID metadata document URLs Ory Hydra accepts as
+            OAuth2 client IDs. "allowlist" accepts the URLs matching the allowed URL
+            patterns, and "open" accepts any valid URL. Leave empty or "disabled" to
+            accept none.
+
+            This governs the "oauth2.client_id_metadata_document.mode" setting.
+          enum:
+          - disabled
+          - allowlist
+          - open
+          type: string
+        hydra_oauth2_client_id_metadata_document_scope:
+          description: |-
+            Configures the scopes an OAuth2 client resolved from a client ID metadata
+            document may request. Leave empty to keep Ory Hydra's default, "openid"
+            and "offline_access".
+
+            This governs the "oauth2.client_id_metadata_document.scope" setting.
+          items:
+            type: string
+          type: array
         hydra_oauth2_device_authorization_token_polling_interval:
           description: |-
             Configures how often a non-interactive device should poll the
@@ -19098,6 +19141,7 @@ components:
       example:
         schema: "{}"
         id: id
+        slug: slug
       properties:
         id:
           description: The ID of the Identity JSON Schema
@@ -19105,6 +19149,13 @@ components:
         schema:
           description: The actual Identity JSON Schema
           type: object
+        slug:
+          description: |-
+            The slug of the Identity JSON Schema
+
+            A readable, public name for this schema version. Absent when the schema
+            has no slug.
+          type: string
       required:
       - id
       - schema
@@ -19377,6 +19428,8 @@ components:
         nbf: 1
         token_use: token_use
         scope: scope
+        cnf:
+          jkt: jkt
         exp: 0
         iat: 6
         username: username
@@ -19403,6 +19456,8 @@ components:
             ID is a client identifier for the OAuth 2.0 client that
             requested this token.
           type: string
+        cnf:
+          $ref: '#/components/schemas/introspectedOAuth2TokenConfirmation'
         exp:
           description: |-
             Expires at is an integer timestamp, measured in the number of seconds
@@ -19447,7 +19502,9 @@ components:
             authorized this token.
           type: string
         token_type:
-          description: "TokenType is the introspected token's type, typically `Bearer`."
+          description: |-
+            TokenType is the introspected token's type: `DPoP` for a token bound to
+            a DPoP key (RFC 9449), otherwise `Bearer`.
           type: string
         token_use:
           description: "TokenUse is the introspected token's use, for example `access_token`\
@@ -19460,6 +19517,19 @@ components:
           type: string
       required:
       - active
+      type: object
+    introspectedOAuth2TokenConfirmation:
+      description: |-
+        IntrospectionConfirmation is the confirmation claim of an introspected token
+        as specified by [IETF RFC 7800](https://tools.ietf.org/html/rfc7800).
+      example:
+        jkt: jkt
+      properties:
+        jkt:
+          description: |-
+            JKT is the JWK SHA-256 thumbprint of the DPoP key the token is bound
+            to (RFC 9449, Section 6.1).
+          type: string
       type: object
     inviteTokenBody:
       description: Invite Token Body
@@ -21289,6 +21359,49 @@ components:
 
             This governs the "oauth2.client_credentials.default_grant_allowed_scope" setting.
           type: boolean
+        hydra_oauth2_client_id_metadata_document_allowed_url_patterns:
+          description: |-
+            Configures the client ID metadata document URLs Ory Hydra accepts, for
+            example "https://app.example.com/oauth/client.json". The host and the
+            path match exactly, except that the last path segment may be "*" for one
+            segment or "**" for one or more.
+
+            This governs the "oauth2.client_id_metadata_document.allowed_url_patterns" setting.
+          items:
+            type: string
+          type: array
+        hydra_oauth2_client_id_metadata_document_audience:
+          description: |-
+            Configures the audiences an OAuth2 client resolved from a client ID
+            metadata document may request, for example the URL of an MCP server.
+
+            This governs the "oauth2.client_id_metadata_document.audience" setting.
+          items:
+            type: string
+          type: array
+        hydra_oauth2_client_id_metadata_document_mode:
+          description: |-
+            Configures which client ID metadata document URLs Ory Hydra accepts as
+            OAuth2 client IDs. "allowlist" accepts the URLs matching the allowed URL
+            patterns, and "open" accepts any valid URL. Leave empty or "disabled" to
+            accept none.
+
+            This governs the "oauth2.client_id_metadata_document.mode" setting.
+          enum:
+          - disabled
+          - allowlist
+          - open
+          type: string
+        hydra_oauth2_client_id_metadata_document_scope:
+          description: |-
+            Configures the scopes an OAuth2 client resolved from a client ID metadata
+            document may request. Leave empty to keep Ory Hydra's default, "openid"
+            and "offline_access".
+
+            This governs the "oauth2.client_id_metadata_document.scope" setting.
+          items:
+            type: string
+          type: array
         hydra_oauth2_device_authorization_token_polling_interval:
           description: |-
             Configures how often a non-interactive device should poll the
@@ -23500,6 +23613,18 @@ components:
           type: string
         selfservice_selectable:
           type: boolean
+        slug:
+          description: |-
+            The slug of the identity schema
+
+            A readable, public name for this schema version, for example `customer_v2`.
+            It starts with a lowercase letter, followed by up to 63 lowercase letters,
+            digits, or underscores. Once set, a slug can't be changed, removed, or used
+            by another identity schema of the project. If you omit it on an update, the
+            schema keeps its slug.
+          example: customer_v2
+          pattern: "^[a-z][a-z0-9_]{0,63}$"
+          type: string
         updated_at:
           description: Last Time Project's Revision was Updated
           format: date-time
@@ -27488,6 +27613,7 @@ components:
             graceful_refresh_token_count GracefulRefreshTokenCount
             hydra_token_prefix HydraTokenPrefix
             hydra_device_authorization HydraDeviceAuthorization
+            hydra_client_id_metadata_document HydraClientIDMetadataDocument
             kratos_oidc_front_channel_logout KratosOIDCFrontChannelLogout
             kratos_brute_force_protection KratosBruteForceProtection
             kratos_session_risk_rules KratosSessionRiskRules
@@ -27578,6 +27704,7 @@ components:
           - graceful_refresh_token_count
           - hydra_token_prefix
           - hydra_device_authorization
+          - hydra_client_id_metadata_document
           - kratos_oidc_front_channel_logout
           - kratos_brute_force_protection
           - kratos_session_risk_rules
@@ -27669,6 +27796,7 @@ components:
             graceful_refresh_token_count GracefulRefreshTokenCount
             hydra_token_prefix HydraTokenPrefix
             hydra_device_authorization HydraDeviceAuthorization
+            hydra_client_id_metadata_document HydraClientIDMetadataDocument
             kratos_oidc_front_channel_logout KratosOIDCFrontChannelLogout
             kratos_brute_force_protection KratosBruteForceProtection
             kratos_session_risk_rules KratosSessionRiskRules

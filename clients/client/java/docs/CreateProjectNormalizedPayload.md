@@ -34,6 +34,10 @@ Create project (normalized) request payload
 |**homeRegion** | [**HomeRegionEnum**](#HomeRegionEnum) | eu-central EUCentral asia-northeast AsiaNorthEast us-east USEast us-west USWest eu EU asia Asia us US global Global |  [optional] |
 |**hydraOauth2AllowedTopLevelClaims** | **List&lt;String&gt;** | A list of custom claims which are allowed to be added top level to the Access Token. They cannot override reserved claims.  This governs the \&quot;oauth2.allowed_top_level_claims\&quot; setting. |  [optional] |
 |**hydraOauth2ClientCredentialsDefaultGrantAllowedScope** | **Boolean** | Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example &#x60;read write&#x60;). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the &#x60;scope&#x60; query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \&quot;oauth2.client_credentials.default_grant_allowed_scope\&quot; setting. |  [optional] |
+|**hydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns** | **List&lt;String&gt;** | Configures the client ID metadata document URLs Ory Hydra accepts, for example \&quot;https://app.example.com/oauth/client.json\&quot;. The host and the path match exactly, except that the last path segment may be \&quot;*\&quot; for one segment or \&quot;**\&quot; for one or more.  This governs the \&quot;oauth2.client_id_metadata_document.allowed_url_patterns\&quot; setting. |  [optional] |
+|**hydraOauth2ClientIdMetadataDocumentAudience** | **List&lt;String&gt;** | Configures the audiences an OAuth2 client resolved from a client ID metadata document may request, for example the URL of an MCP server.  This governs the \&quot;oauth2.client_id_metadata_document.audience\&quot; setting. |  [optional] |
+|**hydraOauth2ClientIdMetadataDocumentMode** | [**HydraOauth2ClientIdMetadataDocumentModeEnum**](#HydraOauth2ClientIdMetadataDocumentModeEnum) | Configures which client ID metadata document URLs Ory Hydra accepts as OAuth2 client IDs. \&quot;allowlist\&quot; accepts the URLs matching the allowed URL patterns, and \&quot;open\&quot; accepts any valid URL. Leave empty or \&quot;disabled\&quot; to accept none.  This governs the \&quot;oauth2.client_id_metadata_document.mode\&quot; setting. |  [optional] |
+|**hydraOauth2ClientIdMetadataDocumentScope** | **List&lt;String&gt;** | Configures the scopes an OAuth2 client resolved from a client ID metadata document may request. Leave empty to keep Ory Hydra&#39;s default, \&quot;openid\&quot; and \&quot;offline_access\&quot;.  This governs the \&quot;oauth2.client_id_metadata_document.scope\&quot; setting. |  [optional] |
 |**hydraOauth2DeviceAuthorizationTokenPollingInterval** | **String** | Configures how often a non-interactive device should poll the OAuth 2.0 Device Authorization Grant token endpoint. Purely informational — the value is reported to the device in the \&quot;interval\&quot; response field of the device authorization response. Hydra defaults to 5s when this is left empty.  This is an Enterprise feature.  This governs the \&quot;oauth2.device_authorization.token_polling_interval\&quot; setting. |  [optional] |
 |**hydraOauth2DeviceAuthorizationUserCodeEntropyPreset** | [**HydraOauth2DeviceAuthorizationUserCodeEntropyPresetEnum**](#HydraOauth2DeviceAuthorizationUserCodeEntropyPresetEnum) | Picks a preset for the OAuth 2.0 Device Authorization Grant user_code length and character set. \&quot;high\&quot; produces the longest codes (most resistant to brute force); \&quot;low\&quot; the shortest (easiest for the end user to read and enter). Leave empty to keep Hydra&#39;s default preset.  This is an Enterprise feature.  This governs the \&quot;oauth2.device_authorization.user_code.entropy_preset\&quot; setting. |  [optional] |
 |**hydraOauth2ExcludeNotBeforeClaim** | **Boolean** | Set to true if you want to omit the &#x60;nbf&#x60; (not valid before) claim in the access token.  This governs the \&quot;oauth2.exclude_not_before_claim\&quot; setting. |  [optional] |
@@ -354,6 +358,16 @@ Create project (normalized) request payload
 | ASIA | &quot;asia&quot; |
 | US | &quot;us&quot; |
 | GLOBAL | &quot;global&quot; |
+
+
+
+## Enum: HydraOauth2ClientIdMetadataDocumentModeEnum
+
+| Name | Value |
+|---- | -----|
+| DISABLED | &quot;disabled&quot; |
+| ALLOWLIST | &quot;allowlist&quot; |
+| OPEN | &quot;open&quot; |
 
 
 

@@ -1,8 +1,8 @@
 # client
 
 Ory APIs
-- API version: v1.22.94
-  - Build date: 2026-11-16T14:02:27.701853118Z[Etc/UTC]
+- API version: v1.22.95
+  - Build date: 2026-11-18T09:56:59.422450124Z[Etc/UTC]
   - Generator version: 7.7.0
 
 # Introduction
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>sh.ory</groupId>
   <artifactId>client</artifactId>
-  <version>v1.22.94</version>
+  <version>v1.22.95</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -77,7 +77,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "sh.ory:client:v1.22.94"
+     implementation "sh.ory:client:v1.22.95"
   }
 ```
 
@@ -91,7 +91,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/client-v1.22.94.jar`
+* `target/client-v1.22.95.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -488,6 +488,7 @@ Class | Method | HTTP request | Description
  - [InternalIsOwnerForProjectBySlug](docs/InternalIsOwnerForProjectBySlug.md)
  - [InternalIsOwnerForProjectBySlugBody](docs/InternalIsOwnerForProjectBySlugBody.md)
  - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
+ - [IntrospectedOAuth2TokenConfirmation](docs/IntrospectedOAuth2TokenConfirmation.md)
  - [InviteTokenBody](docs/InviteTokenBody.md)
  - [Invoice](docs/Invoice.md)
  - [InvoiceDataV1](docs/InvoiceDataV1.md)

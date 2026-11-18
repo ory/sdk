@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.94
+API version: v1.22.95
 Contact: support@ory.sh
 */
 
@@ -74,6 +74,14 @@ type CreateProjectNormalizedPayload struct {
 	HydraOauth2AllowedTopLevelClaims []string `json:"hydra_oauth2_allowed_top_level_claims,omitempty"`
 	// Automatically grant authorized OAuth2 Scope in OAuth2 Client Credentials Flow.  Each OAuth2 Client is allowed to request a predefined OAuth2 Scope (for example `read write`). If this option is enabled, the full scope is automatically granted when performing the OAuth2 Client Credentials flow.  If disabled, the OAuth2 Client has to request the scope in the OAuth2 request by providing the `scope` query parameter.  Setting this option to true is common if you need compatibility with MITREid.  This governs the \"oauth2.client_credentials.default_grant_allowed_scope\" setting.
 	HydraOauth2ClientCredentialsDefaultGrantAllowedScope *bool `json:"hydra_oauth2_client_credentials_default_grant_allowed_scope,omitempty"`
+	// Configures the client ID metadata document URLs Ory Hydra accepts, for example \"https://app.example.com/oauth/client.json\". The host and the path match exactly, except that the last path segment may be \"*\" for one segment or \"**\" for one or more.  This governs the \"oauth2.client_id_metadata_document.allowed_url_patterns\" setting.
+	HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns []string `json:"hydra_oauth2_client_id_metadata_document_allowed_url_patterns,omitempty"`
+	// Configures the audiences an OAuth2 client resolved from a client ID metadata document may request, for example the URL of an MCP server.  This governs the \"oauth2.client_id_metadata_document.audience\" setting.
+	HydraOauth2ClientIdMetadataDocumentAudience []string `json:"hydra_oauth2_client_id_metadata_document_audience,omitempty"`
+	// Configures which client ID metadata document URLs Ory Hydra accepts as OAuth2 client IDs. \"allowlist\" accepts the URLs matching the allowed URL patterns, and \"open\" accepts any valid URL. Leave empty or \"disabled\" to accept none.  This governs the \"oauth2.client_id_metadata_document.mode\" setting.
+	HydraOauth2ClientIdMetadataDocumentMode *string `json:"hydra_oauth2_client_id_metadata_document_mode,omitempty"`
+	// Configures the scopes an OAuth2 client resolved from a client ID metadata document may request. Leave empty to keep Ory Hydra's default, \"openid\" and \"offline_access\".  This governs the \"oauth2.client_id_metadata_document.scope\" setting.
+	HydraOauth2ClientIdMetadataDocumentScope []string `json:"hydra_oauth2_client_id_metadata_document_scope,omitempty"`
 	// Configures how often a non-interactive device should poll the OAuth 2.0 Device Authorization Grant token endpoint. Purely informational — the value is reported to the device in the \"interval\" response field of the device authorization response. Hydra defaults to 5s when this is left empty.  This is an Enterprise feature.  This governs the \"oauth2.device_authorization.token_polling_interval\" setting.
 	HydraOauth2DeviceAuthorizationTokenPollingInterval *string `json:"hydra_oauth2_device_authorization_token_polling_interval,omitempty" validate:"regexp=^([0-9]+([.][0-9]+)?(ns|us|µs|ms|s|m|h))+$"`
 	// Picks a preset for the OAuth 2.0 Device Authorization Grant user_code length and character set. \"high\" produces the longest codes (most resistant to brute force); \"low\" the shortest (easiest for the end user to read and enter). Leave empty to keep Hydra's default preset.  This is an Enterprise feature.  This governs the \"oauth2.device_authorization.user_code.entropy_preset\" setting.
@@ -1548,6 +1556,134 @@ func (o *CreateProjectNormalizedPayload) HasHydraOauth2ClientCredentialsDefaultG
 // SetHydraOauth2ClientCredentialsDefaultGrantAllowedScope gets a reference to the given bool and assigns it to the HydraOauth2ClientCredentialsDefaultGrantAllowedScope field.
 func (o *CreateProjectNormalizedPayload) SetHydraOauth2ClientCredentialsDefaultGrantAllowedScope(v bool) {
 	o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope = &v
+}
+
+// GetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns returns the HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns() []string {
+	if o == nil || IsNil(o.HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns) {
+		var ret []string
+		return ret
+	}
+	return o.HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns
+}
+
+// GetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatternsOk returns a tuple with the HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatternsOk() ([]string, bool) {
+	if o == nil || IsNil(o.HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns) {
+		return nil, false
+	}
+	return o.HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns, true
+}
+
+// HasHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns() bool {
+	if o != nil && !IsNil(o.HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns gets a reference to the given []string and assigns it to the HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns field.
+func (o *CreateProjectNormalizedPayload) SetHydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns(v []string) {
+	o.HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns = v
+}
+
+// GetHydraOauth2ClientIdMetadataDocumentAudience returns the HydraOauth2ClientIdMetadataDocumentAudience field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentAudience() []string {
+	if o == nil || IsNil(o.HydraOauth2ClientIdMetadataDocumentAudience) {
+		var ret []string
+		return ret
+	}
+	return o.HydraOauth2ClientIdMetadataDocumentAudience
+}
+
+// GetHydraOauth2ClientIdMetadataDocumentAudienceOk returns a tuple with the HydraOauth2ClientIdMetadataDocumentAudience field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentAudienceOk() ([]string, bool) {
+	if o == nil || IsNil(o.HydraOauth2ClientIdMetadataDocumentAudience) {
+		return nil, false
+	}
+	return o.HydraOauth2ClientIdMetadataDocumentAudience, true
+}
+
+// HasHydraOauth2ClientIdMetadataDocumentAudience returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasHydraOauth2ClientIdMetadataDocumentAudience() bool {
+	if o != nil && !IsNil(o.HydraOauth2ClientIdMetadataDocumentAudience) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2ClientIdMetadataDocumentAudience gets a reference to the given []string and assigns it to the HydraOauth2ClientIdMetadataDocumentAudience field.
+func (o *CreateProjectNormalizedPayload) SetHydraOauth2ClientIdMetadataDocumentAudience(v []string) {
+	o.HydraOauth2ClientIdMetadataDocumentAudience = v
+}
+
+// GetHydraOauth2ClientIdMetadataDocumentMode returns the HydraOauth2ClientIdMetadataDocumentMode field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentMode() string {
+	if o == nil || IsNil(o.HydraOauth2ClientIdMetadataDocumentMode) {
+		var ret string
+		return ret
+	}
+	return *o.HydraOauth2ClientIdMetadataDocumentMode
+}
+
+// GetHydraOauth2ClientIdMetadataDocumentModeOk returns a tuple with the HydraOauth2ClientIdMetadataDocumentMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentModeOk() (*string, bool) {
+	if o == nil || IsNil(o.HydraOauth2ClientIdMetadataDocumentMode) {
+		return nil, false
+	}
+	return o.HydraOauth2ClientIdMetadataDocumentMode, true
+}
+
+// HasHydraOauth2ClientIdMetadataDocumentMode returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasHydraOauth2ClientIdMetadataDocumentMode() bool {
+	if o != nil && !IsNil(o.HydraOauth2ClientIdMetadataDocumentMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2ClientIdMetadataDocumentMode gets a reference to the given string and assigns it to the HydraOauth2ClientIdMetadataDocumentMode field.
+func (o *CreateProjectNormalizedPayload) SetHydraOauth2ClientIdMetadataDocumentMode(v string) {
+	o.HydraOauth2ClientIdMetadataDocumentMode = &v
+}
+
+// GetHydraOauth2ClientIdMetadataDocumentScope returns the HydraOauth2ClientIdMetadataDocumentScope field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentScope() []string {
+	if o == nil || IsNil(o.HydraOauth2ClientIdMetadataDocumentScope) {
+		var ret []string
+		return ret
+	}
+	return o.HydraOauth2ClientIdMetadataDocumentScope
+}
+
+// GetHydraOauth2ClientIdMetadataDocumentScopeOk returns a tuple with the HydraOauth2ClientIdMetadataDocumentScope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetHydraOauth2ClientIdMetadataDocumentScopeOk() ([]string, bool) {
+	if o == nil || IsNil(o.HydraOauth2ClientIdMetadataDocumentScope) {
+		return nil, false
+	}
+	return o.HydraOauth2ClientIdMetadataDocumentScope, true
+}
+
+// HasHydraOauth2ClientIdMetadataDocumentScope returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasHydraOauth2ClientIdMetadataDocumentScope() bool {
+	if o != nil && !IsNil(o.HydraOauth2ClientIdMetadataDocumentScope) {
+		return true
+	}
+
+	return false
+}
+
+// SetHydraOauth2ClientIdMetadataDocumentScope gets a reference to the given []string and assigns it to the HydraOauth2ClientIdMetadataDocumentScope field.
+func (o *CreateProjectNormalizedPayload) SetHydraOauth2ClientIdMetadataDocumentScope(v []string) {
+	o.HydraOauth2ClientIdMetadataDocumentScope = v
 }
 
 // GetHydraOauth2DeviceAuthorizationTokenPollingInterval returns the HydraOauth2DeviceAuthorizationTokenPollingInterval field value if set, zero value otherwise.
@@ -11068,6 +11204,18 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope) {
 		toSerialize["hydra_oauth2_client_credentials_default_grant_allowed_scope"] = o.HydraOauth2ClientCredentialsDefaultGrantAllowedScope
 	}
+	if !IsNil(o.HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns) {
+		toSerialize["hydra_oauth2_client_id_metadata_document_allowed_url_patterns"] = o.HydraOauth2ClientIdMetadataDocumentAllowedUrlPatterns
+	}
+	if !IsNil(o.HydraOauth2ClientIdMetadataDocumentAudience) {
+		toSerialize["hydra_oauth2_client_id_metadata_document_audience"] = o.HydraOauth2ClientIdMetadataDocumentAudience
+	}
+	if !IsNil(o.HydraOauth2ClientIdMetadataDocumentMode) {
+		toSerialize["hydra_oauth2_client_id_metadata_document_mode"] = o.HydraOauth2ClientIdMetadataDocumentMode
+	}
+	if !IsNil(o.HydraOauth2ClientIdMetadataDocumentScope) {
+		toSerialize["hydra_oauth2_client_id_metadata_document_scope"] = o.HydraOauth2ClientIdMetadataDocumentScope
+	}
 	if !IsNil(o.HydraOauth2DeviceAuthorizationTokenPollingInterval) {
 		toSerialize["hydra_oauth2_device_authorization_token_polling_interval"] = o.HydraOauth2DeviceAuthorizationTokenPollingInterval
 	}
@@ -12021,6 +12169,10 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "home_region")
 		delete(additionalProperties, "hydra_oauth2_allowed_top_level_claims")
 		delete(additionalProperties, "hydra_oauth2_client_credentials_default_grant_allowed_scope")
+		delete(additionalProperties, "hydra_oauth2_client_id_metadata_document_allowed_url_patterns")
+		delete(additionalProperties, "hydra_oauth2_client_id_metadata_document_audience")
+		delete(additionalProperties, "hydra_oauth2_client_id_metadata_document_mode")
+		delete(additionalProperties, "hydra_oauth2_client_id_metadata_document_scope")
 		delete(additionalProperties, "hydra_oauth2_device_authorization_token_polling_interval")
 		delete(additionalProperties, "hydra_oauth2_device_authorization_user_code_entropy_preset")
 		delete(additionalProperties, "hydra_oauth2_exclude_not_before_claim")

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **preset** | Option<**String**> | Use a preset instead of a custom identity schema. | [optional]
 **project_revision_id** | Option<**String**> | The Revision's ID this schema belongs to | [optional]
 **selfservice_selectable** | Option<**bool**> |  | [optional]
+**slug** | Option<**String**> | The slug of the identity schema  A readable, public name for this schema version, for example `customer_v2`. It starts with a lowercase letter, followed by up to 63 lowercase letters, digits, or underscores. Once set, a slug can't be changed, removed, or used by another identity schema of the project. If you omit it on an update, the schema keeps its slug. | [optional]
 **updated_at** | Option<**String**> | Last Time Project's Revision was Updated | [optional][readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

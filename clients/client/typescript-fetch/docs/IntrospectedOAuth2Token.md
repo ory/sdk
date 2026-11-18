@@ -10,6 +10,7 @@ Name | Type
 `active` | boolean
 `aud` | Array&lt;string&gt;
 `client_id` | string
+`cnf` | [IntrospectedOAuth2TokenConfirmation](IntrospectedOAuth2TokenConfirmation.md)
 `exp` | number
 `ext` | { [key: string]: any; }
 `iat` | number
@@ -32,6 +33,7 @@ const example = {
   "active": null,
   "aud": null,
   "client_id": null,
+  "cnf": null,
   "exp": null,
   "ext": null,
   "iat": null,

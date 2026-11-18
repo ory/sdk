@@ -178,6 +178,7 @@ docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlug.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/IntrospectedOAuth2Token.md
+docs/IntrospectedOAuth2TokenConfirmation.md
 docs/InviteTokenBody.md
 docs/Invoice.md
 docs/InvoiceDataV1.md
@@ -608,6 +609,7 @@ lib/ory-client/models/internal_is_ax_welcome_screen_enabled_for_project_body.rb
 lib/ory-client/models/internal_is_owner_for_project_by_slug.rb
 lib/ory-client/models/internal_is_owner_for_project_by_slug_body.rb
 lib/ory-client/models/introspected_o_auth2_token.rb
+lib/ory-client/models/introspected_o_auth2_token_confirmation.rb
 lib/ory-client/models/invite_token_body.rb
 lib/ory-client/models/invoice.rb
 lib/ory-client/models/invoice_data_v1.rb
@@ -1025,6 +1027,7 @@ spec/models/internal_get_project_branding_body_spec.rb
 spec/models/internal_is_ax_welcome_screen_enabled_for_project_body_spec.rb
 spec/models/internal_is_owner_for_project_by_slug_body_spec.rb
 spec/models/internal_is_owner_for_project_by_slug_spec.rb
+spec/models/introspected_o_auth2_token_confirmation_spec.rb
 spec/models/introspected_o_auth2_token_spec.rb
 spec/models/invite_token_body_spec.rb
 spec/models/invoice_data_v1_spec.rb

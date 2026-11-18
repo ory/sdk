@@ -173,6 +173,7 @@ docs/InternalIsAxWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlug.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/IntrospectedOAuth2Token.md
+docs/IntrospectedOAuth2TokenConfirmation.md
 docs/InviteTokenBody.md
 docs/Invoice.md
 docs/InvoiceDataV1.md
@@ -602,6 +603,7 @@ src/models/internal_is_ax_welcome_screen_enabled_for_project_body.rs
 src/models/internal_is_owner_for_project_by_slug.rs
 src/models/internal_is_owner_for_project_by_slug_body.rs
 src/models/introspected_o_auth2_token.rs
+src/models/introspected_o_auth2_token_confirmation.rs
 src/models/invite_token_body.rs
 src/models/invoice.rs
 src/models/invoice_data_v1.rs

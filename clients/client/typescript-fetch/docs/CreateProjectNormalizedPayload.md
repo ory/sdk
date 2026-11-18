@@ -33,6 +33,10 @@ Name | Type
 `home_region` | string
 `hydra_oauth2_allowed_top_level_claims` | Array&lt;string&gt;
 `hydra_oauth2_client_credentials_default_grant_allowed_scope` | boolean
+`hydra_oauth2_client_id_metadata_document_allowed_url_patterns` | Array&lt;string&gt;
+`hydra_oauth2_client_id_metadata_document_audience` | Array&lt;string&gt;
+`hydra_oauth2_client_id_metadata_document_mode` | string
+`hydra_oauth2_client_id_metadata_document_scope` | Array&lt;string&gt;
 `hydra_oauth2_device_authorization_token_polling_interval` | string
 `hydra_oauth2_device_authorization_user_code_entropy_preset` | string
 `hydra_oauth2_exclude_not_before_claim` | boolean
@@ -362,6 +366,10 @@ const example = {
   "home_region": null,
   "hydra_oauth2_allowed_top_level_claims": null,
   "hydra_oauth2_client_credentials_default_grant_allowed_scope": null,
+  "hydra_oauth2_client_id_metadata_document_allowed_url_patterns": null,
+  "hydra_oauth2_client_id_metadata_document_audience": null,
+  "hydra_oauth2_client_id_metadata_document_mode": null,
+  "hydra_oauth2_client_id_metadata_document_scope": null,
   "hydra_oauth2_device_authorization_token_polling_interval": 15s,
   "hydra_oauth2_device_authorization_user_code_entropy_preset": null,
   "hydra_oauth2_exclude_not_before_claim": null,

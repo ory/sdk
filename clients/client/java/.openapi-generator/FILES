@@ -177,6 +177,7 @@ docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlug.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/IntrospectedOAuth2Token.md
+docs/IntrospectedOAuth2TokenConfirmation.md
 docs/InviteTokenBody.md
 docs/Invoice.md
 docs/InvoiceDataV1.md
@@ -633,6 +634,7 @@ src/main/java/sh/ory/model/InternalIsAXWelcomeScreenEnabledForProjectBody.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlug.java
 src/main/java/sh/ory/model/InternalIsOwnerForProjectBySlugBody.java
 src/main/java/sh/ory/model/IntrospectedOAuth2Token.java
+src/main/java/sh/ory/model/IntrospectedOAuth2TokenConfirmation.java
 src/main/java/sh/ory/model/InviteTokenBody.java
 src/main/java/sh/ory/model/Invoice.java
 src/main/java/sh/ory/model/InvoiceDataV1.java
@@ -1048,6 +1050,7 @@ src/test/java/sh/ory/model/InternalGetProjectBrandingBodyTest.java
 src/test/java/sh/ory/model/InternalIsAXWelcomeScreenEnabledForProjectBodyTest.java
 src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugBodyTest.java
 src/test/java/sh/ory/model/InternalIsOwnerForProjectBySlugTest.java
+src/test/java/sh/ory/model/IntrospectedOAuth2TokenConfirmationTest.java
 src/test/java/sh/ory/model/IntrospectedOAuth2TokenTest.java
 src/test/java/sh/ory/model/InviteTokenBodyTest.java
 src/test/java/sh/ory/model/InvoiceDataV1Test.java

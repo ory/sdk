@@ -1,4 +1,4 @@
-## @ory/client@v1.22.94
+## @ory/client@v1.22.95
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @ory/client@v1.22.94 --save
+npm install @ory/client@v1.22.95 --save
 ```
 
 _unPublished (not recommended):_
@@ -399,6 +399,7 @@ Class | Method | HTTP request | Description
  - [InternalIsOwnerForProjectBySlug](docs/InternalIsOwnerForProjectBySlug.md)
  - [InternalIsOwnerForProjectBySlugBody](docs/InternalIsOwnerForProjectBySlugBody.md)
  - [IntrospectedOAuth2Token](docs/IntrospectedOAuth2Token.md)
+ - [IntrospectedOAuth2TokenConfirmation](docs/IntrospectedOAuth2TokenConfirmation.md)
  - [InviteTokenBody](docs/InviteTokenBody.md)
  - [Invoice](docs/Invoice.md)
  - [InvoiceDataV1](docs/InvoiceDataV1.md)

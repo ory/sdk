@@ -184,6 +184,7 @@ docs/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/Model/InternalIsOwnerForProjectBySlug.md
 docs/Model/InternalIsOwnerForProjectBySlugBody.md
 docs/Model/IntrospectedOAuth2Token.md
+docs/Model/IntrospectedOAuth2TokenConfirmation.md
 docs/Model/InviteTokenBody.md
 docs/Model/Invoice.md
 docs/Model/InvoiceDataV1.md
@@ -605,6 +606,7 @@ lib/Model/InternalIsAXWelcomeScreenEnabledForProjectBody.php
 lib/Model/InternalIsOwnerForProjectBySlug.php
 lib/Model/InternalIsOwnerForProjectBySlugBody.php
 lib/Model/IntrospectedOAuth2Token.php
+lib/Model/IntrospectedOAuth2TokenConfirmation.php
 lib/Model/InviteTokenBody.php
 lib/Model/Invoice.php
 lib/Model/InvoiceDataV1.php
@@ -1023,6 +1025,7 @@ test/Model/InternalGetProjectBrandingBodyTest.php
 test/Model/InternalIsAXWelcomeScreenEnabledForProjectBodyTest.php
 test/Model/InternalIsOwnerForProjectBySlugBodyTest.php
 test/Model/InternalIsOwnerForProjectBySlugTest.php
+test/Model/IntrospectedOAuth2TokenConfirmationTest.php
 test/Model/IntrospectedOAuth2TokenTest.php
 test/Model/InviteTokenBodyTest.php
 test/Model/InvoiceDataV1Test.php

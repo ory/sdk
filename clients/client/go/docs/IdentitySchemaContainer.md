@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The ID of the Identity JSON Schema | 
 **Schema** | **map[string]interface{}** | The actual Identity JSON Schema | 
+**Slug** | Pointer to **string** | The slug of the Identity JSON Schema  A readable, public name for this schema version. Absent when the schema has no slug. | [optional] 
 
 ## Methods
 
@@ -65,6 +66,31 @@ and a boolean to check if the value has been set.
 
 SetSchema sets Schema field to given value.
 
+
+### GetSlug
+
+`func (o *IdentitySchemaContainer) GetSlug() string`
+
+GetSlug returns the Slug field if non-nil, zero value otherwise.
+
+### GetSlugOk
+
+`func (o *IdentitySchemaContainer) GetSlugOk() (*string, bool)`
+
+GetSlugOk returns a tuple with the Slug field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSlug
+
+`func (o *IdentitySchemaContainer) SetSlug(v string)`
+
+SetSlug sets Slug field to given value.
+
+### HasSlug
+
+`func (o *IdentitySchemaContainer) HasSlug() bool`
+
+HasSlug returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

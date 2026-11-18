@@ -173,6 +173,7 @@ docs/InternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/InternalIsOwnerForProjectBySlug.md
 docs/InternalIsOwnerForProjectBySlugBody.md
 docs/IntrospectedOAuth2Token.md
+docs/IntrospectedOAuth2TokenConfirmation.md
 docs/InviteTokenBody.md
 docs/Invoice.md
 docs/InvoiceDataV1.md
@@ -608,6 +609,7 @@ src/models/InternalIsAXWelcomeScreenEnabledForProjectBody.ts
 src/models/InternalIsOwnerForProjectBySlug.ts
 src/models/InternalIsOwnerForProjectBySlugBody.ts
 src/models/IntrospectedOAuth2Token.ts
+src/models/IntrospectedOAuth2TokenConfirmation.ts
 src/models/InviteTokenBody.ts
 src/models/Invoice.ts
 src/models/InvoiceDataV1.ts

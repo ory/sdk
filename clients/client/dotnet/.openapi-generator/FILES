@@ -184,6 +184,7 @@ docs/models/ClientInternalIsAXWelcomeScreenEnabledForProjectBody.md
 docs/models/ClientInternalIsOwnerForProjectBySlug.md
 docs/models/ClientInternalIsOwnerForProjectBySlugBody.md
 docs/models/ClientIntrospectedOAuth2Token.md
+docs/models/ClientIntrospectedOAuth2TokenConfirmation.md
 docs/models/ClientInviteTokenBody.md
 docs/models/ClientInvoice.md
 docs/models/ClientInvoiceDataV1.md
@@ -603,6 +604,7 @@ src/Ory.Client.Test/Model/ClientInternalGetProjectBrandingBodyTests.cs
 src/Ory.Client.Test/Model/ClientInternalIsAXWelcomeScreenEnabledForProjectBodyTests.cs
 src/Ory.Client.Test/Model/ClientInternalIsOwnerForProjectBySlugBodyTests.cs
 src/Ory.Client.Test/Model/ClientInternalIsOwnerForProjectBySlugTests.cs
+src/Ory.Client.Test/Model/ClientIntrospectedOAuth2TokenConfirmationTests.cs
 src/Ory.Client.Test/Model/ClientIntrospectedOAuth2TokenTests.cs
 src/Ory.Client.Test/Model/ClientInviteTokenBodyTests.cs
 src/Ory.Client.Test/Model/ClientInvoiceDataV1Tests.cs
@@ -1048,6 +1050,7 @@ src/Ory.Client/Model/ClientInternalIsAXWelcomeScreenEnabledForProjectBody.cs
 src/Ory.Client/Model/ClientInternalIsOwnerForProjectBySlug.cs
 src/Ory.Client/Model/ClientInternalIsOwnerForProjectBySlugBody.cs
 src/Ory.Client/Model/ClientIntrospectedOAuth2Token.cs
+src/Ory.Client/Model/ClientIntrospectedOAuth2TokenConfirmation.cs
 src/Ory.Client/Model/ClientInviteTokenBody.cs
 src/Ory.Client/Model/ClientInvoice.cs
 src/Ory.Client/Model/ClientInvoiceDataV1.cs
