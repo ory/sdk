@@ -53,8 +53,13 @@ RUN ./scripts/install-dart.sh
 ENV PATH="$PATH:/usr/lib/dart/bin"
 
 # elixir
-RUN	apt-get -q update && apt-get install -y -q elixir && \
-	mix local.hex --force
+ENV ELIXIR_VERSION=1.18.4
+RUN	apt-get -q update && apt-get install -y -q --no-install-recommends erlang-crypto erlang-inets erlang-parsetools erlang-public-key erlang-ssl erlang-syntax-tools erlang-tools && \
+	otp_release=$(erl -noshell -eval 'io:format("~s", [erlang:system_info(otp_release)]), halt().') && \
+	wget -nv -O elixir.zip https://github.com/elixir-lang/elixir/releases/download/v${ELIXIR_VERSION}/elixir-otp-${otp_release}.zip && \
+	unzip -q -o elixir.zip -d /usr/local/elixir && rm elixir.zip
+ENV PATH="/usr/local/elixir/bin:$PATH"
+RUN mix local.hex --force && mix local.rebar --force
 
 # rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
