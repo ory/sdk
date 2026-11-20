@@ -277,6 +277,7 @@ Name | Type | Description | Notes
 **kratos_selfservice_methods_passkey_config_timeouts_registration** | **string** | Configures the passkey registration ceremony timeout.  This governs the \&quot;selfservice.methods.passkey.config.timeouts.registration\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_passkey_enabled** | **boolean** | Configures whether Ory Kratos Passkey authentication is enabled  This governs the \&quot;selfservice.methods.passkey.enabled\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_password_config_haveibeenpwned_enabled** | **boolean** | Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \&quot;selfservice.methods.password.config.haveibeenpwned_enabled\&quot; setting. | [optional] [default to undefined]
+**kratos_selfservice_methods_password_config_haveibeenpwned_on_login** | **boolean** | Configures whether Ory Kratos looks up passwords in Have I Been Pwned at login  This governs the \&quot;selfservice.methods.password.config.haveibeenpwned_on_login\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_password_config_identifier_similarity_check_enabled** | **boolean** | Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \&quot;selfservice.methods.password.config.identifier_similarity_check_enabled\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_password_config_ignore_network_errors** | **boolean** | Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \&quot;selfservice.methods.password.config.ignore_network_errors\&quot; setting. | [optional] [default to undefined]
 **kratos_selfservice_methods_password_config_max_breaches** | **number** | Configures Ory Kratos Password Max Breaches Detection  This governs the \&quot;selfservice.methods.password.config.max_breaches\&quot; setting. | [optional] [default to undefined]
@@ -609,6 +610,7 @@ const instance: CreateProjectNormalizedPayload = {
     kratos_selfservice_methods_passkey_config_timeouts_registration,
     kratos_selfservice_methods_passkey_enabled,
     kratos_selfservice_methods_password_config_haveibeenpwned_enabled,
+    kratos_selfservice_methods_password_config_haveibeenpwned_on_login,
     kratos_selfservice_methods_password_config_identifier_similarity_check_enabled,
     kratos_selfservice_methods_password_config_ignore_network_errors,
     kratos_selfservice_methods_password_config_max_breaches,

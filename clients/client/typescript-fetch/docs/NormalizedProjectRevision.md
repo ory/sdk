@@ -275,6 +275,7 @@ Name | Type
 `kratos_selfservice_methods_passkey_config_timeouts_registration` | string
 `kratos_selfservice_methods_passkey_enabled` | boolean
 `kratos_selfservice_methods_password_config_haveibeenpwned_enabled` | boolean
+`kratos_selfservice_methods_password_config_haveibeenpwned_on_login` | boolean
 `kratos_selfservice_methods_password_config_identifier_similarity_check_enabled` | boolean
 `kratos_selfservice_methods_password_config_ignore_network_errors` | boolean
 `kratos_selfservice_methods_password_config_max_breaches` | number
@@ -605,6 +606,7 @@ const example = {
   "kratos_selfservice_methods_passkey_config_timeouts_registration": null,
   "kratos_selfservice_methods_passkey_enabled": null,
   "kratos_selfservice_methods_password_config_haveibeenpwned_enabled": null,
+  "kratos_selfservice_methods_password_config_haveibeenpwned_on_login": null,
   "kratos_selfservice_methods_password_config_identifier_similarity_check_enabled": null,
   "kratos_selfservice_methods_password_config_ignore_network_errors": null,
   "kratos_selfservice_methods_password_config_max_breaches": null,

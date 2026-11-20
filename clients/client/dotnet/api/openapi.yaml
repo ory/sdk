@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.96
+  version: v1.22.97
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -13363,6 +13363,12 @@ components:
 
             This governs the "selfservice.methods.password.config.haveibeenpwned_enabled" setting.
           type: boolean
+        kratos_selfservice_methods_password_config_haveibeenpwned_on_login:
+          description: |-
+            Configures whether Ory Kratos looks up passwords in Have I Been Pwned at login
+
+            This governs the "selfservice.methods.password.config.haveibeenpwned_on_login" setting.
+          type: boolean
         kratos_selfservice_methods_password_config_identifier_similarity_check_enabled:
           description: |-
             Configures whether Ory Kratos Password should disable the similarity policy.
@@ -22608,6 +22614,12 @@ components:
             Configures whether Ory Kratos Password HIBP Checks is enabled
 
             This governs the "selfservice.methods.password.config.haveibeenpwned_enabled" setting.
+          type: boolean
+        kratos_selfservice_methods_password_config_haveibeenpwned_on_login:
+          description: |-
+            Configures whether Ory Kratos looks up passwords in Have I Been Pwned at login
+
+            This governs the "selfservice.methods.password.config.haveibeenpwned_on_login" setting.
           type: boolean
         kratos_selfservice_methods_password_config_identifier_similarity_check_enabled:
           description: |-

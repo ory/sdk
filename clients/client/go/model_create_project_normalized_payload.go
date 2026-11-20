@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.96
+API version: v1.22.97
 Contact: support@ory.sh
 */
 
@@ -560,6 +560,8 @@ type CreateProjectNormalizedPayload struct {
 	KratosSelfserviceMethodsPasskeyEnabled *bool `json:"kratos_selfservice_methods_passkey_enabled,omitempty"`
 	// Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \"selfservice.methods.password.config.haveibeenpwned_enabled\" setting.
 	KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled *bool `json:"kratos_selfservice_methods_password_config_haveibeenpwned_enabled,omitempty"`
+	// Configures whether Ory Kratos looks up passwords in Have I Been Pwned at login  This governs the \"selfservice.methods.password.config.haveibeenpwned_on_login\" setting.
+	KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin *bool `json:"kratos_selfservice_methods_password_config_haveibeenpwned_on_login,omitempty"`
 	// Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \"selfservice.methods.password.config.identifier_similarity_check_enabled\" setting.
 	KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled *bool `json:"kratos_selfservice_methods_password_config_identifier_similarity_check_enabled,omitempty"`
 	// Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \"selfservice.methods.password.config.ignore_network_errors\" setting.
@@ -9398,6 +9400,38 @@ func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasswordConf
 	o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled = &v
 }
 
+// GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin returns the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin field value if set, zero value otherwise.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin() bool {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin) {
+		var ret bool
+		return ret
+	}
+	return *o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin
+}
+
+// GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLoginOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLoginOk() (*bool, bool) {
+	if o == nil || IsNil(o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin) {
+		return nil, false
+	}
+	return o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin, true
+}
+
+// HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin returns a boolean if a field has been set.
+func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin() bool {
+	if o != nil && !IsNil(o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin) {
+		return true
+	}
+
+	return false
+}
+
+// SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin gets a reference to the given bool and assigns it to the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin field.
+func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin(v bool) {
+	o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin = &v
+}
+
 // GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled returns the KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled field value if set, zero value otherwise.
 func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled() bool {
 	if o == nil || IsNil(o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled) {
@@ -11939,6 +11973,9 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled) {
 		toSerialize["kratos_selfservice_methods_password_config_haveibeenpwned_enabled"] = o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled
 	}
+	if !IsNil(o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin) {
+		toSerialize["kratos_selfservice_methods_password_config_haveibeenpwned_on_login"] = o.KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin
+	}
 	if !IsNil(o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled) {
 		toSerialize["kratos_selfservice_methods_password_config_identifier_similarity_check_enabled"] = o.KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
 	}
@@ -12414,6 +12451,7 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_selfservice_methods_passkey_config_timeouts_registration")
 		delete(additionalProperties, "kratos_selfservice_methods_passkey_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_password_config_haveibeenpwned_enabled")
+		delete(additionalProperties, "kratos_selfservice_methods_password_config_haveibeenpwned_on_login")
 		delete(additionalProperties, "kratos_selfservice_methods_password_config_identifier_similarity_check_enabled")
 		delete(additionalProperties, "kratos_selfservice_methods_password_config_ignore_network_errors")
 		delete(additionalProperties, "kratos_selfservice_methods_password_config_max_breaches")

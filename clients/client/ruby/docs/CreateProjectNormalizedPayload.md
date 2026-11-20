@@ -275,6 +275,7 @@
 | **kratos_selfservice_methods_passkey_config_timeouts_registration** | **String** | Configures the passkey registration ceremony timeout.  This governs the \&quot;selfservice.methods.passkey.config.timeouts.registration\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_passkey_enabled** | **Boolean** | Configures whether Ory Kratos Passkey authentication is enabled  This governs the \&quot;selfservice.methods.passkey.enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_password_config_haveibeenpwned_enabled** | **Boolean** | Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \&quot;selfservice.methods.password.config.haveibeenpwned_enabled\&quot; setting. | [optional] |
+| **kratos_selfservice_methods_password_config_haveibeenpwned_on_login** | **Boolean** | Configures whether Ory Kratos looks up passwords in Have I Been Pwned at login  This governs the \&quot;selfservice.methods.password.config.haveibeenpwned_on_login\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_password_config_identifier_similarity_check_enabled** | **Boolean** | Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \&quot;selfservice.methods.password.config.identifier_similarity_check_enabled\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_password_config_ignore_network_errors** | **Boolean** | Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \&quot;selfservice.methods.password.config.ignore_network_errors\&quot; setting. | [optional] |
 | **kratos_selfservice_methods_password_config_max_breaches** | **Integer** | Configures Ory Kratos Password Max Breaches Detection  This governs the \&quot;selfservice.methods.password.config.max_breaches\&quot; setting. | [optional] |
@@ -607,6 +608,7 @@ instance = OryClient::CreateProjectNormalizedPayload.new(
   kratos_selfservice_methods_passkey_config_timeouts_registration: null,
   kratos_selfservice_methods_passkey_enabled: null,
   kratos_selfservice_methods_password_config_haveibeenpwned_enabled: null,
+  kratos_selfservice_methods_password_config_haveibeenpwned_on_login: null,
   kratos_selfservice_methods_password_config_identifier_similarity_check_enabled: null,
   kratos_selfservice_methods_password_config_ignore_network_errors: null,
   kratos_selfservice_methods_password_config_max_breaches: null,

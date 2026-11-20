@@ -275,6 +275,7 @@ Name | Type | Description | Notes
 **KratosSelfserviceMethodsPasskeyConfigTimeoutsRegistration** | Pointer to **string** | Configures the passkey registration ceremony timeout.  This governs the \&quot;selfservice.methods.passkey.config.timeouts.registration\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasskeyEnabled** | Pointer to **bool** | Configures whether Ory Kratos Passkey authentication is enabled  This governs the \&quot;selfservice.methods.passkey.enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled** | Pointer to **bool** | Configures whether Ory Kratos Password HIBP Checks is enabled  This governs the \&quot;selfservice.methods.password.config.haveibeenpwned_enabled\&quot; setting. | [optional] 
+**KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin** | Pointer to **bool** | Configures whether Ory Kratos looks up passwords in Have I Been Pwned at login  This governs the \&quot;selfservice.methods.password.config.haveibeenpwned_on_login\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled** | Pointer to **bool** | Configures whether Ory Kratos Password should disable the similarity policy.  This governs the \&quot;selfservice.methods.password.config.identifier_similarity_check_enabled\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasswordConfigIgnoreNetworkErrors** | Pointer to **bool** | Configures whether Ory Kratos Password Should ignore HIBPWND Network Errors  This governs the \&quot;selfservice.methods.password.config.ignore_network_errors\&quot; setting. | [optional] 
 **KratosSelfserviceMethodsPasswordConfigMaxBreaches** | Pointer to **int64** | Configures Ory Kratos Password Max Breaches Detection  This governs the \&quot;selfservice.methods.password.config.max_breaches\&quot; setting. | [optional] 
@@ -7118,6 +7119,31 @@ SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled sets KratosSelfse
 `func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled() bool`
 
 HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedEnabled returns a boolean if a field has been set.
+
+### GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin() bool`
+
+GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin returns the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin field if non-nil, zero value otherwise.
+
+### GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLoginOk
+
+`func (o *CreateProjectNormalizedPayload) GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLoginOk() (*bool, bool)`
+
+GetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLoginOk returns a tuple with the KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin
+
+`func (o *CreateProjectNormalizedPayload) SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin(v bool)`
+
+SetKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin sets KratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin field to given value.
+
+### HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin
+
+`func (o *CreateProjectNormalizedPayload) HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin() bool`
+
+HasKratosSelfserviceMethodsPasswordConfigHaveibeenpwnedOnLogin returns a boolean if a field has been set.
 
 ### GetKratosSelfserviceMethodsPasswordConfigIdentifierSimilarityCheckEnabled
 
