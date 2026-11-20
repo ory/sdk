@@ -860,7 +860,7 @@ example().catch(console.error);
 
 Get an Identity by its External ID
 
-Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the &#x60;include_credential&#x60; query parameter.
+Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the &#x60;include_credential&#x60; query parameter.  Proxies commonly reject a slash (&#x60;/&#x60;) in a URL path even when it is percent-encoded. To look up an external ID that contains a slash, use the &#x60;external_ids&#x60; filter of the list identities endpoint instead.
 
 ### Example
 
@@ -1077,7 +1077,7 @@ example().catch(console.error);
 
 ## listIdentities
 
-> Array&lt;Identity&gt; listIdentities(perPage, page, pageSize, pageToken, consistency, ids, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential, organizationId)
+> Array&lt;Identity&gt; listIdentities(perPage, page, pageSize, pageToken, consistency, ids, externalIds, credentialsIdentifier, previewCredentialsIdentifierSimilar, includeCredential, organizationId)
 
 List Identities
 
@@ -1113,6 +1113,8 @@ async function example() {
     consistency: consistency_example,
     // Array<string> | Retrieve multiple identities by their IDs.  This parameter has the following limitations:  - Duplicate or non-existent IDs are ignored. - The order of returned IDs may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). (optional)
     ids: ...,
+    // Array<string> | Retrieve multiple identities by their external IDs.  Unlike the `/admin/identities/by/external/{externalID}` endpoint, this filter also works for external IDs that contain a slash (`/`), which proxies commonly reject in URL paths even when percent-encoded.  This parameter has the following limitations:  - Duplicate or non-existent external IDs are ignored. - The order of returned identities may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). (optional)
+    externalIds: ...,
     // string | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
     credentialsIdentifier: credentialsIdentifier_example,
     // string | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. (optional)
@@ -1146,6 +1148,7 @@ example().catch(console.error);
 | **pageToken** | `string` | Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination). | [Optional] [Defaults to `undefined`] |
 | **consistency** | ``, `strong`, `eventual` | Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  - strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. - eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with &#x60;ory patch project --replace \&#39;/previews/default_read_consistency_level&#x3D;\&quot;strong\&quot;\&#39;&#x60;.  Setting the default consistency level to &#x60;eventual&#x60; may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  - &#x60;GET /admin/identities&#x60;  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual is the eventual consistency level using follower read timestamps. | [Optional] [Defaults to `undefined`] [Enum: , strong, eventual] |
 | **ids** | `Array<string>` | Retrieve multiple identities by their IDs.  This parameter has the following limitations:  - Duplicate or non-existent IDs are ignored. - The order of returned IDs may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). | [Optional] |
+| **externalIds** | `Array<string>` | Retrieve multiple identities by their external IDs.  Unlike the &#x60;/admin/identities/by/external/{externalID}&#x60; endpoint, this filter also works for external IDs that contain a slash (&#x60;/&#x60;), which proxies commonly reject in URL paths even when percent-encoded.  This parameter has the following limitations:  - Duplicate or non-existent external IDs are ignored. - The order of returned identities may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500). | [Optional] |
 | **credentialsIdentifier** | `string` | CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [Optional] [Defaults to `undefined`] |
 | **previewCredentialsIdentifierSimilar** | `string` | This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used. | [Optional] [Defaults to `undefined`] |
 | **includeCredential** | `Array<string>` | Include Credentials in Response  Include any credential, for example &#x60;password&#x60; or &#x60;oidc&#x60;, in the response. When set to &#x60;oidc&#x60;, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available. | [Optional] |

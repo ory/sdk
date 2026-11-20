@@ -4,6 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AccessToken** | Pointer to **string** | AccessToken is the access token from the identity&#39;s most recent login with this provider. It is only set when the provider&#39;s &#x60;update_tokens_on_login&#x60; is &#x60;automatic&#x60;. | [optional] 
+**AccessTokenExpiresAt** | Pointer to **time.Time** | AccessTokenExpiresAt is the time the latest access token expires. It is only set when the provider&#39;s &#x60;update_tokens_on_login&#x60; is &#x60;automatic&#x60;. | [optional] 
+**IdToken** | Pointer to **string** | IDToken is the ID token from the identity&#39;s most recent login with this provider. It is only set when the provider&#39;s &#x60;update_tokens_on_login&#x60; is &#x60;automatic&#x60;. | [optional] 
 **InitialAccessToken** | Pointer to **string** |  | [optional] 
 **InitialIdToken** | Pointer to **string** |  | [optional] 
 **InitialRefreshToken** | Pointer to **string** |  | [optional] 
@@ -30,6 +33,81 @@ will change when the set of required properties is changed
 NewIdentityCredentialsOidcProviderWithDefaults instantiates a new IdentityCredentialsOidcProvider object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAccessToken
+
+`func (o *IdentityCredentialsOidcProvider) GetAccessToken() string`
+
+GetAccessToken returns the AccessToken field if non-nil, zero value otherwise.
+
+### GetAccessTokenOk
+
+`func (o *IdentityCredentialsOidcProvider) GetAccessTokenOk() (*string, bool)`
+
+GetAccessTokenOk returns a tuple with the AccessToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccessToken
+
+`func (o *IdentityCredentialsOidcProvider) SetAccessToken(v string)`
+
+SetAccessToken sets AccessToken field to given value.
+
+### HasAccessToken
+
+`func (o *IdentityCredentialsOidcProvider) HasAccessToken() bool`
+
+HasAccessToken returns a boolean if a field has been set.
+
+### GetAccessTokenExpiresAt
+
+`func (o *IdentityCredentialsOidcProvider) GetAccessTokenExpiresAt() time.Time`
+
+GetAccessTokenExpiresAt returns the AccessTokenExpiresAt field if non-nil, zero value otherwise.
+
+### GetAccessTokenExpiresAtOk
+
+`func (o *IdentityCredentialsOidcProvider) GetAccessTokenExpiresAtOk() (*time.Time, bool)`
+
+GetAccessTokenExpiresAtOk returns a tuple with the AccessTokenExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccessTokenExpiresAt
+
+`func (o *IdentityCredentialsOidcProvider) SetAccessTokenExpiresAt(v time.Time)`
+
+SetAccessTokenExpiresAt sets AccessTokenExpiresAt field to given value.
+
+### HasAccessTokenExpiresAt
+
+`func (o *IdentityCredentialsOidcProvider) HasAccessTokenExpiresAt() bool`
+
+HasAccessTokenExpiresAt returns a boolean if a field has been set.
+
+### GetIdToken
+
+`func (o *IdentityCredentialsOidcProvider) GetIdToken() string`
+
+GetIdToken returns the IdToken field if non-nil, zero value otherwise.
+
+### GetIdTokenOk
+
+`func (o *IdentityCredentialsOidcProvider) GetIdTokenOk() (*string, bool)`
+
+GetIdTokenOk returns a tuple with the IdToken field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdToken
+
+`func (o *IdentityCredentialsOidcProvider) SetIdToken(v string)`
+
+SetIdToken sets IdToken field to given value.
+
+### HasIdToken
+
+`func (o *IdentityCredentialsOidcProvider) HasIdToken() bool`
+
+HasIdToken returns a boolean if a field has been set.
 
 ### GetInitialAccessToken
 

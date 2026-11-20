@@ -8,6 +8,9 @@ defmodule Ory.Model.IdentityCredentialsOidcProvider do
 
   @derive Jason.Encoder
   defstruct [
+    :access_token,
+    :access_token_expires_at,
+    :id_token,
     :initial_access_token,
     :initial_id_token,
     :initial_refresh_token,
@@ -18,6 +21,9 @@ defmodule Ory.Model.IdentityCredentialsOidcProvider do
   ]
 
   @type t :: %__MODULE__{
+    :access_token => String.t | nil,
+    :access_token_expires_at => DateTime.t | nil,
+    :id_token => String.t | nil,
     :initial_access_token => String.t | nil,
     :initial_id_token => String.t | nil,
     :initial_refresh_token => String.t | nil,
@@ -27,8 +33,11 @@ defmodule Ory.Model.IdentityCredentialsOidcProvider do
     :use_auto_link => boolean() | nil
   }
 
+  alias Ory.Deserializer
+
   def decode(value) do
     value
+     |> Deserializer.deserialize(:access_token_expires_at, :datetime, nil)
   end
 end
 

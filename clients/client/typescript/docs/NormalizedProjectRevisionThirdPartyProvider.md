@@ -37,6 +37,7 @@ Name | Type | Description | Notes
 **subject_source** | **string** |  | [optional] [default to undefined]
 **token_url** | **string** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] [default to undefined]
 **update_identity_on_login** | **string** | UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity\&#39;s traits and metadata automatically. | [optional] [default to undefined]
+**update_tokens_on_login** | **string** | UpdateTokensOnLogin controls whether the upstream OAuth2 tokens stored for the identity are replaced on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateTokensOnLoginNever keeps the upstream tokens stored when the provider was linked (default). automatic UpdateTokensOnLoginAutomatic replaces the stored upstream tokens on every OIDC login. | [optional] [default to undefined]
 **updated_at** | **string** | Last Time Project\&#39;s Revision was Updated | [optional] [readonly] [default to undefined]
 
 ## Example
@@ -77,6 +78,7 @@ const instance: NormalizedProjectRevisionThirdPartyProvider = {
     subject_source,
     token_url,
     update_identity_on_login,
+    update_tokens_on_login,
     updated_at,
 };
 ```

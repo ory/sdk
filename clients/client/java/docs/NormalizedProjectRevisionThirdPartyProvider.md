@@ -39,6 +39,7 @@
 |**subjectSource** | **String** |  |  [optional] |
 |**tokenUrl** | **String** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. |  [optional] |
 |**updateIdentityOnLogin** | [**UpdateIdentityOnLoginEnum**](#UpdateIdentityOnLoginEnum) | UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. |  [optional] |
+|**updateTokensOnLogin** | [**UpdateTokensOnLoginEnum**](#UpdateTokensOnLoginEnum) | UpdateTokensOnLogin controls whether the upstream OAuth2 tokens stored for the identity are replaced on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateTokensOnLoginNever keeps the upstream tokens stored when the provider was linked (default). automatic UpdateTokensOnLoginAutomatic replaces the stored upstream tokens on every OIDC login. |  [optional] |
 |**updatedAt** | **OffsetDateTime** | Last Time Project&#39;s Revision was Updated |  [optional] [readonly] |
 
 
@@ -72,6 +73,15 @@
 
 
 ## Enum: UpdateIdentityOnLoginEnum
+
+| Name | Value |
+|---- | -----|
+| NEVER | &quot;never&quot; |
+| AUTOMATIC | &quot;automatic&quot; |
+
+
+
+## Enum: UpdateTokensOnLoginEnum
 
 | Name | Value |
 |---- | -----|

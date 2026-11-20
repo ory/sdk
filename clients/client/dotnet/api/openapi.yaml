@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.95
+  version: v1.22.96
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -857,6 +857,26 @@ paths:
           type: array
         style: form
       - description: |-
+          Retrieve multiple identities by their external IDs.
+
+          Unlike the `/admin/identities/by/external/{externalID}` endpoint, this filter also works for external IDs that
+          contain a slash (`/`), which proxies commonly reject in URL paths even when percent-encoded.
+
+          This parameter has the following limitations:
+
+          - Duplicate or non-existent external IDs are ignored.
+          - The order of returned identities may be different from the request.
+          - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
+        explode: true
+        in: query
+        name: external_ids
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
           CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match.
           Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
         explode: true
@@ -1036,6 +1056,9 @@ paths:
       description: |-
         Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
         include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+
+        Proxies commonly reject a slash (`/`) in a URL path even when it is percent-encoded. To look up an external ID
+        that contains a slash, use the `external_ids` filter of the list identities endpoint instead.
       operationId: getIdentityByExternalID
       parameters:
       - description: ExternalID must be set to the ID of identity you want to get
@@ -18370,6 +18393,22 @@ components:
       type: object
     identityCredentialsOidcProvider:
       properties:
+        access_token:
+          description: |-
+            AccessToken is the access token from the identity's most recent login with this provider.
+            It is only set when the provider's `update_tokens_on_login` is `automatic`.
+          type: string
+        access_token_expires_at:
+          description: |-
+            AccessTokenExpiresAt is the time the latest access token expires.
+            It is only set when the provider's `update_tokens_on_login` is `automatic`.
+          format: date-time
+          type: string
+        id_token:
+          description: |-
+            IDToken is the ID token from the identity's most recent login with this provider.
+            It is only set when the provider's `update_tokens_on_login` is `automatic`.
+          type: string
         initial_access_token:
           type: string
         initial_id_token:
@@ -23545,6 +23584,21 @@ components:
           x-go-enum-desc: |-
             never UpdateIdentityOnLoginNever disables identity updates on login (default).
             automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity's traits and metadata automatically.
+        update_tokens_on_login:
+          description: |-
+            UpdateTokensOnLogin controls whether the upstream OAuth2 tokens stored for
+            the identity are replaced on each login.
+
+            Possible values are "never" (default) and "automatic".
+            never UpdateTokensOnLoginNever keeps the upstream tokens stored when the provider was linked (default).
+            automatic UpdateTokensOnLoginAutomatic replaces the stored upstream tokens on every OIDC login.
+          enum:
+          - never
+          - automatic
+          type: string
+          x-go-enum-desc: |-
+            never UpdateTokensOnLoginNever keeps the upstream tokens stored when the provider was linked (default).
+            automatic UpdateTokensOnLoginAutomatic replaces the stored upstream tokens on every OIDC login.
         updated_at:
           description: Last Time Project's Revision was Updated
           format: date-time

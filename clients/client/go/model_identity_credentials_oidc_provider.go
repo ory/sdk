@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.95
+API version: v1.22.96
 Contact: support@ory.sh
 */
 
@@ -13,6 +13,7 @@ package client
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the IdentityCredentialsOidcProvider type satisfies the MappedNullable interface at compile time
@@ -20,6 +21,12 @@ var _ MappedNullable = &IdentityCredentialsOidcProvider{}
 
 // IdentityCredentialsOidcProvider struct for IdentityCredentialsOidcProvider
 type IdentityCredentialsOidcProvider struct {
+	// AccessToken is the access token from the identity's most recent login with this provider. It is only set when the provider's `update_tokens_on_login` is `automatic`.
+	AccessToken *string `json:"access_token,omitempty"`
+	// AccessTokenExpiresAt is the time the latest access token expires. It is only set when the provider's `update_tokens_on_login` is `automatic`.
+	AccessTokenExpiresAt *time.Time `json:"access_token_expires_at,omitempty"`
+	// IDToken is the ID token from the identity's most recent login with this provider. It is only set when the provider's `update_tokens_on_login` is `automatic`.
+	IdToken *string `json:"id_token,omitempty"`
 	InitialAccessToken *string `json:"initial_access_token,omitempty"`
 	InitialIdToken *string `json:"initial_id_token,omitempty"`
 	InitialRefreshToken *string `json:"initial_refresh_token,omitempty"`
@@ -47,6 +54,102 @@ func NewIdentityCredentialsOidcProvider() *IdentityCredentialsOidcProvider {
 func NewIdentityCredentialsOidcProviderWithDefaults() *IdentityCredentialsOidcProvider {
 	this := IdentityCredentialsOidcProvider{}
 	return &this
+}
+
+// GetAccessToken returns the AccessToken field value if set, zero value otherwise.
+func (o *IdentityCredentialsOidcProvider) GetAccessToken() string {
+	if o == nil || IsNil(o.AccessToken) {
+		var ret string
+		return ret
+	}
+	return *o.AccessToken
+}
+
+// GetAccessTokenOk returns a tuple with the AccessToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IdentityCredentialsOidcProvider) GetAccessTokenOk() (*string, bool) {
+	if o == nil || IsNil(o.AccessToken) {
+		return nil, false
+	}
+	return o.AccessToken, true
+}
+
+// HasAccessToken returns a boolean if a field has been set.
+func (o *IdentityCredentialsOidcProvider) HasAccessToken() bool {
+	if o != nil && !IsNil(o.AccessToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessToken gets a reference to the given string and assigns it to the AccessToken field.
+func (o *IdentityCredentialsOidcProvider) SetAccessToken(v string) {
+	o.AccessToken = &v
+}
+
+// GetAccessTokenExpiresAt returns the AccessTokenExpiresAt field value if set, zero value otherwise.
+func (o *IdentityCredentialsOidcProvider) GetAccessTokenExpiresAt() time.Time {
+	if o == nil || IsNil(o.AccessTokenExpiresAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.AccessTokenExpiresAt
+}
+
+// GetAccessTokenExpiresAtOk returns a tuple with the AccessTokenExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IdentityCredentialsOidcProvider) GetAccessTokenExpiresAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.AccessTokenExpiresAt) {
+		return nil, false
+	}
+	return o.AccessTokenExpiresAt, true
+}
+
+// HasAccessTokenExpiresAt returns a boolean if a field has been set.
+func (o *IdentityCredentialsOidcProvider) HasAccessTokenExpiresAt() bool {
+	if o != nil && !IsNil(o.AccessTokenExpiresAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessTokenExpiresAt gets a reference to the given time.Time and assigns it to the AccessTokenExpiresAt field.
+func (o *IdentityCredentialsOidcProvider) SetAccessTokenExpiresAt(v time.Time) {
+	o.AccessTokenExpiresAt = &v
+}
+
+// GetIdToken returns the IdToken field value if set, zero value otherwise.
+func (o *IdentityCredentialsOidcProvider) GetIdToken() string {
+	if o == nil || IsNil(o.IdToken) {
+		var ret string
+		return ret
+	}
+	return *o.IdToken
+}
+
+// GetIdTokenOk returns a tuple with the IdToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IdentityCredentialsOidcProvider) GetIdTokenOk() (*string, bool) {
+	if o == nil || IsNil(o.IdToken) {
+		return nil, false
+	}
+	return o.IdToken, true
+}
+
+// HasIdToken returns a boolean if a field has been set.
+func (o *IdentityCredentialsOidcProvider) HasIdToken() bool {
+	if o != nil && !IsNil(o.IdToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetIdToken gets a reference to the given string and assigns it to the IdToken field.
+func (o *IdentityCredentialsOidcProvider) SetIdToken(v string) {
+	o.IdToken = &v
 }
 
 // GetInitialAccessToken returns the InitialAccessToken field value if set, zero value otherwise.
@@ -283,6 +386,15 @@ func (o IdentityCredentialsOidcProvider) MarshalJSON() ([]byte, error) {
 
 func (o IdentityCredentialsOidcProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AccessToken) {
+		toSerialize["access_token"] = o.AccessToken
+	}
+	if !IsNil(o.AccessTokenExpiresAt) {
+		toSerialize["access_token_expires_at"] = o.AccessTokenExpiresAt
+	}
+	if !IsNil(o.IdToken) {
+		toSerialize["id_token"] = o.IdToken
+	}
 	if !IsNil(o.InitialAccessToken) {
 		toSerialize["initial_access_token"] = o.InitialAccessToken
 	}
@@ -326,6 +438,9 @@ func (o *IdentityCredentialsOidcProvider) UnmarshalJSON(data []byte) (err error)
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "access_token")
+		delete(additionalProperties, "access_token_expires_at")
+		delete(additionalProperties, "id_token")
 		delete(additionalProperties, "initial_access_token")
 		delete(additionalProperties, "initial_id_token")
 		delete(additionalProperties, "initial_refresh_token")

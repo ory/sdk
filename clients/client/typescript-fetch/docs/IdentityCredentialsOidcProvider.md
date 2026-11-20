@@ -6,6 +6,9 @@
 
 Name | Type
 ------------ | -------------
+`access_token` | string
+`access_token_expires_at` | Date
+`id_token` | string
 `initial_access_token` | string
 `initial_id_token` | string
 `initial_refresh_token` | string
@@ -21,6 +24,9 @@ import type { IdentityCredentialsOidcProvider } from '@ory/client-fetch'
 
 // TODO: Update the object below with actual values
 const example = {
+  "access_token": null,
+  "access_token_expires_at": null,
+  "id_token": null,
   "initial_access_token": null,
   "initial_id_token": null,
   "initial_refresh_token": null,

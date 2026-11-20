@@ -36,6 +36,7 @@ Name | Type | Description | Notes
 **SubjectSource** | Pointer to **NullableString** |  | [optional] 
 **TokenUrl** | Pointer to **string** | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when &#x60;provider&#x60; is set to &#x60;generic&#x60;. | [optional] 
 **UpdateIdentityOnLogin** | Pointer to **string** | UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity&#39;s traits and metadata automatically. | [optional] 
+**UpdateTokensOnLogin** | Pointer to **string** | UpdateTokensOnLogin controls whether the upstream OAuth2 tokens stored for the identity are replaced on each login.  Possible values are \&quot;never\&quot; (default) and \&quot;automatic\&quot;. never UpdateTokensOnLoginNever keeps the upstream tokens stored when the provider was linked (default). automatic UpdateTokensOnLoginAutomatic replaces the stored upstream tokens on every OIDC login. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | Last Time Project&#39;s Revision was Updated | [optional] [readonly] 
 
 ## Methods
@@ -936,6 +937,31 @@ SetUpdateIdentityOnLogin sets UpdateIdentityOnLogin field to given value.
 `func (o *NormalizedProjectRevisionThirdPartyProvider) HasUpdateIdentityOnLogin() bool`
 
 HasUpdateIdentityOnLogin returns a boolean if a field has been set.
+
+### GetUpdateTokensOnLogin
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdateTokensOnLogin() string`
+
+GetUpdateTokensOnLogin returns the UpdateTokensOnLogin field if non-nil, zero value otherwise.
+
+### GetUpdateTokensOnLoginOk
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdateTokensOnLoginOk() (*string, bool)`
+
+GetUpdateTokensOnLoginOk returns a tuple with the UpdateTokensOnLogin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdateTokensOnLogin
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) SetUpdateTokensOnLogin(v string)`
+
+SetUpdateTokensOnLogin sets UpdateTokensOnLogin field to given value.
+
+### HasUpdateTokensOnLogin
+
+`func (o *NormalizedProjectRevisionThirdPartyProvider) HasUpdateTokensOnLogin() bool`
+
+HasUpdateTokensOnLogin returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

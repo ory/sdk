@@ -415,7 +415,7 @@ defmodule Ory.Api.Identity do
 
   @doc """
   Get an Identity by its External ID
-  Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+  Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.  Proxies commonly reject a slash (`/`) in a URL path even when it is percent-encoded. To look up an external ID that contains a slash, use the `external_ids` filter of the list identities endpoint instead.
 
   ### Parameters
 
@@ -535,6 +535,7 @@ defmodule Ory.Api.Identity do
     - `:page_token` (String.t): Next Page Token  The next page token. For details on pagination please head over to the [pagination documentation](https://www.ory.com/docs/ecosystem/api-design#pagination).
     - `:consistency` (String.t): Read Consistency Level (preview)  The read consistency level determines the consistency guarantee for reads:  - strong (slow): The read is guaranteed to return the most recent data committed at the start of the read. - eventual (very fast): The result will return data that is about 4.8 seconds old.  The default consistency guarantee can be changed in the Ory Network Console or using the Ory CLI with `ory patch project --replace '/previews/default_read_consistency_level=\"strong\"'`.  Setting the default consistency level to `eventual` may cause regressions in the future as we add consistency controls to more APIs. Currently, the following APIs will be affected by this setting:  - `GET /admin/identities`  This feature is in preview and only available in Ory Network.  ConsistencyLevelUnset is the unset / default consistency level. strong ConsistencyLevelStrong is the strong consistency level. eventual ConsistencyLevelEventual is the eventual consistency level using follower read timestamps.
     - `:ids` ([String.t]): Retrieve multiple identities by their IDs.  This parameter has the following limitations:  - Duplicate or non-existent IDs are ignored. - The order of returned IDs may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
+    - `:external_ids` ([String.t]): Retrieve multiple identities by their external IDs.  Unlike the `/admin/identities/by/external/{externalID}` endpoint, this filter also works for external IDs that contain a slash (`/`), which proxies commonly reject in URL paths even when percent-encoded.  This parameter has the following limitations:  - Duplicate or non-existent external IDs are ignored. - The order of returned identities may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
     - `:credentials_identifier` (String.t): CredentialsIdentifier is the identifier (username, email) of the credentials to look up using exact match. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     - `:preview_credentials_identifier_similar` (String.t): This is an EXPERIMENTAL parameter that WILL CHANGE. Do NOT rely on consistent, deterministic behavior. THIS PARAMETER WILL BE REMOVED IN AN UPCOMING RELEASE WITHOUT ANY MIGRATION PATH.  CredentialsIdentifierSimilar is the (partial) identifier (username, email) of the credentials to look up using similarity search. Only one of CredentialsIdentifier and CredentialsIdentifierSimilar can be used.
     - `:include_credential` ([String.t]): Include Credentials in Response  Include any credential, for example `password` or `oidc`, in the response. When set to `oidc`, This will return the initial OAuth 2.0 Access Token, OAuth 2.0 Refresh Token, and the OpenID Connect ID Token if available.
@@ -554,6 +555,7 @@ defmodule Ory.Api.Identity do
       :page_token => :query,
       :consistency => :query,
       :ids => :query,
+      :external_ids => :query,
       :credentials_identifier => :query,
       :preview_credentials_identifier_similar => :query,
       :include_credential => :query,

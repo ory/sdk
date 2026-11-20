@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.95
+API version: v1.22.96
 Contact: support@ory.sh
 */
 
@@ -232,6 +232,9 @@ include credentials (e.g. social sign in connections) in the response by using t
 
 	Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
 include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
+
+Proxies commonly reject a slash (`/`) in a URL path even when it is percent-encoded. To look up an external ID
+that contains a slash, use the `external_ids` filter of the list identities endpoint instead.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param externalID ExternalID must be set to the ID of identity you want to get
@@ -1952,6 +1955,9 @@ GetIdentityByExternalID Get an Identity by its External ID
 Return an [identity](https://www.ory.com/docs/kratos/concepts/identity-user-model) by its external ID. You can optionally
 include credentials (e.g. social sign in connections) in the response by using the `include_credential` query parameter.
 
+Proxies commonly reject a slash (`/`) in a URL path even when it is percent-encoded. To look up an external ID
+that contains a slash, use the `external_ids` filter of the list identities endpoint instead.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param externalID ExternalID must be set to the ID of identity you want to get
  @return IdentityAPIGetIdentityByExternalIDRequest
@@ -2343,6 +2349,7 @@ type IdentityAPIListIdentitiesRequest struct {
 	pageToken *string
 	consistency *string
 	ids *[]string
+	externalIds *[]string
 	credentialsIdentifier *string
 	previewCredentialsIdentifierSimilar *string
 	includeCredential *[]string
@@ -2382,6 +2389,12 @@ func (r IdentityAPIListIdentitiesRequest) Consistency(consistency string) Identi
 // Retrieve multiple identities by their IDs.  This parameter has the following limitations:  - Duplicate or non-existent IDs are ignored. - The order of returned IDs may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
 func (r IdentityAPIListIdentitiesRequest) Ids(ids []string) IdentityAPIListIdentitiesRequest {
 	r.ids = &ids
+	return r
+}
+
+// Retrieve multiple identities by their external IDs.  Unlike the &#x60;/admin/identities/by/external/{externalID}&#x60; endpoint, this filter also works for external IDs that contain a slash (&#x60;/&#x60;), which proxies commonly reject in URL paths even when percent-encoded.  This parameter has the following limitations:  - Duplicate or non-existent external IDs are ignored. - The order of returned identities may be different from the request. - This filter does not support pagination. You must implement your own pagination as the maximum number of items returned by this endpoint may not exceed a certain threshold (currently 500).
+func (r IdentityAPIListIdentitiesRequest) ExternalIds(externalIds []string) IdentityAPIListIdentitiesRequest {
+	r.externalIds = &externalIds
 	return r
 }
 
@@ -2481,6 +2494,17 @@ func (a *IdentityAPIService) ListIdentitiesExecute(r IdentityAPIListIdentitiesRe
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "ids", t, "form", "multi")
+		}
+	}
+	if r.externalIds != nil {
+		t := *r.externalIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "external_ids", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "external_ids", t, "form", "multi")
 		}
 	}
 	if r.credentialsIdentifier != nil {

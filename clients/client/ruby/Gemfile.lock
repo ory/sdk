@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-client (1.22.95)
+    ory-client (1.22.96)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM
@@ -21,7 +21,7 @@ GEM
     logger (1.7.0)
     method_source (1.1.0)
     parallel (1.28.0)
-    parser (3.3.13.0)
+    parser (3.3.14.0)
       ast (~> 2.4.1)
       racc
     pry (0.16.1)
@@ -61,8 +61,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 1.6)
     ruby-progressbar (1.13.0)
     stringio (3.2.0)
-    typhoeus (1.7.1)
-      ethon (>= 0.19.1, < 0.20.0)
+    typhoeus (1.8.0)
+      ethon (>= 0.19.2, < 0.20.0)
     unicode-display_width (1.5.0)
 
 PLATFORMS

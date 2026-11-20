@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.95
+API version: v1.22.96
 Contact: support@ory.sh
 */
 
@@ -75,6 +75,8 @@ type NormalizedProjectRevisionThirdPartyProvider struct {
 	TokenUrl *string `json:"token_url,omitempty"`
 	// UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \"never\" (default) and \"automatic\". never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity's traits and metadata automatically.
 	UpdateIdentityOnLogin *string `json:"update_identity_on_login,omitempty"`
+	// UpdateTokensOnLogin controls whether the upstream OAuth2 tokens stored for the identity are replaced on each login.  Possible values are \"never\" (default) and \"automatic\". never UpdateTokensOnLoginNever keeps the upstream tokens stored when the provider was linked (default). automatic UpdateTokensOnLoginAutomatic replaces the stored upstream tokens on every OIDC login.
+	UpdateTokensOnLogin *string `json:"update_tokens_on_login,omitempty"`
 	// Last Time Project's Revision was Updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -1203,6 +1205,38 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) SetUpdateIdentityOnLogin(v
 	o.UpdateIdentityOnLogin = &v
 }
 
+// GetUpdateTokensOnLogin returns the UpdateTokensOnLogin field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdateTokensOnLogin() string {
+	if o == nil || IsNil(o.UpdateTokensOnLogin) {
+		var ret string
+		return ret
+	}
+	return *o.UpdateTokensOnLogin
+}
+
+// GetUpdateTokensOnLoginOk returns a tuple with the UpdateTokensOnLogin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdateTokensOnLoginOk() (*string, bool) {
+	if o == nil || IsNil(o.UpdateTokensOnLogin) {
+		return nil, false
+	}
+	return o.UpdateTokensOnLogin, true
+}
+
+// HasUpdateTokensOnLogin returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionThirdPartyProvider) HasUpdateTokensOnLogin() bool {
+	if o != nil && !IsNil(o.UpdateTokensOnLogin) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdateTokensOnLogin gets a reference to the given string and assigns it to the UpdateTokensOnLogin field.
+func (o *NormalizedProjectRevisionThirdPartyProvider) SetUpdateTokensOnLogin(v string) {
+	o.UpdateTokensOnLogin = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionThirdPartyProvider) GetUpdatedAt() time.Time {
 	if o == nil || IsNil(o.UpdatedAt) {
@@ -1341,6 +1375,9 @@ func (o NormalizedProjectRevisionThirdPartyProvider) ToMap() (map[string]interfa
 	if !IsNil(o.UpdateIdentityOnLogin) {
 		toSerialize["update_identity_on_login"] = o.UpdateIdentityOnLogin
 	}
+	if !IsNil(o.UpdateTokensOnLogin) {
+		toSerialize["update_tokens_on_login"] = o.UpdateTokensOnLogin
+	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
@@ -1398,6 +1435,7 @@ func (o *NormalizedProjectRevisionThirdPartyProvider) UnmarshalJSON(data []byte)
 		delete(additionalProperties, "subject_source")
 		delete(additionalProperties, "token_url")
 		delete(additionalProperties, "update_identity_on_login")
+		delete(additionalProperties, "update_tokens_on_login")
 		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}

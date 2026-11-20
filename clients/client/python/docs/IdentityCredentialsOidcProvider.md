@@ -5,6 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**access_token** | **str** | AccessToken is the access token from the identity&#39;s most recent login with this provider. It is only set when the provider&#39;s &#x60;update_tokens_on_login&#x60; is &#x60;automatic&#x60;. | [optional] 
+**access_token_expires_at** | **datetime** | AccessTokenExpiresAt is the time the latest access token expires. It is only set when the provider&#39;s &#x60;update_tokens_on_login&#x60; is &#x60;automatic&#x60;. | [optional] 
+**id_token** | **str** | IDToken is the ID token from the identity&#39;s most recent login with this provider. It is only set when the provider&#39;s &#x60;update_tokens_on_login&#x60; is &#x60;automatic&#x60;. | [optional] 
 **initial_access_token** | **str** |  | [optional] 
 **initial_id_token** | **str** |  | [optional] 
 **initial_refresh_token** | **str** |  | [optional] 

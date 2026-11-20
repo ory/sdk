@@ -36,6 +36,7 @@ Name | Type | Description | Notes
 **subject_source** | Option<**String**> |  | [optional]
 **token_url** | Option<**String**> | TokenURL is the token url, typically something like: https://example.org/oauth2/token  Should only be used when the OAuth2 / OpenID Connect server is not supporting OpenID Connect Discovery and when `provider` is set to `generic`. | [optional]
 **update_identity_on_login** | Option<**String**> | UpdateIdentityOnLogin controls whether the identity is updated from OIDC claims on each login.  Possible values are \"never\" (default) and \"automatic\". never UpdateIdentityOnLoginNever disables identity updates on login (default). automatic UpdateIdentityOnLoginAutomatic re-runs the Jsonnet claims mapper on every login and updates the identity's traits and metadata automatically. | [optional]
+**update_tokens_on_login** | Option<**String**> | UpdateTokensOnLogin controls whether the upstream OAuth2 tokens stored for the identity are replaced on each login.  Possible values are \"never\" (default) and \"automatic\". never UpdateTokensOnLoginNever keeps the upstream tokens stored when the provider was linked (default). automatic UpdateTokensOnLoginAutomatic replaces the stored upstream tokens on every OIDC login. | [optional]
 **updated_at** | Option<**String**> | Last Time Project's Revision was Updated | [optional][readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
