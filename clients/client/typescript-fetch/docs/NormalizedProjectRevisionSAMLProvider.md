@@ -22,6 +22,7 @@ Name | Type
 `label` | string
 `mapper_url` | string
 `organization_id` | string
+`polis_route_kind` | string
 `project_revision_id` | string
 `provider_id` | string
 `proxy_acs_url` | string
@@ -58,6 +59,7 @@ const example = {
   "label": null,
   "mapper_url": null,
   "organization_id": null,
+  "polis_route_kind": null,
   "project_revision_id": null,
   "provider_id": null,
   "proxy_acs_url": null,

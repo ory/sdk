@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.97
+API version: v1.22.98
 Contact: support@ory.sh
 */
 
@@ -48,6 +48,8 @@ type NormalizedProjectRevisionSAMLProvider struct {
 	// Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider's data (e.g. GitHub or Google profile information) to hydrate the identity's data.
 	MapperUrl *string `json:"mapper_url,omitempty"`
 	OrganizationId NullableString `json:"organization_id,omitempty"`
+	// The ACS URL route of the provider's Polis connection: \"own\" for the provider's own route, /saml/api/oauth/saml/<provider_id>, or \"shared\" for the shared route, /saml/api/oauth/saml. Ory stores it with the connection. The field is absent while no route is stored. Values sent by clients are ignored. own PolisRouteOwn is the connection-specific ACS URL route of the provider. shared PolisRouteShared is the shared ACS URL route (/saml/api/oauth/saml).
+	PolisRouteKind *string `json:"polis_route_kind,omitempty"`
 	// The Revision's ID this schema belongs to
 	ProjectRevisionId *string `json:"project_revision_id,omitempty"`
 	// ID is the provider's ID
@@ -663,6 +665,38 @@ func (o *NormalizedProjectRevisionSAMLProvider) UnsetOrganizationId() {
 	o.OrganizationId.Unset()
 }
 
+// GetPolisRouteKind returns the PolisRouteKind field value if set, zero value otherwise.
+func (o *NormalizedProjectRevisionSAMLProvider) GetPolisRouteKind() string {
+	if o == nil || IsNil(o.PolisRouteKind) {
+		var ret string
+		return ret
+	}
+	return *o.PolisRouteKind
+}
+
+// GetPolisRouteKindOk returns a tuple with the PolisRouteKind field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) GetPolisRouteKindOk() (*string, bool) {
+	if o == nil || IsNil(o.PolisRouteKind) {
+		return nil, false
+	}
+	return o.PolisRouteKind, true
+}
+
+// HasPolisRouteKind returns a boolean if a field has been set.
+func (o *NormalizedProjectRevisionSAMLProvider) HasPolisRouteKind() bool {
+	if o != nil && !IsNil(o.PolisRouteKind) {
+		return true
+	}
+
+	return false
+}
+
+// SetPolisRouteKind gets a reference to the given string and assigns it to the PolisRouteKind field.
+func (o *NormalizedProjectRevisionSAMLProvider) SetPolisRouteKind(v string) {
+	o.PolisRouteKind = &v
+}
+
 // GetProjectRevisionId returns the ProjectRevisionId field value if set, zero value otherwise.
 func (o *NormalizedProjectRevisionSAMLProvider) GetProjectRevisionId() string {
 	if o == nil || IsNil(o.ProjectRevisionId) {
@@ -1135,6 +1169,9 @@ func (o NormalizedProjectRevisionSAMLProvider) ToMap() (map[string]interface{}, 
 	if o.OrganizationId.IsSet() {
 		toSerialize["organization_id"] = o.OrganizationId.Get()
 	}
+	if !IsNil(o.PolisRouteKind) {
+		toSerialize["polis_route_kind"] = o.PolisRouteKind
+	}
 	if !IsNil(o.ProjectRevisionId) {
 		toSerialize["project_revision_id"] = o.ProjectRevisionId
 	}
@@ -1209,6 +1246,7 @@ func (o *NormalizedProjectRevisionSAMLProvider) UnmarshalJSON(data []byte) (err 
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "mapper_url")
 		delete(additionalProperties, "organization_id")
+		delete(additionalProperties, "polis_route_kind")
 		delete(additionalProperties, "project_revision_id")
 		delete(additionalProperties, "provider_id")
 		delete(additionalProperties, "proxy_acs_url")

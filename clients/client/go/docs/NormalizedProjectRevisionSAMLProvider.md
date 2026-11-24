@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **Label** | Pointer to **string** | Label represents an optional label which can be used in the UI generation. | [optional] 
 **MapperUrl** | Pointer to **string** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider&#39;s data (e.g. GitHub or Google profile information) to hydrate the identity&#39;s data. | [optional] 
 **OrganizationId** | Pointer to **NullableString** |  | [optional] 
+**PolisRouteKind** | Pointer to **string** | The ACS URL route of the provider&#39;s Polis connection: \&quot;own\&quot; for the provider&#39;s own route, /saml/api/oauth/saml/&lt;provider_id&gt;, or \&quot;shared\&quot; for the shared route, /saml/api/oauth/saml. Ory stores it with the connection. The field is absent while no route is stored. Values sent by clients are ignored. own PolisRouteOwn is the connection-specific ACS URL route of the provider. shared PolisRouteShared is the shared ACS URL route (/saml/api/oauth/saml). | [optional] [readonly] 
 **ProjectRevisionId** | Pointer to **string** | The Revision&#39;s ID this schema belongs to | [optional] 
 **ProviderId** | Pointer to **string** | ID is the provider&#39;s ID | [optional] 
 **ProxyAcsUrl** | Pointer to **NullableString** |  | [optional] 
@@ -512,6 +513,31 @@ HasOrganizationId returns a boolean if a field has been set.
 `func (o *NormalizedProjectRevisionSAMLProvider) UnsetOrganizationId()`
 
 UnsetOrganizationId ensures that no value is present for OrganizationId, not even an explicit nil
+### GetPolisRouteKind
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetPolisRouteKind() string`
+
+GetPolisRouteKind returns the PolisRouteKind field if non-nil, zero value otherwise.
+
+### GetPolisRouteKindOk
+
+`func (o *NormalizedProjectRevisionSAMLProvider) GetPolisRouteKindOk() (*string, bool)`
+
+GetPolisRouteKindOk returns a tuple with the PolisRouteKind field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPolisRouteKind
+
+`func (o *NormalizedProjectRevisionSAMLProvider) SetPolisRouteKind(v string)`
+
+SetPolisRouteKind sets PolisRouteKind field to given value.
+
+### HasPolisRouteKind
+
+`func (o *NormalizedProjectRevisionSAMLProvider) HasPolisRouteKind() bool`
+
+HasPolisRouteKind returns a boolean if a field has been set.
+
 ### GetProjectRevisionId
 
 `func (o *NormalizedProjectRevisionSAMLProvider) GetProjectRevisionId() string`

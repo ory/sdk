@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.97
+  version: v1.22.98
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -7340,8 +7340,10 @@ paths:
       description: |-
         This endpoint serves the per-project SAML Service Provider metadata
         document: the SP entity ID and certificates this Ory Network project
-        presents to every SAML identity provider by default. It is a public,
-        unauthenticated, cacheable endpoint and never contains a private key.
+        presents to every SAML identity provider by default, and the Assertion
+        Consumer Service (ACS) URL of every native connection that uses that SP
+        entity ID. It is a public, unauthenticated, cacheable endpoint and never
+        contains a private key.
 
         By SAML SP convention, the returned entity ID is this endpoint's own URL.
         The native engine derives and uses it automatically as the default SP entity
@@ -7349,8 +7351,9 @@ paths:
         identity provider administrator setting up SSO. A connection can present a
         different SP entity ID via `sp_entity_id`.
 
-        This endpoint 404s if no native SAML connection has been configured for
-        this project yet (no SP signing key exists to publish).
+        This endpoint 404s if no native SAML connection uses the project's default SP
+        entity ID: either none is configured yet, or every one sets a different
+        `sp_entity_id`.
       operationId: getSamlMetadata
       responses:
         "200":
@@ -12559,7 +12562,7 @@ components:
           description: |-
             Configures the Ory Kratos Faster Session Extend setting
 
-            If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200.
+            If enabled allows faster session extension by skipping the session lookup and returning 204 instead of 200.
             Disabling this feature will be deprecated in the future.
 
             This governs the "feature_flags.faster_session_extend" setting.
@@ -12589,15 +12592,6 @@ components:
             This flag is deprecated and will be removed in the future.
 
             This governs the "feature_flags.legacy_require_verified_login_error" setting.
-          type: boolean
-        kratos_feature_flags_password_profile_registration_node_group:
-          description: |-
-            Configures the group for the password method in the registration flow.
-
-            If true, it sets the password method group value to "password" if it is the only method available. This is the legacy behavior.
-            If false is, it sets the password method group value to "default".
-
-            This governs the "feature_flags.password_profile_registration_node_group" setting.
           type: boolean
         kratos_feature_flags_refresh_login_choose_address:
           description: |-
@@ -21893,7 +21887,7 @@ components:
           description: |-
             Configures the Ory Kratos Faster Session Extend setting
 
-            If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200.
+            If enabled allows faster session extension by skipping the session lookup and returning 204 instead of 200.
             Disabling this feature will be deprecated in the future.
 
             This governs the "feature_flags.faster_session_extend" setting.
@@ -21923,15 +21917,6 @@ components:
             This flag is deprecated and will be removed in the future.
 
             This governs the "feature_flags.legacy_require_verified_login_error" setting.
-          type: boolean
-        kratos_feature_flags_password_profile_registration_node_group:
-          description: |-
-            Configures the group for the password method in the registration flow.
-
-            If true, it sets the password method group value to "password" if it is the only method available. This is the legacy behavior.
-            If false is, it sets the password method group value to "default".
-
-            This governs the "feature_flags.password_profile_registration_node_group" setting.
           type: boolean
         kratos_feature_flags_refresh_login_choose_address:
           description: |-
@@ -23362,6 +23347,23 @@ components:
           format: uuid4
           nullable: true
           type: string
+        polis_route_kind:
+          description: |-
+            The ACS URL route of the provider's Polis connection: "own" for the
+            provider's own route, /saml/api/oauth/saml/<provider_id>, or "shared"
+            for the shared route, /saml/api/oauth/saml. Ory stores it with the
+            connection. The field is absent while no route is stored. Values sent
+            by clients are ignored.
+            own PolisRouteOwn is the connection-specific ACS URL route of the provider.
+            shared PolisRouteShared is the shared ACS URL route (/saml/api/oauth/saml).
+          enum:
+          - own
+          - shared
+          readOnly: true
+          type: string
+          x-go-enum-desc: |-
+            own PolisRouteOwn is the connection-specific ACS URL route of the provider.
+            shared PolisRouteShared is the shared ACS URL route (/saml/api/oauth/saml).
         project_revision_id:
           description: The Revision's ID this schema belongs to
           format: uuid

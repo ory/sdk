@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.97
+API version: v1.22.98
 Contact: support@ory.sh
 */
 
@@ -316,7 +316,7 @@ type CreateProjectNormalizedPayload struct {
 	KratosFeatureFlagsChooseRecoveryAddress *bool `json:"kratos_feature_flags_choose_recovery_address,omitempty"`
 	// Configures whether Ory Kratos enforces the identity schema guards  If enabled, an identity schema that does not pass the identity schema guards is rejected. If disabled, the result is logged and the schema is used.  This governs the \"feature_flags.enforce_identity_schema_guards\" setting.
 	KratosFeatureFlagsEnforceIdentitySchemaGuards *bool `json:"kratos_feature_flags_enforce_identity_schema_guards,omitempty"`
-	// Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 201 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
+	// Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 204 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
 	KratosFeatureFlagsFasterSessionExtend *bool `json:"kratos_feature_flags_faster_session_extend,omitempty"`
 	// Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.  This governs the \"feature_flags.legacy_continue_with_verification_ui\" setting.
 	KratosFeatureFlagsLegacyContinueWithVerificationUi *bool `json:"kratos_feature_flags_legacy_continue_with_verification_ui,omitempty"`
@@ -324,8 +324,6 @@ type CreateProjectNormalizedPayload struct {
 	KratosFeatureFlagsLegacyOidcRegistrationNodeGroup *bool `json:"kratos_feature_flags_legacy_oidc_registration_node_group,omitempty"`
 	// Return a form error if the login identifier is not verified  If true, the login flow will return a form error if the login identifier is not verified, which restores legacy behavior. If this value is false, the `continue_with` array will contain a `show_verification_ui` hook instead.  This flag is deprecated and will be removed in the future.  This governs the \"feature_flags.legacy_require_verified_login_error\" setting.
 	KratosFeatureFlagsLegacyRequireVerifiedLoginError *bool `json:"kratos_feature_flags_legacy_require_verified_login_error,omitempty"`
-	// Configures the group for the password method in the registration flow.  If true, it sets the password method group value to \"password\" if it is the only method available. This is the legacy behavior. If false is, it sets the password method group value to \"default\".  This governs the \"feature_flags.password_profile_registration_node_group\" setting.
-	KratosFeatureFlagsPasswordProfileRegistrationNodeGroup *bool `json:"kratos_feature_flags_password_profile_registration_node_group,omitempty"`
 	// Render an address picker on the code refresh login screen  If true, a code-strategy refresh (privileged re-authentication) login renders a \"Send code to <address>\" button per available code address instead of re-asking for the identifier. The identity is already fixed by the active session, so re-entering the identifier is unnecessary. It is safe to toggle this back and forth.  This governs the \"feature_flags.refresh_login_choose_address\" setting.
 	KratosFeatureFlagsRefreshLoginChooseAddress *bool `json:"kratos_feature_flags_refresh_login_choose_address,omitempty"`
 	// Configures the Ory Kratos Session use_continue_with_transitions flag  This governs the \"feature_flags.use_continue_with_transitions\" setting.
@@ -5590,38 +5588,6 @@ func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsLegacyRequireVerif
 // SetKratosFeatureFlagsLegacyRequireVerifiedLoginError gets a reference to the given bool and assigns it to the KratosFeatureFlagsLegacyRequireVerifiedLoginError field.
 func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsLegacyRequireVerifiedLoginError(v bool) {
 	o.KratosFeatureFlagsLegacyRequireVerifiedLoginError = &v
-}
-
-// GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup returns the KratosFeatureFlagsPasswordProfileRegistrationNodeGroup field value if set, zero value otherwise.
-func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup() bool {
-	if o == nil || IsNil(o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup) {
-		var ret bool
-		return ret
-	}
-	return *o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup
-}
-
-// GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroupOk returns a tuple with the KratosFeatureFlagsPasswordProfileRegistrationNodeGroup field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsPasswordProfileRegistrationNodeGroupOk() (*bool, bool) {
-	if o == nil || IsNil(o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup) {
-		return nil, false
-	}
-	return o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup, true
-}
-
-// HasKratosFeatureFlagsPasswordProfileRegistrationNodeGroup returns a boolean if a field has been set.
-func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsPasswordProfileRegistrationNodeGroup() bool {
-	if o != nil && !IsNil(o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup) {
-		return true
-	}
-
-	return false
-}
-
-// SetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup gets a reference to the given bool and assigns it to the KratosFeatureFlagsPasswordProfileRegistrationNodeGroup field.
-func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsPasswordProfileRegistrationNodeGroup(v bool) {
-	o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup = &v
 }
 
 // GetKratosFeatureFlagsRefreshLoginChooseAddress returns the KratosFeatureFlagsRefreshLoginChooseAddress field value if set, zero value otherwise.
@@ -11616,9 +11582,6 @@ func (o CreateProjectNormalizedPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.KratosFeatureFlagsLegacyRequireVerifiedLoginError) {
 		toSerialize["kratos_feature_flags_legacy_require_verified_login_error"] = o.KratosFeatureFlagsLegacyRequireVerifiedLoginError
 	}
-	if !IsNil(o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup) {
-		toSerialize["kratos_feature_flags_password_profile_registration_node_group"] = o.KratosFeatureFlagsPasswordProfileRegistrationNodeGroup
-	}
 	if !IsNil(o.KratosFeatureFlagsRefreshLoginChooseAddress) {
 		toSerialize["kratos_feature_flags_refresh_login_choose_address"] = o.KratosFeatureFlagsRefreshLoginChooseAddress
 	}
@@ -12332,7 +12295,6 @@ func (o *CreateProjectNormalizedPayload) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "kratos_feature_flags_legacy_continue_with_verification_ui")
 		delete(additionalProperties, "kratos_feature_flags_legacy_oidc_registration_node_group")
 		delete(additionalProperties, "kratos_feature_flags_legacy_require_verified_login_error")
-		delete(additionalProperties, "kratos_feature_flags_password_profile_registration_node_group")
 		delete(additionalProperties, "kratos_feature_flags_refresh_login_choose_address")
 		delete(additionalProperties, "kratos_feature_flags_use_continue_with_transitions")
 		delete(additionalProperties, "kratos_feature_flags_webhook_response_directives")

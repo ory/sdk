@@ -159,7 +159,6 @@ Name | Type
 `kratos_feature_flags_legacy_continue_with_verification_ui` | boolean
 `kratos_feature_flags_legacy_oidc_registration_node_group` | boolean
 `kratos_feature_flags_legacy_require_verified_login_error` | boolean
-`kratos_feature_flags_password_profile_registration_node_group` | boolean
 `kratos_feature_flags_refresh_login_choose_address` | boolean
 `kratos_feature_flags_use_continue_with_transitions` | boolean
 `kratos_feature_flags_webhook_response_directives` | boolean
@@ -493,7 +492,6 @@ const example = {
   "kratos_feature_flags_legacy_continue_with_verification_ui": null,
   "kratos_feature_flags_legacy_oidc_registration_node_group": null,
   "kratos_feature_flags_legacy_require_verified_login_error": null,
-  "kratos_feature_flags_password_profile_registration_node_group": null,
   "kratos_feature_flags_refresh_login_choose_address": null,
   "kratos_feature_flags_use_continue_with_transitions": null,
   "kratos_feature_flags_webhook_response_directives": null,

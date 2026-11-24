@@ -1610,7 +1610,7 @@ No authorization required
 
 Get SAML SP Metadata
 
-This endpoint serves the per-project SAML Service Provider metadata document: the SP entity ID and certificates this Ory Network project presents to every SAML identity provider by default. It is a public, unauthenticated, cacheable endpoint and never contains a private key.  By SAML SP convention, the returned entity ID is this endpoint\&#39;s own URL. The native engine derives and uses it automatically as the default SP entity ID for every connection, so there is nothing to copy; share it with an identity provider administrator setting up SSO. A connection can present a different SP entity ID via &#x60;sp_entity_id&#x60;.  This endpoint 404s if no native SAML connection has been configured for this project yet (no SP signing key exists to publish).
+This endpoint serves the per-project SAML Service Provider metadata document: the SP entity ID and certificates this Ory Network project presents to every SAML identity provider by default, and the Assertion Consumer Service (ACS) URL of every native connection that uses that SP entity ID. It is a public, unauthenticated, cacheable endpoint and never contains a private key.  By SAML SP convention, the returned entity ID is this endpoint\&#39;s own URL. The native engine derives and uses it automatically as the default SP entity ID for every connection, so there is nothing to copy; share it with an identity provider administrator setting up SSO. A connection can present a different SP entity ID via &#x60;sp_entity_id&#x60;.  This endpoint 404s if no native SAML connection uses the project\&#39;s default SP entity ID: either none is configured yet, or every one sets a different &#x60;sp_entity_id&#x60;.
 
 ### Example
 

@@ -20,6 +20,7 @@
 | **label** | **String** | Label represents an optional label which can be used in the UI generation. | [optional] |
 | **mapper_url** | **String** | Mapper specifies the JSONNet code snippet which uses the OpenID Connect Provider&#39;s data (e.g. GitHub or Google profile information) to hydrate the identity&#39;s data. | [optional] |
 | **organization_id** | **String** |  | [optional] |
+| **polis_route_kind** | **String** | The ACS URL route of the provider&#39;s Polis connection: \&quot;own\&quot; for the provider&#39;s own route, /saml/api/oauth/saml/&lt;provider_id&gt;, or \&quot;shared\&quot; for the shared route, /saml/api/oauth/saml. Ory stores it with the connection. The field is absent while no route is stored. Values sent by clients are ignored. own PolisRouteOwn is the connection-specific ACS URL route of the provider. shared PolisRouteShared is the shared ACS URL route (/saml/api/oauth/saml). | [optional][readonly] |
 | **project_revision_id** | **String** | The Revision&#39;s ID this schema belongs to | [optional] |
 | **provider_id** | **String** | ID is the provider&#39;s ID | [optional] |
 | **proxy_acs_url** | **String** |  | [optional] |
@@ -55,6 +56,7 @@ instance = OryClient::NormalizedProjectRevisionSAMLProvider.new(
   label: null,
   mapper_url: null,
   organization_id: null,
+  polis_route_kind: null,
   project_revision_id: null,
   provider_id: null,
   proxy_acs_url: null,

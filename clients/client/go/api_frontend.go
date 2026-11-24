@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.97
+API version: v1.22.98
 Contact: support@ory.sh
 */
 
@@ -575,8 +575,10 @@ More information can be found at [Ory Kratos User Login](https://www.ory.com/doc
 
 	This endpoint serves the per-project SAML Service Provider metadata
 document: the SP entity ID and certificates this Ory Network project
-presents to every SAML identity provider by default. It is a public,
-unauthenticated, cacheable endpoint and never contains a private key.
+presents to every SAML identity provider by default, and the Assertion
+Consumer Service (ACS) URL of every native connection that uses that SP
+entity ID. It is a public, unauthenticated, cacheable endpoint and never
+contains a private key.
 
 By SAML SP convention, the returned entity ID is this endpoint's own URL.
 The native engine derives and uses it automatically as the default SP entity
@@ -584,8 +586,9 @@ ID for every connection, so there is nothing to copy; share it with an
 identity provider administrator setting up SSO. A connection can present a
 different SP entity ID via `sp_entity_id`.
 
-This endpoint 404s if no native SAML connection has been configured for
-this project yet (no SP signing key exists to publish).
+This endpoint 404s if no native SAML connection uses the project's default SP
+entity ID: either none is configured yet, or every one sets a different
+`sp_entity_id`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return FrontendAPIGetSamlMetadataRequest
@@ -4595,8 +4598,10 @@ GetSamlMetadata Get SAML SP Metadata
 
 This endpoint serves the per-project SAML Service Provider metadata
 document: the SP entity ID and certificates this Ory Network project
-presents to every SAML identity provider by default. It is a public,
-unauthenticated, cacheable endpoint and never contains a private key.
+presents to every SAML identity provider by default, and the Assertion
+Consumer Service (ACS) URL of every native connection that uses that SP
+entity ID. It is a public, unauthenticated, cacheable endpoint and never
+contains a private key.
 
 By SAML SP convention, the returned entity ID is this endpoint's own URL.
 The native engine derives and uses it automatically as the default SP entity
@@ -4604,8 +4609,9 @@ ID for every connection, so there is nothing to copy; share it with an
 identity provider administrator setting up SSO. A connection can present a
 different SP entity ID via `sp_entity_id`.
 
-This endpoint 404s if no native SAML connection has been configured for
-this project yet (no SP signing key exists to publish).
+This endpoint 404s if no native SAML connection uses the project's default SP
+entity ID: either none is configured yet, or every one sets a different
+`sp_entity_id`.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return FrontendAPIGetSamlMetadataRequest
