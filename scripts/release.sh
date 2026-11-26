@@ -38,18 +38,27 @@ to_git() {
     dotnet)
       export INSTALL="Install via [.NET (nuget)](https://www.nuget.org/packages/${DOTNET_PACKAGE_NAME}/)"
       ;;
-    golang)
-      export INSTALL='```
-go get https://github.com/ory/${GIT_REPO}
-```'
+    go)
+      go_module="github.com/ory/${GIT_REPO}-go/v${RAW_VERSION%%.*}"
+      if [ "${PROJECT}" == "client" ]; then
+        go_module="github.com/ory/${GIT_REPO}-go"
+      fi
+      export INSTALL="\`\`\`
+go get ${go_module}
+\`\`\`"
       ;;
     java)
       export INSTALL="[Java (Maven Central)](https://search.maven.org/artifact/${JAVA_GROUP_ID}/${JAVA_ARTIFACT_ID})"
       ;;
-    typescript)
-      export INSTALL='```
+    js)
+      export INSTALL="\`\`\`
 npm i ${NPM_NAME}
-```'
+\`\`\`"
+      ;;
+    typescript-fetch)
+      export INSTALL="\`\`\`
+npm i ${NPM_NAME}-fetch
+\`\`\`"
       ;;
     php)
       export INSTALL="[PHP (Packagist)](https://packagist.org/packages/${PHP_PACKAGE_NAME})"
