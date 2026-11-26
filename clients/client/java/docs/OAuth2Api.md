@@ -388,7 +388,7 @@ public class Example {
 
 <a id="deleteOAuth2Client"></a>
 # **deleteOAuth2Client**
-> deleteOAuth2Client(id)
+> deleteOAuth2Client(id, clientId)
 
 Delete OAuth 2.0 Client
 
@@ -415,8 +415,9 @@ public class Example {
 
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String id = "id_example"; // String | The id of the OAuth 2.0 Client.
+    String clientId = "clientId_example"; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
     try {
-      apiInstance.deleteOAuth2Client(id);
+      apiInstance.deleteOAuth2Client(id, clientId);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#deleteOAuth2Client");
       System.err.println("Status code: " + e.getCode());
@@ -433,6 +434,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| The id of the OAuth 2.0 Client. | |
+| **clientId** | **String**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -522,7 +524,7 @@ null (empty response body)
 
 <a id="deleteRotatedOAuth2ClientSecrets"></a>
 # **deleteRotatedOAuth2ClientSecrets**
-> OAuth2Client deleteRotatedOAuth2ClientSecrets(id)
+> OAuth2Client deleteRotatedOAuth2ClientSecrets(id, clientId)
 
 Delete Rotated OAuth 2.0 Client Secrets
 
@@ -549,8 +551,9 @@ public class Example {
 
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String id = "id_example"; // String | OAuth 2.0 Client ID
+    String clientId = "clientId_example"; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
     try {
-      OAuth2Client result = apiInstance.deleteRotatedOAuth2ClientSecrets(id);
+      OAuth2Client result = apiInstance.deleteRotatedOAuth2ClientSecrets(id, clientId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#deleteRotatedOAuth2ClientSecrets");
@@ -568,6 +571,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| OAuth 2.0 Client ID | |
+| **clientId** | **String**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -658,7 +662,7 @@ null (empty response body)
 
 <a id="getOAuth2Client"></a>
 # **getOAuth2Client**
-> OAuth2Client getOAuth2Client(id)
+> OAuth2Client getOAuth2Client(id, clientId)
 
 Get an OAuth 2.0 Client
 
@@ -685,8 +689,9 @@ public class Example {
 
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String id = "id_example"; // String | The id of the OAuth 2.0 Client.
+    String clientId = "clientId_example"; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
     try {
-      OAuth2Client result = apiInstance.getOAuth2Client(id);
+      OAuth2Client result = apiInstance.getOAuth2Client(id, clientId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#getOAuth2Client");
@@ -704,6 +709,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| The id of the OAuth 2.0 Client. | |
+| **clientId** | **String**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -1495,7 +1501,7 @@ public class Example {
 
 <a id="patchOAuth2Client"></a>
 # **patchOAuth2Client**
-> OAuth2Client patchOAuth2Client(id, jsonPatch)
+> OAuth2Client patchOAuth2Client(id, jsonPatch, clientId)
 
 Patch OAuth 2.0 Client
 
@@ -1523,8 +1529,9 @@ public class Example {
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String id = "id_example"; // String | The id of the OAuth 2.0 Client.
     List<JsonPatch> jsonPatch = Arrays.asList(); // List<JsonPatch> | OAuth 2.0 Client JSON Patch Body
+    String clientId = "clientId_example"; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
     try {
-      OAuth2Client result = apiInstance.patchOAuth2Client(id, jsonPatch);
+      OAuth2Client result = apiInstance.patchOAuth2Client(id, jsonPatch, clientId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#patchOAuth2Client");
@@ -1543,6 +1550,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| The id of the OAuth 2.0 Client. | |
 | **jsonPatch** | [**List&lt;JsonPatch&gt;**](JsonPatch.md)| OAuth 2.0 Client JSON Patch Body | |
+| **clientId** | **String**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -2050,7 +2058,7 @@ null (empty response body)
 
 <a id="rotateOAuth2ClientSecret"></a>
 # **rotateOAuth2ClientSecret**
-> OAuth2Client rotateOAuth2ClientSecret(id, rotateOAuth2ClientSecretBody)
+> OAuth2Client rotateOAuth2ClientSecret(id, clientId, rotateOAuth2ClientSecretBody)
 
 Rotate OAuth 2.0 Client Secret
 
@@ -2077,9 +2085,10 @@ public class Example {
 
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String id = "id_example"; // String | OAuth 2.0 Client ID
+    String clientId = "clientId_example"; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
     RotateOAuth2ClientSecretBody rotateOAuth2ClientSecretBody = new RotateOAuth2ClientSecretBody(); // RotateOAuth2ClientSecretBody | 
     try {
-      OAuth2Client result = apiInstance.rotateOAuth2ClientSecret(id, rotateOAuth2ClientSecretBody);
+      OAuth2Client result = apiInstance.rotateOAuth2ClientSecret(id, clientId, rotateOAuth2ClientSecretBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#rotateOAuth2ClientSecret");
@@ -2097,6 +2106,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| OAuth 2.0 Client ID | |
+| **clientId** | **String**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 | **rotateOAuth2ClientSecretBody** | [**RotateOAuth2ClientSecretBody**](RotateOAuth2ClientSecretBody.md)|  | [optional] |
 
 ### Return type
@@ -2122,7 +2132,7 @@ public class Example {
 
 <a id="setOAuth2Client"></a>
 # **setOAuth2Client**
-> OAuth2Client setOAuth2Client(id, oauth2Client)
+> OAuth2Client setOAuth2Client(id, oauth2Client, clientId)
 
 Set OAuth 2.0 Client
 
@@ -2150,8 +2160,9 @@ public class Example {
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String id = "id_example"; // String | OAuth 2.0 Client ID
     OAuth2Client oauth2Client = new OAuth2Client(); // OAuth2Client | OAuth 2.0 Client Request Body
+    String clientId = "clientId_example"; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
     try {
-      OAuth2Client result = apiInstance.setOAuth2Client(id, oauth2Client);
+      OAuth2Client result = apiInstance.setOAuth2Client(id, oauth2Client, clientId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#setOAuth2Client");
@@ -2170,6 +2181,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| OAuth 2.0 Client ID | |
 | **oauth2Client** | [**OAuth2Client**](OAuth2Client.md)| OAuth 2.0 Client Request Body | |
+| **clientId** | **String**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -2194,7 +2206,7 @@ public class Example {
 
 <a id="setOAuth2ClientLifespans"></a>
 # **setOAuth2ClientLifespans**
-> OAuth2Client setOAuth2ClientLifespans(id, oauth2ClientTokenLifespans)
+> OAuth2Client setOAuth2ClientLifespans(id, clientId, oauth2ClientTokenLifespans)
 
 Set OAuth2 Client Token Lifespans
 
@@ -2221,9 +2233,10 @@ public class Example {
 
     OAuth2Api apiInstance = new OAuth2Api(defaultClient);
     String id = "id_example"; // String | OAuth 2.0 Client ID
+    String clientId = "clientId_example"; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
     OAuth2ClientTokenLifespans oauth2ClientTokenLifespans = new OAuth2ClientTokenLifespans(); // OAuth2ClientTokenLifespans | 
     try {
-      OAuth2Client result = apiInstance.setOAuth2ClientLifespans(id, oauth2ClientTokenLifespans);
+      OAuth2Client result = apiInstance.setOAuth2ClientLifespans(id, clientId, oauth2ClientTokenLifespans);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OAuth2Api#setOAuth2ClientLifespans");
@@ -2241,6 +2254,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| OAuth 2.0 Client ID | |
+| **clientId** | **String**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 | **oauth2ClientTokenLifespans** | [**OAuth2ClientTokenLifespans**](OAuth2ClientTokenLifespans.md)|  | [optional] |
 
 ### Return type

@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.98
+API version: v1.22.99
 Contact: support@ory.sh
 */
 
@@ -1290,6 +1290,13 @@ type OAuth2APIDeleteOAuth2ClientRequest struct {
 	ctx context.Context
 	ApiService OAuth2API
 	id string
+	clientId *string
+}
+
+// The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter.
+func (r OAuth2APIDeleteOAuth2ClientRequest) ClientId(clientId string) OAuth2APIDeleteOAuth2ClientRequest {
+	r.clientId = &clientId
+	return r
 }
 
 func (r OAuth2APIDeleteOAuth2ClientRequest) Execute() (*http.Response, error) {
@@ -1338,6 +1345,9 @@ func (a *OAuth2APIService) DeleteOAuth2ClientExecute(r OAuth2APIDeleteOAuth2Clie
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.clientId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1502,6 +1512,13 @@ type OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest struct {
 	ctx context.Context
 	ApiService OAuth2API
 	id string
+	clientId *string
+}
+
+// The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter.
+func (r OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest) ClientId(clientId string) OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest {
+	r.clientId = &clientId
+	return r
 }
 
 func (r OAuth2APIDeleteRotatedOAuth2ClientSecretsRequest) Execute() (*OAuth2Client, *http.Response, error) {
@@ -1548,6 +1565,9 @@ func (a *OAuth2APIService) DeleteRotatedOAuth2ClientSecretsExecute(r OAuth2APIDe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.clientId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1729,6 +1749,13 @@ type OAuth2APIGetOAuth2ClientRequest struct {
 	ctx context.Context
 	ApiService OAuth2API
 	id string
+	clientId *string
+}
+
+// The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter.
+func (r OAuth2APIGetOAuth2ClientRequest) ClientId(clientId string) OAuth2APIGetOAuth2ClientRequest {
+	r.clientId = &clientId
+	return r
 }
 
 func (r OAuth2APIGetOAuth2ClientRequest) Execute() (*OAuth2Client, *http.Response, error) {
@@ -1777,6 +1804,9 @@ func (a *OAuth2APIService) GetOAuth2ClientExecute(r OAuth2APIGetOAuth2ClientRequ
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.clientId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3331,11 +3361,18 @@ type OAuth2APIPatchOAuth2ClientRequest struct {
 	ApiService OAuth2API
 	id string
 	jsonPatch *[]JsonPatch
+	clientId *string
 }
 
 // OAuth 2.0 Client JSON Patch Body
 func (r OAuth2APIPatchOAuth2ClientRequest) JsonPatch(jsonPatch []JsonPatch) OAuth2APIPatchOAuth2ClientRequest {
 	r.jsonPatch = &jsonPatch
+	return r
+}
+
+// The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter.
+func (r OAuth2APIPatchOAuth2ClientRequest) ClientId(clientId string) OAuth2APIPatchOAuth2ClientRequest {
+	r.clientId = &clientId
 	return r
 }
 
@@ -3393,6 +3430,9 @@ func (a *OAuth2APIService) PatchOAuth2ClientExecute(r OAuth2APIPatchOAuth2Client
 		return localVarReturnValue, nil, reportError("jsonPatch is required and must be specified")
 	}
 
+	if r.clientId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -4352,7 +4392,14 @@ type OAuth2APIRotateOAuth2ClientSecretRequest struct {
 	ctx context.Context
 	ApiService OAuth2API
 	id string
+	clientId *string
 	rotateOAuth2ClientSecretBody *RotateOAuth2ClientSecretBody
+}
+
+// The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter.
+func (r OAuth2APIRotateOAuth2ClientSecretRequest) ClientId(clientId string) OAuth2APIRotateOAuth2ClientSecretRequest {
+	r.clientId = &clientId
+	return r
 }
 
 func (r OAuth2APIRotateOAuth2ClientSecretRequest) RotateOAuth2ClientSecretBody(rotateOAuth2ClientSecretBody RotateOAuth2ClientSecretBody) OAuth2APIRotateOAuth2ClientSecretRequest {
@@ -4412,6 +4459,9 @@ func (a *OAuth2APIService) RotateOAuth2ClientSecretExecute(r OAuth2APIRotateOAut
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.clientId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -4503,11 +4553,18 @@ type OAuth2APISetOAuth2ClientRequest struct {
 	ApiService OAuth2API
 	id string
 	oAuth2Client *OAuth2Client
+	clientId *string
 }
 
 // OAuth 2.0 Client Request Body
 func (r OAuth2APISetOAuth2ClientRequest) OAuth2Client(oAuth2Client OAuth2Client) OAuth2APISetOAuth2ClientRequest {
 	r.oAuth2Client = &oAuth2Client
+	return r
+}
+
+// The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter.
+func (r OAuth2APISetOAuth2ClientRequest) ClientId(clientId string) OAuth2APISetOAuth2ClientRequest {
+	r.clientId = &clientId
 	return r
 }
 
@@ -4565,6 +4622,9 @@ func (a *OAuth2APIService) SetOAuth2ClientExecute(r OAuth2APISetOAuth2ClientRequ
 		return localVarReturnValue, nil, reportError("oAuth2Client is required and must be specified")
 	}
 
+	if r.clientId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -4655,7 +4715,14 @@ type OAuth2APISetOAuth2ClientLifespansRequest struct {
 	ctx context.Context
 	ApiService OAuth2API
 	id string
+	clientId *string
 	oAuth2ClientTokenLifespans *OAuth2ClientTokenLifespans
+}
+
+// The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter.
+func (r OAuth2APISetOAuth2ClientLifespansRequest) ClientId(clientId string) OAuth2APISetOAuth2ClientLifespansRequest {
+	r.clientId = &clientId
+	return r
 }
 
 func (r OAuth2APISetOAuth2ClientLifespansRequest) OAuth2ClientTokenLifespans(oAuth2ClientTokenLifespans OAuth2ClientTokenLifespans) OAuth2APISetOAuth2ClientLifespansRequest {
@@ -4706,6 +4773,9 @@ func (a *OAuth2APIService) SetOAuth2ClientLifespansExecute(r OAuth2APISetOAuth2C
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.clientId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

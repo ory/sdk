@@ -39,7 +39,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: /tos
   title: Ory APIs
-  version: v1.22.98
+  version: v1.22.99
 servers:
 - url: "https://{project_slug}.projects.oryapis.com/"
   variables:
@@ -301,6 +301,18 @@ paths:
         Make sure that this endpoint is well protected and only callable by first-party components.
       operationId: deleteOAuth2Client
       parameters:
+      - description: |-
+          The ID of the OAuth 2.0 Client, for client IDs with special characters,
+          such as URLs, that proxies may reject when they are encoded in the URL
+          path. Set the `id` path parameter to `-` and send the client ID in this
+          parameter.
+        explode: true
+        in: query
+        name: client_id
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The id of the OAuth 2.0 Client.
         explode: false
         in: path
@@ -334,6 +346,18 @@ paths:
         generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
       operationId: getOAuth2Client
       parameters:
+      - description: |-
+          The ID of the OAuth 2.0 Client, for client IDs with special characters,
+          such as URLs, that proxies may reject when they are encoded in the URL
+          path. Set the `id` path parameter to `-` and send the client ID in this
+          parameter.
+        explode: true
+        in: query
+        name: client_id
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The id of the OAuth 2.0 Client.
         explode: false
         in: path
@@ -374,6 +398,18 @@ paths:
         generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
       operationId: patchOAuth2Client
       parameters:
+      - description: |-
+          The ID of the OAuth 2.0 Client, for client IDs with special characters,
+          such as URLs, that proxies may reject when they are encoded in the URL
+          path. Set the `id` path parameter to `-` and send the client ID in this
+          parameter.
+        explode: true
+        in: query
+        name: client_id
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The id of the OAuth 2.0 Client.
         explode: false
         in: path
@@ -428,6 +464,18 @@ paths:
         generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
       operationId: setOAuth2Client
       parameters:
+      - description: |-
+          The ID of the OAuth 2.0 Client, for client IDs with special characters,
+          such as URLs, that proxies may reject when they are encoded in the URL
+          path. Set the `id` path parameter to `-` and send the client ID in this
+          parameter.
+        explode: true
+        in: query
+        name: client_id
+        required: false
+        schema:
+          type: string
+        style: form
       - description: OAuth 2.0 Client ID
         explode: false
         in: path
@@ -481,6 +529,18 @@ paths:
         client. Does not modify other fields.
       operationId: setOAuth2ClientLifespans
       parameters:
+      - description: |-
+          The ID of the OAuth 2.0 Client, for client IDs with special characters,
+          such as URLs, that proxies may reject when they are encoded in the URL
+          path. Set the `id` path parameter to `-` and send the client ID in this
+          parameter.
+        explode: true
+        in: query
+        name: client_id
+        required: false
+        schema:
+          type: string
+        style: form
       - description: OAuth 2.0 Client ID
         explode: false
         in: path
@@ -521,6 +581,18 @@ paths:
         have been updated to use the new secret and the old secrets are no longer needed.
       operationId: deleteRotatedOAuth2ClientSecrets
       parameters:
+      - description: |-
+          The ID of the OAuth 2.0 Client, for client IDs with special characters,
+          such as URLs, that proxies may reject when they are encoded in the URL
+          path. Set the `id` path parameter to `-` and send the client ID in this
+          parameter.
+        explode: true
+        in: query
+        name: client_id
+        required: false
+        schema:
+          type: string
+        style: form
       - description: OAuth 2.0 Client ID
         explode: false
         in: path
@@ -568,6 +640,18 @@ paths:
         instead of a generated one. The request body is optional.
       operationId: rotateOAuth2ClientSecret
       parameters:
+      - description: |-
+          The ID of the OAuth 2.0 Client, for client IDs with special characters,
+          such as URLs, that proxies may reject when they are encoded in the URL
+          path. Set the `id` path parameter to `-` and send the client ID in this
+          parameter.
+        explode: true
+        in: query
+        name: client_id
+        required: false
+        schema:
+          type: string
+        style: form
       - description: OAuth 2.0 Client ID
         explode: false
         in: path
@@ -955,14 +1039,17 @@ paths:
 
         Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
 
-        If at least one identity is imported successfully, the response status is 200 OK.
-        If all imports fail, the response is one of the following 4xx errors:
-        - 400 Bad Request: The request payload is invalid or improperly formatted.
-        - 409 Conflict: Duplicate identities or conflicting data were detected.
+        By default, the response is 200 OK, also when no identity is imported. It lists the result of each identity: its ID if
+        it was imported, or the error that stopped it, such as 409 Conflict for an identity that conflicts with an existing one.
 
-        This applies while `with_partial_inserts` is true, which is the default. Set it to false to import the batch as a single
-        unit instead: one conflict then fails the whole request with 409 Conflict and no identity is created, in exchange for a
-        considerably faster import.
+        Set `with_partial_inserts` to false to import the batch as a single unit instead, in exchange for a considerably faster
+        import: one conflict then fails the whole request with 409 Conflict and no identity is created.
+
+        Apart from server errors, only the following errors fail the whole request, and then no identity is imported:
+        - 400 Bad Request: The request payload is invalid or improperly formatted.
+        - 409 Conflict: `with_partial_inserts` is false, and an identity conflicts with an existing identity or with another
+        identity in the batch. Self-hosted Ory Kratos on MySQL does not support partial inserts, so there a conflict also fails
+        the whole request when the batch has more than one valid identity.
 
         If you get a 504 Gateway Timeout:
         - Reduce the batch size

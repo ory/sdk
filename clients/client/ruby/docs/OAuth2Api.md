@@ -398,7 +398,7 @@ end
 
 ## delete_o_auth2_client
 
-> delete_o_auth2_client(id)
+> delete_o_auth2_client(id, opts)
 
 Delete OAuth 2.0 Client
 
@@ -417,10 +417,13 @@ end
 
 api_instance = OryClient::OAuth2Api.new
 id = 'id_example' # String | The id of the OAuth 2.0 Client.
+opts = {
+  client_id: 'client_id_example' # String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
+}
 
 begin
   # Delete OAuth 2.0 Client
-  api_instance.delete_o_auth2_client(id)
+  api_instance.delete_o_auth2_client(id, opts)
 rescue OryClient::ApiError => e
   puts "Error when calling OAuth2Api->delete_o_auth2_client: #{e}"
 end
@@ -430,12 +433,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> delete_o_auth2_client_with_http_info(id)
+> <Array(nil, Integer, Hash)> delete_o_auth2_client_with_http_info(id, opts)
 
 ```ruby
 begin
   # Delete OAuth 2.0 Client
-  data, status_code, headers = api_instance.delete_o_auth2_client_with_http_info(id)
+  data, status_code, headers = api_instance.delete_o_auth2_client_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -449,6 +452,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The id of the OAuth 2.0 Client. |  |
+| **client_id** | **String** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -534,7 +538,7 @@ nil (empty response body)
 
 ## delete_rotated_o_auth2_client_secrets
 
-> <OAuth2Client> delete_rotated_o_auth2_client_secrets(id)
+> <OAuth2Client> delete_rotated_o_auth2_client_secrets(id, opts)
 
 Delete Rotated OAuth 2.0 Client Secrets
 
@@ -553,10 +557,13 @@ end
 
 api_instance = OryClient::OAuth2Api.new
 id = 'id_example' # String | OAuth 2.0 Client ID
+opts = {
+  client_id: 'client_id_example' # String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
+}
 
 begin
   # Delete Rotated OAuth 2.0 Client Secrets
-  result = api_instance.delete_rotated_o_auth2_client_secrets(id)
+  result = api_instance.delete_rotated_o_auth2_client_secrets(id, opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling OAuth2Api->delete_rotated_o_auth2_client_secrets: #{e}"
@@ -567,12 +574,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> delete_rotated_o_auth2_client_secrets_with_http_info(id)
+> <Array(<OAuth2Client>, Integer, Hash)> delete_rotated_o_auth2_client_secrets_with_http_info(id, opts)
 
 ```ruby
 begin
   # Delete Rotated OAuth 2.0 Client Secrets
-  data, status_code, headers = api_instance.delete_rotated_o_auth2_client_secrets_with_http_info(id)
+  data, status_code, headers = api_instance.delete_rotated_o_auth2_client_secrets_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -586,6 +593,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | OAuth 2.0 Client ID |  |
+| **client_id** | **String** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -671,7 +679,7 @@ nil (empty response body)
 
 ## get_o_auth2_client
 
-> <OAuth2Client> get_o_auth2_client(id)
+> <OAuth2Client> get_o_auth2_client(id, opts)
 
 Get an OAuth 2.0 Client
 
@@ -690,10 +698,13 @@ end
 
 api_instance = OryClient::OAuth2Api.new
 id = 'id_example' # String | The id of the OAuth 2.0 Client.
+opts = {
+  client_id: 'client_id_example' # String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
+}
 
 begin
   # Get an OAuth 2.0 Client
-  result = api_instance.get_o_auth2_client(id)
+  result = api_instance.get_o_auth2_client(id, opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling OAuth2Api->get_o_auth2_client: #{e}"
@@ -704,12 +715,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> get_o_auth2_client_with_http_info(id)
+> <Array(<OAuth2Client>, Integer, Hash)> get_o_auth2_client_with_http_info(id, opts)
 
 ```ruby
 begin
   # Get an OAuth 2.0 Client
-  data, status_code, headers = api_instance.get_o_auth2_client_with_http_info(id)
+  data, status_code, headers = api_instance.get_o_auth2_client_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -723,6 +734,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The id of the OAuth 2.0 Client. |  |
+| **client_id** | **String** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -1530,7 +1542,7 @@ end
 
 ## patch_o_auth2_client
 
-> <OAuth2Client> patch_o_auth2_client(id, json_patch)
+> <OAuth2Client> patch_o_auth2_client(id, json_patch, opts)
 
 Patch OAuth 2.0 Client
 
@@ -1550,10 +1562,13 @@ end
 api_instance = OryClient::OAuth2Api.new
 id = 'id_example' # String | The id of the OAuth 2.0 Client.
 json_patch = [OryClient::JsonPatch.new({op: 'add', path: '/name'})] # Array<JsonPatch> | OAuth 2.0 Client JSON Patch Body
+opts = {
+  client_id: 'client_id_example' # String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
+}
 
 begin
   # Patch OAuth 2.0 Client
-  result = api_instance.patch_o_auth2_client(id, json_patch)
+  result = api_instance.patch_o_auth2_client(id, json_patch, opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling OAuth2Api->patch_o_auth2_client: #{e}"
@@ -1564,12 +1579,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> patch_o_auth2_client_with_http_info(id, json_patch)
+> <Array(<OAuth2Client>, Integer, Hash)> patch_o_auth2_client_with_http_info(id, json_patch, opts)
 
 ```ruby
 begin
   # Patch OAuth 2.0 Client
-  data, status_code, headers = api_instance.patch_o_auth2_client_with_http_info(id, json_patch)
+  data, status_code, headers = api_instance.patch_o_auth2_client_with_http_info(id, json_patch, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -1584,6 +1599,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The id of the OAuth 2.0 Client. |  |
 | **json_patch** | [**Array&lt;JsonPatch&gt;**](JsonPatch.md) | OAuth 2.0 Client JSON Patch Body |  |
+| **client_id** | **String** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -2122,6 +2138,7 @@ end
 api_instance = OryClient::OAuth2Api.new
 id = 'id_example' # String | OAuth 2.0 Client ID
 opts = {
+  client_id: 'client_id_example', # String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
   rotate_o_auth2_client_secret_body: OryClient::RotateOAuth2ClientSecretBody.new # RotateOAuth2ClientSecretBody | 
 }
 
@@ -2157,6 +2174,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | OAuth 2.0 Client ID |  |
+| **client_id** | **String** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 | **rotate_o_auth2_client_secret_body** | [**RotateOAuth2ClientSecretBody**](RotateOAuth2ClientSecretBody.md) |  | [optional] |
 
 ### Return type
@@ -2175,7 +2193,7 @@ end
 
 ## set_o_auth2_client
 
-> <OAuth2Client> set_o_auth2_client(id, o_auth2_client)
+> <OAuth2Client> set_o_auth2_client(id, o_auth2_client, opts)
 
 Set OAuth 2.0 Client
 
@@ -2195,10 +2213,13 @@ end
 api_instance = OryClient::OAuth2Api.new
 id = 'id_example' # String | OAuth 2.0 Client ID
 o_auth2_client = OryClient::OAuth2Client.new # OAuth2Client | OAuth 2.0 Client Request Body
+opts = {
+  client_id: 'client_id_example' # String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
+}
 
 begin
   # Set OAuth 2.0 Client
-  result = api_instance.set_o_auth2_client(id, o_auth2_client)
+  result = api_instance.set_o_auth2_client(id, o_auth2_client, opts)
   p result
 rescue OryClient::ApiError => e
   puts "Error when calling OAuth2Api->set_o_auth2_client: #{e}"
@@ -2209,12 +2230,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OAuth2Client>, Integer, Hash)> set_o_auth2_client_with_http_info(id, o_auth2_client)
+> <Array(<OAuth2Client>, Integer, Hash)> set_o_auth2_client_with_http_info(id, o_auth2_client, opts)
 
 ```ruby
 begin
   # Set OAuth 2.0 Client
-  data, status_code, headers = api_instance.set_o_auth2_client_with_http_info(id, o_auth2_client)
+  data, status_code, headers = api_instance.set_o_auth2_client_with_http_info(id, o_auth2_client, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OAuth2Client>
@@ -2229,6 +2250,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | OAuth 2.0 Client ID |  |
 | **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) | OAuth 2.0 Client Request Body |  |
+| **client_id** | **String** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -2266,6 +2288,7 @@ end
 api_instance = OryClient::OAuth2Api.new
 id = 'id_example' # String | OAuth 2.0 Client ID
 opts = {
+  client_id: 'client_id_example', # String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
   o_auth2_client_token_lifespans: OryClient::OAuth2ClientTokenLifespans.new # OAuth2ClientTokenLifespans | 
 }
 
@@ -2301,6 +2324,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | OAuth 2.0 Client ID |  |
+| **client_id** | **String** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 | **o_auth2_client_token_lifespans** | [**OAuth2ClientTokenLifespans**](OAuth2ClientTokenLifespans.md) |  | [optional] |
 
 ### Return type

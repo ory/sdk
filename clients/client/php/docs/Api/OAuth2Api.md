@@ -350,7 +350,7 @@ try {
 ## `deleteOAuth2Client()`
 
 ```php
-deleteOAuth2Client($id)
+deleteOAuth2Client($id, $clientId)
 ```
 
 Delete OAuth 2.0 Client
@@ -375,9 +375,10 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
     $config
 );
 $id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+$clientId = 'clientId_example'; // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 
 try {
-    $apiInstance->deleteOAuth2Client($id);
+    $apiInstance->deleteOAuth2Client($id, $clientId);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->deleteOAuth2Client: ', $e->getMessage(), PHP_EOL;
 }
@@ -388,6 +389,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| The id of the OAuth 2.0 Client. | |
+| **clientId** | **string**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -468,7 +470,7 @@ void (empty response body)
 ## `deleteRotatedOAuth2ClientSecrets()`
 
 ```php
-deleteRotatedOAuth2ClientSecrets($id): \Ory\Client\Model\OAuth2Client
+deleteRotatedOAuth2ClientSecrets($id, $clientId): \Ory\Client\Model\OAuth2Client
 ```
 
 Delete Rotated OAuth 2.0 Client Secrets
@@ -493,9 +495,10 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
     $config
 );
 $id = 'id_example'; // string | OAuth 2.0 Client ID
+$clientId = 'clientId_example'; // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 
 try {
-    $result = $apiInstance->deleteRotatedOAuth2ClientSecrets($id);
+    $result = $apiInstance->deleteRotatedOAuth2ClientSecrets($id, $clientId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->deleteRotatedOAuth2ClientSecrets: ', $e->getMessage(), PHP_EOL;
@@ -507,6 +510,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| OAuth 2.0 Client ID | |
+| **clientId** | **string**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -587,7 +591,7 @@ void (empty response body)
 ## `getOAuth2Client()`
 
 ```php
-getOAuth2Client($id): \Ory\Client\Model\OAuth2Client
+getOAuth2Client($id, $clientId): \Ory\Client\Model\OAuth2Client
 ```
 
 Get an OAuth 2.0 Client
@@ -612,9 +616,10 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
     $config
 );
 $id = 'id_example'; // string | The id of the OAuth 2.0 Client.
+$clientId = 'clientId_example'; // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 
 try {
-    $result = $apiInstance->getOAuth2Client($id);
+    $result = $apiInstance->getOAuth2Client($id, $clientId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->getOAuth2Client: ', $e->getMessage(), PHP_EOL;
@@ -626,6 +631,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| The id of the OAuth 2.0 Client. | |
+| **clientId** | **string**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -1329,7 +1335,7 @@ try {
 ## `patchOAuth2Client()`
 
 ```php
-patchOAuth2Client($id, $jsonPatch): \Ory\Client\Model\OAuth2Client
+patchOAuth2Client($id, $jsonPatch, $clientId): \Ory\Client\Model\OAuth2Client
 ```
 
 Patch OAuth 2.0 Client
@@ -1355,9 +1361,10 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
 );
 $id = 'id_example'; // string | The id of the OAuth 2.0 Client.
 $jsonPatch = array(new \Ory\Client\Model\JsonPatch()); // \Ory\Client\Model\JsonPatch[] | OAuth 2.0 Client JSON Patch Body
+$clientId = 'clientId_example'; // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 
 try {
-    $result = $apiInstance->patchOAuth2Client($id, $jsonPatch);
+    $result = $apiInstance->patchOAuth2Client($id, $jsonPatch, $clientId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->patchOAuth2Client: ', $e->getMessage(), PHP_EOL;
@@ -1370,6 +1377,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| The id of the OAuth 2.0 Client. | |
 | **jsonPatch** | [**\Ory\Client\Model\JsonPatch[]**](../Model/JsonPatch.md)| OAuth 2.0 Client JSON Patch Body | |
+| **clientId** | **string**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -1821,7 +1829,7 @@ void (empty response body)
 ## `rotateOAuth2ClientSecret()`
 
 ```php
-rotateOAuth2ClientSecret($id, $rotateOAuth2ClientSecretBody): \Ory\Client\Model\OAuth2Client
+rotateOAuth2ClientSecret($id, $clientId, $rotateOAuth2ClientSecretBody): \Ory\Client\Model\OAuth2Client
 ```
 
 Rotate OAuth 2.0 Client Secret
@@ -1846,10 +1854,11 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
     $config
 );
 $id = 'id_example'; // string | OAuth 2.0 Client ID
+$clientId = 'clientId_example'; // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 $rotateOAuth2ClientSecretBody = new \Ory\Client\Model\RotateOAuth2ClientSecretBody(); // \Ory\Client\Model\RotateOAuth2ClientSecretBody
 
 try {
-    $result = $apiInstance->rotateOAuth2ClientSecret($id, $rotateOAuth2ClientSecretBody);
+    $result = $apiInstance->rotateOAuth2ClientSecret($id, $clientId, $rotateOAuth2ClientSecretBody);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->rotateOAuth2ClientSecret: ', $e->getMessage(), PHP_EOL;
@@ -1861,6 +1870,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| OAuth 2.0 Client ID | |
+| **clientId** | **string**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 | **rotateOAuth2ClientSecretBody** | [**\Ory\Client\Model\RotateOAuth2ClientSecretBody**](../Model/RotateOAuth2ClientSecretBody.md)|  | [optional] |
 
 ### Return type
@@ -1883,7 +1893,7 @@ try {
 ## `setOAuth2Client()`
 
 ```php
-setOAuth2Client($id, $oAuth2Client): \Ory\Client\Model\OAuth2Client
+setOAuth2Client($id, $oAuth2Client, $clientId): \Ory\Client\Model\OAuth2Client
 ```
 
 Set OAuth 2.0 Client
@@ -1909,9 +1919,10 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
 );
 $id = 'id_example'; // string | OAuth 2.0 Client ID
 $oAuth2Client = new \Ory\Client\Model\OAuth2Client(); // \Ory\Client\Model\OAuth2Client | OAuth 2.0 Client Request Body
+$clientId = 'clientId_example'; // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 
 try {
-    $result = $apiInstance->setOAuth2Client($id, $oAuth2Client);
+    $result = $apiInstance->setOAuth2Client($id, $oAuth2Client, $clientId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->setOAuth2Client: ', $e->getMessage(), PHP_EOL;
@@ -1924,6 +1935,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| OAuth 2.0 Client ID | |
 | **oAuth2Client** | [**\Ory\Client\Model\OAuth2Client**](../Model/OAuth2Client.md)| OAuth 2.0 Client Request Body | |
+| **clientId** | **string**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 
 ### Return type
 
@@ -1945,7 +1957,7 @@ try {
 ## `setOAuth2ClientLifespans()`
 
 ```php
-setOAuth2ClientLifespans($id, $oAuth2ClientTokenLifespans): \Ory\Client\Model\OAuth2Client
+setOAuth2ClientLifespans($id, $clientId, $oAuth2ClientTokenLifespans): \Ory\Client\Model\OAuth2Client
 ```
 
 Set OAuth2 Client Token Lifespans
@@ -1970,10 +1982,11 @@ $apiInstance = new Ory\Client\Api\OAuth2Api(
     $config
 );
 $id = 'id_example'; // string | OAuth 2.0 Client ID
+$clientId = 'clientId_example'; // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 $oAuth2ClientTokenLifespans = new \Ory\Client\Model\OAuth2ClientTokenLifespans(); // \Ory\Client\Model\OAuth2ClientTokenLifespans
 
 try {
-    $result = $apiInstance->setOAuth2ClientLifespans($id, $oAuth2ClientTokenLifespans);
+    $result = $apiInstance->setOAuth2ClientLifespans($id, $clientId, $oAuth2ClientTokenLifespans);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OAuth2Api->setOAuth2ClientLifespans: ', $e->getMessage(), PHP_EOL;
@@ -1985,6 +1998,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| OAuth 2.0 Client ID | |
+| **clientId** | **string**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] |
 | **oAuth2ClientTokenLifespans** | [**\Ory\Client\Model\OAuth2ClientTokenLifespans**](../Model/OAuth2ClientTokenLifespans.md)|  | [optional] |
 
 ### Return type

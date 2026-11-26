@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ## DeleteOAuth2Client
 
-> DeleteOAuth2Client(ctx, id).Execute()
+> DeleteOAuth2Client(ctx, id).ClientId(clientId).Execute()
 
 Delete OAuth 2.0 Client
 
@@ -398,10 +398,11 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the OAuth 2.0 Client.
+	clientId := "clientId_example" // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.OAuth2API.DeleteOAuth2Client(context.Background(), id).Execute()
+	r, err := apiClient.OAuth2API.DeleteOAuth2Client(context.Background(), id).ClientId(clientId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.DeleteOAuth2Client``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -425,6 +426,7 @@ Other parameters are passed through a pointer to a apiDeleteOAuth2ClientRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | 
 
 ### Return type
 
@@ -510,7 +512,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRotatedOAuth2ClientSecrets
 
-> OAuth2Client DeleteRotatedOAuth2ClientSecrets(ctx, id).Execute()
+> OAuth2Client DeleteRotatedOAuth2ClientSecrets(ctx, id).ClientId(clientId).Execute()
 
 Delete Rotated OAuth 2.0 Client Secrets
 
@@ -530,10 +532,11 @@ import (
 
 func main() {
 	id := "id_example" // string | OAuth 2.0 Client ID
+	clientId := "clientId_example" // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OAuth2API.DeleteRotatedOAuth2ClientSecrets(context.Background(), id).Execute()
+	resp, r, err := apiClient.OAuth2API.DeleteRotatedOAuth2ClientSecrets(context.Background(), id).ClientId(clientId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.DeleteRotatedOAuth2ClientSecrets``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -559,6 +562,7 @@ Other parameters are passed through a pointer to a apiDeleteRotatedOAuth2ClientS
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | 
 
 ### Return type
 
@@ -648,7 +652,7 @@ Name | Type | Description  | Notes
 
 ## GetOAuth2Client
 
-> OAuth2Client GetOAuth2Client(ctx, id).Execute()
+> OAuth2Client GetOAuth2Client(ctx, id).ClientId(clientId).Execute()
 
 Get an OAuth 2.0 Client
 
@@ -668,10 +672,11 @@ import (
 
 func main() {
 	id := "id_example" // string | The id of the OAuth 2.0 Client.
+	clientId := "clientId_example" // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OAuth2API.GetOAuth2Client(context.Background(), id).Execute()
+	resp, r, err := apiClient.OAuth2API.GetOAuth2Client(context.Background(), id).ClientId(clientId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.GetOAuth2Client``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -697,6 +702,7 @@ Other parameters are passed through a pointer to a apiGetOAuth2ClientRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | 
 
 ### Return type
 
@@ -1471,7 +1477,7 @@ Name | Type | Description  | Notes
 
 ## PatchOAuth2Client
 
-> OAuth2Client PatchOAuth2Client(ctx, id).JsonPatch(jsonPatch).Execute()
+> OAuth2Client PatchOAuth2Client(ctx, id).JsonPatch(jsonPatch).ClientId(clientId).Execute()
 
 Patch OAuth 2.0 Client
 
@@ -1492,10 +1498,11 @@ import (
 func main() {
 	id := "id_example" // string | The id of the OAuth 2.0 Client.
 	jsonPatch := []openapiclient.JsonPatch{*openapiclient.NewJsonPatch("replace", "/name")} // []JsonPatch | OAuth 2.0 Client JSON Patch Body
+	clientId := "clientId_example" // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OAuth2API.PatchOAuth2Client(context.Background(), id).JsonPatch(jsonPatch).Execute()
+	resp, r, err := apiClient.OAuth2API.PatchOAuth2Client(context.Background(), id).JsonPatch(jsonPatch).ClientId(clientId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.PatchOAuth2Client``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1522,6 +1529,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **jsonPatch** | [**[]JsonPatch**](JsonPatch.md) | OAuth 2.0 Client JSON Patch Body | 
+ **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | 
 
 ### Return type
 
@@ -2008,7 +2016,7 @@ Name | Type | Description  | Notes
 
 ## RotateOAuth2ClientSecret
 
-> OAuth2Client RotateOAuth2ClientSecret(ctx, id).RotateOAuth2ClientSecretBody(rotateOAuth2ClientSecretBody).Execute()
+> OAuth2Client RotateOAuth2ClientSecret(ctx, id).ClientId(clientId).RotateOAuth2ClientSecretBody(rotateOAuth2ClientSecretBody).Execute()
 
 Rotate OAuth 2.0 Client Secret
 
@@ -2028,11 +2036,12 @@ import (
 
 func main() {
 	id := "id_example" // string | OAuth 2.0 Client ID
+	clientId := "clientId_example" // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 	rotateOAuth2ClientSecretBody := *openapiclient.NewRotateOAuth2ClientSecretBody() // RotateOAuth2ClientSecretBody |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OAuth2API.RotateOAuth2ClientSecret(context.Background(), id).RotateOAuth2ClientSecretBody(rotateOAuth2ClientSecretBody).Execute()
+	resp, r, err := apiClient.OAuth2API.RotateOAuth2ClientSecret(context.Background(), id).ClientId(clientId).RotateOAuth2ClientSecretBody(rotateOAuth2ClientSecretBody).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.RotateOAuth2ClientSecret``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2058,6 +2067,7 @@ Other parameters are passed through a pointer to a apiRotateOAuth2ClientSecretRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | 
  **rotateOAuth2ClientSecretBody** | [**RotateOAuth2ClientSecretBody**](RotateOAuth2ClientSecretBody.md) |  | 
 
 ### Return type
@@ -2080,7 +2090,7 @@ Name | Type | Description  | Notes
 
 ## SetOAuth2Client
 
-> OAuth2Client SetOAuth2Client(ctx, id).OAuth2Client(oAuth2Client).Execute()
+> OAuth2Client SetOAuth2Client(ctx, id).OAuth2Client(oAuth2Client).ClientId(clientId).Execute()
 
 Set OAuth 2.0 Client
 
@@ -2101,10 +2111,11 @@ import (
 func main() {
 	id := "id_example" // string | OAuth 2.0 Client ID
 	oAuth2Client := *openapiclient.NewOAuth2Client() // OAuth2Client | OAuth 2.0 Client Request Body
+	clientId := "clientId_example" // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OAuth2API.SetOAuth2Client(context.Background(), id).OAuth2Client(oAuth2Client).Execute()
+	resp, r, err := apiClient.OAuth2API.SetOAuth2Client(context.Background(), id).OAuth2Client(oAuth2Client).ClientId(clientId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.SetOAuth2Client``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2131,6 +2142,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **oAuth2Client** | [**OAuth2Client**](OAuth2Client.md) | OAuth 2.0 Client Request Body | 
+ **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | 
 
 ### Return type
 
@@ -2152,7 +2164,7 @@ Name | Type | Description  | Notes
 
 ## SetOAuth2ClientLifespans
 
-> OAuth2Client SetOAuth2ClientLifespans(ctx, id).OAuth2ClientTokenLifespans(oAuth2ClientTokenLifespans).Execute()
+> OAuth2Client SetOAuth2ClientLifespans(ctx, id).ClientId(clientId).OAuth2ClientTokenLifespans(oAuth2ClientTokenLifespans).Execute()
 
 Set OAuth2 Client Token Lifespans
 
@@ -2172,11 +2184,12 @@ import (
 
 func main() {
 	id := "id_example" // string | OAuth 2.0 Client ID
+	clientId := "clientId_example" // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 	oAuth2ClientTokenLifespans := *openapiclient.NewOAuth2ClientTokenLifespans() // OAuth2ClientTokenLifespans |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OAuth2API.SetOAuth2ClientLifespans(context.Background(), id).OAuth2ClientTokenLifespans(oAuth2ClientTokenLifespans).Execute()
+	resp, r, err := apiClient.OAuth2API.SetOAuth2ClientLifespans(context.Background(), id).ClientId(clientId).OAuth2ClientTokenLifespans(oAuth2ClientTokenLifespans).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OAuth2API.SetOAuth2ClientLifespans``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2202,6 +2215,7 @@ Other parameters are passed through a pointer to a apiSetOAuth2ClientLifespansRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | 
  **oAuth2ClientTokenLifespans** | [**OAuth2ClientTokenLifespans**](OAuth2ClientTokenLifespans.md) |  | 
 
 ### Return type

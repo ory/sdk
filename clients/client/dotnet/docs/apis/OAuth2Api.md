@@ -402,7 +402,7 @@ namespace Example
 
 <a id="deleteoauth2client"></a>
 # **DeleteOAuth2Client**
-> Task&lt;IDeleteOAuth2ClientApiResponse&gt; DeleteOAuth2ClientAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+> Task&lt;IDeleteOAuth2ClientApiResponse&gt; DeleteOAuth2ClientAsync(string id, Option<string> clientId = default, System.Threading.CancellationToken cancellationToken = default)
 
 Delete OAuth 2.0 Client
 
@@ -436,7 +436,8 @@ namespace Example
 
             var api = host.Services.GetRequiredService<IOAuth2Api>();
             string id = default!; // The id of the OAuth 2.0 Client.
-            await api.DeleteOAuth2ClientAsync(id);
+            Option<string> clientId = default!; // The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+            await api.DeleteOAuth2ClientAsync(id, clientId);
         }
     }
 }
@@ -447,6 +448,7 @@ namespace Example
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The id of the OAuth 2.0 Client. |  |
+| **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional]  |
 
 ### Return type
 
@@ -542,7 +544,7 @@ void (empty response body)
 
 <a id="deleterotatedoauth2clientsecrets"></a>
 # **DeleteRotatedOAuth2ClientSecrets**
-> Task&lt;IDeleteRotatedOAuth2ClientSecretsApiResponse&gt; DeleteRotatedOAuth2ClientSecretsAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+> Task&lt;IDeleteRotatedOAuth2ClientSecretsApiResponse&gt; DeleteRotatedOAuth2ClientSecretsAsync(string id, Option<string> clientId = default, System.Threading.CancellationToken cancellationToken = default)
 
 Delete Rotated OAuth 2.0 Client Secrets
 
@@ -576,7 +578,8 @@ namespace Example
 
             var api = host.Services.GetRequiredService<IOAuth2Api>();
             string id = default!; // OAuth 2.0 Client ID
-            var response = await api.DeleteRotatedOAuth2ClientSecretsAsync(id);
+            Option<string> clientId = default!; // The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+            var response = await api.DeleteRotatedOAuth2ClientSecretsAsync(id, clientId);
             ClientOAuth2Client? model = response.Ok();
         }
     }
@@ -588,6 +591,7 @@ namespace Example
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | OAuth 2.0 Client ID |  |
+| **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional]  |
 
 ### Return type
 
@@ -684,7 +688,7 @@ void (empty response body)
 
 <a id="getoauth2client"></a>
 # **GetOAuth2Client**
-> Task&lt;IGetOAuth2ClientApiResponse&gt; GetOAuth2ClientAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+> Task&lt;IGetOAuth2ClientApiResponse&gt; GetOAuth2ClientAsync(string id, Option<string> clientId = default, System.Threading.CancellationToken cancellationToken = default)
 
 Get an OAuth 2.0 Client
 
@@ -718,7 +722,8 @@ namespace Example
 
             var api = host.Services.GetRequiredService<IOAuth2Api>();
             string id = default!; // The id of the OAuth 2.0 Client.
-            var response = await api.GetOAuth2ClientAsync(id);
+            Option<string> clientId = default!; // The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+            var response = await api.GetOAuth2ClientAsync(id, clientId);
             ClientOAuth2Client? model = response.Ok();
         }
     }
@@ -730,6 +735,7 @@ namespace Example
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The id of the OAuth 2.0 Client. |  |
+| **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional]  |
 
 ### Return type
 
@@ -1556,7 +1562,7 @@ namespace Example
 
 <a id="patchoauth2client"></a>
 # **PatchOAuth2Client**
-> Task&lt;IPatchOAuth2ClientApiResponse&gt; PatchOAuth2ClientAsync(string id, List<ClientJsonPatch> clientJsonPatch, System.Threading.CancellationToken cancellationToken = default)
+> Task&lt;IPatchOAuth2ClientApiResponse&gt; PatchOAuth2ClientAsync(string id, List<ClientJsonPatch> clientJsonPatch, Option<string> clientId = default, System.Threading.CancellationToken cancellationToken = default)
 
 Patch OAuth 2.0 Client
 
@@ -1591,7 +1597,8 @@ namespace Example
             var api = host.Services.GetRequiredService<IOAuth2Api>();
             string id = default!; // The id of the OAuth 2.0 Client.
             List<ClientJsonPatch> clientJsonPatch = default!; // OAuth 2.0 Client JSON Patch Body
-            var response = await api.PatchOAuth2ClientAsync(id, clientJsonPatch);
+            Option<string> clientId = default!; // The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+            var response = await api.PatchOAuth2ClientAsync(id, clientJsonPatch, clientId);
             ClientOAuth2Client? model = response.Ok();
         }
     }
@@ -1604,6 +1611,7 @@ namespace Example
 |------|------|-------------|-------|
 | **id** | **string** | The id of the OAuth 2.0 Client. |  |
 | **clientJsonPatch** | [**List&lt;ClientJsonPatch&gt;**](../models/ClientJsonPatch.md) | OAuth 2.0 Client JSON Patch Body |  |
+| **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional]  |
 
 ### Return type
 
@@ -2131,7 +2139,7 @@ void (empty response body)
 
 <a id="rotateoauth2clientsecret"></a>
 # **RotateOAuth2ClientSecret**
-> Task&lt;IRotateOAuth2ClientSecretApiResponse&gt; RotateOAuth2ClientSecretAsync(string id, Option<ClientRotateOAuth2ClientSecretBody> clientRotateOAuth2ClientSecretBody = default, System.Threading.CancellationToken cancellationToken = default)
+> Task&lt;IRotateOAuth2ClientSecretApiResponse&gt; RotateOAuth2ClientSecretAsync(string id, Option<string> clientId = default, Option<ClientRotateOAuth2ClientSecretBody> clientRotateOAuth2ClientSecretBody = default, System.Threading.CancellationToken cancellationToken = default)
 
 Rotate OAuth 2.0 Client Secret
 
@@ -2165,8 +2173,9 @@ namespace Example
 
             var api = host.Services.GetRequiredService<IOAuth2Api>();
             string id = default!; // OAuth 2.0 Client ID
+            Option<string> clientId = default!; // The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
             Option<ClientRotateOAuth2ClientSecretBody> clientRotateOAuth2ClientSecretBody = default!; //  (optional)
-            var response = await api.RotateOAuth2ClientSecretAsync(id, clientRotateOAuth2ClientSecretBody);
+            var response = await api.RotateOAuth2ClientSecretAsync(id, clientId, clientRotateOAuth2ClientSecretBody);
             ClientOAuth2Client? model = response.Ok();
         }
     }
@@ -2178,6 +2187,7 @@ namespace Example
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | OAuth 2.0 Client ID |  |
+| **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional]  |
 | **clientRotateOAuth2ClientSecretBody** | [**ClientRotateOAuth2ClientSecretBody**](../models/ClientRotateOAuth2ClientSecretBody.md) |  | [optional]  |
 
 ### Return type
@@ -2206,7 +2216,7 @@ namespace Example
 
 <a id="setoauth2client"></a>
 # **SetOAuth2Client**
-> Task&lt;ISetOAuth2ClientApiResponse&gt; SetOAuth2ClientAsync(string id, ClientOAuth2Client clientOAuth2Client, System.Threading.CancellationToken cancellationToken = default)
+> Task&lt;ISetOAuth2ClientApiResponse&gt; SetOAuth2ClientAsync(string id, ClientOAuth2Client clientOAuth2Client, Option<string> clientId = default, System.Threading.CancellationToken cancellationToken = default)
 
 Set OAuth 2.0 Client
 
@@ -2241,7 +2251,8 @@ namespace Example
             var api = host.Services.GetRequiredService<IOAuth2Api>();
             string id = default!; // OAuth 2.0 Client ID
             ClientOAuth2Client clientOAuth2Client = default!; // OAuth 2.0 Client Request Body
-            var response = await api.SetOAuth2ClientAsync(id, clientOAuth2Client);
+            Option<string> clientId = default!; // The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+            var response = await api.SetOAuth2ClientAsync(id, clientOAuth2Client, clientId);
             ClientOAuth2Client? model = response.Ok();
         }
     }
@@ -2254,6 +2265,7 @@ namespace Example
 |------|------|-------------|-------|
 | **id** | **string** | OAuth 2.0 Client ID |  |
 | **clientOAuth2Client** | [**ClientOAuth2Client**](../models/ClientOAuth2Client.md) | OAuth 2.0 Client Request Body |  |
+| **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional]  |
 
 ### Return type
 
@@ -2281,7 +2293,7 @@ namespace Example
 
 <a id="setoauth2clientlifespans"></a>
 # **SetOAuth2ClientLifespans**
-> Task&lt;ISetOAuth2ClientLifespansApiResponse&gt; SetOAuth2ClientLifespansAsync(string id, Option<ClientOAuth2ClientTokenLifespans> clientOAuth2ClientTokenLifespans = default, System.Threading.CancellationToken cancellationToken = default)
+> Task&lt;ISetOAuth2ClientLifespansApiResponse&gt; SetOAuth2ClientLifespansAsync(string id, Option<string> clientId = default, Option<ClientOAuth2ClientTokenLifespans> clientOAuth2ClientTokenLifespans = default, System.Threading.CancellationToken cancellationToken = default)
 
 Set OAuth2 Client Token Lifespans
 
@@ -2315,8 +2327,9 @@ namespace Example
 
             var api = host.Services.GetRequiredService<IOAuth2Api>();
             string id = default!; // OAuth 2.0 Client ID
+            Option<string> clientId = default!; // The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
             Option<ClientOAuth2ClientTokenLifespans> clientOAuth2ClientTokenLifespans = default!; //  (optional)
-            var response = await api.SetOAuth2ClientLifespansAsync(id, clientOAuth2ClientTokenLifespans);
+            var response = await api.SetOAuth2ClientLifespansAsync(id, clientId, clientOAuth2ClientTokenLifespans);
             ClientOAuth2Client? model = response.Ok();
         }
     }
@@ -2328,6 +2341,7 @@ namespace Example
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | OAuth 2.0 Client ID |  |
+| **clientId** | **string** | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional]  |
 | **clientOAuth2ClientTokenLifespans** | [**ClientOAuth2ClientTokenLifespans**](../models/ClientOAuth2ClientTokenLifespans.md) |  | [optional]  |
 
 ### Return type

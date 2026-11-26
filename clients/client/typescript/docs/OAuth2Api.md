@@ -329,9 +329,11 @@ const configuration = new Configuration();
 const apiInstance = new OAuth2Api(configuration);
 
 let id: string; //The id of the OAuth 2.0 Client. (default to undefined)
+let clientId: string; //The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.deleteOAuth2Client(
-    id
+    id,
+    clientId
 );
 ```
 
@@ -340,6 +342,7 @@ const { status, data } = await apiInstance.deleteOAuth2Client(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] | The id of the OAuth 2.0 Client. | defaults to undefined|
+| **clientId** | [**string**] | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -433,9 +436,11 @@ const configuration = new Configuration();
 const apiInstance = new OAuth2Api(configuration);
 
 let id: string; //OAuth 2.0 Client ID (default to undefined)
+let clientId: string; //The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.deleteRotatedOAuth2ClientSecrets(
-    id
+    id,
+    clientId
 );
 ```
 
@@ -444,6 +449,7 @@ const { status, data } = await apiInstance.deleteRotatedOAuth2ClientSecrets(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] | OAuth 2.0 Client ID | defaults to undefined|
+| **clientId** | [**string**] | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -538,9 +544,11 @@ const configuration = new Configuration();
 const apiInstance = new OAuth2Api(configuration);
 
 let id: string; //The id of the OAuth 2.0 Client. (default to undefined)
+let clientId: string; //The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getOAuth2Client(
-    id
+    id,
+    clientId
 );
 ```
 
@@ -549,6 +557,7 @@ const { status, data } = await apiInstance.getOAuth2Client(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**string**] | The id of the OAuth 2.0 Client. | defaults to undefined|
+| **clientId** | [**string**] | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -1200,10 +1209,12 @@ const apiInstance = new OAuth2Api(configuration);
 
 let id: string; //The id of the OAuth 2.0 Client. (default to undefined)
 let jsonPatch: Array<JsonPatch>; //OAuth 2.0 Client JSON Patch Body
+let clientId: string; //The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.patchOAuth2Client(
     id,
-    jsonPatch
+    jsonPatch,
+    clientId
 );
 ```
 
@@ -1213,6 +1224,7 @@ const { status, data } = await apiInstance.patchOAuth2Client(
 |------------- | ------------- | ------------- | -------------|
 | **jsonPatch** | **Array<JsonPatch>**| OAuth 2.0 Client JSON Patch Body | |
 | **id** | [**string**] | The id of the OAuth 2.0 Client. | defaults to undefined|
+| **clientId** | [**string**] | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -1639,10 +1651,12 @@ const configuration = new Configuration();
 const apiInstance = new OAuth2Api(configuration);
 
 let id: string; //OAuth 2.0 Client ID (default to undefined)
+let clientId: string; //The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional) (default to undefined)
 let rotateOAuth2ClientSecretBody: RotateOAuth2ClientSecretBody; // (optional)
 
 const { status, data } = await apiInstance.rotateOAuth2ClientSecret(
     id,
+    clientId,
     rotateOAuth2ClientSecretBody
 );
 ```
@@ -1653,6 +1667,7 @@ const { status, data } = await apiInstance.rotateOAuth2ClientSecret(
 |------------- | ------------- | ------------- | -------------|
 | **rotateOAuth2ClientSecretBody** | **RotateOAuth2ClientSecretBody**|  | |
 | **id** | [**string**] | OAuth 2.0 Client ID | defaults to undefined|
+| **clientId** | [**string**] | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -1698,10 +1713,12 @@ const apiInstance = new OAuth2Api(configuration);
 
 let id: string; //OAuth 2.0 Client ID (default to undefined)
 let oAuth2Client: OAuth2Client; //OAuth 2.0 Client Request Body
+let clientId: string; //The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.setOAuth2Client(
     id,
-    oAuth2Client
+    oAuth2Client,
+    clientId
 );
 ```
 
@@ -1711,6 +1728,7 @@ const { status, data } = await apiInstance.setOAuth2Client(
 |------------- | ------------- | ------------- | -------------|
 | **oAuth2Client** | **OAuth2Client**| OAuth 2.0 Client Request Body | |
 | **id** | [**string**] | OAuth 2.0 Client ID | defaults to undefined|
+| **clientId** | [**string**] | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -1755,10 +1773,12 @@ const configuration = new Configuration();
 const apiInstance = new OAuth2Api(configuration);
 
 let id: string; //OAuth 2.0 Client ID (default to undefined)
+let clientId: string; //The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional) (default to undefined)
 let oAuth2ClientTokenLifespans: OAuth2ClientTokenLifespans; // (optional)
 
 const { status, data } = await apiInstance.setOAuth2ClientLifespans(
     id,
+    clientId,
     oAuth2ClientTokenLifespans
 );
 ```
@@ -1769,6 +1789,7 @@ const { status, data } = await apiInstance.setOAuth2ClientLifespans(
 |------------- | ------------- | ------------- | -------------|
 | **oAuth2ClientTokenLifespans** | **OAuth2ClientTokenLifespans**|  | |
 | **id** | [**string**] | OAuth 2.0 Client ID | defaults to undefined|
+| **clientId** | [**string**] | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | (optional) defaults to undefined|
 
 
 ### Return type

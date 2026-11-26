@@ -473,7 +473,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_o_auth2_client**
-> delete_o_auth2_client(id)
+> delete_o_auth2_client(id, client_id=client_id)
 
 Delete OAuth 2.0 Client
 
@@ -514,10 +514,11 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.OAuth2Api(api_client)
     id = 'id_example' # str | The id of the OAuth 2.0 Client.
+    client_id = 'client_id_example' # str | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 
     try:
         # Delete OAuth 2.0 Client
-        api_instance.delete_o_auth2_client(id)
+        api_instance.delete_o_auth2_client(id, client_id=client_id)
     except Exception as e:
         print("Exception when calling OAuth2Api->delete_o_auth2_client: %s\n" % e)
 ```
@@ -530,6 +531,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The id of the OAuth 2.0 Client. | 
+ **client_id** | **str**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] 
 
 ### Return type
 
@@ -630,7 +632,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_rotated_o_auth2_client_secrets**
-> OAuth2Client delete_rotated_o_auth2_client_secrets(id)
+> OAuth2Client delete_rotated_o_auth2_client_secrets(id, client_id=client_id)
 
 Delete Rotated OAuth 2.0 Client Secrets
 
@@ -668,10 +670,11 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.OAuth2Api(api_client)
     id = 'id_example' # str | OAuth 2.0 Client ID
+    client_id = 'client_id_example' # str | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 
     try:
         # Delete Rotated OAuth 2.0 Client Secrets
-        api_response = api_instance.delete_rotated_o_auth2_client_secrets(id)
+        api_response = api_instance.delete_rotated_o_auth2_client_secrets(id, client_id=client_id)
         print("The response of OAuth2Api->delete_rotated_o_auth2_client_secrets:\n")
         pprint(api_response)
     except Exception as e:
@@ -686,6 +689,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| OAuth 2.0 Client ID | 
+ **client_id** | **str**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] 
 
 ### Return type
 
@@ -791,7 +795,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_o_auth2_client**
-> OAuth2Client get_o_auth2_client(id)
+> OAuth2Client get_o_auth2_client(id, client_id=client_id)
 
 Get an OAuth 2.0 Client
 
@@ -831,10 +835,11 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.OAuth2Api(api_client)
     id = 'id_example' # str | The id of the OAuth 2.0 Client.
+    client_id = 'client_id_example' # str | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 
     try:
         # Get an OAuth 2.0 Client
-        api_response = api_instance.get_o_auth2_client(id)
+        api_response = api_instance.get_o_auth2_client(id, client_id=client_id)
         print("The response of OAuth2Api->get_o_auth2_client:\n")
         pprint(api_response)
     except Exception as e:
@@ -849,6 +854,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The id of the OAuth 2.0 Client. | 
+ **client_id** | **str**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] 
 
 ### Return type
 
@@ -1786,7 +1792,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_o_auth2_client**
-> OAuth2Client patch_o_auth2_client(id, json_patch)
+> OAuth2Client patch_o_auth2_client(id, json_patch, client_id=client_id)
 
 Patch OAuth 2.0 Client
 
@@ -1833,10 +1839,11 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = ory_client.OAuth2Api(api_client)
     id = 'id_example' # str | The id of the OAuth 2.0 Client.
     json_patch = [ory_client.JsonPatch()] # List[JsonPatch] | OAuth 2.0 Client JSON Patch Body
+    client_id = 'client_id_example' # str | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 
     try:
         # Patch OAuth 2.0 Client
-        api_response = api_instance.patch_o_auth2_client(id, json_patch)
+        api_response = api_instance.patch_o_auth2_client(id, json_patch, client_id=client_id)
         print("The response of OAuth2Api->patch_o_auth2_client:\n")
         pprint(api_response)
     except Exception as e:
@@ -1852,6 +1859,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The id of the OAuth 2.0 Client. | 
  **json_patch** | [**List[JsonPatch]**](JsonPatch.md)| OAuth 2.0 Client JSON Patch Body | 
+ **client_id** | **str**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] 
 
 ### Return type
 
@@ -2465,7 +2473,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **rotate_o_auth2_client_secret**
-> OAuth2Client rotate_o_auth2_client_secret(id, rotate_o_auth2_client_secret_body=rotate_o_auth2_client_secret_body)
+> OAuth2Client rotate_o_auth2_client_secret(id, client_id=client_id, rotate_o_auth2_client_secret_body=rotate_o_auth2_client_secret_body)
 
 Rotate OAuth 2.0 Client Secret
 
@@ -2512,11 +2520,12 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.OAuth2Api(api_client)
     id = 'id_example' # str | OAuth 2.0 Client ID
+    client_id = 'client_id_example' # str | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
     rotate_o_auth2_client_secret_body = ory_client.RotateOAuth2ClientSecretBody() # RotateOAuth2ClientSecretBody |  (optional)
 
     try:
         # Rotate OAuth 2.0 Client Secret
-        api_response = api_instance.rotate_o_auth2_client_secret(id, rotate_o_auth2_client_secret_body=rotate_o_auth2_client_secret_body)
+        api_response = api_instance.rotate_o_auth2_client_secret(id, client_id=client_id, rotate_o_auth2_client_secret_body=rotate_o_auth2_client_secret_body)
         print("The response of OAuth2Api->rotate_o_auth2_client_secret:\n")
         pprint(api_response)
     except Exception as e:
@@ -2531,6 +2540,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| OAuth 2.0 Client ID | 
+ **client_id** | **str**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] 
  **rotate_o_auth2_client_secret_body** | [**RotateOAuth2ClientSecretBody**](RotateOAuth2ClientSecretBody.md)|  | [optional] 
 
 ### Return type
@@ -2558,7 +2568,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_o_auth2_client**
-> OAuth2Client set_o_auth2_client(id, o_auth2_client)
+> OAuth2Client set_o_auth2_client(id, o_auth2_client, client_id=client_id)
 
 Set OAuth 2.0 Client
 
@@ -2604,10 +2614,11 @@ with ory_client.ApiClient(configuration) as api_client:
     api_instance = ory_client.OAuth2Api(api_client)
     id = 'id_example' # str | OAuth 2.0 Client ID
     o_auth2_client = ory_client.OAuth2Client() # OAuth2Client | OAuth 2.0 Client Request Body
+    client_id = 'client_id_example' # str | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
 
     try:
         # Set OAuth 2.0 Client
-        api_response = api_instance.set_o_auth2_client(id, o_auth2_client)
+        api_response = api_instance.set_o_auth2_client(id, o_auth2_client, client_id=client_id)
         print("The response of OAuth2Api->set_o_auth2_client:\n")
         pprint(api_response)
     except Exception as e:
@@ -2623,6 +2634,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| OAuth 2.0 Client ID | 
  **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md)| OAuth 2.0 Client Request Body | 
+ **client_id** | **str**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] 
 
 ### Return type
 
@@ -2649,7 +2661,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_o_auth2_client_lifespans**
-> OAuth2Client set_o_auth2_client_lifespans(id, o_auth2_client_token_lifespans=o_auth2_client_token_lifespans)
+> OAuth2Client set_o_auth2_client_lifespans(id, client_id=client_id, o_auth2_client_token_lifespans=o_auth2_client_token_lifespans)
 
 Set OAuth2 Client Token Lifespans
 
@@ -2687,11 +2699,12 @@ with ory_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = ory_client.OAuth2Api(api_client)
     id = 'id_example' # str | OAuth 2.0 Client ID
+    client_id = 'client_id_example' # str | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
     o_auth2_client_token_lifespans = ory_client.OAuth2ClientTokenLifespans() # OAuth2ClientTokenLifespans |  (optional)
 
     try:
         # Set OAuth2 Client Token Lifespans
-        api_response = api_instance.set_o_auth2_client_lifespans(id, o_auth2_client_token_lifespans=o_auth2_client_token_lifespans)
+        api_response = api_instance.set_o_auth2_client_lifespans(id, client_id=client_id, o_auth2_client_token_lifespans=o_auth2_client_token_lifespans)
         print("The response of OAuth2Api->set_o_auth2_client_lifespans:\n")
         pprint(api_response)
     except Exception as e:
@@ -2706,6 +2719,7 @@ with ory_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| OAuth 2.0 Client ID | 
+ **client_id** | **str**| The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [optional] 
  **o_auth2_client_token_lifespans** | [**OAuth2ClientTokenLifespans**](OAuth2ClientTokenLifespans.md)|  | [optional] 
 
 ### Return type

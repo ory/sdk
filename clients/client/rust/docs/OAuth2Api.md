@@ -288,7 +288,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_o_auth2_client
 
-> delete_o_auth2_client(id)
+> delete_o_auth2_client(id, client_id)
 Delete OAuth 2.0 Client
 
 Delete an existing OAuth 2.0 Client by its ID.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.  Make sure that this endpoint is well protected and only callable by first-party components.
@@ -304,7 +304,8 @@ async fn main() {
     let mut configuration = Configuration::new();
     configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | The id of the OAuth 2.0 Client.
-    match o_auth2_api::delete_o_auth2_client(&configuration, id).await {
+    let client_id = None; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    match o_auth2_api::delete_o_auth2_client(&configuration, id, client_id).await {
         Ok(_) => println!("OAuth2Api::delete_o_auth2_client"),
         Err(error) => eprintln!("Error calling OAuth2Api::delete_o_auth2_client: {:?}", error),
     }
@@ -317,6 +318,7 @@ async fn main() {
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | The id of the OAuth 2.0 Client. | [required] |
+**client_id** | Option<**String**> | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. |  |
 
 ### Return type
 
@@ -384,7 +386,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_rotated_o_auth2_client_secrets
 
-> models::OAuth2Client delete_rotated_o_auth2_client_secrets(id)
+> models::OAuth2Client delete_rotated_o_auth2_client_secrets(id, client_id)
 Delete Rotated OAuth 2.0 Client Secrets
 
 Removes all rotated secrets from an OAuth 2.0 client. This should be called after all services have been updated to use the new secret and the old secrets are no longer needed.
@@ -400,7 +402,8 @@ async fn main() {
     let mut configuration = Configuration::new();
     configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | OAuth 2.0 Client ID
-    match o_auth2_api::delete_rotated_o_auth2_client_secrets(&configuration, id).await {
+    let client_id = None; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    match o_auth2_api::delete_rotated_o_auth2_client_secrets(&configuration, id, client_id).await {
         Ok(response) => println!("OAuth2Api::delete_rotated_o_auth2_client_secrets: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::delete_rotated_o_auth2_client_secrets: {:?}", error),
     }
@@ -413,6 +416,7 @@ async fn main() {
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | OAuth 2.0 Client ID | [required] |
+**client_id** | Option<**String**> | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. |  |
 
 ### Return type
 
@@ -480,7 +484,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_o_auth2_client
 
-> models::OAuth2Client get_o_auth2_client(id)
+> models::OAuth2Client get_o_auth2_client(id, client_id)
 Get an OAuth 2.0 Client
 
 Get an OAuth 2.0 client by its ID. This endpoint never returns the client secret.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -496,7 +500,8 @@ async fn main() {
     let mut configuration = Configuration::new();
     configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | The id of the OAuth 2.0 Client.
-    match o_auth2_api::get_o_auth2_client(&configuration, id).await {
+    let client_id = None; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    match o_auth2_api::get_o_auth2_client(&configuration, id, client_id).await {
         Ok(response) => println!("OAuth2Api::get_o_auth2_client: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::get_o_auth2_client: {:?}", error),
     }
@@ -509,6 +514,7 @@ async fn main() {
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | The id of the OAuth 2.0 Client. | [required] |
+**client_id** | Option<**String**> | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. |  |
 
 ### Return type
 
@@ -1078,7 +1084,7 @@ Name | Type | Description  | Required | Notes
 
 ## patch_o_auth2_client
 
-> models::OAuth2Client patch_o_auth2_client(id, json_patch)
+> models::OAuth2Client patch_o_auth2_client(id, json_patch, client_id)
 Patch OAuth 2.0 Client
 
 Patch an existing OAuth 2.0 Client using JSON Patch. If you update `client_secret`, the secret will be updated and returned via the API. This is the only time you will be able to retrieve the client secret. Passing a new `client_secret` will clear all rotated secrets.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -1095,7 +1101,8 @@ async fn main() {
     configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | The id of the OAuth 2.0 Client.
     let json_patch = Default::default(); // Vec<models::JsonPatch> | OAuth 2.0 Client JSON Patch Body
-    match o_auth2_api::patch_o_auth2_client(&configuration, id, json_patch).await {
+    let client_id = None; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    match o_auth2_api::patch_o_auth2_client(&configuration, id, json_patch, client_id).await {
         Ok(response) => println!("OAuth2Api::patch_o_auth2_client: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::patch_o_auth2_client: {:?}", error),
     }
@@ -1109,6 +1116,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | The id of the OAuth 2.0 Client. | [required] |
 **json_patch** | [**Vec<models::JsonPatch>**](jsonPatch.md) | OAuth 2.0 Client JSON Patch Body | [required] |
+**client_id** | Option<**String**> | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. |  |
 
 ### Return type
 
@@ -1475,7 +1483,7 @@ Name | Type | Description  | Required | Notes
 
 ## rotate_o_auth2_client_secret
 
-> models::OAuth2Client rotate_o_auth2_client_secret(id, rotate_o_auth2_client_secret_body)
+> models::OAuth2Client rotate_o_auth2_client_secret(id, client_id, rotate_o_auth2_client_secret_body)
 Rotate OAuth 2.0 Client Secret
 
 Rotates an OAuth 2.0 client's secrets. The old secret will remain valid for authentication, allowing for zero-downtime secret rotations. A new secret will be generated and returned in the response.  Up to five rotated secrets are retained. Use the `deleteRotatedOAuth2ClientSecrets` endpoint to remove old rotated secrets when they are no longer needed.  Supply `client_secret` in the request body to rotate to a specific value instead of a generated one. The request body is optional.
@@ -1491,8 +1499,9 @@ async fn main() {
     let mut configuration = Configuration::new();
     configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | OAuth 2.0 Client ID
+    let client_id = None; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
     let rotate_o_auth2_client_secret_body = Some(Default::default()); // RotateOAuth2ClientSecretBody (optional)
-    match o_auth2_api::rotate_o_auth2_client_secret(&configuration, id, rotate_o_auth2_client_secret_body).await {
+    match o_auth2_api::rotate_o_auth2_client_secret(&configuration, id, client_id, rotate_o_auth2_client_secret_body).await {
         Ok(response) => println!("OAuth2Api::rotate_o_auth2_client_secret: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::rotate_o_auth2_client_secret: {:?}", error),
     }
@@ -1505,6 +1514,7 @@ async fn main() {
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | OAuth 2.0 Client ID | [required] |
+**client_id** | Option<**String**> | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. |  |
 **rotate_o_auth2_client_secret_body** | Option<[**RotateOAuth2ClientSecretBody**](RotateOAuth2ClientSecretBody.md)> |  |  |
 
 ### Return type
@@ -1525,7 +1535,7 @@ Name | Type | Description  | Required | Notes
 
 ## set_o_auth2_client
 
-> models::OAuth2Client set_o_auth2_client(id, o_auth2_client)
+> models::OAuth2Client set_o_auth2_client(id, o_auth2_client, client_id)
 Set OAuth 2.0 Client
 
 Replaces an existing OAuth 2.0 Client with the payload you send. If you pass `client_secret` the secret is used, otherwise the existing secret is used. Rotated secrets will be cleared if you pass a new `client_secret`.  If set, the secret is echoed in the response. It is not possible to retrieve it later on.  To perform a seamless client secret rotation, use the `rotateOAuth2ClientSecret` endpoint instead.  OAuth 2.0 Clients are used to perform OAuth 2.0 and OpenID Connect flows. Usually, OAuth 2.0 clients are generated for applications which want to consume your OAuth 2.0 or OpenID Connect capabilities.
@@ -1542,7 +1552,8 @@ async fn main() {
     configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | OAuth 2.0 Client ID
     let o_auth2_client = Default::default(); // OAuth2Client | OAuth 2.0 Client Request Body
-    match o_auth2_api::set_o_auth2_client(&configuration, id, o_auth2_client).await {
+    let client_id = None; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    match o_auth2_api::set_o_auth2_client(&configuration, id, o_auth2_client, client_id).await {
         Ok(response) => println!("OAuth2Api::set_o_auth2_client: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::set_o_auth2_client: {:?}", error),
     }
@@ -1556,6 +1567,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | OAuth 2.0 Client ID | [required] |
 **o_auth2_client** | [**OAuth2Client**](OAuth2Client.md) | OAuth 2.0 Client Request Body | [required] |
+**client_id** | Option<**String**> | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. |  |
 
 ### Return type
 
@@ -1575,7 +1587,7 @@ Name | Type | Description  | Required | Notes
 
 ## set_o_auth2_client_lifespans
 
-> models::OAuth2Client set_o_auth2_client_lifespans(id, o_auth2_client_token_lifespans)
+> models::OAuth2Client set_o_auth2_client_lifespans(id, client_id, o_auth2_client_token_lifespans)
 Set OAuth2 Client Token Lifespans
 
 Set lifespans of different token types issued for this OAuth 2.0 client. Does not modify other fields.
@@ -1591,8 +1603,9 @@ async fn main() {
     let mut configuration = Configuration::new();
     configuration.bearer_access_token = Some("ory_pat_...".to_owned());
     let id = "id_example"; // String | OAuth 2.0 Client ID
+    let client_id = None; // String | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
     let o_auth2_client_token_lifespans = Some(Default::default()); // OAuth2ClientTokenLifespans (optional)
-    match o_auth2_api::set_o_auth2_client_lifespans(&configuration, id, o_auth2_client_token_lifespans).await {
+    match o_auth2_api::set_o_auth2_client_lifespans(&configuration, id, client_id, o_auth2_client_token_lifespans).await {
         Ok(response) => println!("OAuth2Api::set_o_auth2_client_lifespans: {:?}", response),
         Err(error) => eprintln!("Error calling OAuth2Api::set_o_auth2_client_lifespans: {:?}", error),
     }
@@ -1605,6 +1618,7 @@ async fn main() {
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** | OAuth 2.0 Client ID | [required] |
+**client_id** | Option<**String**> | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. |  |
 **o_auth2_client_token_lifespans** | Option<[**OAuth2ClientTokenLifespans**](OAuth2ClientTokenLifespans.md)> |  |  |
 
 ### Return type

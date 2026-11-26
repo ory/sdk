@@ -412,7 +412,7 @@ example().catch(console.error);
 
 ## deleteOAuth2Client
 
-> deleteOAuth2Client(id)
+> deleteOAuth2Client(id, clientId)
 
 Delete OAuth 2.0 Client
 
@@ -438,6 +438,8 @@ async function example() {
   const body = {
     // string | The id of the OAuth 2.0 Client.
     id: id_example,
+    // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    clientId: clientId_example,
   } satisfies DeleteOAuth2ClientRequest;
 
   try {
@@ -458,6 +460,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | `string` | The id of the OAuth 2.0 Client. | [Defaults to `undefined`] |
+| **clientId** | `string` | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -556,7 +559,7 @@ example().catch(console.error);
 
 ## deleteRotatedOAuth2ClientSecrets
 
-> OAuth2Client deleteRotatedOAuth2ClientSecrets(id)
+> OAuth2Client deleteRotatedOAuth2ClientSecrets(id, clientId)
 
 Delete Rotated OAuth 2.0 Client Secrets
 
@@ -582,6 +585,8 @@ async function example() {
   const body = {
     // string | OAuth 2.0 Client ID
     id: id_example,
+    // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    clientId: clientId_example,
   } satisfies DeleteRotatedOAuth2ClientSecretsRequest;
 
   try {
@@ -602,6 +607,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | `string` | OAuth 2.0 Client ID | [Defaults to `undefined`] |
+| **clientId** | `string` | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -701,7 +707,7 @@ example().catch(console.error);
 
 ## getOAuth2Client
 
-> OAuth2Client getOAuth2Client(id)
+> OAuth2Client getOAuth2Client(id, clientId)
 
 Get an OAuth 2.0 Client
 
@@ -727,6 +733,8 @@ async function example() {
   const body = {
     // string | The id of the OAuth 2.0 Client.
     id: id_example,
+    // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    clientId: clientId_example,
   } satisfies GetOAuth2ClientRequest;
 
   try {
@@ -747,6 +755,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | `string` | The id of the OAuth 2.0 Client. | [Defaults to `undefined`] |
+| **clientId** | `string` | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1596,7 +1605,7 @@ example().catch(console.error);
 
 ## patchOAuth2Client
 
-> OAuth2Client patchOAuth2Client(id, jsonPatch)
+> OAuth2Client patchOAuth2Client(id, jsonPatch, clientId)
 
 Patch OAuth 2.0 Client
 
@@ -1624,6 +1633,8 @@ async function example() {
     id: id_example,
     // Array<JsonPatch> | OAuth 2.0 Client JSON Patch Body
     jsonPatch: ...,
+    // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    clientId: clientId_example,
   } satisfies PatchOAuth2ClientRequest;
 
   try {
@@ -1645,6 +1656,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **id** | `string` | The id of the OAuth 2.0 Client. | [Defaults to `undefined`] |
 | **jsonPatch** | `Array<JsonPatch>` | OAuth 2.0 Client JSON Patch Body | |
+| **clientId** | `string` | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -2191,7 +2203,7 @@ example().catch(console.error);
 
 ## rotateOAuth2ClientSecret
 
-> OAuth2Client rotateOAuth2ClientSecret(id, rotateOAuth2ClientSecretBody)
+> OAuth2Client rotateOAuth2ClientSecret(id, clientId, rotateOAuth2ClientSecretBody)
 
 Rotate OAuth 2.0 Client Secret
 
@@ -2217,6 +2229,8 @@ async function example() {
   const body = {
     // string | OAuth 2.0 Client ID
     id: id_example,
+    // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    clientId: clientId_example,
     // RotateOAuth2ClientSecretBody (optional)
     rotateOAuth2ClientSecretBody: ...,
   } satisfies RotateOAuth2ClientSecretRequest;
@@ -2239,6 +2253,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | `string` | OAuth 2.0 Client ID | [Defaults to `undefined`] |
+| **clientId** | `string` | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [Optional] [Defaults to `undefined`] |
 | **rotateOAuth2ClientSecretBody** | [RotateOAuth2ClientSecretBody](RotateOAuth2ClientSecretBody.md) |  | [Optional] |
 
 ### Return type
@@ -2268,7 +2283,7 @@ example().catch(console.error);
 
 ## setOAuth2Client
 
-> OAuth2Client setOAuth2Client(id, oAuth2Client)
+> OAuth2Client setOAuth2Client(id, oAuth2Client, clientId)
 
 Set OAuth 2.0 Client
 
@@ -2296,6 +2311,8 @@ async function example() {
     id: id_example,
     // OAuth2Client | OAuth 2.0 Client Request Body
     oAuth2Client: ...,
+    // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    clientId: clientId_example,
   } satisfies SetOAuth2ClientRequest;
 
   try {
@@ -2317,6 +2334,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **id** | `string` | OAuth 2.0 Client ID | [Defaults to `undefined`] |
 | **oAuth2Client** | [OAuth2Client](OAuth2Client.md) | OAuth 2.0 Client Request Body | |
+| **clientId** | `string` | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -2345,7 +2363,7 @@ example().catch(console.error);
 
 ## setOAuth2ClientLifespans
 
-> OAuth2Client setOAuth2ClientLifespans(id, oAuth2ClientTokenLifespans)
+> OAuth2Client setOAuth2ClientLifespans(id, clientId, oAuth2ClientTokenLifespans)
 
 Set OAuth2 Client Token Lifespans
 
@@ -2371,6 +2389,8 @@ async function example() {
   const body = {
     // string | OAuth 2.0 Client ID
     id: id_example,
+    // string | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter. (optional)
+    clientId: clientId_example,
     // OAuth2ClientTokenLifespans (optional)
     oAuth2ClientTokenLifespans: ...,
   } satisfies SetOAuth2ClientLifespansRequest;
@@ -2393,6 +2413,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | `string` | OAuth 2.0 Client ID | [Defaults to `undefined`] |
+| **clientId** | `string` | The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the &#x60;id&#x60; path parameter to &#x60;-&#x60; and send the client ID in this parameter. | [Optional] [Defaults to `undefined`] |
 | **oAuth2ClientTokenLifespans** | [OAuth2ClientTokenLifespans](OAuth2ClientTokenLifespans.md) |  | [Optional] |
 
 ### Return type

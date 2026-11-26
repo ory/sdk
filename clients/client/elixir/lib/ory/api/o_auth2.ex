@@ -201,6 +201,7 @@ defmodule Ory.Api.OAuth2 do
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): The id of the OAuth 2.0 Client.
   - `opts` (keyword): Optional parameters
+    - `:client_id` (String.t): The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 
   ### Returns
 
@@ -208,11 +209,16 @@ defmodule Ory.Api.OAuth2 do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec delete_o_auth2_client(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, Ory.Model.GenericError.t} | {:error, Tesla.Env.t}
-  def delete_o_auth2_client(connection, id, _opts \\ []) do
+  def delete_o_auth2_client(connection, id, opts \\ []) do
+    optional_params = %{
+      :client_id => :query
+    }
+
     request =
       %{}
       |> method(:delete)
       |> url("/admin/clients/#{id}")
+      |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
     connection
@@ -264,6 +270,7 @@ defmodule Ory.Api.OAuth2 do
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): OAuth 2.0 Client ID
   - `opts` (keyword): Optional parameters
+    - `:client_id` (String.t): The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 
   ### Returns
 
@@ -271,11 +278,16 @@ defmodule Ory.Api.OAuth2 do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec delete_rotated_o_auth2_client_secrets(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def delete_rotated_o_auth2_client_secrets(connection, id, _opts \\ []) do
+  def delete_rotated_o_auth2_client_secrets(connection, id, opts \\ []) do
+    optional_params = %{
+      :client_id => :query
+    }
+
     request =
       %{}
       |> method(:delete)
       |> url("/admin/clients/#{id}/secrets/rotate")
+      |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
     connection
@@ -327,6 +339,7 @@ defmodule Ory.Api.OAuth2 do
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): The id of the OAuth 2.0 Client.
   - `opts` (keyword): Optional parameters
+    - `:client_id` (String.t): The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 
   ### Returns
 
@@ -334,11 +347,16 @@ defmodule Ory.Api.OAuth2 do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec get_o_auth2_client(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def get_o_auth2_client(connection, id, _opts \\ []) do
+  def get_o_auth2_client(connection, id, opts \\ []) do
+    optional_params = %{
+      :client_id => :query
+    }
+
     request =
       %{}
       |> method(:get)
       |> url("/admin/clients/#{id}")
+      |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
     connection
@@ -763,6 +781,7 @@ defmodule Ory.Api.OAuth2 do
   - `id` (String.t): The id of the OAuth 2.0 Client.
   - `json_patch` ([Ory.Model.JsonPatch.t]): OAuth 2.0 Client JSON Patch Body
   - `opts` (keyword): Optional parameters
+    - `:client_id` (String.t): The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 
   ### Returns
 
@@ -770,12 +789,17 @@ defmodule Ory.Api.OAuth2 do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec patch_o_auth2_client(Tesla.Env.client, String.t, list(Ory.Model.JsonPatch.t), keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def patch_o_auth2_client(connection, id, json_patch, _opts \\ []) do
+  def patch_o_auth2_client(connection, id, json_patch, opts \\ []) do
+    optional_params = %{
+      :client_id => :query
+    }
+
     request =
       %{}
       |> method(:patch)
       |> url("/admin/clients/#{id}")
       |> add_param(:body, :body, json_patch)
+      |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
     connection
@@ -1057,6 +1081,7 @@ defmodule Ory.Api.OAuth2 do
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): OAuth 2.0 Client ID
   - `opts` (keyword): Optional parameters
+    - `:client_id` (String.t): The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
     - `:body` (RotateOAuth2ClientSecretBody): 
 
   ### Returns
@@ -1067,6 +1092,7 @@ defmodule Ory.Api.OAuth2 do
   @spec rotate_o_auth2_client_secret(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
   def rotate_o_auth2_client_secret(connection, id, opts \\ []) do
     optional_params = %{
+      :client_id => :query,
       :body => :body
     }
 
@@ -1098,6 +1124,7 @@ defmodule Ory.Api.OAuth2 do
   - `id` (String.t): OAuth 2.0 Client ID
   - `o_auth2_client` (OAuth2Client): OAuth 2.0 Client Request Body
   - `opts` (keyword): Optional parameters
+    - `:client_id` (String.t): The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
 
   ### Returns
 
@@ -1105,12 +1132,17 @@ defmodule Ory.Api.OAuth2 do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec set_o_auth2_client(Tesla.Env.client, String.t, Ory.Model.OAuth2Client.t, keyword()) :: {:ok, Ory.Model.ErrorOAuth2.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
-  def set_o_auth2_client(connection, id, o_auth2_client, _opts \\ []) do
+  def set_o_auth2_client(connection, id, o_auth2_client, opts \\ []) do
+    optional_params = %{
+      :client_id => :query
+    }
+
     request =
       %{}
       |> method(:put)
       |> url("/admin/clients/#{id}")
       |> add_param(:body, :body, o_auth2_client)
+      |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
     connection
@@ -1132,6 +1164,7 @@ defmodule Ory.Api.OAuth2 do
   - `connection` (Ory.Connection): Connection to server
   - `id` (String.t): OAuth 2.0 Client ID
   - `opts` (keyword): Optional parameters
+    - `:client_id` (String.t): The ID of the OAuth 2.0 Client, for client IDs with special characters, such as URLs, that proxies may reject when they are encoded in the URL path. Set the `id` path parameter to `-` and send the client ID in this parameter.
     - `:body` (OAuth2ClientTokenLifespans): 
 
   ### Returns
@@ -1142,6 +1175,7 @@ defmodule Ory.Api.OAuth2 do
   @spec set_o_auth2_client_lifespans(Tesla.Env.client, String.t, keyword()) :: {:ok, Ory.Model.GenericError.t} | {:ok, Ory.Model.OAuth2Client.t} | {:error, Tesla.Env.t}
   def set_o_auth2_client_lifespans(connection, id, opts \\ []) do
     optional_params = %{
+      :client_id => :query,
       :body => :body
     }
 
