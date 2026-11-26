@@ -1,0 +1,100 @@
+
+# AccountExperienceThemeVariables
+
+## Properties
+| Name | Type | Description | Notes |
+| ------------ | ------------- | ------------- | ------------- |
+| **accent** | **kotlin.String** |  |  [optional] |
+| **bgDefault** | **kotlin.String** |  |  [optional] |
+| **borderRadiusBranding** | **kotlin.String** |  |  [optional] |
+| **borderRadiusButtons** | **kotlin.String** |  |  [optional] |
+| **borderRadiusCards** | **kotlin.String** |  |  [optional] |
+| **borderRadiusForms** | **kotlin.String** |  |  [optional] |
+| **borderRadiusGeneral** | **kotlin.String** |  |  [optional] |
+| **buttonPrimaryBgDefault** | **kotlin.String** |  |  [optional] |
+| **buttonPrimaryBgDisabled** | **kotlin.String** |  |  [optional] |
+| **buttonPrimaryBgHover** | **kotlin.String** |  |  [optional] |
+| **buttonPrimaryBorderDefault** | **kotlin.String** |  |  [optional] |
+| **buttonPrimaryBorderDisabled** | **kotlin.String** |  |  [optional] |
+| **buttonPrimaryBorderHover** | **kotlin.String** |  |  [optional] |
+| **buttonPrimaryFgDefault** | **kotlin.String** |  |  [optional] |
+| **buttonPrimaryFgDisabled** | **kotlin.String** |  |  [optional] |
+| **buttonPrimaryFgHover** | **kotlin.String** |  |  [optional] |
+| **buttonSecondaryBgDefault** | **kotlin.String** |  |  [optional] |
+| **buttonSecondaryBgDisabled** | **kotlin.String** |  |  [optional] |
+| **buttonSecondaryBgHover** | **kotlin.String** |  |  [optional] |
+| **buttonSecondaryBorderDefault** | **kotlin.String** |  |  [optional] |
+| **buttonSecondaryBorderDisabled** | **kotlin.String** |  |  [optional] |
+| **buttonSecondaryBorderHover** | **kotlin.String** |  |  [optional] |
+| **buttonSecondaryFgDefault** | **kotlin.String** |  |  [optional] |
+| **buttonSecondaryFgDisabled** | **kotlin.String** |  |  [optional] |
+| **buttonSecondaryFgHover** | **kotlin.String** |  |  [optional] |
+| **buttonSocialBgDefault** | **kotlin.String** |  |  [optional] |
+| **buttonSocialBgDisabled** | **kotlin.String** |  |  [optional] |
+| **buttonSocialBgHover** | **kotlin.String** |  |  [optional] |
+| **buttonSocialBgProvider** | **kotlin.String** |  |  [optional] |
+| **buttonSocialBorderDefault** | **kotlin.String** |  |  [optional] |
+| **buttonSocialBorderDisabled** | **kotlin.String** |  |  [optional] |
+| **buttonSocialBorderHover** | **kotlin.String** |  |  [optional] |
+| **buttonSocialBorderProvider** | **kotlin.String** |  |  [optional] |
+| **buttonSocialFgDefault** | **kotlin.String** |  |  [optional] |
+| **buttonSocialFgDisabled** | **kotlin.String** |  |  [optional] |
+| **buttonSocialFgHover** | **kotlin.String** |  |  [optional] |
+| **buttonSocialFgProvider** | **kotlin.String** |  |  [optional] |
+| **createdAt** | [**kotlinx.datetime.Instant**](kotlinx.datetime.Instant.md) |  |  [optional] |
+| **dialogBgDefault** | **kotlin.String** |  |  [optional] |
+| **dialogBgSubtle** | **kotlin.String** |  |  [optional] |
+| **dialogBorderDefault** | **kotlin.String** |  |  [optional] |
+| **dialogFgDefault** | **kotlin.String** |  |  [optional] |
+| **dialogFgMute** | **kotlin.String** |  |  [optional] |
+| **dialogFgSubtle** | **kotlin.String** |  |  [optional] |
+| **formsBgDefault** | **kotlin.String** |  |  [optional] |
+| **formsBgDisabled** | **kotlin.String** |  |  [optional] |
+| **formsBgHover** | **kotlin.String** |  |  [optional] |
+| **formsBorderDefault** | **kotlin.String** |  |  [optional] |
+| **formsBorderDisabled** | **kotlin.String** |  |  [optional] |
+| **formsBorderError** | **kotlin.String** |  |  [optional] |
+| **formsBorderFocus** | **kotlin.String** |  |  [optional] |
+| **formsBorderHover** | **kotlin.String** |  |  [optional] |
+| **formsBorderSuccess** | **kotlin.String** |  |  [optional] |
+| **formsBorderWarn** | **kotlin.String** |  |  [optional] |
+| **formsCheckboxBgChecked** | **kotlin.String** |  |  [optional] |
+| **formsCheckboxBgDefault** | **kotlin.String** |  |  [optional] |
+| **formsCheckboxBorderChecked** | **kotlin.String** |  |  [optional] |
+| **formsCheckboxBorderDefault** | **kotlin.String** |  |  [optional] |
+| **formsCheckboxFgChecked** | **kotlin.String** |  |  [optional] |
+| **formsCheckboxFgDefault** | **kotlin.String** |  |  [optional] |
+| **formsFgDefault** | **kotlin.String** |  |  [optional] |
+| **formsFgError** | **kotlin.String** |  |  [optional] |
+| **formsFgMute** | **kotlin.String** |  |  [optional] |
+| **formsFgSubtle** | **kotlin.String** |  |  [optional] |
+| **formsFgSuccess** | **kotlin.String** |  |  [optional] |
+| **formsFgWarn** | **kotlin.String** |  |  [optional] |
+| **formsRadioBgChecked** | **kotlin.String** |  |  [optional] |
+| **formsRadioBgDefault** | **kotlin.String** |  |  [optional] |
+| **formsRadioBorderChecked** | **kotlin.String** |  |  [optional] |
+| **formsRadioBorderDefault** | **kotlin.String** |  |  [optional] |
+| **formsRadioFgChecked** | **kotlin.String** |  |  [optional] |
+| **formsRadioFgDefault** | **kotlin.String** |  |  [optional] |
+| **formsToggleBgChecked** | **kotlin.String** |  |  [optional] |
+| **formsToggleBgDefault** | **kotlin.String** |  |  [optional] |
+| **formsToggleBorderChecked** | **kotlin.String** |  |  [optional] |
+| **formsToggleBorderDefault** | **kotlin.String** |  |  [optional] |
+| **formsToggleFgChecked** | **kotlin.String** |  |  [optional] |
+| **formsToggleFgDefault** | **kotlin.String** |  |  [optional] |
+| **id** | **kotlin.String** |  |  [optional] |
+| **linksLinkDefault** | **kotlin.String** |  |  [optional] |
+| **linksLinkDisabled** | **kotlin.String** |  |  [optional] |
+| **linksLinkHover** | **kotlin.String** |  |  [optional] |
+| **linksLinkInvertedDefault** | **kotlin.String** |  |  [optional] |
+| **linksLinkInvertedHover** | **kotlin.String** |  |  [optional] |
+| **linksLinkMuteDefault** | **kotlin.String** |  |  [optional] |
+| **linksLinkMuteHover** | **kotlin.String** |  |  [optional] |
+| **syntaxSyntax** | **kotlin.String** |  |  [optional] |
+| **syntaxSyntaxKey** | **kotlin.String** |  |  [optional] |
+| **syntaxSyntaxNum** | **kotlin.String** |  |  [optional] |
+| **syntaxSyntaxValue** | **kotlin.String** |  |  [optional] |
+| **updatedAt** | [**kotlinx.datetime.Instant**](kotlinx.datetime.Instant.md) |  |  [optional] |
+
+
+
