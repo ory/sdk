@@ -153,7 +153,6 @@ Name | Type | Description | Notes
 **kratos_feature_flags_cacheable_sessions** | **boolean** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] [default to undefined]
 **kratos_feature_flags_cacheable_sessions_max_age** | **string** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional] [default to undefined]
 **kratos_feature_flags_choose_recovery_address** | **boolean** | This governs the \&quot;feature_flags.choose_recovery_address\&quot; setting. | [optional] [default to undefined]
-**kratos_feature_flags_enforce_identity_schema_guards** | **boolean** | Configures whether Ory Kratos enforces the identity schema guards  If enabled, an identity schema that does not pass the identity schema guards is rejected. If disabled, the result is logged and the schema is used.  This governs the \&quot;feature_flags.enforce_identity_schema_guards\&quot; setting. | [optional] [default to undefined]
 **kratos_feature_flags_faster_session_extend** | **boolean** | Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 204 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \&quot;feature_flags.faster_session_extend\&quot; setting. | [optional] [default to undefined]
 **kratos_feature_flags_legacy_continue_with_verification_ui** | **boolean** | Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including &#x60;show_verification_ui&#x60; in the registration flow\&#39;s &#x60;continue_with&#x60; when verification is enabled. If set to false, &#x60;show_verification_ui&#x60; is only set in &#x60;continue_with&#x60; if the &#x60;show_verification_ui&#x60; hook is used. This flag will be removed in the future.  This governs the \&quot;feature_flags.legacy_continue_with_verification_ui\&quot; setting. | [optional] [default to undefined]
 **kratos_feature_flags_legacy_oidc_registration_node_group** | **boolean** | Controls whether the UI nodes in an OIDC registration flow have group \&quot;oidc\&quot; in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \&quot;oidc\&quot; and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \&quot;feature_flags.legacy_oidc_registration_node_group\&quot; setting. | [optional] [default to undefined]
@@ -485,7 +484,6 @@ const instance: CreateProjectNormalizedPayload = {
     kratos_feature_flags_cacheable_sessions,
     kratos_feature_flags_cacheable_sessions_max_age,
     kratos_feature_flags_choose_recovery_address,
-    kratos_feature_flags_enforce_identity_schema_guards,
     kratos_feature_flags_faster_session_extend,
     kratos_feature_flags_legacy_continue_with_verification_ui,
     kratos_feature_flags_legacy_oidc_registration_node_group,

@@ -43,14 +43,16 @@ If the patch includes at least one plaintext password you can import up to 200 i
 
 Avoid importing large batches with plaintext passwords. They can cause timeouts as the passwords need to be hashed before they are stored.
 
-By default, the response is 200 OK, also when no identity is imported. It lists the result of each identity: its ID if
-it was imported, or the error that stopped it, such as 409 Conflict for an identity that conflicts with an existing one.
+By default, the response is 200 OK, also when no identity is imported, unless the whole request fails as listed below. It
+lists the result of each identity: its ID if it was imported, or the error that stopped it, such as 409 Conflict for an
+identity that conflicts with an existing one.
 
 Set `with_partial_inserts` to false to import the batch as a single unit instead, in exchange for a considerably faster
 import: one conflict then fails the whole request with 409 Conflict and no identity is created.
 
 Apart from server errors, only the following errors fail the whole request, and then no identity is imported:
 - 400 Bad Request: The request payload is invalid or improperly formatted.
+- 409 Conflict: The batch has a single identity, and it conflicts with an existing identity.
 - 409 Conflict: `with_partial_inserts` is false, and an identity conflicts with an existing identity or with another
 identity in the batch. Self-hosted Ory Kratos on MySQL does not support partial inserts, so there a conflict also fails
 the whole request when the batch has more than one valid identity.

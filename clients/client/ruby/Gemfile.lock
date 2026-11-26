@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ory-client (1.22.99)
+    ory-client (1.22.100)
       typhoeus (~> 1.0, >= 1.0.1)
 
 GEM

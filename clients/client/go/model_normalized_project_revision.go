@@ -3,7 +3,7 @@ Ory APIs
 
 # Introduction Documentation for all public and administrative Ory APIs. Administrative APIs can only be accessed with a valid Personal Access Token. Public APIs are mostly used in browsers.  ## SDKs This document describes the APIs available in the Ory Network. The APIs are available as SDKs for the following languages:  | Language       | Download SDK                                                     | Documentation                                                                        | | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | | Dart           | [pub.dev](https://pub.dev/packages/ory_client)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/dart/README.md)       | | .NET           | [nuget.org](https://www.nuget.org/packages/Ory.Client/)          | [README](https://github.com/ory/sdk/blob/master/clients/client/dotnet/README.md)     | | Elixir         | [hex.pm](https://hex.pm/packages/ory_client)                     | [README](https://github.com/ory/sdk/blob/master/clients/client/elixir/README.md)     | | Go             | [github.com](https://github.com/ory/client-go)                   | [README](https://github.com/ory/sdk/blob/master/clients/client/go/README.md)         | | Java           | [maven.org](https://search.maven.org/artifact/sh.ory/ory-client) | [README](https://github.com/ory/sdk/blob/master/clients/client/java/README.md)       | | JavaScript     | [npmjs.com](https://www.npmjs.com/package/@ory/client)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript/README.md) | | JavaScript (With fetch) | [npmjs.com](https://www.npmjs.com/package/@ory/client-fetch)           | [README](https://github.com/ory/sdk/blob/master/clients/client/typescript-fetch/README.md) |  | PHP            | [packagist.org](https://packagist.org/packages/ory/client)       | [README](https://github.com/ory/sdk/blob/master/clients/client/php/README.md)        | | Python         | [pypi.org](https://pypi.org/project/ory-client/)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/python/README.md)     | | Ruby           | [rubygems.org](https://rubygems.org/gems/ory-client)             | [README](https://github.com/ory/sdk/blob/master/clients/client/ruby/README.md)       | | Rust           | [crates.io](https://crates.io/crates/ory-client)                 | [README](https://github.com/ory/sdk/blob/master/clients/client/rust/README.md)       | 
 
-API version: v1.22.99
+API version: v1.22.100
 Contact: support@ory.sh
 */
 
@@ -310,8 +310,6 @@ type NormalizedProjectRevision struct {
 	KratosFeatureFlagsCacheableSessionsMaxAge *string `json:"kratos_feature_flags_cacheable_sessions_max_age,omitempty"`
 	// This governs the \"feature_flags.choose_recovery_address\" setting.
 	KratosFeatureFlagsChooseRecoveryAddress *bool `json:"kratos_feature_flags_choose_recovery_address,omitempty"`
-	// Configures whether Ory Kratos enforces the identity schema guards  If enabled, an identity schema that does not pass the identity schema guards is rejected. If disabled, the result is logged and the schema is used.  This governs the \"feature_flags.enforce_identity_schema_guards\" setting.
-	KratosFeatureFlagsEnforceIdentitySchemaGuards *bool `json:"kratos_feature_flags_enforce_identity_schema_guards,omitempty"`
 	// Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 204 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \"feature_flags.faster_session_extend\" setting.
 	KratosFeatureFlagsFasterSessionExtend *bool `json:"kratos_feature_flags_faster_session_extend,omitempty"`
 	// Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including `show_verification_ui` in the registration flow's `continue_with` when verification is enabled. If set to false, `show_verification_ui` is only set in `continue_with` if the `show_verification_ui` hook is used. This flag will be removed in the future.  This governs the \"feature_flags.legacy_continue_with_verification_ui\" setting.
@@ -5366,38 +5364,6 @@ func (o *NormalizedProjectRevision) HasKratosFeatureFlagsChooseRecoveryAddress()
 // SetKratosFeatureFlagsChooseRecoveryAddress gets a reference to the given bool and assigns it to the KratosFeatureFlagsChooseRecoveryAddress field.
 func (o *NormalizedProjectRevision) SetKratosFeatureFlagsChooseRecoveryAddress(v bool) {
 	o.KratosFeatureFlagsChooseRecoveryAddress = &v
-}
-
-// GetKratosFeatureFlagsEnforceIdentitySchemaGuards returns the KratosFeatureFlagsEnforceIdentitySchemaGuards field value if set, zero value otherwise.
-func (o *NormalizedProjectRevision) GetKratosFeatureFlagsEnforceIdentitySchemaGuards() bool {
-	if o == nil || IsNil(o.KratosFeatureFlagsEnforceIdentitySchemaGuards) {
-		var ret bool
-		return ret
-	}
-	return *o.KratosFeatureFlagsEnforceIdentitySchemaGuards
-}
-
-// GetKratosFeatureFlagsEnforceIdentitySchemaGuardsOk returns a tuple with the KratosFeatureFlagsEnforceIdentitySchemaGuards field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *NormalizedProjectRevision) GetKratosFeatureFlagsEnforceIdentitySchemaGuardsOk() (*bool, bool) {
-	if o == nil || IsNil(o.KratosFeatureFlagsEnforceIdentitySchemaGuards) {
-		return nil, false
-	}
-	return o.KratosFeatureFlagsEnforceIdentitySchemaGuards, true
-}
-
-// HasKratosFeatureFlagsEnforceIdentitySchemaGuards returns a boolean if a field has been set.
-func (o *NormalizedProjectRevision) HasKratosFeatureFlagsEnforceIdentitySchemaGuards() bool {
-	if o != nil && !IsNil(o.KratosFeatureFlagsEnforceIdentitySchemaGuards) {
-		return true
-	}
-
-	return false
-}
-
-// SetKratosFeatureFlagsEnforceIdentitySchemaGuards gets a reference to the given bool and assigns it to the KratosFeatureFlagsEnforceIdentitySchemaGuards field.
-func (o *NormalizedProjectRevision) SetKratosFeatureFlagsEnforceIdentitySchemaGuards(v bool) {
-	o.KratosFeatureFlagsEnforceIdentitySchemaGuards = &v
 }
 
 // GetKratosFeatureFlagsFasterSessionExtend returns the KratosFeatureFlagsFasterSessionExtend field value if set, zero value otherwise.
@@ -11469,9 +11435,6 @@ func (o NormalizedProjectRevision) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.KratosFeatureFlagsChooseRecoveryAddress) {
 		toSerialize["kratos_feature_flags_choose_recovery_address"] = o.KratosFeatureFlagsChooseRecoveryAddress
 	}
-	if !IsNil(o.KratosFeatureFlagsEnforceIdentitySchemaGuards) {
-		toSerialize["kratos_feature_flags_enforce_identity_schema_guards"] = o.KratosFeatureFlagsEnforceIdentitySchemaGuards
-	}
 	if !IsNil(o.KratosFeatureFlagsFasterSessionExtend) {
 		toSerialize["kratos_feature_flags_faster_session_extend"] = o.KratosFeatureFlagsFasterSessionExtend
 	}
@@ -12186,7 +12149,6 @@ func (o *NormalizedProjectRevision) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions")
 		delete(additionalProperties, "kratos_feature_flags_cacheable_sessions_max_age")
 		delete(additionalProperties, "kratos_feature_flags_choose_recovery_address")
-		delete(additionalProperties, "kratos_feature_flags_enforce_identity_schema_guards")
 		delete(additionalProperties, "kratos_feature_flags_faster_session_extend")
 		delete(additionalProperties, "kratos_feature_flags_legacy_continue_with_verification_ui")
 		delete(additionalProperties, "kratos_feature_flags_legacy_oidc_registration_node_group")

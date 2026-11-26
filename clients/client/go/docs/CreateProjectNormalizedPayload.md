@@ -151,7 +151,6 @@ Name | Type | Description | Notes
 **KratosFeatureFlagsCacheableSessions** | Pointer to **bool** | Configures the Ory Kratos Session caching feature flag  This governs the \&quot;feature_flags.cacheable_sessions\&quot; setting. | [optional] 
 **KratosFeatureFlagsCacheableSessionsMaxAge** | Pointer to **string** | Configures the Ory Kratos Session caching max-age feature flag  This governs the \&quot;feature_flags.cacheable_sessions_max_age\&quot; setting. | [optional] 
 **KratosFeatureFlagsChooseRecoveryAddress** | Pointer to **bool** | This governs the \&quot;feature_flags.choose_recovery_address\&quot; setting. | [optional] 
-**KratosFeatureFlagsEnforceIdentitySchemaGuards** | Pointer to **bool** | Configures whether Ory Kratos enforces the identity schema guards  If enabled, an identity schema that does not pass the identity schema guards is rejected. If disabled, the result is logged and the schema is used.  This governs the \&quot;feature_flags.enforce_identity_schema_guards\&quot; setting. | [optional] 
 **KratosFeatureFlagsFasterSessionExtend** | Pointer to **bool** | Configures the Ory Kratos Faster Session Extend setting  If enabled allows faster session extension by skipping the session lookup and returning 204 instead of 200. Disabling this feature will be deprecated in the future.  This governs the \&quot;feature_flags.faster_session_extend\&quot; setting. | [optional] 
 **KratosFeatureFlagsLegacyContinueWithVerificationUi** | Pointer to **bool** | Always include show_verification_ui in continue_with  If true, restores the legacy behavior of always including &#x60;show_verification_ui&#x60; in the registration flow&#39;s &#x60;continue_with&#x60; when verification is enabled. If set to false, &#x60;show_verification_ui&#x60; is only set in &#x60;continue_with&#x60; if the &#x60;show_verification_ui&#x60; hook is used. This flag will be removed in the future.  This governs the \&quot;feature_flags.legacy_continue_with_verification_ui\&quot; setting. | [optional] 
 **KratosFeatureFlagsLegacyOidcRegistrationNodeGroup** | Pointer to **bool** | Controls whether the UI nodes in an OIDC registration flow have group \&quot;oidc\&quot; in case required fields are not returned by the OIDC provider.  If set to true, the UI nodes will have group \&quot;oidc\&quot; and the flow will be considered successful if the user completes the flow. This is the legacy behavior.  This governs the \&quot;feature_flags.legacy_oidc_registration_node_group\&quot; setting. | [optional] 
@@ -4018,31 +4017,6 @@ SetKratosFeatureFlagsChooseRecoveryAddress sets KratosFeatureFlagsChooseRecovery
 `func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsChooseRecoveryAddress() bool`
 
 HasKratosFeatureFlagsChooseRecoveryAddress returns a boolean if a field has been set.
-
-### GetKratosFeatureFlagsEnforceIdentitySchemaGuards
-
-`func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsEnforceIdentitySchemaGuards() bool`
-
-GetKratosFeatureFlagsEnforceIdentitySchemaGuards returns the KratosFeatureFlagsEnforceIdentitySchemaGuards field if non-nil, zero value otherwise.
-
-### GetKratosFeatureFlagsEnforceIdentitySchemaGuardsOk
-
-`func (o *CreateProjectNormalizedPayload) GetKratosFeatureFlagsEnforceIdentitySchemaGuardsOk() (*bool, bool)`
-
-GetKratosFeatureFlagsEnforceIdentitySchemaGuardsOk returns a tuple with the KratosFeatureFlagsEnforceIdentitySchemaGuards field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKratosFeatureFlagsEnforceIdentitySchemaGuards
-
-`func (o *CreateProjectNormalizedPayload) SetKratosFeatureFlagsEnforceIdentitySchemaGuards(v bool)`
-
-SetKratosFeatureFlagsEnforceIdentitySchemaGuards sets KratosFeatureFlagsEnforceIdentitySchemaGuards field to given value.
-
-### HasKratosFeatureFlagsEnforceIdentitySchemaGuards
-
-`func (o *CreateProjectNormalizedPayload) HasKratosFeatureFlagsEnforceIdentitySchemaGuards() bool`
-
-HasKratosFeatureFlagsEnforceIdentitySchemaGuards returns a boolean if a field has been set.
 
 ### GetKratosFeatureFlagsFasterSessionExtend
 

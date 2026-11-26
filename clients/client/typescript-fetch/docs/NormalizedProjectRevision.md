@@ -151,7 +151,6 @@ Name | Type
 `kratos_feature_flags_cacheable_sessions` | boolean
 `kratos_feature_flags_cacheable_sessions_max_age` | string
 `kratos_feature_flags_choose_recovery_address` | boolean
-`kratos_feature_flags_enforce_identity_schema_guards` | boolean
 `kratos_feature_flags_faster_session_extend` | boolean
 `kratos_feature_flags_legacy_continue_with_verification_ui` | boolean
 `kratos_feature_flags_legacy_oidc_registration_node_group` | boolean
@@ -481,7 +480,6 @@ const example = {
   "kratos_feature_flags_cacheable_sessions": null,
   "kratos_feature_flags_cacheable_sessions_max_age": null,
   "kratos_feature_flags_choose_recovery_address": null,
-  "kratos_feature_flags_enforce_identity_schema_guards": null,
   "kratos_feature_flags_faster_session_extend": null,
   "kratos_feature_flags_legacy_continue_with_verification_ui": null,
   "kratos_feature_flags_legacy_oidc_registration_node_group": null,
